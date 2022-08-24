@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_createdatastreamex">
     <title><ph keyref="createDataStreamEx1" /></title>
-    <shortdesc id="short"><ph id="shortdesc">创建数据流。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,19 +28,19 @@
         <section id="detailed_desc">
             <dl outputclass="deprecated" id="dl_fvq_yqm_3qb">
             <dlentry>
-                <dt>弃用：</dt>
-                <dd>该方法已废弃。 请改用 <xref keyref="createDataStreamEx2" />。</dd>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated. Please use  instead<xref keyref="createDataStreamEx2" />.</dd>
             </dlentry>
             </dl>
-            <p id="desc">你可以调用该方法创建数据流并提高数据传输的可靠性和有序性。</p>
+            <p id="desc">You can call this method to create a data stream and improve the reliability and ordering of data transmission.</p>
             <note type="attention" id="note">
             <ul id="ul_gvq_yqm_3qb">
-            <li>请确保将 <parmname>reliable</parmname> 和 <parmname>ordered</parmname> 设为相同的值。</li>
-            <li>在 <xref keyref="IRtcEngine" /> 生命周期内，每个用户最多只能创建 5 个数据流。</li>
-            <li>频道内数据通道最多允许数据延迟 5 秒，若超过 5 秒接收方尚未收到数据流，则数据通道会向 app 报错。</li>
+            <li>Ensure that you set the same value for <parmname>reliable</parmname> and <parmname>ordered</parmname>.</li>
+            <li><xref keyref="IRtcEngine" />Each user can create up to five data streams during the lifecycle of .</li>
+            <li>The data channel allows a data delay of up to 5 seconds. If the receiver does not receive the data stream within 5 seconds, the data channel reports an error.</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>参数</title>
+            <title>Parameter</title>
             <parml id="parml_cwc_jsm_3qb">
             <plentry props="cpp ios mac unity" conkeyref="createDataStream2/streamId">
                 <pt />
@@ -49,22 +49,18 @@
             <plentry>
                 <pt>reliable</pt>
                 <pd>
-                    <p>是否保证数据可靠性，即接收方是否需要在数据发送后的 5 秒内接收：
-
-                    <ul id="ul_dwc_jsm_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: 保证接收方会在数据发送后的 5 秒内接收。 如果接收方在数据发送后的 5 秒内没有接收数据，SDK 会报错。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 不保证收方会在数据发送后的 5 秒内接收。 如果接收延迟或丢失数据，SDK 不会报错。</li>
+                    <p>Sets whether the recipients are guaranteed to receive the data stream from the sender within five seconds:<ul id="ul_dwc_jsm_3qb">
+                    <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data stream from the sender within five seconds. If the recipient does not receive the data stream within five seconds, an error is reported to the application.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream from the sender within five seconds. The SDK does not report errors if reception is delayed or data is lost.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry id="ordered">
                 <pt>ordered</pt>
                 <pd>
-                    <p>是否保证数据有序性，即接收方是否需要收到有序的数据：
-
-                    <ul id="ul_gwc_jsm_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>：保证接收方会按照发送方发送的顺序收到数据包。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：不保证接收方按照发送方发送的顺序收到数据包。</li>
+                    <p>Sets whether the recipients receive the data stream in the sent order:<ul id="ul_gwc_jsm_3qb">
+                    <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data stream in the sent order.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream in the sent order.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -74,11 +70,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title>Returns</title>
             <ul>
-            <li props="android ios mac electron">成功创建的数据流 ID：方法调用成功。</li>
-            <li props="cpp unity">0: 创建数据流成功。</li>
-            <li>&lt; 0: 创建数据流失败。</li>
+            <li props="android ios mac electron">Returns the stream ID, if the method call is successful.</li>
+            <li props="cpp unity">0: The data stream is successfully created.</li>
+            <li>&lt; 0: Fails to create the data stream.</li>
             </ul> </section>
     </refbody>
 </reference>
