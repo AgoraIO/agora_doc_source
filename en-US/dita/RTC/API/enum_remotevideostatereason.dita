@@ -13,40 +13,43 @@
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" id="1"/></pt>
-                    <pd>1: Network congestion.</pd>
+                    <pd>1: The remote user's network is congested. If the network conditions are persistently poor, display a pop-up box in the application that says "The remote user's network conditions are poor".</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" id="2"/></pt>
-                    <pd>2: Network recovery.</pd>
+                    <pd>2: The remote user's network conditions are restored from congested to normal. You can display a pop-up box in the application that says "The remote user's network conditions have improved".</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" id="3"/></pt>
-                    <pd>3: The local user stops receiving the remote
-  video stream or disables the video module.</pd>
+                    <pd>3: The local user stops receiving the remote video stream or disables the video module. You can close the window to render the remote user's video and display a pop-up box in the application that says "You have stopped receiving video from the remote user".</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" id="4"/></pt>
-                    <pd>4: The local user resumes receiving the remote video stream or enables the video module.</pd>
+                    <pd>4: The local user resumes receiving the remote video stream or enables the video module. You can restore the window to render the remote user's video and display a pop-up box in the application that says "You have resumed receiving video from the remote user".</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" id="5"/></pt>
-                    <pd>5: The remote user stops sending the video stream or disables the video module.</pd>
+                    <pd>5: The remote user stops sending the video stream or disables the video module. You can close the window to render the remote user's video, use an icon in the list of users in the application user interface to show that the remote user has stopped sending video, and display a pop-up box in the application that says "The remote user has disabled the camera".</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" id="6"/></pt>
-                    <pd>6: The remote user resumes sending the video stream or enables the video module.</pd>
+                    <pd>6: The remote user resumes sending the video stream or enables the video module. You can restore the window to render the remote user's video, use an icon in the list of users in the application user interface to show that the remote user has resumed sending video, and display a pop-up box in the application that says "The remote user has enabled the camera".</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" id="7"/></pt>
-                    <pd>7: The remote user leaves the channel.</pd>
+                    <pd>7: The remote user leaves the channel. You can close the window to render the remote user's video and remove the remote user from the user list in the application user interface.</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" id="8"/></pt>
-                    <pd>8: The remote audio-and-video stream falls back to the audio-only stream due to poor network conditions.</pd>
+                    <pd>8: The remote audio-and-video stream falls back to the audio-only stream due to poor network conditions. You can close the window to render the remote user's video and display a pop-up box in the application that says "The remote user's network conditions are poor".</pd>
                </plentry>
                <plentry>
                     <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" id="9"/></pt>
-                    <pd>9: The remote audio-only stream switches back to the audio-and-video stream after the network conditions improve.</pd>
+                    <pd>9: The remote audio-only stream switches back to the audio-and-video stream after the network conditions improve. You can restore the window to render the remote user's video and display a pop-up box in the application that says "The remote user's network conditions are poor".</pd>
+               </plentry>
+               <plentry props="cpp">
+                    <pt><ph keyref="REMOTE_VIDEO_STATE_REASON_SDK_IN_BACKGROUND" id="10"/></pt>
+                    <pd>The SDK reports this error code to the local user when a remote user is using the iOS app and the app is in the background. In this case, the local user sees the remote user's video stuck.</pd>
                </plentry>
                </parml> </section>
      </refbody>

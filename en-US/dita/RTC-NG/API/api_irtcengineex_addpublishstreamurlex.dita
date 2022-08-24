@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_addpublishstreamurlex">
-    <title><ph keyref="addPublishStreamUrlEx"/></title>
+    <title><ph keyref="addPublishStreamUrlEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">Publishes the local stream to a specified CDN live streaming URL.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="addPublishStreamUrlEx"/>
+                <indexterm keyref="addPublishStreamUrlEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -26,36 +26,36 @@
     transcodingEnabled: boolean,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">  Future&lt;void> addPublishStreamUrlEx(
+            <codeblock props="flutter" outputclass="language-dart">  Future&lt;void&gt; addPublishStreamUrlEx(
       {required String url,
       required bool transcodingEnabled,
       required RtcConnection connection});
 </codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN according to <xref keyref="RtcConnection"/>. The SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback on the local client to report the state of adding a local stream to the CDN.</p>
+            <p>After calling this method, you can push media streams in RTMP or RTMPS protocol to the CDN according to <xref keyref="RtcConnection" />. The SDK triggers the <xref keyref="onRtmpStreamingStateChanged" /> callback on the local client to report the state of adding a local stream to the CDN.</p>
             <note type="attention" id="note">
             <ul>
             <li>Call this method after joining a channel.</li>
             <li>Ensure that the Media Push function is enabled.</li>
             <li>This method takes effect only when you are a host in live interactive streaming.</li>
             <li>This method adds only one streaming URL to the CDN each time it is called. To push multiple URLs, call this method multiple times.</li>
-            <li>In one <xref keyref="IRtcEngineEx"/> instance, you can only push one upstream media stream to the CDN (such as the video stream captured by the camera or the video stream for screen sharing selected by the <apiname keyref="RtcConnection"/>).</li>
+            <li>In one <xref keyref="IRtcEngineEx" /> instance, you can only push one upstream media stream to the CDN (such as the video stream captured by the camera or the video stream for screen sharing selected by the <apiname keyref="RtcConnection" />).</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="addPublishStreamUrl/url">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="addPublishStreamUrl/transcoding">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_joinchannel">
-    <title><ph keyref="joinChannel1"/></title>
+    <title><ph keyref="joinChannel1" /></title>
     <shortdesc id="short"><ph id="shortdesc">Joins a channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="joinChannel1"/>
+                <indexterm keyref="joinChannel1" />
             </keywords>
         </metadata>
     </prolog>
@@ -30,27 +30,27 @@
     info: string,
     uid: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannel(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannel(
     {required String token,
     required String channelId,
     required String info,
     required int uid});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p conkeyref="joinChannel2/desc1"/>
-            <p conkeyref="joinChannel2/desc2"/>
-            <p conkeyref="joinChannel2/desc3"/>
+            <p conkeyref="joinChannel2/desc1" />
+            <p conkeyref="joinChannel2/desc2" />
+            <p conkeyref="joinChannel2/desc3" />
             <note type="attention">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannel2/channelID">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="ios mac cpp unity rn electron flutter">info</pt>
@@ -60,13 +60,13 @@
             <plentry id="uid">
                 <pt props="ios mac cpp electron unity rn flutter">uid</pt>
                 <pt props="android">optionalUid</pt>
-                <pd>The user ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer. The value range is 1 to <sup>232</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns a random user ID and returns it in the <apiname keyref="onJoinChannelSuccess"/> callback. Your application must record and maintain the returned user ID, because the SDK does not do so.</pd>
+                <pd>The user ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer. The value range is 1 to <sup>232</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns a random user ID and returns it in the <apiname keyref="onJoinChannelSuccess" /> callback. Your application must record and maintain the returned user ID, because the SDK does not do so.</pd>
             </plentry>
             <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="joinChannel2/return_values" props="native unity rn electron"/>
+        <section id="return_values" conkeyref="joinChannel2/return_values" props="native unity rn electron" />
     </refbody>
 </reference>

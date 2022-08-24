@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startrecording">
-    <title><ph keyref="startRecording"/></title>
+    <title><ph keyref="startRecording" /></title>
     <shortdesc id="short"><ph id="shortdesc">Starts recording the local audio and video.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRecording"/>
+                <indexterm keyref="startRecording" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRecording(const MediaRecorderConfiguration&amp; config) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRecording(MediaRecorderConfiguration config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /></p>
         </section>
         <section id="detailed_desc">
-            <p props="android apple cpp">After successfully getting the <xref keyref="IMediaRecorder"/> object, you can all this method to enable the recoridng of the local audio and video.</p>
-            <p>This method can record the audio captured by the local microphone and encoded in AAC format and the video captured by the local camera and encoded by the SDK. The SDK can generate a recording file only when it detects the recordable audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops recording and triggers the <xref keyref="onRecorderStateChanged"/>(<parmname keyref="RECORDER_STATE_ERROR"/>, <parmname keyref="RECORDER_ERROR_NO_STREAM"/>) callback.</p>
+            <p props="android apple cpp">After successfully getting the <xref keyref="IMediaRecorder" /> object, you can all this method to enable the recoridng of the local audio and video.</p>
+            <p>This method can record the audio captured by the local microphone and encoded in AAC format and the video captured by the local camera and encoded by the SDK. The SDK can generate a recording file only when it detects the recordable audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops recording and triggers the <xref keyref="onRecorderStateChanged" />(<parmname keyref="RECORDER_STATE_ERROR" />, <parmname keyref="RECORDER_ERROR_NO_STREAM" />) callback.</p>
             <note type="attention">Call this method after joining a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>config</pt>
-                <pd>The recording configuration. See <xref keyref="MediaRecorderConfiguration"/>.</pd>
+                <pd>The recording configuration. See <xref keyref="MediaRecorderConfiguration" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -43,8 +43,8 @@
                     <li>The specified format of the recording file is supported.</li>
                     <li>The maximum recording duration is correctly set.</li>
                     </ul></li>
-                <li>-4(ERR_NOT_SUPPORTED): <xref keyref="IRtcEngine"/> does not support the request due to one of the following reasons: The recording is ongoing or the recording stops because an error occurs.</li>
-                <li>-7(ERR_NOT_INITIALIZED): This method is called before the initialization of <xref keyref="IRtcEngine"/>. <ph props="android apple cpp">Ensure that you have called <xref keyref="getMediaRecorder"/> before calling this method.</ph></li>
+                <li>-4(ERR_NOT_SUPPORTED): <xref keyref="IRtcEngine" /> does not support the request due to one of the following reasons: The recording is ongoing or the recording stops because an error occurs.</li>
+                <li>-7(ERR_NOT_INITIALIZED): This method is called before the initialization of <xref keyref="IRtcEngine" />. <ph props="android apple cpp">Ensure that you have called <xref keyref="getMediaRecorder" /> before calling this method.</ph></li>
                 </ul></li>
             </ul> </section>
     </refbody>

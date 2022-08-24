@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use_from_same_package, unused_element
+
 part of 'agora_rtc_engine.dart';
 
 // **************************************************************************
@@ -30,6 +32,9 @@ LocalVideoStats _$LocalVideoStatsFromJson(Map<String, dynamic> json) =>
       codecType:
           $enumDecodeNullable(_$VideoCodecTypeEnumMap, json['codecType']),
       txPacketLossRate: json['txPacketLossRate'] as int?,
+      captureBrightnessLevel: $enumDecodeNullable(
+          _$CaptureBrightnessLevelTypeEnumMap, json['captureBrightnessLevel']),
+      dualStreamEnabled: json['dualStreamEnabled'] as bool?,
     );
 
 Map<String, dynamic> _$LocalVideoStatsToJson(LocalVideoStats instance) =>
@@ -55,6 +60,9 @@ Map<String, dynamic> _$LocalVideoStatsToJson(LocalVideoStats instance) =>
       'encodedFrameCount': instance.encodedFrameCount,
       'codecType': _$VideoCodecTypeEnumMap[instance.codecType],
       'txPacketLossRate': instance.txPacketLossRate,
+      'captureBrightnessLevel':
+          _$CaptureBrightnessLevelTypeEnumMap[instance.captureBrightnessLevel],
+      'dualStreamEnabled': instance.dualStreamEnabled,
     };
 
 const _$QualityAdaptIndicationEnumMap = {
@@ -68,11 +76,18 @@ const _$VideoCodecTypeEnumMap = {
   VideoCodecType.videoCodecVp8: 1,
   VideoCodecType.videoCodecH264: 2,
   VideoCodecType.videoCodecH265: 3,
-  VideoCodecType.videoCodecVp9: 5,
   VideoCodecType.videoCodecGeneric: 6,
   VideoCodecType.videoCodecGenericH264: 7,
   VideoCodecType.videoCodecAv1: 12,
+  VideoCodecType.videoCodecVp9: 13,
   VideoCodecType.videoCodecGenericJpeg: 20,
+};
+
+const _$CaptureBrightnessLevelTypeEnumMap = {
+  CaptureBrightnessLevelType.captureBrightnessLevelInvalid: -1,
+  CaptureBrightnessLevelType.captureBrightnessLevelNormal: 0,
+  CaptureBrightnessLevelType.captureBrightnessLevelBright: 1,
+  CaptureBrightnessLevelType.captureBrightnessLevelDark: 2,
 };
 
 RemoteVideoStats _$RemoteVideoStatsFromJson(Map<String, dynamic> json) =>
@@ -260,6 +275,7 @@ CameraCapturerConfiguration _$CameraCapturerConfigurationFromJson(
       format: json['format'] == null
           ? null
           : VideoFormat.fromJson(json['format'] as Map<String, dynamic>),
+      followEncodeDimensionRatio: json['followEncodeDimensionRatio'] as bool?,
     );
 
 Map<String, dynamic> _$CameraCapturerConfigurationToJson(
@@ -268,6 +284,7 @@ Map<String, dynamic> _$CameraCapturerConfigurationToJson(
       'cameraDirection': _$CameraDirectionEnumMap[instance.cameraDirection],
       'deviceId': instance.deviceId,
       'format': instance.format?.toJson(),
+      'followEncodeDimensionRatio': instance.followEncodeDimensionRatio,
     };
 
 const _$CameraDirectionEnumMap = {
@@ -304,44 +321,12 @@ Map<String, dynamic> _$ScreenCaptureConfigurationToJson(
       'regionRect': instance.regionRect?.toJson(),
     };
 
-AudioOptionsExternal _$AudioOptionsExternalFromJson(
-        Map<String, dynamic> json) =>
-    AudioOptionsExternal(
-      enableAecExternalCustom: json['enable_aec_external_custom_'] as bool?,
-      enableAgcExternalCustom: json['enable_agc_external_custom_'] as bool?,
-      enableAnsExternalCustom: json['enable_ans_external_custom_'] as bool?,
-      aecAggressivenessExternalCustom: $enumDecodeNullable(
-          _$NlpAggressivenessEnumMap,
-          json['aec_aggressiveness_external_custom_']),
-      enableAecExternalLoopback: json['enable_aec_external_loopback_'] as bool?,
-    );
-
-Map<String, dynamic> _$AudioOptionsExternalToJson(
-        AudioOptionsExternal instance) =>
-    <String, dynamic>{
-      'enable_aec_external_custom_': instance.enableAecExternalCustom,
-      'enable_agc_external_custom_': instance.enableAgcExternalCustom,
-      'enable_ans_external_custom_': instance.enableAnsExternalCustom,
-      'aec_aggressiveness_external_custom_':
-          _$NlpAggressivenessEnumMap[instance.aecAggressivenessExternalCustom],
-      'enable_aec_external_loopback_': instance.enableAecExternalLoopback,
-    };
-
-const _$NlpAggressivenessEnumMap = {
-  NlpAggressiveness.nlpNotSpecified: 0,
-  NlpAggressiveness.nlpMild: 1,
-  NlpAggressiveness.nlpNormal: 2,
-  NlpAggressiveness.nlpAggressive: 3,
-  NlpAggressiveness.nlpSuperAggressive: 4,
-  NlpAggressiveness.nlpExtreme: 5,
-};
-
-Size _$SizeFromJson(Map<String, dynamic> json) => Size(
+SIZE _$SIZEFromJson(Map<String, dynamic> json) => SIZE(
       width: json['width'] as int?,
       height: json['height'] as int?,
     );
 
-Map<String, dynamic> _$SizeToJson(Size instance) => <String, dynamic>{
+Map<String, dynamic> _$SIZEToJson(SIZE instance) => <String, dynamic>{
       'width': instance.width,
       'height': instance.height,
     };
@@ -401,11 +386,37 @@ const _$ScreenCaptureSourceTypeEnumMap = {
   ScreenCaptureSourceType.screencapturesourcetypeCustom: 2,
 };
 
+AdvancedAudioOptions _$AdvancedAudioOptionsFromJson(
+        Map<String, dynamic> json) =>
+    AdvancedAudioOptions(
+      audioProcessingChannels: json['audioProcessingChannels'] as int?,
+    );
+
+Map<String, dynamic> _$AdvancedAudioOptionsToJson(
+        AdvancedAudioOptions instance) =>
+    <String, dynamic>{
+      'audioProcessingChannels': instance.audioProcessingChannels,
+    };
+
+ImageTrackOptions _$ImageTrackOptionsFromJson(Map<String, dynamic> json) =>
+    ImageTrackOptions(
+      imageUrl: json['imageUrl'] as String?,
+      fps: json['fps'] as int?,
+    );
+
+Map<String, dynamic> _$ImageTrackOptionsToJson(ImageTrackOptions instance) =>
+    <String, dynamic>{
+      'imageUrl': instance.imageUrl,
+      'fps': instance.fps,
+    };
+
 ChannelMediaOptions _$ChannelMediaOptionsFromJson(Map<String, dynamic> json) =>
     ChannelMediaOptions(
       publishCameraTrack: json['publishCameraTrack'] as bool?,
       publishSecondaryCameraTrack: json['publishSecondaryCameraTrack'] as bool?,
-      publishAudioTrack: json['publishAudioTrack'] as bool?,
+      publishMicrophoneTrack: json['publishMicrophoneTrack'] as bool?,
+      publishScreenCaptureVideo: json['publishScreenCaptureVideo'] as bool?,
+      publishScreenCaptureAudio: json['publishScreenCaptureAudio'] as bool?,
       publishScreenTrack: json['publishScreenTrack'] as bool?,
       publishSecondaryScreenTrack: json['publishSecondaryScreenTrack'] as bool?,
       publishCustomAudioTrack: json['publishCustomAudioTrack'] as bool?,
@@ -424,7 +435,6 @@ ChannelMediaOptions _$ChannelMediaOptionsFromJson(Map<String, dynamic> json) =>
       publishTrancodedVideoTrack: json['publishTrancodedVideoTrack'] as bool?,
       autoSubscribeAudio: json['autoSubscribeAudio'] as bool?,
       autoSubscribeVideo: json['autoSubscribeVideo'] as bool?,
-      startPreview: json['startPreview'] as bool?,
       enableAudioRecordingOrPlayout:
           json['enableAudioRecordingOrPlayout'] as bool?,
       publishMediaPlayerId: json['publishMediaPlayerId'] as int?,
@@ -442,10 +452,9 @@ ChannelMediaOptions _$ChannelMediaOptionsFromJson(Map<String, dynamic> json) =>
       enableBuiltInMediaEncryption:
           json['enableBuiltInMediaEncryption'] as bool?,
       publishRhythmPlayerTrack: json['publishRhythmPlayerTrack'] as bool?,
-      audioOptionsExternal: json['audioOptionsExternal'] == null
-          ? null
-          : AudioOptionsExternal.fromJson(
-              json['audioOptionsExternal'] as Map<String, dynamic>),
+      isInteractiveAudience: json['isInteractiveAudience'] as bool?,
+      customVideoTrackId: json['customVideoTrackId'] as int?,
+      isAudioFilterable: json['isAudioFilterable'] as bool?,
     );
 
 Map<String, dynamic> _$ChannelMediaOptionsToJson(
@@ -453,7 +462,9 @@ Map<String, dynamic> _$ChannelMediaOptionsToJson(
     <String, dynamic>{
       'publishCameraTrack': instance.publishCameraTrack,
       'publishSecondaryCameraTrack': instance.publishSecondaryCameraTrack,
-      'publishAudioTrack': instance.publishAudioTrack,
+      'publishMicrophoneTrack': instance.publishMicrophoneTrack,
+      'publishScreenCaptureVideo': instance.publishScreenCaptureVideo,
+      'publishScreenCaptureAudio': instance.publishScreenCaptureAudio,
       'publishScreenTrack': instance.publishScreenTrack,
       'publishSecondaryScreenTrack': instance.publishSecondaryScreenTrack,
       'publishCustomAudioTrack': instance.publishCustomAudioTrack,
@@ -469,7 +480,6 @@ Map<String, dynamic> _$ChannelMediaOptionsToJson(
       'publishTrancodedVideoTrack': instance.publishTrancodedVideoTrack,
       'autoSubscribeAudio': instance.autoSubscribeAudio,
       'autoSubscribeVideo': instance.autoSubscribeVideo,
-      'startPreview': instance.startPreview,
       'enableAudioRecordingOrPlayout': instance.enableAudioRecordingOrPlayout,
       'publishMediaPlayerId': instance.publishMediaPlayerId,
       'clientRoleType': _$ClientRoleTypeEnumMap[instance.clientRoleType],
@@ -483,7 +493,9 @@ Map<String, dynamic> _$ChannelMediaOptionsToJson(
       'token': instance.token,
       'enableBuiltInMediaEncryption': instance.enableBuiltInMediaEncryption,
       'publishRhythmPlayerTrack': instance.publishRhythmPlayerTrack,
-      'audioOptionsExternal': instance.audioOptionsExternal?.toJson(),
+      'isInteractiveAudience': instance.isInteractiveAudience,
+      'customVideoTrackId': instance.customVideoTrackId,
+      'isAudioFilterable': instance.isAudioFilterable,
     };
 
 const _$ClientRoleTypeEnumMap = {
@@ -494,7 +506,6 @@ const _$ClientRoleTypeEnumMap = {
 const _$AudienceLatencyLevelTypeEnumMap = {
   AudienceLatencyLevelType.audienceLatencyLevelLowLatency: 1,
   AudienceLatencyLevelType.audienceLatencyLevelUltraLowLatency: 2,
-  AudienceLatencyLevelType.audienceLatencyLevelHighLatency: 3,
 };
 
 const _$ChannelProfileTypeEnumMap = {
@@ -503,7 +514,6 @@ const _$ChannelProfileTypeEnumMap = {
   ChannelProfileType.channelProfileGame: 2,
   ChannelProfileType.channelProfileCloudGaming: 3,
   ChannelProfileType.channelProfileCommunication1v1: 4,
-  ChannelProfileType.channelProfileLiveBroadcasting2: 5,
 };
 
 LocalAccessPointConfiguration _$LocalAccessPointConfigurationFromJson(
@@ -532,8 +542,8 @@ Map<String, dynamic> _$LocalAccessPointConfigurationToJson(
     };
 
 const _$LocalProxyModeEnumMap = {
-  LocalProxyMode.kConnectivityFirst: 0,
-  LocalProxyMode.kLocalOnly: 1,
+  LocalProxyMode.connectivityFirst: 0,
+  LocalProxyMode.localOnly: 1,
 };
 
 LeaveChannelOptions _$LeaveChannelOptionsFromJson(Map<String, dynamic> json) =>
@@ -554,7 +564,6 @@ Map<String, dynamic> _$LeaveChannelOptionsToJson(
 RtcEngineContext _$RtcEngineContextFromJson(Map<String, dynamic> json) =>
     RtcEngineContext(
       appId: json['appId'] as String?,
-      enableAudioDevice: json['enableAudioDevice'] as bool?,
       channelProfile: $enumDecodeNullable(
           _$ChannelProfileTypeEnumMap, json['channelProfile']),
       audioScenario: $enumDecodeNullable(
@@ -571,7 +580,6 @@ RtcEngineContext _$RtcEngineContextFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$RtcEngineContextToJson(RtcEngineContext instance) =>
     <String, dynamic>{
       'appId': instance.appId,
-      'enableAudioDevice': instance.enableAudioDevice,
       'channelProfile': _$ChannelProfileTypeEnumMap[instance.channelProfile],
       'audioScenario': _$AudioScenarioTypeEnumMap[instance.audioScenario],
       'areaCode': instance.areaCode,
@@ -584,9 +592,9 @@ const _$AudioScenarioTypeEnumMap = {
   AudioScenarioType.audioScenarioDefault: 0,
   AudioScenarioType.audioScenarioGameStreaming: 3,
   AudioScenarioType.audioScenarioChatroom: 5,
-  AudioScenarioType.audioScenarioHighDefinition: 6,
   AudioScenarioType.audioScenarioChorus: 7,
-  AudioScenarioType.audioScenarioNum: 8,
+  AudioScenarioType.audioScenarioMeeting: 8,
+  AudioScenarioType.audioScenarioNum: 9,
 };
 
 const _$ThreadPriorityTypeEnumMap = {
@@ -640,6 +648,7 @@ DirectCdnStreamingMediaOptions _$DirectCdnStreamingMediaOptionsFromJson(
       publishMediaPlayerAudioTrack:
           json['publishMediaPlayerAudioTrack'] as bool?,
       publishMediaPlayerId: json['publishMediaPlayerId'] as int?,
+      customVideoTrackId: json['customVideoTrackId'] as int?,
     );
 
 Map<String, dynamic> _$DirectCdnStreamingMediaOptionsToJson(
@@ -651,6 +660,7 @@ Map<String, dynamic> _$DirectCdnStreamingMediaOptionsToJson(
       'publishCustomVideoTrack': instance.publishCustomVideoTrack,
       'publishMediaPlayerAudioTrack': instance.publishMediaPlayerAudioTrack,
       'publishMediaPlayerId': instance.publishMediaPlayerId,
+      'customVideoTrackId': instance.customVideoTrackId,
     };
 
 SDKBuildInfo _$SDKBuildInfoFromJson(Map<String, dynamic> json) => SDKBuildInfo(
@@ -702,15 +712,16 @@ const _$AudioMixingStateTypeEnumMap = {
   AudioMixingStateType.audioMixingStatePaused: 711,
   AudioMixingStateType.audioMixingStateStopped: 713,
   AudioMixingStateType.audioMixingStateFailed: 714,
-  AudioMixingStateType.audioMixingStateCompleted: 715,
-  AudioMixingStateType.audioMixingStateAllLoopsCompleted: 716,
 };
 
-const _$AudioMixingErrorTypeEnumMap = {
-  AudioMixingErrorType.audioMixingErrorCanNotOpen: 701,
-  AudioMixingErrorType.audioMixingErrorTooFrequentCall: 702,
-  AudioMixingErrorType.audioMixingErrorInterruptedEof: 703,
-  AudioMixingErrorType.audioMixingErrorOk: 0,
+const _$AudioMixingReasonTypeEnumMap = {
+  AudioMixingReasonType.audioMixingReasonCanNotOpen: 701,
+  AudioMixingReasonType.audioMixingReasonTooFrequentCall: 702,
+  AudioMixingReasonType.audioMixingReasonInterruptedEof: 703,
+  AudioMixingReasonType.audioMixingReasonOneLoopCompleted: 721,
+  AudioMixingReasonType.audioMixingReasonAllLoopsCompleted: 723,
+  AudioMixingReasonType.audioMixingReasonStoppedByUser: 724,
+  AudioMixingReasonType.audioMixingReasonOk: 0,
 };
 
 const _$InjectStreamStatusEnumMap = {
@@ -768,6 +779,14 @@ const _$CloudProxyTypeEnumMap = {
   CloudProxyType.noneProxy: 0,
   CloudProxyType.udpProxy: 1,
   CloudProxyType.tcpProxy: 2,
+};
+
+const _$ProxyTypeEnumMap = {
+  ProxyType.noneProxyType: 0,
+  ProxyType.udpProxyType: 1,
+  ProxyType.tcpProxyType: 2,
+  ProxyType.localProxyType: 3,
+  ProxyType.tcpProxyAutoFallbackType: 4,
 };
 
 const _$MetadataTypeEnumMap = {
