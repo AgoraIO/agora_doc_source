@@ -1,6 +1,6 @@
 # This workflow will use OxygenScript to build features.
 
-name: (NG SDK Frameworks)Awesome OxygenScript for DITA doc building 
+name: (NG SDK Frameworks)Awesome OxygenScript for DITA doc building
 
 on:
     push:
@@ -45,27 +45,27 @@ jobs:
 
                   echo "Start building docs for Flutter EN"
                   echo "-----------------------------------------------------------------------------------------------"
-                  echo "-----------------------------------------------------------------------------------------------"          
+                  echo "-----------------------------------------------------------------------------------------------"
                   ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Flutter.ditamap -sn "DITA Map HTML5 - NG Flutter" -s ../../../.github/workflows/NG-Flutter-en.scenarios -v
                   echo "Start building docs for RN EN"
                   echo "-----------------------------------------------------------------------------------------------"
-                  echo "-----------------------------------------------------------------------------------------------"              
+                  echo "-----------------------------------------------------------------------------------------------"
                   ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_RN.ditamap -sn "DITA Map HTML5 - NG RN" -s ../../../.github/workflows/NG-RN-en.scenarios -v
                   echo "Start building docs for Flutter EN"
                   echo "-----------------------------------------------------------------------------------------------"
-                  echo "-----------------------------------------------------------------------------------------------"   
+                  echo "-----------------------------------------------------------------------------------------------"
                   ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Unity.ditamap -sn "DITA Map HTML5 - NG Unity" -s ../../../.github/workflows/NG-Unity-en.scenarios -v
                   echo "Start building docs for Electron EN"
                   echo "-----------------------------------------------------------------------------------------------"
-                  echo "-----------------------------------------------------------------------------------------------"     
+                  echo "-----------------------------------------------------------------------------------------------"
                   ./transform.sh -i ../../../en-US/dita/RTC-NG/RTC_NG_API_Electron.ditamap -sn "DITA Map HTML5 - NG Electron" -s ../../../.github/workflows/NG-Electron-en.scenarios -v
             - name: zip files
               run: |
                   cd dita/RTC-NG/out
-                  zip -qq -r flutter_ng_cn_doc.zip "flutter-ng"
-                  zip -qq -r rn_ng_cn_doc.zip "rn-ng"
-                  zip -qq -r unity_ng_cn_doc.zip "unity-ng"
-                  zip -qq -r electron_ng_cn_doc.zip "electron-ng"
+                  zip -qq -r flutter_ng_cn_doc.zip "flutter-ng-cn"
+                  zip -qq -r rn_ng_cn_doc.zip "rn-ng-cn"
+                  zip -qq -r unity_ng_cn_doc.zip "unity-ng-cn"
+                  zip -qq -r electron_ng_cn_doc.zip "electron-ng-cn"
 
                   cd ../../../en-US/dita/RTC-NG/out
                   zip -qq -r flutter_ng_en_doc.zip "flutter-ng"
