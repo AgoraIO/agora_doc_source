@@ -125,7 +125,7 @@
 
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}</codeblock>
-  <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaOptions {
+            <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaOptions {
   
   publishCameraTrack?: boolean;
   
@@ -193,7 +193,7 @@
   
   isAudioFilterable?: boolean;
 }</codeblock>
-              <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
+            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
       {
           public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishSecondaryCameraTrack = new Optional&lt;bool&gt;();
@@ -228,7 +228,7 @@
           public Optional&lt;bool&gt; isAudioFilterable = new Optional&lt;bool&gt;();
   
        }</codeblock>
-              <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
+            <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
   
   publishCameraTrack?: boolean;
   
@@ -296,39 +296,112 @@
   
   isAudioFilterable?: boolean;
 }</codeblock>
-              <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
-      const ChannelMediaOptions(
-          {this.publishCameraTrack,
-          this.publishSecondaryCameraTrack,
-          this.publishAudioTrack,
-          this.publishScreenTrack,
-          this.publishSecondaryScreenTrack,
-          this.publishCustomAudioTrack,
-          this.publishCustomAudioSourceId,
-          this.publishCustomAudioTrackEnableAec,
-          this.publishDirectCustomAudioTrack,
-          this.publishCustomAudioTrackAec,
-          this.publishCustomVideoTrack,
-          this.publishEncodedVideoTrack,
-          this.publishMediaPlayerAudioTrack,
-          this.publishMediaPlayerVideoTrack,
-          this.publishTrancodedVideoTrack,
-          this.autoSubscribeAudio,
-          this.autoSubscribeVideo,
-          this.startPreview,
-          this.enableAudioRecordingOrPlayout,
-          this.publishMediaPlayerId,
-          this.clientRoleType,
-          this.audienceLatencyLevel,
-          this.defaultVideoStreamType,
-          this.channelProfile,
-          this.audioDelayMs,
-          this.mediaPlayerAudioDelayMs,
-          this.token,
-          this.enableBuiltInMediaEncryption,
-          this.publishRhythmPlayerTrack,
-          this.audioOptionsExternal});</codeblock> </p>
-          </section>
+            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
+  /// @nodoc
+  const ChannelMediaOptions(
+      {this.publishCameraTrack,
+      this.publishSecondaryCameraTrack,
+      this.publishMicrophoneTrack,
+      this.publishScreenCaptureVideo,
+      this.publishScreenCaptureAudio,
+      this.publishScreenTrack,
+      this.publishSecondaryScreenTrack,
+      this.publishCustomAudioTrack,
+      this.publishCustomAudioSourceId,
+      this.publishCustomAudioTrackEnableAec,
+      this.publishDirectCustomAudioTrack,
+      this.publishCustomAudioTrackAec,
+      this.publishCustomVideoTrack,
+      this.publishEncodedVideoTrack,
+      this.publishMediaPlayerAudioTrack,
+      this.publishMediaPlayerVideoTrack,
+      this.publishTrancodedVideoTrack,
+      this.autoSubscribeAudio,
+      this.autoSubscribeVideo,
+      this.enableAudioRecordingOrPlayout,
+      this.publishMediaPlayerId,
+      this.clientRoleType,
+      this.audienceLatencyLevel,
+      this.defaultVideoStreamType,
+      this.channelProfile,
+      this.audioDelayMs,
+      this.mediaPlayerAudioDelayMs,
+      this.token,
+      this.enableBuiltInMediaEncryption,
+      this.publishRhythmPlayerTrack,
+      this.isInteractiveAudience,
+      this.customVideoTrackId,
+      this.isAudioFilterable});
+ 
+  @JsonKey(name: 'publishCameraTrack')
+  final bool? publishCameraTrack;
+  @JsonKey(name: 'publishSecondaryCameraTrack')
+  final bool? publishSecondaryCameraTrack;
+  @JsonKey(name: 'publishMicrophoneTrack')
+  final bool? publishMicrophoneTrack;
+  @JsonKey(name: 'publishScreenCaptureVideo')
+  final bool? publishScreenCaptureVideo;
+  @JsonKey(name: 'publishScreenCaptureAudio')
+  final bool? publishScreenCaptureAudio;
+  @JsonKey(name: 'publishScreenTrack')
+  final bool? publishScreenTrack;
+  @JsonKey(name: 'publishSecondaryScreenTrack')
+  final bool? publishSecondaryScreenTrack;
+  @JsonKey(name: 'publishCustomAudioTrack')
+  final bool? publishCustomAudioTrack;
+  @JsonKey(name: 'publishCustomAudioTrackEnableAec')
+  final bool? publishCustomAudioTrackEnableAec;
+  @JsonKey(name: 'publishDirectCustomAudioTrack')
+  final bool? publishDirectCustomAudioTrack;
+  @JsonKey(name: 'publishCustomAudioTrackAec')
+  final bool? publishCustomAudioTrackAec;
+  @JsonKey(name: 'publishCustomVideoTrack')
+  final bool? publishCustomVideoTrack;
+  @JsonKey(name: 'publishEncodedVideoTrack')
+  final bool? publishEncodedVideoTrack;
+  @JsonKey(name: 'publishMediaPlayerAudioTrack')
+  final bool? publishMediaPlayerAudioTrack;
+  @JsonKey(name: 'publishMediaPlayerVideoTrack')
+  final bool? publishMediaPlayerVideoTrack;
+  @JsonKey(name: 'publishTrancodedVideoTrack')
+  final bool? publishTrancodedVideoTrack;
+  @JsonKey(name: 'autoSubscribeAudio')
+  final bool? autoSubscribeAudio;
+  @JsonKey(name: 'autoSubscribeVideo')
+  final bool? autoSubscribeVideo;
+  @JsonKey(name: 'enableAudioRecordingOrPlayout')
+  final bool? enableAudioRecordingOrPlayout;
+  @JsonKey(name: 'publishMediaPlayerId')
+  final int? publishMediaPlayerId;
+  @JsonKey(name: 'clientRoleType')
+  final ClientRoleType? clientRoleType;
+  @JsonKey(name: 'audienceLatencyLevel')
+  final AudienceLatencyLevelType? audienceLatencyLevel;
+  @JsonKey(name: 'defaultVideoStreamType')
+  final VideoStreamType? defaultVideoStreamType;
+  @JsonKey(name: 'channelProfile')
+  final ChannelProfileType? channelProfile;
+  @JsonKey(name: 'audioDelayMs')
+  final int? audioDelayMs;
+  @JsonKey(name: 'mediaPlayerAudioDelayMs')
+  final int? mediaPlayerAudioDelayMs;
+  @JsonKey(name: 'token')
+  final String? token;
+  @JsonKey(name: 'enableBuiltInMediaEncryption')
+  final bool? enableBuiltInMediaEncryption;
+  @JsonKey(name: 'publishRhythmPlayerTrack')
+  final bool? publishRhythmPlayerTrack;
+  @JsonKey(name: 'isInteractiveAudience')
+  final bool? isInteractiveAudience;
+  @JsonKey(name: 'customVideoTrackId')
+  final int? customVideoTrackId;
+  @JsonKey(name: 'isAudioFilterable')
+  final bool? isAudioFilterable;
+  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ChannelMediaOptionsFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
+}</codeblock> </p>
+        </section>
         <section id="detailed_desc">
             <p>Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname> and <parmname>publishMediaPlayerAudioTrack</parmname> can be <codeph><ph keyref="true" /></codeph> at the same time; but only one of <parmname>publishCameraTrack</parmname>, <parmname>publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, and <parmname>publishEncodedVideoTrack</parmname> can be <codeph><ph keyref="true" /></codeph> at the same time.</p>
         </section>

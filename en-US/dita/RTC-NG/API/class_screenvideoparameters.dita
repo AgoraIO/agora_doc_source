@@ -75,7 +75,22 @@
   
   contentHint?: VideoContentHint;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public class ScreenVideoParameters
+    {
+        public VideoDimensions dimensions { set; get; }
+
+        public int frameRate { set; get; }
+
+        public int bitrate { set; get; }
+
+        public VIDEO_CONTENT_HINT contentHint = VIDEO_CONTENT_HINT.CONTENT_HINT_MOTION;
+
+        public ScreenVideoParameters()
+        {
+            dimensions = new VideoDimensions(1280, 720);
+            frameRate = 15;
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ScreenVideoParameters {
   
   dimensions?: VideoDimensions;
@@ -86,7 +101,22 @@
   
   contentHint?: VideoContentHint;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="flutter" outputclass="language-dart">class ScreenVideoParameters {
+  const ScreenVideoParameters(
+      {this.dimensions, this.frameRate, this.bitrate, this.contentHint});
+ 
+  @JsonKey(name: 'dimensions')
+  final VideoDimensions? dimensions;
+  @JsonKey(name: 'frameRate')
+  final int? frameRate;
+  @JsonKey(name: 'bitrate')
+  final int? bitrate;
+  @JsonKey(name: 'contentHint')
+  final VideoContentHint? contentHint;
+  factory ScreenVideoParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenVideoParametersFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenVideoParametersToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p props="android"><codeph><ph keyref="true" /></codeph>Only available for scenarios where <parmname>captureVideo</parmname> is .</p>
