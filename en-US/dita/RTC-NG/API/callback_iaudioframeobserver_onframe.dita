@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserver_onframe">
     <title><ph keyref="onFrame_IAudioFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the player receives an audio frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">已获取音频帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,7 +26,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>After registering the audio frame observer, the callback occurs every time the player receives an audio frame, reporting the detailed information of the audio frame.</p>
+            <p>注册音频数据观测器后，每次接收到一帧音频帧时，都会触发该回调，报告音频帧信息。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -34,22 +34,22 @@
             <parml>
             <plentry props="ios mac">
                 <pt>audioFrame</pt>
-                <pd>Audio frame information (CMSampleBufferRef).</pd>
+                <pd>音频帧信息（CMSampleBufferRef）。</pd>
             </plentry>
             <plentry props="android cpp unity">
                 <pt props="android cpp">frame</pt>
                 <pt props="unity">videoFrame</pt>
-                <pd><ph>Audio frame information.</ph><ph props="android cpp">See <ph keyref="AudioFrame"/>.</ph></pd>
+                <pd><ph>音频帧信息。 </ph><ph props="android">详见 <ph keyref="AudioFrame"/>。 </ph><ph props="cpp unity">详见 <ph keyref="AudioPcmFrame"/>。</ph></pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>playerKit</pt>
-                <pd>See <xref keyref="IMediaPlayer"/>.</pd>
+                <pd>详见 <xref keyref="IMediaPlayer"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="android">
-            <title>Returns</title>
-            <p props="android">Passes in the audio data after setting the <parmname>mode</parmname> parameter in <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> for handling audio data.</p>
-            <p props="unity">Reserved for future use.</p>
+            <title>返回值</title>
+            <p props="android">根据你在 <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> 中设置的 <parmname>mode</parmname> 使用音频数据后，在此返回值中传入该音频数据。</p>
+            <p props="unity">无实际含义。</p>
         </section>
     </refbody>
 </reference>
