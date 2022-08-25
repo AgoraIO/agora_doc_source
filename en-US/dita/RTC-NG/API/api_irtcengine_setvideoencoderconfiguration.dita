@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setvideoencoderconfiguration">
+<reference id="api_irtcengine_setvideoencoderconfiguration">
     <title><ph keyref="setVideoEncoderConfiguration" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the video encoder configuration.</ph></shortdesc>
     <prolog>
@@ -27,14 +27,16 @@
         </section>
         <section id="detailed_desc">
             <p id="desc">Sets the encoder configuration for the local video.</p>
-            <note type="attention">You can call this method either before or after joining a channel. If you don't need to set the video encoder configuration after joining a channel,
-Agora recommends you calling this method before the <xref keyref="enableVideo" /> method to reduce the rendering time of the first video frame.</note> </section>
+            <note type="attention" props="native electron unity flutter">You can call this method either before or after joining a channel. If you don't need to set the video encoder configuration after joining a channel,
+Agora recommends<xref keyref="enableVideo" /> you calling this method before the  method to reduce the rendering time of the first video frame.</note>
+            <note type="attention" props="rn">Call this method before joining a channel. Agora recommends<xref keyref="enableVideo" /> you calling this method before the  method to reduce the rendering time of the first video frame.</note>
+         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="config">
                 <pt>config</pt>
-                <pd>Video profile. See <xref keyref="VideoEncoderConfiguration" />.</pd>
+                <pd>Video profile. See <xref keyref="VideoEncoderConfiguration" /> for details.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
