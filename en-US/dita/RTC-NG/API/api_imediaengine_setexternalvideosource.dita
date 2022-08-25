@@ -32,7 +32,7 @@
     sourceType?: ExternalVideoSourceType,
     encodedVideoOption?: SenderOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalVideoSource(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExternalVideoSource(
     {required bool enabled,
     required bool useTexture,
     ExternalVideoSourceType sourceType = ExternalVideoSourceType.videoFrame,
@@ -41,11 +41,11 @@
         <section id="detailed_desc">
             <note type="attention">Call this method before joining a channel.</note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt props="ios mac android">enable</pt>
-                <pt props="cpp unity">enabled</pt>
+                <pt props="cpp unity electron rn flutter">enabled</pt>
                 <pd>Whether to use the external video source:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Use the external video source. The SDK prepares to accept the external video frame.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not use the external video source.</li>
@@ -60,18 +60,19 @@
             </plentry>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>Whether to encode the external video frame. See <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" />.</pd>
+                <pd>Whether to encode the external video frame, see <xref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" />.</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="unity cpp electron rn flutter">
                 <pt>encodedVideoOption</pt>
-                <pd>Video encoding options. This parameter needs to be set if <parmname>sourceType</parmname> is <apiname keyref="ENCODED_VIDEO_FRAME" />. Contact <xref keyref="ticket-link" /> to learn how to set this parameter.</pd>
+                <pd>Video encoding options. This parameter needs to be set if <parmname>sourceType</parmname> is <apiname keyref="ENCODED_VIDEO_FRAME" />. Contact  <xref keyref="ticket-link" />to learn how to set this parameter.</pd>
             </plentry>
             </parml> </section>
-        <section>
+        <section id="return_values" props="android cpp electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
-            </ul> </section>
+            </ul>
+        </section>
     </refbody>
 </reference>
