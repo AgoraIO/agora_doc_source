@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoencodedframeobserver_onencodedvideoframereceived">
     <title><ph keyref="OnEncodedVideoFrameReceived"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives an encoded video frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives an encoded video image.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,37 +20,49 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool OnEncodedVideoFrameReceived(rtc::uid_t uid, const uint8_t* imageBuffer, size_t length,
                                            const rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoImageReceived(byte[] imageBuffer, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
-                {
-                    return true;
-                }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    uid: number,
+    imageBuffer: Uint8Array,
+    length: number,
+    videoEncodedFrameInfo: EncodedVideoFrameInfo
+  ): boolean;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEncodedVideoFrameReceived(uint uid, IntPtr imageBufferPtr, UInt64 length, EncodedVideoFrameInfo videoEncodedFrameInfo)
+        {
+            return true;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onEncodedVideoFrameReceived?(
+    uid: number,
+    imageBuffer: Uint8Array,
+    length: number,
+    videoEncodedFrameInfo: EncodedVideoFrameInfo
+  ): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, Uint8List imageBuffer, int length,
+      EncodedVideoFrameInfo videoEncodedFrameInfo)? onEncodedVideoFrameReceived;</codeblock> </p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>uid</pt>
                 <pd>The user ID of the remote user.</pd>
             </plentry>
             <plentry>
                 <pt props="ios mac">videoData</pt>
-                <pt props="cpp unity">imageBuffer</pt>
+                <pt props="cpp electron rn flutter">imageBuffer</pt>
+                <pt props="unity">imageBufferPtr</pt>
                 <pt props="android">buffer</pt>
-                <pd props="cpp unity android">The encoded video image buffer.</pd>
+                <pd props="cpp unity android electron rn flutter">The encoded video image buffer.</pd>
                 <pd props="ios mac">The encoded video image data.</pd>
             </plentry>
-            <plentry props="cpp unity ios mac">
+            <plentry props="cpp unity ios mac electron rn flutter">
                 <pt>length</pt>
                 <pd>The data length of the video image.</pd>
             </plentry>
             <plentry>
                 <pt props="android">info</pt>
                 <pt props="ios mac">videoFrameInfo</pt>
-                <pt props="cpp unity">videoEncodedFrameInfo</pt>
-                <pd>The information of the encoded video frame, see <xref keyref="EncodedVideoFrameInfo"/>.</pd>
+                <pt props="cpp unity electron rn flutter">videoEncodedFrameInfo</pt>
+                <pd>For the information of the encoded video frame, see <xref keyref="EncodedVideoFrameInfo"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
