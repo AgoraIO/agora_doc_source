@@ -29,21 +29,21 @@
     sampleRate: number,
     channels: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalAudioSink(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setExternalAudioSink(
     {required bool enabled, required int sampleRate, required int channels});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>This method applies to scenarios where you want to use external audio data for playback. After you set the external audio sink, you can call <xref keyref="pullAudioFrame" /> to pull remote audio frames. The app can process the remote audio and play it with the audio effects that you want.</p>
-            <note props="unity">
+            <p>This method applies to scenarios where you want to use external audio data for playback. After you set the external audio sink, you can call  to<xref keyref="pullAudioFrame" /> pull remote audio frames. The app can process the remote audio and play it with the audio effects that you want.</p>
+            <note props="hide">
             <ul>
-            <li>Before using this method, you need to set <parmname>enableAudioDevice</parmname> in <xref keyref="RtcEngineConfig" /> to <codeph><ph keyref="false" /></codeph>.</li>
+            <li><codeph><ph keyref="false" /></codeph>Before using this method, you need to<xref keyref="RtcEngineConfig" /> set <parmname>enableAudioDevice</parmname> in  to .</li>
             <li>Ensure that you call this method before joining a channel.</li>
-            <li>Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
+            <li>Once you enable the external audio sink, the app does not<xref keyref="onPlaybackAudioFrame" /> retrieve any audio data from the  callback.</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
-            <plentry props="native">
+            <plentry>
                 <pt>enabled</pt>
                 <pd>
                     <p>Whether to enable or disable the external audio sink:<ul>
@@ -66,9 +66,9 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp electron unity rn">
             <title>Returns</title>
-            <ul id="ul_ahk_23f_3qb">
+            <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
