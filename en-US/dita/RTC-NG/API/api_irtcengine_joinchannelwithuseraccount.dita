@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_joinchannelwithuseraccount">
+<reference id="api_irtcengine_joinchannelwithuseraccount">
     <title><ph keyref="joinChannelWithUserAccount1" /></title>
     <shortdesc id="short"><ph id="shortdesc">Joins a channel with a User Account and Token.</ph></shortdesc>
     <prolog>
@@ -35,21 +35,21 @@
     userAccount: string,
     options?: ChannelMediaOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccount(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithUserAccount(
       {required String token,
       required String channelId,
       required String userAccount,
       ChannelMediaOptions? options});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
-            <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-            <li>The remote client: <xref keyref="onUserJoined" /> and <xref keyref="onUserInfoUpdated" />, if the user joining the channel is in the communication profile or is a host in the live streaming profile.</li>
+            <p>This method allows a user to join the channel with the user account and a token. After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
+            <li>The local client: <xref keyref="onLocalUserRegistered" />,<xref keyref="onJoinChannelSuccess" />  and<xref keyref="onConnectionStateChanged" />  callbacks.</li>
+            <li>The remote client:  and , if the user joining the channel is in the communication profile or is a host in the<xref keyref="onUserJoined" /><xref keyref="onUserInfoUpdated" /> live streaming profile.</li>
             </ul></p>
             <p>Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
             <note type="attention" id="note">To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
                 <pt />
@@ -57,7 +57,7 @@
             </plentry>
             <plentry>
                 <pt props="android">channelName</pt>
-                <pt props="cpp ios mac unity">channelId</pt>
+                <pt props="cpp ios mac unity rn electron flutter">channelId</pt>
                 <pd>
                     <p conkeyref="joinChannel2/channelID_desc" />
                 </pd>
@@ -70,8 +70,9 @@
                 <pt />
                 <pd />
             </plentry>
-            </parml> </section>
-        <section id="return_values">
+            </parml>
+        </section>
+        <section props="native unity rn electron" id="return_values">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
@@ -79,7 +80,7 @@
                 <li>2: The parameter is invalid.</li>
                 <li>3: The initialization of the SDK fails. You can try to initialize the SDK again.</li>
                 <li>5: The request is rejected.</li>
-                <li>17: The request to join the channel is rejected. Since the SDK only supports users to join one <xref keyref="IRtcEngine" /> channel at a time; this error code will be returned when the user who has joined the <xref keyref="IRtcEngine" /> channel calls the join channel method in the <xref keyref="IRtcEngine" /> class again with a valid channel name.</li>
+                <li>17: The request to join the channel is rejected. Since the SDK only supports users to join one  channel at a time<xref keyref="IRtcEngine" />; this error code will be returned when<xref keyref="IRtcEngine" /> the user<xref keyref="IRtcEngine" /> who has joined the  channel calls the join channel method in the  class again with a valid channel name.</li>
                 </ul></li>
             </ul> </section>
     </refbody>
