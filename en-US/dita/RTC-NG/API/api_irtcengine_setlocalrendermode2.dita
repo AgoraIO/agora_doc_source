@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setlocalrendermode2">
+<reference id="api_irtcengine_setlocalrendermode2">
     <title><ph keyref="setLocalRenderMode2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Updates the display mode of the local video view.</ph></shortdesc>
     <prolog>
@@ -35,17 +35,17 @@
             <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
             <note type="attention">
             <ul>
-            <li>Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
+            <li props="native electron rn flutter">Ensure that you have<xref keyref="setupLocalVideo" /> called the  method to initialize the local video view before calling this method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt props="android cpp unity flutter rn electron">renderMode</pt>
                 <pt props="ios mac">mode</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter rn electron">The local video display mode. See <xref keyref="RENDER_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity flutter rn electron">The local video display mode. See <xref keyref="RENDER_MODE_TYPE" /> for details.</p>
                     <p props="android">The local video display mode.<ul id="rendermodetype">
                     <li><ph keyref="RENDER_MODE_HIDDEN" />(1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
                     <li><ph keyref="RENDER_MODE_FIT" />(2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
