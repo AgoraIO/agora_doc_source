@@ -77,15 +77,15 @@
   final String? extraInfo;
 
   @JsonKey(name: 'modules')
-  final List&lt;ContentInspectModule&gt;? modules;
+  final List&lt;ContentInspectModule>? modules;
 
   @JsonKey(name: 'moduleCount')
   final int? moduleCount;
 
-  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic> json) =>
       _$ContentInspectConfigFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
+  Map&lt;String, dynamic> toJson() => _$ContentInspectConfigToJson(this);
 }</codeblock></p>
         </section>
         <section id="parameters">
@@ -113,13 +113,13 @@
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>Video content moderation module. See  for details<xref keyref="ContentInspectModule" />.</p>
-                    <p>A maximum of 32  instances can be configured<apiname keyref="ContentInspectModule" />, and the value range of<parmname> MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
+                    <p>Video content moderation module. See  for details<xref keyref="ContentInspectModule"/>.</p>
+                    <p>A maximum of 32  instances can be configured<apiname keyref="ContentInspectModule"/>, and the value range of<parmname> MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
                     <note type="attention">A video content moderation module can only be configured with one instance at most.</note> </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>The number of video content moderation modules, that is,<apiname keyref="ContentInspectModule" /> the number of configured  instances, must be the same as the number of instances configured in<parmname> modules</parmname>. The maximum number is 32.</pd>
+                <pd>The number of video content moderation modules, that is,<apiname keyref="ContentInspectModule"/> the number of configured  instances, must be the same as the number of instances configured in<parmname> modules</parmname>. The maximum number is 32.</pd>
             </plentry>
             </parml> </section>
     </refbody>
