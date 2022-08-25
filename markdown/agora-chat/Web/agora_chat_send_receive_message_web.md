@@ -30,8 +30,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Agora Chat 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_web?platform=Web)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Web)。
+- 完成 SDK 初始化，详见 [Agora Chat 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_web?platform=Web)。
+- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=Web)。
 
 ## 实现方法
 
@@ -529,5 +529,5 @@ function sendTextMessage() {
 
 实现消息发送和接收后，可以参考以下文档为应用添加更多消息功能：
 
-- [从服务器获取会话和消息](https://docs.agora.io/en/agora-chat/agora_chat_retrieve_message_web?platform=Web)
-- [消息回执](https://docs.agora.io/en/agora-chat/agora_chat_message_receipt_web?platform=Web)
+- [从服务器获取会话和消息](https://docs.agora.io/cn/agora-chat/agora_chat_retrieve_message_web?platform=Web)
+- [消息回执](https://docs.agora.io/cn/agora-chat/agora_chat_message_receipt_web?platform=Web)

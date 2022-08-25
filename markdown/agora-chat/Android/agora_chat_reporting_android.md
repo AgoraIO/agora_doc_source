@@ -12,7 +12,7 @@
 
 - 完成 SDK 初始化，详见 [快速入门](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_get_started_unity)；
 - 了解即时通讯 IM API 的接口调用频率限制，详见 [使用限制](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_limitation_unity)；
-- 已在 Agora 控制台开启举报功能，详见 [内容审核概述](https://docs.agora.io/en/agora-chat/agora_chat_moderation_overview)。
+- 已在 Agora 控制台开启举报功能，详见 [内容审核概述](https://docs.agora.io/cn/agora-chat/agora_chat_moderation_overview)。
 
 ## 实现方法
 

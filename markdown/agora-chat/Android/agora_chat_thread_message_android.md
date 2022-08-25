@@ -27,8 +27,8 @@
 
 开始前，请确保满足以下条件：
 
-- 初始化 1.0.3 及以上版本 SDK，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation)。
+- 初始化 1.0.3 及以上版本 SDK，详见 [Android 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_android)。
+- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation)。
 - 在 [Agora 控制台](http://console.agora.io/) 中启用子区功能。
 
 ## 实现方法
@@ -65,11 +65,11 @@ message.setMessageStatusCallback(new CallBack() {
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
-有关发送消息的更多信息，详见 [发送消息](https://docs.agora.io/en/agora-chat/agora_chat_message_android?platform=Android#send-and-receive-messages)。
+有关发送消息的更多信息，详见 [发送消息](https://docs.agora.io/cn/agora-chat/agora_chat_message_android?platform=Android#send-and-receive-messages)。
 
 ### 接收子区消息
 
-接收消息的具体逻辑，请参考 [接收消息](https://docs.agora.io/en/agora-chat/agora_chat_message_android?platform=Android#send-and-receive-messages)。
+接收消息的具体逻辑，请参考 [接收消息](https://docs.agora.io/cn/agora-chat/agora_chat_message_android?platform=Android#send-and-receive-messages)。
 
 子区有新增消息时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageReceived`回调。
 
@@ -94,11 +94,11 @@ ChatClient.getInstance().chatManager().addMessageListener(msgListener);
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
-有关接收消息的更多信息，请参阅[接收消息](https://docs.agora.io/en/agora-chat/agora_chat_message_android?platform=Android#send-and-receive-messages)。
+有关接收消息的更多信息，请参阅[接收消息](https://docs.agora.io/cn/agora-chat/agora_chat_message_android?platform=Android#send-and-receive-messages)。
 
 ### 撤回子区消息
 
-接收消息的具体逻辑，请参考 [撤回消息](https://docs.agora.io/en/agora-chat/agora_chat_message_android?platform=Android#recall-messages)，此处只介绍子区消息和其他消息的区别。
+接收消息的具体逻辑，请参考 [撤回消息](https://docs.agora.io/cn/agora-chat/agora_chat_message_android?platform=Android#recall-messages)，此处只介绍子区消息和其他消息的区别。
 
 子区有消息撤回时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageRecalled`回调，如下代码示例所示：
 
@@ -125,11 +125,11 @@ MessageListener msgListener = new MessageListener() {
 
 #### 从服务器获取子区消息（消息漫游）
 
-关于如何从服务器获取子区消息，详见 [历史消息](https://docs.agora.io/en/agora-chat/agora_chat_message_android?platform=Android#retrieve-historical-messages-from-the-server)。
+关于如何从服务器获取子区消息，详见 [历史消息](https://docs.agora.io/cn/agora-chat/agora_chat_message_android?platform=Android#retrieve-historical-messages-from-the-server)。
 
 #### 管理本地子区消息
 
-通过调用 [`getAllConversations`](https://docs.agora.io/en/agora-chat/agora_chat_message_android#retrieve-local-conversations)，你只能检索一对一聊天或群聊的对话。要检索线程的对话，请参阅以下代码示例：
+通过调用 [`getAllConversations`](https://docs.agora.io/cn/agora-chat/agora_chat_message_android#retrieve-local-conversations)，你只能检索一对一聊天或群聊的对话。要检索线程的对话，请参阅以下代码示例：
 
 ```java
 // 需要指定会话类型为 `ChatConversationType.GroupChat`，且 `isChatThread` 设置为 `true`

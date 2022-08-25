@@ -365,6 +365,6 @@ message.getStringAttribute("attribute1",null);message.getBooleanAttribute("attri
 
 实现消息发送和接收后，您可以参考以下文档为您的应用添加更多消息功能：
 
-- [管理本地消息](https://docs.agora.io/en/agora-chat/agora_chat_manage_message_android?platform=Android)
-- [从服务器获取会话和消息](https://docs.agora.io/en/agora-chat/agora_chat_retrieve_message_android?platform=Android)
-- [消息回执](https://docs.agora.io/en/agora-chat/agora_chat_message_receipt_android?platform=Android)
+- [管理本地消息](https://docs.agora.io/cn/agora-chat/agora_chat_manage_message_android?platform=Android)
+- [从服务器获取会话和消息](https://docs.agora.io/cn/agora-chat/agora_chat_retrieve_message_android?platform=Android)
+- [消息回执](https://docs.agora.io/cn/agora-chat/agora_chat_message_receipt_android?platform=Android)

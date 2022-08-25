@@ -20,9 +20,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)中所述。
-- 了解聊天室的数量限制，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_plan?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=Android)中所述。
+- 了解聊天室的数量限制，详见 [套餐包详情](https://docs.agora.io/cn/agora-chat/agora_chat_plan?platform=Android)。
 
 ## 执行
 
@@ -191,4 +191,4 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().removeChatRoomAdm
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [聊天室事件](https://docs.agora.io/en/agora-chat/agora_chat_chatroom_android?platform=Android#listen-for-chat-room-events)。
+有关详细信息，请参阅 [聊天室事件](https://docs.agora.io/cn/agora-chat/agora_chat_chatroom_android?platform=Android#listen-for-chat-room-events)。

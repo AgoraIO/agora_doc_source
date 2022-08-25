@@ -34,11 +34,11 @@
 
 如需使用消息举报功能，你需要在客户端集成相应 API，有关详细信息，请参阅以下文档：
 
-- [实现举报功能（Android）](https://docs.agora.io/en/agora-chat/agora_chat_reporting_android?platform=Android)
-- [实现举报功能 (iOS)](https://docs.agora.io/en/agora-chat/agora_chat_reporting_ios?platform=iOS)
-- [实施举报功能（Web）](https://docs.agora.io/en/agora-chat/agora_chat_reporting_web?platform=Web)
-- [实现举报功能（React Native）](https://docs.agora.io/en/agora-chat/agora_chat_reporting_rn?platform=React Native)
-- [实现举报功能（Flutter）](https://docs.agora.io/en/agora-chat/agora_chat_reporting_flutter?platform=Flutter)
+- [实现举报功能（Android）](https://docs.agora.io/cn/agora-chat/agora_chat_reporting_android?platform=Android)
+- [实现举报功能 (iOS)](https://docs.agora.io/cn/agora-chat/agora_chat_reporting_ios?platform=iOS)
+- [实施举报功能（Web）](https://docs.agora.io/cn/agora-chat/agora_chat_reporting_web?platform=Web)
+- [实现举报功能（React Native）](https://docs.agora.io/cn/agora-chat/agora_chat_reporting_rn?platform=React Native)
+- [实现举报功能（Flutter）](https://docs.agora.io/cn/agora-chat/agora_chat_reporting_flutter?platform=Flutter)
 
 用户举报应用消息后，审核人员可以在 Agora 控制台查看和处理：
 

@@ -22,8 +22,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Agora Chat 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_web?platform=Web)。
-- 了解即时通讯 IM 的使用限制，指定用户的所有属性的最大大小，以及应用程序中所有用户属性的最大大小。详见 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Web)。
+- 完成 SDK 初始化，详见 [Agora Chat 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_web?platform=Web)。
+- 了解即时通讯 IM 的使用限制，指定用户的所有属性的最大大小，以及应用程序中所有用户属性的最大大小。详见 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=Web)。
 
 ## 实现方法
 
@@ -174,5 +174,5 @@ conn.send(msg).then((res)=>{
 本节包含您在实施过程中可能需要了解的参考信息。
 
 - 有关用户属性的详细信息，请参阅以下 API 参考：
-  - [用户信息](https://docs.agora.io/en/agora-chat/API Reference/im_oc/interface_agora_chat_user_info.html)
-  - [fetchUserInfoById](https://docs.agora.io/en/agora-chat/API Reference/im_ts/modules/Contact.html)
+  - [用户信息](https://docs.agora.io/cn/agora-chat/API Reference/im_oc/interface_agora_chat_user_info.html)
+  - [fetchUserInfoById](https://docs.agora.io/cn/agora-chat/API Reference/im_ts/modules/Contact.html)

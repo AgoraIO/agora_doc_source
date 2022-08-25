@@ -262,4 +262,4 @@ curl -X GET http://XXXX/XXXX/XXXX/chatrooms/super_admin?pagenum=2&pagesize=2 -H 
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/en/agora-chat/agora_chat_status_code?platform=RESTful)。
+有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/cn/agora-chat/agora_chat_status_code?platform=RESTful)。

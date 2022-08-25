@@ -26,8 +26,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)中所述。
+- 完成 SDK 初始化，详见 [Android 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=Android)中所述。
 
 在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用该功能。
 
@@ -88,7 +88,7 @@ ChatClient.getInstance().chatThreadManager().destroyChatThread(chatThreadId, new
 
 1. 使用以下两种方法之一来检索线程 ID：
 
-- 调用 [`getChatThreadsFromServer`](https://docs.agora.io/en/agora-chat/agora_chat_thread_management_android?platform=Android#fetch) 获取聊天群中的话题列表，找到你想加入的子区 ID。
+- 调用 [`getChatThreadsFromServer`](https://docs.agora.io/cn/agora-chat/agora_chat_thread_management_android?platform=Android#fetch) 获取聊天群中的话题列表，找到你想加入的子区 ID。
 - 收到 `ChatThreadChangeListener#onChatThreadCreated` 或 `ChatThreadChangeListener#onChatThreadUpdated` 回调时获取想加入的子区 ID。
 
 2. 调用 `joinChatThread` 传入子区 ID 加入对应子区。
