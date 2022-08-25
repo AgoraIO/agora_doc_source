@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_registeraudioencodedframeobserver">
+<reference id="api_irtcengine_registeraudioencodedframeobserver">
     <title><ph keyref="registerAudioEncodedFrameObserver" /></title>
     <shortdesc id="short"><ph id="shortdesc">Registers an encoded audio observer.</ph></shortdesc>
     <prolog>
@@ -36,33 +36,34 @@
             <note id="note_igp_ygf_3qb" type="attention">
             <ul id="ul_mvp_zgf_3qb">
             <li>Call this method after joining a channel.</li>
-            <li>This method and <xref keyref="startAudioRecording3" /> both set the audio content and audio quality. Agora recommends not using this method and <apiname keyref="startAudioRecording3" /> together; otherwise, only the method called later will take effect.</li>
+            <li>This method and<xref keyref="startAudioRecording3" />  both set the audio content and audio quality. Agora recommends not using this method and<apiname keyref="startAudioRecording3" />  together; otherwise, only the method called later will take effect.</li>
             </ul> </note> </p>
         </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>config</pt>
                 <pd>
-                    <p>Observer settings for the encoded audio. See <xref keyref="AudioEncodedFrameObserverConfig" />.</p>
+                    <p>Observer settings for the encoded audio. See <xref keyref="AudioEncodedFrameObserverConfig" /> for details.</p>
                 </pd>
             </plentry>
             </parml>
             <parml id="parml_l3m_shf_3qb">
             <plentry>
-                <pt props="android cpp unity">observer</pt>
+                <pt props="android cpp unity flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p>The encoded audio observer. See <xref keyref="IAudioEncodedFrameObserver" />.</p>
+                    <p>The encoded audio observer. See <xref keyref="IAudioEncodedFrameObserver" /> for details.</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native">
+        <section id="return_values" props="native rn electron">
             <title>Returns</title>
-            <ul id="ul_ahk_23f_3qb">
+            <ul id="ul_ahk_23f_3qb" props="native">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
-            </ul> </section>
+            </ul>
+        <p props="rn electron">An<xref keyref="IAudioEncodedFrameObserver"/>  object.</p></section>
     </refbody>
 </reference>
