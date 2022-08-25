@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_registeraudiospectrumobserver">
+<reference id="api_irtcengine_registeraudiospectrumobserver">
     <title><ph keyref="registerAudioSpectrumObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers an audio spectrum observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Register an audio spectrum observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,25 +27,27 @@
             <codeblock props="flutter" outputclass="language-dart">void registerAudioSpectrumObserver(AudioSpectrumObserver observer);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After successfully registering the Audio Spectrum Observer and calling the <xref keyref="enableAudioSpectrumMonitor" /> Audio Spectrum Monitor, the SDK
-Callbacks you implement in your class will be reported at intervals you<xref keyref="IAudioSpectrumObserver" /> set.</p>
+            <p>成功注册音频频谱观测器并调用 <xref keyref="enableAudioSpectrumMonitor" /> 开启音频频谱监测后，SDK
+会按照你设置的时间间隔报告你在 <xref keyref="IAudioSpectrumObserver" /> 类中实现的回调。</p>
             <note type="attention" id="note_qwk_mjf_3qb">You can call this method either before or after joining a channel.</note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity">observer</pt>
+                <pt props="android cpp unity electron rn flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" />.</p>
+                    <p>The Audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" /> for details.</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native">
+        <section id="return_values" props="native rn electron">
             <title>Returns</title>
-            <ul id="ul_jzc_zjf_3qb">
+            <ul id="ul_jzc_zjf_3qb" props="native">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
-            </ul> </section>
+            </ul>
+            <p props="rn electron">An<xref keyref="IAudioSpectrumObserver"/>  object.</p>
+        </section>
     </refbody>
 </reference>
