@@ -50,7 +50,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{resource}/{statu
 | 参数      | 类型 | 描述                                                         | 是否必填|
 | :--------- | :--- | :----------------------------------------------------------- | :----- |
 | `resource` | String | 分配给每个设备资源的唯一标识符，格式为 `{Device Type}_{Resource ID}`，其中设备类型可以是 `android`、`ios` 或 `web`，后跟 SDK 分配的资源 ID。 | 是 |
-| `status`   | String | 用户定义的在线状态：`0`： 离线。`1`： 在线的其他字符串：自定义状态。 | 是 |
+| `status`   | String | 用户定义的在线状态：<li>`0`： 离线。<li>`1`： 在线。<li>其他字符串：自定义状态。 | 是 |
 
 其他路径参数的说明详见 [公共参数](#pubparam)。
 
