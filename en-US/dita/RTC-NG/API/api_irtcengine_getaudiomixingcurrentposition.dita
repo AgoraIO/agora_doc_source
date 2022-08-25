@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_getaudiomixingcurrentposition">
+<reference id="api_irtcengine_getaudiomixingcurrentposition">
     <title><ph keyref="getAudioMixingCurrentPosition" /></title>
     <shortdesc id="short"><ph id="shortdesc">Retrieves the playback position (ms) of the music file.</ph></shortdesc>
     <prolog>
@@ -22,16 +22,16 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getAudioMixingCurrentPosition();</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>This method retrieves the playback position (ms) of the current music file.</p>
+            <p>Retrieves the playback position (ms) of the audio.</p>
             <note type="attention">
             <ul>
-            <li><ph>You need to call this method after calling <xref keyref="startAudioMixing2" props="native flutter unity rn electron flutter" /> and receiving the <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</ph></li>
-            <li>If you need to call <apiname keyref="getAudioMixingCurrentPosition" /> multiple times, ensure that the call interval is longer than 500 ms.</li>
+            <li><ph>You need to call this method after calling<xref keyref="startAudioMixing2" props="native unity rn electron flutter"/>  and receiving </ph>the <ph><codeph><apiname keyref="onAudioMixingStateChanged"/>(<apiname keyref="AUDIO_MIXING_STATE_PLAYING"/>)</codeph> callback.</ph></li>
+            <li>If you need to call  multiple times<apiname keyref="getAudioMixingCurrentPosition"/>, ensure that the time interval between calling this method is more than 500 ms.</li>
             </ul></note> </section>
         <section id="return_values" props="native electron unity rn flutter">
             <title>Returns</title>
             <ul>
-            <li>The current playback position (ms) of the audio mixing, if this method call succeeds. 0 represents that the current music file does not start playing.</li>
+            <li>≥ 0: The current playback position (ms) of the audio mixing, if this method call succeeds. 0 represents that the current music file does not start playing.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
