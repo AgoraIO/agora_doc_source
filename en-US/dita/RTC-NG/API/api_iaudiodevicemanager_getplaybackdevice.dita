@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_getplaybackdevice">
     <title><ph keyref="getPlaybackDevice" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Retrieves the current audio playback device.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the audio playback device associated with the device ID.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,21 +21,21 @@
             <codeblock props="rn" outputclass="language-typescript">abstract getPlaybackDevice(): string;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getPlaybackDevice();</codeblock> </p>
         </section>
-        <section id="parameters" props="cpp">
-            <title>Parameters</title>
+        <section id="parameters" props="cpp unity">
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>deviceId</pt>
-                <pd>Output parameter. The device ID of the audio playback device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</pd>
+                <pd><ph>Output parameter. The device ID of the audio playback device. </ph><ph props="cpp">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul props="cpp">
+            <ul props="cpp unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
-            <p props="unity flutter electron">The current audio playback device.</p>
+            <p props="flutter electron rn flutter">The current audio playback device.</p>
         </section>
     </refbody>
 </reference>
