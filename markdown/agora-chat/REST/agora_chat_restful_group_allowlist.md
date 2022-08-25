@@ -1,6 +1,6 @@
-聊天群白名单列表是指在群主或管理员使用 [全员禁言](https://docs.agora.io/cn/agora-chat/agora_chat_restful_group_mute?platform=RESTful#muting-all-chat-group-members) 方法将所有群成员禁言后，可以发送群消息的聊天室成员列表。即时通讯提供了一套完整的允许列表管理方法，包括将用户添加到白名单列表中、将其从其中删除，以及查询白名单列表中的成员。
+聊天群白名单列表是指在群主或管理员使用 [全员禁言](./agora_chat_restful_group_mute?platform=RESTful#muting-all-chat-group-members) 方法将所有群成员禁言后，可以发送群消息的聊天室成员列表。即时通讯提供了一套完整的允许列表管理方法，包括将用户添加到白名单列表中、将其从其中删除，以及查询白名单列表中的成员。
 
-本页面展示了如何使即时通讯 RESTful API 管理群组白名单列表。在调用以下方法之前，请确保了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
+本页面展示了如何使即时通讯 RESTful API 管理群组白名单列表。在调用以下方法之前，请确保了解 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 
 <a name="pubparam"></a>
 
@@ -108,7 +108,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 
 ## 添加单个成员至群组白名单列表
 
-此方法将指定用户添加至群组白名单列表。在群组所有者或管理员使用 [全员禁言](https://docs.agora.io/cn/agora-chat/agora_chat_restful_group_allowlist?platform=RESTful) 方法将所有群组成员禁言后，群组白名单列表中的成员仍然可以发送群组消息。
+此方法将指定用户添加至群组白名单列表。在群组所有者或管理员使用 [全员禁言](./agora_chat_restful_group_allowlist?platform=RESTful) 方法将所有群组成员禁言后，群组白名单列表中的成员仍然可以发送群组消息。
 
 ### HTTP 请求
 
@@ -353,4 +353,4 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/cn/agora-chat/agora_chat_status_code?platform=RESTful)。
+有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。

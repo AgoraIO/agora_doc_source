@@ -19,9 +19,9 @@ SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解不同定价方案支持的即时通讯 IM API 的 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=Android) 中所述。
-- 如 [套餐包详情](https://docs.agora.io/cn/agora-chat/agora_chat_plan?platform=Android) 中所述，了解不同套餐包支持的群组和群组成员的数量。
+- 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解不同定价方案支持的即时通讯 IM API 的 [使用限制](./agora_chat_limitation?platform=Android) 。
+- 了解不同套餐包支持的群组和群组成员的数量，详见 [套餐包详情](./agora_chat_plan?platform=Android) 。
 
 ## 实现方法
 
@@ -159,4 +159,4 @@ public void fetchGroupWhiteList(final String groupId, final ValueCallBack<List<S
 
 ### 监听群组事件
 
-有关详细信息，请参阅 [监听群组事件](https://docs.agora.io/cn/agora-chat/agora_chat_group_android?platform=Android#listen-for-chat-group-events)。
+有关详细信息，请参阅 [监听群组事件](./agora_chat_group_android?platform=Android#监听群组事件)。

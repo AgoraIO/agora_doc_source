@@ -32,8 +32,8 @@
 
 使用在线状态功能前，请确保满足以下条件：
 
-- 初始化即时通讯 IM SDK，详见 [Android 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_android)。
-- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation)。
+- 初始化即时通讯 IM SDK，详见 [Android 入门](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
 - 在 [Agora 控制台](http://console.agora.io/) 中启用在线状态功能。
 
 ## 实现方法

@@ -24,10 +24,10 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 入门](./agora_chat_get_started_ios?platform=iOS)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
 
-所有类型的 [定价计划](https://docs.agora.io/cn/agora-chat/agora_chat_plan) 都支持子区功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认启用子区功能。
+所有类型的 [定价计划](./agora_chat_plan) 都支持子区功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认启用子区功能。
 
 ## 实现方法
 
@@ -81,7 +81,7 @@
 
 1. 使用以下两种方法之一来获取子区 ID：
 
-- 调用 [`getChatThreadsFromServer`](https://docs.agora.io/cn/agora-chat/agora_chat_thread_management_ios?platform=iOS#fetch) 获取群组中的子区列表，找到你想加入的话题 ID。
+- 调用 [`getChatThreadsFromServer`](./agora_chat_thread_management_ios?platform=iOS#fetch) 获取群组中的子区列表，找到你想加入的话题 ID。
 - 在收到的 `AgoraChatThreadManagerDelegate#onChatThreadCreated` 或 `AgoraChatThreadManagerDelegate#onChatThreadUpdated` 回调中获取子区 ID 。
 
 2. 调用 `joinChatThread` 传入子区 ID，加入指定子区。

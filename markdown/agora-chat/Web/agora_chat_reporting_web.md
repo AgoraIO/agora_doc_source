@@ -10,9 +10,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并连接到服务器，详见 [Web 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_web)。
-- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation_web)。
-- 在 Agora 控制台开启消息举报功能，详见 [内容审核概述](https://docs.agora.io/cn/agora-chat/agora_chat_moderation_overview)。
+- 完成 SDK 初始化，并连接到服务器，详见 [Web 入门](./agora_chat_get_started_web)。
+- 了解 [使用限制](./agora_chat_limitation_web)。
+- 在 Agora 控制台开启消息举报功能，详见 [内容审核概述](./agora_chat_moderation_overview)。
 
 ## 实现方法
 

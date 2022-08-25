@@ -4,7 +4,7 @@
 
 该功能可广泛应用于实时互动 app 中，例如发现某用户频繁向多个聊天室发送违规广告，则可以对该用户开启全局聊天室禁言 15 天；发现某用户发表触犯红线的政治言论，则可以全局永久禁言，用户申诉通过后可以解禁。
 
-开始前请了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
+开始前请了解 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
 
 <a name="param"></a>
 
@@ -299,4 +299,4 @@ curl -L -X GET 'https://XXXX/XXXX/XXXX/mutes?pageNum=1&pageSize=10' \
 
 ## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](https://docs.agora.io/cn/agora-chat/agora_chat_status_code?platform=RESTful)。
+有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。

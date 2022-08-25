@@ -16,9 +16,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                                                | 是否必填 |
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见[获取项目信息](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                       | 是       |
-| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见[获取项目信息](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                  | 是       |
-| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见[获取项目信息](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                            | 是       |
+| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                       | 是       |
+| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                  | 是       |
+| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                            | 是       |
 | `username`      | String | 用户的唯一登录帐户。                                         |        |
 
 ### 响应参数

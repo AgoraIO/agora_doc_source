@@ -1,6 +1,6 @@
 # 管理子区成员
 
-本页展示了如何通过调用即时通讯 IM RESTful API 来管理子区成员。在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
+本页展示了如何通过调用即时通讯 IM RESTful API 来管理子区成员。在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 
 <a name="pubparam"></a>
 
@@ -10,9 +10,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                | 是否必填 |
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见 [获取项目信息](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。      | 是       |
-| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见 [获取项目信息](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。 | 是       |
-| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见 [获取项目信息](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。           | 是       |
+| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见 [获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。      | 是       |
+| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见 [获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。 | 是       |
+| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见 [获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。           | 是       |
 
 ### 响应参数
 

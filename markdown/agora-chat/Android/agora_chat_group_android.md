@@ -22,9 +22,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成即时通讯 IM SDK 初始化，详见 [Android 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=Android)。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](https://docs.agora.io/cn/agora-chat/agora_chat_plan?platform=Android)。
+- 完成即时通讯 IM SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
+- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 
 ## 实现方法
 

@@ -96,7 +96,7 @@
 
 ### 获取指定会话的历史消息
 
-即时通讯（环信）SDK 将历史消息存储在聊天服务器中，用户可以通过分页从服务器中获取每个会话的历史消息。历史消息存储时间与套餐版本相关，详见 [套餐包详情](https://docs.agora.io/cn/agora-chat/agora_chat_message_overview?platform=Android#limitations)。
+即时通讯（环信）SDK 将历史消息存储在聊天服务器中，用户可以通过分页从服务器中获取每个会话的历史消息。历史消息存储时间与套餐版本相关，详见 [套餐包详情](./agora_chat_message_overview?platform=Android#limitations)。
 
 ### 消息送达回执
 

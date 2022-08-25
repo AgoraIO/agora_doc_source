@@ -22,10 +22,10 @@ SDK 支持你通过调用 API 在项目中实现如下功能：
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 入门](./agora_chat_get_started_ios?platform=iOS)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
 
-所有类型的 [套餐包](https://docs.agora.io/cn/agora-chat/agora_chat_plan) 都支持 Reaciton 功能，一旦你在 [Agora 控制台](https://console.agora.io/) 中启用了聊天功能，就会默认启用该功能。
+所有类型的 [套餐包](./agora_chat_plan) 都支持 Reaciton 功能，一旦你在 [Agora 控制台](https://console.agora.io/) 中启用了聊天功能，就会默认启用该功能。
 
 ## 实现方法
 
@@ -89,4 +89,4 @@ SDK 支持你通过调用 API 在项目中实现如下功能：
 
 ## 下一步
 
-[Chat UIKit](https://docs.agora.io/cn/agora-chat/agora_chat_uikit_ios?platform=iOS) 也支持 Reaction，其中包含更广泛的表情符号。你可以使用 UIKit 在项目中实现 Reaction 功能。
+[Chat UIKit](./agora_chat_uikit_ios?platform=iOS) 也支持 Reaction，其中包含更广泛的表情符号。你可以使用 UIKit 在项目中实现 Reaction 功能。

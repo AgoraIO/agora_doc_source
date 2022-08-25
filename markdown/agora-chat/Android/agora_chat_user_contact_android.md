@@ -21,8 +21,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [即时通讯 IM 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=Android)。
+- 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [即时通讯 IM 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
 
 ## 实现方法
 
@@ -144,4 +144,4 @@ ChatClient.getInstance().contactManager().getBlackListUsernames();
 
 有关接口的详细信息，请参阅以下 API 参考：
 
-- [联系人管理](https://docs.agora.io/cn/agora-chat/.API Reference/im_java/classio_1_1agora_1_1chat_1_1_contact_manager.html)
+- [联系人管理](./.API Reference/im_java/classio_1_1agora_1_1chat_1_1_contact_manager.html)

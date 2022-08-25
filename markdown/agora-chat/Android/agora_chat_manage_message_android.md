@@ -160,5 +160,5 @@ conversation.updateMessage(message);
 
 实现消息管理后，您可以参考以下文档为应用添加更多消息功能：
 
-- [从服务器获取会话和消息](https://docs.agora.io/cn/agora-chat/agora_chat_retrieve_message_android?platform=Android)
-- [消息回执](https://docs.agora.io/cn/agora-chat/agora_chat_message_receipt_android?platform=Android)
+- [从服务器获取会话和消息](./agora_chat_retrieve_message_android?platform=Android)
+- [消息回执](./agora_chat_message_receipt_android?platform=Android)

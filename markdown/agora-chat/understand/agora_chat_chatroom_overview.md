@@ -34,7 +34,7 @@
 
 ### 创建聊天室
 
-只有[超级管理员](https://docs.agora.io/agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 可以创建聊天室，创建聊天室的用户成为聊天室所有者。支持的聊天室成员的最大数量根据你购买的套餐而有所不同。详见 [聊天室限制](https://docs.agora.io/cn/agora-chat/agora_chat_chatroom_overview?platform=Android#limitations)。
+只有[超级管理员](https://docs.agora.io/agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 可以创建聊天室，创建聊天室的用户成为聊天室所有者。支持的聊天室成员的最大数量根据你购买的套餐而有所不同。详见 [聊天室限制](./agora_chat_chatroom_overview?platform=Android#limitations)。
 
 ### 加入和离开聊天室
 

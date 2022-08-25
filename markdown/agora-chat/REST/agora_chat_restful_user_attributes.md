@@ -10,7 +10,7 @@
 
 为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。
 
-在调用以下方法之前，请了解 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
+在调用以下方法之前，请了解 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
 
 ## <a name="param"></a>公共参数
 
@@ -379,4 +379,4 @@ curl -X DELETE -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/
 
 ## 状态码
 
-有关详细信息，请参阅[HTTP 状态代码](https://docs.agora.io/cn/agora-chat/agora_chat_status_code?platform=RESTful)。
+有关详细信息，请参阅[HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
