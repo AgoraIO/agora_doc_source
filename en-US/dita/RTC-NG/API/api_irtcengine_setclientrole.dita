@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setclientrole">
+<reference id="api_irtcengine_setclientrole">
     <title><ph keyref="setClientRole1" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the client role.</ph></shortdesc>
     <prolog>
@@ -29,22 +29,22 @@
         </section>
         <section id="detailed_desc">
             <p id="desc">You can call this method either before or after joining the channel to set the user role as audience or host.</p>
-            <p conkeyref="setClientRole2/preview" />
+            <p conkeyref="setClientRole2/preview" props="native electron rn flutter"/>
             <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
-            <li>The local client: <xref keyref="onClientRoleChanged" />.</li>
-            <li>The remote client: <xref keyref="onUserJoined" /> or <codeph><xref keyref="onUserOffline" />(<apiname keyref="USER_OFFLINE_BECOME_AUDIENCE" />)</codeph>.</li>
+            <li>The local<xref keyref="onClientRoleChanged" /> client: .</li>
+            <li>The remote client<xref keyref="onUserJoined" />:  or <codeph><xref keyref="onUserOffline" />(<apiname keyref="USER_OFFLINE_BECOME_AUDIENCE" />)</codeph>.</li>
             </ul></p>
             <p conkeyref="setClientRole2/screenshare" props="ios" />
-        </section>
+            </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>role</pt>
                 <pd id="clientrole">
-                    <p props="ios mac cpp electron unity">The user role. See <xref keyref="CLIENT_ROLE_TYPE" />.</p>
+                    <p props="ios mac cpp electron unity">The user role. See <xref keyref="CLIENT_ROLE_TYPE" /> for details.</p>
                     <p props="android">The user role:<ul id="clientroletype">
-                    <li><ph keyref="CLIENT_ROLE_BROADCASTER" />(1): Host.</li>
+                    <li><ph keyref="CLIENT_ROLE_BROADCASTER" />(1): Broadcaster.</li>
                     <li><ph keyref="CLIENT_ROLE_AUDIENCE" />(2): Audience.</li>
                     </ul> </p>
                 </pd>
