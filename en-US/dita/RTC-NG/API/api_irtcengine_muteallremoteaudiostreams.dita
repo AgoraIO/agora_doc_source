@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_muteallremoteaudiostreams">
-    <title><ph keyref="muteAllRemoteAudioStreams" /></title>
+<reference id="api_irtcengine_muteallremoteaudiostreams">
+    <title><ph keyref="muteAllRemoteAudioStreams"/></title>
     <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the audio streams of all remote users.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="muteAllRemoteAudioStreams" />
+                <indexterm keyref="muteAllRemoteAudioStreams"/>
             </keywords>
         </metadata>
     </prolog>
@@ -26,18 +26,19 @@
             <note type="attention" id="note">
             <ul>
             <li>Call this method after joining a channel.</li>
-            <li props="ios android cpp"><ph>See recommended settings in <xref keyref="guide-set-subscribing-state">Set the Subscribing State</xref></ph>.</li>
+            <li>如果需要在加入频道前设置默认不订阅远端用户音频流，可以在调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeAudio</parmname> 为 <codeph><ph keyref="false"/></codeph>。</li>
+            <li props="ios android cpp"><ph>See recommended settings in Set the Subscribing <xref keyref="guide-set-subscribing-state">State</xref>.</ph></li>
             </ul> </note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt props="android">muted</pt>
                 <pt props="ios mac cpp unity flutter rn electron">mute</pt>
                 <pd>
                     <p>Whether to stop subscribing to the audio streams of all remote users:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the audio streams of all remote users.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Subscribe to the audio streams of all remote users by default.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Stop subscribing to the audio streams of all remote users.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Subscribe to the audio streams of all remote users by default.</li>
                     </ul> </p>
                 </pd>
             </plentry>
