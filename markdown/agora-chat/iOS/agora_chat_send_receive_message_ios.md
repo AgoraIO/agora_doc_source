@@ -10,11 +10,11 @@
 
 以及对以上消息进行自定义扩展。
 
-本文介绍如何使用即时通讯 IM（环信）SDK 实现发送和接收这些类型的消息。
+本文介绍如何使用即时通讯 IM SDK 实现发送和接收这些类型的消息。
 
 ## 技术原理
 
-即时通讯 IM（环信）SDK 使用 `IAgoraChatManager`和 `Message` 类来发送、接收和撤回消息、发送、接收消息已读回执，并管理用户设备上存储的消息会话数据，其中包含如下主要方法：
+即时通讯 IM SDK 使用 `IAgoraChatManager`和 `Message` 类来发送、接收和撤回消息、发送、接收消息已读回执，并管理用户设备上存储的消息会话数据，其中包含如下主要方法：
 
 - `sendMessage` 发送消息给某个用户，群组或者聊天室；
 - `recallMessage` 撤回自己发出的消息；
@@ -32,7 +32,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [即时通讯 IM（环信）入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_ios?platform=iOS)。
+- 完成 SDK 初始化，详见 [即时通讯 IM 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_ios?platform=iOS)。
 - 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=iOS)。
 
 ## 实现方法
