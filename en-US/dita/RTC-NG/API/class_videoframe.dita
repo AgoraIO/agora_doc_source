@@ -296,6 +296,26 @@
   sharedContext(0),
   textureId(0),
   alphaBuffer(NULL){}
+
+    VIDEO_PIXEL_FORMAT type;
+    int width;
+    int height;
+    int yStride;
+    int uStride;
+    int vStride;
+    uint8_t* yBuffer;
+    uint8_t* uBuffer;
+    uint8_t* vBuffer;
+    int rotation;
+    int64_t renderTimeMs;
+    int avsync_type;
+    uint8_t* metadata_buffer;
+    int metadata_size;
+    void* sharedContext;
+    int textureId;
+    float matrix[16];
+    uint8_t* alphaBuffer;
+};
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
   
