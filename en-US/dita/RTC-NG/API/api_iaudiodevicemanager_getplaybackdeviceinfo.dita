@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_getplaybackdeviceinfo">
     <title><ph keyref="getPlaybackDeviceInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc"> <ph props="cpp">Retrieves the audio playback device information associated with the device ID and device name. </ph><ph props="unity electron flutter">Retrieves the audio playback device associated with the device ID.</ph> </ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">        <ph props="cpp">Retrieves the audio playback device information associated with the device ID and device name. </ph><ph props="unity electron flutter">Retrieves the audio playback device associated with the device ID.</ph></ph>    </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,26 +21,25 @@
             <codeblock props="rn" outputclass="language-typescript">abstract getPlaybackDeviceInfo(): AudioDeviceInfo;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;AudioDeviceInfo&gt; getPlaybackDeviceInfo();</codeblock> </p>
         </section>
-        <section id="parameters" props="cpp">
-            <title>Parameters</title>
+        <section id="parameters" props="cpp unity">
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>deviceId</pt>
-                <pd>The device ID of the playback device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</pd>
+                <pd><ph>The device ID of the playback device. </ph><ph props="cpp">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</ph></pd>
             </plentry>
             <plentry>
                 <pt>deviceName</pt>
-                <pd>The device name of the playback device. The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</pd>
+                <pd><ph>The device name of the playback device. </ph><ph props="cpp">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul props="cpp">
+            <ul props="cpp unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
-            <p props="unity">The information of the audio playback device, which includes the device ID and device name.</p>
-            <p props="electron flutter">A <xref keyref="AudioDeviceInfo" /> object, which contains the ID and device name of the audio devices.</p>
+            <p props="electron flutter rn"><xref keyref="AudioDeviceInfo" />A  object, which contains the ID and device name of the audio devices.</p>
         </section>
     </refbody>
 </reference>
