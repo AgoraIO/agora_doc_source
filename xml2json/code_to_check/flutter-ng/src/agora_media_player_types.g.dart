@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use_from_same_package, unused_element
+
 part of 'agora_media_player_types.dart';
 
 // **************************************************************************
@@ -58,16 +60,56 @@ Map<String, dynamic> _$SrcInfoToJson(SrcInfo instance) => <String, dynamic>{
       'name': instance.name,
     };
 
+CacheStatistics _$CacheStatisticsFromJson(Map<String, dynamic> json) =>
+    CacheStatistics(
+      fileSize: json['fileSize'] as int?,
+      cacheSize: json['cacheSize'] as int?,
+      downloadSize: json['downloadSize'] as int?,
+    );
+
+Map<String, dynamic> _$CacheStatisticsToJson(CacheStatistics instance) =>
+    <String, dynamic>{
+      'fileSize': instance.fileSize,
+      'cacheSize': instance.cacheSize,
+      'downloadSize': instance.downloadSize,
+    };
+
 PlayerUpdatedInfo _$PlayerUpdatedInfoFromJson(Map<String, dynamic> json) =>
     PlayerUpdatedInfo(
       playerId: json['playerId'] as String?,
       deviceId: json['deviceId'] as String?,
+      cacheStatistics: json['cacheStatistics'] == null
+          ? null
+          : CacheStatistics.fromJson(
+              json['cacheStatistics'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PlayerUpdatedInfoToJson(PlayerUpdatedInfo instance) =>
     <String, dynamic>{
       'playerId': instance.playerId,
       'deviceId': instance.deviceId,
+      'cacheStatistics': instance.cacheStatistics?.toJson(),
+    };
+
+MediaSource _$MediaSourceFromJson(Map<String, dynamic> json) => MediaSource(
+      url: json['url'] as String?,
+      uri: json['uri'] as String?,
+      startPos: json['startPos'] as int?,
+      autoPlay: json['autoPlay'] as bool?,
+      enableCache: json['enableCache'] as bool?,
+      isAgoraSource: json['isAgoraSource'] as bool?,
+      isLiveSource: json['isLiveSource'] as bool?,
+    );
+
+Map<String, dynamic> _$MediaSourceToJson(MediaSource instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'uri': instance.uri,
+      'startPos': instance.startPos,
+      'autoPlay': instance.autoPlay,
+      'enableCache': instance.enableCache,
+      'isAgoraSource': instance.isAgoraSource,
+      'isLiveSource': instance.isLiveSource,
     };
 
 const _$MediaPlayerStateEnumMap = {
@@ -123,6 +165,11 @@ const _$MediaPlayerEventEnumMap = {
   MediaPlayerEvent.playerEventSwitchComplete: 11,
   MediaPlayerEvent.playerEventSwitchError: 12,
   MediaPlayerEvent.playerEventFirstDisplayed: 13,
+  MediaPlayerEvent.playerEventReachCacheFileMaxCount: 14,
+  MediaPlayerEvent.playerEventReachCacheFileMaxSize: 15,
+  MediaPlayerEvent.playerEventTryOpenStart: 16,
+  MediaPlayerEvent.playerEventTryOpenSucceed: 17,
+  MediaPlayerEvent.playerEventTryOpenFailed: 18,
 };
 
 const _$PlayerPreloadEventEnumMap = {

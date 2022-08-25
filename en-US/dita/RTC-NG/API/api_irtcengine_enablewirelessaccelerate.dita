@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enablewirelessaccelerate">
-    <title><ph keyref="enableWirelessAccelerate"/></title>
+    <title><ph keyref="enableWirelessAccelerate" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enables or disables Wi-Fi acceleration.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableWirelessAccelerate"/>
+                <indexterm keyref="enableWirelessAccelerate" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableWirelessAccelerate(bool enabled) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableWirelessAccelerate(bool enabled);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>Since this version, the SDK enables Wi-Fi acceleration by default. This function will only take effect when the SDK finds a Wi-Fi router with an integrated acceleration plug-in, allowing the router to reasonably allocate Wi-Fi spectrum resources to reduce packet loss rate and delay, thereby reducing audio and video freezes.</p>
-            <p>When the router provides acceleration services, the SDK will periodically trigger a <xref keyref="onWlAccStats"/> callback to report the Wi-Fi connection optimization data, and trigger a <xref keyref="onWlAccMessage"/> callback when the Wi-Fi connection quality is poor to report the reason for the poor Wi-Fi connection quality and improve Wi-Fi Action suggestions for the connection.</p>
+            <p>When the router provides acceleration services, the SDK will periodically trigger a <xref keyref="onWlAccStats" /> callback to report the Wi-Fi connection optimization data, and trigger a <xref keyref="onWlAccMessage" /> callback when the Wi-Fi connection quality is poor to report the reason for the poor Wi-Fi connection quality and improve Wi-Fi Action suggestions for the connection.</p>
             <note type="note">
             <ul id="ul_w5c_nzq_tsb">
             <li>Wi-Fi acceleration is disabled by default. It must be used in conjunction with a router with an integrated acceleration plug-in. For details, see <xref keyref="faq-wifi-routers"> Which Wi-Fi routers support the acceleration function</xref>. If the Wi-Fi router does not support acceleration, system performance will not suffer.</li>
@@ -36,8 +36,8 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Set whether to enable Wi-Fi acceleration:<ul id="ul_fds_gfr_tsb">
-                    <li><codeph><ph keyref="true"/></codeph>: Enable custom echo cancellation.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable custom echo cancellation.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable custom echo cancellation.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable custom echo cancellation.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>

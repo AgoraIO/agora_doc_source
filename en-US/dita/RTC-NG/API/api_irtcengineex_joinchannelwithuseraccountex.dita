@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_joinchannelwithuseraccountex">
-    <title><ph keyref="joinChannelWithUserAccountEx"/></title>
+    <title><ph keyref="joinChannelWithUserAccountEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">Joins the channel with a user account, and configures whether to automatically subscribe to audio or video streams after joining the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="joinChannelWithUserAccountEx"/>
+                <indexterm keyref="joinChannelWithUserAccountEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -33,44 +33,44 @@
     userAccount: string,
     options: ChannelMediaOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> joinChannelWithUserAccountEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithUserAccountEx(
     {required String token,
     required String channelId,
     required String userAccount,
     required ChannelMediaOptions options});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="native flutter unity" conkeyref="joinChannelWithUserAccount2/desc1"/>
+            <p props="native flutter unity" conkeyref="joinChannelWithUserAccount2/desc1" />
             <p props="rn electron" id="desc1">This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:
             <ul>
-            <li>The local client: <xref keyref="onLocalUserRegistered"/>, <xref keyref="onJoinChannelSuccess"/> and <xref keyref="onConnectionStateChanged"/> callbacks.</li>
-            <li>The remote client: The <xref keyref="onUserJoined"/> callback if the user is in the COMMUNICATION profile, and the <xref keyref="onUserInfoUpdated"/> callback if the user is a host in the LIVE_BROADCASTING profile.</li>
+            <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
+            <li>The remote client: The <xref keyref="onUserJoined" /> callback if the user is in the COMMUNICATION profile, and the <xref keyref="onUserInfoUpdated" /> callback if the user is a host in the LIVE_BROADCASTING profile.</li>
             </ul></p>
-            <p props="native flutter unity" conkeyref="joinChannelWithUserAccount2/desc2"/>
+            <p props="native flutter unity" conkeyref="joinChannelWithUserAccount2/desc2" />
             <p props="rn electron" id="desc2">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
-            <note conkeyref="joinChannelWithUserAccount1/note" props="native flutter unity"/>
+            <note conkeyref="joinChannelWithUserAccount1/note" props="native flutter unity" />
             <note type="attention" id="note" props="rn electron">To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannel2/token">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>channelId</pt>
                 <pd>
-                    <p conkeyref="joinChannel2/channelID_desc"/>
+                    <p conkeyref="joinChannel2/channelID_desc" />
                 </pd>
             </plentry>
             <plentry props="native flutter unity" conkeyref="joinChannelWithUserAccount2/userAccount">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="rn electron" id="userAccount">
                 <pt>userAccount</pt>
                 <pd>
-                    <p>The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique. The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as <ph keyref="NULL"/>. Supported characters are (89 in total):
+                    <p>The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique. The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as <ph keyref="NULL" />. Supported characters are (89 in total):
                     <ul>
                     <li>The 26 lowercase English letters: a to z.</li>
                     <li>The 26 uppercase English letters: A to Z.</li>
@@ -84,16 +84,16 @@
                 <pt props="cpp android unity rn electron flutter">options</pt>
                 <pt props="ios mac">mediaOptions</pt>
                 <pd>
-                    <p conkeyref="joinChannel2/options_desc"/>
+                    <p conkeyref="joinChannel2/options_desc" />
                 </pd>
             </plentry>
             <plentry props="cpp android unity" conkeyref="joinChannelEx/event">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannel2/joinsuccessblock" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity">

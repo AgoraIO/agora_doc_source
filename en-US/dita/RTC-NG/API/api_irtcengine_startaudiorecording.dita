@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_startaudiorecording">
-    <title><ph keyref="startAudioRecording1"/></title>
+    <title><ph keyref="startAudioRecording1" /></title>
     <shortdesc id="short"><ph id="shortdesc">Starts the audio recording on the client.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startAudioRecording1"/>
+                <indexterm keyref="startAudioRecording1" />
             </keywords>
         </metadata>
     </prolog>
@@ -17,34 +17,34 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startAudioRecording:(NSString * _Nonnull)filePath
                    quality:(AgoraAudioRecordingQuality)quality;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioRecording(const char* filePath, AUDIO_RECORDING_QUALITY_TYPE quality) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Use <xref keyref="startAudioRecording3"/> instead.</dd>
+                <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Use <xref keyref="startAudioRecording3" /> instead.</dd>
             </dlentry>
             </dl>
             <p>The Agora SDK allows recording during a call. This method records the audio of all the users in the channel and generates an audio recording file. Supported formats of the recording file are as follows:<ul>
             <li><codeph>.wav</codeph>: Large file size with high fidelity.</li>
             <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>
             </ul> </p>
-            <p>Ensure that the directory for the recording file exists and is writable. This method should be called after the <xref keyref="joinChannel1" props="native unity"/><xref keyref="joinChannel2" props="rn electron flutter"/> method. The recording automatically stops when you call the <xref keyref="leaveChannel" props="native unity"/> <xref keyref="leaveChannel2" props="rn electron flutter"/> method.</p>
+            <p>Ensure that the directory for the recording file exists and is writable. This method should be called after the <xref keyref="joinChannel1" props="native unity" /><xref keyref="joinChannel2" props="rn electron flutter" /> method. The recording automatically stops when you call the <xref keyref="leaveChannel" props="native unity" /> <xref keyref="leaveChannel2" props="rn electron flutter" /> method.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="AudioRecordingConfiguration/filepath">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>quality</pt>
-                <pd>Audio recording quality. <ph props="cpp ios mac unity">See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>.</ph><ul props="android">
+                <pd>Audio recording quality. <ph props="cpp ios mac unity">See <xref keyref="AUDIO_RECORDING_QUALITY_TYPE" />.</ph><ul props="android">
                     <li>0: Low quality. The sample rate is 32 kHz, and the file size is around 1.2 MB after 10 minutes of recording.</li>
                     <li>1: Medium quality. The sample rate is 32 kHz, and the file size is around 2 MB after 10 minutes of recording.</li>
                     <li>2: High quality. The sample rate is 32 kHz, and the file size is around 3.75 MB after 10 minutes of recording.</li>

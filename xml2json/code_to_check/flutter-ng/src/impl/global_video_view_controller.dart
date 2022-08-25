@@ -1,6 +1,8 @@
 import 'package:agora_rtc_ng/src/impl/video_view_controller_impl.dart';
 import 'package:flutter/services.dart';
 
+// ignore_for_file: public_member_api_docs
+
 class GlobalVideoViewController {
   const GlobalVideoViewController();
 

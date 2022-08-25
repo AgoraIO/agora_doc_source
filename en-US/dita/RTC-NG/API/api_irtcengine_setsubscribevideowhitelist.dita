@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_setsubscribevideowhitelist">
-    <title><ph keyref="setSubscribeVideoWhitelist"/></title>
+    <title><ph keyref="setSubscribeVideoWhitelist" /></title>
     <shortdesc id="short"><ph id="shortdesc">Set the whitelist of subscriptions for video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setSubscribeVideoWhitelist"/>
+                <indexterm keyref="setSubscribeVideoWhitelist" />
             </keywords>
         </metadata>
     </prolog>
@@ -14,22 +14,22 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setSubscribeVideoWhitelist(int[] uidList);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeVideoWhitelist:(NSArray &lt;NSNumber *> *_Nonnull)whitelist;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeVideoWhitelist:(NSArray &lt;NSNumber *&gt; *_Nonnull)whitelist;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeVideoWhitelist(uid_t* uidList, int uidNumber) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>You can call this method to specify the video streams of a user that you want to subscribe to.</p>
             <note>
             <ul>
-            <li conkeyref="setSubscribeAudioBlacklist/order"/>
-            <li>The whitelist is not affected by the setting in <xref keyref="muteRemoteVideoStream"/>, <xref keyref="muteAllRemoteVideoStreams"/> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions"/>.</li>
-            <li conkeyref="setSubscribeAudioWhitelist/effect"/>
-            <li conkeyref="setSubscribeAudioBlacklist/priority"/>
+            <li conkeyref="setSubscribeAudioBlacklist/order" />
+            <li>The whitelist is not affected by the setting in <xref keyref="muteRemoteVideoStream" />, <xref keyref="muteAllRemoteVideoStreams" /> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions" />.</li>
+            <li conkeyref="setSubscribeAudioWhitelist/effect" />
+            <li conkeyref="setSubscribeAudioBlacklist/priority" />
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -38,12 +38,12 @@
                 <pt props="android cpp">uidList</pt>
                 <pd>
                     <p>The user ID list of users that you want to subscribe to.</p>
-                    <p>If you want to specify the video streams of a user for subscription, add the user ID of that user in this list. If you want to remove a user from the whitelist, you need to call the <xref keyref="setSubscribeVideoWhitelist"/> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
+                    <p>If you want to specify the video streams of a user for subscription, add the user ID of that user in this list. If you want to remove a user from the whitelist, you need to call the <xref keyref="setSubscribeVideoWhitelist" /> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
                 </pd>
             </plentry>
             <plentry props="cpp" conkeyref="setSubscribeAudioWhitelist/uidnumber">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values" conkeyref="setSubscribeAudioWhitelist/return_values"> </section>

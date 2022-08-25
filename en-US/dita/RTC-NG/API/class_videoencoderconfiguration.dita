@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
-    <title><ph keyref="VideoEncoderConfiguration"/></title>
+    <title><ph keyref="VideoEncoderConfiguration" /></title>
     <shortdesc id="short"><ph id="shortdesc">Video encoder configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -368,9 +368,9 @@
   final DegradationPreference? degradationPreference;
   @JsonKey(name: 'mirrorMode')
   final VideoMirrorModeType? mirrorMode;
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoEncoderConfigurationFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
@@ -378,10 +378,7 @@
             <parml>
             <plentry>
                 <pt>dimensions</pt>
-                    <pd><ph>The dimensions of the encoded video (px). This parameter measures the video encoding quality in the format of length × width. </ph><ph
-                        props="android apple">The default value is 640 × 360. </ph><ph
-                        props="android cpp unity">See <xref
-                        keyref="VideoDimensions"/>.</ph></pd>
+                    <pd><ph>The dimensions of the encoded video (px). This parameter measures the video encoding quality in the format of length × width. </ph><ph props="android apple">The default value is 640 × 360. </ph><ph props="android cpp unity">See <xref keyref="VideoDimensions" />.</ph></pd>
                 <pd>
                     <p props="cpp unity electron rn flutter">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
                     <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list:<ul>
@@ -415,11 +412,11 @@
             </plentry>
             <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>codecType</pt>
-                <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
+                <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />.</pd>
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd>The frame rate (fps) of the encoding video frame. The default value is 15. See <xref keyref="FRAME_RATE"/>.</pd>
+                <pd>The frame rate (fps) of the encoding video frame. The default value is 15. See <xref keyref="FRAME_RATE" />.</pd>
             </plentry>
             <plentry props="native">
                 <pt>minFramerate</pt>
@@ -444,7 +441,7 @@
             </plentry>
             <plentry>
                 <pt>orientationMode</pt>
-                <pd>The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE"/>.</pd>
+                <pd>The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE" />.</pd>
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>

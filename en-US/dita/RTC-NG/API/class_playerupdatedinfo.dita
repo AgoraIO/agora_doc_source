@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_playerupdatedinfo">
-    <title><ph keyref="PlayerUpdatedInfo"/></title>
+    <title><ph keyref="PlayerUpdatedInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">Information related to the media player.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -17,8 +17,8 @@
 @property(strong, nonatomic) AgoraMediaPlayerCacheStatistics *_Nullable cacheStatistics;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct PlayerUpdatedInfo {
-  Optional&lt;const char*> playerId;
-  Optional&lt;const char*> deviceId;
+  Optional&lt;const char*&gt; playerId;
+  Optional&lt;const char*&gt; deviceId;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerUpdatedInfo {
   playerId?: string
@@ -39,14 +39,14 @@
   final String? playerId;
   @JsonKey(name: 'deviceId')
   final String? deviceId;
-  factory PlayerUpdatedInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory PlayerUpdatedInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$PlayerUpdatedInfoFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$PlayerUpdatedInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$PlayerUpdatedInfoToJson(this);
 }
 </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>playerId</pt>
@@ -60,7 +60,7 @@
                 <pt>CacheStatistics</pt>
                 <pd>
                     <p>The statistics about the media file being cached.</p>
-                    <p>If you call the <xref keyref="openWithMediaSource"/> method and set <parmname>enableCache</parmname> as <codeph><ph keyref="true"/></codeph>, the statistics about the media file being cached is updated every second after the media file is played. See <xref keyref="CacheStatistics"/>.</p>
+                    <p>If you call the <xref keyref="openWithMediaSource" /> method and set <parmname>enableCache</parmname> as <codeph><ph keyref="true" /></codeph>, the statistics about the media file being cached is updated every second after the media file is played. See <xref keyref="CacheStatistics" />.</p>
                 </pd>
             </plentry>
             </parml> </section>

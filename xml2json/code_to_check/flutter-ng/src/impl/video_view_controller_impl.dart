@@ -2,15 +2,16 @@ import 'package:agora_rtc_ng/src/agora_rtc_engine.dart';
 import 'package:agora_rtc_ng/src/agora_base.dart';
 import 'package:agora_rtc_ng/src/agora_rtc_engine_ex.dart';
 import 'package:agora_rtc_ng/src/impl/agora_rtc_engine_impl.dart';
+import 'package:agora_rtc_ng/src/render/video_view_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
+
+// ignore_for_file: public_member_api_docs
 
 const int kTextureNotInit = -1;
 
 extension VideoViewControllerBaseExt on VideoViewControllerBase {
   bool isSame(VideoViewControllerBase other) {
-    // debugPrint(
-    //     'canvas: ${canvas.toJson()}, other.canvas: ${other.canvas.toJson()}, connection: ${connection?.toJson()}, other.connection: ${other.connection?.toJson()}, _useFlutterTexture: $_useFlutterTexture, other._useFlutterTexture: ${other._useFlutterTexture}');
     bool isSame = canvas.view == other.canvas.view &&
         canvas.renderMode == other.canvas.renderMode &&
         canvas.mirrorMode == other.canvas.mirrorMode &&
@@ -24,61 +25,16 @@ extension VideoViewControllerBaseExt on VideoViewControllerBase {
     isSame = isSame &&
         connection?.channelId == other.connection?.channelId &&
         connection?.localUid == other.connection?.localUid;
-    isSame = isSame && _useFlutterTexture == other._useFlutterTexture;
+    isSame = isSame && shouldUseFlutterTexture == other.shouldUseFlutterTexture;
     isSame = isSame && useAndroidSurfaceView == other.useAndroidSurfaceView;
     return isSame;
   }
 
-  bool get _useFlutterTexture =>
+  @internal
+  bool get shouldUseFlutterTexture =>
       (defaultTargetPlatform == TargetPlatform.macOS ||
           defaultTargetPlatform == TargetPlatform.windows) ||
       useFlutterTexture;
-}
-
-abstract class VideoViewControllerBase {
-  // VideoViewControllerBase(
-  //   this.rtcEngine,
-  //   this.canvas,
-  //   this.connection,
-  //   this.useFlutterTexture,
-  //   this.useAndroidSurfaceView,
-  // );
-  RtcEngine get rtcEngine;
-
-  VideoCanvas get canvas;
-
-  RtcConnection? get connection;
-
-  bool get useFlutterTexture;
-
-  bool get useAndroidSurfaceView;
-
-  @internal
-  void setTextureId(int textureId);
-
-  @internal
-  int getTextureId();
-
-  @internal
-  int getVideoSourceType();
-
-  @internal
-  Future<void> setupView(int nativeViewPtr);
-
-  @protected
-  Future<int> createTextureRender(
-    int uid,
-    String channelId,
-    int videoSourceType,
-  );
-
-  @internal
-  Future<void> initialize();
-
-  @internal
-  Future<void> disposeRender();
-
-  Future<void> dispose();
 }
 
 mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
@@ -98,7 +54,7 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
   @internal
   @override
   Future<void> disposeRender() async {
-    if (_useFlutterTexture) {
+    if (shouldUseFlutterTexture) {
       await rtcEngine.globalVideoViewController
           .destroyTextureRender(getTextureId());
       _textureId = kTextureNotInit;
@@ -120,8 +76,6 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
     if (canvas.uid != 0) {
       await rtcEngine.setupRemoteVideo(videoCanvas);
     } else {
-      debugPrint(
-          'presure test VideoViewControllerBaseMixin disposeRender setupLocalVideo');
       await rtcEngine.setupLocalVideo(videoCanvas);
     }
   }
@@ -141,8 +95,8 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
   }
 
   @override
-  Future<void> initialize() async {
-    if (_useFlutterTexture) {
+  Future<void> initializeRender() async {
+    if (shouldUseFlutterTexture) {
       if (_textureId == kTextureNotInit) {
         _textureId = await createTextureRender(
           canvas.uid!,
@@ -175,7 +129,6 @@ mixin VideoViewControllerBaseMixin implements VideoViewControllerBase {
         await rtcEngine.setupRemoteVideo(videoCanvas);
       }
     } else {
-      debugPrint('presure test VideoViewControllerBaseMixin setupLocalVideo');
       await rtcEngine.setupLocalVideo(videoCanvas);
     }
   }

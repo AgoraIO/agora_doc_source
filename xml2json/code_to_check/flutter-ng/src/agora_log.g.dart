@@ -1,5 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use_from_same_package, unused_element
+
 part of 'agora_log.dart';
 
 // **************************************************************************
@@ -24,6 +26,7 @@ const _$LogLevelEnumMap = {
   LogLevel.logLevelWarn: 2,
   LogLevel.logLevelError: 4,
   LogLevel.logLevelFatal: 8,
+  LogLevel.logLevelApiCall: 16,
 };
 
 const _$LogFilterTypeEnumMap = {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudioparams">
-  <title><ph keyref="SpatialAudioParams"/></title>
+  <title><ph keyref="SpatialAudioParams" /></title>
   <shortdesc id="short"><ph id="shortdesc">The spatial audio parameters.</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -53,29 +53,67 @@
 @property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_attenuation;
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
-  Optional&lt;double> speaker_azimuth;
-  Optional&lt;double> speaker_elevation;
-  Optional&lt;double> speaker_distance;
-  Optional&lt;int> speaker_orientation;
-  Optional&lt;bool> enable_blur;
-  Optional&lt;bool> enable_air_absorb;
-  Optional&lt;double> speaker_attenuation;
+  Optional&lt;double&gt; speaker_azimuth;
+  Optional&lt;double&gt; speaker_elevation;
+  Optional&lt;double&gt; speaker_distance;
+  Optional&lt;int&gt; speaker_orientation;
+  Optional&lt;bool&gt; enable_blur;
+  Optional&lt;bool&gt; enable_air_absorb;
+  Optional&lt;double&gt; speaker_attenuation;
 };</codeblock>
-      <codeblock props="electron" outputclass="language-typescript"/>
-      <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams
+<codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
+  speaker_azimuth?: number
+  speaker_elevation?: number
+  speaker_distance?: number
+  speaker_orientation?: number
+  enable_blur?: boolean
+  enable_air_absorb?: boolean
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
     {
-        public double speaker_azimuth { set; get; }
-        public double speaker_elevation { set; get; }
-        public double speaker_distance { set; get; }
-        public int speaker_orientation { set; get; }
-        public bool enable_blur { set; get; }
-        public bool enable_air_absorb { set; get; }
-    };</codeblock>
-      <codeblock props="rn" outputclass="language-typescript"/>
-      <codeblock props="flutter" outputclass="language-dart"/> </p>
+        public Optional&lt;double&gt; speaker_azimuth = new Optional&lt;double&gt;();
+        public Optional&lt;double&gt; speaker_elevation = new Optional&lt;double&gt;();
+        public Optional&lt;double&gt; speaker_distance = new Optional&lt;double&gt;();
+        public Optional&lt;int&gt; speaker_orientation = new Optional&lt;int&gt;();
+        public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
+    }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
+  speaker_azimuth?: number;
+  speaker_elevation?: number;
+  speaker_distance?: number;
+  speaker_orientation?: number;
+  enable_blur?: boolean;
+  enable_air_absorb?: boolean;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SpatialAudioParams {
+  const SpatialAudioParams(
+      {this.speakerAzimuth,
+      this.speakerElevation,
+      this.speakerDistance,
+      this.speakerOrientation,
+      this.enableBlur,
+      this.enableAirAbsorb});
+
+  @JsonKey(name: 'speaker_azimuth')
+  final double? speakerAzimuth;
+  @JsonKey(name: 'speaker_elevation')
+  final double? speakerElevation;
+  @JsonKey(name: 'speaker_distance')
+  final double? speakerDistance;
+  @JsonKey(name: 'speaker_orientation')
+  final int? speakerOrientation;
+  @JsonKey(name: 'enable_blur')
+  final bool? enableBlur;
+  @JsonKey(name: 'enable_air_absorb')
+  final bool? enableAirAbsorb;
+  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$SpatialAudioParamsFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioParamsToJson(this);
+}</codeblock></p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry>
         <pt>speaker_azimuth</pt>
@@ -109,16 +147,15 @@
       <plentry>
         <pt>enable_blur</pt>
         <pd>Whether to enable audio blurring:<ul>
-          <li><codeph><ph keyref="true"/></codeph>: Enable blurring.</li>
-          <li><codeph><ph keyref="false"/></codeph>: (Default) Disable blurring.</li>
+          <li><codeph><ph keyref="true" /></codeph>: Enable blurring.</li>
+          <li><codeph><ph keyref="false" /></codeph>: (Default) Disable blurring.</li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>enable_air_absorb</pt>
         <pd>Whether to enable air absorption, that is, to simulate the sound attenuation effect of sound transmitting in the air; under a certain transmission distance, the attenuation speed of high frequency sound is fast, and the attenuation speed of low frequency sound is slow.<ul>
-          <li><codeph><ph keyref="true"
-            /></codeph>: (Default) Enable air absorption. Make sure that the value of <parmname>speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.</li>
-          <li><codeph><ph keyref="false"/></codeph>: Disable air absorption.</li>
+          <li><codeph><ph keyref="true" /></codeph>: (Default) Enable air absorption. Make sure that the value of <parmname>speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.</li>
+          <li><codeph><ph keyref="false" /></codeph>: Disable air absorption.</li>
           </ul></pd>
       </plentry>
       <plentry>
