@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_enableremotesuperresolution2">
-    <title><ph keyref="enableRemoteSuperResolution2"/></title>
+    <title><ph keyref="enableRemoteSuperResolution2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enables/Disables the super resolution algorithm for a remote user's video stream. This is a beta feature.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableRemoteSuperResolution2"/>
+                <indexterm keyref="enableRemoteSuperResolution2" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"></codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"></codeblock>
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableRemoteSuperResolution(bool enabled, SR_MODE mode, uid_t userId) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="cs" outputclass="language-csharp"></codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"></codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
             <p>This feature effectively boosts the resolution of a remote user's video seen by the local user. If the original resolution of a remote user's video is a × b, the local user's device can render the remote video at a resolution of 2a × 2b
@@ -35,9 +35,9 @@ after you enable this feature.。</p>
               </p>
             <p>The super resolution feature requires extra system resources. To balance the visual experience and system consumption, the SDK poses the following restrictions:
                 <ul>
-                  <li>This feature can only be enabled for a single remote user; otherwise, the SDK triggers the <xref keyref="onWarning"/>callback and returns the warning code <ph keyref="WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION">WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION(1611)</ph>.</li>
-                  <li>The original resolution of the remote user's video cannot exceed 640 × 360 pixels; otherwise, the SDK triggers the <xref keyref="onWarning"/> callback and returns the warning code <ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION">WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION(1610)</ph>.</li>
-                  <li>The feature cannot be enabled in certain specific devices, if one of these devices is used, the SDK triggers the <xref keyref="onWarning"/> callback and returns the warning code <ph keyref="WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED">>WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED(1612)</ph>.</li>
+                  <li>This feature can only be enabled for a single remote user; otherwise, the SDK triggers the <xref keyref="onWarning" />callback and returns the warning code <ph keyref="WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION">WARN_SUPER_RESOLUTION_USER_COUNT_OVER_LIMITATION(1611)</ph>.</li>
+                  <li>The original resolution of the remote user's video cannot exceed 640 × 360 pixels; otherwise, the SDK triggers the <xref keyref="onWarning" /> callback and returns the warning code <ph keyref="WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION">WARN_SUPER_RESOLUTION_STREAM_OVER_LIMITATION(1610)</ph>.</li>
+                  <li>The feature cannot be enabled in certain specific devices, if one of these devices is used, the SDK triggers the <xref keyref="onWarning" /> callback and returns the warning code <ph keyref="WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED">&gt;WARN_SUPER_RESOLUTION_DEVICE_NOT_SUPPORTED(1612)</ph>.</li>
                 </ul>
             </p>
             </note>
