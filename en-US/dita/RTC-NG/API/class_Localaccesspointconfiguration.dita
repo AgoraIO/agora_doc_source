@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_Localaccesspointconfiguration">
     <title><ph keyref="LocalAccessPointConfiguration" /></title>
-    <shortdesc id="short">Local Access Point configuration.<ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Local Access Point 配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -86,13 +86,13 @@
       this.mode});
 
   @JsonKey(name: 'ipList')
-  final List&lt;String&gt;? ipList;
+  final List&lt;String>? ipList;
 
   @JsonKey(name: 'ipListSize')
   final int? ipListSize;
 
   @JsonKey(name: 'domainList')
-  final List&lt;String&gt;? domainList;
+  final List&lt;String>? domainList;
 
   @JsonKey(name: 'domainListSize')
   final int? domainListSize;
@@ -103,10 +103,10 @@
   @JsonKey(name: 'mode')
   final LocalProxyMode? mode;
 
-  factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalAccessPointConfigurationFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAccessPointConfigurationToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LocalAccessPointConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
@@ -114,31 +114,33 @@
             <parml>
             <plentry>
                 <pt>ipList</pt>
-                <pd>List of inbound IP addresses for the Local Access Point. ipList and domainList must be filled in at least one.</pd>
+                <pd>Local Access Point 的对内 IP 地址列表。 ipList 和 domainList 必须至少填一个。</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>ipListSize</pt>
-                <pd>The number of inbound IP addresses of the Local Access Point. The value of this parameter must be the same as the number of IP addresses you entered.</pd>
+                <pd>Local Access Point 对内 IP 地址的数量。 该参数的值必须和你填入的 IP 地址的数量一致。</pd>
             </plentry>
             <plentry>
                 <pt>domainList</pt>
-                <pd>List of domain names for Local Access Point. The SDK will resolve the IP address of the Local Access Point based on the domain name you entered. The timeout period for domain name resolution is 10 seconds. ipList and domainList must be filled in at least one. If you specify an IP address and a domain name at the same time, the SDK will combine the IP address parsed from the domain name and the IP address you specify, remove duplicates, and then connect to a random IP to achieve load balancing.</pd>
+                <pd>Local Access Point 的域名列表。 SDK 会根据你填入的域名解析出 Local Access Point 的 IP 地址。 域名解析的超时时间为 10 秒。 ipList 和 domainList 必须至少填一个。 如果你同时指定 IP 地址和域名，SDK 会将根据域名解析出来的 IP 地址和你指定的 IP 地址合并、去重，然后随机连接一个 IP 来实现负载均衡。</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>domainListSize</pt>
-                <pd>The number of Local Access Point domain names. The value of this parameter must be the same as the number of domain names you entered.</pd>
+                <pd>Local Access Point 域名的数量。 该参数的值必须和你填入的域名的数量一致。</pd>
             </plentry>
             <plentry>
                 <pt>verifyDomainName</pt>
-                <pd>Intranet certificate verification domain name. If the passed value is empty, the domain name <codeph>secure-edge.local</codeph> will be verified with the SDK's default certificate.</pd>
+                <pd>内网证书验证域名。 如果传值为空，则用 SDK 默认的证书验证域名 <codeph>secure-edge.local</codeph>。</pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp">connection mode. See <xref keyref="LOCAL_PROXY_MODE" />.</p>
-                    <p props="android">Connection mode:<ul>
-                    <li><ph keyref="ConnectivityFirst" />(0): The SDK will first try to connect to the specified Agora private media server; if it cannot connect to the specified Agora private media server, it will connect to the Agora SD-RTN™.</li>
-                    <li><ph keyref="LocalOnly" />(1): The SDK only tries to connect to the specified Agora private media server.</li>
+                    <p props="ios mac cpp electron unity rn flutter">连接模式。 See <xref keyref="LOCAL_PROXY_MODE" /> for details.</p>
+                    <p props="android">连接模式：
+                    
+                    <ul>
+                    <li><ph keyref="ConnectivityFirst" />(0)：SDK 优先尝试连接指定的声网私有媒体服务器；如果无法连接到指定的声网私有媒体服务器，则连接声网 SD-RTN™。</li>
+                    <li><ph keyref="LocalOnly" />(1)：SDK 只尝试连接指定的声网私有媒体服务器。</li>
                     </ul></p>
                 </pd>
             </plentry>
