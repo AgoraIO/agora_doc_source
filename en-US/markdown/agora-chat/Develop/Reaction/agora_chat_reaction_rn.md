@@ -1,4 +1,4 @@
-Emojis are widely used in real-time chats because they allow users to express their feelings in a direct and vivid way. In Agora Chat, "reactions" allow users to quickly react to a message using emojis in one-to-one chats and chat groups. In group chats, reactions can also be used to cast a vote, for example, by calculating the number of different emojis attached to the message. 
+Emojis are widely used in real-time chats because they allow users to express their feelings in a direct and vivid way. In Agora Chat, "reactions" allow users to quickly react to a message using emojis in one-to-one chats and chat groups. In group chats, reactions can also be used to cast a vote, for example, by calculating the number of different emojis attached to the message.
 
 The following illustration shows the implementation of adding a reaction to a message, how a conversation looks with reactions, and what retrieving a list of reactions (with related information) looks like.
 
@@ -35,7 +35,7 @@ Call `addReaction` to add a reaction to the specified message. You can use `onMe
 ```typescript
 // reaction: Reaction ID
 // msgId: The message ID
-// Adds a rection to the specifeid message
+// Adds a reaction to the specified message
 ChatClient.getInstance()
   .chatManager.addReaction(reaction, msgId)
   .then((result) => {

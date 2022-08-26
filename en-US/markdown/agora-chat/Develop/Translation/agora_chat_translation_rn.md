@@ -31,7 +31,7 @@ This section introduces how to integrate translation functionalities into your p
 In both on-demand translation and automatic translation scenarios, call `fetchSupportedLanguages` to query the supported languages for translation first:
 
 ```typescript
-// Fetches the supported lanaguages for translation
+// Fetches the supported languages for translation
 ChatClient.getInstance()
   .chatManager.fetchSupportedLanguages()
   .then((result) => {
