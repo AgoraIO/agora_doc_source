@@ -2,7 +2,7 @@
 
 群组是支持多人沟通的即时通讯系统。
 
-本页介绍如何使用即时通讯 IM（环信）SDK 管理应用中的群组属性。
+本页介绍如何使用即时通讯 IM SDK 管理应用中的群组属性。
 
 ## 技术原理
 
@@ -16,13 +16,13 @@ SDK 提供了 `Group`, `GroupManager` 和 `GroupChangeListener` 类用于群组�
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)中所述。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_plan?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
+- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 
 ## 实现方法
 
-本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 实现上述功能。
+本节介绍如何调用即时通讯 IM SDK 提供的 API 实现上述功能。
 
 ### 修改群组名称
 
@@ -96,4 +96,4 @@ ChatClient.getInstance().groupManager().fetchGroupSharedFileList(groupId, pageNu
 
 ### 监听聊天组事件
 
-有关详细信息，请参阅 [聊天组事件](https://docs.agora.io/en/agora-chat/agora_chat_group_android?platform=Android#listen-for-chat-group-events)。
+有关详细信息，请参阅 [聊天组事件](./agora_chat_group_android?platform=Android#listen-for-chat-group-events)。

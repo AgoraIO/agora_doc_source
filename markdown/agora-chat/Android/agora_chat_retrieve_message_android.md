@@ -4,7 +4,7 @@
 
 ## 技术原理
 
-即时通讯 IM（环信）SDK 通过 `ChatManager` 类从服务器获取历史消息。以下是核心方法：
+即时通讯 IM SDK 通过 `ChatManager` 类从服务器获取历史消息。以下是核心方法：
 
 - `asyncFetchConversationsFromServer`：从服务器获取会话列表。
 - `asyncFetchHistoryMessage`：从服务器获取指定会话中的历史消息。
@@ -13,8 +13,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并连接到服务器，详见 [即时通讯 IM（环信）入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解即时通讯 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)。
+- 完成 SDK 初始化，并连接到服务器，详见 [即时通讯 IM 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解即时通讯 [使用限制](./agora_chat_limitation?platform=Android)。
 
 ## 实现方法
 
@@ -65,4 +65,4 @@ ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(conversationId, 
 
 你可以参考以下文档为应用添加更多消息功能：
 
-- [消息回执](https://docs.agora.io/en/agora-chat/agora_chat_message_receipt_android?platform=Android)
+- [消息回执](./agora_chat_message_receipt_android?platform=Android)

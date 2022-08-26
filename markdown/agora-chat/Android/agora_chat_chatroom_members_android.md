@@ -2,11 +2,11 @@
 
 聊天室支持多个用户之间的实时消息传递。
 
-本页介绍如何使用即时通讯 IM（环信）SDK 管理应用中的聊天室成员。
+本页介绍如何使用即时通讯 IM SDK 管理应用中的聊天室成员。
 
-## 了解技术
+## 技术原理
 
-即时通讯 IM（环信）SDK 提供了聊天室管理的`ChatManager`和`ChatRoom`类，允许您实现以下功能：
+即时通讯 IM SDK 提供了聊天室管理的`ChatManager`和`ChatRoom`类，允许您实现以下功能：
 
 - 从聊天室中删除成员
 - 检索聊天室的成员列表
@@ -16,17 +16,17 @@
 - 管理聊天室允许列表
 - 管理聊天室的所有者和管理员
 
-## 先决条件
+## 前提条件
 
-在继续之前，请确保您满足以下要求：
+开始前，请确保满足以下条件：
 
-- 您已经初始化了 即时通讯 IM（环信）SDK。有关详细信息，请参阅[Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 您了解不同定价方案支持的即时通讯 IM（环信）API 的调用频率限制，如[限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)中所述。
-- 如[定价计划详细信息](https://docs.agora.io/en/agora-chat/agora_chat_plan?platform=Android)中所述，您了解不同定价计划支持的聊天室数量。
+- 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
+- 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 
-## 执行
+## 实现方法
 
-本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 来实现上述功能。
+本节介绍如何调用即时通讯 IM SDK 提供的 API 来实现上述功能。
 
 ### 管理聊天室成员
 
@@ -191,4 +191,4 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().removeChatRoomAdm
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [聊天室事件](https://docs.agora.io/en/agora-chat/agora_chat_chatroom_android?platform=Android#listen-for-chat-room-events)。
+有关详细信息，请参阅 [聊天室事件](./agora_chat_chatroom_android?platform=Android#listen-for-chat-room-events)。

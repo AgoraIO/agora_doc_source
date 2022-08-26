@@ -52,7 +52,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 要使用 HTTP 回调，必须满足以下要求：
 
 - 有一个启用了 Agora 即时通讯的 Agora 项目。
-- 已订阅 Agora 即时通讯进阶版或企业版套餐包，详见 [管理套餐包](https://docs.agora.io/cn/agora-chat/agora_chat_pricing?platform=All%20Platforms#管理套餐包)。
+- 已订阅 Agora 即时通讯进阶版或企业版套餐包，详见 [管理套餐包](./agora_chat_pricing?platform=All%20Platforms#管理套餐包)。
 
 ## 配置回调规则
 

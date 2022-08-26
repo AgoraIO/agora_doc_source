@@ -1,12 +1,12 @@
 # 用户关系管理
 
-登录即时通讯 IM（环信）后，用户可以开始添加联系人并互相聊天。他们还可以管理这些联系人，例如添加、获取和删除联系人。他们还可以将指定的用户添加到黑名单列表以停止接收来自该用户的消息。
+登录即时通讯 IM 后，用户可以开始添加联系人并互相聊天。他们还可以管理这些联系人，例如添加、获取和删除联系人。他们还可以将指定的用户添加到黑名单列表以停止接收来自该用户的消息。
 
-本页介绍如何使用即时通讯 IM（环信）SDK 实现用户关系管理。
+本页介绍如何使用即时通讯 IM SDK 实现用户关系管理。
 
-## 了解技术
+## 技术原理
 
-即时通讯 IM（环信）SDK 提供 `ContactManager` 类用于添加、删除和管理联系人。以下是核心方法：
+即时通讯 IM SDK 提供 `ContactManager` 类用于添加、删除和管理联系人。以下是核心方法：
 
 - `addContact` 申请添加好友。
 - `acceptInvitation` 同意好友申请。
@@ -21,8 +21,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [即时通讯 IM（环信）入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)。
+- 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [即时通讯 IM 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
 
 ## 实现方法
 
@@ -144,4 +144,4 @@ ChatClient.getInstance().contactManager().getBlackListUsernames();
 
 有关接口的详细信息，请参阅以下 API 参考：
 
-- [联系人管理](https://docs.agora.io/en/agora-chat/.API Reference/im_java/classio_1_1agora_1_1chat_1_1_contact_manager.html)
+- [联系人管理](./.API Reference/im_java/classio_1_1agora_1_1chat_1_1_contact_manager.html)

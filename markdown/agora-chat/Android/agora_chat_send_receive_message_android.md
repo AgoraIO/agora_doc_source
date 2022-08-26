@@ -1,6 +1,6 @@
 # 发送和接收消息
 
-登录即时通讯 IM（环信）后，用户可以在单聊、群聊或聊天室中发送如下类型的消息：
+登录即时通讯 IM 后，用户可以在单聊、群聊或聊天室中发送如下类型的消息：
 
 - 文本消息，包括超链接和表情符号。
 - 附件消息，包括图片、语音、视频和文件消息。
@@ -14,7 +14,7 @@
 
 ## 技术原理
 
-即时通讯 IM（环信）SDK 使用 `ChatManager` 类实现消息的发送、接收和撤回。
+即时通讯 IM SDK 使用 `ChatManager` 类实现消息的发送、接收和撤回。
 
 发送和接收消息的过程如下：
 
@@ -27,8 +27,8 @@
 
 开始前，请确保满足以下条件：
 
-- 已集成 [即时通讯 IM（环信）SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
-- 了解消息相关限制和即时通讯 IM（环信）API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
+- 已集成 [即时通讯 IM SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
+- 了解消息相关限制和即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
 
 ## 实现方法
 
@@ -365,6 +365,6 @@ message.getStringAttribute("attribute1",null);message.getBooleanAttribute("attri
 
 实现消息发送和接收后，您可以参考以下文档为您的应用添加更多消息功能：
 
-- [管理本地消息](https://docs.agora.io/en/agora-chat/agora_chat_manage_message_android?platform=Android)
-- [从服务器获取会话和消息](https://docs.agora.io/en/agora-chat/agora_chat_retrieve_message_android?platform=Android)
-- [消息回执](https://docs.agora.io/en/agora-chat/agora_chat_message_receipt_android?platform=Android)
+- [管理本地消息](./agora_chat_manage_message_android?platform=Android)
+- [从服务器获取会话和消息](./agora_chat_retrieve_message_android?platform=Android)
+- [消息回执](./agora_chat_message_receipt_android?platform=Android)

@@ -12,9 +12,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                                                | 是否必填 |
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见[获取项目信息](https://docs.agora.io/en/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                       | 是       |
-| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见[获取项目信息](https://docs.agora.io/en/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                  | 是       |
-| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见[获取项目信息](https://docs.agora.io/en/agora-chat/enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                            | 是       |
+| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                       | 是       |
+| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                  | 是       |
+| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                            | 是       |
 | `username`      | String | 用户的唯一登录帐户。                                         |        |
 
 ### 响应参数
@@ -75,7 +75,7 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 | `createAt`          | Long   | 创建 Reaction 的时间。                                         |
 | `updateAt`          | Long   | 更新 Reaction 的时间。                                         |
 
-其他字段及详细说明请参见 [公共参数](https://docs.agora.io/en/agora-chat/agora_chat_restful_reaction?platform=RESTful#param)。
+其他字段及详细说明请参见 [公共参数](./agora_chat_restful_reaction?platform=RESTful#param)。
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -147,7 +147,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 | :------------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `requestStatusCode` | String | 此请求的状态码。`ok` 表示请求成功。                                                                                                                      |
 | `msgId`             | String | 消息 ID。                                                                                                                                                |
-| `reactionId`        | String | [创建 Reaction](https://docs.agora.io/cn/agora-chat/agora_chat_restful_reaction?platform=RESTful#创建/追加 Reaction) 的响应体数据中返回的 Reaction ID 。 |
+| `reactionId`        | String | [创建 Reaction](./agora_chat_restful_reaction?platform=RESTful#创建/追加 Reaction) 的响应体数据中返回的 Reaction ID 。 |
 | `reaction`          | String | 作为 Reaction 添加的表情符号的 ID。                                                                                                                      |
 | `count`             | Number | 将此 Reaction 添加到消息中的用户数。                                                                                                                     |
 | `state`             | Bool   | 发送此请求的用户是否对此消息添加了 Reaction 。<li>`true`： 是的。<li>`false`：否。                                                                       |

@@ -15,7 +15,7 @@
 | 进阶版   | 无上限       | 无上限       | 无上限         |
 | 企业版   | 无上限       | 无上限       | 无上限         |
 
-### 用户属性 
+### 用户属性
 
 用户属性包括用户头像、昵称、邮箱等属性信息，总长度必须在 2 KB 以内， 一个 app 下所有用户属性的总长度必须在 10 GB 以内。
 
@@ -38,16 +38,16 @@ Agora 即时通讯提供消息云存储服务，包括历史消息、漫游消�
 
 对于不同的消息类型，消息长度限制如下：
 
-| 消息类型       | 消息长度限制                         | 相关 API                                                     |
-| :------------- | :----------------------------------- | :----------------------------------------------------------- |
-| 文本消息       | 5 KB                                 | [`CreateTextMsgParameters`]() |
-| 图片消息       | 10 MB                                | [`CreateImgMsgParameters`]() |
-| 语音消息       | 10 MB                                | [`CreateAudioMsgParameters`]()|
-| 视频消息       | 10 MB                                | [`CreateVideoMsgParameters`]() |
-| 文件消息       | 10 MB                                | [`CreateFileMsgParameters`]()|
+| 消息类型       | 消息长度限制                         | 相关 API                          |
+| :------------- | :----------------------------------- | :-------------------------------- |
+| 文本消息       | 5 KB                                 | [`CreateTextMsgParameters`]()     |
+| 图片消息       | 10 MB                                | [`CreateImgMsgParameters`]()      |
+| 语音消息       | 10 MB                                | [`CreateAudioMsgParameters`]()    |
+| 视频消息       | 10 MB                                | [`CreateVideoMsgParameters`]()    |
+| 文件消息       | 10 MB                                | [`CreateFileMsgParameters`]()     |
 | 透传消息       | 5 KB                                 | [`CreateDeliveryMsgParameters`]() |
-| 消息自定义扩展 | 扩展消息大小不能超过原类型消息的大小 | [`CreateCmdMsgParameters`]() |
-| 自定义消息     | 5 KB                                 | [`CreateCustomMsgParameters`]() |
+| 消息自定义扩展 | 扩展消息大小不能超过原类型消息的大小 | [`CreateCmdMsgParameters`]()      |
+| 自定义消息     | 5 KB                                 | [`CreateCustomMsgParameters`]()   |
 
 ## 群组相关
 
@@ -95,11 +95,11 @@ Agora 即时通讯提供消息云存储服务，包括历史消息、漫游消�
 即时通讯 SDK API 与 RESTful API 调用频率限制一致。根据不同的套餐包版本，API 调用频率限制见下表：
 
 | 套餐版本 | 调用频率上限（次/秒） |
-| :------- | :---------------- |
-| 免费版   | 10                |
-| 基础版   | 30                |
-| 进阶版   | 50                |
-| 企业版   | 200               |
+| :------- | :-------------------- |
+| 免费版   | 10                    |
+| 基础版   | 30                    |
+| 进阶版   | 50                    |
+| 企业版   | 200                   |
 	
 > - 除获取聊天记录文件 API，所有即时通讯 API 的调用频率都针对单个 IP 地址。
 > - 获取聊天记录文件 API 的调用频率上限为针对单个 app 1 次/分钟。

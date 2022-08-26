@@ -2,9 +2,9 @@
 
 聊天室是支持多人沟通的即时通讯系统。本文介绍如何管理聊天室的属性信息。
 
-## 了解技术
+## 技术原理
 
-即时通讯 IM（环信）SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性管理，可以实现以下功能：
+即时通讯 IM SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性管理，可以实现以下功能：
 
 - 更新聊天室名称
 - 更新聊天室描述
@@ -15,13 +15,13 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](https://docs.agora.io/en/agora-chat/agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation?platform=Android)中所述。
-- 了解聊天室的数量限制，详见 [套餐包详情](https://docs.agora.io/en/agora-chat/agora_chat_plan?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
+- 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 
 ## 实现方法
 
-本节介绍如何调用即时通讯 IM（环信）SDK 提供的 API 来实现上述功能。
+本节介绍如何调用即时通讯 IM SDK 提供的 API 来实现上述功能。
 
 ### 获取和修改聊天室属性
 
@@ -54,4 +54,4 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅[聊天室事件](https://docs.agora.io/en/agora-chat/agora_chat_chatroom_android?platform=Android#listen-for-chat-room-events)。
+有关详细信息，请参阅[聊天室事件](./agora_chat_chatroom_android?platform=Android#listen-for-chat-room-events)。
