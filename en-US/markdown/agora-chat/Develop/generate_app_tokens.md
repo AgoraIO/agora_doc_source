@@ -231,28 +231,12 @@ This section shows how to create a new user in your Agora Chat using an authenti
    007eJxTYPj3p2Tnb4tznzxfO/0LK5cu/GZmI71PnWPVkbVhP/aniEspMBhbJJqnGKclmVsYJ5kYWBhbJqcapqRZpJmbm5ikGRsnnT12OrGhN5pB97zpVEYGVgZGBiYGEJ+BAQBN0CGG
       ```
 
-2. Add the Agora app token returned previously as the `Authorization: Bear` parameter and retrieve an Agora Chat app token:
-
-   ```shell
-   curl -X POST -H 'Content-Type: application/json' -H 'Authorization: Bearer 007eJxTYPj3p2Tnb4tznzxfO/0LK5cu/GZmI71PnWPVkbVhP/aniEspMBhbJJqnGKclmVsYJ5kYWBhbJqcapqRZpJmbm5ikGRsnnT12OrGhN5pB97zpVEYGVgZGBiYGEJ+BAQBN0CGG' -d '{"grant_type":"agora"}' 'http://a41.chat.agora.io/41434878/504205/token'
-   ```
-
-   The return parameters contain the Agora Chat app token and the timestamp (ms) when the token expires in a JSON object. For example:
-
-   ```json
-   {
-       "access_token": "YWMtocXMjBEEQhmBqj-1iqWUywAAAAAAAAAAAAAAAAAAAAH_Z4gybPJPQ4EwWKw4y2wVAgMAAAF7D4Ab0QBPGgD6xFOaPCHEVIzBMQAtlGlZ3wQF2Ju68ZHglAxaaFRPRg==",
-       "expire_timestamp": 1628148692771
-   } 
-   ```
-
 3. Use the Agora Chat app token returned to call the Agora Chat REST API to create a new user:
 
    i. In terminal, use curl to make a POST request to the Agora Chat server. For example: 
 
    ```shell
-   # Replace <YourAppToken> with the Agora Chat app token you received.
-   curl -X POST -H "Authorization: Bearer <YourAppToken>" -i "https://XXXX/XXXX/XXXX/users" -d '[
+   curl -X POST -H "Authorization: Bearer <YourAgoraAppToken>" -i "https://XXXX/XXXX/XXXX/users" -d '[
        {
            "username": "user1",
            "password": "123",
@@ -260,9 +244,9 @@ This section shows how to create a new user in your Agora Chat using an authenti
        }
    ]'
    ```
-
+   
    The return parameters contain the information about the user you just created. For example:
-
+   
    ```shell
    {
        "action": "post",
