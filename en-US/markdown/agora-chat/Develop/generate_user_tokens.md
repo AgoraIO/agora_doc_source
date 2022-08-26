@@ -38,13 +38,13 @@ Token generators create the tokens requested by your client app to enable secure
 To show the authentication workflow, this section shows how to build and run a token server written in Java on your local machine.
 
 The following figure shows the API call sequence of generating an Agora Chat user token:
-![api sequence of generating user token](https://web-cdn.agora.io/docs-files/1640072525166)
+![img](./images/get_user_token_new.png)
 
 This sample server is for demonstration purposes only. Do not use it in a production environment.
 
 1. Create a Maven project in IntelliJ, set the name of your project, choose the location to save your project, then click **Finish**.
 
-1. In `<Project name>/pom.xml`, add the following dependencies and then [reload the Maven project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport):
+2. In `<Project name>/pom.xml`, add the following dependencies and then [reload the Maven project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport):
 
    ```xml
    <properties>
@@ -100,20 +100,20 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    </build>
    ```
 
-1. Import the token builders provided by Agora to this project.
+3. Import the token builders provided by Agora to this project.
 
    1. Download the [chat](https://github.com/AgoraIO/Tools/tree/release/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) and [media](https://github.com/AgoraIO/Tools/tree/release/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) packages.
-   1. In the token server project, create a `com.agora.chat.token.io.agora` package under `<Project name>/src/main/java`.
-   1. Copy the `chat` and `media` packages and paste under `com.agora.chat.token.io.agora`. The following figure shows the project structure:
+   2. In the token server project, create a `com.agora.chat.token.io.agora` package under `<Project name>/src/main/java`.
+   3. Copy the `chat` and `media` packages and paste under `com.agora.chat.token.io.agora`. The following figure shows the project structure:
 
       ![token server project](https://web-cdn.agora.io/docs-files/1639043760281)
 
-   1. Fix the import errors in `chat/ChatTokenBuilder2` and `media/AccessToken`.
+   4. Fix the import errors in `chat/ChatTokenBuilder2` and `media/AccessToken`.
 
       - In `ChatTokenBuilder2`, the import should be `import com.agora.chat.token.io.agora.media.AccessToken2`.
       - In `AccessToken`, the import should be `import static com.agora.chat.token.io.agora.media.Utils.crc32`.
 
-1. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens and update it with your project information.
+4. In `<Project name>/src/main/resource`, create a `application.properties` file to hold the information for generating tokens and update it with your project information.
    Note that the value for `appid`, `appcert`, and `appkey` should be a string without quotation marks.
 
    ```txt
@@ -133,7 +133,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
 
    For details on how to get the app key and REST API domain, see [Enable and Configure Agora Chat](./enable_agora_chat).
 
-1. In the `com.agora.chat.token` package, create a Java class named `AgoraChatTokenController`, with the following content:
+5. In the `com.agora.chat.token` package, create a Java class named `AgoraChatTokenController`, with the following content:
 
    ```java
    package com.agora.chat.token;
@@ -191,7 +191,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
         String url = "http://" + domain + "/" + orgName + "/" + appName + "/users/" + chatUserName;
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        headers.setBearerAuth(exchangeToken());
+        headers.setBearerAuth(getAppToken());
         HttpEntity<Map<String, String>> entity = new HttpEntity<>(null, headers);
         ResponseEntity<Map> responseEntity = null;
         try {
@@ -213,7 +213,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        headers.setBearerAuth(exchangeToken());
+        headers.setBearerAuth(getAppToken());
         Map<String, String> body = new HashMap<>();
         body.put("username", chatUserName);
         body.put("password", "123");
@@ -235,30 +235,10 @@ This sample server is for demonstration purposes only. Do not use it in a produc
           ChatTokenBuilder2 builder = new ChatTokenBuilder2();
           return builder.buildAppToken(appid, appcert, expire);
       }
-      // Convert the Agora app token to Agora Chat app token
-      private String exchangeToken() {
-          String orgName = appkey.split("#")[0];
-          String appName = appkey.split("#")[1];
-          String url = "http://" + domain + "/" + orgName + "/" + appName + "/token";
-          HttpHeaders headers = new HttpHeaders();
-          headers.setContentType(MediaType.APPLICATION_JSON);
-          headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-          headers.setBearerAuth(getAppToken());
-          Map<String, String> body = new HashMap<>();
-          body.put("grant_type", "agora");
-          HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
-          ResponseEntity<Map> response;
-          try {
-              response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
-          } catch (Exception e) {
-              throw new RestClientException("exchange token error : " + e.getMessage());
-          }
-          return (String) Objects.requireNonNull(response.getBody()).get("access_token");
-      }
     }
    ```
-
-1. In the `com.agora.chat.token` package, create a Java class named `AgoraChatTokenStarter`, with the following content:
+   
+6. In the `com.agora.chat.token` package, create a Java class named `AgoraChatTokenStarter`, with the following content:
 
    ```java
    package com.agora.chat.token;
@@ -272,7 +252,7 @@ This sample server is for demonstration purposes only. Do not use it in a produc
    }
    ```
 
-1. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
+7. To start the server, click the green triangle button, and select **Debug "AgoraChatTokenStarter..."**.
 
    ![start the server](https://web-cdn.agora.io/docs-files/1639043996061)
 
@@ -296,7 +276,7 @@ To implement the Web client, do the following:
 
     ```javascript
     const path = require('path');
-  
+    
     module.exports = {
         entry: './index.js',
         mode: 'production',
@@ -351,7 +331,7 @@ To implement the Web client, do the following:
      <head>
        <title>Agora Chat Token demo</title>
      </head>
-
+   
      <body>
        <h1>Token demo</h1>
        <div class="input-field">
