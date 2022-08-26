@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_onclientrolechangefailed">
+    <title><ph keyref="onClientRoleChangeFailed"/></title>
+    <shortdesc id="short">
+        <ph id="shortdesc">Occurs when the user role switch fails in the interactive live streaming.</ph>
+    </shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="rn" outputclass="language-typescript" />
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <p>In the LIVE_BROADCASTING channel profile, when the local user calls <xref keyref="setClientRole2"/> to switch their user role after joining the channel but the switch fails, the SDK triggers this callback to report the reason for the failure and the current user role.
+            </p>
+        </section>
+        <section id="parameters">
+            <title>
+                <ph keyref="callback-section-title" />
+            </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
+            <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry id="reason">
+                    <pt>reason</pt>
+                    <pd>The reason for the user role switch failure. See <xref keyref="CLIENT_ROLE_CHANGE_FAILED_REASON"/>.</pd>
+                </plentry>
+                <plentry id="currentRole">
+                    <pt>currentRole</pt>
+                    <pd>The current user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+                </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

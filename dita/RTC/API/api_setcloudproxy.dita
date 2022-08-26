@@ -35,7 +35,8 @@
             <p>当用户的网络访问受到防火墙限制时，你需要将 Agora 提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <parmname>proxyType</parmname> 参数设置云代理类型。</p>
             <p>成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged"/> (<ph keyref="CONNECTION_STATE_CONNECTING"/>, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER"/>) 回调。
             </p>
-            <p props="rtc">自 v3.6.2 起，当用户调用该方法并成功加入频道后，SDK 会触发 <xref keyref="onProxyConnected"/> 回调，报告用户 ID、连接的代理类型和用户调用 <xref keyref="joinChannel1"/> 到 SDK 触发该回调的经过的时间等。</p>
+            <p props="cpp cs">As of v3.6.2, when a user calls this method and then joins a channel successfully, the SDK triggers the <xref keyref="onProxyConnected" /> callback to report the user ID, the proxy type connected, and the time calculated from when the user calling the <xref keyref="joinChannel1" /> method to the callback is triggered.</p>
+            <p props="flutter">As of v3.6.2, when a user calls this method and then joins a channel successfully, the SDK triggers the <xref keyref="onProxyConnected" /> callback to report the user ID, the proxy type connected, and the time calculated from when the user calling the <xref keyref="joinChannel2" /> method to the callback is triggered.</p>
             <p>如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 <codeph><apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)</codeph>。</p>
             <p>如果你想更改已设置的云代理类型，请先调用 <codeph><apiname keyref="setCloudProxy"/> (<apiname keyref="NONE_PROXY"/>)</codeph>，再调用 <apiname keyref="setCloudProxy"/> 并传入你期望的 <parmname>proxyType</parmname> 值。
             </p>
@@ -68,9 +69,9 @@
             <ul>
             <li>0: 方法调用成功。</li>
             <li> &lt; 0: 方法调用失败。
-                
-                
-                
+
+
+
                 <ul>
                 <li>-2: 传入的参数无效。</li>
                 <li>-7: SDK 尚未初始化。</li>

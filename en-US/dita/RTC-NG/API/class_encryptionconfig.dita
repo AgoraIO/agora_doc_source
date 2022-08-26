@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encryptionconfig">
-  <title><ph keyref="EncryptionConfig"/></title>
+  <title><ph keyref="EncryptionConfig" /></title>
   <shortdesc id="short"><ph id="shortdesc">Built-in encryption configurations.</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -115,21 +115,19 @@
   final String? encryptionKey;
   @JsonKey(name: 'encryptionKdfSalt', ignore: true)
   final Uint8List? encryptionKdfSalt;
-  factory EncryptionConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory EncryptionConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$EncryptionConfigFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$EncryptionConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncryptionConfigToJson(this);
 }</codeblock>
       </p>
     </section>
     <section id="parameters">
-      <title><text
-      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-      /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry>
         <pt>encryptionMode</pt>
         <pd>
-          <p>The built-in encryption mode. See <xref keyref="ENCRYPTION_MODE"/>. Agora recommends using <codeph><ph keyref="AES_128_GCM2"/></codeph> or <codeph><ph keyref="AES_256_GCM2"/></codeph> encrypted mode. These two modes support the use of salt for higher security.</p>
+          <p>The built-in encryption mode. See <xref keyref="ENCRYPTION_MODE" />. Agora recommends using <codeph><ph keyref="AES_128_GCM2" /></codeph> or <codeph><ph keyref="AES_256_GCM2" /></codeph> encrypted mode. These two modes support the use of salt for higher security.</p>
         </pd>
       </plentry>
       <plentry>
