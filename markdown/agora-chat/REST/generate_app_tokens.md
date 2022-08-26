@@ -168,7 +168,7 @@ App Token 需要在你的服务端部署生成。当客户端发送请求时，A
        @Value("${expire.second}")
        private int expire;
 
-       /*
+       /**
         * 请求 App Token。
         * @return token
         */
