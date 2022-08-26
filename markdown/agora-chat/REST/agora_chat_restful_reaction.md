@@ -266,7 +266,7 @@ curl -g -X DELETE 'http://XXXX/XXXX/XXXX/reaction/user/wz?msgId=9976253727931131
 
 ## 根据 消息 ID 和 表情 ID 获取 Reaction 信息
 
-该方法根据指定的消息的 ID 和表情 ID 获取对应的 Reaction 信息，包括使用了该 Reaction 的用户名及用户人数。
+该方法根据指定的消息的 ID 和表情 ID 获取对应的 Reaction 信息，包括使用了该 Reaction 的用户 ID及用户人数。
 
 ### HTTP 请求
 

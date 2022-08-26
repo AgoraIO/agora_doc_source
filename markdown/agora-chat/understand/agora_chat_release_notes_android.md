@@ -1,5 +1,3 @@
-# 即时通讯 IM Android SDK 发布说明
-
 本页面提供即时通讯 IM Android SDK 的发行说明。
 
 ## v1.0.6
@@ -8,15 +6,15 @@ v1.0.6 于 2022 年 7 月 22 日发布。
 
 ### 新增特性
 
-- 支持使用 `isOnlineState` 中的成员标记消息是否为在线消息 `ChatMessage`。
-- 在 中添加错误码 509 `MESSAGE_CURRENT_LIMITING`，`Error` 表示聊天群消息已超出并发限制。
+- 支持使用 `ChatMessage` 中的 `isOnlineState` 标记消息是否为在线消息 。
+- 在 `Error` 中添加错误码 509 `MESSAGE_CURRENT_LIMITING`，表示聊天群消息已超出并发限制。
 - 在状态规范更新时在 `GroupChangeListener` 中添加 `onSpecificationChanged` 回调。
 - 在 `PushManager` 中添加一个 `bindDeviceToken` 方法用于绑定设备 token。
 
 ### 优化
 
 - 改进了子区功能相关的方法和类。与 1.0.4 相比，此版本用 `ChatThread` 替换 `ChatThreadInfo`。
-- 在 `onInvitationReceived` 回调中增加了返回值  `groupName`。
+- 在 `onInvitationReceived` 回调中增加了返回值 `groupName`。
 - 移除了 Android 层中的 CBC 和 EBC 加密算法。
 - 升级网络链接库。
 - 支持以远程地址作为附件发送消息。

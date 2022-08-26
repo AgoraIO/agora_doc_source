@@ -1,5 +1,3 @@
-# 聊天室概述
-
 聊天室是支持多人加入的类似 Twitch 的组织。聊天室中的成员没有固定关系，用户离线后，超过 5 分钟会自动退出聊天室。聊天室成员在离线后，不会收到推送消息。聊天室可以应用于直播、消息广播等。
 
 ## 聊天室角色和权限
@@ -19,7 +17,7 @@
 | 功能         | 群组                                                         | 聊天室                                                       |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | 使用场景     | 类似于 Signal，Skype 里的群聊，所有加入的用户拥有固定的关系。  | 类似 Twitch 的直播间，成员间没已有固定关系，离开即退出。     |
-| 创建方式 | 所有 app 用户都可以创建群组。   | 仅 [超级管理员](https://docs.agora.io/agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 有权限创建聊天室。  |
+| 创建方式 | 所有 app 用户都可以创建群组。   | 仅 [超级管理员](./rest/agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 有权限创建聊天室。  |
 | 类型 | 四种群组类型支持不同使用场景。 | 仅有一种类型，所有用户可以自由加入退出。      |
 | 最大成员数   | 成员数支持取决于所选择的版本，最高版本支持 8,000 人。        | 成员数支持取决于所选择的版本，最高版本支持 10,000 人。如需提升该上限，请联系商务。 |
 | 离线推送消息 | 离线时，会收到推送消息。             | 离线时，不会收到推送消息；成员离线超过 5 分钟会自动退出聊天室。          |
@@ -34,7 +32,7 @@
 
 ### 创建聊天室
 
-只有[超级管理员](https://docs.agora.io/agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 可以创建聊天室，创建聊天室的用户成为聊天室所有者。支持的聊天室成员的最大数量根据你购买的套餐而有所不同。详见 [聊天室限制](./agora_chat_chatroom_overview?platform=Android#limitations)。
+只有 [超级管理员](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加聊天室超级管理员) 可以创建聊天室，创建聊天室的用户成为聊天室所有者。支持的聊天室成员的最大数量根据你购买的套餐而有所不同。详见 [聊天室限制](./agora_chat_chatroom_overview?platform=Android#聊天室的限制)。
 
 ### 加入和离开聊天室
 

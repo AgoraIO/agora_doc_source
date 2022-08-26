@@ -30,22 +30,22 @@
 
 | HTTP Status Code | Error                                | Error Description                                            | 可能的原因                                                   |
 | :--------------- | :----------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| `400`            | `invalid_grant`                      | Invalid username or password.                                | 用户名或密码输入错误。                                       |
+| `400`            | `invalid_grant`                      | Invalid username or password.                                | 用户 ID或密码输入错误。                                       |
 | 400              | invalid_grant                      | “client_id does not match”                                   | “client_id does not match” 是 client_id 传入不正确，“client_secret does not match” 是 client_secret 传入不正确，client_id 以及 client_secret 在管理后台对应的应用详情中查看。 |
 | 400              | json_parse                         | “Unexpected character (‘=’ (code 61)): was expecting a colon to separate field name and value\n at [Source: java.io.BufferedInputStream@170e3f35; line: 1, column: 23]” | 发送请求时请求体不符合标准的 JSON 格式，服务器无法正确解析。 |
-| `400`            | `illegal_argument`                   | Entity user requires a property named username.              | 注册用户请求未提供用户名（`username）`。                     |
+| `400`            | `illegal_argument`                   | Entity user requires a property named username.              | 注册用户请求未提供用户 ID（`username）`。                     |
 | `400`            | `illegal_argument`                   | Password or pin must provided.                               | 注册用户请求未提供用户密码（`password`）或提供的密码为空。   |
 | `400`            | `illegal_argument`                   | Newpassword is required.OldPassword is required.             | 修改用户密码请求未提供新密码或老密码。                       |
 | `400`            | `illegal_argument`                   | Group member username1 doesn’t exist.                        | 批量添加群组成员时，`username1` 不存在。                     |
 | `400`            | `illegal_argument`                   | This is an invalid request.                                  | 请求无效，请检查调用接口的 URL、请求头、请求包体是否正确。   |
 | `400`            | `illegal_argument`                   | From can't be empty.                                         | 消息发送方（`from`）为空。                                   |
 | `400`            | `illegal_argument`                   | Target_type can only be 'users' or 'chatgroups' or 'chatrooms'. | 发送消息时，对象类型（`target_type`）传入除 `users`、`chatgroups`、`chatrooms` 外的其他值。 |
-| `400`            | `illegal_argument`                   | Username is not legal.                                       | 注册使用的用户名（`username`）不合法，请参考[注册用户 RESTful API](./agora_chat_restful_reg?platform=RESTful#注册单个用户) 重新设置用户名。 |
+| `400`            | `illegal_argument`                   | Username is not legal.                                       | 注册使用的用户 ID（`username`）不合法，请参考[注册用户 RESTful API](./agora_chat_restful_reg?platform=RESTful#注册单个用户) 重新设置用户 ID。 |
 | `400`            | `illegal_argument`                   | This chatmessage request is not supported.                   | 查询历史消息时传入的时间格式不正确，正确的格式为 YYYYMMDDHH。 |
 | `400`            | `illegal_argument`                   | Illegal arguments: appkey: XXXX, time: 2018020918, maybe chat message history is expired or unstored. | 查询的历史消息未生成或已过期。详见[查询历史消息](./agora_chat_restful_message?platform=RESTful#查询历史消息)。 |
 | `400`            | `invalid_parameter`                  | Some of [groupid] are not valid fields.                      | 修改的群组名称、群组描述、群组人数上限时，传入的参数不合法。 |
-| `400`            | `required_property_not_found`        | Entity user requires a property named username.              | 修改用户密码请求未提供用户名（`username`）。                   |
-| `400`            | `duplicate_unique_property_exists`   | Application null Entity user requires that property named username be unique, value of username exists. | 注册用户时，用户名已存在，请更换用户名重新注册。             |
+| `400`            | `required_property_not_found`        | Entity user requires a property named username.              | 修改用户密码请求未提供用户 ID（`username`）。                   |
+| `400`            | `duplicate_unique_property_exists`   | Application null Entity user requires that property named username be unique, value of username exists. | 注册用户时，用户 ID 已存在，请更换用户 ID重新注册。             |
 | 400              |                                    | “set presence failed”                                        | 在线状态设置失败。                                           |
 | 400              |                                    | “ext is too big”                                             | 在线状态扩展信息长度超过限制                                 |
 | 400              |                                    | “resource not exist”                                         | 设备来源不存在。                                             |

@@ -1,9 +1,11 @@
 本文介绍如何通过少量代码集成 Agora 即时通讯 SDK，在你的 Android app 中实现发送和接收一对一文本消息。
 
 ## 技术原理
+
 ~7aac3300-785d-11ec-bcb4-b56a01c83d2e~
 
 ## 前提条件
+
 - Android 模拟器或移动设备。
 - Android Studio 3.2 或以上版本。
 - [Java Development Kit](https://www.oracle.com/java/technologies/downloads/)
@@ -17,8 +19,10 @@
 
 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
-### 集成 Agora 即时通讯 SDK 
+### 集成 Agora 即时通讯 SDK
+
 为方便集成，Agora 将 Agora 即时通讯 Android SDK 发布至 Maven Central，你可以参考以下步骤来集成 SDK：
+
 1. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码：
    ```java
    buildscript {
@@ -313,7 +317,7 @@
        addConnectionListener();
    }
    ```
-   
+
 3.在 `app/java/io.agora.agorachatquickstart/MainActivity` 文件中，在 `onCreate` 函数后添加以下代码：
 
    ```java

@@ -1,5 +1,3 @@
-# 管理子区成员
-
 本页展示了如何通过调用即时通讯 IM RESTful API 来管理子区成员。在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 
 <a name="pubparam"></a>
@@ -66,7 +64,7 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 
 | 参数           | 类型 | 描述                 |
 | :------------- | :--- | :------------------- |
-| `affiliations` | 列表 | 子区中成员的用户名。 |
+| `affiliations` | 列表 | 子区中成员的用户 ID。 |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -127,7 +125,7 @@ POST https://{host}/{org_name}/{app_name}/thread/{thread_id}/users
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户名。 | 是       |
+| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -194,7 +192,7 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户名。 | 是       |
+| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -205,7 +203,7 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 | 参数     | 类型 | 描述                                                                 |
 | :------- | :--- | :------------------------------------------------------------------- |
 | `result` | 布尔 | 指定的子区成员是否从子区中移除：<li>`true`： 是的。<li>`false`：否。 |
-| `user`   | 列表 | 子区中成员的用户名。                                                 |
+| `user`   | 列表 | 子区中成员的用户 ID。                                                 |
 
 其他字段说明详见 [公共参数](#pubparam)。
 

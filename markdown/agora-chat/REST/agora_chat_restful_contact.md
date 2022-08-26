@@ -1,5 +1,3 @@
-# 用户关系管理 REST API
-
 好友管理是指添加好友、移除好友、添加黑名单、移除黑名单等操作。
 
 本文展示如何调用 Agora 即时通讯 RESTful API 管理好友。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
@@ -16,7 +14,7 @@
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
-| `username` | String | 用户名。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户名。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
+| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户 ID。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
 
 ### 响应参数
 
@@ -58,8 +56,8 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 
 | 参数            | 类型   | 描述                 | 是否必填 |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username`  | String | 本地用户的用户名。   | 是       |
-| `friend_username` | String | 待添加好友的用户名。 | 是       |
+| `owner_username`  | String | 本地用户的用户 ID。   | 是       |
+| `friend_username` | String | 待添加好友的用户 ID。 | 是       |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
@@ -128,8 +126,8 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 
 | 参数            | 类型   | 描述                 | 是否必填 |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username`  | String | 本地用户的用户名。   | 是       |
-| `friend_username` | String | 待添加好友的用户名。 | 是       |
+| `owner_username`  | String | 本地用户的用户 ID。   | 是       |
+| `friend_username` | String | 待添加好友的用户 ID。 | 是       |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
@@ -197,7 +195,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 
 | 参数           | 类型   | 描述               | 是否必需 |
 | :------------- | :----- | :----------------- | :------- |
-| `owner_username` | String | 指定用户的用户名。 | 是       |
+| `owner_username` | String | 指定用户的用户 ID。 | 是       |
 
 其他字段说明详见 [公共参数](#pubparam)。
 
@@ -282,7 +280,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 字段      | 类型       | 描述                                              | 是否必填 |
 | :-------- | :--------- | :------------------------------------------------ | :------- |
-| `usernames` | 用户名数组 | 待加入到黑名单中的用户名，如 ["user1", "user2"]。 | 是       |
+| `usernames` | 用户 ID 数组 | 待加入到黑名单中的用户 ID，如 ["user1", "user2"]。 | 是       |
 
 ### HTTP 响应
 
@@ -292,7 +290,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数 | 类型  | 描述                           |
 | :--- | :---- | :----------------------------- |
-| `data` | Array | 添加到黑名单列表的用户名列表。 |
+| `data` | Array | 添加到黑名单列表的用户 ID 列表。 |
 
 其他字段说明详见 [公共参数](#pubparam)。
 
@@ -340,7 +338,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数 | 类型 | 描述 | 是否必填 |
 | --- | --- | --- | --- |
-| `owner_username` | String | 本地用户的用户名。 | 是 |
+| `owner_username` | String | 本地用户的用户 ID。 | 是 |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
@@ -359,7 +357,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数 | 类型  | 描述                       |
 | :--- | :---- | :------------------------- |
-| `data` | Array | 黑名单列表中的用户名数组。 |
+| `data` | Array | 黑名单列表中的用户 ID 数组。 |
 
 其他字段说明详见 [公共参数](#pubparam)。
 
@@ -405,8 +403,8 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 
 | 参数             | 类型   | 描述                   | 是否必填 |
 | :--------------- | :----- | :--------------------- | :------- |
-| `owner_username` | String | 本地用户的用户名。| 是 |
-| `blocked_username` | String | 待移除黑名单的用户名。 | 是       |
+| `owner_username` | String | 本地用户的用户 ID。| 是 |
+| `blocked_username` | String | 待移除黑名单的用户 ID。 | 是       |
 
 其他路径参数说明详见 [公共参数](#pubparam)。
 
@@ -461,4 +459,4 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 <a name="code"></a>
 ## 状态码
 
-有关详细信息，请参阅[HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+有关详细信息，请参阅[HTTP 状态代码](.å/agora_chat_status_code?platform=RESTful)。

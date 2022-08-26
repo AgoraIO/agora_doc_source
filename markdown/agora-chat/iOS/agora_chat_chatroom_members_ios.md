@@ -1,5 +1,3 @@
-# 管理聊天室成员
-
 聊天室是支持多人沟通的即时通讯系统。本文介绍如何使用即时通讯 IM iOS SDK 在实时互动 app 中管理聊天室成员，并实现聊天室的相关功能。
 
 ## 技术原理
@@ -18,9 +16,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=iOS)。
-- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](https://docs.agora.io/cn/agora-chat/agora_chat_plan?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 入门](./agora_chat_get_started_ios?platform=iOS)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
+- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=iOS)。
 
 ## 实现方法
 
@@ -242,4 +240,4 @@ AgoraChatError *error = nil;
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [监听聊天室事件](https://docs.agora.io/cn/agora-chat/agora_chat_chatroom_ios?platform=iOS#listen-for-chat-room-events)。
+有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_ios?platform=iOS#listen-for-chat-room-events)。

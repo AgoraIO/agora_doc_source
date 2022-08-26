@@ -1,4 +1,3 @@
-# 管理聊天室
 聊天室是支持多人沟通的即时通讯系统。聊天室中的成员没有固定关系，用户离线后，超过 5 分钟会自动退出聊天室。聊天室成员在离线后，不会收到推送消息。聊天室可以应用于直播、消息广播等。
 
 本页介绍如何使用即时通讯 IM SDK 在应用中创建和管理聊天室。
@@ -20,8 +19,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
-- 了解即时通讯 IM 不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)中所述，您了解不同定价计划支持的聊天室数量。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
+- 了解即时通讯 IM 不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 - 只有超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了超级管理员。
 - 聊天室创建者和管理员的数量之和不能超过 100，即管理员最多可添加 99 个。
 
@@ -31,9 +30,9 @@
 
 ### 创建和解散聊天室
 
-仅 [超级管理员](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 可以调用 `createChatRoom` 创建聊天室，设置聊天室名称、描述、最大成员数等聊天室属性。
+仅 [超级管理员](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加聊天室超级管理员) 可以调用 `createChatRoom` 创建聊天室，设置聊天室名称、描述、最大成员数等聊天室属性。
 
-你也可以直接调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 创建聊天室。
+你也可以直接调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加聊天室超级管理员) 创建聊天室。
 
 示例代码如下：
 

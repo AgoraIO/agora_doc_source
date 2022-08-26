@@ -1,12 +1,10 @@
-# 管理群组属性
-
 群组是支持多人沟通的即时通讯系统。
 
 本页介绍如何使用即时通讯 IM SDK 管理应用中的群组属性。
 
 ## 技术原理
 
-SDK 提供了 `Group`, `GroupManager` 和 `GroupChangeListener` 类用于群组管理，可以实现以下功能：
+SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组管理，可以实现以下功能：
 
 - 修改群组名称及描述
 - 获取、更新群组公告
@@ -17,7 +15,7 @@ SDK 提供了 `Group`, `GroupManager` 和 `GroupChangeListener` 类用于群组�
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
 - 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 
 ## 实现方法
@@ -96,4 +94,4 @@ ChatClient.getInstance().groupManager().fetchGroupSharedFileList(groupId, pageNu
 
 ### 监听聊天组事件
 
-有关详细信息，请参阅 [聊天组事件](./agora_chat_group_android?platform=Android#listen-for-chat-group-events)。
+有关详细信息，请参阅 [聊天组事件](./agora_chat_group_android?platform=Android#监听群组事件)。

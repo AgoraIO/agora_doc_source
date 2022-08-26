@@ -1,5 +1,3 @@
-# 管理用户关系
-
 用户登录后，可进行添加联系人、获取好友列表等操作。
 本文介绍如何通过环信即时通讯 IM SDK 管理好友关系，包括添加、同意、拒绝、删除、查询好友，以及管理黑名单，包括添加、移出、查询黑名单。
 
@@ -23,8 +21,8 @@ SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理�
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 入门](https://docs.agora.io/cn/agora-chat/agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 入门](./agora_chat_get_started_ios?platform=iOS)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
 
 ## 实现方法
 
@@ -221,4 +219,4 @@ NSArray *blockList = [[AgoraChatClient sharedClient].contactManager getBlackList
 
 有关用户关系管理的详细信息，请参阅以下 API 参考：
 
-- [IAgoraChatContactManager](https://docs.agora.io/cn/agora-chat/API Reference/im_oc/protocol_i_agora_chat_contact_manager-p.html)
+- [IAgoraChatContactManager](./API Reference/im_oc/protocol_i_agora_chat_contact_manager-p.html)

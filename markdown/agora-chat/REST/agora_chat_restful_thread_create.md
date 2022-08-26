@@ -1,5 +1,3 @@
-# 创建、删除和获取子区
-
 本页面展示了如何通过调用即时通讯 IM RESTful API 来创建、修改、删除和获取子区。
 
 在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](..cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
@@ -63,7 +61,7 @@ POST https://{host}/{org_name}/{app_name}/thread
 | `group_id` | String | 子区所属组的 ID。                            | 是       |
 | `name`     | String | 子区的名称。子区名称的最大长度为 64 个字符。 | 是       |
 | `msg_id`   | String | 创建子区所基于的消息的 ID。                  | 是       |
-| `owner`    | String | 子区创建者的用户名。                         | 是       |
+| `owner`    | String | 子区创建者的用户 ID。                         | 是       |
 
 ### HTTP 响应
 

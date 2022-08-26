@@ -1,5 +1,3 @@
-# 发送和接收消息
-
 登录即时通讯 IM 后，用户可以在单聊、群聊或聊天室中发送如下类型的消息：
 
 - 文本消息，包括超链接和表情符号。
@@ -27,7 +25,7 @@
 
 开始前，请确保满足以下条件：
 
-- 已集成 [即时通讯 IM SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
+- 已集成 [即时通讯 IM SDK](./agora_chat_get_started_android?platform=Android)。
 - 了解消息相关限制和即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
 
 ## 实现方法

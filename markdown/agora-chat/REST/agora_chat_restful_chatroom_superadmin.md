@@ -12,7 +12,7 @@
 | `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                              | 是       |
 | `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                         | 是       |
 | `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                                | 是       |
-| `username`    | String | 用户名。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户名唯一。</ul></div> | 是       |
+| `username`    | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户 ID 唯一。</ul></div> | 是       |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#a-namegetalla查询所有聊天室基本信息) 的响应 body 中获取。                                                                 | 是       |
 
 ### 响应参数
@@ -68,7 +68,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 
 | 字段         | 类型   | 描述                               | 是否必填 |
 | :----------- | :----- | :--------------------------------- | :------- |
-| `superadmin` | String | 待添加为聊天室超级管理员的用户名。 | 是       |
+| `superadmin` | String | 待添加为聊天室超级管理员的用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -131,7 +131,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 
 | 参数         | 类型   | 描述                                 | 是否必填 |
 | :----------- | :----- | :----------------------------------- | :------- |
-| `superAdmin` | String | 待被撤销的聊天室超级管理员的用户名。 | 是       |
+| `superAdmin` | String | 待被撤销的聊天室超级管理员的用户 ID。 | 是       |
 
 其他参数及说明详见[公共参数](#param)。
 
@@ -150,7 +150,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 
 | 字段            | 类型   | 描述                             |
 | :-------------- | :----- | :------------------------------- |
-| `newSuperAdmin` | String | 被撤销的聊天室超级管理员用户名。 |
+| `newSuperAdmin` | String | 被撤销的聊天室超级管理员用户 ID。 |
 | `resource`      | String | 预留参数，无需关注。             |
 
 其他字段及说明详见[公共参数](#param)。
@@ -222,7 +222,7 @@ GET https://{host} /{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&page
 | :--------- | :--------- | :------------------------------- |
 | `pagenum`  | Int        | 当前页码。                       |
 | `pagesize` | Int        | 当前页显示的超级管理员最大数量。 |
-| `data`     | JSON Array | 聊天室超级管理员的用户名数组。   |
+| `data`     | JSON Array | 聊天室超级管理员的用户 ID 数组。   |
 | `count`    | Number     | 返回超级管理员数量。             |
 
 其他字段及说明详见[公共参数](#param)。
