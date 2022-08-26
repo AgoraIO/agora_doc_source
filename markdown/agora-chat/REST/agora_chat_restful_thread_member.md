@@ -66,7 +66,7 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 
 | 参数           | 类型 | 描述                 |
 | :------------- | :--- | :------------------- |
-| `affiliations` | 列表 | 子区中成员的用户名。 |
+| `affiliations` | 列表 | 子区中成员的用户 ID。 |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -127,7 +127,7 @@ POST https://{host}/{org_name}/{app_name}/thread/{thread_id}/users
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户名。 | 是       |
+| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -194,7 +194,7 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户名。 | 是       |
+| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -205,7 +205,7 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 | 参数     | 类型 | 描述                                                                 |
 | :------- | :--- | :------------------------------------------------------------------- |
 | `result` | 布尔 | 指定的子区成员是否从子区中移除：<li>`true`： 是的。<li>`false`：否。 |
-| `user`   | 列表 | 子区中成员的用户名。                                                 |
+| `user`   | 列表 | 子区中成员的用户 ID。                                                 |
 
 其他字段说明详见 [公共参数](#pubparam)。
 

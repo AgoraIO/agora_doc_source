@@ -63,7 +63,7 @@ POST https://{host}/{org_name}/{app_name}/thread
 | `group_id` | String | 子区所属组的 ID。                            | 是       |
 | `name`     | String | 子区的名称。子区名称的最大长度为 64 个字符。 | 是       |
 | `msg_id`   | String | 创建子区所基于的消息的 ID。                  | 是       |
-| `owner`    | String | 子区创建者的用户名。                         | 是       |
+| `owner`    | String | 子区创建者的用户 ID。                         | 是       |
 
 ### HTTP 响应
 

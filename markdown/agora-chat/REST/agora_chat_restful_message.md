@@ -157,7 +157,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :------------ | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `customEvent` | String             | 用户自定义的事件类型。长度在 32 个字符内。支持的字符集如下：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"-", "\_", "/", "." | 否       |
 | `customExts`  | Map<String,String> | 自定义事件属性。最多包含 16 个元素。                                                                                                                   | 否       |
-| `from`        | String             | 消息发送方的用户名。不可为空。<br>如果不在请求 body 中传入该字段，则默认消息发送方用户名为 `admin`。                                                   | 是       |
+| `from`        | String             | 消息发送方的用户 ID。不可为空。<br>如果不在请求 body 中传入该字段，则默认消息发送方用户 ID为 `admin`。                                                   | 是       |
 | `ext`         | JSON               | 自定义扩展属性。不可为空。                                                                                                                             | 否       |
 | `type`        | String             | 消息类型。自定义消息为 `custom`。                                                                                                                      | 是       |
 
@@ -1244,8 +1244,8 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `msg_id`         | String | 消息 ID。一次消息发送请求的唯一标识。                                                                                              |
 | `timestamp`      | Number | 消息发送完成的 Unix 时间戳（毫秒），UTC 时间。                                                                                     |
 | `direction`      | String | 消息发送方向：<li>`incoming`：上行消息，用户向即时通讯服务器发送的消息。<li>`outgoing`：下行消息，即时通讯服务器下发到用户的消息。 |
-| `from`           | String | 消息发送方的用户名。                                                                                                               |
-| `to`             | String | 消息接收方的用户名或群组 ID。                                                                                                      |
+| `from`           | String | 消息发送方的用户 ID。                                                                                                               |
+| `to`             | String | 消息接收方的用户 ID 或群组 ID。                                                                                                      |
 | `chat_type`      | String | 聊天方式：<li>`chat`：单聊<li>`groupchat`：群聊<li>`chatroom`：聊天室                                                              |
 | `payload`        | JSON   | 包含消息的具体内容。例如消息扩展信息、自定义扩展属性等。                                                                           |
 | `payload.bodies` | JSON   | 具体的消息内容，详见以下每个消息类型的 `bodies`。                                                                                  |
