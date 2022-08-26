@@ -24,7 +24,7 @@
 - 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
 - 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 
-## 执行
+## 实现方法
 
 本节介绍如何调用即时通讯 IM SDK 提供的 API 来实现上述功能。
 
