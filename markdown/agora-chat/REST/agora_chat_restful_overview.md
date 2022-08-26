@@ -1,6 +1,4 @@
-# 即时通讯 REST 概览
-
-Agora 即时通讯（Agora Chat）通过 REST 平台提供 RESTful API，你可以通过你的业务服务器向 Agora 服务器发送 HTTP 请求，在服务端实现实时通信。
+Agora 即时通讯通过 REST 平台提供 RESTful API，你可以通过你的业务服务器向 Agora 服务器发送 HTTP 请求，在服务端实现实时通信。
 
 ## REST 平台架构
 

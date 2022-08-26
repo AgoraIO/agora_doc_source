@@ -1,5 +1,3 @@
-# 即时通讯 IM Android SDK 发布说明
-
 本页面提供即时通讯 IM Android SDK 的发行说明。
 
 ## v1.0.6

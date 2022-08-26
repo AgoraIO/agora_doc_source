@@ -1,5 +1,3 @@
-# 消息管理
-
 本文展示如何调用即时通讯 RESTful API 实现全类型的消息发送、文件上传下载以及历史消息查询。
 调用以下方法前，请先参考 [限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 

@@ -1,5 +1,3 @@
-# 管理子区成员
-
 本页展示了如何通过调用即时通讯 IM RESTful API 来管理子区成员。在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 
 <a name="pubparam"></a>

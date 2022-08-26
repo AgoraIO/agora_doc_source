@@ -1,5 +1,3 @@
-# 创建、删除和获取子区
-
 本页面展示了如何通过调用即时通讯 IM RESTful API 来创建、修改、删除和获取子区。
 
 在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](..cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
