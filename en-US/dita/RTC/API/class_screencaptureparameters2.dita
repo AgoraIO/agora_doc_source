@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_screencaptureparameters2">
+    <title><ph keyref="ScreenCaptureParameters2" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Screen sharing configurations.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+          <p props="rtc" outputclass="codeblock">
+          <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureParameters2 {
+  final bool? captureAudio;
+  final ScreenAudioParameters? audioParams;
+  final bool? captureVideo;
+  final ScreenVideoParameters? videoParams;
+
+  const ScreenCaptureParameters2({
+    this.captureAudio,
+    this.audioParams,
+    this.captureVideo,
+    this.videoParams,
+  });
+
+  factory ScreenCaptureParameters2.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ScreenCaptureParameters2FromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParameters2ToJson(this);
+}</codeblock>
+        </p></section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>captureAudio</pt>
+                <pd>
+                    <p>Determines whether to capture system audio during screen sharing:
+                      <ul>
+                        <li><codeph>true</codeph>: Capture.</li>
+                        <li><codeph>false</codeph>: (Default) Do not capture.</li>
+                      </ul>
+                      <note type="attention">On Android, due to system limitations, capturing system audio is only available for Android API level 29 and later (that is, Android 10 and later).</note>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry>
+            <pt>audioParams</pt>
+                <pd>
+                    <p>The audio configuration for the shared screen stream. See <xref keyref="ScreenAudioParameters" />.
+                    <note type="attention">This parameter is only available for scenarios where <parmname>captureAudio</parmname> is <codeph>true</codeph>.</note></p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>captureVideo</pt>
+                <pd>
+                    <p>Determines whether to capture system video during screen sharing:
+                      <ul>
+                        <li><codeph>true</codeph>: Capture.</li>
+                        <li><codeph>false</codeph>: (Default) Do not capture.</li>
+                      </ul>
+                      <note type="attention"> On Android, due to system limitations, screen capture is only available for Android API level 21 and later (that is, Android 5 and later).</note>
+                    </p>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>videoParams</pt>
+                <pd>
+                    <p>The video configuration for the shared screen stream. See <xref keyref="ScreenVideoParameters" />.
+                    <note type="attention">This parameter is only available for scenarios where <parmname>captureVideo</parmname> is <codeph>true</codeph>.</note></p>
+                </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

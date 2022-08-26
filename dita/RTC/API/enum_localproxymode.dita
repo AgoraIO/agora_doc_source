@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_localproxymode">
+    <title><ph keyref="LOCAL_PROXY_MODE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">本地代理连接模式。</ph></shortdesc>
+    <refbody>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="CONNECTIVITY_FIRST"/></pt>
+                <pd>0: 连通性优先。在该模式下，SDK 同时尝试连接指定的声网私有媒体服务器和声网 SD-RTN™。如果能连接到指定的声网私有媒体服务器，则连接私有媒体服务器，不会切换到声网 SD-RTN™。如果无法连接到指定的声网私有媒体服务器，则先连接声网 SD-RTN™ 以保持连通性，同时 SDK 继续尝试连接指定的声网私有媒体服务器，一旦连接上私有媒体服务器，SDK 会立即从声网 SD-RTN™ 切换到私有媒体服务器。
+                <note type="attention">该模式在声网私有化平台中不生效。</note></pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="LOCAL_ONLY"/></pt>
+                <pd>1: SDK 只尝试连接指定的声网私有媒体服务器。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

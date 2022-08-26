@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcstats">
-    <title><ph keyref="RtcStats"/></title>
+    <title><ph keyref="RtcStats" /></title>
     <shortdesc id="short"><ph id="shortdesc">Statistics of the channel.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -345,17 +345,15 @@
   final int? txPacketLossRate;
   @JsonKey(name: 'rxPacketLossRate')
   final int? rxPacketLossRate;
-  factory RtcStats.fromJson(Map&lt;String, dynamic> json) =>
+  factory RtcStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$RtcStatsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$RtcStatsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcStatsToJson(this);
 }
 </codeblock>
             </p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt props="ios mac cpp unity electron flutter rn">duration</pt>
@@ -431,7 +429,7 @@
                 <pt>cpuAppUsage</pt>
                 <pd>Application CPU usage (%).<note type="attention">
                     <ul>
-                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
+                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel" /> callback.</li>
                     <li props="android cpp unity flutter">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
                     </ul></note></pd>
             </plentry>
@@ -442,7 +440,7 @@
                     <p props="cpp unity electron flutter">For Windows, in the multi-kernel environment, this member represents the average CPU usage. The value = (100 - System Idle Progress in Task Manager)/100.</p>
                     <note type="attention">
                     <ul>
-                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel"/> callback.</li>
+                    <li>The value of <parmname>cpuTotalUsage</parmname> is always reported as 0 in the <xref keyref="onLeaveChannel" /> callback.</li>
                     <li props="cpp unity android rn">As of Android 8.1, you cannot get the CPU usage from this attribute due to system limitations.</li>
                     </ul></note> </pd>
             </plentry>
@@ -454,9 +452,9 @@
                 <pt>gatewayRtt</pt>
                 <pd>The round-trip time delay (ms) from the client to the local router.<note props="ios rn">
                         <p>This property is disabled on devices running iOS 14 or later, and enabled on devices running versions earlier than iOS 14 by default.</p>
-                        <p>To enable this property on devices running iOS 14 or later, <xref keyref="ticket-link"/>.</p>
+                        <p>To enable this property on devices running iOS 14 or later, <xref keyref="ticket-link" />.</p>
                         </note>
-                        <note props="android cpp unity flutter rn">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application></codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
+                        <note props="android cpp unity flutter rn">On Android, to get <parmname>gatewayRtt</parmname>, ensure that you add the <codeph>android.permission.ACCESS_WIFI_STATE</codeph> permission after <codeph>&lt;/application&gt;</codeph> in the <codeph>AndroidManifest.xml</codeph> file in your project.</note></pd>
             </plentry>
             <plentry>
                 <pt>memoryAppUsageRatio</pt>

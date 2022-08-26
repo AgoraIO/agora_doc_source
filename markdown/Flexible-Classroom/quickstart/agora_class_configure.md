@@ -106,6 +106,28 @@
    ![](https://web-cdn.agora.io/docs-files/1631178001176)
    ![](https://web-cdn.agora.io/docs-files/1631178086130)
 
+## 配置 CDN 推拉流功能
+
+灵动课堂支持 CDN 推拉流功能，即，支持将老师的流（音视频流、白板、或混合了音视频和白板的流）推到一路 CDN 地址，支持学生拉取 CDN 流观看教学。
+
+当你使用职业教育大班课且服务类型为 `CDN`、`fusion`、`mixStreamCDN` 时，你才需要开通 CDN 推拉流服务。请[联系技术支持](https://agora-ticket.agora.io/)配置 CDN 地址，并进行以下操作：
+
+1. 登录[控制台](https://console.agora.io/)，在**项目管理**页面，选择需要开通输入旁路推流服务的项目，点击**配置**。
+
+    ![](https://web-cdn.agora.io/docs-files/1642509377813)
+
+2. 在**编辑项目**页面的**实时互动拓展能力**模块找到**旁路推流**，点击**启用**。
+
+	![](https://web-cdn.agora.io/docs-files/1654767912798)
+
+
+3. 启用**客户端 SDK API** 和 **服务端 RESTful API**。启用后不能关闭。
+
+	![](https://web-cdn.agora.io/docs-files/1661224375437)
+
+4. 仔细阅读弹窗提示，点击**保存**。成功开启旁路推流服务后，**启用**按钮会切换为**配置**按钮，用于配置旁路推流。
+
+
 ## 注意事项
 
 ~4c2dbcc0-d2a7-11ec-8e95-1b7dfd4b7cb0~
