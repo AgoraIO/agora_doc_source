@@ -77,7 +77,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
 
 Copy the following code to the `index.html` file to implement the UI. 
 
-<script type="module" src="/main.js"></script> Used to reference JS files.
+`<script type="module" src="/main.js"></script>` is used to refer to the `main.js` file.
 
 ```html
 <!DOCTYPE html>
