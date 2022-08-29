@@ -43,24 +43,24 @@
     required int samplesPerCall});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>Sets the<xref keyref="onRecordAudioFrame" /> audio format for the  callback.</p>
+            <p>Sets the audio format for the <xref keyref="onRecordAudioFrame" /> callback.</p>
             <note type="attention">
             <ul>
             <li>Ensure that you call this method before joining a channel.</li>
-            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac cpp unity">The SDK triggers the  callback according to the sampling interval<apiname keyref="onRecordAudioFrame" />.</ph></li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac cpp unity">The SDK triggers the  callback according to the sampling interval<apiname keyref="onRecordAudioFrame" />.</ph></li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd props="native unity flutter rn"><apiname keyref="onRecordAudioFrame" />The sample rate returned in the  callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                <pd props="native unity flutter rn">The sample rate returned in the <apiname keyref="onRecordAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
                 <pd props="electron">The sample rate returned in the SDK, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
             </plentry>
             <plentry>
                 <pt>channel</pt>
                 <pd props="native unity flutter rn">
-                    <p><apiname keyref="onRecordAudioFrame" />The number of channels returned in the  callback:<ul>
+                    <p>The number of channels returned in the <apiname keyref="onRecordAudioFrame" /> callback:<ul>
                     <li>1: Mono.</li>
                     <li>2: Stereo.</li>
                     </ul></p>
@@ -82,7 +82,7 @@
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd props="native unity flutter rn"><apiname keyref="onRecordAudioFrame" />The number of data samples returned in the  callback, such as 1024 for the media push.</pd>
+                <pd props="native unity flutter rn">The number of data samples returned in the <apiname keyref="onRecordAudioFrame" /> callback, such as 1024 for the media push.</pd>
                 <pd props="electron">The number of data samples returned in the SDK, such as 1024 for the media push.</pd>
             </plentry>
             </parml> </section>
