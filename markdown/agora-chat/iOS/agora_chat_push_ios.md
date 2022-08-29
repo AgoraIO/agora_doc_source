@@ -20,45 +20,47 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
 
 ## 集成 APNs
 
-### 1.创建推送证书
+### 1. 创建推送证书
 
 参考以下步骤开启 APNs 推送服务：
 
-1. 申请证书签名请求 Certificate Signing Request (CSR) 文件。
-点击**钥匙串访问** > **证书助理** > **从证书颁发机构请求证书**，在**证书助理**界面填写电子邮件地址和常用名称，并选择**存储到磁盘**。
+1. 申请证书签名请求 Certificate Signing Request (CSR) 文件。<a name="step1-1"></a>
+     1. 在设备上打开 **Keychain Access** 应用，选择**Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority**。
+     2. 在 **Certificate Assistant** 对话框中填写 **User Email Address**（电子邮件地址）和 **Common Name**（常用名称），选择 **Saved to disk**，点击**Continue**，添加存储路径保存文件。
 ![](https://web-cdn.agora.io/docs-files/1642564150801)
-点击**继续**，添加存储路径，你会在该路径获取到一个名为 `CertificateSigningRequest.certSigningRequest` 的 CSR 文件。
+ 3. 你会在该路径获取到一个名为 `CertificateSigningRequest.certSigningRequest` 的 CSR 文件。
 
-2. 申请 App ID。
-登录 [iOS Developer Center](https://developer.apple.com/cn/)，点击 **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** 添加 App ID，并参考如下配置：
- - **Select a type**: 选择 **App**
- - **Description**: App ID 的描述信息。
- - **Bundle ID**: 可以设置为 `com.YourCompany.YourProjectName`。
- - **Capabilities**: 选择 **Push Notification**。
+2.创建 App ID。<a name="step1-2"></a>
+   1. 登录 [iOS Developer Center](https://developer.apple.com/cn/)，选择 **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** 。
+   2. 在 **Identifiers** 页签，点击 **Identifiers**  右侧的 **+** 。
+   3. 在**Register a new identifier** 页面中， **Select a type**: 选择 **App**，点击 **Continue**。
+   4. 在**Register an App ID**页面中，配置如下字段：
+       - **Description**: App ID 的描述信息。
+       - **Bundle ID**: 可以设置为 `com.YourCompany.YourProjectName`。
+       - **Capabilities**: 选择 **Push Notification**。
 
-3. 分别创建开发环境和生产环境的消息推送证书。
-**开发环境**
- 1. 点击 **app** > **Push Notifications** > **Development SSL Certificate** > **Create Certificate**。
- 2. **Platform** 选择 iOS , **Choose File** 选择第 1 步中创建的 CSR 文件，点击 **Continue**，生成 [Apple Development IOS Push Services](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) 文件。
+3. 分别创建开发环境和生产环境的消息推送证书。<a name="step1-3"></a>
+     1. 在  **Identifiers** 页签中，选择[步骤 2](#step1-2)中创建的 **App ID**。
+     2. 在 **Edit your App ID Configuration** 页面，找到 **Push Notifications**，点击 **Configure**。
+     3. 在 **Apple Push Notification service SSL Certificates** 对话框中，点击 **Create Certificate** 创建适用于开发环境或生产环境的推送证书。
+     4. 在 **Create a New Certificate** 页面，**Platform** 选择 **iOS**，上传[步骤 1](#step1-1) 中创建的 CSR 文件，点击  **Continue**。
+     5. 在 **Download Your Certificate** 页面，点击 **Download** 生成 [APNs](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) 证书。
 
- **生产环境**
- 1. 点击 **app** > **Push Notifications** > **Production SSL Certificate** > **Create Certificate。**
- 2. **Platform** 选择 iOS , **Choose File** 选择第 1 步中创建的 CSR 文件，点击 **Continue**，生成 [APS (Apple Push Service)](https://help.apple.com/xcode/mac/current/?spm=a2c4g.11186623.0.0.14864088B1zf4p#/dev80c6204ec) 文件。
-
-4. 获取消息推送证书。
-双击导入**第 3 步**创建的推送证书，在**钥匙串访问** > **登录** > **我的证书**中，找到已经导入的证书，右键选择该证书导出为 .p12 文件，并设置证书密钥。
+4. 生成推送证书。<a name="step1-4"></a>
+     1. 双击导入[步骤 3](#step1-3)中 Keychain 中创建的推送证书。
+     2. 打开 **Keychain Access**，选择  **login** > **Certificates**，找到已经导入的证书，右键选择该证书导出为 `.p12`  文件，设置证书密钥。
 
 5. 生成 Provisioning Profile 文件。
-登录 [iOS Developer Center](https://developer.apple.com/cn/)，点击 **Account** > **Certificates, Identifiers & Profiles** > **Profiles** 添加 Provisioning Profile，点击 **Continue**，并参考如下配置：
-
- - **Development**：选择 **iOS App Development**。
- - **Distribution**：选择 **Ad Hoc**。如需在 App Store 正式发布版本，请选择 **App Store**。
- - **App ID**：填写**第 2 步**创建的 App ID。
- - **Select Certificates**：选择**第 3 步**创建的推送证书。
- - **Select Devices**：选择待开发的设备。
- - **Provisioning Profile Name**：填写 Provisioning Profile 文件名称。
-
- 点击 **Generate**，生成 Provisioning Profile 文件。
+   1. 登录 [iOS Developer Center](https://developer.apple.com/cn/)，选择 **Account** > **Certificates, Identifiers & Profiles** > **Profiles**。
+   2. 在 **Provisioning** 页签，点击 **Profiles** 右侧的 **+** 图标。
+   3. 在 **Register a New Provisioning Profile** 页面，**Development** 选择 **iOS App Development**，**Distribution** 选择 **Ad Hoc**，点击 **Continue**。
+  对应于 App Store 上的正式版本，**Distribution** 选择 **App Store** 。
+   4. 在 **Generate a Provisioning Profile** 页面，配置如下字段：
+      - **App ID**：填写[步骤 2](#step1-2)创建的 App ID。
+      - **Select Certificates**：选择[步骤 4](#step1-4)中生成的 `.p12` 文件。
+      - **Select Devices**：选择待开发的设备。
+      - **Provisioning Profile Name**：填写 Provisioning Profile 文件名称。
+     5. 确认信息，点击 `Download` 生成 Provisioning Profile 文件。
 
 ### 2.上传推送证书到控制台
 
@@ -75,10 +77,10 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
 ![](https://web-cdn.agora.io/docs-files/1642564728101)
 在弹窗中选择**苹果**，并配置如下字段，完成后点击**保存**：
    - 证书类型：消息推送证书类型，目前支持 p8 和 p12。
-   - 证书名称：消息推送证书名称。填写在[步骤一](#step1)中创建的消息推送证书名称。
-   - 证书密钥：消息推送证书密钥。填写在在[步骤一](#step1)中导出消息推送证书文件时设置的证书密钥。
-   - 上传文件：上传[步骤一](#step1)中获取的消息推送证书文件。
-   - 绑定 ID：Bundle ID。[步骤一](#step1)中创建 App ID 时设置的 Bundle ID。
+   - 证书名称：消息推送证书名称。填写在[创建推送证书](#certificate)中创建的消息推送证书名称。
+   - 证书密钥：消息推送证书密钥。填写在[创建推送证书](#certificate)中导出消息推送证书文件时设置的证书密钥。
+   - 上传文件：上传[创建推送证书](#certificate)中获取的消息推送证书文件。
+   - 绑定 ID：Bundle ID。[创建推送证书](#certificate)中创建 App ID 时设置的 Bundle ID。
    - 环境：根据业务需要选择环境。开发、生产环境的证书需要分开上传。
 
 ## 在客户端实现消息推送

@@ -176,26 +176,29 @@ Token 由声网提供的 token 生成器在你的应用服务器上生成。获�
 ### API 列表
 
 方法：
-| 方法 | 说明 |
-|--------- | -------|
-| init | 初始化 AgoraChatCallKit。 |
-| startCall | 发起通话。 |
-| answerCall | 接听通话。 |
-| setUserIdMap | 设置声网 UID 映射与自定义用户 ID 之间的映射，格式为 {[uid1]: 'custom name', [uid2]: 'custom name'} 。 |
+
+| 方法   | 说明   |
+| :------------------- | :------- | 
+| init  | 初始化 AgoraChatCallKit。 |
+| startCall  | 发起通话。 |
+| answerCall  | 接听通话。 |
+| setUserIdMap  | 设置声网 UID 映射与自定义用户 ID 之间的映射，格式为 {[uid1]: 'custom name', [uid2]: 'custom name'} 。 |
 
 回调：
-| 方法 | 说明 |
-| ------- | --------- |
-| onAddPerson | 多人通话点击邀请人按钮的回调。 |
-| onInvite | 收到通话邀请的回调。 |
-| onStateChange | 通话状态发生变化的回调。 |
+
+| 方法   | 说明   |
+| :------------------- | :------- | 
+| onAddPerson  | 多人通话点击邀请人按钮的回调。 |
+| onInvite  | 收到通话邀请的回调。 |
+| onStateChange  | 通话状态发生变化的回调。 |
+
 
 属性：
-| 属性 | 说明 |
-| ------ | ------ |
-| contactAvatar | 一对一通话时显示的头像。 |
-| groupAvatar | 多人通话时显示的头像。 |
 
+| 属性   | 说明   |
+| :------------------- | :------- | 
+| contactAvatar  | 一对一通话时显示的头像。 |
+| groupAvatar  | 多人通话时显示的头像。 |
 ### 示例项目
 
 为方便快速体验，我们在 GitHub 上提供了一个开源的 [AgoraChatCallKit](https://github.com/AgoraIO-Usecase/AgoraChat-CallKit-web/tree/master/demo) 示例项目，你可以下载体验，或查看源代码。
