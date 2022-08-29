@@ -20,7 +20,7 @@
 
 消息收发流程如下：
 
-1. 用户 A 发送一条消息到环信的消息服务器。
+1. 用户 A 发送一条消息到的消息服务器。
 2. 单聊时消息服务器发消息给用户 B，群聊时发消息给群内其他每个成员。
 3. 用户收到消息。
 
@@ -28,7 +28,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Agora Chat 入门](./agora_chat_get_started_web?platform=Web)。
+- 完成 SDK 初始化，详见 [即时通讯 IM 入门](./agora_chat_get_started_web?platform=Web)。
 - 了解 [使用限制](./agora_chat_limitation?platform=Web)。
 
 ## 实现方法
@@ -78,9 +78,9 @@ function sendPrivateText() {
 ```javascript
 // 使用 `addEventHandler` 监听回调事件
 conn.addEventHandler("eventName",{
-    // SDK 与环信服务器连接成功。
+    // SDK 与服务器连接成功。
     onConnected: function (message) {},
-    // SDK 与环信服务器断开连接。
+    // SDK 与服务器断开连接。
     onDisconnected: function (message) {},
     // 当前用户收到文本消息。
     onTextMessage: function (message) {},

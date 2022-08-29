@@ -19,7 +19,6 @@
 - 完成 SDK 初始化，详见 [Agora Chat 入门](./agora_chat_get_started_web?platform=Web)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=Web)。
 
-
 所有类型的 [定价方案](./agora_chat_plan) 都支持该功能，一旦在 [Agora 控制台](https://console.agora.io/) 中启用了聊天功能，就会默认启用 Reaction 功能。
 
 ## 实现方法
