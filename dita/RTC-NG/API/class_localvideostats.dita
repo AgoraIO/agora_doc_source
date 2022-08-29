@@ -219,51 +219,80 @@
       this.encodedBitrate,
       this.encodedFrameCount,
       this.codecType,
-      this.txPacketLossRate});
+      this.txPacketLossRate,
+      this.captureBrightnessLevel,
+      this.dualStreamEnabled});
 
   @JsonKey(name: 'uid')
   final int? uid;
+
   @JsonKey(name: 'sentBitrate')
   final int? sentBitrate;
+
   @JsonKey(name: 'sentFrameRate')
   final int? sentFrameRate;
+
   @JsonKey(name: 'captureFrameRate')
   final int? captureFrameRate;
+
   @JsonKey(name: 'captureFrameWidth')
   final int? captureFrameWidth;
+
   @JsonKey(name: 'captureFrameHeight')
   final int? captureFrameHeight;
+
   @JsonKey(name: 'regulatedCaptureFrameRate')
   final int? regulatedCaptureFrameRate;
+
   @JsonKey(name: 'regulatedCaptureFrameWidth')
   final int? regulatedCaptureFrameWidth;
+
   @JsonKey(name: 'regulatedCaptureFrameHeight')
   final int? regulatedCaptureFrameHeight;
+
   @JsonKey(name: 'encoderOutputFrameRate')
   final int? encoderOutputFrameRate;
+
   @JsonKey(name: 'encodedFrameWidth')
   final int? encodedFrameWidth;
+
   @JsonKey(name: 'encodedFrameHeight')
   final int? encodedFrameHeight;
+
   @JsonKey(name: 'rendererOutputFrameRate')
   final int? rendererOutputFrameRate;
+
   @JsonKey(name: 'targetBitrate')
   final int? targetBitrate;
+
   @JsonKey(name: 'targetFrameRate')
   final int? targetFrameRate;
+
   @JsonKey(name: 'qualityAdaptIndication')
   final QualityAdaptIndication? qualityAdaptIndication;
+
   @JsonKey(name: 'encodedBitrate')
   final int? encodedBitrate;
+
   @JsonKey(name: 'encodedFrameCount')
   final int? encodedFrameCount;
+
   @JsonKey(name: 'codecType')
   final VideoCodecType? codecType;
+
   @JsonKey(name: 'txPacketLossRate')
   final int? txPacketLossRate;
-  factory LocalVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'captureBrightnessLevel')
+  final CaptureBrightnessLevelType? captureBrightnessLevel;
+
+  @JsonKey(name: 'dualStreamEnabled')
+  final bool? dualStreamEnabled;
+
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalVideoStatsFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalVideoStatsToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
 }
 </codeblock>
             </p>
@@ -350,9 +379,13 @@
                     <note type="attention">不包含丢包后重传视频等的编码码率。</note></p>
                 </pd>
             </plentry>
-                <plentry>
+            <plentry>
                 <pt>encodedFrameHeight</pt>
                 <pd>视频编码高度（px）。</pd>
+            </plentry>
+            <plentry>
+                <pt>encodedFrameWeight</pt>
+                <pd>视频编码宽度（px）。</pd>
             </plentry>
             <plentry>
                 <pt>encodedFrameCount</pt>
