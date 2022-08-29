@@ -27,8 +27,8 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
 1. 申请证书签名请求 Certificate Signing Request (CSR) 文件。<a name="step1-1"></a>
      1. 在设备上打开 **Keychain Access** 应用，选择**Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority**。
      2. 在 **Certificate Assistant** 对话框中填写 **User Email Address**（电子邮件地址）和 **Common Name**（常用名称），选择 **Saved to disk**，点击**Continue**，添加存储路径保存文件。
-![](https://web-cdn.agora.io/docs-files/1642564150801)
- 3. 你会在该路径获取到一个名为 `CertificateSigningRequest.certSigningRequest` 的 CSR 文件。
+     ![](https://web-cdn.agora.io/docs-files/1642564150801)
+     3. 你会在该路径获取到一个名为 `CertificateSigningRequest.certSigningRequest` 的 CSR 文件。
 
 2.创建 App ID。<a name="step1-2"></a>
    1. 登录 [iOS Developer Center](https://developer.apple.com/cn/)，选择 **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** 。
@@ -60,7 +60,7 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
       - **Select Certificates**：选择[步骤 4](#step1-4)中生成的 `.p12` 文件。
       - **Select Devices**：选择待开发的设备。
       - **Provisioning Profile Name**：填写 Provisioning Profile 文件名称。
-     5. 确认信息，点击 `Download` 生成 Provisioning Profile 文件。
+   5. 确认信息，点击 `Download` 生成 Provisioning Profile 文件。
 
 ### 2.上传推送证书到控制台
 
