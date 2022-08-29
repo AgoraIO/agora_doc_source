@@ -62,33 +62,33 @@
                             <li>The audio module is disabled. The program is not complete.</li>
                             </ul></li>
                         <li><ph keyref="ERR_NOT_SUPPORTED" />(4):<apiname keyref="IRtcEngine" />  does not support the request. Possible reasons include the following:<ul>
-                            <li props="android">The  method is called on<xref keyref="setBeautyEffectOptions" /> devices running versions earlier than Android 5.0. Check the Android version.</li>
+                            <li props="android">The <xref keyref="setBeautyEffectOptions" /> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
                             <li>The built-in encryption mode is incorrect, or the SDK fails to load the external encryption library. Check the encryption mode setting, or reload the external encryption library.</li>
                             </ul></li>
                         <li><ph keyref="ERR_REFUSED" />(5): The request is rejected. Possible reasons include the following:<ul>
                             <li>The initialization of <apiname keyref="IRtcEngine" /> fails. Reinitialize the <apiname keyref="IRtcEngine" />.</li>
                             <li>The channel name is set as the empty string <codeph>""</codeph> when joining the channel. Reset the channel name.</li>
-                            <li>When the  method is<xref keyref="joinChannelEx" /> called to join multiple channels, the specified channel name is already in use. Reset the channel name.</li>
+                            <li>When the <xref keyref="joinChannelEx" /> method is called to join multiple channels, the specified channel name is already in use. Reset the channel name.</li>
                             </ul></li>
                         <li><ph keyref="ERR_BUFFER_TOO_SMALL" />(6): The buffer size is insufficient to store the returned data.</li>
-                        <li><ph keyref="ERR_NOT_INITIALIZED" />(7):<apiname keyref="IRtcEngine" /> A method is called before the initialization of . Ensure that the  object is initialized before using this<apiname keyref="IRtcEngine" /> method.</li>
+                        <li><ph keyref="ERR_NOT_INITIALIZED" />(7):<apiname keyref="IRtcEngine" /> A method is called before the initialization of . Ensure that the <apiname keyref="IRtcEngine" /> object is initialized before using this method.</li>
                         <li><ph keyref="ERR_INVALID_STATE" />(8): Invalid state.</li>
                         <li><ph keyref="ERR_NO_PERMISSION" />(9): Permission to access is not granted. Check whether your app has access to the audio and video device.</li>
                         <li><ph keyref="ERR_TIMEDOUT" />(10): A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result.</li>
                         <li><ph keyref="ERR_JOIN_CHANNEL_REJECTED" />(17): The request to join the channel is rejected. Possible reasons include the following:<ul>
-                            <li>The user is already in the channel. Agora recommends using the<xref keyref="onConnectionStateChanged" />  callback to get whether the user is in the channel. Do not call<apiname keyref="CONNECTION_STATE_DISCONNECTED" /> this method to join the channel unless you receive the (1) state.</li>
-                            <li>After calling<xref keyref="startEchoTest2" />  for the call test,<xref keyref="stopEchoTest" /> the user tries to join the channel without calling  to end the current test. To join a channel, the call test must<apiname keyref="stopEchoTest" /> be ended by calling .</li>
+                            <li>The user is already in the channel. Agora recommends using the <xref keyref="onConnectionStateChanged" /> callback to get whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
+                            <li>After calling <xref keyref="startEchoTest2" /> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest" /> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest" />.</li>
                             </ul></li>
                         <li><ph keyref="ERR_LEAVE_CHANNEL_REJECTED" />(18): Fails to leave the channel. Possible reasons include the following:<ul>
-                            <li><xref keyref="leaveChannel" />The user has left the channel before calling the  method. Stop calling this method to clear this error.</li>
-                            <li>The user calls the  method to leave the channel before joining<apiname keyref="leaveChannel" /> the channel. In this case, no extra operation is needed.</li>
+                            <li>The user has left the channel before calling the <xref keyref="leaveChannel" /> method. Stop calling this method to clear this error.</li>
+                            <li>The user calls the <apiname keyref="leaveChannel" /> method to leave the channel before joining the channel. In this case, no extra operation is needed.</li>
                             </ul></li>
                         <li><ph keyref="ERR_ALREADY_IN_USE" />(19): Resources are already in use.</li>
                         <li><ph keyref="ERR_ABORTED" />(20): The request is abandoned by the SDK, possibly because the request has been sent too frequently.</li>
                         <li><ph keyref="ERR_RESOURCE_LIMITED" />(22): The SDK fails to allocate resources because your app uses too many system resources or system resources are insufficient.</li>
                         <li><ph keyref="ERR_INVALID_APP_ID" />(101): The App ID is invalid. Rejoin the channel with a valid App ID.</li>
                         <li><ph keyref="ERR_INVALID_CHANNEL_NAME" />(102): The channel name is invalid. A possible reason is that the parameter's data type is incorrect. Please rejoin the channel with a valid channel name.</li>
-                        <li><ph keyref="ERR_NO_SERVER_RESOURCES" />(103): Fails to get server resources in the specified region. Try<apiname keyref="IRtcEngine" /> another region when initializing .</li>
+                        <li><ph keyref="ERR_NO_SERVER_RESOURCES" />(103): Fails to get server resources in the specified region. Try another region when initializing <apiname keyref="IRtcEngine" />.</li>
                         <li><ph keyref="ERR_TOKEN_EXPIRED" />(109): The current token has expired. Apply for a new token on the server and call<xref keyref="renewToken" /> .<dl outputclass="deprecated">
                             <dlentry>
                                 <dt>Deprecated:</dt>
@@ -98,7 +98,7 @@
                         </li>
                         <li><ph keyref="ERR_INVALID_TOKEN" />(110): Invalid token Typical reasons include the following:<ul>
                             <li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li>
-                            <li>The uid used to generate the token<codeph></codeph> is not the same as the uid used to join the channel<parmname></parmname>.</li>
+                            <li>The <codeph>uid</codeph> used to generate the token is not the same as the <parmname>uid</parmname> used to join the channel.</li>
                             </ul>
                             <dl>
                             <dlentry>
