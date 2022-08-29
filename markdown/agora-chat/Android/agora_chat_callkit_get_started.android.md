@@ -1,4 +1,4 @@
-# 实现一对一音视频通话
+# 实现音视频通话
 
 AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开源音视频 UI 库。该库可实现音视频通话功能，提升多种服务之间的同步。同时，用户在多个设备登录时能同步处理呼叫振铃，即当用户在一台设备上处理振铃后，其他设备自动停止振铃。
 
@@ -159,7 +159,9 @@ addCallkitListener();
      * \~chinese
      * 开始一对一通话。
      * 
-     * @param type 通话类型：音频通话为 {@link EaseCallType#SINGLE_VOICE_CALL}，视频通话为 {@link EaseCallType#SINGLE_VIDEO_CALL}。
+     * @param type 通话类型：
+     * - SINGLE_VOICE_CALL：音频通话；
+     * - SINGLE_VIDEO_CALL：视频通话。
      * @param user 被叫方的用户 ID，即 Agora Chat 用户 ID。该参数必填。
      * @param ext  通话邀请中的扩展信息。若不需要，可传入 `null`。
      */
@@ -168,7 +170,7 @@ addCallkitListener();
 
 下图展示发起一对一语音通话后的 UI 界面：
 
-![image](outgoing.png)
+<img src="https://web-cdn.agora.io/docs-files/1655258438574" style="zoom:50%;" />
 
 #### 多人音视频通话
 
@@ -179,7 +181,9 @@ addCallkitListener();
      * \~chinese
      * 邀请用户加入多人通话。
      * 
-     * @param type 通话类型：视频通话为 {@link EaseCallType#CONFERENCE_VIDEO_CALL}，音频通话为 {@link EaseCallType#CONFERENCE_VOICE_CALL}。
+     * @param type 通话类型：
+     * - CONFERENCE_VIDEO_CALL：视频通话；
+     * - CONFERENCE_VOICE_CALL：音频通话。
      * @param users 受邀用户的用户 ID 列表，即 Agora Chat 用户 ID 列表。
      * @param ext  通话邀请中的扩展信息。若不需要，可传入 `null`。
      */
@@ -203,7 +207,7 @@ addCallkitListener();
 
 如果被叫方在线且当前不在通话中，会弹出邀请通话界面，被叫可以选择接听或者拒绝。被叫振铃的界面如下：
 
-![image](incoming.png)
+<img src="https://web-cdn.agora.io/docs-files/1655258456953" style="zoom:50%;" />
 
 ### 多人通话过程中发起邀请
 

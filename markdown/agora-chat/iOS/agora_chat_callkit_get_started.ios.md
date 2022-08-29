@@ -1,4 +1,4 @@
-# 实现一对一音视频通话
+# 实现音视频通话
 
 AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开源音视频 UI 库。利用该库可实现音视频通话功能，提升多种服务之间的同步。同时，用户在多个设备登录时能同步处理呼叫振铃，即当用户在一台设备上处理振铃后，其他设备自动停止振铃。
 
@@ -169,7 +169,7 @@ config.enableIosCallKit = YES;
     ```
 
 发起通话后的 UI 界面如下：
-![image](outgoing.PNG)
+<img src="https://web-cdn.agora.io/docs-files/1655259327417" style="zoom:50%;" />
 
 ### 收到邀请
 
@@ -183,7 +183,7 @@ config.enableIosCallKit = YES;
 ```
 
 如果被叫方在线且并未处于通话过程中，将弹出通话页面，被叫用户可选择接听或者拒绝。如果启用了 iOS CallKit，将显示系统的通话页面。如果未启用，显示如下：
-![image](incoming.PNG)
+<img src="https://web-cdn.agora.io/docs-files/1655259340569" style="zoom:50%;" />
 
 
 ### 多人通话中间发起邀请
