@@ -61,7 +61,7 @@
                             <li>The user has not left the channel when the <xref keyref="rate" /> or <xref keyref="complain" /> method is called. Please check your code logic.</li>
                             <li>The audio module is disabled. The program is not complete.</li>
                             </ul></li>
-                        <li><ph keyref="ERR_NOT_SUPPORTED" />(4):<apiname keyref="IRtcEngine" />  does not support the request. Possible reasons include the following:<ul>
+                        <li><ph keyref="ERR_NOT_SUPPORTED" />(4): <apiname keyref="IRtcEngine" /> does not support the request. Possible reasons include the following:<ul>
                             <li props="android">The <xref keyref="setBeautyEffectOptions" /> method is called on devices running versions earlier than Android 5.0. Check the Android version.</li>
                             <li>The built-in encryption mode is incorrect, or the SDK fails to load the external encryption library. Check the encryption mode setting, or reload the external encryption library.</li>
                             </ul></li>
@@ -71,7 +71,7 @@
                             <li>When the <xref keyref="joinChannelEx" /> method is called to join multiple channels, the specified channel name is already in use. Reset the channel name.</li>
                             </ul></li>
                         <li><ph keyref="ERR_BUFFER_TOO_SMALL" />(6): The buffer size is insufficient to store the returned data.</li>
-                        <li><ph keyref="ERR_NOT_INITIALIZED" />(7):<apiname keyref="IRtcEngine" /> A method is called before the initialization of . Ensure that the <apiname keyref="IRtcEngine" /> object is initialized before using this method.</li>
+                        <li><ph keyref="ERR_NOT_INITIALIZED" />(7): A method is called before the initialization of <apiname keyref="IRtcEngine" />. Ensure that the <apiname keyref="IRtcEngine" /> object is initialized before using this method.</li>
                         <li><ph keyref="ERR_INVALID_STATE" />(8): Invalid state.</li>
                         <li><ph keyref="ERR_NO_PERMISSION" />(9): Permission to access is not granted. Check whether your app has access to the audio and video device.</li>
                         <li><ph keyref="ERR_TIMEDOUT" />(10): A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result.</li>
@@ -89,36 +89,36 @@
                         <li><ph keyref="ERR_INVALID_APP_ID" />(101): The App ID is invalid. Rejoin the channel with a valid App ID.</li>
                         <li><ph keyref="ERR_INVALID_CHANNEL_NAME" />(102): The channel name is invalid. A possible reason is that the parameter's data type is incorrect. Please rejoin the channel with a valid channel name.</li>
                         <li><ph keyref="ERR_NO_SERVER_RESOURCES" />(103): Fails to get server resources in the specified region. Try another region when initializing <apiname keyref="IRtcEngine" />.</li>
-                        <li><ph keyref="ERR_TOKEN_EXPIRED" />(109): The current token has expired. Apply for a new token on the server and call<xref keyref="renewToken" /> .<dl outputclass="deprecated">
+                        <li><ph keyref="ERR_TOKEN_EXPIRED" />(109): The current token has expired. Generate a new token on the server and call <xref keyref="renewToken" /> to pass the token.<dl outputclass="deprecated">
                             <dlentry>
                                 <dt>Deprecated:</dt>
-                                <dd>This enumerator is deprecated. Use <xref keyref="onConnectionStateChanged" />(9) in the  callback instead<apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" />.</dd>
+                                <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" />(9) in the <xref keyref="onConnectionStateChanged" /> callback instead.</dd>
                             </dlentry>
                             </dl>
                         </li>
-                        <li><ph keyref="ERR_INVALID_TOKEN" />(110): Invalid token Typical reasons include the following:<ul>
+                        <li><ph keyref="ERR_INVALID_TOKEN" />(110): Invalid token Possible reasons are as follows:<ul>
                             <li>App Certificate is enabled in Agora Console, but the code still uses App ID for authentication. Once App Certificate is enabled for a project, you must use token-based authentication.</li>
                             <li>The <codeph>uid</codeph> used to generate the token is not the same as the <parmname>uid</parmname> used to join the channel.</li>
                             </ul>
                             <dl>
                             <dlentry>
                                 <dt>Deprecated:</dt>
-                                <dd>This enumerator is deprecated. Use <xref keyref="onConnectionStateChanged" />(8) in the  callback instead<apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN" />.</dd>
+                                <dd>This enumerator is deprecated. Use <apiname keyref="CONNECTION_CHANGED_INVALID_TOKEN" />(8) in the <xref keyref="onConnectionStateChanged" /> callback instead.</dd>
                             </dlentry>
                             </dl>
                         </li>
                         <li><ph keyref="ERR_CONNECTION_INTERRUPTED" />(111): The network connection is interrupted. The SDK triggers this callback when it loses connection with the server for more than four seconds after the connection is established.</li>
                         <li><ph keyref="ERR_CONNECTION_LOST" />(112): The network connection is lost. Occurs when the SDK cannot reconnect to Agora's edge server 10 seconds after its connection to the server is interrupted.</li>
-                        <li><ph keyref="ERR_NOT_IN_CHANNEL" />(113):<xref keyref="sendStreamMessage" /> The user is not in the channel when calling the  method.</li>
-                        <li><ph keyref="ERR_SIZE_TOO_LARGE" />(114): The<apiname keyref="sendStreamMessage" /> data size exceeds 1 KB when calling the method.</li>
-                        <li><ph keyref="ERR_BITRATE_LIMIT" />(115): The<apiname keyref="sendStreamMessage" /> data bitrate exceeds 6 KB/s when calling the  method.</li>
-                        <li><ph keyref="ERR_TOO_MANY_DATA_STREAMS" />(116): More<xref keyref="createDataStream2" /> than five data streams are created when calling the  method.</li>
+                        <li><ph keyref="ERR_NOT_IN_CHANNEL" />(113): The user is not in the channel when calling the <xref keyref="sendStreamMessage" /> method.</li>
+                        <li><ph keyref="ERR_SIZE_TOO_LARGE" />(114): The data size exceeds 1 KB when calling the <apiname keyref="sendStreamMessage" /> method.</li>
+                        <li><ph keyref="ERR_BITRATE_LIMIT" />(115): The data bitrate exceeds 6 KB/s when calling the <apiname keyref="sendStreamMessage" /> method.</li>
+                        <li><ph keyref="ERR_TOO_MANY_DATA_STREAMS" />(116): More than five data streams are created when calling the <xref keyref="createDataStream2" /> method.</li>
                         <li><ph keyref="ERR_STREAM_MESSAGE_TIMEOUT" />(117): The data stream transmission times out.</li>
                         <li><ph keyref="ERR_SET_CLIENT_ROLE_NOT_AUTHORIZED" />(119): Switching roles fails; try rejoining the channel.</li>
                         <li><ph keyref="ERR_DECRYPTION_FAILED" />(120): Decryption fails. The user might have entered an incorrect password to join the channel. Check the entered password, or tell the user to try rejoining the channel.</li>
                         <li><ph keyref="ERR_INVALID_USER_ID" />(121): The user ID is invalid.</li>
                         <li><ph keyref="ERR_CLIENT_IS_BANNED_BY_SERVER" />(123): The user is banned by the server.</li>
-                        <li><ph keyref="ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH" /><ph>(130): The SDK does not support pushing encrypted streams to CDN. </ph><ph props="hide">Stream encryption is enabled when the user<xref keyref="addPublishStreamUrl" /> calls the  method.</ph></li>
+                        <li><ph keyref="ERR_ENCRYPTED_STREAM_NOT_ALLOWED_PUBLISH" /><ph>(130): The SDK does not support pushing encrypted streams to CDN. </ph><ph props="hide">Stream encryption is enabled when the user calls the <xref keyref="addPublishStreamUrl" /> method.</ph></li>
                         <li><ph keyref="ERR_INVALID_USER_ACCOUNT" />(134): The user account is invalid, possibly because it contains invalid parameters.</li>
                         <li><ph keyref="ERR_LOAD_MEDIA_ENGINE" />(1001): The SDK fails to load the media engine.</li>
                         <li><ph keyref="ERR_ADM_GENERAL_ERROR" />(1005): A general error occurs (no specified reason). Check whether the audio device is already in use by another app, or try rejoining the channel.</li>
