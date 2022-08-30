@@ -184,25 +184,45 @@
       this.captureMouseCursor,
       this.windowFocus,
       this.excludeWindowList,
-      this.excludeWindowCount});
+      this.excludeWindowCount,
+      this.highLightWidth,
+      this.highLightColor,
+      this.enableHighLight});
 
   @JsonKey(name: 'dimensions')
   final VideoDimensions? dimensions;
+
   @JsonKey(name: 'frameRate')
   final int? frameRate;
+
   @JsonKey(name: 'bitrate')
   final int? bitrate;
+
   @JsonKey(name: 'captureMouseCursor')
   final bool? captureMouseCursor;
+
   @JsonKey(name: 'windowFocus')
   final bool? windowFocus;
+
   @JsonKey(name: 'excludeWindowList')
-  final List&lt;int&gt;? excludeWindowList;
+  final List&lt;int>? excludeWindowList;
+
   @JsonKey(name: 'excludeWindowCount')
   final int? excludeWindowCount;
-  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'highLightWidth')
+  final int? highLightWidth;
+
+  @JsonKey(name: 'highLightColor')
+  final int? highLightColor;
+
+  @JsonKey(name: 'enableHighLight')
+  final bool? enableHighLight;
+
+  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic> json) =>
       _$ScreenCaptureParametersFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureParametersToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$ScreenCaptureParametersToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
@@ -215,7 +235,7 @@
             <plentry>
                 <pt props="mac cpp unity flutter electron rn">dimensions</pt>
                 <pd>
-                    <p><ph props="flutter">The maximum dimensions of encoding the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding resolution of the shared screen stream. </ph>See  for details. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.<xref keyref="VideoDimensions"/></p>
+                    <p><ph props="flutter">The maximum dimensions of encoding the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding resolution of the shared screen stream. </ph>See <xref keyref="VideoDimensions"/> for details. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
                     <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unity flutter">dimensions</parmname> is set to 1920 x 1080:<ul>
                     <li>If the value of the screen dimensions is lower than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
                     <li>If the value of the screen dimensions is higher than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 2000 x 1500, the SDK uses the maximum value under dimensions with the aspect ratio of the screen <parmname props="mac cpp unity flutter">dimension</parmname> (4:3) for encoding, that is, 1440 x 1080.</li>
@@ -255,7 +275,7 @@
             <plentry props="mac cpp electron unity flutter">
                 <pt props="mac">highLighted</pt>
                 <pt props="cpp electron unity flutter">enableHighLight</pt>
-                <pd><ph props="cpp electron unity flutter">(For macOS only) </ph><ph>Whether to place a border around the shared window or screen:</ph><ul>
+                <pd><ph props="cpp electron unity flutter">(For macOS only)</ph><ph>Whether to place a border around the shared window or screen:</ph><ul>
                     <li><codeph><ph keyref="true"/></codeph>: Place a border.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not place a border.</li>
                     </ul>
