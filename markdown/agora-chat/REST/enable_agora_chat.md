@@ -1,4 +1,4 @@
-使用 Agora 即时通讯前，你需要先在 [Agora 控制台](https://console.agora.io/#onboarding)开启并配置即时通讯服务。
+使用即时通讯 IM 前，你需要先在 [Agora 控制台](https://console.agora.io/#onboarding)开启并配置即时通讯服务。
 
 ## 前提条件
 
@@ -6,9 +6,9 @@
 
 - 有效的 [Agora 开发者账号](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=AllPlatforms#创建-agora-账号)。
 - 已启用的鉴权方式为 **APP ID + Token (推荐)** 的 [Agora 项目](https://docs.agora.io/cn/Agora]Platform/get_appid_token?platform=AllPlatforms#创建-agora-项目)。
-- 已订阅即时通讯套餐包，订阅方式参考[订阅即时通讯套餐包](./agora_chat_pricing?platform=All%20Platforms#订阅套餐包)。
+- 已订阅即时通讯套餐包，订阅方式参考 [订阅即时通讯套餐包](./agora_chat_pricing?platform=All%20Platforms#订阅套餐包)。
 
-## 开启即时通讯服务
+## 开启即时通讯 IM 服务
 
 按照以下步骤，在 Agora 控制台开启即时通讯服务：
 
@@ -34,14 +34,14 @@ Agora 控制台会给每个开启即时通讯服务的项目分配以下项目�
 
 - **AppKey**：Agora 即时通讯服务分配给每个 app 的唯一标识。规则为 ${OrgName}#{AppName}。
 
-- **数据中心**：针对不同的业务覆盖区域，Agora 提供多个数据中心选择。 目前包括以下区域：
+- **数据中心**：针对不同的业务覆盖区域，Agora 提供多个数据中心选择。目前包括以下区域：
 
   | 类型         | 名称                                        |
   | ------------ | ------------------------------------------- |
   | 国内数据中心 | 国内 1 区、国内 VIP 区。 |
   | 海外数据中心 | 新加坡 1 区、美东 1 区、德国 1 区。           |
 
-  <div class="alert note"> 升级套餐包后，数据中心不变。 </div>
+  <div class="alert note"> 国内的账号可以开通国内数据中心服务，若需开通海外数据中心服务请联系 [Agora 商务](mailto:sales@agora.io) 。升级套餐包后，数据中心不变。 </div>
 
 - **访问域名**：Agora 即时通讯服务分配的 WebSocket 和 RESTful API 请求地址域名。
 
