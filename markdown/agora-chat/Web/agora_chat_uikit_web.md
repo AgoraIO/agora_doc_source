@@ -11,7 +11,7 @@
 ![img](https://web-cdn.agora.io/docs-files/1643335864426)
 
 1. 客户端从你的应用服务器获取 token。
-2. 客户 A 和客户 B 登录 Agora Chat。
+2. 客户 A 和客户 B 登录 Agora 即时通讯。
 3. 客户端 A 向客户端 B 发送消息，消息被发送到 Agora 即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 ## 前提条件
@@ -27,9 +27,9 @@
   - Chrome：54 或以上
   - Safari：11 或以上
 
-- 有效的 [Agora 账户](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account)。
-- 启用 [聊天服务](https://docs.agora.io/en/agora-chat/enable_agora_chat?platform=Web#enable-the-agora-chat-service)。
-- 有效的 [App Key](https://docs.agora.io/en/agora-chat/enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) 和 [用户 token](https://docs.agora.io/en/agora-chat/generate_user_tokens?platform=Web)。
+- 有效的 [Agora 账户](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account)。
+- 启用 [聊天服务](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=Web#enable-the-agora-chat-service)。
+- 有效的 [App Key](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) 和 [用户 token](https://docs.agora.io/en/agora-chat/generate_user_tokens?platform=Web)。
 
 ## 项目设置
 
@@ -68,11 +68,12 @@
 2. 运行以下命令之一，将 CHAT UIKIT 添加到您的项目中。
 
 - 若利用 npm 安装，运行以下命令：
+
    ```shell
    npm install agora-chat-uikit --save
    ```
 
-   使用 yarn 添加 UIKit
+- 使用 yarn 安装，运行以下命令：
 
    ```shell
    yarn add agora-chat-uikit
@@ -82,14 +83,14 @@
 
 Web 即时通讯 IM UIKit 有两部分：
 
-- `EaseApp`, which contains the conversation list and applies to use cases where you want to quickly launch a real-time chat app.
-- `EaseChat`，其中包含一个对话框，并适用于大多数聊天用例，例如发送和接收消息，在UI上显示消息以及管理未读消息。
+- `EaseApp`，其中包含会话列表，并适用于大多数聊天用例，可快速搭建聊天应用。
+- `EaseChat`，其中包含一个对话框，并适用于大多数聊天用例，例如发送和接收消息，在 UI 上显示消息以及管理未读消息。
 
-This section introduces the steps you need to take to quickly implement one-to-one messaging with `EaseApp`.
+以下内容为介绍如何使用 `EaseApp` 搭建聊天界面。
 
-1. 导入`EaseApp`.
+1. 导入 `EaseApp`。
 
-   打开`my-app/src/App.js`，并用以下内容替换代码：
+   打开 `my-app/src/App.js`，并用以下内容替换代码：
 
    ```javascript
     // App.js
@@ -117,7 +118,7 @@ This section introduces the steps you need to take to quickly implement one-to-o
     export default App;
    ```
 
-2. 为对话设置布局。
+2. 为会话设置布局。
 
    打开 `my-app/src/App.js`，并用以下内容替换内容：
 
@@ -131,13 +132,13 @@ This section introduces the steps you need to take to quickly implement one-to-o
 
 ## 测试你的应用
 
-在您的终端中，运行以下命令启动该应用程序：
+在你的终端中，运行以下命令启动该应用程序：
 
 ```shell
 npm run start
 ```
 
-你可以在浏览器中查看应用程序启动。在发送消息之前，请参考 [添加联系人](https://docs.agora.io/en/agora-chat/manage_user_friend_web?platform=Web#manage-contacts)或[加入聊天组](https://docs.agora.io/en/agora-chat/agora_chat_group_web?platform=Web#join-and-leave-a-chat-group)以添加联系人或加入聊天组。
+你可以在浏览器中查看应用程序启动。在发送消息之前，请参考 [添加联系人](./agora_chat_contact_web?platform=Web#manage-contacts) 或 [加入聊天组](./agora_chat_group_web?platform=Web#join-and-leave-a-chat-group) 以添加联系人或加入群组。
 
 ## 下一步
 
@@ -189,22 +190,22 @@ import { EaseChat } from "agora-chat-uikit";
 
 `EaseChat` 提供以下自定义属性。你可以通过设置这些属性来自定义功能和布局。
 
-| 属性                   | 类型                  | 必需的 | 描述                                                         |
+| 属性                   | 类型                  | 是否必填 | 描述                                                         |
 | :--------------------- | :-------------------- | :----- | :----------------------------------------------------------- |
-| `appkey`               | 细绳                  | 是的   | 规则是`$(OrgName)#{AppName}`。                               |
-| `username`             | 细绳                  | 是的   | 用户标识。                                                   |
-| `agoraToken`           | 细绳                  | 是的   | The Agora token.                                             |
-| `to`                   | 细绳                  | 是的   | In one-to-one messaging, it is the user ID of the recipient; in group chat, it is the group ID. |
-| `showByselfAvatar`     | 布尔                  | 不     | 是否显示当前用户的化身。`true`： 是的（默认）`false`：否     |
-| `easeInputMenu`        | 细绳                  | 不     | The mode of the input menu.(Default) `all`: The complete mode.`noAudio`：没有音频。`noEmoji`：没有表情符号。`noAudioAndEmoji`: No audio or emoji.`onlyText`: Only text. |
-| `menuList`             | 大批                  | 不     | The extensions of the input box on the right panel. (Default) `menuList`: `[ {name:'Send a pic', value:'img'},{name:'Send a file', value:'file'}]` |
-| `handleMenuItem`       | function({item, key}) | 不     | The callback event triggered by clicking on the right panel of the input box. |
-| `successLoginCallback` | 功能（资源）          | 不     | 成功登录的回调事件。                                         |
-| `failCallback`         | function(err)         | 不     | The callback event for a failed method call.                 |
+| `appkey`               | String                 | 是  | 规则是 `$(OrgName)#{AppName}`。                               |
+| `username`             | String                 | 是  | 用户标识。                                                   |
+| `agoraToken`           | String                  | 是  | Agora token.                                             |
+| `to`                   | String                  | 是  | 消息接收方。单聊时为对方用户 ID，群聊时为群组 ID。 |
+| `showByselfAvatar`     | Bool                  | 否    | 是否显示当前用户的化身。<li>`true`： 是。<li>（默认）`false`：否。     |
+| `easeInputMenu`        | String                 | 否    | 输入菜单模式。<li>(Default) `all`: 完整模式。<li>`noAudio`：没有音频。<li>`noEmoji`：没有表情符号。<li>`noAudioAndEmoji`: 没有视频和表情符号。<li>`onlyText`: 只有文本消息。 |
+| `menuList`             | Array                 | 否    | 输入框右侧栏菜单扩展。 (默认) `menuList`: `[ {name:'发送图片', value:'img'},{name:'发送文件', value:'file'}]` |
+| `handleMenuItem`       | function({item, key}) | 否     | 在输入框中点击菜单栏。 |
+| `successLoginCallback` | function(资源）          | 否    | 成功登录的回调事件。                                         |
+| `failCallback`         | function(err)         | 否    | 方法调用失败的回调。                 |
 
-### 加入业务逻辑
+### 添加业务逻辑
 
-在你自己的业务逻辑中可以使用 CHAT UIKIT 提供的各种回调事件，如下所示：
+在你自己的业务逻辑使用 CHAT UIKIT 提供的各种回调事件，如下所示：
 
 1. 获取 SDK 实例
 
@@ -217,15 +218,15 @@ import { EaseChat } from "agora-chat-uikit";
    调用 `addEventHandler` 添加回调事件。
 
    ```javascript
-    // Use nameSpace to differentiate the different business logics. You can add multiple callback events according to your needs.。
+    // 用 `nameSpace` 定义不同的业务逻辑，可以根据自己的需求添加多个。
     WebIM.conn.addEventHandler('nameSpace'),{
         onOpend:()=>{},
         onTextMessage:()=>{},
         .... })
    ```
 
-Refer to [EventHandlerType](https://docs.agora.io/en/agora-chat/API Reference/im_ts/v1.0.5/modules/EventHandler.html?transId=4977acf0-08eb-11ed-a46a-e58831549a58) for the complete list of callback events you can add.
+参考 [EventHandlerType](https://docs.agora.io/cn/agora-chat/API Reference/im_ts/v1.0.5/modules/EventHandler.html?transId=4977acf0-08eb-11ed-a46a-e58831549a58) 了解所有回调事件。
 
 ## 参考
 
-Agora Chat在GitHub上提供了一个已集成Uikit的开源[Agorachat](https://github.com/AgoraIO-Usecase/AgoraChat-web)样本项目。
+Agora 即时通讯 IM 在 GitHub 上提供了一个已集成 Uikit 的开源 [Agorachat](https://github.com/AgoraIO-Usecase/AgoraChat-web) 样本项目。
