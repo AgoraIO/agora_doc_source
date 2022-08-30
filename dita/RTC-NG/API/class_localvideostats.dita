@@ -121,8 +121,7 @@
   txPacketLossRate?: number;
   
   captureBrightnessLevel?: CaptureBrightnessLevelType;
-  
-  dualStreamEnabled?: boolean;
+
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
@@ -195,8 +194,7 @@
   txPacketLossRate?: number;
   
   captureBrightnessLevel?: CaptureBrightnessLevelType;
-  
-  dualStreamEnabled?: boolean;
+
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
   const LocalVideoStats(
@@ -220,8 +218,7 @@
       this.encodedFrameCount,
       this.codecType,
       this.txPacketLossRate,
-      this.captureBrightnessLevel,
-      this.dualStreamEnabled});
+      this.captureBrightnessLevel});
 
   @JsonKey(name: 'uid')
   final int? uid;
@@ -285,9 +282,6 @@
 
   @JsonKey(name: 'captureBrightnessLevel')
   final CaptureBrightnessLevelType? captureBrightnessLevel;
-
-  @JsonKey(name: 'dualStreamEnabled')
-  final bool? dualStreamEnabled;
 
   factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalVideoStatsFromJson(json);
