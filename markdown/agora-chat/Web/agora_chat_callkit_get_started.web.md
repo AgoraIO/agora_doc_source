@@ -36,7 +36,7 @@ npm install AgoraChatCallKit
 2. 导入 AgoraChatCallKit。
 
 ```javascript
-import Callkit from 'calAgoraChatCallKitlkit'; // 包名还没确定
+import Callkit from 'chat-callkit'; 
 ```
 
 ## 实现音视频通话
