@@ -2,7 +2,7 @@
 
 ## 技术原理
 
-环信即时通讯 IM SDK 支持你通过调用 API 在项目中实现如下聊天室属性管理功能：
+即时通讯 IM SDK 支持你通过调用 API 在项目中实现如下聊天室属性管理功能：
 
 - `getChatRoomDetails` 获取聊天室详情；
 - `modifyChatRoom` 更新聊天室详情；
