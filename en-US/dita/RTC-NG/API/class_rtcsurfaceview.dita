@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcsurfaceview">
-    <title><ph keyref="RtcSurfaceView" /></title>
+    <title><ph keyref="RtcSurfaceView"/></title>
     <shortdesc id="short"><ph id="shortdesc">The RtcSurfaceView class.</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
@@ -9,6 +9,12 @@
             <ul>
             <li>Android: This class corresponds to the native SurfaceView.</li>
             <li>iOS: This class corresponds to the native UIView.</li>
-            </ul> </section>
+            </ul> 
+            <p>To ensure the rendering of the image, before calling this component, you should first call <xref keyref="enableVideo"/> and when: </p>
+            <ul>               
+                <li>Not in a channel: call <xref keyref="startPreview2"/> first.</li>
+                <li>In a channel: ensure capture is enabled.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>
