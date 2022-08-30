@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
     <title><ph keyref="EncodedVideoFrameInfo" /></title>
-    <shortdesc id="short">Information about externally encoded video frames.<ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Information about externally encoded video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -203,10 +203,9 @@
             frameType = VIDEO_FRAME_TYPE_NATIVE.VIDEO_FRAME_TYPE_BLANK_FRAME;
             rotation = VIDEO_ORIENTATION.VIDEO_ORIENTATION_0;
             trackId = 0;
-            renderTimeMs = 0;
+            captureTimeMs = 0;
             uid = 0;
             streamType = VIDEO_STREAM_TYPE.VIDEO_STREAM_HIGH;
-
         }
 
         public EncodedVideoFrameInfo(ref EncodedVideoFrameInfo rhs)
@@ -217,22 +216,32 @@
             framesPerSecond = rhs.framesPerSecond;
             frameType = rhs.frameType;
             rotation = rhs.rotation;
-            trackId = rhs.trackId; ;
-            renderTimeMs = rhs.renderTimeMs;
+            trackId = rhs.trackId;
+            captureTimeMs = rhs.captureTimeMs;
             uid = rhs.uid;
             streamType = rhs.streamType;
         }
+
         public VIDEO_CODEC_TYPE codecType { set; get; }
+
         public int width { set; get; }
+
         public int height { set; get; }
+
         public int framesPerSecond { set; get; }
+
         public VIDEO_FRAME_TYPE_NATIVE frameType { set; get; }
+
         public VIDEO_ORIENTATION rotation { set; get; }
+
         public int trackId { set; get; }
-        public int64_t renderTimeMs { set; get; }
+
+        public int64_t captureTimeMs { set; get; }
+
         public uint uid { set; get; }
+
         public VIDEO_STREAM_TYPE streamType { set; get; }
-    }</codeblock>
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class EncodedVideoFrameInfo {
 
   codecType?: VideoCodecType;
@@ -264,36 +273,44 @@
       this.frameType,
       this.rotation,
       this.trackId,
-      this.renderTimeMs,
-      this.internalSendTs,
+      this.captureTimeMs,
       this.uid,
       this.streamType});
 
   @JsonKey(name: 'codecType')
   final VideoCodecType? codecType;
+
   @JsonKey(name: 'width')
   final int? width;
+
   @JsonKey(name: 'height')
   final int? height;
+
   @JsonKey(name: 'framesPerSecond')
   final int? framesPerSecond;
+
   @JsonKey(name: 'frameType')
   final VideoFrameType? frameType;
+
   @JsonKey(name: 'rotation')
   final VideoOrientation? rotation;
+
   @JsonKey(name: 'trackId')
   final int? trackId;
-  @JsonKey(name: 'renderTimeMs')
-  final int? renderTimeMs;
-  @JsonKey(name: 'internalSendTs')
-  final int? internalSendTs;
+
+  @JsonKey(name: 'captureTimeMs')
+  final int? captureTimeMs;
+
   @JsonKey(name: 'uid')
   final int? uid;
+
   @JsonKey(name: 'streamType')
   final VideoStreamType? streamType;
-  factory EncodedVideoFrameInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  factory EncodedVideoFrameInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$EncodedVideoFrameInfoFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$EncodedVideoFrameInfoToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$EncodedVideoFrameInfoToJson(this);
 }</codeblock></p>
         </section>
         <section id="parameters">
@@ -349,13 +366,9 @@
                 <pd>Reserved for future use.</pd>
                 <pd>The track ID. Used in scenarios with multiple video tracks in the channel.</pd>
             </plentry>
-            <plentry props="android ios mac cpp unity">
+            <plentry>
                     <pt>captureTimeMs</pt>
                     <pd>The Unix timestamp (ms) for capturing the external encoded video frames.</pd>
-                </plentry>
-            <plentry props="unity">
-                <pt>renderTimeMs</pt>
-                <pd>The Unix timestamp (ms) for rendering externally encoded video frames.</pd>
             </plentry>
             <plentry>
                 <pt>uid</pt>
@@ -363,7 +376,7 @@
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd><ph>The type of video streams. </ph>See  for details.<ph props="apple cpp unity electron flutter rn"><xref keyref="VIDEO_STREAM_TYPE" /></ph></pd>
+                <pd><ph>The type of video streams. </ph><ph props="apple cpp unity electron flutter rn">See <xref keyref="VIDEO_STREAM_TYPE" /> for details.</ph></pd>
                 <pd props="android">
                     <ul>
                       <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
