@@ -1,4 +1,4 @@
-本页面提供即时通讯 IM Android SDK 的发版说明。
+本页面提供即时通讯 IM iOS SDK 的发版说明。
 
 ## v1.0.6
 
@@ -6,27 +6,25 @@ v1.0.6 于 2022 年 7 月 22 日发布。
 
 ### 新增特性
 
-- 支持使用 `ChatMessage` 中的 `isOnlineState` 标记消息是否为在线消息 。
-- 在 `Error` 中添加错误码 509 `MESSAGE_CURRENT_LIMITING`，表示群组消息发送已超出并发限制。
-- 在状态规范更新时在 `GroupChangeListener` 中添加 `onSpecificationChanged` 回调。
-- 在 `PushManager` 中添加 `bindDeviceToken` 方法用于绑定设备 token。
+- 支持使用 `AgoraChatMessage` 中的 `onlineState` 标记消息是否为在线消息。
+- 在 `AgoraChatError` 中添加错误码 509 `AGORAMESSAGECURRENTLIMITING`，表示群组消息发送已超出并发限制。
+- 在状态规范更新时在 `AgoraChatGroupManagerDelegate` 添加 `groupSpecificationDidUpdate` 回调。
+- 在 `AgoraChatPushManager` 中添加 `bindDeviceToken` 方法用于绑定设备 token。
 
 ### 优化
 
-- 改进了子区功能相关的方法和类。与 1.0.4 相比，此版本用 `ChatThread` 替换 `ChatThreadInfo`。
-- 在 `onInvitationReceived` 回调中增加了返回值 `groupName`。
-- 移除了 Android 层中的 CBC 和 EBC 加密算法。
+- 改进了子区功能相关的方法和类。与 1.0.4 相比，此版本用 `AgoraChatThread` 替换 `AgoraChatThreadInfo`。
+- 在 `groupInvitationDidReceive` 回调中增加了返回值 `aGroupName`。
 - 升级网络链接库。
 - 支持以远程地址作为附件发送消息。
 
 ### 修复
 
 - 获取到的 Reaction 对象为空。
-- 运行早期 Android 版本的设备无法加载数据库。
 
 ## v1.0.4
 
-v1.0.4 于 2022 年 5 月 17 日发布。
+v1.0.4 于 2022 年 5 月 15 日发布。
 
 ### 新增特性
 
@@ -38,15 +36,7 @@ v1.0.4 于 2022 年 5 月 17 日发布。
 
 - 用于检索服务器访问点的增强型 DNS 配置。
 - 改进了数据报告。
-- 更改了 `libsqlcipher` 的文件名，以避免在使用官方 AAR 时发生冲突。
-- 为 `ChatMessage` 中的 `ext` 属性添加了对双精度和浮点数据类型的支持。
 - 将 `openssl` 更改为 `boringssl`。
-- 将最低 API 级别更改为 21 (Android 5.0)。
-
-### 修复
-
-- 将应用上传到 Google Play 时报告由加密算法引起的问题。
-- 翻译 API 未生效。
 
 ## v1.0.3.1
 
@@ -58,31 +48,29 @@ v1.0.3 于 2022 年 4 月 19 日发布。
 
 ### 新增特性
 
-支持在线状态功能，可发布和订阅用户的在线状态。
+- 支持在线状态功能，可发布和订阅用户的在线状态。
+- 支持翻译。你可以在收件人的客户端上实现翻译，或在发件人的客户端上实现自动翻译。
 
 ### 优化
 
 - 缩短了发送消息的时间。
 - 提高了请求成功率。
-- 支持升级的 OPPO 推送（从 2.1.0 到 3.0.0）和 VIVO 推送（从 2.3.1 到 3.is 0.0.4_484）。
-
-### 修复
-
-修复了 PendingIntent，它在将应用程序上传到 Google Play 时会导致警告。
 
 ## v1.0.2
 
-v1.0.2 于 2022 年 2 月 22 日发布。
+v1.0.2 于 2022 年 2 月 23 日发布。
 
 ### 新增特性
 
-- 支持通过调用 `deleteConversationFromServer` 删除服务器上的对话。
-- 添加错误代码 221 `USER_NOT_ON_ROSTER`，当用户向非联系人的其他用户发送消息时报告该错误代码。
-- 支持使用 RESTful API 调用消息。
+- 支持删除服务器上的对话。
+- 支持用户 ID 登录多台设备时同步免打扰事件。
+- 支持发送和接收 PNG 格式的图像文件。
+- 添加错误代码 221 `EMErrorUserNotOnRoster`，当用户向非联系人的其他用户发送消息时报告该错误代码。
 
 ### 优化
 
-减少了在网络条件差的情况下准备发送消息的时间。
+- 减少了在网络条件差的情况下准备发送消息的时间。
+- 支持在 Swift 项目中调用 Objective-C 方法。
 
 ### 修复
 
@@ -114,6 +102,7 @@ v1.0.1 增加了以下功能：
 
 - 一些崩溃问题。
 - 数据库加密出现的问题。
+- 用户删除并重新安装聊天应用程序后，自动登录仍然启用。
 
 ### API 更改
 
@@ -141,11 +130,11 @@ v1.0.0 于 2021 年 12 月 6 日发布。
 - 提高登录速度。
 - 默认情况下仅使用 HTTPS 进行 REST 操作。
 - 优化 token 过期逻辑。
+- 不再在收到群组消息时检查用户是否是群组的成员。
 
 ### 修复
 
 此版本修复了以下问题：
 
-- 获取的历史消息不完整。
 - 在某些情况下会发生崩溃。
-- 显示消息的未读状态时出现问题。
+- token 到期的回调未准确触发。
