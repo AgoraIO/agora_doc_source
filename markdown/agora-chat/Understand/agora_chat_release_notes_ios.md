@@ -9,7 +9,7 @@ v1.0.6 于 2022 年 7 月 22 日发布。
 - 支持使用 `AgoraChatMessage` 中的 `onlineState` 标记消息是否为在线消息。
 - 在 `AgoraChatError` 中添加错误码 509 `AGORAMESSAGECURRENTLIMITING`，表示群组消息发送已超出并发限制。
 - 在状态规范更新时在 `AgoraChatGroupManagerDelegate` 添加 `groupSpecificationDidUpdate` 回调。
-- 在 `AgoraChatPushManager` 中添加 `bindDeviceToken`方法用于绑定设备 token。
+- 在 `AgoraChatPushManager` 中添加 `bindDeviceToken` 方法用于绑定设备 token。
 
 ### 优化
 
