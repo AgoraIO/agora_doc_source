@@ -19,7 +19,6 @@
 - 了解 [使用限制](./agora_chat_limitation?platform=Web)。
 - 了解即时通讯 IM 聊天室不同版本的数量限制，详见 [套餐包](./agora_chat_plan?platform=Web)。
 
-
 ## 实现方法
 
 ### 获取聊天室成员列表

@@ -116,9 +116,9 @@ App Transport Security Settings -> Allow Arbitrary Loads //开启网络服务。
 ```objective-c
 //chat-uikit 初始化。
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-    // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-    // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    // 使用此方法可选择配置 UIWindow `window` 并将其附加到提供的 UIWindowScene `scene`。
+    // 如果使用 storyboard，`window` 属性将自动初始化并附加到场景中。
+    // 该代理不一定代表连接场景或会话是新的 (请参阅 `application:configurationForConnectingSceneSession`)。
 
     AgoraChatOptions *options = [AgoraChatOptions optionsWithAppkey:@"41117440#383391"];
     options.enableConsoleLog = YES;
