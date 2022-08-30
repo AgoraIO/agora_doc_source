@@ -223,11 +223,11 @@ ChatClient.getInstance().init(this, options);
   <tr>
     <tr>
     <td rowspan="2">免打扰模式</td>
-    <td>SILENT_MODE_DURATION：在指定的持续时间内不接收推送通知。</td>
+    <td>SILENT_MODE_DURATION：在指定的时长内不接收推送通知。</td>
     <td>✓</td>
     <td>✓</td>
   <tr>
-    <td>SILENT_MODE_INTERVAL：在指定的时间范围内不接收推送通知。</td>
+    <td>SILENT_MODE_INTERVAL：在指定的时间段内不接收推送通知。</td>
     <td>✓</td>
     <td>✗</td>
   </tr>
@@ -242,9 +242,9 @@ ChatClient.getInstance().init(this, options);
 
 **免打扰模式**
 
-1. 你可以在 app 级别指定免打扰时长和免打扰时间范围。这两个时间段内你不会收到任何离线推送通知。
+1. 你可以在 app 级别指定免打扰时长和免打扰时间段。这两个时间段内你不会收到任何离线推送通知。
 
-2. 会话仅支持免打扰时长设置；免打扰时间范围的设置不生效。
+2. 会话仅支持免打扰时长设置；免打扰时间段的设置不生效。
 
 对于 app 和 app 中的所有会话，免打扰模式的设置优先于推送通知方式的设置。
 

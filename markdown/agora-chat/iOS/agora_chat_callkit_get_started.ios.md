@@ -311,7 +311,7 @@ AgoraChatCallUser *user = [AgoraChatCallUser userWithNickName:info.nickname imag
 
 ### 使用 RTC token 对用户进行身份验证
 
-为提高通信安全性，声网建议你在应用用户加入通话前使用 RTC  token 对其进行身份验证。为此，您需要确保[启用项目的主证书](https://docs.agora.io/cn/All/faq/appid_to_token)，并将 AgoraChatCallKit 中的 `enableRTCTokenValidate` 设置为 `YES`。
+为提高通信安全性，声网建议你在应用用户加入通话前使用 RTC  token 对其进行身份验证。为此，你需要确保[启用项目的主证书](https://docs.agora.io/cn/All/faq/appid_to_token)，并将 AgoraChatCallKit 中的 `enableRTCTokenValidate` 设置为 `YES`。
 
 ```Objective-C
 config.enableRTCTokenValidate = YES;  
