@@ -66,7 +66,7 @@
 
                         <ul>
                         <li>如成功恢复推流，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_RUNNING" />(2)。</li>
-                        <li>如服务器出错或 60 秒内未成功恢复，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE" />(4)。如果觉得 60 秒太长，也可以主动调用 <xref keyref="startRtmpStreamWithTranscoding" /> 和 <xref keyref="stopRtmpStream" /> 方法尝试重连。</li>
+                        <li>如服务器出错或 60 秒内未成功恢复，则进入状态 <ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE" />(4)。如果觉得 60 秒太长，也可以主动调用 <xref keyref="startRtmpStreamWithTranscoding"/>/<xref keyref="startRtmpStreamWithoutTranscoding"/> 和 <xref keyref="stopRtmpStream" /> 方法尝试重连。</li>
                         </ul> </li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_FAILURE" /> (4)：推流失败。失败后，你可以通过返回的错误码排查错误原因，也可以重新尝试推流。</li>
                     <li><ph keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING" /> (5)：SDK 正在与 Agora 推流服务器和 CDN 服务器断开连接。当你调用 <xref keyref="stopRtmpStream" /> 方法正常结束推流时，SDK 会依次报告推流状态为 <apiname keyref="RTMP_STREAM_PUBLISH_STATE_DISCONNECTING" />、<apiname keyref="RTMP_STREAM_PUBLISH_STATE_IDLE" />。</li>
