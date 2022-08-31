@@ -6,13 +6,7 @@
 
 ## 技术原理
 
-下图展示客户端发送和接收单聊消息的工作流程：
-
-![img](https://web-cdn.agora.io/docs-files/1643335864426)
-
-1. 客户端从你的 App Server 获得 token。
-2. 客户端 A 和客户端 B 登录 Agora Chat。
-3. 客户端 A 向客户端 B 发送消息，消息发送到 Agora Chat 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
+~7aac3300-785d-11ec-bcb4-b56a01c83d2e~
 
 ## 前提条件
 
@@ -402,7 +396,7 @@
                     LogUtils.showLog(tv_log, "ConnectionListener onTokenWillExpire");
                 }
             };
-            // 活动销毁时，调用 removeConnectionListener(connectionListener) when the activity is destroyed
+            // 活动销毁时，调用 removeConnectionListener(connectionListener)
             ChatClient.getInstance().addConnectionListener(connectionListener);
         }
    
@@ -633,7 +627,7 @@
 
 2. 添加日志类 LogUtils 和权限管理器 PermissionsManager。
 
-   为了更快速地进行故障排除，本文使用 `LogUtils` 日志类。在 `app/java/io.agora.agorachatquickstart/` 中，创建 `utils` 文件夹。在该文件夹中，创建一个 `.java`文件，命名为 `LogUtils`，然后将以下代码复制到该文件中。
+   为了更快速地进行故障排除，本文使用 `LogUtils` 日志类。在 `app/java/io.agora.agorachatquickstart/` 中，创建 `utils` 文件夹。在该文件夹中，创建一个名为 `LogUtils` 的 `.java`文件，然后将以下代码复制到该文件中。
 
    ```java
     package io.agora.chatuikitquickstart.utils;
@@ -707,7 +701,7 @@
     }
    ```
 
-   当你的应用启动时，检查是否已授予将实时聊天插入应用所需的权限。在该 `utils` 文件中，创建 名为 `PermissionsManager` 的 `.java` 文件，并将以下代码复制到该文件中。
+   当你的应用启动时，检查是否已授予将实时聊天插入应用所需的权限。在该 `utils` 文件中，创建名为 `PermissionsManager` 的 `.java` 文件，并将以下代码复制到该文件中。
 
    ```java
     package io.agora.chatuikitquickstart.utils;
@@ -803,7 +797,7 @@
 
 ## 更多操作
 
-出于演示目的，Agora Chat 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好是自行部署 token 服务器，使用自己的 [App Key](https://docs.agora.io/en/agora-chat/.enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project)生成 token，并在客户端获取 token 登录 Agora。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](https://docs.agora.io/cn/agora-chat/generate_user_tokens?platform=All Platforms)。
+出于演示目的，Agora Chat 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好是自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat)生成 token，并在客户端获取 token 登录 Agora。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](./generate_user_tokens)。
 
 ## 参考
 
