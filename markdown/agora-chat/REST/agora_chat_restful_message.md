@@ -102,7 +102,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `filename` | String | 图片名称。                                                                                                                                                | 是                                                                      |
 | `secret`   | String | 图片访问密钥，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                              | 如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
 | `size`     | JSON   | 图片尺寸，单位为像素，包含以下字段：<li>`height`：图片高度<li>`width`：图片宽度                                                                           | 是                                                                      |
-| `url`      | String | 图片 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为文件 ID，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
+| `url`      | String | 图片 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<li>`uuid` 为文件 ID，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
 
 ##### 语音消息
 
@@ -111,18 +111,18 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `filename` | String | 语音文件的名称。                                                                                                                                              | 是                                                                      |
 | `secret`   | String | 语音文件访问密钥，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                              | 如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
 | `Length`   | Int    | 语音文件时长，单位为秒。                                                                                                                                      | 是                                                                      |
-| `url`      | String | 语音文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为文件 ID，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
+| `url`      | String | 语音文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<li>`uuid` 为文件 ID，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
 
 ##### 视频消息
 
 | 字段           | 类型   | 描述                                                                                                                                                                         | 是否必填                                                                      |
 | :------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
-| `thumb`        | String | 视频缩略图 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为视频缩略图唯一标识，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                            |
+| `thumb`        | String | 视频缩略图 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<li>`uuid` 为视频缩略图唯一标识，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                            |
 | `length`       | Number | 视频时长。单位为秒。                                                                                                                                                         | 是                                                                            |
 | `secret`       | String | 视频文件访问密钥，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                                             | 如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。   |
 | `file_length`  | Long   | 视频文件大小。单位为字节。                                                                                                                                                   | 是                                                                            |
 | `thumb_secret` | String | 视频缩略图访问密钥，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                                         | 如果缩略图文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
-| `url`          | String | 视频文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。                  | 是                                                                            |
+| `url`          | String | 视频文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<li>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。                  | 是                                                                            |
 
 ##### 文件消息
 
@@ -130,7 +130,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------- |
 | `filename` | String | 文件名称。                                                                                                                                              | 是                                                                          |
 | `secret`   | String | 文件访问密钥，成功上传文件后，从 [文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                               | 如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
-| `url`      | String | 文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                          |
+| `url`      | String | 文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<li>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                          |
 ##### 位置消息
 
 | 字段   | 类型   | 描述                       | 是否必填 |
@@ -151,7 +151,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :------------ | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `customEvent` | String             | 用户自定义的事件类型。长度在 32 个字符内。支持的字符集如下：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"-", "\_", "/", "." | 否       |
 | `customExts`  | Map<String,String> | 自定义事件属性。最多包含 16 个元素。                                                                                                                   | 否       |
-| `from`        | String             | 消息发送方的用户 ID。不可为空。<br>如果不在请求 body 中传入该字段，则默认消息发送方用户 ID为 `admin`。                                                   | 是       |
+| `from`        | String             | 消息发送方的用户 ID。不可为空。<li>如果不在请求 body 中传入该字段，则默认消息发送方用户 ID为 `admin`。                                                   | 是       |
 | `ext`         | JSON               | 自定义扩展属性。不可为空。                                                                                                                             | 否       |
 | `type`        | String             | 消息类型。自定义消息为 `custom`。                                                                                                                      | 是       |
 
@@ -163,7 +163,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 
 | 字段   | 类型 | 描述                                                                                                                                                                         |
 | :----- | :--- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data` | JSON | 返回数据详情。该字段的值为包含接收方用户 ID 和 发送的消息的 ID 的键值对。<br/>例如 "user2": "1029457500870543736"，表示向 user2 发送了消息 ID 为1029457500870543736 的消息。 |
+| `data` | JSON | 返回数据详情。该字段的值为包含接收方用户 ID 和 发送的消息的 ID 的键值对。<li>例如 "user2": "1029457500870543736"，表示向 user2 发送了消息 ID 为1029457500870543736 的消息。 |
 
 其他字段及说明详见[公共参数](#param)。
 
@@ -433,7 +433,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 
 | 参数   | 类型 | 描述                                                                                                                                                                                                      |
 | :----- | :--- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data` | JSON | 返回数据详情。该字段的值为包含群组 ID 和 发送的消息的 ID 的键值对。<br/>例如 "184524748161025": "1029544257947437432"，表示在 ID 为 184524748161025 的群组中发送了消息 ID 为 1029544257947437432 的消息。 |
+| `data` | JSON | 返回数据详情。该字段的值为包含群组 ID 和 发送的消息的 ID 的键值对。<li>例如 "184524748161025": "1029544257947437432"，表示在 ID 为 184524748161025 的群组中发送了消息 ID 为 1029544257947437432 的消息。 |
 
 其他参数及说明详见[公共参数](#param)。
 
@@ -703,7 +703,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 
 | 参数   | 类型 | 描述                                                                                                                                                                                                          |
 | :----- | :--- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `data` | JSON | 返回数据详情。该字段的值为包含聊天室 ID 和 发送的消息的 ID 的键值对。<br/>例如 "185145305923585": "1029545553039460728"，表示在 ID 为 184524748161025 的聊天室中发送了消息 ID 为 1029545553039460728 的消息。 |
+| `data` | JSON | 返回数据详情。该字段的值为包含聊天室 ID 和 发送的消息的 ID 的键值对。<li>例如 "185145305923585": "1029545553039460728"，表示在 ID 为 184524748161025 的聊天室中发送了消息 ID 为 1029545553039460728 的消息。 |
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
@@ -974,9 +974,9 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 
 | 字段                    | 类型   | 描述                                                                                                                  |
 | :---------------------- | :----- | :-------------------------------------------------------------------------------------------------------------------- |
-| `entities.uuid`         | String | 文件 ID，即时通讯服务分配给该文件的唯一标识符。<br>你需要自行保存该 `uuid`，以便 [发送文件消息](#sendmessage)时使用。 |
+| `entities.uuid`         | String | 文件 ID，即时通讯服务分配给该文件的唯一标识符。<li>你需要自行保存该 `uuid`，以便 [发送文件消息](#sendmessage)时使用。 |
 | `entities.type`         | String | 消息类型。文件类型为 `file`。                                                                                         |
-| `entities.share-secret` | String | 文件访问密钥。<br>你需要自行保存 `share-secret`，以便[下载文件](#download)时使用。                                    |
+| `entities.share-secret` | String | 文件访问密钥。<li>你需要自行保存 `share-secret`，以便[下载文件](#download)时使用。                                    |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -1149,7 +1149,7 @@ GET https://{HOST}/{org_name}/{app_name}/chatmessages/${time}
 
 | 参数   | 类型   | 描述                                                                                                                                                                                  | 是否必填 |
 | :----- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `time` | String | 历史消息起始时间。UTC 时间，使用 ISO8601 标准，格式为 `yyyyMMddHH`。<br>例如 `time` 为` 2018112717`，则表示查询 2018 年 11 月 27 日 17 时至 2018 年 11 月 27 日 18 时期间的历史消息。 | 是       |
+| `time` | String | 历史消息起始时间。UTC 时间，使用 ISO8601 标准，格式为 `yyyyMMddHH`。<li>例如 `time` 为` 2018112717`，则表示查询 2018 年 11 月 27 日 17 时至 2018 年 11 月 27 日 18 时期间的历史消息。 | 是       |
 
 其他参数及说明详见 [公共参数](#param)。
 
@@ -1274,7 +1274,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------ | :----- | :-------------------------------------------------------------------------------- |
 | `file_length` | Number | 图片附件大小，单位为字节。                                                        |
 | `filename`    | String | 包含图片格式后缀的图片名称。                                                      |
-| `secret`      | String | 图片文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `secret`      | String | 图片文件访问密钥。<li>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `size`        | Number | 图片的尺寸。单位为像素。<li>`height`：图片高度<li>`width`：图片宽度               |
 | `type`        | String | 消息类型。图片消息为 `img`。                                                      |
 | `url`         | String | 图片 URL 地址。                                                                   |
@@ -1333,7 +1333,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------ | :----- | :-------------------------------------------------------------------------------- |
 | `file_length` | Long   | 语音附件大小。单位为字节。                                                        |
 | `filename`    | String | 带文件格式后缀的语音文件名称。                                                    |
-| `secret`      | String | 语音文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `secret`      | String | 语音文件访问密钥。<li>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `length`      | Int    | 语音时长。单位为秒。                                                              |
 | `type`        | String | 消息类型。语音消息为 `audio`。                                                    |
 | `url`         | String | 语音文件 URL 地址。                                                               |
@@ -1363,11 +1363,11 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------- | :----- | :---------------------------------------------------------------------------------- |
 | `file_length`  | Number | 视频附件大小。单位为字节。                                                          |
 | `filename`     | String | 带文件格式后缀的视频文件名称。                                                      |
-| `secret`       | String | 视频文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。   |
+| `secret`       | String | 视频文件访问密钥。<li>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。   |
 | `length`       | Number | 视频时长。单位为秒。                                                                |
 | `size`         | JSON   | 视频缩略图尺寸。单位为像素。<li>`width`：视频缩略图宽度<li>`height`：视频缩略图高度 |
 | `thumb`        | String | 视频缩略图 URL 地址。                                                               |
-| `thumb_secret` | String | 缩略图文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `thumb_secret` | String | 缩略图文件访问密钥。<li>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `type`         | String | 消息类型。视频消息为 `video`。                                                      |
 | `url`          | String | 视频文件 URL 地址。你可以访问该 URL 下载视频文件。                                  |
 
@@ -1402,7 +1402,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------ | :----- | :---------------------------------------------------------------------------- |
 | `file_length` | Number | 文件大小。单位为字节。                                                        |
 | `filename`    | String | 带文件格式后缀的文件名称。                                                    |
-| `secret`      | String | 文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `secret`      | String | 文件访问密钥。<li>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `type`        | String | 消息类型。文件消息为 `file`。                                                 |
 | `url`         | String | 文件的 URL 地址。你可以访问该 URL 下载历史消息文件。                          |
 
@@ -1475,7 +1475,6 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 应用管理员可撤回发送的消息。默认可撤回发出 2 分钟内的消息，如需调整请联系 [support@agora.io](mailto:support@agora.io)。
 
-
 ### HTTP 请求
 
 ```http
@@ -1493,7 +1492,7 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 | 参数        | 类型   | 描述                                                                                                                                                                                                                      | 是否必填 |
 | :---------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
 | `msg_id`    | String | 要撤回消息的消息 ID。                                                                                                                                                                                                     | 是       |
-| `to`        | String | 撤回消息的接收方。<li>单聊为接收方用户 ID；<li>群聊为群组 ID；<li>聊天室聊天为聊天室 ID。<br/> 若不传入该参数，请求失败。                                                                                     | 是       |
+| `to`        | String | 撤回消息的接收方。<li>单聊为接收方用户 ID；<li>群聊为群组 ID；<li>聊天室聊天为聊天室 ID。<li>若不传入该参数，请求失败。                                                                                     | 是       |
 | `chat_type` | String | 撤回消息的会话类型：<li>`chat`：单聊；<li>`groupchat`：群聊 ；<li>`chatroom`：聊天室 。                                                                                                                       | 是       |
 | `from`      | String | 消息撤回方的用户 ID。若不传该参数，默认为 `admin`。                                                                                                                                                                       | 否       |
 | `force`     | Bool   | 是否为强制撤回：<li>`true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](https://docs-im.easemob.com/ccim/limitation#消息存储时长限制)；<li>`false`：否，不支持撤回超过服务器存储时间的消息。 | 是       |
@@ -1607,7 +1606,7 @@ DELETE https://{host}/{orgName}/{appName}/users/{userName}/user_channel
 | 参数          | 类型   | 描述                                                               | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------------- | :------- |
 | `channel`     | String | 要删除的会话 ID。                                                  | 是       |
-| `type`        | String | 会话类型。<li>`chat`：单聊会话；<br/> -`groupchat`：群聊会话。 | 是       |
+| `type`        | String | 会话类型。<li>`chat`：单聊会话；<li>`groupchat`：群聊会话。 | 是       |
 | `delete_roam` | Bool   | 是否删除服务端消息。<li>`true`：是；<li>`false`：否。      | 是       |
 
 ### HTTP 响应
