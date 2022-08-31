@@ -1402,7 +1402,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------ | :----- | :---------------------------------------------------------------------------- |
 | `file_length` | Number | 文件大小。单位为字节。                                                        |
 | `filename`    | String | 带文件格式后缀的文件名称。                                                    |
-| `secret`      | String | 文件访问密钥。<li>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `secret`      | String | 文件访问密钥。<br/>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `type`        | String | 消息类型。文件消息为 `file`。                                                 |
 | `url`         | String | 文件的 URL 地址。你可以访问该 URL 下载历史消息文件。                          |
 
