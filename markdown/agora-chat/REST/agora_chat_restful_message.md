@@ -81,9 +81,9 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :------------ | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `from`        | String | 消息发送方的用户 ID。若不传入该字段，服务器默认设置为管理员，即 “admin”；若传入字段但值为空字符串 (“”)，请求失败。                                                                                                           | 否       |
 | `to`          | List   | 消息接收方的用户 ID 数组。每次可发送的接收方用户上限为 600 人，即 600 条消息。每分钟最多可向 6000 个用户发送信息。                                                                                                           | 是       |
-| `type`        | String | 消息类型：<br/> - `txt`：文本消息；<br/> - `img`：图片消息；<br/> - `audio`：语音消息；<br/> - `video`：视频消息；<br/> - `file`：文件消息；<br/> - `loc`：位置消息；<br/> - `cmd`：透传消息；<br/> - `custom`：自定义消息。 | 是       |
+| `type`        | String | 消息类型：<li>`txt`：文本消息；<li>`img`：图片消息；<li>`audio`：语音消息；<li>`video`：视频消息；<li>`file`：文件消息；<li>`loc`：位置消息；<li>`cmd`：透传消息；<li>`custom`：自定义消息。 | 是       |
 | `body`        | JSON   | 消息内容。对于不同消息类型 ，body 包含的字段不同，详情见下表。                                                                                                                                                               | 是       |
-| `sync_device` | Bool   | 消息发送成功后，是否将消息同步到发送方。<br/> - `true`：是；<br/> - （默认）`false`：否。                                                                                                                                    | 否       |
+| `sync_device` | Bool   | 消息发送成功后，是否将消息同步到发送方。<li>`true`：是；<li>（默认）`false`：否。                                                                                                                                    | 否       |
 | `routetype`   | String | 若传入该参数，其值为 “ROUTE_ONLINE”，表示只有接收方在线时，消息才能成功发送；若接收方离线，消息发送失败。若不传入该字段，接收方离线时，消息也能成功发送。                                                                    | 否       |
 | `ext`         | JSON   | 消息支持扩展字段，可添加自定义信息。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义显示](#自定义显示) 和 [Android 推送字段说明](#自定义显示)。                                                                         | 否       |
 
@@ -956,7 +956,7 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 | :---------------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `Content-Type`    | String | 内容类型。请填 `multipart/form-data`。上传文件会自动填充这个头。                                                                                                                  | 否       |
 | `Authorization`   | String | `Bearer ${YourToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。                                                                                          | 是       |
-| `restrict-access` | Bool   | 是否限制访问该文件：<br/> - `true` ：是。用户需要通过响应 body 中获取的文件访问密钥（share-secret）才能下载该文件。<br/> - `false` ：否。表示不限制访问。用户可以直接下载该文件。 | 否       |
+| `restrict-access` | Bool   | 是否限制访问该文件：<li>`true` ：是。用户需要通过响应 body 中获取的文件访问密钥（share-secret）才能下载该文件。<li>`false` ：否。表示不限制访问。用户可以直接下载该文件。 | 否       |
 
 #### 请求 body
 
@@ -1493,10 +1493,10 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 | 参数        | 类型   | 描述                                                                                                                                                                                                                      | 是否必填 |
 | :---------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
 | `msg_id`    | String | 要撤回消息的消息 ID。                                                                                                                                                                                                     | 是       |
-| `to`        | String | 撤回消息的接收方。<br/> - 单聊为接收方用户 ID；<br/> - 群聊为群组 ID；<br/> - 聊天室聊天为聊天室 ID。<br/> 若不传入该参数，请求失败。                                                                                     | 是       |
-| `chat_type` | String | 撤回消息的会话类型：<br/> - `chat`：单聊；<br/> - `groupchat`：群聊 ；<br/> - `chatroom`：聊天室 。                                                                                                                       | 是       |
+| `to`        | String | 撤回消息的接收方。<li>单聊为接收方用户 ID；<li>群聊为群组 ID；<li>聊天室聊天为聊天室 ID。<br/> 若不传入该参数，请求失败。                                                                                     | 是       |
+| `chat_type` | String | 撤回消息的会话类型：<li>`chat`：单聊；<li>`groupchat`：群聊 ；<li>`chatroom`：聊天室 。                                                                                                                       | 是       |
 | `from`      | String | 消息撤回方的用户 ID。若不传该参数，默认为 `admin`。                                                                                                                                                                       | 否       |
-| `force`     | Bool   | 是否为强制撤回：<br/> - `true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](https://docs-im.easemob.com/ccim/limitation#消息存储时长限制)；<br/> - `false`：否，不支持撤回超过服务器存储时间的消息。 | 是       |
+| `force`     | Bool   | 是否为强制撤回：<li>`true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](https://docs-im.easemob.com/ccim/limitation#消息存储时长限制)；<li>`false`：否，不支持撤回超过服务器存储时间的消息。 | 是       |
 
 ### HTTP 响应
 
@@ -1509,8 +1509,8 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 | `msg_id`   | String | 需要撤回的消息 ID。                                                                               |
 | `recalled` | String | 消息撤回结果，成功是 `yes`。                                                                      |
 | `from`     | String | 消息撤回方。                                                                                      |
-| `to`       | String | 撤回消息的送达方。<br/> - 单聊为送达方用户 ID；<br/> - 群聊为群组 ID。                            |
-| `chattype` | String | 撤回消息的会话类型：<br/> - `chat`：单聊；<br/> - `groupchat`：群聊；<br/> - `chatroom`：聊天室。 |
+| `to`       | String | 撤回消息的送达方。<li>单聊为送达方用户 ID；<li>群聊为群组 ID。                            |
+| `chattype` | String | 撤回消息的会话类型：<li>`chat`：单聊；<li>`groupchat`：群聊；<li>`chatroom`：聊天室。 |
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
@@ -1607,8 +1607,8 @@ DELETE https://{host}/{orgName}/{appName}/users/{userName}/user_channel
 | 参数          | 类型   | 描述                                                               | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------------- | :------- |
 | `channel`     | String | 要删除的会话 ID。                                                  | 是       |
-| `type`        | String | 会话类型。<br/> - `chat`：单聊会话；<br/> -`groupchat`：群聊会话。 | 是       |
-| `delete_roam` | Bool   | 是否删除服务端消息。<br/> - `true`：是；<br/> - `false`：否。      | 是       |
+| `type`        | String | 会话类型。<li>`chat`：单聊会话；<br/> -`groupchat`：群聊会话。 | 是       |
+| `delete_roam` | Bool   | 是否删除服务端消息。<li>`true`：是；<li>`false`：否。      | 是       |
 
 ### HTTP 响应
 
@@ -1675,11 +1675,11 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `from`          | String | 消息发送方的用户 ID。                                                                                                                                                                                                        | 是       |
 | `target`        | String | 消息接受方的用户 ID。                                                                                                                                                                                                        | 是       |
-| `type`          | String | 消息类型：<br/> - `txt`：文本消息；<br/> - `img`：图片消息；<br/> - `audio`：语音消息；<br/> - `video`：视频消息；<br/> - `file`：文件消息；<br/> - `loc`：位置消息；<br/> - `cmd`：透传消息；<br/> - `custom`：自定义消息。 | 是       |
+| `type`          | String | 消息类型：<li>`txt`：文本消息；<li>`img`：图片消息；<li>`audio`：语音消息；<li>`video`：视频消息；<li>`file`：文件消息；<li>`loc`：位置消息；<li>`cmd`：透传消息；<li>`custom`：自定义消息。 | 是       |
 | `body`          | JSON   | 消息内容。                                                                                                                                                                                                                   | 是       |
-| `is_ack_read`   | Bool   | 是否设置消息为已读。<br/> - `true`：是；<br/> - `false`：否。                                                                                                                                                                | 否       |
+| `is_ack_read`   | Bool   | 是否设置消息为已读。<li>`true`：是；<li>`false`：否。                                                                                                                                                                | 否       |
 | `msg_timestamp` | Long   | 导入的消息需要设置的时间戳。单位为毫秒。                                                                                                                                                                                     | 否       |
-| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<br/> - `true`：是；<br/> - `false`：否。<br/> - `默认`： false。                                                                                                                            | 否       |
+| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<li>`true`：是；<li>`false`：否。<li>`默认`： false。                                                                                                                            | 否       |
 
 与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](https://docs-im.easemob.com/ccim/rest/message#body_字段说明)。
 
@@ -1778,11 +1778,11 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `from`          | String | 消息发送方的用户 ID。                                                                                                                                                                                                        | 是       |
 | `target`        | String | 群 ID。                                                                                                                                                                                                                      | 是       |
-| `type`          | String | 消息类型：<br/> - `txt`：文本消息；<br/> - `img`：图片消息；<br/> - `audio`：语音消息；<br/> - `video`：视频消息；<br/> - `file`：文件消息；<br/> - `loc`：位置消息；<br/> - `cmd`：透传消息；<br/> - `custom`：自定义消息。 | 是       |
+| `type`          | String | 消息类型：<li>`txt`：文本消息；<li>`img`：图片消息；<li>`audio`：语音消息；<li>`video`：视频消息；<li>`file`：文件消息；<li>`loc`：位置消息；<li>`cmd`：透传消息；<li>`custom`：自定义消息。 | 是       |
 | `body`          | JSON   | 消息内容。                                                                                                                                                                                                                   | 是       |
-| `is_ack_read`   | Bool   | 是否设置消息为已读。<br/> - `true`：是；<br/> - `false`：否。                                                                                                                                                                | 否       |
+| `is_ack_read`   | Bool   | 是否设置消息为已读。<li>`true`：是；<li>`false`：否。                                                                                                                                                                | 否       |
 | `msg_timestamp` | Long   | 导入的消息需要设置的时间戳。单位为毫秒。                                                                                                                                                                                     | 否       |
-| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<br/> - `true`：是；<br/> - （默认）`false`：否。                                                                                                                                            | 否       |
+| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<li>`true`：是；<li>（默认）`false`：否。                                                                                                                                            | 否       |
 
 与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](https://docs-im.easemob.com/ccim/rest/message#body_字段说明)。
 
