@@ -1253,7 +1253,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `msg`  | String | 消息内容。                       |
 | `type` | String | 消息类型，文本消息类型为 `txt`。 |
 
-示例
+示例如下：
 
 ```json
 {
@@ -1279,7 +1279,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `type`        | String | 消息类型。图片消息为 `img`。                                                      |
 | `url`         | String | 图片 URL 地址。                                                                   |
 
-示例
+示例如下：
 
 ```json
 {
@@ -1310,7 +1310,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `lng`  | Number | 所在位置的经度。             |
 | `type` | String | 消息类型。位置消息为 `loc`。 |
 
-示例
+示例如下：
 
 ```json
 {
@@ -1338,7 +1338,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `type`        | String | 消息类型。语音消息为 `audio`。                                                    |
 | `url`         | String | 语音文件 URL 地址。                                                               |
 
-示例：
+示例如下：
 
 ```json
 {
@@ -1406,7 +1406,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `type`        | String | 消息类型。文件消息为 `file`。                                                 |
 | `url`         | String | 文件的 URL 地址。你可以访问该 URL 下载历史消息文件。                          |
 
-示例：
+示例如下：
 
 ```json
 {
@@ -1431,7 +1431,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `action` | String | 自定义请求方式。             |
 | `type`   | String | 消息类型。透传消息为 `cmd`。 |
 
-示例：
+示例如下：
 
 ```json
 {
@@ -1454,7 +1454,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `customEvent` | String | 自定义事件类型。                                 |
 | `type`        | String | 消息类型。自定义消息为 `custom`。                |
 
-自定义类型消息格式示例：
+自定义类型消息格式示例如下：
 
 ```json
 {
