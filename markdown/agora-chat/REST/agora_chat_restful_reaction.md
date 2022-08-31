@@ -306,7 +306,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail
 | `reactionId`        | String | Reaction  ID。                                                        |
 | `reaction`          | String | 表情 ID，与客户端一致。同请求参数中 “message”。              |
 | `count`             | Number | 添加该 Reaction 的用户人数。                                 |
-| `state`             | Bool   | 当前请求用户是否添加过该 Reaction。 <br/> - `true`：是；<br/> - `false`：否。 |
+| `state`             | Bool   | 当前请求用户是否添加过该 Reaction。 <li>`true`：是；<li>`false`：否。 |
 | `userList`          | Array  | 追加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。 |
 | `cursor`            | String | 分页获取时使用，传入游标后便从游标起始的地方进行查询，类似于数据库 limit 1,5 中 1 的作用，可以理解为页码。 |
 

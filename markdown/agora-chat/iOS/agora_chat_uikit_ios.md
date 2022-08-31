@@ -1,4 +1,4 @@
-本文介绍如何将 Agora 即时通讯 IM UIKit  应用在项目中并快速搭建出会话页面。
+本文介绍如何将即时通讯 IM UIKit  应用在项目中并快速搭建出会话页面。
 
 ## 技术原理
 
@@ -7,14 +7,14 @@
 ~7aac3300-785d-11ec-bcb4-b56a01c83d2e~
 
 1. 客户端从你的 App Server 获得 token。
-2. 客户端 A 和客户端 B 登录 Agora Chat。
-3. 客户端 A 向客户端 B 发送消息，消息发送到 Agora Chat 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
+2. 客户端 A 和客户端 B 登录即时通讯 IM 。
+3. 客户端 A 向客户端 B 发送消息，消息发送到即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 ## 前提条件
 
 - Xcode，最好是最新版本；
 - iOS 11 及以上版本；
-- 有效的 Agora Chat 开发者账号;
+- 有效的即时通讯 IM 开发者账号;
 - 安装 Cocoapods 工具。
 
 ## 操作步骤
@@ -76,7 +76,7 @@ path 指向本地 `chat-uikit.podspec` 文件所在目录。
    pod install
    ```
 
-   现在，项目中成功添加了 Agora 即时通讯 IM Uikit。
+   现在，项目中成功添加了即时通讯 IM Uikit。
 
 ### 3.添加权限
 
@@ -105,7 +105,7 @@ App Transport Security Settings -> Allow Arbitrary Loads //开启网络服务。
 //导入头文件。
 #import <chat-uikit/EaseChatKit.h>
 #import "AgoraLoginViewController.h" //登录页面。
-#import <AgoraChat/AgoraChat.h> //Agora 即时通讯 IM SDK。
+#import <AgoraChat/AgoraChat.h> //即时通讯 IM SDK。
 ```
 
 在本示例中，你可以使用默认 App Key（41117440#383391）进行体验，正式开发环境需注册和使用你的 [App Key](https://docs.agora.io/cn/AgoraPlatform/sign_in_and_sign_up)。
@@ -134,9 +134,9 @@ App Transport Security Settings -> Allow Arbitrary Loads //开启网络服务。
 }
 ```
 
-#### 4.2 登录 Agora 即时通讯 IM SDK
+#### 4.2 登录即时通讯 IM SDK
 
-加载会话页面之前须先登录到 Agora 即时通讯 IM SDK。登录页面实现可自行实现或参考 `chatuikitquickstart` 工程 -> `AgoraLoginViewController.m` 文件登录页面实现。
+加载会话页面之前须先登录到即时通讯 IM SDK。登录页面实现可自行实现或参考 `chatuikitquickstart` 工程 -> `AgoraLoginViewController.m` 文件登录页面实现。
 
 `chatuikitquickstart` 工程地址：[quickStart](https://github.com/easemob/chat-api-examples/tree/main/Chat-iOS)
 
@@ -152,7 +152,7 @@ App Transport Security Settings -> Allow Arbitrary Loads //开启网络服务。
 
    ```objective-c
    #import "AgoraChatHttpRequest.h" //请求 Appserver 的工具类。
-   #import <AgoraChat/AgoraChat.h> //Agora 即时通讯 IM SDK。
+   #import <AgoraChat/AgoraChat.h> //即时通讯 IM SDK。
    ```
 
 5. 在 `AgoraLoginViewController.m` 文件中按需调用如下注册代码逻辑进行注册：
@@ -198,10 +198,10 @@ App Transport Security Settings -> Allow Arbitrary Loads //开启网络服务。
                    NSString *token = [responsedict objectForKey:@"accessToken"];
                    NSString *loginName = [responsedict objectForKey:@"chatUserName"];
                    if (token && token.length > 0) {
-                       // 登录 Agora Chat SDK。
+                       // 登录即时通讯 IM SDK。
                        [[AgoraChatClient sharedClient] loginWithUsername:[loginName lowercaseString] agoraToken:token completion:^(NSString *aUsername, AgoraChatError *aError) {
                            if (!aError) {
-                             //登录 Agora Chat SDK Success，跳转到会话页面 ViewController。
+                             //登录即时通讯 IM SDK Success，跳转到会话页面 ViewController。
                              ViewController *chatsVC = [[ViewController alloc] init];
        											chatsVC.modalPresentationStyle = 0;
        											[self.navigationController pushViewController:chatsVC animated:YES];

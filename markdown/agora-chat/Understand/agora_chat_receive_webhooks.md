@@ -1,14 +1,14 @@
-Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用设置 HTTP 回调后，当指定事件发生时，Agora 即时通讯服务器会以 HTTP POST 请求的形式向你的应用服务器发送通知。其中正文为 JSON 格式的字符串，字符集为 UTF-8。
+即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用设置 HTTP 回调后，当指定事件发生时，即时通讯服务器会以 HTTP POST 请求的形式向你的应用服务器发送通知。其中正文为 JSON 格式的字符串，字符集为 UTF-8。
 
-本文介绍 Agora 即时通讯支持的发送后回调事件。
+本文介绍即时通讯支持的发送后回调事件。
 
 ## 用户登录登出事件
 
-当即时通讯 app 中有用户登录登出时，Agora 服务端会向你的应用服务器发送回调事件，通知你当前的操作。
+当即时通讯 app 中有用户登录登出时，服务端会向你的应用服务器发送回调事件，通知你当前的操作。
 
 ### 用户登录
 
-当本地有用户登录时，Agora 即时通讯服务会向你的应用服务器发送回调事件，示例如下：
+当本地有用户登录时，即时通讯服务会向你的应用服务器发送回调事件，示例如下：
 
 ```json
 {
@@ -30,19 +30,19 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。|
 | `reason` | Object | 触发回调的原因。`login` 表示用户登录。|
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。|
 | `os` | String | 设备类型，指设备的操作系统。包含 `ios`、`android`、`linux`、`win` 及 `other`。|
 | `ip` | String | 用户登录的 IP 地址。|
-| `host` | String | Agora 即时通讯服务分配的 RESTful API 请求地址域名。|
-| `appkey` | String | Agora 即时通讯服务分配给每个 app 的唯一标识。|
+| `host` | String |即时通讯服务分配的 RESTful API 请求地址域名。|
+| `appkey` | String |即时通讯服务分配给每个 app 的唯一标识。|
 | `user` | String | 登录用户的识别号。该字段由 `{appKey}/{OS}_{deviceId}` 组成。|
 | `version` | String | SDK 版本号。|
-| `timestamp` | Long | 登录请求到 Agora 即时通讯服务器的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | 登录请求到即时通讯服务器的 Unix 时间戳，单位为 ms。|
 | `status` | String | 用户当前状态。`online` 表示该用户在线。|
 
 ### 用户登出
 
-当本地有用户登出时，Agora 即时通讯服务会向你的应用服务器发送回调事件，示例如下：
+当本地有用户登出时，即时通讯服务会向你的应用服务器发送回调事件，示例如下：
 
 ```json
 {
@@ -64,19 +64,19 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 uuid 为随机生成。|
 | `reason` | Object | 触发回调的原因。`logout` 表示用户登出。|
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。|
 | `os` | String | 设备类型，指设备的操作系统。包含 `ios`、`android`、`linux`、`win` 及 `other`。|
 | `ip` | String | 用户登出的 IP 地址。|
-| `host` | String | Agora 即时通讯服务分配的 RESTful API 请求地址域名。|
-| `appkey` | String | Agora 即时通讯服务分配给每个 app 的唯一标识。|
+| `host` | String |即时通讯服务分配的 RESTful API 请求地址域名。|
+| `appkey` | String |即时通讯服务分配给每个 app 的唯一标识。|
 | `user` | String | 登出用户的识别号。该字段由 `{appKey}/{OS}_{deviceId}` 组成。|
 | `version` | String | SDK 版本号。|
-| `timestamp` | Long | 登出请求到 Agora 即时通讯服务器的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | 登出请求到即时通讯服务器的 Unix 时间戳，单位为 ms。|
 | `status` | String | 用户在线状态。`offline` 表示该用户已下线。|
 
 ### 用户因被其他设备踢掉而登出
 
-当本地有用户因被其他设备踢掉而登出时，Agora 即时通讯服务会向你的应用服务器发送回调事件，示例如下：
+当本地有用户因被其他设备踢掉而登出时，即时通讯服务会向你的应用服务器发送回调事件，示例如下：
 
 ```json
 {
@@ -97,20 +97,20 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。|
 | `reason` | Object | 触发回调的原因。`replaced` 表示用户由于被其他设备踢掉而登出。|
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。|
 | `os` | String | 设备类型，指设备的操作系统。包含 `ios`、`android`、`linux`、`win` 及 `other`。|
 | `ip` | String | 用户登出的 IP 地址。|
-| `host` | String | Agora 即时通讯服务分配的 RESTful API 请求地址域名。|
-| `appkey` | String | Agora 即时通讯服务分配给每个 app 的唯一标识。|
+| `host` | String |即时通讯服务分配的 RESTful API 请求地址域名。|
+| `appkey` | String |即时通讯服务分配给每个 app 的唯一标识。|
 | `user` | String | 登出用户的识别号。该字段由 {appKey}/{OS}_{deviceId} 组成。|
 | `version` | String | SDK 版本号。|
-| `timestamp` | Long | 登出请求到 Agora 即时通讯服务器的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long | 登出请求到即时通讯服务器的 Unix 时间戳，单位为 ms。|
 | `status` | String | 用户在线状态。`offline` 表示该用户已下线。|
 
 
 ## 发送消息事件
 
-当即时通讯 app 中有用户发送消息时，无论是单聊、群聊、聊天室，Agora 即时通讯服务均会向你的应用服务端发送回调事件。示例如下：
+当即时通讯 app 中有用户发送消息时，无论是单聊、群聊、聊天室，即时通讯服务均会向你的应用服务端发送回调事件。示例如下：
 
 ```json
 {
@@ -134,7 +134,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | -- | -- | -- |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long |即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `chat_type` | String | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li></ul> |
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
@@ -142,13 +142,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `msg_id` | String | 该消息回调的 ID，与用户发送消息时的 `msg_id` 一致。|
 | `payload` | Object | 消息回调事件的详细内容。根据用户在单聊、群聊、聊天室中发送的消息类型，回调事件中的 `payload` 包含的字段不同，具体示例及参数解释详见下文。|
 | `securityVersion` | String | 预留参数。 |
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
-| `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
-| `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。|
+| `appkey`          | String |即时通讯服务分配给每个 app 的唯一标识。              |
+| `host`            | String |分配的 RESTful API 请求地址域名。  |
 
 ### 文字消息
 
-当用户在单聊、群聊或聊天室中发送文字消息时，Agora 即时通讯服务会向你应用的服务器发送回调事件，其中 `payload` 示例如下：
+当用户在单聊、群聊或聊天室中发送文字消息时，即时通讯服务会向你应用的服务器发送回调事件，其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -173,7 +173,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 图片消息
 
-当用户在单聊、群聊或聊天室发送图片消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
+当用户在单聊、群聊或聊天室发送图片消息时，即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -210,7 +210,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 语音消息
 
-当用户在单聊、群聊或聊天室中发送语音消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
+当用户在单聊、群聊或聊天室中发送语音消息时，即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -242,7 +242,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 视频消息
 
-当用户在单聊、群聊或聊天室中发送视频消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
+当用户在单聊、群聊或聊天室中发送视频消息时，即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -283,7 +283,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 位置消息
 
-当用户在单聊、群聊或聊天室中发送位置消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
+当用户在单聊、群聊或聊天室中发送位置消息时，即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -311,7 +311,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 透传消息
 
-当用户在单聊、群聊或聊天室中发送透传消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
+当用户在单聊、群聊或聊天室中发送透传消息时，即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -335,7 +335,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 自定义消息
 
-当用户在单聊、群聊或聊天室中发送自定义消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
+当用户在单聊、群聊或聊天室中发送自定义消息时，即时通讯服务会向你的应用服务器发送回调事件，其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -361,7 +361,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ## 撤回消息事件
 
-当 Agora 即时通讯 app 中有用户在单聊、群聊或聊天室中撤回消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件。示例如下：
+当即时通讯 app 中有用户在单聊、群聊或聊天室中撤回消息时，即时通讯服务会向你的应用服务器发送回调事件。示例如下：
 
 ```json
 {
@@ -389,7 +389,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | --- | --- | --- |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 uuid 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long |即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `chat_type` | String | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li></ul> |
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
@@ -398,13 +398,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
 | `payload` | Object | 消息回调事件的内容结构体。包含如下字段：<ul><li>`ext`: 消息的扩展字段。对于撤回消息，该字段为空。</li><li>`ack_message_id`: 要撤回的消息 ID。与 `recall_id` 一致。</li><li>`bodies`: 该回调的主体内容。对于撤回消息，该字段为空。</ul> |
 | `securityVersion` | String | 预留参数。 |
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 MD5(`callId` + `secret` + `timestamp`)，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
-| `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
-| `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。格式为 MD5(`callId` + `secret` + `timestamp`)，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。|
+| `appkey`          | String |即时通讯服务分配给每个 app 的唯一标识。              |
+| `host`            | String |分配的 RESTful API 请求地址域名。  |
 
 ## 群组与聊天室事件
 
-当即时通讯 app 中有用户进行群组或聊天室操作时，Agora 即时通讯服务会向你的应用服务器发送回调事件。示例如下：
+当即时通讯 app 中有用户进行群组或聊天室操作时，即时通讯服务会向你的应用服务器发送回调事件。示例如下：
 
 ```json
 {
@@ -429,23 +429,23 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `chat_type` | String | 事件类型。`muc` 表示群组或聊天室。 |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long |即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `group_id` | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。|
 | `from` | String | 消息的发送方。|
 | `to`  | String | 消息的接收方。 |
 | `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
 | `payload` | Object | 回调事件的内容结构体。包含如下字段：<ul><li>`muc_id`: 该事件所在的群组或聊天室在服务器的唯一标识，格式为 `{appkey}_{group_ID}@conference.easemob.com`。</li><li>`reason`: (非必需) 当前操作的详细信息。各操作的详细信息详见下文。</li><li>`is_chatroom`: 该事件是否发生在聊天室<ul><li>`true`: 是</li><li>`false`: 否，该事件发生在群组</li></ul><li>`operation`: 当前操作。各群组或聊天室的操作详见下文。</li><li>`status`: 当前操作状态。包含如下字段：<ul><li>`description`: 该操作失败的原因描述</li><li>`error_code`: 操作失败对应的错误码</li></ul> |
 | `securityVersion` | String | 预留参数。 |
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
-| `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
-| `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。|
+| `appkey`          | String |即时通讯服务分配给每个 app 的唯一标识。              |
+| `host`            | String |分配的 RESTful API 请求地址域名。  |
 
 
 ### 创建群组或聊天室
 
 <div class="alert note">该回调事件需要在开通多设备服务后才会触发，以通知另外的设备该用户已创建群组或聊天室。</div>
 
-当用户创建群组或聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户创建群组或聊天室时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -466,7 +466,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 删除群组或聊天室
 
-当用户删除群组或聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户删除群组或聊天室时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -486,7 +486,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 用户申请加入群组
 
-当用户申请加入群组时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户申请加入群组时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -509,7 +509,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 同意用户加入群组
 
-当本地用户同意其他用户加入群组时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当本地用户同意其他用户加入群组时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -530,7 +530,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 邀请用户加入群组
 
-当本地用户邀请其他用户进入群组时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当本地用户邀请其他用户进入群组时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -547,12 +547,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `reason` 为邀请入群的信息。
 - `operation` 为当前操作，即 `invite`。
 
 ### 受邀用户同意加入群组
 
-当受邀用户同意本地用户的进群邀请后，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当受邀用户同意本地用户的进群邀请后，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -572,7 +573,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 受邀用户拒绝加入群组
 
-当受邀用户拒绝本地用户的进群邀请时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当受邀用户拒绝本地用户的进群邀请时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -592,7 +593,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 将用户踢出群聊或聊天室
 
-当用户将其他成员踢出群组或聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户将其他成员踢出群组或聊天室时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -612,7 +613,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 添加成员至黑名单
 
-当用户将其他成员添加至群组或聊天室黑名单时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户将其他成员添加至群组或聊天室黑名单时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -632,7 +633,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 将成员从黑名单中移除
 
-当用户将其他成员从群组或聊天室黑名单中移除时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户将其他成员从群组或聊天室黑名单中移除时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -652,7 +653,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 修改群组或聊天室信息
 
-当用户修改群组或聊天室信息时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户修改群组或聊天室信息时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -672,7 +673,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 屏蔽群组或聊天室消息
 
-当用户屏蔽群组或聊天室消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户屏蔽群组或聊天室消息时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -691,7 +692,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 取消屏幕群组或聊天室消息
 
-当用户取消屏蔽群组或聊天室消息时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户取消屏蔽群组或聊天室消息时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -711,7 +712,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 加入群组或聊天室
 
-当用户加入群组或聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户加入群组或聊天室时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -731,7 +732,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 离开群组或聊天室
 
-当用户主动离开聊天室时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户主动离开聊天室时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -749,7 +750,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 其中 `operation` 为当前操作，即 `leave`。
 
-当用户自愿或非自愿离开群组或聊天室时，Agora 即时通讯服务会向你的应用服务器发送离开的结果。其中 `payload` 示例如下：
+当用户自愿或非自愿离开群组或聊天室时，即时通讯服务会向你的应用服务器发送离开的结果。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -769,7 +770,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 转让群主或所有者权限
 
-当用户作为群主或聊天室所有者转让权限时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户作为群主或聊天室所有者转让权限时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -789,7 +790,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 添加群组或聊天室管理员
 
-当用户添加群组或聊天室管理员时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户添加群组或聊天室管理员时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -810,7 +811,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 删除群组或聊天室管理员
 
-当用户删除群组或聊天室管理员时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户删除群组或聊天室管理员时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -831,7 +832,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 禁言群组或聊天室成员
 
-当用户禁言群组或聊天室成员时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户禁言群组或聊天室成员时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -853,7 +854,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 解除群组或聊天室成员禁言
 
-当用户取消群组或聊天室成员禁言时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户取消群组或聊天室成员禁言时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -874,7 +875,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 更新群组或聊天室公告
 
-当用户更新群组或聊天室公告时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户更新群组或聊天室公告时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -892,12 +893,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `reason` 为群公告或聊天室公告内容。
 - `operation` 为当前操作，即 `update_announcement`。
 
 ### 删除群组或聊天室公告
 
-当用户删除群组或聊天室公告时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户删除群组或聊天室公告时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -915,12 +917,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `reason` 为删除后的群公告，即为空。
 - `operation` 为当前操作，即 `delete_announcement`。
 
 ### 上传群组共享文件
 
-当用户上传群组共享文件时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户上传群组共享文件时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -946,17 +949,20 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `reason` 中包含上传群共享文件的详情，包含如下字段：
-    - `file_id`: 文件 ID。
-    - `file_name`: 文件名。
-    - `file_owner`: 文件所有者，即上传文件的用户。
-    - `file_size`: 文件大小，单位为字节（Byte）。
-    - `created`: 文件创建的 Unix 时间戳，单位为 ms。
+
+  - `file_id`: 文件 ID。
+  - `file_name`: 文件名。
+  - `file_owner`: 文件所有者，即上传文件的用户。
+  - `file_size`: 文件大小，单位为字节（Byte）。
+  - `created`: 文件创建的 Unix 时间戳，单位为 ms。
+
 - `operation` 为当前操作，即 `upload_file`。
 
 ### 删除群组共享文件
 
-当用户删除群组共享文件时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户删除群组共享文件时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -974,12 +980,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `reason` 为删除的共享文件 ID，与上传群文件时的 `file_id` 一致。
 - `operation` 为当前操作，即 `delete_file`。
 
 ### 添加用户进群组或聊天室白名单
 
-当用户添加其他成员进群组或聊天室白名单时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户添加其他成员进群组或聊天室白名单时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -999,7 +1006,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 将用户移出群组或聊天室白名单
 
-当用户将其他成员从群组或聊天室白名单中移出时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户将其他成员从群组或聊天室白名单中移出时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1019,7 +1026,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 群组或聊天室全局禁言
 
-当用户将群组或聊天室全局禁言时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户将群组或聊天室全局禁言时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1039,7 +1046,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 解除群组或聊天室全局禁言
 
-当用户解除群组或聊天室全局禁言时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户解除群组或聊天室全局禁言时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1059,7 +1066,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ## 好友关系事件
 
-当即时通讯 app 中有用户进行好友关系操作时，Agora 即时通讯服务会向你的应用服务器发送回调事件。示例如下：
+当即时通讯 app 中有用户进行好友关系操作时，即时通讯服务会向你的应用服务器发送回调事件。示例如下：
 
 ```json
 {
@@ -1084,18 +1091,18 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | `chat_type` | String | 事件类型。`roster` 表示好友关系。 |
 | `callId` | String | 回调 ID。是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
 | `eventType` | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | Long | Agora 即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
+| `timestamp` | Long |即时通讯服务器接收到此消息的 Unix 时间戳，单位为 ms。|
 | `from` | String | 发起好友操作的用户。|
 | `to`  | String | 被进行好友操作的用户。 |
 | `msg_id` | String | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。|
 | `payload` | Object | 消息回调事件的内容结构体。各回调事件包含的 `payload` 详情见下文。 |
-| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。|
-| `appkey`          | String | Agora 即时通讯服务分配给每个 app 的唯一标识。              |
-| `host`            | String | Agora 分配的 RESTful API 请求地址域名。  |
+| `security` | String | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。该签名使用 MD5 算法对 `{callId} + {secret} + {timestamp}` 进行加密，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。|
+| `appkey`          | String |即时通讯服务分配给每个 app 的唯一标识。              |
+| `host`            | String |分配的 RESTful API 请求地址域名。  |
 
 ### 添加好友
 
-当用户添加好友时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户添加好友时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1109,7 +1116,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 删除好友
 
-当用户删除好友时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户删除好友时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1120,12 +1127,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `roster_ver` 为好友列表的版本号。
 - `operation` 为当前操作，即 `remove`。
 
 ### 同意好友申请
 
-当用户同意了其他用户的好友申请时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户同意了其他用户的好友申请时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1136,12 +1144,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `roster_ver` 为好友列表版本号。
 - `operation` 为当前操作，即 `accept`。
 
 ### 拒绝好友申请
 
-当用户拒绝了其他用户的好友申请时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户拒绝了其他用户的好友申请时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1152,12 +1161,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `roster_ver` 为好友列表版本号。
 - `operation` 为当前操作，即 `decline`。
 
 ### 将好友拉入黑名单
 
-当用户将好友拉入黑名单时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户将好友拉入黑名单时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1174,7 +1184,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 将好友从黑名单中移出
 
-当用户将好友从黑名单中移出时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户将好友从黑名单中移出时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -1191,7 +1201,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 ### 其他用户同意好友请求
 
-当有其他用户同意了本地用户的好友请求时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当有其他用户同意了本地用户的好友请求时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload": {
@@ -1201,12 +1211,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `roster_ver` 为好友列表的版本号。
 - `operation` 为当前操作，即 `remote_accept`。
 
 ### 其他用户拒绝好友请求
 
-当有其他用户拒绝了本地用户的好友请求时，Agora 即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当有其他用户拒绝了本地用户的好友请求时，即时通讯服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload": {
@@ -1216,12 +1227,13 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 ```
 
 其中：
+
 - `roster_ver` 为好友列表的版本号。
 - `operation` 为当前操作，即 `remote_decline`。
 
 ## 回执事件
 
-当即时通讯 app 的用户发送消息回执时，Agora 即时通讯服务会向你的应用服务器发送回调事件。示例如下：
+当即时通讯 app 的用户发送消息回执时，即时通讯服务会向你的应用服务器发送回调事件。示例如下：
 
 ```json
 {
@@ -1247,15 +1259,16 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 | :---------- | :------- | :----------------------------------------------------------- |
 | `chat_type` | String   | 事件类型：<ul><li>`read_ack`: 表示消息已读回执</li><li>`delivery_ack`: 表示消息已送达回执</li></ul>                                        |
 | `callId`    | String   | 回调 ID，是每条 HTTP 回调的唯一标识。该字段由 `{appKey}_{uuid}` 组成，其中 `uuid` 为随机生成。 |
-| `security`  | String   | 消息回调请求中的签名，用来确认该回调是否来自 Agora 即时通讯服务器。格式为 MD5(`callId` + `secret` + `timestamp`)，其中 `secret` 可以在 Agora 控制台即时通讯的 IM 配置页面找到。 |
+| `security`  | String   | 消息回调请求中的签名，用来确认该回调是否来自即时通讯服务器。格式为 MD5(`callId` + `secret` + `timestamp`)，其中 `secret` 可以在控制台即时通讯的 IM 配置页面找到。 |
 | `payload`   | Object   | 回调的具体内容，包括如下字段：<ul><li>`ext`：消息的扩展字段</li><li>`ack_message_id`：发送回执的消息 ID</li><li>`bodies`：消息体内容</li></ul> |
-| `host`      | String   | Agora 即时通讯服务分配的 RESTful API 请求地址域名。                                                 |
-| `appkey`    | String   | Agora 即时通讯服务分配给每个 app 的唯一标识。                         |
+| `host`      | String   |即时通讯服务分配的 RESTful API 请求地址域名。                                                 |
+| `appkey`    | String   |即时通讯服务分配给每个 app 的唯一标识。                         |
 | `from`      | String   | 发送回执的用户 ID。                                        |
 | `to`        | String   | 接收回执的用户 ID。                                        |
 | `eventType` | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器收到指令要下发的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul>                                               |
-| `timestamp` | long     | 回执事件到 Agora 即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
+| `timestamp` | long     | 回执事件到即时通讯 IM 服务器的 Unix 时间戳，单位为 ms。                  |
 | `msg_id`    | String   | 该回执的消息 ID。                                        |
+
 ### Thread 回调事件
 
 当 Thread 发生变化时会收到回调，回调请求示例：
@@ -1325,7 +1338,7 @@ Agora 即时通讯支持 HTTP 回调（Webhook）。为你的即时通讯应用�
 
 | 字段                 | 数据类型 | 含义                              |
 | :------------------- | :------- | :-------------------------------- |
-| `chat_type` | String | 会话类型（默认全选）：<br/> - "chat"：单聊回调；<br/> - "groupchat"：群聊回调包含了群组和聊天室的消息回调；<br/> - "notify"：通知回调包含了 Thread 和 Reaction 的回调，需要结合 payload 中的 type 字段确定具体类型。 |
+| `chat_type` | String | 会话类型（默认全选）：<li>"chat"：单聊回调；<li>"groupchat"：群聊回调包含了群组和聊天室的消息回调；<li>"notify"：通知回调包含了 Thread 和 Reaction 的回调，需要结合 payload 中的 type 字段确定具体类型。 |
 | `payload.type`               | String   | 固定值 "thread"。                 |
 | `payload.data`               | JSON     | Thread 操作数据结构。             |
 | `payload.data.id`            | String   | Thread 的 ID。                    |
