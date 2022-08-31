@@ -28,14 +28,20 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p>SDK 默认在发送端不开启双流模式，你可以通过调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="AUTO_SIMULCAST_STREAM"/>，在接收端发起接收视频小流的申请。</p>
+            <p id="desc">SDK 默认在发送端不开启双流模式，你可以调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="AUTO_SIMULCAST_STREAM"/>。当接收端调用 <xref keyref="setRemoteVideoStreamType"/> 发起接收小流的申请时，可在发送端自动切换为发送小流模式。</p>
+            <note id="note">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
+                <ul>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
+                <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                </ul></note>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry id="mode">
                     <pt>mode</pt>
-                    <pd>接收视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
                 </plentry>
             </parml> </section>
         <section id="return_values">
