@@ -28,10 +28,10 @@
         </section>
         <section id="detailed_desc">
             <p>
-            <note type="attention">
+            <note type="note">
             <ul>
             <li>该方法仅返回单通道数据。</li>
-            <li>为保证采集和播放音频混音后的数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="setMixedAudioFrameParameters"/> 方法设置采集和播放音频混音后的音频数据格式。</li>
+            <li>为保证采集和播放音频混音后的数据格式符合预期，Agora 推荐你调用 <xref keyref="setMixedAudioFrameParameters"/> 方法设置采集和播放音频混音后的音频数据格式；或在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，在 <xref keyref="getMixedAudioParams"/> 回调的返回值中设置获取的耳返音频数据格式，SDK 会根据该回调返回值中设置的 <parmname>AudioParams</parmname> 计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
             </ul></note> </p>
         </section>
         <section id="parameters">
