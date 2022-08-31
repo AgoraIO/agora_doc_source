@@ -27,26 +27,26 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>If you want to get raw video data in a color encoding format other than YUV 420,<xref keyref="registerVideoFrameObserver"/> register this callback when calling . After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
-            <note type="note" props="hide">If you want the video captured by the sender to be the original format, set the original video data format to  in the return value<apiname keyref="VIDEO_PIXEL_DEFAULT"/>. On different platforms, the original video pixel format is also different, for the actual video pixel format<xref keyref="VideoFrame"/>, see .</note> </section>
+            <p>If you want to get raw video data in a color encoding format other than YUV 420, register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
+            <note type="note" props="hide">If you want the video captured by the sender to be the original format, set the original video data format to <apiname keyref="VIDEO_PIXEL_DEFAULT"/> in the return value. The original video pixel format varies based on different platforms. For the actual video pixel format, see <xref keyref="VideoFrame"/>.</note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p><ph>Sets the video format. </ph>See  for details.<ph><xref keyref="VIDEO_PIXEL_FORMAT" props="cpp ios mac"/><xref keyref="VIDEO_OBSERVER_FRAME_TYPE" props="unity"/></ph></p>  
+            <p><ph>Sets the video format. </ph><ph>See <xref keyref="VIDEO_PIXEL_FORMAT" props="cpp ios mac"/><xref keyref="VIDEO_OBSERVER_FRAME_TYPE" props="unity"/> for details.</ph></p>  
             <p props="android">
             <note id="default" props="hide">
                     <p>According to different observation locations and collection scenarios, the actual video pixel format corresponding to this enumeration value is different. Agora recommends that you do not use this value. Some common situations are listed below.</p>
                     <ul>
-                        <li>When the observation position is<apiname keyref="POSITION_POST_CAPTURER"/> :<ul>
+                        <li>When the observation position is <apiname keyref="POSITION_POST_CAPTURER"/>, common scenarios are as follows:<ul>
                             <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
                             <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
                             <li props="mac cpp">Only video with pixel format I420 is supported.</li>
                             </ul></li>
-                        <li>When the observation position is<apiname keyref="POSITION_PRE_ENCODER"/> :<ul>
+                        <li>When the observation position is <apiname keyref="POSITION_PRE_ENCODER"/>, common scenarios are as follows:<ul>
                             <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
                             <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
                             <li props="mac cpp">Only video with pixel format I420 is supported.</li>
                             </ul></li>
-                        <li>When the observation position is<apiname keyref="POSITION_PRE_RENDERER"/> :<ul>
+                        <li>When the observation position is <apiname keyref="POSITION_PRE_RENDERER"/>, common scenarios are as follows:<ul>
                             <li props="ios mac">Video with pixel format CVPixelBufferRef is supported by default.</li>
                             <li props="android">Video with a pixel format of Texture is supported by default.</li>
                             <li props="cpp">Video with pixel format I420 is supported.</li>
