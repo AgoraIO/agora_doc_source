@@ -347,7 +347,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
    }
    ```
 
-5. 创建 UI。将 `index.html `文件中的内容替换为以下代码：
+5. 创建 UI。将 `index.html` 文件中的内容替换为以下代码：
 
    ```html
    <!DOCTYPE html>
