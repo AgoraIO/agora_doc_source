@@ -93,4 +93,4 @@ message.isChatThreadMessage = self.isChatThread;
 
 进入单个子区会话后默认展示最早消息，iOS 端默认直接从服务器按时间顺序获取子区历史消息。
 
-关于如何从服务器获取消息的详细信息，请参见 [从服务器获取消息](./agora_chat_message_ios?platform=iOS#retrieve-historical-messages-from-the-server)。
+关于如何从服务器获取消息的详细信息，请参见 [从服务器获取消息](./agora_chat_message_ios?platform=iOS#分页获取指定会话的历史消息)。

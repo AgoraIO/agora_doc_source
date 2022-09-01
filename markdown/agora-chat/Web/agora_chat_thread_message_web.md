@@ -23,8 +23,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成即时通讯 IM SDK 初始化，详见[Web 快速开始](./agora_chat_get_started_web?platform=Web)。
-- 了解即时通讯 IM API 的[使用限制](./agora_chat_limitation?platform=Web)中所述。
+- 完成即时通讯 IM SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web?platform=Web)。
+- 了解即时通讯 IM API 的 [使用限制](./agora_chat_limitation?platform=Web)中所述。
 
 所有类型的 [定价计划](./agora_chat_plan) 都支持该功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用。
 
