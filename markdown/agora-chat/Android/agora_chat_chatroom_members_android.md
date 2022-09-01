@@ -18,7 +18,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
 - 了解 [使用限制](./agora_chat_limitation?platform=Android)。
 - 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 

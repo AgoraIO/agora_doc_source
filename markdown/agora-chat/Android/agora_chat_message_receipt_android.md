@@ -37,7 +37,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成即时通讯 IM SDK 初始化，并实现了注册账号和登录功能。详情参见 [即时通讯 IM 入门](./agora_chat_get_started_android?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
 - 了解 [使用限制](./agora_chat_limitation?platform=Android)。
 - 默认情况下群聊的消息已读回执是关闭的。要使用此功能，请联系 [support@agora.io](mailto:support@agora.io)。
 

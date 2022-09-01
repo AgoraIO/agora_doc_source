@@ -7,7 +7,7 @@
 
 ## 前提条件
 
-- 有效的 [Agora 开发者账号](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=AllPlatforms#创建-agora-账号)；
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
 - 开通 Pro 或 Enterprise 版本；
 
 ### 开通审核服务

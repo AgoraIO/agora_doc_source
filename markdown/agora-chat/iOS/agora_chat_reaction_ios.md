@@ -20,7 +20,7 @@ SDK 支持你通过调用 API 在项目中实现如下功能：
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 入门](./agora_chat_get_started_ios?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios?platform=iOS)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
 
 所有类型的 [套餐包](./agora_chat_plan) 都支持 Reaciton 功能，一旦你在 [Agora 控制台](https://console.agora.io/) 中启用了聊天功能，就会默认启用该功能。

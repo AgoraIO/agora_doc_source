@@ -2,7 +2,7 @@
 
 本页介绍如何使用即时通讯 IM SDK 实现用户属性管理。
 
-- 用户属性存储在即时通讯 IM 服务器上。如果你有安全方面的顾虑，Agora 建议你自行管理用户属性。
+- 用户属性存储在即时通讯 IM 服务器上。如果你有安全方面的顾虑，建议你自行管理用户属性。
 - 为保证信息安全，应用用户只能修改自己的用户属性。只有应用管理员可以修改其他用户的用户属性。
 
 ## 技术原理
@@ -18,8 +18,8 @@ SDK 提供一个 `UserInfoManager` 类，支持获取、设置及修改用户属
 
 设置用户属性前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [即时通讯 IM 入门](./agora_chat_get_started_unity?platform=Unity)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Unity)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
 
 ## 实现方法
 
@@ -132,11 +132,3 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 如果需要在名片中展示更丰富的信息，可以在 `ext` 中增加更多字段。
-
-## 参考
-
-本节包含你在实施过程中可能需要了解的参考信息。
-
-- 有关用户属性的详细信息，请参阅以下 API 参考：
-  - [用户信息](./.A/API Reference/im_java/classio_1_1agora_1_1chat_1_1_user_info.html)
-  - [用户信息管理器](./API Reference/im_java/classio_1_1agora_1_1chat_1_1_user_info_manager.html)

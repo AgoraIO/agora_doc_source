@@ -31,7 +31,7 @@
 
 使用在线状态功能前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Web 入门](./agora_chat_get_started_web)。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 在 [Agora 控制台](http://console.agora.io/) 激活在线状态功能。
 

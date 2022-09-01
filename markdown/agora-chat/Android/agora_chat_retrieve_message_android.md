@@ -11,7 +11,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并连接到服务器，详见 [即时通讯 IM 入门](./agora_chat_get_started_android?platform=Android)。
+- 完成 SDK 初始化，并连接到服务器，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
 - 了解即时通讯 [使用限制](./agora_chat_limitation?platform=Android)。
 
 ## 实现方法

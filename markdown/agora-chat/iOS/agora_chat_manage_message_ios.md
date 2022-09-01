@@ -1,10 +1,12 @@
-本文介绍即时通讯 IM iOS SDK 如何管理本地消息数据。SDK 内部使用 SQLite 保存本地消息，方便消息处理。
+本文介绍即时通讯 IM iOS SDK 如何管理本地消息数据。
 
 除了发送和接收消息外，即时通讯 IM SDK 还支持以会话为单位对本地的消息数据进行管理，如获取与管理未读消息、删除聊天记录、搜索历史消息等。其中，会话是一个单聊、群聊或者聊天室所有消息的集合。用户需在会话中发送消息或查看历史消息，还可进行清空聊天记录等操作。
 
 ## 技术原理
 
-即时通讯 IM iOS SDK 支持管理用户设备上存储的消息会话数据，其中包含如下主要方法：
+即时通讯 IM iOS SDK 支持管理用户设备上存储的消息会话数据，SDK 内部使用 SQLCipher 保存本地消息，方便消息处理。
+
+其中包含如下主要方法：
 
 - `getAllConversations` 加载本地存储的会话列表；
 - `deleteConversations` 删除本地存储的会话；
@@ -17,7 +19,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并连接到服务器，详见 [Agora Chat 入门](./agora_chat_get_started_ios?platform=iOS)。
+- 完成 SDK 初始化，并连接到服务器，详见 [iOS 快速开始](./agora_chat_get_started_ios?platform=iOS)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
 
 ## 实现方法

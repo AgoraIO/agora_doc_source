@@ -22,7 +22,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 入门](./agora_chat_get_started_ios?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios?platform=iOS)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
 
 所有类型的 [定价计划](./agora_chat_plan) 都支持子区功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认启用子区功能。
