@@ -27,24 +27,25 @@
      (void)height;
      (void)rotation;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">  onVideoSizeChanged?(
+            <codeblock props="electron" outputclass="language-typescript">onVideoSizeChanged?(
     connection: RtcConnection,
+    sourceType: VideoSourceType,
     uid: number,
     width: number,
     height: number,
     rotation: number
   ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, uint uid, int width, int height, int rotation) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">  onVideoSizeChanged?(
+            <codeblock props="rn" outputclass="language-typescript"> onVideoSizeChanged?(
     connection: RtcConnection,
+    sourceType: VideoSourceType,
     uid: number,
     width: number,
     height: number,
     rotation: number
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int width, int height,
-      int rotation)? onVideoSizeChanged;
-</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, VideoSourceType sourceType,
+      int uid, int width, int height, int rotation)? onVideoSizeChanged;</codeblock></p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title" /> </title>
@@ -57,6 +58,10 @@
             <plentry props="unity flutter rn electron">
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。 </pd>
+            </plentry>
+            <plentry props="flutter rn electron">
+                <pt>sourceType</pt>
+                <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE" />。 </pd>
             </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
