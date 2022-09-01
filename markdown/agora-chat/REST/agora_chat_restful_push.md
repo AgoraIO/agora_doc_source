@@ -1,19 +1,19 @@
 # 离线推送
 
-本文展示如何调用即时通讯 RESTful API 设置消息推送显示昵称、提醒方式及免打扰模式。
+本文展示如何调用即时通讯 RESTful API 设置消息推送显示昵称、推送通知方式及免打扰模式。
 
-调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 IM 的 RESTful API 的调用频率限制。
 
 ## 前提条件
 
-- 了解 Agora Chat 的 RESTful API 调用频率限制，详见 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation)；
+- 了解即时通讯 IM 的 RESTful API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
 - 你已在 [Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
-<div class="alert note">关闭推送高级功能必须联系 [support@agora.io](support@agora.io)，因为该操作会删除所有相关配置。</div>
+<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
 
 ## <a name="param"></a>公共参数
 
-以下表格列举了即时通讯 RESTful API 的公共请求参数、响应参数及描述：
+以下表格列举了即时通讯 IM 的 RESTful API 的公共请求参数、响应参数及描述：
 
 ### 请求参数
 
@@ -40,7 +40,7 @@
 | `entities.created`   | Long | 注册用户的 Unix 时间戳（毫秒）。                              |
 | `entities.modified`  | Long | 最近一次修改用户信息的 Unix 时间戳（毫秒）。          |
 | `entities.username`  | String | 用户 ID。用户登录的唯一账号。                       |
-| `entities.activated` | Bool   | 用户是否为活跃状态：<li>`true`：用户为活跃状态。<li>`false`：用户为封禁状态。如要使用已被封禁的用户账户，你需要调用[解禁用户](./agora_chat_restful_reg?platform=RESTful#a-nameunbana解禁用户)解除封禁。 |
+| `entities.activated` | Bool   | 用户是否为活跃状态：<li>`true`：用户为活跃状态。<li>`false`：用户为封禁状态。如要使用已被封禁的用户账户，你需要调用[解禁用户](./agora_chat_restful_registration?platform=RESTful#解禁用户)解除封禁。 |
 | `timestamp`          | Long | HTTP 响应的 Unix 时间戳（毫秒）。    |
 | `duration`           | Number | 从发送 HTTP 请求到响应的时长（毫秒）。       |
 
@@ -52,7 +52,7 @@
 Authorization: Bearer ${YourAppToken}
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用应用令牌对用户进行身份验证。详情请参见[使用 App Token 进行身份验证](https://docs.agora.io/cn/agora-chat/generate_app_tokens)。
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用应用令牌对用户进行身份验证。详情请参见[使用 App Token 进行身份验证](./generate_app_tokens?platform=RESTful)。
 
 ## 设置消息推送显示昵称
 
@@ -84,7 +84,7 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 
 | 字段       | 类型   | 描述                                           | 是否必填 |
 | :--------- | :----- | :--------------------------------------------- | :------- |
-| `nickname` | String | 推送通知中显示的昵称。昵称的长度不能超过 100 个字符，支持以下字符集：<br/> - 26 个小写英文字母 (az) <br/> - 26个大写英文字母（AZ）<br/> - 0 个数字 (0-9) <br/> - 中文字符 <br/> - 特殊字符 <br/> <div class="alert note">该昵称可与用户配置文件中的昵称不同，但 Agora 建议你使用相同的昵称。因此，如果其中一个昵称更新时，应同时修改另一个。要更新用户配置文件中的昵称，请参阅[设置用户属性](https://docs.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes)。</div> | 是       |
+| `nickname` | String | 推送通知中显示的昵称。昵称的长度不能超过 100 个字符，支持以下字符集：<br/> - 26 个小写英文字母 (az) <br/> - 26个大写英文字母（AZ）<br/> - 0 个数字 (0-9) <br/> - 中文字符 <br/> - 特殊字符 <br/> <div class="alert note">该昵称可与用户配置文件中的昵称不同，但 Agora 建议你使用相同的昵称。因此，如果其中一个昵称更新时，应同时修改另一个。要更新用户配置文件中的昵称，请参阅[设置用户属性](./agora_chat_restful_user_attributes?platform=RESTful#设置用户属性)。</div> | 是       |
 
 ### HTTP 响应
 
@@ -175,14 +175,14 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 | `created`                    | Number | 注册用户的 Unix 时间戳，单位为毫秒。                      |
 | `modified`                   | Number | 最近一次修改用户信息的 Unix 时间戳，单位为毫秒。                   |
 | `username`                   | String | 用户 ID。                                                  |
-| `activated`                  | Bool | 用户是否为活跃状态：<br/> - `true`：用户为活跃状态。<br/> - `false`：用户为封禁状态。如要使用已被封禁的用户账户，你需要调用[解禁用户解除封禁](https://docs.agora.io/en/agora-chat/agora_chat_restful_registration#unbanning-a-user)。 |
+| `activated`                  | Bool | 用户是否为活跃状态：<br/> - `true`：用户为活跃状态。<br/> - `false`：用户为封禁状态。如要使用已被封禁的用户账户，你需要调用[解禁用户](./agora_chat_restful_registration?platform=RESTful#解禁用户)。 |
 | `notification_display_style` | String | 离线推送通知的展示方式。                                         |
 | `nickname`                   | String | 推送通知中显示的昵称。                                       |
 | `notifier_name`              | String | 推送证书的名称。                                           |
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[状态码](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -271,7 +271,7 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/{type}/{key}
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码非 `200`，则请求失败。你可以参考[状态码](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -349,7 +349,7 @@ GET https://{host}/{org}/{app}/users/{username}/notification/{type}/{key}
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码非`200`，表示请求失败。您可以参考[状态码](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码非`200`，表示请求失败。您可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -421,7 +421,7 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/language
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[状态码](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -489,7 +489,7 @@ GET https://{host}/{org}/{app}/users/{username}/notification/language
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/en/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[状态码](https://docs.agora.io/en/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -565,7 +565,7 @@ POST https://{host}/{org}/{app}/notification/template`
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[状态码](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。您可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)解可能的原因。
 
 ### 示例
 
@@ -645,7 +645,7 @@ GET https://{host}/{org}/{app}/notification/template/{name}
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码不是 `200`，表示请求失败。你可以参考[状态码](https://docs.agora.io/en/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -719,7 +719,7 @@ DELETE https://{host}/{org}/{app}/notification/template/{name}
 
 其他字段和详细说明请参见[公共参数](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#response)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码](https://docs.agora.io/cn/agora-chat/agora_chat_restful_push?platform=RESTful#status-codes)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -753,4 +753,4 @@ curl -X DELETE '{url}/{org}/{app}/notification/template' \
 
 ## 状态码
 
-有关详细信息，请参阅[HTTP 状态代码](https://docs.agora.io/cn/agora-chat/agora_chat_status_code)。
+有关详细信息，请参阅[响应状态码](./agora_chat_status_code?platform=RESTful)。
