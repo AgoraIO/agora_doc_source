@@ -1,6 +1,6 @@
-好友管理是指添加好友、移除好友、添加黑名单、移除黑名单等操作。
+用户关系管理是指添加好友、移除好友、添加黑名单、移除黑名单等操作。
 
-本文展示如何调用即时通讯 RESTful API 管理好友。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 管理好友。调用以下方法前，请先参考 [限制条件](./agora_chat_limitation) 了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
