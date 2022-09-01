@@ -7,10 +7,10 @@
         <section id="detailed_desc">
             <p>该类用于渲染。对应 Android 系统原生的 TextureView。</p>
             <note type="attention">RtcTextureView 类仅适用于 Android 平台，不适用于 iOS 平台。</note>
-            <p>为保证渲染出图，调用该组件前，首先应调用 <xref keyref="enableVideo"/> ，然后在：</p>
+            <p>为保证渲染出图，调用该组件前，根据当前是否加入频道进行对应操作：</p>
             <ul>               
-                <li>不加入频道时：调用 <xref keyref="startPreview2"/> 后调用。</li>
-                <li>加入频道时：开启采集后调用。</li>
+                <li>不加入频道时：先调用 <xref keyref="startPreview2"/>，然后调用<xref keyref="enableVideo"/>。</li>
+                <li>加入频道时：先开启采集，然后调用<xref keyref="enableVideo"/>。</li>
             </ul>
              </section>
     </refbody>
