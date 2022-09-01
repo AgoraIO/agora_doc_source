@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_rtcsurfaceview">
-    <title><ph keyref="RtcSurfaceView" /></title>
+    <title><ph keyref="RtcSurfaceView"/></title>
     <shortdesc id="short"><ph id="shortdesc">RtcSurfaceView 类。</ph></shortdesc>
     <refbody>
         <section id="detailed_desc">
@@ -13,6 +13,12 @@
             <li>
                     iOS: 对应 iOS 系统原生的 UIView。
                 </li>
-            </ul> </section>
+            </ul> 
+            <p>为保证渲染出图，调用该组件前，根据当前是否加入频道进行对应操作：</p>
+            <ul>               
+                <li>不加入频道时：先调用 <xref keyref="startPreview2"/>，然后调用<xref keyref="enableVideo"/>。</li>
+                <li>加入频道时：先开启采集，然后调用<xref keyref="enableVideo"/>。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>
