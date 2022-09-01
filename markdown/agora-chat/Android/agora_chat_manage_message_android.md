@@ -4,7 +4,9 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 通过 `ChatManager` 类管理用户设备上存储的消息会话数据。以下是核心方法：
+即时通讯 IM SDK 通过 `ChatManager` 类管理用户设备上存储的消息会话数据。SDK 内部使用 SQLCipher 保存本地消息，方便消息处理。
+
+以下是核心方法：
 
 - `loadAllConversations`：加载本地存储的会话列表;
 - `deleteConversation`： 删除本地存储的会话；

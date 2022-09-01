@@ -1,8 +1,6 @@
-# Agora 即时通讯 IM UIKit 快速开始
+即时的消息传递将人连接到任何地方，并允许他们实时与他人交流。使用内置的用户界面（UI）用于对话列表和联系人列表，[即时通讯 IM Uikit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-web) 可以将实时消息快速嵌入到你的应用中，让你只需关注自身业务或个性化扩展。
 
-即时的消息传递将人连接到任何地方，并允许他们实时与他人交流。使用内置的用户界面（UI）用于对话列表和联系人列表，[Agora 即时通讯 IM Uikit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-web) 可以将实时消息快速嵌入到你的应用中，让你只需关注自身业务或个性化扩展。
-
-本页展示如何使用 Agora 即时通讯 IM UIKit 将点对点消息添加到应用程序中。
+本页展示如何使用即时通讯 IM UIKit 将点对点消息添加到应用程序中。
 
 ## 技术原理
 
@@ -11,8 +9,8 @@
 ![img](https://web-cdn.agora.io/docs-files/1643335864426)
 
 1. 客户端从你的应用服务器获取 token。
-2. 客户 A 和客户 B 登录 Agora 即时通讯。
-3. 客户端 A 向客户端 B 发送消息，消息被发送到 Agora 即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
+2. 客户 A 和客户 B 登录即时通讯。
+3. 客户端 A 向客户端 B 发送消息，消息被发送到即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 ## 前提条件
 
@@ -27,9 +25,9 @@
   - Chrome：54 或以上
   - Safari：11 或以上
 
-- 有效的 [Agora 账户](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account)。
-- 启用 [聊天服务](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=Web#enable-the-agora-chat-service)。
-- 有效的 [App Key](https://docs.agora.io/cn/agora-chat/enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) 和 [用户 token](https://docs.agora.io/en/agora-chat/generate_user_tokens?platform=Web)。
+- 有效的 [Agora 账户](./AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account)。
+- 启用 [聊天服务](./enable_agora_chat?platform=Web#enable-the-agora-chat-service)。
+- 有效的 [App Key](./enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) 和 [用户 token](./generate_user_tokens?platform=Web)。
 
 ## 项目设置
 
@@ -138,7 +136,7 @@ Web 即时通讯 IM UIKit 有两部分：
 npm run start
 ```
 
-你可以在浏览器中查看应用程序启动。在发送消息之前，请参考 [添加联系人](./agora_chat_contact_web?platform=Web#manage-contacts) 或 [加入聊天组](./agora_chat_group_web?platform=Web#join-and-leave-a-chat-group) 以添加联系人或加入群组。
+你可以在浏览器中查看应用程序启动。在发送消息之前，请参考 [添加好友](./agora_chat_contact_web?platform=Web#添加好友) 或 [加入群组](./agora_chat_group_web?platform=Web#加入群组) 以添加联系人或加入群组。
 
 ## 下一步
 
@@ -229,4 +227,4 @@ import { EaseChat } from "agora-chat-uikit";
 
 ## 参考
 
-Agora 即时通讯 IM 在 GitHub 上提供了一个已集成 Uikit 的开源 [Agorachat](https://github.com/AgoraIO-Usecase/AgoraChat-web) 样本项目。
+即时通讯 IM 在 GitHub 上提供了一个已集成 Uikit 的开源样本项目 [Agorachat](https://github.com/AgoraIO-Usecase/AgoraChat-web) 。

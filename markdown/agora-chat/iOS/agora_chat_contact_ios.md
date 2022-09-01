@@ -214,9 +214,3 @@ NSArray *userlist = [[AgoraChatClient sharedClient].contactManager getContacts];
 ```objectivec
 NSArray *blockList = [[AgoraChatClient sharedClient].contactManager getBlackList];
 ```
-
-## 参考
-
-有关用户关系管理的详细信息，请参阅以下 API 参考：
-
-- [IAgoraChatContactManager](./API Reference/im_oc/protocol_i_agora_chat_contact_manager-p.html)

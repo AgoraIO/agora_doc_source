@@ -30,7 +30,7 @@
 
 开始前，请确保满足以下要求：
 
-- 集成 Agora 即时通讯 IM Web SDK，初始化 SDK，并实现了注册账号和登录功能。详情请参见 [Web 快速开始](./agora_chat_get_started_web?platform=Web)。
+- 集成即时通讯 IM Web SDK，初始化 SDK，并实现了注册账号和登录功能。详情请参见 [Web 快速开始](./agora_chat_get_started_web?platform=Web)。
 - 了解 [使用限制](./agora_chat_limitation?platform=Web)。
 - 默认情况下不启用群聊的消息已读回执。要使用此功能，请联系 [support@agora.io](mailto:support@agora.io)。
 

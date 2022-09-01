@@ -137,9 +137,3 @@ ChatClient.getInstance().contactManager().getBlackListFromServer();
 ```java
 ChatClient.getInstance().contactManager().getBlackListUsernames();
 ```
-
-## 参考
-
-有关接口的详细信息，请参阅以下 API 参考：
-
-- [联系人管理](./.API Reference/im_java/classio_1_1agora_1_1chat_1_1_contact_manager.html)

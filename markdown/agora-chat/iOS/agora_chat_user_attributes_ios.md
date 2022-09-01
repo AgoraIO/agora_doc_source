@@ -67,7 +67,7 @@ NSString *url = @"https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMD
 | `avatarurl` | String | 用户头像 URL 地址。长度在 256 字符内。                     |
 | `phone`     | String | 用户联系方式。长度在 32 字符内。                           |
 | `mail`      | String | 用户邮箱。长度在 64 字符内。                               |
-| `gender`    | Number | 用户性别。<br/> - `1`：男；<br/> - `2`：女；<br/> - （默认）`0`：未知；<br/> - 设置为其他值无效。 |
+| `gender`    | Number | 用户性别。<li>`1`：男；<li>`2`：女；<li>（默认）`0`：未知；<li>设置为其他值无效。 |
 | `sign`      | String | 用户签名。长度在 256 字符内。                              |
 | `birth`     | String | 用户生日。长度在 64 字符内。                               |
 | `ext`       | String | 扩展字段。                                                 |
@@ -134,11 +134,3 @@ AgoraChatCustomMessageBody *body = [[AgoraChatCustomMessageBody alloc] init];
     [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
     }];
 ```
-
-## 参考
-
-本节包含你在实施过程中可能需要了解的参考信息。
-
-- 有关用户属性的详细信息，请参阅以下 API 参考：
-  - [即时通讯 IM 用户信息](./API Reference/im_oc/interface_agora_chat_user_info.html)
-  - [IAgoraChatUserInfoManager](./API Reference/im_oc/protocol_i_agora_chat_user_info_manager-p.html)
