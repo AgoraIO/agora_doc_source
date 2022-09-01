@@ -18,8 +18,8 @@ SDK 提供一个 `UserInfoManager` 类，支持获取、设置及修改用户属
 
 设置用户属性前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [即时通讯 IM 入门](./agora_chat_get_started_unity?platform=Unity)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Unity)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
+- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
 
 ## 实现方法
 

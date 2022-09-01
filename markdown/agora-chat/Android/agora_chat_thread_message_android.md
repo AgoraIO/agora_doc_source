@@ -25,7 +25,7 @@
 
 开始前，请确保满足以下条件：
 
-- 初始化 1.0.3 及以上版本 SDK，详见 [Android 入门](./agora_chat_get_started_android)。
+- 初始化 1.0.3 及以上版本 SDK，详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 在 [Agora 控制台](http://console.agora.io/) 中启用子区功能。
 

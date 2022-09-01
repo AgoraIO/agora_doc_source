@@ -18,8 +18,8 @@
 
 开始前，请确保满足以下条件：
 
-- 已 [集成即时通讯 IM SDK](./agora_chat_get_started_android?platform=Android#集成-agora-chat-sdk)。
-- 了解消息相关限制和即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation_android?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
+- 了解消息相关限制和即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation?platform=Android)。
 
 ## 实现方法
 

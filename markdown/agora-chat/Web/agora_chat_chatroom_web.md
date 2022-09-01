@@ -20,7 +20,7 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Web 入门](./agora_chat_get_started_web?platform=Web)。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web?platform=Web)。
 - 了解 [使用限制](./agora_chat_limitation?platform=Web)。
 - 了解即时通讯 IM 聊天室不同版本的数量限制，详见 [套餐包](./agora_chat_plan?platform=Web)。
 - 只有应用超级管理员才有创建聊天室的权限。确保已通过调用[super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了应用超级管理员。

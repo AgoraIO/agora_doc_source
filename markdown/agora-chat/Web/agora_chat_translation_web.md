@@ -43,6 +43,7 @@ conn.translateMessage('hello', ['zh']).then(res => console.log(res))
 设置自动翻译的目标语言后，在发送消息时 SDK 会自动将文本翻译为目标语言，并将目标语言一并发送出去。
 
 示例代码如下：
+
 ```javascript
 // 发送消息。
 let option = {
@@ -67,4 +68,4 @@ conn.addEventHandler('MESSAGE', {
 
 ### 设置和获取推送的目标语言
 
-设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见（./agora_chat_push_web?platform=Web#set-up-push-translations）。
+设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见（./agora_chat_push_web?platform=Web）。

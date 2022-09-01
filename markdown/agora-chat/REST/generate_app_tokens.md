@@ -37,7 +37,7 @@ App Token 需要在你的服务端部署生成。当客户端发送请求时，A
 
 本节展示如何使用 Java 语言在你的本地设备上搭建并运行一个 Token 服务器。此示例服务器仅用于演示，请勿用于生产环境中。
 
-1. 在 IntelliJ 中创建一个 Maven 项目，设置项目名称、选择项目储存路径后，点击 **Finish**。
+1. 在 `IntelliJ` 中创建一个 Maven 项目，设置项目名称、选择项目储存路径后，点击 **Finish**。
 
 2. 在 `<Project name>/pom.xml` 文件中，添加以下依赖并点击 [Reload project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport)：
 
@@ -126,7 +126,7 @@ App Token 需要在你的服务端部署生成。当客户端发送请求时，A
 4. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件。你需要将该文件中的相关值替换你的 Agora 项目的值并设置你的 Agora App Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
 
    <div class="alert note">
-	<p>Agora 即时通讯 App Token 的有效期从 Agora App Token 生成时开始计算。</p>
+  <p>Agora 即时通讯 App Token 的有效期从 Agora App Token 生成时开始计算。</p>
   <p> 例如，如果将 Agora App Token 的有效期设为 10,000 秒，生成 Agora App Token 并将其成功置换为即时通讯 App Token 用了 100秒，则即时通讯 App Token 将在 9,900 秒后过期。</p></div>
 
    ```txt
@@ -297,19 +297,19 @@ App Token 需要在你的服务端部署生成。当客户端发送请求时，A
 | 参数       | 数据类型 |是否必填 | 描述               |
 | :-------------- | :-------- | :---------------- | :-------------------------- |
 | `Content-Type`  | String    | 是         | 类型为 `application/json`。 |
-| `Authorization` | String    | 是        | Bearer Agora app token。    |
+| `Authorization` | String    | 是        | `Bearer Agora app token`。    |
 
 ### 请求体参数
 
 | 参数    | 数据类型 | 是否必填 | 值 |
 | :----------- | :-------- | :---------------- | :---- |
-| `grant_type` | String    | 是       | agora |
+| `grant_type` | String    | 是       | `agora` |
 
 ### 响应码
 
 | 响应码 | 描述                                                         |
 | :------------------- | :----------------------------------------------------------- |
-| `200`                | 请求置换即时通讯 App Token 成功，Agora 即时通讯服务器返回所请求的 Token 及 Token 过期的时间戳。 |
+| `200`                | 请求置换即时通讯 App Token 成功，即时通讯服务器返回所请求的 Token 及 Token 过期的时间戳。 |
 | `5xx`                | 请求置换即时通讯 App Token 失败，原因可能是被限流或发生异常。 |
 
 ## 注意事项
