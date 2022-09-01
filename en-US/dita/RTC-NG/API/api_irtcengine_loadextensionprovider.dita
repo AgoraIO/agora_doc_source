@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_loadextensionprovider">
-    <title><ph keyref="loadExtensionProvider" /></title>
+<reference id="api_irtcengine_loadextensionprovider">
+    <title><ph keyref="loadExtensionProvider"/></title>
     <shortdesc id="short"><ph id="shortdesc">Adds an extension to the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="loadExtensionProvider" />
+                <indexterm keyref="loadExtensionProvider"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int loadExtensionProvider(const char* path, bool unload_after_use = false) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract loadExtensionProvider(
     path: string,
@@ -25,19 +25,28 @@
     path: string,
     unloadAfterUse?: boolean
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; loadExtensionProvider(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> loadExtensionProvider(
       {required String path, bool unloadAfterUse = false});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p><note type="attention" props="unity flutter">This method applies to Windows only.</note>
-            </p></section>
+            <p>
+            <note type="attention" props="unity flutter">(For Windows and Android only)</note> </p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="cpp">extension_lib_path</pt>
-                <pt props="unity flutter rn electron">path</pt>
+                <pt>path</pt>
                 <pd>The extension library path and name. For example: <codeph>/library/libagora_segmentation_extension.dll</codeph>.</pd>
+            </plentry>
+            <plentry>
+                <pt props="cpp unity">unload_after_use</pt>
+                <pt props="electron rn flutter">unloadAfterUse</pt>
+                <pd>Whether to uninstall the current extension when you no longer using it:<ul>
+                        <li><codeph><ph keyref="true"/></codeph>: Uninstall the extension when the <xref keyref="IRtcEngine"/> is destroyed.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: (Rcommended) Do not uninstall the extension until the process terminates.</li>    
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">

@@ -80,40 +80,55 @@
   final BytesPerSample? bytesPerSample;
 
   @JsonKey(name: 'data_')
-  final List&lt;int&gt;? data;
+  final List&lt;int>? data;
 
-  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioPcmFrameFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioPcmFrameToJson(this);
+  Map&lt;String, dynamic> toJson() => _$AudioPcmFrameToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
+            <plentry props="cpp">
+                <pt>OPTIONAL_ENUM_SIZE_T</pt>
+                <pd>The buffer size of the PCM audio frame. The initial value is 3840. </pd>
+            </plentry>                
             <plentry>
-                <pt>capture_timestamp</pt>
+                <pt props="cpp unity rn electron">capture_timestamp</pt>
+                <pt props="ios mac flutter">captureTimestamp</pt>
                 <pd>The timestamp (ms) of the audio frame.</pd>
             </plentry>
             <plentry>
-                <pt>samples_per_channel_</pt>
+                <pt props="cpp unity rn electron">samples_per_channel_</pt>
+                <pt props="ios mac flutter">samplesPerChannel</pt>
                 <pd>The number of samples per channel in the audio frame.</pd>
             </plentry>
             <plentry>
-                <pt>sample_rate_hz_</pt>
+                <pt props="cpp unity rn electron">sample_rate_hz_</pt>
+                <pt props="ios mac flutter">sampleRateHz</pt>
                 <pd>Audio sample rate (Hz).</pd>
             </plentry>
             <plentry>
-                <pt>num_channels_</pt>
+                <pt props="cpp unity rn electron">num_channels_</pt>
+                <pt props="ios mac">channelNumbers</pt>
+                <pt props="flutter">numChannels</pt>
                 <pd>The number of audio channels.</pd>
             </plentry>
             <plentry>
-                <pt>bytes_per_sample</pt>
+                <pt props="cpp unity rn electron">bytes_per_sample</pt>
+                <pt props="ios mac flutter">bytesPerSample</pt>
                 <pd>The number of bytes per sample.</pd>
             </plentry>
             <plentry>
-                <pt>data_</pt>
-                <pd>The max number of the bytes of the data.</pd>
+                <pt props="cpp unity rn electron">data_</pt>
+                <pt props="flutter">data</pt>
+                <pd>The video frame.</pd>
+            </plentry>
+            <plentry props="ios mac">
+                <pt>pcmBuffer</pt>
+                <pd>Number of audio frames in the buffer. </pd>
             </plentry>
             </parml> </section>
     </refbody>

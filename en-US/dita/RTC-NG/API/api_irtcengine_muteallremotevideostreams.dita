@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_muteallremotevideostreams">
+<reference id="api_irtcengine_muteallremotevideostreams">
     <title><ph keyref="muteAllRemoteVideoStreams" /></title>
     <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the video streams of all remote users.</ph></shortdesc>
     <prolog>
@@ -23,7 +23,11 @@
         </section>
         <section id="detailed_desc">
             <p id="desc">After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
-            <note type="attention" id="note">Call this method after joining a channel.</note> </section>
+            <note type="attention" id="note"><ul>
+                <li>Call this method after joining a channel.</li>
+                <li>If you do not want to subscribe the video streams of remote users before joining a channel, you can call <xref keyref="joinChannel2"/> and set <parmname>autoSubscribeVideo</parmname> as <codeph><ph keyref="false"/></codeph>.</li>
+            </ul></note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>

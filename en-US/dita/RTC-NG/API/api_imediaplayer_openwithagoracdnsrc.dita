@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_openwithagoracdnsrc">
     <title> <ph keyref="openWithAgoraCDNSrc" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Opens the media resource, and requests all the CDN routes of the media resources through the self-developed scheduling center.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Opens a media resource and requests all the CDN routes of the media resources through the self-developed scheduling center.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,13 +29,13 @@
         <section id="detailed_desc">
             <note type="attention" conkeyref="open/note" />
             <p>After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call the <xref keyref="switchAgoraCDNLineByIndex" /> method to switch routes.</p>
-            <p id="auth">If you want to improve the security of the connection and the privacy of media files, <xref keyref="ticket-link" /> to determine the <parmname>sign</parmname> and the <parmname>ts</parmname> fields for authentication. Once the fields are determined, use them as the <codeph>query parameter</codeph> of the URL to update the URL of the media resource. For example:<ul>
-            <li>The URL of the media file to be opened<codeph>: rtmp://$domain/$appName/$streamName</codeph></li>
-            <li>The URL updated by the authentication of the media file to be opened<codeph>: rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
+            <p id="auth">If you want to ensure the security of the connection and media files, <xref keyref="ticket-link" /> to determine the <parmname>sign</parmname> and the <parmname>ts</parmname> fields for authentication. Once the fields are determined, use them as the <codeph>query parameter</codeph> of the URL to update the URL of the media resource. For example:<ul>
+            <li>The URL of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName</codeph></li>
+            <li>The URL updated by the authentication of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
             </ul>
             <note>
             <p>Authentication information:<ul>
-            <li><parmname>sign</parmname>: An encrypted string calculated according to the MD5 algorithm based on <codeph>authKey</codeph>, <codeph>appName</codeph>, <codeph>streamName</codeph>, and<codeph>ts</codeph>. You need to <xref keyref="ticket-link" /> for your <codeph>authKey</codeph>.</li>
+            <li><parmname>sign</parmname>: An encrypted string calculated according to the MD5 algorithm based on <codeph>authKey</codeph>, <codeph>appName</codeph>, <codeph>streamName</codeph>, and <codeph>ts</codeph>. You need to <xref keyref="ticket-link" /> for your <codeph>authKey</codeph>.</li>
             <li><parmname>ts</parmname>: The timestamp when the authentication information expires. You can set the validity period of the authentication information according to your scenarios. For example, <codeph>24h</codeph> or <codeph>1h30m20s</codeph>.</li>
             </ul></p>
             </note></p>
@@ -52,7 +52,7 @@
                 <pd>The starting position (ms) for playback. The default value is 0. This value can be empty if the media resource to be played is live streams.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

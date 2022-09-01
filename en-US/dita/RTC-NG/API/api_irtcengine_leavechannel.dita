@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_leavechannel">
+<reference id="api_irtcengine_leavechannel">
     <title><ph keyref="leaveChannel" /></title>
     <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph></shortdesc>
     <prolog>
@@ -24,14 +24,14 @@
         <section id="detailed_desc">
             <p>This method releases all resources related to the session. This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
             <p>After joining the channel, you must call this method or <apiname keyref="leaveChannel2" /> to end the call, otherwise, the next call cannot be started.</p>
-            <p>A successful call of this method triggers the following callbacks: <ul id="ul_enf_q2p_lpb">
+            <p>If you successfully call this method and leave the channel, the following callbacks are triggered:<ul id="ul_enf_q2p_lpb">
             <li>The local client: <xref keyref="onLeaveChannel" />.</li>
-            <li>The remote client:<xref keyref="onUserOffline" /> , if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
+            <li>The remote client: <xref keyref="onUserOffline" />, if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
             </ul></p>
             <note type="attention" id="note">
             <ul>
             <li>If you call <xref keyref="release" /> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel" /> callback.</li>
-            <li>If you call this method during a CDN live streaming, the SDK automatically calls the <xref keyref="removePublishStreamUrl" /> method.</li>
+            <li props="hide">If you call this method during a CDN live streaming, the SDK automatically calls the <xref keyref="removePublishStreamUrl" /> method.</li>
             </ul> </note> </section>
         <section props="ios mac" id="parameters">
             <title>Parameters</title>
