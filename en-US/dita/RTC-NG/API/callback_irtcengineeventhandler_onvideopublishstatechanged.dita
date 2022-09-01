@@ -6,7 +6,7 @@
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onVideoPublishStateChanged"/>
+                <indexterm keyref="onVideoPublishStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -14,58 +14,72 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onVideoPublishStateChanged(Constants.VideoSourceType source, String channel,
-                int oldState, int newState, int elapseSinceLastState) {}</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine
-    didVideoPublishStateChange:(NSString * _Nonnull)channelId
-    oldState:(AgoraStreamPublishState)oldState
-    newState:(AgoraStreamPublishState)newState
-    elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoPublishStateChanged(const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
-     (void)channel;
-     (void)oldState;
-     (void)newState;
-     (void)elapseSinceLastState;
-     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onVideoPublishStateChanged?(channel: string, oldState: StreamPublishState, newState: StreamPublishState, elapseSinceLastState: number): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(string channel, STREAM_PUBLISH_STATE oldState,
-            STREAM_PUBLISH_STATE newState, int elapseSinceLastState)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onVideoPublishStateChanged?(
-  channel: string,
-  oldState: StreamPublishState,
-  newState: StreamPublishState,
-  elapseSinceLastState: number
-): void;</codeblock>
+      int oldState, int newState, int elapseSinceLastState) {}
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine didVideoPublishStateChange:(NSString * _Nonnull)channelId
+         sourceType:(AgoraVideoSourceType)sourceType
+           oldState:(AgoraStreamPublishState)oldState
+           newState:(AgoraStreamPublishState)newState
+elapseSinceLastState:(int)elapseSinceLastState;
+</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+    (void)source;
+    (void)channel;
+    (void)oldState;
+    (void)newState;
+    (void)elapseSinceLastState;
+  }
+</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onVideoPublishStateChanged?(
+    source: VideoSourceType,
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, string channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onVideoPublishStateChanged?(
+    source: VideoSourceType,
+    channel: string,
+    oldState: StreamPublishState,
+    newState: StreamPublishState,
+    elapseSinceLastState: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
+      VideoSourceType source,
       String channel,
       StreamPublishState oldState,
       StreamPublishState newState,
       int elapseSinceLastState)? onVideoPublishStateChanged;
 </codeblock></p>
         </section>
+        <section id="detailed_desc">
+        </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="android cpp unity flutter electron rn">channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>The channel name.</pd>
             </plentry>
-            <plentry conkeyref="onLocalVideoStateChanged/source">
-                    <pt/>
-                    <pd/>
+            <plentry id="source">
+                    <pt props="apple">sourceType</pt>
+                    <pt props="android cpp unity electron rn flutter">source</pt>
+                    <pd>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
                 </plentry>
                 <plentry>
                 <pt>oldState</pt>
-                <pd>The previous subscribing status. See <xref keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                <pd>For the previous publishing state, see <xref keyref="STREAM_PUBLISH_STATE" />.</pd>
             </plentry>
             <plentry>
                 <pt>newState</pt>
-                <pd>The current subscribing status. See <apiname keyref="STREAM_PUBLISH_STATE"/>.</pd>
+                <pd>For the current publishing state, see <apiname keyref="STREAM_PUBLISH_STATE" />.</pd>
             </plentry>
             <plentry>
                 <pt>elapseSinceLastState</pt>

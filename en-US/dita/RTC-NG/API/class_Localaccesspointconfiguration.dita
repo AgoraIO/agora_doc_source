@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_Localaccesspointconfiguration">
     <title><ph keyref="LocalAccessPointConfiguration" /></title>
-    <shortdesc id="short">Local Access Point configuration.<ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The configurations of the Local Access Point.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -114,31 +114,31 @@
             <parml>
             <plentry>
                 <pt>ipList</pt>
-                <pd>List of inbound IP addresses for the Local Access Point. ipList and domainList must be filled in at least one.</pd>
+                <pd>The list of IP addresses for the Local Access Point. ipList and domainList must be filled in at least one.</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>ipListSize</pt>
-                <pd>The number of inbound IP addresses of the Local Access Point. The value of this parameter must be the same as the number of IP addresses you entered.</pd>
+                <pd>The number of IP addresses of the Local Access Point. This value must be the same as the number of IP addresses that you specify for the ipList parameter.</pd>
             </plentry>
             <plentry>
                 <pt>domainList</pt>
-                <pd>List of domain names for Local Access Point. The SDK will resolve the IP address of the Local Access Point based on the domain name you entered. The timeout period for domain name resolution is 10 seconds. ipList and domainList must be filled in at least one. If you specify an IP address and a domain name at the same time, the SDK will combine the IP address parsed from the domain name and the IP address you specify, remove duplicates, and then connect to a random IP to achieve load balancing.</pd>
+                <pd>The list of domain names for the Local Access Point. The SDK will parse the IP addresses according to the provided domain names. The parse times out after 10 seconds. ipList and domainList must be filled in at least one. If you specify an IP address and a domain name at the same time, the SDK will combine the IP address parsed from the domain name and the IP address you specify, remove duplicates, and then connect to a random IP to achieve load balancing.</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>domainListSize</pt>
-                <pd>The number of Local Access Point domain names. The value of this parameter must be the same as the number of domain names you entered.</pd>
+                <pd>The number of domain names for Local Access Point. This value must be the same as the number of domain names that you specifyfor the domainList parameter.</pd>
             </plentry>
             <plentry>
                 <pt>verifyDomainName</pt>
-                <pd>Intranet certificate verification domain name. If the passed value is empty, the domain name <codeph>secure-edge.local</codeph> will be verified with the SDK's default certificate.</pd>
+                <pd>The domain name used for Intranet certificate verification. If you pass an empty value, the SDK uses the default domain name <codeph>secure-edge.local</codeph> for certificate verification.</pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp">connection mode. See <xref keyref="LOCAL_PROXY_MODE" />.</p>
-                    <p props="android">Connection mode:<ul>
-                    <li><ph keyref="ConnectivityFirst" />(0): The SDK will first try to connect to the specified Agora private media server; if it cannot connect to the specified Agora private media server, it will connect to the Agora SD-RTN™.</li>
-                    <li><ph keyref="LocalOnly" />(1): The SDK only tries to connect to the specified Agora private media server.</li>
+                    <p props="ios mac cpp electron unity rn flutter">The connection mode. See <xref keyref="LOCAL_PROXY_MODE" />.</p>
+                    <p props="android">Select one of the following connection modes:<ul>
+                    <li><ph keyref="ConnectivityFirst" />(0): The SDK firstly tries to connect to the specified Agora private media server; if the connection attempt fails, it will connect to the Agora SD-RTN™ instead.</li>
+                    <li><ph keyref="LocalOnly" />(2) The SDK only tries to connect to the specified Agora private media server.</li>
                     </ul></p>
                 </pd>
             </plentry>

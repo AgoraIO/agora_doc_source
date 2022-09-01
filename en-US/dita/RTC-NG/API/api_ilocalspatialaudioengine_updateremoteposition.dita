@@ -30,7 +30,7 @@
         </section>
         <section id="detailed_desc">
             <p>After successfully calling this method, the SDK calculates the spatial audio parameters based on the relative position of the local and remote user.</p>
-            <note type="note">Call this method after <xref keyref="joinChannel2" />.</note> </section>
+            <note type="note">Call this method after the <xref keyref="joinChannel2" /> method.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -38,12 +38,20 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry>
+            <plentry props="native flutter rn electron">
                 <pt>posInfo</pt>
-                <pd>The spatial position of the remote user. See <xref keyref="RemoteVoicePositionInfo" /> for details.</pd>
+                <pd>The spatial position of the remote user. See <xref keyref="RemoteVoicePositionInfo" />.</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>position</pt>
+                <pd>The coordinates in the world coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>forward</pt>
+                <pd>The unit vector of the x axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

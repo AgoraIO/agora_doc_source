@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_encodedvideoframeinfo">
     <title><ph keyref="EncodedVideoFrameInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The information about the external encoded video frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Information about externally encoded video frames.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -318,42 +318,42 @@
             <parml>
             <plentry>
                 <pt>codecType</pt>
-                <pd props="cpp unity electron rn flutter">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />. The default value is  <codeph><ph keyref="VIDEO_CODEC_H264" />(2)</codeph>.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />. The default value is <codeph><ph keyref="VIDEO_CODEC_H264" />(2)</codeph>.</pd>
                 <pd props="android">The codec type of the video:<ul id="ul_hkm_4qy_4qb">
-                    <li>1: VP8.</li>
+                    <li>1: VP8</li>
                     <li>2: (Default) H264.</li>
                     <li props="hide">5: VP9.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>width</pt>
-                <pd>The width (pixel) of the video frame.</pd>
+                <pd>Width (pixel) of the video frame.</pd>
             </plentry>
             <plentry>
                 <pt>height</pt>
-                <pd>The height (pixel) of the video frame.</pd>
+                <pd>Height (pixel) of the video frame.</pd>
             </plentry>
             <plentry>
                 <pt>framesPerSecond</pt>
                 <pd>
                     <p>The number of video frames per second.</p>
-                    <p>When this parameter is not <codeph>0</codeph>, you can use it to calculate the Unix timestamp of the external encoded video frames.</p>
+                    <p>When this parameter is not <codeph>0</codeph>, you can use it to calculate the Unix timestamp of externally encoded video frames.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>frameType</pt>
-                <pd props="ios mac cpp unity electron rn flutter">The video frame type, see <xref keyref="VIDEO_FRAME_TYPE" />.</pd>
-                <pd props="android">The video frame type:<ul id="ul_djl_sqy_4qb">
-                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME" />, blank frame.</li>
-                    <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME" />, keyframe.</li>
-                    <li>4:<ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME" />, the Delta frame.</li>
-                    <li>5:<ph keyref="VIDEO_FRAME_TYPE_B_FRAME" />, the B frame</li>
-                    <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN" />, unknown frame</li>
+                <pd props="ios mac cpp unity electron rn flutter">The video frame type. See <xref keyref="VIDEO_FRAME_TYPE" />.</pd>
+                <pd props="android">The video frame type.<ul id="ul_djl_sqy_4qb">
+                    <li>0: (Default) <ph keyref="VIDEO_FRAME_TYPE_BLANK_FRAME" />, a blank frame.</li>
+                    <li>3: <ph keyref="VIDEO_FRAME_TYPE_KEY_FRAME" />, a key frame.</li>
+                    <li>4:<ph keyref="VIDEO_FRAME_TYPE_DELTA_FRAME" />, a Delta frame.</li>
+                    <li>5:<ph keyref="VIDEO_FRAME_TYPE_B_FRAME" />, a B frame.</li>
+                    <li>6: <ph keyref="VIDEO_FRAME_TYPE_UNKNOWN" />, an unknown frame.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>rotation</pt>
-                <pd props="ios mac cpp unity electron rn flutter">The rotation information of the video frame, see <xref keyref="VIDEO_ORIENTATION" />.</pd>
+                <pd props="ios mac cpp unity electron rn flutter">The rotation information of the video frame. See <xref keyref="VIDEO_ORIENTATION" />.</pd>
                 <pd props="android">Rotation information of the video frame, as the following:<ul>
                     <li>0: (Default) 0 degree.</li>
                     <li>90: 90 degrees.</li>
@@ -366,21 +366,17 @@
                 <pd>Reserved for future use.</pd>
                 <pd>The track ID. Used in scenarios with multiple video tracks in the channel.</pd>
             </plentry>
-            <plentry props="android ios mac cpp">
-                <pt>captureTimeMs</pt>
-                <pd>The Unix timestamp (ms) for capturing the external encoded video frames.</pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>renderTimeMs</pt>
-                <pd>The Unix timestamp (ms) for rendering the external encoded video frames.</pd>
+            <plentry>
+                    <pt>captureTimeMs</pt>
+                    <pd>The Unix timestamp (ms) for capturing the external encoded video frames.</pd>
             </plentry>
             <plentry>
                 <pt>uid</pt>
-                <pd>The user ID to push the the external encoded video frame.</pd>
+                <pd>The user ID to push the externally encoded video frame.</pd>
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd><ph>The type of video streams. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</ph></pd>
+                <pd><ph>The type of video streams. </ph><ph props="apple cpp unity electron flutter rn">See <xref keyref="VIDEO_STREAM_TYPE" />.</ph></pd>
                 <pd props="android">
                     <ul>
                       <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
