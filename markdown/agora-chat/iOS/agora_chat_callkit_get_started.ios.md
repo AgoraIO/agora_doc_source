@@ -26,7 +26,7 @@ AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开
 
 ### 添加 AgoraChatCallKit 框架
 
-AgoraChatCallKit 基于 `Agora_Chat_iOS`、`Masonry`、`AgoraRtcEngine_iOS/RtcBasic` 和 `SDWebImage` 库开发。你可以参考以下步骤将AgoraChatCallKit 导入到项目。若需手动添加该框架，请参考 [手动导入 AgoraChatCallKit](https://docs.agora.io/cn/agora-chat/agora_chat_callkit_ios?platform=iOS#import)。
+AgoraChatCallKit 基于 `Agora_Chat_iOS`、`Masonry`、`AgoraRtcEngine_iOS/RtcBasic` 和 `SDWebImage` 库开发。你可以参考以下步骤将AgoraChatCallKit 导入到项目。若需手动添加该框架，请参考 [手动导入 AgoraChatCallKit](#import)。
 
 1. 安装 CocoaPods，详见 [CocoaPods 快速开始](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 2. 若你的项目中没有 `Podfile` 文件，需打开项目的根目录，然后运行 `pod init` 命令在项目文件夹中创建 `Podfile` 文本文件。
@@ -360,15 +360,15 @@ config.enableRTCTokenValidate = YES;
 
 ### 示例项目
 
-声网在 GitHub 上提供了一个开源的 [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios) 示例项目。您可以下载示例进行试用或查看源代码。
+声网在 GitHub 上提供了一个开源的 [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios/blob/main/README_CN.md) 示例项目。您可以下载示例进行试用或查看源代码。
 
 示例项目使用 Agora Chat 用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用 Agora RTC SDK 中的方法发起通话，也可以使用整型的 UID 加入频道。
 
-### 手动导入 `AgoraChatCallKit`
+### 手动导入 `AgoraChatCallKit` <a name="import"></a>
 
 若要在项目中手动添加 AgoraChatCallKit，可参考以下步骤：
 
-1. [下载 AgoraChatCallKit](https://github.com/AgoraIO-Usecase/AgoraChat-CallKit-ios)，并解压下载的文件。
+1. [下载 AgoraChatCallKit](https://github.com/AgoraIO-Usecase/AgoraChat-CallKit-ios/blob/main/README_CN.md)，并解压下载的文件。
 
 2. 将 AgoraChatCallKit.framework 复制并粘贴 到你的项目目录中。
 

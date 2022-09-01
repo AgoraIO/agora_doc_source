@@ -1,4 +1,10 @@
-本文介绍如何通过少量代码集成 Agora 即时通讯 SDK，在你的 Web 应用中实现一对一文本消息发送和接收。
+# Agora Chat 快速入门
+
+即时通讯将各地人们连接在一起，实现实时通信。利用 Agora Chat SDK，你可以在任何地方的任何设备上的任何应用中嵌入实时通讯。
+
+本文介绍如何集成 Agora 即时通讯 Web SDK，实现发送和接收单聊消息。
+
+## 技术原理
 
 ~7aac3300-785d-11ec-bcb4-b56a01c83d2e~
 
@@ -7,8 +13,7 @@
 开始前，请确保你的开发环境满足以下条件：
 
 - Windows 或 macOS 计算机，需满足以下要求：
-
-  - Agora 即时通讯 SDK 支持的浏览器。
+  - Agora 即时通讯 SDK 支持的浏览器
     - Internet Explorer 9 以上版本
     - FireFox 10 以上版本
     - Chrome 54 以上版本
@@ -16,48 +21,54 @@
   - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/AgoraPlatform/firewall?platform=Web)以正常使用 Agora 服务。
   - 已安装 Xcode（仅适用于 macOS）
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-## 准备开发环境
+## 项目设置
 
-按照以下步骤准备开发环境：
+在本节中，我们准备了将 Agora Chat 集成到你的 app 中所需的开发环境。
 
-### 创建 Web 项目
+1. 若为新的 web 项目，创建名为 `agora_quickstart` 目录。在终端中打开该目录，运行 `npm init`。此时，该目录下会创建 `package.json` 文件。然后创建以下文件：  
 
-在本地文件夹中为你的 Web 项目新建一个目录，并命名为 `agora_quickstart`。一个 Web 客户端项目至少需包含以下文件：
+   - `index.html`：设置 Web 应用的用户界面；
+   - `index.js`：包含消息发送和接收逻辑的实现代码。
 
-- `index.html`: 用于设计 Web 应用的用户界面。
-- `index.js`: 用于实现点对点消息功能的 JavaScript 的代码。
-- `package.json`: 安装并管理项目依赖。你可以通过命令行进入 agora_quickstart 目录并运行 `npm init` 命令来创建 `package.json` 文件。
+   现在，该项目目录的结构如下：
 
-### 集成 Agora 即时通讯 SDK
+   ```text
+   agora_quickstart
+   ├─ index.html
+   ├─ index.js
+   └─ package.json
+   ```
 
-通过 npm 将 Agora 即时通讯 SDK 集成到你的项目中。在 `package.json` 文件的 `dependencies` 字段中添加 `agora-chat` 及版本号：
+2. 通过 npm 在你的项目中集成 Agora 即时通讯 SDK。要集成该 SDK，在 `package.json` 的 `dependencies` 字段中添加 `agora-chat-sdk` 及其版本号。
 
-```json
-{
-  "name": "web",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "agora-chat": "latest"
-  },
-  "author": "",
-  "license": "ISC"
-}
-```
+   ```json
+   {
+    "name": "web",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+      "agora-chat": "latest"
+    },
+    "author": "",
+    "license": "ISC"
+   }
+   ```
 
-## 实现发送和接收消息
+## 实现发送和接收单聊消息
 
-本节介绍如何使用 Agora 即时通讯 SDK 在你的 app 中实现发送和接收一对一文本消息。
+本节介绍如何使用 Agora 即时通讯 SDK 在你的应用中实现单聊消息的发送与接收。
 
-### 创建用户界面
+### 创建 UI
 
-将以下代码复制到 `index.html` 文件中，实现客户端用户界面：
+将以下代码复制到 `index.html` 文件中实现客户端用户界面。
+
+<script src="./dist/bundle.js"></script> 用于访问 webpack 打包的 bundle.js 文件。webpack 的示例配置如下所示：
 
 ```html
 <!DOCTYPE html>
@@ -103,6 +114,7 @@
                 </div>
             </div>
         </form>
+
         <hr>
 
         <div id="log"></div>
@@ -111,279 +123,307 @@
 </html>
 ```
 
-### 实现发送和接收一对一文本消息
+### 实现发送与接收消息
 
-将以下示例代码复制到 `index.js` 文件中，实现实现创建用户、登录和登出、发送和接收一对一文本消息等逻辑。
+参考以下步骤实现发送和接收单聊消息：
 
-> 本示例使用 JavaScript 引入类型声明， 如需使用 TypeScript，请将 import 命令替换为如下代码：
-```ts
-import WebIM, { AgoraChat } from 'agora-chat';
-```
+1. 导入 Agora 即时通讯 SDK。将以下代码复制到 `index.js` 文件：
 
-```js
-// 为了避免浏览器兼容问题，本示例使用 import 命令导入 SDK。
-import WebIM from "agora-chat";
+   ```javascript
+   // Javascript
+   // 为避免浏览器兼容问题，该示例利用导入命令导入 SDK，利用 webpack 打包 JavaScript 文件。
+   import WebIM from 'agora-chat'
+   ```
 
-var username, password;
-// 初始化客户端。
-WebIM.conn = new WebIM.connection({
-  appKey: "41117440#383391",
-});
-// 添加回调函数。
-WebIM.conn.addEventHandler("connection&message", {
-  // 连接成功。
-  onConnected: () => {
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("Connect success !");
-  },
-  // 连接断开。
-  onDisconnected: () => {
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("Logout success !");
-  },
-  // 收到文本消息。
-  onTextMessage: (message) => {
-    console.log(message);
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("Message from: " + message.from + " Message: " + message.msg);
-  },
-  // Token 即将过期回调。
-  onTokenWillExpire: (params) => {
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("Token is about to expire");
-    refreshToken(username, password);
-  },
-  // Token 过期时触发该回调，你需要从应用服务器获取新的 Token 并重新登录。
-  onTokenExpired: (params) => {
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("The token has expired");
-    refreshToken(username, password);
-  },
-  onError: (error) => {
-    console.log("on error", error);
-  },
-});
+   若要使用 typescript，采用以下代码：
 
-// 从应用服务器获取 Token。
-function refreshToken(username, password) {
-    postData("https://a41.chat.agora.io/app/chat/user/login", {
-    userAccount: username,
-    userPassword: password,
-  }).then((res) => {
-    let agoraToken = res.accessToken;
-    WebIM.conn.renewToken(agoraToken);
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("Token has been updated");
-  });
-}
-// 发送获取 Token 请求。
-function postData(url, data) {
-  return fetch(url, {
-    body: JSON.stringify(data),
-    cache: "no-cache",
-    headers: {
-      "content-type": "application/json",
-    },
-    method: "POST",
-    mode: "cors",
-    redirect: "follow",
-    referrer: "no-referrer",
-  }).then((response) => response.json());
-}
+   ```javascript
+    // Typescript
+    // import WebIM, { AgoraChat } from 'agora-chat'
+   ```
 
-// 定义按钮行为。
-window.onload = function () {
-  // 注册。
-  document.getElementById("register").onclick = function () {
-    username = document.getElementById("userID").value.toString();
-    password = document.getElementById("password").value.toString();
-    // 1. Token 鉴权。
-      postData("https://a41.chat.agora.io/app/chat/user/register", {
-      userAccount: username,
-      userPassword: password,
-    })
-      .then((res) => {
-        document
-          .getElementById("log")
-          .appendChild(document.createElement("div"))
-          .append(`register user ${username} success`);
-      })
-      .catch((res) => {
-        document
-          .getElementById("log")
-          .appendChild(document.createElement("div"))
-          .append(`${username} already exists`);
-      });
-  };
-  // 登录。
-  document.getElementById("login").onclick = function () {
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("Logging in...");
-    username = document.getElementById("userID").value.toString();
-    password = document.getElementById("password").value.toString();
-    // 1. Token 鉴权。
-      postData("https://a41.chat.agora.io/app/chat/user/login", {
-      userAccount: username,
-      userPassword: password,
-    })
-      .then((res) => {
-        let agoraToken = res.accessToken;
-        let easemobUserName = res.chatUserName;
-        WebIM.conn.open({
-          user: easemobUserName,
-          agoraToken: agoraToken,
+2. 利用 Agora 即时通讯 SDK 中提供的核心方法实现发送和接收单聊消息。复制以下代码，添加到 `index.js` 文件中的导入功能的后面。
+
+   ```javascript
+    var username, password;
+    // 初始化 Web 客户端
+    WebIM.conn = new WebIM.connection({
+        appKey: "41117440#383391",
+    });
+    // 添加事件处理器
+    WebIM.conn.addEventHandler("connection&message", {
+        // app 与 Agora 即时通讯成功连接的回调
+        onConnected: () => {
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("Connect success !");
+        },
+        // app 与 Agora 即时通讯断开连接的回调
+        onDisconnected: () => {
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("Logout success !");
+        },
+        // 收到文本消息的回调
+        onTextMessage: (message) => {
+            console.log(message);
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("Message from: " + message.from + " Message: " + message.msg);
+        },
+        // Token 即将过期的回调
+        onTokenWillExpire: (params) => {
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("Token is about to expire");
+            refreshToken(username, password);
+        },
+        // Token 过期时触发的回调。
+       // 你需要从你的 App Server 中获取新的 token，然后重新登录 Agora 即时通讯系统。
+        onTokenExpired: (params) => {
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("The token has expired");
+            refreshToken(username, password);
+        },
+        onError: (error) => {
+            console.log("on error", error);
+        },
+    });
+   
+    // 从 App Server 获得 token
+    function refreshToken(username, password) {
+        postData("https://a41.chat.agora.io/app/chat/user/login", {
+            userAccount: username,
+            userPassword: password,
+        }).then((res) => {
+            let agoraToken = res.accessToken;
+            WebIM.conn.renewToken(agoraToken);
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("Token has been updated");
         });
-      })
-      .catch((res) => {
-        document
-          .getElementById("log")
-          .appendChild(document.createElement("div"))
-          .append(`Login failed`);
-      });
-  };
-
-  // 登出。
-  document.getElementById("logout").onclick = function () {
-    WebIM.conn.close();
-    document
-      .getElementById("log")
-      .appendChild(document.createElement("div"))
-      .append("logout");
-  };
-
-  // 发送一条单聊消息。
-  document.getElementById("send_peer_message").onclick = function () {
-    let peerId = document.getElementById("peerId").value.toString();
-    let peerMessage = document.getElementById("peerMessage").value.toString();
-    let option = {
-      chatType: "singleChat", // 会话类型，设置为单聊。
-      type: "txt", // 消息类型。
-      to: peerId, // 消息接收方（用户 ID)。
-      msg: peerMessage, // 消息内容。
+    }
+    // 发送 token 请求
+    function postData(url, data) {
+        return fetch(url, {
+            body: JSON.stringify(data),
+            cache: "no-cache",
+            headers: {
+                "content-type": "application/json",
+            },
+            method: "POST",
+            mode: "cors",
+            redirect: "follow",
+            referrer: "no-referrer",
+        }).then((response) => response.json());
+    }
+   
+    // 定义按钮的功能
+    window.onload = function () {
+        // 注册
+        document.getElementById("register").onclick = function () {
+            username = document.getElementById("userID").value.toString();
+            password = document.getElementById("password").value.toString();
+            // 1. 通过 token 进行用户认证
+            postData("https://a41.chat.agora.io/app/chat/user/register", {
+                userAccount: username,
+                userPassword: password,
+            })
+                .then((res) => {
+                    document
+                        .getElementById("log")
+                        .appendChild(document.createElement("div"))
+                        .append(`register user ${username} success`);
+                })
+                .catch((res) => {
+                    document
+                        .getElementById("log")
+                        .appendChild(document.createElement("div"))
+                        .append(`${username} already exists`);
+                });
+        };
+        // 登录 Agora 即时通讯系统
+        document.getElementById("login").onclick = function () {
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("Logging in...");
+            username = document.getElementById("userID").value.toString();
+            password = document.getElementById("password").value.toString();
+            // 1. 进行 token 认证
+            postData("https://a41.chat.agora.io/app/chat/user/login", {
+                userAccount: username,
+                userPassword: password,
+            })
+                .then((res) => {
+                    let agoraToken = res.accessToken;
+                    let easemobUserName = res.chatUserName;
+                    WebIM.conn.open({
+                        user: easemobUserName,
+                        agoraToken: agoraToken,
+                    });
+                })
+                .catch((res) => {
+                    document
+                        .getElementById("log")
+                        .appendChild(document.createElement("div"))
+                        .append(`Login failed`);
+                });
+        };
+   
+        // 登出
+        document.getElementById("logout").onclick = function () {
+            WebIM.conn.close();
+            document
+                .getElementById("log")
+                .appendChild(document.createElement("div"))
+                .append("logout");
+        };
+   
+        // 发送单聊消息
+        document.getElementById("send_peer_message").onclick = function () {
+            let peerId = document.getElementById("peerId").value.toString();
+            let peerMessage = document.getElementById("peerMessage").value.toString();
+            let option = {
+                chatType: "singleChat", // 将会话类型设置为单聊
+                type: "txt", // 设置消息类型
+                to: peerId, // 设置消息接收方的用户 ID
+                msg: peerMessage, // 设置消息内容
+            };
+            let msg = WebIM.message.create(option);
+            WebIM.conn
+                .send(msg)
+                .then((res) => {
+                    console.log("send private text success");
+                    document
+                        .getElementById("log")
+                        .appendChild(document.createElement("div"))
+                        .append("Message send to: " + peerId + " Message: " + peerMessage);
+                })
+                .catch(() => {
+                    console.log("send private text fail");
+                });
+        };
     };
-    let msg = WebIM.message.create(option);
-    WebIM.conn
-      .send(msg)
-      .then((res) => {
-        console.log("send private text success");
-        document
-          .getElementById("log")
-          .appendChild(document.createElement("div"))
-          .append("Message send to: " + peerId + " Message: " + peerMessage);
-      })
-      .catch(() => {
-        console.log("send private text fail");
-      });
-  };
-};
-```
+   ```
 
 ## 测试你的 app
 
-本文使用 [webpack](https://webpack.js.org/) 打包项目，使用 `webpack-dev-server` 运行项目。
+本文利用 [webpack](https://webpack.js.org/) 对项目进行打包，通过 `webpack-dev-server` 命令运行项目。
 
-按照以下步骤测试你的 app：
+参考以下步骤创建和运行项目：
 
-1. 在 `package.json` 的 `dependencies` 字段中添加 `webpack`、`webpack-cli` 和 `webpack-dev-server` 字段，在 `scripts` 字段中添加 `build` 和 `start:dev`。
+1. 在 `package.json` 文件中，在 `dependencies` 字段中添加 `webpack`、`webpack-cli` 和 `webpack-dev-server`，在 `scripts` 字段中添加 `build` 和 `start:dev` 命令。
 
-```json
-{
-  "name": "web",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
-    "start:dev": "webpack serve --open --config webpack.config.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "agora-chat": "latest",
-    "agora-rtc-sdk-ng": "^4.6.3"
-  },
-  "devDependencies": {
-    "webpack": "^5.50.0",
-    "webpack-cli": "^4.8.0",
-    "webpack-dev-server": "^3.11.2"
-  }
-}
-```
+   ```json
+   {
+     "name": "web",
+     "version": "1.0.0",
+     "description": "",
+     "main": "index.js",
+     "scripts": {
+       "test": "echo \"Error: no test specified\" && exit 1",
+       "build": "webpack --config webpack.config.js",
+       "start:dev": "webpack serve --open --config webpack.config.js"
+     },
+     "keywords": [],
+     "author": "",
+     "license": "ISC",
+     "dependencies": {
+       "agora-chat": "latest",
+       "agora-rtc-sdk-ng": "^4.6.3"
+     },
+     "devDependencies": {
+       "webpack": "^5.50.0",
+       "webpack-cli": "^4.8.0",
+       "webpack-dev-server": "^3.11.2"
+     }
+   }
+   ```
 
-2. 在项目目录中创建一个名为 `webpack.config.js` 的文件，用于配置 webpack。将以下代码复制到文件中：
+2. 配置 webpack。将以下代码复制到新文件 `webpack.config.js`：
 
-```js
-const path = require("path");
+   ```javascript
+   const path = require('path');
+   
+   module.exports = {
+       entry: './index.js',
+       mode: 'production',
+       output: {
+           filename: 'bundle.js',
+           path: path.resolve(__dirname, './dist'),
+       },
+       devServer: {
+           compress: true,
+           port: 9000,
+           https: true
+       }
+   };
+   ```
 
-module.exports = {
-  entry: "./index.js",
-  mode: "production",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "./dist"),
-  },
-  devServer: {
-    compress: true,
-    port: 9000,
-    https: true,
-  },
-};
-```
+   现在，项目目录的结构如下：
 
-3. 在项目根目录运行以下命令，安装依赖项：
+   ```text
+    agora_quickstart
+    ├─ index.html
+    ├─ index.js
+    ├─ package.json
+    └─ webpack.config.js
+   ```
 
-```shell
-npm install
-```
+3. 运行以下命令，安装依赖项：
 
-4. 运行以下命令，使用 webpack 构建并运行项目：
+   ```shell
+   npm install
+   ```
 
-```shell
-# 使用 webpack 打包
-$ npm run build
+4. 运行以下命令，利用 webpack 构建和运行项目：
 
-# 使用 webpack-dev-server 运行项目
-$ npm run start:dev
-```
+   ```shell
+   # 使用 webpack 打包项目
+   npm run build
+   
+   # 使用 webpack-dev-server 运行项目
+   npm run start:dev
+   ```
 
 你的浏览器会自动打开以下页面：
-![](https://web-cdn.agora.io/docs-files/1642511543104)
 
-按照以下步骤发送和接收一对一文本消息：：
+![img](https://web-cdn.agora.io/docs-files/1637830121772)
 
-1. 输入用户名和密码，点击 **register** 注册，并点击 **login** 登录 Agora 即时通讯系统。
-2. 在新窗口打开同一页面，输入不同的用户名和密码，注册并登录 Agora 即时通讯系统。
-3. 在 **Peer username** 框中输入消息发送对象的用户名，在 **Peer Message** 框中输入消息，点击 **send** 发送消息。
+按以下步骤验证你刚刚通过 Agora 即时通讯在你的 Web app 中集成的发送和接收单聊消息的实现： 
+
+1. 创建账户，点击 **register**。
+
+2. 利用你刚刚创建的账户，登录 app。
+
+   ![img](https://web-cdn.agora.io/docs-files/1635240354287)
+
+3. 在新窗口打开同一页面，创建新账户。确保输入的用户 ID 和密码唯一。
+
+4. 发送单聊消息。
+
+   ![img](https://web-cdn.agora.io/docs-files/1635240394167)
 
 ## 后续步骤
 
-文中示例仅作为演示和测试用途。在生产环境中，为保障通信安全，你需要自行部署服务器签发 Token，详见[使用 User Token 鉴权](./generate_user_tokens?platform=Web)。
+在生产环境中，最好获取 token 登录 Agora。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](./generate_user_tokens)。
 
-## 更多信息
+## 参考
 
-- 我们在 GitHub 上提供一个开源的[示例项目](https://github.com/AgoraIO/API-Examples-Web/tree/main/Demo)供你参考。
+除了使用 npm 将 Agora 即时通讯 SDK 集成到你项目中外，你还可以手动下载 [Agora Chat Web SDK](https://www.npmjs.com/package/agora-chat)。
 
-- 除上文介绍的使用 npm 获取 Agora 即时通讯 SDK 之外，你还可以通过以下方法获取 SDK：
+1. 在 SDK 文件夹中，在 `libs` 文件夹中找到 JS 文件，将其保存到你的项目目录。
 
-1.  下载 [Agora 即时通讯 SDK](./downloads?platform=Web)。将 `libs` 中的 JS 文件保存到你的项目下。
-2.  在 HTML 文件中，对 JS 文件进行引用。
+2. 在你的项目目录中打开 HTML 文件，添加以下代码查看 JS 文件。
 
-```js
+```javascript
 <script src="path to the JS file"></script>
 ```

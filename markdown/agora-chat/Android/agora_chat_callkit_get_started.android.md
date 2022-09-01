@@ -279,7 +279,7 @@ public enum EaseCallEndReason {
 }
 ```
 
-## 更多操作
+## 后续操作
 
 实现基础的音视频通话后，你还可以参考本节内容，在项目中实现进阶功能。
 
@@ -404,7 +404,7 @@ Token 是利用 Agora 提供的 Token 生成器在你自己的 App Server 上生
 
 ### 离线推送
 
-当 App 在后台运行或离线时，通过推送通知确保被叫方收到通话邀请。关于开启离线推送，请参见 [开启 Android Push](https://docs.agora.io/cn/agora-chat/agora_chat_push_android?platform=Android)。开启离线推送后，用户在离线情况下收到呼叫邀请时，其手机通知页面会弹出一条通知消息，用户可点击该消查询呼叫邀请。
+当 App 在后台运行或离线时，通过推送通知确保被叫方收到通话邀请。关于开启离线推送，请参见 [开启 Android 推送](./agora_chat_push_android)。开启离线推送后，用户在离线情况下收到呼叫邀请时，其手机通知页面会弹出一条通知消息，用户可点击该消查询呼叫邀请。
 
 ## 参考
 

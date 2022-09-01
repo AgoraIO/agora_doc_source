@@ -13,14 +13,14 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
 ## 前提条件
 
 - 已开启 Agora 即时通讯服务，详见[开启和配置即时通讯服务](./enable_agora_chat?platform=iOS)；
-- 了解 Agora Chat 套餐包中的 API 调用频率限制，详见 [使用限制](https://docs.agora.io/cn/agora-chat/agora_chat_limitation)；
+- 了解 Agora Chat 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
 - 你已在[Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
-<div class="alert note">关闭推送高级功能必须联系 support@agora.io，因为该操作会删除所有相关配置。</div>
+<div class="alert note">关闭推送高级功能必须联系<a href="mailto:support@agora.io">support@agora.io</a> ，因为该操作会删除所有相关配置。</div>
 
 ## 集成 APNs
 
-### 1. 创建推送证书
+### 1. 创建推送证书<a name="certificate"></a>
 
 参考以下步骤开启 APNs 推送服务：
 
@@ -150,11 +150,11 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
   <tr>
     <tr>
     <td rowspan="2">免打扰模式</td>
-    <td>silentModeDuration：在指定的时长内不接收推送通知。</td>
+    <td>silentModeDuration：在指定时长内不接收推送通知。</td>
     <td>✓</td>
     <td>✓</td>
   <tr>
-    <td>silentModeStartTime & silentModeEndTime：在指定时间段内不接收推送通知。</td>
+    <td>silentModeStartTime & silentModeEndTime：在指定的时间段内不接收推送通知。</td>
     <td>✓</td>
     <td>✗</td>
   </tr>
@@ -330,7 +330,7 @@ NSArray *conversations = @[conversation1,conversation2];
 
 ## 设置推送翻译
 
-如果用户启用[自动翻译功能](https://docs.agora.io/en/agora-chat/agora_chat_translation_ios?platform=iOS#automatic-translation)并发送消息，SDK 会同时发送原始消息和翻译后的消息。
+如果用户启用[自动翻译功能](./agora_chat_translation_ios)并发送消息，SDK 会同时发送原始消息和翻译后的消息。
 
 推送通知与翻译功能协同工作。作为接收方，你可以设置你在离线时希望接收的推送通知的首选语言。如果翻译消息的语言符合你的设置，则翻译消息显示在推送通知中；否则，将显示原始消息。
 

@@ -43,7 +43,7 @@
    }
    ```
 
-   <div class="alert note">如果你在 Android 项目中设置 [dependencyResolutionManagement](https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration)，添加 Maven Central 依赖项的方式可能会有所不同。</div>
+   <div class="alert note">如果你在 Android 项目中设置 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，添加 Maven Central 依赖项的方式可能会有所不同。</div>
 
    b.在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将 Agora Chat UIKit 集成到你的 Android 项目中：
 
