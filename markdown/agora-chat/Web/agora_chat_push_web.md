@@ -1,11 +1,10 @@
 # 离线推送
 
-
-Agora Chat 提供离线推送服务，具有低延迟、高交付、高并发和不侵犯用户个人数据的特点。
+即时通讯 IM 提供离线推送服务，具有低延迟、高交付、高并发和不侵犯用户个人数据的特点。
 
 ## 技术原理
 
-利用 Agora Chat SDK，可实现以下功能：
+利用即时通讯 IM SDK，可实现以下功能：
 
 - 设置 app 的推送通知；
 - 获取 app 的推送通知设置；
@@ -18,15 +17,15 @@ Agora Chat 提供离线推送服务，具有低延迟、高交付、高并发和
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并连接到服务器，详见[快速开始](agora_chat_get_started_web)；
-- 了解 Agora Chat 套餐包中的 API 调用频率限制，详见[使用限制](agora_chat_limitation)；
+- 完成 SDK 初始化，并连接到服务器，详见[快速开始](./agora_chat_get_started_web)；
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)；
 - 你已在 [Agora 控制台](https://console.agora.io/)中激活了推送高级功能。激活了高级功能后，你可以设置推送通知模式和免打扰模式。
 
 <div class="alert note">关闭推送高级功能必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
 
 ## 实现方法
 
-为优化用户在处理大量推送通知时的体验，Agora Chat 在应用和会话级别提供了推送通知和免打扰模式的细粒度选项，如下表所示：
+为优化用户在处理大量推送通知时的体验，即时通讯 IM 在应用和会话级别提供了推送通知和免打扰模式的细粒度选项，如下表所示：
 
 <table>
   <tr>

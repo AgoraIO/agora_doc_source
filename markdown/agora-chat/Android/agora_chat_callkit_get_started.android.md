@@ -22,7 +22,7 @@ AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开
 - Gradle 4.6 或以上版本；
 - targetSdkVersion 30；
 - minSdkVersion 21；
-- 集成了 Chat SDK 的 Agora Chat 项目，实现了基本的实时聊天功能，包括用户的登录和注销、消息的发送和接收。
+- 集成了 Chat SDK 的即时通讯 IM 项目，实现了基本的实时聊天功能，包括用户的登录和注销、消息的发送和接收。
 
 ## 项目设置
 
@@ -90,7 +90,7 @@ implementation 'io.agora.rtc:chat-callkit:1.0.1'
 
 ### 初始化 AgoraChatCallKit
 
-在 Agora Chat SDK 初始化完成后，可以调用 `init` 方法初始化 AgoraChatCallKit，同时添加回调事件对配置进行监听和设置。示例代码如下：
+在即时通讯 IM SDK 初始化完成后，可以调用 `init` 方法初始化 AgoraChatCallKit，同时添加回调事件对配置进行监听和设置。示例代码如下：
 
 ```java
 //构建配置信息类。
@@ -126,7 +126,7 @@ addCallkitListener();
 /**
  * `EaseCallKitConfig` 类中相关的用户配置选项： 
  * @param defaultHeadImage 用户默认头像。该参数的值为本地文件绝对路径或者 URL。 
- * @param userInfoMap      用户信息字典。该信息为 key-value 格式，key 为用户的 Agora Chat 用户 ID, value 为 `EaseCallUserInfo`。
+ * @param userInfoMap      用户信息字典。该信息为 key-value 格式，key 为用户的即时通讯 IM 用户 ID, value 为 `EaseCallUserInfo`。
  * @param callTimeOut      呼叫超时时间，单位为毫秒，默认为 30 秒。 
  * @param agoraAppId       声网 App ID。 
  * @param ringFile         振铃文件。该参数的值为本地文件的绝对路径。  
@@ -162,7 +162,7 @@ addCallkitListener();
      * @param type 通话类型：
      * - SINGLE_VOICE_CALL：音频通话；
      * - SINGLE_VIDEO_CALL：视频通话。
-     * @param user 被叫方的用户 ID，即 Agora Chat 用户 ID。该参数必填。
+     * @param user 被叫方的用户 ID，即即时通讯 IM 用户 ID。该参数必填。
      * @param ext  通话邀请中的扩展信息。若不需要，可传入 `null`。
      */
     public void startSingleCall(final EaseCallType type, final String user, final Map<String, Object> ext){}
@@ -184,7 +184,7 @@ addCallkitListener();
      * @param type 通话类型：
      * - CONFERENCE_VIDEO_CALL：视频通话；
      * - CONFERENCE_VOICE_CALL：音频通话。
-     * @param users 受邀用户的用户 ID 列表，即 Agora Chat 用户 ID 列表。
+     * @param users 受邀用户的用户 ID 列表，即即时通讯 IM 用户 ID 列表。
      * @param ext  通话邀请中的扩展信息。若不需要，可传入 `null`。
      */
     public void startInviteMultipleCall(final EaseCallType type, final String[] users, final Map<String, Object> ext) {}
@@ -199,7 +199,7 @@ addCallkitListener();
      * \~chinese
      * 接收到通话邀请。
      * @param callType  通话类型。
-     * @param fromUserId  邀请人的用户 ID，即 Agora Chat 用户 ID。
+     * @param fromUserId  邀请人的用户 ID，即即时通讯 IM 用户 ID。
      * @param ext   呼叫邀请中的扩展信息，JSONObject 类型。
      */
     void onReceivedCall(EaseCallType callType, String fromUserId, JSONObject ext);  
@@ -230,9 +230,9 @@ addCallkitListener();
 
 对端用户加入通话后，当前用户及通话中其他用户会收到 `EaseCallKitListener` 中的 `onRemoteUserJoinChannel` 回调。
 
-用户应先通过传入的参数在自己的 App Server 中查询声网 UID 对应的 Agora Chat 用户 ID：
+用户应先通过传入的参数在自己的 App Server 中查询声网 UID 对应的即时通讯 IM 用户 ID：
 
-- 若查询成功，则将 Agora Chat 用户 ID 封装成 {@link EaseUserAccount} 对象，并通过 `onRemoteUserJoinChannel` 中的 `callback` 参数将其返回给应用。对于 `callback` 参数，在 `EaseCallGetUserAccountCallback` 中实现 `onUserAccount`。
+- 若查询成功，则将即时通讯 IM 用户 ID 封装成 {@link EaseUserAccount} 对象，并通过 `onRemoteUserJoinChannel` 中的 `callback` 参数将其返回给应用。对于 `callback` 参数，在 `EaseCallGetUserAccountCallback` 中实现 `onUserAccount`。
 
 - 若查询失败，则调用 `EaseCallGetUserAccountCallback` 类中的 `onSetUserAccountError` 回调，传递错误码和错误描述。
 
@@ -242,7 +242,7 @@ addCallkitListener();
      * 对端用户成功加入频道时的回调。
      * 
      * @param channelName 频道名称。
-     * @param userName Agora Chat 用户 ID。
+     * @param userName 即时通讯 IM 的用户 ID。
      * @param uid 声网 UID。
      * @param callback 回调对象。
      */
@@ -299,7 +299,7 @@ public enum EaseCallEndReason {
     
 ```
 
-`EaseCallError` 异常包括业务逻辑异常、音视频异常以及 AgoraChat IM 异常。
+`EaseCallError` 异常包括业务逻辑异常、音视频异常以及即时通讯 IM 异常。
 
 ```java
 /**
@@ -308,7 +308,7 @@ public enum EaseCallEndReason {
 public enum EaseCallError {
     PROCESS_ERROR, //业务逻辑异常。
     RTC_ERROR, //音视频异常。
-    IM_ERROR  //AgoraChat IM 异常。
+    IM_ERROR  //即时通讯 IM 异常。
 }
 ```
 
@@ -344,7 +344,7 @@ AgoraChatCallKit 库初始化之后，可修改有关配置，示例代码如下
      * \~chinese
      * 通知用户更新用户信息。
 
-     * @param userName 用户的 Agora Chat 用户 ID。
+     * @param userName 用户的即时通讯 IM 的用户 ID。
      */
      void onUserInfoUpdate(String userName){
     	//示例
@@ -392,7 +392,7 @@ Token 是利用 Agora 提供的 Token 生成器在你自己的 App Server 上生
      * \~chinese
      * 启用 RTC Token 验证的回调。
      * 
-     * @param userId       当前用户的 Agora Chat 用户 ID。
+     * @param userId       当前用户的即时通讯 IM 的用户 ID。
      * @param channelName  频道名称。
      * @param callback     回调对象。
      */
@@ -441,7 +441,7 @@ AgoraChatCallKit 提供的 API 列表如下：
 
 | 事件                  | 说明                                        |
 | :-------------------- | :------------------------------------------ |
-| onUserAccount         | 通过声网 UID 获得对应的 Agora Chat 用户 ID 后的回调。 |
+| onUserAccount         | 通过声网 UID 获得对应的即时通讯 IM 的用户 ID 后的回调。 |
 | onSetUserAccountError | 获取用户信息失败的回调。                      |
 
 `EaseCallKitTokenCallback` 的 API 列表如下：
@@ -453,9 +453,9 @@ AgoraChatCallKit 提供的 API 列表如下：
 
 ### 示例项目
 
-为方便快速体验，我们在 GitHub 上提供了一个开源的 [Agora Chat](https://github.com/AgoraIO-Usecase/AgoraChat-android) 示例项目，你可以下载体验或查看源代码。
+为方便快速体验，我们在 GitHub 上提供了一个开源的 [即时通讯 IM](https://github.com/AgoraIO-Usecase/AgoraChat-android) 示例项目，你可以下载体验或查看源代码。
 
-示例项目使用 Agora Chat 用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用 Agora RTC SDK 的方法发起通话，也可以使用 Integer UID 加入频道。
+示例项目使用即时通讯 IM 的用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用 Agora RTC SDK 的方法发起通话，也可以使用整型 UID 加入频道。
 
 
 

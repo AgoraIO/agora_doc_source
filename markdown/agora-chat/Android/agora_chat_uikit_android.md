@@ -1,8 +1,8 @@
-# Agora Chat UIKit 快速开始
+# 即时通讯 IM UIKit 快速开始
 
-即时通讯将各地人们连接在一起，实现实时通信。Agora Chat UIKit 内置了用户界面（UI）提供会话列表和联系人列表，使你可将实时通讯嵌入到你的应用程序，而无需在 UI 上进行额外操作。
+即时通讯将各地人们连接在一起，实现实时通信。即时通讯 IM UIKit 内置了用户界面（UI）提供会话列表和联系人列表，使你可将实时通讯嵌入到你的应用程序，而无需在 UI 上进行额外操作。
 
-本页通过示例代码介绍如何利用 Android 版本 Agora Chat UIKit 将单聊消息添加到你的应用程序中。
+本页通过示例代码介绍如何利用 Android 版本的即时通讯 IM UIKit 将单聊消息发送和接收的逻辑添加到你的应用程序中。
 
 ## 技术原理
 
@@ -24,7 +24,7 @@
 
 <div class="alert note">创建项目后，Android Studio 会自动启动 gradle 同步。确保同步成功后再进行后续操作。</div>
 
-2. 使用 Maven Central 将 Agora Chat SDK 集成到你的项目中。
+2. 使用 Maven Central 将即时通讯 IM SDK 集成到你的项目中。
 
    a.在`/Gradle Scripts/build.gradle(Project: <projectname>)`中，添加以下代码实现 Maven Central 依赖项：
 
@@ -45,7 +45,7 @@
 
    <div class="alert note">如果你在 Android 项目中设置 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，添加 Maven Central 依赖项的方式可能会有所不同。</div>
 
-   b.在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将 Agora Chat UIKit 集成到你的 Android 项目中：
+   b.在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将即时通讯 IM UIKit 集成到你的 Android 项目中：
 
    ```java
    android {
@@ -80,7 +80,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
    ```
 
-   以上为启动 Agora Chat 所需的最低权限。你还可以根据使用情况添加其他权限。
+   以上为启动即时通讯 IM 所需的最低权限。你还可以根据使用情况添加其他权限。
 
 4. 防止代码混淆。
 
@@ -93,7 +93,7 @@
 
 ## 实现单聊消息发送与接收
 
-本节介绍如何使用 Agora Chat UIKit 在你的应用中实现单聊消息的发送与接收。
+本节介绍如何使用即时通讯 IM UIKit 在你的应用中实现单聊消息的发送与接收。
 
 ### 创建用户界面
 
@@ -349,9 +349,9 @@
             options.setRequireDeliveryAck(true);
             // 设置为非自动登录
             options.setAutoLogin(false);
-            // 利用 UIKit 初始化 Agora Chat SDK
+            // 利用 UIKit 初始化即时通讯 IM SDK
             EaseUIKit.getInstance().init(this, options);
-            // 设置 Agora Chat SDK 为可调试
+            // 设置即时通讯 IM SDK 为可调试
             ChatClient.getInstance().setDebugMode(true);
         }
     //=================== init SDK end ========================
@@ -404,7 +404,7 @@
     //=================== click event start ========================
    
         /**
-        * 注册 Agora Chat 账号。
+        * 注册即时通讯 IM 账号。
         */
         public void signUp(View view) {
             String username = et_username.getText().toString().trim();
@@ -631,7 +631,6 @@
 
    ```java
     package io.agora.chatuikitquickstart.utils;
-   
     import android.app.Activity;
     import android.text.TextUtils;
     import android.util.Log;
@@ -781,7 +780,7 @@
 
 ## 测试你的应用
 
-要验证你刚刚使用 Agora Chat 集成到应用中的单聊功能：
+要验证你刚刚使用即时通讯 IM 集成到应用中的单聊功能：
 
 1. 在 Android Studio 中，单击 `Run 'app'`。
 
@@ -795,10 +794,10 @@
 
 4. 在第一台设备或模拟器上，输入你刚刚创建的用户 ID，然后单击 **START CHAT**。现在，你可以开始在两个客户端之间聊天。
 
-## 更多操作
+## 后续操作
 
-出于演示目的，Agora Chat 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好是自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat)生成 token，并在客户端获取 token 登录 Agora。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](./generate_user_tokens)。
+出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好是自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat)生成 token，并在客户端获取 token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](./generate_user_tokens)。
 
 ## 参考
 
-Agora 提供了功能完善的 [AgoraChat-UIKit-Android](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-android) demo 作为实现参考。
+Agora 提供了功能完善的 [即时通讯 IM Android UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-android) demo 作为实现参考。

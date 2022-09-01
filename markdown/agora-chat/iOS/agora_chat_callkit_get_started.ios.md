@@ -18,7 +18,7 @@ AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开
 开始前，请确保你的开发环境中满足如下条件：
 - Xcode 9.0 或以上版本；
 - 一台运行 iOS 10.0 或以上版本的设备；
-- 创建了 Agora Chat 项目集成了 Chat SDK 并实现了基本实时通讯功能的，包含用户登录登出和发送和接收消息等。
+- 创建即时通讯 IM 项目集成了 Chat SDK 并实现了基本实时通讯功能的，包含用户登录登出和发送和接收消息等。
 
 ## 项目设置
 
@@ -286,7 +286,7 @@ config.enableIosCallKit = YES;
 }
 ```
 
-## 更多操作
+## 后续操作
 
 本节介绍你的项目中涉及的音视频通话功能的其他操作。
 
@@ -344,7 +344,7 @@ config.enableRTCTokenValidate = YES;
 | startInviteUsers:groupId:callType:ext:completion:  | 邀请用户加入多人通话。 |
 | getAgoraChatCallConfig | 获取 AgoraChatCallKit 的相关配置。 |
 | setRTCToken:channelName:uid: | 设置 RTC Token。 |
-| setUsers:channelName: | 设置 Agora Chat 用户 ID 和 Agora 用户 ID（UID）的映射关系。 |  
+| setUsers:channelName: | 设置即时通讯 IM 的用户 ID 和 Agora 用户 ID（UID）的映射关系。 |  
 
 下表列出了回调模块 `AgoraChatCallDelegate` 中的核心方法：
 
@@ -362,7 +362,7 @@ config.enableRTCTokenValidate = YES;
 
 声网在 GitHub 上提供了一个开源的 [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios/blob/main/README_CN.md) 示例项目。您可以下载示例进行试用或查看源代码。
 
-示例项目使用 Agora Chat 用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用 Agora RTC SDK 中的方法发起通话，也可以使用整型的 UID 加入频道。
+示例项目使用即时通讯 IM 的 用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用 Agora RTC SDK 中的方法发起通话，也可以使用整型的 UID 加入频道。
 
 ### 手动导入 `AgoraChatCallKit` <a name="import"></a>
 

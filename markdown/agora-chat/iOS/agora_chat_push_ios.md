@@ -1,8 +1,8 @@
 # 离线推送
 
-Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供低延时、高送达、高并发、不侵犯用户个人数据的离线消息推送服务。
+即时通讯 IM 支持集成 APNs 消息推送服务，为 iOS 开发者提供低延时、高送达、高并发、不侵犯用户个人数据的离线消息推送服务。
 
-当客户端应用进程被关闭等原因导致用户离线，Agora 即时通讯服务会通过 APNs 消息推送服务向该离线用户的设备推送消息通知。当用户再次上线时，会收到离线期间所有消息。
+当客户端应用进程被关闭等原因导致用户离线，即时通讯 IM 会通过 APNs 消息推送服务向该离线用户的设备推送消息通知。当用户再次上线时，会收到离线期间所有消息。
 
 ## 技术原理
 
@@ -12,8 +12,8 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
 
 ## 前提条件
 
-- 已开启 Agora 即时通讯服务，详见[开启和配置即时通讯服务](./enable_agora_chat?platform=iOS)；
-- 了解 Agora Chat 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
+- 已开启即时通讯 IM，详见[开启和配置即时通讯服务](./enable_agora_chat?platform=iOS)；
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
 - 你已在[Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
 <div class="alert note">关闭推送高级功能必须联系<a href="mailto:support@agora.io">support@agora.io</a> ，因为该操作会删除所有相关配置。</div>
@@ -25,7 +25,7 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
 参考以下步骤开启 APNs 推送服务：
 
 1. 申请证书签名请求 Certificate Signing Request (CSR) 文件。<a name="step1-1"></a>
-     1. 在设备上打开 **Keychain Access** 应用，选择**Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority**。
+     1. 在设备上打开 **Keychain Access** 应用，选择 **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority**。
      2. 在 **Certificate Assistant** 对话框中填写 **User Email Address**（电子邮件地址）和 **Common Name**（常用名称），选择 **Saved to disk**，点击**Continue**，添加存储路径保存文件。
      ![](https://web-cdn.agora.io/docs-files/1642564150801)
      3. 你会在该路径获取到一个名为 `CertificateSigningRequest.certSigningRequest` 的 CSR 文件。
@@ -123,7 +123,7 @@ Agora 即时通讯支持集成 APNs 消息推送服务，为 iOS 开发者提供
 
 ## 设置推送通知 
 
-为优化用户在处理大量推送通知时的体验，Agora Chat 在 app 和会话层面提供了推送通知和免打扰模式的细粒度选项，如下表所示：
+为优化用户在处理大量推送通知时的体验，即时通讯 IM 在 app 和会话层面提供了推送通知和免打扰模式的细粒度选项，如下表所示：
 
 <table>
   <tr>
@@ -353,7 +353,7 @@ NSArray *conversations = @[conversation1,conversation2];
 
 ## 设置推送模板
 
-Agora Chat 支持自定义推送通知模板。使用前，你可以参考以下步骤为用户创建和提供推送模板：
+即时通讯 IM 支持自定义推送通知模板。使用前，你可以参考以下步骤为用户创建和提供推送模板：
 
 1. 登录 Agora 控制台，点击左侧导航栏中的**项目管理**。
 

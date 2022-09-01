@@ -69,7 +69,7 @@ CallKit.init(appId, agoraUid, connection);
 let options = {
 	callType: 0, //通话类型：0：一对一语音通话；1：一对一视频通话；2：多人视频通话；3：多人语音通话。
 	chatType: 'singleChat', //会话类型：单聊。
-	to: 'userId', // 对方的 Agora Chat 用户 ID。
+	to: 'userId', // 对方的即时通讯 IM 用户 ID。
 	message: '邀请你加入语音', //邀请消息。
 	channel: 'channel', //当前用户生成的频道名称，让对方加入该频道。
 	accessToken: '声网 token', //声网 RTC token。
@@ -84,7 +84,7 @@ CallKit.startCall(options);
 let options = {
 	callType: 2, //通话类型：0：一对一语音通话；1：一对一视频通话；2：多人视频通话；3：多人语音通话。
 	chatType: 'groupChat', 
-	to: ['userId'], //受邀用户的 Agora Chat 用户 ID。
+	to: ['userId'], //受邀用户的即时通讯 IM 用户 ID。
 	message: '邀请你视频通话', //邀请消息。
 	groupId: 'groupId', //群组 ID。
 	groupName: 'group name', //群组名称。
@@ -203,4 +203,4 @@ Token 由声网提供的 token 生成器在你的应用服务器上生成。获�
 
 为方便快速体验，我们在 GitHub 上提供了一个开源的 [AgoraChatCallKit](https://github.com/AgoraIO-Usecase/AgoraChat-CallKit-web/tree/master/demo) 示例项目，你可以下载体验，或查看源代码。
 
-AgoraChatCallKit 在通话过程中，使用 Agora Chat 用户 ID 加入频道，方便音视频视图中显示用户 ID。如果你直接调用声网 API 实现音视频通话功能，也可以直接使用 Int 型 UID 加入频道。
+AgoraChatCallKit 在通话过程中，使用即时通讯 IM 的用户 ID 加入频道，方便音视频视图中显示用户 ID。如果你直接调用声网 API 实现音视频通话功能，也可以直接使用 Int 型 UID 加入频道。

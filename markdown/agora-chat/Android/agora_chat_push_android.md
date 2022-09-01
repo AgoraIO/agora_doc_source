@@ -1,8 +1,8 @@
 # 离线推送
 
-Agora 即时通讯支持集成第三方厂商的消息推送服务，为 Android 开发者提供低延时、高送达、高并发、不侵犯用户个人数据的离线消息推送服务。
+即时通讯 IM 支持集成第三方厂商的消息推送服务，为 Android 开发者提供低延时、高送达、高并发、不侵犯用户个人数据的离线消息推送服务。
 
-当客户端应用进程被关闭等原因导致用户离线，Agora 即时通讯服务会通过第三方厂商的消息推送服务向该离线用户的设备推送消息通知。当用户再次上线时，会收到离线期间所有消息。
+当客户端应用进程被关闭等原因导致用户离线，即时通讯 IM 会通过第三方厂商的消息推送服务向该离线用户的设备推送消息通知。当用户再次上线时，会收到离线期间所有消息。
 
 本文以集成小米、华为的消息推送服务为例，介绍如何在客户端应用中实现消息推送。
 
@@ -12,11 +12,11 @@ Agora 即时通讯支持集成第三方厂商的消息推送服务，为 Android
 
 ## 前提条件
 
-- 已开启 Agora 即时通讯服务，详见[开启和配置即时通讯服务](./enable_agora_chat?platform=Android)。
-- 了解 Agora Chat 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
+- 已开启即时通讯 IM ，详见[开启和配置即时通讯服务](./enable_agora_chat?platform=Android)。
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
 - 你已在 [Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
-<div class="alert note">关闭推送高级功能必须联系 support@agora.io，因为该操作会删除所有相关配置。</div>
+<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
 
 ## 项目配置
 
@@ -60,7 +60,7 @@ Agora 即时通讯支持集成第三方厂商的消息推送服务，为 Android
 <!-- huawei push end -->
 ```
 
-9. 获取消息推送 Token，详见[获取和注销 Push Token](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-client-dev-0000001050042041)，并参考如下代码，将推送 Token 上传到 Agora 即时通讯服务器。
+9. 获取消息推送 Token，详见[获取和注销 Push Token](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-client-dev-0000001050042041)，并参考如下代码，将推送 Token 上传到即时通讯 IM 服务器。
 
 ```java
 public class HMSPushService extends HmsMessageService {
@@ -86,7 +86,7 @@ PushConfig.Builder builder = new PushConfig.Builder(this);
 builder..enableHWPush();
 // 将 pushconfig 设置为 ChatOptions。
 options.setPushConfig(builder.build());
-// 初始化 Agora Chat SDK。
+// 初始化即时通讯 IM SDK。
 ChatClient.getInstance().init(this, options);
 ```
 
@@ -128,7 +128,7 @@ ChatClient.getInstance().init(this, options);
         android:enabled="true"
         android:process=":pushservice" />
     
-    <!--注：此 service 必须在 3.0.1 版本以后（包括 3.0.1 版本）加入-->
+    <!--注：此服务必须在 3.0.1 版本以后（包括 3.0.1 版本）加入-->
     <service
         android:name="com.xiaomi.push.service.XMJobService"
         android:enabled="true"
@@ -143,7 +143,7 @@ ChatClient.getInstance().init(this, options);
         android:exported="true"
         android:permission="com.xiaomi.xmsf.permission.MIPUSH_RECEIVE" />
     
-    <!--注：此 service 必须在 2.2.5 版本以后（包括 2.2.5 版本）加入-->
+    <!--注：此服务必须在 2.2.5 版本以后（包括 2.2.5 版本）加入-->
     <service
         android:name="com.xiaomi.mipush.sdk.MessageHandleService"
         android:enabled="true" />
@@ -167,7 +167,7 @@ ChatClient.getInstance().init(this, options);
     </receiver>
     ```
 
-    3. 自定义一个继承自 Agora Chat SDK 中 `EMMiMsgReceiver` 类的 `BroadcastReceiver`，并注册到 `AndroidManifest.xml` 文件中：
+    3. 自定义一个继承自即时通讯 IM SDK 中 `EMMiMsgReceiver` 类的 `BroadcastReceiver`，并注册到 `AndroidManifest.xml` 文件中：
     ```xml
     <receiver android:name=".common.receiver.MiMsgReceiver">
         <intent-filter>
@@ -190,13 +190,13 @@ PushConfig.Builder builder = new PushConfig.Builder(this);
 builder..enableMiPush(String appId, String appKey);
 //将 pushconfig 设置为 ChatOptions。
 options.setPushConfig(builder.build());
-// 初始化 Agora Chat SDK。
+// 初始化即时通讯 IM SDK。
 ChatClient.getInstance().init(this, options);
 ```
 
 ## 设置推送通知 
 
-为优化用户在处理大量推送通知时的体验，Agora Chat 在 app 和会话层面提供了推送通知和免打扰模式的细粒度选项，如下表所示：
+为优化用户在处理大量推送通知时的体验，即时通讯 IM 在 app 和会话层面提供了推送通知和免打扰模式的细粒度选项，如下表所示：
 
 <table>
   <tr>
@@ -412,7 +412,7 @@ ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new Valu
 
 ## 设置推送模板
 
-Agora Chat 支持自定义推送通知模板。使用前，你可以参考以下步骤为用户创建和提供推送模板：
+即时通讯 IM 支持自定义推送通知模板。使用前，你可以参考以下步骤为用户创建和提供推送模板：
 
 1. 登录 Agora 控制台，点击左侧导航栏中的**项目管理**。
 
