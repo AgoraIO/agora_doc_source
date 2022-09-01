@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getmediaplayercachemanager">
     <title><ph keyref="getMediaPlayerCacheManager" /></title>
-    <shortdesc id="short"><ph id="shortdesc"><ph props="apple">Creates one <xref keyref="IMediaPlayerCacheManager" /> instance. </ph><ph props="android cpp">Gets one <xref keyref="IMediaPlayerCacheManager" /> instance.</ph></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="apple">Creates one <xref keyref="IMediaPlayerCacheManager" /> instance. </ph><ph props="android cpp electron rn unity flutter">Gets one <xref keyref="IMediaPlayerCacheManager" /> instance.</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,9 +17,13 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (id&lt;AgoraRtcMediaPlayerCacheManagerProtocol&gt; _Nullable)createMediaPlayerCacheManager;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">AGORA_API agora::rtc::IMediaPlayerCacheManager* AGORA_CALL getMediaPlayerCacheManager();</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export function getMediaPlayerCacheManager(): IMediaPlayerCacheManager {
+  return new IMediaPlayerCacheManagerImpl();
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract IMediaPlayerCacheManager GetMediaPlayerCacheManager();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">export function getMediaPlayerCacheManager(): IMediaPlayerCacheManager {
+  return new IMediaPlayerCacheManagerImpl();
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">MediaPlayerCacheManager getMediaPlayerCacheManager()</codeblock> </p>
         </section>
         <section id="detailed_desc">
