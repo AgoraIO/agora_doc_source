@@ -1,6 +1,6 @@
 群组黑名单是指群组中既看不到也接收不到群组消息的用户列表。即时通讯提供整套的黑名单管理方法，支持查看、添加、移除黑名单等。
 
-本节展示如何调用 Agora 即时通讯 RESTful API 管理群组黑名单。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+本节展示如何调用即时通讯 RESTful API 管理群组黑名单。调用以下方法前，请先参考 [限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -11,9 +11,9 @@
 
 | 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :----- | :----------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见 [获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见 [获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见 [获取即时通讯项目信息](./enable_agora_chat)。 | 是       |
 | `username` | String | 用户名。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户名。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
 
 ### 响应参数
@@ -70,7 +70,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段中就包含群组黑名单用户的 ID。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -106,7 +106,7 @@ curl -X GET -H ``'Accept: application/json'` `-H ``'Authorization: Bearer <YourA
 
 将指定用户添加进群组的黑名单列表。注意群主无法加入群组黑名单。
 
-用户一旦被添加进群组黑名单，会收到消息：You are kicked out of the group xxx。成功后，该用户不能查看该群组的消息，也接收不到群组的新消息。
+用户一旦被添加进群组黑名单，会收到消息：`You are kicked out of the group xxx`。成功后，该用户不能查看该群组的消息，也接收不到群组的新消息。
 
 ### HTTP 请求
 
@@ -145,7 +145,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{us
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -226,9 +226,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 | `action`  | String  | 执行操作。                                        |
 | `user`    | String  | 被添加到群组黑名单的用户 ID。                     |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -314,7 +314,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -347,7 +347,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-
 ## 从群组黑名单批量移除用户
 
 将多名指定用户从群组黑名单中移除。对于群组黑名单中的用户，如果需要将其再次加入群组，需要先将其从群组黑名单中移除。
@@ -363,7 +362,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 | 参数      | 类型   | 描述                                      | 是否必需 |
 | :-------- | :----- | :---------------------------------------- | :------- |
 | `group_id`  | String | 群组 ID。                                 | 是       |
-| `usernames` | String | 用户 ID。多个用户 ID 之间使用英文逗号隔开 | 是       |
+| `usernames` | String | 用户 ID。多个用户 ID 之间使用英文逗号隔开。 | 是       |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
@@ -371,8 +370,8 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                  | 是       |
+| `Authorization` | String | `Bearer ${YourAppToken}`。 | 是       |
 
 ### HTTP 响应
 
@@ -387,9 +386,9 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 | `action`  | String  | 执行操作。                                        |
 | `user`    | String  | 被从群组黑名单移除的用户 ID。                     |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code)了解可能的原因。
 
 ### 示例
 

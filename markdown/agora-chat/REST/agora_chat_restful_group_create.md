@@ -83,9 +83,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 | :-------- | :----- | :-------- |
 | `groupid` | String | 群组 ID。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -138,7 +138,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 | :---------- | :----- | :-------------------------------------------------------------------- | :------- |
 | `group_ids` | String | 想获取详情的群组 ID。如果想获取多个群组的详情，则使用英文的逗号隔开。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他路径参数说明详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -161,16 +161,16 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 | `membersonly`        | Boolean | 用户申请入群是否需要群主或者群管理员审批：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                 |
 | `allowinvites`       | Boolean | 是否允许群组成员邀请别人加入群组：<ul><li>`true`：允许</li><li>`false`：不允许</li></ul>                                |
 | `maxusers`           | Number  | 群组成员（包含群主）数量最大值。                                                                                        |
-| `owner`              | String  | 群主的 Agora Chat ID，如 `{"owner":"user1"}`。                                                                          |
+| `owner`              | String  | 群主的用户 ID，如 `{"owner":"user1"}`。                                                                          |
 | `created`            | Long    | 群组创建的时间戳。                                                                                                      |
 | `affiliations_count` | Number  | 群成员总人数。                                                                                                          |
 | `affiliations`       | Array   | 现有群成员列表，包含了群主 owner 和其他群成员 member，如：`[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`。 |
 | `public`             | Boolean | 群组是否为公开群：<ul><li>`true`：是</li><li>`false`：否</li></ul>                                                      |
 | `custom`             | String  | 群组扩展信息。                                                                                                          |
 
-其他相应参数说明详见[公共参数](#pubparam)。
+其他相应参数说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -237,7 +237,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他路径参数说明详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -272,9 +272,9 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | `data.membersonly`  | Bool | 加入群组是否需要群主或者群管理员审批：<ul><li>`true`：是；</li><li>`false`：否。</li></ul>                                     |
 | `data.allowinvites` | Bool | 是否允许群成员邀请别人加入此群<ul><li>`true`：允许群成员邀请人加入此群；</li><li>`false`：只有群主才可以往群里加人。</li></ul> |
 
-其他相应字段说明详见[公共参数](#pubparam)。
+其他相应字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -330,7 +330,7 @@ DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他路径参数说明详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -348,9 +348,9 @@ DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
 | `success` | Boolean | 是否成功删除群组：true：删除成功false：删除失败 |
 | `groupid` | String  | 删除的群组 ID。                                 |
 
-其他相应字段说明详见[公共参数](#pubparam)。
+其他相应字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -394,7 +394,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 
 #### 路径参数
 
-路径参数说明详见[公共参数](#pubparam)。
+路径参数说明详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -427,9 +427,9 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 | `count`         | Number | 实际返回的群组数量。                      |
 | `cursor`        | String | 分页页码。                                |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -520,9 +520,9 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 | `data.groupid`   | String | 群组 ID。  |
 | `data.groupname` | String | 群组名称。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 

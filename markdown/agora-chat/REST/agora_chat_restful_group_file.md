@@ -1,4 +1,4 @@
-本文展示如何调用 Agora 即时通讯 RESTful API 管理群公告与群文件。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 管理群公告与群文件。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -226,7 +226,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagen
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 

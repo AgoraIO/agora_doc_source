@@ -1,6 +1,6 @@
 在线状态功能使用户可以公开显示其在线状态并快速确定其他人的状态。用户还可以自定义他们的在线状态，为实时聊天增添乐趣和多样性。
 
-本页展示了如何使用 Agora Chat RESTful API 在线状态订阅相关功能。
+本页展示了如何使用即时通讯 IM RESTful API 在线状态订阅相关功能。
 
 在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](..cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 

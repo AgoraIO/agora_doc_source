@@ -1,5 +1,5 @@
 在即时通讯应用中，仅聊天室超级管理员具有在客户端创建聊天室的权限。
-本文展示如何调用 Agora 即时通讯 RESTful API 实现聊天室超级管理员管理，包括添加、删除、查询聊天室超级管理员。调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 实现聊天室超级管理员管理，包括添加、删除、查询聊天室超级管理员。调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 

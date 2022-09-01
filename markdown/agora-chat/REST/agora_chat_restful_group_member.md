@@ -1,6 +1,6 @@
 管理群组成员是指对一个群组内的成员进行添加、移除等操作。即时通讯提供多个接口实现添加群成员、获取群成员、添加管理员、转让群主等功能。
 
-本文展示如何调用 Agora 即时通讯 RESTful API 管理群组成员。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 管理群组成员。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -83,7 +83,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -326,7 +326,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{usernam
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -401,7 +401,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memeber
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -478,7 +478,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段即返回的群管理员的信息。其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -687,7 +687,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 

@@ -1,4 +1,4 @@
-在单聊和群聊中，用户可以使用表情符号回复指定消息，为实时聊天增添乐趣和多样性。在 Agora Chat 中，此功能称为 Reaction 。本页展示了如何使用 Agora Chat RESTful API 在项目中实现 Reaction。
+在单聊和群聊中，用户可以使用表情符号回复指定消息，为实时聊天增添乐趣和多样性。在即时通讯 IM 中，此功能称为 Reaction 。本页展示了如何使用即时通讯 IM RESTful API 在项目中实现 Reaction。
 
 在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](..cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 

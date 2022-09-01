@@ -1,4 +1,4 @@
-本文展示如何调用 Agora 即时通讯 RESTful API 实现聊天室管理，包括创建、删除、修改、查询聊天室。调用以下方法前，请先参考[限制条件](https://confluence.agoralab.co/pages/viewpage.action?pageId=857605065)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 实现聊天室管理，包括创建、删除、修改、查询聊天室。调用以下方法前，请先参考[限制条件](https://confluence.agoralab.co/pages/viewpage.action?pageId=857605065)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 

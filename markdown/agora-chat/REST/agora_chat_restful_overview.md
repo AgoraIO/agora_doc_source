@@ -1,8 +1,8 @@
-Agora 即时通讯通过 REST 平台提供 RESTful API，你可以通过你的业务服务器向 Agora 服务器发送 HTTP 请求，在服务端实现实时通信。
+即时通讯通过 REST 平台提供 RESTful API，你可以通过你的业务服务器向 Agora 服务器发送 HTTP 请求，在服务端实现实时通信。
 
 ## REST 平台架构
 
-Agora 即时通讯 REST 平台提供多租户架构，以集合（Collection）的形式管理资源，一个 Collection 包含如下子集：
+即时通讯 REST 平台提供多租户架构，以集合（Collection）的形式管理资源，一个 Collection 包含如下子集：
 
 - 数据库（database）
 - 组织（orgs）
@@ -18,7 +18,7 @@ Agora 即时通讯 REST 平台提供多租户架构，以集合（Collection）�
 
 ## 前提条件
 
-要调用 Agora 即时通讯 RESTful API，请确保满足以下要求：
+要调用即时通讯 RESTful API，请确保满足以下要求：
 
 - 已在 Agora 控制台[开启和配置即时通讯服务](./enable_agora_chat?platform=RESTful)。
 - 已从服务端获取 app token，详见 [使用 App Token 鉴权](./generate_app_tokens?platform=RESTful)。
@@ -216,7 +216,7 @@ Agora 即时通讯 REST 平台提供多租户架构，以集合（Collection）�
 
 ### 通信协议
 
-为了保障通信安全，Agora 即时通讯 RESTful API 仅支持 HTTPS 协议。
+为了保障通信安全，即时通讯 RESTful API 仅支持 HTTPS 协议。
 
 ### 数据格式
 
