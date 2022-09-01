@@ -32,6 +32,15 @@
                 <li>如果想要将当前播放的音频发布到远端，可以调用该方法并将 <parmname>deviceId</parmname> 设置为 <xref keyref="setPlaybackDevice"/> 中的 <parmname>deviceId</parmname>。当切换播放设备时，也需要同时切换声卡采集设备，以确保两者一致。</li>
                 <li>如果不希望将当前播放的音频发布到远端，或者想要另外指定音频设备作为 声卡采集设备，则另外指定 <parmname>deviceId</parmname>。</li>
             </ul>
+            <note type="note">
+                <p>该方法适用的场景如下： </p>
+                <p>使用 app A 播放音乐，通过蓝牙耳机播放；同时使用 app B 进行视频会议，通过扬声器播放。
+                    <ul>
+                    <li>如果选择声卡采集设备为蓝牙耳机，则 SDK 会将 app A 中的音乐发布到远端。</li>
+                    <li>如果选择声卡采集设备设置为扬声器，则 SDK 不会将 app A 中的音乐发布到远端。</li>
+                    <li>如果设置声卡采集设备为蓝牙耳机后，又改用有线耳机播放 app A 中的音乐，则需要重新调用该方法，设置声卡采集设备为有线耳机，则 SDK 会继续将 app A 中的音乐发布到远端。</li>
+                    </ul></p>
+            </note>
         </section>
         <section id="parameters">
             <title>参数</title>
