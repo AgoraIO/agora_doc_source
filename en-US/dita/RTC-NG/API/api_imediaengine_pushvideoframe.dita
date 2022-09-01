@@ -35,7 +35,7 @@
                 <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame2" /> instead.</dd>
             </dlentry>
             </dl>
-            <p id="desc1"><ph props="android ios mac unity">Call the <xref keyref="setExternalVideoSource"/> method, set the <parmname>enabled</parmname> parameter to <codeph><ph keyref="true"/></codeph>, the <parmname>encodedFrame</parmname> parameter to <codeph><ph keyref="false"/></codeph>, </ph><ph props="cpp">or call the <xref keyref="createCustomVideoTrack"/> method to get the video track ID, in the <xref keyref="ChannelMediaOptions"/> of each channel, set the <parmname>customVideoTrackId</parmname> parameter to the ID of the video track you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="true"/></codeph>. </ph>You can call this method to push unencoded external video frames to the SDK.</p>
+            <p id="desc1">To push external video frames to the SDK, you can either call the  method, set the enabled parameter to , the encodedFrame parameter to , or call the  method to get the video track ID, in the  of each channel, set the customVideoTrackId parameter to the ID of the video track you want to publish, and set publishCustomVideoTrack to . You can call this method to push unencoded external video frames to the SDK.<ph props="android ios mac unity"><xref keyref="setExternalVideoSource"/><parmname></parmname><codeph><ph keyref="true"/></codeph><parmname></parmname><codeph><ph keyref="false"/></codeph></ph><ph props="cpp"><xref keyref="createCustomVideoTrack"/><xref keyref="ChannelMediaOptions"/><parmname></parmname><parmname></parmname><codeph><ph keyref="true"/></codeph></ph></p>
             <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that the <apiname keyref="pushVideoFrame"/> method does not support video data in texture format.</p>
         </section>
         <section id="parameters">
@@ -44,7 +44,7 @@
             <plentry id="frame">
                 <pt>frame</pt>
                 <pd>
-                    <p>The external raw video frame to be pushed.  <xref keyref="ExternalVideoFrame" />See .</p>
+                    <p>The external raw video frame to be pushed.  See <xref keyref="ExternalVideoFrame" />.</p>
                 </pd>
             </plentry>
             <plentry id="videotrackid" props="cpp electron unity rn flutter">
