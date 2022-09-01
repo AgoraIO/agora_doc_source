@@ -56,7 +56,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 > 如果待添加的用户在 app 中不存在或已经在聊天室中，则请求失败并返回错误码 `400`。
 
@@ -126,7 +126,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 <div class="alert note">一次请求最多添加 60 个用户。</div>
 
@@ -158,7 +158,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users
 | `action`     | String     | 执行的操作，`add_member` 表示向聊天室添加成员。       |
 | `id`         | String     | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -208,7 +208,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users?pagenum={
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 查询参数
 
@@ -234,7 +234,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users?pagenum={
 | :------- | :----- | :------------------- |
 | `member` | String | 聊天室成员的用户 ID。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -288,7 +288,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{userna
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -310,7 +310,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{userna
 | `user`   | String | 已删除成员的用户 ID。                                    |
 | `id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -361,7 +361,7 @@ DELETE https://{host} /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usern
 | :---------- | :----- | :----------------------------------------------------------------------------------------------------- | :------- |
 | `usernames` | String | 一个或多个用户 ID，用户 ID 之间用 "," 分隔。在 URL 中，"," 需要转义为 "%2C"。一次最多传入 100 个 用户 ID。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -384,7 +384,7 @@ DELETE https://{host} /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usern
 | `user`   | String | 已删除成员的用户 ID 列表。                                |
 | `id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -438,7 +438,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -467,7 +467,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 | `result`   | Bool   | 添加是否成功：<ul><li>`true`：是。</li><li>`false`：否。</li></ul>  |
 | `newadmin` | String | 已添加管理员的用户 ID。                          |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
@@ -513,7 +513,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -532,7 +532,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 | :----- | :--------- | :----------------------- |
 | `data` | JSON Array | 聊天室管理员用户 ID 数组。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -579,7 +579,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin/{oldad
 | :--------- | :----- | :----------------------------- | :------- |
 | `oldadmin` | String | 待被移除聊天室管理员权限的用户 ID。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -599,7 +599,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin/{oldad
 | `result`   | Boolean | 操作是否成功：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
 | `oldadmin` | String  | 被移除聊天室管理员权限的用户 ID。                    |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 

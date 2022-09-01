@@ -53,7 +53,7 @@ POST https://{host}/{org_name}/{app_name}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -170,9 +170,9 @@ POST https://api.agora.io/{org_name}/{app_name}/users
 | `entities.nickname` | String     | 用户昵称。推送消息时显示的昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
 | `data`              | JSON Array | 返回数据详情。在该接口中，注册失败的用户 ID和失败原因会显示在 `data` 数组中。                 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -310,7 +310,7 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -337,7 +337,7 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}
 | `entities.device_token`                       | String | 推送 token。若用户没有推送 token，则响应中不返回。                                                                                               |
 | `count`                                       | Number | 返回用户数量。                                                                                                                                   |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -401,7 +401,7 @@ GET https://api.agora.io/{org_name}/{app_name}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -552,7 +552,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users/{username}
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -620,7 +620,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -633,7 +633,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见[公共参数](#param)。
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -704,15 +704,15 @@ PUT https://api.agora.io/{org_name}/{app_name}/users/{username}/password
 | :------------ | :----- | :------------------------------------------- | :------- |
 | `newpassword` | String | 新的用户登录密码。长度必须在 64 个字符以内。 | 是       |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见[公共参数](#param)。
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -747,7 +747,7 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/deactivate
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -767,8 +767,8 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/deactivate
 | :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
 | `entities.nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
 
-其他字段及说明详见[公共参数](#param)。
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+其他字段及说明详见 [公共参数](#param)。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -836,8 +836,8 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/activate
 | :--------- | :----- | :--------------------------------------------------------------------------------------------------------- |
 | `nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
 
-其他字段及说明详见[公共参数](#param)。
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+其他字段及说明详见 [公共参数](#param)。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -1026,7 +1026,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 | :--------- | :--------------------------------------------------------------------------------------------------------------- |
 | `username` | 数据格式为：“用户 ID：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。 |
 
-其他字段说明详见[公共参数](#param)。
+其他字段说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -1077,7 +1077,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 | :--------------: | :----- | :-------------------------- | -------- |
 | `owner_username` | String | 要获取离线消息数的用户 ID。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -1096,7 +1096,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 | :--------- | :------------------------------------------------------------ |
 | `username` | 数据格式为：“用户 ID：当前离线消息的数量“，例如，"user1: 0”。 |
 
-其他字段说明详见[公共参数](#param)。
+其他字段说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 ### 示例
@@ -1143,7 +1143,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 | `username` | String | 要获取离线消息状态的用户 ID。 | 是       |
 |  `msg_id`  | String | 要查看离线消息状态的 ID。     | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -1162,7 +1162,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 | :------- | :----------------------------------------------------------------------------------------------------------------- |
 | `msg_id` | 数据格式为“消息 ID”：“离线消息的投递状态”。有两种：<li> “delivered”  表示已投递； <li> `undelivered“  表示未投递。 |
 
-其他字段说明详见[公共参数](#param)。
+其他字段说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 

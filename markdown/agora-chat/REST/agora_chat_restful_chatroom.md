@@ -43,7 +43,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -75,7 +75,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 | :--- | :----- | :-------------------------------------------------------------- |
 | `id` | String | 本次创建的聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -119,7 +119,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -141,7 +141,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms
 | `owner`              | String | 聊天室创建者的用户 ID。                                |
 | `affiliations_count` | Int    | 聊天室成员数量（包含聊天室创建者）。                  |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -180,7 +180,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatrooms
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -200,7 +200,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatrooms
 | `id`   | String | 该用户加入的聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 | `name` | String | 该用户加入的聊天室名称。                                          |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -241,7 +241,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall) 的响应 body 中获取。<li>查询多个聊天室时，将每个 `chatroom_id` 用 "," 隔开。<li>一次请求最多查询 100 个聊天室。<li>在 URL 中，需要将 "," 转义为 "%2C"。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -271,7 +271,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | `affiliations`       | JSON Array | 聊天室成员数组，包含以下字段：<li>`owner`： 聊天室创建者的用户 ID。<li>`member`：聊天室成员的用户 ID。                                          |
 | `public`             | Bool       | 预留字段，无需关注。                                                                                                                          |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -358,7 +358,7 @@ PUT https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------ | :------- |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall) 的响应 body 中获取。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -434,7 +434,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | :------------ | :----- | :----------------------------------------------------------------------------------------------------------- | :------- |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -454,7 +454,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | `success` | Bool   | 聊天室是否删除成功：<li>`true`：删除成功。<li>`false`：删除失败。 |
 | `id`      | String | 已被删除的聊天室 ID。                                             |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 

@@ -144,7 +144,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
 | `ext`       | String      | 在线状态的扩展信息。                                         |
 | `status`    | JSON 数组 | 用户在多个设备上的在线状态。<li>`0`： 离线。<li>`1`： 在线的。<li>其他字符串：用户定义的自定义在线状态。 |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -202,7 +202,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence
 | :------- | :--- | :----------------------------------------------------------- |
 | `result` | String | 在线状态设置是否成功。`ok` 表示设置成功；否则，根据退回的原因进行故障排除。 |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 | 参数       | 类型      | 描述                                                         |
 | :---------- | :-------- | :----------------------------------------------------------- |
@@ -282,7 +282,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{uid}/presence
 | :------- | :--- | :----------------------------------------------------------- |
 | `result` | String | 取消订阅是否成功。`ok` 表示取消订阅成功；否则，您可以根据退回的原因进行故障排除。 |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -343,7 +343,7 @@ GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&
 | `uid`      | String | 用户的唯一登录帐户。                                         |
 | `expiry`   | String | 订阅到期时的 Unix 时间戳。                                   |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 

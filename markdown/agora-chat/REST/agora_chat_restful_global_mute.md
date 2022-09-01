@@ -79,7 +79,7 @@ POST https://{host}/{orgName}/{appName}/mutes
 | -------- | ------ | ----------------------------------- |
 | `result` | String | 该方法调用结果。`ok` 表示设置成功。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -135,7 +135,7 @@ GET https://{host}/{orgName}/{appName}/mutes/username
 | ---------- | ------ | ----------------------- | -------- |
 | `username` | String | 查询禁言信息的用户 ID。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -156,7 +156,7 @@ GET https://{host}/{orgName}/{appName}/mutes/username
 | `chatroom`  | Number | 聊天室消息剩余禁言时长，单位为秒，规则同上。                                                                                                                                                             |
 | `unixtime`  | Number | 当前操作的 Unix 时间戳。                                                                                                                                                                                 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -235,9 +235,9 @@ GET https://{host}/{orgName}/{appName}/mutes
 | `chatroom`  | Number    | 聊天室消息剩余禁言时长，单位为秒，规则同上。                  |
 | `unixtime`  | Number    | 当前操作的 Unix 时间戳。                                      |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 

@@ -77,7 +77,7 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 
 其他字段及详细说明请参见 [公共参数](./agora_chat_restful_reaction?platform=RESTful#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 

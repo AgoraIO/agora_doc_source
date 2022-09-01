@@ -191,7 +191,7 @@ POST https://{host} /{org_name}/{app_name}/metadata/user/get
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 

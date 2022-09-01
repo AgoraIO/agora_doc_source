@@ -148,7 +148,7 @@ PUT https://{host}/{org_name}/{app_name}/thread/{thread_id}
 
 其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -251,10 +251,10 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 | 参数     | 类型   | 描述                                                                                            | 是否必填 |
 | :------- | :----- | :---------------------------------------------------------------------------------------------- | :------- |
 | `limit`  | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。                                             | 否       |
-| `cursor` | String | 开始获取子区的页面。在第一次查询时传入`null`或空字符串。                                        | 否       |
+| `cursor` | String | 开始获取子区的页面。在第一次查询时传入 `null` 或空字符串。                                        | 否       |
 | `sort`   | String | 列出查询结果的顺序：`asc`：按照子区创建的时间顺序。（默认）`desc`：按照子区创建的时间倒序排列。 | 否       |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -270,9 +270,9 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 | :--- | :----- | :---------- |
 | `id` | String | 子区的 ID。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -345,9 +345,9 @@ GET https://{host}/{org_name}/{app_name}/threads/user/{username}?limit={limit}&c
 | `groupId` | String | 子区所属的群组的ID。        |
 | `created` | String | 创建子区时的 Unix 时间戳。  |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -402,7 +402,7 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 | `group_id` | String | 群组的 ID。                                                                                     | 是       |
 | `username` | String | 用户的唯一登录帐户。                                                                            | 是       |
 | `limit`    | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。                                             | 否       |
-| `cursor`   | String | 开始获取子区的页面。在第一次查询时传入`null`或空字符串。                                        | 否       |
+| `cursor`   | String | 开始获取子区的页面。在第一次查询时传入 `null` 或空字符串。                                        | 否       |
 | `sort`     | String | 列出查询结果的顺序：<li>`asc`：按照子区创建的时间顺序。<li>（默认）`desc`：按照子区创建的时间倒序排列。 | 否       |
 
 其他字段说明详见[公共参数](#pubparam)。
@@ -428,7 +428,7 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 

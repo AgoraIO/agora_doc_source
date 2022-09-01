@@ -52,7 +52,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -81,7 +81,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 | `result`   | Bool   | 添加结果：<li>`true`：添加成功。<li>`false`：添加失败。 |
 | `resource` | String | 预留参数，无需关注。                                    |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -133,7 +133,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 | :----------- | :----- | :----------------------------------- | :------- |
 | `superAdmin` | String | 待被撤销的聊天室超级管理员的用户 ID。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -153,7 +153,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 | `newSuperAdmin` | String | 被撤销的聊天室超级管理员用户 ID。 |
 | `resource`      | String | 预留参数，无需关注。             |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -203,7 +203,7 @@ GET https://{host} /{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&page
 | `pagenum`  | Int  | 查询页码。默认值为 1。                  | 否       |
 | `pagesize` | Int  | 每页显示的超级管理员数量。默认值为 10。 | 否       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -225,7 +225,7 @@ GET https://{host} /{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&page
 | `data`     | JSON Array | 聊天室超级管理员的用户 ID 数组。   |
 | `count`    | Number     | 返回超级管理员数量。             |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
