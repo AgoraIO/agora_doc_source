@@ -39,7 +39,7 @@
 
 ##  1. <a name=''></a>概览
 
-DITA 文档体系架构如下。由于体量不大，暂不需要做 DITA Specialization。
+DITA 文档体系架构如下。由于体量不大，暂时不需要做 DITA Specialization。
 
 文档以 DITA 作为源，同时输出面向开发者的代码注释模板和文档：
 
