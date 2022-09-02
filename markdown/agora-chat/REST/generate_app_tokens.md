@@ -2,7 +2,7 @@
 
 为保证即时通讯连接的安全性，Agora 提供两种类型的 Token 进行鉴权：
 
-- User token：针对拥有 app 用户级别权限的用户进行鉴权。例如，当用户登录集成了即时通讯 SDK 的 app 时，需通过 User Token 进行鉴权。详见[使用 User Token 鉴权](https://docs-preprod.agora.io/cn/agora-chat/generate_user_tokens%20?platform=All%20Platforms)。
+- User token：针对拥有 app 用户级别权限的用户进行鉴权。例如，当用户登录集成了即时通讯 SDK 的 app 时，需通过 User Token 进行鉴权。详见[使用 User Token 鉴权](./generate_user_tokens)。
 - App token：针对拥有 app 管理员级别权限的用户进行鉴权。管理员级别权限为最高权限，可以对整个 app 进行管理，例如创建或删除用户。
 
 在服务器端调用 RESTful 接口来使用即时通讯 服务时，需要获取即时通讯 App Token。本文介绍如何从你的 App Token 服务器中获取 App Token，并将该 token 置换为即时通讯 App Token 来调用即时通讯 RESTful 接口。
@@ -22,8 +22,8 @@ Agora 即时通讯 App Token 的最长有效期为 **24 小时**。当你调用�
 ## 前提条件
 
 - 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-账号)。
-- 拥有 [App 证书](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)和已开通即时通讯的 [Agora 项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-项目)。详见[开启和配置即时通讯服务](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms)开通即时通讯服务。
-- 你的 Agora 项目的 App ID、OrgName、AppName，详见[开启和配置即时通讯服务](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms)。
+- 拥有 [App 证书](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)和已开通即时通讯的 [Agora 项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-项目)。详见[开启和配置即时通讯服务](./enable_agora_chat)开通即时通讯服务。
+- 你的 Agora 项目的 App ID、OrgName、AppName，详见[开启和配置即时通讯服务](./agora-chat/enable_agora_chat)。
 
 如果你的网络环境部署了防火墙，为允许你在有网络访问限制的环境中使用即时通讯服务，Agora 提供防火墙白名单方案。如需使用请[提交工单](https://agora-ticket.agora.io/)，我们的技术服务会提供目标域名及对应的端口。
 
@@ -314,4 +314,4 @@ App Token 需要在你的服务端部署生成。当客户端发送请求时，A
 
 ## 注意事项
 
-如果你在使用即时通讯的同时也正在使用 [Agora RTC SDK](https://docs.agora.io/cn/Agora%20Platform/term_agora_rtc_sdk)，Agora 建议你升级到 [Access Token 2](https://docs-preprod.agora.io/cn/agora-chat/access_token_2?platform=All%20Platforms)。
+如果你在使用即时通讯的同时也正在使用 [Agora RTC SDK](,/Agora%20Platform/term_agora_rtc_sdk)，Agora 建议你升级到 [Access Token 2](./access_token_2?platform=All%20Platforms)。
