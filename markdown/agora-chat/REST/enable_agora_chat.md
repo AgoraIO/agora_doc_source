@@ -4,8 +4,8 @@
 
 开启即时通讯服务前，请确保已经具备以下要素：
 
-- 有效的 [Agora 开发者账号](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=AllPlatforms#创建-agora-账号)。
-- 已启用的鉴权方式为 **APP ID + Token (推荐)** 的 [Agora 项目](https://docs.agora.io/cn/Agora]Platform/get_appid_token?platform=AllPlatforms#创建-agora-项目)。
+- 有效的 [Agora 开发者账号](./AgoraPlatform/get_appid_token?platform=AllPlatforms#创建-agora-账号)。
+- 已启用的鉴权方式为 **APP ID + Token (推荐)** 的 [Agora 项目](./Agora]Platform/get_appid_token?platform=AllPlatforms#创建-agora-项目)。
 - 已订阅即时通讯套餐包，订阅方式参考 [订阅即时通讯套餐包](./agora_chat_pricing?platform=All%20Platforms#订阅套餐包)。
 
 ## 开启即时通讯 IM 服务

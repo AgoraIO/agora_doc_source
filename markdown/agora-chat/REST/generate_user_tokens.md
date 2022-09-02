@@ -3,7 +3,7 @@
 为保证即时通讯 IM 连接的安全性，即时通讯 IM 提供两种类型的 Token 进行鉴权：
 
 - User token：针对拥有 app 用户级别权限的用户进行鉴权。例如，当用户登录集成了即时通讯 IM SDK 的 app 时，需通过 User Token 进行鉴权。
-- App token：针对拥有 app 管理员级别权限的用户进行鉴权。管理员级别权限为最高权限，可以对整个 app 进行管理，例如创建或删除用户。详见[使用 App Token 鉴权](https://docs-preprod.agora.io/cn/agora-chat/generate_app_tokens?platform=All%20Platforms)。
+- App token：针对拥有 app 管理员级别权限的用户进行鉴权。管理员级别权限为最高权限，可以对整个 app 进行管理，例如创建或删除用户。详见[使用 App Token 鉴权](./generate_app_tokens)。
 
 本文介绍如何搭建一个即时通讯 IM User Token 服务器以及一个即时通讯 IM app。客户端向 Token 服务器请求 Token，用获取到的 Token 登录即时通讯 IM app。
 
@@ -17,14 +17,14 @@ User Token 是一种动态密钥，由你的 app 服务器生成，最长有效�
 
 - 你的即时通讯 IM 项目的 App ID。
 - 你的即时通讯 IM 项目的 App 证书。
-- 待鉴权用户的 UUID。UUID 是通过[用户注册 RESTful API](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_reg?platform=RESTful#注册单个用户) 为每一个用户所生成的独有的内部标识。
+- 待鉴权用户的 UUID。UUID 是通过[用户注册 RESTful API](./agora_chat_restful_registration#注册单个用户) 为每一个用户所生成的独有的内部标识。
 
 - 你设置 User Token 的有效期。
 
 ## 前提条件
 
-- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-账号)。
-- 已开通即时通讯 IM 的 [Agora 项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-项目)。详见[开启和配置即时通讯服务](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms)开通即时通讯 IM 。
+- 有效的 [Agora 账号](./get_appid_token#创建-agora-账号)。
+- 已开通即时通讯 IM 的 [Agora 项目](./get_appid_token#创建-agora-项目)。详见 [开启和配置即时通讯服务](./agora-chat/enable_agora_chat) 开通即时通讯 IM 。
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
 
 ## 实现鉴权流程
