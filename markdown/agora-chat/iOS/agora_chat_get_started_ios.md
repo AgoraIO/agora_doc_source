@@ -1,4 +1,6 @@
-本文介绍如何通过少量代码集成 Agora 即时通讯 SDK，在你的 iOS 应用中实现发送和接收一对一文本消息。
+# Agora Chat 快速入门
+
+本页展示了如何使用 Agora Chat iOS SDK 在你的 app 中实现发送和接收单聊文本消息。
 
 ## 技术原理
 
@@ -6,99 +8,106 @@
 
 ## 前提条件
 
-开始前，请确保满足以下条件：
+开始前，请确保你的开发环境满足以下条件：
 
-- Xcode。本文 Xcode 的界面描述以 12.3 为例。
-- 一台 iOS 设备，安装 iOS 10 或以上版本。
+- Xcode。本文以 Xcode 12.3 为例进行介绍。
+- 一台运行 iOS 10 或以上版本的设备。
 
-## 准备开发环境
+## 项目设置
 
-按照以下步骤准备开发环境：
+在本节中，我们准备了将 Agora 即时通讯集成到你的 app 中所需的开发环境。
 
 ### 创建 iOS 项目
 
-按照以下步骤创建在 Xcode 中创建一个 iOS 平台的 App，项目设置如下：
+在 Xcode 中，参考以下步骤创建一个 iOS 应用项目。
 
-- 打开 Xcode 并点击 Create a new Xcode project。
-- 选择平台类型为 iOS、项目类型为 App，并点击 Next。
-- 设置以下项目信息：
-  - 项目名称（Product Name）设为 AgoraChatExample。
-  - 组织名称（Organization Identifier）设为 agorachat。
-  - User Interface 选择 Storyboard。
-  - 语言（Language）选择 Objective-C。
-  <div class="alert info">如果你没有添加过开发团队信息，会看到 Add account… 按钮。点击该按钮并按照屏幕提示登入 Apple ID，完成后即可选择你的 Apple 账户作为开发团队。</div>
-- 选择项目存储路径，并点击 Create。
+- 打开 Xcode，单击 **Create a new Xcode project**。
+- 平台类型选择 **iOS**，项目类型选择 **App**，然后单击 **Next**。
+- 设置以下项目参数：
+  - **Product Name**：输入 **AgoraChatExample**。
+  - **Organization Identifier**：输入 **agorachat**。
+  - **User Interface**：选择 **Storyboard**。
+  - **Language**：选择 **Objective-C**。
+  - **Team**：如果你已添加团队，请从弹出菜单中选择。如果没有，点击 **添加帐户** 按钮，输入你的 Apple ID，然后单击 **Next** 添加你的团队。
+  - 选择项目存储路径，点击 **Create**。
 
-### 集成 Agora 即时通讯 SDK
+### 集成 Agora Chat SDK
 
-按照以下步骤使用 CocoaPods 将 Agora 即时通讯 SDK 集成到你的项目中。
+使用 CocoaPods 将 Agora 即时通讯 SDK 集成到你的项目中。
 
-1. 开始前确保你已安装 CocoaPods。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
-2. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
-3. 在 `Podfile` 文件里添加 Agora 即时通讯 SDK。注意将 `AgoraChatAPIExample` 替换为你实际的 Target 名称。
+1. 安装 CocoaPods。有关详细信息，请参阅 [CocoaPods 入门](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
+
+2. 在终端中，访问项目根目录并运行 `pod init` 命令在项目文件夹中创建文本文件 `Podfile`。
+
+3. 打开 `Podfile` 文件并添加 Agora Chat SDK。注意将 `AgoraChatExample` 替换为你的目标名称。
 
    ```
    platform :ios, '11.0'
-
+   
    # Import CocoaPods sources
    source 'https://github.com/CocoaPods/Specs.git'
-
+   
    target 'AgoraChatExample' do
        pod 'Agora_Chat_iOS'
        pod 'Masonry'
    end
    ```
 
-4. 在项目根目录执行如下命令集成 SDK。
+4. 在项目根目录下，执行以下命令集成 SDK。SDK 安装成功后，终端中显示 `Pod installation complete!` 消息，而且项目文件夹中生成 `xcworkspace` 文件。
 
    ```
    pod install
    ```
 
-5. 成功安装后，终端会显示 `Pod installation complete!`，此时项目文件夹下会生成一个 `xcworkspace` 文件，打开新生成的 `xcworkspace` 文件即可。
+5. 在 Xcode 中打开 `xcworkspace` 文件。
 
 ### 添加权限
 
-参考以下步骤在 `info.plist` 文件中添加相关权限：
-1. 新增 `App Transport Security Settings` 条目。
-2. 在 `App Transport Security Settings` 下新增 `Allow Arbitrary Loads` 条目，并将值设为 `YES`，开启网络权限。
+打开 `info.plist` 文件，添加以下权限：
 
-## 实现获取 Token
+1. 添加 `App Transport Security Settings`。
+2. 在 `App Transport Security Settings` 中，添加 `Allow Arbitrary Loads` 并将其设置为 `YES` 启用网络权限。
 
-为帮助你快速体验发送和接收一对一文本消息功能，Agora 已部署了一个 App Server 用于生成 Token。你需要参考以下步骤在客户端实现获取 Token：
-1. 在 `AgoraChatExample` 目录下创建 `EMHttpRequest.h` 文件，并将以下代码拷贝到 `EMHttpRequest.h` 文件中：
+## 实现单聊聊天客户端
 
-   ```objective-c
+### 获得 Token
+
+为了快速实现单聊文本消息的发送和接收，声网部署了一个 app server 生成 token。你可以参考以下步骤在客户端上获取 token。
+
+1. 在 `AgoraChatExample` 目录中创建 `ChatHttpRequest.h` 文件，将以下代码复制到文件中。
+
+   ```objectivec
    #import <Foundation/Foundation.h>
-
+   
    NS_ASSUME_NONNULL_BEGIN
-
+   
    @interface ChatHttpRequest : NSObject
-
+   
    + (instancetype)sharedManager;
-
+   
    - (void)registerToApperServer:(NSString *)uName
                              pwd:(NSString *)pwd
                       completion:(void (^)(NSInteger statusCode, NSString *response))aCompletionBlock;
-
+   
    - (void)loginToApperServer:(NSString *)uName
                           pwd:(NSString *)pwd
                    completion:(void (^)(NSInteger statusCode, NSString *response))aCompletionBlock;
-
+   
    @end
-
+   
    NS_ASSUME_NONNULL_END
    ```
-2. 在 `AgoraChatExample` 目录下创建 `EMHttpRequest.m` 文件，并将以下代码拷贝到 `EMHttpRequest.m` 文件中：
 
-   ```objective-c
+2. 在 `AgoraChatExample` 目录中创建 `ChatHttpRequest.m` 文件，将以下代码复制到文件中。
+
+   ```objectivec
    #import "ChatHttpRequest.h"
-
+   
    @interface ChatHttpRequest() <NSURLSessionDelegate>
    @property (readonly, nonatomic, strong) NSURLSession *session;
    @end
    @implementation ChatHttpRequest
-
+   
    + (instancetype)sharedManager
    {
        static dispatch_once_t onceToken;
@@ -106,10 +115,10 @@
        dispatch_once(&onceToken, ^{
            sharedInstance = [[ChatHttpRequest alloc] init];
        });
-
+   
        return sharedInstance;
    }
-
+   
    - (instancetype)init
    {
        if (self = [super init]) {
@@ -121,7 +130,7 @@
        }
        return self;
    }
-
+   
    - (void)registerToApperServer:(NSString *)uName
                              pwd:(NSString *)pwd
                       completion:(void (^)(NSInteger statusCode, NSString *aUsername))aCompletionBlock
@@ -130,11 +139,11 @@
        NSMutableURLRequest *request = [NSMutableURLRequest
                                                    requestWithURL:url];
        request.HTTPMethod = @"POST";
-
+   
        NSMutableDictionary *headerDict = [[NSMutableDictionary alloc]init];
        [headerDict setObject:@"application/json" forKey:@"Content-Type"];
        request.allHTTPHeaderFields = headerDict;
-
+   
        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
        [dict setObject:uName forKey:@"userAccount"];
        [dict setObject:pwd forKey:@"userPassword"];
@@ -147,7 +156,7 @@
        }];
        [task resume];
    }
-
+   
    - (void)loginToApperServer:(NSString *)uName
                           pwd:(NSString *)pwd
                    completion:(void (^)(NSInteger statusCode, NSString *response))aCompletionBlock
@@ -156,11 +165,11 @@
        NSMutableURLRequest *request = [NSMutableURLRequest
                                                    requestWithURL:url];
        request.HTTPMethod = @"POST";
-
+   
        NSMutableDictionary *headerDict = [[NSMutableDictionary alloc]init];
        [headerDict setObject:@"application/json" forKey:@"Content-Type"];
        request.allHTTPHeaderFields = headerDict;
-
+   
        NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
        [dict setObject:uName forKey:@"userAccount"];
        [dict setObject:pwd forKey:@"userPassword"];
@@ -173,7 +182,7 @@
        }];
        [task resume];
    }
-
+   
    - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler
    {
        if([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]){
@@ -182,22 +191,22 @@
                    completionHandler(NSURLSessionAuthChallengeUseCredential,credential);
            }
    }
-
+   
    @end
    ```
 
-## 实现发送和接收消息
+### 实现聊天逻辑
 
-在项目的 `ViewController.m` 文件里添加以下代码实现创建用户、登录和登出、发送和接收一对一文本消息等逻辑：
+本节展示了创建用户、登录 Agora Chat 以及发送单聊文本消息的逻辑。在 `ViewController.m` 中，将代码替换为以下内容。
 
-```objective-c
+```objectivec
 //
 //  ViewController.h
 //  AgoraChatExample
 //
 //  Created by Agora on 2022/1/11.
-//
-// 导入头文件
+// 
+// 导入头文件。
 #import "ViewController.h"
 #import <Masonry/Masonry.h>
 #import "ChatHttpRequest.h"
@@ -206,33 +215,23 @@
 #import <Photos/Photos.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-
-// 实现相关代理并声明属性
-// 实现 AgoraChatClientDelegate 和 AgoraChatManagerDelegate 代理用于监听回调
+// 实现相关代理，声明属性。
+// 实现 AgoraChatClientDelegate 和 AgoraChatManagerDelegate，监听聊天事件。
 @interface ViewController ()<UITextFieldDelegate, UIScrollViewDelegate, AgoraChatClientDelegate, AgoraChatManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
 @property (nonatomic, strong) UITextField *nameField;
 @property (nonatomic, strong) UITextField *pswdField;
-
 @property (nonatomic, strong) UIButton *loginBtn;
 @property (nonatomic, strong) UIButton *registerBtn;
 @property (nonatomic, strong) UIButton *logoutBtn;
-
 @property (nonatomic, strong) UITextField *conversationIdField;
 @property (nonatomic, strong) UITextView *msgField;
-
 @property (nonatomic, strong) UIButton *chatBtn;
-
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *bottomLine;
 @property (nonatomic, strong) UITextView *resultView;
-
 @property (nonatomic, strong) NSDateFormatter *formatter;
-
 @end
-
 @implementation ViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -240,11 +239,10 @@
     [self.view addGestureRecognizer:tap];
     [self initSdk];
     [self _setupSubviews];
-    // Do any additional setup after loading the view.
+    // 加载视图后，可进行任何其他配置。
 }
-
-// 初始化 SDK
-// 本项目使用 Agora 预埋的 AppKey 进行初始化，无需替换成你自己的 AppKey
+// 初始化 SDK。
+// 该项目利用为演示目的预置的 App Key 进行 SDK 初始化。
 - (void)initSdk
 {
     AgoraChatOptions *options = [AgoraChatOptions optionsWithAppkey:@"41117440#383391"];
@@ -253,21 +251,18 @@
     [[AgoraChatClient sharedClient] addDelegate:self delegateQueue:nil];
     [[AgoraChatClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
 }
-
-// 加载页面元素
+// Loads page elements.  
 - (void)handleTapTableViewAction:(UITapGestureRecognizer *)aTap
 {
     if (aTap.state == UIGestureRecognizerStateEnded) {
         [self.view endEditing:YES];
     }
 }
-
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 }
-
-// 设置 UI
+// Sets the UI.
 - (void)_setupSubviews
 {
     self.scrollView = [[UIScrollView alloc]init];
@@ -282,7 +277,6 @@
         make.top.left.right.equalTo(self.view);
         make.height.mas_equalTo(@(self.view.bounds.size.height / 3 * 2));
     }];
-
     self.bottomLine = [[UIView alloc] init];
     _bottomLine.backgroundColor = [UIColor blackColor];
     _bottomLine.alpha = 0.1;
@@ -293,7 +287,6 @@
         make.right.equalTo(self.view);
         make.height.equalTo(@3);
     }];
-
     self.resultView = [[UITextView alloc]init];
     self.resultView.backgroundColor = [UIColor whiteColor];
     self.resultView.textColor = [UIColor blackColor];
@@ -307,7 +300,6 @@
         make.top.equalTo(self.bottomLine.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
-
     self.nameField = [[UITextField alloc] init];
     self.nameField.backgroundColor = [UIColor systemGrayColor];
     self.nameField.delegate = self;
@@ -327,7 +319,6 @@
         make.height.mas_equalTo(@50);
         make.width.mas_equalTo(@150);
     }];
-
     self.pswdField = [[UITextField alloc] init];
     self.pswdField.backgroundColor = [UIColor systemGrayColor];
     self.pswdField.delegate = self;
@@ -347,7 +338,6 @@
         make.height.mas_equalTo(@50);
         make.width.mas_equalTo(@150);
     }];
-
     self.registerBtn = [[UIButton alloc] init];
     self.registerBtn.clipsToBounds = YES;
     self.registerBtn.layer.cornerRadius = 5;
@@ -363,7 +353,6 @@
         make.height.mas_equalTo(@50);
         make.width.mas_equalTo(@150);
     }];
-
     self.loginBtn = [[UIButton alloc] init];
     self.loginBtn.clipsToBounds = YES;
     self.loginBtn.layer.cornerRadius = 5;
@@ -379,7 +368,6 @@
         make.height.mas_equalTo(@50);
         make.width.mas_equalTo(@150);
     }];
-
     self.logoutBtn = [[UIButton alloc] init];
     self.logoutBtn.clipsToBounds = YES;
     self.logoutBtn.layer.cornerRadius = 5;
@@ -395,7 +383,6 @@
         make.height.mas_equalTo(@50);
         make.width.mas_equalTo(@150);
     }];
-
     self.conversationIdField = [[UITextField alloc] init];
     self.conversationIdField.backgroundColor = [UIColor systemGrayColor];
     self.conversationIdField.delegate = self;
@@ -415,7 +402,6 @@
         make.height.mas_equalTo(@50);
         make.width.mas_equalTo(@320);
     }];
-
     self.msgField = [[UITextView alloc] init];
     //self.msgField.backgroundColor = [UIColor colorWithRed:((float) 78 / 255.0f) green:0 blue:((float) 234 / 255.0f) alpha:1];
     self.msgField.backgroundColor = [UIColor systemGrayColor];
@@ -435,7 +421,6 @@
         make.height.mas_equalTo(@150);
         make.width.mas_equalTo(@320);
     }];
-
     self.chatBtn = [[UIButton alloc] init];
     self.chatBtn.clipsToBounds = YES;
     self.chatBtn.layer.cornerRadius = 5;
@@ -452,22 +437,18 @@
         make.width.mas_equalTo(@150);
     }];
 }
-
-// 使用用户名和密码创建用户
+// 注册用户账户（用户 ID 和密码）。
 - (void)registerAction
 {
     [self.view endEditing:YES];
-
     NSString *name = [self.nameField.text lowercaseString];
     NSString *pswd = [self.pswdField.text lowercaseString];
-
     if ([name length] == 0 || [pswd length] == 0) {
         [self printLog:@"username or password is null"];
         return;
     }
-
     __weak typeof(self) weakself = self;
-    // 发送 HTTP 请求向 Agora 部署的 App Server 获取 Token
+    // 发送 HTTP 请求从 App Server 中获取 token。
     [[ChatHttpRequest sharedManager] registerToApperServer:name pwd:pswd completion:^(NSInteger statusCode, NSString * _Nonnull response) {
         dispatch_async(dispatch_get_main_queue(),^{
             NSString *alertStr = @"login.signup.fail";
@@ -488,35 +469,28 @@
             [weakself printLog:alertStr];
         });
     }];
-
 }
-
-// 登录
+// 登录 Agora 即时通讯系统。
 - (void)loginAction
 {
     if (AgoraChatClient.sharedClient.isLoggedIn) {
         [self logoutAction];
     }
     [self.view endEditing:YES];
-
     NSString *name = [self.nameField.text lowercaseString];
     NSString *pswd = [self.pswdField.text lowercaseString];
-
     if (name.length == 0 || pswd.length == 0) {
         [self printLog:@"username or password is null"];
         return;
     }
-
     __weak typeof(self) weakself = self;
     void (^finishBlock) (NSString *aName, AgoraChatError *aError) = ^(NSString *aName, AgoraChatError *aError) {
         if (!aError) {
             [weakself printLog:[NSString stringWithFormat:@"login success ! name : %@",aName]];
             return ;
         }
-
         [weakself printLog:[NSString stringWithFormat:@"login fail ! errorDes : %@",aError.errorDescription]];
     };
-
     [[ChatHttpRequest sharedManager] loginToApperServer:name pwd:pswd completion:^(NSInteger statusCode, NSString * _Nonnull response) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if (response && response.length > 0) {
@@ -528,7 +502,7 @@
                     [weakself printLog:@"login appserver success !"];
                     [[AgoraChatClient sharedClient] loginWithUsername:loginName agoraToken:token completion:finishBlock];
                 } else {
-                    [weakself printLog:@"parseing token fail !"];
+                    [weakself printLog:@"parsing token fail !"];
                 }
             } else {
                 [weakself printLog:@"login appserver fail !"];
@@ -536,15 +510,13 @@
         });
     }];
 }
-
-// 登出
+// 登出 Agora 即时通讯系统。
 - (void)logoutAction
 {
     AgoraChatError *error = [[AgoraChatClient sharedClient] logout:YES];
     [self printLog:[NSString stringWithFormat:@"logout result : %@",!error ? @"success !" : error.errorDescription]];
 }
-
-// 发送文本消息
+// 发送文本消息。
 - (void)_sendMessageWithBody:(AgoraChatMessageBody *)body
                         ext:(NSDictionary * __nullable)aExt
 {
@@ -554,10 +526,8 @@
         [self printLog:@"Peer username is null!"];
         return;
     }
-
     AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:to from:from to:to body:body ext:nil];
     message.chatType = AgoraChatTypeChat;
-
     __weak typeof(self) weakself = self;
     [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
         if (!error) {
@@ -572,7 +542,6 @@
         }
     }];
 }
-
 - (void)chatAction
 {
     [self.view endEditing:YES];
@@ -583,8 +552,7 @@
     AgoraChatMessageBody *body = [[AgoraChatTextMessageBody alloc] initWithText:self.msgField.text];
     [self _sendMessageWithBody:body ext:nil];
 }
-
-// 收到消息回调
+// 接收消息触发的回调。
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
     __weak typeof(self) weakself = self;
@@ -598,7 +566,6 @@
         }
     }
 }
-
 - (NSString *)getBodyType:(AgoraChatMessageBodyType)bodyType
 {
     NSString *type = @"";
@@ -629,8 +596,7 @@
     }
     return type;
 }
-
-// Token 即将过期回调
+// Token 即将过期触发的回调。
 - (void)tokenWillExpire:(int)aErrorCode
 {
     [self printLog:[NSString stringWithFormat:@"token %@", aErrorCode == AgoraChatErrorTokeWillExpire ? @"TokeWillExpire" : @"TokeExpire"]];
@@ -654,7 +620,7 @@
                             }
                         }
                     } else {
-                        [self printLog:@"parseing token fail !"];
+                        [self printLog:@"parsing token fail !"];
                     }
                 } else {
                     [self printLog:@"login appserver fail !"];
@@ -663,9 +629,8 @@
         }];
     }
 }
-
-// Token 已过期回调
-// 需要从 App Server 获取新的 Token 并重新登录
+// Token 过期时触发的回调。
+// 你需要从你的 App Server 中获取新的 token，然后重新登录 Agora 即时通讯系统。
 - (void)tokenDidExpire:(int)aErrorCode
 {
       [[AgoraChatClient sharedClient] logout:NO];
@@ -675,8 +640,7 @@
         return;
     }
 }
-
-// 打印日志信息
+// 打印日志。
 - (void)printLog:(NSString *)log
 {
     __weak typeof(self) weakself = self;
@@ -684,37 +648,33 @@
         if (weakself.resultView.text.length > 0) {
             weakself.resultView.text = [weakself.resultView.text stringByAppendingString:@"\r\n"];
         }
-
         NSString *currentTS = [weakself.formatter stringFromDate:[NSDate date]];
         NSString *logPrefix = [NSString stringWithFormat:@"[%@]: ",currentTS];
         NSString *logStr = [NSString stringWithFormat:@"%@%@",logPrefix,log];
         weakself.resultView.text = [weakself.resultView.text stringByAppendingString:logStr];
-
         long allStrCount = self.resultView.text.length;
         [weakself.resultView scrollRangeToVisible:NSMakeRange(0, allStrCount)];
     });
 }
-
 - (NSDateFormatter *)formatter
 {
     if (!_formatter) {
         _formatter = [[NSDateFormatter alloc]init];
         [_formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss.SSS"];
     }
-
     return _formatter;
 }
-
 @end
 ```
 
-## 运行和测试项目
+## 运行并测试项目
 
 使用 Xcode 在 iOS 真机或模拟机上编译和运行项目。你可以看到以下界面：
 
 ![](https://web-cdn.agora.io/docs-files/1641976387226)
 
 参考以下步骤发送和接收文本消息：
+
 1. 输入任意的用户名（如 `Localuser` 和 `Remoteuser`）和密码（如 `123456`），点击 `Create user` 创建两个用户用于互通。
 2. 以 `Localuser` 的身份登录 Agora Chat，将 `Peer username` 填为 `Remoteuser`，发送文本消息。
    ![](https://web-cdn.agora.io/docs-files/1641976375607)
@@ -723,15 +683,15 @@
 
 ## 后续步骤
 
-为保障通信安全，在正式生产环境中，你需要在自己的 app 服务端生成 Token。详见[使用 Token 鉴权](/cn/live-streaming/token_server)。
+出于演示目的，Agora Chat 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录 Agora 即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](./generate_user_tokens)。
 
-## 更多信息
+## 参考
 
 ### 集成 SDK 的其他方式
 
 除上文介绍的使用 CocoaPods 集成 Agora 即时通讯 SDK，你还可以按照以下步骤手动集成 SDK：
 
 1. 下载最新版的 [Agora 即时通讯 iOS SDK](./downloads?platform=iOS) 并解压。
-2. 将 SDK 包内的 `AgoraChat.framework` 复制到项目文件夹中。`AgoraChat.framework` 包含 arm64，armv7，x86_64 指令集。
-3. 打开 Xcode，进入 TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content 菜单。
-4. 点击 + > Add Other… > Add Files 添加 AgoraChat.framework，并将Embed 属性设为 Embed & Sign。添加完成后，项目会自动链接所需系统库。
+2. 将 SDK 包内的 `AgoraChat.framework` 复制到项目文件夹中。`AgoraChat.framework` 包含 arm64、armv7 和 x86_64 指令集。
+3. 打开 Xcode，进入 **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**。
+4. 点击 **+ > Add Other... > Add Files** 添加 AgoraChat.framework 并将 **Embed** 属性设置为 **Embed & Sign**。添加完成后，项目会自动链接所需系统库。
