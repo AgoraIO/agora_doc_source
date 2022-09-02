@@ -33,7 +33,7 @@ $$
 
 在 `pubspec.yaml` 文件中添加以下依赖项：
 
-1. 添加 `agora_rtc_ng` 依赖项，集成 Agora Flutter SDK。关于 `agora_rtc_ng` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
+1. 添加 `agora_rtc_engine` 依赖项，集成 Agora Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
 3. 添加 `permission_handler` 依赖项，安装权限处理插件。
 
 ```
@@ -49,7 +49,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   # Agora Flutter SDK 依赖项，请使用最新版本的 agora_rtc_ng
-  agora_rtc_engine: ^5.2.0
+  agora_rtc_engine: ^6.0.0
   #  权限处理插件依赖项
   permission_handler: ^8.3.0
 ```
@@ -178,35 +178,37 @@ class _MyAppState extends State<MyApp> {
   // 构建 UI，显示本地视图和远端视图
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Agora Video Call'),
-      ),
-      body: Stack(
-        children: [
-          Center(
-            child: _remoteVideo(),
+    return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text('Agora Video Call'),
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 100,
-              height: 150,
-              child: Center(
-                child: _localUserJoined
-                    ? AgoraVideoView(
-                        controller: VideoViewController(
-                          rtcEngine: _engine,
-                          canvas: const VideoCanvas(uid: 0),
-                        ),
-                      )
-                    : const CircularProgressIndicator(),
+          body: Stack(
+            children: [
+              Center(
+                child: _remoteVideo(),
               ),
-            ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: SizedBox(
+                  width: 100,
+                  height: 150,
+                  child: Center(
+                    child: _localUserJoined
+                        ? AgoraVideoView(
+                            controller: VideoViewController(
+                              rtcEngine: _engine,
+                              canvas: const VideoCanvas(uid: 0),
+                            ),
+                          )
+                        : const CircularProgressIndicator(),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
+        )
+      );
   }
  
   
@@ -258,5 +260,5 @@ class _MyAppState extends State<MyApp> {
 
 ### 示例项目
 
-Agora 在 GitHub 上提供了一个开源的互动直播[示例项目](https://github.com/AgoraIO-Community/agora_rtc_ng_flutter/tree/main/example)供你参考。
+Agora 在 GitHub 上提供了一个开源的互动直播[示例项目](https://github.com/AgoraIO/Agora-Flutter-SDK/tree/main/example)供你参考。
 
