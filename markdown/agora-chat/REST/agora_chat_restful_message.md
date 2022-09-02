@@ -707,7 +707,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 #### 示例
 
@@ -1067,7 +1067,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <You
 
 如果返回的 HTTP 状态码为 200，表示请求成功，返回文件二进制数据流。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ## 下载缩略图
 
@@ -1513,7 +1513,7 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ### 示例
 
@@ -1621,7 +1621,7 @@ DELETE https://{host}/{orgName}/{appName}/users/{userName}/user_channel
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ### 示例
 
@@ -1694,7 +1694,7 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 
 其他参数及说明详见 [公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [状态码汇总表](#code) 了解可能的原因。
 
 ### 示例
 
@@ -1797,7 +1797,7 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ### 示例
 
@@ -1859,3 +1859,7 @@ curl -X POST -H "Authorization: Bearer <YourAppToken> " "https://XXXX/XXXX/XXXX/
     "applicationName": "XXXX"
 }
 ```
+
+## <a name="code"></code> 状态码
+
+有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
