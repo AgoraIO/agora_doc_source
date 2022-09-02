@@ -126,7 +126,7 @@ curl -L -X POST 'https://XXXX/XXXX/XXXX/mutes' \
 ### HTTP 请求
 
 ```http
-GET https://{host}/{orgName}/{appName}/mutes/username
+GET https://{host}/{orgName}/{appName}/mutes/{username}
 ```
 
 #### 路径参数
