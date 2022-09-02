@@ -47,7 +47,7 @@ To create the environment necessary to add peer-to-peer messaging into your app,
   ```
 
 2. Integrate the Agora Chat SDK into your project through npm. 
-   Add 'agora-chat' and 'vite'  in 'package.json' file.
+   Add 'agora-chat' and 'vite'  to the 'package.json' file.
 
    ```json
     {
@@ -131,18 +131,18 @@ To enable your app to send and receive messages between individual users, do the
 
    ```javascript
    // Javascript
-   // Note that to avoid browser-compatibility issues, the sample uses the import command to import the SDK and webpack to package the JS file.
+   // Note that to avoid browser-compatibility issues, this sample uses the import command to import the SDK and the webpack to package the JS file.
    import AC from 'agora-chat'
 	 ```
 	 
-	 If you use typescript, use the following code:
+    If you use typescript, use the following code:
 	 
-	```javascript
+	```typescript
 	// Typescript
-	// import AC, { AgoraChat } from 'agora-chat'
+	import AC, { AgoraChat } from 'agora-chat'
 	```
 	
-2. Implement peer-to-peer messaging with the core methods provided by the Agora Chat SDK. Copy the following code and add them behind the import function in the `main.js` file.
+2. Implement peer-to-peer messaging with the core methods provided by the Agora Chat SDK. Copy the following code and add them after the import function in the `main.js` file.
 
 	```javascript
 	/** When fetching a token, your token server may differ slightly from our example backend service logic.
@@ -153,27 +153,27 @@ To enable your app to send and receive messages between individual users, do the
 	const baseUrl = "<Developer Token Server>";
 	const appKey = "<Your app key>";
 	let username, password;
-	// Initializes the Web client
+	// Initializes the Web client.
 	const conn = new AC.connection({
 		appKey: "41117440#383391",
 	});
-	// Adds the event handler
+	// Adds the event handler.
 	conn.addEventHandler("connection&message", {
-		// Occurs when the app is connected to Agora Chat
+		// Occurs when the app is connected to Agora Chat.
 		onConnected: () => {
 			document
 				.getElementById("log")
 				.appendChild(document.createElement("div"))
 				.append("Connect success !");
 		},
-		// Occurs when the app is disconnected from Agora Chat
+		// Occurs when the app is disconnected from Agora Chat.
 		onDisconnected: () => {
 			document
 				.getElementById("log")
 				.appendChild(document.createElement("div"))
 				.append("Logout success !");
 		},
-		// Occurs when a text message is received
+		// Occurs when a text message is received.
 		onTextMessage: (message) => {
 			console.log(message);
 			document
@@ -181,7 +181,7 @@ To enable your app to send and receive messages between individual users, do the
 				.appendChild(document.createElement("div"))
 				.append("Message from: " + message.from + " Message: " + message.msg);
 		},
-		// Occurs when the token is about to expire
+		// Occurs when the token is about to expire.
 		onTokenWillExpire: (params) => {
 			document
 				.getElementById("log")
@@ -189,7 +189,7 @@ To enable your app to send and receive messages between individual users, do the
 				.append("Token is about to expire");
 			refreshToken(username, password);
 		},
-		// Occurs when the token has expired. You need to get a token from your app server to log in to Agora Chat
+		// Occurs when the token has expired. You need to get a token from your app server to log in to Agora Chat.
 		onTokenExpired: (params) => {
 			document
 				.getElementById("log")
@@ -202,7 +202,7 @@ To enable your app to send and receive messages between individual users, do the
 		},
 	});
 
-	// Gets the token from the app server
+	// Gets the token from the app server.
 	function refreshToken(username, password) {
 		postData(baseUrl+"/app/chat/user/login", {
 			userAccount: username,
@@ -216,7 +216,7 @@ To enable your app to send and receive messages between individual users, do the
 				.append("Token has been updated");
 		});
 	}
-	// Sends a request for token
+	// Sends a request for token.
 	function postData(url, data) {
 		return fetch(url, {
 			body: JSON.stringify(data),
@@ -231,13 +231,13 @@ To enable your app to send and receive messages between individual users, do the
 		}).then((response) => response.json());
 	}
 
-	// Defines the functions of the buttons
+	// Defines the functions of the buttons.
 	window.onload = function () {
 		// Registration
 		document.getElementById("register").onclick = function () {
 			username = document.getElementById("userID").value.toString();
 			password = document.getElementById("password").value.toString();
-			// Uses token to authenticate the user
+			// Uses token to authenticate the user.
 			postData(baseUrl+"/app/chat/user/register", {
 				userAccount: username,
 				userPassword: password,
@@ -255,7 +255,7 @@ To enable your app to send and receive messages between individual users, do the
 						.append(`${username} already exists`);
 				});
 		};
-		// Logs into Agora Chat
+		// Logs into Agora Chat.
 		document.getElementById("login").onclick = function () {
 			document
 				.getElementById("log")
@@ -263,7 +263,7 @@ To enable your app to send and receive messages between individual users, do the
 				.append("Logging in...");
 			username = document.getElementById("userID").value.toString();
 			password = document.getElementById("password").value.toString();
-			// 1. Uses a token for authentication
+			// Uses a token for authentication.
 			postData(baseUrl+"/app/chat/user/login", {
 				userAccount: username,
 				userPassword: password,
@@ -283,7 +283,7 @@ To enable your app to send and receive messages between individual users, do the
 				});
 		};
 
-		// Logs out
+		// Logs out.
 		document.getElementById("logout").onclick = function () {
 			conn.close();
 			document
@@ -292,15 +292,15 @@ To enable your app to send and receive messages between individual users, do the
 				.append("logout");
 		};
 
-		// Sends a peer-to-peer message
+		// Sends a peer-to-peer message.
 		document.getElementById("send_peer_message").onclick = function () {
 			let peerId = document.getElementById("peerId").value.toString();
 			let peerMessage = document.getElementById("peerMessage").value.toString();
 			let option = {
-				chatType: "singleChat", // Sets the chat type as single chat
-				type: "txt", // Sets the message type
-				to: peerId, // Sets the recipient of the meesage (userId)
-				msg: peerMessage, // Sets the message content
+				chatType: "singleChat", // Sets the chat type as single chat.
+				type: "txt", // Sets the message type.
+				to: peerId, // Sets the recipient of the message with user ID.
+				msg: peerMessage, // Sets the message content.
 			};
 			let msg = AC.message.create(option);
 			conn
@@ -321,7 +321,7 @@ To enable your app to send and receive messages between individual users, do the
 
 ##  Test your app
 
-Use vite to build the project, you can run below command to run the project.
+Use vite to build the project. You can run below command to run the project.
 
 ```bash
 $ npm run dev
@@ -345,7 +345,7 @@ To validate the peer-to-peer messaging you have just integrated into your Web ap
 
    ![](https://web-cdn.agora.io/docs-files/1635240394167)
 
-## Next Step
+## Next steps
 
 In a production context, the best practice is for your app to retrieve the token used to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
 
@@ -360,3 +360,7 @@ b. Open the HTML file in your project directory and add the following code to re
 ```javascript
 <script src="path to the JS file"></script>
 ```
+
+## Reference
+
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/blob/main/Chat-Web/src/index.js) for getting started with Agora Chat.

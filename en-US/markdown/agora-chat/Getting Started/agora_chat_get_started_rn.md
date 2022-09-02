@@ -90,9 +90,9 @@ import {
   ChatMessage,
 } from 'react-native-agora-chat';
 
-// The App Object.
+// Defines the App object.
 const App = () => {
-  // The variable defines.
+  // Defines the variable.
   const title = 'AgoraChatQuickstart';
   const requestGetTokenUrl = 'https://a41.chat.agora.io/app/chat/user/login';
   const requestRegistryAccountUrl =
@@ -106,7 +106,7 @@ const App = () => {
   const chatClient = ChatClient.getInstance();
   const chatManager = chatClient.chatManager;
 
-  // output console log.
+  // Outputs console logs.
   useEffect(() => {
     logText.split('\n').forEach((value, index, array) => {
       if (index === 0) {
@@ -115,7 +115,7 @@ const App = () => {
     });
   }, [logText]);
 
-  // Output UI logs.
+  // Outputs UI logs.
   const rollLog = text => {
     setWarnText(preLogText => {
       let newLogText = text;
@@ -135,7 +135,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    // Register listeners for messaging.
+    // Registers listeners for messaging.
     const setMessageListener = () => {
       let msgListener = {
         onMessagesReceived(messages) {
@@ -156,8 +156,8 @@ const App = () => {
       chatManager.addMessageListener(msgListener);
     };
 
-    // Initialize the SDK.
-    // Initialize any interface before calling it.
+    // Initializes the SDK.
+    // Initializes any interface before calling it.
     const init = () => {
       let o = new ChatOptions({
         autoLogin: false,
@@ -217,7 +217,7 @@ const App = () => {
     return requestHttp(requestRegistryAccountUrl);
   };
 
-  // Register an account for login.
+  // Registers an account for login.
   const registerAccount = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -246,7 +246,7 @@ const App = () => {
       });
   };
 
-  // Log in with an account ID and token.
+  // Logs in with an account ID and a token.
   const loginWithToken = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -286,7 +286,7 @@ const App = () => {
       });
   };
 
-  // Log out from server.
+  // Logs out from server.
   const logout = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -303,7 +303,7 @@ const App = () => {
       });
   };
 
-  // Send a text message to somebody.
+  // Sends a text message to somebody.
   const sendmsg = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
@@ -336,7 +336,7 @@ const App = () => {
       });
   };
 
-  // Render the UI.
+  // Renders the UI.
   return (
     <SafeAreaView>
       <View style={styles.titleContainer}>
@@ -525,3 +525,6 @@ You can also read from the logs on the UI to see whether you have successfully s
 ## Next steps
 
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=React%20Native#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. For how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=React%20Native).
+
+## Reference
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/tree/main/Chat-RN/quick_start_demo) for getting started with Agora Chat.

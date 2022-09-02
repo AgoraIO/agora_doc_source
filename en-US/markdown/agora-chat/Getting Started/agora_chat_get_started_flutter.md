@@ -43,7 +43,7 @@ flutter create quick_start
 
 #### Android setup
 
-1. In the `quick_start/android/app/build.gradle` file, add the following lines at the end to set the minimum Android SDK version to 21:
+1. In the `quick_start/android/app/build.gradle` file, add the following lines at the end to set the minimum Android SDK version to `21`:
 
 ```gradle
 android {
@@ -240,9 +240,9 @@ When fetching a token, your token server may differ slightly from our example ba
 
 To make this step easier to test, use the temporary token server "https://a41.chat.agora.io" provided by Agora in the placeholder below. When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
 
-**If you have already got an account and user token, you can ignore this section and go to the next.**
+<div class="alert info">If you have already got an account and a user token, you can ignore this section and go to the next.</div>
 
-To add the retrieving logic for tokens, refer to the following steps:
+To add the logic for retrieving tokens, refer to the following steps:
 
 1. Open a terminal, enter the `quick_start` directory, and run the following command to add the `http` dependency:
 
@@ -396,7 +396,7 @@ In the `_signOut` method, add the following to add the logout logic:
 
 ### 6. Send messages
 
-In the `_sendMessage` method, add the following to add the creating and sending logics for messages:
+In the `_sendMessage` method, add the following to add the logic for creating and sending messages:
 
 ```dart
   void _sendMessage() async {
@@ -427,7 +427,7 @@ In the `_sendMessage` method, add the following to add the creating and sending 
 
 ### 7. Receive messages
 
-To add the receiving logic for messages, refer to the following steps:
+To add the logic for receiving messages, refer to the following steps:
 
 1. Declare and inherit the `ChatManagerListener` object in the `_MyHomePageState` class. The sample code is as follows:
 
@@ -580,3 +580,6 @@ You can check the log to see all the operations from this example, as shown in t
 ## Next steps
 
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to the Agora Chat service. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+
+## Reference
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/tree/main/chat_flutter) for getting started with Agora Chat.
