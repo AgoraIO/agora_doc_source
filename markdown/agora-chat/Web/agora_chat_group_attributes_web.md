@@ -123,6 +123,6 @@ let option = {
 conn.getGroupSharedFilelist(option).then(res => console.log(res))
 ```
 
-### 监听聊天组事件
+### 监听群组事件
 
-有关详细信息，请参阅 [监听群组事件](./agora_chat_group_web?platform=Web#listen-for-chat-group-events)。
+有关详细信息，请参阅 [监听群组事件](./agora_chat_group_web?platform=Web#监听群组事件)。

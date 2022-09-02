@@ -77,4 +77,4 @@ AgoraChatError *error =  nil;
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [聊天室事件](./agora_chat_chatroom_ios?platform=iOS#listen-for-chat-room-events)。
+有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_ios?platform=iOS#监听聊天室事件)。

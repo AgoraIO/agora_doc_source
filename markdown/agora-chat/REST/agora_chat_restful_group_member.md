@@ -1,6 +1,6 @@
 管理群组成员是指对一个群组内的成员进行添加、移除等操作。即时通讯提供多个接口实现添加群成员、获取群成员、添加管理员、转让群主等功能。
 
-本文展示如何调用 Agora 即时通讯 RESTful API 管理群组成员。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 管理群组成员。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -11,9 +11,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                                                       | 是否必填 |
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。                                                                                                                                                                 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。                                                                                                                                                            | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 [Agora 控制台](https://console.agora.io/)获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat)。                                                                                                                                                                   | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                                 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                            | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                                   | 是       |
 | `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户 ID。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
 
 ### 响应参数
@@ -83,7 +83,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -326,7 +326,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{usernam
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -401,7 +401,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memeber
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -478,7 +478,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段即返回的群管理员的信息。其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 
@@ -687,7 +687,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 
 ### 示例
 

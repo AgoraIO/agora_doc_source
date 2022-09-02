@@ -288,4 +288,4 @@ conn.removeChatRoomAdmin(option).then(res => console.log(res))
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [聊天室事件](./agora_chat_chatroom_web?platform=Web#监听聊天室事件)。
+有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_web?platform=Web#监听聊天室事件)。
