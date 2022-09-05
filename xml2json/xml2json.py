@@ -212,6 +212,11 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     with open(file_dir, "r", encoding='utf-8') as f:
         text= f.read()
         text = re.sub('\s+(?=<)', '', text)
+        
+        text = re.sub('<ph>',' <ph>', text)
+        text = re.sub('<apiname>',' <apiname>', text)
+        text = re.sub('<codeph>',' <codeph>', text)
+        text = re.sub('<parmname>',' <parmname>', text)  
 
     with open(file_dir, "w", encoding='utf-8') as f:
         f.write(text)
@@ -658,7 +663,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             print("----------------------apiname text--------------------")
             print(href_text.strip())
             print("----------------------apiname text--------------------")
-            apiname.text = href_text.strip()
+            apiname.text = href_text
             print(apiname.text)
 
     for apiname in root.iter("parmname"):
@@ -680,7 +685,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             print("----------------------parmname text--------------------")
             print(href_text.strip())
             print("----------------------parmname text--------------------")
-            apiname.text = href_text.strip()
+            apiname.text = href_text
             print(apiname.text)
 
     for pt in root.iter("ph"):
@@ -702,7 +707,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             print("----------------------pt text--------------------")
             print(href_text.strip())
             print("----------------------pt text--------------------")
-            pt.text = href_text.strip()
+            pt.text = href_text
             print(pt.text)
 
     # Android
@@ -856,7 +861,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     dita_file_root = dita_file_tree.getroot()
                     for keydef in dita_file_root.iter("keydef"):
                         if keydef.get("keys").strip() == title.get("keyref").strip():
-                            title_text = "".join(keydef.itertext()).strip()
+                            title_text = "".join(keydef.itertext())
                 xref.text = title_text
 
 
@@ -1160,11 +1165,19 @@ def replace_newline():
     input_file = open(json_file, 'r', encoding="utf-8")
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
-    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
+
+    replaced_file_text = re.sub('Themaintain', 'The maintain', file_text)
+    replaced_file_text = re.sub('byx', 'by x', replaced_file_text)
+    replaced_file_text = re.sub('withx', 'with x', replaced_file_text)
+    replaced_file_text = re.sub('case of', 'case of ', replaced_file_text)
+    replaced_file_text = re.sub(' when', ' when ', replaced_file_text)
+    replaced_file_text = re.sub(' set to', ' set to ', replaced_file_text)
+    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', replaced_file_text)
 
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
     replaced_file_text = re.sub(r'[\s]{2,100}', ' ', replaced_file_text)
+
 
 
     replaced_file_text = re.sub(r'See[\s\\n]{0,50}\.', '', replaced_file_text)
