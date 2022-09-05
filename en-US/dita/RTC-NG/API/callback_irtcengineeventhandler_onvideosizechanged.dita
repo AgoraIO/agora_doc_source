@@ -35,7 +35,7 @@
     height: number,
     rotation: number
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, uint uid, int width, int height, int rotation) {}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, VIDEO_SOURCE_TYPE sourceType, uint uid, int width, int height, int rotation) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"> onVideoSizeChanged?(
     connection: RtcConnection,
     sourceType: VideoSourceType,
@@ -59,10 +59,10 @@
                 <pt>connection</pt>
                 <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
-            <plentry props="flutter rn electron">
-                <pt>sourceType</pt>
-                <pd>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
-            </plentry>
+            <plentry props="rn unity electron flutter">
+                    <pt>sourceType</pt>
+                    <pd>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
                 <pd>The ID of the user whose video size or rotation changes. (The <parmname>uid</parmname> for the local user is 0. The video is the local user's video preview).</pd>
