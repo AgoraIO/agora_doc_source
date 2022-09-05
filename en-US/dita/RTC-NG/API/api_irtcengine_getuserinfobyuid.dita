@@ -22,7 +22,7 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated" /> callback on the local client. After receiving the callback, you can call this method to get the user account of the remote user from the <xref keyref="UserInfo" /> object by passing in the user ID.</p>
+            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the  callback on the local client<xref keyref="onUserInfoUpdated" />. After receiving the callback, you can call this method to get the user account of the remote user from the  object by passing in the user<xref keyref="UserInfo" /> ID.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -33,9 +33,9 @@
             </plentry>
             <plentry props="cpp unity android" id="userInfo">
                 <pt>userInfo</pt>
-                <pd>Input and output parameter. The <xref keyref="UserInfo" /> object that identifies the user information.<ul>
-                    <li>Input: A <apiname keyref="UserInfo" /> object.</li>
-                    <li>Output: A <apiname keyref="UserInfo" /> object that contains the user account and user ID of the user.</li>
+                <pd>Input and output parameter. The  object that identifies the user information<xref keyref="UserInfo" />.<ul>
+                    <li>Input: A<apiname keyref="UserInfo" />  object.</li>
+                    <li>Output: A<apiname keyref="UserInfo" />  object that contains the user account and user ID of the user.</li>
                     </ul> </pd>
             </plentry>
             <plentry id="channelId">
@@ -50,19 +50,19 @@
             </plentry>
             <plentry props="ios mac" id="error">
                 <pt>error</pt>
-                <pd>The error code.</pd>
+                <pd>Error code.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="android flutter">The <apiname keyref="UserInfo" /> object that identifies the user information.</p>
+            <p props="android flutter">The  object that identifies the user information<apiname keyref="UserInfo" />.</p>
             <ul props="android flutter">
             <li>Not null: Success.</li>
             <li>Null: Failure.</li>
             </ul>
             <ul props="ios mac electron rn">
-            <li>A <xref keyref="UserInfo" /> object, if the method call succeeds.</li>
-            <li props="ios mac electron rn"><ph keyref="NULL" />, if the method call fails.</li>
+            <li>A pointer to<xref keyref="UserInfo" /> the  instance, if the method call succeeds.</li>
+            <li props="ios mac electron rn">If the call fails, returns <ph keyref="NULL" />.</li>
             </ul>
             <ul props="cpp unity android">
             <li>0: Success.</li>
