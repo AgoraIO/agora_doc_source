@@ -144,21 +144,31 @@
       this.encode,
       this.sampleRate,
       this.fileRecordingType,
-      this.quality});
+      this.quality,
+      this.recordingChannel});
 
   @JsonKey(name: 'filePath')
   final String? filePath;
+
   @JsonKey(name: 'encode')
   final bool? encode;
+
   @JsonKey(name: 'sampleRate')
   final int? sampleRate;
+
   @JsonKey(name: 'fileRecordingType')
   final AudioFileRecordingType? fileRecordingType;
+
   @JsonKey(name: 'quality')
   final AudioRecordingQualityType? quality;
-  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'recordingChannel')
+  final int? recordingChannel;
+
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioRecordingConfigurationFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioRecordingConfigurationToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
@@ -222,7 +232,7 @@
                     <p>Note: This parameter applies to AAC files only.</p>
                     </note></pd>
             </plentry>
-                <plentry props="native">
+                <plentry>
                     <pt>recordingChannel</pt>
                     <pd>The audio channel of recording: The parameter supports the following values:<ul><li>1: (Default) Mono.</li>
                         <li>2: Stereo.</li></ul>
