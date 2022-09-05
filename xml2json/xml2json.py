@@ -1165,6 +1165,8 @@ def replace_newline():
     replaced_file_text = re.sub('byx', 'by x', replaced_file_text)
     replaced_file_text = re.sub('withx', 'with x', replaced_file_text)
     replaced_file_text = re.sub('case of', 'case of ', replaced_file_text)
+    replaced_file_text = re.sub(' when', ' when ', replaced_file_text)
+    replaced_file_text = re.sub(' set to', ' set to ', replaced_file_text)
     replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', replaced_file_text)
 
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
