@@ -25,11 +25,11 @@
             <dl outputclass="deprecated" props="android">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>This method is deprecated, use <xref keyref="pushVideoFrameEx2" /> instead.</dd>
+                <dd>This method is deprecated, please use <xref keyref="pushVideoFrameEx2" /> instead.</dd>
             </dlentry>
             </dl>
             <p conkeyref="pushVideoFrame/desc1" />
-            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrameEx2" />. The difference is that the <apiname keyref="pushVideoFrameEx" /> method does not support video data in Texture format.</p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrameEx2" />. The difference is that the <apiname keyref="pushVideoFrameEx" /> method does not support video data in texture format.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -38,24 +38,20 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry id="videotrackid" props="native">
+            <plentry id="videotrackid">
                 <pt>videoTrackId</pt>
-                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack" /> method.</pd>
-            </plentry>
-            <plentry conkeyref="joinChannelEx/connection" props="unity">
-                <pt />
-                <pd />
+                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack" /> method. The default value is 0.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul props="cpp android unity">
+            <ul props="android">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="ios mac">
-            <li><codeph><ph keyref="true" /></codeph>: Pushes the video frame successfully.</li>
-            <li><codeph><ph keyref="false" /></codeph>: Fails to push the video frame.</li>
-            </ul> </section>
+                <li><codeph><ph keyref="true" /></codeph>: Pushes the external raw video frame to the SDK successfully.</li>
+                <li><codeph><ph keyref="false" /></codeph>: Fails to push external raw video frame to the SDK.</li>
+                </ul> </section>
     </refbody>
 </reference>

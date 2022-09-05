@@ -33,7 +33,7 @@
     state: LocalVideoStreamState,
     error: LocalVideoStreamError
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(RtcConnection connection, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) {}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onLocalVideoStateChanged?(
     source: VideoSourceType,
     state: LocalVideoStreamState,
@@ -58,13 +58,9 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity">
-                <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
-            </plentry>
             <plentry id="source" props="native rn flutter electron">
                 <pt props="apple">sourceType</pt>
-                <pt props="android cpp rn electron flutter">source</pt>
+                <pt props="android cpp rn electron flutter unity">source</pt>
                 <pd>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry>
