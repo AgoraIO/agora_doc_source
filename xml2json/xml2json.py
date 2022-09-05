@@ -211,12 +211,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
     with open(file_dir, "r", encoding='utf-8') as f:
         text= f.read()
-        text = re.sub('\s+(?=<)', '', text)
+        text = re.sub('>\s+(?=<)', '>', text)
         
-        text = re.sub('<ph',' <ph', text)
-        text = re.sub('<apiname',' <apiname', text)
-        text = re.sub('<codeph',' <codeph', text)
-        text = re.sub('<parmname',' <parmname', text)  
+        #text = re.sub('<ph',' <ph', text)
+        #text = re.sub('<apiname',' <apiname', text)
+        #text = re.sub('<codeph',' <codeph', text)
+        #text = re.sub('<parmname',' <parmname', text)  
 
     with open(file_dir, "w", encoding='utf-8') as f:
         f.write(text)
@@ -1172,6 +1172,8 @@ def replace_newline():
     replaced_file_text = re.sub('case of', 'case of ', replaced_file_text)
     replaced_file_text = re.sub(' when', ' when ', replaced_file_text)
     replaced_file_text = re.sub(' set to', ' set to ', replaced_file_text)
+    replaced_file_text = re.sub(' or ', ' or   ', replaced_file_text)
+    replaced_file_text = re.sub(' and ', ' and   ', replaced_file_text)
     replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', replaced_file_text)
 
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
