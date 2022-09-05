@@ -22,20 +22,18 @@
     cycle: number,
     startPos?: number
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle, int startPos);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, int cycle, int startPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startAudioMixing(
     filePath: string,
     loopback: boolean,
     cycle: number,
     startPos?: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioMixing(
-  {required String filePath,
-  required bool loopback,
-  required bool replace,
-  required int cycle,
-  int startPos = 0});
-</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startAudioMixing(
+      {required String filePath,
+      required bool loopback,
+      required int cycle,
+      int startPos = 0});</codeblock>
 </p>
         </section>
         <section id="detailed_desc">
@@ -45,7 +43,7 @@
             <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing2"/> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
             <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports the warn code 701.</li>
             <li conkeyref="preloadEffect/audioFormats" />
-            <li conkeyref="startAudioMixing/principle" props="android cpp unity" />
+            <li conkeyref="startAudioMixing/principle" props="android cpp unity"/>
             <li props="rn" id="principle">On Android, there are following considerations:<ul>
                 <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
                 <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
@@ -65,15 +63,6 @@
                     <p>Whether to only play music files on the local client:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry props="electron unity rn flutter">
-                <pt>replace</pt>
-                <pd>
-                    <p>Whether to replace the audio captured by the microphone with a music file:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
                     </ul></p>
                 </pd>
             </plentry>
