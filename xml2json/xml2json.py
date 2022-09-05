@@ -1161,12 +1161,12 @@ def replace_newline():
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
     
-    replaced_file_text = re.sub('Themaintain', 'The maintain', replaced_file_text)
+    replaced_file_text = re.sub('Themaintain', 'The maintain', file_text)
     replaced_file_text = re.sub('byx', 'by x', replaced_file_text)
     replaced_file_text = re.sub('withx', 'with x', replaced_file_text)
     replaced_file_text = re.sub('case of', 'case of ', replaced_file_text)
     
-    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
+    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', replaced_file_text)
 
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
