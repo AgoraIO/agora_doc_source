@@ -26,14 +26,13 @@ This section guides you through how to integrate FCM with Agora Chat.
 1. Log in to [Firebase console](https://console.firebase.google.com/), and click **Add project**.
 
 2. In the **Create a project** page, enter a project name, and click **Create project**.
+    <div class="alert info">You can toggle off <b>Enable Google Analytics for this project</b> if this option is not needed.</div>
 
-<div class="alert note">You can toggle off **Enable Google Analytics for this project** if this option is not needed.</div>
+3. After the project is ready, click **Continue** to redirect to the project page, and click the **Flutter** icon and follow the **Firebase CLI** to setting your project.
 
-1. After the project is ready, click **Continue** to redirect to the project page, and click the **Flutter** icon and follow the **Firebase CLI** to setting your project.
-
-2. In the **Project settings** page, perform the following operations:
-    1. Find the **Android apps** in **Your apps**, Set your Android App according to **See SDK instructions**.
-    2. Find the **Apple apps** in **Your apps**, Set your Apple App according to **See SDK instructions**.
+4. In the **Project settings** page, perform the following operations:
+    - For Android apps, find the **Android apps** in **Your apps**, and set your Android app according to **See SDK instructions**.
+    - For iOS apps, find the **Apple apps** in **Your apps**, and set your Apple app according to **See SDK instructions**.
 
 ### 2. Upload FCM certificate to Agora Console
 
@@ -48,79 +47,74 @@ This section guides you through how to integrate FCM with Agora Chat.
 5. In the pop-up window, select the **GOOGLE** tab, and configure the following fields:
   - **Certificate Name**: Fill in the [Sender ID](#token).
   - **Push Key**: Fill in the [Server Key](#token).
-
-<img src="https://web-cdn.agora.io/docs-files/1658462250450">
+    <img src="https://web-cdn.agora.io/docs-files/1658462250450">
 
 ### 3. Enable FCM in Agora Chat
 
 1. Initialize and enable FCM in the Agora Chat SDK.
 
-```dart
-ChatOptions options = ChatOptions(
-    // Replaces with your App Key.
-    appKey: "<#Your AppKey#>",
-    autoLogin: false,
-);
-// Replaces with your FCM Sender ID.
-options.enableFCM("<#Your FCM sender id#>");
-options.enableAPNs("<#Your FCM sender id#>");
-await ChatClient.getInstance.init(options);
-
-...
-
-Firebase.initializeApp();
-await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-);
-
-
-FirebaseMessaging.onMessageOpenedApp.listen((message) {
-    debugPrint("message : $message");
-});
-```
+		
+		ChatOptions options = ChatOptions(
+				// Replace <#Your AppKey#> with your app key.
+				appKey: "<#Your AppKey#>",
+				autoLogin: false,
+		);
+		// Replace <#Your FCM sender id#> with your FCM Sender ID.
+		options.enableFCM("<#Your FCM sender id#>");
+		options.enableAPNs("<#Your FCM sender id#>");
+		await ChatClient.getInstance.init(options);
+		...
+		Firebase.initializeApp();
+		await Firebase.initializeApp(
+				options: DefaultFirebaseOptions.currentPlatform,
+		);
+		FirebaseMessaging.onMessageOpenedApp.listen((message) {
+				debugPrint("message : $message");
+		});
+		
 
 2. Pass the device token of FCM to the Agora Chat SDK.
 
-```dart
-final fcmToken = await FirebaseMessaging.instance.getToken();
-if (fcmToken != null) {
-  try {
-    if (Platform.isIOS) {
-      await ChatClient.getInstance.pushManager.updateAPNsDeviceToken(
-        fcmToken,
-      );
-    } else if (Platform.isAndroid) {
-      await ChatClient.getInstance.pushManager.updateFCMPushToken(
-        fcmToken,
-      );
+    ```dart
+    final fcmToken = await FirebaseMessaging.instance.getToken();
+    if (fcmToken != null) {
+    try {
+        if (Platform.isIOS) {
+        await ChatClient.getInstance.pushManager.updateAPNsDeviceToken(
+            fcmToken,
+        );
+        } else if (Platform.isAndroid) {
+        await ChatClient.getInstance.pushManager.updateFCMPushToken(
+            fcmToken,
+        );
+        }
+    } on ChatError catch (e) {
+        debugPrint("bind fcm token error: ${e.code}, desc: ${e.description}");
     }
-  } on ChatError catch (e) {
-    debugPrint("bind fcm token error: ${e.code}, desc: ${e.description}");
-  }
-}
+    }
 ```
 
 3. Listen for device token generation.
 
-Rewrite the `onTokenRefresh` callback. Once a device token is generated, this callback passes the new device token to the Agora Chat SDK at the earliest opportunity.
+   Rewrite the `onTokenRefresh` callback. Once a device token is generated, this callback passes the new device token to the Agora Chat SDK at the earliest opportunity.
 
-```dart
-FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
-  try {
-    if (Platform.isIOS) {
-      await ChatClient.getInstance.pushManager.updateAPNsDeviceToken(
-        newToken,
-      );
-    } else if (Platform.isAndroid) {
-      await ChatClient.getInstance.pushManager.updateFCMPushToken(
-        newToken,
-      );
+    ```dart
+    FirebaseMessaging.instance.onTokenRefresh.listen((newToken) async {
+    try {
+        if (Platform.isIOS) {
+        await ChatClient.getInstance.pushManager.updateAPNsDeviceToken(
+            newToken,
+        );
+        } else if (Platform.isAndroid) {
+        await ChatClient.getInstance.pushManager.updateFCMPushToken(
+            newToken,
+        );
+        }
+    } on ChatError catch (e) {
+        debugPrint("bind fcm token error: ${e.code}, desc: ${e.description}");
     }
-  } on ChatError catch (e) {
-    debugPrint("bind fcm token error: ${e.code}, desc: ${e.description}");
-  }
-});
-```
+    });
+    ```
 
 ## Set up push notifications
 
@@ -215,7 +209,7 @@ For example, assume that the push notification mode of the app is set to `MENTIO
 
 **Do-not-disturb mode**
 
-<div class="alert note"><ol><li>You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.<li>Conversations only support the DND duration setting; the setting of the DND time frame does not take effect.</ol></div>
+<div class="alert note"><ul><li>You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.<li>Conversations only support the DND duration setting; the setting of the DND time frame does not take effect.</ul></div>
 
 For both the app and all the conversations in the app, the setting of the DND mode takes precedence over the setting of the push notification mode.
 
@@ -226,7 +220,7 @@ Alternatively, assume that a DND time period is specified for a conversation, wh
 
 ### Set the push notifications of an app
 
-You can call `setSilentModeForAll` to set the push notifications at the app level and set the push notification mode and DND mode by specifying the `ChatSilentModeParam` field, as shown in the following code sample:
+You can call `setSilentModeForAll` to set the push notifications at the app level, and specify the `ChatSilentModeParam` field to set the push notification mode and DND mode, as shown in the following code sample:
 
 ```dart
 try {
@@ -244,7 +238,7 @@ try {
     param: param,
   );
 
-  // Sets the DND time frame from 8:30 to 15:00.
+  // Sets the DND time frame as from 8:30 to 15:00.
   var param = ChatSilentModeParam.silentModeInterval(
     startTime: ChatSilentModeTime(hour: 8, minute: 30),
     endTime: ChatSilentModeTime(hour: 15, minute: 0),
@@ -287,7 +281,7 @@ try {
 
 ### Set the push notifications of a conversation
 
-You can call `setConversationSilentMode` to set the push notifications for the conversation specified by the `conversationId` and `ConversationType` fields, as shown in the following code sample:
+You can call `setConversationSilentMode` and specify the `conversationId` and `ConversationType` fields to set the push notifications for the conversation, as shown in the following code sample:
 
 ```dart
 // Sets the push notification mode to `MENTION_ONLY` for a conversation.
@@ -331,7 +325,7 @@ try {
 
 ### Retrieve the push notification settings of multiple conversations
 
-<div class="alert info"><ol><li>You can retrieve the push notification settings of up to 20 conversations at each call.<li>If a conversation inherits the app setting or its push notification setting has expired, the returned dictionary does not include this conversation.</ol></div>
+<div class="alert note"><ul><li>You can retrieve the push notification settings of up to 20 conversations at each call.<li>If a conversation inherits the app setting or its push notification setting has expired, the returned dictionary does not include this conversation.</ul></div>
 
 You can call `fetchSilentModeForConversations` to retrieve the push notification settings of multiple conversations, as shown in the following code sample:
 
@@ -382,8 +376,8 @@ You can also call `updatePushDisplayStyle` to set the display style of push noti
 ```dart
 try {
   ChatClient.getInstance.pushManager.updatePushDisplayStyle(
-    // `Simple` indicates that only "You have a new message" displays.
-    // To display the message content, set `Simple` to `Summary`.
+    // `Simple` indicates that only the text "You have a new message" is displayed.
+    // To display the message content, replace `Simple` with `Summary`.
     DisplayStyle.Simple,
   );
 } on ChatError catch (e) {
@@ -442,8 +436,7 @@ You can create and provide push templates for users by referring to the followin
 3. On the project edit page, click **Config** next to **Chat**.
 
 4. On the project config page, select **Features** > **Push Template** and click **Add Push Template**, and configure the fields in the pop-up window, as shown in the following figure:
-
-![](https://web-cdn.agora.io/docs-files/1655445229699)
+   ![](https://web-cdn.agora.io/docs-files/1655445229699)
 
 Once the template creation is complete in Agora Console, users can choose this push template as their default layout when sending a message, as shown in the following code sample:
 
@@ -553,7 +546,7 @@ ChatClient.getInstance.chatManager.sendMessage(msg);
 
 | Parameter             | Description                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| `targetId` | The username of the sender. |
+| `targetId` | The user name of the sender. |
 | `em_apns_ext`    | The custom key used to add the extension field. <br>**Note**: Do not modify the key. Modify the value of the key only. |
 | `em_push_title`   | The custom key used to specify the custom titles of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
 | `em_push_content`| The custom key used to specify the custom displayed content of push notifications.<br>**Note**: Do not modify the key. Modify the value of the key only. |
@@ -606,6 +599,6 @@ ChatClient.getInstance.chatManager.sendMessage(msg);
 | Parameter                    | Description                                     |
 | ----------------------- | ---------------------------------------- |
 | `msg`               | The message body.                                 |
-| `targetId`        | The username of the receiver.                    |
+| `targetId`        | The user name of the receiver.                    |
 | `em_force_notification` | Whether to force a push notification.<li>`true`: Yes<li>`false`: No  |
 
