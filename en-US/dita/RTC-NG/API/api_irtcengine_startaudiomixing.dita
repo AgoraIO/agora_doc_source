@@ -24,7 +24,7 @@
     bool replace,
     int cycle) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(filePath: string, loopback: boolean, replace: boolean, cycle: number, startPos?: number): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioMixing(string filePath, bool loopback, bool replace, int cycle);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"> public abstract int StartAudioMixing(string filePath, bool loopback, int cycle);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startAudioMixing(
     filePath: string,
     loopback: boolean,
@@ -74,15 +74,6 @@
                     <p>Whether to play music files only on the local client:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Only play music files on the local client so that only the local user can hear the music.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Publish music files to remote clients so that both the local user and remote users can hear the music.</li>
-                    </ul></p>
-                </pd>
-            </plentry>
-            <plentry id="replace">
-                <pt>replace</pt>
-                <pd>
-                    <p>Whether to replace the audio captured by the microphone with a music file:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Replace the audio captured by the microphone with a music file. Users can only hear the music.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not replace the audio captured by the microphone with a music file. Users can hear both music and audio captured by the microphone.</li>
                     </ul></p>
                 </pd>
             </plentry>
