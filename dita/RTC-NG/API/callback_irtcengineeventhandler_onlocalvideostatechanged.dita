@@ -33,7 +33,7 @@
     state: LocalVideoStreamState,
     error: LocalVideoStreamError
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(RtcConnection connection, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) {}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onLocalVideoStateChanged?(
     source: VideoSourceType,
     state: LocalVideoStreamState,
@@ -59,13 +59,9 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity">
-                <pt>connection</pt>
-                <pd>Connection 信息。详见 <xref keyref="RtcConnection"/>。</pd>
-            </plentry>
             <plentry id="source" props="native rn flutter electron">
                 <pt props="apple">sourceType</pt>
-                <pt props="android cpp rn electron flutter">source</pt>
+                <pt props="android cpp rn electron flutter unity">source</pt>
                 <pd>视频源的类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
             <plentry>
