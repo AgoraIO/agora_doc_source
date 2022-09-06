@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setZones(SpatialAudioZone[] zones);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">virtual int setZones(const SpatialAudioZone *zones, unsigned int zoneCount) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setZones:(NSArray&lt;AgoraSpatialAudioZone*> * _Nonnull)zones;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setZones(const SpatialAudioZone *zones, unsigned int zoneCount) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -28,11 +28,12 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p>在虚拟互动场景下，你可以通过该方法设置音障区域和声音衰减系数，音障区域内的用户或媒体播放器在跟音障区域外用户互动时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。</p>
+            <p>在虚拟互动场景下，你可以通过该方法设置音障区域和声音衰减系数，音障区域内的用户或媒体播放器在跟外界用户互动时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。</p>
             <ul>
                 <li>当用户或媒体播放器在音障区域内跟外界互动时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
-                <li>当用户或媒体播放器离开音障区域后，不再受音障空间内的声音衰减系数影响，声音的衰减效果仅跟<xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioParams"/> 中的声音衰减系数有关。</li>
-                <li>如果用户或媒体播放器同在一个音障区域内，则声音的衰减效果仅跟 </li>
+                <li>当用户或媒体播放器离开音障区域后，不再受 <apiname keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。</li>
+                <li>如果用户或媒体播放器同在一个音障区域内，则不受<apiname keyref="SpatialAudioZone"/>  的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。</li>
+                <li>如果音源跟</li>
             </ul>
             <note>如果多次调用该方法，以最后一次设置的音障区域为准。</note>
         </section>
@@ -43,7 +44,7 @@
                 <pt>zones</pt>
                 <pd>音障区域的设置。详见 <apiname keyref="SpatialAudioZone"/>。</pd>
             </plentry>
-                <plentry props="apple cpp">
+                <plentry props="cpp">
                     <pt>zoneCount</pt>
                     <pd>音障区域的数量。</pd>
                 </plentry>
