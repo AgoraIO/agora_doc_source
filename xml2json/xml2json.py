@@ -1275,7 +1275,10 @@ def replace_newline():
     replaced_file_text = re.sub('"": When setting as NULL, the encryption mode is set as "aes-128-xts" by default.', '', replaced_file_text)
 
     replaced_file_text = re.sub('"": ""', '', replaced_file_text)
-
+    
+    replaced_file_text = re.sub('{ "AgoraIidSignalingEngine": "" }', '{ "AgoraIidSignalingEngine": "This interface class is deprecated." }', replaced_file_text)
+    replaced_file_text = re.sub('{ "uid": "" }', '{ "uid": "The user ID." }', replaced_file_text)
+    
 
     replaced_file_text = re.sub('id="callback_iaudioframeobserverbase_', 'id="callback_iaudioframeobserver_', replaced_file_text)
     replaced_file_text = re.sub('"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": ""', '"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": "8: Fails to find a local video capture device."', replaced_file_text)
