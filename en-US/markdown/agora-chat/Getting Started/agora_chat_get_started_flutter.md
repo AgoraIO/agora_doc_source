@@ -226,7 +226,8 @@ In the `_initSDK` method, add the following to initialize the SDK:
 ```dart
   void _initSDK() async {
     ChatOptions options = ChatOptions(
-      appKey: "<#Your AppKey#>",
+      // Sets your app key applied via Agora Console.
+      appKey: "41117440#383391",
       autoLogin: false,
     );
     await ChatClient.getInstance.init(options);
