@@ -1277,6 +1277,7 @@ def replace_newline():
     replaced_file_text = re.sub('"": ""', '', replaced_file_text)
     
     replaced_file_text = re.sub('{ "AgoraIidSignalingEngine": "" }', '{ "AgoraIidSignalingEngine": "This interface class is deprecated." }', replaced_file_text)
+    replaced_file_text = re.sub('{ "agoraIidSignalingEngine": "" }', '{ "agoraIidSignalingEngine": "This interface class is deprecated." }', replaced_file_text)
     replaced_file_text = re.sub('{ "uid": "" }', '{ "uid": "The user ID." }', replaced_file_text)
     
 
