@@ -940,6 +940,52 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                  parent_map[child].remove(child)
                  # child.text = ""
 
+    # Tag filtering 05
+    # Once a tagged element. So more elements, more processings...
+    # Do tag filtering again!!!!!!!!!!
+    parent_map = {c: p for p in tree.iter() for c in p}
+    for child in root.iter('*'):
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 parent_map[child].remove(child)
+                 # child.text = ""            
+                    
+    # Tag filtering 06
+    # Once a tagged element. So more elements, more processings...
+    # Do tag filtering again!!!!!!!!!!
+    parent_map = {c: p for p in tree.iter() for c in p}
+    for child in root.iter('*'):
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 parent_map[child].remove(child)
+                 # child.text = ""    
+                    
     # Android
 
     # Rust
@@ -1213,7 +1259,7 @@ def replace_newline():
     replaced_file_text = re.sub('class_rtc_remote_view_surfaceview', 'class_rtcremotesurfaceview', replaced_file_text)
     replaced_file_text = re.sub('rtc_remote_view: SurfaceView', 'RtcRemoteSurfaceView', replaced_file_text)
 
-    replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
+    # replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
 
     replaced_file_text = re.sub('callback_onrecorderstatechanged', 'callback_imediarecorder_onrecorderstatechanged', replaced_file_text)
     replaced_file_text = re.sub('api_stoprecording', 'api_imediarecorder_stoprecording', replaced_file_text)
