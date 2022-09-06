@@ -66,7 +66,7 @@ debugPrint("translation: ${body.translations}");
 When creating a text message, the sender enables automatic translation by setting `ChatTextMessageBody.targetLanguages` as the target language for translation:
 
 ```dart
-// Specifies the target languge for translation.
+// Specifies the target languages for translation.
 ChatMessage textMessage = ChatMessage.createTxtSendMessage(
   username: targetUser,
   content: content,
