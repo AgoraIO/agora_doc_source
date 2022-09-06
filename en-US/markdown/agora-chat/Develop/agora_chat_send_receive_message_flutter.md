@@ -14,11 +14,11 @@ The Agora Chat SDK for Unity uses the `ChatMessage` and `ChatMessage` classes to
 
 The process of sending and receiving a message is as follows:
 
-1. The message sender creates a text, file, or attachment message using the corresponding `Create` method.
+1. The message sender creates a text, file, or attachment message using the corresponding `create` method.
 2. The message sender calls `sendMessage` to send the message.
-3. The message recipient listens for `ChatManagerListener` and receives the message in the `onMessagesReceived` callback.
+3. The message recipient listens for `ChatEventHandler` and receives the message in the `onMessagesReceived` callback.
 
-## Prerequistes
+## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
 - You have integrated the Agora Chat SDK, initialized the SDK and implemented the functionality of registering accounts and login. For details, see [Get Started with Agora Chat](./agora_chat_get_started_flutter?platform=Flutter).
@@ -161,62 +161,34 @@ Follow the steps to create and send a message, and listen for the result of send
 
 ### Receive the message
 
-You can use `ChatManagerListener` to listen for message events. You can add multiple `ChatManagerListener` objects to listen for multiple events. When you no longer listen for an event, for example, when you call `dispose`, ensure that you remove the object.
+You can use `ChatEventHandler` to listen for message events. You can add multiple `ChatEventHandler` objects to listen for multiple events. When you no longer listen for an event, for example, when you call `dispose`, ensure that you remove the object.
 
-When a message arrives, the recipient receives an `onMessgesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback.
+When a message arrives, the recipient receives an `onMessagesReceived` callback. Each callback contains one or more messages. You can traverse the message list, and parse and render these messages in this callback.
 
 ```dart
-// Inherits and implements ChatManagerListener
-class _ChatMessagesPageState extends State<ChatMessagesPage>
-    implements ChatManagerListener {
-  @override
-  void initState() {
-    super.initState();
-    // Adds a chat event listener.
-    ChatClient.getInstance.chatManager.addChatManagerListener(this);
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-  @override
-  void dispose() {
-    // Removes the event listener.
-    ChatClient.getInstance.chatManager.removeChatManagerListener(this);
-    super.dispose();
-  }
-  @override
-  void messageReactionDidChange(List<ChatMessageReactionChange> list) {}
-  @override
-  void onCmdMessagesReceived(List<ChatMessage> messages) {}
-  @override
-  void onConversationRead(String from, String to) {}
-  @override
-  void onConversationsUpdate() {}
-  @override
-  void onGroupMessageRead(List<ChatGroupMessageAck> groupMessageAcks) {}
-  @override
-  void onMessagesDelivered(List<ChatMessage> messages) {}
-  @override
-  void onMessagesRead(List<ChatMessage> messages) {}
-  @override
-  void onMessagesRecalled(List<ChatMessage> messages) {}
-  @override
-  void onMessagesReceived(List<ChatMessage> messages) {}
-  @override
-  void onReadAckForGroupMessageUpdated() {}
-}
+    // Adds a chat event handler.
+    ChatClient.getInstance.chatManager.addEventHandler(
+      "UNIQUE_HANDLER_ID",
+      ChatEventHandler(
+        onMessagesReceived: (messages) {},
+      ),
+    );
+
+    ...
+
+    // Removes the chat event handler.
+    ChatClient.getInstance.chatManager.removeEventHandler("UNIQUE_HANDLER_ID");
 ```
 
 When a voice message is received, the SDK automatically downloads the audio file.
 
-For image and video messages, the SDK automatically generates a thumnail when you create the message. When an image or video message is received, the SDK automatically downloads the thumbnail. To manually download the attachment files, follow the steps:
+For image and video messages, the SDK automatically generates a thumbnail when you create the message. When an image or video message is received, the SDK automatically downloads the thumbnail. To manually download the attachment files, follow the steps:
 
-1. Set `isAutoDownloadThumbnail` as true when initilizing the SDK.
+1. Set `isAutoDownloadThumbnail` as true when initializing the SDK.
 
   ```dart
   ChatOptions options = ChatOptions(
-    appKey: appKey,
+    appKey: "<#Your AppKey#>",
     isAutoDownloadThumbnail: false,
   );
   ```
@@ -273,11 +245,15 @@ try {
 } on ChatError catch (e) {
 ```
 
-You can also use `ChatManagerListener` to listen for the state of recalling the message:
+You can also use `ChatEventHandler` to listen for the state of recalling the message:
 
 ```dart
-// Occurs when the message is recalled.
-void onMessagesRecalled(List<ChatMessage> messages) {}
+    ChatClient.getInstance.chatManager.addEventHandler(
+      "UNIQUE_HANDLER_ID",
+      ChatEventHandler(
+        onMessagesRecalled: (messages) {},
+      ),
+    );
 ```
 
 ## Next steps
