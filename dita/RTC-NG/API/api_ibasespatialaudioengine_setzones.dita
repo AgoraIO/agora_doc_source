@@ -32,8 +32,8 @@
             <ul>
                 <li>当用户或媒体播放器在音障区域内跟外界互动时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
                 <li>当用户或媒体播放器离开音障区域后，不再受 <apiname keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。</li>
-                <li>如果用户或媒体播放器同在一个音障区域内，则不受<apiname keyref="SpatialAudioZone"/>  的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。</li>
-                <li>如果音源跟</li>
+                <li>如果用户或媒体播放器同在一个音障区域内，则不受<apiname keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。如果不调用 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
+                <li>如果音源跟接收者分别属于两个音障区域，则接收者无法听到音源。</li>
             </ul>
             <note>如果多次调用该方法，以最后一次设置的音障区域为准。</note>
         </section>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_setplayerattenuation">
     <title><ph keyref="setPlayerAttenuation"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置媒体播放器的音量衰减属性。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置媒体播放器的声音衰减属性。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,7 +39,7 @@
                 </plentry>
                 <plentry>
                     <pt>attenuation</pt>
-                    <pd>媒体播放器的音量衰减系数，取值范围为[0,1]。其中：
+                    <pd>媒体播放器的声音衰减系数，取值范围为[0,1]。其中： 
                         <ul>
                         <li>0：广播模式，即音量和音色均不随距离衰减，无论距离远近，本地用户听到的音量和音色都无变化。</li>
                         <li>(0,0.5)：弱衰减模式，即音量和音色在传播过程中仅发生微弱衰减，跟真实环境相比，声音可以传播得更远。</li>
@@ -49,10 +49,10 @@
                 </plentry>
                 <plentry>
                     <pt>forceSet</pt>
-                    <pd>是否强制设定媒体播放器的音障效果： 
+                    <pd>是否强制设定媒体播放器的声音衰减效果： 
                         <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：强制设定媒体播放器的音障效果，此时 <xref keyref="SpatialAudioZone"/>  中的 <parmname>audioAttenuation</parmname> 中设置的音障衰减系数对该媒体播放器不生效。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不强制设定媒体播放器的音障效果，此时 SDK 会根据 <apiname keyref="SpatialAudioZone"/>  中的 <parmname>audioAttenuation</parmname> 中设置的音障衰减系数。</li>
+                        <li><codeph><ph keyref="true"/></codeph>：强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，此时 <xref keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 中设置的音障衰减系数对媒体播放器不生效。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不强制设定媒体播放器的声音衰减效果，此时 SDK 会根据 <apiname keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 中设置的音障衰减系数。</li>
                         </ul></pd>
                 </plentry>
             </parml> </section>
