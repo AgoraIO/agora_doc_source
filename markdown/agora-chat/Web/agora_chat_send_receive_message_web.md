@@ -39,8 +39,7 @@
 
 ```javascript
 // 发送文本消息。
-function sendPrivateText() {
-
+function sendTextMessage() {
     let option = {
         // 设置消息类型。
         type: "txt",
@@ -55,9 +54,9 @@ function sendPrivateText() {
     let msg = WebIM.message.create(opt);
     // 调用 `send` 方法发送该文本消息。
     conn.send(msg).then(()=>{
-        console.log("send private text Success");
+        console.log("Send message success");
     }).catch((e)=>{
-        console.log("Send private text error");
+        console.log("Send message fail");
     });
 }
 ```

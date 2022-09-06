@@ -1,8 +1,6 @@
-# Agora Chat 快速入门
+即时通讯将各地人们连接在一起，实现实时通信。利用即时通讯 IM SDK，你可以在任何地方的任何设备上的任何应用中嵌入实时通讯。
 
-即时通讯将各地人们连接在一起，实现实时通信。利用 Agora Chat SDK，你可以在任何地方的任何设备上的任何应用中嵌入实时通讯。
-
-本文介绍如何集成 Agora 即时通讯 Web SDK，实现发送和接收单聊消息。
+本文介绍如何集成即时通讯 IM Web SDK，实现发送和接收单聊文本消息。
 
 ## 技术原理
 
@@ -25,9 +23,9 @@
 
 ## 项目设置
 
-在本节中，我们准备了将 Agora Chat 集成到你的 app 中所需的开发环境。
+在本节中，我们准备了将即时通讯 IM 集成到你的 app 中所需的开发环境。
 
-1. 若为新的 web 项目，创建名为 `agora_quickstart` 目录。在终端中打开该目录，运行 `npm init`。此时，该目录下会创建 `package.json` 文件。然后创建以下文件：  
+1. 若为新的 web 项目，创建名为 `agora_quickstart` 目录。在终端中打开该目录，运行 `npm init`。此时，该目录下会创建 `package.json` 文件。然后创建以下文件：
 
    - `index.html`：设置 Web 应用的用户界面；
    - `index.js`：包含消息发送和接收逻辑的实现代码。
@@ -41,7 +39,7 @@
    └─ package.json
    ```
 
-2. 通过 npm 在你的项目中集成 Agora 即时通讯 SDK。要集成该 SDK，在 `package.json` 的 `dependencies` 字段中添加 `agora-chat-sdk` 及其版本号。
+2. 通过 npm 在你的项目中集成即时通讯 IM SDK。要集成该 SDK，在 `package.json` 的 `dependencies` 字段中添加 `agora-chat-sdk` 及其版本号。
 
    ```json
    {
@@ -62,7 +60,7 @@
 
 ## 实现发送和接收单聊消息
 
-本节介绍如何使用 Agora 即时通讯 SDK 在你的应用中实现单聊消息的发送与接收。
+本节介绍如何使用即时通讯 IM SDK 在你的应用中实现单聊消息的发送与接收。
 
 ### 创建 UI
 
@@ -127,7 +125,7 @@
 
 参考以下步骤实现发送和接收单聊消息：
 
-1. 导入 Agora 即时通讯 SDK。将以下代码复制到 `index.js` 文件：
+1. 导入即时通讯 IM SDK。将以下代码复制到 `index.js` 文件：
 
    ```javascript
    // Javascript
@@ -142,7 +140,7 @@
     // import WebIM, { AgoraChat } from 'agora-chat'
    ```
 
-2. 利用 Agora 即时通讯 SDK 中提供的核心方法实现发送和接收单聊消息。复制以下代码，添加到 `index.js` 文件中的导入功能的后面。
+2. 利用即时通讯 IM SDK 中提供的核心方法实现发送和接收单聊消息。复制以下代码，添加到 `index.js` 文件中的导入功能的后面。
 
    ```javascript
     var username, password;
@@ -152,14 +150,14 @@
     });
     // 添加事件处理器
     WebIM.conn.addEventHandler("connection&message", {
-        // app 与 Agora 即时通讯成功连接的回调
+        // app 与即时通讯 IM 服务器成功连接的回调
         onConnected: () => {
             document
                 .getElementById("log")
                 .appendChild(document.createElement("div"))
                 .append("Connect success !");
         },
-        // app 与 Agora 即时通讯断开连接的回调
+        // app 与即时通讯 IM 服务器断开连接的回调
         onDisconnected: () => {
             document
                 .getElementById("log")
@@ -195,7 +193,7 @@
             console.log("on error", error);
         },
     });
-   
+
     // 从 App Server 获得 token
     function refreshToken(username, password) {
         postData("https://a41.chat.agora.io/app/chat/user/login", {
@@ -224,7 +222,7 @@
             referrer: "no-referrer",
         }).then((response) => response.json());
     }
-   
+
     // 定义按钮的功能
     window.onload = function () {
         // 注册
@@ -249,7 +247,7 @@
                         .append(`${username} already exists`);
                 });
         };
-        // 登录 Agora 即时通讯系统
+        // 登录即时通讯 IM 系统
         document.getElementById("login").onclick = function () {
             document
                 .getElementById("log")
@@ -277,7 +275,7 @@
                         .append(`Login failed`);
                 });
         };
-   
+
         // 登出
         document.getElementById("logout").onclick = function () {
             WebIM.conn.close();
@@ -286,7 +284,7 @@
                 .appendChild(document.createElement("div"))
                 .append("logout");
         };
-   
+
         // 发送单聊消息
         document.getElementById("send_peer_message").onclick = function () {
             let peerId = document.getElementById("peerId").value.toString();
@@ -352,7 +350,7 @@
 
    ```javascript
    const path = require('path');
-   
+
    module.exports = {
        entry: './index.js',
        mode: 'production',
@@ -389,7 +387,7 @@
    ```shell
    # 使用 webpack 打包项目
    npm run build
-   
+
    # 使用 webpack-dev-server 运行项目
    npm run start:dev
    ```
@@ -398,7 +396,7 @@
 
 ![img](https://web-cdn.agora.io/docs-files/1637830121772)
 
-按以下步骤验证你刚刚通过 Agora 即时通讯在你的 Web app 中集成的发送和接收单聊消息的实现： 
+按以下步骤验证你刚刚通过即时通讯 IM 在你的 Web app 中集成的发送和接收单聊消息的实现：
 
 1. 创建账户，点击 **register**。
 
@@ -414,11 +412,11 @@
 
 ## 后续步骤
 
-在生产环境中，最好获取 token 登录 Agora。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](./generate_user_tokens)。
+在生产环境中，最好获取 token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 token，请参阅 [生成用户 Token](./generate_user_tokens)。
 
 ## 参考
 
-除了使用 npm 将 Agora 即时通讯 SDK 集成到你项目中外，你还可以手动下载 [Agora Chat Web SDK](https://www.npmjs.com/package/agora-chat)。
+除了使用 npm 将即时通讯 IM SDK 集成到你项目中外，你还可以手动下载 [即时通讯 IM Web SDK](https://www.npmjs.com/package/agora-chat)。
 
 1. 在 SDK 文件夹中，在 `libs` 文件夹中找到 JS 文件，将其保存到你的项目目录。
 
