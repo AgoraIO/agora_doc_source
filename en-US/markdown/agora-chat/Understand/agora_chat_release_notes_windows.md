@@ -9,7 +9,7 @@ v1.0.5 was released on August 12, 2022.
 - Supports presence subscription, which allows one user to subscribe to the presence of other users.
 - Supports reaction, which enables users to add reaction emojis to the specified message.
 - Supports message threading, which allows users to in-depth discussions on a specific message, without disrupting the conversation flow.
-- Support message translation, which allows users to translate messages.
+- Supports message translation, which allows users to translate messages.
 - Supports message reporting, which allows users to report illegal messages.
 
 #### Improvements

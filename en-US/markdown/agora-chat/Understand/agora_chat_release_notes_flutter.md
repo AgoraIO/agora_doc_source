@@ -2,7 +2,7 @@ This page provides release notes for the Agora Chat Flutter SDK.
 
 ## v1.0.7
 
-v1.0.7 was released on September 7.
+v1.0.7 was released on September 7, 2022.
 
 #### New features
 
