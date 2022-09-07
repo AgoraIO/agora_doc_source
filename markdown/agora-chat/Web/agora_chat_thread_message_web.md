@@ -11,7 +11,7 @@
 
 消息收发流程如下：
 
-1. 用户 A 发送一条消息到的消息服务器;
+1. 用户 A 发送一条消息到消息服务器;
 2. 单聊时消息时，服务器投递消息给用户 B；对于群聊时消息，服务器投递给群内其他每一个成员;
 3. 用户收到消息。
 
@@ -108,7 +108,7 @@ conn.addEventHandler('MESSAGES',{
 })
 ```
 
-有关撤回消息的更多信息，请参阅撤回 [消息](./agora_chat_send_receive_message_web?platform=Web#recall-a-message)。
+有关撤回消息的更多信息，请参阅 [撤回消息](./agora_chat_send_receive_message_web?platform=Web#recall-a-message)。
 
 ### 从服务器获取子区消息
 
