@@ -88,7 +88,6 @@ Replace the lines of the `_MyHomePageState` class with the following:
 ```dart
 class _MyHomePageState extends State<MyHomePage> {
 
-  final String appKey = "<#Agora App Key#>";
   ScrollController scrollController = ScrollController();
   String? _userId;
   String? _password;
@@ -166,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 10),
             TextField(
               decoration: const InputDecoration(
-                  hintText: "Enter recipient's user name"),
+                  hintText: "Enter recipient's user id"),
               onChanged: (chatId) => _chatId = chatId,
             ),
             TextField(
@@ -227,7 +226,8 @@ In the `_initSDK` method, add the following to initialize the SDK:
 ```dart
   void _initSDK() async {
     ChatOptions options = ChatOptions(
-      appKey: appKey,
+      // Sets your app key applied via Agora Console.
+      appKey: "41117440#383391",
       autoLogin: false,
     );
     await ChatClient.getInstance.init(options);
@@ -427,39 +427,9 @@ In the `_sendMessage` method, add the following to add the logic for creating an
 
 ### 7. Receive messages
 
-To add the logic for receiving messages, refer to the following steps:
-
-1. Declare and inherit the `ChatManagerListener` object in the `_MyHomePageState` class. The sample code is as follows:
+1. Add the following handle event in your class:
 
 ```dart
-class _MyHomePageState extends State<MyHomePage>
-    implements ChatManagerListener {
-  ...
-```
-
-2. Add the following callbacks in the `_MyHomePageState` class:
-
-```dart 
-  @override
-  void onCmdMessagesReceived(List<ChatMessage> messages) {}
-  @override
-  void onConversationRead(String from, String to) {}
-  @override
-  void onConversationsUpdate() {}
-  @override
-  void onGroupMessageRead(List<ChatGroupMessageAck> groupMessageAcks) {}
-  @override
-  void onMessagesDelivered(List<ChatMessage> messages) {}
-  @override
-  void onMessagesRead(List<ChatMessage> messages) {}
-  @override
-  void onMessagesRecalled(List<ChatMessage> messages) {}
-  @override
-  void onMessageReactionDidChange(List<ChatMessageReactionEvent> list) {}
-  @override
-  void onReadAckForGroupMessageUpdated() {}
-  
-  @override
   void onMessagesReceived(List<ChatMessage> messages) {
     for (var msg in messages) {
       switch (msg.body.type) {
@@ -515,29 +485,31 @@ class _MyHomePageState extends State<MyHomePage>
           break;
         case MessageType.CMD:
           {
-            // Receiving command messages does not trigger the `onMessagesReceived` callback, but triggers the `onCmdMessagesReceived` callback instead.
+            // Receiving command messages does not trigger the `onMessagesReceived` event, but triggers the `onCmdMessagesReceived` event instead.
           }
           break;
       }
     }
   }
-}
 ```
 
-3. In the `_addChatListener` method, add the following to add the chat listener:
+3. In the `_addChatListener` method, add the following to add the chat event handler:
 
 ```dart
   void _addChatListener() {
-    ChatClient.getInstance.chatManager.addChatManagerListener(this);
+    ChatClient.getInstance.chatManager.addEventHandler(
+      "UNIQUE_HANDLER_ID",
+      ChatEventHandler(onMessagesReceived: onMessagesReceived),
+    );
   }
 ```
 
-4. Under the `initState` method, add the `dispose` method to remove the chat listener, as shown in the following:
+4. Under the `initState` method, add the `dispose` method to remove the chat event handler, as shown in the following:
 
 ```dart
   @override
   void dispose() {
-    ChatClient.getInstance.chatManager.removeChatManagerListener(this);
+    ChatClient.getInstance.chatManager.removeEventHandler("UNIQUE_HANDLER_ID");
     super.dispose();
   }
 ```
@@ -564,7 +536,7 @@ Fill in the userId in the `Enter userId` box and password in the `Enter password
 After signing up the accounts, fill in the userId in the `Enter userId` box and password in the `Enter password` box, and click **SIGN IN** to log in to the app. In this example, log in as `flutter01`.
 
 3. Send a message
-Fill in the userId of the receiver (`flutter02`) in the `Enter recipient's user name` box, type in the message ("hello") to send in the `Enter message` box, and click **SEND TEXT** to send the message.
+Fill in the userId of the receiver (`flutter02`) in the `Enter recipient's user Id` box, type in the message ("hello") to send in the `Enter message` box, and click **SEND TEXT** to send the message.
 
 4. Log out
 Click **SIGN OUT** to log out of the app.
