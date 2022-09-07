@@ -44,13 +44,13 @@ ChatClient.getInstance()
 可以通过指定会话 ID 和会话类型从本地数据库中搜素指定会话中的消息：
 
 ```typescript
-// Sepcify the conversation ID.
+// 会话 ID
 const convId = "convId";
-// Whether to create a conversation if the specified one does not exist. If you set it as true, this method always returns a conversation object.
+// 会话不存在时是否创建会话。设置为 `true` 则创建会话。
 const createIfNeed = true;
-// Set conversation type. For details, see descriptions in ChatConversationType.
+// 会话类型。详见 `ChatConversationType` 枚举类型。
 const convType = ChatConversationType.PeerChat;
-// Call getConversation to retrieve the specified conversation.
+// 调用 `getConversation` 方法
 ChatClient.getInstance()
   .chatManager.getConversation(convId, convType, createIfNeed)
   .then((message) => {
@@ -157,13 +157,13 @@ ChatClient.getInstance()
 - 删除服务器端会话和聊天记录，请调用 `removeConversationFromServer`：
 
 ```typescript
-// Specify the conversation ID
+// convId：会话 ID
 const convId = "convId";
-// Whether to delete the messages as well.
+// 是否删除会话对应的历史消息。
 const isDeleteMessage = true;
-// Specify the conversation type. For details, see descriptions in ChatConversationType.
+// convType: 会话类型，详见 `ChatConversationType`。
 const convType = ChatConversationType.PeerChat;
-// Call removeConversationFromServer.
+// 调用 `removeConversationFromServer` 删除服务器会话
 ChatClient.getInstance()
   .chatManager.removeConversationFromServer(convId, convType, isDeleteMessage)
   .then(() => {
@@ -179,17 +179,17 @@ ChatClient.getInstance()
 调用 `SearchMsgFromDB` 按关键字、时间戳和消息发送者搜索消息：
 
 ```typescript
-// Specify the keyword,
+// keywords: 搜索消息的关键字
+// timestamp：起始时间戳
+// maxCount: 期望获取的最大消息数
+// from: 消息的发送者
+// direction：消息的搜索方向，具体见 `ChatSearchDirection`
 const keywords = 'key';
-// timestamp,
 const timestamp = 10000000;
-// the maximum count of searched messages,
 const maxCount = 10;
-// the message sender,
 const from = 'tom';
-// and the search direction. For details, see descriptions in ChatSearchDirection.
 const direction = ChatSearchDirection.UP;
-// Call searchMsgFromDB
+// 调用 `searchMsgFromDB` 搜索
 ChatClient.getInstance().chatManager.searchMsgFromDB(
               keywords,
               timestamp,
@@ -213,7 +213,7 @@ ChatClient.getInstance().chatManager.searchMsgFromDB(
 // 将消息插入到指定会话中。
 const msgs = [];
 ChatClient.getInstance()
-  // Call import Messages.
+  // 调用 `importMessages` 导入消息
   .chatManager.importMessages(msgs)
   .then(() => {
     console.log("Importing conversations succeeds: ");
