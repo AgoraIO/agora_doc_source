@@ -1,5 +1,27 @@
 This page provides release notes for the Agora Chat iOS SDK.
 
+##  V1.0.7
+
+v1.0.7 was released on September 7, 2022. 
+
+#### New features
+
+- Adds the `isDisabled` attribute to `AgoraChatGroup` to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `getGroupSpecificationFromServerWithId` method to get group details.
+- Adds custom error information to the error information returned to the message sender when the pre-sending callback service declines to send the message.
+- Adds the error code 1101 (AgoraChatErrorPresenceCannotSubscribeSelf) that occurs when a user subscribes to his or her own presence.
+- Adds `AgoraChatLogDelegate` to implement SDK running log callbacks.
+
+#### Improvements
+
+- Changed the `chatManager/contactManager/groupManager/threadManager/roomManager/pushManager` attribute in `AgoraChatClient` from `_Nonnull` to `_Nullable`. The value of this attribute is `Nil` prior to the the SDK initialization. 
+- Optimized the login process for quicker login.
+- Upgraded the message encryption algorithm from CBC to GCM.
+
+#### Fixed issues
+
+- Crashes caused by unbinding the push certificate from the device if you fails to set the push certificate during SDK initialization.
+- Typos in some methods.
+
 ## v1.0.6
 
 v1.0.6 was released on Jul 22, 2022.

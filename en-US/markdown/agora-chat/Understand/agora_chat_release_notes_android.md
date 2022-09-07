@@ -1,5 +1,31 @@
 This page provides release notes for the Agora Chat Android SDK.
 
+## v1.0.7
+
+v1.0.7 was released on September 7, 2022. 
+
+#### New features
+
+- Adds the `isDisabled()` attribute to `Group` to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `getGroupFromServer()` method in `GroupManager` to get group details.
+- Adds custom error information to the error information returned to the message sender when the pre-sending callback service declines to send the message.
+- Adds the error code 1101 (PRESENCE_CANNOT_SUBSCRIBE_YOURSELF) in `Error` that occurs when a user can subscribes to his or her own presence.
+- Adds `ChatLogListener` to implement SDK running log callbacks.
+
+####  Improvements
+
+ - Optimized the login process for quicker login.
+ - Optimized the access point update policy that is used in the case of a connection failure, in order to improve the availability.
+ - Upgraded the message encryption algorithm from CBC to GCM.
+ - Supported TLS 1.3 for SDK-related HTTP requests.
+ - Upgraded OpenSSL, a dependency of libcipherdb, to 1.1.1q.
+ - Optimized the display of parameters in the methods in the SDK.
+
+#### Fixed issues
+
+- Data deduplication is not implemented for the the `getAllMessage` method in `Conversation`.
+- Occasional crashes during login with the user ID and password.
+- Once the `fetchHistoryMessages()` method in `ChatManager` is called, it is repeatedly called to get messages from the server.
+
 ## v1.0.6
 
 v1.0.6 was released on Jul 22, 2022.

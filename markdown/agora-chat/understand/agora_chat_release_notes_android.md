@@ -1,5 +1,29 @@
 本页面提供即时通讯 IM Android SDK 的发版说明。
 
+## v1.0.7 
+
+#### 新增特性
+
+  - `Group` 中增加 `isDisabled()` 属性显示群组禁用状态，需要开发者在服务端设置。该属性在调用 `GroupManager` 中的 `getGroupFromServer()` 方法获取群组详情时返回。
+  - 发送前回调服务拒绝发送消息时，返回给发送方的错误描述中增加自定义的错误信息。
+  - 在 `Error` 中新增错误码 1101（`PRESENCE_CANNOT_SUBSCRIBE_YOURSELF`），提示用户不能订阅自己的在线状态。
+  - 新增 `ChatLogListener` 类，实现 SDK 运行日志回调。
+  
+#### 优化
+
+  - 优化登录过程，缩短登录时间。
+  - 优化遇到连接问题时更新接入点的策略，增强可用性。
+  - 消息加密算法由 CBC 升级为 GCM。
+  - SDK 的 HTTPS 请求支持 TLS 1.3。
+  - 升级 libcipherdb 依赖的 OpenSSL 版本到 1.1.1q。
+  - 优化 SDK 方法的参数显示。
+
+#### 修复
+
+  - 修复 `Conversation` 中的 `getAllMessage` 方法未去重的问题。
+  - 修复密码登录时偶尔出现的崩溃问题。
+  - 修复调用 `ChatManager` 中的 `fetchHistoryMessages()` 方法重复拉取漫游的问题。
+
 ## v1.0.6
 
 v1.0.6 于 2022 年 7 月 22 日发布。

@@ -1,4 +1,25 @@
 本页面提供即时通讯 IM iOS SDK 的发版说明。
+## v1.0.7 
+
+v1.0.7 于 2022 年 9 月 7 日发布。
+
+#### 新增特性
+
+ - `AgoraChatGroup` 中新增 `isDisabled` 属性指定群组禁用的状态，需要开发者在服务端设置。该属性在调用 `getGroupSpecificationFromServerWithId` 方法获取群组详情时返回。
+ - 发送前回调服务拒绝发送消息时，返回给发送方的错误描述中增加自定义的错误信息。
+ - `Error` 中新增错误码 1101 (`AgoraChatErrorPresenceCannotSubscribeSelf`) 提示用户不能订阅自己的在线状态。
+ - 新增 `AgoraChatLogDelegate` 类，实现 SDK 运行日志回调。
+
+#### 优化
+
+ - AgoraChatClient 类下的 chatManager/contactManager/groupManager/threadManager/roomManager/pushManager 属性由 `_Nonnull` 修改为 `_Nullable`。SDK 未初始化时，该属性的值为 `Nil`。
+ - 优化登录过程，缩短登录时间。
+ - 消息加密算法由 CBC 升级为 GCM。
+
+#### 问题修复
+
+ - 修复退出登录时，若 SDK 初始化时未设置推送证书，解绑证书导致崩溃的问题。
+ - 纠正部分方法中的拼写错误；
 
 ## v1.0.6
 
