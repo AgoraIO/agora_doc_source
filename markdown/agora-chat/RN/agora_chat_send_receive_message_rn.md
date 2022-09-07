@@ -22,16 +22,16 @@
 
 发送和接收消息的过程如下：
 
-1. 消息发送者使用 `init` 方法创建文本、文件或附件消息。
-2. 消息发送者调用 `sendMessage` 发送消息。
-3. 消息接收者调用 `addDelegate` 监听消息事件并在 `messageDidReceive` 回调中接收消息。
+1. 发送方调用相应 Create 方法创建文本、文件、附件等类型的消息；
+2. 发送方再调用 `SendMessage` 发送消息；
+3. 接收方通过 `ChatMessageEventListener` 方法监听消息回调事件。在收到 `onMessagesReceived` 后，即表示成功接收到消息。
 
 ## 前提条件
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios?platform=iOS)。
-- 了解 [使用限制](./agora_chat_limitation?platform=iOS)。
+- 完成 SDK 初始化，详见 [React Native 快速开始](./agora_chat_get_started_rn?platform=rn)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
