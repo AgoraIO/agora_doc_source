@@ -1,6 +1,7 @@
 # Offline Push
 
-Agora Chat supports the integration of Google Firebase Cloud Messaging (FCM). This enables React-Native developers to use an offline push notification service. The service features low latency, high delivery, high concurrency, and no violation of the users' personal data.
+Agora Chat supports the integration of Google Firebase Cloud Messaging (FCM). This enables React Native developers to use an offline push notification service that features low latency, high delivery, high concurrency, and no violation of the users' personal data.
+
 
 ## Understand the tech
 
@@ -8,10 +9,11 @@ Agora Chat supports the integration of Google Firebase Cloud Messaging (FCM). Th
 
 Assume that User A sends a message to User B, but User B goes offline before receiving it. The Agora Chat server pushes a notification to the device of User B via FCM and temporarily stores this message. Once User B comes back online, the Agora Chat SDK pulls the message from the server and pushes the message to User B using persistent connections.
 
+
 ## Prerequisites
 
 Before proceeding, ensure that you meet the following requirements:
-- You have initialized the Agora Chat SDK. For details, see [Get Started with React-Native](./agora_chat_get_started_rn).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with React Native](./agora_chat_get_started_rn).
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
 - You have activated the advanced features for push in [Agora Console](https://console.agora.io/). Advanced features allow you to set the push notification mode, do-not-disturb mode, and custom push template.
 <div class="alert note">You must contact <a href="mailto:support@agora.io">support@agora.io</a> to disable the advanced features for push as this operation will delete all the relevant configurations.</div>
@@ -25,20 +27,19 @@ This section guides you through how to integrate FCM with Agora Chat.
 
 1. Log in to [Firebase console](https://console.firebase.google.com/), and click **Add project**.
 
-2. In the **Create a project** page, enter a project name, and click **Create project**.
+2. On the **Create a project** page, enter a project name, and proceed with prompts. The `Sender Id` and `Server Key` are required for Cloud Messaging.
 
-<div class="alert note">You can toggle off **Enable Google Analytics for this project** if this option is not needed.</div>
+After the project is created, add an `iOS` application or an `Android` application according to the following steps:
 
-After the project is created, add the `iOS` application and the `Android` application on the project settings page. The `SenderId` and `secret` are required on the Cloud Messaging page.
-
-- Create `iOS` apps
-   1. The package name is the same as the package name of the `iOS` application;
-   2. Once created, move the downloaded `GoogleService-Info.plist` file to the root of the `Xcode` project and add it to all targets;
+- Add an `iOS` app
+   1. The package name is the same as that of the `iOS` app;
+   2. Once created, move the downloaded `GoogleService-Info.plist` file to the root directory of the `Xcode` project, and add it to all targets;
    3. Upload the `APNs` certificate on the Cloud Messaging page.
 
-- Create `Android` applications
-   1. The package name is the same as that of the `Android` application;
-   2. Once created, move the downloaded `google-services.json` file into your module (application level) root directory.
+- Add an `Android` app
+   1. The package name is the same as that of the `Android` app;
+   2. Once created, move the downloaded `google-services.json` file to your module (application level) root directory.
+
 
 ### 2. Upload FCM certificate to Agora Console
 
@@ -50,20 +51,21 @@ After the project is created, add the `iOS` application and the `Android` applic
 
 4. On the project config page, select **Features** > **Push Certificate** and click **Add Push Certificate**.
 
-5. In the pop-up window, select the **GOOGLE** tab, and configure the following fields:
+5. In the pop-up window, select the **Google** tab, and configure the following fields:
   - **Certificate Name**: Fill in the [Sender ID](#token).
   - **Push Key**: Fill in the [Server Key](#token).
 
 <img src="https://web-cdn.agora.io/docs-files/1658462250450">
+
 
 ### 3. Enable FCM in Agora Chat
 
 1. Initialize and enable FCM in the Agora Chat SDK.
 
 ```typescript
-// For FCM, the Settings are as follows:
-// senderId: FCM Sender ID
-// fcmToken: FCM Device Token
+// For FCM, the settings are as follows:
+// senderId: The FCM Sender ID.
+// fcmToken: The FCM Device Token.
 const pushConfig = new ChatPushConfig({
   deviceId: senderId,
   deviceToken: fcmToken,
@@ -106,6 +108,7 @@ messaging()
     console.log("get token fail", error);
   });
 ```
+
 
 ## Set up push notifications
 
@@ -214,21 +217,21 @@ Alternatively, assume that a DND time period is specified for a conversation, wh
 You can call `setSilentModeForAll` to set the push notifications at the app level and set the push notification mode and DND mode by specifying the `ChatSilentModeParam` field, as shown in the following code sample:
 
 ```typescript
-//Set the push notification mode to `MENTION_ONLY`。
+// Sets the push notification mode to `MENTION_ONLY`。
 const option = ChatSilentModeParam.constructorWithNotification(
   ChatPushRemindType.MENTION_ONLY
 );
 
-//Set the DND duration to 10 minutes.
+// Sets the DND duration to 10 minutes.
 const option = ChatSilentModeParam.constructorWithDuration(10);
 
-//Set the DND period from 10:10 to 11:00.
+// Sets the DND period from 10:10 to 11:00.
 const option = ChatSilentModeParam.constructorWithPeriod({
   startTime: new ChatSilentModeTime({ hour: 10, minute: 10 }),
   endTime: new ChatSilentModeTime({ hour: 11, minute: 10 }),
 });
 
-//Set offline app push.
+// Sets offline app push.
 ChatClient.getInstance()
   .pushManager.setSilentModeForAll(option)
   .then(() => {
@@ -261,23 +264,23 @@ ChatClient.getInstance()
 You can call `setSilentModeForConversation` to set the push notifications for the conversation specified by the `conversationId` and `ConversationType` fields, as shown in the following code sample:
 
 ```typescript
-//convId：The conversation ID.
-//convType：The conversation type.
-//Set the push notification mode to `MENTION_ONLY`。
+// convId：The conversation ID.
+// convType：The conversation type.
+// Sets the push notification mode to `MENTION_ONLY`。
 const option = ChatSilentModeParam.constructorWithNotification(
   ChatPushRemindType.MENTION_ONLY
 );
 
-//Set the DND duration to 10 minutes.
+// Sets the DND duration to 10 minutes.
 const option = ChatSilentModeParam.constructorWithDuration(10);
 
-//Set the DND period from 10:10 to 11:00.
+// Sets the DND period from 10:10 to 11:00.
 const option = ChatSilentModeParam.constructorWithPeriod({
   startTime: new ChatSilentModeTime({ hour: 10, minute: 10 }),
   endTime: new ChatSilentModeTime({ hour: 11, minute: 10 }),
 });
 
-//Sets push notifications for a specified session.
+// Sets push notifications for a specified session.
 ChatClient.getInstance()
   .pushManager.setSilentModeForConversation({
     convId,
@@ -297,8 +300,8 @@ ChatClient.getInstance()
 You can call `fetchSilentModeForConversation` to retrieve the push notification settings of the specified conversation, as shown in the following code sample:
 
 ```typescript
-//convId：The conversation ID.
-//convType：The conversation type.
+// convId：The conversation ID.
+// convType：The conversation type.
 ChatClient.getInstance()
   .pushManager.fetchSilentModeForConversation({
     convId,
@@ -319,7 +322,7 @@ ChatClient.getInstance()
 You can call `fetchSilentModeForConversations` to retrieve the push notification settings of multiple conversations, as shown in the following code sample:
 
 ```typescript
-//conversations: The conversation list.
+// conversations: The conversation list.
 ChatClient.getInstance()
   .pushManager.fetchSilentModeForConversations(conversations)
   .then(() => {
@@ -337,8 +340,8 @@ You can call `removeSilentModeForConversation` to clear the push notification mo
 The following code sample shows how to clear the push notification mode of a conversation:
 
 ```typescript
-//convId：The conversation ID.
-//convType：The conversation type.
+// convId：The conversation ID.
+// convType：The conversation type.
 ChatClient.getInstance()
   .pushManager.removeSilentModeForConversation({
     convId,
@@ -352,6 +355,7 @@ ChatClient.getInstance()
   });
 ```
 
+
 ## Set up push translations
 
 If a user enables the [automatic translation](./agora_chat_translation_rn#automatic-translation) feature and sends a message, the SDK sends both the original message and the translated message.
@@ -361,7 +365,7 @@ Push notifications work in tandem with the translation feature. As a receiver, y
 The following code sample shows how to set and retrieve the preferred language of push notifications:
 
 ```typescript
-//languageCode: [link](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/language-support)。
+// languageCode: See the Microsoft documentations for details: https://docs.microsoft.com/en-us/azure/cognitive-services/translator/language-support.
 ChatClient.getInstance()
   .pushManager.setPreferredNotificationLanguage(languageCode)
   .then(() => {
@@ -382,6 +386,7 @@ ChatClient.getInstance()
   });
 ```
 
+
 ## Set up push templates
 
 Agora Chat allows users to use ready-made templates for push notifications.
@@ -401,9 +406,9 @@ You can create and provide push templates for users by referring to the followin
 Once the template creation is complete in Agora Console, users can choose this push template as their default layout when sending a message, as shown in the following code sample:
 
 ```typescript
-// content: setting the text type.
+// content: The text type.
 // targetId: The message recipient.
-// chatType: Message recipient type, individual or group.
+// chatType: The message recipient type, individual or group.
 const msg = ChatMessage.createTextMessage(targetId, content, chatType);
 // Sets the push template created in Agora Console as their default layout.
 msg.attributes = {
@@ -427,4 +432,3 @@ ChatClient.getInstance()
     console.log("send message operation fail.", reason);
   });
 ```
-
