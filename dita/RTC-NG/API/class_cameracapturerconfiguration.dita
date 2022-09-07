@@ -20,8 +20,10 @@
   public CaptureFormat captureFormat;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraCameraCapturerConfiguration: NSObject
-    @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
-    @end</codeblock>
+#if TARGET_OS_IOS
+@property (assign, nonatomic) AgoraCameraDirection cameraDirection;
+#endif
+@end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
   CAMERA_DIRECTION cameraDirection;
   char deviceId[MAX_DEVICE_ID_LENGTH];

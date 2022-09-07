@@ -44,13 +44,14 @@
   }
 }</codeblock>
       <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioParams : NSObject
-@property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_azimuth;
-@property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_elevation;
-@property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_distance;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable speaker_orientation;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enable_blur;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enable_air_absorb;
-@property(strong, nonatomic) AgoraRtcDoubleOptional* _Nullable speaker_attenuation;
+@property(assign, nonatomic) double speaker_azimuth;
+@property(assign, nonatomic) double speaker_elevation;
+@property(assign, nonatomic) double speaker_distance;
+@property(assign, nonatomic) NSInteger speaker_orientation;
+@property(assign, nonatomic) BOOL enable_blur;
+@property(assign, nonatomic) BOOL enable_air_absorb;
+@property(assign, nonatomic) double speaker_attenuation;
+@property(assign, nonatomic) BOOL enable_doppler;
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
   Optional&lt;double> speaker_azimuth;
