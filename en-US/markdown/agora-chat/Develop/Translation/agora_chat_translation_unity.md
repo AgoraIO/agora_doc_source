@@ -11,8 +11,10 @@ Before proceeding, ensure that your development environment meets the following 
 
 - Your project integrates a version of the Agora Chat SDK later than v1.0.6 and has implemented the basic [real-time chat functionalities](../Unity/quick_start_unity.md).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=Unity).
-- Translation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
 - Because this feature is enabled by the Microsoft Azure Translation API, ensure that you understand the supported target languages as described in [Language support](https://docs.microsoft.com/en-us/azure).
+- Translation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
+
+<div class="alert note">Add-on fees are incurred if you use this feature. See <a href="https://docs.agora.io/en/agora-chat/agora_chat_pricing#optional-add-on-fee">Pricing</a> for details.</div>
 
 ## Understand the tech
 
