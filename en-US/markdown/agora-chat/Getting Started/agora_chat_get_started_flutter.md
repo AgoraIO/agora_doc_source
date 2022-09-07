@@ -427,7 +427,7 @@ In the `_sendMessage` method, add the following to add the logic for creating an
 
 ### 7. Receive messages
 
-1. Add the following handle event in your class:
+1. Add the following events in your class:
 
 ```dart
   void onMessagesReceived(List<ChatMessage> messages) {
@@ -493,7 +493,7 @@ In the `_sendMessage` method, add the following to add the logic for creating an
   }
 ```
 
-3. In the `_addChatListener` method, add the following to add the chat event handler:
+2. In the `_addChatListener` method, add the following code snippet to add the chat event handler:
 
 ```dart
   void _addChatListener() {
@@ -504,7 +504,7 @@ In the `_sendMessage` method, add the following to add the logic for creating an
   }
 ```
 
-4. Under the `initState` method, add the `dispose` method to remove the chat event handler, as shown in the following:
+3. Under the `initState` method, add the `dispose` method to remove the chat event handler, as shown in the following:
 
 ```dart
   @override
