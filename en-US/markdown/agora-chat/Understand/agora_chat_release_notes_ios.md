@@ -8,7 +8,7 @@ v1.0.7 was released on September 7, 2022.
 
 - Adds the `isDisabled` attribute to `AgoraChatGroup` to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `getGroupSpecificationFromServerWithId` method to get group details.
 - Adds custom error information to the error information returned to the message sender when the pre-sending callback service declines to send the message.
-- Adds the error code 1101 (AgoraChatErrorPresenceCannotSubscribeSelf) that occurs when a user subscribes to his or her own presence.
+- Adds the error code 1101 (`AgoraChatErrorPresenceCannotSubscribeSelf`) that occurs when a user subscribes to his or her own presence.
 - Adds `AgoraChatLogDelegate` to implement SDK running log callbacks.
 
 #### Improvements

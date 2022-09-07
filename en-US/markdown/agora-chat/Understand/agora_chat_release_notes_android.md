@@ -22,7 +22,7 @@ v1.0.7 was released on September 7, 2022.
 
 #### Fixed issues
 
-- Data deduplication is not implemented for the the `getAllMessage` method in `Conversation`.
+- Data deduplication is not implemented for the `getAllMessage` method in `Conversation`.
 - Occasional crashes during login with the user ID and password.
 - Once the `fetchHistoryMessages()` method in `ChatManager` is called, it is repeatedly called to get messages from the server.
 
