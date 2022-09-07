@@ -10,6 +10,8 @@ Delivering a safe and appropriate chat environment to your users is essential. A
 - You have created a valid [Agora developer account](/en/Agora%20Platform/get_appid_token?platform=All%20Platforms#create-an-agora-account).
 - Moderation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
 
+<div class="alert note">Add-on fees are incurred if you use this feature. See <a href="https://docs.agora.io/en/agora-chat/agora_chat_pricing#optional-add-on-fee">Pricing</a> for details.</div>
+
 ## Enable the moderation feature
 
 1. Log in to Agora Console.
@@ -30,16 +32,13 @@ The following table summarizes the message management tools provided by Agora Ch
 
 ### Implement the Reporting Feature
 
-The Agora Chat SDK provides a message reporting API, which allows end-users to report objectionable messages directly from their applications. After the Agora Chat server receives the report, it stores the report and displays it on Agora Console. Moderators can view the report items on the Agora Console and process the messages and message senders according to their content policy.
+To use the reporting feature, you need to call the reporting API when you develop your application. For details, see the following documents:
 
-To use the reporting feature, refer to the following code sample to call the reporting API:
-
-```objective-c
-[AgoraChatClient.sharedClient.chatManager reportMessageWithId:msgId
-                                                       tag:tag
-                                                    reason:reason
-                                                completion:nil];
-```
+- [Implement the reporting feature (Android)](/en/agora-chat/agora_chat_reporting_android?platform=Android)
+- [Implement the reporting feature (iOS)](/en/agora-chat/agora_chat_reporting_ios?platform=iOS)
+- [Implement the reporting feature (Web)](/en/agora-chat/agora_chat_reporting_web?platform=Web)
+- [Implement the reporting feature (React Native)](/en/agora-chat/agora_chat_reporting_rn?platform=React%20Native)
+- [Implement the reporting feature (Flutter)](/en/agora-chat/agora_chat_reporting_flutter?platform=Flutter)
 
 After a user reports a message from the application, moderators can check and deal with the report on Agora Console:
 
