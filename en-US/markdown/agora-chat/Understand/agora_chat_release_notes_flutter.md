@@ -14,7 +14,7 @@ v1.0.7 was released on September 7, 2022.
 
 #### Improvements
 
-- Marked `AddXXXManagerListener` methods (like `addChatManagerListener`  and `addContactManagerListener`) as expired.
+- Marked `AddXXXManagerListener` methods (like `addChatManagerListener`  and `addContactManagerListener`) as deprecated.
 
 - Modified API references.
 

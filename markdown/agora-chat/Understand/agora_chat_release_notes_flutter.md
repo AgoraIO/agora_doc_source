@@ -10,6 +10,6 @@
 
 #### 优化
 
-- 将 `AddXXXManagerListener` 方法（例如，addChatManagerListener 和 addContactManagerListener）标记为过期。
+- 将 `AddXXXManagerListener` 方法（例如，addChatManagerListener 和 addContactManagerListener）标记为废弃。
 
 - 修改 API 参考文档。
