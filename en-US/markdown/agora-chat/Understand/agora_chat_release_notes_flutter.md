@@ -9,7 +9,7 @@ v1.0.7 was released on September 7, 2022.
 - Adds the `customEventHandler` attribute in `ChatClient` to allow you to set custom listeners to receive the data sent from the Android or iOS device to the Flutter layer. 
 - Adds event listener classes for event listening.
 - Adds the `PushTemplate` method in `PushManager to support custom push templates. 
-- Adds the `isDisabled`  attribute in `Group` to to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `fetchGroupInfoFromServer` method to get group details.
+- Adds the `isDisabled` attribute in `Group` to to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `fetchGroupInfoFromServer` method to get group details.
 - Adds the the `displayName` attribute in `PushConfigs` to allow you to check the nickname displayed in your push notifications.
 
 #### Improvements
