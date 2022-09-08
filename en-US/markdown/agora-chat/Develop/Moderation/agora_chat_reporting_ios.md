@@ -1,5 +1,3 @@
-# Implement the Reporting Feature
-
 The Agora Chat SDK provides a message reporting API, which allows end-users to report objectionable messages directly from their applications. After the Agora Chat server receives the report, it stores the report and displays it on Agora Console. Moderators can view the report items on the Agora Console and process the messages and message senders according to their content policy.
 
 ## Understand the tech
