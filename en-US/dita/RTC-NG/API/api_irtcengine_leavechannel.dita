@@ -22,7 +22,9 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel({LeaveChannelOptions? options});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>This method releases all resources related to the session. This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
+            <p>This method releases all resources related to the session.</p>
+            <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
+            <p props="rn">调用该方法返回时并没有真正退出频道。</p>
             <p>After joining the channel, you must call this method or <apiname keyref="leaveChannel2" /> to end the call, otherwise, the next call cannot be started.</p>
             <p>If you successfully call this method and leave the channel, the following callbacks are triggered:<ul id="ul_enf_q2p_lpb">
             <li>The local client: <xref keyref="onLeaveChannel" />.</li>
