@@ -1,29 +1,5 @@
 This page provides release notes for the Agora Chat SDK for C#.
 
-## v1.0.5
-
-v1.0.5 was released on August 12, 2022.
-
-#### New features
-
-- Supports presence subscription, which allows one user to subscribe to the presence of other users.
-- Supports reaction, which enables users to add reaction emojis to the specified message.
-- Supports message threading, which allows users to in-depth discussions on a specific message, without disrupting the conversation flow.
-- Supports message translation, which allows users to translate messages.
-- Supports message reporting, which allows users to report illegal messages.
-
-#### Improvements
-
-- Modified the way SDK handlers are managed;
-- Added SDK initialization detection points;
-- Allowed certain message attributes to be obtained in real time.
-
-#### Issues fixed
-
-- Certain data structure conversion issues.
-- The JSON data was not properly converted into HTTP parameters;
-- Crashes caused by incompatible character passed to parameters in HTTP requests.
-
 ## v1.0.2
 
 v1.0.2 was released on June 17.

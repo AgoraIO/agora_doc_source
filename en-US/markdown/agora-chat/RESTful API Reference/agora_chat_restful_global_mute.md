@@ -131,7 +131,7 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-GET https://{host}/{orgName}/{appName}/mutes/{username}
+GET https://{host}/{orgName}/{appName}/mutes/username
 ```
 
 #### Path parameter

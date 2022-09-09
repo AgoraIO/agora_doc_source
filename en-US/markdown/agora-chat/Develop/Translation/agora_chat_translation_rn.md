@@ -11,10 +11,8 @@ Before proceeding, ensure that your development environment meets the following 
 
 - Your project integrates a version of the Agora Chat SDK later than v3.9.1 and has implemented the basic [real-time chat functionalities](./agora_chat_get_started_rn?platform=React%20Native).
 - You understand the API call frequency limit as described in [Limitations](./agora_chat_limitation?platform=React%20Native).
-- Because this feature is enabled by the Microsoft Azure Translation API, ensure that you understand the supported target languages as described in [Language support](https://docs.microsoft.com/en-us/azure).
 - Translation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
-
-<div class="alert note">Add-on fees are incurred if you use this feature. See <a href="https://docs.agora.io/en/agora-chat/agora_chat_pricing#optional-add-on-fee">Pricing</a> for details.</div>
+- Because this feature is enabled by the Microsoft Azure Translation API, ensure that you understand the supported target languages as described in [Language support](https://docs.microsoft.com/en-us/azure).
 
 ## Understand the tech
 
@@ -33,7 +31,7 @@ This section introduces how to integrate translation functionalities into your p
 In both on-demand translation and automatic translation scenarios, call `fetchSupportedLanguages` to query the supported languages for translation first:
 
 ```typescript
-// Fetches the supported languages for translation
+// Fetches the supported lanaguages for translation
 ChatClient.getInstance()
   .chatManager.fetchSupportedLanguages()
   .then((result) => {
