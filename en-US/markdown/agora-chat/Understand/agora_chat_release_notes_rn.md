@@ -1,5 +1,36 @@
 This page provides release notes for the Agora React Native Chat SDK.
 
+## v1.0.7
+
+v1.0.7 was released on September 7, 2022.
+
+#### Compatibility changes
+
+The `unSubscribe` method is renamed `unsubscribe`.
+
+#### New features
+
+- Adds the `setConversationExtension` method to set the conversation extension information.
+- Adds the `insertMessage` method to insert a message.
+- Adds the `deleteMessagesBeforeTimestamp` method to delete messages before a specified timestamp.
+- Adds the `getThreadConversation` method to get a specified thread conversation or create the thread conversation if the conversation does not exist. 
+- Adds the `isChatThread` attribute to `ChatConversation` to check whether a conversation is a thread conversation.
+- Adds `ChatPushManager` for the push notification configuration.
+- Adds `ChatPushConfig` for the Firebase Cloud Messaging (FCM) configuration.
+- Adds the `pushConfig` method in `ChatOptions` for the push initialization configuration. 
+- Adds the `updatePushConfig` method in `ChatClient` for the push configuration update.
+
+#### Improvements
+
+- Upgraded the native SDKs (Android and iOS) to v1.0.7.
+- Made the listener methods optional.
+- Updated the release script.
+- Updated the demo.
+
+#### Issues fixed
+
+JSON paring error of the `type` field in several methods.
+
 ## v1.0.6
 
 v1.0.6 was released on July 22, 2022.
