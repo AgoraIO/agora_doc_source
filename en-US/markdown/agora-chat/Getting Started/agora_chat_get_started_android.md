@@ -110,8 +110,7 @@ When fetching a token, your token server may differ slightly from our example ba
 
 To make this step easier to test, use the temporary token server "https://a41.chat.agora.io" provided by Agora in the placeholder above(<#Developer Token Server#>). When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
 
-Note:
-If you have already got an account and user token, you can ignore this section and go to the next.
+<div class="alert note">If you have already got an account and user token, you can ignore this section and go to the next.</div>
 
 2. To add the UI framework, open  `app/res/layout/activity_main.xml` and replace the content with the following codes:
 
@@ -248,7 +247,7 @@ To enable your app to send and receive messages between individual users, do the
    import io.agora.cloud.HttpResponse;
    ```
    
-2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` funtion created by default.
+2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
 
    ```java
    private EditText et_username;
@@ -266,25 +265,25 @@ To enable your app to send and receive messages between individual users, do the
 3. Initialize the view and the app. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `onCreate` function: 
 
    ```java
-   // Initialize the view.
+   // Initializes the view.
    private void initView() {
        et_username = findViewById(R.id.et_username);
        ((TextView)findViewById(R.id.tv_log)).setMovementMethod(new ScrollingMovementMethod());
    }
-   // Initialize the SDK.
+   // Initializes the SDK.
    private void initSDK() {
        ChatOptions options = new ChatOptions();
-       // Set your appkey applied from Agora Console
+       // Sets your app key applied via Agora Console.
        String sdkAppkey = getString(R.string.app_key);
        if(TextUtils.isEmpty(sdkAppkey)) {
            Toast.makeText(MainActivity.this, "You should set your AppKey first!", Toast.LENGTH_SHORT).show();
            return;
        }
-       // Set your appkey to options
+       // Sets your app key to options.
        options.setAppKey(sdkAppkey);
-       // To initialize Agora Chat SDK
+       // Initializes the Agora Chat SDK.
        ChatClient.getInstance().init(this, options);
-       // Make Agora Chat SDK debuggable
+       // Makes the Agora Chat SDK debuggable.
        ChatClient.getInstance().setDebugMode(true);
    }
    ```
@@ -309,14 +308,13 @@ To enable your app to send and receive messages between individual users, do the
                    login(username,token);
                }
            }
-
            @Override
            public void onError(int error, String errorMsg) {
                showLog(errorMsg, true);
            }
        });
    }
-   // Retrieve a token from the app server.
+   // Retrieves a token from the app server.
    private void getAgoraTokenFromAppServer(String username, String pwd, @NonNull ValueCallBack<String> callBack) {
        showLog("begin to getTokenFromAppServer ...", false);
        executeRequest(getString(R.string.login_url, getString(R.string.base_url)), username, pwd, new ValueCallBack<String>() {
@@ -330,14 +328,12 @@ To enable your app to send and receive messages between individual users, do the
                    callBack.onError(Error.GENERAL_ERROR, e.getMessage());
                }
            }
-
            @Override
            public void onError(int error, String errorMsg) {
                callBack.onError(error, errorMsg);
            }
        });
    }
-
    private void executeRequest(String url, String username, String password, @NonNull ValueCallBack<String> callBack) {
        if(TextUtils.isEmpty(url) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
 +          callBack.onError(Error.INVALID_PARAM, "Request url, username or password should not be empty");
@@ -345,7 +341,6 @@ To enable your app to send and receive messages between individual users, do the
        }
        Map<String, String> headers = new HashMap<>();
        headers.put("Content-Type", "application/json");
-
        JSONObject request = new JSONObject();
        try {
            request.putOpt("userAccount", username);
@@ -373,7 +368,6 @@ To enable your app to send and receive messages between individual users, do the
            }
        });
    }
-
    private void execute(Runnable runnable) {
        new Thread(runnable).start();
    }
@@ -402,12 +396,10 @@ To enable your app to send and receive messages between individual users, do the
            public void onConnected() {
                showLog("onConnected",false);
            }
-
           @Override
           public void onDisconnected(int error) {
               showLog("onDisconnected: "+error,false);
           }
-
           @Override
           public void onLogout(int errorCode) {
               showLog("User needs to log out: "+errorCode, false);
@@ -430,10 +422,10 @@ To enable your app to send and receive messages between individual users, do the
    
    ```
 
-6. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
+6. Create a user account and log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
-   // Sign up with a username and password.
+   // Signs up with a username and a password.
    public void signUp(View view) {
        String username = et_username.getText().toString().trim();
        String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
@@ -442,7 +434,6 @@ To enable your app to send and receive messages between individual users, do the
            public void onSuccess() {
                showLog("Sign up success!", true);
            }
-
            @Override
            public void onError(int code, String error) {
                showLog(error, true);
@@ -450,12 +441,12 @@ To enable your app to send and receive messages between individual users, do the
        });
    }
    
-   // Log in with Token.
+   // Logs in with the token.
    public void signInWithToken(View view) {
        getTokenFromAppServer(false);
    }
    
-   // Sign out.
+   // Signs out.
    public void signOut(View view) {
        if(ChatClient.getInstance().isLoggedInBefore()) {
            ChatClient.getInstance().logout(true, new CallBack() {
@@ -463,7 +454,6 @@ To enable your app to send and receive messages between individual users, do the
                public void onSuccess() {
                    showLog("Sign out success!", true);
                }
-
                @Override
                public void onError(int code, String error) {
                    showLog(error, true);
@@ -489,7 +479,6 @@ To enable your app to send and receive messages between individual users, do the
                    callBack.onError(Error.GENERAL_ERROR, e.getMessage());
                }
            }
-
            @Override
            public void onError(int error, String errorMsg) {
                callBack.onError(error, errorMsg);
@@ -501,25 +490,24 @@ To enable your app to send and receive messages between individual users, do the
 7. Start a chat. To enable the function of sending messages, add the following lines after the `register` function:
 
    ```java
-   // Send your first message.
+   // Sends your first message.
    public void sendFirstMessage(View view) {
        String toSendName = ((TextView)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
        String content = ((TextView)findViewById(R.id.et_msg_content)).getText().toString().trim();
-       // Create a text message
+       // Creates a text message.
        ChatMessage message = ChatMessage.createTextSendMessage(content, toSendName);
-       // Set the message callback before sending the message
+       // Sets the message callback before sending the message.
        message.setMessageStatusCallback(new CallBack() {
            @Override
            public void onSuccess() {
                showLog("Send message success!", true);
            }
-
            @Override
            public void onError(int code, String error) {
                showLog(error, true);
            }
        });
-       // Send the message
+       // Sends the message.
        ChatClient.getInstance().chatManager().sendMessage(message);
    }
    ```
@@ -557,12 +545,16 @@ In addition to integrating the Agora Chat SDK into your project with mavenCentra
 
 2. Copy the following files or subfolders from the **libs** folder of the downloaded SDK to the corresponding directory of your project.
 
-   | File or subfolder                                      | Path of your project                  |
-   | ------------------------------------------------------ | ------------------------------------- |
-   | `agorachat_X.Y.Z.jar`                                  | `~/app/libs/`                         |
-   | `/arm64-v8a/libagora-chat-sdk.so` and `libsqlite.so`   | `~/app/src/main/jniLibs/arm64-v8a/`   |
-   | `/armeabi-v7a/libagora-chat-sdk.so` and `libsqlite.so` | `~/app/src/main/jniLibs/armeabi-v7a/` |
-   | `/x86/libagora-chat-sdk.so` and `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
-   | `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
+| File or subfolder                                      | Path of your project                  |
+| ------------------------------------------------------ | ------------------------------------- |
+| `agorachat_X.Y.Z.jar`                                  | `~/app/libs/`                         |
+| `/arm64-v8a/libagora-chat-sdk.so` and `libsqlite.so`   | `~/app/src/main/jniLibs/arm64-v8a/`   |
+| `/armeabi-v7a/libagora-chat-sdk.so` and `libsqlite.so` | `~/app/src/main/jniLibs/armeabi-v7a/` |
+| `/x86/libagora-chat-sdk.so` and `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
+| `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
 
-   <div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.<div>
+<div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.</div>
+
+## Reference
+
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/blob/main/Chat-Android/app/src/main/java/io/agora/agorachatquickstart/MainActivity.java) for getting started with Agora Chat.
