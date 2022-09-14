@@ -291,7 +291,6 @@ To enable your app to send and receive messages between individual users, do the
 4. Retrieve a token. To get a token from the app server, add the following lines after the `initSDK` function:
 
    ```java
-   
    private void getTokenFromAppServer(boolean isRenewToken) {
        if(ChatClient.getInstance().isLoggedInBefore()) {
            showLog("An account has been signed in, please sign out first and then sign in", false);
@@ -336,7 +335,7 @@ To enable your app to send and receive messages between individual users, do the
    }
    private void executeRequest(String url, String username, String password, @NonNull ValueCallBack<String> callBack) {
        if(TextUtils.isEmpty(url) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-+          callBack.onError(Error.INVALID_PARAM, "Request url, username or password should not be empty");
+           callBack.onError(Error.INVALID_PARAM, "Request url, username or password should not be empty");
            return;
        }
        Map<String, String> headers = new HashMap<>();
