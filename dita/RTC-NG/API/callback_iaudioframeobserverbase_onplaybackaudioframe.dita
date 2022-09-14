@@ -27,7 +27,16 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <note type="note">为保证播放的音频数据格式符合预期，Agora 推荐你调用 <xref keyref="setPlaybackAudioFrameParameters"/> 方法设置播放的音频数据格式；或在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，在 <xref keyref="getPlaybackAudioParams"/> 回调的返回值中设置获取的耳返音频数据格式，SDK 会根据该回调返回值中设置的 <parmname>AudioParams</parmname> 计算采样间隔，并根据该采样间隔触发 <apiname keyref="onPlaybackAudioFrame"/> 回调。</note> </section>
+            <note type="note" id="note">
+            <ul>
+                <li>你需要在加入频道前，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象。</li>
+                <li>为保证播放的音频数据格式符合预期，Agora 推荐你在如下两种方式中选其一设置播放的音频数据格式：
+                    <ul>
+                        <li>调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onPlaybackAudioFrame"/> 回调。</li>
+                        <li>在 <xref keyref="getPlaybackAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onPlaybackAudioFrame"/> 回调。</li>      
+                    </ul></li>
+            </ul>
+            </note></section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>
