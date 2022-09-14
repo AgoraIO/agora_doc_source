@@ -71,7 +71,7 @@ Follow the steps to create the environment necessary to integrate Agora Chat int
    <uses-permission android:name="android.permission.INTERNET" />
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-   <!—- Add the following line for Android 12 to apply for the alarm clock timing permission -—> 
+   <!—- Need to add after Android 12, apply for alarm clock timing permission -—> 
    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
    ```
 	
@@ -100,17 +100,23 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
        <string name="app_name">AgoraChatQuickstart</string>
 
        <string name="app_key">41117440#383391</string>
-       <string name="login_url">https://a41.chat.agora.io/app/chat/user/login</string>
-       <string name="register_url">https://a41.chat.agora.io/app/chat/user/register</string>
+       <string name="base_url"><#Developer Token Server#></string>
+       <string name="login_url">%1$s/app/chat/user/login</string>
+       <string name="register_url">%1$s/app/chat/user/register</string>
    </resources>
    ``` 
+
+When fetching a token, your token server may differ slightly from our example backend service logic.
+
+To make this step easier to test, use the temporary token server "https://a41.chat.agora.io" provided by Agora in the placeholder above(<#Developer Token Server#>). When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
+
+<div class="alert note">If you have already got an account and user token, you can ignore this section and go to the next.</div>
 
 2. To add the UI framework, open  `app/res/layout/activity_main.xml` and replace the content with the following codes:
 
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto"
        xmlns:tools="http://schemas.android.com/tools"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
@@ -122,112 +128,76 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
            android:layout_height="0dp"
            android:layout_weight="1">
 
-           <androidx.constraintlayout.widget.ConstraintLayout
+           <LinearLayout
                android:layout_width="match_parent"
-               android:layout_height="wrap_content">
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:gravity="center_horizontal"
+               android:layout_marginStart="20dp"
+               android:layout_marginEnd="20dp">
 
                <EditText
                    android:id="@+id/et_username"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:hint="Enter username"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toTopOf="parent"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
                    android:layout_marginTop="20dp"/>
 
                <EditText
                    android:id="@+id/et_pwd"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:hint="Enter password"
                    android:inputType="textPassword"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_username"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
                    android:layout_marginTop="10dp"/>
 
                <Button
                    android:id="@+id/btn_sign_in"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="Sign in"
                    android:onClick="signInWithToken"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_pwd"
-                   app:layout_constraintRight_toLeftOf="@id/btn_sign_out"
-                   android:layout_marginStart="10dp"
-                   android:layout_marginEnd="5dp"
                    android:layout_marginTop="10dp"/>
 
                <Button
                    android:id="@+id/btn_sign_out"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="Sign out"
                    android:onClick="signOut"
-                   app:layout_constraintLeft_toRightOf="@id/btn_sign_in"
-                   app:layout_constraintTop_toBottomOf="@id/et_pwd"
-                   app:layout_constraintRight_toLeftOf="@id/btn_sign_up"
-                   android:layout_marginStart="5dp"
-                   android:layout_marginEnd="5dp"
                    android:layout_marginTop="10dp"/>
 
                <Button
                    android:id="@+id/btn_sign_up"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="Sign up"
                    android:onClick="signUp"
-                   app:layout_constraintLeft_toRightOf="@id/btn_sign_out"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_pwd"
-                   app:layout_constraintTop_toTopOf="@id/btn_sign_in"
-                   android:layout_marginStart="5dp"
-                   android:layout_marginEnd="10dp"/>
+                   android:layout_marginTop="10dp"/>
 
                <EditText
                    android:id="@+id/et_to_chat_name"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:hint="Enter another username"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/btn_sign_in"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
                    android:layout_marginTop="20dp"/>
 
                <EditText
                    android:id="@+id/et_msg_content"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:hint="Enter content"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_to_chat_name"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
                    android:layout_marginTop="10dp"/>
 
                <Button
                    android:id="@+id/btn_send_message"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="Send message"
                    android:onClick="sendFirstMessage"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_msg_content"
-                   android:layout_marginStart="10dp"
-                   android:layout_marginEnd="20dp"
                    android:layout_marginTop="20dp"/>
 
-           </androidx.constraintlayout.widget.ConstraintLayout>
+           </LinearLayout>
 
        </ScrollView>
 
@@ -321,7 +291,6 @@ To enable your app to send and receive messages between individual users, do the
 4. Retrieve a token. To get a token from the app server, add the following lines after the `initSDK` function:
 
    ```java
-   
    private void getTokenFromAppServer(boolean isRenewToken) {
        if(ChatClient.getInstance().isLoggedInBefore()) {
            showLog("An account has been signed in, please sign out first and then sign in", false);
@@ -338,7 +307,6 @@ To enable your app to send and receive messages between individual users, do the
                    login(username,token);
                }
            }
-
            @Override
            public void onError(int error, String errorMsg) {
                showLog(errorMsg, true);
@@ -348,7 +316,7 @@ To enable your app to send and receive messages between individual users, do the
    // Retrieves a token from the app server.
    private void getAgoraTokenFromAppServer(String username, String pwd, @NonNull ValueCallBack<String> callBack) {
        showLog("begin to getTokenFromAppServer ...", false);
-       executeRequest(getString(R.string.login_url), username, pwd, new ValueCallBack<String>() {
+       executeRequest(getString(R.string.login_url, getString(R.string.base_url)), username, pwd, new ValueCallBack<String>() {
            @Override
            public void onSuccess(String response) {
                try {
@@ -359,26 +327,19 @@ To enable your app to send and receive messages between individual users, do the
                    callBack.onError(Error.GENERAL_ERROR, e.getMessage());
                }
            }
-
            @Override
            public void onError(int error, String errorMsg) {
                callBack.onError(error, errorMsg);
            }
        });
    }
-
    private void executeRequest(String url, String username, String password, @NonNull ValueCallBack<String> callBack) {
-       if(TextUtils.isEmpty(url)) {
-           callBack.onError(Error.INVALID_PARAM, "Request url should not be null");
-           return;
-       }
-       if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-           callBack.onError(Error.INVALID_PARAM, "Username or password is empty");
+       if(TextUtils.isEmpty(url) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+           callBack.onError(Error.INVALID_PARAM, "Request url, username or password should not be empty");
            return;
        }
        Map<String, String> headers = new HashMap<>();
        headers.put("Content-Type", "application/json");
-
        JSONObject request = new JSONObject();
        try {
            request.putOpt("userAccount", username);
@@ -406,7 +367,6 @@ To enable your app to send and receive messages between individual users, do the
            }
        });
    }
-
    private void execute(Runnable runnable) {
        new Thread(runnable).start();
    }
@@ -435,12 +395,10 @@ To enable your app to send and receive messages between individual users, do the
            public void onConnected() {
                showLog("onConnected",false);
            }
-
           @Override
           public void onDisconnected(int error) {
               showLog("onDisconnected: "+error,false);
           }
-
           @Override
           public void onLogout(int errorCode) {
               showLog("User needs to log out: "+errorCode, false);
@@ -475,7 +433,6 @@ To enable your app to send and receive messages between individual users, do the
            public void onSuccess() {
                showLog("Sign up success!", true);
            }
-
            @Override
            public void onError(int code, String error) {
                showLog(error, true);
@@ -496,7 +453,6 @@ To enable your app to send and receive messages between individual users, do the
                public void onSuccess() {
                    showLog("Sign out success!", true);
                }
-
                @Override
                public void onError(int code, String error) {
                    showLog(error, true);
@@ -506,7 +462,7 @@ To enable your app to send and receive messages between individual users, do the
    }
    private void register(String username, String pwd, @NonNull CallBack callBack) {
        showLog("begin to sign up...",false);
-       executeRequest(getString(R.string.register_url), username, pwd, new ValueCallBack<String>() {
+       executeRequest(getString(R.string.register_url, getString(R.string.base_url)), username, pwd, new ValueCallBack<String>() {
            @Override
            public void onSuccess(String response) {
                String resultCode = null;
@@ -522,7 +478,6 @@ To enable your app to send and receive messages between individual users, do the
                    callBack.onError(Error.GENERAL_ERROR, e.getMessage());
                }
            }
-
            @Override
            public void onError(int error, String errorMsg) {
                callBack.onError(error, errorMsg);
@@ -546,7 +501,6 @@ To enable your app to send and receive messages between individual users, do the
            public void onSuccess() {
                showLog("Send message success!", true);
            }
-
            @Override
            public void onError(int code, String error) {
                showLog(error, true);
@@ -598,7 +552,7 @@ In addition to integrating the Agora Chat SDK into your project with mavenCentra
 | `/x86/libagora-chat-sdk.so` and `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
 | `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
 
-<div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.<div>
+<div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.</div>
 
 ## Reference
 
