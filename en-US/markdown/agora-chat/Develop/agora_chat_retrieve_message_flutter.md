@@ -36,9 +36,9 @@ By default, the SDK retrieves the last ten conversations in the past seven days,
 
 ### Retrieve historical messages of the specified conversation
 
-After retrieving conversations, you can retrieve historical messages by pagination from the server. 
+After retrieving conversations, you can retrieve historical messages by pagination from the server.
 
-To ensure data reliablity, we recommend retrieving less than 50 historical messages for each method call. To retrieve more than 50 historical messages, call this method multiple times. Once the messages are retrieved, the SDK automatically updates these messages in the local database.
+To ensure data reliability, we recommend retrieving less than 50 historical messages for each method call. To retrieve more than 50 historical messages, call this method multiple times. Once the messages are retrieved, the SDK automatically updates these messages in the local database.
 
 ```dart
 try {
