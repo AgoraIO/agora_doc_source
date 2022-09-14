@@ -156,7 +156,7 @@
 
 3. 将 token builders 导入到你的项目中：
 
-   1. 下载 [chat](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) 和 [media](https://github.com/AgoraIO/Tools/tree/dev/accesstoken2/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) 文件包。
+   1. 下载 [chat](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) 和 [media](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) 文件包。
 
    2. 在你的项目中 `<Project name>/src/main/java` 路径下，创建 `com.agora.chat.token.io.agora` 文件包。
 
@@ -166,9 +166,9 @@
 
    4. 解决 `chat/ChatTokenBuilder2` 和 `media/AccessToken` 文件中的报错。
 
-      - 在 `ChatTokenBuilder2` 中，将 import 修改为 `import com.agora.chat.token.io.agora.media.AccessToken2`。
-
-      - 在 `AccessToken` 中，将 import 修改为 `import static com.agora.chat.token.io.agora.media.Utils.crc32`。
+      - 在 `ChatTokenBuilder2` 中，将 `package io.agora.chat;` 修改为 `package com.agora.chat.token.io.agora.chat;`，将 `import io.agora.media.AccessToken2;` 修改为 `import com.agora.chat.token.io.agora.media.AccessToken2;`。
+      - 对于 `com.agora.chat.token.io.agora.media` 包中的全部文件，将 `package io.agora.media;` 修改为 `package com.agora.chat.token.io.agora.media;`。
+      - 在 `AccessToken` 中，将 `import static io.agora.media.Utils.crc32;` 修改为 `import static com.agora.chat.token.io.agora.media.Utils.crc32`。
 
 4. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件存储用于生成 Token 的信息。你需要将该文件中的相关值替换你的 Agora 项目的值并设置你的即时通讯 Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
 
@@ -188,6 +188,7 @@
     ```
 
  关于如何获取 App Key 和获取 RESTful API 请求域名，详见[获取即时通讯项目信息](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms#获取即时通讯项目信息)。
+
 
 5. 在 `com.agora.chat.token` 路径下，创建 `AgoraChatTokenController.java` 类，将以下代码复制到该文件中：
 
