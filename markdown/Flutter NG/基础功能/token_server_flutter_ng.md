@@ -174,7 +174,7 @@ func main(){
 $ go mod init sampleServer
 ```
 
-3. 运行如下命令行安装依赖。你可以使用 Go 镜像进行加速，例如 https://goproxy.cn/。
+3. 运行如下命令行安装依赖。你可以使用 Go 镜像进行加速，例如 https://goproxy.cn/ 。
 
 ```golang
 $ go get

@@ -93,4 +93,4 @@ await _rtcEngine->adjustRecordingSignalVolume(vol);
 - [`adjustPlaybackSignalVolume`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_adjustplaybacksignalvolume)
 - [`adjustUserPlaybackSignalVolume`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_adjustuserplaybacksignalvolume)
 - [`adjustAudioMixingPlayoutVolume`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_adjustaudiomixingplayoutvolume)
-- [`onAudioVolumeIndication`](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtnengineeventhandler_onaudiovolumeindication)
+- [`onAudioVolumeIndication`](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onaudiovolumeindication)

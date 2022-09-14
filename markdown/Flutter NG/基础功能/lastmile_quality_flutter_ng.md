@@ -174,7 +174,7 @@ Agora 在 GitHub 上提供了一个开源的[通话前检测](https://github.com
 - [`stopRecordingDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stoprecordingdevicetest)
 - [`startPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startplaybackdevicetest)
 - [`stopPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stopplaybackdevicetest)
-- [`startAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startaudiodeviceloopbacktest_ng)
+- [`startAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startaudiodeviceloopbacktest)
 - [`stopAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stopaudiodeviceloopbacktest)
 - [`startEchoTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startechotest2)
 - [`stopEchoTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopechotest)

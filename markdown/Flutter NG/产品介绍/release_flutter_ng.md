@@ -10,7 +10,7 @@ v6.0.0-rc.1 SDK 包名由 `agora_rtc_engine` 变更为 `agora_rtc_ng`，且对�
 - 媒体流发布控制
 - 自定义视频采集与渲染（Media IO 方式）
 - 错误码与警告码
-升级 SDK 后，你需要结合实际业务场景更新 app 代码，详见 [迁移指南](./migration_guide_flutter_ng)。
+升级 SDK 后，你需要结合实际业务场景更新 app 代码，详见[迁移指南](./migration_guide_flutter_ng)。
 
 
 #### 新增特性

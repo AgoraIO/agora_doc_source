@@ -11,7 +11,7 @@ agora_rtc_engine: ^6.0.0-rc.1 是基于 Agora SDK v4.0.0 是一个新的 SDK 版
 
 ### 1. 集成 SDK
 
-参考[建立项目](./start_live_flutter_ng#创建项目)，将 agora_rtc_engine: ^6.0.0-rc.1 SDK 集成到你的项目中。
+参考[建立项目](./start_live_flutter_ng#创建-flutter-项目)，将 agora_rtc_engine: ^6.0.0-rc.1 SDK 集成到你的项目中。
 
 ### 2. 更新 app 代码
 
