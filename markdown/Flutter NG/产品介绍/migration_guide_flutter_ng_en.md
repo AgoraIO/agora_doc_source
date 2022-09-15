@@ -1,4 +1,4 @@
-# Migrate from ^5.x to v6.0.0-rc.1 (Flutter)
+# Migrate from ^5.x to ^6.0.0-rc.1 (Flutter)
 
 agora_rtc_engine: ^6.0.0-rc.1 is a new version of the SDK that you can use to embed real-time video and audio into your app. It supports large-scale real-time interactive activities and provides better real-time interactive effects. For details, see [Benefits and features](product_live_ng#benefits).
 

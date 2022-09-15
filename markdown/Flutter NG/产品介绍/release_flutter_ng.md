@@ -25,9 +25,7 @@ v6.0.0-rc.1 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对�
 该版本支持通过 `createCustomVideoTrack` 方法实现自定义视频采集。你可以参考如下步骤，体验同时发布多路自定义采集视频流：
 
 1. 创建自采集视频轨道：调用 `createCustomVideoTrack` 方法创建一个自定义视频轨道，并获得视频轨道 ID。
-
 2. 设置频道中待发布的自采集视频轨道：在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为你想要发布的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`。
-
 3. 推送外部视频源：调用 `pushVideoFrame`，并将 `videoTrackId` 指定为你想要发布的自定义视频轨道 ID，即可根据步骤 2 的设置，实现在多个频道中发布对应的自定义视频源。
 
 结合多频道能力，你还可以体验如下功能：
@@ -58,7 +56,7 @@ v6.0.0-rc.1 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对�
 
 **4. 新版 AI 降噪**
 
-自该版本起，SDK 支持新版 AI 降噪（相对于 v3.7.0 中的基础 AI 降噪）功能。相比原版 AI 降噪，新版 AI 降噪具有更好的人声保真度、更干净的噪声抑制，并新增了去混响（Dereverberation）能力。
+自该版本起，SDK 支持新版 AI 降噪（相对于 agora_rtc_engine: ^5.x 中的基础 AI 降噪）功能。相比原版 AI 降噪，新版 AI 降噪具有更好的人声保真度、更干净的噪声抑制，并新增了去混响（Dereverberation）能力。
 如果你希望体验新版 AI 降噪，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 
@@ -167,7 +165,7 @@ SDK 会根据你在 `VideoEncoderConfiguration` 中的设置，自动选择选�
 
 **1. 快速切换频道**
 
-该版本通过 `leaveChannel` 和 `joinChannel` 切换频道即可实现和 v3.7.0 中 `switchChannel` 一样的切换速度，无需额外调用 `switchChannel` 方法。
+该版本通过 `leaveChannel` 和 `joinChannel` 切换频道即可实现和 agora_rtc_engine: ^5.x 中 `switchChannel` 一样的切换速度，无需额外调用 `switchChannel` 方法。
 
 
 **2. 推送外部视频帧**
