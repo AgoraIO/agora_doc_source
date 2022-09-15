@@ -11,8 +11,6 @@
   public Boolean publishScreenCaptureVideo;
   public Boolean publishScreenCaptureAudio;
   public Boolean publishCustomAudioTrack;
-  public Boolean publishCustomAudioTrackEnableAec;
-  public Boolean publishCustomAudioTrackAec;
   public Boolean publishDirectCustomAudioTrack;
   public Boolean publishCustomVideoTrack;
   public Boolean publishEncodedVideoTrack;
@@ -33,11 +31,8 @@
   public String token;
   public Boolean enableBuiltInMediaEncryption;
   public Integer publishCustomAudioSourceId;
-
   public Integer customVideoTrackId;
-
   public Boolean isAudioFilterable;
-
   public Boolean isInteractiveAudience;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
@@ -48,8 +43,6 @@
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
 #endif
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrackEnableAec;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrackAec;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishDirectCustomAudioTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
 @property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishEncodedVideoTrack;
@@ -98,7 +91,6 @@
   Optional&lt;int&gt; publishCustomAudioSourceId;
   Optional&lt;bool&gt; publishCustomAudioTrackEnableAec;
   Optional&lt;bool&gt; publishDirectCustomAudioTrack;
-  Optional&lt;bool&gt; publishCustomAudioTrackAec;
   Optional&lt;bool&gt; publishCustomVideoTrack;
   Optional&lt;bool&gt; publishEncodedVideoTrack;
   Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
@@ -148,8 +140,6 @@
   publishCustomAudioTrackEnableAec?: boolean;
   
   publishDirectCustomAudioTrack?: boolean;
-  
-  publishCustomAudioTrackAec?: boolean;
   
   publishCustomVideoTrack?: boolean;
   
@@ -252,8 +242,6 @@
   
   publishDirectCustomAudioTrack?: boolean;
   
-  publishCustomAudioTrackAec?: boolean;
-  
   publishCustomVideoTrack?: boolean;
   
   publishEncodedVideoTrack?: boolean;
@@ -310,7 +298,6 @@
       this.publishCustomAudioSourceId,
       this.publishCustomAudioTrackEnableAec,
       this.publishDirectCustomAudioTrack,
-      this.publishCustomAudioTrackAec,
       this.publishCustomVideoTrack,
       this.publishEncodedVideoTrack,
       this.publishMediaPlayerAudioTrack,
@@ -353,8 +340,6 @@
   final bool? publishCustomAudioTrackEnableAec;
   @JsonKey(name: 'publishDirectCustomAudioTrack')
   final bool? publishDirectCustomAudioTrack;
-  @JsonKey(name: 'publishCustomAudioTrackAec')
-  final bool? publishCustomAudioTrackAec;
   @JsonKey(name: 'publishCustomVideoTrack')
   final bool? publishCustomVideoTrack;
   @JsonKey(name: 'publishEncodedVideoTrack')
@@ -417,10 +402,10 @@
             </plentry>
             <plentry>
                 <pt>publishMicrophoneTrack</pt>
-                <pd>设置是否发布采集到的音频：                   
+                <pd>设置是否发布麦克风采集到的音频：                   
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：（默认）发布采集到的音频。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不发布采集到的音频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：（默认）发布麦克风采集到的音频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布麦克风采集到的音频。</li>
                     </ul>
                     <note type="note">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
                 </pd>

@@ -32,7 +32,7 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
@@ -49,20 +49,20 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
 
   EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c)
    : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
-  
+
   EchoTestConfiguration()
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
-  
+
   view?: any;
-  
+
   enableAudio?: boolean;
-  
+
   enableVideo?: boolean;
-  
+
   token?: string;
-  
+
   channelId?: string;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class EchoTestConfiguration
@@ -92,15 +92,15 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
-  
+
   view?: any;
-  
+
   enableAudio?: boolean;
-  
+
   enableVideo?: boolean;
-  
+
   token?: string;
-  
+
   channelId?: string;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
@@ -150,7 +150,7 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
             <plentry>
                 <pt>enableVideo</pt>
                 <pd>是否开启视频设备：
-                        
+
                     <ul>
                     <li><ph keyref="true" />: (默认) 开启视频设备。如需测试视频设备，请设为 <ph keyref="true" />。</li>
                     <li><ph keyref="false" />: 关闭视频设备。</li>
@@ -158,7 +158,7 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
             </plentry>
             <plentry>
                 <pt>token</pt>
-                <pd>用于保证音视频通话回路测试安全性的 Token。如果你在 Agora 控制台未启用 App 证书，则不需要向该参数传值；如果你在 Agora 控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考<xref keyref="guide-token">使用 Token 鉴权</xref>。</pd>
+                <pd>用于保证音视频通话回路测试安全性的 Token。如果你在 Agora 控制台未启用 App 证书，则不需要向该参数传值；如果你在 Agora 控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考<xref keyref="guide-token"/>。</pd>
             </plentry>
             <plentry>
                 <pt>channelId</pt>

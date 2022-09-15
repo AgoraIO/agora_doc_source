@@ -14,15 +14,15 @@
         <topicref href="config/relations-rtc-ng-api.ditamap" format="ditamap"/>
     </topichead>
     <topichead navtitle="Electron API Reference">
-        <topicref href="API/rtc_api_overview.dita"/>
+        <topicref href="API/rtc_api_overview_ng.dita"/>
         <topicref keyref="IRtcEngine" chunk="to-content">
             <topicref keyref="addVideoWatermark2" toc="no"/>
             <topicref keyref="adjustAudioMixingPlayoutVolume" toc="no"/>
             <topicref keyref="adjustAudioMixingPublishVolume" toc="no"/>
             <topicref keyref="adjustAudioMixingVolume" toc="no"/>
             <topicref keyref="adjustCustomAudioPublishVolume" toc="no"/>
-            <topicref keyref="adjustLoopbackSignalVolume" toc="no" props="hide"/>
             <topicref keyref="adjustPlaybackSignalVolume" toc="no"/>
+            <topicref keyref="adjustLoopbackSignalVolume" toc="no"/>
             <topicref keyref="adjustRecordingSignalVolume" toc="no"/>
             <topicref keyref="adjustUserPlaybackSignalVolume" toc="no"/>
             <topicref keyref="clearVideoWatermarks" toc="no"/>
@@ -55,7 +55,7 @@
             <topicref keyref="enableInEarMonitoring2" toc="no"/>
             <topicref keyref="enableLocalAudio" toc="no"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
-            <topicref keyref="enableLoopbackRecording" toc="no" props="hide"/>
+            <topicref keyref="enableLoopbackRecording" toc="no"/>
             <topicref keyref="enableRemoteSuperResolution" toc="no"/>
             <topicref keyref="enableSpatialAudio" toc="no" props="hide"/>
             <topicref keyref="enableSoundPositionIndication" toc="no"/>
@@ -98,6 +98,7 @@
             <topicref keyref="joinChannel1" toc="no"/>
             <topicref keyref="joinChannel2" toc="no"/>
             <topicref keyref="joinChannelWithUserAccount2" toc="no"/>
+            <topicref keyref="leaveChannel" toc="no" processing-role="resource-only"/>
             <topicref keyref="leaveChannel2" toc="no"/>
             <topicref keyref="loadExtensionProvider" toc="no"/>
             <topicref keyref="muteAllRemoteAudioStreams" toc="no"/>
@@ -154,14 +155,16 @@
             <topicref keyref="setCameraZoomFactor" toc="no"/>
             <topicref keyref="setChannelProfile" toc="no"/>
             <topicref keyref="setCloudProxy" toc="no"/>
+            <topicref keyref="setClientRole1" toc="no" processing-role="resource-only"/>
             <topicref keyref="setClientRole2" toc="no"/>
             <topicref keyref="setColorEnhanceOptions" toc="no"/>
             <topicref keyref="setDefaultAudioRouteToSpeakerphone" toc="no"/>
             <topicref keyref="setDirectCdnStreamingAudioConfiguration" toc="no" props="cn"/>
             <topicref keyref="setDirectCdnStreamingVideoConfiguration" toc="no" props="cn"/>
-            <topicref keyref="setEffectPosition" toc="no"/>
             <topicref keyref="setDefaultMuteAllRemoteAudioStreams" toc="no"/>
             <topicref keyref="setDefaultMuteAllRemoteVideoStreams" toc="no"/>
+            <topicref keyref="setEffectPosition" toc="no"/>
+            <topicref keyref="setEffectsVolume" toc="no"/>
             <topicref keyref="setEnableSpeakerphone" toc="no"/>
             <topicref keyref="setEncryptionMode" toc="no"/>
             <topicref keyref="setEncryptionSecret" toc="no"/>
@@ -223,9 +226,7 @@
             <topicref keyref="startRhythmPlayer" toc="no"/>
             <topicref keyref="startRtmpStreamWithoutTranscoding" toc="no"/>
             <topicref keyref="startRtmpStreamWithTranscoding" toc="no"/>
-            <topicref keyref="startScreenCapture" toc="no"/>
             <topicref keyref="startScreenCaptureByDisplayId" toc="no"/>
-            <topicref keyref="startScreenCaptureByScreenRect" toc="no" props="hide"/>
             <topicref keyref="startScreenCaptureByWindowId" toc="no"/>
             <topicref keyref="startSecondaryCameraCapture" toc="no"/>
             <topicref keyref="startSecondaryScreenCapture" toc="no"/>
@@ -259,7 +260,6 @@
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
-            <topicref keyref="updateScreenCapture" toc="no"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
         </topicref>
@@ -267,7 +267,7 @@
             <topicref keyref="addVideoWatermarkEx" toc="no"/>
             <topicref keyref="clearVideoWatermarkEx" toc="no"/>
             <topicref keyref="createDataStreamEx2" toc="no"/>
-            <topicref keyref="enableLoopbackRecordingEx" toc="no" props="hide"/>
+            <topicref keyref="enableLoopbackRecordingEx" toc="no"/>
             <topicref keyref="getConnectionStateEx" toc="no"/>
             <topicref keyref="joinChannelEx" toc="no"/>
             <topicref keyref="joinChannelWithUserAccountEx" toc="no"/>
@@ -701,6 +701,7 @@
             <topicref keyref="VIDEO_ORIENTATION" toc="no"/>
             <topicref keyref="VIDEO_PIXEL_FORMAT" toc="no"/>
             <topicref keyref="VIDEO_PROFILE_TYPE" toc="no"/>
+            <topicref keyref="VIDEO_SOURCE_TYPE" toc="no"/>
             <topicref keyref="VOICE_BEAUTIFIER_PRESET" toc="no"/>
             <topicref keyref="VOICE_CONVERSION_PRESET" toc="no"/>
             <topicref keyref="WATERMARK_FIT_MODE" toc="no"/>
@@ -791,6 +792,7 @@
             <topicref keyref="VideoEncoderConfiguration" toc="no"/>
             <topicref keyref="VideoFrame" toc="no"/>
             <topicref keyref="VideoFormat" toc="no"/>
+            <topicref keyref="VideoSubscriptionOptions" toc="no"/>
             <topicref keyref="VirtualBackgroundSource" toc="no">
                 <topicref keyref="BACKGROUND_SOURCE_TYPE" toc="no"/>
                 <topicref keyref="BACKGROUND_BLUR_DEGREE" toc="no"/>
