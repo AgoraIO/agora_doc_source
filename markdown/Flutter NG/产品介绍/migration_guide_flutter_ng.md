@@ -37,7 +37,7 @@ agora_rtc_engine: ^6.0.0-rc.1 SDK 对部分功能的实现方式进行了优化�
 
 #### 命名参数
 
-为了更好的代码可读性，agora_rtc_engine: ^6.0.0-rc.1后将所有参数多于2个的方法的参数改成了[命名参数](https://dart.dev/guides/language/language-tour#parameters)，如 `joinChannel` 方法：
+为了更好的代码可读性，agora_rtc_engine: ^6.0.0-rc.1 后将所有参数多于 2 个的方法的参数改成了[命名参数](https://dart.dev/guides/language/language-tour#parameters)，如 `joinChannel` 方法：
 
 ```dart
 await _engine.joinChannel(token: '', channelId: 'channelid', info: '', uid: 0);
@@ -93,11 +93,11 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 
 因此，agora_rtc_engine: ^6.0.0-rc.1 删除了 `warning` 回调。
 
-<div class="alert note">除上述相对于 agora_rtc_engine: ^5.x 的中断性变更以外，agora_rtc_engine: ^6.0.0-rc.1 对于 agora_rtc_engine: ^6.0.0-rc.1-beta.2 也存在极少数中断性变更。例如：
+<div class="alert note">除上述相对于 agora_rtc_engine: ^5.x 的中断性变更以外，agora_rtc_engine: ^6.0.0-rc.1 对于 agora_rtc_engine: ^6.0.0-beta.2 也存在极少数中断性变更。例如：
 
 - 在 agora_rtc_engine: ^6.0.0-rc.1 中，将 `ChannelMediaOptions` 中的 `publishAudioTrack` 替换为 `publishMicrophoneTrack`。
 
-如果你在 agora_rtc_engine: ^6.0.0-rc.1-beta.2 版本中使用了该功能、并且希望升级到 agora_rtc_engine: ^6.0.0-rc.1 版本，请在升级 SDK 后修改功能的实现。</div>
+如果你在 agora_rtc_engine: ^6.0.0-beta.2 版本中使用了该功能、并且希望升级到 agora_rtc_engine: ^6.0.0-rc.1 版本，请在升级 SDK 后修改功能的实现。</div>
 
 
 ### 行为变更
@@ -131,7 +131,7 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 
 当你调用 `startRhythmPlayer` 时，SDK 默认将虚拟节拍器的声音发布到远端，如果你不希望远端用户听到虚拟节拍器，需参考以下操作：
 
-- 在 agora_rtc_engine: ^5.x 中，调用  `configRhythmPlayer` 并将 `publish` 设置为 `false。`
+- 在 agora_rtc_engine: ^5.x 中，调用  `configRhythmPlayer` 并将 `publish` 设置为 `false`。
 - 在 agora_rtc_engine: ^6.0.0-rc.1 中，将 `ChannelMediaOptions` 中的 `publishRhythmPlayerTrack` 设置为 `false`。
 
 #### 音量提示
@@ -148,9 +148,9 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 
 #### 设备权限
 
-- 在 agora_rtc_engine: ^5.x 中，通过 `localAudioStateChanged` 中的`AudioLocalError.DeviceNoPermission` 上报没有权限启动音频采集设备；通过 `localAudioStateChanged` 中的 `LocalVideoStreamError.DeviceNoPermission` 上报没有权限启动视频采集设备。
+在 agora_rtc_engine: ^5.x 中，通过 `localAudioStateChanged` 中的`AudioLocalError.DeviceNoPermission` 上报没有权限启动音频采集设备；通过 `localAudioStateChanged` 中的 `LocalVideoStreamError.DeviceNoPermission` 上报没有权限启动视频采集设备。
 
-在 agora_rtc_engine: ^6.0.0-rc.1  中，统一通过 `onPermissionError` 回调上报音视频采集设备的权限状态。
+在 agora_rtc_engine: ^6.0.0-rc.1 中，统一通过 `onPermissionError` 回调上报音视频采集设备的权限状态。
 
 #### 通话前网络测试
 
@@ -211,7 +211,7 @@ agora_rtc_engine: ^6.0.0-rc.1 中，删除了已废弃或不推荐使用的 API�
 - `audioMixingFinished`: 使用 `onAudioMixingStateChanged` 替代。
 - `enableDeepLearningDenoise`：AI 降噪将在后续版本改由 SDK 控制，不通过 API 实现。
 - `takeSnapshot` 和 `onSnapshotTaken` 中的 `channel` 参数：冗余参数。
-- `setDefaultMuteAllRemoteVideoStreams：`由 `ChannelMediaOptions` 中的 `autoSubscribeVideo` 替代。
+- `setDefaultMuteAllRemoteVideoStreams`：由 `ChannelMediaOptions` 中的 `autoSubscribeVideo` 替代。
 - `setDefaultMuteAllRemoteAudioStreams`：由 `ChannelMediaOptions` 中的 `autoSubscribeAudio` 替代。
 - `LocalVideoStreamError` 中的 `LocalVideoStreamErrorScreenCaptureWindowNotSupported`：该枚举在 agora_rtc_engine: ^5.x 已废弃。
 - `startAudioMixing` 中的 `replace` 参数：由 `ChannelMediaOptions` 中的 `publishMicrophoneTrack` 替代。

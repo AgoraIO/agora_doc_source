@@ -57,15 +57,10 @@ agora_rtc_engine: ^6.0.0-rc.1 后移除了 [SurfaceView](https://docs.agora.io/c
 
 In agora_rtc_engine: ^5.x, the SDK provides the `RtcChannel` and `RtcChannelEventHandler` classes to implement multi-channel control. The agora_rtc_engine: ^5.x SDK supports subscribing to the audio and video streams of multiple channels, but only supports publishing one group of audio and video streams in one channel.
 
-在 agora_rtc_engine: ^6.0.0-rc.1 中：
-
 agora_rtc_engine: ^6.0.0-rc.1 introduces the following changes:
 
-
-
-- SDK 支持同时采集或同时发布多组音视频流。例如，同时发布多路摄像头采集或者屏幕共享的视频流。
-- SDK 提供 `RtcEngineEx` 类实现多频道功能：调用 `joinChannel` 加入首个频道后，多次调用 `joinChannelEx` 加入多个频道，通过不同的用户 ID（`localUid`）和 `ChannelMediaOptions` 设置发布指定的流到不同的频道。
-- 新增了 `RtcConnection `二元组表示 `joinChannel` 建立的连接，一个连接由频道名（`channelId`）和 `localUid` 确定。你可以通过 `RtcConnection` 控制不同连接的发布和订阅。所有带 `connection`参数（对应 `RtcConnection` 类）的 API 命名中都增加了 Ex 以区分，并统一放在 `RtcEngineEx` 类中，用于多流的扩展。
+- The SDK supports one `RtcEngine` instance to collect multiple audio and video sources at the same time and publish them to the remote users by setting `RtcEngineEx` and `ChannelMediaOptions`. After calling `joinChannel` to join the first channel, call `joinChannelEx` multiple times to join multiple channels, and publish the specified stream to different channels through different user ID (`localUid`) and `ChannelMediaOptions` settings.
+- Added a binary group `RtcConnection` to represent the connection established by `joinChannel`. A connection is determined by the channel name (`channelId`) and `localUid`. You can control the publishing and subscribing state of different connections through `RtcConnection`. The SDK adds Ex in the name of all APIs with a connection parameter (corresponding to the `RtcConnection` class) to distinguish them, and gathers these APIs in the `RtcEngineEx` class to implement more multi-stream functions.
 
 通过设置 `ChannelMediaOptions`，agora_rtc_engine: ^6.0.0-rc.1 支持一个 `RtcEngine` 实例同时采集多路音视频源并发布到远端，适应各种业务场景。例如：
 
@@ -73,106 +68,111 @@ agora_rtc_engine: ^6.0.0-rc.1 introduces the following changes:
 - 同时发布单路媒体播放器的视频流、屏幕共享流和摄像头采集的视频流
 - 同时发布单路麦克风采集、自采集的音频流和媒体播放器的音频流
 
-结合多频道能力，你还可以体验如下功能：
+Combined with the multi-channel capability, you can also experience the following functions:
 
-- 将多组音视频流通过不同的 `localUid` 发布到远端
-- 将多路音频流混音后通过一个 `localUid` 发布到远端
-- 将多路视频流合图后通过一个 `localUid` 发布到远端
+- Publish multiple groups of audio and video streams to the remote user through different `localUid`.
+- Mix multiple audio streams and publish them to the remote user through one `localUid`.
+- Mix multiple video streams and publish them to the remote user through one `localUid`.
 
-agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重复、不够正交，因此在 agora_rtc_engine: ^6.0.0-rc.1 中隐藏了 `RtcChannel` 类和 `RtcChannelEventHandler` 类。你可以参考 [JoinMultiChannel](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/MultiChannel) 示例项目，用 `joinChannel` 和 `ChannelMediaOptions` 替代 `RtcChannel`，预计迁移成本在一天以内。如果你需要继续使用 `RtcChannel` 和 `RtcChannelEventHandler` 类，请提交工单[联系技术支持](https://agora-ticket.agora.io/)，Agora 会根据反馈情况决定是否在后续版本中保持兼容。
+`RtcChannel` and `RtcEngine` of agora_rtc_engine: ^5.x are partially duplicated and overlap in their functionality, so agora_rtc_engine: ^6.0.0-rc.1 hides the `RtcChannel` and `RtcChannelEventHandler` classes. See the [JoinMultiChannel](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/MultiChannel) sample project for more details on how to replace `RtcChannel` with `joinChannel` and `ChannelMediaOptions`. The expected migration cost is one day or less.
 
-#### 媒体流发布控制
+If you need to continue to use the `RtcChannel` and `RtcChannelEventHandler` classes, contact [support@agora.io](mailto:support@agora.io). The decision whether to maintain compatibility in a future release is based on your feedback.
 
-在 agora_rtc_engine: ^6.0.0-rc.1 中，将更多频道相关的设置都汇聚进了 `ChannelMediaOptions`，包括不同音视频流的发布、自动订阅、用户角色切换、Token 更新、默认大小流选项等。你可以在加入频道时通过 `joinChannel` 或 `joinChannelEx` 明确媒体流发布和订阅行为，也可以在加入频道后通过 `updateChannelMediaOptions` 动态更新频道中的媒体选项，例如切换视频源。
+#### Media stream publishing control
 
-#### 警告码
+In agora_rtc_engine: ^6.0.0-rc.1, the SDK gathers more channel-related settings into `ChannelMediaOptions`, including publishing of audio and video streams from different sources, automatic subscribing of audio and video streams, user role switching, token updating, and default dual stream options. You can determine the media stream publishing and subscribing behavior by calling `joinChannel` or `joinChannelEx` when joining a channel, or you can flexibly update the media options by calling `updateChannelMediaOptions` after joining a channel, such as switching video sources.
 
-在 agora_rtc_engine: ^5.x 中，SDK 通过 `warning` 回调报告警告码。
+#### Warning codes
 
-为方便用户定位和排查问题，agora_rtc_engine: ^6.0.0-rc.1 通过 API 返回值或不同状态回调来报告问题和原因。例如：
+In agora_rtc_engine: ^5.x, the SDK returns warning codes through the `warning` callbacks.
 
-- `onConnectionStateChanged`：报告网络连接状态。
-- `onLocalAudioStateChanged`：报告本地音频状态。
-- `onLocalVideoStateChanged`：报告本地视频状态。
-- `onRemoteAudioStateChanged`：报告远端音频状态。
-- `onRemoteVideoStateChanged`：报告远端视频状态。
+To facilitate locating and troubleshooting issues, agora_rtc_engine: ^6.0.0-rc.1 reports problems and causes through the return values of APIs or different callbacks for listening to states. For example:
 
-因此，agora_rtc_engine: ^6.0.0-rc.1 删除了 `warning` 回调。
+- `onConnectionStateChanged`: Reports the network connection state.
+- `onLocalAudioStateChanged`: Reports the local audio state.
+- `onLocalVideoStateChanged`: Reports the local video state.
+- `onRemoteAudioStateChanged`: Reports the remote audio state.
+- `onRemoteVideoStateChanged`: Reports the remote video state.
 
-<div class="alert note">除上述相对于 agora_rtc_engine: ^5.x 的中断性变更以外，agora_rtc_engine: ^6.0.0-rc.1 对于 agora_rtc_engine: ^6.0.0-rc.1-beta.2 也存在极少数中断性变更。例如：
+As a consequence, agora_rtc_engine: ^6.0.0-rc.1 removes the `warning` callbacks.
 
-- 在 agora_rtc_engine: ^6.0.0-rc.1 中，将 `ChannelMediaOptions` 中的 `publishAudioTrack` 替换为 `publishMicrophoneTrack`。
+<div class="alert note">
+In addition to the breaking changes listed here relative to agora_rtc_engine: ^5.x, agora_rtc_engine: ^6.0.0-rc.1 has a small number of breaking changes relative to the  agora_rtc_engine: ^6.0.0-beta.2 release. For example:
 
-如果你在 agora_rtc_engine: ^6.0.0-rc.1-beta.2 版本中使用了该功能、并且希望升级到 agora_rtc_engine: ^6.0.0-rc.1 版本，请在升级 SDK 后修改功能的实现。</div>
+- In agora_rtc_engine: ^6.0.0-rc.1, replace `publishAudioTrack` in `ChannelMediaOptions` with `publishMicrophoneTrack`.
+
+If you used this feature in agora_rtc_engine: ^6.0.0-beta.2 and wish to upgrade to agora_rtc_engine: ^6.0.0-rc.1, modify the implementation code of the feature after upgrading the SDK.
+</div>
 
 
 ### Behavior changes
 
-本节介绍由 agora_rtc_engine: ^6.0.0-rc.1 对 SDK 默认行为和 API 行为的合理优化造成的变更。
+This section introduces changes caused by reasonable optimization of the SDK default behavior and API behavior.
 
-#### 频道场景
+#### Channel profile
 
-因为直播场景支持从一对一通话无缝切换到多人互动，所以 Agora 自 agora_rtc_engine: ^5.x 起将通信场景下内部的传输协议和弱网对抗能力改成与直播场景一致。在 agora_rtc_engine: ^6.0.0-rc.1 中，Agora 也将默认的频道场景改成了 `ChannelProfileLiveBroadcasting`（直播）。
+Because the interactive live streaming profile supports seamless switching from one-to-one calls to multi-user interaction, since agora_rtc_engine: ^5.x, Agora has changed the internal transmission protocol and the ability to resist poor network conditions in the communication profile to be consistent with the interactive live streaming profile. In agora_rtc_engine: ^6.0.0-rc.1, Agora also changed the default channel profile to `ChannelProfileLiveBroadcasting` (the interactive live streaming profile).
 
-#### 网络质量回调
+#### Network quality callback
 
-在 agora_rtc_engine: ^5.x 中，如果 `onNetworkQuality` 中的 `uid` 为 0，则该回调返回的是本地用户的网络质量。在 agora_rtc_engine: ^6.0.0-rc.1 中，该回调返回的本地用户 `uid` 和用户在频道内实际的 `uid` 相同。
+In agora_rtc_engine: ^5.x, if the `uid` parameter returned in `onNetworkQuality` is 0, the callback reports the network quality of the local user. In agora_rtc_engine: ^6.0.0-rc.1, the `uid` of the local user returned in this callback is the same as the local user's actual `uid` in the channel.
 
-#### 默认日志文件
+#### Default log file
 
-在 agora_rtc_engine: ^5.x 中，有多个日志文件时，旧的文件会以 agorasdk_x.log 格式命名，例如 agorasdk_1.log。agora_rtc_engine: ^6.0.0-rc.1 修改命名格式为 agorasdk.x.log（例如 agorasdk.1.log）。此外，agora_rtc_engine: ^6.0.0-rc.1 新增了 agoraapi.log 记录 API 调用的日志。
+In agora_rtc_engine: ^5.x, when the SDK creates multiple log files, the earlier files are named in a agorasdk_x.log format, such as agorasdk_1.log. agora_rtc_engine: ^6.0.0-rc.1 modified the naming format to agorasdk.x.log, such as agorasdk.1.log. Additionally, agora_rtc_engine: ^6.0.0-rc.1 adds the agoraapi.log file to record API logs.
 
-#### 快速切换频道
+#### Fast channel switching
 
-在 agora_rtc_engine: ^5.x 中，你需要调用 `switchChannel` 实现快速切换频道。
+In agora_rtc_engine: ^5.x, you need to call `switchChannel` to quickly switch a channel.
 
-在 agora_rtc_engine: ^6.0.0-rc.1 中，通过 `leaveChannel` 和 `joinChannel` 切换频道即可实现和 `switchChannel` 一样的切换速度，因此该版本删除了 `switchChannel`。如果你在 agora_rtc_engine: ^5.x 中使用 `switchChannel` 切换频道，你需要在 agora_rtc_engine: ^6.0.0-rc.1 中先调用 `leaveChannel` 离开当前频道，再调用 `joinChannel` 加入第二个频道。
+In agora_rtc_engine: ^6.0.0-rc.1, you can achieve the same switching speed as `switchChannel` in agora_rtc_engine: ^5.x by switching a channel through `leaveChannel` and `joinChannel`. Therefore, agora_rtc_engine: ^6.0.0-rc.1 removes `switchChannel`. If you call `switchChannel` to quickly switch a channel in agora_rtc_engine: ^5.x, you need to call `leaveChannel` to leave the current channel in agora_rtc_engine: ^6.0.0-rc.1 and `joinChannel` to join the second channel instead.
 
-#### (Windows) 本地音视频流录制
+#### (Windows) Local audio and video recording
 
-- 在 agora_rtc_engine: ^5.x 中，如需开启本地音视频流录制，需要调用 `MediaRecorder.getMediaRecorder` 方法先获取 MediaRecorder 对象。
-- 在 agora_rtc_engine: ^6.0.0-rc.1 中，如需开启本地音视频流录制，需要调用 `RtcEngine.getMediaRecorder` 方法获取获取 MediaRecorder 接口类。
+In agora_rtc_engine: ^5.x, if you want to enable local audio and video recording, you need to call the `MediaRecorder.getMediaRecorder` method to get the `MediaRecorder` object.
 
-#### 虚拟节拍器
+In agora_rtc_engine: ^6.0.0-rc.1, if you want to enable local audio and video recording, you need to call the `RtcEngine.getMediaRecorder` method to get the `MediaRecorder` object.
 
-当你调用 `startRhythmPlayer` 时，SDK 默认将虚拟节拍器的声音发布到远端，如果你不希望远端用户听到虚拟节拍器，需参考以下操作：
+#### Virtual metronome
 
-- 在 agora_rtc_engine: ^5.x 中，调用  `configRhythmPlayer` 并将 `publish` 设置为 `false。`
-- 在 agora_rtc_engine: ^6.0.0-rc.1 中，将 `ChannelMediaOptions` 中的 `publishRhythmPlayerTrack` 设置为 `false`。
+When you call `startRhythmPlayer`, the SDK publishes the sound of the virtual metronome to the remote by default. If you do not want the remote users to hear the virtual metronome, refer to the following operations:
 
-#### 音量提示
+- In agora_rtc_engine: ^5.x, call the `configRhythmPlayer`, and set `publish` to `false`.
+- In agora_rtc_engine: ^6.0.0-rc.1, set `publishRhythmPlayerTrack` in `ChannelMediaOptions` to `false`.
 
-当你调用 `enableAudioVolumeIndication` 方法并将 `interval` 参数设置为 >0 时，可启用用户音量提示。在 agora_rtc_engine: ^5.x 和 agora_rtc_engine: ^6.0.0-rc.1 中，`interval` 参数的定义存在差异：
+#### Volume indication
 
-- 在 agora_rtc_engine: ^5.x 中：建议设置到大于 200 毫秒。最小不得少于 10 毫秒，否则会收不到 `onAudioVolumeIndication` 回调。
-- 在 agora_rtc_engine: ^6.0.0-rc.1 中：该参数需要设为 200 的整数倍。如果取值低于 200，SDK 会自动调整为 200。
+You can call the `enableAudioVolumeIndication` method to enable the user's volume indication function. There is a difference in the definition of the `interval` parameter in the `enableAudioVolumeIndication` method between agora_rtc_engine: ^5.x and agora_rtc_engine: ^6.0.0-rc.1, as follows:
 
-当启用音量提示回调后，SDK 会上报 `onAudioVolumeIndication` 回调，如果本地用户将自己静音（调用了 `muteLocalAudioStream`），在 agora_rtc_engine: ^5.x 和 agora_rtc_engine: ^6.0.0-rc.1 中，SDK 的行为不一致：
+- In agora_rtc_engine: ^5.x, Agora recommends that you set the interval to be greater than 200 ms. The minimum is 10 ms; otherwise, the `onAudioVolumeIndication` callback is not received.
+- In agora_rtc_engine: ^6.0.0-rc.1, you must set the interval to an integer that is a multiple of 200 ms. If the value of interval is lower than 200, the SDK automatically adjusts it to 200.
 
-- 在 agora_rtc_engine: ^5.x 中：SDK 立即停止报告本地用户的音量提示回调。
-- 在 agora_rtc_engine: ^6.0.0-rc.1 中：SDK 会继续报告本地用户的音量提示回调。
+When the user's volume indication is enabled, the SDK triggers the `onAudioVolumeIndication` callback at the time interval set in this method. If the local user calls `muteLocalAudioStream` to mute themselves, the SDK behaves inconsistently between agora_rtc_engine: ^5.x and agora_rtc_engine: ^6.0.0-rc.1:
 
-#### 设备权限
+- In agora_rtc_engine: ^5.x, the SDK immediately stops reporting the local user's volume indication callback.
+- In agora_rtc_engine: ^6.0.0-rc.1, the SDK continues to report the local user's volume indication callback.
 
-- 在 agora_rtc_engine: ^5.x 中，通过 `localAudioStateChanged` 中的`AudioLocalError.DeviceNoPermission` 上报没有权限启动音频采集设备；通过 `localAudioStateChanged` 中的 `LocalVideoStreamError.DeviceNoPermission` 上报没有权限启动视频采集设备。
+#### Device permissions
 
-在 agora_rtc_engine: ^6.0.0-rc.1  中，统一通过 `onPermissionError` 回调上报音视频采集设备的权限状态。
+In agora_rtc_engine: ^5.x, `AudioLocalError.DeviceNoPermission` in `localAudioStateChanged` reports that there is no permission to start the capture device, and `LocalVideoStreamError.DeviceNoPermission` in `localAudioStateChanged` reports that there is no permission to start the video capture device.
 
-#### 通话前网络测试
+In agora_rtc_engine: ^6.0.0-rc.1, the permission statuses of the audio and video capture devices are both reported in the `onPermissionError` callback.
 
-如果你需要开启或停止网络连接质量测试：
+#### Pre-call network test
 
-- 在 agora_rtc_engine: ^5.x 中，你可以调用 `enableLastmileTest` 开启网络质量测试，如果你想停止网络测试，需要调用 `disableLastmileTest`。
-- 在 agora_rtc_engine: ^6.0.0-rc.1 中，你可以调用 `startLastmileProbeTest` 启用网络质量测试，如果你想停止网络测试，需要调用 `stopLastmileProbeTest`。
+If you need to start or stop the network connection quality test, note the following:
+
+- In agora_rtc_engine: ^5.x, you can call `enableLastmileTest` to start the network quality test. If you want to stop the network test, you need to call `disableLastmileTest`.
+- In agora_rtc_engine: ^6.0.0-rc.1, you can call `startLastmileProbeTest` to enable network quality testing. If you want to stop network testing, you need to call `stopLastmileProbeTest`.
 
 
 ### Function gaps
 
-本节介绍在 agora_rtc_engine: ^5.x 中支持、但在 agora_rtc_engine: ^6.0.0-rc.1 中不支持或行为不一致的功能，这些功能会在后续版本中支持或改为一致。
+This section introduces functions that were supported in agora_rtc_engine: ^5.x but are no longer supported or behave inconsistently in agora_rtc_engine: ^6.0.0-rc.1. Plans exist to support them or make them consistent in a future release, however.
 
-#### 音频应用场景
+#### Audio application scenarios
 
-agora_rtc_engine: ^6.0.0-rc.1 重构了音频应用场景，可以替代大部分 agora_rtc_engine: ^5.x 的音频应用场景。下表展示了两个版本中音频应用场景的对应关系：
+agora_rtc_engine: ^6.0.0-rc.1 reconstructs the audio application scenarios, which can replace most of the audio application scenarios of agora_rtc_engine: ^5.x. The following table shows the correspondence of audio application scenarios in the two releases:
 
 | agora_rtc_engine: ^5.x   | agora_rtc_engine: ^6.0.0-rc.1           |
 | :---------- | :-------- |
@@ -185,50 +185,50 @@ agora_rtc_engine: ^6.0.0-rc.1 重构了音频应用场景，可以替代大部�
 | `AudioScenario.IOT`                    | `AudioScenarioType.audioScenarioDefault`        |
 | `AudioScenario.MEETING`                | `AudioScenarioType.audioScenarioMeeting`        |
 
-#### 不支持功能
+#### Unsupported functions
 
-相比于 agora_rtc_engine: ^5.x，某些功能在 agora_rtc_engine: ^6.0.0-rc.1 中不支持或仅支持部分。本节展示尚未支持的 API，这些 API 会在后续版本中支持。
+Compared to agora_rtc_engine: ^5.x, some features are not supported or only partially supported in agora_rtc_engine: ^6.0.0-rc.1. This section shows the APIs currently unsupported but for which support is planned in a future release.
 
-远端视频流回退：
+Remote video stream fallback:
 
 - `setRemoteUserPriority`
 
-屏幕共享：
+Screen sharing:
 
 - `onScreenCaptureInfoUpdated`
 
 ### Removed APIs
 
-agora_rtc_engine: ^6.0.0-rc.1 中，删除了已废弃或不推荐使用的 API。已删除 API 的替代方案或删除原因展示如下：
+The agora_rtc_engine: ^6.0.0-rc.1 removes deprecated or unrecommended APIs. Alternatives to the removed API or reasons for their removal are shown as follows:
 
-- `virtualBackgroundSourceEnabled`：使用 `enableVirtualBackground` 的返回值替代。
-- `userSuperResolutionEnabled`：使用 `remoteVideoStats` 回调的 `superResolutionType` 成员替代。
-- `setAudioMixingPlaybackSpeed`：使用 `MediaPlayerController` 类下的相关 API 替代。
-- `setExternalAudioSourceVolume`：使用 `adjustCustomAudioPublishVolume` 替代。
-- `getAudioFileInfo` 和 `requestAudioFileInfo`：使用 `getDuration` 替代。
-- `audioDeviceTestVolumeIndication`：由 `onAudioVolumeIndication` 替代。
-- `setLocalPublishFallbackOption` 和 `localPublishFallbackToAudioOnly`：在 agora_rtc_engine: ^5.x 中很少使用。
-- `VideoRenderMode` 中的 `FILL(4)`：该模式可能造成图片过度拉伸，不推荐使用。
-- `AudioMixingReason` 中的以下枚举：在 agora_rtc_engine: ^5.x 中应用场景很少。
+- `virtualBackgroundSourceEnabled`: Use the return value of `enableVirtualBackground` instead.
+- `userSuperResolutionEnabled`: Use the `remoteVideoStats` member of the `superResolutionType` class instead.
+- `setAudioMixingPlaybackSpeed`: Use the relevant API under the `MediaPlayerController` class instead.
+- `setExternalAudioSourceVolume`: Use `adjustCustomAudioPublishVolume` instead.
+- `getAudioFileInfo` and `requestAudioFileInfo`: Use `getDuration` instead.
+- `audioDeviceTestVolumeIndication`: Use `onAudioVolumeIndication` instead.
+- `setLocalPublishFallbackOption` and `localPublishFallbackToAudioOnly`: Rarely used in agora_rtc_engine: ^5.x.
+- `FILL(4)` in `VideoRenderMode`: This mode can cause image overstretch and is not recommended.
+- The following enumerations in `AudioMixingReason`: Rarely used in agora_rtc_engine: ^5.x:
   - `StartedByUser`
   - `StartNewLoop`
   - `PausedByUser`
   - `ResumedByUser`
-- `audioMixingFinished`: 使用 `onAudioMixingStateChanged` 替代。
-- `enableDeepLearningDenoise`：AI 降噪将在后续版本改由 SDK 控制，不通过 API 实现。
-- `takeSnapshot` 和 `onSnapshotTaken` 中的 `channel` 参数：冗余参数。
-- `setDefaultMuteAllRemoteVideoStreams：`由 `ChannelMediaOptions` 中的 `autoSubscribeVideo` 替代。
-- `setDefaultMuteAllRemoteAudioStreams`：由 `ChannelMediaOptions` 中的 `autoSubscribeAudio` 替代。
-- `LocalVideoStreamError` 中的 `LocalVideoStreamErrorScreenCaptureWindowNotSupported`：该枚举在 agora_rtc_engine: ^5.x 已废弃。
-- `startAudioMixing` 中的 `replace` 参数：由 `ChannelMediaOptions` 中的 `publishMicrophoneTrack` 替代。
+- `audioMixingFinished`: Use `onAudioMixingStateChanged` instead.
+- `enableDeepLearningDenoise`: The SDK adds deep-learning noise reduction as one of its capability in a future release instead of implementing through an API.
+- The `channel` parameter in `takeSnapshot` and `onSnapshotTaken`: The parameter is redundant.
+- `setDefaultMuteAllRemoteVideoStreams`: Use `autoSubscribeVideo` in the `ChannelMediaOptions` instead.
+- `setDefaultMuteAllRemoteAudioStreams`: Use `autoSubscribeAudio` in the `ChannelMediaOptions` instead.
+- `LocalVideoStreamErrorScreenCaptureWindowNotSupported` in `LocalVideoStreamError`: Deprecated in agora_rtc_engine: ^5.x.
+- The `replace` parameter in `startAudioMixing`: Use `publishMicrophoneTrack` in the `ChannelMediaOptions` instead.
 
 ### Naming changes
 
-agora_rtc_engine: ^6.0.0-rc.1 的方法命名和数据类型变更会在你编译项目时引入 IDE 的报错提示，你需要根据提示更新 app 代码。
+The naming changes in agora_rtc_engine: ^6.0.0-rc.1 cause error messages in the IDE when you compile your project, and you need to update the code of your app according to each error message.
 
-主要的 API 及参数名变更如下：
+The main API and parameter name changes are as follows:
 
-- (Windows 和 macOS) `adjustLoopbackRecordingSignalVolume` 变更为 `adjustLoopbackSignalVolume`。
-- `firstLocalAudioFrame` 变更为 `onFirstLocalAudioFramePublished`。
-- `LogConfig` 中的 `fileSize` 成员变更为 `fileSizeInKB`。
-- `enableAudioVolumeIndication` 中的 `report_vad` 参数变更为 `reportVad`。
+- (Windows and macOS) `adjustLoopbackRecordingSignalVolume` is changed to `adjustLoopbackSignalVolume`.
+- `firstLocalAudioFrame` is changed to `onFirstLocalAudioFramePublished`.
+- The `fileSize` member in `LogConfig` is renamed to `fileSizeInKB`.
+- The `report_vad` parameter in `enableAudioVolumeIndication` is changed to `reportVad`.
