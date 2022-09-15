@@ -37,21 +37,21 @@ As stated above, you need to update the code of your app according to your busin
 
 After upgrading from agora_rtc_engine: ^5.x to agora_rtc_engine: ^6.0.0-rc.1, the way the APIs implement some functions is different. This section introduces compatibility changes for these APIs and the logic for updating the code of your app.
 
-#### 命名参数
+#### Named parameters
 
-为了更好的代码可读性，agora_rtc_engine: ^6.0.0-rc.1后将所有参数多于2个的方法的参数改成了[命名参数](https://dart.dev/guides/language/language-tour#parameters)，如 `joinChannel` 方法：
+For optimal code readability, agora_rtc_engine: ^6.0.0-rc.1 has changed the parameters of all methods with more than two parameters to [named parameters](https://dart.dev/guides/language/language-tour#parameters). Take the ` joinChannel` method as an example:
 
 ```dart
 await _engine.joinChannel(token: '', channelId: 'channelid', info: '', uid: 0);
 ```
 
-#### 初始化流程
+#### Initialization
 
-agora_rtc_engine: ^6.0.0-rc.1 后提供了 top-level 方法 `createAgoraRtcEngine` 用于创建 RtcEngine，创建完 RtcEngine 后需要主动调用 `initialize` 进行初始化。
+In agora_rtc_engine: ^6.0.0-rc.1, the top-level `createAgoraRtcEngine` method is provided to create the `RtcEngine` object. Once created, call `initialize` to initialize it.
 
-#### 渲染控件
+#### Rendering control
 
-agora_rtc_engine: ^6.0.0-rc.1 后移除了 [SurfaceView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_surfaceview.html)/[TextureView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_textureview.html) 控件，视频渲染统一使用 [AgoraVideoView](https://docs.agora.io/cn/video-call-4.x/API%20Reference/flutter_ng/API/class_agoravideoview.html) 控件。
+In agora_rtc_engine: ^6.0.0-rc.1, [SurfaceView](https://docs.agora.io/en/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_surfaceview.html) and [TextureView](https://docs.agora.io/en/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_textureview.html) are removed. [AgoraVideoView](https://docs.agora.io/en/video-call-4.x/API%20Reference/flutter_ng/API/class_agoravideoview.html) is used instead for video rendering.
 
 #### Multiple channels
 
@@ -62,11 +62,11 @@ agora_rtc_engine: ^6.0.0-rc.1 introduces the following changes:
 - The SDK supports one `RtcEngine` instance to collect multiple audio and video sources at the same time and publish them to the remote users by setting `RtcEngineEx` and `ChannelMediaOptions`. After calling `joinChannel` to join the first channel, call `joinChannelEx` multiple times to join multiple channels, and publish the specified stream to different channels through different user ID (`localUid`) and `ChannelMediaOptions` settings.
 - Added a binary group `RtcConnection` to represent the connection established by `joinChannel`. A connection is determined by the channel name (`channelId`) and `localUid`. You can control the publishing and subscribing state of different connections through `RtcConnection`. The SDK adds Ex in the name of all APIs with a connection parameter (corresponding to the `RtcConnection` class) to distinguish them, and gathers these APIs in the `RtcEngineEx` class to implement more multi-stream functions.
 
-通过设置 `ChannelMediaOptions`，agora_rtc_engine: ^6.0.0-rc.1 支持一个 `RtcEngine` 实例同时采集多路音视频源并发布到远端，适应各种业务场景。例如：
+By setting `ChannelMediaOptions`, agora_rtc_engine: ^6.0.0-rc.1 supports one `RtcEngine` instance to capture audio and video streams from multiple sources at the same time and publish them to the remote user, adapting to various business scenarios. For example:
 
-- 同时发布多路摄像头采集的视频流或者多路屏幕共享流
-- 同时发布单路媒体播放器的视频流、屏幕共享流和摄像头采集的视频流
-- 同时发布单路麦克风采集、自采集的音频流和媒体播放器的音频流
+- Simultaneously publish multiple video streams captured by the camera and screen-sharing streams.
+- Simultaneously publish a media player stream, a screen-sharing stream, and a video stream captured by the camera.
+- Simultaneously publish one audio stream captured by the microphone and one by the custom audio source, and one media player steam.
 
 Combined with the multi-channel capability, you can also experience the following functions:
 
