@@ -1,39 +1,41 @@
-# 迁移指南
+# Migrate from ^5.x to v6.0.0-rc.1 (Flutter)
 
-agora_rtc_engine: ^6.0.0-rc.1 是基于 Agora SDK v4.0.0 是一个新的 SDK 版本，可帮助用户将实时音视频功能集成到 app 中。在大规模的实时互动场景下，你可以用它实现更好的实时互动效果，详见[产品概述](product_live_ng#benefits)。
+agora_rtc_engine: ^6.0.0-rc.1 is a new version of the SDK that you can use to embed real-time video and audio into your app. It supports large-scale real-time interactive activities and provides better real-time interactive effects. For details, see [Benefits and features](product_live_ng#benefits).
 
-本文介绍如何将 SDK 从 agora_rtc_engine: ^5.x 迁移至 agora_rtc_engine: ^6.0.0-rc.1。
+This page introduces the main steps to upgrade the SDK from ^5.x to v4.0.0, as well as the related changes.
 
 
-## 迁移步骤
+## Migration steps
 
-本节介绍将 agora_rtc_engine: ^5.x 迁移至 agora_rtc_engine: ^6.0.0-rc.1 的主要步骤。
+This section introduces the main steps to upgrade the SDK from agora_rtc_engine: ^5.x to agora_rtc_engine: ^6.0.0-rc.1
 
-### 1. 集成 SDK
+### 1. Integrate the SDK
 
-参考[建立项目](./start_live_flutter_ng#创建-flutter-项目)，将 agora_rtc_engine: ^6.0.0-rc.1 SDK 集成到你的项目中。
+See [Project setup](./start_live_flutter_ng#create-a-flutter-project) for more information about integrating the agora_rtc_engine: ^6.0.0-rc.1 SDK into your project.
 
-### 2. 更新 app 代码
+### 2. Update the Agora code in your app
 
-agora_rtc_engine: ^6.0.0-rc.1 SDK 对部分功能的实现方式进行了优化或修改，从而导致与 agora_rtc_engine: ^5.x 不兼容。为了继续使用 app 中已有的 Agora 功能，请根据[变更介绍](#changes)更新 app 中的代码。
+The agora_rtc_engine: ^6.0.0-rc.1 SDK has optimized or modified the implementation of some functions, resulting in incompatibility with the agora_rtc_engine: ^5.x. In order to retain Agora functionality in your app, update the code in your app according to [What has changed](#changes).
 
 
 <a name="changes"></a>
 
-## 变更介绍
+## What has changed
 
-本节以 agora_rtc_engine: ^5.x 为基础，按如下分类介绍 agora_rtc_engine: ^6.0.0-rc.1 相对于 agora_rtc_engine: ^5.x 的主要变更，你需要结合实际业务场景更新 app 代码：
+This section introduces the main changes of agora_rtc_engine: ^6.0.0-rc.1 compared to agora_rtc_engine: ^5.x in the following categories:
 
-- 中断性变更：介绍影响较大的 API 兼容性变更，修改相关实现代码的预期耗时较多。
-- 行为变更：介绍对 SDK 默认行为和 API 行为的合理优化造成的变更，无需修改相关实现代码或修改代码的预期耗时较少。
-- 功能差距：介绍在 agora_rtc_engine: ^5.x 中支持、但在 agora_rtc_engine: ^6.0.0-rc.1 中不支持的功能，这些功能会在后续版本中增加。
-- 已删除 API：介绍在 agora_rtc_engine: ^5.x 中支持或被标记成废弃、但在 agora_rtc_engine: ^6.0.0-rc.1 中删除了的 API，这些 API 大部分在 agora_rtc_engine: ^6.0.0-rc.1 中有替代方案，修改相关实现代码的预期耗时较少。
-- 命名和数据类型变更：介绍主要 API 的命名和数据类型变更，你可以借助 IDE 的报错提示更新相关实现代码，预期耗时较少。
+- Breaking changes: Introduces API compatibility changes that have a big impact. You need to spend significant time modifying the related implementation.
+- Behavior changes: Introduces changes caused by reasonable optimization of the SDK default behavior and API behavior. Less time is required to modify the related implementation, if any.
+- Function gaps: Introduces functions that were supported in agora_rtc_engine: ^5.x but are not supported in agora_rtc_engine: ^6.0.0-rc.1. However, these functions are intended to be added in a future release.
+- Removed APIs: Introduces APIs that were supported in agora_rtc_engine: ^5.x but removed in agora_rtc_engine: ^6.0.0-rc.1. Most of these APIs have alternatives in agora_rtc_engine: ^6.0.0-rc.1. Modifying the related implementation should require less time.
+- Naming and data type changes: Introduces the naming and data type changes of the main APIs. You can update the relevant implementation according to the error messages in the IDE, which is expected to take less time.
+
+As stated above, you need to update the code of your app according to your business scenario.
 
 
-### 中断性变更
+### Breaking changes
 
-从 agora_rtc_engine: ^5.x 升级至 agora_rtc_engine: ^6.0.0-rc.1 后，实现部分功能的 API 存在差异。本节介绍这些 API 的兼容性变更及 app 代码的更新逻辑。
+After upgrading from agora_rtc_engine: ^5.x to agora_rtc_engine: ^6.0.0-rc.1, the way the APIs implement some functions is different. This section introduces compatibility changes for these APIs and the logic for updating the code of your app.
 
 #### 命名参数
 
@@ -51,11 +53,15 @@ agora_rtc_engine: ^6.0.0-rc.1 后提供了 top-level 方法 `createAgoraRtcEngin
 
 agora_rtc_engine: ^6.0.0-rc.1 后移除了 [SurfaceView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_surfaceview.html)/[TextureView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_textureview.html) 控件，视频渲染统一使用 [AgoraVideoView](https://docs.agora.io/cn/video-call-4.x/API%20Reference/flutter_ng/API/class_agoravideoview.html) 控件。
 
-#### 多频道
+#### Multiple channels
 
-在 agora_rtc_engine: ^5.x 中，SDK 提供 `RtcChannel` 类和 `RtcChannelEventHandler` 类实现多频道控制，支持订阅多个频道的音视频流，但只能选择一个频道发布一组音视频流。
+In agora_rtc_engine: ^5.x, the SDK provides the `RtcChannel` and `RtcChannelEventHandler` classes to implement multi-channel control. The agora_rtc_engine: ^5.x SDK supports subscribing to the audio and video streams of multiple channels, but only supports publishing one group of audio and video streams in one channel.
 
 在 agora_rtc_engine: ^6.0.0-rc.1 中：
+
+agora_rtc_engine: ^6.0.0-rc.1 introduces the following changes:
+
+
 
 - SDK 支持同时采集或同时发布多组音视频流。例如，同时发布多路摄像头采集或者屏幕共享的视频流。
 - SDK 提供 `RtcEngineEx` 类实现多频道功能：调用 `joinChannel` 加入首个频道后，多次调用 `joinChannelEx` 加入多个频道，通过不同的用户 ID（`localUid`）和 `ChannelMediaOptions` 设置发布指定的流到不同的频道。
@@ -100,7 +106,7 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 如果你在 agora_rtc_engine: ^6.0.0-rc.1-beta.2 版本中使用了该功能、并且希望升级到 agora_rtc_engine: ^6.0.0-rc.1 版本，请在升级 SDK 后修改功能的实现。</div>
 
 
-### 行为变更
+### Behavior changes
 
 本节介绍由 agora_rtc_engine: ^6.0.0-rc.1 对 SDK 默认行为和 API 行为的合理优化造成的变更。
 
@@ -160,7 +166,7 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 - 在 agora_rtc_engine: ^6.0.0-rc.1 中，你可以调用 `startLastmileProbeTest` 启用网络质量测试，如果你想停止网络测试，需要调用 `stopLastmileProbeTest`。
 
 
-### 功能差距
+### Function gaps
 
 本节介绍在 agora_rtc_engine: ^5.x 中支持、但在 agora_rtc_engine: ^6.0.0-rc.1 中不支持或行为不一致的功能，这些功能会在后续版本中支持或改为一致。
 
@@ -191,7 +197,7 @@ agora_rtc_engine: ^6.0.0-rc.1 重构了音频应用场景，可以替代大部�
 
 - `onScreenCaptureInfoUpdated`
 
-### 已删除 API
+### Removed APIs
 
 agora_rtc_engine: ^6.0.0-rc.1 中，删除了已废弃或不推荐使用的 API。已删除 API 的替代方案或删除原因展示如下：
 
@@ -216,7 +222,7 @@ agora_rtc_engine: ^6.0.0-rc.1 中，删除了已废弃或不推荐使用的 API�
 - `LocalVideoStreamError` 中的 `LocalVideoStreamErrorScreenCaptureWindowNotSupported`：该枚举在 agora_rtc_engine: ^5.x 已废弃。
 - `startAudioMixing` 中的 `replace` 参数：由 `ChannelMediaOptions` 中的 `publishMicrophoneTrack` 替代。
 
-### 命名变更
+### Naming changes
 
 agora_rtc_engine: ^6.0.0-rc.1 的方法命名和数据类型变更会在你编译项目时引入 IDE 的报错提示，你需要根据提示更新 app 代码。
 
