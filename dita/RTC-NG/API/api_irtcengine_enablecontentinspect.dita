@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecontentinspect">
     <title><ph keyref="enableContentInspect"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开启/关闭视频内容审核。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开启/关闭视频截图上传。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,24 +22,23 @@
             <codeblock props="flutter" outputclass="language-dart"/></p>
         </section>
         <section id="detailed_desc">
-            <p>开启视频内容审核后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的内容审核模块类型和频率对本地用户发送的视频进行截图、审核和上传。审核完成后，Agora 内容审核服务器会以 HTTPS 请求的形式，向你的服务器发送审核结果，并将所有截图发送至你指定的第三方云存储。</p>
-            <p>如果你将 <apiname keyref="ContentInspectModule"/> 中的 <parmname>type</parmname> 设置为 <apiname keyref="CONTENT_INSPECT_MODERATION"/>（视频鉴黄），审核完成后，SDK 会触发 <xref keyref="onContentInspectResult"/> 回调，报告鉴黄结果。</p>                                                       
-            <note><ph>调用该方法前，请确保已开通 Agora 视频内容审核服务。</ph><ph props="cn">详见 <xref keyref="enable-content-inspect"/>。</ph></note>
+            <p>开启视频截图上传后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的模块类型和频率对本地用户发送的视频进行截图和上传。截图完成后，Agora 服务器会以 HTTPS 请求的形式，向你的服务器发送回调通知，并将所有截图发送至你指定的第三方云存储。</p>                                                      
+            <note><ph>调用该方法前，请确保已<xref keyref="ticket-link"/>联系技术支持开通 Agora 视频截图上传服务。</ph><ph props="hide">详见 <xref keyref="enable-content-inspect"/>。</ph></note>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>设置是否开启视频内容审核：                                                  
+                <pd>设置是否开启视频截图上传：                                                  
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：关闭。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：开启视频截图上传。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：关闭视频截图上传。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd>内容审核配置。详见 <xref keyref="ContentInspectConfig"/>。</pd>
+                <pd>视频截图上传配置。详见 <xref keyref="ContentInspectConfig"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
