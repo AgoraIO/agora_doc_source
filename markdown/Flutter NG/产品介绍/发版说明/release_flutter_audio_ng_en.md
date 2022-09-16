@@ -1,3 +1,9 @@
+## v6.0.0-rc.2
+
+v6.0.0-rc.2 was released on September 16, 2022. 
+
+This release fixed issues that occurred with `AudioFrameObserver`.
+
 ## v6.0.0-rc.1 ( Native v4.0.0)
 
 v6.0.0 was released on September 15, 2022.
