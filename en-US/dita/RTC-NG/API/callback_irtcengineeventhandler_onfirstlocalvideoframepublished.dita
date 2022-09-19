@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalvideoframepublished">
-    <title><ph keyref="onFirstLocalVideoFramePublished"/></title>
+    <title><ph keyref="onFirstLocalVideoFramePublished" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the first video frame is published.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFirstLocalVideoFramePublished"/>
+                <indexterm keyref="onFirstLocalVideoFramePublished" />
             </keywords>
         </metadata>
     </prolog>
@@ -23,43 +23,42 @@
     (void)source;
     (void)elapsed;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFramePublished?(connection: RtcConnection, elapsed: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onFirstLocalVideoFramePublished?(
+    connection: RtcConnection,
+    elapsed: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFramePublished(RtcConnection connection, int elapsed) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onFirstLocalVideoFramePublished?(
-  connection: RtcConnection,
-  elapsed: number
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onFirstLocalVideoFramePublished?(
+    connection: RtcConnection,
+    elapsed: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
       onFirstLocalVideoFramePublished;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>The SDK triggers this callback under one of the following circumstances:<ul>
-            <li>The local client enables the video module and calls <apiname keyref="joinChannel2"/> successfully.</li>
-            <li>The local client calls <xref keyref="muteLocalVideoStream"/>(<codeph><ph keyref="true"/></codeph>) and <apiname keyref="muteLocalVideoStream"/>(<codeph><ph keyref="false"/></codeph>) in sequence.</li>
-            <li>The local client calls <xref keyref="disableVideo"/> and <xref keyref="enableVideo"/> in sequence.</li>
-            <li props="android ios mac cpp">The local client calls <xref keyref="pushVideoFrame"/> to successfully push the video frame to the SDK.</li>
+            <li>The local client enables the video module and calls <apiname keyref="joinChannel2" /> successfully.</li>
+            <li>The local client calls <xref keyref="muteLocalVideoStream" />(<codeph><ph keyref="true" /></codeph>) and <apiname keyref="muteLocalVideoStream" />(<codeph><ph keyref="false" /></codeph>) in sequence.</li>
+            <li>The local client calls <xref keyref="disableVideo" /> and <xref keyref="enableVideo" /> in sequence.</li>
+            <li props="android ios mac cpp">The local client calls <xref keyref="pushVideoFrame" /> to successfully push the video frame to the SDK.</li>
             </ul> </p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
-            <parml>
-            <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd>The connection infomation. See <xref keyref="RtcConnection"/>.</pd>
+                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
-                <plentry conkeyref="onLocalVideoStateChanged/source">
-                    <pt/>
-                    <pd/>
+                <plentry conkeyref="onLocalVideoStateChanged/source" props="native">
+                    <pt />
+                    <pd />
                 </plentry>
             <plentry>
                 <pt>elapsed</pt>
-                <pd>Time elapsed (ms) from the local user calling <apiname keyref="joinChannel2"/> until the SDK triggers this callback.</pd>
+                <pd>Time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
             </plentry>
             </parml> </section>
     </refbody>

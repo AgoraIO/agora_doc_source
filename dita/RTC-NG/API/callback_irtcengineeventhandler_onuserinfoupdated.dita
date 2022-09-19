@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserinfoupdated">
-    <title> <ph keyref="onUserInfoUpdated"/> </title>
+    <title> <ph keyref="onUserInfoUpdated" /> </title>
     <shortdesc id="short"> <ph id="shortdesc">远端用户信息已更新回调。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onUserInfoUpdated"/>
+                <indexterm keyref="onUserInfoUpdated" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,9 +19,9 @@
      (void)uid;
      (void)info;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserInfoUpdated(uint uid, UserInfo info)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onUserInfoUpdated?(uid: number, info: UserInfo): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int uid, UserInfo info)? onUserInfoUpdated;
 </codeblock> </p>
         </section>
@@ -29,12 +29,12 @@
             <p>远端用户加入频道后， SDK 会获取到该远端用户的 UID 和 User Account，然后缓存一个包含了远端用户 UID 和 User Account 的 Mapping 表，并在本地触发该回调。</p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>uid</pt>
@@ -43,7 +43,7 @@
             <plentry>
                 <pt props="android ios mac">userInfo</pt>
                 <pt props="cpp unity flutter electron rn">info</pt>
-                <pd>标识用户信息的 UserInfo 对象，包含用户 UID 和 User Account。详见 <xref keyref="UserInfo"/> 类。</pd>
+                <pd>标识用户信息的 UserInfo 对象，包含用户 UID 和 User Account。详见 <xref keyref="UserInfo" /> 类。</pd>
             </plentry>
             </parml> </section>
     </refbody>

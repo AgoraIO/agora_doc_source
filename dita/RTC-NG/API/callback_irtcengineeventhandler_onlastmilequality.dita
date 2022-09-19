@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlastmilequality">
-    <title><ph keyref="onLastmileQuality"/></title>
+    <title><ph keyref="onLastmileQuality" /></title>
     <shortdesc id="short"><ph id="shortdesc">网络上下行 last mile 质量报告回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onLastmileQuality"/>
+                <indexterm keyref="onLastmileQuality" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,29 +18,29 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onLastmileQuality(int quality) {
     (void)quality;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onLastmileQuality?(quality: QualityType): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onLastmileQuality?(quality: QualityType): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnLastmileQuality(int quality)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onLastmileQuality?(quality: QualityType): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onLastmileQuality?(quality: QualityType): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(QualityType quality)? onLastmileQuality;
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>该回调描述本地用户在加入频道前的 last mile 网络探测的结果，其中 last mile 是指设备到 Agora 边缘服务器的网络状态。</p>
-            <p>加入频道前，调用 <xref keyref="startLastmileProbeTest"/> 之后，SDK 触发该回调报告本地用户在加入频道前的 last mile 网络探测的结果。</p>
+            <p>加入频道前，调用 <xref keyref="startLastmileProbeTest" /> 之后，SDK 触发该回调报告本地用户在加入频道前的 last mile 网络探测的结果。</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>quality</pt>
-                <pd>Last mile 网络质量。<ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="QUALITY_TYPE"/> 。</ph>
+                <pd>Last mile 网络质量。<ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="QUALITY_TYPE" /> 。</ph>
                     <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
-                    <li/>
+                    <li />
                     </ul> </pd>
             </plentry>
             </parml> </section>

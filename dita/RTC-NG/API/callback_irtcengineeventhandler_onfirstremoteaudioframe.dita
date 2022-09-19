@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstremoteaudioframe">
-    <title><ph keyref="onFirstRemoteAudioFrame"/></title>
+    <title><ph keyref="onFirstRemoteAudioFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">已接收远端音频首帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFirstRemoteAudioFrame"/>
+                <indexterm keyref="onFirstRemoteAudioFrame" />
             </keywords>
         </metadata>
     </prolog>
@@ -23,13 +23,17 @@
     (void)elapsed;
   }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onFirstRemoteAudioFrame?(connection: RtcConnection, userId: number, elapsed: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteAudioFrame?(
+    connection: RtcConnection,
+    userId: number,
+    elapsed: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstRemoteAudioFrame(RtcConnection connection, uint userId, int elapsed) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onFirstRemoteAudioFrame?(
-  connection: RtcConnection,
-  userId: number,
-  elapsed: number
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onFirstRemoteAudioFrame?(
+    connection: RtcConnection,
+    userId: number,
+    elapsed: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int userId, int elapsed)?
       onFirstRemoteAudioFrame;
 </codeblock> </p>
@@ -38,21 +42,21 @@
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="onRemoteAudioStateChanged"/> 。</dd>
+                <dd>请改用 <xref keyref="onRemoteAudioStateChanged" /> 。</dd>
             </dlentry>
             </dl>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry props="ios mac">
                 <pt>engine</pt>
-                <pd><xref keyref="IRtcEngine"/> 对象。</pd>
+                <pd><xref keyref="IRtcEngine" /> 对象。</pd>
             </plentry>
             <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="native">uid</pt>
@@ -61,7 +65,7 @@
             </plentry>
             <plentry>
                 <pt>elapsed</pt>
-                <pd conkeyref="onFirstRemoteAudioDecoded/elapsed"/>
+                <pd conkeyref="onFirstRemoteAudioDecoded/elapsed" />
             </plentry>
             </parml> </section>
     </refbody>

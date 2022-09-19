@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_sendstreammessage">
-    <title><ph keyref="sendStreamMessage"/></title>
+    <title><ph keyref="sendStreamMessage" /></title>
     <shortdesc id="short"><ph id="shortdesc">发送数据流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="sendStreamMessage"/>
+                <indexterm keyref="sendStreamMessage" />
             </keywords>
         </metadata>
     </prolog>
@@ -26,7 +26,7 @@
   data: Uint8Array,
   length: number
 ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> sendStreamMessage(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; sendStreamMessage(
     {required int streamId, required Uint8List data, required int length});</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -37,11 +37,11 @@
             <li>每个客户端每秒最多能发送 6 KB 数据。</li>
             <li>频道内每人最多能同时有 5 个数据通道。</li>
             </ul></p>
-            <p>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage"/> 回调，远端用户可以在该回调中获取接收到的流消息；
-       若调用失败，远端会触发 <xref keyref="onStreamMessageError"/> 回调。</p>
+            <p>成功调用该方法后，远端会触发 <xref keyref="onStreamMessage" /> 回调，远端用户可以在该回调中获取接收到的流消息；
+       若调用失败，远端会触发 <xref keyref="onStreamMessageError" /> 回调。</p>
             <note type="attention">
             <ul>
-            <li>请确保在调用该方法前，已调用 <xref keyref="createDataStream2"/> 创建了数据通道。</li>
+            <li>请确保在调用该方法前，已调用 <xref keyref="createDataStream2" /> 创建了数据通道。</li>
             <li>直播场景下，该方法仅适用于主播用户。</li>
             </ul></note> </section>
         <section id="parameters">
@@ -49,7 +49,7 @@
             <parml>
             <plentry>
                 <pt>streamId</pt>
-                <pd>数据流 ID。可以通过 <apiname keyref="createDataStream2"/> 获取。</pd>
+                <pd>数据流 ID。可以通过 <apiname keyref="createDataStream2" /> 获取。</pd>
             </plentry>
             <plentry>
                 <pt props="android">message</pt>

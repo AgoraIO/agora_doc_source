@@ -79,26 +79,49 @@
     CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
-  uid?: number
-  sentBitrate?: number
-  sentFrameRate?: number
-  captureFrameRate?: number
-  captureFrameWidth?: number
-  captureFrameHeight?: number
-  regulatedCaptureFrameRate?: number
-  regulatedCaptureFrameWidth?: number
-  regulatedCaptureFrameHeight?: number
-  encoderOutputFrameRate?: number
-  encodedFrameWidth?: number
-  encodedFrameHeight?: number
-  rendererOutputFrameRate?: number
-  targetBitrate?: number
-  targetFrameRate?: number
-  qualityAdaptIndication?: QualityAdaptIndication
-  encodedBitrate?: number
-  encodedFrameCount?: number
-  codecType?: VideoCodecType
-  txPacketLossRate?: number
+  
+  uid?: number;
+  
+  sentBitrate?: number;
+  
+  sentFrameRate?: number;
+  
+  captureFrameRate?: number;
+  
+  captureFrameWidth?: number;
+  
+  captureFrameHeight?: number;
+  
+  regulatedCaptureFrameRate?: number;
+  
+  regulatedCaptureFrameWidth?: number;
+  
+  regulatedCaptureFrameHeight?: number;
+  
+  encoderOutputFrameRate?: number;
+  
+  encodedFrameWidth?: number;
+  
+  encodedFrameHeight?: number;
+  
+  rendererOutputFrameRate?: number;
+  
+  targetBitrate?: number;
+  
+  targetFrameRate?: number;
+  
+  qualityAdaptIndication?: QualityAdaptIndication;
+  
+  encodedBitrate?: number;
+  
+  encodedFrameCount?: number;
+  
+  codecType?: VideoCodecType;
+  
+  txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
@@ -109,6 +132,12 @@
         public uint uid { set; get; }
         public int sentBitrate { set; get; }
         public int sentFrameRate { set; get; }
+        public int captureFrameRate { set; get; }
+        public int captureFrameWidth { set; get; }
+        public int captureFrameHeight { set; get; }
+        public int regulatedCaptureFrameRate { set; get; }
+        public int regulatedCaptureFrameWidth { set; get; 
+        public int regulatedCaptureFrameHeight { set; get; }
         public int encoderOutputFrameRate { set; get; }
         public int encodedFrameWidth { set; get; }
         public int encodedFrameHeight { set; get; }
@@ -120,28 +149,52 @@
         public int encodedFrameCount { set; get; }
         public VIDEO_CODEC_TYPE codecType { set; get; }
         public ushort txPacketLossRate { set; get; }
-    }</codeblock>
+        public CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel { set; get; }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalVideoStats {
+  
   uid?: number;
+  
   sentBitrate?: number;
+  
   sentFrameRate?: number;
+  
   captureFrameRate?: number;
+  
   captureFrameWidth?: number;
+  
   captureFrameHeight?: number;
+  
   regulatedCaptureFrameRate?: number;
+  
   regulatedCaptureFrameWidth?: number;
+  
   regulatedCaptureFrameHeight?: number;
+  
   encoderOutputFrameRate?: number;
+  
   encodedFrameWidth?: number;
+  
   encodedFrameHeight?: number;
+  
   rendererOutputFrameRate?: number;
+  
   targetBitrate?: number;
+  
   targetFrameRate?: number;
+  
   qualityAdaptIndication?: QualityAdaptIndication;
+  
   encodedBitrate?: number;
+  
   encodedFrameCount?: number;
+  
   codecType?: VideoCodecType;
+  
   txPacketLossRate?: number;
+  
+  captureBrightnessLevel?: CaptureBrightnessLevelType;
+
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
   const LocalVideoStats(
@@ -164,50 +217,75 @@
       this.encodedBitrate,
       this.encodedFrameCount,
       this.codecType,
-      this.txPacketLossRate});
+      this.txPacketLossRate,
+      this.captureBrightnessLevel});
 
   @JsonKey(name: 'uid')
   final int? uid;
+
   @JsonKey(name: 'sentBitrate')
   final int? sentBitrate;
+
   @JsonKey(name: 'sentFrameRate')
   final int? sentFrameRate;
+
   @JsonKey(name: 'captureFrameRate')
   final int? captureFrameRate;
+
   @JsonKey(name: 'captureFrameWidth')
   final int? captureFrameWidth;
+
   @JsonKey(name: 'captureFrameHeight')
   final int? captureFrameHeight;
+
   @JsonKey(name: 'regulatedCaptureFrameRate')
   final int? regulatedCaptureFrameRate;
+
   @JsonKey(name: 'regulatedCaptureFrameWidth')
   final int? regulatedCaptureFrameWidth;
+
   @JsonKey(name: 'regulatedCaptureFrameHeight')
   final int? regulatedCaptureFrameHeight;
+
   @JsonKey(name: 'encoderOutputFrameRate')
   final int? encoderOutputFrameRate;
+
   @JsonKey(name: 'encodedFrameWidth')
   final int? encodedFrameWidth;
+
   @JsonKey(name: 'encodedFrameHeight')
   final int? encodedFrameHeight;
+
   @JsonKey(name: 'rendererOutputFrameRate')
   final int? rendererOutputFrameRate;
+
   @JsonKey(name: 'targetBitrate')
   final int? targetBitrate;
+
   @JsonKey(name: 'targetFrameRate')
   final int? targetFrameRate;
+
   @JsonKey(name: 'qualityAdaptIndication')
   final QualityAdaptIndication? qualityAdaptIndication;
+
   @JsonKey(name: 'encodedBitrate')
   final int? encodedBitrate;
+
   @JsonKey(name: 'encodedFrameCount')
   final int? encodedFrameCount;
+
   @JsonKey(name: 'codecType')
   final VideoCodecType? codecType;
+
   @JsonKey(name: 'txPacketLossRate')
   final int? txPacketLossRate;
+
+  @JsonKey(name: 'captureBrightnessLevel')
+  final CaptureBrightnessLevelType? captureBrightnessLevel;
+
   factory LocalVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalVideoStatsFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalVideoStatsToJson(this);
 }
 </codeblock>

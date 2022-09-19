@@ -32,7 +32,7 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
@@ -49,21 +49,95 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
 
   EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c)
    : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
-  
+
   EchoTestConfiguration()
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class EchoTestConfiguration
+    {
+        public view_t view { set; get; }
+        public bool enableAudio { set; get; }
+        public bool enableVideo { set; get; }
+        public string token { set; get; }
+        public string channelId { set; get; }
+
+        public EchoTestConfiguration(view_t v, bool ea, bool ev, string t, string c)
+        {
+            view = v;
+            enableAudio = ea;
+            enableVideo = ev;
+            token = t;
+            channelId = c;
+        }
+
+        public EchoTestConfiguration()
+        {
+            view = 0;
+            enableAudio = true;
+            enableVideo = true;
+            token = "";
+            channelId = "";
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
+  const EchoTestConfiguration(
+      {this.view,
+      this.enableAudio,
+      this.enableVideo,
+      this.token,
+      this.channelId});
+
+  @JsonKey(name: 'view')
+  final int? view;
+
+  @JsonKey(name: 'enableAudio')
+  final bool? enableAudio;
+
+  @JsonKey(name: 'enableVideo')
+  final bool? enableVideo;
+
+  @JsonKey(name: 'token')
+  final String? token;
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$EchoTestConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EchoTestConfigurationToJson(this);
+}</codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>view</pt>
-                <pd>The view used to render the local user's video. This parameter is only applicable to scenarios testing video devices, that is, when <parmname>enableVideo</parmname> is <ph keyref="true" />.</pd>
+                <pd>The view used to render the local user's video. This parameter is only applicable to scenarios testing video devices, that is, when <ph>enableVideo</ph> is <ph keyref="true" />.</pd>
             </plentry>
             <plentry>
                 <pt>enableAudio</pt>

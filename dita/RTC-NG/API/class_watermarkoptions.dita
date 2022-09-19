@@ -50,11 +50,16 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
-  visibleInPreview?: boolean
-  positionInLandscapeMode?: Rectangle
-  positionInPortraitMode?: Rectangle
-  watermarkRatio?: WatermarkRatio
-  mode?: WatermarkFitMode
+  
+  visibleInPreview?: boolean;
+  
+  positionInLandscapeMode?: Rectangle;
+  
+  positionInPortraitMode?: Rectangle;
+  
+  watermarkRatio?: WatermarkRatio;
+  
+  mode?: WatermarkFitMode;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class WatermarkOptions
     {
@@ -83,10 +88,15 @@
         public WATERMARK_FIT_MODE mode { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class WatermarkOptions {
+  
   visibleInPreview?: boolean;
+  
   positionInLandscapeMode?: Rectangle;
+  
   positionInPortraitMode?: Rectangle;
+  
   watermarkRatio?: WatermarkRatio;
+  
   mode?: WatermarkFitMode;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
@@ -107,18 +117,16 @@
   final WatermarkRatio? watermarkRatio;
   @JsonKey(name: 'mode')
   final WatermarkFitMode? mode;
-  factory WatermarkOptions.fromJson(Map&lt;String, dynamic> json) =>
+  factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$WatermarkOptionsFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$WatermarkOptionsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p/>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>visibleInPreview</pt>
@@ -126,11 +134,9 @@
             </plentry>
             <plentry>
                 <pt>positionInLandscapeMode</pt>
-                <pd props="android">横屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle" />。</pd>
-                <pd props="cpp unity electron rn flutter">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION" /> 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle" />。</pd>
+                <pd props="android">横屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                <pd props="cpp unity electron rn flutter">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置横屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
                 <pd props="ios mac">横屏模式下，显示水印图片的区域。该参数包含以下成员：
-
-
                     <ul>
                     <li>x：水印相对左上角的横向偏移。</li>
                     <li>y：水印相对左上角的纵向偏移。</li>
@@ -140,12 +146,9 @@
             </plentry>
             <plentry>
                 <pt>positionInPortraitMode</pt>
-                <pd props="android">竖屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle" />。</pd>
-                <pd props="cpp unity electron rn flutter">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION" /> 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle" />。</pd>
+                <pd props="android">竖屏模式下，显示水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
+                <pd props="cpp unity electron rn flutter">水印的适配模式为 <ph keyref="FIT_MODE_COVER_POSITION"/> 时，用于设置竖屏模式下水印图片的区域。详见 <xref keyref="Rectangle"/>。</pd>
                 <pd props="ios mac">竖屏模式下，显示水印图片的区域。该参数包含以下成员：
-
-
-
                     <ul>
                     <li>x：水印相对左上角的横向偏移。</li>
                     <li>y：水印相对左上角的纵向偏移。</li>
@@ -155,9 +158,7 @@
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>watermarkRatio</pt>
-                <pd>水印的适配模式为 <ph keyref="FIT_MODE_USE_IMAGE_RATIO"
-                    /> 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"
-                    />。</pd>
+                <pd>水印的适配模式为 <ph keyref="FIT_MODE_USE_IMAGE_RATIO"/> 时，该参数可设置缩放模式下的水印坐标。详见 <xref keyref="WatermarkRatio"/>。</pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>mode</pt>
