@@ -42,8 +42,9 @@
 * 8. [（WIP）DITA 文件合规性检查](#WIPDITA-1)
 * 9. [DITA 文件自动在线构建 HTML 文档](#DITAHTML)
 	* 9.1. [监听发版分支](#-1)
-		* 9.1.1. [RTC 大重构 SDK](#RTCSDK)
-		* 9.1.2. [RTC 主版本 SDK](#RTCSDK-1)
+		* 9.1.1. [RTC 大重构 Native SDK](#RTCSDK)
+        * 9.1.2. [RTC 大重构框架 SDK](#RTCSDK)
+		* 9.1.3. [RTC 主版本 SDK](#RTCSDK-2)
 	* 9.2. [查看构建过程](#-1)
 	* 9.3. [获取压缩的文件包](#-1)
 
@@ -356,26 +357,46 @@ GitHub action 对指定的发版分支进行监听，分支有 PR 或 push 时�
 
 监听的发版分支由以下文件决定：
 
-####  9.1.1. <a name='RTCSDK'></a>RTC 大重构 SDK
+####  9.1.1. <a name='RTCSDK'></a>RTC 大重构 Native SDK
 
 [https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding.yml](https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
 
 如果需要更新监听分支，在文件中更新分支名即可。
 
-####  9.1.2. <a name='RTCSDK-1'></a>RTC 主版本 SDK
+####  9.1.2. <a name='RTCSDK-1'></a>RTC 大重构框架 SDK
+
+[https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/NG-SDK-Framework-Doc-Building.yml](https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/NG-SDK-Framework-Doc-Building.yml)
+
+####  9.1.3. <a name='RTCSDK-2'></a>RTC 主版本 SDK
 
 [https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml](https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
 
-如果需要更新监听分支，在文件中更新分支名即可。
+如果需要更新监听分支，在文件中更新分支名即可。例如：
+
+```yml
+
+# This workflow will use OxygenScript to build features.
+
+name: (NG SDK Frameworks)Awesome OxygenScript for DITA doc building
+
+on:
+    push:
+        branches: ["release/rtc-ng/4.0.0-framework"]
+
+    pull_request:
+        branches: ["release/rtc-ng/4.0.0-framework"]
+```
 
 ###  9.2. <a name='-1'></a>查看构建过程
 
 在 GitHub Actions 页面，进入触发的 build workflow 中，即可查看构建报告：
 
-RTC 大重构 SDK：[https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
+RTC 大重构 Native SDK：[https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
+
+RTC 大重构 框架 SDK：[https://github.com/AgoraDoc/doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml](https://github.com/AgoraDoc/doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
 
 RTC 主版本 SDK：[https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
 
-###  9.3. <a name='-1'></a>获取压缩的文件包
+###  9.3. <a name='-1'></a>获取压缩的 HTML 文件包
 
-在 [https://github.com/AgoraDoc/doc_source/releases/tag/main](https://github.com/AgoraDoc/doc_source/releases/tag/main) 页面获取最新的文件包。
+在 [https://github.com/AgoraDoc/doc_source/releases/tag/main](https://github.com/AgoraDoc/doc_source/releases/tag/main) 页面获取最新的 HTML 文件包。该文件包可直接上传后台生成 API 参考。
