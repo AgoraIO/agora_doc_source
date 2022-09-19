@@ -17,7 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
                    mirror:(AgoraVideoMirrorMode)mirror;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract setLocalRenderMode(renderMode: RenderModeType, mirrorMode?: VideoMirrorModeType): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLocalRenderMode(
+    renderMode: RenderModeType,
+    mirrorMode?: VideoMirrorModeType
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLocalRenderMode(RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setLocalRenderMode(
     renderMode: RenderModeType,
@@ -32,7 +35,7 @@
             <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
             <note type="attention">
             <ul>
-            <li>Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
+            <li props="native electron rn flutter">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
             </ul> </note> </section>
         <section id="parameters">

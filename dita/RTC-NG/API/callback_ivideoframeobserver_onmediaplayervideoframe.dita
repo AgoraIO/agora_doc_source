@@ -16,10 +16,17 @@
             <codeblock props="android" outputclass="language-java">boolean onMediaPlayerVideoFrame(VideoFrame videoFrame, int mediaPlayerId);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMediaPlayerVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame mediaPlayerId:(NSInteger)mediaPlayerId;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onMediaPlayerVideoFrame(VideoFrame&amp; videoFrame, int mediaPlayerId) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onMediaPlayerVideoFrame?(
+    videoFrame: VideoFrame,
+    mediaPlayerId: number
+  ): boolean;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">  onMediaPlayerVideoFrame?(
+    videoFrame: VideoFrame,
+    mediaPlayerId: number
+  ): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame, int mediaPlayerId)?
+      onMediaPlayerVideoFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器并调用 <xref keyref="createMediaPlayer"/> 后， SDK 会在捕捉到每个视频帧时触发该回调。
@@ -41,12 +48,10 @@
         <section id="return_values">
             <title>返回值</title>
             <p id="return">
-                <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
-                </ul>
-            </p>
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
+            <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
+            </ul> </p>
         </section>
-        
     </refbody>
 </reference>

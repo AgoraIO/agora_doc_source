@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_echotestconfiguration">
-    <title><ph keyref="EchoTestConfiguration"/></title>
+    <title><ph keyref="EchoTestConfiguration" /></title>
     <shortdesc id="short"><ph id="shortdesc">音视频通话回路测试的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -32,7 +32,7 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
@@ -49,19 +49,91 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
 
   EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c)
    : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
-  
+
   EchoTestConfiguration()
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class EchoTestConfiguration
+    {
+        public view_t view { set; get; }
+        public bool enableAudio { set; get; }
+        public bool enableVideo { set; get; }
+        public string token { set; get; }
+        public string channelId { set; get; }
+
+        public EchoTestConfiguration(view_t v, bool ea, bool ev, string t, string c)
+        {
+            view = v;
+            enableAudio = ea;
+            enableVideo = ev;
+            token = t;
+            channelId = c;
+        }
+
+        public EchoTestConfiguration()
+        {
+            view = 0;
+            enableAudio = true;
+            enableVideo = true;
+            token = "";
+            channelId = "";
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
+  const EchoTestConfiguration(
+      {this.view,
+      this.enableAudio,
+      this.enableVideo,
+      this.token,
+      this.channelId});
+
+  @JsonKey(name: 'view')
+  final int? view;
+
+  @JsonKey(name: 'enableAudio')
+  final bool? enableAudio;
+
+  @JsonKey(name: 'enableVideo')
+  final bool? enableVideo;
+
+  @JsonKey(name: 'token')
+  final String? token;
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+      _$EchoTestConfigurationFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$EchoTestConfigurationToJson(this);
+}</codeblock></p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>view</pt>
@@ -71,22 +143,22 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
                 <pt>enableAudio</pt>
                 <pd>是否开启音频设备：
                     <ul>
-                    <li><ph keyref="true"/>: (默认) 开启音频设备。如需测试音频设备，请设为 <ph keyref="true"/>。</li>
-                    <li><ph keyref="false"/>: 关闭音频设备。</li>
+                    <li><ph keyref="true" />: (默认) 开启音频设备。如需测试音频设备，请设为 <ph keyref="true" />。</li>
+                    <li><ph keyref="false" />: 关闭音频设备。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>enableVideo</pt>
                 <pd>是否开启视频设备：
-                        
+
                     <ul>
-                    <li><ph keyref="true"/>: (默认) 开启视频设备。如需测试视频设备，请设为 <ph keyref="true"/>。</li>
-                    <li><ph keyref="false"/>: 关闭视频设备。</li>
+                    <li><ph keyref="true" />: (默认) 开启视频设备。如需测试视频设备，请设为 <ph keyref="true" />。</li>
+                    <li><ph keyref="false" />: 关闭视频设备。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>token</pt>
-                <pd>用于保证音视频通话回路测试安全性的 Token。如果你在 Agora 控制台未启用 App 证书，则不需要向该参数传值；如果你在 Agora 控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考<xref keyref="guide-token">使用 Token 鉴权</xref>。</pd>
+                <pd>用于保证音视频通话回路测试安全性的 Token。如果你在 Agora 控制台未启用 App 证书，则不需要向该参数传值；如果你在 Agora 控制台已启用 App 证书，则必须向该参数传入 Token，且在你生成 Token 时使用的 <codeph>uid</codeph> 必须为 0xFFFFFFFF，使用的频道名必须为标识每个音视频通话回路测试的频道名。服务端生成 Token 的方式请参考<xref keyref="guide-token"/>。</pd>
             </plentry>
             <plentry>
                 <pt>channelId</pt>

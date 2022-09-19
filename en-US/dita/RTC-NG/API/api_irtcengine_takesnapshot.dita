@@ -16,14 +16,15 @@
             <codeblock props="android" outputclass="language-java">public abstract int takeSnapshot(int uid, String filePath);</codeblock>
             <codeblock props="ios mac">- (NSInteger)takeSnapshot:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshot(uid_t uid, const char* filePath)  = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshot(config: SnapShotConfig): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshot(SnapShotConfig config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshot(config: SnapShotConfig): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshot(SnapShotConfig config);</codeblock></p>
+            <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshot(uint uid, string filePath);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshot({required int uid, required String filePath});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p id="desc1">This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
-            <p id="desc2"><ph>The method is asynchronous, and the SDK has not taken the snapshot when the method call returns. </ph><ph props="native">After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</ph></p>
+            <p id="desc2" props="native unity electron flutter">The method is asynchronous, and the SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
+            <p props="rn">The SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
             <note type="attention">
             <ul>
             <li>Call this method after joining a channel.</li>
@@ -33,7 +34,7 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry id="uid" props="native">
+            <plentry id="uid">
                 <pt>uid</pt>
                 <pd>The user ID. Set uid as 0 if you want to take a snapshot of the local user's video.</pd>
             </plentry>
@@ -41,17 +42,13 @@
                 <pt>filePath</pt>
                 <pd>
                     <p>The local path (including filename extensions) of the snapshot. For example:<ul>
-                    <li props="cpp unity">Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
-                    <li props="cpp ios unity">iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
-                    <li props="cpp mac unity">macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
-                    <li props="cpp android unity">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                    <li props="cpp unity flutter electron">Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
+                    <li props="cpp ios unity flutter rn">iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                    <li props="cpp mac unity flutter electron">macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
+                    <li props="cpp android unity flutter rn">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
                     </ul>Ensure that the path you specify exists and is writable.</p>
                 </pd>
             </plentry>
-                <plentry props="unity rn electron flutter">
-                    <pt>config</pt>
-                    <pd>The configuration of the snaptshot, see <xref keyref="SnapShotConfig" />.</pd>
-                </plentry>
             </parml> </section>
         <section id="return_values" props="native unity rn electron">
             <title>Returns</title>

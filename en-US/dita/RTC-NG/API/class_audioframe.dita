@@ -83,7 +83,16 @@
                    avsync_type(0) {}
   };
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class AudioFrame {
+  type?: AudioFrameType;
+  samplesPerChannel?: number;
+  bytesPerSample?: BytesPerSample;
+  channels?: number;
+  samplesPerSec?: number;
+  buffer?: Uint8Array;
+  renderTimeMs?: number;
+  avsync_type?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class AudioFrame
     {
         public AudioFrame()
@@ -120,13 +129,31 @@
         public long renderTimeMs { set; get; }
         public int avsync_type { set; get; }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioFrame {
+  type?: AudioFrameType;
+  samplesPerChannel?: number;
+  bytesPerSample?: BytesPerSample;
+  channels?: number;
+  samplesPerSec?: number;
+  buffer?: Uint8Array;
+  renderTimeMs?: number;
+  avsync_type?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class AudioFrame {
+  const AudioFrame(
+      {this.type,
+      this.samplesPerChannel,
+      this.bytesPerSample,
+      this.channels,
+      this.samplesPerSec,
+      this.buffer,
+      this.renderTimeMs,
+      this.avsyncType});</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity rn electron flutter">
                 <pt>type</pt>
                 <pd>
                     <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE" />.</p>
@@ -141,38 +168,37 @@
                 <pd>The number of bytes per audio sample, which is usually 16-bit (2 bytes).</pd>
             </plentry>
             <plentry>
-                <pt><ph props="cpp ios mac unity">channels</ph><ph props="android">channelNums</ph></pt>
+                <pt><ph props="cpp ios mac unity electron rn flutter">channels</ph><ph props="android">channelNums</ph></pt>
                 <pd>
-                    <p>The number of audio channels (the data are interleaved if it is stereo).
-                    <ul id="ul_zxz_2wt_r4b">
+                    <p>The number of audio channels (the data are interleaved if it is stereo).<ul id="ul_zxz_2wt_r4b">
                     <li>1: Mono.</li>
                     <li>2: Stereo.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity">samplesPerSec</pt>
+                <pt props="cpp ios mac unity electron rn flutter">samplesPerSec</pt>
                 <pt props="android">sampleRataHz</pt>
                 <pd>The number of samples per channel in the audio frame.</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac">buffer</pt>
+                <pt props="cpp ios mac electron rn flutter">buffer</pt>
                     <pt props="android">bytes</pt>
                 <pt props="unity">RawBuffer</pt>
                 <pd>
                     <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
-                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
+                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> ×<codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity ios mac">
+            <plentry props="cpp unity ios mac rn electron flutter">
                 <pt>renderTimeMs</pt>
                 <pd>
                     <p>The timestamp (ms) of the external audio frame.</p>
                     <p>You can use this timestamp to restore the order of the captured audio frame, and synchronize audio and video frames in video scenarios, including scenarios where external video sources are used.</p>
                 </pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
-                <pt><ph props="ios mac">avsyncType</ph> <ph props="cpp unity">avsync_type</ph> </pt>
+            <plentry props="ios mac cpp unity flutter electron rn">
+                <pt><ph props="ios mac flutter">avsyncType</ph> <ph props="cpp unity electron rn">avsync_type</ph> </pt>
                 <pd>Reserved for future use.</pd>
             </plentry>
             <plentry props="android">

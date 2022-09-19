@@ -50,15 +50,23 @@
     }
     </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioVolumeInfo {
-  uid?: number
-  volume?: number
-  vad?: number
-  voicePitch?: number
+  
+  uid?: number;
+  
+  volume?: number;
+  
+  vad?: number;
+  
+  voicePitch?: number;
 }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class AudioVolumeInfo {
+  
   uid?: number;
+  
   volume?: number;
+  
   vad?: number;
+  
   voicePitch?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
@@ -84,22 +92,20 @@
             <plentry>
                 <pt>uid</pt>
                 <pd>
-                    <p>The user ID.
-                    <ul id="ul_pfj_4dt_rqb">
+                    <p>The user ID.<ul id="ul_pfj_4dt_rqb">
                     <li>In the local user's callback, <parmname>uid</parmname> = 0.</li>
-                    <li>In the remote users' callback, <parmname>uid</parmname> is the user ID of a remote user whose instantaneous volume is one of the three highest.</li>
+                    <li>In the remote users' callback, <parmname>uid</parmname> is the user<parmname> ID</parmname> of a remote user whose instantaneous volume is one of the three highest.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). </ph><ph props="native">If the user calls <xref keyref="startAudioMixing2" /> , the value of <parmname>volume</parmname> is the <parmname>volume</parmname> after audio mixing.</ph></pd>
+                <pd><ph>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). </ph><ph props="native">If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> is the volume after audio mixing.</ph></pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>
                 <pd>
-                    <p>Voice activity status of the local user.
-                    <ul>
+                    <p>Voice activity status of the local user.<ul>
                     <li>0: The local user is not speaking.</li>
                     <li>1: The local user is speaking.</li>
                     </ul> </p>
@@ -109,10 +115,10 @@
                     <li>To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
                     </ul> </note> </pd>
             </plentry>
-            <plentry props="native electron rn unity">
+            <plentry>
                 <pt>voicePitch</pt>
                 <pd>
-                    <p>The voice pitch (Hz) of the local user. The value ranges between 0.0 and 4000.0.</p>
+                    <p>The voice pitch of the local user. The value ranges between 0.0 and 4000.0.</p>
                     <note type="attention">The <parmname>voicePitch</parmname> parameter does not report the voice pitch of remote users. In the remote users' callback, the value of <parmname>voicePitch</parmname> is always 0.0.</note>
                 </pd>
             </plentry>

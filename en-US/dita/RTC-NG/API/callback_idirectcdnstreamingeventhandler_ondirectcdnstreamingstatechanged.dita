@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_idirectcdnstreamingeventhandler_ondirectcdnstreamingstatechanged">
-    <title><ph keyref="onDirectCdnStreamingStateChanged"/></title>
+    <title><ph keyref="onDirectCdnStreamingStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the CDN streaming state changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onDirectCdnStreamingStateChanged"/>
+                <indexterm keyref="onDirectCdnStreamingStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -23,30 +23,35 @@
   (void)error;
   (void)message;
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onDirectCdnStreamingStateChanged?(state: DirectCdnStreamingState, error: DirectCdnStreamingError, message: string): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"> public virtual void OnDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, string message) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export abstract class IDirectCdnStreamingEventHandler {
-  onDirectCdnStreamingStateChanged?(
+            <codeblock props="electron" outputclass="language-typescript">  onDirectCdnStreamingStateChanged?(
     state: DirectCdnStreamingState,
     error: DirectCdnStreamingError,
     message: string
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="unity" outputclass="language-csharp"> public virtual void OnDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, string message) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onDirectCdnStreamingStateChanged?(
+    state: DirectCdnStreamingState,
+    error: DirectCdnStreamingError,
+    message: string
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(
+      DirectCdnStreamingState state,
+      DirectCdnStreamingError error,
+      String message)? onDirectCdnStreamingStateChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>When the host directly pushes streams to the CDN, if the streaming state changes, the SDK triggers this callback to report the changed streaming state, error codes, and other information. You can troubleshoot issues by referring to this callback.</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>state</pt>
-                <pd>The current CDN streaming state. See <xref keyref="DIRECT_CDN_STREAMING_STATE"/>.</pd>
+                <pd>The current CDN streaming state. See <xref keyref="DIRECT_CDN_STREAMING_STATE" />.</pd>
             </plentry>
             <plentry>
                 <pt>error</pt>
-                <pd>The reason for the CDN streaming error. See <xref keyref="DIRECT_CDN_STREAMING_ERROR"/>.</pd>
+                <pd>The reason for the CDN streaming error. See <xref keyref="DIRECT_CDN_STREAMING_ERROR" />.</pd>
             </plentry>
             <plentry>
                 <pt>message</pt>

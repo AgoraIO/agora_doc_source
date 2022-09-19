@@ -10,9 +10,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class VideoDeviceInfo {
+  deviceId?: string;
+  deviceName?: string;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export class VideoDeviceInfo {
+  deviceId?: string;
+  deviceName?: string;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoDeviceInfo {
   const VideoDeviceInfo({this.deviceId, this.deviceName});
 
@@ -20,9 +26,9 @@
   final String? deviceId;
   @JsonKey(name: 'deviceName')
   final String? deviceName;
-  factory VideoDeviceInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory VideoDeviceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoDeviceInfoFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$VideoDeviceInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoDeviceInfoToJson(this);
 }
 </codeblock> </p>
         </section>
@@ -33,7 +39,7 @@
                 <pt>deviceId</pt>
                 <pd>设备 ID。</pd>
             </plentry>
-            <plentry  id="name">
+            <plentry id="name">
                 <pt>deviceName</pt>
                 <pd>设备名称。</pd>
             </plentry>

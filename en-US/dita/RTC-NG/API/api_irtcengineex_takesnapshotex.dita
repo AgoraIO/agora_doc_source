@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex">
-    <title>takeSnapshotEx</title>
+    <title><ph keyref="takeSnapshotEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">Takes a snapshot of a video stream.</ph></shortdesc>
     <prolog>
         <metadata>
@@ -17,14 +17,26 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const char* filePath)  = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshotEx(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshotEx(RtcConnection connection, uint uid, string filePath);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshotEx(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshotEx(
+      {required RtcConnection connection,
+      required int uid,
+      required String filePath});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p conkeyref="takeSnapshot/desc1" />
-            <p conkeyref="takeSnapshot/desc2" />
+            <p conkeyref="takeSnapshot/desc2" props="native unity electron flutter" />
+            <p props="rn">The SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
             <note type="attention">
             <ul>
             <li>Call this method after the <xref keyref="joinChannelEx" /> method.</li>
@@ -47,7 +59,7 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

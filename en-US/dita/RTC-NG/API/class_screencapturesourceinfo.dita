@@ -31,15 +31,23 @@
   ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
-  type?: ScreenCaptureSourceType
-  sourceId?: any
-  sourceName?: string
-  thumbImage?: ThumbImageBuffer
-  iconImage?: ThumbImageBuffer
-  processPath?: string
-  sourceTitle?: string
-  primaryMonitor?: boolean
-  isOccluded?: boolean
+  
+  type?: ScreenCaptureSourceType;
+  
+  sourceId?: any;
+  
+  sourceName?: string;
+  
+  thumbImage?: ThumbImageBuffer;
+  
+  iconImage?: ThumbImageBuffer;
+  
+  processPath?: string;
+  
+  sourceTitle?: string;
+  
+  primaryMonitor?: boolean;
+
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureSourceInfo
     {
@@ -48,7 +56,6 @@
         public string sourceName { set; get; }
         public ThumbImageBuffer thumbImage { set; get; }
         public ThumbImageBuffer iconImage { set; get; }
-
         public string processPath { set; get; }
         public string sourceTitle { set; get; }
         public bool primaryMonitor { set; get; }
@@ -65,7 +72,25 @@
             iconImage = new ThumbImageBuffer();
         }
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
+  
+  type?: ScreenCaptureSourceType;
+  
+  sourceId?: any;
+  
+  sourceName?: string;
+  
+  thumbImage?: ThumbImageBuffer;
+  
+  iconImage?: ThumbImageBuffer;
+  
+  processPath?: string;
+  
+  sourceTitle?: string;
+  
+  primaryMonitor?: boolean;
+
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
   const ScreenCaptureSourceInfo(
       {this.type,
@@ -75,8 +100,7 @@
       this.iconImage,
       this.processPath,
       this.sourceTitle,
-      this.primaryMonitor,
-      this.isOccluded});
+      this.primaryMonitor;
 
   @JsonKey(name: 'type')
   final ScreenCaptureSourceType? type;
@@ -94,8 +118,6 @@
   final String? sourceTitle;
   @JsonKey(name: 'primaryMonitor')
   final bool? primaryMonitor;
-  @JsonKey(name: 'isOccluded')
-  final bool? isOccluded;
   factory ScreenCaptureSourceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenCaptureSourceInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenCaptureSourceInfoToJson(this);
