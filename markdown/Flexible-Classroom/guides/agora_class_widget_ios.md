@@ -18,73 +18,73 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWi
 
 1. 在 AgoraCountdownTimerWidget 中引入 `AgoraWidget` 库：
 
-    ```swift
-    import AgoraWidget
-    ```
+   ```swift
+   import AgoraWidget
+   ```
 
 2. 在 `onWidgetDidLoad` 方法中初始化 Widget 的界面与数据：
 
-    ```swift
-    public override func onWidgetDidLoad() {
-        super.onWidgetDidLoad()
-        initViews()
-        initConstraints()
-        updateRoomData()
-        updateViewData()
-        updateViewFrame()
-
-        log(content: info.roomProperties?.jsonString() ?? "nil",
-            extra: nil,
-            type: .info)
-    }
-    ```
+   ```swift
+   public override func onWidgetDidLoad() {
+       super.onWidgetDidLoad()
+       initViews()
+       initConstraints()
+       updateRoomData()
+       updateViewData()
+       updateViewFrame()
+        
+       log(content: info.roomProperties?.jsonString() ?? "nil",
+           extra: nil,
+           type: .info)
+   }
+   ```
 
 3. 监听 `onWidgetRoomPropertiesUpdated` 与 `onMessageReceived` 方法，进行数据更新：
 
-    ```swift
-    public override func onWidgetRoomPropertiesUpdated(_ properties: [String : Any],
-                                                       cause: [String : Any]?,
-                                                       keyPaths: [String]) {
-        super.onWidgetRoomPropertiesUpdated(properties,
-                                            cause: cause,
-                                            keyPaths: keyPaths)
-        updateRoomData()
-        updateViewData()
-        shouldStartTime()
-
-        log(content: properties.jsonString() ?? "nil",
-            extra: cause?.jsonString(),
-            type: .info)
-    }
-
-    public override func onMessageReceived(_ message: String) {
-        super.onMessageReceived(message)
-
-        if let timestamp = message.toSyncTimestamp() {
-            objectCreateTimestamp = timestamp
-            initCurrentTimestamp()
-            shouldStartTime()
-        }
-
-        log(content: message,
-            type: .info)
-    }
-    ```
+   ```swift
+   public override func onWidgetRoomPropertiesUpdated(_ properties: [String : Any],
+                                                      cause: [String : Any]?,
+                                                      keyPaths: [String]) {
+       super.onWidgetRoomPropertiesUpdated(properties,
+                                           cause: cause,
+                                           keyPaths: keyPaths)
+       updateRoomData()
+       updateViewData()
+       shouldStartTime()
+        
+       log(content: properties.jsonString() ?? "nil",
+           extra: cause?.jsonString(),
+           type: .info)
+   }
+    
+   public override func onMessageReceived(_ message: String) {
+       super.onMessageReceived(message)
+        
+       if let timestamp = message.toSyncTimestamp() {
+           objectCreateTimestamp = timestamp
+           initCurrentTimestamp()
+           shouldStartTime()
+       }
+        
+       log(content: message,
+           type: .info)
+   }
+   ```
 
 4. 如果需要改动 Widget 尺寸，则通过 `sendMessage` 向外发出一条消息，由外部监听消息的父容器来更新 Widget 的尺寸：
 
-    ```swift
-    func updateViewFrame() {
-        let size = ["width": countdownView.neededSize.width,
-                    "height": countdownView.neededSize.height]
-
-        guard let message = ["size": size].jsonString() else {
-            return
-        }
-
-        sendMessage(message)
-    }
-    ```
+   ```swift
+   func updateViewFrame() {
+       let size = ["width": countdownView.neededSize.width,
+                   "height": countdownView.neededSize.height]
+        
+       guard let message = ["size": size].jsonString() else {
+           return
+       }
+        
+       sendMessage(message)
+   }
+   ```
 
 ### 2. 在 Agora Classroom SDK 中注册 Widget
 
@@ -104,12 +104,12 @@ let launchConfig = AgoraEduLaunchConfig(userName: userName,
                                         region: region.eduType,
                                         mediaOptions: mediaOptions,
                                         userProperties: nil)
-
+ 
 let widgetId = "countdownTimer"
-
+ 
 launchConfig.widgets[widgetId] = AgoraWidgetConfig(with: AgoraCountdownTimerWidget.self,
                                                    widgetId: widgetId)
-
+ 
 AgoraClassroomSDK.launch(launchConfig,
                          success: launchSuccessBlock,
                          failure: failureBlock)
@@ -121,113 +121,113 @@ AgoraClassroomSDK.launch(launchConfig,
 
 1. 通过 `AgoraEduContext.widget` 的 `addWidgetActivityObserver` 方法将` AgoraClassToolsViewController` 添加为 widget activity 的观察者，监听 activity 的回调：
 
-    ```swift
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        contextPool.room.registerRoomEventHandler(self)
-        contextPool.widget.add(self)
-    }
-    ```
+   ```swift
+   override func viewDidLoad() {
+       super.viewDidLoad()
+       contextPool.room.registerRoomEventHandler(self)
+       contextPool.widget.add(self)
+   }
+   ```
 
 2. 监听 activity 的回调：
 
-    ```swift
-    extension AgoraClassToolsViewController: AgoraWidgetActivityObserver {
-        // 收到 onWidgetActive 回调时，创建 Widget
-        func onWidgetActive(_ widgetId: String) {
-            createWidget(widgetId)
-        }
-
-        // 收到 `onWidgetInactive` 回调时，销毁 Widget
-        func onWidgetInactive(_ widgetId: String) {
-            releaseWidget(widgetId)
-        }
-    }
-    ```
+   ```swift
+   extension AgoraClassToolsViewController: AgoraWidgetActivityObserver {
+       // 收到 onWidgetActive 回调时，创建 Widget
+       func onWidgetActive(_ widgetId: String) {
+           createWidget(widgetId)
+       }
+        
+       // 收到 `onWidgetInactive` 回调时，销毁 Widget
+       func onWidgetInactive(_ widgetId: String) {
+           releaseWidget(widgetId)
+       }
+   }
+   ```
 
 3. 创建 AgoraCountdownTimer 的 Widget 对象并实现 Widget 在本地客户端的通讯：
 
-    ```swift
-    // 调用 createWidget 方法创建 AgoraCountdownTimer 的 Widget 对象
-    func createWidget(_ widgetId: String) {
-        let widgetController = contextPool.widget
-
-        guard widgetIdList.contains(widgetId),
-              // 调用 getWidgetConfig 获取 AgoraCountdownTimer 的 AgoraWidgetConfig
-              let config = widgetController.getWidgetConfig(widgetId) else {
-            return
-        }
-
-        if let _ = getWidget(widgetId) {
-            return
-        }
-
-        // 通过 AgoraWidgetContext 的 addObserverForWidgetSyncFrame 将 AgoraClassToolsViewController 添加为 Widget syncFrame 的观察者，监听 syncFrame 的回调
-        widgetController.addObserver(forWidgetSyncFrame: self,
-                                     widgetId: widgetId)
-        // 通过 AgoraWidgetContext 的  addWidgetMessageObserver 将 AgoraClassToolsViewController 添加为 widget message 的观察者，监听 message 的回调
-        widgetController.add(self,
-                             widgetId: widgetId)
-
-        let widget = widgetController.create(config)
-
-        view.addSubview(widget.view)
-
-        switch widgetId {
-        case PollWidgetId:
-            pollWidget = widget
-        case CountdownTimerWidgetId:
-            countdownTimerWidget = widget
-        case PopupQuizWidgetId:
-            popupQuizWidget = widget
-        default:
-            return
-        }
-
-        sendWidgetCurrentTimestamp(widgetId)
-    }
-
-    func sendWidgetCurrentTimestamp(_ widgetId: String) {
-        let syncTimestamp = contextPool.monitor.getSyncTimestamp()
-        let tsDic = ["syncTimestamp": syncTimestamp]
-
-        if let string = tsDic.jsonString() {
-            // 调用 sendMessage 方法，将当前时间戳发给 Widget
-            contextPool.widget.sendMessage(toWidget: widgetId,
-                                           message: string)
-        }
-    }
-    ```
+   ```swift
+   // 调用 createWidget 方法创建 AgoraCountdownTimer 的 Widget 对象
+   func createWidget(_ widgetId: String) {
+       let widgetController = contextPool.widget
+        
+       guard widgetIdList.contains(widgetId),
+             // 调用 getWidgetConfig 获取 AgoraCountdownTimer 的 AgoraWidgetConfig
+             let config = widgetController.getWidgetConfig(widgetId) else {
+           return
+       }
+        
+       if let _ = getWidget(widgetId) {
+           return
+       }
+        
+       // 通过 AgoraWidgetContext 的 addObserverForWidgetSyncFrame 将 AgoraClassToolsViewController 添加为 Widget syncFrame 的观察者，监听 syncFrame 的回调
+       widgetController.addObserver(forWidgetSyncFrame: self,
+                                    widgetId: widgetId)
+       // 通过 AgoraWidgetContext 的  addWidgetMessageObserver 将 AgoraClassToolsViewController 添加为 widget message 的观察者，监听 message 的回调
+       widgetController.add(self,
+                            widgetId: widgetId)
+        
+       let widget = widgetController.create(config)
+        
+       view.addSubview(widget.view)
+        
+       switch widgetId {
+       case PollWidgetId:
+           pollWidget = widget
+       case CountdownTimerWidgetId:
+           countdownTimerWidget = widget
+       case PopupQuizWidgetId:
+           popupQuizWidget = widget
+       default:
+           return
+       }
+        
+       sendWidgetCurrentTimestamp(widgetId)
+   }
+    
+   func sendWidgetCurrentTimestamp(_ widgetId: String) {
+       let syncTimestamp = contextPool.monitor.getSyncTimestamp()
+       let tsDic = ["syncTimestamp": syncTimestamp]
+        
+       if let string = tsDic.jsonString() {
+           // 调用 sendMessage 方法，将当前时间戳发给 Widget 
+           contextPool.widget.sendMessage(toWidget: widgetId,
+                                          message: string)
+       }
+   }
+   ```
 
 4. 监听 `syncFrame` 的回调方法：
 
-    ```swift
-    extension AgoraClassToolsViewController: AgoraWidgetSyncFrameObserver {
-        // 当 syncFrame 更新时，更新 Widget 的位置与尺寸
-        func onWidgetSyncFrameUpdated(_ syncFrame: CGRect,
-                                      widgetId: String) {
-            let size = getWidgetSize(widgetId)
-            updateWidgetFrame(widgetId,
-                              size: size)
-        }
-    }
-    ```
+   ```swift
+   extension AgoraClassToolsViewController: AgoraWidgetSyncFrameObserver {
+       // 当 syncFrame 更新时，更新 Widget 的位置与尺寸
+       func onWidgetSyncFrameUpdated(_ syncFrame: CGRect,
+                                     widgetId: String) {
+           let size = getWidgetSize(widgetId)
+           updateWidgetFrame(widgetId,
+                             size: size)
+       }
+   }
+   ```
 
 5. 监听 message 的回调方法：
 
-    ```swift
-    extension AgoraClassToolsViewController: AgoraWidgetMessageObserver {
-        // 当收到 message 回调时，AgoraClassToolsViewController 作为父容器来更新 Widget 的尺寸
-        func onMessageReceived(_ message: String,
-                               widgetId: String) {
-            if let size = parseSizeMessage(widgetId: widgetId,
-                                           message: message) {
-                updateWidgetFrame(widgetId,
-                                  size: size)
-            }
-        }
-    }
-    ```
+   ```swift
+   extension AgoraClassToolsViewController: AgoraWidgetMessageObserver {
+       // 当收到 message 回调时，AgoraClassToolsViewController 作为父容器来更新 Widget 的尺寸
+       func onMessageReceived(_ message: String,
+                              widgetId: String) {
+           if let size = parseSizeMessage(widgetId: widgetId,
+                                          message: message) {
+               updateWidgetFrame(widgetId,
+                                 size: size)
+           }
+       }
+   }
+   ```
 
 ## API 参考
 
