@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudiozone">
     <title><ph keyref="SpatialAudioZone"/></title>
-    <shortdesc id="short"><ph id="shortdesc">音障区域的设置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">隔声区域的设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -107,11 +107,11 @@
             <parml>
             <plentry>
                 <pt>zoneSetId</pt>
-                <pd>音障区域的 ID。</pd>
+                <pd>隔声区域的 ID。</pd>
             </plentry>
                 <plentry>
                     <pt>position</pt>
-                    <pd>音障区域的空间中心点。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                    <pd>隔声区域的空间中心点。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
                 </plentry>
                 <plentry>
                     <pt>forward</pt>
@@ -127,28 +127,25 @@
                 </plentry>
                 <plentry>
                     <pt>forwardLength</pt>
-                    <pd>将整个音障区域看做一个立方体，表示向前的边长，单位为 <xref
-                        keyref="setDistanceUnit"/> 中设定的游戏引擎单位长度。</pd>
+                    <pd>将整个隔声区域看做一个立方体，表示向前的边长，单位为 游戏引擎的单位长度。</pd>
                 </plentry>
                 <plentry>
                     <pt>rightLength</pt>
-                    <pd>将整个音障区域看做一个立方体，表示向右的边长，单位为 <apiname
-                        keyref="setDistanceUnit"/> 中设定的游戏引擎单位长度。</pd>
+                    <pd>将整个隔声区域看做一个立方体，表示向右的边长，单位为游戏引擎的单位长度。</pd>
                 </plentry>
                 <plentry>
                     <pt>upLength</pt>
-                    <pd>将整个音障区域看做一个立方体，表示向上的边长，单位为 <apiname
-                        keyref="setDistanceUnit"/> 中设定的游戏引擎单位长度。</pd>
+                    <pd>将整个隔声区域看做一个立方体，表示向上的边长，单位为游戏引擎的单位长度。</pd>
                 </plentry>
                 <plentry>
                     <pt>audioAttenuation</pt>
-                    <pd>音障区域以内的用户和外部用户互通时的声音衰减系数，取值范围为[0,1]。其中：
+                    <pd>隔声区域以内的用户和外部用户互通时的声音衰减系数，取值范围为 [0,1]。其中： 
                         <ul>
-            <li>0：广播模式，即音量和音色均不随距离衰减，无论距离远近，本地用户听到的音量和音色都无变化。</li>
-            <li>(0,0.5)：弱衰减模式，即音量和音色在传播过程中仅发生微弱衰减，跟真实环境相比，声音可以传播得更远。</li>
-            <li>0.5：（默认）模拟音量在真实环境下的衰减，效果等同于不设置 <parmname>audioAttenuation</parmname> 参数。</li>
-            <li>(0.5,1]：强衰减模式，即音量和音色在传播过程中发生迅速衰减。</li>
-            </ul></pd>
+                        <li>0：广播模式，即音量和音色均不随距离衰减，无论距离远近，本地用户听到的音量和音色都无变化。</li>
+                        <li>(0,0.5)：弱衰减模式，即音量和音色在传播过程中仅发生微弱衰减，跟真实环境相比，声音可以传播得更远。</li>
+                        <li>0.5：模拟音量在真实环境下的衰减，效果等同于不设置 <parmname>audioAttenuation</parmname> 参数。</li>
+                        <li>(0.5,1]：强衰减模式 (默认值为 1) ，即音量和音色在传播过程中发生迅速衰减。</li>
+                        </ul></pd>
                 </plentry>
             </parml> </section>
     </refbody>
