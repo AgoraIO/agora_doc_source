@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (CGFloat)setCameraZoomFactor:(CGFloat)zoomFactor;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraZoomFactor(float factor) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setCameraZoomFactor(factor: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCameraZoomFactor(float factor);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setCameraZoomFactor(factor: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraZoomFactor(double factor);</codeblock> </p>
@@ -32,12 +32,12 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android flutter unity rn">factor</pt>
+                <pt props="android flutter unity rn electron">factor</pt>
                 <pt props="ios mac">zoomFactor</pt>
                 <pd>The camera zoom ratio. The value ranges between 1.0 and the maximum zoom supported by the device. You can get the maximum zoom ratio supported by the device by calling the <xref keyref="getCameraMaxZoomFactor" /> method.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn">
+        <section id="return_values" props="native unity rn electron">
             <title>Returns</title>
             <ul>
             <li>The camera zoom <parmname>factor</parmname> value, if successful.</li>

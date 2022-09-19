@@ -32,11 +32,18 @@
   EncodedAudioFrameAdvancedSettings advancedSettings;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EncodedAudioFrameInfo {
-  codec?: AudioCodecType
-  sampleRateHz?: number
-  samplesPerChannel?: number
-  numberOfChannels?: number
-  advancedSettings?: EncodedAudioFrameAdvancedSettings
+  
+  codec?: AudioCodecType;
+  
+  sampleRateHz?: number;
+  
+  samplesPerChannel?: number;
+  
+  numberOfChannels?: number;
+  
+  advancedSettings?: EncodedAudioFrameAdvancedSettings;
+  
+  captureTimeMs?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class EncodedAudioFrameInfo
     {
@@ -46,6 +53,7 @@
             sampleRateHz = 0;
             samplesPerChannel = 0;
             numberOfChannels = 0;
+            captureTimeMs = 0;
         }
 
         public EncodedAudioFrameInfo(ref EncodedAudioFrameInfo rhs)
@@ -55,20 +63,34 @@
             samplesPerChannel = rhs.samplesPerChannel;
             numberOfChannels = rhs.numberOfChannels;
             advancedSettings = rhs.advancedSettings;
+            captureTimeMs = rhs.captureTimeMs;
         }
 
         public AUDIO_CODEC_TYPE codec { set; get; }
+
         public int sampleRateHz { set; get; }
+
         public int samplesPerChannel { set; get; }
+
         public int numberOfChannels { set; get; }
+
         public EncodedAudioFrameAdvancedSettings advancedSettings { set; get; }
-    }</codeblock>
+
+        public int64_t captureTimeMs;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class EncodedAudioFrameInfo {
+  
   codec?: AudioCodecType;
+  
   sampleRateHz?: number;
+  
   samplesPerChannel?: number;
+  
   numberOfChannels?: number;
+  
   advancedSettings?: EncodedAudioFrameAdvancedSettings;
+  
+  captureTimeMs?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class EncodedAudioFrameInfo {
   const EncodedAudioFrameInfo(
@@ -76,20 +98,30 @@
       this.sampleRateHz,
       this.samplesPerChannel,
       this.numberOfChannels,
-      this.advancedSettings});
+      this.advancedSettings,
+      this.captureTimeMs});
 
   @JsonKey(name: 'codec')
   final AudioCodecType? codec;
+
   @JsonKey(name: 'sampleRateHz')
   final int? sampleRateHz;
+
   @JsonKey(name: 'samplesPerChannel')
   final int? samplesPerChannel;
+
   @JsonKey(name: 'numberOfChannels')
   final int? numberOfChannels;
+
   @JsonKey(name: 'advancedSettings')
   final EncodedAudioFrameAdvancedSettings? advancedSettings;
+
+  @JsonKey(name: 'captureTimeMs')
+  final int? captureTimeMs;
+
   factory EncodedAudioFrameInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$EncodedAudioFrameInfoFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$EncodedAudioFrameInfoToJson(this);
 }</codeblock>
             </p>
@@ -100,7 +132,7 @@
             <plentry>
                 <pt props="cpp unity electron rn flutter">codec</pt>
                 <pt props="ios mac">codecType</pt>
-                <pd>Audio Codec type: <xref keyref="AUDIO_CODEC_TYPE" />.</pd>
+                <pd>Audio Codec type: <xref keyref="AUDIO_CODEC_TYPE" /></pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity electron rn flutter">sampleRateHz</pt>
@@ -118,7 +150,11 @@
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>advancedSettings</pt>
-                <pd>This function is not currently supported.</pd>
+                <pd>This function is currently not supported.</pd>
+            </plentry>
+            <plentry props="electron unity rn flutter">
+                    <pt>captureTimeMs</pt>
+                    <pd>The Unix timestamp (ms) for capturing the external encoded video frames.</pd>
             </plentry>
             </parml> </section>
     </refbody>

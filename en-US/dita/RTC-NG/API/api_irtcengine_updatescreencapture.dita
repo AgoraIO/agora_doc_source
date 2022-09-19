@@ -18,30 +18,31 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCapture(const ScreenCaptureParameters2&amp; captureParams) = 0;
 </codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p />
+            <note type="attention">
+            <p props="cpp rn unity flutter">This method applies to Android and iOS only.</p></note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="ios">parameters</pt>
-                <pt props="cpp">captureParams</pt>
+                <pt props="cpp electron unity rn flutter">captureParams</pt>
                 <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters2" />.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="ios cpp electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul conkeyref="startScreenCaptureByDisplayId/err" props="cpp mac unity">
-                <li />
-                </ul> </li>
+            <li>&lt; 0: Failure.<ul conkeyref="startScreenCaptureByDisplayId/err" props="ios cpp rn unity electron">
+                    <li />
+                    </ul> </li>
             </ul> </section>
     </refbody>
 </reference>

@@ -19,9 +19,21 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options) = 0;
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract setColorEnhanceOptions(
+    enabled: boolean,
+    options: ColorEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetColorEnhanceOptions(bool enabled, ColorEnhanceOptions options, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setColorEnhanceOptions(
+    enabled: boolean,
+    options: ColorEnhanceOptions,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setColorEnhanceOptions(
+      {required bool enabled,
+      required ColorEnhanceOptions options,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>The video images captured by the camera can have color distortion.  The color enhancement feature intelligently adjusts video characteristics such as saturation and contrast to enhance the video color richness and color reproduction, making the video more vivid.</p>
@@ -39,7 +51,7 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp">enabled</pt>
+                <pt props="android cpp unity electron rn flutter">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable color enhancement:<ul>
                     <li><codeph><ph keyref="true" /></codeph> Enable color enhancement.</li>
@@ -50,8 +62,12 @@
                 <pt>options</pt>
                 <pd>The color enhancement options. See <xref keyref="ColorEnhanceOptions" />.</pd>
             </plentry>
+                <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp rn unity electron flutter">
+                    <pt />
+                    <pd />
+                </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
