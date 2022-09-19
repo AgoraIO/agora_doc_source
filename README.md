@@ -22,7 +22,32 @@
 
 [![(NG SDK Frameworks)Awesome OxygenScript for DITA doc building](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
 
+<!-- TOC -->
 
+- [基于 DITA 的文档内容仓库](#基于-dita-的文档内容仓库)
+  - [概览](#概览)
+    - [DITA map 架构](#dita-map-架构)
+    - [内容重用机制](#内容重用机制)
+  - [API 注释自动化协作规范](#api-注释自动化协作规范)
+    - [代码配置：打 Tag](#代码配置打-tag)
+      - [方法：api{-类名称}-C++ 原型{n}](#方法api-类名称-c-原型n)
+      - [回调 callback{-类名称}-C++ 原型](#回调-callback-类名称-c-原型)
+      - [类（结构体） class-类名称-C++ 原型](#类结构体-class-类名称-c-原型)
+      - [枚举 enum-枚举类名称](#枚举-enum-枚举类名称)
+    - [DITA 文件命名规则](#dita-文件命名规则)
+  - [自动检查 API 文档中的原型与代码是否一致](#自动检查-api-文档中的原型与代码是否一致)
+  - [API 文档代码原型从中文 DITA 文件自动同步到英文 DITA 文件](#api-文档代码原型从中文-dita-文件自动同步到英文-dita-文件)
+  - [从 API 文档自动构建用于自动化填充代码注释的文档模板](#从-api-文档自动构建用于自动化填充代码注释的文档模板)
+  - [（Beta）API 原型自动填充](#betaapi-原型自动填充)
+  - [DITA 文件自动在线构建 HTML 文档](#dita-文件自动在线构建-html-文档)
+    - [监听发版分支](#监听发版分支)
+      - [RTC 大重构 Native SDK](#rtc-大重构-native-sdk)
+      - [RTC 大重构框架 SDK](#rtc-大重构框架-sdk)
+      - [RTC 主版本 SDK](#rtc-主版本-sdk)
+    - [查看构建过程](#查看构建过程)
+    - [获取压缩的 HTML 文件包](#获取压缩的-html-文件包)
+
+<!-- /TOC -->
 
 ## 概览
 
