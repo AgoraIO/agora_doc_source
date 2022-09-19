@@ -19,14 +19,23 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onRecordEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void OnRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onRecordAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecordAudioEncodedFrame(IntPtr frameBufferPtr, int length,
                                                     EncodedAudioFrameInfo audioEncodedFrameInfo)
         {
 
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">onRecordAudioEncodedFrame?(
+    frameBuffer: Uint8Array,
+    length: number,
+    audioEncodedFrameInfo: EncodedAudioFrameInfo
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List frameBuffer, int length,
+      EncodedAudioFrameInfo audioEncodedFrameInfo)? onRecordAudioEncodedFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the encoded audio as <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>, you can get the encoded audio data of the local user from this callback.</p>
@@ -37,16 +46,16 @@
             <plentry>
                 <pt props="android">buffer</pt>
                 <pt props="ios mac">frameData</pt>
-                <pt props="cpp">frameBuffer</pt>
+                <pt props="cpp electron rn flutter">frameBuffer</pt>
                 <pt props="unity">frameBufferPtr</pt>
                 <pd>The audio buffer.</pd>
             </plentry>
-            <plentry props="cpp unity">
+            <plentry props="cpp electron unity rn flutter">
                 <pt>length</pt>
                 <pd>The data length (byte).</pd>
             </plentry>
-            <plentry props="ios mac cpp unity">
-                <pt props="cpp unity">audioEncodedFrameInfo</pt>
+            <plentry props="ios mac cpp electron unity rn flutter">
+                <pt props="cpp electron unity rn flutter">audioEncodedFrameInfo</pt>
                 <pt props="ios mac">info</pt>
                 <pd>Audio information after encoding. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
             </plentry>
@@ -64,12 +73,11 @@
             </plentry>
             <plentry props="android" id="codecType">
                 <pt>codecType</pt>
-                <pd>Audio encoding type:
-                    <ul>
-                    <li><ph keyref="AUDIO_CODEC_OPUS"/>(1): OPUS encoding format.</li>
-                    <li><ph keyref="AUDIO_CODEC_AACLC"/>(8): LC-AAC encoding format.</li>
-                    <li><ph keyref="AUDIO_CODEC_HEAAC"/>(9): HE-AAC encoding format.</li>
-                    <li><ph keyref="AUDIO_CODEC_HEAAC2"/>(11): HE-AAC v2 encoding format.</li>
+                <pd>Audio encoding type:<ul>
+                    <li><ph keyref="AUDIO_CODEC_OPUS"/>(1): OPUS.</li>
+                    <li><ph keyref="AUDIO_CODEC_AACLC"/>(8): LC-AAC.</li>
+                    <li><ph keyref="AUDIO_CODEC_HEAAC"/>(9): HE-AAC.</li>
+                    <li><ph keyref="AUDIO_CODEC_HEAAC2"/>(11): HE-AAC v2.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>

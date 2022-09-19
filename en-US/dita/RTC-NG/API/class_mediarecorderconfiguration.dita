@@ -38,7 +38,18 @@
   MediaRecorderConfiguration() : storagePath(NULL), containerFormat(FORMAT_MP4), streamType(STREAM_TYPE_BOTH), maxDurationMs(120000), recorderInfoUpdateInterval(0) {}
   MediaRecorderConfiguration(const char* path, MediaRecorderContainerFormat format, MediaRecorderStreamType type, int duration, int interval) : storagePath(path), containerFormat(format), streamType(type), maxDurationMs(duration), recorderInfoUpdateInterval(interval) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class MediaRecorderConfiguration {
+  
+  storagePath?: string;
+  
+  containerFormat?: MediaRecorderContainerFormat;
+  
+  streamType?: MediaRecorderStreamType;
+  
+  maxDurationMs?: number;
+  
+  recorderInfoUpdateInterval?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public struct MediaRecorderConfiguration {
         public string storagePath;
         public MediaRecorderContainerFormat containerFormat;
@@ -46,8 +57,47 @@
         public int maxDurationMs;
         public int recorderInfoUpdateInterval;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class MediaRecorderConfiguration {
+  
+  storagePath?: string;
+  
+  containerFormat?: MediaRecorderContainerFormat;
+  
+  streamType?: MediaRecorderStreamType;
+  
+  maxDurationMs?: number;
+  
+  recorderInfoUpdateInterval?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class MediaRecorderConfiguration {
+
+  const MediaRecorderConfiguration(
+      {this.storagePath,
+      this.containerFormat,
+      this.streamType,
+      this.maxDurationMs,
+      this.recorderInfoUpdateInterval});
+
+  @JsonKey(name: 'storagePath')
+  final String? storagePath;
+
+  @JsonKey(name: 'containerFormat')
+  final MediaRecorderContainerFormat? containerFormat;
+
+  @JsonKey(name: 'streamType')
+  final MediaRecorderStreamType? streamType;
+
+  @JsonKey(name: 'maxDurationMs')
+  final int? maxDurationMs;
+
+  @JsonKey(name: 'recorderInfoUpdateInterval')
+  final int? recorderInfoUpdateInterval;
+
+  factory MediaRecorderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$MediaRecorderConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaRecorderConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p />
@@ -67,12 +117,12 @@
             </plentry>
             <plentry>
                 <pt>containerFormat</pt>
-                <pd props="cpp ios mac unity flutter">The format of the recording file. See <xref keyref="MediaRecorderContainerFormat" />.</pd>
+                <pd props="cpp ios mac electron rn flutter unity">The format of the recording file. See <xref keyref="MediaRecorderContainerFormat" />.</pd>
                 <pd props="android">The format of the recording file. Only <apiname keyref="FORMAT_MP4" /> is supported.</pd>
             </plentry>
             <plentry>
                 <pt>streamType</pt>
-                <pd props="cpp ios mac unity flutter">The recording content. See <xref keyref="MediaRecorderStreamType" />.</pd>
+                <pd props="ios mac cpp rn unity electron flutter">The recording content. See <xref keyref="MediaRecorderStreamType" />.</pd>
                 <pd props="android">The recording content:<ul>
                     <li><apiname keyref="STREAM_TYPE_AUDIO" />: Only audio.</li>
                     <li><apiname keyref="STREAM_TYPE_VIDEO" />: Only video.</li>

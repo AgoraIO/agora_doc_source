@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_srcinfo">
-    <title><ph keyref="SrcInfo"/></title>
+    <title><ph keyref="SrcInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">媒体资源播放时的视频码率相关信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -21,8 +21,10 @@
   const char* name;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SrcInfo {
-  bitrateInKbps?: number
-  name?: string
+  
+  bitrateInKbps?: number;
+  
+  name?: string;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class SrcInfo
     {
@@ -30,7 +32,9 @@
         public string name { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class SrcInfo {
+  
   bitrateInKbps?: number;
+  
   name?: string;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class SrcInfo {
@@ -40,14 +44,14 @@
   final int? bitrateInKbps;
   @JsonKey(name: 'name')
   final String? name;
-  factory SrcInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory SrcInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SrcInfoFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$SrcInfoToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SrcInfoToJson(this);
 }
 </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>bitrateInKbps</pt>

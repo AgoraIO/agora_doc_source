@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_remotevideostats">
     <title><ph keyref="RemoteVideoStats" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The statistics of the remote video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of the remote video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -62,22 +62,38 @@
   int superResolutionType;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
-  uid?: number
-  delay?: number
-  width?: number
-  height?: number
-  receivedBitrate?: number
-  decoderOutputFrameRate?: number
-  rendererOutputFrameRate?: number
-  frameLossRate?: number
-  packetLossRate?: number
-  rxStreamType?: VideoStreamType
-  totalFrozenTime?: number
-  frozenRate?: number
-  avSyncTimeMs?: number
-  totalActiveTime?: number
-  publishDuration?: number
-  superResolutionType?: number
+
+  uid?: number;
+
+  delay?: number;
+
+  width?: number;
+
+  height?: number;
+
+  receivedBitrate?: number;
+
+  decoderOutputFrameRate?: number;
+
+  rendererOutputFrameRate?: number;
+
+  frameLossRate?: number;
+
+  packetLossRate?: number;
+
+  rxStreamType?: VideoStreamType;
+
+  totalFrozenTime?: number;
+
+  frozenRate?: number;
+
+  avSyncTimeMs?: number;
+
+  totalActiveTime?: number;
+
+  publishDuration?: number;
+
+  superResolutionType?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class RemoteVideoStats
     {
@@ -99,21 +115,37 @@
         public int superResolutionType { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class RemoteVideoStats {
+
   uid?: number;
+
   delay?: number;
+
   width?: number;
+
   height?: number;
+
   receivedBitrate?: number;
+
   decoderOutputFrameRate?: number;
+
   rendererOutputFrameRate?: number;
+
   frameLossRate?: number;
+
   packetLossRate?: number;
+
   rxStreamType?: VideoStreamType;
+
   totalFrozenTime?: number;
+
   frozenRate?: number;
+
   avSyncTimeMs?: number;
+
   totalActiveTime?: number;
+
   publishDuration?: number;
+
   superResolutionType?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RemoteVideoStats {
@@ -177,7 +209,7 @@
             <parml>
             <plentry>
                 <pt>uid</pt>
-                <pd>The ID of the remote user sending the video stream.</pd>
+                <pd>The user ID of the remote user sending the video stream.</pd>
             </plentry>
             <plentry>
                 <pt>delay</pt>
@@ -188,50 +220,48 @@
                         <dd>In scenarios where audio and video are synchronized, you can get the video delay data from <parmname>networkTransportDelay</parmname> and <parmname>jitterBufferDelay</parmname> in <xref keyref="RemoteAudioStats" />.</dd>
                     </dlentry>
                     </dl>
-                    <p>Delay (ms).</p>
+                    <p>The video delay (ms).</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>width</pt>
-                <pd>Width (pixels) of the video stream.</pd>
+                <pd>The width (pixels) of the video.</pd>
             </plentry>
             <plentry>
                 <pt>height</pt>
-                <pd>Height (pixels) of the video stream.</pd>
+                <pd>The height (pixels) of the video.</pd>
             </plentry>
             <plentry>
                 <pt>receivedBitrate</pt>
-                <pd>Bitrate (Kbps) received since the last count.</pd>
+                <pd>The bitrate (Kbps) of the remote video received since the last count.</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>receivedFramerate</pt>
-                <pd>Frame rate (fps) received since the last count.</pd>
+                <pd>The frame rate (Kbps) received since the last count.</pd>
             </plentry>
             <plentry>
                 <pt>decoderOutputFrameRate</pt>
-                <pd>The decoder output frame rate (fps) of the remote video.</pd>
+                <pd>The frame rate (fps) of decoding the remote video.</pd>
             </plentry>
             <plentry>
                 <pt>rendererOutputFrameRate</pt>
-                <pd>The render output frame rate (fps) of the remote video.</pd>
+                <pd>The frame rate (fps) of rendering the remote video.</pd>
             </plentry>
             <plentry>
                 <pt>frameLossRate</pt>
-                <pd>Remote video packet loss rate (%).</pd>
+                <pd>The packet loss rate (%) of the remote video.</pd>
             </plentry>
             <plentry>
                 <pt>packetLossRate</pt>
-                <pd>Packet loss rate (%) of the remote video stream after using the anti-packet-loss method.</pd>
+                <pd>The packet loss rate (%) of the remote video after using the anti-packet-loss technology.</pd>
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>The type of the remote video stream. </ph><ph props="ios mac cpp unity rn electron flutter">See <xref keyref="REMOTE_VIDEO_STREAM_TYPE" />.</ph>
-                    <p props="android">
+                <pd><ph>The type of the video stream. </ph><ph props="ios mac cpp unity rn electron flutter">See <xref keyref="VIDEO_STREAM_TYPE" />.</ph><p props="android">
                     <ul>
-                   <li><ph keyref="REMOTE_VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
-                   <li><ph keyref="REMOTE_VIDEO_STREAM_LOW" />(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
-               </ul>
-               </p>
+                    <li><ph keyref="VIDEO_STREAM_HIGH" />(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
+                    <li><ph keyref="VIDEO_STREAM_LOW" />(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+                    </ul> </p>
                 </pd>
             </plentry>
             <plentry>
@@ -240,13 +270,13 @@
             </plentry>
             <plentry>
                 <pt>frozenRate</pt>
-                <pd>The total video freeze time as a percentage (%) of the total time when the video is available. The video is considered available when the remote user neither stops sending the audio stream nor disables the audio module after joining the channel.</pd>
+                <pd>The total video freeze time as a percentage (%) of the total time the video is available. The video is considered available as long as that the remote user neither stops sending the video stream nor disables the video module after joining the channel.</pd>
             </plentry>
             <plentry>
                 <pt>totalActiveTime</pt>
                 <pd>
-                    <p>The total freeze time (ms) of the remote video stream after the remote user joins the channel.</p>
-                    <p>The total effective duration of the video is the duration of the call after the remote user or host joins the channel and neither stops sending the video stream nor disables the video module.</p>
+                    <p>The total active time (ms) of the video.</p>
+                    <p>As long as the remote user or host neither stops sending the video stream nor disables the video module after joining the channel, the video is available.</p>
                 </pd>
             </plentry>
             <plentry>
@@ -258,9 +288,9 @@
             <plentry>
                 <pt>superResolutionType</pt>
                 <pd>The state of super resolution:<ul>
-                            <li>&gt;0: Super resolution is enabled.</li>
-                            <li>=0: Super resolution is not enabled.</li></ul>
-                    </pd>
+                    <li>&gt;0: Super resolution is enabled.</li>
+                    <li>=0: Super resolution is not enabled.</li>
+                    </ul> </pd>
             </plentry>
             <plentry>
                 <pt>avSyncTimeMs</pt>
