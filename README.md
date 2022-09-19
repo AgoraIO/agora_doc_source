@@ -1,11 +1,27 @@
 # 基于 DITA 的文档内容仓库
 
 [![Awesome JSON CI build](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml)
+
+[![Awesome JSON CI build for NG Flutter SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml)
+
+[![Awesome JSON CI build for NG RN SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml)
+
+[![Awesome JSON CI build for NG Unity SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml)
+
+[![Awesome JSON CI build for NG electron SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml)
+
 [![Awesome prototype syncs](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml)
+
 [![Awesome DITA API doc prototype validation](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml)
+
 [![OxygenScript for DITA processing](https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml)
+
 [![Awesome OxygenScript for DITA doc building (CG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
+
 [![Awesome OxygenScript for DITA doc building (NG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
+
+[![(NG SDK Frameworks)Awesome OxygenScript for DITA doc building](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
+
 
 <!-- vscode-markdown-toc -->
 * 1. [概览](#)
@@ -39,7 +55,7 @@
 
 ##  1. <a name=''></a>概览
 
-DITA 文档体系架构如下。由于体量不大，暂不需要做 DITA Specialization。
+DITA 文档体系架构如下。由于体量不大，暂时不需要做 DITA Specialization。
 
 文档以 DITA 作为源，同时输出面向开发者的代码注释模板和文档：
 

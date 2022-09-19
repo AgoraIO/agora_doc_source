@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_getrecordingdeviceinfo">
     <title><ph keyref="getRecordingDeviceInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc"> <ph props="cpp">Retrieves the information of the audio recording device. </ph><ph props="unity electron flutter">Retrieves the volume of the audio recording device.</ph> </ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="cpp">Retrieves the information of the audio recording device. </ph><ph props="unity electron flutter">Retrieves the volume of the audio recording device.</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,30 +17,29 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp">virtual int getRecordingDeviceInfo(char deviceId[MAX_DEVICE_ID_LENGTH], char deviceName[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getRecordingDeviceInfo(): AudioDeviceInfo;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract DeviceInfo GetRecordingDeviceInfo();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetRecordingDeviceInfo(ref string deviceId, ref string deviceName);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract getRecordingDeviceInfo(): AudioDeviceInfo;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;AudioDeviceInfo&gt; getRecordingDeviceInfo();</codeblock> </p>
         </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp unity">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>deviceId</pt>
-                <pd>The device ID of the audio recording device. The maximum length is <xref href="enum_maxdeviceidlengthtype.dita#enum_maxdeviceidlengthtype/MAX_DEVICE_ID_LENGTH" />.</pd>
+                <pd><ph>The device ID of the recording device. </ph><ph props="cpp">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</ph></pd>
             </plentry>
             <plentry>
                 <pt>deviceName</pt>
-                <pd>The name of the audio recording device. The maximum length is <xref href="enum_maxdeviceidlengthtype.dita#enum_maxdeviceidlengthtype/MAX_DEVICE_ID_LENGTH" />.</pd>
+                <pd><ph>The device name of the recording device. </ph><ph props="cpp">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul props="cpp electron">
+            <ul props="cpp unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
-            <p props="unity">The information of the audio recording device, which includes the device ID and device name.</p>
-            <p props="electron flutter">A <xref keyref="AudioDeviceInfo" /> object, which includes the device ID and device name.</p>
+            <p props="electron flutter rn">An <xref keyref="AudioDeviceInfo" /> object, which includes the device ID and device name.</p>
         </section>
     </refbody>
 </reference>

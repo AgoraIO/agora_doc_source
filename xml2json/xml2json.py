@@ -211,7 +211,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
     with open(file_dir, "r", encoding='utf-8') as f:
         text= f.read()
-        text = re.sub('\s+(?=<)', '', text)
+        text = re.sub('>\s+(?=<)', '>', text)
+        
+        #text = re.sub('<ph',' <ph', text)
+        #text = re.sub('<apiname',' <apiname', text)
+        #text = re.sub('<codeph',' <codeph', text)
+        #text = re.sub('<parmname',' <parmname', text)  
 
     with open(file_dir, "w", encoding='utf-8') as f:
         f.write(text)
@@ -658,7 +663,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             print("----------------------apiname text--------------------")
             print(href_text.strip())
             print("----------------------apiname text--------------------")
-            apiname.text = href_text.strip()
+            apiname.text = href_text
             print(apiname.text)
 
     for apiname in root.iter("parmname"):
@@ -680,7 +685,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             print("----------------------parmname text--------------------")
             print(href_text.strip())
             print("----------------------parmname text--------------------")
-            apiname.text = href_text.strip()
+            apiname.text = href_text
             print(apiname.text)
 
     for pt in root.iter("ph"):
@@ -702,7 +707,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             print("----------------------pt text--------------------")
             print(href_text.strip())
             print("----------------------pt text--------------------")
-            pt.text = href_text.strip()
+            pt.text = href_text
             print(pt.text)
 
     # Android
@@ -856,7 +861,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     dita_file_root = dita_file_tree.getroot()
                     for keydef in dita_file_root.iter("keydef"):
                         if keydef.get("keys").strip() == title.get("keyref").strip():
-                            title_text = "".join(keydef.itertext()).strip()
+                            title_text = "".join(keydef.itertext())
                 xref.text = title_text
 
 
@@ -935,6 +940,52 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                  parent_map[child].remove(child)
                  # child.text = ""
 
+    # Tag filtering 05
+    # Once a tagged element. So more elements, more processings...
+    # Do tag filtering again!!!!!!!!!!
+    parent_map = {c: p for p in tree.iter() for c in p}
+    for child in root.iter('*'):
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 parent_map[child].remove(child)
+                 # child.text = ""            
+                    
+    # Tag filtering 06
+    # Once a tagged element. So more elements, more processings...
+    # Do tag filtering again!!!!!!!!!!
+    parent_map = {c: p for p in tree.iter() for c in p}
+    for child in root.iter('*'):
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 parent_map[child].remove(child)
+                 # child.text = ""    
+                    
     # Android
 
     # Rust
@@ -1160,11 +1211,21 @@ def replace_newline():
     input_file = open(json_file, 'r', encoding="utf-8")
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
-    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
+
+    replaced_file_text = re.sub('Themaintain', 'The maintain', file_text)
+    replaced_file_text = re.sub('byx', 'by x', replaced_file_text)
+    replaced_file_text = re.sub('withx', 'with x', replaced_file_text)
+    replaced_file_text = re.sub('case of', 'case of ', replaced_file_text)
+    replaced_file_text = re.sub(' when', ' when ', replaced_file_text)
+    replaced_file_text = re.sub(' set to', ' set to ', replaced_file_text)
+    replaced_file_text = re.sub(' or ', ' or   ', replaced_file_text)
+    replaced_file_text = re.sub(' and ', ' and   ', replaced_file_text)
+    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', replaced_file_text)
 
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
     replaced_file_text = re.sub(r'[\s]{2,100}', ' ', replaced_file_text)
+
 
 
     replaced_file_text = re.sub(r'See[\s\\n]{0,50}\.', '', replaced_file_text)
@@ -1198,7 +1259,7 @@ def replace_newline():
     replaced_file_text = re.sub('class_rtc_remote_view_surfaceview', 'class_rtcremotesurfaceview', replaced_file_text)
     replaced_file_text = re.sub('rtc_remote_view: SurfaceView', 'RtcRemoteSurfaceView', replaced_file_text)
 
-    replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
+    # replaced_file_text = re.sub('enum_cloudproxytype', 'enum_proxytype', replaced_file_text)
 
     replaced_file_text = re.sub('callback_onrecorderstatechanged', 'callback_imediarecorder_onrecorderstatechanged', replaced_file_text)
     replaced_file_text = re.sub('api_stoprecording', 'api_imediarecorder_stoprecording', replaced_file_text)
@@ -1214,7 +1275,11 @@ def replace_newline():
     replaced_file_text = re.sub('"": When setting as NULL, the encryption mode is set as "aes-128-xts" by default.', '', replaced_file_text)
 
     replaced_file_text = re.sub('"": ""', '', replaced_file_text)
-
+    
+    replaced_file_text = re.sub('{ "AgoraIidSignalingEngine": "" }', '{ "AgoraIidSignalingEngine": "This interface class is deprecated." }', replaced_file_text)
+    replaced_file_text = re.sub('{ "agoraIidSignalingEngine": "" }', '{ "agoraIidSignalingEngine": "This interface class is deprecated." }', replaced_file_text)
+    replaced_file_text = re.sub('{ "uid": "" }', '{ "uid": "The user ID." }', replaced_file_text)
+    
 
     replaced_file_text = re.sub('id="callback_iaudioframeobserverbase_', 'id="callback_iaudioframeobserver_', replaced_file_text)
     replaced_file_text = re.sub('"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": ""', '"LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND": "8: Fails to find a local video capture device."', replaced_file_text)
