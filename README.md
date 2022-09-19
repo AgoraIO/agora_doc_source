@@ -23,38 +23,8 @@
 [![(NG SDK Frameworks)Awesome OxygenScript for DITA doc building](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
 
 
-<!-- vscode-markdown-toc -->
-* 1. [概览](#)
-	* 1.1. [DITA map 架构](#DITAmap)
-	* 1.2. [内容重用机制](#-1)
-* 2. [API 注释自动化协作规范](#API)
-	* 2.1. [代码配置：打 Tag](#Tag)
-		* 2.1.1. [方法：api{-类名称}-C++ 原型{n}](#api--Cn)
-		* 2.1.2. [回调 callback{-类名称}-C++ 原型](#callback--CIRtcEngineEventHandler)
-		* 2.1.3. [类（结构体） class-类名称-C++ 原型](#class--C)
-		* 2.1.4. [枚举 enum-枚举类名称](#enum-)
-	* 2.2. [DITA 文件命名规则](#Dita)
-* 3. [自动检查 API 文档中的原型与代码是否一致](#API-1)
-* 4. [API 文档代码原型从中文 DITA 文件自动同步到英文 DITA 文件](#APIDITADITA)
-* 5. [从 API 文档自动构建用于自动化填充代码注释的文档模板](#API-1)
-* 6. [（Beta）API 原型自动填充](#BetaAPI)
-* 7. [（WIP）DITA 文件格式排版自动修正](#WIPDITA)
-* 8. [（WIP）DITA 文件合规性检查](#WIPDITA-1)
-* 9. [DITA 文件自动在线构建 HTML 文档](#DITAHTML)
-	* 9.1. [监听发版分支](#-1)
-		* 9.1.1. [RTC 大重构 Native SDK](#RTCSDK)
-        * 9.1.2. [RTC 大重构框架 SDK](#RTCSDK)
-		* 9.1.3. [RTC 主版本 SDK](#RTCSDK-2)
-	* 9.2. [查看构建过程](#-1)
-	* 9.3. [获取压缩的文件包](#-1)
 
-<!-- vscode-markdown-toc-config
-	numbering=true
-	autoSave=true
-	/vscode-markdown-toc-config -->
-<!-- /vscode-markdown-toc -->
-
-##  1. <a name=''></a>概览
+## 概览
 
 DITA 文档体系架构如下。由于体量不大，暂时不需要做 DITA Specialization。
 
@@ -112,7 +82,7 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
   - \*.ditamap  
         一个 DITA map 对应一套文档。
 
-###  1.1. <a name='DITAmap'></a>DITA map 架构
+###  DITA map 架构
 
 一个产品的所有平台的文档对应一个 DITA map。一个 DITA map 中，通常包含文档中用到的变量、 subject scheme （定义可用的条件）以及具体的文档 topic。
 
@@ -215,7 +185,7 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
 </map>
 ```
 
-###  1.2. <a name='-1'></a>内容重用机制
+###  内容重用机制
 
 我们的 DITA 文档用到了以下几种重用方式：
 
@@ -236,11 +206,11 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
   - 通过 key + element ID 指定要重用的内容
   - 可以用于重用一个 API topic 中的一段内容。
 
-##  2. <a name='API'></a>API 注释自动化协作规范
+##  API 注释自动化协作规范
 
 ![企业微信20220509-090330](https://user-images.githubusercontent.com/10089260/167324076-0c4b0d8a-fb33-430c-91e6-8e31d18fd69e.png)
 
-###  2.1. <a name='Tag'></a>代码配置：打 Tag
+###  代码配置：打 Tag
 
 拟采用给 API 打 Tag 的方式配置代码信息，便于与注释 Json 文件中的内容进行关联。
 
@@ -249,7 +219,7 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
 
 如果类名称为本不该暴露的基类（仅发生于 C++），例如 callback-iaudioframeobserverbase-onmixedaudioframe，则必须把基类替换为它的扩展类，例如 callback-iaudioframeobserver-onplaybackaudioframebeforemixin。否则无法在不同平台之间通用。
 
-####  2.1.1. <a name='api--Cn'></a>方法：api{-类名称}-C++ 原型{n}
+####  方法：api{-类名称}-C++ 原型{n}
 
 - 如果类名为 RtcEngine，则类名称可省略；其余类不可省略
 - 如果该方法为平台特有，C++ 没有，确定 C++ 不需要添加之后原型
@@ -261,21 +231,21 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
 > 标记重载需要开发在添加一个方法时，先确认该方法是否有重载
 > 由于 SDK 包中无 Java 文件，因此本页不适用 Java
 
-####  2.1.2. <a name='callback--CIRtcEngineEventHandler'></a>回调 callback{-类名称}-C++ 原型 
+####  回调 callback{-类名称}-C++ 原型 
 
 如果类名称为 IRtcEngineEventHandler，则类名称可省略，其余类不可省略。
 
 例如：callback-onjoinchannelsuccess、callback-irtcchanneleventhandler-onjoinchannelsuccess
 
-####  2.1.3. <a name='class--C'></a>类（结构体） class-类名称-C++ 原型 
+#### 类（结构体） class-类名称-C++ 原型 
 
 例如：class-livetranscoding
 
-####  2.1.4. <a name='enum-'></a>枚举 enum-枚举类名称 
+#### 枚举 enum-枚举类名称 
 
 例如：enum-voicebeautifierpreset
 
-###  2.2. <a name='Dita'></a>DITA 文件命名规则
+###  DITA 文件命名规则
 
 RTC 和 RTC-NG 所有的 API 文件全部放在 API 文件夹内。
 
@@ -301,28 +271,28 @@ RTC 和 RTC-NG 所有的 API 文件全部放在 API 文件夹内。
 
 > 从项目效率考虑，NG 和主版本文件现在位于不同文件夹。我们不会再为新的文件创建后缀为 \_ng 的文件。
 
-##  3. <a name='API-1'></a>自动检查 API 文档中的原型与代码是否一致
+##  自动检查 API 文档中的原型与代码是否一致
 
 API 文档中包含代码中的函数、类、枚举、结构体等的原型。这个原型需要和代码保持一致。
 
 对于 DITA API 文档，在面向 release 分支的 PR 发生时，仓库 CI 会进行自动检查。为了得到准确的检查结果，你需要：
 
-1. 将最新的 API 代码上传到 [https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check](https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check) （master 分支）。如果你需要新建一个目录，需要通知 @yamasite 更新相关 CI。  
+1. 将最新的 API 代码上传到 [https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check](https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check) （master 分支）。
 
-2. 确保你的发版分支在这个文件中：[https://github.com/AgoraDoc/doc_source/blob/master/.github/sync.yml](https://github.com/AgoraDoc/doc_source/blob/master/.github/sync.yml)。如果没有，可以直接添加自己的分支。
+2. 确保你的发版分支在这个文件中：[https://github.com/AgoraDoc/doc_source/blob/master/.github/sync.yml](https://github.com/AgoraDoc/doc_source/blob/master/.github/sync.yml)。 如果没有，可以直接添加自己的分支。
 
-    不要删除其他分支。因为可能有其他文档项目需要。
+ > 不要删除其他分支。因为可能有其他文档项目需要。
 
 3. 在 GitHub Actions 页面，进入触发的 build workflow 中。  
 4. 在控制台中选择要查看的平台，在搜索框中输入 prototype validation starts 即可定位到报告。
 
-##  4. <a name='APIDITADITA'></a>API 文档代码原型从中文 DITA 文件自动同步到英文 DITA 文件
+##  API 文档代码原型从中文 DITA 文件自动同步到英文 DITA 文件
 
 你在向 release 分支提 PR 或合入文件时，CI 会自动生成一个 PR。将 PR 合并即可。**这个 PR 现在会自动合并。**
 
 YiCAT 的翻译会使英文文档中的代码原型出现格式问题。你必须通过自动同步的方法更新英文 DITA 文件中的代码原型。
 
-##  5. <a name='API-1'></a>从 API 文档自动构建用于自动化填充代码注释的文档模板
+##  从 API 文档自动构建用于自动化填充代码注释的文档模板
 
 文档模板文件（JSON 文件）会在 https://github.com/AgoraIO/agora_doc_source/releases/tag/main 自动生成。SDK 研发可以通过脚本自动抓取。
 
@@ -335,39 +305,59 @@ https://github.com/AgoraIO/agora_doc_source/blob/master/.github/sync.yml
 - RTC RN 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-3.8.200-kelu.yml
 - RTC Flutter 4.x SDK: https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-ng-flutter.yml
 
-##  6. <a name='BetaAPI'></a>（Beta）API 原型自动填充
+##  （Beta）API 原型自动填充
 
-目前仅适用于大重构 SDK 封装的框架 SDK。如果有需求联系 [wanglu](https://confluence.agoralab.co/display/~wanglu@agora.io)
+目前仅适用于大重构 SDK 封装的框架 SDK。基于如下 CI/CD 流程构建。
 
-##  7. <a name='WIPDITA'></a>（WIP）DITA 文件格式排版自动修正
 
-无感知。你无需进行任何操作。
+1. 将最新的 API 代码上传到 [https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check](https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check) （master 分支）。
 
-##  8. <a name='WIPDITA-1'></a>（WIP）DITA 文件合规性检查
 
-已经集成，待优化。
+2. 在 https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/python-app-fetch-proto-electron.yml 文件中指定注入原型的分支，例如 my-branch。并注明触发机制（push 或 pull）即可。
 
-##  9. <a name='DITAHTML'></a>DITA 文件自动在线构建 HTML 文档
+```yml
+# GitHub CI build pipeline
+name: Awesome prototype from code to DITA (Flutter, RN, Electron, Unity)
+
+on:
+    workflow_dispatch:
+
+    # pull_request:
+    #    branches:
+            # - 'release/rtc-ng/3.7.203-unity'
+    #        - 'release/rtc-ng/4.0.0-framework'
+    push:
+        branches:
+            # - 'release/rtc-ng/3.8.200-framework'
+            # - 'release/rtc-ng/4.0.0-framework'
+            # 4.0.0-electron
+            - 'my-branch'
+```
+
+CI/CD 会自动触发并向该分支提 PR。
+
+
+##  DITA 文件自动在线构建 HTML 文档
 
 GitHub action 对指定的发版分支进行监听，分支有 PR 或 push 时，自动运行文档生成脚本。
 
 如果需要添加新的文档用于自动构建，需要提供 scenario 文件。详见 [https://www.oxygenxml.com/doc/versions/24.1/ug-editor/topics/import-export-global-scenarios.html?hl=scenario%2Cfile](https://www.oxygenxml.com/doc/versions/24.1/ug-editor/topics/import-export-global-scenarios.html?hl=scenario%2Cfile)
 
-###  9.1. <a name='-1'></a>监听发版分支
+### 监听发版分支
 
 监听的发版分支由以下文件决定：
 
-####  9.1.1. <a name='RTCSDK'></a>RTC 大重构 Native SDK
+####  RTC 大重构 Native SDK
 
 [https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding.yml](https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
 
 如果需要更新监听分支，在文件中更新分支名即可。
 
-####  9.1.2. <a name='RTCSDK-1'></a>RTC 大重构框架 SDK
+####  RTC 大重构框架 SDK
 
 [https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/NG-SDK-Framework-Doc-Building.yml](https://github.com/AgoraIO/agora_doc_source/blob/master/.github/workflows/NG-SDK-Framework-Doc-Building.yml)
 
-####  9.1.3. <a name='RTCSDK-2'></a>RTC 主版本 SDK
+####  RTC 主版本 SDK
 
 [https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml](https://github.com/AgoraDoc/doc_source/blob/master/.github/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
 
@@ -387,7 +377,7 @@ on:
         branches: ["release/rtc-ng/4.0.0-framework"]
 ```
 
-###  9.2. <a name='-1'></a>查看构建过程
+###  查看构建过程
 
 在 GitHub Actions 页面，进入触发的 build workflow 中，即可查看构建报告：
 
@@ -397,6 +387,6 @@ RTC 大重构 框架 SDK：[https://github.com/AgoraDoc/doc_source/actions/workf
 
 RTC 主版本 SDK：[https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
 
-###  9.3. <a name='-1'></a>获取压缩的 HTML 文件包
+###  获取压缩的 HTML 文件包
 
 在 [https://github.com/AgoraDoc/doc_source/releases/tag/main](https://github.com/AgoraDoc/doc_source/releases/tag/main) 页面获取最新的 HTML 文件包。该文件包可直接上传后台生成 API 参考。
