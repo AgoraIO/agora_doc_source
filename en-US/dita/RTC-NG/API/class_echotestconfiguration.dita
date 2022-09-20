@@ -32,7 +32,7 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
@@ -49,14 +49,88 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
 
   EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c)
    : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
-  
+
   EchoTestConfiguration()
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class EchoTestConfiguration
+    {
+        public view_t view { set; get; }
+        public bool enableAudio { set; get; }
+        public bool enableVideo { set; get; }
+        public string token { set; get; }
+        public string channelId { set; get; }
+
+        public EchoTestConfiguration(view_t v, bool ea, bool ev, string t, string c)
+        {
+            view = v;
+            enableAudio = ea;
+            enableVideo = ev;
+            token = t;
+            channelId = c;
+        }
+
+        public EchoTestConfiguration()
+        {
+            view = 0;
+            enableAudio = true;
+            enableVideo = true;
+            token = "";
+            channelId = "";
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
+
+  view?: any;
+
+  enableAudio?: boolean;
+
+  enableVideo?: boolean;
+
+  token?: string;
+
+  channelId?: string;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
+  const EchoTestConfiguration(
+      {this.view,
+      this.enableAudio,
+      this.enableVideo,
+      this.token,
+      this.channelId});
+
+  @JsonKey(name: 'view')
+  final int? view;
+
+  @JsonKey(name: 'enableAudio')
+  final bool? enableAudio;
+
+  @JsonKey(name: 'enableVideo')
+  final bool? enableVideo;
+
+  @JsonKey(name: 'token')
+  final String? token;
+
+  @JsonKey(name: 'channelId')
+  final String? channelId;
+
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$EchoTestConfigurationFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$EchoTestConfigurationToJson(this);
+}</codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -80,8 +154,8 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt>token</pt>
-                <pd>The token used to secure the audio and video call loop test. If you do not enable App Certificate in Agora Console, you do not need to pass a value in this parameter; if you have enabled App Certificate in Agora Console, you must pass a token in this parameter; the <codeph>uid</codeph> used when you generate the token must be 0xFFFFFFFF, and the channel name used must be the channel name that identifies each audio and video call loop tested. For server-side token generation, see <xref keyref="guide-token">Authenticate Your Users with Tokens</xref>.</pd>
+                <pt>token.</pt>
+                <pd>The token used to secure the audio and video call loop test. If you do not enable App Certificate in Agora Console, you do not need to pass a value in this parameter; if you have enabled App Certificate in Agora Console, you must pass a token in this parameter; the <codeph>uid</codeph> used when you generate the token must be 0xFFFFFFFF, and the channel name used must be the channel name that identifies each audio and video call loop tested. For server-side token generation, see<xref keyref="guide-token"> Authenticate Your Users with Tokens</xref>.</pd>
             </plentry>
             <plentry>
                 <pt>channelId</pt>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_onvideosizechanged">
-    <title><ph keyref="onVideoSizeChanged"/></title>
+<reference id="callback_irtcengineeventhandler_onvideosizechanged">
+    <title> <ph keyref="onVideoSizeChanged" /> </title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the video size or rotation of a specified user changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onVideoSizeChanged"/>
+                <indexterm keyref="onVideoSizeChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -27,50 +27,61 @@
      (void)height;
      (void)rotation;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onVideoSizeChanged?(connection: RtcConnection, uid: number, width: number, height: number, rotation: number): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, uint uid, int width, int height, int rotation) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onVideoSizeChanged?(
-  connection: RtcConnection,
-  uid: number,
-  width: number,
-  height: number,
-  rotation: number
-): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, int width, int height,
-      int rotation)? onVideoSizeChanged;
-</codeblock></p>
+            <codeblock props="electron" outputclass="language-typescript">onVideoSizeChanged?(
+    connection: RtcConnection,
+    sourceType: VideoSourceType,
+    uid: number,
+    width: number,
+    height: number,
+    rotation: number
+  ): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoSizeChanged(RtcConnection connection, VIDEO_SOURCE_TYPE sourceType, uint uid, int width, int height, int rotation) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"> onVideoSizeChanged?(
+    connection: RtcConnection,
+    sourceType: VideoSourceType,
+    uid: number,
+    width: number,
+    height: number,
+    rotation: number
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, VideoSourceType sourceType,
+      int uid, int width, int height, int rotation)? onVideoSizeChanged;</codeblock></p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title> <ph keyref="callback-section-title" /> </title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity flutter rn electron">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
+            <plentry props="rn unity electron flutter">
+                    <pt>sourceType</pt>
+                    <pd>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
                 <pd>The ID of the user whose video size or rotation changes. (The <parmname>uid</parmname> for the local user is 0. The video is the local user's video preview).</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>size</pt>
-                <pd>Dimension of the video.</pd>
+                <pd>Video dimensions.</pd>
             </plentry>
             <plentry id="width" props="android cpp unity flutter electron rn">
                 <pt>width</pt>
-                <pd>New width (pixels) of the video.</pd>
+                <pd>The width (pixels) of the video stream.</pd>
             </plentry>
             <plentry id="height" props="android cpp unity flutter electron rn">
                 <pt>height</pt>
-                <pd>New height (pixels) of the video.</pd>
+                <pd>The height (pixels) of the video stream.</pd>
             </plentry>
             <plentry id="rotation">
                 <pt>rotation</pt>
-                <pd>New rotation of the video [0 to 360).</pd>
+                <pd>The rotation information. The value range is [0,360).</pd>
             </plentry>
             </parml> </section>
     </refbody>

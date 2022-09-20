@@ -18,23 +18,32 @@
                      sampleRate:(NSUInteger)sampleRate
                        channels:(NSUInteger)channels;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSink(int sampleRate, int channels);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSink(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetExternalAudioSink(bool enabled, int sampleRate, int channels);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setExternalAudioSink(
+    enabled: boolean,
+    sampleRate: number,
+    channels: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setExternalAudioSink(
+    {required bool enabled, required int sampleRate, required int channels});</codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>This method applies to scenarios where you want to use external audio data for playback. After you set the external audio sink, you can call <xref keyref="pullAudioFrame" /> to pull remote audio frames. The app can process the remote audio and play it with the audio effects that you want.</p>
-            <note props="unity">
+            <note props="hide">
             <ul>
-            <li>Before using this method, you need to set <parmname>enableAudioDevice</parmname> in <xref keyref="RtcEngineConfig" /> to <codeph><ph keyref="false" /></codeph>.</li>
+            <li>Before using this method, you need to set <parmname>enableAudioDevice</parmname> to <codeph><ph keyref="false" /></codeph> in <xref keyref="RtcEngineConfig" />.</li>
             <li>Ensure that you call this method before joining a channel.</li>
             <li>Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="native">
+            <plentry>
                 <pt>enabled</pt>
                 <pd>
                     <p>Whether to enable or disable the external audio sink:<ul>
@@ -57,9 +66,9 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="android cpp electron unity rn">
             <title>Returns</title>
-            <ul id="ul_ahk_23f_3qb">
+            <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>

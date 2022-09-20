@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_joinchannel2">
+<reference id="api_irtcengine_joinchannel2">
     <title><ph keyref="joinChannel2" /></title>
     <shortdesc id="short"><ph id="shortdesc">Joins a channel with media options.</ph></shortdesc>
     <prolog>
@@ -22,10 +22,20 @@
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
                           const ChannelMediaOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithOptions(token: string, channelId: string, uid: number, options: ChannelMediaOptions): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract joinChannel(
+    token: string,
+    channelId: string,
+    info: string,
+    uid: number
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int JoinChannel(string token, string channelId, uint uid,
                                 ChannelMediaOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract joinChannelWithOptions(token: string, channelId: string, uid: number, options: ChannelMediaOptions): number;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract joinChannel(
+    token: string,
+    channelId: string,
+    info: string,
+    uid: number
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; joinChannelWithOptions(
     {required String token,
     required String channelId,
@@ -50,9 +60,7 @@
             <parml>
             <plentry id="token">
                 <pt>token</pt>
-                <pd>
-                    <p><ph>The token generated on your server for authentication. See <xref keyref="guide-token" props="native">Authenticate Your Users with Token</xref>.</ph></p>
-                </pd>
+                <pd>The token generated on your server for authentication. See <xref keyref="guide-token" />.</pd>
             </plentry>
             <plentry id="channelID">
                 <pt>channelId</pt>
@@ -73,9 +81,7 @@
             <plentry id="options">
                 <pt props="android cpp electron unity rn flutter">options</pt>
                 <pt props="ios mac">mediaOptions</pt>
-                <pd>
-                    <p id="options_desc">The channel media options. See <xref keyref="ChannelMediaOptions" />.</p>
-                </pd>
+                <pd id="options_desc">The channel media options. See <xref keyref="ChannelMediaOptions" />.</pd>
             </plentry>
             <plentry props="ios mac" id="joinsuccessblock">
                 <pt>joinSuccessBlock</pt>

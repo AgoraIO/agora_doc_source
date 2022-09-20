@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_enablevirtualbackground">
+<reference id="api_irtcengine_enablevirtualbackground">
     <title><ph keyref="enableVirtualBackground" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enables/Disables the virtual background.</ph></shortdesc>
     <prolog>
@@ -17,12 +17,19 @@
       boolean enabled, VirtualBackgroundSource backgroundSource);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData NS_SWIFT_NAME(enableVirtualBackground(_:backData:));</codeblock>
             <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(enabled: boolean, backgroundSource: VirtualBackgroundSource): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(
+    enabled: boolean,
+    backgroundSource: VirtualBackgroundSource,
+    segproperty: SegmentationProperty,
+    type?: MediaSourceType
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableVirtualBackground(
-  enabled: boolean,
-  backgroundSource: VirtualBackgroundSource
-): number;</codeblock>
+    enabled: boolean,
+    backgroundSource: VirtualBackgroundSource,
+    segproperty: SegmentationProperty,
+    type?: MediaSourceType
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
     {required bool enabled,
     required VirtualBackgroundSource backgroundSource});</codeblock> </p>
@@ -49,7 +56,7 @@
                 </ul></li>
             <li>Agora recommends that you use this function in scenarios that meet the following conditions:<ul>
                 <li>A high-definition camera device is used, and the environment is uniformly lit.</li>
-                <li>The captured video image is uncluttered, the user's portrait is half-length and largely unobstructed, and the background is a single color that differs from the color of the user's clothing.</li>
+                <li>There are few objects in the captured video. Portraits are half-length and unobstructed. Ensure that the background is a solid color that is different from the color of the user's clothing.</li>
                 </ul></li>
             </ul></note> </section>
         <section id="parameters">
@@ -68,12 +75,12 @@
                 <pt props="mac ios">backData</pt>
                 <pd>The custom background image. See <xref keyref="VirtualBackgroundSource" />. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
             </plentry>
-            <plentry>
+            <plentry props="android cpp unity ios mac">
                 <pt props="android cpp unity">segproperty</pt>
                 <pt props="ios mac">segData</pt>
                 <pd>Processing properties for background images. See <xref keyref="SegmentationProperty" />.</pd>
             </plentry>
-            <plentry props="cpp">
+            <plentry props="cpp unity rn electron">
                 <pt>type</pt>
                 <pd>Type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
                     <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE" />.</li>

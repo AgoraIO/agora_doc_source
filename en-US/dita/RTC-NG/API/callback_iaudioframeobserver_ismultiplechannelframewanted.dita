@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserver_ismultiplechannelframewanted">
     <title><ph keyref="isMultipleChannelFrameWanted_IAudioFrameObserver"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets whether to receives remote video data in multiple channels.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Determines whether to receive audio data from multiple channels.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,19 +18,19 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual bool isMultipleChannelFrameWanted() { return false; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual bool IsMultipleChannelFrameWanted()
-{
-return true;
-}</codeblock>
+        {
+            return true;
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>After you successfully register the audio frame observer, the SDK triggers this callback each time it receives a video frame.</p>
-            <p>If you want to get the remote video data received in multiple channels, you need to set the return value of this callback as <ph keyref="true"/>. After that, the SDK triggers the <xref keyref="onPlaybackAudioFrameBeforeMixingEx"/> callback and sends you the audio data before mixing and reports which channel the audio frame came from.</p>
+            <p>After you register the audio frame observer, the SDK triggers this callback every time it captures an audio frame.</p>
+            <p>In the multi-channel scenario, if you want to get audio data from multiple channels, set the return value of this callback as <codeph><ph keyref="true"/></codeph>. After that, the SDK triggers the <xref keyref="onPlaybackAudioFrameBeforeMixingEx"/> callback to send you the before-mixing audio frame from various channels. You can also get the channel ID of each audio frame.</p>
             <note type="attention">
             <ul>
-            <li>Once you set te return value of this callback as <ph keyref="true"/>, the SDK only triggers the <apiname keyref="onPlaybackAudioFrameBeforeMixingEx"/> and sends you the audio frames before mixing, and <xref keyref="onPlaybackAudioFrameBeforeMixing"/> is not to be triggered. In a multi-channeel scenario, Agora recommends you setting the return value of this callback as <ph keyref="true"/>.</li>
-            <li>If you set the return value of this callback as <ph keyref="false"/>, the SDK only triggers the <apiname keyref="onPlaybackAudioFrameBeforeMixing"/> callback and sends you the audio data received.</li>
+            <li>Once you set the return value of this callback as <codeph><ph keyref="true"/></codeph>, the SDK triggers only the <apiname keyref="onPlaybackAudioFrameBeforeMixingEx"/> callback to send the audio data. and <xref keyref="onPlaybackAudioFrameBeforeMixing"/> is not to be triggered. In the multi-channel scenario, Agora recommends setting the return value as <codeph><ph keyref="true"/></codeph>.</li>
+            <li>If you set the return value of this callback as <codeph><ph keyref="false"/></codeph>, the SDK triggers only the <apiname keyref="onPlaybackAudioFrameBeforeMixing"/> callback to send the audio data.</li>
             </ul> </note> </section>
         <section id="return_values">
             <title>Returns</title>

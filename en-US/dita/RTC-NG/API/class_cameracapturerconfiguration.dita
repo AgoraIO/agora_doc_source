@@ -28,9 +28,13 @@
   VideoFormat format;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CameraCapturerConfiguration {
-  cameraDirection?: CameraDirection
-  deviceId?: string
-  format?: VideoFormat
+  
+  cameraDirection?: CameraDirection;
+  
+  deviceId?: string;
+  
+  format?: VideoFormat;
+
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
@@ -54,9 +58,13 @@
         public CAMERA_DIRECTION cameraDirection { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class CameraCapturerConfiguration {
+  
   cameraDirection?: CameraDirection;
+  
   deviceId?: string;
+  
   format?: VideoFormat;
+
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
   const CameraCapturerConfiguration(
@@ -80,7 +88,7 @@
             <plentry>
                 <pt>cameraDirection</pt>
                 <pd>
-                    <note type="attention" props="cpp unity electron rn flutter">This parameter applies to Android and iOS only.</note><ph>The camera direction. </ph>See .<ph props="ios cpp unity android rn flutter"><xref keyref="CAMERA_DIRECTION" /></ph></pd>
+                    <note type="attention" props="cpp unity electron rn flutter">This parameter applies to Android and iOS only.</note><ph>The camera direction. </ph><ph props="ios cpp unity android rn flutter">See <xref keyref="CAMERA_DIRECTION" />.</ph></pd>
             </plentry>
             <plentry props="cpp android unity electron rn flutter">
                 <pt props="cpp unity electron rn flutter">format</pt>
@@ -89,7 +97,8 @@
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>deviceId</pt>
-                <pd><ph>The device ID of the playback device. </ph><ph props="cpp electron rn flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" /> .</ph></pd>
+                <pd>
+                    <note type="attention" props="cpp unity electron">This method applies to Windows only.</note><ph>The device ID of the playback device. </ph><ph props="cpp electron rn flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

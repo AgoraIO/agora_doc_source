@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_updatescreencaptureregion">
+<reference id="api_irtcengine_updatescreencaptureregion">
     <title><ph keyref="updateScreenCaptureRegion1" /></title>
     <shortdesc id="short"><ph id="shortdesc">Updates the screen sharing region.</ph></shortdesc>
     <prolog>
@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int updateScreenCaptureRegion(const Rectangle&amp; regionRect) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract updateScreenCaptureRegion(regionRect: Rectangle): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureRegion(Rectangle regionRect);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract updateScreenCaptureRegion(regionRect: Rectangle): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureRegion(Rectangle regionRect);</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -29,7 +29,7 @@
             <parml>
             <plentry props="cpp electron unity flutter">
                 <pt>regionRect</pt>
-                <pd>Sets the relative location of the region to the screen or window. NULL means sharing the whole screen or window. See <xref keyref="Rectangle" />. If the specified region overruns the screen or window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen or window.</pd>
+                <pd>The relative location of the screen-share area to the screen or window. If you do not set this parameter, the SDK shares the whole screen or window. See <xref keyref="Rectangle" />. If the specified region overruns the screen or window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen or window.</pd>
             </plentry>
             <plentry props="mac">
                 <pt>rect</pt>

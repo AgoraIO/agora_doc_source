@@ -29,18 +29,83 @@
 
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct DirectCdnStreamingMediaOptions {
-    Optional&lt;bool> publishCameraTrack;
-    Optional&lt;bool> publishMicrophoneTrack;
-    Optional&lt;bool> publishCustomAudioTrack;
-    Optional&lt;bool> publishCustomVideoTrack;
-    Optional&lt;bool> publishMediaPlayerAudioTrack;
-    Optional&lt;int> publishMediaPlayerId;
-    Optional&lt;video_track_id_t> customVideoTrackId;
+    Optional&lt;bool&gt; publishCameraTrack;
+    Optional&lt;bool&gt; publishMicrophoneTrack;
+    Optional&lt;bool&gt; publishCustomAudioTrack;
+    Optional&lt;bool&gt; publishCustomVideoTrack;
+    Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+    Optional&lt;int&gt; publishMediaPlayerId;
+    Optional&lt;video_track_id_t&gt; customVideoTrackId;
 
   DirectCdnStreamingMediaOptions() {}
   ~DirectCdnStreamingMediaOptions() {}
 
-};</codeblock></p></section>
+};</codeblock>
+<codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+  customVideoTrackId?: number;
+}</codeblock>
+                <codeblock props="unity" outputclass="language-csharp">public class DirectCdnStreamingMediaOptions : OptionalJsonParse
+    {
+        public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMicrophoneTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;int&gt; publishMediaPlayerId = new Optional&lt;int&gt;();
+        public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
+    }</codeblock>
+<codeblock props="rn" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
+  publishCameraTrack?: boolean;
+  publishMicrophoneTrack?: boolean;
+  publishCustomAudioTrack?: boolean;
+  publishCustomVideoTrack?: boolean;
+  publishMediaPlayerAudioTrack?: boolean;
+  publishMediaPlayerId?: number;
+  customVideoTrackId?: number;
+}</codeblock>
+<codeblock props="flutter" outputclass="dart">class DirectCdnStreamingMediaOptions {
+  const DirectCdnStreamingMediaOptions(
+      {this.publishCameraTrack,
+      this.publishMicrophoneTrack,
+      this.publishCustomAudioTrack,
+      this.publishCustomVideoTrack,
+      this.publishMediaPlayerAudioTrack,
+      this.publishMediaPlayerId,
+      this.customVideoTrackId});
+
+  @JsonKey(name: 'publishCameraTrack')
+  final bool? publishCameraTrack;
+
+  @JsonKey(name: 'publishMicrophoneTrack')
+  final bool? publishMicrophoneTrack;
+
+  @JsonKey(name: 'publishCustomAudioTrack')
+  final bool? publishCustomAudioTrack;
+
+  @JsonKey(name: 'publishCustomVideoTrack')
+  final bool? publishCustomVideoTrack;
+
+  @JsonKey(name: 'publishMediaPlayerAudioTrack')
+  final bool? publishMediaPlayerAudioTrack;
+
+  @JsonKey(name: 'publishMediaPlayerId')
+  final int? publishMediaPlayerId;
+
+  @JsonKey(name: 'customVideoTrackId')
+  final int? customVideoTrackId;
+
+  factory DirectCdnStreamingMediaOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$DirectCdnStreamingMediaOptionsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$DirectCdnStreamingMediaOptionsToJson(this);
+}</codeblock></p>
+        </section>
         <section>
             <title><text
             conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
@@ -51,6 +116,7 @@
                 <pd>设置是否发布摄像头采集的视频。
 
 
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -62,6 +128,7 @@
                 <pd>设置是否发布麦克风采集的音频。
 
 
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布麦克风采集的音频。</li>
                     <li><codeph><ph keyref="false"
@@ -72,6 +139,7 @@
                 <pt>publishCustomAudioTrack</pt>
                 <pd>设置是否发布自定义采集的音频。
                         
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的音频。</li>
                     <li><codeph><ph keyref="false"
@@ -81,6 +149,7 @@
             <plentry props="hide">
                 <pt>publishMediaPlayerAudioTrack</pt>
                 <pd>设置是否发布媒体播放器的音频。
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布媒体播放器的音频。</li>
                     <li><codeph><ph keyref="false"
@@ -90,6 +159,7 @@
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
                 <pd>设置是否发布自定义采集的视频。
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 发布自定义采集的视频。</li>
                     <li><codeph><ph keyref="false"
@@ -99,6 +169,10 @@
             <plentry props="hide">
                 <pt>publishMediaPlayerId</pt>
                 <pd>待发布的媒体播放器的 ID。默认值为 0。</pd>
+            </plentry>
+            <plentry>
+                <pt>customVideoTrackId</pt>
+                <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
             </plentry>
             </parml> </section>
     </refbody>

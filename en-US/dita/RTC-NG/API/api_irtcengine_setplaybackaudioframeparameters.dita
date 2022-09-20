@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_setplaybackaudioframeparameters">
+<reference id="api_irtcengine_setplaybackaudioframeparameters">
     <title><ph keyref="setPlaybackAudioFrameParameters" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the audio data format for playback.</ph></shortdesc>
     <prolog>
@@ -23,10 +23,20 @@
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackAudioFrameParameters(sampleRate: number, channel: number, mode: RawAudioFrameOpModeType, samplesPerCall: number): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackAudioFrameParameters(
+    sampleRate: number,
+    channel: number,
+    mode: RawAudioFrameOpModeType,
+    samplesPerCall: number
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetPlaybackAudioFrameParameters(int sampleRate, int channel,
             RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">abstract setPlaybackAudioFrameParameters(
+    sampleRate: number,
+    channel: number,
+    mode: RawAudioFrameOpModeType,
+    samplesPerCall: number
+  ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlaybackAudioFrameParameters(
     {required int sampleRate,
     required int channel,
@@ -38,14 +48,14 @@
             <note type="attention">
             <ul id="ul_t13_lnz_r4b">
             <li>Ensure that you call this method before joining a channel.</li>
-            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname>, and <parmname>channel</parmname> parameters set in this method. The calculation formula is as follows:<equation-inline><parmname>Sample</parmname> interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onPlaybackAudioFrame" /> callback according to the sampling interval.</li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onPlaybackAudioFrame" /> callback according to the sampling interval.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd><apiname keyref="onPlaybackAudioFrame" />The sample rate returned in the  callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                <pd>The sample rate returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
             </plentry>
             <plentry>
                 <pt>channel</pt>
@@ -59,16 +69,16 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity flutter electron rn">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                 </pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd>The number of data samples returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, such as 1024 for the media push.</pd>
+                <pd>The number of data samples returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, such as 1024 for the Media Push.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
+        <section id="return_values" props="native unity electron rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>

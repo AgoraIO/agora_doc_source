@@ -6,11 +6,6 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
-    {
-        public bool DeviceWork;
-        public bool CloudWork;
-        public CONTENT_INSPECT_DEVICE_TYPE DeviceworkType;</codeblock>
             <codeblock props="android">public class ContentInspectConfig {
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
   public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
@@ -47,15 +42,54 @@
 	}
   ContentInspectConfig() :extraInfo(NULL), moduleCount(0){}
 };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp">public abstract int UpdateScreenCaptureParameters(ScreenCaptureParameters captureParams);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCaptureParameters(
-      ScreenCaptureParameters captureParams);</codeblock></p>
+            <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
+  
+  extraInfo?: string;
+  
+  modules?: ContentInspectModule[];
+  
+  moduleCount?: number;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectConfig
+    {
+        public ContentInspectModule[] modules { set; get; }
+
+        public int moduleCount { set; get; }
+
+        public ContentInspectConfig()
+        {
+            modules = null;
+            moduleCount = 0;
+        }
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class ContentInspectConfig {
+  
+  extraInfo?: string;
+  
+  modules?: ContentInspectModule[];
+  
+  moduleCount?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class ContentInspectConfig {
+
+  const ContentInspectConfig({this.extraInfo, this.modules, this.moduleCount});
+  @JsonKey(name: 'extraInfo')
+  final String? extraInfo;
+
+  @JsonKey(name: 'modules')
+  final List&lt;ContentInspectModule&gt;? modules;
+
+  @JsonKey(name: 'moduleCount')
+  final int? moduleCount;
+
+  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$ContentInspectConfigFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
+}</codeblock></p>
         </section>
-        <section id="detailed_desc" />
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title>Parameters</title>
             <parml>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
@@ -69,7 +103,7 @@
                 <pt>CONTENT_INSPECT_SUPERVISE</pt>
                 <pd>Screenshots capture. The SDK takes screenshots of videos sent by local users and upload them.</pd>
             </plentry>
-            <plentry>
+            <plentry props="native electron rn flutter">
                 <pt>extraInfo</pt>
                 <pd>
                     <p>Additional information for video content moderation, with a maximum length of 1024 bytes.</p>

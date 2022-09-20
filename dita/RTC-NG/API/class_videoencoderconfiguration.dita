@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
-    <title><ph keyref="VideoEncoderConfiguration"/></title>
+    <title><ph keyref="VideoEncoderConfiguration" /></title>
     <shortdesc id="short"><ph id="shortdesc">视频编码器的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -260,14 +260,22 @@
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
-  codecType?: VideoCodecType
-  dimensions?: VideoDimensions
-  frameRate?: number
-  bitrate?: number
-  minBitrate?: number
-  orientationMode?: OrientationMode
-  degradationPreference?: DegradationPreference
-  mirrorMode?: VideoMirrorModeType
+  
+  codecType?: VideoCodecType;
+  
+  dimensions?: VideoDimensions;
+  
+  frameRate?: number;
+  
+  bitrate?: number;
+  
+  minBitrate?: number;
+  
+  orientationMode?: OrientationMode;
+  
+  degradationPreference?: DegradationPreference;
+  
+  mirrorMode?: VideoMirrorModeType;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
@@ -332,13 +340,21 @@
     }
         </codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
+  
   codecType?: VideoCodecType;
+  
   dimensions?: VideoDimensions;
+  
   frameRate?: number;
+  
   bitrate?: number;
+  
   minBitrate?: number;
+  
   orientationMode?: OrientationMode;
+  
   degradationPreference?: DegradationPreference;
+  
   mirrorMode?: VideoMirrorModeType;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
@@ -368,43 +384,40 @@
   final DegradationPreference? degradationPreference;
   @JsonKey(name: 'mirrorMode')
   final VideoMirrorModeType? mirrorMode;
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoEncoderConfigurationFromJson(json);
-  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
-                    <pd><ph>视频编码的分辨率（px），用于衡量编码质量，以长 × 宽表示。</ph><ph
-                        props="android apple">默认值为 640 × 360。</ph><ph
-                        props="android cpp unity">详见 <xref
-                        keyref="VideoDimensions"/>。</ph></pd>
+                    <pd><ph>视频编码的分辨率（px），用于衡量编码质量，以长 × 宽表示。</ph><ph props="android apple">默认值为 640 × 360。</ph><ph props="android cpp unity">详见 <xref keyref="VideoDimensions" />。</ph></pd>
                 <pd>
                     <p props="cpp unity electron rn flutter">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions" />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
                     <p props="android ios mac">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
                             <ul>
-                            <li><ph keyref="VD_120x120"/>：视频分辨率为 120 × 120。</li>
-                            <li><ph keyref="VD_160x120"/>：视频分辨率为 160 × 120。</li>
-                            <li><ph keyref="VD_180x180"/>：视频分辨率为 180 × 180。</li>
-                            <li><ph keyref="VD_240x180"/>：视频分辨率为 240 × 180。</li>
-                            <li><ph keyref="VD_320x180"/>：视频分辨率为 320 × 180。</li>
-                            <li><ph keyref="VD_240x240"/>：视频分辨率为 240 × 240。</li>
-                            <li><ph keyref="VD_320x240"/>：视频分辨率为 320 × 240。</li>
-                            <li><ph keyref="VD_424x240"/>：视频分辨率为 424 × 240。</li>
-                            <li><ph keyref="VD_360x360"/>：视频分辨率为 360 × 360。</li>
-                            <li><ph keyref="VD_480x360"/>：视频分辨率为 480 × 360。</li>
-                            <li><ph keyref="VD_640x360"/>：视频分辨率为 640 × 360。</li>
-                            <li><ph keyref="VD_480x480"/>：视频分辨率为 480 × 480。</li>
-                            <li><ph keyref="VD_640x480"/>：视频分辨率为 640 × 480。</li>
-                            <li><ph keyref="VD_840x480"/>：视频分辨率为 840 × 480。</li>
-                            <li><ph keyref="VD_960x720"/>：视频分辨率为 960 × 720。</li>
-                            <li><ph keyref="VD_1280x720"/>：视频分辨率为 1280 × 720。</li>
-                            <li><ph keyref="VD_1920x1080"/>：视频分辨率为 1920 × 1080。</li>
-                            <li><ph keyref="VD_2540x1440"/>：视频分辨率为 2540 × 1440。</li>
-                            <li><ph keyref="VD_3840x2160"/>：视频分辨率为 3840 × 2160。</li>
+                            <li><ph keyref="VD_120x120" />：视频分辨率为 120 × 120。</li>
+                            <li><ph keyref="VD_160x120" />：视频分辨率为 160 × 120。</li>
+                            <li><ph keyref="VD_180x180" />：视频分辨率为 180 × 180。</li>
+                            <li><ph keyref="VD_240x180" />：视频分辨率为 240 × 180。</li>
+                            <li><ph keyref="VD_320x180" />：视频分辨率为 320 × 180。</li>
+                            <li><ph keyref="VD_240x240" />：视频分辨率为 240 × 240。</li>
+                            <li><ph keyref="VD_320x240" />：视频分辨率为 320 × 240。</li>
+                            <li><ph keyref="VD_424x240" />：视频分辨率为 424 × 240。</li>
+                            <li><ph keyref="VD_360x360" />：视频分辨率为 360 × 360。</li>
+                            <li><ph keyref="VD_480x360" />：视频分辨率为 480 × 360。</li>
+                            <li><ph keyref="VD_640x360" />：视频分辨率为 640 × 360。</li>
+                            <li><ph keyref="VD_480x480" />：视频分辨率为 480 × 480。</li>
+                            <li><ph keyref="VD_640x480" />：视频分辨率为 640 × 480。</li>
+                            <li><ph keyref="VD_840x480" />：视频分辨率为 840 × 480。</li>
+                            <li><ph keyref="VD_960x720" />：视频分辨率为 960 × 720。</li>
+                            <li><ph keyref="VD_1280x720" />：视频分辨率为 1280 × 720。</li>
+                            <li><ph keyref="VD_1920x1080" />：视频分辨率为 1920 × 1080。</li>
+                            <li><ph keyref="VD_2540x1440" />：视频分辨率为 2540 × 1440。</li>
+                            <li><ph keyref="VD_3840x2160" />：视频分辨率为 3840 × 2160。</li>
                             </ul>
                             <note type="attention">
                             <ul>
@@ -416,11 +429,11 @@
             </plentry>
             <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>codecType</pt>
-                <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
+                <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE" />。</pd>
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd>视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                <pd>视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE" />。</pd>
             </plentry>
             <plentry props="native">
                 <pt>minFramerate</pt>
@@ -429,10 +442,10 @@
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity">详见 <xref keyref="BITRATE"/>。</ph></p>
+                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity">详见 <xref keyref="BITRATE" />。</ph></p>
                     <ul props="native flutter">
-                    <li><option keyref="STANDARD_BITRATE"/>: (推荐) 标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
-                    <li><option keyref="COMPATIBLE_BITRATE"/>: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。</li>
+                    <li><option keyref="STANDARD_BITRATE" />: (推荐) 标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
+                    <li><option keyref="COMPATIBLE_BITRATE" />: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。</li>
                     </ul>
                     </pd>
             </plentry>
@@ -445,16 +458,16 @@
             </plentry>
             <plentry>
                 <pt>orientationMode</pt>
-                <pd>视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
+                <pd>视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE" />。</pd>
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/> 。</pd>
+                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE" /> 。</pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
             </plentry>
             </parml> </section>

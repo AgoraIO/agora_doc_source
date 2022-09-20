@@ -17,26 +17,33 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRenderVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame
     uid:(NSUInteger)uid
     channelId:(NSString * _Nonnull)channelId;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;
-</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onRenderVideoFrame(const char* channelId, rtc::uid_t remoteUid, VideoFrame&amp; videoFrame) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onRenderVideoFrame?(
+    channelId: string,
+    remoteUid: number,
+    videoFrame: VideoFrame
+  ): boolean;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(string channelId, uint uid, VideoFrame videoFrame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">  onRenderVideoFrame?(
+    channelId: string,
+    remoteUid: number,
+    videoFrame: VideoFrame
+  ): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int remoteUid, VideoFrame videoFrame)?
+      onRenderVideoFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data before encoding and then process the data according to your particular scenarios.</p>
-            <p>After processing, you can send the processed video data back to the SDK in this callback.</p>
-            <note type="attention">This callback does not support sending processed RGBA video data back to the SDK.</note> </section>
+            <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data before encoding. You can then process the data according to your particular scenarios.</p>
+            <note type="attention" props="native electron rn flutter">This function only applies to the scenarios where the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="android ios mac unity">uid</pt>
-                <pt props="cpp">remoteUid</pt>
+                <pt props="cpp rn electron flutter">remoteUid</pt>
                 <pd>The ID of the remote user who sends the current video frame.</pd>
             </plentry>
             <plentry conkeyref="onCaptureVideoFrame/videoframe">
@@ -45,12 +52,14 @@
             </plentry>
             <plentry>
                 <pt>channelId</pt>
-                <pd>The ID of the channel.</pd>
+                <pd>The channel ID.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
-            <p conkeyref="onCaptureVideoFrame/return"/>
-        </section>
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>:The SDK ignores this return value.</li>
+            <li><codeph><ph keyref="false"/></codeph>:The SDK ignores this return value.</li>
+            </ul> </section>
     </refbody>
 </reference>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_createmediaplayer">
+<reference id="api_irtcengine_createmediaplayer">
     <title><ph keyref="createMediaPlayer" /></title>
-    <shortdesc id="short"><ph props="android cpp" id="shortdesc">Creates a media player instance. </ph><ph props="apple" id="shortdesc1">Creates an <xref keyref="IMediaPlayer" /> instance.</ph></shortdesc>
+    <shortdesc id="short"><ph props="android cpp unity rn electron flutter" id="shortdesc">Creates a media player instance. </ph><ph props="apple" id="shortdesc1">Creates one <xref keyref="IMediaPlayer" /> instance.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,8 +20,7 @@
             <codeblock props="electron" outputclass="language-typescript">abstract createMediaPlayer(): IMediaPlayer;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract IMediaPlayer CreateMediaPlayer();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract createMediaPlayer(): IMediaPlayer;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;MediaPlayer&gt; createMediaPlayer();
-</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;MediaPlayer&gt; createMediaPlayer();</codeblock> </p>
         </section>
         <section props="ios mac" id="parameters">
             <title>Parameters</title>
@@ -33,9 +32,11 @@
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul id="ul_cwj_3ry_hqb">
+            <ul id="ul_cwj_3ry_hqb" props="native rn electron flutter unity">
             <li>The <xref keyref="IMediaPlayer" /> instance, if the method call succeeds.</li>
-            <li>An empty pointer, if the method call fails.</li>
-            </ul></section>
+            <li>An empty pointer , if the method call fails.</li>
+            </ul>
+            <p props="apple">An <xref keyref="IMediaPlayer" /> instance, if the method call succeeds.</p>
+            </section>
     </refbody>
 </reference>

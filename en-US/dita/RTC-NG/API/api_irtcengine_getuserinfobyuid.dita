@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_getuserinfobyuid">
+<reference id="api_irtcengine_getuserinfobyuid">
     <title><ph keyref="getUserInfoByUid" /></title>
     <shortdesc id="short"><ph id="shortdesc">Gets the user information by passing in the user ID.</ph></shortdesc>
     <prolog>
@@ -22,7 +22,7 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated" /> callback on the local client. After receiving the callback, you can call this method to get the user account of the remote user from the <xref keyref="UserInfo" /> object by passing in the user ID.</p>
+            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and User Account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated" /> callback on the local client. After receiving the callback, you can call this method to get the user account of the remote user from the <xref keyref="UserInfo" /> object by passing in the user ID.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -36,33 +36,28 @@
                 <pd>Input and output parameter. The <xref keyref="UserInfo" /> object that identifies the user information.<ul>
                     <li>Input: A <apiname keyref="UserInfo" /> object.</li>
                     <li>Output: A <apiname keyref="UserInfo" /> object that contains the user account and user ID of the user.</li>
-                    </ul> </pd>
-            </plentry>
-            <plentry id="channelId">
-                <pt props="cpp">channelId</pt>
-                <pd props="cpp">
-                    <p conkeyref="joinChannel2/channelID_desc" />
+                    </ul> 
                 </pd>
             </plentry>
-            <plentry id="localUserAccount">
-                <pt props="cpp">localUserAccount</pt>
-                <pd props="cpp">The user account of the local user.</pd>
+            <plentry id="channelId" props="cpp">
+                <pt>channelId</pt>
+                <pd><p conkeyref="joinChannel2/channelID_desc" /></pd>
+            </plentry>
+            <plentry id="localUserAccount" props="cpp">
+                <pt>localUserAccount</pt>
+                <pd>The user account of the local user.</pd>
             </plentry>
             <plentry props="ios mac" id="error">
                 <pt>error</pt>
-                <pd>The error code.</pd>
+                <pd>Error code.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="android flutter">The <apiname keyref="UserInfo" /> object that identifies the user information.</p>
-            <ul props="android flutter">
-            <li>Not null: Success.</li>
-            <li>Null: Failure.</li>
-            </ul>
-            <ul props="ios mac electron rn">
-            <li>A <xref keyref="UserInfo" /> object, if the method call succeeds.</li>
-            <li props="ios mac electron rn"><ph keyref="NULL" />, if the method call fails.</li>
+            <p props="ios mac rn electron flutter">The <apiname keyref="UserInfo" /> object that identifies the user information.</p>
+            <ul props="ios mac flutter electron rn">
+            <li>A pointer to the <xref keyref="UserInfo" /> instance, if the method call succeeds.</li>
+            <li props="ios mac flutter electron rn">If the call fails, returns <ph keyref="NULL" />.</li>
             </ul>
             <ul props="cpp unity android">
             <li>0: Success.</li>

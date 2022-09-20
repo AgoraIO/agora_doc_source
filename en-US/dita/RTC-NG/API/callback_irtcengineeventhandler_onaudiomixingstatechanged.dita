@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_onaudiomixingstatechanged">
-    <title><ph keyref="onAudioMixingStateChanged"/></title>
+<reference id="callback_irtcengineeventhandler_onaudiomixingstatechanged">
+    <title><ph keyref="onAudioMixingStateChanged" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when the playback state of the music file changes.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioMixingStateChanged"/>
+                <indexterm keyref="onAudioMixingStateChanged" />
             </keywords>
         </metadata>
     </prolog>
@@ -18,17 +18,18 @@
 reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {
     (void)state;
-    (void)errorCode;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onAudioMixingStateChanged?(state: AudioMixingStateType, errorCode: AudioMixingErrorType): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_ERROR_TYPE errorCode) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onAudioMixingStateChanged?(
-  state: AudioMixingStateType,
-  errorCode: AudioMixingErrorType
-): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(
-          AudioMixingStateType state, AudioMixingErrorType errorCode)?
-      onAudioMixingStateChanged;
-</codeblock> </p>
+    (void)reason;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onAudioMixingStateChanged?(
+    state: AudioMixingStateType,
+    reason: AudioMixingReasonType
+  ): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioMixingStateChanged(AUDIO_MIXING_STATE_TYPE state, AUDIO_MIXING_REASON_TYPE reason) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onAudioMixingStateChanged?(
+    state: AudioMixingStateType,
+    reason: AudioMixingReasonType
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioMixingStateType state, AudioMixingReasonType reason)?
+      onAudioMixingStateChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>This callback occurs when the playback state of the music file changes, and reports the current state and error code.</p>
@@ -38,27 +39,30 @@ reasonCode:(AgoraAudioMixingReasonCode)reasonCode;</codeblock>
             <parml>
             <plentry>
                 <pt>state</pt>
-                <pd>The playback state of the music file. <ph props="ios mac cpp unity electron rn flutter">See <xref keyref="AUDIO_MIXING_STATE_TYPE"/>.</ph><p props="android">
+                <pd><ph>The playback state of the music file. </ph><ph props="ios mac cpp unity electron rn flutter">See <xref keyref="AUDIO_MIXING_STATE_TYPE" />.</ph><p props="android">
                     <ul>
-                    <li><ph keyref="AUDIO_MIXING_STATE_PLAYING"/>(710): The music file is playing.</li>
-                    <li><ph keyref="AUDIO_MIXING_STATE_PAUSED"/>(711): The music file pauses playing.</li>
-                    <li><ph keyref="AUDIO_MIXING_STATE_STOPPED"/>(713): The music file stops playing.</li>
-                    <li><ph keyref="AUDIO_MIXING_STATE_FAILED"/>(714): An exception occurs when playing the audio mixing file. The SDK returns the specific reason for the error in the <parmname>errorCode</parmname> parameter.</li>
-                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_COMPLETED"/>(715): The music file is played once.</li>
-                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED"/>(716): The music file is all played out.</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_PLAYING" />(710): The music file is playing.</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_PAUSED" />(711): The music file pauses playing.</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_STOPPED" />(713): The music file stops playing.</li>
+                    <li><ph keyref="AUDIO_MIXING_STATE_FAILED" />(714): An exception occurs when playing the audio mixing file. The SDK returns the specific reason for the error in the <parmname>errorCode</parmname> parameter.</li>
+                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_COMPLETED" />(715): The music file is played once.</li>
+                    <li props="hide"><ph keyref="AUDIO_MIXING_STATE_ALL_LOOPS_COMPLETED" />(716): The music file is all played out.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt props="android ios mac">reasonCode</pt>
-                <pt props="cpp unity rn flutter">errorCode</pt>
-                <pd>Error code. <ph props="ios mac cpp unity rn flutter">See <xref keyref="AUDIO_MIXING_REASON_TYPE"/>.</ph>
-                    <p props="android">
+                <pt props="cpp unity rn electron flutter">reason</pt>
+                <pd><ph>Error code. </ph><ph props="ios mac cpp unity flutter rn electron">See <xref keyref="AUDIO_MIXING_REASON_TYPE" />.</ph><p props="android">
                     <ul>
                     <li><ph keyref="AUDIO_MIXING_REASON_OK"/>(0): No error.</li>
-                    <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/>(701): The SDK cannot open the music file.</li>
-                    <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL"/>(702): The SDK opens the music file too frequently.</li>
-                    <li><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF"/>(703): The music file playback is interrupted.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_CAN_NOT_OPEN"/>701: The SDK cannot open the music file.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_TOO_FREQUENT_CALL"/>702: The SDK opens the music file too frequently.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_INTERRUPTED_EOF"/>703: The music file playback is interrupted.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_ONE_LOOP_COMPLETED"/>(721): The music file completes a loop playback.</li>
+                    <li props="hide"><ph keyref="AUDIO_MIXING_REASON_START_NEW_LOOP"/>(722): The music file starts a new loop playback.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_ALL_LOOPS_COMPLETED"/>(723): The music file completes all loop playback.</li>
+                    <li><ph keyref="AUDIO_MIXING_REASON_STOPPED_BY_USER"/>(725): The music file pauses playing by calling <xref keyref="pauseAudioMixing"/>.</li>
                     </ul> </p>
                 </pd>
             </plentry>
