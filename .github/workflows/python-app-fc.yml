@@ -81,3 +81,21 @@ jobs:
           tag: main
           overwrite: true
           body: "DITA docs."
+    - name: Upload FC CN Android doc to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dita/flexible-classroom/edu-context/out/fc-android-cn-doc.zip
+          asset_name: fc-android-cn-doc.zip
+          tag: main
+          overwrite: true
+          body: "DITA docs."
+    - name: Upload FC CN iOS doc to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dita/flexible-classroom/edu-context/out/fc-ios-cn-doc.zip
+          asset_name: fc-ios-cn-doc.zip
+          tag: main
+          overwrite: true
+          body: "DITA docs."
