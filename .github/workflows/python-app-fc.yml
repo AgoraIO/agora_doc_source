@@ -27,7 +27,12 @@ jobs:
     - name: DITA doc building
       run: |
           cd scripts/oxygen/scripts
-
+          echo "Start building documentation for FC EN Android"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
+          ./transform.sh -i ../../../en-US/dita/flexible-classroom/edu-context/Edu_Context_API_Android.ditamap -sn "DITA Map HTML5 - FlexibleAndroid" -s ../../../.github/workflows/fcr-en-transformation.scenarios -v
+          
+          
           echo "Start building documentation for FC EN iOS"
           echo "-----------------------------------------------------------------------------------------------"
           echo "-----------------------------------------------------------------------------------------------"
@@ -37,9 +42,19 @@ jobs:
       run: |
           cd en-US/dita/flexible-classroom/edu-context/out
           ls
-          zip -qq -r fc-ios-en-doc.zip "ios-html5"
+          zip -qq -r fc-android-en-doc.zip "android-html5"
           ls
-
+          zip -qq -r fc-ios-en-doc.zip "ios-html5"
+    
+    - name: Upload FC EN Android doc to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: en-US/dita/flexible-classroom/edu-context/out/fc-android-en-doc.zip
+          asset_name: fc-android-en-doc.zip
+          tag: main
+          overwrite: true
+          body: "DITA docs."
     - name: Upload FC EN iOS doc to release
       uses: svenstaro/upload-release-action@v2
       with:
