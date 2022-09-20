@@ -56,15 +56,11 @@
 
    ![](https://web-cdn.agora.io/docs-files/1648635239823)
 
-2. （可选）修改 `app/res/values/string_config.xml` 文件中的 `appId`、 `apiHost`、`reportHost` 参数值。如果没有配置，则使用灵动课堂的测试 App ID 运行项目。如果是正式的项目，一定要替换成你自己的 App ID。
-
-   ![](https://web-cdn.agora.io/docs-files/1648635527460)
-
-3. 在 Android Studio 中编译并运行 CloudClass-Android 项目。运行成功后，你可以在 Android 设备上看到以下画面：
+2. 在 Android Studio 中编译并运行 CloudClass-Android 项目。运行成功后，你可以在 Android 设备上看到以下画面：
 
    ![](https://web-cdn.agora.io/docs-files/1648635613438)
 
-4. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
+3. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
    ![](https://web-cdn.agora.io/docs-files/1648635720196)
 
