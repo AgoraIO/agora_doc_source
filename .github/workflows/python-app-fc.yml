@@ -49,13 +49,16 @@ jobs:
           ./transform.sh -i ../../../dita/flexible-classroom/edu-context/Edu_Context_API_iOS.ditamap -sn "DITA Map HTML5 - Flexible-CN-iOS" -s ../../../.github/workflows/fcr-cn-transformation.scenarios -v
           
 
-    - name: zip files
+    - name: zip EN files
       run: |
           cd en-US/dita/flexible-classroom/edu-context/out
           ls
           zip -qq -r fc-android-en-doc.zip "android-html5"
           ls
           zip -qq -r fc-ios-en-doc.zip "ios-html5"
+    - name: zip CN files
+      run: |
+          cd dita/flexible-classroom/edu-context/out
           ls
           zip -qq -r fc-android-cn-doc.zip "android-html5-cn"
           ls
