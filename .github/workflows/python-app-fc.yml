@@ -27,16 +27,27 @@ jobs:
     - name: DITA doc building
       run: |
           cd scripts/oxygen/scripts
+          
           echo "Start building documentation for FC EN Android"
           echo "-----------------------------------------------------------------------------------------------"
           echo "-----------------------------------------------------------------------------------------------"
-          ./transform.sh -i ../../../en-US/dita/flexible-classroom/edu-context/Edu_Context_API_Android.ditamap -sn "DITA Map HTML5 - FlexibleAndroid" -s ../../../.github/workflows/fcr-en-transformation.scenarios -v
+          ./transform.sh -i ../../../en-US/dita/flexible-classroom/edu-context/Edu_Context_API_Android.ditamap -sn "DITA Map HTML5 - Flexible-EN-Android" -s ../../../.github/workflows/fcr-en-transformation.scenarios -v
           
+          echo "Start building documentation for FC CN Android"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
+          ./transform.sh -i ../../../dita/flexible-classroom/edu-context/Edu_Context_API_Android.ditamap -sn "DITA Map HTML5 - Flexible-CN-Android" -s ../../../.github/workflows/fcr-cn-transformation.scenarios -v
           
           echo "Start building documentation for FC EN iOS"
           echo "-----------------------------------------------------------------------------------------------"
           echo "-----------------------------------------------------------------------------------------------"
-          ./transform.sh -i ../../../en-US/dita/flexible-classroom/edu-context/Edu_Context_API_iOS.ditamap -sn "DITA Map HTML5 - FlexibleiOS" -s ../../../.github/workflows/fcr-en-transformation.scenarios -v
+          ./transform.sh -i ../../../en-US/dita/flexible-classroom/edu-context/Edu_Context_API_iOS.ditamap -sn "DITA Map HTML5 - Flexible-EN-iOS" -s ../../../.github/workflows/fcr-en-transformation.scenarios -v
+          
+          echo "Start building documentation for FC CN iOS"
+          echo "-----------------------------------------------------------------------------------------------"
+          echo "-----------------------------------------------------------------------------------------------"
+          ./transform.sh -i ../../../dita/flexible-classroom/edu-context/Edu_Context_API_iOS.ditamap -sn "DITA Map HTML5 - Flexible-CN-iOS" -s ../../../.github/workflows/fcr-cn-transformation.scenarios -v
+          
 
     - name: zip files
       run: |
@@ -45,7 +56,10 @@ jobs:
           zip -qq -r fc-android-en-doc.zip "android-html5"
           ls
           zip -qq -r fc-ios-en-doc.zip "ios-html5"
-    
+          ls
+          zip -qq -r fc-android-cn-doc.zip "android-html5-cn"
+          ls
+          zip -qq -r fc-ios-cn-doc.zip "ios-html5-cn"    
     - name: Upload FC EN Android doc to release
       uses: svenstaro/upload-release-action@v2
       with:
