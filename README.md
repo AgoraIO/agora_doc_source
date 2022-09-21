@@ -1,4 +1,4 @@
-# 基于 DITA 的文档内容仓库
+# 基于 DITA 的文档内容仓库（附带自动化 CI/CD）
 
 [![Awesome JSON CI build](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml)
 
