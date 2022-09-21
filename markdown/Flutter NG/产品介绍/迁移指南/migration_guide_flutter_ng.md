@@ -40,7 +40,7 @@ agora_rtc_engine: ^6.0.0-rc.2 SDK 对部分功能的实现方式进行了优化�
 为了更好的代码可读性，agora_rtc_engine: ^6.0.0-rc.2 后将所有参数多于 2 个的方法的参数改成了[命名参数](https://dart.dev/guides/language/language-tour#parameters)，如 `joinChannel` 方法：
 
 ```dart
-await _engine.joinChannel(token: '', channelId: 'channelid', info: '', uid: 0);
+await _engine.joinChannel(token: '', channelId: 'channelid', uid: 0, options: const ChannelMediaOptions());
 ```
 
 #### 初始化流程
@@ -93,9 +93,11 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 
 因此，agora_rtc_engine: ^6.0.0-rc.2 删除了 `warning` 回调。
 
-<div class="alert note">除上述相对于 agora_rtc_engine: ^5.x 的中断性变更以外，agora_rtc_engine: ^6.0.0-rc.2 对于 agora_rtc_engine: ^6.0.0-beta.2 也存在极少数中断性变更。例如：
+<div class="alert note">除上述相对于 agora_rtc_engine: ^5.x 的中断性变更以外，agora_rtc_engine: ^6.0.0-rc.2 相对于 agora_rtc_engine: ^6.0.0-beta.2 也存在极少数中断性变更。例如：
 
-- 在 agora_rtc_engine: ^6.0.0-rc.2 中，将 `ChannelMediaOptions` 中的 `publishAudioTrack` 替换为 `publishMicrophoneTrack`。
+- 将 `ChannelMediaOptions` 中的 `publishAudioTrack` 替换为 `publishMicrophoneTrack`。
+- 移除 `joinChannelWithOptions` 方法。
+- `joinChannel` 方法移除 `info` 参数，新增 `options` 参数，详见 [`joinChannel`](https://docs.agora.io/cn/video-call-4.x/API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2) 方法。
 
 如果你在 agora_rtc_engine: ^6.0.0-beta.2 版本中使用了该功能、并且希望升级到 agora_rtc_engine: ^6.0.0-rc.2 版本，请在升级 SDK 后修改功能的实现。</div>
 

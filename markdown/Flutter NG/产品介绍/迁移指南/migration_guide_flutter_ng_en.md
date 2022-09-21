@@ -24,7 +24,7 @@ The agora_rtc_engine: ^6.0.0-rc.2 SDK has optimized or modified the implementati
 
 This section introduces the main changes of agora_rtc_engine: ^6.0.0-rc.2 compared to agora_rtc_engine: ^5.x in the following categories:
 
-- Breaking changes: Introduces API compatibility changes that have a big impact. You need to spend significant time modifying the related implementation.
+- Breaking changes: Introduces API compatibility changes. You need to spend significant time modifying the related implementation.
 - Behavior changes: Introduces changes caused by reasonable optimization of the SDK default behavior and API behavior. Less time is required to modify the related implementation, if any.
 - Function gaps: Introduces functions that were supported in agora_rtc_engine: ^5.x but are not supported in agora_rtc_engine: ^6.0.0-rc.2. However, these functions are intended to be added in a future release.
 - Removed APIs: Introduces APIs that were supported in agora_rtc_engine: ^5.x but removed in agora_rtc_engine: ^6.0.0-rc.2. Most of these APIs have alternatives in agora_rtc_engine: ^6.0.0-rc.2. Modifying the related implementation should require less time.
@@ -42,7 +42,7 @@ After upgrading from agora_rtc_engine: ^5.x to agora_rtc_engine: ^6.0.0-rc.2, th
 For optimal code readability, agora_rtc_engine: ^6.0.0-rc.2 has changed the parameters of all methods with more than two parameters to [named parameters](https://dart.dev/guides/language/language-tour#parameters). Take the ` joinChannel` method as an example:
 
 ```dart
-await _engine.joinChannel(token: '', channelId: 'channelid', info: '', uid: 0);
+await _engine.joinChannel(token: '', channelId: 'channelid', uid: 0, options: const ChannelMediaOptions());
 ```
 
 #### Initialization
@@ -99,7 +99,9 @@ As a consequence, agora_rtc_engine: ^6.0.0-rc.2 removes the `warning` callbacks.
 <div class="alert note">
 In addition to the breaking changes listed here relative to agora_rtc_engine: ^5.x, agora_rtc_engine: ^6.0.0-rc.2 has a small number of breaking changes relative to the  agora_rtc_engine: ^6.0.0-beta.2 release. For example:
 
-- In agora_rtc_engine: ^6.0.0-rc.2, replace `publishAudioTrack` in `ChannelMediaOptions` with `publishMicrophoneTrack`.
+- Replaces `publishAudioTrack` in `ChannelMediaOptions` with `publishMicrophoneTrack`.
+- Removes `joinChannelWithOptions`.
+- Adds `options` and remove `info` in `joinChannel`. See [`joinChannel`](https://docs.agora.io/en/video-call-4.x/API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2) for details.
 
 If you used this feature in agora_rtc_engine: ^6.0.0-beta.2 and wish to upgrade to agora_rtc_engine: ^6.0.0-rc.2, modify the implementation code of the feature after upgrading the SDK.
 </div>
