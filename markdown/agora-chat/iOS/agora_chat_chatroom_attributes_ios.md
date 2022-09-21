@@ -25,7 +25,7 @@
 
 ### 管理聊天室基本属性
 
-### 获取聊天室详情
+#### 获取聊天室详情
 
 所有聊天室成员都可以检索到当前聊天室的详细信息，包括主题、公告、描述、成员类型和管理员列表。
 
@@ -36,7 +36,7 @@ AgoraChatError *error = nil;
 AgoraChatroom *chatroom = [[AgoraChatClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:@“chatroomId” error:&error];
 ```
 
-### 更新聊天室名称
+#### 更新聊天室名称
 
 仅聊天室所有者和聊天室管理员可以调用 `updateSubject` 方法设置和更新聊天室名称，聊天室名称的长度限制为 128 个字符。
 
@@ -47,7 +47,7 @@ AgoraChatError *error = nil;
 [[AgoraChatClient sharedClient].roomManager updateSubject:textString forChatroom:self.chatroom.chatroomId error:&error];
 ```
 
-### 更新聊天室描述
+#### 更新聊天室描述
 
 仅聊天室所有者和聊天室管理员可以调用 `updateDescription` 方法设置和更新聊天室描述，聊天室描述的长度限制为 512 个字符。
 
@@ -58,7 +58,7 @@ AgoraChatError *error = nil;
 [[AgoraChatClient sharedClient].roomManager updateDescription:textString forChatroom:self.chatroom.chatroomId error:&error];
 ```
 
-### 获取聊天室公告
+#### 获取聊天室公告
 
 聊天室所有成员均可调用 `getChatroomAnnouncementWithId` 方法获取聊天室公告。
 
@@ -68,7 +68,7 @@ AgoraChatError *error = nil;
 [AgoraChatClient.sharedClient.roomManager getChatroomAnnouncementWithId:@"chatRoomId" error:&error];
 ```
 
-### 修改聊天室公告
+#### 修改聊天室公告
 
 仅聊天室所有者和聊天室管理员可以调用 `updateChatroomAnnouncementWithId` 方法设置和更新聊天室公告，聊天室公告的长度限制为 512 个字符。公告更新后，其他聊天室成员收到 `chatroomAnnouncementDidUpdate` 回调。
 

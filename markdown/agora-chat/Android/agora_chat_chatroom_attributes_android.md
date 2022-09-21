@@ -19,9 +19,11 @@
 - 了解 [使用限制](./agora_chat_limitation?platform=Android) 中所述。
 - 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
 
-## 管理聊天室基本属性
+## 实现方法
 
-### 获取和修改聊天室属性
+### 管理聊天室基本属性
+
+#### 获取和修改聊天室属性
 
 方法示例如下：
 
@@ -37,7 +39,7 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatRoomSub
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatroomDescription(chatRoomId, newDescription);
 ```
 
-### 管理聊天室公告
+#### 管理聊天室公告
 
 具体方法如下：
 
@@ -50,7 +52,7 @@ String announcement = ChatClient.getInstance().chatroomManager().fetchChatRoomAn
 ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId, announcement);
 ```
 
-## 管理聊天室自定义属性（key-value）
+### 管理聊天室自定义属性（key-value）
 
 聊天室自定义属性以键值对（key-value）形式存储，属性信息变更会实时同步给聊天室成员。利用自定义属性可以存储直播聊天室的类型、狼人杀等游戏中的角色信息和游戏状态以及实现语聊房的麦位管理和同步等。
 
@@ -58,9 +60,9 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
 
 使用该功能的限制详见 [使用限制](/product/limitation.html#聊天室自定义属性（KV）)。
 
-### 获取聊天室自定义属性
+#### 获取聊天室自定义属性
 
-#### 获取聊天室指定自定义属性
+##### 获取聊天室指定自定义属性
 
 聊天室所有成员均可调用 `asyncFetchChatroomAttributesFromServe` 方法获取聊天室指定自定义属性。
 
@@ -88,7 +90,7 @@ EMClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe(c
             });
 ```
 
-#### 获取聊天室所有自定义属性
+##### 获取聊天室所有自定义属性
 
 聊天室成员可以调用 `asyncFetchChatRoomAllAttributesFromSever` 方法获取聊天室所有自定义属性。
 
@@ -116,9 +118,9 @@ EMClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSeve
 
 ```
 
-### 设置聊天室自定义属性
+#### 设置聊天室自定义属性
 
-#### 设置单个聊天室属性
+##### 设置单个聊天室属性
 
 聊天室成员可以调用 `asyncSetChatroomAttributes` 方法设置单个聊天室自定义属性。该方法只针对未设置的自定义属性字段和更新自己设置的属性。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
@@ -149,7 +151,7 @@ EMClient.getInstance().chatroomManager().asyncSetChatroomAttributes(conversation
             });
 ```
 
-#### 强制设置单个聊天室自定义属性
+##### 强制设置单个聊天室自定义属性
 
 设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
@@ -245,9 +247,9 @@ EMClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conver
             });
 ```
 
-### 删除聊天室自定义属性
+#### 删除聊天室自定义属性
 
-#### 删除单个聊天室自定义属性
+##### 删除单个聊天室自定义属性
 
 聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromSever` 方法删除单个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
@@ -275,7 +277,7 @@ EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(
                 });
 ```
 
-#### 强制删除单个聊天室自定义属性
+##### 强制删除单个聊天室自定义属性
 
 删除单个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromSeverForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
@@ -303,7 +305,7 @@ EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverF
                 });
 ```
 
-#### 删除多个聊天室自定义属性
+##### 删除多个聊天室自定义属性
 
 聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromSever` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
@@ -331,7 +333,7 @@ EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(
                 });
 ```
 
-#### 强制删除多个聊天室自定义属性
+##### 强制删除多个聊天室自定义属性
 
 删除多个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromSeverForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
