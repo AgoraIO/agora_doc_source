@@ -17,7 +17,6 @@
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
 - 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
 
-
 ## 实现方法
 
 本节介绍如何使用即时通讯 IM SDK 提供的 API 实现上述功能。
