@@ -199,15 +199,15 @@
       </plentry>
         <plentry>
           <pt>enable_doppler</pt>
-          <pd>是否开启多普勒效应：当声源与接收声源者之间产生相对位移时，接收方听到的音调会发生变化。
+          <pd>是否开启多普勒音效：当声源与接收声源者之间产生相对位移时，接收方听到的音调会发生变化。
             <ul>
-            <li><codeph><ph keyref="true"/></codeph>: 开启多普勒效应。</li>
-            <li><codeph><ph keyref="false"/></codeph>: （默认）关闭多普勒效应。</li>
+            <li><codeph><ph keyref="true"/></codeph>: 开启多普勒音效。</li>
+            <li><codeph><ph keyref="false"/></codeph>: （默认）关闭多普勒音效。</li>
             </ul>
             <note type="caution">
             <ul>
               <li>该参数适用于声源高速运动的场景（例如：赛车游戏），在普通音视频互动场景（语聊、连麦、在线 KTV）中不建议开启。</li>
-              <li>开启该参数时，建议设定一个规律的周期（比如 30 ms）来持续更新声源和接收方的相对距离。以下因素会导致多普勒效应达不到预期或者声音出现抖动：更新距离的周期过长，更新周期不规律，网络丢包或延迟导致距离信息丢失。</li>
+              <li>开启该参数时，建议设定一个规律的周期（比如 30 ms），然后调用 <xref keyref="updatePlayerPositionInfo"/>、<xref keyref="updateSelfPosition"/> 和 <xref keyref="updateRemotePosition"/> 方法持续更新声源和接收方的相对距离。以下因素会导致多普勒效应达不到预期或者声音出现抖动：更新距离的周期过长，更新周期不规律，网络丢包或延迟导致距离信息丢失。</li>
             </ul>
             </note></pd>
         </plentry>
