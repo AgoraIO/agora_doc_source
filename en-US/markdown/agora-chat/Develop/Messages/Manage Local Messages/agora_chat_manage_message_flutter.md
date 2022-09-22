@@ -4,7 +4,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 
 ## Understand the tech
 
-The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local messages. Followings are the core methods:
+SQLCipher is used to encrypt the database that stores local messages. The Agora Chat SDK uses `ChatManager` and `ChatConversation` to manage local messages. Followings are the core methods:
 
 - `ChatManager.loadAllConversations`: Loads the conversation list on the local device.
 - `ChatManage.deleteConversation`: Deletes the specified conversation.
