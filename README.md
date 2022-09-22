@@ -730,5 +730,5 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
 
 #### 为什么 JSON 生成不全，有些内容缺失？
 
-首先需要检查相应的 DITA 文件。绝大多数情况下，是由于标签过滤造成的内容缺失。
+首先需要检查相应的 DITA 文件。绝大多数情况下，是由于标签过滤造成的内容缺失，究其原因是 DITA 写法不规范。建议直接找相关的 Writer 更改 DITA 写法。
 
