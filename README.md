@@ -580,9 +580,13 @@ jobs:
 
 ## 从 DITA 生成 JSON 的流程解析
 
+### 概览
+
 主要的解析逻辑位于：
 
 [https://github.com/AgoraIO/agora_doc_source/blob/master/xml2json/xml2json.py](https://github.com/AgoraIO/agora_doc_source/blob/master/xml2json/xml2json.py)。
+
+基于 Python 原生的 etree 解析 DITA 文件并生成 JSON。
 
 运行时支持以下命令行参数：
 
@@ -616,4 +620,97 @@ c_sharp_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
 flutter_ng_path = "config/keys-rtc-ng-api-flutter.ditamap"
 rn_ng_path = "config/keys-rtc-ng-api-rn.ditamap"
 unity_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
+```
+
+如果需要新增平台，只需要增加相应的文件地址变量。
+
+### 相关 GitHub Action
+
+#### RTC 3.x SDK 的 CS SDK 和 Flutter SDK
+
+https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app.yml
+
+```yaml
+# 生成 JSON 文件（中文用于调试，英文用于生产）
+echo "Running for Flutter CG"
+python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
+echo "Running for CS CG"
+python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cs --json_file csharp_cg.json --sdk_type rtc --remove_sdk_type rtc-ng --defined_path cs
+```
+
+```yaml
+# 上传 JSON 文件
+- name: Upload Flutter CG JSON to release
+  uses: svenstaro/upload-release-action@v2
+  with:
+      repo_token: ${{ secrets.GITHUB_TOKEN }}
+      file: xml2json/flutter_newer.json
+      asset_name: flutter_doc_template.json
+      tag: main
+      overwrite: true
+      body: "Template file for automatic comment population."
+- name: Upload CS CG JSON to release
+  uses: svenstaro/upload-release-action@v2
+  with:
+      repo_token: ${{ secrets.GITHUB_TOKEN }}
+      file: xml2json/csharp_cg.json
+      asset_name: csharp_cg_doc_template.json
+      tag: main
+      overwrite: true
+      body: "Template file for automatic comment population."
+```
+
+https://github.com/AgoraIO/agora_doc_source/releases/tag/main
+
+#### RTC 4.x SDK 的 Flutter、RN、Unity 及 Electron SDK
+
+https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml
+https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml
+https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml
+https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml
+
+```python
+- name: Run CN json creation
+  run: |
+      cd xml2json
+      echo "Running for flutter NG"
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter --json_file flutter_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+- name: Run EN json creation
+  if: always()
+  run: |
+      cd xml2json
+      echo "Running for flutter NG"
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+- name: Run json creation
+  run: |
+      cd xml2json
+      echo "Running for RN NG"
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag rn --json_file rn_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
+- name: Run json creation
+  if: always()
+  run: |
+      cd xml2json
+      echo "Running for RN NG"
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag rn --json_file rn_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
+      
+- name: Run CN json creation
+  run: |
+      cd xml2json
+      echo "Running for unity NG CN (test)"
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+- name: Run EN json creation
+  run: |
+      cd xml2json
+      echo "Running for unity NG EN (test)"
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+- name: Run cn json creation
+  run: |
+      cd xml2json
+      echo "Running for electron NG"
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag electron --json_file electron_ng_cn.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
+- name: Run en json creation
+  run: |
+      cd xml2json
+      echo "Running for electron NG"
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
 ```
