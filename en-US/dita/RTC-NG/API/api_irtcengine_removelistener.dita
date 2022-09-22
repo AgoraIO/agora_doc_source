@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_removelistener">
     <title><ph keyref="removeListener"/></title>
-    <shortdesc id="short"><ph id="shortdesc">移除指定的 <xref keyref="IRtcEngineEvent"/> 监听器。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Removes the specified <xref keyref="IRtcEngineEvent"/> listener.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,7 +26,7 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>对于某些已监听的回调函数，如果你在收到相应回调事件后无需再次接收回调消息，可以调用该方法移除对应的监听器。</p>
+            <p>For listened events, if you no longer need to receive the callback message, you can call this method to remove the corresponding listener. </p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -37,8 +37,7 @@
             </plentry>
             <plentry id="listener">
                 <pt>listener</pt>
-                <pd><parmname>eventType</parmname> 对应的回调函数。 必须传入 <xref keyref="addListener"/> 中传入的同一个函数对象。 以取消监听 <xref keyref="onJoinChannelSuccess"/> 为例： 
-                        <codeblock outputclass="language-typescript">// 新建 onJoinChannelSuccess 对象
+                <pd>The callback function for <parmname>eventType</parmname>. Must pass in the same function object in <xref keyref="addListener"/>. Take removing the listener for <xref keyref="onJoinChannelSuccess"/> as anexample: <codeblock outputclass="language-typescript">// 新建 onJoinChannelSuccess 对象
 const onJoinChannelSuccess = (connection: RtcConnection, elapsed: number) => {};
 // 添加 onJoinChannelSuccess 监听器
 engine.addListener('onJoinChannelSuccess', onJoinChannelSuccess);
