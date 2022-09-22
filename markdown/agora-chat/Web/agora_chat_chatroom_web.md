@@ -152,6 +152,12 @@ conn.addEventHandler("eventName", {
         // 有用户加入聊天室。聊天室的所有成员（除新成员外）会收到该事件。
         case 'memberPresence':
             break;
+             // 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
+            case 'updateChatRoomAttributes':
+                break;
+            // 有成员删除聊天室自定义属性，聊天室所有成员会收到该事件。
+            case 'removeChatRoomAttributes':
+                break;
         default:
             break;
     }

@@ -144,5 +144,12 @@ public interface ChatRoomChangeListener {
 
     // 聊天室公告变更
     void onAnnouncementChanged(String chatRoomId, String announcement);
+
+    // 聊天室自定义属性有更新
+    default void onChatroomAttributesDidChanged(String chatRoomId, Map<String,String> attributeMap , String from){}
+
+    // 有聊天室自定义属性被移除
+    default void onChatroomAttributesDidRemoved(String chatRoomId, Map<String,String> attributeMap , String from){}
+
 }
 ```

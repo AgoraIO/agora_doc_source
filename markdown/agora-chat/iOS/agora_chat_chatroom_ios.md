@@ -160,5 +160,10 @@ SDK 中提供了聊天室事件的监听接口。你可以通过注册聊天室�
                       newOwner:(NSString *)aNewOwner
                       oldOwner:(NSString *)aOldOwner {
 
+// 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
+- (void)chatroomAttributesDidUpdated:(NSString *_Nonnull)roomId attributeMap:(NSDictionary<NSString *, NSString *> *_Nullable)attributeMap from:(NSString *_Nonnull)fromId;
   }
+
+// 有成员删除聊天室自定义属性。聊天室所有成员会收到该事件。
+- (void)chatroomAttributesDidRemoved:(NSString *_Nonnull)roomId attributes:(NSArray<__kindof NSString *> *_Nullable)attributes from:(NSString *_Nonnull)fromId;
 ```
