@@ -6,89 +6,26 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class VideoFrame implements RefCounted {
-    public interface Buffer extends RefCounted {
-        @CalledByNative("Buffer") int getWidth();
-
-        @CalledByNative("Buffer") int getHeight();
-
-        @CalledByNative("Buffer") I420Buffer toI420();
-
-        @Override @CalledByNative("Buffer") void retain();
-
-        @Override @CalledByNative("Buffer") void release();
-
-        @CalledByNative("Buffer")
+            <codeblock props="android" outputclass="language-java">public interface Buffer extends RefCounted {
+    
+    @CalledByNative("Buffer") int getWidth();
+    @CalledByNative("Buffer") int getHeight();   
+    @Override @CalledByNative("Buffer") void retain(); 
+    @Override @CalledByNative("Buffer") void release();
+    @CalledByNative("Buffer")
     Buffer cropAndScale(
         int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
 
-        @CalledByNative("Buffer") @Nullable Buffer mirror(int frameRotation);
+    
+    @CalledByNative("Buffer") @Nullable Buffer mirror(int frameRotation);
 
-        @CalledByNative("Buffer") @Nullable Buffer rotate(int frameRotation);
-        @CalledByNative("Buffer")
+    
+    @CalledByNative("Buffer") @Nullable Buffer rotate(int frameRotation);
+    
+    @CalledByNative("Buffer")
     @Nullable
     Buffer transform(int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth,
         int scaleHeight, int frameRotation);
-  }
-
-    public interface I420Buffer extends Buffer {
-        @CalledByNative("I420Buffer") ByteBuffer getDataY();
-        @CalledByNative("I420Buffer") ByteBuffer getDataU();
-        @CalledByNative("I420Buffer") ByteBuffer getDataV();
-
-    @CalledByNative("I420Buffer") int getStrideY();
-    @CalledByNative("I420Buffer") int getStrideU();
-    @CalledByNative("I420Buffer") int getStrideV();
-  }
-
-    public interface I422Buffer extends Buffer {
-    @CalledByNative("I422Buffer") ByteBuffer getDataY();
-    @CalledByNative("I422Buffer") ByteBuffer getDataU();
-    @CalledByNative("I422Buffer") ByteBuffer getDataV();
-
-    @CalledByNative("I422Buffer") int getStrideY();
-    @CalledByNative("I422Buffer") int getStrideU();
-    @CalledByNative("I422Buffer") int getStrideV();
-  }
-  public interface RgbaBuffer extends Buffer {
-    @CalledByNative("RgbaBuffer") ByteBuffer getData();
-  }
-    public interface TextureBuffer extends Buffer {
-        enum Type {
-            OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
-            RGB(GLES20.GL_TEXTURE_2D);
-
-      private final int glTarget;
-
-      private Type(final int glTarget) {
-        this.glTarget = glTarget;
-      }
-
-      public int getGlTarget() {
-        return glTarget;
-      }
-    }
-
-    enum ContextType {
-      EGL_CONTEXT_10,
-      EGL_CONTEXT_14;
-    }
-
-    Type getType();
-
-        @CalledByNative("TextureBuffer") int getTextureId();
-
-        Matrix getTransformMatrix();
-
-        EglBase.Context getEglBaseContext();
-
-    @CalledByNative("TextureBuffer") long getNativeEglContext();
-
-    @CalledByNative("TextureBuffer") int getEglContextType();
-
-    @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
-
-        @CalledByNative("TextureBuffer") int getSequence();
   }
 
   public interface ColorSpace {
@@ -162,26 +99,50 @@
       Unspecified(2),
       BT470M(4),
       BT470BG(5),
-      kSMPTE170M(6),   private Buffer buffer;
+      kSMPTE170M(6), 
+      kSMPTE240M(7),
+      kFILM(8),
+      kBT2020(9),
+      kSMPTEST428(10),
+      kSMPTEST431(11),
+      kSMPTEST432(12),
+      kJEDECP22(22);
+      private final int primary;
+      private Primary(int primary) {
+        this.primary = primary;
+      }
+      public int getPrimary() {
+        return primary;
+      }
+    }
 
-    private int rotation;
+    Range getRange();
+    Matrix getMatrix();
+    Transfer getTransfer();
+    Primary getPrimary();
+  }
 
-    private long timestampNs;
+  public enum SourceType {
+    kFrontCamera,
+    kBackCamera,
+    kUnspecified,
+  }
+
+  
+  private Buffer buffer;
+  private int rotation;
+  private long timestampNs;
   private ColorSpace colorSpace;
-
+  private SourceType sourceType;
   private float sampleAspectRatio;
-
-  private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
-
-    private byte[] alphaBuffer;
-
-    public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
-    this(buffer, rotation, timestampNs, null, null, 1.0f);
+  private byte[] alphaBuffer;
+  public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
+    this(buffer, rotation, timestampNs, null, null, 1.0f, SourceType.kUnspecified.ordinal());
   }
 
   @CalledByNative
   public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
-      byte[] alphaBuffer, float sampleAspectRatio) {
+      byte[] alphaBuffer, float sampleAspectRatio, int sourceType) {
     if (buffer == null) {
       throw new IllegalArgumentException("buffer not allowed to be null");
     }
@@ -194,47 +155,49 @@
     this.colorSpace = colorSpace;
     this.alphaBuffer = alphaBuffer;
     this.sampleAspectRatio = sampleAspectRatio;
+    this.sourceType = SourceType.values()[sourceType];
+  }
+
+  @CalledByNative
+  public SourceType getSourceType() {
+    return sourceType;
   }
 
   public float getSampleAspectRatio() {
     return sampleAspectRatio;
   }
 
-    @CalledByNative
+  @CalledByNative
   public Buffer getBuffer() {
     return buffer;
   }
 
-    @CalledByNative
+  @CalledByNative
   public int getRotation() {
     return rotation;
   }
 
-    @CalledByNative
+  @CalledByNative
   public long getTimestampNs() {
     return timestampNs;
   }
 
-  @CalledByNative
-  public VideoFrameMetaInfo getMetaInfo() {
-    return metaInfo;
-  }
-
-    public int getRotatedWidth() {
+  public int getRotatedWidth() {
     if (rotation % 180 == 0) {
       return buffer.getWidth();
     }
     return buffer.getHeight();
   }
 
-    public int getRotatedHeight() {
+  public int getRotatedHeight() {
     if (rotation % 180 == 0) {
       return buffer.getHeight();
     }
     return buffer.getWidth();
   }
 
-    public void replaceBuffer(Buffer buffer, int rotation, long timestampNs) {
+  
+  public void replaceBuffer(Buffer buffer, int rotation, long timestampNs) {
     release();
     this.buffer = buffer;
     this.rotation = rotation;
@@ -249,12 +212,12 @@
     return alphaBuffer;
   }
 
-    @Override
+  @Override
   public void retain() {
     buffer.retain();
   }
 
-    @Override
+  @Override
   @CalledByNative
   public void release() {
     buffer.release();

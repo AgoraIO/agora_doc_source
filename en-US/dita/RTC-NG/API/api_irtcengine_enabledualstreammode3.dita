@@ -13,13 +13,10 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(
-                    Constants.VideoSourceType sourceType, boolean enabled, SimulcastStreamConfig streamConfig);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(AgoraVideoSourceType)sourceType
-                        enabled:(BOOL)enabled
+            <codeblock props="android" outputclass="language-java">public abstract int enableDualStreamMode(boolean enabled, SimulcastStreamConfig streamConfig);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(BOOL)enabled
                         streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int enableDualStreamMode(
-                            VIDEO_SOURCE_TYPE sourceType, bool enabled, const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled, const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableDualStreamMode(
     enabled: boolean,
     sourceType?: VideoSourceType,
@@ -31,7 +28,7 @@
     sourceType?: VideoSourceType,
     streamConfig?: SimulcastStreamConfig
   ): number;</codeblock>
-  <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(
     {required bool enabled,
     VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary,
     SimulcastStreamConfig? streamConfig});</codeblock> </p>
