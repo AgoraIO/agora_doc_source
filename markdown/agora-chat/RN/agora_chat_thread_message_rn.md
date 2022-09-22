@@ -116,7 +116,36 @@ class ChatMessageEvent implements ChatMessageEventListener {
 }
 ```
 
-### 从服务器获取子区消息 (消息漫游)
+### 获取子区消息
+
+进入单个子区会话后默认展示最早消息，用户可以从服务器获取子区历史消息；当你需要合并处理本地和服务器拉取到的消息（例如有用户撤回子区消息的提示是 SDK 在本地生成的一条消息）的时候，可以选择从本地获取子区消息。
+
+#### 从服务器获取子区消息（消息漫游）
 
 从服务器获取子区消息，请参考 [从服务器获取消息](message_manage.html#分页获取指定会话的历史消息)。
+
+#### 管理本地子区消息
+
+调用 `getThreadConversation` 会返回单聊和群聊的会话，不会返回子区会话，你可以从本地数据库中读取指定会话的消息：
+
+```typescript
+// 获取子区会话
+ChatClient.getInstance()
+  .chatManager.getThreadConversation(convId, createIfNeed)
+  .then((conv) => {
+    // 从本地数据库获取子区会话消息
+    conv
+      .getMessages(convId, convType, startMsgId, direction, loadCount)
+      .then((messages) => {
+        console.log("success.", messages);
+      })
+      .catch((reason) => {
+        console.log("fail.", reason);
+      });
+  })
+  .catch((reason) => {
+    console.log("fail.", reason);
+  });
+```
+
 - 判断当前会话是否是子区会话，可以通过 `ChatConversation#isChatThread()` 进行判断。
