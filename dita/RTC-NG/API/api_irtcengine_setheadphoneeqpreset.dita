@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setheadphoneeqpreset">
+    <title><ph keyref="setHeadphoneEQPreset"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置预设的耳机均衡效果。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setHeadphoneEQPreset"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setHeadphoneEQPreset(int preset);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setHeadphoneEQPreset:(AgoraHeadphoneEQPreset)preset;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setHeadphoneEQPreset(HEADPHONE_EQUALIZER_PRESET preset) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc"> <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+            <p>该方法主要应用于空间音效场景下，你可以选择预设的耳机均衡器收听音频，以达到预期的音频体验。</p>
+            <note type="note">如果你使用的耳机已经具备良好的均衡效果，调用该方法时可能不会获得明显的体验提升效果，甚至可能导致体验下降。</note>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>preset</pt>
+                <pd>预设的耳机均衡效果。详见 <xref keyref="HEADPHONE_EQUALIZER_PRESET"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity rn">
+            <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功</li>
+                <li>&lt; 0: 方法调用失败
+                    <ul>
+                    <li>-1：一般性的错误（未明确归类）。</li>
+                    </ul></li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
