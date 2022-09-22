@@ -1,13 +1,15 @@
-聊天室是支持多人沟通的即时通讯系统。本文介绍如何管理聊天室的属性信息。
+聊天室是支持多人沟通的即时通讯系统。聊天室属性可分为聊天室名称、描述和公告等基本属性和自定义属性（Key-Value）。若聊天室基本属性不满足业务要求，用户可增加自定义属性并同步给所有成员。
+
+本文介绍如何管理聊天室的属性信息。
 
 ## 技术原理
 
 即时通讯 IM SDK 支持你通过调用 API 在项目中实现如下聊天室属性管理功能：
 
-- `getChatRoomDetails` 获取聊天室详情；
-- `modifyChatRoom` 更新聊天室详情；
-- `fetchChatRoomAnnouncement` 获取聊天室公告；
-- `updateChatRoomAnnouncement` 修改聊天室公告。
+- 获取和更新聊天室基本属性（名称，描述和公告）；
+- 获取聊天室单个、多个或所有聊天室自定义属性；
+- 设置或强制设置单个或多个聊天室自定义属性；
+- 删除或强制删除单个或多个聊天室自定义属性。
 
 ## 前提条件
 
@@ -19,9 +21,11 @@
 
 ## 实现方法
 
+本节介绍如何使用即时通讯 IM SDK 提供的 API 实现上述功能。
+
 ### 管理聊天室基本属性
 
-#### 获取聊天室详情
+#### 获取聊天室基本属性
 
 聊天室所有成员可以通过 `getChatRoomDetails` 方法获取聊天室详情。
 
@@ -81,11 +85,9 @@ conn.updateChatRoomAnnouncement(option).then(res => console.log(res))
 
 ### 管理聊天室自定义属性（key-value）
 
-聊天室自定义属性以键值对（key-value）形式存储，属性信息变更会实时同步给聊天室成员。利用自定义属性可以存储直播聊天室的类型、狼人杀等游戏中的角色信息和游戏状态以及实现语聊房的麦位管理和同步等。
+利用自定义属性可以存储直播聊天室的类型、狼人杀等游戏中的角色信息和游戏状态以及实现语聊房的麦位管理和同步等。聊天室自定义属性以键值对（key-value）形式存储，属性信息变更会实时同步给聊天室成员。
 
 本节介绍如何获取、设置和删除聊天室自定义属性。
-
-使用该功能的限制详见 [使用限制](limitation.html#聊天室自定义属性（key-value）)。
 
 #### 获取聊天室自定义属性
 
@@ -105,7 +107,7 @@ conn.updateChatRoomAnnouncement(option).then(res => console.log(res))
 
 ##### 设置单个聊天室自定义属性
 
-聊天室成员均可通过调用 `setChatRoomAttribute` 设置和更新单个自定义属性。设置后，其他聊天室成员收到 `onChatroomEvent` 回调，事件为 `updateChatRoomAttributes`。
+聊天室成员均可通过调用 `setChatRoomAttribute` 设置和更新单个自定义属性。设置成功后，其他聊天室成员收到 `onChatroomEvent` 回调，事件为 `updateChatRoomAttributes`。
 
    ```javascript
    let option = {
@@ -120,7 +122,7 @@ conn.updateChatRoomAnnouncement(option).then(res => console.log(res))
 
 ##### 设置多个聊天室自定义属性
 
-聊天室成员均可以调用 `setChatRoomAttributes` 批量设置自定义属性。设置后，其他聊天室成员收到 `onChatroomEvent` 回调，事件为 `updateChatRoomAttributes`。
+聊天室成员均可以调用 `setChatRoomAttributes` 批量设置自定义属性。设置成功后，其他聊天室成员收到 `onChatroomEvent` 回调，事件为 `updateChatRoomAttributes`。
 
    ```javascript
    let option = {
@@ -138,9 +140,9 @@ conn.updateChatRoomAnnouncement(option).then(res => console.log(res))
 
 #### 删除聊天室自定义属性
 
-##### 移除单个聊天室属性
+##### 删除单个聊天室属性
 
-聊天室所有成员可通过调用 `removeChatRoomAttribute` 移除单个自定义属性。移除成功后，其他成员收到 `onChatroomEvent` 回调，事件为 `removeChatRoomAttributes`。
+聊天室所有成员可通过调用 `removeChatRoomAttribute` 删除单个自定义属性。删除成功后，其他成员收到 `onChatroomEvent` 回调，事件为 `removeChatRoomAttributes`。
 
    ```javascript
    let option = {
@@ -151,9 +153,9 @@ conn.updateChatRoomAnnouncement(option).then(res => console.log(res))
    conn.removeChatRoomAttribute(option).then(res => console.log(res))
    ```
 
-##### 移除多个聊天室属性
+##### 删除多个聊天室属性
 
-聊天室所有成员可调用 `removeChatRoomAttributes` 批量移除自定义属性。移除成功后，其他成员收到 `onChatroomEvent` 回调，事件为 `removeChatRoomAttributes`。
+聊天室所有成员可调用 `removeChatRoomAttributes` 批量删除自定义属性。删除成功后，其他成员收到 `onChatroomEvent` 回调，事件为 `removeChatRoomAttributes`。
 
    ```javascript
    let option = {

@@ -21,6 +21,8 @@
 
 ## 实现方法
 
+本节介绍如何使用即时通讯 IM SDK 提供的 API 实现上述功能。
+
 ### 管理聊天室基本属性
 
 #### 获取聊天室基本属性
@@ -126,7 +128,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSe
 
 ##### 设置单个聊天室属性
 
-聊天室成员可以调用 `asyncSetChatroomAttributes` 方法设置单个聊天室自定义属性。该方法只针对未设置的自定义属性字段和更新自己设置的属性。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+聊天室成员可以调用 `asyncSetChatroomAttributes` 方法设置和更新单个聊天室自定义属性。该方法只可添加未设置的自定义属性字段和更新自己设置的属性。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -156,7 +158,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttribute(conversatio
 
 ##### 强制设置单个聊天室自定义属性
 
-设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -186,7 +188,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
 
 ##### 设置多个聊天室自定义属性
 
-聊天室成员可以调用 `asyncSetChatroomAttributes` 方法设置多个聊天室自定义属性。该方法只能添加新属性字段以及更新当前用户已添加的属性字段。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+聊天室成员可以调用 `asyncSetChatroomAttributes` 方法设置和更新多个聊天室自定义属性。该方法只能添加新属性字段以及更新当前用户已添加的属性字段。设置成功后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -218,7 +220,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
 
 ##### 强制设置多个聊天室自定义属性
 
-设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
 示例代码如下：
 

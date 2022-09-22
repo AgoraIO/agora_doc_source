@@ -25,9 +25,9 @@
 
 ### 管理聊天室基本属性
 
-#### 获取聊天室详情
+#### 获取聊天室基本属性
 
-所有聊天室成员都可以检索到当前聊天室的详细信息，包括主题、公告、描述、成员类型和管理员列表。
+所有聊天室成员都可以调用 `getChatroomSpecificationFromServerWithId` 来获取当前聊天室的详细信息，包括主题、公告、描述、成员类型和管理员列表。
 
 聊天室所有者和管理员还可以设置和更新聊天室信息。
 
@@ -36,7 +36,7 @@ AgoraChatError *error = nil;
 AgoraChatroom *chatroom = [[AgoraChatClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:@“chatroomId” error:&error];
 ```
 
-#### 更新聊天室名称
+#### 修改聊天室名称和描述
 
 仅聊天室所有者和聊天室管理员可以调用 `updateSubject` 方法设置和更新聊天室名称，聊天室名称的长度限制为 128 个字符。
 
@@ -47,8 +47,6 @@ AgoraChatError *error = nil;
 [[AgoraChatClient sharedClient].roomManager updateSubject:textString forChatroom:self.chatroom.chatroomId error:&error];
 ```
 
-#### 更新聊天室描述
-
 仅聊天室所有者和聊天室管理员可以调用 `updateDescription` 方法设置和更新聊天室描述，聊天室描述的长度限制为 512 个字符。
 
 示例代码如下：
@@ -58,7 +56,7 @@ AgoraChatError *error = nil;
 [[AgoraChatClient sharedClient].roomManager updateDescription:textString forChatroom:self.chatroom.chatroomId error:&error];
 ```
 
-#### 获取聊天室公告
+#### 管理聊天室公告
 
 聊天室所有成员均可调用 `getChatroomAnnouncementWithId` 方法获取聊天室公告。
 
@@ -67,8 +65,6 @@ AgoraChatError *error = nil;
 ```objective-c
 [AgoraChatClient.sharedClient.roomManager getChatroomAnnouncementWithId:@"chatRoomId" error:&error];
 ```
-
-#### 修改聊天室公告
 
 仅聊天室所有者和聊天室管理员可以调用 `updateChatroomAnnouncementWithId` 方法设置和更新聊天室公告，聊天室公告的长度限制为 512 个字符。公告更新后，其他聊天室成员收到 `chatroomAnnouncementDidUpdate` 回调。
 
@@ -81,7 +77,7 @@ AgoraChatError *error =  nil;
 
 ### 管理聊天室自定义属性（key-value）
 
-聊天室自定义属性以键值对（key-value）形式存储，属性信息变更会实时同步给聊天室成员。利用自定义属性可以存储直播聊天室的类型、狼人杀等游戏中的角色信息和游戏状态以及实现语聊房的麦位管理和同步等。
+利用自定义属性可以存储直播聊天室的类型、狼人杀等游戏中的角色信息和游戏状态以及实现语聊房的麦位管理和同步等。聊天室自定义属性以键值对（key-value）形式存储，属性信息变更会实时同步给聊天室成员。
 
 本节介绍如何获取、设置和删除聊天室自定义属性。
 
@@ -130,7 +126,7 @@ AgoraChatError *error =  nil;
 
 ##### 强制设置单个聊天室自定义属性
 
-聊天室成员可以调用 `setChatroomAttributesForced` 方法强制设置单个聊天室自定义属性，允许添加或者更新其他成员已设置的属性。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
+设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `setChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
 
 示例代码如下：
 
@@ -143,7 +139,7 @@ AgoraChatError *error =  nil;
 
 ##### 设置多个聊天室自定义属性
 
-聊天室成员可以调用 `setChatroomAttributes` 方法设置和更新多个聊天室自定义属性，只可添加未设置的属性字段和更新自己设置的自定义属性。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
+聊天室成员可以调用 `setChatroomAttributes` 方法设置和更新多个聊天室自定义属性。该方法只能添加新属性字段以及更新当前用户已添加的属性字段。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
 
 示例代码如下：
 
@@ -170,7 +166,7 @@ AgoraChatError *error =  nil;
 
 ##### 删除单个聊天室自定义属性
 
-聊天室成员可以调用 `removeChatroomAttributes` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。移除后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidRemoved` 回调。
+聊天室成员可以调用 `removeChatroomAttributes` 方法删除单个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidRemoved` 回调。
 
 示例代码如下：
 
@@ -209,7 +205,7 @@ AgoraChatError *error =  nil;
 
 ##### 强制删除多个聊天室自定义属性
 
-聊天室所有成员可调用 `removeChatroomAttributesForced` 方法删除聊天室自定义属性，只允许删除自己设置的自定义属性。删除后聊天室其他成员收到 `AgoraChatRoomManagerDelegate` 中 `chatroomAttributesDidRemoved` 回调。
+删除多个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `removeChatroomAttributesForced` 方法。删除后聊天室其他成员收到 `AgoraChatRoomManagerDelegate` 中 `chatroomAttributesDidRemoved` 回调。
 
 示例代码如下：
 
