@@ -664,12 +664,14 @@ https://github.com/AgoraIO/agora_doc_source/releases/tag/main
 
 #### RTC 4.x SDK 的 Flutter、RN、Unity 及 Electron SDK
 
+每一个平台都有其单独的 Action，便于问题调试。
+
 https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml
 https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml
 https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml
 https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml
 
-```python
+```yaml
 - name: Run CN json creation
   run: |
       cd xml2json
@@ -681,6 +683,9 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
       cd xml2json
       echo "Running for flutter NG"
       python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+```
+
+```yaml
 - name: Run json creation
   run: |
       cd xml2json
@@ -692,7 +697,9 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
       cd xml2json
       echo "Running for RN NG"
       python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag rn --json_file rn_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
-      
+```
+
+```yaml
 - name: Run CN json creation
   run: |
       cd xml2json
@@ -703,6 +710,9 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
       cd xml2json
       echo "Running for unity NG EN (test)"
       python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+```
+      
+```yaml
 - name: Run cn json creation
   run: |
       cd xml2json
@@ -714,3 +724,10 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
       echo "Running for electron NG"
       python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
 ```
+
+### 常见问题
+
+#### 为什么 JSON 生成不全，有些内容缺失？
+
+首先需要检查相应的 DITA 文件。绝大多数情况下，是由于标签过滤造成的内容缺失。
+
