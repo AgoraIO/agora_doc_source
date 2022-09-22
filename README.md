@@ -661,6 +661,8 @@ python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cs --json_file
       body: "Template file for automatic comment population."
 ```
 
+上传的 JSON 文件位于：
+
 https://github.com/AgoraIO/agora_doc_source/releases/tag/main
 
 #### RTC 4.x SDK 的 Flutter、RN、Unity 及 Electron SDK
@@ -725,6 +727,12 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
       echo "Running for electron NG"
       python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
 ```
+
+
+
+上传的 JSON 文件位于：
+
+https://github.com/AgoraIO/agora_doc_source/releases/tag/main
 
 ### 常见问题
 
