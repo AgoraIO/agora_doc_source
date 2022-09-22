@@ -77,7 +77,7 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
  * @param callBack                  结果回调，成功时回调 {@link EMValueCallBack#onSuccess(Object)}，
  *                                  失败时回调 {@link EMValueCallBack#onError(int, String)}。
  */
-EMClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe(conversationId, keyList, new EMValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe(conversationId, keyList, new EMValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
@@ -104,7 +104,7 @@ EMClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe(c
  * @param callBack                  结果回调，成功时回调 {@link EMValueCallBack#onSuccess(Object)}，
  *                                  失败时回调 {@link EMValueCallBack#onError(int, String)}。
  */
-EMClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSever(conversationId, new EMValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSever(conversationId, new EMValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
@@ -137,11 +137,10 @@ EMClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSeve
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-EMClient.getInstance().chatroomManager().asyncSetChatroomAttributes(conversationId,attributeKey,attributeValue,false, new EMResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncSetChatroomAttribute(conversationId,attributeKey,attributeValue,false, new CallBack() {
                 @Override
-                public void onSuccess(int code,Map<String, String> value) {
-                    if (code == 0){ //onSuccess 返回值 code 为 0，表明自定义属性设置成功
-                    }
+                public void onSuccess() {
+
                 }
 
                 @Override
@@ -168,11 +167,10 @@ EMClient.getInstance().chatroomManager().asyncSetChatroomAttributes(conversation
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-EMClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conversationId,attributeKey,attributeValue,false, new EMResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conversationId,attributeKey,attributeValue,false, new CallBack() {
                 @Override
-                public void onSuccess(int code,Map<String, String> value) {
-                    if (code == 0){ //onSuccess 返回值 code 为 0，表明自定义属性设置成功
-                    }
+                public void onSuccess() {
+
                 }
 
                 @Override
@@ -198,7 +196,7 @@ EMClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conver
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-    EMClient.getInstance().chatroomManager().asyncSetChatroomAttributes(conversationId, map, false, new EMResultCallBack<Map<String, String>>() {
+    ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributes(conversationId, map, false, new ResultCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(int code,Map<String, String> value) {
                     if (code == 0){ // onSuccess 返回值 code 为 0，表明自定义属性成功添加。
@@ -230,7 +228,7 @@ EMClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conver
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-    EMClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conversationId, map, false, new EMResultCallBack<Map<String, String>>() {
+    ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conversationId, map, false, new ResultCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(int code,Map<String, String> value) {
                     if (code == 0){ // onSuccess 返回值 code 为 0，表明自定义属性成功添加。
@@ -261,12 +259,12 @@ EMClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conver
  *
  * @param String chatRoomId         聊天室 ID。
  * @param String attributeKey       聊天室属性的 key。
- * @param callBack                  结果回调，成功时回调 {@link EMResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link EMResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
+ *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(conversationId,attributeKey, new EMResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever(conversationId,attributeKey, new CallBack() {
                     @Override
-                    public void onSuccess(int code,Map<String, String> value) {
+                    public void onSuccess() {
 
                     }
 
@@ -289,12 +287,12 @@ EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(
  *
  * @param String chatRoomId         聊天室 ID。
  * @param String attributeKey       聊天室属性的 key。
- * @param callBack                  结果回调，成功时回调 {@link EMResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link EMResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
+ *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverForced(conversationId,attributeKey, new EMResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSeverForced(conversationId,attributeKey, new CallBack() {
                     @Override
-                    public void onSuccess(int code,Map<String, String> value) {
+                    public void onSuccess() {
 
                     }
 
@@ -317,10 +315,10 @@ EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverF
  *
  * @param String chatRoomId         聊天室 ID。
  * @param List<String> keyList      聊天室自定义属性的 key 列表。
- * @param callBack                  结果回调，成功时回调 {@link EMResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link EMResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
+ *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(conversationId,keyList, new EMResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(conversationId,keyList, new ResultCallBack<Map<String, String>>() {
                     @Override
                     public void onSuccess(int code,Map<String, String> value) {
 
@@ -345,10 +343,10 @@ EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(
  *
  * @param String chatRoomId         聊天室 ID。
  * @param List<String> keyList      聊天室自定义属性的 key 列表。
- * @param callBack                  结果回调，成功时回调 {@link EMResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link EMResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
+ *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-EMClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverForced(conversationId,keyList, new EMResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverForced(conversationId,keyList, new ResultCallBack<Map<String, String>>() {
                     @Override
                     public void onSuccess(int code,Map<String, String> value) {
 
