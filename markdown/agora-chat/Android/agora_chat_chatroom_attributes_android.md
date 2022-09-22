@@ -74,10 +74,10 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
  *
  * @param String chatRoomId         聊天室 ID。
  * @param List<String> keyList      聊天室自定义属性的 Key 列表。传 `null` 返回所有自定义属性。
- * @param callBack                  结果回调，成功时回调 {@link EMValueCallBack#onSuccess(Object)}，
- *                                  失败时回调 {@link EMValueCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link ValueCallBack#onSuccess(Object)}，
+ *                                  失败时回调 {@link ValueCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe(conversationId, keyList, new EMValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe(conversationId, keyList, new ValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
@@ -101,10 +101,10 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe
  * 异步方法。
  *
  * @param String chatRoomId         聊天室 ID。
- * @param callBack                  结果回调，成功时回调 {@link EMValueCallBack#onSuccess(Object)}，
- *                                  失败时回调 {@link EMValueCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link ValueCallBack#onSuccess(Object)}，
+ *                                  失败时回调 {@link ValueCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSever(conversationId, new EMValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSever(conversationId, new ValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
