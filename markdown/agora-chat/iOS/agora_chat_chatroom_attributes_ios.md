@@ -85,8 +85,6 @@ AgoraChatError *error =  nil;
 
 本节介绍如何获取、设置和删除聊天室自定义属性。
 
-使用该功能的限制详见 [使用限制](https://docs-im.easemob.com/ccim/limitation#聊天室自定义属性（KV）)。
-
 #### 获取聊天室自定义属性
 
 ##### 获取聊天室指定自定义属性
@@ -95,9 +93,9 @@ AgoraChatError *error =  nil;
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager fetchChatroomAttributes:self.currentConversation.conversationId keys:@[@"123"] completion:^(NSDictionary * _Nullable map, EMError * _Nullable error) {
+[AgoraChatClient.sharedClient.roomManager fetchChatroomAttributes:self.currentConversation.conversationId keys:@[@"123"] completion:^(NSDictionary * _Nullable map, EMError * _Nullable error) {
 
             }];
 ```
@@ -108,9 +106,9 @@ AgoraChatError *error =  nil;
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager fetchChatroomAllAttributes:self.currentConversation.conversationId completion:^(NSDictionary * _Nullable map, EMError * _Nullable error) {
+[AgoraChatClient.sharedClient.roomManager fetchChatroomAllAttributes:self.currentConversation.conversationId completion:^(NSDictionary * _Nullable map, EMError * _Nullable error) {
 
             }];
 ```
@@ -119,52 +117,52 @@ AgoraChatError *error =  nil;
 
 ##### 设置单个聊天室属性
 
-聊天室成员可以调用 `setChatroomAttributes` 方法设置和更新单个聊天室自定义属性。该方法只可添加未设置的自定义属性字段和更新自己设置的属性。设置后，其他聊天室成员收到 `EMChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
+聊天室成员可以调用 `setChatroomAttributes` 方法设置和更新单个聊天室自定义属性。该方法只可添加未设置的自定义属性字段和更新自己设置的属性。设置后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager setChatroomAttributes:self.currentConversation.conversationId key:@"234" value:@"123" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager setChatroomAttributes:self.currentConversation.conversationId key:@"234" value:@"123" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
 
                 }];
 ```
 
 ##### 强制设置单个聊天室自定义属性
 
-聊天室成员可以调用 `setChatroomAttributesForced` 方法强制设置单个聊天室自定义属性，允许添加或者更新其他成员已设置的属性。设置成功后，其他聊天室成员收到 `EMChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
+聊天室成员可以调用 `setChatroomAttributesForced` 方法强制设置单个聊天室自定义属性，允许添加或者更新其他成员已设置的属性。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager setChatroomAttributesForced:self.currentConversation.conversationId key:@"234" value:@"123" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager setChatroomAttributesForced:self.currentConversation.conversationId key:@"234" value:@"123" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
 
                 }];
 ```
 
 ##### 设置多个聊天室自定义属性
 
-聊天室成员可以调用 `setChatroomAttributes` 方法设置和更新多个聊天室自定义属性，只可添加未设置的属性字段和更新自己设置的自定义属性。设置成功后，其他聊天室成员收到 `EMChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
+聊天室成员可以调用 `setChatroomAttributes` 方法设置和更新多个聊天室自定义属性，只可添加未设置的属性字段和更新自己设置的自定义属性。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager setChatroomAttributes:self.currentConversation.conversationId attributes:@{@"testKey":@"123"} autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager setChatroomAttributes:self.currentConversation.conversationId attributes:@{@"testKey":@"123"} autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
 
                 }];
 ```
 
 ##### 强制设置多个聊天室自定义属性
 
-设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `setChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `EMChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
+设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `setChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidUpdated` 回调。
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager setChatroomAttributesForced:self.currentConversation.conversationId attributes:@{@"testKey":@"123"} autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager setChatroomAttributesForced:self.currentConversation.conversationId attributes:@{@"testKey":@"123"} autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
                 }];
 ```
 
@@ -172,52 +170,52 @@ AgoraChatError *error =  nil;
 
 ##### 删除单个聊天室自定义属性
 
-聊天室成员可以调用 `removeChatroomAttributes` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。移除后，其他聊天室成员收到 `EMChatRoomManagerDelegate` 中的 `chatroomAttributesDidRemoved` 回调。
+聊天室成员可以调用 `removeChatroomAttributes` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。移除后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidRemoved` 回调。
 
 示例代码如下：
 
 ```objectivec
 // 异步方法
-[EMClient.sharedClient.roomManager removeChatroomAttributes:self.currentConversation.conversationId key:@"234" value:@"123" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager removeChatroomAttributes:self.currentConversation.conversationId key:@"234" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
 
                 }];
 ```
 
 ##### 强制删除单个聊天室自定义属性
 
-删除单个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `removeChatroomAttributesForced` 方法。删除后聊天室其他成员收到 `EMChatRoomManagerDelegate` 中 `chatroomAttributesDidRemoved` 回调。
+删除单个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `removeChatroomAttributesForced` 方法。删除后聊天室其他成员收到 `AgoraChatRoomManagerDelegate` 中 `chatroomAttributesDidRemoved` 回调。
 
 示例代码如下：
 
 ```objectivec
 // 异步方法
-[EMClient.sharedClient.roomManager removeChatroomAttributesForced:self.currentConversation.conversationId key:@"234" value:@"123" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager removeChatroomAttributesForced:self.currentConversation.conversationId key:@"234" autoDelete:YES completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
 
                 }];
 ```
 
 ##### 删除多个聊天室自定义属性
 
-聊天室成员可以调用 `removeChatroomAttributes` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。设置成功后，其他聊天室成员收到 `EMChatRoomManagerDelegate` 中的 `chatroomAttributesDidRemoved` 回调。
+聊天室成员可以调用 `removeChatroomAttributes` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。设置成功后，其他聊天室成员收到 `AgoraChatRoomManagerDelegate` 中的 `chatroomAttributesDidRemoved` 回调。
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager removeChatroomAttributes:self.currentConversation.conversationId attributes:@[@"testKey"] completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager removeChatroomAttributes:self.currentConversation.conversationId attributes:@[@"testKey"] completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
 
                 }];
 ```
 
 ##### 强制删除多个聊天室自定义属性
 
-聊天室所有成员可调用 `removeChatroomAttributesForced` 方法删除聊天室自定义属性，只允许删除自己设置的自定义属性。删除后聊天室其他成员收到 `EMChatRoomManagerDelegate` 中 `chatroomAttributesDidRemoved` 回调。
+聊天室所有成员可调用 `removeChatroomAttributesForced` 方法删除聊天室自定义属性，只允许删除自己设置的自定义属性。删除后聊天室其他成员收到 `AgoraChatRoomManagerDelegate` 中 `chatroomAttributesDidRemoved` 回调。
 
 示例代码如下：
 
-```objectivec
+```ObjectiveC
 // 异步方法
-[EMClient.sharedClient.roomManager removeChatroomAttributesForced:self.currentConversation.conversationId attributes:@[@"testKey"] completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
+[AgoraChatClient.sharedClient.roomManager removeChatroomAttributesForced:self.currentConversation.conversationId attributes:@[@"testKey"] completionBlock:^(EMError * _Nullable aError, NSDictionary<NSString *,NSString *> * _Nullable failureKeys) {
 
                 }];
 ```
