@@ -21,13 +21,14 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraDirectCdnStreamingMediaOptions : NSObject
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMicrophoneTrack;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable customVideoTrackId;
 
-@end</codeblock>
+@property(assign, nonatomic) BOOL publishCameraTrack;
+@property(assign, nonatomic) BOOL publishMicrophoneTrack;
+@property(assign, nonatomic) BOOL publishCustomAudioTrack;
+@property(assign, nonatomic) BOOL publishCustomVideoTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
+@property(assign, nonatomic) NSInteger publishMediaPlayerId;
+@property(assign, nonatomic) NSInteger customVideoTrackId;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct DirectCdnStreamingMediaOptions {
     Optional&lt;bool&gt; publishCameraTrack;
     Optional&lt;bool&gt; publishMicrophoneTrack;

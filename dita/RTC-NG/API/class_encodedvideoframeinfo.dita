@@ -130,6 +130,7 @@
       rotation(VIDEO_ORIENTATION_0),
       trackId(0),
       captureTimeMs(0),
+      decodeTimeMs(0),
       uid(0),
       streamType(VIDEO_STREAM_HIGH) {}
 
@@ -142,6 +143,7 @@
       rotation(rhs.rotation),
       trackId(rhs.trackId),
       captureTimeMs(rhs.captureTimeMs),
+      decodeTimeMs(rhs.decodeTimeMs),
       uid(rhs.uid),
       streamType(rhs.streamType) {}
 
@@ -155,21 +157,11 @@
     rotation = rhs.rotation;
     trackId = rhs.trackId;
     captureTimeMs = rhs.captureTimeMs;
+    decodeTimeMs = rhs.decodeTimeMs;
     uid = rhs.uid;
     streamType = rhs.streamType;
     return *this;
-  }
-    VIDEO_CODEC_TYPE codecType;
-    int width;
-    int height;
-    int framesPerSecond;
-    VIDEO_FRAME_TYPE frameType;
-    VIDEO_ORIENTATION rotation;
-    int trackId;    int64_t captureTimeMs;
-    uid_t uid;
-    VIDEO_STREAM_TYPE streamType;
-};
-</codeblock>
+  }</codeblock>
 <codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
 
   codecType?: VideoCodecType;
@@ -373,8 +365,12 @@
                 <pd>轨道 ID。适用于频道中有多个视频轨道的场景。</pd>
             </plentry>
             <plentry>
-                    <pt>captureTimeMs</pt>
-                    <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+                <pt>captureTimeMs</pt>
+                <pd>采集外部编码视频帧的 Unix 时间戳 (ms)。</pd>
+            </plentry>
+                <plentry props="cpp">
+                    <pt>decodeTimeMs</pt>
+                    <pd>将外部编码视频帧进行解码的时间戳 (ms)。</pd>
             </plentry>
             <plentry>
                 <pt>uid</pt>
