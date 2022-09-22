@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_addlistener">
     <title><ph keyref="addListener_IMediaPlayer"/></title>
-    <shortdesc id="short">Add one <ph id="shortdesc"><xref keyref="IMediaPlayerEvent"/></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Adds one <xref keyref="IMediaPlayerEvent"/> listener.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,19 +26,18 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用该方法后，你可以通过 <apiname keyref="IMediaPlayerEvent"/> 监听对应 <xref keyref="IMediaPlayer"/> 对象的事件、获取数据。 根据业务需要，你可以为同一事件添加多个监听器。</p>
+            <p>After calling this method, you can listen for the corresponding events in the <xref keyref="IMediaPlayer"/> object and obtain data through <apiname keyref="IMediaPlayerEvent"/>. Depending on your project needs, you can add multiple listeners for the same event.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="eventType">
                 <pt>eventType</pt>
-                <pd>需要监听的目标事件名。 See <apiname keyref="IMediaPlayerEvent"/>.</pd>
+                <pd>The name of the target event to listen for. See <apiname keyref="IMediaPlayerEvent"/>.</pd>
             </plentry>
             <plentry id="listener">
                 <pt>listener</pt>
-                <pd><parmname>eventType</parmname> 对应的回调函数。 以添加 <xref keyref="onPlayerSourceStateChanged"/> 为例： 
-                    <codeblock outputclass="language-typescript">// 新建 onPlayerSourceStateChanged 对象
+                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onPlayerSourceStateChanged"/> as an example: <codeblock outputclass="language-typescript">// 新建 onPlayerSourceStateChanged 对象
 const onPlayerSourceStateChanged = (connection: RtcConnection, elapsed: number) => {};
 // 添加 onPlayerSourceStateChanged 监听器
 engine.addListener('onPlayerSourceStateChanged', onPlayerSourceStateChanged);</codeblock></pd>
