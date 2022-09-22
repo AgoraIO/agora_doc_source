@@ -577,3 +577,43 @@ jobs:
 
 
 > 注意：DITA 文档在线构建使用了 [Oxygen Script](https://www.oxygenxml.com/xml_scripting/pricing.html)，为付费产品，需要定期续费。文档构建的详细命令参数详见 Oxygen Script 官方文档。你也可以咨询 Oxygen 技术支持。
+
+## 从 DITA 生成 JSON 的流程解析
+
+主要的解析逻辑位于：
+
+[https://github.com/AgoraIO/agora_doc_source/blob/master/xml2json/xml2json.py](https://github.com/AgoraIO/agora_doc_source/blob/master/xml2json/xml2json.py)。
+
+运行时支持以下命令行参数：
+
+```python
+parser = argparse.ArgumentParser(description="JSON generator")
+
+parser.add_argument("--working_dir",
+                    help="Your working dir, such as C:\\Users\\WL\\Documents\\GitHub\\doc_source\\en-US\\dita\\RTC",
+                    action="store")
+parser.add_argument("--platform_tag", help="Your platform tag, such as flutter", action="store")
+parser.add_argument("--json_file", help="Your json file name, such as flutter_interface_new.json", action="store")
+parser.add_argument("--sdk_type", help="Your SDK type: sdk or sdk-ng", action="store")
+parser.add_argument("--remove_sdk_type", help="Your remove SDK type: sdk or sdk-ng", action="store")
+parser.add_argument("--defined_path", help="Your defined path, such as android, flutter， electron_ng", action="store")
+```
+
+目前文件中定义了以下 DITAMAP 的 key 文件地址
+
+```python
+android_path = "config/keys-rtc-api-android.ditamap"
+cpp_path = "config/keys-rtc-api-cpp.ditamap"
+cpp_ng_path = "config/keys-rtc-ng-api-cpp.ditamap"
+rust_path = "config/keys-rtc-api-rust.ditamap"
+electron_path = "config/keys-rtc-api-electron.ditamap"
+unity_path = "config/keys-rtc-api-unity.ditamap"
+cs_path = "config/keys-rtc-api-cs.ditamap"
+flutter_path = "config/keys-rtc-api-flutter.ditamap"
+rn_path = "config/keys-rtc-api-rn.ditamap"
+electron_ng_path = "config/keys-rtc-ng-api-electron.ditamap"
+c_sharp_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
+flutter_ng_path = "config/keys-rtc-ng-api-flutter.ditamap"
+rn_ng_path = "config/keys-rtc-ng-api-rn.ditamap"
+unity_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
+```
