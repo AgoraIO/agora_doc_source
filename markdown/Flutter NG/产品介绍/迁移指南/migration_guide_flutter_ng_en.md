@@ -39,7 +39,7 @@ After upgrading from agora_rtc_engine: ^5.x to agora_rtc_engine: ^6.0.0-rc.2, th
 
 #### Named parameters
 
-For optimal code readability, agora_rtc_engine: ^6.0.0-rc.2 has changed the parameters of all methods with more than two parameters to [named parameters](https://dart.dev/guides/language/language-tour#parameters). Take the ` joinChannel` method as an example:
+For optimal code readability, agora_rtc_engine: ^6.0.0-rc.2 has changed the parameters of all methods with more than two parameters to [named parameters](https://dart.dev/guides/language/language-tour#parameters). Take the `joinChannel` method as an example:
 
 ```dart
 await _engine.joinChannel(token: '', channelId: 'channelid', uid: 0, options: const ChannelMediaOptions());
@@ -101,7 +101,7 @@ In addition to the breaking changes listed here relative to agora_rtc_engine: ^5
 
 - Replaces `publishAudioTrack` in `ChannelMediaOptions` with `publishMicrophoneTrack`.
 - Removes `joinChannelWithOptions`.
-- Adds `options` and remove `info` in `joinChannel`. See [`joinChannel`](https://docs.agora.io/en/video-call-4.x/API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2) for details.
+- Adds `options` and removes `info` in `joinChannel`. See [`joinChannel`](https://docs.agora.io/en/video-call-4.x/API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2) for details.
 
 If you used this feature in agora_rtc_engine: ^6.0.0-beta.2 and wish to upgrade to agora_rtc_engine: ^6.0.0-rc.2, modify the implementation code of the feature after upgrading the SDK.
 </div>
