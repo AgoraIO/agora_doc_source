@@ -27,7 +27,7 @@ This section guides you through how to integrate FCM with Agora Chat.
 
 2. In the **Create a project** page, enter a project name, and click **Create project**.
 
-<div class="alert note">You can toggle off **Enable Google Analytics for this project** if this option is not needed.</div>
+<div class="alert note">You can toggle off <b>Enable Google Analytics for this project</b> if this option is not needed.</div>
 
 3. After the project is ready, click **Continue** to redirect to the project page, and click the **Android** icon to register an Android project.
 
