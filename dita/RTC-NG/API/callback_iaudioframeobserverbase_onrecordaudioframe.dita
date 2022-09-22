@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onrecordaudioframe">
     <title><ph keyref="onRecordAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获得采集的音频。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获得采集的原始音频数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,8 +28,17 @@
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
       onRecordAudioFrame</codeblock> </p>
         </section>
-        <section id="detailed_desc" props="native unity">
-            <note type="note">为保证采集到的音频数据格式符合预期，Agora 推荐你在调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器后，调用 <xref keyref="getRecordAudioParams"/> 方法设置采集的音频数据格式。SDK 会根据 <apiname keyref="getRecordAudioParams"/> 回调返回值中设置的 <parmname>AudioParams</parmname> 计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</note> </section>
+        <section id="detailed_desc">
+            <note type="note" id="note">
+            <ul>
+                <li>你需要在加入频道前，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，即注册 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
+                <li>为保证采集到的音频数据格式符合预期，Agora 推荐你在如下两种方式中选其一设置采集到的音频数据格式：
+                    <ul>
+                        <li>调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置获取的耳返音频数据格式，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
+                        <li>在 <xref keyref="getRecordAudioParams"/> 回调的返回值中设置获取的耳返音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>      
+                    </ul></li>
+            </ul>
+            </note></section>
         <section id="parameters">
             <title>参数</title>
             <parml>
