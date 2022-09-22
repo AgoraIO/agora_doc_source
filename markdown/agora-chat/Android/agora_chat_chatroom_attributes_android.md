@@ -6,10 +6,10 @@
 
 即时通讯 IM SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性管理，可以实现以下功能：
 
-- 获取和更新聊天室基本信息（名称，描述和公告）
-- 获取聊天室单个、多个或所有聊天室自定义属性
-- 设置或强制设置单个或多个聊天室自定义属性
-- 删除或强制删除单个或多个聊天室自定义属性
+- 获取和更新聊天室基本属性（名称，描述和公告）；
+- 获取聊天室单个、多个或所有聊天室自定义属性；
+- 设置或强制设置单个或多个聊天室自定义属性；
+- 删除或强制删除单个或多个聊天室自定义属性。
 
 ## 前提条件
 
@@ -23,14 +23,20 @@
 
 ### 管理聊天室基本属性
 
-#### 获取和修改聊天室属性
+#### 获取聊天室基本属性
 
 方法示例如下：
 
 ```java
 // 所有聊天室成员都可以调用 `fetchChatRoomFromServer` 来获取当前聊天室的详细信息，包括主题、公告、描述、成员类型和管理员列表。
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
+```
 
+#### 修改聊天室名称和描述
+
+方法示例如下：
+
+```java
 // 仅聊天室所有者和聊天室管理员可以调用 `changeChatRoomSubject` 方法设置和更新聊天室名称，聊天室名称的长度限制为 128 个字符。
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatRoomSubject(chatRoomId, newSubject);
 
@@ -57,8 +63,6 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
 利用自定义属性可以存储直播聊天室的类型、狼人杀等游戏中的角色信息和游戏状态以及实现语聊房的麦位管理和同步等。聊天室自定义属性以键值对（key-value）形式存储，属性信息变更会实时同步给聊天室成员。
 
 本节介绍如何获取、设置和删除聊天室自定义属性。
-
-使用该功能的限制详见 [使用限制](/product/limitation.html#聊天室自定义属性（KV）)。
 
 #### 获取聊天室自定义属性
 
@@ -180,9 +184,9 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
             });
 ```
 
-#### 设置多个聊天室自定义属性
+##### 设置多个聊天室自定义属性
 
-聊天室成员可以调用 `asyncSetChatroomAttributes` 方法设置多个聊天室自定义属性。该方法只针对未设置的自定义属性和更新自己设置的属性。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+聊天室成员可以调用 `asyncSetChatroomAttributes` 方法设置多个聊天室自定义属性。该方法只能添加新属性字段以及更新当前用户已添加的属性字段。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -212,7 +216,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
             });
 ```
 
-#### 强制设置多个聊天室自定义属性
+##### 强制设置多个聊天室自定义属性
 
 设置聊天室自定义属性时，若要支持覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
