@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_muteallremoteaudiostreams">
-    <title><ph keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine" /></title>
+    <title><ph keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/></title>
     <shortdesc id="short"><ph id="shortdesc">Stops or resumes subscribing to the audio streams of all remote users.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine" />
+                <indexterm keyref="muteAllRemoteAudioStreams_IBaseSpatialAudioEngine"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,22 +25,24 @@
             <p>After successfully calling this method, the local user stops or resumes subscribing to the audio streams of all remote users, including all subsequent users.</p>
             <note>
             <ul>
-            <li>Call this method after <xref keyref="joinChannel2" />.</li>
-            <li>When using the spatial audio effect, if you need to set whether to stop subscribing to the audio streams of all remote users, Agora recommends calling this method instead of the <xref keyref="muteAllRemoteAudioStreams" /> method under <xref keyref="IRtcEngine" />.</li>
+            <li>Call this method<xref keyref="joinChannel2"/> after .</li>
+            <li>When using the spatial audio effect, if you need to set whether to stop subscribing to the audio streams of all remote users, Agora recommends calling this method instead of the<xref keyref="IRtcEngine"/>  method under<xref keyref="muteAllRemoteAudioStreams"/> .</li>
+                    <li>在调用该方法后，你需要调用 <xref keyref="updateSelfPosition"/> 和 <xref keyref="updateRemotePosition"/> 更新本地用户和远端用户的空间位置，否则该方法中的设置不会生效。</li>
             </ul></note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>mute</pt>
-                <pd><p>Whether to stop subscribing to the audio streams of all remote users:<ul>
-                                <li><codeph><ph keyref="true" /></codeph>: Stop subscribing to the audio streams of all remote users.</li>
-                                <li><codeph><ph keyref="false" /></codeph>: Subscribe to the audio streams of all remote users.</li>
-                            </ul>
-                        </p></pd>
+                <pd>
+                    <p>Whether to stop subscribing to the audio streams of all remote users:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Stop subscribing to the audio streams of all remote users.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Subscribe to the audio streams of all remote users.</li>
+                    </ul> </p>
+                </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
