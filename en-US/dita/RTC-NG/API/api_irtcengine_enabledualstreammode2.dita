@@ -30,21 +30,24 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>You can call this method to enable or disable the dual-stream mode on the publisher side. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream:<ul>
+            <p id="desc1">You can call this method to enable or disable the dual-stream mode on the publisher side. Dual streams are a hybrid of a high-quality video stream and a low-quality video stream:<ul>
             <li>High-quality video stream: High bitrate, high resolution.</li>
             <li>Low-quality video stream: Low bitrate, low resolution.</li>
             </ul></p>
-            <p>After you enable the dual-stream mode, you can call <xref keyref="setRemoteVideoStreamType" /> to choose toreceive the high-quality video stream or low-quality video stream on the subscriber side.</p>
-            <note type="note">
-            <p>You can call this method either before or after joining a channel.</p>
-            </note></section>
+            <p id="desc2">After you enable the dual-stream mode, you can call  to choose to<xref keyref="setRemoteVideoStreamType" /> receive the high-quality video stream or low-quality video stream on the subscriber side.</p>
+            <note type="note" id="seq">
+            <ul>
+                <li>该方法适用于发送端发送的所有类型的流，包括且不限于来自摄像头采集的视频流、屏幕共享流、自定义采集的视频流。</li>
+                <li>如果需要在多频道场景下开启视频双流，可以调用 <xref keyref="enableDualStreamModeEx"/> 方法。</li>
+                <li>You can call this method either before or after joining a channel.</li>
+                </ul></note></section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
                 <pd>
-                    <p>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</p>
+                    <p>The capture type of the custom video source. See  for details<xref keyref="VIDEO_SOURCE_TYPE" />.</p>
                 </pd>
             </plentry>
             <plentry id="enabled">
@@ -60,7 +63,7 @@
         <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul id="ul_bpp_x2z_hqb">
-            <li>0: Success.</li>
+            <li>Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
