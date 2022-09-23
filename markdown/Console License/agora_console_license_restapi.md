@@ -76,8 +76,8 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F5xxxxxxxxxxxxxxxxxxxxxxxxEC3
         "pid": "02F51997A07B46C5810020A0F163EC30",
         "license": "1D65xxxxxxxxxxxxxxxxxxxxxxxx6016",
         "licenseKey": "111",
-        "activationTime": 1663743436, // 时间戳，单位s
-        "expireTime": 1695279436, // 到期时间戳，单位s
+        "activationTime": 1663743436,
+        "expireTime": 1695279436,
         "skuView": {
             "product": 1,
             "name": "演示申请01",
