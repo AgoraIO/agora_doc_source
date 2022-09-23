@@ -50,7 +50,7 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatroomDes
 // 聊天室所有成员均可调用 `fetchChatRoomAnnouncement` 方法获取聊天室公告。
 String announcement = ChatClient.getInstance().chatroomManager().fetchChatRoomAnnouncement(chatRoomId);
 
-// 聊天室所有者和管理员可以设置和更新公告，聊天室公告的长度限制为 512 个字符。公告更新后，所有聊天室成员都会收到 `onAnnouncementChanged` 回调。
+// 仅聊天室所有者和管理员可以设置和更新公告，聊天室公告的长度限制为 512 个字符。公告更新后，所有聊天室成员都会收到 `onAnnouncementChanged` 回调。
 
 ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId, announcement);
 ```
@@ -65,7 +65,7 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
 
 ##### 获取聊天室指定自定义属性
 
-聊天室所有成员均可调用 `asyncFetchChatroomAttributesFromServe` 方法获取聊天室指定自定义属性。
+聊天室所有成员均可调用 `asyncFetchChatroomAttributesFromServer` 方法获取聊天室指定自定义属性。
 
 示例代码如下：
 
@@ -78,7 +78,7 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
  * @param callBack                  结果回调，成功时回调 {@link ValueCallBack#onSuccess(Object)}，
  *                                  失败时回调 {@link ValueCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe(conversationId, keyList, new ValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServer(conversationId, keyList, new ValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
@@ -134,7 +134,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSe
  * @param String  chatRoomId            聊天室 ID。
  * @param String  attributeKey          聊天室属性的 key。
  * @param String  attributeValue        聊天室属性的 value。
- * @param boolean autoDelete            当前成员退出聊天室是否自动删除该聊天室中其设置的所有聊天室自定义属性。
+ * @param boolean autoDelete            当前成员退出聊天室时是否自动删除该聊天室中其设置的所有自定义属性。
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
@@ -164,7 +164,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttribute(conversatio
  * @param String  chatRoomId            聊天室 ID。
  * @param String  attributeKey          聊天室属性的 key。
  * @param String  attributeValue        聊天室属性的 value。
- * @param boolean autoDelete            当前成员退出聊天室是否自动删除该聊天室中其设置的所有聊天室自定义属性。
+ * @param boolean autoDelete            当前成员退出聊天室时是否自动删除该聊天室中其设置的所有自定义属性。
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
@@ -193,7 +193,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
  *
  * @param String chatRoomId             聊天室 ID。
  * @param Map<String,String> map        聊天室自定义属性集合，为键值对（key-value）结构。
- * @param boolean autoDelete            当前成员退出聊天室是否自动删除该聊天室中其设置的所有聊天室自定义属性。
+ * @param boolean autoDelete            当前成员退出聊天室时是否自动删除该聊天室中其设置的所有自定义属性。
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
@@ -225,7 +225,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
  *
  * @param String chatRoomId             聊天室 ID。
  * @param Map<String,String> map        聊天室自定义属性集合，为键值对（key-value）结构。
- * @param boolean autoDelete            当前成员退出聊天室是否自动删除该聊天室中其设置的所有聊天室自定义属性。
+ * @param boolean autoDelete            当前成员退出聊天室时是否自动删除该聊天室中其设置的所有自定义属性。
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
