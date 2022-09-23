@@ -63,7 +63,7 @@ https://api.agora.io/dabiz/license/v2/active?pid=02F5xxxxxxxxxxxxxxxxxxxxxxxxEC3
 |`expireTime`| Number | License 到期的 Unix 时间戳，单位为秒。 |
 |`skuView`| Array | SKU 能力集：<ul><li>`product` (Integer): <ul><li>`1`: RTC</li><li>`2`: RTSA</li><li>`3`: FPA</li></ul></li></ul><ul><li>`name` (String): SKU 的名称</li></ul><ul><li>`mediaType` (Integer):<ul><li>`1`: 音频</li><li>`2`: 视频</li><li>`3`: 音视频</li></ul></li></ul><ul><li>`minutes` (Integer): License 分钟数上限</li></ul><ul><li>`period` (String): License 使用时间段</li></ul> |
 
-如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](#status) 和响应包体中 `message` 字段的描述进行错误排查。
 
 ### 响应示例
 
@@ -131,7 +131,7 @@ https://api.agora.io/dabiz/license/v2/detail?appid=02F5xxxxxxxxxxxxxxxxxxxxxxxxE
 |`activationTime`| Number | License 激活的 Unix 时间戳，单位为秒。 |
 |`skuView`| Array | SKU 能力集：<ul><li>`product` (Integer): <ul><li>`1`: RTC</li><li>`2`: RTSA</li><li>`3`: FPA</li></ul></li></ul><ul><li>`name` (String): SKU 的名称</li></ul><ul><li>`mediaType` (Integer):<ul><li>`1`: 音频</li><li>`2`: 视频</li><li>`3`: 音视频</li></ul></li></ul><ul><li>`minutes` (Integer): License 分钟数上限</li></ul><ul><li>`period` (String): License 使用时间段</li></ul> |
 
-如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](#status) 和响应包体中 `message` 字段的描述进行错误排查。
 
 ### 响应示例
 
@@ -215,7 +215,7 @@ https://api.agora.io/dabiz/license/v2/allocate?appid=a6d6xxxxxxxxxxxxxxxxxxxxxxx
 
 如果状态码为 `200`，则请求成功。
 
-如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](#status) 和响应包体中 `message` 字段的描述进行错误排查。
 
 ### 响应示例
 
@@ -268,7 +268,7 @@ https://api.agora.io/dabiz/license/v2/product/allocations?page=1&size=2&pid=02F5
 |`count`| Integer | 配额次数。 |
 |`list`| Array | 配额详情列表：<ul><li>`pid` (String): 	由 SKU、有效期、品类定义的 License 标识。</li></ul><ul><li>`type` (Integer): <ul><li>`1`: 正式<li>`2`: 测试</li></li></ul><li>`creator` (String): 执行配额操作的用户名。</li><li>`count` (Integer): License 的数量。</li><li>`createTime` (String): 执行配额操作的时间。</li> |
 
-如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](#status) 和响应包体中 `message` 字段的描述进行错误排查。
 
 ### 响应示例
 
@@ -333,7 +333,7 @@ https://api.agora.io/dabiz/license/v2/renew?renewId=4750xxxxxxxxxxxxxxxxxxxxxxxx
 
 如果状态码为 `200`，则请求成功。
 
-如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](https://docs.agora.io/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81) 和响应包体中 `message` 字段的描述进行错误排查。
+如果状态码不为 `200`，则请求失败。你可以根据返回的 [状态码](#status) 和响应包体中 `message` 字段的描述进行错误排查。
 
 ### 响应示例
 
@@ -346,6 +346,7 @@ https://api.agora.io/dabiz/license/v2/renew?renewId=4750xxxxxxxxxxxxxxxxxxxxxxxx
 }
 ```
 
+<a name="status"></a>
 
 ## 响应状态码
 
