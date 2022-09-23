@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdualstreammode">
+    <title><ph keyref="setDualStreamMode"/></title>
+    <shortdesc id="short"><ph id="shortdesc">在发送端设置双流模式。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDualStreamMode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setDualStreamMode(Constants.SimulcastStreamMode mode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDualStreamMode:(AgoraSimulcastStreamMode)mode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc"> <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+            <p id="desc">SDK 默认在发送端开启小流 auto 模式，效果等同于调用该方法并将 <parmname>mode</parmname> 设置为 <apiname keyref="AUTO_SIMULCAST_STREAM"/>。如果你想修改此行为，可以调用该方法并修改 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/>（始终不发送小流）或 <apiname keyref="ENABLE_SIMULCAST_STREAM"/>（始终发送小流）。</p>
+            <note id="note">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
+                <ul>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
+                <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                </ul></note>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry id="mode">
+                    <pt>mode</pt>
+                    <pd>发送视频流的模式。详见 <xref keyref="SIMULCAST_STREAM_MODE"/>。</pd>
+                </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。</li>
+            </ul> 
+        </section>
+    </refbody>
+</reference>

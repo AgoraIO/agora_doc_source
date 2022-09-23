@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_spatialaudiozone">
+    <title><ph keyref="SpatialAudioZone"/></title>
+    <shortdesc id="short"><ph id="shortdesc">隔声区域的设置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class SpatialAudioZone {
+  public int zoneSetId;
+  public float[] position;
+  public float[] forward;
+  public float[] right;
+  public float[] up;
+  public float forwardLength;
+  public float rightLength;
+  public float upLength;
+  public float audioAttenuation;
+  public SpatialAudioZone() {
+    zoneSetId = -1;
+    position = new float[] {0.0f, 0.0f, 0.0f};
+    forward = new float[] {0.0f, 0.0f, 0.0f};
+    right = new float[] {0.0f, 0.0f, 0.0f};
+    up = new float[] {0.0f, 0.0f, 0.0f};
+    forwardLength = 0.0f;
+    rightLength = 0.0f;
+    upLength = 0.0f;
+    audioAttenuation = 0.0f;
+  }
+  @CalledByNative
+  public float[] getPosition() {
+    return position;
+  }
+  @CalledByNative
+  public float[] getForward() {
+    return forward;
+  }
+  @CalledByNative
+  public float[] getRight() {
+    return right;
+  }
+  @CalledByNative
+  public float[] getUp() {
+    return up;
+  }
+  @CalledByNative
+  public int getZoneSetId() {
+    return zoneSetId;
+  }
+  @CalledByNative
+  public float getForwardLength() {
+    return forwardLength;
+  }
+  @CalledByNative
+  public float getRightLength() {
+    return rightLength;
+  }
+  @CalledByNative
+  public float getUpLength() {
+    return upLength;
+  }
+  @CalledByNative
+  public float getAudioAttenuation() {
+    return audioAttenuation;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioZone : NSObject
+@property(assign, nonatomic)  NSInteger zoneSetId;
+@property(strong, nonatomic)  NSArray&lt;NSNumber*> * _Nonnull position;
+@property(strong, nonatomic)  NSArray&lt;NSNumber*> * _Nonnull forward;
+@property(strong, nonatomic)  NSArray&lt;NSNumber*> * _Nonnull right;
+@property(strong, nonatomic)  NSArray&lt;NSNumber*> * _Nonnull up;
+@property(assign, nonatomic)  float forwardLength;
+@property(assign, nonatomic)  float rightLength;
+@property(assign, nonatomic)  float upLength;
+@property(assign, nonatomic) float audioAttenuation;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioZone {
+  int zoneSetId;
+  float position[3];
+  float forward[3];
+  float right[3];
+  float up[3];
+  float forwardLength;
+  float rightLength;
+  float upLength;
+  float audioAttenuation;
+  SpatialAudioZone() = default;
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>zoneSetId</pt>
+                <pd>隔声区域的 ID。</pd>
+            </plentry>
+                <plentry>
+                    <pt>position</pt>
+                    <pd>隔声区域的空间中心点。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>forward</pt>
+                    <pd>以 <parmname>position</parmname> 为起点，向前的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>right</pt>
+                    <pd>以 <parmname>position</parmname> 为起点，向右的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>up</pt>
+                    <pd>以 <parmname>position</parmname> 为起点，向上的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
+                </plentry>
+                <plentry>
+                    <pt>forwardLength</pt>
+                    <pd>将整个隔声区域看做一个立方体，表示向前的边长，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rightLength</pt>
+                    <pd>将整个隔声区域看做一个立方体，表示向右的边长，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry>
+                    <pt>upLength</pt>
+                    <pd>将整个隔声区域看做一个立方体，表示向上的边长，单位为游戏引擎的单位长度。</pd>
+                </plentry>
+                <plentry>
+                    <pt>audioAttenuation</pt>
+                    <pd>隔声区域以内的用户和外部用户互通时的声音衰减系数，取值范围为 [0,1]。其中： 
+                        <ul>
+                        <li>0：广播模式，即音量和音色均不随距离衰减，无论距离远近，本地用户听到的音量和音色都无变化。</li>
+                        <li>(0,0.5)：弱衰减模式，即音量和音色在传播过程中仅发生微弱衰减，跟真实环境相比，声音可以传播得更远。</li>
+                        <li>0.5：模拟音量在真实环境下的衰减，效果等同于不设置 <parmname>audioAttenuation</parmname> 参数。</li>
+                        <li>(0.5,1]：强衰减模式 (默认值为 1) ，即音量和音色在传播过程中发生迅速衰减。</li>
+                        </ul></pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

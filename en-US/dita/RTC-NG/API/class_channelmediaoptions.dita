@@ -35,43 +35,44 @@
   public Boolean isAudioFilterable;
   public Boolean isInteractiveAudience;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
+@property(assign, nonatomic) BOOL publishCameraTrack;
+@property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
+@property(assign, nonatomic) BOOL publishMicrophoneTrack;
 #if TARGET_OS_IPHONE
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenCaptureVideo;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenCaptureAudio;
+@property(assign, nonatomic) BOOL publishScreenCaptureVideo;
+@property(assign, nonatomic) BOOL publishScreenCaptureAudio;
 #elif TARGET_OS_MAC
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
+@property(assign, nonatomic) BOOL publishScreenTrack;
+@property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
 #endif
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishDirectCustomAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishEncodedVideoTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+@property(assign, nonatomic) BOOL publishCustomAudioTrack;
+@property(assign, nonatomic) NSInteger publishCustomAudioSourceId;
+@property(assign, nonatomic) BOOL publishCustomAudioTrackEnableAec;
+@property(assign, nonatomic) BOOL  publishDirectCustomAudioTrack;
 
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
-
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMicrophoneTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableAudioRecordingOrPlayout;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable clientRoleType;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audienceLatencyLevel;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable defaultVideoStreamType;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable channelProfile;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audioDelayMs;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable mediaPlayerAudioDelayMs;
+@property(assign, nonatomic) BOOL publishCustomVideoTrack;
+@property(assign, nonatomic) BOOL publishEncodedVideoTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
+@property(assign, nonatomic) BOOL publishTrancodedVideoTrack;
+@property(assign, nonatomic) BOOL autoSubscribeAudio;
+@property(assign, nonatomic) BOOL autoSubscribeVideo;
+@property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
+@property(assign, nonatomic) NSInteger publishMediaPlayerId;
+@property(assign, nonatomic) AgoraClientRole clientRoleType;
+@property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
+@property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
+@property(assign, nonatomic) AgoraChannelProfile channelProfile;
+@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableBuiltInMediaEncryption;
+@property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
 
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishRhythmPlayerTrack;
+@property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
+@property(assign, nonatomic) BOOL isInteractiveAudience;
 
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable customVideoTrackId;
+@property(assign, nonatomic) NSInteger customVideoTrackId;
 
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isAudioFilterable;
-
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isInteractiveAudience;
+@property(assign, nonatomic) BOOL isAudioFilterable;
 
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
@@ -118,69 +119,69 @@
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaOptions {
-  
+
   publishCameraTrack?: boolean;
-  
+
   publishSecondaryCameraTrack?: boolean;
-  
+
   publishMicrophoneTrack?: boolean;
-  
+
   publishScreenCaptureVideo?: boolean;
-  
+
   publishScreenCaptureAudio?: boolean;
-  
+
   publishScreenTrack?: boolean;
-  
+
   publishSecondaryScreenTrack?: boolean;
-  
+
   publishCustomAudioTrack?: boolean;
-  
+
   publishCustomAudioSourceId?: number;
-  
+
   publishCustomAudioTrackEnableAec?: boolean;
-  
+
   publishDirectCustomAudioTrack?: boolean;
-  
+
   publishCustomVideoTrack?: boolean;
-  
+
   publishEncodedVideoTrack?: boolean;
-  
+
   publishMediaPlayerAudioTrack?: boolean;
-  
+
   publishMediaPlayerVideoTrack?: boolean;
-  
+
   publishTrancodedVideoTrack?: boolean;
-  
+
   autoSubscribeAudio?: boolean;
-  
+
   autoSubscribeVideo?: boolean;
-  
+
   enableAudioRecordingOrPlayout?: boolean;
-  
+
   publishMediaPlayerId?: number;
-  
+
   clientRoleType?: ClientRoleType;
-  
+
   audienceLatencyLevel?: AudienceLatencyLevelType;
-  
+
   defaultVideoStreamType?: VideoStreamType;
-  
+
   channelProfile?: ChannelProfileType;
-  
+
   audioDelayMs?: number;
-  
+
   mediaPlayerAudioDelayMs?: number;
-  
+
   token?: string;
-  
+
   enableBuiltInMediaEncryption?: boolean;
-  
+
   publishRhythmPlayerTrack?: boolean;
-  
+
   isInteractiveAudience?: boolean;
-  
+
   customVideoTrackId?: number;
-  
+
   isAudioFilterable?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
@@ -216,72 +217,72 @@
           public Optional&lt;bool&gt; isInteractiveAudience = new Optional&lt;bool&gt;();
           public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
           public Optional&lt;bool&gt; isAudioFilterable = new Optional&lt;bool&gt;();
-  
+
        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
-  
+
   publishCameraTrack?: boolean;
-  
+
   publishSecondaryCameraTrack?: boolean;
-  
+
   publishMicrophoneTrack?: boolean;
-  
+
   publishScreenCaptureVideo?: boolean;
-  
+
   publishScreenCaptureAudio?: boolean;
-  
+
   publishScreenTrack?: boolean;
-  
+
   publishSecondaryScreenTrack?: boolean;
-  
+
   publishCustomAudioTrack?: boolean;
-  
+
   publishCustomAudioSourceId?: number;
-  
+
   publishCustomAudioTrackEnableAec?: boolean;
-  
+
   publishDirectCustomAudioTrack?: boolean;
-  
+
   publishCustomVideoTrack?: boolean;
-  
+
   publishEncodedVideoTrack?: boolean;
-  
+
   publishMediaPlayerAudioTrack?: boolean;
-  
+
   publishMediaPlayerVideoTrack?: boolean;
-  
+
   publishTrancodedVideoTrack?: boolean;
-  
+
   autoSubscribeAudio?: boolean;
-  
+
   autoSubscribeVideo?: boolean;
-  
+
   enableAudioRecordingOrPlayout?: boolean;
-  
+
   publishMediaPlayerId?: number;
-  
+
   clientRoleType?: ClientRoleType;
-  
+
   audienceLatencyLevel?: AudienceLatencyLevelType;
-  
+
   defaultVideoStreamType?: VideoStreamType;
-  
+
   channelProfile?: ChannelProfileType;
-  
+
   audioDelayMs?: number;
-  
+
   mediaPlayerAudioDelayMs?: number;
-  
+
   token?: string;
-  
+
   enableBuiltInMediaEncryption?: boolean;
-  
+
   publishRhythmPlayerTrack?: boolean;
-  
+
   isInteractiveAudience?: boolean;
-  
+
   customVideoTrackId?: number;
-  
+
   isAudioFilterable?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
@@ -318,7 +319,7 @@
       this.isInteractiveAudience,
       this.customVideoTrackId,
       this.isAudioFilterable});
- 
+
   @JsonKey(name: 'publishCameraTrack')
   final bool? publishCameraTrack;
   @JsonKey(name: 'publishSecondaryCameraTrack')

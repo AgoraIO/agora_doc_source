@@ -33,10 +33,6 @@
             <li>该方法对人声的处理效果最佳，Agora 不推荐调用该方法处理含音乐的音频数据。</li>
             <li>如果调用 <apiname keyref="setAudioEffectPreset" /> 并设置除 <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> 或 <apiname keyref="PITCH_CORRECTION" /> 外的枚举，请勿再调用 <xref keyref="setAudioEffectParameters" />，否则 <apiname keyref="setAudioEffectPreset" /> 设置的效果会被覆盖。</li>
             <li>调用 <apiname keyref="setAudioEffectPreset" /> 后，Agora 不推荐调用以下方法，否则 <apiname keyref="setAudioEffectPreset" /> 设置的效果会被覆盖：
-
-
-
-
                 <ul>
                 <li><xref keyref="setVoiceBeautifierPreset" /></li>
                 <li><xref keyref="setLocalVoicePitch" /></li>
@@ -45,6 +41,7 @@
                 <li><xref keyref="setVoiceBeautifierParameters" /></li>
                 <li><xref keyref="setVoiceConversionPreset" /></li>
                 </ul> </li>
+                <li>该方法依赖于美声动态库 <codeph><ph keyref="audiobeauty"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>

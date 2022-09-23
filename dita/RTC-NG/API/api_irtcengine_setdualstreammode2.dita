@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setdualstreammode2">
+    <title><ph keyref="setDualStreamMode2"/></title>
+    <shortdesc id="short"><ph id="shortdesc">在发送端设置双流模式并设置视频小流。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setDualStreamMode2"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setDualStreamMode(
+      Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDualStreamMode:(AgoraSimulcastStreamMode)mode
+            streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode,
+                                 const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v4.0.1</dd>
+                </dlentry>
+            </dl>
+            <p conkeyref="setDualStreamMode/desc"/>
+            <p>该方法跟 <xref keyref="setDualStreamMode"/> 的区别在于，该方法还可以进行视频小流的配置，SDK 会根据 <parmname>streamConfig</parmname> 中的配置发送小流。</p>
+            <note conkeyref="setDualStreamMode/note"/>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+                <plentry conkeyref="setDualStreamMode/mode">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            <plentry conkeyref="enableDualStreamMode3/streamconfig">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul id="ul_bpp_x2z_hqb">
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败 </li>
+            </ul> 
+        </section>
+    </refbody>
+</reference>

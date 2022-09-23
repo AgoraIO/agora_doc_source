@@ -30,15 +30,18 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(bool enabled);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>你可以在发流端调用该方法开启或关闭双流模式。双流指视频大流和视频小流：
+            <p id="desc1">你可以在发流端调用该方法开启或关闭双流模式。双流指视频大流和视频小流：
             <ul>
             <li>视频大流：高分辨率、高帧率的视频流。</li>
             <li>视频小流：低分辨率、低帧率的视频流。</li>
             </ul></p>
-            <p>开启双流模式后，你可以在收流端调用 <xref keyref="setRemoteVideoStreamType" /> 选择接收视频大流或视频小流。</p>
-            <note type="note">
-            <p>该方法可以在加入频道前后调用。</p>
-            </note></section>
+            <p id="desc2">开启双流模式后，你可以在收流端调用 <xref keyref="setRemoteVideoStreamType" /> 选择接收视频大流或视频小流。</p>
+            <note type="note" id="seq">
+            <ul>
+                <li>该方法适用于发送端发送的所有类型的流，包括且不限于来自摄像头采集的视频流、屏幕共享流、自定义采集的视频流。</li>
+                <li>如果需要在多频道场景下开启视频双流，可以调用 <xref keyref="enableDualStreamModeEx"/> 方法。</li>
+                <li>该方法可以在加入频道前后调用。</li>
+                </ul></note></section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -63,7 +66,7 @@
             <title>返回值</title>
             <ul id="ul_bpp_x2z_hqb">
             <li>0: 方法调用成功</li>
-            <li> 0: 方法调用失败 </li>
+            <li>&lt; 0: 方法调用失败 </li>
             </ul> </section>
     </refbody>
 </reference>
