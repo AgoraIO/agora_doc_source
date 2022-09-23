@@ -25,24 +25,13 @@
 
 ### 管理聊天室基本属性
 
-#### 获取聊天室基本属性
+#### 获取聊天室名称和描述
 
-聊天室所有成员可以通过 `getChatRoomDetails` 方法获取聊天室详情。
+对于聊天室名称和描述，你可以调用 [`getChatRoomDetails`](./agora_chat_chatroom_web#获取聊天室详情) 获取聊天室详情时查看。
 
-聊天室详情包括聊天室名称、公告、描述、成员类型、管理员列表、当前聊天人数和聊天室最大成员数等。
+#### 更新聊天室名称和描述
 
-示例代码如下：
-
-```javascript
-let option = {
-    chatRoomId: 'chatRoomId'
-}
-conn.getChatRoomDetails(option).then(res => console.log(res))
-```
-
-#### 更新聊天室详情
-
-聊天室所有者和管理员可以更新聊天室详情，聊天室成员可以获取聊天室详情。
+仅聊天室所有者和管理员可以调用 `modifyChatRoom` 方法更新聊天室名称和描述，聊天室描述的长度限制为 512 个字符。
 
 示例代码如下：
 

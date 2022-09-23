@@ -25,14 +25,9 @@
 
 ### 管理聊天室基本属性
 
-#### 获取聊天室基本属性
+#### 获取聊天室名称和描述
 
-方法示例如下：
-
-```java
-// 所有聊天室成员都可以调用 `fetchChatRoomFromServer` 来获取当前聊天室的详细信息，包括主题、公告、描述、成员类型和管理员列表。
-ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
-```
+对于聊天室名称和描述，你可以调用 [`fetchChatRoomFromServer`](./agora_chat_chatroom_android#获取聊天室详情) 获取聊天室详情时查看。
 
 #### 修改聊天室名称和描述
 
