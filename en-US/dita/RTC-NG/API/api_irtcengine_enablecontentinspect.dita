@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecontentinspect">
-    <title><ph keyref="enableContentInspect" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables video content moderation.</ph></shortdesc>
+    <title><ph keyref="enableContentInspect"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><ph>开启/关闭视频截图上传。 </ph><ph props="hide">Enables/Disables video content moderation.</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableContentInspect" />
+                <indexterm keyref="enableContentInspect"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,27 +25,33 @@
     enabled: boolean,
     config: ContentInspectConfig
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableContentInspect(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableContentInspect(
       {required bool enabled, required ContentInspectConfig config});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>When video content moderation is enabled, the SDK takes screenshots, reviews the content, and uploads videos sent by local users based on the type and frequency of the content moderation module you set in <xref keyref="ContentInspectConfig" />. After content moderation, the Agora content moderation server sends the results to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
-            <p>If you set the <parmname>type</parmname> in <apiname keyref="ContentInspectModule" /> to <apiname keyref="CONTENT_INSPECT_MODERATION" />, after the content moderation is completed, the SDK triggers the <xref keyref="onContentInspectResult" /> callback and reports the moderation result.</p>                                                       
-            <note><ph>Before calling this method, ensure that the Agora content moderation service has been enabled. </ph><ph props="cn">See <xref keyref="enable-content-inspect" />.</ph></note>
-        </section>
+            <p>When video content moderation is enabled, the SDK takes screenshots, reviews<xref keyref="ContentInspectConfig"/> the content, and uploads videos sent by local users based on the type and frequency of the content moderation module you set in . After content moderation, the Agora content moderation server sends the results to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
+            <p props="hide">When video content moderation is enabled, the SDK takes screenshots<xref keyref="ContentInspectConfig"/>, reviews the content, and uploads videos sent by local users based on the type and frequency of the content moderation module you set in . After content moderation, the Agora content moderation server sends the results to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
+            <note>
+            <ul>
+            <li><ph>Before calling this method, ensure that the<xref keyref="ticket-link"/> Agora content moderation service has been enabled. </ph>Before calling this method, ensure that the<xref keyref="ticket-link"/> Agora content moderation service has been enabled. See  for details.<xref keyref="enable-content-inspect"/></li>
+            <li><codeph><ph keyref="moderation"/></codeph>This method relies on the video enhancement dynamic library . If the dynamic library is deleted, the function cannot be enabled normally.</li>
+            </ul></note> </section>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable video content moderation:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable video content moderation.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable video content moderation.</li>
+                <pd>设置是否开启<ph>视频截图上传</ph><ph props="hide">视频内容审核</ph>：                                                  
+                    
+                    
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：<ph>开启视频截图上传</ph>。 <ph props="hide">开启视频内容审核。</ph></li>
+                    <li><codeph><ph keyref="false"/></codeph>：<ph>关闭视频截图上传</ph>。 <ph props="hide">关闭视频内容审核。</ph></li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd>Configuration of content moderation. See <xref keyref="ContentInspectConfig" />.</pd>
+                <pd><ph>视频截图上传配置。 </ph><ph props="hide">Configuration of video content moderation. </ph>See  for details.<ph><xref keyref="ContentInspectConfig"/></ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity rn electron">
