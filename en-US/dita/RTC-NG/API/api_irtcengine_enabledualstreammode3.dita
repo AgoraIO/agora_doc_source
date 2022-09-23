@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enabledualstreammode3">
-    <title><ph keyref="enableDualStreamMode3" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables dual-stream mode.</ph></shortdesc>
+    <title><ph keyref="enableDualStreamMode3"/></title>
+    <shortdesc id="short"><ph id="shortdesc">在发送端开启或关必双流模式并设置视频小流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,49 +28,41 @@
     sourceType?: VideoSourceType,
     streamConfig?: SimulcastStreamConfig
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableDualStreamMode(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableDualStreamMode(
     {required bool enabled,
     VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary,
     SimulcastStreamConfig? streamConfig});</codeblock> </p>
         </section>
-        <section id="detailed_desc" conkeyref="enableDualStreamMode2/detailed_desc" props="native flutter unity electron rn" />
+        <section id="detailed_desc" conkeyref="enableDualStreamMode2/detailed_desc" props="native flutter unity electron rn"/>
         <section id="parameters">
-            <title>Parameters</title>
+            <title>Parameter</title>
             <parml id="parml_mfj_z3z_hqb">
-            <plentry conkeyref="enableDualStreamMode2/sourcetype" props="native flutter unity">
-                <pt />
-                <pd />
-            </plentry>
             <plentry props="rn electron" id="sourcetype">
                 <pt>sourceType</pt>
                 <pd>
-                    <p>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</p>
+                    <p>The capture type of the custom video source. See  for details<xref keyref="VIDEO_SOURCE_TYPE"/>.</p>
                 </pd>
             </plentry>
-            <plentry conkeyref="enableDualStreamMode2/enabled" props="native flutter unity">
-                <pt />
-                <pd />
-            </plentry>
-            <plentry props="rn electron" id="enabled">
+            <plentry props="native flutter unity" id="enabled">
                 <pt>enabled</pt>
                 <pd>
                     <p>Whether to enable dual-stream mode.<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Enable dual-stream mode.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable dual-stream mode.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (默认) 关闭双流模式。</li>
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry>
+            <plentry id="streamconfig">
                 <pt>streamConfig</pt>
                 <pd>
-                    <p>The configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig" /> .</p>
+                    <p>The configuration of the low-quality video stream. See  for details<xref keyref="SimulcastStreamConfig"/>.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
-            <ul id="ul_bpp_x2z_hqb">
-            <li>0: Success.</li>
+            <ul>
+            <li>Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
