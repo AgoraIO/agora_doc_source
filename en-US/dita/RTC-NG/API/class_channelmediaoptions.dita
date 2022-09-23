@@ -387,8 +387,8 @@
   Map&lt;String, dynamic> toJson() => _$ChannelMediaOptionsToJson(this);
 }</codeblock> </p>
         </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one<xref keyref="RtcConnection"/> video stream at the same time and in the same . <codeph><ph keyref="true"/></codeph>For example, <parmname props="native">publishMicrophoneTrackpublishAudioTrack</parmname><parmname props="unity"></parmname>, <parmname>publishCustomAudioTrack</parmname> and <parmname>publishMediaPlayerAudioTrack</parmname> can be  at the same time;
-<codeph><ph keyref="true"/></codeph>but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideopublishScreenTrack</parmname><parmname props="mac cpp"></parmname>, <parmname>publishCustomVideoTrack</parmname>, and <parmname>publishEncodedVideoTrack</parmname> can be  at the same time.</section>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname props="native">publishMicrophoneTrack</parmname>, <parmname props="unity">publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname> and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as<codeph><ph keyref="true"/></codeph> at the same time;
+but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname>, <parmname props="mac cpp">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, and <parmname>publishEncodedVideoTrack</parmname> can be set as<codeph><ph keyref="true"/></codeph> at the same time.</section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
@@ -412,7 +412,7 @@
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>Whether to publish the video captured by the second camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second camera.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Publish the video captured by the second camera.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video captured by the second camera.</li>
                     </ul>
                 </pd>
             </plentry>
@@ -438,9 +438,9 @@
             <plentry>
                 <pt props="android ios cpp unity electron rn flutter">publishScreenCaptureAudio</pt>
                 <pd>
-                    <p>Whether to publish the captured video from the screen:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the screen.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the screen.</li>
+                    <p>Whether to publish the captured audio from the screen:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio from the screen.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured audio from the screen.</li>
                     </ul></p>
                     <p>
                     <note type="attention" props="cpp">This parameter applies to Android and iOS only.</note></p>
@@ -473,7 +473,7 @@
             </plentry>
             <plentry>
                 <pt>publishCustomAudioSourceId</pt>
-                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have<xref keyref="setExternalAudioSource2"/> set the value of <parmname>sourceNumber</parmname> greater than 1 in , the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
+                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2"/> to a value greater than 1, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
@@ -529,7 +529,7 @@
                 <pt>enableAudioRecordingOrPlayout</pt>
                 <pd>Whether to enable audio capturing or playback.<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) Enable audio capturing and playback.</li>
-                    <li><codeph><ph keyref="false"/> </codeph> : Do not enable audio capturing or playback.</li>
+                    <li><codeph><ph keyref="false"/> </codeph>: Do not enable audio capturing or playback.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -539,7 +539,7 @@
             <plentry>
                 <pt>clientRoleType</pt>
                 <pd conkeyref="setClientRole1/clientrole" props="native unity"/>
-                <pd props="rn electron flutter">The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+                <pd props="rn electron flutter">The user role. See <xref keyref="CLIENT_ROLE_TYPE"/> .</pd>
             </plentry>
             <plentry conkeyref="ClientRoleOptions/audiencelatencylevel">
                 <pt/>
@@ -570,17 +570,17 @@
             <plentry>
                 <pt>token</pt>
                 <pd>
-                    <p>(Optional) The token generated on your server for authentication. See<xref keyref="guide-token" props="native"> Authenticate Your Users with Token</xref>.</p>
+                    <p>(Optional) The token generated on your server for authentication. See <xref keyref="guide-token" props="native">Authenticate Your Users with Token</xref>.</p>
                     <note type="caution">
                     <ul>
-                    <li>This parameter takes effect only when calling<xref keyref="updateChannelMediaOptions"/>  or<xref keyref="updateChannelMediaOptionsEx"/> .</li>
-                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same ones as<xref keyref="initialize"/> those used by the  method for initializing the RTC engine, and<xref keyref="joinChannel2"/> those used by the  and<xref keyref="joinChannelEx"/>  methods for joining the channel.</li>
+                    <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
+                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same ones as those used by the <xref keyref="initialize"/> method for initializing the RTC engine, and those used by the <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/> methods for joining the channel.</li>
                     </ul></note></pd>
             </plentry>
             <plentry props="hide">
                 <pt>startPreview</pt>
                 <pd>Whether to automatically start the preview when joining a channel:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically start preview. Ensure that you have called the<xref keyref="setupLocalVideo"/>  method to set the local video property; otherwise, the preview will not be enabled.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically start preview. Ensure that you have called the <xref keyref="setupLocalVideo"/> method to set the local video property; otherwise, the preview will not be enabled.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not automatically start preview.</li>
                     </ul></pd>
             </plentry>
