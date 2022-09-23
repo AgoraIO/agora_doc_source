@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_setloopbackdevice">
     <title><ph keyref="setLoopbackDevice"/></title>
-    <shortdesc id="short"><ph id="shortdesc">指定声卡采集设备。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the sound card capture device.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,14 +28,13 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p>SDK 默认采用当前的播放设备作为声卡采集设备，如果想要指定其他音频设备作为声卡采集设备，则调用该方法并设置 <parmname>deviceId</parmname> 为你想要指定的声卡采集设备。</p>
+            <p>The SDK uses the current playback device as the sound card capture device by default. If you want to specify another audio device as the sound card capture device, call this method and set <parmname>deviceId</parmname> to the sound card capture device you want to specify.</p>
             <note type="note">
-                <p>该方法适用的场景如下： </p>
-                <p>使用 app A 播放音乐，通过蓝牙耳机播放；同时使用 app B 进行视频会议，通过扬声器播放。
-                    <ul>
-                    <li>如果设置声卡采集设备为蓝牙耳机，则 SDK 会将 app A 中的音乐发布到远端。</li>
-                    <li>如果设置声卡采集设备设置为扬声器，则 SDK 不会将 app A 中的音乐发布到远端。</li>
-                    <li>如果设置声卡采集设备为蓝牙耳机后，又改用有线耳机播放 app A 中的音乐，则需要重新调用该方法，设置声卡采集设备为有线耳机，则 SDK 会继续将 app A 中的音乐发布到远端。</li>
+                <p>The scenarios where this method is applicable are as follows:</p>
+                <p>Use app A to play music through a Bluetooth headset; while using app B for a video conference, play through the speakers.<ul>
+                    <li>If the sound card capture device is set to the Bluetooth headset, the SDK publishes the music in app A to the remote end.</li>
+                    <li>If the sound card capture device is set as the speaker, the SDK does not publish the music in app A to the remote end.</li>
+                    <li>If you set the sound card capture device as the Bluetooth headset, and then use a wired headset to play the music in app A, you need to call this method again, set the sound card capture device as the wired headset, and the SDK continues to publish the music in app A to remote end.</li>
                     </ul></p>
             </note>
         </section>
@@ -45,7 +44,7 @@
             <plentry>
                 <pt>deviceId</pt>
                 <pd>
-                    <p>指定 SDK 的声卡采集设备。 You can<xref keyref="enumeratePlaybackDevices" /> get the device ID by calling . Plugging or unplugging the audio device does not change the value of <parmname>deviceId</parmname>.</p>
+                    <p>Specifies the sound card capture device of the SDK. You can get the device ID by calling <xref keyref="enumeratePlaybackDevices" />. Plugging or unplugging the audio device does not change the value of <parmname>deviceId</parmname>.</p>
                     <p props="cpp electron">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</p>
                 </pd>
             </plentry>
