@@ -131,7 +131,7 @@ While DITA first took hold in the software sector, the concept of content reuse 
 
 DITA 是由 IBM 设计的一种基于 XML 的 SGML，主要用于解决技术文档编辑与发布的标准化问题。抛开这些高大上的形容词，简单说，就是 XML 的一个子集而已。所以适用于 XML 的库（例如 Xerces，etree）都适用于 DITA。DITA 是从实际的技术文档工作中抽象出来的，因此使用 DITA 对文档进行建模的时候，也需要因地制宜，不可盲目套用。
 
-详见 [DITA 1.3 Spec](http://docs.oasis-open.org/dita/dita/v1.3/errata02/os/complete/part3-all-inclusive/dita-v1.3-errata02-os-part3-all-inclusive-complete.html)。
+具体标签定义详见 [DITA 1.3 Spec](http://docs.oasis-open.org/dita/dita/v1.3/errata02/os/complete/part3-all-inclusive/dita-v1.3-errata02-os-part3-all-inclusive-complete.html) 和 Oxygen 的 [DITA Style Guide](https://www.oxygenxml.com/dita/styleguide/)。
 
 ###  DITA map 架构
 
@@ -236,7 +236,7 @@ DITA 是由 IBM 设计的一种基于 XML 的 SGML，主要用于解决技术文
 </map>
 ```
 
-### DITA 文档记录 API 参考
+### 示例：使用 DITA 文档记录 API 参考
 
 XML 、JSON 与 HTML 对照
 
