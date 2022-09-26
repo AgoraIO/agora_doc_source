@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_getmixedaudioparams">
     <title><ph keyref="getMixedAudioParams"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the<xref keyref="onMixedAudioFrame"/> audio format for the  callback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio format for the <xref keyref="onMixedAudioFrame"/> callback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,9 +26,9 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>You need to<xref keyref="registerAudioFrameObserver"/> register the callback when calling the  method. After you successfully register the audio observer, the SDK triggers this callback, and you can set the audio format in the return value of this callback.</p>
+            <p>You need to register the callback when calling the <xref keyref="registerAudioFrameObserver"/> method. After you successfully register the audio observer, the SDK triggers this callback, and you can set the audio format in the return value of this callback.</p>
             <note type="attention">
-            <p>SDK 会通过你在返回值中设置的 <xref keyref="AudioParams"/> 计算采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。 计算公式为<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</p>
+            <p>The SDK will trigger the callback with the calculated sampling interval you set in the return value. 计算公式为<xref keyref="AudioParams"/><apiname keyref="onMixedAudioFrame"/><equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</p>
             <p>Ensure that the sample interval ≥ 0.01 (s).</p>
             </note> </section>
         <section id="return_values">
