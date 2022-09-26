@@ -64,11 +64,20 @@
 
 ### 群组属性
 
-当创建群组（`createGroup`）时，群组属性长度限制如下：
+当创建群组（`createGroup`）时，群组基础属性长度限制如下：
 
 - 群组名称：128 个字符以内
 - 群组描述：512 个字符以内
 - 群组扩展信息：1024 个字符以内
+
+聊天室的自定义属性，存储为键值对（key-value）集合，即 Map<String,String>。该集合中最多可包含 10 个键值对，在每个键值对中，key 为属性名称，最多可包含 128 个字符；value 为属性值，不能超过 4086 个字符。每个聊天室最多可有 100 个自定义属性，每个应用的聊天室自定义属性总大小为 10 GB。
+
+key 支持以下字符集：
+
+- 26 个小写英文字母 a-z；
+- 26 个大写英文字母 A-Z；
+- 10 个数字 0-9；
+- “_”, “-”, “.”。
 
 ## 聊天室
 
@@ -231,6 +240,11 @@
 | 删除聊天室              | DELETE | /{org_name}/{app_name}/chatrooms/{chatroom_id}              | 100 次/秒/App Key          |
 | 获取聊天室公告          | GET    | /{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement | 100 次/秒/App Key          |
 | 修改聊天室公告          | POST   | /{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement | 100 次/秒/App Key          |
+| 获取聊天室自定义属性 | POST  | /{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement | 100 次/秒/App Key                                                 |
+| 设置聊天室自定义属性 | PUT  | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username} | 100 次/秒/App Key                                                 |
+| 强制设置聊天室自定义属性 | PUT | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}/forced | 100 次/秒/App Key                                                 |
+| 删除聊天室自定义属性 | DELETE  | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username} | 100 次/秒/App Key                                                 |
+| 强制删除聊天室自定义属性 | DELETE  | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}/forced | 100 次/秒/App Key                                                 |
 
 ### 聊天室成员管理
 
