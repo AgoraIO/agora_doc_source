@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getnetworktype">
     <title><ph keyref="getNetworkType"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Network types:</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the type of the local network connection.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,25 +29,23 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p>你可以在任何阶段通过该方法获取正在使用的网络类型。</p>
+            <p>You can use this method to get the type of network in use at any stage.</p>
             <note type="note">You can call this method either before or after joining a channel.</note>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>≥ 0: 方法调用成功，返回本地网络连接类型。 
-                    <ul>
-                    <li>(0): The SDK disconnects from the network.</li>
-                    <li>(1): The network type is LAN.</li>
-                    <li>(2): The network type is Wi-Fi (including hotspots).</li>
+            <li>≥ 0: The method call is successful, and the local network connection type is returned.<ul>
+                    <li>0: The SDK disconnects from the network.</li>
+                    <li>1: The network type is LAN.</li>
+                    <li>2: The network type is Wi-Fi (including hotspots).</li>
                     <li>3: The network type is mobile 2G.</li>
                     <li>4: The network type is mobile 3G.</li>
                     <li>5: The network type is mobile 4G.</li>
                     <li>6: The network type is mobile 5G.</li>
                     </ul> </li>
-            <li>&lt; 0: 方法调用失败，返回错误码。
-                    <ul>
-                    <li>(-1): The network type is unknown.</li>
+            <li>&lt; 0: The method call failed with an error code.<ul>
+                    <li>-1: The network type is unknown.</li>
                     </ul> </li>    
             </ul>
         </section>
