@@ -27,7 +27,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="create2"/>
+                <topicref keyref="initialize"/>
             </relcell>
             <relcell>
                 <topicref keyref="RtcEngineConfig"/>
@@ -62,7 +62,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="setClientRole1"/>
+                <topicref keyref="setClientRole1" props="native unity"/>
                 <topicref keyref="setClientRole2"/>
             </relcell>
             <relcell>
@@ -115,7 +115,7 @@
         </relrow>
         <relrow props="ios mac cpp">
             <relcell>
-                <topicref keyref="setAudioProfile2"/>
+                <topicref keyref="setAudioProfile2" props="native unity"/>
             </relcell>
             <relcell>
                 <topicref keyref="RtcEngineConfig"/>
@@ -411,14 +411,13 @@
                 <topicref keyref="EAR_MONITORING_FILTER_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="native">
             <relcell>
                 <topicref keyref="setLiveTranscoding"/>
             </relcell>
             <relcell>
                 <topicref keyref="LiveTranscoding"/>
                 <topicref keyref="VIDEO_CODEC_PROFILE_TYPE"/>
-                <topicref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" props="electron"/>
                 <topicref keyref="VIDEO_CODEC_TYPE"/>
                 <topicref keyref="TranscodingUser"/>
                 <topicref keyref="RtcImage"/>
@@ -520,7 +519,7 @@
             <relcell>
                 <topicref keyref="AudioRecordingConfiguration"/>
                 <topicref keyref="AUDIO_RECORDING_QUALITY_TYPE"/>
-                <topicref keyref="AUDIO_RECORDING_POSITION"/>
+                <topicref keyref="AUDIO_FILE_RECORDING_TYPE"/>
             </relcell>
         </relrow>
         <relrow>
@@ -548,6 +547,15 @@
                 <topicref keyref="CameraCapturerConfiguration"/>
                 <topicref keyref="CAPTURER_OUTPUT_PREFERENCE" props="hide"/>
                 <topicref keyref="CAMERA_DIRECTION"/>
+            </relcell>
+        </relrow>
+        <relrow props="electron unity rn flutter">
+          <relcell>
+              <topicref keyref="setRemoteVideoSubscriptionOptions"/>
+              <topicref keyref="setRemoteVideoSubscriptionOptionsEx"/>
+          </relcell>
+            <relcell>
+                <topicref keyref="VideoSubscriptionOptions"/>
             </relcell>
         </relrow>
         <relrow>
@@ -860,10 +868,10 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="onAudioRouteChanged" props="ios mac cpp android"/>
+                <topicref keyref="onAudioRoutingChanged" props="ios mac cpp android"/>
             </relcell>
             <relcell>
-                <topicref keyref="AUDIO_ROUTE"/>
+                <topicref keyref="AudioRoute"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1171,7 +1179,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="enableDualStreamMode2"/>
+                <topicref keyref="enableDualStreamMode2" props="native unity"/>
                 <topicref keyref="enableDualStreamMode3"/>
             </relcell>
             <relcell>
@@ -1589,7 +1597,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="setClientRole1"/>
+                <topicref keyref="setClientRole1" props="native unity"/>
                 <topicref keyref="setClientRole2"/>
             </relcell>
             <relcell>
@@ -1600,7 +1608,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="leaveChannel"/>
+                <topicref keyref="leaveChannel" props="native unity"/>
                 <topicref keyref="leaveChannel2"/>
                 <topicref keyref="leaveChannelEx"/>
             </relcell>
@@ -1615,6 +1623,22 @@
             </relcell>
             <relcell>
                 <topicref keyref="onTokenWillExpire"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerAudioFrameObserver1_IMediaPlayer"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
+                <topicref keyref="registerVideoFrameObserver_IMediaPlayer"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onFrame_IMediaPlayerVideoFrameObserver"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1662,7 +1686,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="setLiveTranscoding"/>
+                <topicref keyref="setLiveTranscoding" props="native"/>
                 <topicref keyref="updateRtmpTranscoding"/>
             </relcell>
             <relcell>
@@ -1679,8 +1703,6 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="addPublishStreamUrl"/>
-                <topicref keyref="removePublishStreamUrl"/>
                 <topicref keyref="startRtmpStreamWithoutTranscoding"/>
                 <topicref keyref="startRtmpStreamWithTranscoding"/>
                 <topicref keyref="stopRtmpStream"/>
@@ -1738,7 +1760,7 @@
                 <topicref keyref="setEnableSpeakerphone"/>
             </relcell>
             <relcell>
-                <topicref keyref="onAudioRouteChanged"/>
+                <topicref keyref="onAudioRoutingChanged"/>
             </relcell>
         </relrow>
         <relrow>
@@ -1919,7 +1941,7 @@
                 <topicref keyref="setEnableSpeakerphone"/>
             </relcell>
             <relcell>
-                <topicref keyref="onAudioRouteChanged"/>
+                <topicref keyref="onAudioRoutingChanged"/>
             </relcell>
         </relrow>
         <relrow>
