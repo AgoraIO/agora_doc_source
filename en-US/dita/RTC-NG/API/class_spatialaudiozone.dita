@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudiozone">
     <title><ph keyref="SpatialAudioZone"/></title>
-    <shortdesc id="short"><ph id="shortdesc">隔声区域的设置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sound insulation area settings.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -107,43 +107,43 @@
             <parml>
             <plentry>
                 <pt>zoneSetId</pt>
-                <pd>隔声区域的 ID。</pd>
+                <pd>The ID of the sound insulation zone.</pd>
             </plentry>
                 <plentry>
                     <pt>position</pt>
-                    <pd>隔声区域的空间中心点。 This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                    <pd>The spatial center point of the sound insulation area. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
                 </plentry>
                 <plentry>
                     <pt>forward</pt>
-                    <pd>以 <parmname>position</parmname> 为起点，向前的单位向量。 This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                    <pd>Starting at <parmname>position</parmname>, the forward unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
                 </plentry>
                 <plentry>
                     <pt>right</pt>
-                    <pd>以 <parmname>position</parmname> 为起点，向右的单位向量。 This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                    <pd>Starting at <parmname>position</parmname>, the right unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
                 </plentry>
                 <plentry>
                     <pt>up</pt>
-                    <pd>以 <parmname>position</parmname> 为起点，向上的单位向量。 This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+                    <pd>Starting at <parmname>position</parmname>, the up unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
                 </plentry>
                 <plentry>
                     <pt>forwardLength</pt>
-                    <pd>将整个隔声区域看做一个立方体，表示向前的边长，单位为游戏引擎的单位长度。</pd>
+                    <pd>The entire sound insulation area is regarded as a cube, which represents the length of the forward side in the unit length of the game engine.</pd>
                 </plentry>
                 <plentry>
                     <pt>rightLength</pt>
-                    <pd>将整个隔声区域看做一个立方体，表示向右的边长，单位为游戏引擎的单位长度。</pd>
+                    <pd>The entire sound insulation area is regarded as a cube, which represents the length of the right side in the unit length of the game engine.</pd>
                 </plentry>
                 <plentry>
                     <pt>upLength</pt>
-                    <pd>将整个隔声区域看做一个立方体，表示向上的边长，单位为游戏引擎的单位长度。</pd>
+                    <pd>The entire sound insulation area is regarded as a cube, which represents the length of the up side in the unit length of the game engine.</pd>
                 </plentry>
                 <plentry>
                     <pt>audioAttenuation</pt>
-                    <pd>隔声区域以内的用户和外部用户互通时的声音衰减系数，取值范围为 [0,1]。 As shown below:<ul>
+                    <pd>The sound attenuation coefficient when users within the sound insulation area communicate with external users, the value range is [0,1]. As shown below:<ul>
                         <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users does not change regardless of distance.</li>
                         <li>(0,0.5): Weak attenuation mode, that is, the volume and timbre are only weakly attenuated during the propagation process, and the sound can travel farther than the real environment.</li>
-                        <li>0.5：模拟音量在真实环境下的衰减，效果等同于不设置 <parmname>audioAttenuation</parmname> 参数。</li>
-                        <li>(0.5,1]：强衰减模式 (默认值为 1) ，即音量和音色在传播过程中发生迅速衰减。</li>
+                        <li>0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>audioAttenuation</parmname> parameter.</li>
+                        <li>(0.5,1]: Strong attenuation mode (default value is 1), that is, the volume and timbre attenuate rapidly during propagation.</li>
                         </ul></pd>
                 </plentry>
             </parml> </section>
