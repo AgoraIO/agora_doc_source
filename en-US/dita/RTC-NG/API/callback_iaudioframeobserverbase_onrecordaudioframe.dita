@@ -31,11 +31,11 @@
         <section id="detailed_desc">
             <note type="note" id="note">
             <ul>
-                <li>你需要在加入频道前，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，即注册 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
+                <li>Before joining the channel, you need to call the <xref keyref="registerAudioFrameObserver"/> to register audio observer object, that is, register the <apiname keyref="onRecordAudioFrame"/> callback.</li>
                 <li>为保证采集到的音频数据格式符合预期，Agora 推荐你在如下两种方式中选其一设置采集到的音频数据格式：
                     <ul>
-                        <li>调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置获取的耳返音频数据格式，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
-                        <li>在 <xref keyref="getRecordAudioParams"/> 回调的返回值中设置获取的耳返音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>      
+                        <li>If you call <xref keyref="setRecordingAudioFrameParameters"/> to set the acquired audio data format, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
+                        <li>If you set the acquired audio data format in the return value of the <xref keyref="getRecordAudioParams"/> callback, the SDK calculates the sampling interval according to the return value of the callback, and trigger the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>      
                     </ul></li>
             </ul>
             </note></section>
