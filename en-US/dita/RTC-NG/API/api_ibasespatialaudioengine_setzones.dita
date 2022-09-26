@@ -32,10 +32,10 @@
             <ul>
                 <li>When the user or media player interacts with the users outside the sound insulation area, the sound attenuation effect is determined by the sound attenuation coefficient in <xref keyref="SpatialAudioZone"/>.</li>
                 <li>When the user or the media player is in the same sound insulation area or leaves the sound insulation area, it is not affected by <apiname keyref="SpatialAudioZone"/>, and the sound attenuation effect is determined by the <parmname>attenuation</parmname> parameter in <xref keyref="setPlayerAttenuation"/> or <xref keyref="setRemoteAudioAttenuation"/>.</li>
-                <li>If the user or the media player is in the same sound insulation area, it is not affected by , and the sound attenuation effect is determined by the attenuation parameter in or . 如果不调用 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。<apiname keyref="SpatialAudioZone"/><apiname keyref="setPlayerAttenuation"/><apiname keyref="setRemoteAudioAttenuation"/><parmname></parmname></li>
-                <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
+                <li>If the user or the media player is in the same sound insulation area, it is not affected by <apiname keyref="SpatialAudioZone"/>, and the sound attenuation effect is determined by the <parmname>attenuation</parmname> parameter in <apiname keyref="setPlayerAttenuation"/> or <apiname keyref="setRemoteAudioAttenuation"/>. If you do not call <apiname keyref="setPlayerAttenuation"/> or <apiname keyref="setRemoteAudioAttenuation"/>, the default sound attenuation coefficient of the SDK is 0.5, which simulates the attenuation of the sound in the real environment.</li>
+                <li>If the sound source and the receiver belong to two sound insulation areas, the receiver cannot hear the sound source.</li>
             </ul>
-            <note>如果多次调用该方法，以最后一次设置的隔声区域为准。</note>
+            <note>If this method is called multiple times, the sound insulation area set last time shall prevail.</note>
         </section>
         <section id="parameters">
             <title>Parameter</title>
@@ -46,7 +46,7 @@
             </plentry>
                 <plentry props="cpp">
                     <pt>zoneCount</pt>
-                    <pd>隔声区域的数量。</pd>
+                    <pd>The number of sound insulation areas.</pd>
                 </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
