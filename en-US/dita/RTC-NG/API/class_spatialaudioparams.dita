@@ -141,7 +141,7 @@
       <parml>
       <plentry>
         <pt>speaker_azimuth</pt>
-        <pd>The azimuth angle of the remote user or media player relative to the local user. The value range is [0,360], and the unit is degrees, as defined by the following main directions:<ul>
+        <pd>The azimuth angle of the remote user or media player relative to the local user. The value range is [0,360], and the unit is degrees, As shown below:<ul>
           <li>0: (Default) 0 degrees, which means directly to the front on the horizontal plane.</li>
           <li>90: 90 degrees, which means directly to the left on the horizontal plane.</li>
           <li>180: 180 degrees, which means directly to the back on the horizontal plane.</li>
@@ -151,7 +151,7 @@
       </plentry>
       <plentry>
         <pt>speaker_elevation</pt>
-        <pd>The elevation angle of the remote user or media player relative to the local user. The value range is [-90,90], and the unit is degrees, as defined by the following main directions:<ul>
+        <pd>The elevation angle of the remote user or media player relative to the local user. The value range is [-90,90], and the unit is degrees, As shown below:<ul>
           <li>0: (Default) 0 degrees, which means that the horizontal plane is not rotated.</li>
           <li>-90: -90 degrees, which means that the horizontal plane is rotated 90 degrees downwards.</li>
           <li>90: 90 degrees, which means that the horizontal plane is rotated 90 degrees upwards.</li>
@@ -163,7 +163,7 @@
       </plentry>
       <plentry>
         <pt>speaker_orientation</pt>
-        <pd>The orientation of the remote user or media player relative to the local user. The value range is [0,180], and the unit is degrees, as defined by the following main directions:<ul>
+        <pd>The orientation of the remote user or media player relative to the local user. The value range is [0,180], and the unit is degrees, As shown below:<ul>
           <li>0: (Default) 0 degrees, which means that the sound source and listener face the same direction.</li>
           <li>180: 180 degrees, which means that the sound source and listener face each other.</li>
           </ul></pd>
@@ -178,29 +178,28 @@
       <plentry>
         <pt>enable_air_absorb</pt>
         <pd>Whether to enable air absorption, that is, to simulate the sound attenuation effect of sound transmitting in the air; under a certain transmission distance, the attenuation speed of high frequency sound is fast, and the attenuation speed of low frequency sound is slow.<ul>
-          <li><codeph><ph keyref="true" /></codeph>: (Default) Enable air absorption. Make sure that the value of<parmname> speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.</li>
+          <li><codeph><ph keyref="true" /></codeph>: (Default) Enable air absorption. Make sure that the value of <parmname>speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.</li>
           <li><codeph><ph keyref="false" /></codeph>: Disable air absorption.</li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>speaker_attenuation</pt>
-        <pd>The sound attenuation coefficient of the remote user or media player. The value range is [0,1]. as defined by the following main directions:<ul>
+        <pd>The sound attenuation coefficient of the remote user or media player. The value range is [0,1]. As shown below:<ul>
             <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users does not change regardless of distance.</li>
-            <li>(0,0.5): Weak attenuation mode, where the volume and timbre (enable_air_absorb needs to be enabled at the same time<parmname></parmname>) only have a weak attenuation during the propagation, and the sound can travel farther than that in a real environment.</li>
+            <li>(0,0.5): Weak attenuation mode, where the volume and timbre (<parmname>enable_air_absorb</parmname> needs to be enabled at the same time) only have a weak attenuation during the propagation, and the sound can travel farther than that in a real environment.</li>
             <li>0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>speaker_attenuation</parmname> parameter.</li>
-            <li>(0.5,1]: Strong attenuation mode, where volume and timbre (enable_air_absorb needs to be enabled at the same time<parmname></parmname>) attenuate rapidly during the propagation.</li>
+            <li>(0.5,1]: Strong attenuation mode, where volume and timbre (<parmname>enable_air_absorb</parmname> needs to be enabled at the same time) attenuate rapidly during the propagation.</li>
             </ul></pd>
       </plentry>
         <plentry>
           <pt>enable_doppler</pt>
-          <pd>是否开启多普勒音效：当声源与接收声源者之间产生相对位移时，接收方听到的音调会发生变化。
-            <ul>
-            <li><codeph><ph keyref="true"/></codeph>: 开启多普勒音效。</li>
-            <li><codeph><ph keyref="false"/></codeph>: （默认）关闭多普勒音效。</li>
+          <pd>Whether to enable the Doppler effect: When there is a relative displacement between the sound source and the receiver of the sound source, the tone heard by the receiver changes.<ul>
+            <li><codeph><ph keyref="true"/></codeph>: Enable the Doppler effect.</li>
+            <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the Doppler effect.</li>
             </ul>
             <note type="caution">
             <ul>
-              <li>该参数适用于声源高速运动的场景（例如：赛车游戏），在普通音视频互动场景（语聊、连麦、在线 KTV）中不建议开启。</li>
+              <li>This parameter is suitable for scenarios where the sound source is moving at high speed (for example: racing games), and it is not recommended to enable it in common audio and video interactive scenarios (voice chat, co-hosts, online KTV).</li>
               <li>开启该参数时，建议设定一个规律的周期（比如 30 ms），然后调用 <xref keyref="updatePlayerPositionInfo"/>、<xref keyref="updateSelfPosition"/> 和 <xref keyref="updateRemotePosition"/> 方法持续更新声源和接收方的相对距离。 以下因素会导致多普勒效应达不到预期或者声音出现抖动：更新距离的周期过长，更新周期不规律，网络丢包或延迟导致距离信息丢失。</li>
             </ul>
             </note></pd>
