@@ -849,6 +849,420 @@ unity_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
 
 如果需要新增平台，只需要增加相应的文件地址变量。
 
+#### 核心代码
+
+解决 conref
+
+```python
+    # ----------------------------------------------------------------------------
+    # Implement all conrefs with the actual content
+    # For example:
+    # <p conref="../conref/conref_rtc_api.dita#apidef/onClientRoleChanged"> </p>
+    # Depends on the relative location of conref
+    # ----------------------------------------------------------------------------
+    for child in root.iter('*'):
+        if child.get("conref") is not None:
+            conref = str(child.get("conref"))
+            conref = conref.split("#")
+            if "../" in str(conref[0]):
+                new_working_dir = path.normpath(working_dir)
+                # print(new_working_dir[0])
+                # print(conref[0].replace("../", ""))
+            if sys.platform == 'darwin' or sys.platform == 'linux':
+                print("macOS")
+                conref_path = path.join(new_working_dir, str(conref[0]).replace("../", ""))
+
+            elif sys.platform == 'win32':
+                print("Windows")
+                conref_path = path.join(new_working_dir, str(conref[0]).replace("../", "").replace("/", "\\"))
+            print(" ---------------------- Get the conref path ----------------------------")
+            print(conref_path)
+            print(" ---------------------- Get the conref path ----------------------------")
+            # ---------------------------------------------------------------------------------------------------
+            # Read the referenced dita file and get the content
+            # ---------------------------------------------------------------------------------------------------
+            dita_file_tree = ET.parse(conref_path)
+            dita_file_root = dita_file_tree.getroot()
+            print(str(conref[1]))
+
+            xpath_list = str(conref[1]).split("/")
+            last_id = xpath_list[-1]
+            # Get the last ID
+            print(" ---------------------- Last ID ----------------------------")
+            print(last_id)
+            print(" ---------------------- Last ID ----------------------------")
+
+            # Find tag by id
+            dita_ref_text = ""
+            for dita_tag in dita_file_root.iter('*'):
+                # print(str(dita_tag.get("id")))
+                # print(last_id)
+                if dita_tag is not None:
+                    if str(dita_tag.get("id")) == str(last_id):
+                        print(dita_tag)
+                        for tag in dita_tag.iter():
+                            print(tag)
+                            dita_ref_text = dita_ref_text + dita_tag.text
+
+            print("------------------- Dita ref text -----------------------")
+            print(dita_ref_text)
+            print("------------------- Dita ref text -----------------------")
+
+            # Inject text to the original conref
+            child.text = dita_ref_text
+            print("------------------- Final change -----------------------")
+            print(child.text)
+            print("------------------- Final change -----------------------")
+```
+
+#### 解决 conkeyref
+
+
+```python
+    # ----------------------------------------------------------------------------
+    #     # Implement all conkeyrefs with the actual content 01
+    #     When you update this code, remember copy the code to 02
+    #     # For example:
+    #     # <ph conkeyref="createAgoraRtcEngine1/shortdesc"/>
+    #     # It is first a keyref then a conref
+    #     # Conkeyrefs should be replaced at the element level!!!!!!!!!
+    # ----------------------------------------------------------------------------
+    for child in root.iter('*'):
+        if child.get("conkeyref") is not None:
+            conkeyref = str(child.get("conkeyref"))
+            print("Conkeyref is " + conkeyref)
+            conkeyref_array = conkeyref.split("/")
+            # key
+            key = conkeyref_array[0]
+            # ref
+            if len(conkeyref_array) > 1:
+                ref = conkeyref_array[1]
+            else:
+                ref = ""
+            # Assume that a conkeyref contains only two levels
+            dita_file_tree = ET.parse(defined_path)
+            dita_file_root = dita_file_tree.getroot()
+            for keydef in dita_file_root.iter("keydef"):
+                if keydef.get("keys") == key:
+                    href_text = keydef.get("href")
+                else:
+                    href_text = ""
+            print("----------------------href text--------------------")
+            print(href_text)
+            print("----------------------href text--------------------")
+
+            final_parent = child
+
+            # Get the parent old child
+            for parent in root.iter('*'):
+                for d in parent.iterfind(child.tag):
+                    if d is child:
+                        final_parent = parent
+
+            if sys.platform == 'darwin' or sys.platform == 'linux':
+                print("macOS")
+                if href_text is not None and href_text != "":
+                    dir = path.join(working_dir, href_text).replace("../", "")
+                    dir = path.join("..", dir)
+                else:
+                    dir = None
+            elif sys.platform == 'win32':
+                print("Windows")
+                if href_text is not None and href_text != "":
+                    dir = path.join(working_dir, href_text).replace("../", "").replace("/", "\\")
+                else:
+                    dir = None
+            if dir is not None:
+                print(dir)
+                new_dita_file_tree = ET.parse(dir)
+                new_dita_file_root = new_dita_file_tree.getroot()
+                # Find the keyref
+                for new_child in new_dita_file_root.iter('*'):
+                    if new_child.get("id") == ref:
+                        print("------------ Found a match for conkeyref -----------------")
+                        print(ref)
+                        print("------------ Found a match for conkeyref-----------------")
+                        # Set the node from new child to old child
+                        final_parent.insert(0, new_child)
+                        final_parent.remove(child)
+
+                print("----------------------conkeyref text--------------------")
+                print(child)
+                print("----------------------conkeyref text--------------------")
+```
+
+#### 解决 keyref
+
+```python
+    for apiname in root.iter("apiname"):
+        # print(xref.get("keyref"))
+        # For each xref, perform the following operations:
+        # 1. Get the ditamap file per platform
+        # 2. Extract href text from ditamap
+        # 3. Set href text in current dita
+        href_text = ""
+        if apiname.get("keyref") is not None:
+            # xref.text = str(xref.get("keyref"))
+            # ET.SubElement(xref, "text")
+            # dita_file_tree = ET.parse(defined_path)
+            dita_file_tree = ET.parse(defined_path)
+            dita_file_root = dita_file_tree.getroot()
+            for keydef in dita_file_root.iter("keydef"):
+                if keydef.get("keys").strip() == apiname.get("keyref").strip():
+                    href_text = "".join(keydef.itertext()).strip()
+            print("----------------------apiname text--------------------")
+            print(href_text.strip())
+            print("----------------------apiname text--------------------")
+            apiname.text = href_text
+            print(apiname.text)
+```
+
+#### 解决 xref
+
+```python
+    # <xref keyref="setChannelProfile"/> for each API category
+
+    # xref with keyref
+    for xref in root.iter("xref"):
+        # print(xref.get("keyref"))
+        # For each xref, perform the following operations:
+        # 1. Get the ditamap file per platform
+        # 2. Extract href text from ditamap
+        # 3. Set href text in current dita
+        href_text = ""
+        if xref.get("keyref") is not None:
+            # xref.text = str(xref.get("keyref"))
+            # ET.SubElement(xref, "text")
+            # dita_file_tree = ET.parse(defined_path)
+            dita_file_tree = ET.parse(defined_path)
+            dita_file_root = dita_file_tree.getroot()
+            for keydef in dita_file_root.iter("keydef"):
+                if keydef.get("keys") == xref.get("keyref"):
+                    for text in keydef.itertext():
+                        href_text = href_text + text
+                    xref.text = href_text
+                href_text = ""
+
+            if sys.platform == 'darwin' or sys.platform == 'linux':
+                print("macOS")
+                if href_text is not None and href_text != "" and not href_text.startswith("http"):
+                    dir = path.join(working_dir, href_text).replace("../", "")
+                    dir = path.join("..", dir)
+                elif href_text is not None and href_text.startswith("http"):
+                    xref.text = href_text
+                    dir = None
+                    print(xref.text)
+                else:
+                    dir = None
+            elif sys.platform == 'win32':
+                print("Windows")
+                if href_text is not None and href_text != "" and not href_text.startswith("http"):
+                    dir = path.join(working_dir, href_text).replace("../", "").replace("/", "\\")
+                elif href_text is not None and href_text.startswith("http"):
+                    xref.text = href_text
+                    dir = None
+                    print(xref.text)
+                else:
+                    dir = None
+            """
+            if dir is not None:
+                print(dir)
+                dita_file_tree = ET.parse(dir)
+                dita_file_root = dita_file_tree.getroot()
+                # Get title
+                title = dita_file_root.find("./title")
+                title_ph = dita_file_root.find("./title/ph")
+                print(title)
+                if title.text is not None:
+                    title_text = title.text
+                elif title_ph.get("keyref") is not None:
+                    # dita_file_tree = ET.parse(defined_path)
+                    dita_file_tree = ET.parse(defined_path)
+                    dita_file_root = dita_file_tree.getroot()
+                    for keydef in dita_file_root.iter("keydef"):
+                        if keydef.get("keys").strip() == title_ph.get("keyref").strip():
+                            title_text = "".join(keydef.itertext()).strip()
+                print("----------------------title text--------------------")
+                print(title_text)
+                print("----------------------title text--------------------")
+                xref.text = title_text
+                print(xref.text)  """
+```
+
+
+#### 获取 API 描述
+
+```python
+    # Get API ID
+    api_id = root.attrib
+    api_id = api_id.get("id")
+    print("----------------------- App ID ------------------------")
+    print(api_id)
+    print("----------------------- App ID ------------------------")
+
+    # Get API name
+    api_name = ""
+    api_name_tag = root.find("title")
+    for q in api_name_tag.itertext():
+        api_name = api_name + q
+    print("----------------------- App Name ------------------------")
+    print(api_name)
+    print("----------------------- App Name ------------------------")
+
+    # Get short description
+    short_desc_text = ""
+    short_desc = root.find('shortdesc')
+    if short_desc is not None:
+        for text in short_desc.itertext():
+            # Add "\n" to add a line break after short desc
+            short_desc_text = short_desc_text.strip("\n") + text.strip("\n") + "\n"
+
+    if short_desc is None:
+        # short_desc = "Empty"
+        short_desc_text = ""
+    print("----------------------- Short desc ------------------------")
+    print(short_desc_text)
+    print("----------------------- Short desc ------------------------")
+
+    # Get detailed description
+    # Tables exist in pd and detailed desc. Need to process tables.
+    detailed_desc = ""
+    for section in root.findall('./refbody/section'):
+        # print(section)
+        if section.get("id") == "detailed_desc":
+            title = section.find("./title")
+            if title is not None:
+                title.clear()
+
+            for text in section.itertext():
+                if text is not None:
+                    print(type(text))
+                    # new_text = text.text
+                    # print(new_text)
+                    # if new_text is not None:
+                    detailed_desc = detailed_desc + text
+
+    detailed_desc = detailed_desc.strip(" \n ")
+    # detailed_desc_text = ""
+
+    # for i in detailed_desc:
+    # detailed_desc_text = detailed_desc_text + i
+
+    print("----------------------- Detailed desc ------------------------")
+    print(detailed_desc)
+    print("----------------------- Detailed desc ------------------------")
+
+    api_desc = short_desc_text + 
+```
+
+#### 获取参数描述
+
+```python
+    # Get parameter description <plentry> by id
+    # parameter name <pt>
+    # parameter description <pd>
+    # Use a dictionary for param/desc pair
+    param_pair = {}
+    param_name = ""
+    param_desc = ""
+    # Tables exist in pd and detailed desc. Need to process tables.
+    for param_list in root.findall('./refbody/section/parml'):
+        # print(section)
+        # For each <plentry> in <parml>, get <pt> and <pd>
+        # if param_list.get("id") != "return_values":
+        for child in param_list:
+            if child.find("pt") is not None:
+                param_name = child.find("pt").text
+                if param_name is None and child.find("./pt/ph") is not None:
+                    param_name = child.find("./pt/ph").text
+
+                elif child.text is not None:
+                    print("Something unexpected happened for " + child.text)
+
+                elif child.text is None:
+                    print("No text for this node")
+                    print(child)
+
+                if child.find("./pd") is not None:
+
+                    for text in child.find("./pd").itertext():
+                        if text is not None:
+                            print(text)
+                            param_desc = param_desc + text
+
+                else:
+                    param_desc = ""
+                    print("The param desc tag is empty")
+
+
+            param_pair[param_name] = param_desc
+            # Clean the param_desc variable to get new values
+            param_desc = ""
+
+    print(param_pair)
+```
+
+#### 获取返回值
+
+```python
+# Get return value
+# No need to tell each return value
+# Get return value
+return_values = ""
+for section in root.findall('./refbody/section'):
+    print(section)
+    if section.get("id") == "return_values":
+        title = section.find("./title")
+        if title is not None:
+            title.clear()
+        for text in section.itertext():
+            print(text)
+            if text is not None:
+                return_values = return_values + text
+
+print("----------------------- Return values ------------------------")
+print(return_values)
+print("----------------------- Return values ------------------------")
+```
+
+#### 将信息组合为 JSON
+
+```python
+# ------------------------------------------------------------------
+# Migrate the information to a JSON file.
+# ------------------------------------------------------------------
+# See the following template
+# {
+#   "id": "",
+#   "description": "",
+#   "parameters": [
+#     {"param1": "desc"},
+#     {"param2": "desc"}
+#   ],
+#   "returns": ""
+# }
+
+data = {}
+
+data['id'] = api_id
+data['name'] = api_name.strip("\n ")
+data['description'] = api_desc
+data['parameters'] = json_array
+data['returns'] = return_values.strip("\n ")
+data['is_hide'] = True if api_id in json_hide_id_list else False
+
+print(data)
+
+file_name = path.basename(path.normpath(file_dir))
+name_list = file_name.split(".")
+json_name = name_list[0]
+
+# Write to JSON
+# Test only: ensure_ascii=False is only used for UTF-8 characters
+with open(path.join(path.dirname(__file__), "json_files", json_name + '.json'), 'w', encoding="utf-8") as outfile:
+    json.dump(data, outfile, ensure_ascii=False, indent=4)
+```
+
 ### 相关 GitHub Action
 
 #### RTC 3.x SDK 的 CS SDK 和 Flutter SDK
