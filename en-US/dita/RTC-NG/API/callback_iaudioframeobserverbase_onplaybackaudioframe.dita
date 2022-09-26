@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onplaybackaudioframe">
     <title><ph keyref="onPlaybackAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the raw audio frame for playback..</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the raw audio frame for playback.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,8 +31,7 @@
             <note type="note" id="note">
             <ul>
                 <li>Before joining the channel, you need to call the <xref keyref="registerAudioFrameObserver"/> to register audio observer object, that is, register the <apiname keyref="onPlaybackAudioFrame"/> callback.</li>
-                <li>为保证播放的音频数据格式符合预期，Agora 推荐你在如下两种方式中选其一设置播放的音频数据格式：
-                    <ul>
+                <li>To ensure that the data format of audio frame for playback is as expected, Agora recommends that you choose one of the following two methods to set the audio data format:<ul>
                         <li>If you call <xref keyref="setPlaybackAudioFrameParameters"/> to set the audio data format, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</li>
                         <li>If you set the audio data format in the return value of the <xref keyref="getPlaybackAudioParams"/> callback, the SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</li>      
                     </ul></li>
