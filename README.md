@@ -316,7 +316,7 @@ RTC 和 RTC-NG 所有的 API 文件全部放在 API 文件夹内。
 
 ## 自动检查 API 文档中的原型与代码是否一致
 
-API 文档中包含代码中的函数、类、枚举、结构体等的原型。这个原型需要和代码保持一致。、
+API 文档中包含代码中的函数、类、枚举、结构体等的原型。这个原型需要和 API 接口的代码保持一致。
 
 > 该流程仅仅检查中文文档的原型，因为仓库会将原型自动同步到英文文档。
 
@@ -589,6 +589,7 @@ CI/CD 会自动触发并向该分支提 PR。你需要 review PR 并最终合入
 核心代码：
 
 ```python
+# Extract prototype patterns
 dart_proto_re = r'(export interface|export class|export abstract class)\s{0,10}' + re.escape(
     text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)<>=$@:]{0,2000}?(?<!\s\s)\}(?!\))'
     
@@ -598,6 +599,36 @@ electron_proto_re = r'(export interface|export class|export abstract class)\s{0,
 rn_proto_re = r'[A-Za-z]{0,10}[\s]{0,1}[\?]{0,1}' + re.escape(text) + r'[\?]{0,1}[0-9\s]{0,1}\([A-Za-z_\s\n\?,\[\]\<\>:\)]{0,200};'
 
 unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(result) + r'\([0-9A-Za-z_\s\n=,\[\]=:]{0,200}\);'
+
+
+# Inject prototypes
+for file in os.scandir(dita_location):
+    if (file.path.endswith(".dita")) and not file.path.startswith(dita_location + "/enum_") and not file.path.startswith(dita_location + "/rtc_") and file.is_file() and os.path.basename(file) in ditamap_content:
+        #print(file.path)
+        dita_file_list.append(file.path)
+        with open(file.path, encoding='utf8') as f:
+            content = f.read()
+            # Use substring methods to get the proto from DITA
+            # Here, we assume that the DITA file contains a single codeblock for each programming language
+            # The ng-sdk prop is at the beginning (if exists)
+            # The current sdk is default. No plan to migrate the current sdk to DITA yet
+            after_codeblock_start_tag = re.split(r'<codeblock props="[a-zA-Z\s]{0,10}cpp[a-zA-Z\s]{0,10}" outputclass="language-cpp">',
+                                                 content)
+            try:
+                before_codeblock_end_tag = re.split('</codeblock>', after_codeblock_start_tag[1])
+                proto_text = before_codeblock_end_tag[0]
+            except IndexError:
+                proto_text = "Error: No prototype for " + file.path
+
+            proto_text = proto_text.replace("&amp;", "&")
+            proto_text = proto_text.replace("&lt;", "<")
+            proto_text = proto_text.replace("&gt;", ">")
+
+            #print(proto_text)
+
+            dita_proto_list.append(proto_text)
+
+dictionary = dict(zip(dita_file_list, dita_proto_list))
 ```
 
 
