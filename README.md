@@ -22,6 +22,12 @@
 
 [![(NG SDK Frameworks)Awesome OxygenScript for DITA doc building](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
 
+[![Awesome automerge](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml)
+
+[![Awesome prototype from code to DITA (Electron)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml)
+
+[![Awesome script sync](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml)
+
 <!-- TOC -->
 
 - [基于 DITA 的文档内容仓库](#基于-dita-的文档内容仓库)
@@ -125,6 +131,8 @@ While DITA first took hold in the software sector, the concept of content reuse 
 
 DITA 是由 IBM 设计的一种基于 XML 的 SGML，主要用于解决技术文档编辑与发布的标准化问题。抛开这些高大上的形容词，简单说，就是 XML 的一个子集而已。所以适用于 XML 的库（例如 Xerces，etree）都适用于 DITA。DITA 是从实际的技术文档工作中抽象出来的，因此使用 DITA 对文档进行建模的时候，也需要因地制宜，不可盲目套用。
 
+具体标签定义详见 [DITA 1.3 Spec](http://docs.oasis-open.org/dita/dita/v1.3/errata02/os/complete/part3-all-inclusive/dita-v1.3-errata02-os-part3-all-inclusive-complete.html) 和 Oxygen 的 [DITA Style Guide](https://www.oxygenxml.com/dita/styleguide/)。
+
 ###  DITA map 架构
 
 一个产品的所有平台的文档对应一个 DITA map。一个 DITA map 中，通常包含文档中用到的变量、 subject scheme （定义可用的条件）以及具体的文档 topic。
@@ -227,6 +235,104 @@ DITA 是由 IBM 设计的一种基于 XML 的 SGML，主要用于解决技术文
     </topicref>
 </map>
 ```
+
+### 示例：使用 DITA 文档记录 API 参考
+
+XML 、JSON 与 HTML 对照
+
+#### DITA
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_setupremotevideoex">
+    <title><ph keyref="setupRemoteVideoEx" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Initializes the video view of a remote user.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupRemoteVideoEx" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setupRemoteVideoEx(VideoCanvas remote, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setupRemoteVideoEx:(AgoraRtcVideoCanvas* _Nonnull)remote
+               connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setupRemoteVideoEx(const VideoCanvas&amp; canvas, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideoEx(
+    canvas: VideoCanvas,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetupRemoteVideoEx(VideoCanvas canvas, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setupRemoteVideoEx(
+    canvas: VideoCanvas,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideoEx(
+    {required VideoCanvas canvas, required RtcConnection connection});</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>This method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees. Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.</p>
+            <p>The application specifies the uid of the remote video in the <xref keyref="VideoCanvas" /> method before the remote user joins the channel.</p>
+            <p>If the remote uid is unknown to the application, set it after the application receives the <xref keyref="onUserJoined" /> callback. If the Video Recording function is enabled, the Video Recording Service joins the channel as a dummy client, causing other clients to also receive the <codeph>onUserJoined</codeph> callback. Do not bind the dummy client to the application view because the dummy client does not send any video streams.</p>
+            <p>To unbind the remote user from the view, set the <parmname>view</parmname> parameter to NULL.</p>
+            <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
+            <note type="attention" props="android ios mac">
+            <p>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx2" /> method.</p>
+            </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="android ios mac">remote</pt>
+                <pt props="cpp unity rn electron flutter">canvas</pt>
+                <pd>
+                    <p>The remote video view settings. See <xref keyref="VideoCanvas" />.</p>
+                </pd>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>
+```
+
+#### JSON
+
+```json
+{
+    "id": "api_irtcengineex_setupremotevideoex",
+    "name": "setupRemoteVideoEx",
+    "description": "Initializes the video view of a remote user.\nThis method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees. Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.The application specifies the uid of the remote video in the VideoCanvas method before the remote user joins the channel.If the remote uid is unknown to the application, set it after the application receives the onUserJoined callback. If the Video Recording function is enabled, the Video Recording Service joins the channel as a dummy client, causing other clients to also receive the onUserJoined callback. Do not bind the dummy client to the application view because the dummy client does not send any video streams.To unbind the remote user from the view, set the view parameter to NULL.Once the remote user leaves the channel, the SDK unbinds the remote user.",
+    "parameters": [
+        {
+            "connection": "The connection information. See RtcConnection ."
+        },
+        {
+            "canvas": "The remote video view settings. See VideoCanvas ."
+        }
+    ],
+    "returns": "",
+    "is_hide": false
+},
+```
+
+#### HTML
+
+https://docs.agora.io/en/extension_customer/API%20Reference/java_ng/API/class_irtcengineex.html?platform=Android#api_irtcengineex_setupremotevideoex
+
+![企业微信截图_16641736332696](https://user-images.githubusercontent.com/10089260/192207533-089eb9c7-5ea8-4bd3-81a8-15abdc690cfc.png)
 
 ###  内容重用机制
 
