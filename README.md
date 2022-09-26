@@ -604,7 +604,7 @@ jobs:
 
 [https://github.com/AgoraIO/agora_doc_source/blob/master/xml2json/xml2json.py](https://github.com/AgoraIO/agora_doc_source/blob/master/xml2json/xml2json.py)。
 
-基于 Python 原生的 etree 解析 DITA 文件并生成 JSON。
+基于 Python 原生的 [xml.etree.ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html) 解析 DITA 文件并生成 JSON。
 
 运行时支持以下命令行参数：
 
@@ -745,8 +745,6 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
       python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
 ```
 
-
-
 上传的 JSON 文件位于：
 
 https://github.com/AgoraIO/agora_doc_source/releases/tag/main
@@ -757,3 +755,6 @@ https://github.com/AgoraIO/agora_doc_source/releases/tag/main
 
 首先需要检查相应的 DITA 文件。绝大多数情况下，是由于标签过滤造成的内容缺失，究其原因是 DITA 写法不规范。建议直接找相关的 Writer 更改 DITA 写法。
 
+### 已知问题
+
+Python 原生的 [xml.etree.ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html) 功能不够强大，尤其对于 node 的编辑（增删替换等）功能较弱。因此后期如果有时间，推荐使用 [lxml](https://lxml.de/) 进行重构。
