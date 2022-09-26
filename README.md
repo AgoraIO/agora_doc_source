@@ -757,4 +757,28 @@ https://github.com/AgoraIO/agora_doc_source/releases/tag/main
 
 ### 已知问题
 
-Python 原生的 [xml.etree.ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html) 功能不够强大，尤其对于 node 的编辑（增删替换等）功能较弱。因此后期如果有时间，推荐使用 [lxml](https://lxml.de/) 进行重构。
+Python 原生的 [xml.etree.ElementTree](https://docs.python.org/3/library/xml.etree.elementtree.html) 功能不够强大，尤其对于 node 的编辑（增删替换等）功能较弱。例如，对于 tag 过滤，需要自己造轮子：
+
+```python
+    parent_map = {c: p for p in tree.iter() for c in p}
+    for child in root.iter('*'):
+         if child.get("props") is not None:
+             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
+            if platform_tag not in child.get("props") and "native" not in child.get(
+                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                     "props") and "native" in child.get(
+                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
+                 print("------------------- Tag to remove ---------------------------")
+                 print(child)
+                 print(child.text)
+                 print(child.tag)
+                 print(child.get("id"))
+                 print("--------------------Tag to remove ---------------------------")
+                 # clear()
+                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                 # child.clear()
+                 parent_map[child].remove(child)
+                 # child.text = ""
+```
+
+因此后期如果有时间，推荐使用 [lxml](https://lxml.de/) 进行重构。
