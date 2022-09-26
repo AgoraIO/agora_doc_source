@@ -26,6 +26,7 @@
 
 - [基于 DITA 的文档内容仓库](#基于-dita-的文档内容仓库)
   - [概览](#概览)
+    - [什么是 DITA](#什么是-DITA)
     - [DITA map 架构](#dita-map-架构)
     - [内容重用机制](#内容重用机制)
   - [API 注释自动化协作规范](#api-注释自动化协作规范)
@@ -49,6 +50,7 @@
     - [从 DITA 生成 JSON 的流程解析](#从-DITA-生成-JSON-的流程解析)
 
 <!-- /TOC -->
+
 
 ## 概览
 
@@ -107,6 +109,21 @@ dita 目录下为所有的中文文档的源内容及相关配置文件。对应
             由于英文中不同平台的类的表达不一样，用于 conref + filter 在不同平台显示对应的英文表达。
   - \*.ditamap
         一个 DITA map 对应一套文档。
+
+### 什么是 DITA
+
+The Darwin Information Typing Architecture (DITA) is an XML-based, end-to-end architecture for authoring, producing, and delivering technical information. This architecture consists of a set of design principles for creating “information-typed” modules at a topic level and for using that content in delivery modes such as online help and product support portals on the Web.
+
+IBM developed Darwin Information Typing Architecture (DITA) in the early 2000s when it needed to upgrade its proprietary, SGML-based Information Structure Identification Language (ISIL) and resolve its issues with producing standardized content.
+
+During this process, XML was introduced, providing a new, more concise way to formulate data formats. The World Wide Web also came into its own at this time, which forced technical writers to rethink the prevailing book model in favor of a (web) page-based model. This was further refined into a more granular and typed topic-based model. As a result, DITA began to grow and IBM released the idea freely to the OASIS standards body.
+
+Many things have happened since the initial release of DITA 1.0 in June 2005. As of 2015, the authoring and publishing software tools industry has grown to meet the challenges of working with DITA-based content.
+
+While DITA first took hold in the software sector, the concept of content reuse and all of its attendant advantages – content consistency, increased writing efficiency, and lower localization costs, to name just a few – are factors that have led to its rapid spread among many other industries. Though the use of DITA is not universal, the idea of structured content has become part of the general zeitgeist of technical documentation.
+
+
+DITA 是由 IBM 设计的一种基于 XML 的 SGML，主要用于解决技术文档编辑与发布的标准化问题。抛开这些高大上的形容词，简单说，就是 XML 的一个子集而已。所以适用于 XML 的库（例如 Xerces，etree）都适用于 DITA。DITA 是从实际的技术文档工作中抽象出来的，因此使用 DITA 对文档进行建模的时候，也需要因地制宜，不可盲目套用。
 
 ###  DITA map 架构
 
