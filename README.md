@@ -22,6 +22,12 @@
 
 [![(NG SDK Frameworks)Awesome OxygenScript for DITA doc building](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
 
+[![Awesome automerge](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml)
+
+[![Awesome prototype from code to DITA (Electron)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml)
+
+[![Awesome script sync](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml)
+
 <!-- TOC -->
 
 - [基于 DITA 的文档内容仓库](#基于-dita-的文档内容仓库)
