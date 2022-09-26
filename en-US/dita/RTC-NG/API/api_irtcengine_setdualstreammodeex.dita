@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdualstreammodeex">
     <title><ph keyref="setDualStreamModeEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">在发送端设置双流模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets dual-stream mode on the sender end.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,11 +34,10 @@
             </dlentry>
             </dl>
             <p conkeyref="setDualStreamMode/desc"/>
-            <note id="note">该方法和 <xref keyref="enableDualStreamModeEx"/> 的区别与联系如下：
-                <ul>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
-                <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+            <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:<ul>
+                <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="false"/>)</codeph>.</li>
+                <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="ENABLE_SIMULCAST_STREAM"/>, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="true"/>)</codeph>.</li>
+                <li>Both methods can be called before and after joining a channel. If they are used at the same time, the settings in the method called later shall prevail.</li>
                 </ul></note>
         </section>
         <section id="parameters">
