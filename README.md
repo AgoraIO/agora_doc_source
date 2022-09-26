@@ -320,6 +320,10 @@ API 文档中包含代码中的函数、类、枚举、结构体等的原型。�
 
 > 该流程仅仅检查中文文档的原型，因为仓库会将原型自动同步到英文文档。
 
+源码位于：
+
+
+
 ### 新建 CI/CD 工作
 
 1. 在 [https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check](https://github.com/AgoraDoc/doc_source/tree/master/xml2json/code_to_check) （master 分支）新增文件夹，例如 `flutter-ng`。
@@ -362,6 +366,82 @@ API 文档中包含代码中的函数、类、枚举、结构体等的原型。�
 你在向 release 分支提 PR 或合入文件时，CI 会自动生成一个 PR。将 PR 合并即可。**这个 PR 现在会自动合并。因此你什么都不用做。**
 
 > 警告：YiCAT 的翻译会使英文文档中的代码原型出现格式问题。你必须通过自动同步的方法更新英文 DITA 文件中的代码原型。
+
+源码位于：
+
+https://github.com/AgoraIO/agora_doc_source/blob/master/xml2json/sync_prototype.py
+
+核心代码：
+
+```python
+def main():
+
+    parser = argparse.ArgumentParser(description="Prototype syncer")
+
+    parser.add_argument("--src_dir",
+                    help="src dir",
+                    action="store")
+    parser.add_argument("--dest_dir", help="dest dir", action="store")
+
+    args = vars(parser.parse_args())
+
+    src_dir = args['src_dir']
+    dest_dir = args['dest_dir']
+
+    src_proto_section_obj = None
+    dest_proto_section_obj = None
+    dest_dita_file_tree = None
+
+    # Copy cn protos to en
+    for file_name in os.listdir(src_dir):
+
+        file_ready_for_copy = True
+
+        if file_name.startswith("api_") or file_name.startswith("class_"):
+
+            try:
+                cn_path = path.join(src_dir, file_name)
+                cn_dita_file_tree = ET.parse(cn_path)
+                cn_dita_file_root = cn_dita_file_tree.getroot()
+            except ET.ParseError as e:
+                print("[ERROR] Parse error for: " + file_name + " Code: " + str(e.code) + " Position: " + str(e.position))
+
+            en_path = path.join(dest_dir, file_name)
+
+            try:
+                dest_dita_file_tree = ET.parse(en_path)
+                en_dita_file_root = dest_dita_file_tree.getroot()
+            except FileNotFoundError as e:
+                print("[ERROR] File not found in en: " + file_name)
+                file_ready_for_copy = False
+
+            except ET.ParseError as e:
+                print("[ERROR] Parse error for: " + file_name + " Code: " + str(e.code) + " Position: " + str(e.position))
+                file_ready_for_copy = False
+
+            if file_ready_for_copy:
+
+                for section in cn_dita_file_root.iter("section"):
+                    if section.get("id") == "prototype":
+                        src_proto_section_obj = section
+
+                refbody = en_dita_file_root.find("./refbody")
+
+                for section in en_dita_file_root.iter("section"):
+                    if section.get("id") == "prototype":
+                        refbody.remove(section)
+                        refbody.insert(0, src_proto_section_obj)
+
+                dest_dita_file_tree.write(dest_dir + "//" + file_name, encoding='utf-8')
+
+                header = """<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">\n"""
+
+                with open(dest_dir + "//" + file_name, "r", encoding='utf-8') as f:
+                    text = header + f.read()
+
+                with open(dest_dir + "//" + file_name, "w", encoding='utf-8') as f:
+                    f.write(text)
+```
 
 ## 从 API 文档自动构建用于自动化填充代码注释的文档模板
 
@@ -425,6 +505,20 @@ on:
 ```
 
 CI/CD 会自动触发并向该分支提 PR。你需要 review PR 并最终合入。由于此工具使用正则表达式识别与 C++ 原型相关的框架 API，因此准确率**不是 100%**。
+
+核心代码：
+
+```python
+dart_proto_re = r'(export interface|export class|export abstract class)\s{0,10}' + re.escape(
+    text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)<>=$@:]{0,2000}?(?<!\s\s)\}(?!\))'
+    
+electron_proto_re = r'(export interface|export class|export abstract class)\s{0,10}' + re.escape(
+            text) + r'\s{0,10}\{\s{0,10}[A-Za-z_0-9\s\n\?\[\]\.,;\{\}\(\)<>=$@:]{0,2000}?(?<!\s\s)\}(?!\))' 
+            
+rn_proto_re = r'[A-Za-z]{0,10}[\s]{0,1}[\?]{0,1}' + re.escape(text) + r'[\?]{0,1}[0-9\s]{0,1}\([A-Za-z_\s\n\?,\[\]\<\>:\)]{0,200};'
+
+unity_proto_re = r'[A-Za-z]{1,10}[\s]{0,1}[A-Za-z]{1,10}[\s]{0,1}[A-Za-z\[\]]{1,10}[\s]{0,1}' + re.escape(result) + r'\([0-9A-Za-z_\s\n=,\[\]=:]{0,200}\);'
+```
 
 
 ##  DITA 文件自动在线构建 HTML 文档
@@ -595,6 +689,8 @@ jobs:
 
 
 > 注意：DITA 文档在线构建使用了 [Oxygen Script](https://www.oxygenxml.com/xml_scripting/pricing.html)，为付费产品，需要定期续费。文档构建的详细命令参数详见 Oxygen Script 官方文档。你也可以咨询 Oxygen 技术支持。
+
+后续的 OxygenScript 更新需要直接替换 master 分支的 https://github.com/AgoraIO/agora_doc_source/tree/master/scripts/oxygen 目录。
 
 ## 从 DITA 生成 JSON 的流程解析
 
