@@ -595,24 +595,23 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                 <pt>isInteractiveAudience</pt>
                 <pd>Whether to enable the interactive mode:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Enable the interactive mode. Once this mode is enabled and the user role is set as audience, the user can receive remote video streams with low latency.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable the interactive mode. 本地用户作为普通观众，收到默认设置的远端用户视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable the interactive mode. If this mode is disabled, the user receives the remote video streams in default settings.</li>
                     </ul>
                     <note type="attention">
                     <ul>
-                    <li>This parameter is used to implement the cohost across channels scenario only. <codeph><ph keyref="true"/></codeph>The cohosts need to call<xref keyref="joinChannelEx"/>  method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to .</li>
+                    <li>This parameter only applies to scenarios involving cohosting across channels. The cohosts need to call <xref keyref="joinChannelEx"/> method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
                     <li>This parameter takes effect only when the user role is <apiname keyref="CLIENT_ROLE_AUDIENCE"/>.</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry id="customvideotrackid">
                 <pt>customVideoTrackId</pt>
-                <pd>The video track ID returned by calling<xref keyref="createCustomVideoTrack"/> the  method. The default value is 0.</pd>
+                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
             </plentry>
              <plentry>
                  <pt>isAudioFilterable</pt>
-                 <pd>设置是否让当前音频流根据音强算法参与选流。
-                 <ul><li><codeph><ph keyref="true"/></codeph>：（默认）参与音强选流。 如未开启音强选流功能，该参数不会生效。</li>
-                 <li><codeph><ph keyref="false"/></codeph>：不参与音强选流。</li></ul>
-                <note type="attention">如需启用该功能，请联系 <xref keyref="mailto-link"/>。</note></pd>
+                 <pd>Determine whether the audio stream being published is to be filtered according to the volume algorithm.<ul><li><codeph><ph keyref="true"/></codeph>: (Default) The audio stream is to be filtered. If the audio stream filter is not enabled, this setting does not takes effect.</li>
+                 <li><codeph><ph keyref="false"/></codeph>: The audio stream is not to be filtered.</li></ul>
+                <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link"/>.</note></pd>
              </plentry>
             </parml> </section>
     </refbody>
