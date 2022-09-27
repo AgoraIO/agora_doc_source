@@ -388,7 +388,7 @@
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname props="native">publishMicrophoneTrack</parmname>, <parmname props="unity">publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as<codeph><ph keyref="true"/></codeph> at the same time,
-but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname>, <parmname props="mac cpp">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as<codeph><ph keyref="true"/>.</codeph></section>
+but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname>, <parmname props="mac cpp">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as<codeph><ph keyref="true"/></codeph> .</section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
@@ -466,28 +466,28 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
             </plentry>
             <plentry>
                 <pt>publishCustomAudioTrack</pt>
-                <pd>Whether to publish the captured audio from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured audio from a custom source.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured audio from the custom source.</li>
+                <pd>Whether to publish the audio captured from a custom source:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the custom source.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the audio captured from the custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomAudioSourceId</pt>
-                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2"/> to a value greater than 1, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
+                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2"/> to a value greater than 1, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track, starting from 0.</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>publishCustomAudioTrackEnableAec</pt>
-                <pd>Whether to enable AEC when publishing the captured audio from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable AEC when publishing the captured audio from a custom source.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable AEC when publishing the captured audio from a custom source.</li>
+                <pd>Whether to enable AEC when publishing the audio captured from a custom source:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable AEC when publishing the audio captured from the custom source.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable AEC when publishing the audio captured from the custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
-                <pd>Whether to publish the captured video from a custom source:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from a custom source.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the custom source.</li>
+                <pd>Whether to publish the video captured from a custom source:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the custom source.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video captured from the custom source.</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -514,20 +514,20 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
             <plentry>
                 <pt>autoSubscribeAudio</pt>
                 <pd>Whether to automatically subscribe to all remote audio streams when the user joins a channel:<ul id="ul_gxf_vq5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Subscribe to all remote audio streams.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not subscribe to any remote audio stream.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically subscribe to all remote audio streams.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote audio streams.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>autoSubscribeVideo</pt>
-                <pd>Whether to subscribe to all remote video streams when the user joins the channel:<ul id="ul_gfh_xq5_3qb">
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Subscribe to all remote video streams.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not subscribe to any remote video stream.</li>
+                <pd>Whether to automatically subscribe to all remote video streams when the user joins the channel:<ul id="ul_gfh_xq5_3qb">
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically subscribe to all remote video streams.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote video streams.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>enableAudioRecordingOrPlayout</pt>
-                <pd>Whether to enable audio capturing or playback.<ul>
+                <pd>Whether to enable audio capturing and playback:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) Enable audio capturing and playback.</li>
                     <li><codeph><ph keyref="false"/> </codeph>: Do not enable audio capturing or playback.</li>
                     </ul> </pd>
@@ -556,15 +556,15 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
             <plentry props="hide">
                 <pt>audioDelayMs</pt>
                 <pd>
-                    <p>The delay in ms for sending audio frames. This is used for explicit control of A/V sync.</p>
+                    <p>The delay in milliseconds for sending audio frames. This is used for explicit control of A/V sync.</p>
                     <p>To switch off the delay, set the value to 0.</p>
                 </pd>
             </plentry>
             <plentry props="hide">
                 <pt>publishCustomAudioTrackAec</pt>
-                <pd>Whether to publish audio frames processed by the external echo cancellation module.<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Publish audio frames processed by an external echo cancellation module.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish to publish audio frames processed by an external echo cancellation module.</li>
+                <pd>Whether to publish audio frames processed by an external echo cancellation module.<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish audio frames processed by the external echo cancellation module.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish to publish audio frames processed by the external echo cancellation module.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -574,32 +574,32 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                     <note type="caution">
                     <ul>
                     <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
-                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same ones as those used by the <xref keyref="initialize"/> method for initializing the RTC engine, and those used by the <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/> methods for joining the channel.</li>
+                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same as those used by the <xref keyref="initialize"/> method for initializing the RTC engine, and those used by the <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/> methods for joining the channel.</li>
                     </ul></note></pd>
             </plentry>
             <plentry props="hide">
                 <pt>startPreview</pt>
                 <pd>Whether to automatically start the preview when joining a channel:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically start preview. Ensure that you have called the <xref keyref="setupLocalVideo"/> method to set the local video property; otherwise, the preview will not be enabled.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not automatically start preview.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically start the preview. Ensure that you have called the <xref keyref="setupLocalVideo"/> method to set the local video property; otherwise, the preview is not enabled.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not automatically start the preview.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>publishRhythmPlayerTrack</pt>
-                <pd>Whether to publish the sound of the metronome to remote users:<ul>
+                <pd>Whether to publish the sound of a metronome to remote users:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) Publish the sound of the metronome. Both the local user and remote users can hear the metronome.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the sound of the metronome. Only the local user can hear the metronome.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>isInteractiveAudience</pt>
-                <pd>Whether to enable the interactive mode:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable the interactive mode. Once this mode is enabled and the user role is set as audience, the user can receive remote video streams with low latency.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable the interactive mode. If this mode is disabled, the user receives the remote video streams in default settings.</li>
+                <pd>Whether to enable interactive mode:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable interactive mode. Once this mode is enabled and the user role is set as audience, the user can receive remote video streams with low latency.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not enable interactive mode. If this mode is disabled, the user receives the remote video streams in default settings.</li>
                     </ul>
                     <note type="attention">
                     <ul>
-                    <li>This parameter only applies to scenarios involving cohosting across channels. The cohosts need to call <xref keyref="joinChannelEx"/> method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
+                    <li>This parameter only applies to scenarios involving cohosting across channels. The cohosts need to call the <xref keyref="joinChannelEx"/> method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
                     <li>This parameter takes effect only when the user role is <apiname keyref="CLIENT_ROLE_AUDIENCE"/>.</li>
                     </ul> </note> </pd>
             </plentry>
@@ -609,8 +609,8 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
             </plentry>
              <plentry>
                  <pt>isAudioFilterable</pt>
-                 <pd>Determine whether the audio stream being published is to be filtered according to the volume algorithm.<ul><li><codeph><ph keyref="true"/></codeph>: (Default) The audio stream is to be filtered. If the audio stream filter is not enabled, this setting does not takes effect.</li>
-                 <li><codeph><ph keyref="false"/></codeph>: The audio stream is not to be filtered.</li></ul>
+                 <pd>Whether the audio stream being published is filtered according to the volume algorithm:<ul><li><codeph><ph keyref="true"/></codeph>: (Default) The audio stream is filtered. If the audio stream filter is not enabled, this setting does not takes effect.</li>
+                 <li><codeph><ph keyref="false"/></codeph>: The audio stream is not filtered.</li></ul>
                 <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link"/>.</note></pd>
              </plentry>
             </parml> </section>
