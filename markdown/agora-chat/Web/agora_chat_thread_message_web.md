@@ -23,8 +23,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成即时通讯 IM SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web?platform=Web)。
-- 了解即时通讯 IM API 的 [使用限制](./agora_chat_limitation?platform=Web)中所述。
+- 完成即时通讯 IM SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解即时通讯 IM API 的 [使用限制](./agora_chat_limitation)中所述。
 
 所有类型的 [定价计划](./agora_chat_plan) 都支持该功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用。
 
@@ -59,7 +59,7 @@ function sendTextMessage() {
 };
 ```
 
-有关发送消息的更多信息，请参阅 [发送消息](./agora_chat_send_receive_message_web?platform=Web#send-a-text-message)。
+有关发送消息的更多信息，请参阅 [发送消息](./agora_chat_send_receive_message_web#发送文本消息)。
 
 ### 接收子区消息
 
@@ -77,7 +77,7 @@ connection.addEventHandler('THREADMESSAGE',{
 });
 ```
 
-有关接收消息的更多信息，请参阅 [接收消息](./agora_chat_send_receive_message_web?platform=Web#receive-a-message)。
+有关接收消息的更多信息，请参阅 [接收消息](./agora_chat_send_receive_message_web#接收文本消息)。
 
 ### 撤回子区消息
 
@@ -108,8 +108,8 @@ conn.addEventHandler('MESSAGES',{
 })
 ```
 
-有关撤回消息的更多信息，请参阅 [撤回消息](./agora_chat_send_receive_message_web?platform=Web#recall-a-message)。
+有关撤回消息的更多信息，请参阅 [撤回消息](./agora_chat_send_receive_message_web#撤回消息)。
 
 ### 从服务器获取子区消息
 
-关于如何从服务器获取子区消息的详细信息，请参见从服务器获取 [历史消息](./agora_chat_retrieve_message_web?platform=Web#retrieve-historical-messages-of-the-specified-conversation)。
+关于如何从服务器获取子区消息的详细信息，请参见从服务器获取 [历史消息](./agora_chat_retrieve_message_web#从服务器获取历史消息)。

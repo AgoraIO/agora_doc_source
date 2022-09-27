@@ -9,7 +9,7 @@ SDK 在支持按需翻译和自动翻译：
 
 开始前，请确保满足以下条件：
 
-- 完成即时通讯 IM SDK 集成，并实现基本的实时聊天功能，详见 [快速开始](./agora_chat_get_started_rn?platform=rn)。
+- 完成即时通讯 IM SDK 集成，并实现基本的实时聊天功能，详见 [快速开始](./agora_chat_get_started_rn)。
 - 了解即时通讯 IM API 的 [使用限制](./agora_chat_limitation)。
 - 默认情况下不启用翻译。要使用此功能，你需要订阅 **进阶版** 或 **企业版** [定价计划](./agora_chat_plan) 并在 [Agora 控制台](https://console.agora.io/) 中启用该功能。
 - 由于此功能由 Microsoft Azure 翻译 API 启用，因此请了解 [语言支持](https://docs.microsoft.com/en-us/azure) 中所述的受支持的目标语言。

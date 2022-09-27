@@ -12,7 +12,7 @@
 
 ## 前提条件
 
-- 已开启即时通讯 IM ，详见[开启和配置即时通讯服务](./enable_agora_chat?platform=Android)。
+- 已开启即时通讯 IM ，详见[开启和配置即时通讯服务](./enable_agora_chat)。
 - 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
 - 你已在 [Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 

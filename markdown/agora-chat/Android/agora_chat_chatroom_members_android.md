@@ -18,9 +18,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
-- 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
+- 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -299,4 +299,4 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().removeChatRoomAdm
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_android?platform=Android#监听聊天室事件)。
+有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_android#监听聊天室事件)。

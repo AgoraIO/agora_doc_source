@@ -20,8 +20,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
-- 了解消息相关限制和即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解消息相关限制和即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -112,6 +112,7 @@ ChatClient.getInstance().chatManager().deleteConversationFromServer(conversation
             }
         });
 ```
+
 ### 搜索会话消息
 
 调用 `searchMsgFromDB` 按关键字、时间戳和消息发送方搜索消息：
@@ -160,5 +161,5 @@ conversation.updateMessage(message);
 
 实现消息管理后，您可以参考以下文档为应用添加更多消息功能：
 
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_android?platform=Android)
-- [消息回执](./agora_chat_message_receipt_android?platform=Android)
+- [从服务器获取会话和消息](./agora_chat_retrieve_message_android)
+- [消息回执](./agora_chat_message_receipt_android)
