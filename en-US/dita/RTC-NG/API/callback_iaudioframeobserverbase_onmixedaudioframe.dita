@@ -29,11 +29,16 @@
         </section>
         <section id="detailed_desc">
             <p>
-            <note type="attention">
-            <ul>
-            <li>This callback only returns the single-channel data.</li>
-            <li>If you want to set the format of the mixed captured and playback audio frame, Agora recommends you call the <xref keyref="registerAudioFrameObserver"/> method to set the format of the audio frames after calling the <xref keyref="setMixedAudioFrameParameters"/> method to register an audio frame observer.</li>
-            </ul></note> </p>
+            <note type="note" id="note">
+            <ul>                
+                <li>Before joining the channel, you need to call the <xref keyref="registerAudioFrameObserver"/> to register audio observer object, that is, register the <apiname keyref="onMixedAudioFrame"/> callback.</li>
+                <li>This callback only reports single-channel data.</li>
+                <li>To ensure that the data format of mixed captured and playback audio frame meets the expectations, Agora recommends that you choose one of the following two ways to set the data format:<ul>
+                        <li>If you call <xref keyref="setMixedAudioFrameParameters"/> to set the audio data format, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sampling interval.</li>
+                        <li>If you set the audio data format in the return value of the <xref keyref="getMixedAudioParams"/> callback, the SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sampling interval.</li>      
+                    </ul></li>
+            </ul>
+            </note></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
