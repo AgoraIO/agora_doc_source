@@ -33,9 +33,11 @@ agora_rtc_engine: ^6.0.0-rc.2 SDK 对部分功能的实现方式进行了优化�
 
 ### 中断性变更
 
+#### 升级前版本为 agora_rtc_engine: ^5.x
+
 从 agora_rtc_engine: ^5.x 升级至 agora_rtc_engine: ^6.0.0-rc.2 后，实现部分功能的 API 存在差异。本节介绍这些 API 的兼容性变更及 app 代码的更新逻辑。
 
-#### 命名参数
+**命名参数**
 
 为了更好的代码可读性，agora_rtc_engine: ^6.0.0-rc.2 后将所有参数多于 2 个的方法的参数改成了[命名参数](https://dart.dev/guides/language/language-tour#parameters)，如 `joinChannel` 方法：
 
@@ -43,15 +45,15 @@ agora_rtc_engine: ^6.0.0-rc.2 SDK 对部分功能的实现方式进行了优化�
 await _engine.joinChannel(token: '', channelId: 'channelid', uid: 0, options: const ChannelMediaOptions());
 ```
 
-#### 初始化流程
+**初始化流程**
 
 agora_rtc_engine: ^6.0.0-rc.2 后提供了 top-level 方法 `createAgoraRtcEngine` 用于创建 RtcEngine，创建完 RtcEngine 后需要主动调用 `initialize` 进行初始化。
 
-#### 渲染控件
+**渲染控件**
 
 agora_rtc_engine: ^6.0.0-rc.2 后移除了 [SurfaceView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_surfaceview.html)/[TextureView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_textureview.html) 控件，视频渲染统一使用 [AgoraVideoView](https://docs.agora.io/cn/video-call-4.x/API%20Reference/flutter_ng/API/class_agoravideoview.html) 控件。
 
-#### 多频道
+**多频道**
 
 在 agora_rtc_engine: ^5.x 中，SDK 提供 `RtcChannel` 类和 `RtcChannelEventHandler` 类实现多频道控制，支持订阅多个频道的音视频流，但只能选择一个频道发布一组音视频流。
 
@@ -75,11 +77,11 @@ agora_rtc_engine: ^6.0.0-rc.2 后移除了 [SurfaceView](https://docs.agora.io/c
 
 agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重复、不够正交，因此在 agora_rtc_engine: ^6.0.0-rc.2 中隐藏了 `RtcChannel` 类和 `RtcChannelEventHandler` 类。你可以参考 [JoinMultiChannel](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/MultiChannel) 示例项目，用 `joinChannel` 和 `ChannelMediaOptions` 替代 `RtcChannel`，预计迁移成本在一天以内。如果你需要继续使用 `RtcChannel` 和 `RtcChannelEventHandler` 类，请提交工单[联系技术支持](https://agora-ticket.agora.io/)，Agora 会根据反馈情况决定是否在后续版本中保持兼容。
 
-#### 媒体流发布控制
+**媒体流发布控制**
 
 在 agora_rtc_engine: ^6.0.0-rc.2 中，将更多频道相关的设置都汇聚进了 `ChannelMediaOptions`，包括不同音视频流的发布、自动订阅、用户角色切换、Token 更新、默认大小流选项等。你可以在加入频道时通过 `joinChannel` 或 `joinChannelEx` 明确媒体流发布和订阅行为，也可以在加入频道后通过 `updateChannelMediaOptions` 动态更新频道中的媒体选项，例如切换视频源。
 
-#### 警告码
+**警告码**
 
 在 agora_rtc_engine: ^5.x 中，SDK 通过 `warning` 回调报告警告码。
 
@@ -93,13 +95,16 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 
 因此，agora_rtc_engine: ^6.0.0-rc.2 删除了 `warning` 回调。
 
-<div class="alert note">除上述相对于 agora_rtc_engine: ^5.x 的中断性变更以外，agora_rtc_engine: ^6.0.0-rc.2 相对于 agora_rtc_engine: ^6.0.0-beta.2 也存在极少数中断性变更。例如：
+
+#### 升级前版本为 agora_rtc_engine: ^6.0.0-beta.2
+
+除上述相对于 agora_rtc_engine: ^5.x 的中断性变更以外，agora_rtc_engine: ^6.0.0-rc.2 相对于 agora_rtc_engine: ^6.0.0-beta.2 也存在极少数中断性变更。例如：
 
 - 将 `ChannelMediaOptions` 中的 `publishAudioTrack` 替换为 `publishMicrophoneTrack`。
 - 移除 `joinChannelWithOptions` 方法。
 - `joinChannel` 方法移除 `info` 参数，新增 `options` 参数，详见 [`joinChannel`](https://docs.agora.io/cn/video-call-4.x/API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2) 方法。
 
-如果你在 agora_rtc_engine: ^6.0.0-beta.2 版本中使用了该功能、并且希望升级到 agora_rtc_engine: ^6.0.0-rc.2 版本，请在升级 SDK 后修改功能的实现。</div>
+如果你在 agora_rtc_engine: ^6.0.0-beta.2 版本中使用了该功能、并且希望升级到 agora_rtc_engine: ^6.0.0-rc.2 版本，请在升级 SDK 后修改功能的实现。
 
 
 ### 行为变更

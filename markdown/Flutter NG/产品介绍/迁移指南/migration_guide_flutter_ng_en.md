@@ -35,9 +35,11 @@ As stated above, you need to update the code of your app according to your busin
 
 ### Breaking changes
 
+#### As of agora_rtc_engine: ^5.x
+
 After upgrading from agora_rtc_engine: ^5.x to agora_rtc_engine: ^6.0.0-rc.2, the way the APIs implement some functions is different. This section introduces compatibility changes for these APIs and the logic for updating the code of your app.
 
-#### Named parameters
+**Named parameters**
 
 For optimal code readability, agora_rtc_engine: ^6.0.0-rc.2 has changed the parameters of all methods with more than two parameters to [named parameters](https://dart.dev/guides/language/language-tour#parameters). Take the `joinChannel` method as an example:
 
@@ -45,15 +47,15 @@ For optimal code readability, agora_rtc_engine: ^6.0.0-rc.2 has changed the para
 await _engine.joinChannel(token: '', channelId: 'channelid', uid: 0, options: const ChannelMediaOptions());
 ```
 
-#### Initialization
+**Initialization**
 
 In agora_rtc_engine: ^6.0.0-rc.2, the top-level `createAgoraRtcEngine` method is provided to create the `RtcEngine` object. Once created, call `initialize` to initialize it.
 
-#### Rendering control
+**Rendering control**
 
 In agora_rtc_engine: ^6.0.0-rc.2, [SurfaceView](https://docs.agora.io/en/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_surfaceview.html) and [TextureView](https://docs.agora.io/en/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_textureview.html) are removed. [AgoraVideoView](https://docs.agora.io/en/video-call-4.x/API%20Reference/flutter_ng/API/class_agoravideoview.html) is used instead for video rendering.
 
-#### Multiple channels
+**Multiple channels**
 
 In agora_rtc_engine: ^5.x, the SDK provides the `RtcChannel` and `RtcChannelEventHandler` classes to implement multi-channel control. The agora_rtc_engine: ^5.x SDK supports subscribing to the audio and video streams of multiple channels, but only supports publishing one group of audio and video streams in one channel.
 
@@ -78,11 +80,11 @@ Combined with the multi-channel capability, you can also experience the followin
 
 If you need to continue to use the `RtcChannel` and `RtcChannelEventHandler` classes, contact [support@agora.io](mailto:support@agora.io). The decision whether to maintain compatibility in a future release is based on your feedback.
 
-#### Media stream publishing control
+**Media stream publishing control**
 
 In agora_rtc_engine: ^6.0.0-rc.2, the SDK gathers more channel-related settings into `ChannelMediaOptions`, including publishing of audio and video streams from different sources, automatic subscribing of audio and video streams, user role switching, token updating, and default dual stream options. You can determine the media stream publishing and subscribing behavior by calling `joinChannel` or `joinChannelEx` when joining a channel, or you can flexibly update the media options by calling `updateChannelMediaOptions` after joining a channel, such as switching video sources.
 
-#### Warning codes
+**Warning codes**
 
 In agora_rtc_engine: ^5.x, the SDK returns warning codes through the `warning` callbacks.
 
@@ -96,15 +98,16 @@ To facilitate locating and troubleshooting issues, agora_rtc_engine: ^6.0.0-rc.2
 
 As a consequence, agora_rtc_engine: ^6.0.0-rc.2 removes the `warning` callbacks.
 
-<div class="alert note">
-In addition to the breaking changes listed here relative to agora_rtc_engine: ^5.x, agora_rtc_engine: ^6.0.0-rc.2 has a small number of breaking changes relative to the  agora_rtc_engine: ^6.0.0-beta.2 release. For example:
+
+#### As of agora_rtc_engine: ^6.0.0-beta.2
+
+In addition to the breaking changes listed here relative to agora_rtc_engine: ^5.x, agora_rtc_engine: ^6.0.0-rc.2 has a small number of breaking changes relative to the agora_rtc_engine: ^6.0.0-beta.2 release. For example:
 
 - Replaces `publishAudioTrack` in `ChannelMediaOptions` with `publishMicrophoneTrack`.
 - Removes `joinChannelWithOptions`.
 - Adds `options` and removes `info` in `joinChannel`. See [`joinChannel`](https://docs.agora.io/en/video-call-4.x/API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2) for details.
 
 If you used this feature in agora_rtc_engine: ^6.0.0-beta.2 and wish to upgrade to agora_rtc_engine: ^6.0.0-rc.2, modify the implementation code of the feature after upgrading the SDK.
-</div>
 
 
 ### Behavior changes
