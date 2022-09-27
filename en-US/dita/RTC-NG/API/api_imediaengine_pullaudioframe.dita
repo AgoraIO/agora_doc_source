@@ -35,10 +35,10 @@
                 <li>After a successful method call, the app automatically pulls the audio data from the SDK. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
                 </ul></li>
             </ul> </note> </section>
-        <section id="parameters">
+        <section id="parameters" props="native unity flutter">
             <title>Parameters</title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity flutter">
                 <pt>frame</pt>
                 <pd>Pointers to <xref keyref="AudioFrame"/>.</pd>
             </plentry>
@@ -51,7 +51,7 @@
                 <pd>The data length (byte). The value of this parameter is related to the audio duration, and the values of the <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters that you set in <apiname keyref="setExternalAudioSink"/>. <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × audio duration (ms).</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity electron rn">
             <title>Returns</title>
             <ul props="android cpp unity">
             <li>0: Success.</li>
@@ -60,6 +60,10 @@
             <ul props="ios mac">
             <li><codeph><ph keyref="true"/></codeph>: Success.</li>
             <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
+            </ul>
+            <ul props="electron rn">
+            <li>The <apiname keyref="AudioFrame" /> instance, if the method call succeeds.</li>
+            <li>An error code, if the call fails,.</li>
             </ul> </section>
     </refbody>
 </reference>
