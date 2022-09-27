@@ -86,7 +86,7 @@ retOpt.isDeleteMessagesWhenExitChatRoom = NO;
 
 ### 获取聊天室详情
 
-聊天室所有成员均可调用 `getChatroomSpecificationFromServerWithId` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
+聊天室所有成员均可调用 `getChatroomSpecificationFromServerWithId` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
 
 示例代码如下：
 
@@ -160,5 +160,10 @@ SDK 中提供了聊天室事件的监听接口。你可以通过注册聊天室�
                       newOwner:(NSString *)aNewOwner
                       oldOwner:(NSString *)aOldOwner {
 
+// 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
+- (void)chatroomAttributesDidUpdated:(NSString *_Nonnull)roomId attributeMap:(NSDictionary<NSString *, NSString *> *_Nullable)attributeMap from:(NSString *_Nonnull)fromId;
   }
+
+// 有成员删除聊天室自定义属性。聊天室所有成员会收到该事件。
+- (void)chatroomAttributesDidRemoved:(NSString *_Nonnull)roomId attributes:(NSArray<__kindof NSString *> *_Nullable)attributes from:(NSString *_Nonnull)fromId;
 ```

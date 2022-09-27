@@ -62,8 +62,6 @@ ChatClient.getInstance()
     console.log("load conversions fail.", reason);
   });
 ```
-];
-```
 
 ## 下一步
 

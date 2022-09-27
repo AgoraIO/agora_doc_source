@@ -2,7 +2,7 @@
 
 下图展示了如何创建子区、管理子区中的会话以及可以在子区中执行的操作。
 
-![img](https://web-cdn.agora.io/docs-files/1655176216910)
+![](https://web-cdn.agora.io/docs-files/1655176216910)
 
 本文介绍如何使用即时通讯 IM SDK 在应用中创建和管理子区。
 

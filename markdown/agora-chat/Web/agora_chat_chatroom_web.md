@@ -74,7 +74,7 @@ conn.joinChatRoom(option).then(res => console.log(res))
 
 ### 获取聊天室详情
 
-聊天室所有成员均可调用 `getChatRoomDetails` 方法获取聊天室的详情，包括聊天室 ID、聊天室名称、聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
+聊天室所有成员均可调用 `getChatRoomDetails` 方法获取聊天室的详情，包括聊天室 ID、聊天室名称、聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
 
 示例代码如下：
 
@@ -152,6 +152,12 @@ conn.addEventHandler("eventName", {
         // 有用户加入聊天室。聊天室的所有成员（除新成员外）会收到该事件。
         case 'memberPresence':
             break;
+             // 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
+            case 'updateChatRoomAttributes':
+                break;
+            // 有成员删除聊天室自定义属性，聊天室所有成员会收到该事件。
+            case 'removeChatRoomAttributes':
+                break;
         default:
             break;
     }
