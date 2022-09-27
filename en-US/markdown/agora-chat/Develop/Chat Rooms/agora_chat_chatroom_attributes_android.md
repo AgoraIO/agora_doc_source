@@ -62,7 +62,7 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
 ### Manage custom chat room attributes
 
 #### Retrieve specified or all custom attributes 
-All chat room members can call `asyncFetchChatroomAttributesFromServer` to retrieve specified or all custom attributes of the chat room.
+All chat room members can call `asyncFetchChatroomAttributesFromServer` or `asyncFetchChatRoomAllAttributesFromServer` to retrieve specified or all custom attributes of the chat room.
 
 ```java
 // Retrieves certain custom attributes by specifying chat room ID and attribute keys. 

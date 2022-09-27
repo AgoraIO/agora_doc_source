@@ -68,13 +68,16 @@ AgoraChatError *error = nil;
 
 All chat users can get the chat room list from the server and retrieve the basic information of the specified chat room using the chat room ID.
 
+The `getChatroomSpecificationFromServerWithId` method returns chat room information including ID, name, description, maximum members, owners, roles, and whether all members are muted. For the information such as announcement, admin list, member list, block list, and mute list can be retrieved with separate APIs.
+
 ```objective-c
 // Chat room members can call getChatroomsFromServerWithPage to retrieve the specified number of chat rooms from the server by page. The maximum value of pageSize is 1,000.
 AgoraChatError *error = nil;
 [[AgoraChatClient sharedClient].roomManager getChatroomsFromServerWithPage:1 pageSize:50 error:&error];
 														
-// Chat room members can call chatroomWithId to get the basic information of the specified chat room by passing the chat room ID.
-AgoraChatroom *chatRoom = [AgoraChatroom chatroomWithId:@"chatroomId"];
+// Chat room members can call getChatroomSpecificationFromServerWithId to get the information of the specified chat room.
+AgoraChatError *error = nil;
+AgoraChatroom *chatroom = [[AgoraChatClient sharedClient].roomManager getChatroomSpecificationFromServerWithId:@“chatroomId” error:&error];
 ```
 
 
@@ -173,4 +176,19 @@ To monitor the chat room events, you can listen for the callbacks in the `ChatRo
                       oldOwner:(NSString *)aOldOwner {
                         
   }
+
+/**
+ *  When custom chat room attributes are set or changed, all room members receives this callback.
+ *  @param roomId    The chat room ID.
+ *  @param attributeMap    The newly set or changed custom attributes.
+ */
+- (void)chatroomAttributesDidUpdated:(NSString *_Nonnull)roomId attributeMap:(NSDictionary<NSString *, NSString *> *_Nullable)attributeMap from:(NSString *_Nonnull)fromId;
+  }
+
+/**
+ *  When custom chat room attributes are removed, all room members receives this callback.
+ *  @param roomId    The chat room ID.
+ *  @param attributes    The removed custom attributes.
+ */
+- (void)chatroomAttributesDidRemoved:(NSString *_Nonnull)roomId attributes:(NSArray<__kindof NSString *> *_Nullable)attributes from:(NSString *_Nonnull)fromId;
 ```
