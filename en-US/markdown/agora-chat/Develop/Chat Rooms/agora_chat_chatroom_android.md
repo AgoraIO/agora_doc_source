@@ -74,7 +74,7 @@ By default, when you leave a chat room, the SDK removes all the chat room messag
 
 All chat users can get the chat room list from the server and retrieve the basic information of the specified chat room using the chat room ID. 
 
-The `fetchPublicChatRoomsFromServer` method returns chat room information including ID, name, description, mamximum members, owners, roles, and whether all members are muted. For the information such as announcement, admin list, member list, block list, and mute list can be retrieved with separate APIs.
+The `fetchPublicChatRoomsFromServer` method returns chat room information including ID, name, description, maximum members, owners, roles, and whether all members are muted. For the information such as announcement, admin list, member list, block list, and mute list can be retrieved with separate APIs.
 
 ```java
 // Chat room members can call fetchPublicChatRoomsFromServer to get the specified number of chat rooms from the server. The maximum value of pageSize is 100.
@@ -203,7 +203,7 @@ public interface ChatRoomChangeListener {
     // Occurs when custom chat room attributes are changed.
     default void onChatroomAttributesDidChanged(String chatRoomId, Map<String,String> attributeMap , String from){}
 
-    // Occurs when custome chat room attributes are removed.
+    // Occurs when custom chat room attributes are removed.
     default void onChatroomAttributesDidRemoved(String chatRoomId, List<String> keyList , String from){}
 
 }
