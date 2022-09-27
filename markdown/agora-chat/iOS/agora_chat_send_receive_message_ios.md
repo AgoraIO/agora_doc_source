@@ -30,8 +30,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios?platform=iOS)。
-- 了解 [使用限制](./agora_chat_limitation?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -384,6 +384,6 @@ message.chatType = AgoraChatTypeChat;
 
 实现消息发送和接收后，可以参考以下文档为您的应用添加更多消息功能：
 
-- [管理本地消息](./agora_chat_manage_message_ios?platform=iOS)
-- [从服务器检索对话和消息](./agora_chat_retrieve_message_ios?platform=iOS)
-- [消息回执](./agora_chat_message_receipt_android?platform=iOS)
+- [管理本地消息](./agora_chat_manage_message_ios)
+- [从服务器检索对话和消息](./agora_chat_retrieve_message_ios)
+- [消息回执](./agora_chat_message_receipt_android)

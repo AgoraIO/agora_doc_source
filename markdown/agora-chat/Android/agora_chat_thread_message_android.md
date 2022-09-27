@@ -63,11 +63,11 @@ message.setMessageStatusCallback(new CallBack() {
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
-有关发送消息的更多信息，详见 [发送消息](./agora_chat_message_android?platform=Android#send-and-receive-messages)。
+有关发送消息的更多信息，详见 [发送消息](./agora_chat_message_android#发送文本消息)。
 
 ### 接收子区消息
 
-接收消息的具体逻辑，请参考 [接收消息](./agora_chat_message_android?platform=Android#send-and-receive-messages)。
+接收消息的具体逻辑，请参考 [接收消息](./agora_chat_message_android#发送文本消息)。
 
 子区有新增消息时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageReceived`回调。
 
@@ -92,13 +92,13 @@ ChatClient.getInstance().chatManager().addMessageListener(msgListener);
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
-有关接收消息的更多信息，请参阅[接收消息](./agora_chat_message_android?platform=Android#send-and-receive-messages)。
+有关接收消息的更多信息，请参阅[接收消息](./agora_chat_message_android#发送消息)。
 
 ### 撤回子区消息
 
-接收消息的具体逻辑，请参考 [撤回消息](./agora_chat_message_android?platform=Android#recall-messages)，此处只介绍子区消息和其他消息的区别。
+接收消息的具体逻辑，请参考 [撤回消息](./agora_chat_message_android#撤回消息)，此处只介绍子区消息和其他消息的区别。
 
-子区有消息撤回时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageRecalled`回调，如下代码示例所示：
+子区有消息撤回时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageRecalled` 回调，如下代码示例所示：
 
 ```java
 MessageListener msgListener = new MessageListener() {
@@ -123,7 +123,7 @@ MessageListener msgListener = new MessageListener() {
 
 #### 从服务器获取子区消息（消息漫游）
 
-关于如何从服务器获取子区消息，详见 [历史消息](./agora_chat_message_android?platform=Android#retrieve-historical-messages-from-the-server)。
+关于如何从服务器获取子区消息，详见 [历史消息](./agora_chat_message_android#retrieve-historical-messages-from-the-server)。
 
 #### 管理本地子区消息
 

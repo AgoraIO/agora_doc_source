@@ -1,4 +1,4 @@
-子区是群组成员的子集，是支持多人沟通的即时通讯系统，本文介绍如何使用 SDK 在实时互动 app 中创建和管理子区，并实现子区相关功能。
+子区是群组成员的子集，是支持多人沟通的即时通讯系统。
 
 下图展示了如何创建子区、管理子区中的会话以及可以在子区中执行的操作。
 
@@ -8,7 +8,7 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 提供`ChatThreadManager`, `ChatThread`, `ChatThreadChangeListener`, 和 `ChatThreadEvent` 类用于子区管理，支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM SDK 提供 `ChatThreadManager`，`ChatThread`，`ChatThreadChangeListener` 和 `ChatThreadEvent` 类用于子区管理，支持你通过调用 API 在项目中实现如下功能：
 
 - 创建、解散子区
 - 加入、退出子区
@@ -24,8 +24,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)中所述。
 
 在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用该功能。
 
@@ -84,14 +84,14 @@ ChatClient.getInstance().chatThreadManager().destroyChatThread(chatThreadId, new
 
 子区所在群组的所有成员均可以调用 `joinChatThread` 方法加入群组，
 
-1. 使用以下两种方法之一来检索线程 ID：
+1. 使用以下两种方法之一来获取子区 ID：
 
-- 调用 [`getChatThreadsFromServer`](./agora_chat_thread_management_android?platform=Android#fetch) 获取聊天群中的话题列表，找到你想加入的子区 ID。
+- 调用 [`getChatThreadsFromServer`](./agora_chat_thread_management_android#从服务器获取子区列表) 获取聊天群中的话题列表，找到你想加入的子区 ID。
 - 收到 `ChatThreadChangeListener#onChatThreadCreated` 或 `ChatThreadChangeListener#onChatThreadUpdated` 回调时获取想加入的子区 ID。
 
 2. 调用 `joinChatThread` 传入子区 ID 加入对应子区。
 
-多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent`触发的回调`THREAD_JOIN`。
+多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 触发的回调 `THREAD_JOIN`。
 
 示例代码如下：
 
@@ -310,7 +310,7 @@ ChatThreadChangeListener chatThreadChangeListener = new ChatThreadChangeListener
 };
 // 注册监听
 ChatClient.getInstance().chatThreadManager().addChatThreadChangeListener(chatThreadChangeListener);
-// Removes the thread listener.
+
 // 移除监听
 ChatClient.getInstance().chatThreadManager().removeChatThreadChangeListener(chatThreadChangeListener);
 ```

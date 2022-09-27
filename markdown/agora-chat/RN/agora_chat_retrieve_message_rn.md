@@ -11,8 +11,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并连接到服务器，详见 [快速开始](./agora_chat_get_started_rn?platform=RN)。
-- 了解即时通讯 IM [使用限制](./agora_chat_limitation?platform=RN)。
+- 完成 SDK 初始化，并连接到服务器，详见 [快速开始](./agora_chat_get_started_rn)。
+- 了解即时通讯 IM [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -67,4 +67,4 @@ ChatClient.getInstance()
 
 实现从服务器获取消息后，您可以参考以下文档为您的应用添加更多消息功能：
 
-- [消息回执](./agora_chat_message_receipt_rn?platform=RN)
+- [消息回执](./agora_chat_message_receipt_rn)

@@ -14,9 +14,9 @@ SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
+- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -94,4 +94,4 @@ ChatClient.getInstance().groupManager().fetchGroupSharedFileList(groupId, pageNu
 
 ### 监听群组事件
 
-有关详细信息，请参阅 [监听群组事件](./agora_chat_group_android?platform=Android#监听群组事件)。
+有关详细信息，请参阅 [监听群组事件](./agora_chat_group_android#监听群组事件)。

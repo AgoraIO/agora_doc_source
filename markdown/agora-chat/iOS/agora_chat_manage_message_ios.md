@@ -19,8 +19,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，并连接到服务器，详见 [iOS 快速开始](./agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
+- 完成 SDK 初始化，并连接到服务器，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -150,5 +150,5 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 
 实现消息管理后，你可以参考以下文档为应用添加更多消息功能：
 
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_ios?platform=iOS)
-- [消息回执](./agora_chat_message_receipt_ios?platform=iOS)
+- [从服务器获取会话和消息](./agora_chat_retrieve_message_ios)
+- [消息回执](./agora_chat_message_receipt_ios)

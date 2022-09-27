@@ -23,8 +23,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
 
 所有类型的 [定价计划](./agora_chat_plan) 都支持子区功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认启用子区功能。
 
@@ -57,7 +57,7 @@ message.isChatThreadMessage = self.isChatThread;
 }];
 ```
 
-有关发送消息的更多信息，请参阅 [发送消息](./agora_chat_message_ios?platform=iOS#send-and-receive-messages)。
+有关发送消息的更多信息，请参阅 [发送消息](./agora_chat_message_ios#发送文本消息)。
 
 ### 接收子区消息
 
@@ -76,11 +76,11 @@ message.isChatThreadMessage = self.isChatThread;
 [[AgoraChatClient sharedClient].chatManager removeDelegate:self];
 ```
 
-有关接收消息的更多信息，请参阅 [接收消息](./agora_chat_message_ios?platform=iOS#send-and-receive-messages)。
+有关接收消息的更多信息，请参阅 [接收消息](./agora_chat_message_ios#发送文本消息)。
 
 ### 撤回子区消息
 
-有关如何撤回消息的详细信息，请参阅 [撤回消息](./agora_chat_message_ios?platform=iOS#recall-messages)，此处只介绍子区消息和其他消息的区别。
+有关如何撤回消息的详细信息，请参阅 [撤回消息](./agora_chat_message_ios#撤回消息)，此处只介绍子区消息和其他消息的区别。
 
 在子区中撤回消息后，所有群组成员都会收到 `AgoraChatThreadManagerDelegate#onChatThreadUpdated` 回调。子区成员也可以监听 `AgoraChatManagerDelegate#messagesInfoDidRecall` 回调，如下代码示例所示：
 
@@ -93,4 +93,4 @@ message.isChatThreadMessage = self.isChatThread;
 
 进入单个子区会话后默认展示最早消息，iOS 端默认直接从服务器按时间顺序获取子区历史消息。
 
-关于如何从服务器获取消息的详细信息，请参见 [从服务器获取消息](./agora_chat_message_ios?platform=iOS#分页获取指定会话的历史消息)。
+关于如何从服务器获取消息的详细信息，请参见 [从服务器获取消息](./agora_chat_message_ios#分页获取指定会话的历史消息)。

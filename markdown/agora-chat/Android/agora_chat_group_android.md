@@ -2,7 +2,7 @@
 
 本页介绍如何使用即时通讯 IM SDK 在你的应用中创建和管理群组。
 
-如需查看消息相关内容，参见 [消息管理](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_message_overview?platform=Android)。
+如需查看消息相关内容，参见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -20,9 +20,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成即时通讯 IM SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
+- 完成即时通讯 IM SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
+- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 

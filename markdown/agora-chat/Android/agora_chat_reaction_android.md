@@ -20,8 +20,8 @@ SDK 提供 API 来实现如下功能：
 
 开始前，请确保满足以下条件：
 
-- 集成 v1.0.3 及以上即时通讯 IM SDK 版本，并实现了 [基本的实时聊天功能](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
+- 集成 v1.0.3 及以上即时通讯 IM SDK 版本，并实现了 [基本的实时聊天功能](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 在 [Agora 控制台](https://console.agora.io/) 中启用聊天功能，会默认启用 Reaction 功能。
 
@@ -131,4 +131,4 @@ ChatClient.getInstance().chatManager().asyncGetReactionDetail(mMsgId, emojiconId
 
 ## 下一步
 
-[Chat UIKit](./agora_chat_uikit_android?platform=Android) 也支持 Reaction 功能，其中包含更丰富的表情符号。你可以使用 UIKit 在项目中实现 Reaction 功能。
+[Chat UIKit](./agora_chat_uikit_android) 也支持 Reaction 功能，其中包含更丰富的表情符号。你可以使用 UIKit 在项目中实现 Reaction 功能。
