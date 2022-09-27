@@ -16,7 +16,7 @@
     - FireFox 10 以上版本
     - Chrome 54 以上版本
     - Safari 6 以上版本
-  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/AgoraPlatform/firewall?platform=Web)以正常使用 Agora 服务。
+  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](./AgoraPlatform/firewall)以正常使用 Agora 服务。
   - 已安装 Xcode（仅适用于 macOS）
 
 - [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)

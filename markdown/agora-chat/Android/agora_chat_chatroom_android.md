@@ -2,7 +2,7 @@
 
 本页介绍如何使用即时通讯 IM SDK 在应用中创建和管理聊天室。
 
-消息相关内容见 [消息管理](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_message_overview?platform=Android)。
+消息相关内容见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -18,10 +18,10 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
-- 了解即时通讯 IM 不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
-- 只有超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了超级管理员。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 只有超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了超级管理员。
 - 聊天室创建者和管理员的数量之和不能超过 100，即管理员最多可添加 99 个。
 
 ## 实现方法

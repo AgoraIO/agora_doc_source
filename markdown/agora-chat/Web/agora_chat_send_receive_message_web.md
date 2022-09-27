@@ -28,8 +28,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web?platform=Web)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Web)。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -526,5 +526,5 @@ function sendTextMessage() {
 
 实现消息发送和接收后，可以参考以下文档为应用添加更多消息功能：
 
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_web?platform=Web)
-- [消息回执](./agora_chat_message_receipt_web?platform=Web)
+- [从服务器获取会话和消息](./agora_chat_retrieve_message_web)
+- [消息回执](./agora_chat_message_receipt_web)

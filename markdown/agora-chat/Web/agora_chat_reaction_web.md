@@ -16,8 +16,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web?platform=Web)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=Web)。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
 
 所有类型的 [定价方案](./agora_chat_plan) 都支持该功能，一旦在 [Agora 控制台](https://console.agora.io/) 中启用了聊天功能，就会默认启用 Reaction 功能。
 
@@ -102,4 +102,4 @@ conn.fetchHistoryMessages({ queue: "user", count: 20 }).then((messages) => {
 
 ## 下一步
 
-[Chat UIKit](./agora_chat_uikit_web?platform=Web) 也支持 Reaction 功能，其中包含更广泛的表情符号，可以使用 UIKit 在项目中实现该功能。
+[Chat UIKit](./agora_chat_uikit_web) 也支持 Reaction 功能，其中包含更广泛的表情符号，可以使用 UIKit 在项目中实现该功能。

@@ -25,9 +25,9 @@
   - Chrome：54 或以上
   - Safari：11 或以上
 
-- 有效的 [Agora 账户](./AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account)。
-- 启用 [聊天服务](./enable_agora_chat?platform=Web#enable-the-agora-chat-service)。
-- 有效的 [App Key](./enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project) 和 [用户 token](./generate_user_tokens?platform=Web)。
+- 有效的 [Agora 账户](./AgoraPlatform/get_appid_token?platform=AllPlatforms#创建账号)。
+- 启用 [聊天服务](./enable_agora_chat#enable-the-agora-chat-service)。
+- 有效的 [App Key](./enable_agora_chat#get-the-information-of-the-agora-chat-project) 和 [用户 token](./generate_user_tokens)。
 
 ## 项目设置
 
@@ -136,7 +136,7 @@ Web 即时通讯 IM UIKit 有两部分：
 npm run start
 ```
 
-你可以在浏览器中查看应用程序启动。在发送消息之前，请参考 [添加好友](./agora_chat_contact_web?platform=Web#添加好友) 或 [加入群组](./agora_chat_group_web?platform=Web#加入群组) 以添加联系人或加入群组。
+你可以在浏览器中查看应用程序启动。在发送消息之前，请参考 [添加好友](./agora_chat_contact_web#添加好友) 或 [加入群组](./agora_chat_group_web#加入群组) 以添加联系人或加入群组。
 
 ## 下一步
 
