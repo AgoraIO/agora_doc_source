@@ -54,18 +54,18 @@ try {
 }
 ```
 
-### 销毁线程
+### 解散子区
 
-只有群主和管理员可以调用`destroyChatThread`解散群中的话题。
+仅子区所在群组的群主和群管理员可以调用 `ChatChatThreadManager#destroyChatThread` 方法解散子区。
 
-一旦线程被解散，所有聊天组成员都会收到`ChatThreadEventHandler#onChatThreadDestroy`回调。在多设备场景下，所有其他设备都会收到事件`ChatMultiDeviceEventHandler#onChatThreadEvent`触发的回调`ChatMultiDevicesEvent#CHAT_THREAD_DESTROY`。
+单设备登录时，子区所属群组的所有成员均会收到 `ChatChatThreadEventHandler#onChatThreadDestroy` 事件；多设备登录时，其他设备会同时收到 `ChatMultiDeviceEventHandler#onChatThreadEvent` 事件，回调事件为 `ChatMultiDevicesEvent#CHAT_THREAD_DESTROY`。
 
-一旦线程被销毁或者线程所在的聊天组被销毁，该线程的所有数据都会从本地数据库和内存中删除。
+解散子区或解散子区所在的群组后，将删除本地数据库及内存中关于该子区的全部数据，需谨慎操作。
 
-以下代码示例显示了如何销毁线程：
+示例代码如下：
 
 ```dart
-// chatThreadID: The ID of a thread.
+// chatThreadId: 子区 ID
 try {
   await ChatClient.getInstance.chatThreadManager.destroyChatThread(
     chatThreadId: chatThreadId,
@@ -74,23 +74,22 @@ try {
 }
 ```
 
-### 加入一个线程
+### 加入子区
 
-所有聊天群成员可以参考以下步骤加入话题：
+子区所在群组的所有成员均可以调用 `ChatChatThreadManager#joinChatThread` 方法加入群组，
 
-1. 使用以下两种方法之一来检索线程 ID：
+加入子区的具体步骤如下：
 
-- 调用 获取聊天群中的话题列表[`fetchChatThreadsWithParentId`](https://docs.agora.io/en/agora-chat/agora_chat_thread_management_flutter?platform=Flutter#fetch)，找到你想加入的话题ID。
-- 在您收到的`ChatThreadEventHandler#onChatThreadCreate`和回调中检索线程 ID 。`ChatThreadEventHandler#onChatThreadUpdate`
+1. 收到 `ChatThreadManagerEventHandler#onChatThreadCreate` 事件或 `ChatThreadManagerEventHandler#onChatThreadUpdate` 事件，或调用 `fetchChatThreadWithParentId` 方法从服务器获取指定群组的子区列表，从中获取到想要加入的子区 ID。
+2. 调用 `joinChatThread` 传入子区 ID 加入对应子区。
 
-1. 调用`joinChatThread`传入线程ID，加入指定线程。
 
-在多设备场景下，所有其他设备都会收到事件`ChatMultiDeviceEventHandler#onChatThreadEvent`触发的回调`ChatMultiDevicesEvent#CHAT_THREAD_JOIN`。
+多设备登录时，其他设备会同时收到 `ChatMultiDeviceEventHandler#onChatThreadEvent` 事件，回调事件为 `ChatMultiDevicesEvent#CHAT_THREAD_JOIN`。
 
-以下代码示例显示了如何加入线程：
+示例代码如下：
 
 ```dart
-// chatThreadId: The ID of a thread.
+// chatThreadId: 子区 ID
 try {
   ChatThread chatThead =
       await ChatClient.getInstance.chatThreadManager.joinChatThread(
@@ -100,16 +99,16 @@ try {
 }
 ```
 
-### 留下一个话题
+### 退出子区
 
-所有线程成员都可以调用`leaveChatThread`离开线程。一旦成员离开线程，他们将无法再收到线程消息。
+子区成员均可以主动调用 `ChatThreadManager#leaveChatThread` 方法退出子区，退出子区后，该成员将不会再收到子区消息。
 
-在多设备场景下，所有其他设备都会收到事件`ChatMultiDeviceEventHandler#onThreadEvent`触发的回调`ChatMultiDevicesEvent#CHAT_THREAD_LEAVE`。
+多设备登录时，其他设备会同时收到 `ChatMultiDeviceEventHandler#onThreadEvent` 事件，回调事件为 `ChatMultiDevicesEvent#CHAT_THREAD_LEAVE`。
 
-以下代码示例显示了如何离开线程：
+示例代码如下：
 
 ```dart
-// chatThreadId: The ID of a thread.
+// chatThreadId: 子区 ID
 try {
   await ChatClient.getInstance.chatThreadManager.leaveChatThread(
     chatThreadId: chatThreadId,
@@ -118,17 +117,17 @@ try {
 }
 ```
 
-### 从线程中删除成员
+### 从子区移出成员
 
-只有聊天组所有者和管理员可以调用`removeMemberFromChatThread`从线程中删除指定成员。
+仅群主和群管理员可以调用 `ChatThreadManager#removeMemberFromChatThread` 方法将指定成员 (群管理员或普通成员) 踢出子区，被踢出子区的成员将不再接收到子区消息。
 
-一旦成员从线程中删除，他们就会收到`ChatThreadEventHandler#onUserKickOutOfChatThread`回调并且不能再接收线程消息。在多设备场景下，所有其他设备都会收到事件`ChatMultiDeviceEventHandler#onChatThreadEvent`触发的回调`ChatMultiDevicesEvent#CHAT_THREAD_KICK`。
+被踢出子区的成员会收到 `ChatThreadEventHandler#onUserKickOutOfChatThread` 事件；多设备登录时，执行踢人操作的成员的其他设备会同时收到 `ChatMultiDeviceEventHandler#onThreadEvent` 事件，回调事件为 `ChatMultiDevicesEvent#CHAT_THREAD_KICK`。
 
-以下代码示例显示了如何从线程中删除成员：
+示例代码如下：
 
 ```dart
-// chatThreadId: The ID of a thread.
-// memberId: The ID of the user to be removed from a thread.
+// chatThreadId: 子区 ID
+// memberId: 子区成员的用户 ID
 try {
   await ChatClient.getInstance.chatThreadManager.removeMemberFromChatThread(
     memberId: memberId,
@@ -138,17 +137,17 @@ try {
 }
 ```
 
-### 更新线程的名称
+### 修改子区名称
 
-只有聊天组所有者、聊天组管理员和线程创建者可以调用`updateChatThreadName`以更新线程名称。
+仅群主和群管理员以及子区的创建者可以调用 `ChatThreadManager#updateChatThreadName` 方法修改子区名称。
 
-更新线程名称后，所有聊天组成员都会收到`ChatThreadEventHandler#onChatThreadUpdate`回调。在多设备场景下，所有其他设备都会收到事件`ChatMultiDeviceEventHandler#onThreadEvent`触发的回调`ChatMultiDevicesEvent#CHAT_THREAD_UPDATE`。
+单设备登录时，子区所属群组的所有成员会收到 `ChatThreadManagerEventHandler#onChatThreadUpdate` 事件；多设备登录时，其他设备会同时收到 `MultiDeviceEventHandler#onThreadEvent` 事件，回调事件为 `ChatMultiDevicesEvent#CHAT_THREAD_UPDATE`。
 
-以下代码示例显示了如何更新线程名称：
+示例代码如下：
 
 ```dart
-// chatThreadId: The ID of a thread.
-// name: The updated thread name. The maximum length of a thread name is 64 characters.
+// chatThreadId: 子区 ID
+// name: 修改的子区名称，长度不超过 64 个字符
 try {
   await ChatClient.getInstance.chatThreadManager.updateChatThreadName(
     newName: name,
@@ -158,14 +157,14 @@ try {
 }
 ```
 
-### 检索线程的属性
+### 获取子区详情
 
-所有聊天组成员都可以调用`fetchChatThread`从服务器检索线程属性。
+子区所属群组的所有成员均可以调用 `ChatThreadManager#fetchChatThread` 从服务器获取子区详情。
 
-以下代码示例显示了如何检索线程属性：
+示例代码如下：
 
 ```dart
-// chatThreadId: The ID of a thread.
+// chatThreadId: 子区 ID
 try {
   ChatThread? chatThread =
       await ChatClient.getInstance.chatThreadManager.fetchChatThread(
@@ -175,14 +174,14 @@ try {
 }
 ```
 
-### 检索线程的成员列表
+### 获取子区成员列表
 
-所有聊天组成员都可以调用`fetchChatThreadMember`从服务器获取线程的分页成员列表，如以下代码示例所示：
+子区所属群组的所有成员均可以调用 `ChatThreadManager#fetchChatThreadMember` 方法从服务器分页获取子区成员列表。
 
 ```dart
-// chatThreadId: The thread ID.
-// limit: The maximum number of members to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
+// chatThreadId: 子区 ID
+// limit: 单次请求返回的成员数，取值范围为 [1, 50]
+// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
 try {
   List<String> members =
       await ChatClient.getInstance.chatThreadManager.fetchChatThreadMember(
@@ -194,13 +193,13 @@ try {
 }
 ```
 
-### 检索线程列表
+### 获取子区列表
 
-用户可以调用`fetchJoinedChatThreads`从服务器获取他们加入的所有线程的分页列表，如以下代码示例所示：
+1. 用户可以调用 `ChatThreadManager#fetchJoinedChatThreads` 方法从服务器分页获取自己加入和创建的子区列表：
 
 ```dart
-// limit: The maximum number of threads to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
+// limit: 单次请求返回的子区数，取值范围为 [1, 50]
+// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
 try {
   ChatCursorResult<ChatThread> chatThreads =
       await ChatClient.getInstance.chatThreadManager.fetchJoinedChatThreads(
@@ -211,12 +210,12 @@ try {
 }
 ```
 
-用户可以通过调用`fetchJoinedChatThreadsWithParentId`从服务器中获取他们在指定聊天组中加入的所有线程的分页列表，如以下代码示例所示：
+2. 用户可以调用 `ChatThreadManager#fetchChatThreadsWithParentId` 方法从服务器分页获取指定群组的子区列表：
 
 ```dart
-// parentId: The chat group ID.
-// limit: The maximum number of threads to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
+// parentId: 群组 ID
+// limit: 单次请求返回的子区数，取值范围为 [1, 50]
+// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
 try {
   ChatCursorResult<ChatThread> chatThreads = await ChatClient
       .getInstance.chatThreadManager
@@ -229,12 +228,12 @@ try {
 }
 ```
 
-用户也可以调用`fetchChatThreadsWithParentId`从服务器获取指定聊天组中所有线程的分页列表，如下代码示例所示：
+3. 用户还可以调用 `ChatThreadManager#fetchJoinedChatThreadsWithParentId` 方法从服务器分页获取指定群组的子区列表：
 
 ```dart
-// parentId: The chat group ID.
-// limit: The maximum number of threads to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
+// parentId: 群组 ID
+// limit: 单次请求返回的子区数，取值范围为 [1, 50]
+// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
 try {
   ChatCursorResult<ChatThread> chatThreads = await ChatClient
       .getInstance.chatThreadManager
@@ -247,14 +246,14 @@ try {
 }
 ```
 
-### 从多个线程中检索最新消息
+### 批量获取子区中的最新一条消息
 
-用户可以调用`fetchLatestMessageWithChatThreads`从多个线程中检索最新消息。
+用户可以调用 `ChatThreadManager#fetchLatestMessageWithChatThreads` 方法从服务器批量获取子区中的最新一条消息。
 
-以下代码示例显示了如何从多个线程中检索最新消息：
+示例代码如下：
 
 ```dart
-// chatThreadIds: The thread IDs. You can pass in a maximum of 20 thread IDs at each call.
+// chatThreadIds: 要查询的子区 ID 列表，每次最多可传入 20 个子区 ID
 try {
   Map<String, ChatMessage> map = await ChatClient.getInstance.chatThreadManager
       .fetchLatestMessageWithChatThreads(
@@ -264,20 +263,20 @@ try {
 }
 ```
 
-### 监听线程事件
+### 监听子区事件
 
-为了监控线程事件，用户可以监听`ChatThreadManager`类中的回调并相应地添加应用程序逻辑。如果用户想停止侦听回调，请确保用户删除侦听器以防止内存泄漏。
+`ChatThreadManager` 类中提供子区事件的监听接口。开发者可以通过设置此监听，获取子区中的事件，并做出相应处理。如果不再使用该监听，需要移除，防止出现内存泄漏。
 
-参考以下代码示例监听线程事件：
+示例代码如下：
 
 ```dart
-    // Adds the chat thread event handler.
+    // 注册监听
     ChatClient.getInstance.chatThreadManager.addEventHandler(
       "UNIQUE_HANDLER_ID",
       ChatThreadEventHandler(),
     );
 
-    // Removes the chat thread event handler.
+    // 移除监听
     ChatClient.getInstance.chatThreadManager.removeEventHandler("UNIQUE_HANDLER_ID");
 }
 ```
