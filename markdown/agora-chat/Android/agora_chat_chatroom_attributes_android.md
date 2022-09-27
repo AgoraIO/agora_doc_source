@@ -93,7 +93,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe
 
 ##### 获取聊天室所有自定义属性
 
-聊天室成员可以调用 `asyncFetchChatRoomAllAttributesFromSever` 方法获取聊天室所有自定义属性。
+聊天室成员可以调用 `asyncFetchChatRoomAllAttributesFromServer` 方法获取聊天室所有自定义属性。
 
 示例代码如下：
 
@@ -105,7 +105,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe
  * @param callBack                  结果回调，成功时回调 {@link ValueCallBack#onSuccess(Object)}，
  *                                  失败时回调 {@link ValueCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSever(chatRoomId, new ValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromServer(chatRoomId, new ValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
@@ -245,7 +245,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
 
 ##### 删除单个聊天室自定义属性
 
-聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromSever` 方法删除单个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除单个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
 示例代码如下：
 
@@ -258,7 +258,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever(chatRoomId,attributeKey, new CallBack() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServer(chatRoomId,attributeKey, new CallBack() {
                     @Override
                     public void onSuccess() {
 
@@ -273,7 +273,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever
 
 ##### 强制删除单个聊天室自定义属性
 
-删除单个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromSeverForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+删除单个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromServerForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
 示例代码如下：
 
@@ -286,7 +286,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSeverForced(chatRoomId,attributeKey, new CallBack() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServerForced(chatRoomId,attributeKey, new CallBack() {
                     @Override
                     public void onSuccess() {
 
@@ -301,7 +301,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever
 
 ##### 删除多个聊天室自定义属性
 
-聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromSever` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
 示例代码如下：
 
@@ -314,7 +314,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServer(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
                     public void onSuccess(int code,Map<String, Integer> value) {
                         // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
@@ -330,7 +330,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeve
 
 ##### 强制删除多个聊天室自定义属性
 
-删除多个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromSeverForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+删除多个聊天室自定义属性时，若要支持删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromServerForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
 示例代码如下：
 
@@ -343,7 +343,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeve
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverForced(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServerForced(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
                     public void onSuccess(int code,Map<String, Integer> value) {
                         // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
