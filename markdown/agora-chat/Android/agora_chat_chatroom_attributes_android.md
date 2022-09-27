@@ -317,7 +317,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServer(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
                     public void onSuccess(int code,Map<String, Integer> value) {
-                        // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
+                        // code == Error.EM_NO_ERROR 表明自定义属性全部成功删除。
                         // value 为添加失败自定义的属性
                     }
 
