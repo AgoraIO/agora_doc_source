@@ -78,7 +78,7 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
  * @param callBack                  结果回调，成功时回调 {@link ValueCallBack#onSuccess(Object)}，
  *                                  失败时回调 {@link ValueCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServer(conversationId, keyList, new ValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServer(chatRoomId, keyList, new ValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
@@ -105,7 +105,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe
  * @param callBack                  结果回调，成功时回调 {@link ValueCallBack#onSuccess(Object)}，
  *                                  失败时回调 {@link ValueCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSever(conversationId, new ValueCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSever(chatRoomId, new ValueCallBack<Map<String, String>>() {
                 @Override
                 public void onSuccess(Map<String, String> value) {
 
@@ -138,7 +138,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSe
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-ChatClient.getInstance().chatroomManager().asyncSetChatroomAttribute(conversationId,attributeKey,attributeValue,false, new CallBack() {
+ChatClient.getInstance().chatroomManager().asyncSetChatroomAttribute(chatRoomId,attributeKey,attributeValue,false, new CallBack() {
                 @Override
                 public void onSuccess() {
 
@@ -168,7 +168,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttribute(conversatio
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conversationId,attributeKey,attributeValue,false, new CallBack() {
+ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chatRoomId,attributeKey,attributeValue,false, new CallBack() {
                 @Override
                 public void onSuccess() {
 
@@ -197,13 +197,11 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-    ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributes(conversationId, map, false, new ResultCallBack<Map<String, String>>() {
+    ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributes(chatRoomId, map, false, new ResultCallBack<Map<String, Integer>>() {
                 @Override
-                public void onSuccess(int code,Map<String, String> value) {
-                    if (code == 0){ // onSuccess 返回值 code 为 0，表明自定义属性成功添加。
-                    }else { // onSuccess 返回值不为 0，表明一些自定义属性因长度超限等原因添加失败。
-
-                    }
+                public void onSuccess(int code,Map<String, Integer> value) {
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
+                    // value 为添加失败自定义的属性
                 }
 
                 @Override
@@ -229,14 +227,11 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
  *       - （默认）`true`：是；
  *       - `false`：否。
  */
-    ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conversationId, map, false, new ResultCallBack<Map<String, String>>() {
+    ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chatRoomId, map, false, new ResultCallBack<Map<String, Integer>>() {
                 @Override
-                public void onSuccess(int code,Map<String, String> value) {
-                    if (code == 0){ // onSuccess 返回值 code 为 0，表明自定义属性成功添加。
-
-                    }else { // onSuccess 返回值不为 0，表明一些自定义属性因长度超限等原因添加失败。
-
-                    }
+                public void onSuccess(int code,Map<String, Integer> value) {
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
+                    // value 为添加失败自定义的属性
                 }
 
                 @Override
@@ -263,7 +258,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(conv
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever(conversationId,attributeKey, new CallBack() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever(chatRoomId,attributeKey, new CallBack() {
                     @Override
                     public void onSuccess() {
 
@@ -291,7 +286,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSeverForced(conversationId,attributeKey, new CallBack() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSeverForced(chatRoomId,attributeKey, new CallBack() {
                     @Override
                     public void onSuccess() {
 
@@ -319,10 +314,11 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromSever
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(conversationId,keyList, new ResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSever(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
-                    public void onSuccess(int code,Map<String, String> value) {
-
+                    public void onSuccess(int code,Map<String, Integer> value) {
+                        // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
+                        // value 为添加失败自定义的属性
                     }
 
                     @Override
@@ -347,10 +343,11 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeve
  * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
  *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
  */
-ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverForced(conversationId,keyList, new ResultCallBack<Map<String, String>>() {
+ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromSeverForced(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
-                    public void onSuccess(int code,Map<String, String> value) {
-
+                    public void onSuccess(int code,Map<String, Integer> value) {
+                        // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
+                        // value 为添加失败自定义的属性
                     }
 
                     @Override

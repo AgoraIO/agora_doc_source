@@ -90,8 +90,8 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' -d '{
     "metaData": {
         "key1": "value1",
-		"key2": "value2"
-    },
+		    "key2": "value2"
+      },
     "autoDelete": "DELETE"
  }' 'http://XXXX/XXXX/XXXX/metadata/chatroom/662XXXX13/user/user1'
 ```
@@ -103,7 +103,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
   "data":
   {
     "successKeys": ["key1"],
-	"errorKeys": {"key2":"errorDesc"},
+	  "errorKeys": {"key2":"errorDesc"},
   }
 }
 ```
@@ -168,7 +168,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 {
   "data":
   {
-        "key1": "value1",
+    "key1": "value1",
 		"key2": "value2"
   }
 }
@@ -236,7 +236,7 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
   "data":
   {
     "successKeys": ["key1"],
-	"errorKeys": {"key2":"errorDesc"},
+	  "errorKeys": {"key2":"errorDesc"}
   }
 }
 ```
@@ -300,8 +300,8 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' -d '{
     "metaData": {
         "key1": "value1",
-		"key2": "value2"
-    },
+		    "key2": "value2"
+      },
     "autoDelete": "DELETE"
  }' 'http://XXXX/XXXX/XXXX/metadata/chatroom/662XXXX13/user/user1/forced'
 ```
@@ -313,7 +313,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
   "data":
   {
     "successKeys": ["key1"],
-	"errorKeys": {"key2":"errorDesc"},
+	  "errorKeys": {"key2":"errorDesc"}
   }
 }
 ```
@@ -380,7 +380,7 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
   "data":
   {
     "successKeys": ["key1"],
-	"errorKeys": {"key2":"errorDesc"},
+	"errorKeys": {"key2":"errorDesc"}
   }
 }
 ```

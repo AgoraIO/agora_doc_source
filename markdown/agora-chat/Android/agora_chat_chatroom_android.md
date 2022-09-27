@@ -149,7 +149,7 @@ public interface ChatRoomChangeListener {
     default void onChatroomAttributesDidChanged(String chatRoomId, Map<String,String> attributeMap , String from){}
 
     // 有聊天室自定义属性被移除
-    default void onChatroomAttributesDidRemoved(String chatRoomId, Map<String,String> attributeMap , String from){}
+    default void onChatroomAttributesDidRemoved(String chatRoomId, List<String> keyList , String from){}
 
 }
 ```
