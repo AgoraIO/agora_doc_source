@@ -1,4 +1,4 @@
-子区是群组成员的子集，是支持多人沟通的即时通讯系统，本文介绍如何使用 SDK 在实时互动 app 中创建和管理子区，并实现子区相关功能。
+子区是群组成员的子集，是支持多人沟通的即时通讯系统。
 
 下图展示了如何创建子区、管理子区中的会话以及可以在子区中执行的操作。
 
@@ -24,8 +24,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)中所述。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)中所述。
 
 在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用该功能。
 
