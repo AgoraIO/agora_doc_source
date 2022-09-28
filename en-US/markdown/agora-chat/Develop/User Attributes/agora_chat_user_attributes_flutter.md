@@ -16,7 +16,7 @@ The Agora Chat SDK uses `ChatUserInfoManager` to retrieve, set, and modify user 
 Before proceeding, ensure that you meet the following requirements:
 
 - Have a project that has implemented [the basic real-time chat functionalities](./agora_chat_get_started_flutter?platform=Flutter).
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attributes in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Flutter).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Flutter).
 
 ## Implementation
 
@@ -48,7 +48,7 @@ try {
   Map<String, ChatUserInfo> userInfos =
       await ChatClient.getInstance.userInfoManager.fetchUserInfoById(list);
 } on ChatError catch (e) {
-  // Fails to retrive the user attributes. See e.code for the error code, and e.description for the error description.
+  // Fails to retrieve the user attributes. See e.code for the error code, and e.description for the error description.
 }
 ```
 

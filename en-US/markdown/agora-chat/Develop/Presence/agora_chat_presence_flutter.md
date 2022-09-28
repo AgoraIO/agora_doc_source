@@ -1,5 +1,3 @@
-# Presence
-
 The presence feature enables users to publicly display their online presence status and quickly determine the status of other users. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
 
 The following illustration shows the implementation of creating a custom presence status and how various presence statues look in a contact list:
@@ -11,7 +9,7 @@ This page shows how to use the Agora Chat SDK to implement presence in your proj
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatPresence`, `ChatPresenceManager`, and `ChatPresenceEventListener` classes for presence management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatPresence`, `ChatPresenceManager`, and `ChatPresenceEventHandler` classes for presence management, which allows you to implement the following features:
 
 - Subscribe to the presence status of one or more users
 - Unsubscribe from the presence status of one or more users
@@ -68,7 +66,7 @@ try {
 
 ### Publish a custom presence status
 
-You can call `publishPresence` to to publish a custom status. Whenever your presence status updates, the users who subscribe to you receive the `onPresenceStatusChanged` callback.
+You can call `publishPresence` to to publish a custom status. Whenever your presence status updates, the users who subscribe to you receive the `ChatPresenceEventHandler#onPresenceStatusChanged` callback.
 
 The following code sample shows how to publish a custom status:
 
@@ -86,29 +84,18 @@ try {
 Refer to the following code sample to listen for presence status updates:
 
 ```dart
-// Inherits and implements the ChatPresenceEventListener class.
-class _ChatPageState extends State<ChatPage>
-    implements ChatPresenceManagerListener {
-  @override
-  void initState() {
-    super.initState();
-    // Adds the presence status listener.
-    ChatClient.getInstance.presenceManager.addPresenceManagerListener(this);
-  }
-  @override
-  void dispose() {
-    // Removes the presence status listener.
-    ChatClient.getInstance.presenceManager.removePresenceManagerListener(this);
-    super.dispose();
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-  // Occurs when the presence statuses of the subscriptions update.
-  @override
-  void onPresenceStatusChanged(List<ChatPresence> list) {}
-}
+    // Adds the presence event handler.
+    ChatClient.getInstance.presenceManager.addEventHandler(
+      "UNIQUE_HANDLER_ID",
+      ChatPresenceEventHandler(
+        onPresenceStatusChanged: (list) {},
+      ),
+    );
+
+    ...
+
+    // Removes the presence event handler.
+    ChatClient.getInstance.presenceManager.removeEventHandler("UNIQUE_HANDLER_ID");
 ```
 
 ### Unsubscribe from the presence status of one or more users
