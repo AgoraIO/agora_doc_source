@@ -1,4 +1,4 @@
-Emojis are widely used in real-time chats because they allow users to express their feelings in a direct and vivid way. In Agora Chat, "reactions" allow users to quickly react to a message using emojis in one-to-one chats and chat groups. In group chats, reactions can also be used to cast a vote, for example, by calculating the number of different emojis attached to the message. 
+Emojis are widely used in real-time chats because they allow users to express their feelings in a direct and vivid way. In Agora Chat, "reactions" allow users to quickly react to a message using emojis in one-to-one chats and chat groups. In group chats, reactions can also be used to cast a vote, for example, by calculating the number of different emojis attached to the message.
 
 The following illustration shows the implementation of adding a reaction to a message, how a conversation looks with reactions, and what retrieving a list of reactions (with related information) looks like.
 
@@ -106,21 +106,17 @@ try {
 Use `onMessageReactionDidChange` to listen for changes or status of the reaction.
 
 ```dart
-// Listen for reaction updates
-class _ChatPageState extends State<ChatPage> implements ChatManagerListener {
-  @override
-  void initState() {
-    super.initState();
-    ChatClient.getInstance.chatManager.addChatManagerListener(this);
-  }
-  @override
-  void dispose() {
-    ChatClient.getInstance.chatManager.removeChatManagerListener(this);
-    super.dispose();
-  }
-  @override
-  void onMessageReactionDidChange(List<ChatMessageReactionChange> list) {}
-  // Add other callbacks according to your business logic
-  ...
+    // Adds the chat event handler.
+    ChatClient.getInstance.chatManager.addEventHandler(
+      "UNIQUE_HANDLER_ID",
+      ChatEventHandler(
+        onMessageReactionDidChange: (events) {},
+      ),
+    );
+
+    ...
+
+    // Removes the chat event handler.
+    ChatClient.getInstance.chatManager.removeEventHandler("UNIQUE_HANDLER_ID");
 }
 ```

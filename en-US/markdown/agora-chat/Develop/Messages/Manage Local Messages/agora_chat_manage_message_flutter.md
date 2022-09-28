@@ -33,7 +33,7 @@ Call `loadAllConversations` to retrieve all the conversations on the local devic
 try {
   List<ChatConversation> lists =
       await ChatClient.getInstance.chatManager.loadAllConversations();
-  // Loading converstions succeeds
+  // Loading conversations succeeds
 } on ChatError catch (e) {
   // recall failed, code: e.code, reason: e.description
 }
@@ -50,7 +50,7 @@ String convId = "convId";
 bool createIfNeed = true;
 // The conversation type.
 ChatConversationType conversationType = ChatConversationType.Chat;
-// Cakk getConversation to get the specified conversation.
+// Call getConversation to get the specified conversation.
 ChatConversation? conversation =
     await ChatClient.getInstance.chatManager.getConversation(
   convId,
