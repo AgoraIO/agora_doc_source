@@ -119,7 +119,7 @@ SDKClient.Instance.RoomManager.AddAttributes(roomId, kv, deleteWhenExit, forced,
     }
 ));
 ```
-Note: In AddAttributes, the second parameter `kv` is Dictionary<string, string> type which contains attribute keys and values to be added; the third parameter `deleteWhenExit` means deleting related properties or not when the user exit the room; the forth parameter `forced` means force to update attributes set by others.
+Note: In AddAttributes, the second parameter `kv` is Dictionary<string, string> type which contains attribute keys and values to be added; the third parameter `deleteWhenExit` means deleting related properties or not when the user exit the room; the forth parameter `forced` means force to update attributes set with same key name by others.
 
 If you want to update a custom attribute that is set by other members, call `asyncSetChatroomAttributesForced` instead. After you successfully call this method, other members in the chat room receive an `onAttributesUpdate` callback.
 
@@ -143,6 +143,6 @@ SDKClient.Instance.RoomManager.RemoveAttributes(roomId, keys, forced, new CallBa
     }
 ));
 ```
-Note: In RemoveAttributes, the second parameter `keys` is List<string> type which contain attribute keys and values to be removed; the third parameter `forced` means force to remove attributes set by others.
+Note: In RemoveAttributes, the second parameter `keys` is List<string> type which contain attribute keys and values to be removed; the third parameter `forced` means force to remove attributes with same key name set by others.
 
 
