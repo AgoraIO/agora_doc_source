@@ -255,5 +255,21 @@ public interface IRoomManagerDelegate
         *
         */
         void OnAnnouncementChangedFromRoom(string roomId, string announcement);
+        /**
+         * Occurs when the chat room attribute is changed.
+         *
+         * @param roomId        The chat room ID.
+         * @param kv            The updated properties.
+         * @param from          The operator to do update.
+         */
+        void OnChatroomAttributesChanged(string roomId, Dictionary<string, string> kv, string from);
+         /**
+         * Occurs when the chat room attribute is removeed.
+         *
+         * @param roomId        The chat room ID.
+         * @param keys          The removed keys of properties.
+         * @param from          The operator to do remove.
+         */
+        void OnChatroomAttributesRemoved(string roomId, List<string> keys, string from);
     }
 ```
