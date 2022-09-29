@@ -253,6 +253,56 @@ const roomListener: ChatRoomEventListener = new (class
   }): void {
     console.log(`onAnnouncementChanged:`, params.roomId, params.announcement);
   }
+
+  // A member has been added to the chat room whitelist. The added member receives this event.
+  onAllowListAdded(params: { roomId: string; members: string[] }): void {
+    console.log(`onAllowListAdded:`, params.roomId, params.members);
+  }
+  // A member has been removed from the chat room whitelist. Members removed from the whitelist receive this event.
+  onAllowListRemoved(params: { roomId: string; members: string[] }): void {
+    console.log(`onAllowListRemoved:`, params.roomId, params.members);
+  }
+  // All members of the chat room are mute status changed. All members of the chat room will receive the event.
+  onAllChatRoomMemberMuteStateChanged(params: {
+    roomId: string;
+    isAllMuted: boolean;
+  }): void {
+    console.log(
+      `onAllChatRoomMemberMuteStateChanged:`,
+      params.roomId,
+      params.isAllMuted ? "true" : "false"
+    );
+  }
+  // Chat room change notification
+  onSpecificationChanged?(room: ChatRoom): void {
+    console.log(`onSpecificationChanged:`, room);
+  }
+  // Chat room custom property change notification
+  onAttributesUpdated?(params: {
+    roomId: string;
+    attributes: Map<string, string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesUpdated:`,
+      params.roomId,
+      params.attributes,
+      params.from
+    );
+  }
+  // Chat room custom attribute deletion notification
+  onAttributesRemoved?(params: {
+    roomId: string;
+    removedKeys: Array<string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesRemoved:`,
+      params.roomId,
+      params.removedKeys,
+      params.from
+    );
+  }
 })(this);
 
 // Removes the chat room listener.
