@@ -1,11 +1,11 @@
-Chat room attributes consists of basic attributes (such as room name, room description, and room announcement) and custom attributes. When basic attributes cannot satisfy the business requirements, users can add custom attributes that are synchronized with all chat room members. 
+Chat room attributes consist of basic attributes (such as room subject, room description, and room announcement) and custom attributes. When basic attributes cannot satisfy the business requirements, users can add custom attributes that are synchronized with all chat room members. 
 Custom attributes can be used to store information such as chat room type, game roles, game status, and host positions. They are stored as key-value maps, and the updates of custom attributes are synchronized with all chat room members.
 
 This page shows how to use the Agora Chat SDK to manage basic and custom attributes of chat rooms in your app.
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatManager` and `ChatRoom` classes for chat room management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatManager` and `ChatRoom` classes for chat room management, which allow you to implement the following features:
 
 - Retrieve or modify basic attributes of a chat room
 - Retrieve custom attributes of a chat room
@@ -28,12 +28,12 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 ### Manage basic chat room attributes
 
 #### Retrieve basic chat room attributes
-All the chat room members can call `fetchChatRoomFromServer` to retrieve the detailed information of the current chat room, including the subject, announcements, description, member type, and admin list. 
+All the chat room members can call `fetchChatRoomInfoFromServer` to retrieve the detailed information of the current chat room, including the subject, announcement, description, member type, and admin list. 
 
 ```typescript
-// The fetchPublicChatRoomsFromServer method returns basic attributes including ID, name, description, maximum members, owners, roles, and whether all members are muted.
+// The fetchChatRoomInfoFromServer method returns basic attributes including ID, name, description, maximum members, owners, roles, and whether all members are muted.
 ChatClient.getInstance()
-  .roomManager.fetchPublicChatRoomsFromServer(pageNum, pageSize)
+  .roomManager.fetchChatRoomInfoFromServer(roomId)
   .then((response) => {
     rollLog(`success: ${response}`);
   })
@@ -46,7 +46,7 @@ ChatClient.getInstance()
 Only the chat room owner and admin can set and update the chat room subject and description.
 
 ```typescript
-// The chat room owner and admin call changeChatRoomSubject to modify the chat room subject.
+// The chat room owner and admin call changeChatRoomSubject to change the chat room subject.
 ChatClient.getInstance()
   .roomManager.changeChatRoomSubject(roomId, subject)
   .then((response) => {
@@ -67,13 +67,13 @@ ChatClient.getInstance()
   });
 ```
 
-#### Retrieve or change chat room announcements
-All the chat room members can retrieve the chat room announcements. 
+#### Retrieve or change chat room announcement
+All the chat room members can retrieve the chat room announcement. 
 
-Only the chat room owner and admin can set and update the announcements. Once the announcements are updated, all the chat room members receive the `onAnnouncementChanged` callback.
+Only the chat room owner and admin can set and update the announcement. Once the announcement is updated, all the chat room members receive the `onAnnouncementChanged` callback.
 
 ```typescript
-// Chat room members can call fetchChatRoomAnnouncement to retrieve the chat room announcements.
+// Chat room members can call fetchChatRoomAnnouncement to retrieve the chat room announcement.
 ChatClient.getInstance()
   .roomManager.fetchChatRoomAnnouncement(roomId)
   .then((response) => {
@@ -83,7 +83,7 @@ ChatClient.getInstance()
     rollLog(`fail: ${error}`);
   });
 
-// The chat room owner and admin can call updateChatRoomAnnouncement to set or update the chat room announcements.
+// The chat room owner and admin can call updateChatRoomAnnouncement to set or update the chat room announcement.
 ChatClient.getInstance()
   .roomManager.updateChatRoomAnnouncement(roomId, announcement)
   .then((response) => {
@@ -112,12 +112,12 @@ ChatClient.getInstance()
 ```
 
 #### Set custom attribute
-Chat room members can call `addAttributes` to set one single custom attribute. Use this method to add new custom attributes or update existing attributes that set by yourself. After you successfully call this method, other members in the chat room receive an `onAttributesUpdated` callback. 
+Chat room members can call `addAttributes` to set one or more custom attribute. Use this method to add new custom attributes or update existing attributes that are set by yourself and others. After you successfully call this method, other members in the chat room receive an `onAttributesUpdated` callback. 
 
 ```typescript
 // Sets a custom attribute by specifying chat room ID, attribute key, attribute value, deleteWhenLeft and overwrite. \
-// deleteWhenLeft means to delete the property when leaving the room.
-// overwrite means forcibly overwrite properties of the same key.
+// deleteWhenLeft means to delete the attribute when leaving the room.
+// overwrite means to forcibly overwrite attributes of the same key.
 // attributes can be an array, supporting multiple pairs of k-v attributes.
 ChatClient.getInstance()
   .roomManager.addAttributes({
@@ -135,7 +135,7 @@ ChatClient.getInstance()
 ```
 
 #### Remove custom attribute
-Chat room members can call `asyncRemoveChatRoomAttributesFromServer` to remove one single custom attribute that is set by themselves. After you successfully call this method, other members in the chat room receive an `onAttributesRemoved` callback. 
+Chat room members can call `removeAttributes` to remove one or more custom attributes that are set by themselves and others. After you successfully call this method, other members in the chat room receive an `onAttributesRemoved` callback. 
 
 ```typescript
 // Removes a custom attribute by specifying chat room ID, attribute keys and forced. 
