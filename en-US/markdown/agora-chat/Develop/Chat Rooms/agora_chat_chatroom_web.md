@@ -79,6 +79,8 @@ conn.leaveChatRoom(option).then(res => console.log(res))
 
 All chat users can get the chat room list from the server and retrieve the basic information of the specified chat room using the chat room ID.
 
+The `getChatRoomDetails` method returns chat room information including ID, name, description, maximum members, owners, roles, and whether all members are muted. For the information such as announcement, admin list, member list, block list, and mute list can be retrieved with separate APIs.
+
 ```javascript
 // Chat room members can call getChatRooms to retrieve the specified number of chat rooms from the server by page. The maximum value of pageSize is 1,000.
 let option = {
@@ -141,6 +143,12 @@ conn.addEventHandler("eventName", {
             break;
         // Occurs when a user joins a chat room.
         case 'memberPresence':
+            break;
+        // When custom chat room attributes are set or changed, all room members receives this callback.
+        case 'updateChatRoomAttributes':
+            break;
+        // When custom chat room attributes are removed, all room members receives this callback.
+        case 'removeChatRoomAttributes':
             break;
         default:
             break;
