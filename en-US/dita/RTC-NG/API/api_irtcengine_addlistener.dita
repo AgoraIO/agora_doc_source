@@ -17,7 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp" />
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">addListener?&lt;EventType extends keyof IRtcEngineEvent&gt;(
+      eventType: EventType,
+      listener: IRtcEngineEvent[EventType]
+    ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript">addListener?&lt;EventType extends keyof IRtcEngineEvent&gt;(
       eventType: EventType,
@@ -43,7 +46,7 @@ const onJoinChannelSuccess = (connection: RtcConnection, elapsed: number) =&gt; 
 engine.addListener('onJoinChannelSuccess', onJoinChannelSuccess);</codeblock></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="rn">
             <title>Returns</title>
             <p>The native interface <codeph>EventSubscription</codeph> in React Native API.</p>
         </section>
