@@ -1,16 +1,16 @@
-# Manage Chat Room Attributes
+Chat room attributes consists of basic attributes (such as room name, room description, and room announcement) and custom attributes. When basic attributes cannot satisfy the business requirements, users can add custom attributes that are synchronized with all chat room members. 
+Custom attributes can be used to store information such as chat room type, game roles, game status, and host positions. They are stored as key-value maps, and the updates of custom attributes are synchronized with all chat room members.
 
-Chat rooms enable real-time messaging among multiple users.
-
-This page shows how to use the Agora Chat SDK to manage the attributes of a chat room in your app.
+This page shows how to use the Agora Chat SDK to manage basic and custom attributes of chat rooms in your app.
 
 ## Understand the tech
 
 The Agora Chat SDK allows you to implement the following features:
 
-- Modify the chat room attributes
-- Retrieve the announcements of a chat room
-- Update the announcements of a chat room
+- Retrieve or modify basic attributes of a chat room
+- Retrieve custom attributes of a chat room
+- Set custom attributes of a chat room
+- Remove custom attributes of a chat room
 
 
 ## Prerequisites
@@ -26,11 +26,11 @@ Before proceeding, ensure that you meet the following requirements:
 
 This section introduces how to call the APIs provided by the Agora Chat SDK to implement the features listed above.
 
-### Modify the chat room attributes
+### Manage basic chat room attributes
+
+#### Retrieve basic chat room attributes
 
 All chat room members can retrieve the detailed information of the current chat room, including the subject, announcements, description, member type, and admin list.
-
-The chat room owner and admins can also set and update the chat room information.
 
 ```javascript
 // Chat room members can call getChatRoomDetails to get the information of the specified chat room.
@@ -39,7 +39,12 @@ let option = {
     chatRoomId: 'chatRoomId'
 }
 conn.getChatRoomDetails(option).then(res => console.log(res))
+```
 
+#### Change basic chat room attributes
+Only the chat room owner and admin can set and update the basic chat room attributes, including subject, description, and maximum room members.
+
+```javascript
 // The chat room owner and admins can call modifyChatRoom to update the chat room attributes.
 let option = {
     chatRoomId: 'chatRoomId',
@@ -50,7 +55,7 @@ let option = {
 conn.modifyChatRoom(option).then(res => console.log(res))
 ```
 
-### Manage chat room announcements
+#### Retrieve or change chat room announcements
 
 All chat room members can retrieve the chat room announcements.
 
@@ -72,6 +77,79 @@ conn.updateChatRoomAnnouncement(option).then(res => console.log(res))
 ```
 
 
-### Listen for chat room events
+### Manage custom chat room attributes
 
-For details, see [Chat Room Events](./agora_chat_chatroom_web?platform=Web#listen-for-chat-room-events).
+#### Retrieve specified or all custom attributes 
+All chat room members can call `getChatRoomAttributes` to retrieve specified or all custom attributes of the chat room.
+
+```javascript
+// Retrieves certain custom attributes by specifying chat room ID and attribute keys. 
+let option = {
+    chatRoomId: "chatRoomId",  // The chat room ID.
+    attributeKeys: ["attributeKey1","attributeKey2","..."] // The attribute key. If you leave it empty, all custom attributes are returned.
+}
+conn.getChatRoomAttributes(option).then(res => console.log(res))
+```
+
+#### Set a custom attribute
+Chat room members can call `setChatRoomAttribute` to set one single custom attribute. After you successfully call this method, other members in the chat room receive an `updateChatRoomAttributes` callback. 
+
+```javascript
+// Sets a custom attribute by specifying chat room ID, attribute key, and attribute value. 
+let option = {
+    chatRoomId: "chatRoomId",// The chat room ID.
+    attributeKey: "attributeKey";// The attribute key. 
+    attributeValue: "attributeValue"; // The attribute value. 
+    autoDelete: true; // (Optional) Whether to automatically delete the custom attributes set by a member when the member leaves the chat room. 
+    isForced: false  // (Optional) If the attribute is already set by another room member, whether to overwrite other members' setting. 
+}
+conn.setChatRoomAttribute(option).then(res => console.log(res))
+```
+
+
+#### Set multiple custom attributes
+To set multiple custom attributes, call the `setChatroomAttributes` method. After you successfully call this method, other members in the chat room receive an `updateChatRoomAttributes` callback. 
+
+```javascript
+// Sets multiple custom attributes by specifying chat room ID and the key-value maps of the attributes. 
+   let option = {
+       chatRoomId: "chatRoomId",  // The chat room ID.
+       attributes:{  // The key-value maps of the attributes in the format of {"key":"value"}.
+            "attributeKey1":"attributeValue1",
+        	"attributeKey2":"attributeValue2",
+         	"..."
+       },
+       autoDelete: true; // (Optional) Whether to automatically delete the custom attributes set by a member when the member leaves the chat room. 
+   	   isForced: false  // (Optional) If the attribute is already set by another room member, whether to overwrite other members' setting. 
+   }
+   conn.setChatRoomAttributes(option).then(res => console.log(res))
+```
+
+#### Remove a custom attribute
+Chat room members can call `removeChatroomAttribute` to remove one single custom attribute. After you successfully call this method, other members in the chat room receive a `removeChatRoomAttributes` callback. 
+
+```javascript
+// Removes a custom attribute by specifying chat room ID and attribute key. 
+let option = {
+    chatRoomId: "chatRoomId",  // The chat room ID.
+    attributeKey: "attributeKey",  // The attribute key. 
+    isForced: false // (Optional) If the attribute is already set by another room member, whether to overwrite other members' setting. 
+}
+conn.removeChatRoomAttribute(option).then(res => console.log(res))
+```
+ 
+
+#### Remove multiple custom attributes
+To remove multiple custom attributes, chat room members can call the `removeChatroomAttributes` method. After you successfully call this method, other members in the chat room receive a  `removeChatRoomAttributes` callback. 
+ 
+```javascript
+// Removes multiple custom attributes by specifying chat room ID and the attribute key list. 
+let option = {
+    chatRoomId: "chatRoomId",  // The chat room ID.
+    attributeKeys: ["attributeKey1","attributeKey2","..."], // The attribute keys. 
+    isForced: false // (Optional) If the attribute is already set by another room member, whether to overwrite other members' setting. 
+}
+conn.removeChatRoomAttributes(option).then(res => console.log(res))
+```
+
+

@@ -8,7 +8,11 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 ## Prerequisites
 
-Before proceeding, ensure that your development and run environment meet the following requirements.
+Before proceeding, ensure that your development and run environment meet the following requirements:
+
+- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
+- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
+- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
 
 If your target platform is iOS:
 
@@ -34,6 +38,51 @@ If your target platform is Android:
 - A physical or virtual mobile device running Android 6.0 or later
 
 For more information, see [Setting up the environment](https://reactnative.dev/docs/environment-setup).
+
+## Token generation
+
+This section introduces how to register a user at Agora Console and generate a temporary token.
+
+### Register a user
+
+To register a user, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+<a name="userid"></a>
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
+
+
+### Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
 ## Project setup
 
@@ -89,22 +138,21 @@ import {
   ChatMessageChatType,
   ChatMessage,
 } from 'react-native-agora-chat';
-
-// The App Object.
+// Defines the App object.
 const App = () => {
-  // variable defines.
+  // Defines the variable.
   const title = 'AgoraChatQuickstart';
-  const requestGetTokenUrl = 'https://a41.easemob.com/app/chat/user/login';
-  const requestRegistryAccountUrl =
-    'https://a41.easemob.com/app/chat/user/register';
-  const [appKey, setAppKey] = React.useState('81446724#514456');
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [userId, setUserId] = React.useState('');
+  // Replaces <your appKey> with your app key.
+  const appKey = '<your appKey>';
+  // Replaces <your token> with your token.
+  const [username, setUsername] = React.useState('<your token>');
+  const [chatToken, setChatToken] = React.useState('');
+  const [targetId, setTargetId] = React.useState('');
   const [content, setContent] = React.useState('');
   const [logText, setWarnText] = React.useState('Show log area');
-
-  // Output console logs.
+  const chatClient = ChatClient.getInstance();
+  const chatManager = chatClient.chatManager;
+  // Outputs console logs.
   useEffect(() => {
     logText.split('\n').forEach((value, index, array) => {
       if (index === 0) {
@@ -112,8 +160,7 @@ const App = () => {
       }
     });
   }, [logText]);
-
-  // Output UI logs.
+  // Outputs UI logs.
   const rollLog = text => {
     setWarnText(preLogText => {
       let newLogText = text;
@@ -131,145 +178,90 @@ const App = () => {
       return newLogText;
     });
   };
-
-  const requestHttp = url => {
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userAccount: username,
-        userPassword: password,
-      }),
-    });
-  };
-  const requestGetToken = () => {
-    return requestHttp(requestGetTokenUrl);
-  };
-  const requestRegistryAccount = () => {
-    return requestHttp(requestRegistryAccountUrl);
-  };
-
-  // Register listeners for messaging.
-  const setMessageListener = () => {
-    let msgListener = {
-      onMessagesReceived(messages) {
-        for (let index = 0; index < messages.length; index++) {
-          rollLog('received msgId: ' + messages[index].msgId);
-        }
-      },
-      onCmdMessagesReceived: messages => {},
-      onMessagesRead: messages => {},
-      onGroupMessageRead: groupMessageAcks => {},
-      onMessagesDelivered: messages => {},
-      onMessagesRecalled: messages => {},
-      onConversationsUpdate: () => {},
-      onConversationRead: (from, to) => {},
+  useEffect(() => {
+    // Registers listeners for messaging.
+    const setMessageListener = () => {
+      let msgListener = {
+        onMessagesReceived(messages) {
+          for (let index = 0; index < messages.length; index++) {
+            rollLog('received msgId: ' + messages[index].msgId);
+          }
+        },
+        onCmdMessagesReceived: messages => {},
+        onMessagesRead: messages => {},
+        onGroupMessageRead: groupMessageAcks => {},
+        onMessagesDelivered: messages => {},
+        onMessagesRecalled: messages => {},
+        onConversationsUpdate: () => {},
+        onConversationRead: (from, to) => {},
+      };
+      chatManager.removeAllMessageListener();
+      chatManager.addMessageListener(msgListener);
     };
+    // Initializes the SDK.
+    // Initializes any interface before calling it.
+    const init = () => {
+      let o = new ChatOptions({
+        autoLogin: false,
+        appKey: appKey,
+      });
+      chatClient.removeAllConnectionListener();
+      chatClient
+        .init(o)
+        .then(() => {
+          rollLog('init success');
+          this.isInitialized = true;
+          let listener = {
+            onTokenWillExpire() {
+              rollLog('token expire.');
+            },
+            onTokenDidExpire() {
+              rollLog('token did expire');
+            },
+            onConnected() {
+              rollLog('onConnected');
+              setMessageListener();
+            },
+            onDisconnected(errorCode) {
+              rollLog('onDisconnected:' + errorCode);
+            },
+          };
+          chatClient.addConnectionListener(listener);
+        })
+        .catch(error => {
+          rollLog(
+            'init fail: ' +
+              (error instanceof Object ? JSON.stringify(error) : error),
+          );
+        });
+    };
+    init();
+  }, [chatClient, chatManager, appKey]);
 
-    ChatClient.getInstance().chatManager.removeAllMessageListener();
-    ChatClient.getInstance().chatManager.addMessageListener(msgListener);
-  };
-
-  // Initilize the SDK.
-  // Initialize any interface before calling it.
-  const init = () => {
-    let o = new ChatOptions({
-      autoLogin: false,
-      appKey: appKey,
-    });
-    ChatClient.getInstance().removeAllConnectionListener();
-    ChatClient.getInstance()
-      .init(o)
+  // Logs in with an account ID and a token.
+  const login = () => {
+    if (this.isInitialized === false || this.isInitialized === undefined) {
+      rollLog('Perform initialization first.');
+      return;
+    }
+    rollLog('start login ...');
+    chatClient
+      .loginWithAgoraToken(username, chatToken)
       .then(() => {
-        rollLog('init success');
-        this.isInitialized = true;
-        let listener = {
-          onTokenWillExpire() {
-            rollLog('token expire.');
-          },
-          onTokenDidExpire() {
-            rollLog('token did expire');
-          },
-          onConnected() {
-            rollLog('login success.');
-            setMessageListener();
-          },
-          onDisconnected(errorCode) {
-            rollLog('login fail: ' + errorCode);
-          },
-        };
-        ChatClient.getInstance().addConnectionListener(listener);
+        rollLog('login operation success.');
       })
-      .catch(error => {
-        rollLog(
-          'init fail: ' +
-            (error instanceof Object ? JSON.stringify(error) : error),
-        );
+      .catch(reason => {
+        rollLog('login fail: ' + JSON.stringify(reason));
       });
   };
-
-  // Register an account for login.
-  const registerAccount = () => {
-    if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog('Perform initialization first.');
-      return;
-    }
-    rollLog('start register account ...');
-    requestRegistryAccount()
-      .then(response => {
-        rollLog(`register success: userName = ${username}, password = ******`);
-      })
-      .catch(error => {
-        rollLog('register fail: ' + JSON.stringify(error));
-      });
-  };
-
-  // Log in with an account ID and token.
-  const loginWithToken = () => {
-    if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog('Perform initialization first.');
-      return;
-    }
-    rollLog('start request token ...');
-    requestGetToken()
-      .then(response => {
-        rollLog('request token success.');
-        response
-          .json()
-          .then(value => {
-            rollLog(
-              `response token success: username = ${username}, token = ******`,
-            );
-            const token = value.accessToken;
-            rollLog('start login ...');
-            ChatClient.getInstance()
-              .loginWithAgoraToken(username, token)
-              .then(() => {
-                rollLog('login operation success.');
-              })
-              .catch(reason => {
-                rollLog('login fail: ' + JSON.stringify(reason));
-              });
-          })
-          .catch(error => {
-            rollLog('response token fail:' + JSON.stringify(error));
-          });
-      })
-      .catch(error => {
-        rollLog('request token fail: ' + JSON.stringify(error));
-      });
-  };
-
-  // Log out from server.
+  // Logs out from server.
   const logout = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
       return;
     }
     rollLog('start logout ...');
-    ChatClient.getInstance()
+    chatClient
       .logout()
       .then(() => {
         rollLog('logout success.');
@@ -278,15 +270,14 @@ const App = () => {
         rollLog('logout fail:' + JSON.stringify(reason));
       });
   };
-
-  // Send a text message to somebody.
+  // Sends a text message to somebody.
   const sendmsg = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
       return;
     }
     let msg = ChatMessage.createTextMessage(
-      userId,
+      targetId,
       content,
       ChatMessageChatType.PeerChat,
     );
@@ -302,8 +293,8 @@ const App = () => {
       }
     })();
     rollLog('start send message ...');
-    ChatClient.getInstance()
-      .chatManager.sendMessage(msg, callback)
+    chatClient.chatManager
+      .sendMessage(msg, callback)
       .then(() => {
         rollLog('send message: ' + msg.localMsgId);
       })
@@ -311,28 +302,13 @@ const App = () => {
         rollLog('send fail: ' + JSON.stringify(reason));
       });
   };
-
-  // Render the UI.
+  // Renders the UI.
   return (
     <SafeAreaView>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>{title}</Text>
       </View>
       <ScrollView>
-        <View style={styles.inputCon}>
-          <TextInput
-            multiline
-            style={styles.inputBox}
-            placeholder="Enter appkey"
-            onChangeText={text => setAppKey(text)}
-            value={appKey}
-          />
-        </View>
-        <View style={styles.buttonCon}>
-          <Text style={styles.btn2} onPress={init}>
-            INIT SDK
-          </Text>
-        </View>
         <View style={styles.inputCon}>
           <TextInput
             multiline
@@ -346,16 +322,13 @@ const App = () => {
           <TextInput
             multiline
             style={styles.inputBox}
-            placeholder="Enter password"
-            onChangeText={text => setPassword(text)}
-            value={password}
+            placeholder="Enter chatToken"
+            onChangeText={text => setChatToken(text)}
+            value={chatToken}
           />
         </View>
         <View style={styles.buttonCon}>
-          <Text style={styles.eachBtn} onPress={registerAccount}>
-            SIGN UP
-          </Text>
-          <Text style={styles.eachBtn} onPress={loginWithToken}>
+          <Text style={styles.eachBtn} onPress={login}>
             SIGN IN
           </Text>
           <Text style={styles.eachBtn} onPress={logout}>
@@ -367,8 +340,8 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter the username you want to send"
-            onChangeText={text => setUserId(text)}
-            value={userId}
+            onChangeText={text => setTargetId(text)}
+            value={targetId}
           />
         </View>
         <View style={styles.inputCon}>
@@ -400,7 +373,6 @@ const App = () => {
     </SafeAreaView>
   );
 };
-
 // Sets UI styles.
 const styles = StyleSheet.create({
   titleContainer: {
@@ -465,7 +437,6 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 });
-
 export default App;
 ```
 
@@ -499,7 +470,7 @@ To build and run the project on an Android device, take the following steps:
 
 5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
 
-  ![](https://web-cdn.agora.io/docs-files/1655259772037)
+<img src="https://web-cdn.agora.io/docs-files/1662546788690" width=50%>
 
 ## Test your app
 
@@ -515,3 +486,6 @@ You can also read from the logs on the UI to see whether you have successfully s
 ## Next steps
 
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=React%20Native#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. For how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=React%20Native).
+
+## Reference
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/tree/main/Chat-RN/quick_start_demo) for getting started with Agora Chat.

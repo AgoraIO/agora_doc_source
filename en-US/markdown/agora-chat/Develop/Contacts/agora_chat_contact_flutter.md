@@ -21,7 +21,7 @@ The Agora Chat SDK uses `ChatContactManager` to add, remove and manage contacts.
 Before proceeding, ensure that you meet the following requirements:
 
 - Have a project that has implemented [the basic real-time chat functionalities](./agora_chat_get_started_flutter?platform=Flutter).
-- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attribtues in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Flutter).
+- Have a thorough understanding of the API call frequency limit, the maximum size of all the attributes of a specified user, and the maximum size of all user attributes in an app. For details, see [Known limitations](./agora_chat_limitation?platform=Flutter).
 
 ## Implementation
 
@@ -68,45 +68,53 @@ When user B receives the contact invitation, accept or decline the invitation.
   }
   ```
 
-User A uses `ChatContactManagerListener` to listen for contact events. 
+User A uses `ContactEventHandler` to listen for contact events.
 
 - If user B accepts the invitation, `onContactInvited` is triggered.
 
   ```dart
-  class _ContactPageState extends State<ContactPage>
-      implements ChatContactManagerListener {
+  class _ContactPageState extends State<ContactPage> {
     @override
     void initState() {
       super.initState();
-      ChatClient.getInstance.contactManager.addContactManagerListener(this);
+      // Adds the contact event handler.
+      ChatClient.getInstance.contactManager.addEventHandler(
+        "UNIQUE_HANDLER_ID",
+        ContactEventHandler(
+          onContactInvited: (userId, reason) {},
+        ),
+      );
     }
     @override
     void dispose() {
-      ChatClient.getInstance.contactManager.removeContactManagerListener(this);
+      // Removes the contact event handler.
+      ChatClient.getInstance.contactManager.removeEventHandler("UNIQUE_HANDLER_ID");
       super.dispose();
     }
-    @override
-    void onContactInvited(String userName, String? reason) {}
   }
   ```
 
 - If user B declines the invitation, `onFriendRequestDeclined` is triggered.
 
   ```dart
-  class _ContactPageState extends State<ContactPage>
-      implements ChatContactManagerListener {
+  class _ContactPageState extends State<ContactPage> {
     @override
     void initState() {
       super.initState();
-      ChatClient.getInstance.contactManager.addContactManagerListener(this);
+      // Adds the contact event handler.
+      ChatClient.getInstance.contactManager.addEventHandler(
+        "UNIQUE_HANDLER_ID",
+        ContactEventHandler(
+          onFriendRequestDeclined: (userId) {},
+        ),
+      );
     }
     @override
     void dispose() {
-      ChatClient.getInstance.contactManager.removeContactManagerListener(this);
+      // Removes the contact event handler.
+      ChatClient.getInstance.contactManager.removeEventHandler("UNIQUE_HANDLER_ID");
       super.dispose();
     }
-    @override
-    void onFriendRequestDeclined(String userName, String? reason) {}
   }
   ```
 

@@ -11,7 +11,7 @@ This page shows a sample code to add peer-to-peer messaging into your app by usi
 In order to follow the procedure in this page, you must have:
 
 - An Android simulator or a physical Android device.
-- Android Studio 3.2 or higher.
+- Android Studio 3.6 or higher.
 - Java Development Kit (JDK). You can refer to the [User Guide of Android](https://developer.android.com/studio/write/java8-support) for applicable versions.
 
 ## Token generation
@@ -53,7 +53,7 @@ For testing purposes, Agora Console supports generating Agora chat tokens. To ge
 
 ## Project setup
 
-Follow the steps to create the environment necessary to add video call into your app.
+Follow the steps to create the environment necessary to integrate Agora Chat into your app.
 
 1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
    <div class="alert note">After creating the project, <b>Android Studio</b> automatically starts gradle sync. Ensure that the sync succeeds before you continue.</div>
@@ -108,6 +108,8 @@ Follow the steps to create the environment necessary to add video call into your
    <uses-permission android:name="android.permission.INTERNET" />
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+   <!—- Need to add after Android 12, apply for alarm clock timing permission -—> 
+   <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
    ```
 	
 	These are the minimum permissions you need to add to start Agora Chat. You can also add other permissions according to your use case.
@@ -136,6 +138,12 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
    </resources>
    ``` 
 
+When fetching a token, your token server may differ slightly from our example backend service logic.
+
+To make this step easier to test, use the temporary token server "https://a41.chat.agora.io" provided by Agora in the placeholder above(<#Developer Token Server#>). When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
+
+<div class="alert note">If you have already got an account and user token, you can ignore this section and go to the next.</div>
+
 2. To add the UI framework, open  `app/res/layout/activity_main.xml` and replace the content with the following codes:
 
    ```xml
@@ -149,7 +157,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
            android:layout_width="match_parent"
            android:layout_height="0dp"
            android:layout_weight="1">
-   
+
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
@@ -167,65 +175,40 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
    
                <Button
                    android:id="@+id/btn_sign_in"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="@string/sign_in"
+                   android:text="Sign in"
                    android:onClick="signInWithToken"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_pwd"
-                   app:layout_constraintRight_toLeftOf="@id/btn_sign_out"
-                   android:layout_marginStart="10dp"
-                   android:layout_marginEnd="5dp"
                    android:layout_marginTop="10dp"/>
    
                <Button
                    android:id="@+id/btn_sign_out"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="@string/sign_out"
+                   android:text="Sign out"
                    android:onClick="signOut"
-                   app:layout_constraintLeft_toRightOf="@id/btn_sign_in"
-                   app:layout_constraintTop_toBottomOf="@id/et_pwd"
-                   app:layout_constraintRight_toLeftOf="@id/btn_sign_up"
-                   android:layout_marginStart="5dp"
-                   android:layout_marginEnd="5dp"
                    android:layout_marginTop="10dp"/>
-   
+
                <EditText
                    android:id="@+id/et_to_chat_name"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:hint="@string/enter_to_send_name"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/btn_sign_in"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
+                   android:hint="Enter another username"
                    android:layout_marginTop="20dp"/>
    
                <EditText
                    android:id="@+id/et_msg_content"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:hint="@string/enter_content"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_to_chat_name"
-                   android:layout_marginStart="20dp"
-                   android:layout_marginEnd="20dp"
+                   android:hint="Enter content"
                    android:layout_marginTop="10dp"/>
    
                <Button
                    android:id="@+id/btn_send_message"
-                   android:layout_width="0dp"
+                   android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:text="@string/send_message"
+                   android:text="Send message"
                    android:onClick="sendFirstMessage"
-                   app:layout_constraintLeft_toLeftOf="parent"
-                   app:layout_constraintRight_toRightOf="parent"
-                   app:layout_constraintTop_toBottomOf="@id/et_msg_content"
-                   android:layout_marginStart="10dp"
-                   android:layout_marginEnd="10dp"
                    android:layout_marginTop="20dp"/>
    
            </LinearLayout>
@@ -236,7 +219,7 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
            android:id="@+id/tv_log"
            android:layout_width="match_parent"
            android:layout_height="200dp"
-           android:hint="@string/log_hint"
+           android:hint="Show log area..."
            android:scrollbars="vertical"
            android:padding="10dp"/>
    
@@ -266,7 +249,7 @@ To enable your app to send and receive messages between individual users, do the
    import io.agora.chat.TextMessageBody;
    ```
    
-2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` funtion created by default.
+2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
 
    ```java
    // Create a user from Agora Console or by your app server
@@ -280,18 +263,16 @@ To enable your app to send and receive messages between individual users, do the
    protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_main);
-       // Add methods for initialization and listen for message and connection events.
        initView();
        initSDK();
-       addMessageListener();
-       addConnectionListener();
+       initListener();
    }
    ```
    
 3. Initialize the view and the app. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `onCreate` function: 
 
    ```java
-   // Initialize the view.
+   // Initializes the view.
    private void initView() {
        ((TextView)findViewById(R.id.tv_log)).setMovementMethod(new ScrollingMovementMethod());
    }
@@ -360,10 +341,6 @@ To enable your app to send and receive messages between individual users, do the
           }
       });
    }
-   
-       public void execute(Runnable runnable) {
-           new Thread(runnable).start();
-       }
    ```
 
 5. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
@@ -392,7 +369,7 @@ To enable your app to send and receive messages between individual users, do the
        });
    }
    
-   // Sign out.
+   // Signs out.
    public void signOut(View view) {
        if(ChatClient.getInstance().isLoggedInBefore()) {
            ChatClient.getInstance().logout(true, new CallBack() {
@@ -405,16 +382,6 @@ To enable your app to send and receive messages between individual users, do the
                public void onError(int code, String error) {
                    showLog(error, true);
                }
-           String preContent = tvLog.getText().toString().trim();
-           StringBuilder builder = new StringBuilder();
-           builder.append(formatCurrentTime())
-                   .append(" ")
-                   .append(content)
-                   .append("\n")
-                   .append(preContent);
-           tvLog.post(()-> {
-               tvLog.setText(builder);
-           });
        }else {
            showLog("You were not logged in", false);
        }
@@ -424,7 +391,7 @@ To enable your app to send and receive messages between individual users, do the
 6. Start a chat. To enable the function of sending messages, add the following lines after the `signOut` function:
 
    ```java
-   // Send your first message.
+   // Sends your first message.
    public void sendFirstMessage(View view) {
        String toSendName = ((EditText)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
        String content = ((EditText)findViewById(R.id.et_msg_content)).getText().toString().trim();
@@ -442,7 +409,8 @@ To enable your app to send and receive messages between individual users, do the
                showLog(error, true);
            }
        });
-       // Send the message
+
+       // Sends the message.
        ChatClient.getInstance().chatManager().sendMessage(message);
    }
    ```
@@ -500,12 +468,16 @@ In addition to integrating the Agora Chat SDK into your project with mavenCentra
 
 2. Copy the following files or subfolders from the **libs** folder of the downloaded SDK to the corresponding directory of your project.
 
-   | File or subfolder                                      | Path of your project                  |
-   | ------------------------------------------------------ | ------------------------------------- |
-   | `agorachat_X.Y.Z.jar`                                  | `~/app/libs/`                         |
-   | `/arm64-v8a/libagora-chat-sdk.so` and `libsqlite.so`   | `~/app/src/main/jniLibs/arm64-v8a/`   |
-   | `/armeabi-v7a/libagora-chat-sdk.so` and `libsqlite.so` | `~/app/src/main/jniLibs/armeabi-v7a/` |
-   | `/x86/libagora-chat-sdk.so` and `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
-   | `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
+| File or subfolder                                      | Path of your project                  |
+| ------------------------------------------------------ | ------------------------------------- |
+| `agorachat_X.Y.Z.jar`                                  | `~/app/libs/`                         |
+| `/arm64-v8a/libagora-chat-sdk.so` and `libsqlite.so`   | `~/app/src/main/jniLibs/arm64-v8a/`   |
+| `/armeabi-v7a/libagora-chat-sdk.so` and `libsqlite.so` | `~/app/src/main/jniLibs/armeabi-v7a/` |
+| `/x86/libagora-chat-sdk.so` and `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
+| `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
 
-   <div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.<div>
+<div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.</div>
+
+## Reference
+
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/blob/main/Chat-Android/app/src/main/java/io/agora/agorachatquickstart/MainActivity.java) for getting started with Agora Chat.
