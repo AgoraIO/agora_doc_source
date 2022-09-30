@@ -1,4 +1,4 @@
-This page shows how to add one-to-one messaging into your app by using the Agora Chat SDK for iOS.  
+This page shows how to add one-to-one messaging into your app by using the Agora Chat SDK for iOS.
 
 
 ## Understand the tech
@@ -7,7 +7,7 @@ This page shows how to add one-to-one messaging into your app by using the Agora
 
 ## Prerequisites
 
-Before proceeding, ensure that your development environment meets the following requirements: 
+Before proceeding, ensure that your development environment meets the following requirements:
 
 - Xcode. This page uses Xcode 13.0 as an example.
 - A device running iOS 10 or later.
@@ -18,7 +18,7 @@ In this section, we prepare the development environment necessary to integrate A
 
 ### Create an iOS project
 
-In Xcode, follow the steps to create an iOS app project. 
+In Xcode, follow the steps to create an iOS app project.
 
 - Open Xcode and click **Create a new Xcode project**.
 
@@ -34,44 +34,44 @@ Go to **File > Swift Packages > Add Package Dependencies...**, and paste the fol
 https://github.com/AgoraIO/AgoraChat_iOS.git
 ```
 
-In Choose Package Options, specify the Chat SDK version you want to use.
+In **Choose Package Options**, specify the Chat SDK version you want to use.
 
 ## Implement a one-to-one chat client
 
 ### Create the UI
 
-In the interface,you should have a ViewController to create the UI controls you need.
-In ViewController.swift, replace any existing content with the following:
+You need a ViewController to create the UI controls you need.
+In `ViewController.swift`, replace the code with the following:
 
 ```swift
 class ViewController: UIViewController {
-    // Define UIViews
+    // Defines UIViews
     var userIdField, passwordField, remoteUserIdField, textField: UITextField!
     var registerButton, loginButton, logoutButton, sendButton: UIButton!
     var logView: UITextView!
-    
+
     func createField(placeholder: String?) -> UITextField {
         let field = UITextField()
         field.layer.borderWidth = 0.5
         field.placeholder = placeholder
         return field
     }
-    
+
     func createButton(title: String?, action: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(title, for: .normal)
         button.addTarget(self, action: action, for: .touchUpInside)
         return button
     }
-    
+
     func createLogView() -> UITextView {
         let logTextView = UITextView()
         logTextView.isEditable = false
         return logTextView
     }
-    
+
     func initViews() {
-        // create UI controls
+        // creates UI controls
         userIdField = createField(placeholder: "User Id")
         self.view.addSubview(userIdField)
         passwordField = createField(placeholder: "Password")
@@ -91,10 +91,10 @@ class ViewController: UIViewController {
         logView = createLogView()
         self.view.addSubview(logView)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Layout UI controls
+        // Defines layout UI controls
         let fullWidth = self.view.frame.width
         userIdField.frame = CGRect(x: 30, y: 50, width: fullWidth - 60, height: 30)
         passwordField.frame = CGRect(x: 30, y: 100, width: fullWidth - 60, height: 30)
@@ -112,7 +112,7 @@ class ViewController: UIViewController {
         initViews()
     }
 
-    // Output running log
+    // Outputs running log
     func printLog(_ log: Any...) {
         DispatchQueue.main.async {
             self.logView.text.append(
@@ -125,7 +125,7 @@ class ViewController: UIViewController {
 }
 ```
 
-The user interface just like this.
+The user interface is as the following screenshot shows.
 
 ![](https://web-cdn.agora.io/docs-files/1660820049438)
 
@@ -135,7 +135,7 @@ When fetching a token, your token server may differ slightly from our example ba
 
 To make this step easier to test, use the temporary token server `"https://a41.chat.agora.io"` provided by Agora in the placeholder below. When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
 
-**If you have already got an account and user token, you can ignore this section and go to the next.**
+<div class="alert info">If you have already got an account and user token, you can ignore this section and go to the next.</div>
 
 Add a file named `AgoraChatHttpRequest.swift` to your project, and copy the following code to the file.
 
@@ -145,7 +145,7 @@ class AgoraChatHttpRequest: NSObject {
     static var baseUrl = "<#Developer Token Server#>"
     static var session = URLSession(configuration: URLSessionConfiguration.default)
 
-    // Register userId via app server
+    // Registers a user ID via the app server
     static func register(userId: String, password: String, completion: @escaping (String) -> Void) {
         guard let url = URL(string: AgoraChatHttpRequest.baseUrl + "/app/chat/user/register") else {
             return
@@ -163,8 +163,8 @@ class AgoraChatHttpRequest: NSObject {
             completion(String(data: data, encoding: .utf8) ?? "")
         }.resume()
     }
-    
-    // Fetch user token via app server
+
+    // Fetches a user token via the app server
     static func loginWith(userId: String, password: String, completion: @escaping (String) -> Void) {
         guard let url = URL(string: AgoraChatHttpRequest.baseUrl + "/app/chat/user/login") else {
             return
@@ -187,43 +187,44 @@ class AgoraChatHttpRequest: NSObject {
 
 ### Implement the chat logic
 
-This section shows the logic of initialize chat SDK, creating a user, logging in to Agora Chat, and send/receive a one-to-one text message. 
+This section shows the logic of initializing the chat SDK, creating a user, logging in to Agora Chat, and sending and receiving a one-to-one text message.
 
-#### Import and initialize Chat SDK
+#### Import and initialize the Chat SDK
+
 Modify the `ViewController.swift` file as follows:
 
 ```swift
 import UIKit
-// Import the AgoraChat SDK
+// Imports the Agora Chat SDK
 import AgoraChat
 class ViewController: UIViewController {
     ...
     func initChatSDK() {
-        // Initialize AgoraChat SDK
+        // Initializes the Agora Chat SDK
         let options = AgoraChatOptions(appkey: "<#Agora App Key#>")
         options.isAutoLogin = false // disable auto login
         options.enableConsoleLog = true
         AgoraChatClient.shared.initializeSDK(with: options)
-        // add chat delegate to receive messages
+        // Adds the chat delegate to receive messages
         AgoraChatClient.shared.chatManager.add(self, delegateQueue: nil)
     }
-    
+
     override func viewDidLoad() {
         ...
-        // call initialize SDK here
+        // Calls the SDK initializing function here
         initChatSDK()
     }
 }
 ```
 
 
-#### Create account and login with token fetched via AppServer
+#### Create an account and login with token
 
 ```swift
 // Button action
 extension ViewController {
 
-    // register an account via app server
+    // Register an account via the app server.
     @objc func registerAction() {
         guard let userId = userIdField.text, let password = passwordField.text else {
             return
@@ -237,7 +238,7 @@ extension ViewController {
         }
     }
 
-    // get user token via app server and login
+    // Get a user token via the app server and login with the token.
     @objc func loginAction() {
         guard let userId = userIdField.text, let password = passwordField.text else {
             return
@@ -258,7 +259,7 @@ extension ViewController {
         }
     }
 
-    // logout
+    // Logs out.
     @objc func logoutAction() {
         AgoraChatClient.shared.logout(false) { err in
             if err == nil {
@@ -273,7 +274,7 @@ extension ViewController {
 
 ```swift
 extension ViewController: AgoraChatManagerDelegate  {
-    // send a text message
+    // Sends a text message.
     @objc func sendAction() {
         guard let remoteUser = remoteUserIdField.text,
               let text = textField.text,
@@ -308,10 +309,10 @@ extension ViewController: AgoraChatManagerDelegate  {
 
 ## Run and test the project
 
-Use Xcode to compile and run the project on an iOS device or emulator. 
+Use Xcode to compile and run the project on an iOS device or an emulator.
 To try sending and receiving text messages, follow the steps on two clients:
 
-1. Enter a userId (such as `Localuser` and `Remoteuser`) and a password (such as `123456`),and click `Register` on each client to create two Agora Chat users.
+1. Enter a user ID (such as `Localuser` and `Remoteuser`) and a password (such as `123456`), and click `Register` on each client to create two Agora Chat users.
 
 2. Log into Agora Chat as `Localuser`, type `Remoteuser` for `Peer username`, and send a text message.
 
@@ -321,7 +322,7 @@ To try sending and receiving text messages, follow the steps on two clients:
 
   ![](https://web-cdn.agora.io/docs-files/1660820085593)
 
-## Next Steps
+## Next steps
 
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=iOS#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=All%20Platforms).
 
@@ -340,13 +341,13 @@ For demonstration purposes, Agora Chat provides an app server that enables you t
 
    ```
    platform :ios, '11.0'
-   
+
    target 'Your project target' do
        pod 'Agora_Chat_iOS'
    end
    ```
 
-4. In the project root directory, run the following command to integrate the SDK. When the SDK is installed successfully, you can see `Pod installation complete!` in the Terminal and an `xcworkspace` file in the project folder. 
+4. In the project root directory, run the following command to integrate the SDK. When the SDK is installed successfully, you can see `Pod installation complete!` in the Terminal and an `xcworkspace` file in the project folder.
 
    ```
    pod install
@@ -354,7 +355,7 @@ For demonstration purposes, Agora Chat provides an app server that enables you t
 
 5. Open the `xcworkspace` file in Xcode.
 
-#### Through your local storage
+#### Method 2: Through your local storage
 
 1. Download the latest Agora Chat SDK and decompress it.
 
@@ -362,4 +363,4 @@ For demonstration purposes, Agora Chat provides an app server that enables you t
 
 3. Open Xcode and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 
-4. Click **+ > Add Other… > Add Files** to add AgoraChat.framework and set the **Embed** property to **Embed & Sign**. Then the project automatically links to the required system library. 
+4. Click **+ > Add Other… > Add Files** to add `AgoraChat.framework` and set the **Embed** property to **Embed & Sign**. Then the project automatically links to the required system library.

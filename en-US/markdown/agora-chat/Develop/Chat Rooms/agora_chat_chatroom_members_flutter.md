@@ -7,7 +7,7 @@ This page shows how to use the Agora Chat SDK to manage the members of a chat ro
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatRoom`, `ChatRoomManager`, and `ChatRoomManagerListener` classes for chat room management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatRoom`, `ChatRoomManager`, and `ChatRoomEventHandler` classes for chat room management, which allows you to implement the following features:
 
 - Remove a member from a chat room
 - Retrieve the member list of a chat room
@@ -33,7 +33,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 
 ### Remove a member from a chat room
 
-Only the chat room owner and admins can call `removeChatRoomMembers` to remove the specified member from a chat room. Once removed from the chat room, this member receives the `ChatRoomManagerListener#onRemovedFromChatRoom` callback, while all the other members receive the `ChatRoomManagerListener#onMemberExitedFromChatRoom` callback. Users can join the chat room again after being removed.
+Only the chat room owner and admins can call `removeChatRoomMembers` to remove the specified member from a chat room. Once removed from the chat room, this member receives the `ChatRoomEventHandler#onRemovedFromChatRoom` callback, while all the other members receive the `ChatRoomEventHandler#onMemberExitedFromChatRoom` callback. Users can join the chat room again after being removed.
 
 The following code sample shows how to remove a member from a chat room:
 
@@ -68,7 +68,7 @@ try {
 
 #### Add a member to the chat room block list
 
-Only the chat room owner and admins can call `blockChatRoomMembers` to add the specified member to the chat room block list. Once added to the block list, this member receives the `ChatRoomManagerListener#onRemovedFromChatRoom` callback, while all the other members receive the `ChatRoomManagerListener#onMemberExitedFromChatRoom` callback. After being added to block list, this user cannot send or receive messages in the chat room. They can no longer join the chat room again until they are removed from the block list.
+Only the chat room owner and admins can call `blockChatRoomMembers` to add the specified member to the chat room block list. Once added to the block list, this member receives the `ChatRoomEventHandler#onRemovedFromChatRoom` callback, while all the other members receive the `ChatRoomEventHandler#onMemberExitedFromChatRoom` callback. After being added to block list, this user cannot send or receive messages in the chat room. They can no longer join the chat room again until they are removed from the block list.
 
 The following code sample shows how to add a member to the chat room block list:
 
@@ -119,7 +119,7 @@ try {
 
 #### Add a member to the chat room mute list
 
-Only the chat room owner and admins can call `muteChatRoomMembers` to add the specified member to the chat room mute list. Once added to the mute list, this member and all the other chat room admins or owner receive the `ChatRoomManagerListener#onMuteListAddedFromChatRoom` callback.
+Only the chat room owner and admins can call `muteChatRoomMembers` to add the specified member to the chat room mute list. Once added to the mute list, this member and all the other chat room admins or owner receive the `ChatRoomEventHandler#onMuteListAddedFromChatRoom` callback.
 
 **Note**: The chat room owner can mute chat room admins and regular members, whereas chat room admins can only mute regular members.
 
@@ -137,7 +137,7 @@ try {
 
 #### Remove a member from the chat room mute list
 
-Only the chat room owner and admins can call `unMuteChatRoomMembers` to remove the specified member from the chat room mute list. Once removed from the mute list, this member and all the other chat room admins or owner receive the `ChatRoomManagerListener#onMuteListRemovedFromChatRoom` callback.
+Only the chat room owner and admins can call `unMuteChatRoomMembers` to remove the specified member from the chat room mute list. Once removed from the mute list, this member and all the other chat room admins or owner receive the `ChatRoomEventHandler#onMuteListRemovedFromChatRoom` callback.
 
 **Note**: The chat room owner can unmute chat room admins and regular members, whereas chat room admins can only unmute regular members.
 
@@ -175,7 +175,7 @@ try {
 
 #### Add a member to the chat room allow list
 
-Only the chat room owner and admins can call `addMembersToChatRoomAllowList` to add the specified member to the chat room allow list. Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all chat room members. However, if a member is already in the chat room mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence. Once added to the allow list, this member and all the other chat room admins or owner receive the `ChatRoomManagerListener#onAllowListAddedFromChatRoom` callback.
+Only the chat room owner and admins can call `addMembersToChatRoomAllowList` to add the specified member to the chat room allow list. Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all chat room members. However, if a member is already in the chat room mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence. Once added to the allow list, this member and all the other chat room admins or owner receive the `ChatRoomEventHandler#onAllowListAddedFromChatRoom` callback.
 
 The following code sample shows how to add a member to the chat room allow list:
 
@@ -191,7 +191,7 @@ try {
 
 #### Remove a member from the chat room allow list
 
-Only the chat room owner and admins can call `removeMembersFromChatRoomAllowList` to remove the specified member from the chat room allow list. Once removed from the chat room allow list, this member and all the other chat room admins or owner receive the `ChatRoomManagerListener#onAllowListRemovedFromChatRoom` callback.
+Only the chat room owner and admins can call `removeMembersFromChatRoomAllowList` to remove the specified member from the chat room allow list. Once removed from the chat room allow list, this member and all the other chat room admins or owner receive the `ChatRoomEventHandler#onAllowListRemovedFromChatRoom` callback.
 
 The following code sample shows how to remove a member from the chat room allow list:
 
@@ -222,7 +222,7 @@ try {
 
 #### Mute all the chat room members
 
-Only the chat room owner and admins can call `muteAllChatRoomMembers` to mute all the chat room members. Once all the members are muted, the `ChatRoomManagerListener#onAllChatRoomMemberMuteStateChanged` callback is triggered and only those in the chat room allow list can send messages in the chat room.
+Only the chat room owner and admins can call `muteAllChatRoomMembers` to mute all the chat room members. Once all the members are muted, the `ChatRoomEventHandler#onAllChatRoomMemberMuteStateChanged` callback is triggered and only those in the chat room allow list can send messages in the chat room.
 
 The following sample code shows how to mute all the chat room members:
 
@@ -235,7 +235,7 @@ try {
 
 #### Unmute all the chat room members
 
-Only the chat room owner and admins can call `unMuteAllChatRoomMembers` to unmute all the chat room members. Once all the members are muted, the `ChatRoomManagerListener#onAllChatRoomMemberMuteStateChanged` callback is triggered.
+Only the chat room owner and admins can call `unMuteAllChatRoomMembers` to unmute all the chat room members. Once all the members are muted, the `ChatRoomEventHandler#onAllChatRoomMemberMuteStateChanged` callback is triggered.
 
 The following sample code shows how to unmute all the chat room members:
 
@@ -250,7 +250,7 @@ try {
 
 #### Transfer the chat room ownership
 
-Only the chat room owner can call `changeOwner` to transfer the ownership to the specified chat room member. Once the ownership is transferred, the former chat room owner becomes a regular member. The new chat room owner and the chat room admins receive the `ChatRoomManagerListener#onOwnerChangedFromChatRoom` callback.
+Only the chat room owner can call `changeOwner` to transfer the ownership to the specified chat room member. Once the ownership is transferred, the former chat room owner becomes a regular member. The new chat room owner and the chat room admins receive the `ChatRoomEventHandler#onOwnerChangedFromChatRoom` callback.
 
 The following code sample shows how to transfer the chat room ownership:
 
@@ -266,7 +266,7 @@ try {
 
 #### Add a chat room admin
 
-Only the chat room owner can call `addChatRoomAdmin` to add an admin. Once promoted to an admin, the new admin and the other chat room admins receive the `ChatRoomManagerListener#onAdminAddedFromChatRoom` callback.
+Only the chat room owner can call `addChatRoomAdmin` to add an admin. Once promoted to an admin, the new admin and the other chat room admins receive the `ChatRoomEventHandler#onAdminAddedFromChatRoom` callback.
 
 The following code sample shows how to add a chat room admin:
 
@@ -282,7 +282,7 @@ try {
 
 #### Remove a chat room admin
 
-Only the chat room owner can call `removeChatRoomAdmin` to remove an admin. Once demoted to a regular member, the former admin and the other chat room admins receive the `ChatRoomManagerListener#onAdminRemovedFromChatRoom` callback.
+Only the chat room owner can call `removeChatRoomAdmin` to remove an admin. Once demoted to a regular member, the former admin and the other chat room admins receive the `ChatRoomEventHandler#onAdminRemovedFromChatRoom` callback.
 
 The following code sample shows how to remove a chat room admin:
 

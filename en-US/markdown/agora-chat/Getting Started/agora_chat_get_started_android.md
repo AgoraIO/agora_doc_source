@@ -342,20 +342,14 @@ To enable your app to send and receive messages between individual users, do the
    
    ```
 
-5. Log in and log out to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
+6. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
-   // Log in with Token.
-   public void signInWithToken(View view) {
-       loginToAgora();
-   }
-
-   private void loginToAgora() {
-       if(TextUtils.isEmpty(USERNAME) || TextUtils.isEmpty(TOKEN)) {
-           showLog("Username or token is empty!", true);
-           return;
-       }
-       ChatClient.getInstance().loginWithAgoraToken(USERNAME, TOKEN, new CallBack() {
+   // Sign up with a username and password.
+   public void signUp(View view) {
+       String username = et_username.getText().toString().trim();
+       String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
+       register(username, pwd, new CallBack() {
            @Override
            public void onSuccess() {
                showLog("Sign in success!", true);
@@ -366,6 +360,11 @@ To enable your app to send and receive messages between individual users, do the
                showLog(error, true);
            }
        });
+   }
+   
+   // Log in with Token.
+   public void signInWithToken(View view) {
+       getTokenFromAppServer(false);
    }
    
    // Sign out.
@@ -467,12 +466,16 @@ In addition to integrating the Agora Chat SDK into your project with mavenCentra
 
 2. Copy the following files or subfolders from the **libs** folder of the downloaded SDK to the corresponding directory of your project.
 
-   | File or subfolder                                      | Path of your project                  |
-   | ------------------------------------------------------ | ------------------------------------- |
-   | `agorachat_X.Y.Z.jar`                                  | `~/app/libs/`                         |
-   | `/arm64-v8a/libagora-chat-sdk.so` and `libsqlite.so`   | `~/app/src/main/jniLibs/arm64-v8a/`   |
-   | `/armeabi-v7a/libagora-chat-sdk.so` and `libsqlite.so` | `~/app/src/main/jniLibs/armeabi-v7a/` |
-   | `/x86/libagora-chat-sdk.so` and `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
-   | `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
+| File or subfolder                                      | Path of your project                  |
+| ------------------------------------------------------ | ------------------------------------- |
+| `agorachat_X.Y.Z.jar`                                  | `~/app/libs/`                         |
+| `/arm64-v8a/libagora-chat-sdk.so` and `libsqlite.so`   | `~/app/src/main/jniLibs/arm64-v8a/`   |
+| `/armeabi-v7a/libagora-chat-sdk.so` and `libsqlite.so` | `~/app/src/main/jniLibs/armeabi-v7a/` |
+| `/x86/libagora-chat-sdk.so` and `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
+| `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
 
-   <div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.<div>
+<div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.</div>
+
+## Reference
+
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/blob/main/Chat-Android/app/src/main/java/io/agora/agorachatquickstart/MainActivity.java) for getting started with Agora Chat.

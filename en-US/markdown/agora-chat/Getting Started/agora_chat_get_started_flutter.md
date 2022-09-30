@@ -43,7 +43,7 @@ flutter create quick_start
 
 #### Android setup
 
-1. In the `quick_start/android/app/build.gradle` file, add the following lines at the end to set the minimum Android SDK version to 21:
+1. In the `quick_start/android/app/build.gradle` file, add the following lines at the end to set the minimum Android SDK version to `21`:
 
 ```gradle
 android {
@@ -53,15 +53,7 @@ android {
 }
 ```
 
-2. In the `quick_start/android/app/src/main/AndroidManifest.xml` file, add the following lines after `</application>` to add permissions for network and device access:
-
-```xml
- <uses-permission android:name="android.permission.INTERNET" />
- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
- <uses-permission android:name="android.permission.WAKE_LOCK"/>
-```
-
-3. In the `quick_start/android/app/proguard-rules.pro` file, add the following lines to prevent code obfuscation:
+2. In the `quick_start/android/app/proguard-rules.pro` file, add the following lines to prevent code obfuscation:
 
 ```java
 -keep class com.hyphenate.** {*;}
@@ -70,9 +62,7 @@ android {
 
 #### iOS setup
 
-1. Open the `quick_start/ios/Runner/info.plist` file in **Xcode**, add the **App Transport Security Settings** item, add the **Allow Arbitrary Loads** field under this item, and set to **YES**.
-
-2. Open the `quick_start/ios/Runner.xcodeproj` file in **Xcode**, and select **TARGETS** > **Runner** in the left sidebar. In the **Deployment Info** section under the **General** tab, set the minimum iOS version to **iOS 10.0**.
+1. Open the `quick_start/ios/Runner.xcodeproj` file in **Xcode**, and select **TARGETS** > **Runner** in the left sidebar. In the **Deployment Info** section under the **General** tab, set the minimum iOS version to **iOS 10.0**.
 
 ### 3. Integrate the Agora Chat SDK
 
@@ -97,13 +87,12 @@ Replace the lines of the `_MyHomePageState` class with the following:
 
 ```dart
 class _MyHomePageState extends State<MyHomePage> {
-  // `41117440#383391` is the App Key for test use in this sample project.
-  final String appKey = "41117440#383391";
+
   ScrollController scrollController = ScrollController();
-  String _username = "";
-  String _password = "";
-  String _messageContent = "";
-  String _chatId = "";
+  String? _userId;
+  String? _password;
+  String? _messageContent;
+  String? _chatId;
   final List<String> _logText = [];
   @override
   void initState() {
@@ -124,8 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.max,
           children: [
             TextField(
-              decoration: const InputDecoration(hintText: "Enter username"),
-              onChanged: (username) => _username = username,
+              decoration: const InputDecoration(hintText: "Enter userId"),
+              onChanged: (userId) => _userId = userId,
             ),
             TextField(
               decoration: const InputDecoration(hintText: "Enter password"),
@@ -176,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 10),
             TextField(
               decoration: const InputDecoration(
-                  hintText: "Enter recipient's user name"),
+                  hintText: "Enter recipient's user id"),
               onChanged: (chatId) => _chatId = chatId,
             ),
             TextField(
@@ -237,7 +226,8 @@ In the `_initSDK` method, add the following to initialize the SDK:
 ```dart
   void _initSDK() async {
     ChatOptions options = ChatOptions(
-      appKey: appKey,
+      // Sets your app key applied via Agora Console.
+      appKey: "41117440#383391",
       autoLogin: false,
     );
     await ChatClient.getInstance.init(options);
@@ -246,7 +236,13 @@ In the `_initSDK` method, add the following to initialize the SDK:
 
 ### 2. Retrieve a token
 
-To add the retrieving logic for tokens, refer to the following steps:
+When fetching a token, your token server may differ slightly from our example backend service logic.
+
+To make this step easier to test, use the temporary token server "https://a41.chat.agora.io" provided by Agora in the placeholder below. When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
+
+<div class="alert info">If you have already got an account and a user token, you can ignore this section and go to the next.</div>
+
+To add the logic for retrieving tokens, refer to the following steps:
 
 1. Open a terminal, enter the `quick_start` directory, and run the following command to add the `http` dependency:
 
@@ -267,16 +263,16 @@ import 'package:http/http.dart' as http;
 
 ```dart
 class HttpRequestManager {
-  static String host = "a41.chat.agora.io";
+  static String host = "<#Developer Token Server#>";
   static String registerUrl = "/app/chat/user/register";
   static String loginUrl = "/app/chat/user/login";
   static Future<bool> registerToAppServer({
-    required String username,
+    required String userId,
     required String password,
   }) async {
     bool ret = false;
     Map<String, String> params = {};
-    params["userAccount"] = username;
+    params["userAccount"] = userId;
     params["userPassword"] = password;
     var uri = Uri.https(host, registerUrl);
     var client = http.Client();
@@ -299,11 +295,11 @@ class HttpRequestManager {
     return ret;
   }
   static Future<String?> loginToAppServer({
-    required String username,
+    required String userId,
     required String password,
   }) async {
     Map<String, String> params = {};
-    params["userAccount"] = username;
+    params["userAccount"] = userId;
     params["userPassword"] = password;
     var uri = Uri.https(host, loginUrl);
     var client = http.Client();
@@ -331,16 +327,19 @@ In the `_signUp` method, add the following to add the sign-up logic:
 
 ```dart
   void _signUp() async {
-    if (_username.isEmpty || _password.isEmpty) {
-      _addLogToConsole("username or password is null");
+    if (_userId == null ||
+        _userId!.isEmpty ||
+        _password == null ||
+        _password!.isEmpty) {
+      _addLogToConsole("userId or password is invalid");
       return;
     }
     bool ret = await HttpRequestManager.registerToAppServer(
-      username: _username,
-      password: _password,
+      userId: _userId!,
+      password: _password!,
     );
     if (ret) {
-      _addLogToConsole("sign up succeed, username: $_username");
+      _addLogToConsole("sign up succeed, userId: $_userId");
     } else {
       _addLogToConsole("sign up failed");
     }
@@ -353,19 +352,22 @@ In the `_signIn` method, add the following to add the login logic:
 
 ```dart
   void _signIn() async {
-    if (_username.isEmpty || _password.isEmpty) {
-      _addLogToConsole("username or password is null");
+    if (_userId == null ||
+        _userId!.isEmpty ||
+        _password == null ||
+        _password!.isEmpty) {
+      _addLogToConsole("userId or password is invalid");
       return;
     }
     String? agoraToken = await HttpRequestManager.loginToAppServer(
-      username: _username,
-      password: _password,
+      userId: _userId!,
+      password: _password!,
     );
     if (agoraToken != null) {
       _addLogToConsole("fetch agora token succeed, begin login");
       try {
-        await ChatClient.getInstance.loginWithAgoraToken(_username, agoraToken);
-        _addLogToConsole("login succeed, username: $_username");
+        await ChatClient.getInstance.loginWithAgoraToken(_userId!, agoraToken);
+        _addLogToConsole("login succeed, userId: $_userId");
       } on ChatError catch (e) {
         _addLogToConsole(
             "login failed, code: ${e.code}, desc: ${e.description}");
@@ -394,17 +396,20 @@ In the `_signOut` method, add the following to add the logout logic:
 
 ### 6. Send messages
 
-In the `_sendMessage` method, add the following to add the creating and sending logics for messages:
+In the `_sendMessage` method, add the following to add the logic for creating and sending messages:
 
 ```dart
   void _sendMessage() async {
-    if (_chatId.isEmpty || _messageContent.isEmpty) {
-      _addLogToConsole("single chat id or message content is null");
+    if (_chatId == null ||
+        _chatId!.isEmpty ||
+        _messageContent == null ||
+        _messageContent!.isEmpty) {
+      _addLogToConsole("single chat id or message content is invalid");
       return;
     }
     var msg = ChatMessage.createTxtSendMessage(
-      targetId: _chatId,
-      content: _messageContent,
+      targetId: _chatId!,
+      content: _messageContent!,
     );
     msg.setMessageStatusCallBack(MessageStatusCallBack(
       onSuccess: () {
@@ -416,45 +421,15 @@ In the `_sendMessage` method, add the following to add the creating and sending 
         );
       },
     ));
-    ChatClient.getInstance.chatManager.sendMessage(msg);
+    await ChatClient.getInstance.chatManager.sendMessage(msg);
   }
 ```
 
 ### 7. Receive messages
 
-To add the receiving logic for messages, refer to the following steps:
-
-1. Declare and inherit the `ChatManagerListener` object in the `_MyHomePageState` class. The sample code is as follows:
+1. Add the following events in your class:
 
 ```dart
-class _MyHomePageState extends State<MyHomePage>
-    implements ChatManagerListener {
-  ...
-```
-
-2. Add the following callbacks in the `_MyHomePageState` class:
-
-```dart 
-  @override
-  void onCmdMessagesReceived(List<ChatMessage> messages) {}
-  @override
-  void onConversationRead(String from, String to) {}
-  @override
-  void onConversationsUpdate() {}
-  @override
-  void onGroupMessageRead(List<ChatGroupMessageAck> groupMessageAcks) {}
-  @override
-  void onMessagesDelivered(List<ChatMessage> messages) {}
-  @override
-  void onMessagesRead(List<ChatMessage> messages) {}
-  @override
-  void onMessagesRecalled(List<ChatMessage> messages) {}
-  @override
-  void onMessageReactionDidChange(List<ChatMessageReactionEvent> list) {}
-  @override
-  void onReadAckForGroupMessageUpdated() {}
-  
-  @override
   void onMessagesReceived(List<ChatMessage> messages) {
     for (var msg in messages) {
       switch (msg.body.type) {
@@ -510,29 +485,31 @@ class _MyHomePageState extends State<MyHomePage>
           break;
         case MessageType.CMD:
           {
-            // Receiving command messages does not trigger the `onMessagesReceived` callback, but triggers the `onCmdMessagesReceived` callback instead.
+            // Receiving command messages does not trigger the `onMessagesReceived` event, but triggers the `onCmdMessagesReceived` event instead.
           }
           break;
       }
     }
   }
-}
 ```
 
-3. In the `_addChatListener` method, add the following to add the chat listener:
+2. In the `_addChatListener` method, add the following code snippet to add the chat event handler:
 
 ```dart
   void _addChatListener() {
-    ChatClient.getInstance.chatManager.addChatManagerListener(this);
+    ChatClient.getInstance.chatManager.addEventHandler(
+      "UNIQUE_HANDLER_ID",
+      ChatEventHandler(onMessagesReceived: onMessagesReceived),
+    );
   }
 ```
 
-4. Under the `initState` method, add the `dispose` method to remove the chat listener, as shown in the following:
+3. Under the `initState` method, add the `dispose` method to remove the chat event handler, as shown in the following:
 
 ```dart
   @override
   void dispose() {
-    ChatClient.getInstance.chatManager.removeChatManagerListener(this);
+    ChatClient.getInstance.chatManager.removeEventHandler("UNIQUE_HANDLER_ID");
     super.dispose();
   }
 ```
@@ -542,7 +519,7 @@ class _MyHomePageState extends State<MyHomePage>
 
 Select the device to run the project, and run the following command in the `quick_start` directory:
 
-```
+```dart
 flutter run
 ```
 
@@ -552,19 +529,19 @@ Take an iOS device as an example, if the sample project runs properly, the follo
 
 In the user interface, perform the following operations to test the project:
 
-1. Sign up  
-Fill in the username in the `Enter username` box and password in the `Enter password` box, and click **SIGN UP** to register an account. In this example, register two accounts, `flutter01` and `flutter02`, to enable sending and receiving messages.
+1. Sign up
+Fill in the userId in the `Enter userId` box and password in the `Enter password` box, and click **SIGN UP** to register an account. In this example, register two accounts, `flutter01` and `flutter02`, to enable sending and receiving messages.
 
-2. Log in  
-After signing up the accounts, fill in the username in the `Enter username` box and password in the `Enter password` box, and click **SIGN IN** to log in to the app. In this example, log in as `flutter01`.
+2. Log in
+After signing up the accounts, fill in the userId in the `Enter userId` box and password in the `Enter password` box, and click **SIGN IN** to log in to the app. In this example, log in as `flutter01`.
 
-3. Send a message  
-Fill in the username of the receiver (`flutter02`) in the `Enter recipient's user name` box, type in the message ("hello") to send in the `Enter message` box, and click **SEND TEXT** to send the message.
+3. Send a message
+Fill in the userId of the receiver (`flutter02`) in the `Enter recipient's user Id` box, type in the message ("hello") to send in the `Enter message` box, and click **SEND TEXT** to send the message.
 
-4. Log out   
+4. Log out
 Click **SIGN OUT** to log out of the app.
 
-5. Receive the message  
+5. Receive the message
 After signing out as `flutter01`, log in as `flutter02`, and receive the message "hello" sent in step 3.
 
 You can check the log to see all the operations from this example, as shown in the following figure:
@@ -575,3 +552,6 @@ You can check the log to see all the operations from this example, as shown in t
 ## Next steps
 
 For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to the Agora Chat service. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+
+## Reference
+For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/tree/main/chat_flutter) for getting started with Agora Chat.
