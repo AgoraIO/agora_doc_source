@@ -12,7 +12,7 @@ v1.0.8 was released on September 30, 2022.
 
 #### Bugs fixed
 
-- Failures in getting a great number of messages from the server in few scenarios.
+- Failures in getting a large number of messages from the server in few scenarios.
 - The issue of incorrect data statistics.
 - Crashes caused by log printing in rare scenarios.
 
