@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getnetworktype">
+    <title><ph keyref="getNetworkType" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the type of the local network connection.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getNetworkType" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int getNetworkType();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int) getNetworkType;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getNetworkType() = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+            <p>You can use this method to get the type of network in use at any stage.</p>
+            <note type="note">You can call this method either before or after joining a channel.</note>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>≥ 0: The method call is successful, and the local network connection type is returned.<ul>
+                    <li>0: The SDK disconnects from the network.</li>
+                    <li>1: The network type is LAN.</li>
+                    <li>2: The network type is Wi-Fi (including hotspots).</li>
+                    <li>3: The network type is mobile 2G.</li>
+                    <li>4: The network type is mobile 3G.</li>
+                    <li>5: The network type is mobile 4G.</li>
+                    <li>6: The network type is mobile 5G.</li>
+                    </ul> </li>
+            <li>&lt; 0: The method call failed with an error code.<ul>
+                    <li>-1: The network type is unknown.</li>
+                    </ul> </li>    
+            </ul>
+        </section>
+    </refbody>
+</reference>

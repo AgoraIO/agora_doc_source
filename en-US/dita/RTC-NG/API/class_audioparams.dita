@@ -106,20 +106,21 @@
 }</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p props="native unity">You can pass the <apiname keyref="AudioParams" /> object in the return value of the following callbacks to set the audio data format for the corresponding callback:<ul>
+            <p props="native unity">You can pass the <apiname keyref="AudioParams" /> object in the return value of the following callbacksto set the audio data format for the corresponding callback:<ul>
             <li><xref keyref="getRecordAudioParams" />: Sets the audio data format for the <xref keyref="onRecordAudioFrame" /> callback.</li>
             <li><xref keyref="getPlaybackAudioParams" />: Sets the audio data format for the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
             <li><xref keyref="getMixedAudioParams" />: Sets the audio data format for the <xref keyref="onMixedAudioFrame" /> callback.</li>
+            <li><xref keyref="getEarMonitoringAudioParams" />: Sets the audio data format for the <xref keyref="onEarMonitoringAudioFrame" /> callback.</li>    
             </ul></p>
-            <p props="electron rn">The SDK sets changes the audio data format according to <apiname keyref="AudioParams" />:<ul>
+            <p props="electron rn">The SDK sets the audio data format in the following callbacks according to <apiname keyref="AudioParams" />.<ul>
             <li><xref keyref="onRecordAudioFrame" /> </li>
             <li><xref keyref="onPlaybackAudioFrame" /> </li>
             <li><xref keyref="onMixedAudioFrame" /> </li>
             </ul></p>            
             <note type="attention">
             <ul>
-            <li>The SDK calculates the sampling interval through the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname>, and <parmname>channel</parmname> parameters in <apiname keyref="AudioParams" />, and triggers the <apiname keyref="onRecordAudioFrame" />, <apiname keyref="onPlaybackAudioFrame" />, and <apiname keyref="onMixedAudioFrame" /> callbacks according to the sampling interval.</li>
-            <li><equation-inline>Sample interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</li>
+            <li>The SDK calculates the sampling interval through the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname>, and <parmname>channel</parmname> parameters in <apiname keyref="AudioParams" />, and triggers the <apiname keyref="onRecordAudioFrame" />, <apiname keyref="onPlaybackAudioFrame" />, <apiname keyref="onMixedAudioFrame" />, and <apiname keyref="onEarMonitoringAudioFrame" /> callbacks according to the sampling interval.</li>
+            <li><equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>.</li>
             <li>Ensure that the sample interval ≥ 0.01 (s).</li>
             </ul></note> </section>
         <section id="parameters">

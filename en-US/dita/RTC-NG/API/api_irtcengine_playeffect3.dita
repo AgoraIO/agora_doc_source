@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_playeffect3">
     <title><ph keyref="playEffect3" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Plays the specified local or online sound effect file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Plays the specified local or online audio effect file.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -65,27 +65,28 @@
     int startPos = 0});</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For the best user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.<note type="attention">Call this method after joining a channel.</note></p>
+            <note type="attention" id="note">If you use this method to play an online audio effect file, Agora recommends that you cache the online audio effect file to your local device, call <xref keyref="preloadEffect" /> to preload the cached audio effect file into memory, and then call this method to play the audio effect. Otherwise, you might encounter playback failures or no sound during playback due to loading timeouts or failures.</note>
+            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For a better user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="soundid">
                 <pt>soundId</pt>
-                <pd>The audio effect ID. The ID of each audio effect file is unique. <note type="attention">If you have loaded the audio effect into memory via <xref keyref="preloadEffect" />, make sure this parameter is  the same as the <parmname>soundId</parmname> set in <apiname keyref="preloadEffect" />.</note> </pd>
+                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
             </plentry>
             <plentry>
                 <pt>filePath</pt>
                 <pd>
-                    <p id="filepath">Windows: The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph><ph keyref="filePath-example" /></codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">supported audio formats</xref>.</p>
-                    <note type="attention">If you have loaded the audio effect into memory via <xref keyref="preloadEffect" />, make sure this parameter is the same as the <parmname>filePath</parmname> set in <apiname keyref="preloadEffect" />.</note> </pd>
+                    <p id="filepath">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example: <codeph><ph keyref="filePath-example" /></codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">supported audio formats</xref>.</p>
+                    <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
                 <pd>
                     <p>The number of times the audio effect loops.<ul>
-                    <li>≥ 0: The number of playback times. For example, 1 means loop one time, which means playing the audio effect two times in total.</li>
-                    <li>-1: Play the music file in an infinite loop.</li>
+                    <li>≥ 0: The number of playback times. For example, 1 means looping one time, which means playing the audio effect two times in total.</li>
+                    <li>-1: Play the audio effect in an infinite loop.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -96,10 +97,10 @@
             <plentry id="pan">
                 <pt>pan</pt>
                 <pd>
-                    <p>The spatial position of the audio effect. The value ranges between -1.0 and 1.0, where:<ul>
-                    <li>-1.0: The audio effect displays to the left.</li>
-                    <li>0.0: The audio effect displays ahead.</li>
-                    <li>1.0: The audio effect displays to the right.</li>
+                    <p>The spatial position of the audio effect. The value ranges between -1.0 and 1.0:<ul>
+                    <li>-1.0: The audio effect is heard on the left of the user.</li>
+                    <li>0.0: The audio effect is heard in front of the user.</li>
+                    <li>1.0: The audio effect is heard on the right of the user.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -110,7 +111,7 @@
             <plentry id="publish">
                 <pt>publish</pt>
                 <pd>
-                    <p>Whether to publish the audio effect to the remote users.<ul>
+                    <p>Whether to publish the audio effect to the remote users:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li>
                     </ul></p>

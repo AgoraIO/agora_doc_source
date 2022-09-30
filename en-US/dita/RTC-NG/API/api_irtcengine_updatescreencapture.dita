@@ -24,8 +24,16 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock> </p>
         </section>
         <section id="detailed_desc">
+            <p>If the system audio is not captured when screen sharing is enabled, and then you want to update the parameter configuration and publish the system audio, you can refer to the following steps:<ol>
+                <li>Call this method, and set <parmname>captureAudio</parmname> to <codeph><ph keyref="true" /></codeph>.</li>
+                <li>Call <xref keyref="updateChannelMediaOptions" />, and set <parmname>publishScreenCaptureAudio</parmname> to <codeph><ph keyref="true" /></codeph> to publish the audio captured by the screen.</li>
+                </ol></p>
             <note type="attention">
-            <p props="cpp rn unity flutter">This method applies to Android and iOS only.</p></note>
+                <ul>
+                    <li props="cpp rn unity flutter">This method applies to Android and iOS only.</li>
+                    <li props="cpp rn unity flutter ios">On the iOS platform, screen sharing is only available on iOS 12.0 and later.</li>
+                </ul>
+            </note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -33,7 +41,7 @@
             <plentry>
                 <pt props="ios">parameters</pt>
                 <pt props="cpp electron unity rn flutter">captureParams</pt>
-                <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters2" />.</pd>
+                <pd>The screen sharing encoding parameters. The default video resolution is 1920 × 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters2" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="ios cpp electron unity rn">
