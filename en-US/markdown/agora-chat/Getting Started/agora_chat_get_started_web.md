@@ -20,6 +20,9 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 In order to follow the procedure in this page, you must have:
 
+- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
+- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
+- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
 - A Windows or macOS computer that meets the following requirements:
   - A browser supported by the Agora Chat SDK: 
     - Internet Explorer 9 or later
@@ -29,11 +32,58 @@ In order to follow the procedure in this page, you must have:
   - Access to the Internet. If your network has a firewall, follow the instructions in [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=Web) to access Agora services.
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
+
+## Token generation
+
+This section introduces how to register a user at Agora Console and generate a temporary token.
+
+### Register a user
+
+To register a user, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+	
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+<a name="userid"></a>
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
+
+
+### Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+
 ## Project setup
 
 To create the environment necessary to add peer-to-peer messaging into your app, do the following:
 
-1. For a new web project, create a new directory and name it  `agora_quickstart`. Navigate to this directory in terminal and run `npm init`. This creates a `package.json` file. Then, create the following files:
+1. For a new web project, create a new directory and name it `agora_quickstart`. Navigate to this directory in terminal and run `npm init`. This creates a `package.json` file. Then, create the following files:
   - `index.html`, which sets the user interface of the Web app
   - `main.js`, which contains the code for implementing the messaging logic
 
@@ -47,7 +97,7 @@ To create the environment necessary to add peer-to-peer messaging into your app,
   ```
 
 2. Integrate the Agora Chat SDK into your project through npm. 
-   Add 'agora-chat' and 'vite'  to the 'package.json' file.
+   Add 'agora-chat' and 'vite' to the 'package.json' file.
 
    ```json
     {
@@ -87,28 +137,27 @@ Copy the following code to the `index.html` file to implement the UI.
   <meta charset="UTF-8">
   <title>Agora Chat Examples</title>
   <script type="module" src="/main.js"></script>
-  <link rel="stylesheet" href="style.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="style.css" type="text/css" /> -->
 </head>
 
 <body>
   <h2>Agora Chat Examples</h2>
   <form id="loginForm">
     <div class="input-field">
-      <label>Username</label>
-      <input type="text" placeholder="Username" id="userID">
+      <label>User ID</label>
+      <input type="text" placeholder="User ID" id="userID">
     </div>
     <div class="input-field">
-      <label>Password</label>
-      <input type="password" placeholder="Password" id="password">
+      <label>Token</label>
+      <input type="text" placeholder="Token" id="token">
     </div>
     <div>
-      <button type="button" id="register" class="button">Register</button>
       <button type="button" id="login">Login</button>
       <button type="button" id="logout">Logout</button>
     </div>
     <div class="input-field">
-      <label>Peer username</label>
-      <input type="text" placeholder="Peer username" id="peerId">
+      <label>Peer user ID</label>
+      <input type="text" placeholder="Peer user ID" id="peerId">
     </div>
     <div class="input-field">
       <label>Peer Message</label>
@@ -129,14 +178,14 @@ To enable your app to send and receive messages between individual users, do the
 
 1. Import the Agora Chat SDK. Copy the following code to the `main.js` file:
 
-   ```javascript
-   // Javascript
-   // Note that to avoid browser-compatibility issues, this sample uses the import command to import the SDK and the webpack to package the JS file.
-   import AC from 'agora-chat'
-	 ```
-	 
+	```javascript
+	// Javascript
+	// Note that to avoid browser-compatibility issues, this sample uses the import command to import the SDK and the vite to package the JS file.
+	import AC from 'agora-chat'
+	```
+	
     If you use typescript, use the following code:
-	 
+	
 	```typescript
 	// Typescript
 	import AC, { AgoraChat } from 'agora-chat'
@@ -145,17 +194,11 @@ To enable your app to send and receive messages between individual users, do the
 2. Implement peer-to-peer messaging with the core methods provided by the Agora Chat SDK. Copy the following code and add them after the import function in the `main.js` file.
 
 	```javascript
-	/** When fetching a token, your token server may differ slightly from our example backend service logic.
-
-		To make this step easier to test, use the temporary token server "https://a41.chat.agora.io" provided by Agora in the placeholder below. When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
-
-		If you have already got an account and user token, you can ignore this section and go to the next. */
-	const baseUrl = "<Developer Token Server>";
+	// Replaces <Your app key> with your app key.
 	const appKey = "<Your app key>";
-	let username, password;
 	// Initializes the Web client.
 	const conn = new AC.connection({
-		appKey: "41117440#383391",
+		appKey: appKey,
 	});
 	// Adds the event handler.
 	conn.addEventHandler("connection&message", {
@@ -187,100 +230,33 @@ To enable your app to send and receive messages between individual users, do the
 				.getElementById("log")
 				.appendChild(document.createElement("div"))
 				.append("Token is about to expire");
-			refreshToken(username, password);
 		},
-		// Occurs when the token has expired. You need to get a token from your app server to log in to Agora Chat.
+		// Occurs when the token has expired. 
 		onTokenExpired: (params) => {
 			document
 				.getElementById("log")
 				.appendChild(document.createElement("div"))
 				.append("The token has expired");
-			refreshToken(username, password);
 		},
 		onError: (error) => {
 			console.log("on error", error);
 		},
 	});
 
-	// Gets the token from the app server.
-	function refreshToken(username, password) {
-		postData(baseUrl+"/app/chat/user/login", {
-			userAccount: username,
-			userPassword: password,
-		}).then((res) => {
-			let agoraToken = res.accessToken;
-			conn.renewToken(agoraToken);
-			document
-				.getElementById("log")
-				.appendChild(document.createElement("div"))
-				.append("Token has been updated");
-		});
-	}
-	// Sends a request for token.
-	function postData(url, data) {
-		return fetch(url, {
-			body: JSON.stringify(data),
-			cache: "no-cache",
-			headers: {
-				"content-type": "application/json",
-			},
-			method: "POST",
-			mode: "cors",
-			redirect: "follow",
-			referrer: "no-referrer",
-		}).then((response) => response.json());
-	}
-
 	// Defines the functions of the buttons.
 	window.onload = function () {
-		// Registration
-		document.getElementById("register").onclick = function () {
-			username = document.getElementById("userID").value.toString();
-			password = document.getElementById("password").value.toString();
-			// Uses token to authenticate the user.
-			postData(baseUrl+"/app/chat/user/register", {
-				userAccount: username,
-				userPassword: password,
-			})
-				.then((res) => {
-					document
-						.getElementById("log")
-						.appendChild(document.createElement("div"))
-						.append(`register user ${username} success`);
-				})
-				.catch((res) => {
-					document
-						.getElementById("log")
-						.appendChild(document.createElement("div"))
-						.append(`${username} already exists`);
-				});
-		};
 		// Logs into Agora Chat.
 		document.getElementById("login").onclick = function () {
 			document
 				.getElementById("log")
 				.appendChild(document.createElement("div"))
 				.append("Logging in...");
-			username = document.getElementById("userID").value.toString();
-			password = document.getElementById("password").value.toString();
-			// Uses a token for authentication.
-			postData(baseUrl+"/app/chat/user/login", {
-				userAccount: username,
-				userPassword: password,
-			})
-				.then((res) => {
-					const {accessToken, chatUserName} = res
-					conn.open({
-						user: chatUserName,
-						agoraToken: accessToken,
-					});
-				})
-				.catch((res) => {
-					document
-						.getElementById("log")
-						.appendChild(document.createElement("div"))
-						.append(`Login failed`);
-				});
+			const userId = document.getElementById("userID").value.toString();
+			const token = document.getElementById("token").value.toString();
+			conn.open({
+				user: userId,
+				agoraToken: token,
+			});
 		};
 
 		// Logs out.
@@ -321,29 +297,32 @@ To enable your app to send and receive messages between individual users, do the
 
 ##  Test your app
 
-Use vite to build the project. You can run below command to run the project.
+Use vite to build the project. You can run below commands to run the project.
 
+```bash
+$ npm install
+```
 ```bash
 $ npm run dev
 ```
 
-The following page opens in your browser.
+The following page opens in your browser:
 
-![](https://web-cdn.agora.io/docs-files/1637830121772)
+![](https://web-cdn.agora.io/docs-files/1664531249247)
 
 To validate the peer-to-peer messaging you have just integrated into your Web app using Agora Chat:
 
-1. Create a use account and click **register**. 
+1. Register a user **Leo** and generate a temporary token in **Agora Console**.
 
-2. Log in to the app with the user account you just created and send a message.
+2. Log in to the app with the user ID **Leo** and token you just generated, and send a message.
 
-   ![](https://web-cdn.agora.io/docs-files/1635240354287)
+	![](https://web-cdn.agora.io/docs-files/1664531288522)
 
-3. Open the same page in a new window and create another user account. Ensure that the usernames you created are unique.
+3. Open the same page in a new window and create another user **Roy**. Ensure that both user IDs that you created are unique.
 
-4. Send messages between the users.
+4. Log in to the app with the user ID **Roy** and receive the message sent from **Leo**.
 
-   ![](https://web-cdn.agora.io/docs-files/1635240394167)
+	![](https://web-cdn.agora.io/docs-files/1664531311192)
 
 ## Next steps
 
@@ -353,7 +332,7 @@ In a production context, the best practice is for your app to retrieve the token
 
 In addition to integrating the Agora Chat SDK into your project through npm, you can also manually download the [Agora Chat SDK for Web](https://www.npmjs.com/package/agora-chat). 
 
-a. In the SDK folder, find the JS file in the `libs` folder and save it to your project directory.
+a. In the SDK folder, find the JS file `Agora-chat.js` and save it to your project directory.
 
 b. Open the HTML file in your project directory and add the following code to refer to the JS file:
 
