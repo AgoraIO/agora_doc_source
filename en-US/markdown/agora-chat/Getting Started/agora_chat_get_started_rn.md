@@ -8,7 +8,11 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 ## Prerequisites
 
-Before proceeding, ensure that your development and run environment meet the following requirements.
+Before proceeding, ensure that your development and run environment meet the following requirements:
+
+- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
+- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
+- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
 
 If your target platform is iOS:
 
@@ -34,6 +38,51 @@ If your target platform is Android:
 - A physical or virtual mobile device running Android 6.0 or later
 
 For more information, see [Setting up the environment](https://reactnative.dev/docs/environment-setup).
+
+## Token generation
+
+This section introduces how to register a user at Agora Console and generate a temporary token.
+
+### Register a user
+
+To register a user, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+<a name="userid"></a>
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
+
+
+### Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
 ## Project setup
 
@@ -94,13 +143,12 @@ import {
 const App = () => {
   // Defines the variable.
   const title = 'AgoraChatQuickstart';
-  const requestGetTokenUrl = 'https://a41.chat.agora.io/app/chat/user/login';
-  const requestRegistryAccountUrl =
-    'https://a41.chat.agora.io/app/chat/user/register';
-  const appKey = '';
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [userId, setUserId] = React.useState('');
+  // Replaces <your appKey> with your app key.
+  const appKey = '<your appKey>';
+  // Replaces <your token> with your token.
+  const [username, setUsername] = React.useState('<your token>');
+  const [chatToken, setChatToken] = React.useState('');
+  const [targetId, setTargetId] = React.useState('');
   const [content, setContent] = React.useState('');
   const [logText, setWarnText] = React.useState('Show log area');
   const chatClient = ChatClient.getInstance();
@@ -197,92 +245,20 @@ const App = () => {
     init();
   }, [chatClient, chatManager, appKey]);
 
-  const requestHttp = url => {
-    rollLog(`requestHttp: userAccount: ${username}, userPassword: ${password}`);
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userAccount: username,
-        userPassword: password,
-      }),
-    });
-  };
-  const requestGetToken = () => {
-    return requestHttp(requestGetTokenUrl);
-  };
-  const requestRegistryAccount = () => {
-    return requestHttp(requestRegistryAccountUrl);
-  };
-
-  // Registers an account for login.
-  const registerAccount = () => {
-    if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog('Perform initialization first.');
-      return;
-    }
-    rollLog('start register account ...');
-    requestRegistryAccount()
-      .then(response => {
-        response
-          .json()
-          .then(value => {
-            if (value.code === 'RES_OK') {
-              rollLog(
-                `register success: userName = ${username}, password = ${password}`,
-              );
-            } else {
-              rollLog('response token fail:' + JSON.stringify(value));
-            }
-          })
-          .catch(error => {
-            rollLog('response token fail:' + JSON.stringify(error));
-          });
-      })
-      .catch(error => {
-        rollLog('register fail: ' + JSON.stringify(error));
-      });
-  };
-
   // Logs in with an account ID and a token.
-  const loginWithToken = () => {
+  const login = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
       return;
     }
-    rollLog('start request token ...');
-    requestGetToken()
-      .then(response => {
-        rollLog('request token success.');
-        response
-          .json()
-          .then(value => {
-            if (value.code === 'RES_OK') {
-              rollLog(
-                `response token success: username = ${username}, token = ${value.accessToken}`,
-              );
-              const token = value.accessToken;
-              rollLog('start login ...');
-              chatClient
-                .loginWithAgoraToken(username, token)
-                .then(() => {
-                  rollLog('login success.');
-                })
-                .catch(reason => {
-                  rollLog('login fail: ' + JSON.stringify(reason));
-                });
-            } else {
-              rollLog('response token fail:' + JSON.stringify(value));
-            }
-          })
-          .catch(error => {
-            rollLog('response token fail:' + JSON.stringify(error));
-          });
+    rollLog('start login ...');
+    chatClient
+      .loginWithAgoraToken(username, chatToken)
+      .then(() => {
+        rollLog('login operation success.');
       })
-      .catch(error => {
-        rollLog('request token fail: ' + JSON.stringify(error));
+      .catch(reason => {
+        rollLog('login fail: ' + JSON.stringify(reason));
       });
   };
 
@@ -310,7 +286,7 @@ const App = () => {
       return;
     }
     let msg = ChatMessage.createTextMessage(
-      userId,
+      targetId,
       content,
       ChatMessageChatType.PeerChat,
     );
@@ -356,16 +332,13 @@ const App = () => {
           <TextInput
             multiline
             style={styles.inputBox}
-            placeholder="Enter password"
-            onChangeText={text => setPassword(text)}
-            value={password}
+            placeholder="Enter chatToken"
+            onChangeText={text => setChatToken(text)}
+            value={chatToken}
           />
         </View>
         <View style={styles.buttonCon}>
-          <Text style={styles.eachBtn} onPress={registerAccount}>
-            SIGN UP
-          </Text>
-          <Text style={styles.eachBtn} onPress={loginWithToken}>
+          <Text style={styles.eachBtn} onPress={login}>
             SIGN IN
           </Text>
           <Text style={styles.eachBtn} onPress={logout}>
@@ -377,8 +350,8 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter the username you want to send"
-            onChangeText={text => setUserId(text)}
-            value={userId}
+            onChangeText={text => setTargetId(text)}
+            value={targetId}
           />
         </View>
         <View style={styles.inputCon}>
