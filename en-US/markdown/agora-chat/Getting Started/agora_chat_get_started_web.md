@@ -242,6 +242,7 @@ To enable your app to send and receive messages between individual users, do the
 			console.log("on error", error);
 		},
 	});
+	
 	// Defines the functions of the buttons.
 	window.onload = function () {
 		// Logs into Agora Chat.
