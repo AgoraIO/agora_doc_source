@@ -35,6 +35,43 @@ If your target platform is Android:
 
 For more information, see [Setting up the environment](https://reactnative.dev/docs/environment-setup).
 
+## Token generation
+
+This section describes how to register a user at Agora Console and generate a temporary token.
+
+### Register a user
+
+To generate a user ID, do the following:
+
+1. On the **Project Management** page, click **Config** for the project you want to use.
+
+![](./images/step1.png)
+
+2. Click **Config** for **Chat(Beta)** under **Features**.
+	
+![](./images/step2.png)
+
+3. Click **Create User** on the **User** page under **Operation Management**.
+
+![](./images/create_user.png)
+
+4. Fill in the user information and click **Save** to create a user.
+
+![](./images/create_user2.png)
+
+### Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users logging in to an Agora Chat system.
+
+For testing purposes, Agora Console supports generating Agora chat tokens. To generate an Agora chat token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project you want to use.
+![](./images/step1.png)
+2. Click **Config** for **Chat(Beta)** under **Features** to open the **Application Information** page.
+![](./images/step2.png)
+3. Under **Data Center**, enter the user ID in the **Chat User Temp Token** text box and click `Generate` to generate a token with user privileges.
+![](./images/generate_token2.png)
+
 ## Project setup
 
 Follow these steps to create a React Native project and add Agora Chat into your app.
@@ -94,13 +131,10 @@ import {
 const App = () => {
   // Defines the variable.
   const title = 'AgoraChatQuickstart';
-  const requestGetTokenUrl = 'https://a41.chat.agora.io/app/chat/user/login';
-  const requestRegistryAccountUrl =
-    'https://a41.chat.agora.io/app/chat/user/register';
-  const appKey = '';
+  const appKey = '<your appKey>';
   const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [userId, setUserId] = React.useState('');
+  const [chatToken, setChatToken] = React.useState('');
+  const [targetId, setTargetId] = React.useState('');
   const [content, setContent] = React.useState('');
   const [logText, setWarnText] = React.useState('Show log area');
   const chatClient = ChatClient.getInstance();
@@ -197,92 +231,20 @@ const App = () => {
     init();
   }, [chatClient, chatManager, appKey]);
 
-  const requestHttp = url => {
-    rollLog(`requestHttp: userAccount: ${username}, userPassword: ${password}`);
-    return fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        userAccount: username,
-        userPassword: password,
-      }),
-    });
-  };
-  const requestGetToken = () => {
-    return requestHttp(requestGetTokenUrl);
-  };
-  const requestRegistryAccount = () => {
-    return requestHttp(requestRegistryAccountUrl);
-  };
-
-  // Registers an account for login.
-  const registerAccount = () => {
-    if (this.isInitialized === false || this.isInitialized === undefined) {
-      rollLog('Perform initialization first.');
-      return;
-    }
-    rollLog('start register account ...');
-    requestRegistryAccount()
-      .then(response => {
-        response
-          .json()
-          .then(value => {
-            if (value.code === 'RES_OK') {
-              rollLog(
-                `register success: userName = ${username}, password = ${password}`,
-              );
-            } else {
-              rollLog('response token fail:' + JSON.stringify(value));
-            }
-          })
-          .catch(error => {
-            rollLog('response token fail:' + JSON.stringify(error));
-          });
-      })
-      .catch(error => {
-        rollLog('register fail: ' + JSON.stringify(error));
-      });
-  };
-
   // Logs in with an account ID and a token.
-  const loginWithToken = () => {
+  const login = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
       rollLog('Perform initialization first.');
       return;
     }
-    rollLog('start request token ...');
-    requestGetToken()
-      .then(response => {
-        rollLog('request token success.');
-        response
-          .json()
-          .then(value => {
-            if (value.code === 'RES_OK') {
-              rollLog(
-                `response token success: username = ${username}, token = ${value.accessToken}`,
-              );
-              const token = value.accessToken;
-              rollLog('start login ...');
-              chatClient
-                .loginWithAgoraToken(username, token)
-                .then(() => {
-                  rollLog('login success.');
-                })
-                .catch(reason => {
-                  rollLog('login fail: ' + JSON.stringify(reason));
-                });
-            } else {
-              rollLog('response token fail:' + JSON.stringify(value));
-            }
-          })
-          .catch(error => {
-            rollLog('response token fail:' + JSON.stringify(error));
-          });
+    rollLog('start login ...');
+    chatClient
+      .loginWithAgoraToken(username, chatToken)
+      .then(() => {
+        rollLog('login operation success.');
       })
-      .catch(error => {
-        rollLog('request token fail: ' + JSON.stringify(error));
+      .catch(reason => {
+        rollLog('login fail: ' + JSON.stringify(reason));
       });
   };
 
@@ -310,7 +272,7 @@ const App = () => {
       return;
     }
     let msg = ChatMessage.createTextMessage(
-      userId,
+      targetId,
       content,
       ChatMessageChatType.PeerChat,
     );
@@ -356,16 +318,13 @@ const App = () => {
           <TextInput
             multiline
             style={styles.inputBox}
-            placeholder="Enter password"
-            onChangeText={text => setPassword(text)}
-            value={password}
+            placeholder="Enter chatToken"
+            onChangeText={text => setChatToken(text)}
+            value={chatToken}
           />
         </View>
         <View style={styles.buttonCon}>
-          <Text style={styles.eachBtn} onPress={registerAccount}>
-            SIGN UP
-          </Text>
-          <Text style={styles.eachBtn} onPress={loginWithToken}>
+          <Text style={styles.eachBtn} onPress={login}>
             SIGN IN
           </Text>
           <Text style={styles.eachBtn} onPress={logout}>
@@ -377,8 +336,8 @@ const App = () => {
             multiline
             style={styles.inputBox}
             placeholder="Enter the username you want to send"
-            onChangeText={text => setUserId(text)}
-            value={userId}
+            onChangeText={text => setTargetId(text)}
+            value={targetId}
           />
         </View>
         <View style={styles.inputCon}>
