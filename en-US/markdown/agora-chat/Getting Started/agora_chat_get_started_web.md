@@ -144,8 +144,8 @@ Copy the following code to the `index.html` file to implement the UI.
   <h2>Agora Chat Examples</h2>
   <form id="loginForm">
     <div class="input-field">
-      <label>Username</label>
-      <input type="text" placeholder="Username" id="userID">
+      <label>User ID</label>
+      <input type="text" placeholder="User ID" id="userID">
     </div>
     <div class="input-field">
       <label>Token</label>
@@ -156,8 +156,8 @@ Copy the following code to the `index.html` file to implement the UI.
       <button type="button" id="logout">Logout</button>
     </div>
     <div class="input-field">
-      <label>Peer username</label>
-      <input type="text" placeholder="Peer username" id="peerId">
+      <label>Peer user ID</label>
+      <input type="text" placeholder="Peer user ID" id="peerId">
     </div>
     <div class="input-field">
       <label>Peer Message</label>
@@ -251,10 +251,10 @@ To enable your app to send and receive messages between individual users, do the
 				.getElementById("log")
 				.appendChild(document.createElement("div"))
 				.append("Logging in...");
-			const username = document.getElementById("userID").value.toString();
+			const userId = document.getElementById("userID").value.toString();
 			const token = document.getElementById("token").value.toString();
 			conn.open({
-				user: username,
+				user: userId,
 				agoraToken: token,
 			});
 		};
