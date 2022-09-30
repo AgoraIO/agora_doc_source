@@ -29,12 +29,12 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 
 #### Retrieve basic chat room attributes
 
- All chat room members can call `fetchChatRoomInfoFromServer` to retrieve the basic attributes of the a chat room, including the chat room ID, name, description, announcement, owner, admin list, maximum number of members, and whether all members are muted.
+ All chat room members can call `fetchChatRoomInfoFromServer` to retrieve the basic attributes of a chat room, including the chat room ID, name, description, announcement, owner, admin list, maximum number of members, and whether all members are muted.
 
 The following code sample shows how to retrieve basic chat room attributes:
 
 ```dart
-// Chat room members can call fetchChatRoomInfoFromServer to retrieve the basic attributes of the a chat room.
+// Chat room members can call fetchChatRoomInfoFromServer to retrieve the basic attributes of a chat room.
 try {
   ChatRoom room = await ChatClient.getInstance.chatRoomManager.fetchChatRoomInfoFromServer(roomId);
 } on ChatError catch (e) {
@@ -67,7 +67,7 @@ try {
 
 #### Retrieve or change the chat room announcement
 
-All the chat room members can retrieve the chat room announcement. 
+All chat room members can retrieve the chat room announcement. 
 
 Only the chat room owner and admin can set and update the announcement. Once the announcement is updated, all the other chat room members receive the `ChatRoomEventHandler#onAnnouncementChangedFromChatRoom` callback.
 
@@ -112,7 +112,7 @@ try {
 Chat room members can call `addAttributes` to set one or more custom attributes. Use this method to add new custom attributes or update existing attributes that are set by yourself and others. After you successfully call this method, other members in the chat room receive an `EMChatRoomEventHandler#onAttributesUpdated` callback.
 
 ```dart
-// Sets custom attribute by specifying the chat room ID and the key-value maps of the attributes. 
+// Sets a custom attribute by specifying the chat room ID and the key-value maps of the attributes. 
 try {
   Map<String, int>? failInfo =
       await ChatClient.getInstance.chatRoomManager.addAttributes(
