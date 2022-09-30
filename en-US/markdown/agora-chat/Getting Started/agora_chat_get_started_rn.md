@@ -8,7 +8,11 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 ## Prerequisites
 
-Before proceeding, ensure that your development and run environment meet the following requirements.
+Before proceeding, ensure that your development and run environment meet the following requirements:
+
+- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
+- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
+- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
 
 If your target platform is iOS:
 
@@ -37,40 +41,48 @@ For more information, see [Setting up the environment](https://reactnative.dev/d
 
 ## Token generation
 
-This section describes how to register a user at Agora Console and generate a temporary token.
+This section introduces how to register a user at Agora Console and generate a temporary token.
 
 ### Register a user
 
-To generate a user ID, do the following:
+To register a user, do the following:
 
-1. On the **Project Management** page, click **Config** for the project you want to use.
+1. On the **Project Management** page, click **Config** for the project that you want to use.
 
-![](./images/step1.png)
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
 
-2. Click **Config** for **Chat(Beta)** under **Features**.
-	
-![](./images/step2.png)
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
 
-3. Click **Create User** on the **User** page under **Operation Management**.
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-![](./images/create_user.png)
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
 
-4. Fill in the user information and click **Save** to create a user.
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
 
-![](./images/create_user2.png)
+<a name="userid"></a>
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
+
 
 ### Generate a user token
 
-To ensure communication security, Agora recommends using tokens to authenticate users logging in to an Agora Chat system.
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
 
-For testing purposes, Agora Console supports generating Agora chat tokens. To generate an Agora chat token, do the following:
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
 
-1. On the **Project Management** page, click **Config** for the project you want to use.
-![](./images/step1.png)
-2. Click **Config** for **Chat(Beta)** under **Features** to open the **Application Information** page.
-![](./images/step2.png)
-3. Under **Data Center**, enter the user ID in the **Chat User Temp Token** text box and click `Generate` to generate a token with user privileges.
-![](./images/generate_token2.png)
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
 ## Project setup
 
