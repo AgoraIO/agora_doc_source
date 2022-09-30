@@ -194,7 +194,7 @@ To enable your app to send and receive messages between individual users, do the
 2. Implement peer-to-peer messaging with the core methods provided by the Agora Chat SDK. Copy the following code and add them after the import function in the `main.js` file.
 
 	```javascript
-	// Replace <Your app key> with your app key.
+	// Replaces <Your app key> with your app key.
 	const appKey = "<Your app key>";
 	// Initializes the Web client.
 	const conn = new AC.connection({
