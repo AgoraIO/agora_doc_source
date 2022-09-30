@@ -1,6 +1,6 @@
 This page provides release notes for the Agora Chat Web SDK.
 
-## v1.0.7
+## V1.0.7
 #### New features
 
 - Supports custom chat room attributes.

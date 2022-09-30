@@ -9,10 +9,6 @@ v1.0.8 was released on September 30, 2022.
 - Adds the `area` attribute to the `AgoraChatOptions` class to restrict the scope of accessible edge nodes.
 - Adds the `getJoinedGroupsFromServer` method to allow you to get the number of members in a group and your group role when getting the groups that you have joined.
 
-#### Improvements
-
-Optimized communication protocols to reduce the data volume.
-
 #### Bugs fixed
 
 - Failures in getting a great number of messages from the server in few scenarios.
