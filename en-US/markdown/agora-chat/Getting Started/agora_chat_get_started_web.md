@@ -20,10 +20,9 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 In order to follow the procedure in this page, you must have:
 
-- A valid [Agora account](https://docs.agora.io/en/AgoraPlatform/get_appid_token?platform=AllPlatforms#create-an-agora-account).
-- An Agora project that has [enabled the Chat service](./enable_agora_chat?platform=Web#enable-the-agora-chat-service).
-- An [App key](./enable_agora_chat?platform=Web#get-the-information-of-the-agora-chat-project).
-- An Agora project with an App Key and a temporary token.
+- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
+- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
+- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
 - A Windows or macOS computer that meets the following requirements:
   - A browser supported by the Agora Chat SDK: 
     - Internet Explorer 9 or later
@@ -36,40 +35,49 @@ In order to follow the procedure in this page, you must have:
 
 ## Token generation
 
-This section describes how to register a user at Agora Console and generate a temporary token.
+This section introduces how to register a user at Agora Console and generate a temporary token.
 
 ### Register a user
 
-To generate a user ID, do the following:
+To register a user, do the following:
 
-1. On the **Project Management** page, click **Config** for the project you want to use.
+1. On the **Project Management** page, click **Config** for the project that you want to use.
 
-![](../images/getStart/step1.png)
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
 
-2. Click **Config** for **Chat(Beta)** under **Features**.
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
 	
-![](../images/getStart/step2.png)
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. Click **Create User** on the **User** page under **Operation Management**.
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
 
-![](../images/getStart/create_user.png)
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
 
-4. Fill in the user information and click **Save** to create a user.
+<a name="userid"></a>
 
-![](../images/getStart/create_user2.png)
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
+
 
 ### Generate a user token
 
-To ensure communication security, Agora recommends using tokens to authenticate users logging in to an Agora Chat system.
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
 
-For testing purposes, Agora Console supports generating Agora chat tokens. To generate an Agora chat token, do the following:
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
 
-1. On the **Project Management** page, click **Config** for the project you want to use.
-![](../images/getStart/step1.png)
-2. Click **Config** for **Chat(Beta)** under **Features** to open the **Application Information** page.
-![](../images/getStart/step2.png)
-3. Under **Data Center**, enter the user ID in the **Chat User Temp Token** text box and click `Generate` to generate a token with user privileges.
-![](../images/getStart/generate_token2.png)
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
 
 ## Project setup
 
@@ -186,6 +194,7 @@ To enable your app to send and receive messages between individual users, do the
 2. Implement peer-to-peer messaging with the core methods provided by the Agora Chat SDK. Copy the following code and add them after the import function in the `main.js` file.
 
 	```javascript
+	// Replace <Your app key> with your app key.
 	const appKey = "<Your app key>";
 	// Initializes the Web client.
 	const conn = new AC.connection({
@@ -297,23 +306,23 @@ $ npm install
 $ npm run dev
 ```
 
-The following page opens in your browser.
+The following page opens in your browser:
 
-![](../images/getStart/running.png)
+![](https://web-cdn.agora.io/docs-files/1664531249247)
 
 To validate the peer-to-peer messaging you have just integrated into your Web app using Agora Chat:
 
-1. Create a user and generate a temporary token at Agora Console.
+1. Register a user **Leo** and generate a temporary token in **Agora Console**.
 
-2. Log in to the app with the user ID and token you just created and send a message.
+2. Log in to the app with the user ID **Leo** and token you just generated, and send a message.
 
-   ![](../images/getStart/sender.png)
+	![](https://web-cdn.agora.io/docs-files/1664531288522)
 
-3. Open the same page in a new window and create another user account. Ensure that the user IDs you created are unique.
+3. Open the same page in a new window and create another user **Roy**. Ensure that both user IDs that you created are unique.
 
-4. Send messages between the users.
+4. Log in to the app with the user ID **Roy** and receive the message sent from **Leo**.
 
-   ![](../images/getStart/receiver.png)
+	![](https://web-cdn.agora.io/docs-files/1664531311192)
 
 ## Next steps
 
