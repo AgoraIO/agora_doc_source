@@ -237,6 +237,7 @@ const App = () => {
     };
     init();
   }, [chatClient, chatManager, appKey]);
+
   // Logs in with an account ID and a token.
   const login = () => {
     if (this.isInitialized === false || this.isInitialized === undefined) {
