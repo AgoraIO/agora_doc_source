@@ -1,6 +1,8 @@
 This page provides release notes for the Agora Chat Web SDK.
 
 ## V1.0.7
+
+V1.0.8 was released on September 30, 2022. 
 #### New features
 
 - Supports custom chat room attributes.
