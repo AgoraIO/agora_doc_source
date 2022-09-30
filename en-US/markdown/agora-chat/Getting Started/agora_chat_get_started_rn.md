@@ -143,8 +143,10 @@ import {
 const App = () => {
   // Defines the variable.
   const title = 'AgoraChatQuickstart';
+  // Replaces <your appKey> with your app key.
   const appKey = '<your appKey>';
-  const [username, setUsername] = React.useState('');
+  // Replaces <your token> with your token.
+  const [username, setUsername] = React.useState('<your token>');
   const [chatToken, setChatToken] = React.useState('');
   const [targetId, setTargetId] = React.useState('');
   const [content, setContent] = React.useState('');
