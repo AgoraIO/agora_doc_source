@@ -235,12 +235,9 @@ To enable your app to send and receive messages between individual users, do the
    import androidx.appcompat.app.AppCompatActivity;
    import java.text.SimpleDateFormat;
    import java.util.Date;
-   import java.util.HashMap;
    import java.util.Locale;
-   import java.util.Map;
    import io.agora.CallBack;
    import io.agora.ConnectionListener;
-   import io.agora.Error;
    import io.agora.chat.ChatClient;
    import io.agora.chat.ChatMessage;
    import io.agora.chat.ChatOptions;
@@ -342,14 +339,20 @@ To enable your app to send and receive messages between individual users, do the
    
    ```
 
-6. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
+5. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
-   // Sign up with a username and password.
-   public void signUp(View view) {
-       String username = et_username.getText().toString().trim();
-       String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
-       register(username, pwd, new CallBack() {
+   // Log in with Token.
+   public void signInWithToken(View view) {
+       loginToAgora();
+   }
+
+   private void loginToAgora() {
+       if(TextUtils.isEmpty(USERNAME) || TextUtils.isEmpty(TOKEN)) {
+           showLog("Username or token is empty!", true);
+           return;
+       }
+       ChatClient.getInstance().loginWithAgoraToken(USERNAME, TOKEN, new CallBack() {
            @Override
            public void onSuccess() {
                showLog("Sign in success!", true);
@@ -360,11 +363,6 @@ To enable your app to send and receive messages between individual users, do the
                showLog(error, true);
            }
        });
-   }
-   
-   // Log in with Token.
-   public void signInWithToken(View view) {
-       getTokenFromAppServer(false);
    }
    
    // Sign out.
@@ -392,8 +390,8 @@ To enable your app to send and receive messages between individual users, do the
    ```java
    // Send your first message.
    public void sendFirstMessage(View view) {
-       String toSendName = ((TextView)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
-       String content = ((TextView)findViewById(R.id.et_msg_content)).getText().toString().trim();
+       String toSendName = ((EditText)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
+       String content = ((EditText)findViewById(R.id.et_msg_content)).getText().toString().trim();
        // Create a text message
        ChatMessage message = ChatMessage.createTextSendMessage(content, toSendName);
        // Set the message callback before sending the message
