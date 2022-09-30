@@ -14,9 +14,9 @@ SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
+- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -44,7 +44,7 @@ ChatClient.getInstance().groupManager().changeGroupDescription(groupId,descripti
 
 ### 管理群公告
 
-仅群主和群管理员可以调用 `updateGroupAnnouncement` 方法设置和更新群公告，群公告的长度限制为 512 个字符。公告更新后，所有聊天组成员都会收到 `onAnnouncementChanged` 回调。所有群组成员都可以获取群组公告。
+仅群主和群管理员可以调用 `updateGroupAnnouncement` 方法设置和更新群公告，群公告的长度限制为 512 个字符。公告更新后，所有群组成员都会收到 `onAnnouncementChanged` 回调。所有群组成员都可以获取群组公告。
 
 参考以下示例代码管理聊天群公告：
 
@@ -92,6 +92,6 @@ ChatClient.getInstance().groupManager().deleteGroupSharedFile(groupId, fileId);
 ChatClient.getInstance().groupManager().fetchGroupSharedFileList(groupId, pageNum, pageSize);
 ```
 
-### 监听聊天组事件
+### 监听群组事件
 
-有关详细信息，请参阅 [聊天组事件](./agora_chat_group_android?platform=Android#监听群组事件)。
+有关详细信息，请参阅 [监听群组事件](./agora_chat_group_android#监听群组事件)。

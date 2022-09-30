@@ -20,7 +20,7 @@
 
 消息收发流程如下：
 
-1. 用户 A 发送一条消息到环信的消息服务器。
+1. 用户 A 发送一条消息到的消息服务器。
 2. 单聊时消息服务器发消息给用户 B，群聊时发消息给群内其他每个成员。
 3. 用户收到消息。
 
@@ -28,8 +28,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Agora Chat 入门](./agora_chat_get_started_web?platform=Web)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Web)。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -39,8 +39,7 @@
 
 ```javascript
 // 发送文本消息。
-function sendPrivateText() {
-
+function sendTextMessage() {
     let option = {
         // 设置消息类型。
         type: "txt",
@@ -55,9 +54,9 @@ function sendPrivateText() {
     let msg = WebIM.message.create(opt);
     // 调用 `send` 方法发送该文本消息。
     conn.send(msg).then(()=>{
-        console.log("send private text Success");
+        console.log("Send message success");
     }).catch((e)=>{
-        console.log("Send private text error");
+        console.log("Send message fail");
     });
 }
 ```
@@ -78,9 +77,9 @@ function sendPrivateText() {
 ```javascript
 // 使用 `addEventHandler` 监听回调事件
 conn.addEventHandler("eventName",{
-    // SDK 与环信服务器连接成功。
+    // SDK 与服务器连接成功。
     onConnected: function (message) {},
-    // SDK 与环信服务器断开连接。
+    // SDK 与服务器断开连接。
     onDisconnected: function (message) {},
     // 当前用户收到文本消息。
     onTextMessage: function (message) {},
@@ -527,5 +526,5 @@ function sendTextMessage() {
 
 实现消息发送和接收后，可以参考以下文档为应用添加更多消息功能：
 
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_web?platform=Web)
-- [消息回执](./agora_chat_message_receipt_web?platform=Web)
+- [从服务器获取会话和消息](./agora_chat_retrieve_message_web)
+- [消息回执](./agora_chat_message_receipt_web)

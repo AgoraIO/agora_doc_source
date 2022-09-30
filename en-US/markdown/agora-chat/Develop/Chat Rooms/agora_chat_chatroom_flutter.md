@@ -1,5 +1,3 @@
-# Manage Chat Rooms
-
 Chat rooms enable real-time messaging among multiple users.
 
 Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once a chat room member goes offline, this member does not receive any push messages from the chat room and automatically leaves the chat room after 5 minutes. Chat rooms are widely applied in live broadcast use cases such as stream chat in Twitch.

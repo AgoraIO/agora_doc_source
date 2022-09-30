@@ -30,11 +30,7 @@
 
 ## 认证方式
 
-即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入如下 `Authorization` 字段：
-
-`Authorization`：Bearer ${YourAppToken}
-
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 仅支持使用 app token 的鉴权方式，详见[使用 App Token 鉴权](./generate_app_tokens?platform=RESTful)。
+~458499a0-7908-11ec-bcb4-b56a01c83d2e~
 
 ## <a name="sendmessage"></a>发送消息
 
@@ -67,7 +63,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 
 ##### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 ##### 请求 header
 
@@ -85,9 +81,9 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :------------ | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `from`        | String | 消息发送方的用户 ID。若不传入该字段，服务器默认设置为管理员，即 “admin”；若传入字段但值为空字符串 (“”)，请求失败。                                                                                                           | 否       |
 | `to`          | List   | 消息接收方的用户 ID 数组。每次可发送的接收方用户上限为 600 人，即 600 条消息。每分钟最多可向 6000 个用户发送信息。                                                                                                           | 是       |
-| `type`        | String | 消息类型：<br/> - `txt`：文本消息；<br/> - `img`：图片消息；<br/> - `audio`：语音消息；<br/> - `video`：视频消息；<br/> - `file`：文件消息；<br/> - `loc`：位置消息；<br/> - `cmd`：透传消息；<br/> - `custom`：自定义消息。 | 是       |
+| `type`        | String | 消息类型：<li>`txt`：文本消息；<li>`img`：图片消息；<li>`audio`：语音消息；<li>`video`：视频消息；<li>`file`：文件消息；<li>`loc`：位置消息；<li>`cmd`：透传消息；<li>`custom`：自定义消息。 | 是       |
 | `body`        | JSON   | 消息内容。对于不同消息类型 ，body 包含的字段不同，详情见下表。                                                                                                                                                               | 是       |
-| `sync_device` | Bool   | 消息发送成功后，是否将消息同步到发送方。<br/> - `true`：是；<br/> - （默认）`false`：否。                                                                                                                                    | 否       |
+| `sync_device` | Bool   | 消息发送成功后，是否将消息同步到发送方。<li>`true`：是；<li>（默认）`false`：否。                                                                                                                                    | 否       |
 | `routetype`   | String | 若传入该参数，其值为 “ROUTE_ONLINE”，表示只有接收方在线时，消息才能成功发送；若接收方离线，消息发送失败。若不传入该字段，接收方离线时，消息也能成功发送。                                                                    | 否       |
 | `ext`         | JSON   | 消息支持扩展字段，可添加自定义信息。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义显示](#自定义显示) 和 [Android 推送字段说明](#自定义显示)。                                                                         | 否       |
 
@@ -106,7 +102,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `filename` | String | 图片名称。                                                                                                                                                | 是                                                                      |
 | `secret`   | String | 图片访问密钥，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                              | 如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
 | `size`     | JSON   | 图片尺寸，单位为像素，包含以下字段：<li>`height`：图片高度<li>`width`：图片宽度                                                                           | 是                                                                      |
-| `url`      | String | 图片 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为文件 ID，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
+| `url`      | String | 图片 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br/>`uuid` 为文件 ID，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
 
 ##### 语音消息
 
@@ -115,18 +111,18 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `filename` | String | 语音文件的名称。                                                                                                                                              | 是                                                                      |
 | `secret`   | String | 语音文件访问密钥，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                              | 如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
 | `Length`   | Int    | 语音文件时长，单位为秒。                                                                                                                                      | 是                                                                      |
-| `url`      | String | 语音文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为文件 ID，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
+| `url`      | String | 语音文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br/>`uuid` 为文件 ID，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
 
 ##### 视频消息
 
 | 字段           | 类型   | 描述                                                                                                                                                                         | 是否必填                                                                      |
 | :------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
-| `thumb`        | String | 视频缩略图 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为视频缩略图唯一标识，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                            |
+| `thumb`        | String | 视频缩略图 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br/>`uuid` 为视频缩略图唯一标识，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                            |
 | `length`       | Number | 视频时长。单位为秒。                                                                                                                                                         | 是                                                                            |
 | `secret`       | String | 视频文件访问密钥，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                                             | 如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。   |
 | `file_length`  | Long   | 视频文件大小。单位为字节。                                                                                                                                                   | 是                                                                            |
 | `thumb_secret` | String | 视频缩略图访问密钥，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                                         | 如果缩略图文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
-| `url`          | String | 视频文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。                  | 是                                                                            |
+| `url`          | String | 视频文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br/>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。                  | 是                                                                            |
 
 ##### 文件消息
 
@@ -134,7 +130,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------- |
 | `filename` | String | 文件名称。                                                                                                                                              | 是                                                                          |
 | `secret`   | String | 文件访问密钥，成功上传文件后，从 [文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                               | 如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
-| `url`      | String | 文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                          |
+| `url`      | String | 文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br/>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                          |
 ##### 位置消息
 
 | 字段   | 类型   | 描述                       | 是否必填 |
@@ -155,7 +151,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :------------ | :----------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `customEvent` | String             | 用户自定义的事件类型。长度在 32 个字符内。支持的字符集如下：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"-", "\_", "/", "." | 否       |
 | `customExts`  | Map<String,String> | 自定义事件属性。最多包含 16 个元素。                                                                                                                   | 否       |
-| `from`        | String             | 消息发送方的用户 ID。不可为空。<br>如果不在请求 body 中传入该字段，则默认消息发送方用户 ID为 `admin`。                                                   | 是       |
+| `from`        | String             | 消息发送方的用户 ID。不可为空。<br/>如果不在请求 body 中传入该字段，则默认消息发送方用户 ID为 `admin`。                                                   | 是       |
 | `ext`         | JSON               | 自定义扩展属性。不可为空。                                                                                                                             | 否       |
 | `type`        | String             | 消息类型。自定义消息为 `custom`。                                                                                                                      | 是       |
 
@@ -169,7 +165,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :----- | :--- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data` | JSON | 返回数据详情。该字段的值为包含接收方用户 ID 和 发送的消息的 ID 的键值对。<br/>例如 "user2": "1029457500870543736"，表示向 user2 发送了消息 ID 为1029457500870543736 的消息。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -439,7 +435,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 | :----- | :--- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `data` | JSON | 返回数据详情。该字段的值为包含群组 ID 和 发送的消息的 ID 的键值对。<br/>例如 "184524748161025": "1029544257947437432"，表示在 ID 为 184524748161025 的群组中发送了消息 ID 为 1029544257947437432 的消息。 |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -711,7 +707,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 #### 示例
 
@@ -960,7 +956,7 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 | :---------------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `Content-Type`    | String | 内容类型。请填 `multipart/form-data`。上传文件会自动填充这个头。                                                                                                                  | 否       |
 | `Authorization`   | String | `Bearer ${YourToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。                                                                                          | 是       |
-| `restrict-access` | Bool   | 是否限制访问该文件：<br/> - `true` ：是。用户需要通过响应 body 中获取的文件访问密钥（share-secret）才能下载该文件。<br/> - `false` ：否。表示不限制访问。用户可以直接下载该文件。 | 否       |
+| `restrict-access` | Bool   | 是否限制访问该文件：<li>`true` ：是。用户需要通过响应 body 中获取的文件访问密钥（share-secret）才能下载该文件。<li>`false` ：否。表示不限制访问。用户可以直接下载该文件。 | 否       |
 
 #### 请求 body
 
@@ -978,9 +974,9 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 
 | 字段                    | 类型   | 描述                                                                                                                  |
 | :---------------------- | :----- | :-------------------------------------------------------------------------------------------------------------------- |
-| `entities.uuid`         | String | 文件 ID，即时通讯服务分配给该文件的唯一标识符。<br>你需要自行保存该 `uuid`，以便 [发送文件消息](#sendmessage)时使用。 |
+| `entities.uuid`         | String | 文件 ID，即时通讯服务分配给该文件的唯一标识符。<br/>你需要自行保存该 `uuid`，以便 [发送文件消息](#sendmessage)时使用。 |
 | `entities.type`         | String | 消息类型。文件类型为 `file`。                                                                                         |
-| `entities.share-secret` | String | 文件访问密钥。<br>你需要自行保存 `share-secret`，以便[下载文件](#download)时使用。                                    |
+| `entities.share-secret` | String | 文件访问密钥。<li>你需要自行保存 `share-secret`，以便[下载文件](#download)时使用。                                    |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -1059,7 +1055,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <You
 
 **注意**
 
-上述请求示例中，`/Users/test/easemob/image/image.JPG` 为环信即时通讯 IM 的本地文件路径，使用时请替换为自己的文件路径，否则会请求失败。
+上述请求示例中，`/Users/test/easemob/image/image.JPG` 为即时通讯 IM 的本地文件路径，使用时请替换为自己的文件路径，否则会请求失败。
 
 #### 响应示例
 
@@ -1071,11 +1067,11 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <You
 
 如果返回的 HTTP 状态码为 200，表示请求成功，返回文件二进制数据流。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ## 下载缩略图
 
-环信即时通讯 IM 支持在服务器端自动创建图片的缩略图。用户可先下载缩略图，需要时再下载原图。下载缩略图与下载原图的唯一区别是前者在请求 header 中多了 “thumbnail: true”。当服务器收到包含该字段的请求 header 时，返回缩略图，否则返回原图。
+即时通讯 IM 支持在服务器端自动创建图片的缩略图。用户可先下载缩略图，需要时再下载原图。下载缩略图与下载原图的唯一区别是前者在请求 header 中多了 “thumbnail: true”。当服务器收到包含该字段的请求 header 时，返回缩略图，否则返回原图。
 
 ### HTTP 请求
 
@@ -1092,7 +1088,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | `Accept`        | String | `application/octet-stream`，表示下载二进制数据流格式的文件。                                                                                                                 | 是                                                                      |
 | `Authorization` | String | Bearer ${YourAppToken}                                                                                                                                                       | 是                                                                      |
 | `share-secret`  | String | 文件访问密钥。成功上传文件后，从[文件上传](#upload)的响应 body 中获取。                                                                                                      | 如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
-| `thumbnail`     | Bool   | 如果待下载文件的类型为图片或视频，你可以下载图片或视频的缩略图：<li>传入该参数：无论字段值为 `true` 或 `false`，均表示下载缩略图。<li>不传入该参数：表示下载图片或视频文件。 | 否                                                                      |
+| `thumbnail`     | Bool   | 如果待下载文件的类型为图片或视频，你可以下载图片或视频的缩略图：<br/>传入该参数：无论字段值为 `true` 或 `false`，均表示下载缩略图。<br/>不传入该参数：表示下载图片或视频文件。 | 否                                                                      |
 
 ### HTTP 响应
 
@@ -1153,7 +1149,7 @@ GET https://{HOST}/{org_name}/{app_name}/chatmessages/${time}
 
 | 参数   | 类型   | 描述                                                                                                                                                                                  | 是否必填 |
 | :----- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `time` | String | 历史消息起始时间。UTC 时间，使用 ISO8601 标准，格式为 `yyyyMMddHH`。<br>例如 `time` 为` 2018112717`，则表示查询 2018 年 11 月 27 日 17 时至 2018 年 11 月 27 日 18 时期间的历史消息。 | 是       |
+| `time` | String | 历史消息起始时间。UTC 时间，使用 ISO8601 标准，格式为 `yyyyMMddHH`。<br/>例如 `time` 为` 2018112717`，则表示查询 2018 年 11 月 27 日 17 时至 2018 年 11 月 27 日 18 时期间的历史消息。 | 是       |
 
 其他参数及说明详见 [公共参数](#param)。
 
@@ -1172,11 +1168,11 @@ GET https://{HOST}/{org_name}/{app_name}/chatmessages/${time}
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                          |
 | :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data.url` | String | 历史消息文件下载地址。<li>`url` 由历史消息文件存储地址、到期 Unix 时间戳（`Expires`）、第三方云存储访问密钥（`OSSAccessKeyId`）、第三方云存储验证签名（`Signature`）组成。<li>URL 仅在 `Expires` 前内有效，一旦过期需调用该方法重新获取 URL。 |
+| `data.url` | String | 历史消息文件下载地址。<br/>`url` 由历史消息文件存储地址、到期 Unix 时间戳（`Expires`）、第三方云存储访问密钥（`OSSAccessKeyId`）、第三方云存储验证签名（`Signature`）组成。<br/>URL 仅在 `Expires` 前内有效，一旦过期需调用该方法重新获取 URL。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -1257,7 +1253,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `msg`  | String | 消息内容。                       |
 | `type` | String | 消息类型，文本消息类型为 `txt`。 |
 
-示例
+示例如下：
 
 ```json
 {
@@ -1278,12 +1274,12 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------ | :----- | :-------------------------------------------------------------------------------- |
 | `file_length` | Number | 图片附件大小，单位为字节。                                                        |
 | `filename`    | String | 包含图片格式后缀的图片名称。                                                      |
-| `secret`      | String | 图片文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `secret`      | String | 图片文件访问密钥。<br/>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `size`        | Number | 图片的尺寸。单位为像素。<li>`height`：图片高度<li>`width`：图片宽度               |
 | `type`        | String | 消息类型。图片消息为 `img`。                                                      |
 | `url`         | String | 图片 URL 地址。                                                                   |
 
-示例
+示例如下：
 
 ```json
 {
@@ -1314,7 +1310,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `lng`  | Number | 所在位置的经度。             |
 | `type` | String | 消息类型。位置消息为 `loc`。 |
 
-示例
+示例如下：
 
 ```json
 {
@@ -1337,12 +1333,12 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------ | :----- | :-------------------------------------------------------------------------------- |
 | `file_length` | Long   | 语音附件大小。单位为字节。                                                        |
 | `filename`    | String | 带文件格式后缀的语音文件名称。                                                    |
-| `secret`      | String | 语音文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `secret`      | String | 语音文件访问密钥。<br/>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `length`      | Int    | 语音时长。单位为秒。                                                              |
 | `type`        | String | 消息类型。语音消息为 `audio`。                                                    |
 | `url`         | String | 语音文件 URL 地址。                                                               |
 
-示例：
+示例如下：
 
 ```json
 {
@@ -1367,11 +1363,11 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------- | :----- | :---------------------------------------------------------------------------------- |
 | `file_length`  | Number | 视频附件大小。单位为字节。                                                          |
 | `filename`     | String | 带文件格式后缀的视频文件名称。                                                      |
-| `secret`       | String | 视频文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。   |
+| `secret`       | String | 视频文件访问密钥。<br/>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。   |
 | `length`       | Number | 视频时长。单位为秒。                                                                |
 | `size`         | JSON   | 视频缩略图尺寸。单位为像素。<li>`width`：视频缩略图宽度<li>`height`：视频缩略图高度 |
 | `thumb`        | String | 视频缩略图 URL 地址。                                                               |
-| `thumb_secret` | String | 缩略图文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `thumb_secret` | String | 缩略图文件访问密钥。<br/>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `type`         | String | 消息类型。视频消息为 `video`。                                                      |
 | `url`          | String | 视频文件 URL 地址。你可以访问该 URL 下载视频文件。                                  |
 
@@ -1406,11 +1402,11 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | :------------ | :----- | :---------------------------------------------------------------------------- |
 | `file_length` | Number | 文件大小。单位为字节。                                                        |
 | `filename`    | String | 带文件格式后缀的文件名称。                                                    |
-| `secret`      | String | 文件访问密钥。<br>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
+| `secret`      | String | 文件访问密钥。<br/>如果[文件上传](#upload)时设置了文件访问限制，则该字段存在。 |
 | `type`        | String | 消息类型。文件消息为 `file`。                                                 |
 | `url`         | String | 文件的 URL 地址。你可以访问该 URL 下载历史消息文件。                          |
 
-示例：
+示例如下：
 
 ```json
 {
@@ -1435,7 +1431,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `action` | String | 自定义请求方式。             |
 | `type`   | String | 消息类型。透传消息为 `cmd`。 |
 
-示例：
+示例如下：
 
 ```json
 {
@@ -1458,7 +1454,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 | `customEvent` | String | 自定义事件类型。                                 |
 | `type`        | String | 消息类型。自定义消息为 `custom`。                |
 
-自定义类型消息格式示例：
+自定义类型消息格式示例如下：
 
 ```json
 {
@@ -1479,7 +1475,6 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 应用管理员可撤回发送的消息。默认可撤回发出 2 分钟内的消息，如需调整请联系 [support@agora.io](mailto:support@agora.io)。
 
-
 ### HTTP 请求
 
 ```http
@@ -1497,10 +1492,10 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 | 参数        | 类型   | 描述                                                                                                                                                                                                                      | 是否必填 |
 | :---------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
 | `msg_id`    | String | 要撤回消息的消息 ID。                                                                                                                                                                                                     | 是       |
-| `to`        | String | 撤回消息的接收方。<br/> - 单聊为接收方用户 ID；<br/> - 群聊为群组 ID；<br/> - 聊天室聊天为聊天室 ID。<br/> 若不传入该参数，请求失败。                                                                                     | 是       |
-| `chat_type` | String | 撤回消息的会话类型：<br/> - `chat`：单聊；<br/> - `groupchat`：群聊 ；<br/> - `chatroom`：聊天室 。                                                                                                                       | 是       |
+| `to`        | String | 撤回消息的接收方。<li>单聊为接收方用户 ID；<li>群聊为群组 ID；<li>聊天室聊天为聊天室 ID。<li>若不传入该参数，请求失败。                                                                                     | 是       |
+| `chat_type` | String | 撤回消息的会话类型：<li>`chat`：单聊；<li>`groupchat`：群聊 ；<li>`chatroom`：聊天室 。                                                                                                                       | 是       |
 | `from`      | String | 消息撤回方的用户 ID。若不传该参数，默认为 `admin`。                                                                                                                                                                       | 否       |
-| `force`     | Bool   | 是否为强制撤回：<br/> - `true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](https://docs-im.easemob.com/ccim/limitation#消息存储时长限制)；<br/> - `false`：否，不支持撤回超过服务器存储时间的消息。 | 是       |
+| `force`     | Bool   | 是否为强制撤回：<li>`true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](https://docs-im.easemob.com/ccim/limitation#消息存储时长限制)；<li>`false`：否，不支持撤回超过服务器存储时间的消息。 | 是       |
 
 ### HTTP 响应
 
@@ -1513,12 +1508,12 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 | `msg_id`   | String | 需要撤回的消息 ID。                                                                               |
 | `recalled` | String | 消息撤回结果，成功是 `yes`。                                                                      |
 | `from`     | String | 消息撤回方。                                                                                      |
-| `to`       | String | 撤回消息的送达方。<br/> - 单聊为送达方用户 ID；<br/> - 群聊为群组 ID。                            |
-| `chattype` | String | 撤回消息的会话类型：<br/> - `chat`：单聊；<br/> - `groupchat`：群聊；<br/> - `chatroom`：聊天室。 |
+| `to`       | String | 撤回消息的送达方。<li>单聊为送达方用户 ID；<li>群聊为群组 ID。                            |
+| `chattype` | String | 撤回消息的会话类型：<li>`chat`：单聊；<li>`groupchat`：群聊；<li>`chatroom`：聊天室。 |
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ### 示例
 
@@ -1611,8 +1606,8 @@ DELETE https://{host}/{orgName}/{appName}/users/{userName}/user_channel
 | 参数          | 类型   | 描述                                                               | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------------- | :------- |
 | `channel`     | String | 要删除的会话 ID。                                                  | 是       |
-| `type`        | String | 会话类型。<br/> - `chat`：单聊会话；<br/> -`groupchat`：群聊会话。 | 是       |
-| `delete_roam` | Bool   | 是否删除服务端消息。<br/> - `true`：是；<br/> - `false`：否。      | 是       |
+| `type`        | String | 会话类型。<li>`chat`：单聊会话；<li>`groupchat`：群聊会话。 | 是       |
+| `delete_roam` | Bool   | 是否删除服务端消息。<li>`true`：是；<li>`false`：否。      | 是       |
 
 ### HTTP 响应
 
@@ -1626,7 +1621,7 @@ DELETE https://{host}/{orgName}/{appName}/users/{userName}/user_channel
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ### 示例
 
@@ -1679,11 +1674,11 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `from`          | String | 消息发送方的用户 ID。                                                                                                                                                                                                        | 是       |
 | `target`        | String | 消息接受方的用户 ID。                                                                                                                                                                                                        | 是       |
-| `type`          | String | 消息类型：<br/> - `txt`：文本消息；<br/> - `img`：图片消息；<br/> - `audio`：语音消息；<br/> - `video`：视频消息；<br/> - `file`：文件消息；<br/> - `loc`：位置消息；<br/> - `cmd`：透传消息；<br/> - `custom`：自定义消息。 | 是       |
+| `type`          | String | 消息类型：<li>`txt`：文本消息；<li>`img`：图片消息；<li>`audio`：语音消息；<li>`video`：视频消息；<li>`file`：文件消息；<li>`loc`：位置消息；<li>`cmd`：透传消息；<li>`custom`：自定义消息。 | 是       |
 | `body`          | JSON   | 消息内容。                                                                                                                                                                                                                   | 是       |
-| `is_ack_read`   | Bool   | 是否设置消息为已读。<br/> - `true`：是；<br/> - `false`：否。                                                                                                                                                                | 否       |
+| `is_ack_read`   | Bool   | 是否设置消息为已读。<li>`true`：是；<li>`false`：否。                                                                                                                                                                | 否       |
 | `msg_timestamp` | Long   | 导入的消息需要设置的时间戳。单位为毫秒。                                                                                                                                                                                     | 否       |
-| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<br/> - `true`：是；<br/> - `false`：否。<br/> - `默认`： false。                                                                                                                            | 否       |
+| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<li>`true`：是；<li>`false`：否。<li>`默认`： false。                                                                                                                            | 否       |
 
 与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](https://docs-im.easemob.com/ccim/rest/message#body_字段说明)。
 
@@ -1699,7 +1694,7 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 
 其他参数及说明详见 [公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [状态码汇总表](#code) 了解可能的原因。
 
 ### 示例
 
@@ -1782,11 +1777,11 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `from`          | String | 消息发送方的用户 ID。                                                                                                                                                                                                        | 是       |
 | `target`        | String | 群 ID。                                                                                                                                                                                                                      | 是       |
-| `type`          | String | 消息类型：<br/> - `txt`：文本消息；<br/> - `img`：图片消息；<br/> - `audio`：语音消息；<br/> - `video`：视频消息；<br/> - `file`：文件消息；<br/> - `loc`：位置消息；<br/> - `cmd`：透传消息；<br/> - `custom`：自定义消息。 | 是       |
+| `type`          | String | 消息类型：<li>`txt`：文本消息；<li>`img`：图片消息；<li>`audio`：语音消息；<li>`video`：视频消息；<li>`file`：文件消息；<li>`loc`：位置消息；<li>`cmd`：透传消息；<li>`custom`：自定义消息。 | 是       |
 | `body`          | JSON   | 消息内容。                                                                                                                                                                                                                   | 是       |
-| `is_ack_read`   | Bool   | 是否设置消息为已读。<br/> - `true`：是；<br/> - `false`：否。                                                                                                                                                                | 否       |
+| `is_ack_read`   | Bool   | 是否设置消息为已读。<li>`true`：是；<li>`false`：否。                                                                                                                                                                | 否       |
 | `msg_timestamp` | Long   | 导入的消息需要设置的时间戳。单位为毫秒。                                                                                                                                                                                     | 否       |
-| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<br/> - `true`：是；<br/> - （默认）`false`：否。                                                                                                                                            | 否       |
+| `need_download` | Bool   | 是否需要下载附件并上传到服务器。<li>`true`：是；<li>（默认）`false`：否。                                                                                                                                            | 否       |
 
 与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](https://docs-im.easemob.com/ccim/rest/message#body_字段说明)。
 
@@ -1802,7 +1797,7 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 
 其他参数及说明详见[公共参数](https://docs-im.easemob.com/ccim/rest/message#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](https://docs-im.easemob.com/ccim/rest/errorcode)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
 
 ### 示例
 
@@ -1864,3 +1859,7 @@ curl -X POST -H "Authorization: Bearer <YourAppToken> " "https://XXXX/XXXX/XXXX/
     "applicationName": "XXXX"
 }
 ```
+
+## <a name="code"></code> 状态码
+
+有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。

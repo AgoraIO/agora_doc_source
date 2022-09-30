@@ -7,8 +7,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 v1.0.3 及以上版本即时通讯 IM SDK 初始化，详见 [快速开始](./agora_chat_get_started_web?platform=Web)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Web)。
+- 完成 v1.0.3 及以上版本即时通讯 IM SDK 初始化，详见 [快速开始](./agora_chat_get_started_web)。
+- 了解 [使用限制](./agora_chat_limitation)。
 - 默认情况下不启用翻译。要使用此功能，你需要订阅 **进阶版** 或 **企业版** [套餐包](./agora_chat_plan) 并在 [Agora 控制台](https://console.agora.io/) 中启用它。
 - 该功能由 Microsoft Azure Translation API 启用，因此请确保你了解该功能支持的 [目标语言](https://docs.microsoft.com/en-us/azure) 。
 
@@ -43,6 +43,7 @@ conn.translateMessage('hello', ['zh']).then(res => console.log(res))
 设置自动翻译的目标语言后，在发送消息时 SDK 会自动将文本翻译为目标语言，并将目标语言一并发送出去。
 
 示例代码如下：
+
 ```javascript
 // 发送消息。
 let option = {
@@ -67,4 +68,4 @@ conn.addEventHandler('MESSAGE', {
 
 ### 设置和获取推送的目标语言
 
-设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见（./agora_chat_push_web?platform=Web#set-up-push-translations）。
+设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见（./agora_chat_push_web）。

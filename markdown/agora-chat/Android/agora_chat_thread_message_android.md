@@ -14,7 +14,7 @@
 ![img](https://web-cdn.agora.io/docs-files/1636443945728)
 
 1. 客户端从应用服务器获取 token。
-2. 客户 A 和客户 B 登录 Agora Chat。
+2. 客户 A 和客户 B 登录即时通讯。
 3. 用户 A 向用户 B 发送消息，消息被发送到即时通讯 IM 服务器，服务器将消息传递给用户 B。 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 子区创建和查看如下图：
@@ -25,7 +25,7 @@
 
 开始前，请确保满足以下条件：
 
-- 初始化 1.0.3 及以上版本 SDK，详见 [Android 入门](./agora_chat_get_started_android)。
+- 初始化 1.0.3 及以上版本 SDK，详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 在 [Agora 控制台](http://console.agora.io/) 中启用子区功能。
 
@@ -63,11 +63,11 @@ message.setMessageStatusCallback(new CallBack() {
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
-有关发送消息的更多信息，详见 [发送消息](./agora_chat_message_android?platform=Android#send-and-receive-messages)。
+有关发送消息的更多信息，详见 [发送消息](./agora_chat_message_android#发送文本消息)。
 
 ### 接收子区消息
 
-接收消息的具体逻辑，请参考 [接收消息](./agora_chat_message_android?platform=Android#send-and-receive-messages)。
+接收消息的具体逻辑，请参考 [接收消息](./agora_chat_message_android#发送文本消息)。
 
 子区有新增消息时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageReceived`回调。
 
@@ -92,13 +92,13 @@ ChatClient.getInstance().chatManager().addMessageListener(msgListener);
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
-有关接收消息的更多信息，请参阅[接收消息](./agora_chat_message_android?platform=Android#send-and-receive-messages)。
+有关接收消息的更多信息，请参阅[接收消息](./agora_chat_message_android#发送消息)。
 
 ### 撤回子区消息
 
-接收消息的具体逻辑，请参考 [撤回消息](./agora_chat_message_android?platform=Android#recall-messages)，此处只介绍子区消息和其他消息的区别。
+接收消息的具体逻辑，请参考 [撤回消息](./agora_chat_message_android#撤回消息)，此处只介绍子区消息和其他消息的区别。
 
-子区有消息撤回时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageRecalled`回调，如下代码示例所示：
+子区有消息撤回时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageRecalled` 回调，如下代码示例所示：
 
 ```java
 MessageListener msgListener = new MessageListener() {
@@ -123,7 +123,7 @@ MessageListener msgListener = new MessageListener() {
 
 #### 从服务器获取子区消息（消息漫游）
 
-关于如何从服务器获取子区消息，详见 [历史消息](./agora_chat_message_android?platform=Android#retrieve-historical-messages-from-the-server)。
+关于如何从服务器获取子区消息，详见 [历史消息](./agora_chat_message_android#retrieve-historical-messages-from-the-server)。
 
 #### 管理本地子区消息
 

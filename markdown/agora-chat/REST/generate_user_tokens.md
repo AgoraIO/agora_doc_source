@@ -1,11 +1,11 @@
-鉴权指对用户身份进行校验的过程。当你使用 Agora 服务时，例如加入音视频通话、登录 Agora Chat，Agora 会使用 Token 来对用户身份及权限进行核验。
+鉴权指对用户身份进行校验的过程。当你使用即时通讯 IM 服务时，例如加入音视频通话、登录即时通讯 IM，即时通讯 IM 会使用 Token 来对用户身份及权限进行核验。
 
-为保证 Agora Chat 连接的安全性，Agora 提供两种类型的 Token 进行鉴权：
+为保证即时通讯 IM 连接的安全性，即时通讯 IM 提供两种类型的 Token 进行鉴权：
 
-- User token：针对拥有 app 用户级别权限的用户进行鉴权。例如，当用户登录集成了 Agora Chat SDK 的 app 时，需通过 User Token 进行鉴权。
-- App token：针对拥有 app 管理员级别权限的用户进行鉴权。管理员级别权限为最高权限，可以对整个 app 进行管理，例如创建或删除用户。详见[使用 App Token 鉴权](https://docs-preprod.agora.io/cn/agora-chat/generate_app_tokens?platform=All%20Platforms)。
+- User token：针对拥有 app 用户级别权限的用户进行鉴权。例如，当用户登录集成了即时通讯 IM SDK 的 app 时，需通过 User Token 进行鉴权。
+- App token：针对拥有 app 管理员级别权限的用户进行鉴权。管理员级别权限为最高权限，可以对整个 app 进行管理，例如创建或删除用户。详见[使用 App Token 鉴权](./generate_app_tokens)。
 
-本文介绍如何搭建一个 Agora Chat User Token 服务器以及一个 Agora Chat app。客户端向 Token 服务器请求 Token，用获取到的 Token 登录 Agora Chat app。
+本文介绍如何搭建一个即时通讯 IM User Token 服务器以及一个即时通讯 IM app。客户端向 Token 服务器请求 Token，用获取到的 Token 登录即时通讯 IM app。
 
 ## 技术原理
 
@@ -13,23 +13,23 @@
 
 ![](https://web-cdn.agora.io/docs-files/1642577168336)
 
-User Token 是一种动态密钥，由你的 app 服务器生成，最长有效期为 24 小时。当客户端 app 的用户登录时，Agora Chat 服务器会对读取包含在 token 中的信息并进行鉴权。一个 User token 中包含以下信息：
+User Token 是一种动态密钥，由你的 app 服务器生成，最长有效期为 24 小时。当客户端 app 的用户登录时，即时通讯 IM 服务器会对读取包含在 token 中的信息并进行鉴权。一个 User token 中包含以下信息：
 
-- 你的 Agora 项目的 App ID。
-- 你的 Agora 项目的 App 证书。
-- 待鉴权用户的 UUID。UUID 是通过[用户注册 RESTful API](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_restful_reg?platform=RESTful#注册单个用户) 为每一个用户所生成的独有的内部标识。
+- 你的即时通讯 IM 项目的 App ID。
+- 你的即时通讯 IM 项目的 App 证书。
+- 待鉴权用户的 UUID。UUID 是通过[用户注册 RESTful API](./agora_chat_restful_registration#注册单个用户) 为每一个用户所生成的独有的内部标识。
 
 - 你设置 User Token 的有效期。
 
 ## 前提条件
 
-- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-账号)。
-- 已开通 Agora Chat 的 [Agora 项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-项目)。详见[开启和配置即时通讯服务](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms)开通 Agora Chat。
+- 有效的 [Agora 账号](./get_appid_token#创建-agora-账号)。
+- 已开通即时通讯 IM 的 [Agora 项目](./get_appid_token#创建-agora-项目)。详见 [开启和配置即时通讯服务](./agora-chat/enable_agora_chat) 开通即时通讯 IM 。
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
 
 ## 实现鉴权流程
 
-本节介绍如何生成并使用 User Token 对拥有用户级别权限的用户进行鉴权。拥有用户级别权限的用户仅可使用 app 的部分功能。生成 User Token 的加密源代码由 Agora 提供。
+本节介绍如何生成并使用 User Token 对拥有用户级别权限的用户进行鉴权。拥有用户级别权限的用户仅可使用 app 的部分功能。生成 User Token 的加密源代码由即时通讯 IM 提供。
 
 ### 搭建 User Token 服务器
 
@@ -37,13 +37,13 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
 
 本节展示如何使用 Java 语言在你的本地设备上搭建并运行一个 Token 服务器。
 
-下图展示生成 Agora Chat User Token 的 API 调用时序图：
+下图展示生成即时通讯 IM User Token 的 API 调用时序图：
 
 ![](https://web-cdn.agora.io/docs-files/1642576341028)
 
 此示例服务器仅用于演示，请勿用于生产环境中。
 
-1. 在 IntelliJ 中创建一个 Maven 项目，设置项目名称、选择项目储存路径后，点击 **Finish**。
+1. 在 `IntelliJ` 中创建一个 Maven 项目，设置项目名称、选择项目储存路径后，点击 **Finish**。
 
 2. 在 `<Project name>/pom.xml` 文件中，添加以下依赖并点击 [Reload project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport)：
 
@@ -125,20 +125,20 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
                    import static com.agora.chat.token.io.agora.media.Utils.crc32;
            ```
 
-   4. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件。你需要将该文件中的相关值替换你的 Agora 项目的值并设置 Token的有效期。填入 `appid`、 `appcert`、`appkey` 的值时无需加 `“”`。
+   4. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件。你需要将该文件中的相关值替换你的即时通讯 IM 项目的值并设置 Token的有效期。填入 `appid`、 `appcert`、`appkey` 的值时无需加 `“”`。
 
       ```txt
       ## Server port
       server.port=8090
-      ## Fill the App ID of your Agora project
+      ## 填入你的 App ID
       appid=
-      ## Fill the app certificate of your Agora project
+      ## 填入你项目的 app certificate
       appcert=
-      ## Fill the app key of the Agora Chat service
+      ## 填入你的 app key
       appkey=
-      ## REST API domain for the Agora Chat service
+      ## 填入你的 REST API domain
       domain=
-      ## Set the valid duration (in seconds) for the token
+      ## 设置 token 的有效时间，单位为秒
       expire.second=60
       ```
 
@@ -171,7 +171,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
           @Value("${domain}")
           private String domain;
        private final RestTemplate restTemplate = new RestTemplate();
-       // 获取 Agora Chat User Token
+       // 获取即时通讯 IM User Token
        @GetMapping("/chat/user/{chatUserName}/token")
        public String getChatToken(@PathVariable String chatUserName) {
            if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
@@ -244,7 +244,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
              ChatTokenBuilder2 builder = new ChatTokenBuilder2();
              return builder.buildAppToken(appid, appcert, expire);
          }
-         // 将 Agora app token 置换为 Agora Chat app token
+         // 将 Agora app token 置换为即时通讯 IM app token
          private String exchangeToken() {
              String orgName = appkey.split("#")[0];
              String appName = appkey.split("#")[1];
@@ -347,7 +347,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
    }
    ```
 
-5. 创建 UI。将 `index.html `文件中的内容替换为以下代码：
+5. 创建 UI。将 `index.html` 文件中的内容替换为以下代码：
 
    ```html
    <!DOCTYPE html>
@@ -377,9 +377,9 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
 
    在下列示例代码中可以看到，就客户端而言，User Token 和以下代码逻辑有关：
 
-   - 调用 `open` ，使用 Token 和用户名登录 Agora Chat 系统。需使用注册时所输入的用户名来获得 UUID。
+   - 调用 `open` ，使用 Token 和用户名登录即时通讯 IM 系统。需使用注册时所输入的用户名来获得 UUID。
 
-   - 当 Token 即将过期或已经过期时，从 app 服务器重新获取新的 Token 并调用 `renewToken` 来更新 Token。Agora 建议你定期（例如每小时）生成一个 Token 并调用 `renewToken` 来更新 Token 以确保 Token 的有效性。
+   - 当 Token 即将过期或已经过期时，从 app 服务器重新获取新的 Token 并调用 `renewToken` 来更新 Token。即时通讯 IM 建议你定期（例如每小时）生成一个 Token 并调用 `renewToken` 来更新 Token 以确保 Token 的有效性。
 
     ```js
    import WebIM from "agora-chat-sdk";
@@ -392,11 +392,11 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
    let username;
    document.getElementById("login").onclick = function () {
      username = document.getElementById("username").value.toString();
-     // Fetch the Agora Chat user token with username.
+     // 用用户名信息获取即时通讯 IM 用户 token。
      fetch(`http://localhost:8090/chat/user/${username}/token`)
        .then((res) => res.text())
        .then((token) => {
-         // Login to Agora Chat with username and token
+         // Login to即时通讯 IM with username and token
          WebIM.conn.open({
            user: username,
            agoraToken: token,
@@ -421,7 +421,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
          .appendChild(document.createElement("div"))
          .append("Message from: " + message.from + " Message: " + message.data);
      },
-     // Renew the token when the token is about to expire
+     // token 快过期了
      onTokenWillExpire: (params) => {
        document
          .getElementById("log")
@@ -429,7 +429,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
          .append("Token is about to expire");
        refreshToken(username);
      },
-     // Renew the token when the token has expired
+     // token 已过期
      onTokenExpired: (params) => {
        document
          .getElementById("log")
@@ -441,7 +441,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
        console.log("on error", error);
      },
    });
-   // Renew token
+   // 更新 token
    function refreshToken(username) {
      fetch(`http://localhost:8090/chat/user/${username}/token`)
        .then((res) => res.text())
@@ -459,21 +459,21 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
    2. 运行以下命令来使用 webpack 编译并运行你的项目：
 
       ```shell
-      # Use webpack to package the project
+      # 用 webpack 打包项目
       npm run build
 
-      # Use webpack-dev-server to run the project
+      # 用 webpack-dev-server 测试运行项目
       npm run start:dev
       ```
 
       `index.tml` 会自动在你的浏览器中打开。
 
-   3. 输入用户名并点击**Login**。
+   3. 输入用户名并点击 **Login**。
 
       打开浏览器的控制台，你可以看到 Web 客户端有以下行为：
 
       - 生成一个 User Token。
-      - 连接 Agora Chat 系统。
+      - 连接即时通讯 IM 系统。
       - 在 Token 即将过期时更新 Token。
 
 ## 更多信息
@@ -482,7 +482,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，Token
 
 ### Token 生成器代码库
 
-Agora 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) 仓库，支持使用 C++、Java、Go 等语言在你自己的服务器上生成 Token。
+即时通讯 IM 在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) 仓库，支持使用 C++、Java、Go 等语言在你自己的服务器上生成 Token。
 
 ### API 参考
 
@@ -507,12 +507,12 @@ public String buildUserToken(String appId, String appCertificate, String uuid, i
 
 User Token 的最长有效期为 24 小时。
 
-如果 Agora Chat SDK 报告 `isConnected(true)` 的状态，则即便 User Token 过期，使用该 Token 登录的用户依然为在线状态。如果用户使用过期的 Token 登录，Agora Chat 会报告  `TOKEN_EXPIRED` 错误。
+如果即时通讯 IM SDK 报告 `isConnected(true)` 的状态，则即便 User Token 过期，使用该 Token 登录的用户依然为在线状态。如果用户使用过期的 Token 登录，即时通讯 IM 会报告 `TOKEN_EXPIRED` 错误。
 
-只有当 Token 过期、且 Agora Chat SDK 报告 `isConnected(true)` 的状态时，Agora Chat SDK 才会触发  `onTokenExpired`  回调，且只会触发一次。当监听到该回调时，应重新从你的 Token 服务器中获取新的 Token，然后调用 `renewToken` 来更新 Token。
+只有当 Token 过期、且即时通讯 IM SDK 报告 `isConnected(true)` 的状态时，即时通讯 IM SDK 才会触发  `onTokenExpired`  回调，且只会触发一次。当监听到该回调时，应重新从你的 Token 服务器中获取新的 Token，然后调用 `renewToken` 来更新 Token。
 
-> 注意：虽然你可以通过监听 `onTokenExpired` 回调来处理 Token 过期的情况，但 Agora 建议你定期（例如每小时）更新 Token 以确保 Token 的有效性。
+> 注意：虽然你可以通过监听 `onTokenExpired` 回调来处理 Token 过期的情况，但建议你定期（例如每小时）更新 Token 以确保 Token 的有效性。
 
 ### Token 和 RTC 产品
 
-如果你在使用 Agora Chat 的同时也正在使用 [Agora RTC SDK](https://docs.agora.io/cn/Agora%20Platform/term_agora_rtc_sdk)，Agora 建议你升级到 [Access Token 2](https://docs-preprod.agora.io/cn/agora-chat/access_token_2?platform=All%20Platforms)。
+如果你在使用即时通讯 IM 的同时也正在使用 [Agora RTC SDK](https://docs.agora.io/cn/Agora%20Platform/term_agora_rtc_sdk)，即时通讯 IM 建议你升级到 [Access Token 2](https://docs-preprod.agora.io/cn/agora-chat/access_token_2?platform=All%20Platforms)。

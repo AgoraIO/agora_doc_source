@@ -2,7 +2,7 @@
 
 ## 技术原理
 
-环信即时通讯 IM Web SDK 支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM Web SDK 支持你通过调用 API 在项目中实现如下功能：
 
 - 创建、解散子区
 - 加入、退出子区
@@ -17,10 +17,10 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Web 入门](./agora_chat_get_started_web?platform=Web)。
-- 了解即时通讯 IM API 的[使用限制](./agora_chat_limitation?platform=Web)中所述。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解即时通讯 IM API 的 [使用限制](./agora_chat_limitation)。
 
-所有类型的[定价计划](./agora_chat_plan) 都支持该功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用。
+所有类型的 [定价计划](./agora_chat_plan) 都支持该功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用。
 
 ## 实现方法
 

@@ -4,7 +4,7 @@
 
 本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理聊天室，并实现聊天室的相关功能。
 
-消息相关内容见 [消息管理](./agora_chat_message_overview?platform=iOS)。
+消息相关内容见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -22,9 +22,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [iOS 入门](./agora_chat_get_started_ios?platform=iOS)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=iOS)。
-- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=iOS)。
+- 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
+- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
+- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan)。
 - 只有应用超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了应用超级管理员。
 
 ## 实现方法
@@ -86,7 +86,7 @@ retOpt.isDeleteMessagesWhenExitChatRoom = NO;
 
 ### 获取聊天室详情
 
-聊天室所有成员均可调用 `getChatroomSpecificationFromServerWithId` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
+聊天室所有成员均可调用 `getChatroomSpecificationFromServerWithId` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
 
 示例代码如下：
 
@@ -160,5 +160,10 @@ SDK 中提供了聊天室事件的监听接口。你可以通过注册聊天室�
                       newOwner:(NSString *)aNewOwner
                       oldOwner:(NSString *)aOldOwner {
 
+// 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
+- (void)chatroomAttributesDidUpdated:(NSString *_Nonnull)roomId attributeMap:(NSDictionary<NSString *, NSString *> *_Nullable)attributeMap from:(NSString *_Nonnull)fromId;
   }
+
+// 有成员删除聊天室自定义属性。聊天室所有成员会收到该事件。
+- (void)chatroomAttributesDidRemoved:(NSString *_Nonnull)roomId attributes:(NSArray<__kindof NSString *> *_Nullable)attributes from:(NSString *_Nonnull)fromId;
 ```

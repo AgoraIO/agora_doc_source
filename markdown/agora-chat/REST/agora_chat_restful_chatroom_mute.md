@@ -1,4 +1,4 @@
-本文展示如何调用 Agora 即时通讯 RESTful API 实现聊天室禁言管理，包括添加、解除、查询聊天室中被禁言的成员。
+本文展示如何调用即时通讯 RESTful API 实现聊天室禁言管理，包括添加、解除、查询聊天室中被禁言的成员。
 调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
@@ -9,9 +9,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                              | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                         | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                                | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
 | `username` | String | 用户名。用户的唯一登录账号。长度在 64 个字节内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户名唯一。</ul></div> | 是       |
 
 ### 响应参数
@@ -44,7 +44,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -75,7 +75,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 | `expire` | Number | 禁言到期的 Unix 时间戳（毫秒）。                        |
 | `user`   | String | 被禁言的聊天室成员的用户名。                            |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -138,7 +138,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute/{member
 | :------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `member` | String | 待被解除禁言的聊天室成员的用户名。<br>如果需要解除多个成员的禁言，则成员用户名之间用逗号（","）隔开。在 URL 中，需要将 "," 转义为 "%2C"。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -158,7 +158,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute/{member
 | `result` | Bool   | 移除禁言结果：`true`：解除成功;`false`：解除失败。 |
 | `user`   | String | 被解除禁言的聊天室成员的用户名。                   |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -204,7 +204,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -224,7 +224,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 | `expire` | Number | 禁言到期的 Unix 时间戳（毫秒）。 |
 | `user`   | String | 被禁言的聊天室成员的用户名。     |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 

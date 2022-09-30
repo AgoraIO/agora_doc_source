@@ -30,7 +30,7 @@
 
 使用在线状态功能前，请确保满足以下条件：
 
-- 初始化即时通讯 IM SDK，详见 [Android 入门](./agora_chat_get_started_android)。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 在 [Agora 控制台](http://console.agora.io/) 中启用在线状态功能。
 
@@ -86,7 +86,7 @@ ChatClient.getInstance().presenceManager().publishPresence("custom status", new 
 ```java
 ChatClient.getInstance().presenceManager().addListener(new MyPresenceListener());
 
-// 用 `EMPresenceListener` 监听器实现以下接口。当订阅的用户在线状态发生变化时，会收到`onPresenceUpdated` 回调。
+// 用 `PresenceListener` 监听器实现以下接口。当订阅的用户在线状态发生变化时，会收到`onPresenceUpdated` 回调。
 public interface PresenceListener {
     void onPresenceUpdated(List<Presence> presences);
 }

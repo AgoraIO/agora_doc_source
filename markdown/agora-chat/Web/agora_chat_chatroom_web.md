@@ -2,7 +2,7 @@
 
 本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理聊天室，并实现聊天室的相关功能。
 
-消息内容详见 [消息管理](./agora_chat_message_overview?platform=Web)。
+消息内容详见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -20,10 +20,10 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Web 入门](./agora_chat_get_started_web?platform=Web)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Web)。
-- 了解即时通讯 IM 聊天室不同版本的数量限制，详见 [套餐包](./agora_chat_plan?platform=Web)。
-- 只有应用超级管理员才有创建聊天室的权限。确保已通过调用[super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了应用超级管理员。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 聊天室不同版本的数量限制，详见 [套餐包](./agora_chat_plan)。
+- 只有应用超级管理员才有创建聊天室的权限。确保已通过调用[super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
 
 ## 实现方法
 
@@ -74,7 +74,7 @@ conn.joinChatRoom(option).then(res => console.log(res))
 
 ### 获取聊天室详情
 
-聊天室所有成员均可调用 `getChatRoomDetails` 方法获取聊天室的详情，包括聊天室 ID、聊天室名称、聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
+聊天室所有成员均可调用 `getChatRoomDetails` 方法获取聊天室的详情，包括聊天室 ID、聊天室名称、聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
 
 示例代码如下：
 
@@ -152,6 +152,12 @@ conn.addEventHandler("eventName", {
         // 有用户加入聊天室。聊天室的所有成员（除新成员外）会收到该事件。
         case 'memberPresence':
             break;
+             // 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
+            case 'updateChatRoomAttributes':
+                break;
+            // 有成员删除聊天室自定义属性，聊天室所有成员会收到该事件。
+            case 'removeChatRoomAttributes':
+                break;
         default:
             break;
     }

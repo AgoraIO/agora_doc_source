@@ -1,4 +1,4 @@
-本文展示如何调用 Agora 即时通讯 RESTful API 实现用户体系建立和管理。包括用户注册、获取、修改、删除、封禁、解禁、强制下线等。
+本文展示如何调用即时通讯 RESTful API 实现用户体系建立和管理。包括用户注册、获取、修改、删除、封禁、解禁、强制下线等。
 调用以下方法前，请先参考 [限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
@@ -9,9 +9,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                              | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                         | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                                | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
 | `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户 ID唯一。<li>`username` 用户 ID 是会公开的信息，请勿使用 UUID、邮箱地址、手机号等敏感信息。</ul></div> | 是       |
 
 ### 响应参数
@@ -53,7 +53,7 @@ POST https://{host}/{org_name}/{app_name}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -170,9 +170,9 @@ POST https://api.agora.io/{org_name}/{app_name}/users
 | `entities.nickname` | String     | 用户昵称。推送消息时显示的昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
 | `data`              | JSON Array | 返回数据详情。在该接口中，注册失败的用户 ID和失败原因会显示在 `data` 数组中。                 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -310,7 +310,7 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -328,16 +328,16 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}
 | 字段                                          | 类型   | 描述                                                                                                                                             |
 | :-------------------------------------------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。                                       |
-| `entities.notification_display_style`         | Int    | 消息推送方式：<br/> - “0”：仅通知；<br/> - “1”：通知以及消息详情，没有设置返不会返回。                                                           |
-| `entities.notification_no_disturbing`         | Bool   | 是否开启免打扰。<br/> - `true`：免打扰开启。若用户未设该参数，则响应中不返回。<br/> - `false`：免打扰关闭。                                      |
+| `entities.notification_display_style`         | Int    | 消息推送方式：<li>“0”：仅通知；<li>“1”：通知以及消息详情，没有设置返不会返回。                                                           |
+| `entities.notification_no_disturbing`         | Bool   | 是否开启免打扰。<li>`true`：免打扰开启。若用户未设该参数，则响应中不返回。<li>`false`：免打扰关闭。                                      |
 | `entities.notification_no_disturbing_start`   | String | 免打扰的开始时间。例如，“8” 代表每日 8:00 开启免打扰。若用户未设该参数，则响应中不返回。                                                         |
 | `entities.notification_no_disturbing_end`     | String | 免打扰的结束时间。例如，“18” 代表每日 18:00 关闭免打扰。若用户未设该参数，则响应中不返回。                                                       |
-| `entities.notification_ignore_63112447328257` | Bool   | 是否屏蔽了群组消息的离线推送的设置。参数中的数字表示群组 ID。 <br/> -`true`：已屏蔽。<br/> - `false`：未屏蔽。若用户未设该参数，则响应中不返回。 |
+| `entities.notification_ignore_63112447328257` | Bool   | 是否屏蔽了群组消息的离线推送的设置。参数中的数字表示群组 ID。 <li>`true`：已屏蔽。<li>`false`：未屏蔽。若用户未设该参数，则响应中不返回。 |
 | `entities.notifier_name`                      | String | 客户端推送证书名称。若用户未设置推送证书名称，则响应中不返回。                                                                                   |
 | `entities.device_token`                       | String | 推送 token。若用户没有推送 token，则响应中不返回。                                                                                               |
 | `count`                                       | Number | 返回用户数量。                                                                                                                                   |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -401,7 +401,7 @@ GET https://api.agora.io/{org_name}/{app_name}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -427,11 +427,11 @@ GET https://api.agora.io/{org_name}/{app_name}/users
 | :-------------------------------------------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。                                                                                                                                |
 | `cursor`                                      | String | 游标，用于分页显示用户列表。<br>第一次发起批量查询用户请求时无需设置 `cursor`，请求成功后，从响应 body 中获取 `cursor`，并在下一次请求的 URL 中传入该 `cursor`，直到响应 body 中不再有 `cursor` 字段，则表示已查询到 app 中所有用户。 |
-| `entities.notification_display_style`         | Int    | 消息推送方式：<br/> - “0”：仅通知；<br/> - “1”：通知以及消息详情。若用户未设置该参数，则响应中不会返回。                                                                                                                              |
-| `entities.notification_no_disturbing`         | Bool   | 是否开启免打扰模式。<br/> - `true`：免打扰开启。若用户未设置改参数，则响应中不返回。<br/> - `false`：代表免打扰关闭。                                                                                                                 |
+| `entities.notification_display_style`         | Int    | 消息推送方式：<li>“0”：仅通知；<li>“1”：通知以及消息详情。若用户未设置该参数，则响应中不会返回。                                                                                                                              |
+| `entities.notification_no_disturbing`         | Bool   | 是否开启免打扰模式。<li>`true`：免打扰开启。若用户未设置改参数，则响应中不返回。<li>`false`：代表免打扰关闭。                                                                                                                 |
 | `entities.notification_no_disturbing_start`   | String | 免打扰的开始时间。例如， “8” 代表每日 8:00 开启免打扰。若用户未设该参数，则响应中不返回。                                                                                                                                             |
 | `entities.notification_no_disturbing_end`     | String | 免打扰的结束时间。例如， “18” 代表每日 18:00 关闭免打扰。若用户未设该参数，则响应中不返回。                                                                                                                                           |
-| `entities.notification_ignore_63112447328257` | Bool   | 是否屏蔽了群组消息的离线推送的设置。数字表示群组 ID。 <br/> -`true`：已屏蔽。 <br/> - `false`：未屏蔽，没有设置则不会返回。                                                                                                           |
+| `entities.notification_ignore_63112447328257` | Bool   | 是否屏蔽了群组消息的离线推送的设置。数字表示群组 ID。 <li>`true`：已屏蔽。 <li>`false`：未屏蔽，没有设置则不会返回。                                                                                                           |
 | `entities.notifier_name`                      | String | 客户端推送证书名称。若用户未设置推送证书名称，则响应中不返回。                                                                                                                                                                        |
 | `entities.device_token`                       | String | 推送 token。若用户没有推送 token，则响应中不返回。                                                                                                                                                                                    |
 | `count`                                       | Number | 返回用户数量。                                                                                                                                                                                                                        |
@@ -552,7 +552,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users/{username}
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -620,7 +620,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -633,7 +633,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见[公共参数](#param)。
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -704,15 +704,15 @@ PUT https://api.agora.io/{org_name}/{app_name}/users/{username}/password
 | :------------ | :----- | :------------------------------------------- | :------- |
 | `newpassword` | String | 新的用户登录密码。长度必须在 64 个字符以内。 | 是       |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见[公共参数](#param)。
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -747,7 +747,7 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/deactivate
 
 #### 路径参数
 
-参数及说明详见[公共参数](#param)。
+参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -767,8 +767,8 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/deactivate
 | :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
 | `entities.nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
 
-其他字段及说明详见[公共参数](#param)。
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+其他字段及说明详见 [公共参数](#param)。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -836,8 +836,8 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/activate
 | :--------- | :----- | :--------------------------------------------------------------------------------------------------------- |
 | `nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
 
-其他字段及说明详见[公共参数](#param)。
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+其他字段及说明详见 [公共参数](#param)。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -1026,7 +1026,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 | :--------- | :--------------------------------------------------------------------------------------------------------------- |
 | `username` | 数据格式为：“用户 ID：当前在线状态”，例如，user1 的在线和离线状态分别为 "user1": "online" 和"user1": "offline"。 |
 
-其他字段说明详见[公共参数](#param)。
+其他字段说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -1077,7 +1077,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 | :--------------: | :----- | :-------------------------- | -------- |
 | `owner_username` | String | 要获取离线消息数的用户 ID。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -1096,7 +1096,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 | :--------- | :------------------------------------------------------------ |
 | `username` | 数据格式为：“用户 ID：当前离线消息的数量“，例如，"user1: 0”。 |
 
-其他字段说明详见[公共参数](#param)。
+其他字段说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 ### 示例
@@ -1143,7 +1143,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 | `username` | String | 要获取离线消息状态的用户 ID。 | 是       |
 |  `msg_id`  | String | 要查看离线消息状态的 ID。     | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -1162,7 +1162,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 | :------- | :----------------------------------------------------------------------------------------------------------------- |
 | `msg_id` | 数据格式为“消息 ID”：“离线消息的投递状态”。有两种：<li> “delivered”  表示已投递； <li> `undelivered“  表示未投递。 |
 
-其他字段说明详见[公共参数](#param)。
+其他字段说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 

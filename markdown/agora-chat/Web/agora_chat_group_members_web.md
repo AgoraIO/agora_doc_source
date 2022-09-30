@@ -14,8 +14,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Web 入门](./agora_chat_get_started_web?platform=Web)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Web)。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -23,7 +23,7 @@
 
 用户进群分为两种方式：主动申请和群成员邀请。
 
-邀请用户入群，详见 [创建群组](./agora_chat_group_web?platform=Web#创建群组)。
+邀请用户入群，详见 [创建群组](./agora_chat_group_web#创建群组)。
 
 本节对用户申请加入群组进行详细介绍。
 
@@ -31,7 +31,7 @@
 
 若申请加入公开群，用户需执行以下步骤：
 
-1. 用户可获取 [获取群组列表](./agora_chat_group_web?platform=Web#获取群组列表)。
+1. 用户可获取 [获取群组列表](./agora_chat_group_web#获取群组列表)。
 
 2、调用 `joinGroup` 方法传入群组 ID，申请加入对应群组。示例代码如下：
 
@@ -163,7 +163,7 @@ conn.getGroupAdmin(option).then((res) => {
 })
 ```
 
-也可以通过 [获取群组详情信息](./agora_chat_group_web?platform=Web#获取群组详情信息) 获取管理员列表。
+也可以通过 [获取群组详情信息](./agora_chat_group_web#获取群组详情信息) 获取管理员列表。
 
 ### 管理群组白名单
 
@@ -345,4 +345,4 @@ conn.enableSendGroupMsg(option).then(res => console.log(res))
 
 ### 监听群组事件
 
-有关详细信息，请参阅 [监听事件](./agora_chat_group_web?platform=Web#listen-for-chat-group-events)。
+有关详细信息，请参阅 [监听群组事件](./agora_chat_group_web#监听群组事件)。

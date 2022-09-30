@@ -2,7 +2,7 @@
 
 本页介绍如何使用即时通讯 IM SDK 在应用中创建和管理聊天室。
 
-消息相关内容见 [消息管理](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_message_overview?platform=Android)。
+消息相关内容见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -18,10 +18,10 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 入门](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
-- 了解即时通讯 IM 不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=Android)。
-- 只有超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了超级管理员。
+- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 只有超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了超级管理员。
 - 聊天室创建者和管理员的数量之和不能超过 100，即管理员最多可添加 99 个。
 
 ## 实现方法
@@ -78,7 +78,7 @@ ChatClient.getInstance().chatroomManager().leaveChatRoom(chatRoomId);
 PageResult<ChatRoom> chatRooms = ChatClient.getInstance().chatroomManager().
                             fetchPublicChatRoomsFromServer(pageNumber, pageSize);
 
-// 聊天室所有成员均可调用 `fetchChatRoomFromServer` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
+// 聊天室所有成员均可调用 `fetchChatRoomFromServer` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
 ```
 
@@ -144,5 +144,12 @@ public interface ChatRoomChangeListener {
 
     // 聊天室公告变更
     void onAnnouncementChanged(String chatRoomId, String announcement);
+
+    // 聊天室自定义属性有更新
+    default void onChatroomAttributesDidChanged(String chatRoomId, Map<String,String> attributeMap , String from){}
+
+    // 有聊天室自定义属性被移除
+    default void onChatroomAttributesDidRemoved(String chatRoomId, List<String> keyList , String from){}
+
 }
 ```

@@ -1,4 +1,4 @@
-随着监管机制日益完善，对 app 的监管不断加强，安全合规逐渐成为 app 的生命线。声网即时通讯 Agora Chat 提供全局禁言功能，对 app 提供用户 ID 级别的禁言管理，支持在管理员发现用户违规后进行全局禁言，以维护 app 良好的内容生态环境。禁言到期后，Agora Chat 服务器会自动解除禁言，恢复该用户发送消息的权限。
+随着监管机制日益完善，对 app 的监管不断加强，安全合规逐渐成为 app 的生命线。声网即时通讯即时通讯 IM 提供全局禁言功能，对 app 提供用户 ID 级别的禁言管理，支持在管理员发现用户违规后进行全局禁言，以维护 app 良好的内容生态环境。禁言到期后，Agora Chat 服务器会自动解除禁言，恢复该用户发送消息的权限。
 
 你可以对单个用户 ID 设置单聊、群组或聊天室消息全局禁言。禁言后，该用户将无法在对应的单聊、群组或聊天室发送消息；无论通过调用客户端 API，还是使用服务端 RESTful API 都不行。
 
@@ -16,9 +16,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                                                                                                    | 是否必填 |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                                                                                                                                          | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                                                                                                                                     | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful)。                                                                                                                                                                                                                            | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                                                                                          | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                                                                                     | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                                                                                            | 是       |
 | `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字节内，不可设置为空。支持以下字符集：</ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户 ID唯一。</li><li>请勿将该字段设置为 UUID、邮箱地址、手机号码或其它敏感信息。</li></ul></div> | 是       |
 
 ### 响应参数
@@ -79,7 +79,7 @@ POST https://{host}/{orgName}/{appName}/mutes
 | -------- | ------ | ----------------------------------- |
 | `result` | String | 该方法调用结果。`ok` 表示设置成功。 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -126,7 +126,7 @@ curl -L -X POST 'https://XXXX/XXXX/XXXX/mutes' \
 ### HTTP 请求
 
 ```http
-GET https://{host}/{orgName}/{appName}/mutes/username
+GET https://{host}/{orgName}/{appName}/mutes/{username}
 ```
 
 #### 路径参数
@@ -135,7 +135,7 @@ GET https://{host}/{orgName}/{appName}/mutes/username
 | ---------- | ------ | ----------------------- | -------- |
 | `username` | String | 查询禁言信息的用户 ID。 | 是       |
 
-其他参数及说明详见[公共参数](#param)。
+其他参数及说明详见 [公共参数](#param)。
 
 #### 请求 header
 
@@ -156,7 +156,7 @@ GET https://{host}/{orgName}/{appName}/mutes/username
 | `chatroom`  | Number | 聊天室消息剩余禁言时长，单位为秒，规则同上。                                                                                                                                                             |
 | `unixtime`  | Number | 当前操作的 Unix 时间戳。                                                                                                                                                                                 |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -235,9 +235,9 @@ GET https://{host}/{orgName}/{appName}/mutes
 | `chatroom`  | Number    | 聊天室消息剩余禁言时长，单位为秒，规则同上。                  |
 | `unixtime`  | Number    | 当前操作的 Unix 时间戳。                                      |
 
-其他字段及说明详见[公共参数](#param)。
+其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 

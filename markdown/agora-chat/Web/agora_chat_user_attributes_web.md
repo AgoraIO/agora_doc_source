@@ -20,8 +20,8 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Agora Chat 入门](./agora_chat_get_started_web?platform=Web)。
-- 了解即时通讯 IM 的使用限制，指定用户的所有属性的最大大小，以及应用程序中所有用户属性的最大大小。详见 [使用限制](./agora_chat_limitation?platform=Web)。
+- 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
+- 了解即时通讯 IM 的使用限制，指定用户的所有属性的最大大小，以及应用程序中所有用户属性的最大大小。详见 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -70,7 +70,7 @@ conn.updateUserInfo('nickname', 'Your nickname').then((res) => {
 | `avatarurl` | String | 用户头像 URL 地址。长度在 256 字符内。                       |
 | `phone`     | String | 用户联系方式。长度在 32 字符内。                             |
 | `mail`      | String | 用户邮箱。长度在 64 字符内。                                 |
-| `gender`    | Number | 用户性别。 <br/> - `1`：男；<br/> - `2`：女；<br/> - （默认）`0`：未知；<br/> - 设置为其他值无效。 |
+| `gender`    | Number | 用户性别。 <li>`1`：男；<li>`2`：女；<li>（默认）`0`：未知；<li>设置为其他值无效。 |
 | `sign`      | String | 用户签名。长度在 256 字符内。                                |
 | `birth`     | String | 用户生日。长度在 64 字符内。                                 |
 | `ext`       | String | 扩展字段。                                                   |
@@ -166,11 +166,3 @@ conn.send(msg).then((res)=>{
 ```
 
 如果需要在名片中展示更丰富的信息，可以在 `ext` 中添加更多字段。
-
-## 参考
-
-本节包含您在实施过程中可能需要了解的参考信息。
-
-- 有关用户属性的详细信息，请参阅以下 API 参考：
-  - [用户信息](./API Reference/im_oc/interface_agora_chat_user_info.html)
-  - [fetchUserInfoById](./API Reference/im_ts/modules/Contact.html)

@@ -1,4 +1,4 @@
-表情符号被广泛用于实时聊天，因为它们允许用户以直接和生动的方式表达自己的感受。在即时通讯 IM 中，消息表情回复（下文统称 “Reaction”）允许用户在一对一聊天和聊天组中使用表情符号快速对消息做出反应。在群聊中，Reaction 也可用于投票，例如，通过计算附加到消息的不同表情符号的数量来确认投票。
+表情符号被广泛用于实时聊天，因为它们允许用户以直接和生动的方式表达自己的感受。在即时通讯 IM 中，消息表情回复（下文统称 “Reaction”）允许用户在单聊和群聊中使用表情符号快速对消息做出反应。在群聊中，Reaction 也可用于投票，例如，通过计算附加到消息的不同表情符号的数量来确认投票。
 
 下图展示了将 Reaction 添加到消息、带有 Reaction 的对话的外观以及获取 Reaction 列表（带有相关信息）的外观。
 
@@ -20,8 +20,8 @@ SDK 提供 API 来实现如下功能：
 
 开始前，请确保满足以下条件：
 
-- 集成 v1.0.3 及以上即时通讯 IM SDK 版本，并实现了 [基本的实时聊天功能](./agora_chat_get_started_android?platform=Android)。
-- 了解 [使用限制](./agora_chat_limitation?platform=Android)。
+- 集成 v1.0.3 及以上即时通讯 IM SDK 版本，并实现了 [基本的实时聊天功能](./agora_chat_get_started_android)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 在 [Agora 控制台](https://console.agora.io/) 中启用聊天功能，会默认启用 Reaction 功能。
 
@@ -131,4 +131,4 @@ ChatClient.getInstance().chatManager().asyncGetReactionDetail(mMsgId, emojiconId
 
 ## 下一步
 
-[Chat UIKit](./agora_chat_uikit_android?platform=Android) 也支持 Reaction 功能，其中包含更丰富的表情符号。你可以使用 UIKit 在项目中实现 Reaction 功能。
+[Chat UIKit](./agora_chat_uikit_android) 也支持 Reaction 功能，其中包含更丰富的表情符号。你可以使用 UIKit 在项目中实现 Reaction 功能。

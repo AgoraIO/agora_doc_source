@@ -1,4 +1,4 @@
-在单聊和群聊中，用户可以使用表情符号回复指定消息，为实时聊天增添乐趣和多样性。在 Agora Chat 中，此功能称为 Reaction 。本页展示了如何使用 Agora Chat RESTful API 在项目中实现 Reaction。
+在单聊和群聊中，用户可以使用表情符号回复指定消息，为实时聊天增添乐趣和多样性。在即时通讯 IM 中，此功能称为 Reaction 。本页展示了如何使用即时通讯 IM RESTful API 在项目中实现 Reaction。
 
 在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](..cn/agora-chat/agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
 
@@ -12,9 +12,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                                                | 是否必填 |
 | :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                       | 是       |
-| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                  | 是       |
-| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project)。                                                                                                            | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                       | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                  | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                            | 是       |
 | `username`      | String | 用户的唯一登录帐户。                                         |        |
 
 ### 响应参数
@@ -77,7 +77,7 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 
 其他字段及详细说明请参见 [公共参数](./agora_chat_restful_reaction?platform=RESTful#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -150,7 +150,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 | `reactionId`        | String | [创建 Reaction](./agora_chat_restful_reaction?platform=RESTful#创建/追加 Reaction) 的响应体数据中返回的 Reaction ID 。 |
 | `reaction`          | String | 作为 Reaction 添加的表情符号的 ID。                                                                                                                      |
 | `count`             | Number | 将此 Reaction 添加到消息中的用户数。                                                                                                                     |
-| `state`             | Bool   | 发送此请求的用户是否对此消息添加了 Reaction 。<li>`true`： 是的。<li>`false`：否。                                                                       |
+| `state`             | Bool   | 发送此请求的用户是否对此消息添加了 Reaction 。<li>`true`：是的。<li>`false`：否。                                                                       |
 | `userList`          | Array  | 已添加此 Reaction 的用户 ID 列表。它最多包含三个最先添加此 Reaction 的用户。                                                                             |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
@@ -266,7 +266,7 @@ curl -g -X DELETE 'http://XXXX/XXXX/XXXX/reaction/user/wz?msgId=9976253727931131
 
 ## 根据 消息 ID 和 表情 ID 获取 Reaction 信息
 
-该方法根据指定的消息的 ID 和表情 ID 获取对应的 Reaction 信息，包括使用了该 Reaction 的用户 ID及用户人数。
+该方法根据指定的消息的 ID 和表情 ID 获取对应的 Reaction 信息，包括使用了该 Reaction 的用户 ID 及用户人数。
 
 ### HTTP 请求
 
@@ -306,7 +306,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail
 | `reactionId`        | String | Reaction  ID。                                                        |
 | `reaction`          | String | 表情 ID，与客户端一致。同请求参数中 “message”。              |
 | `count`             | Number | 添加该 Reaction 的用户人数。                                 |
-| `state`             | Bool   | 当前请求用户是否添加过该 Reaction。 <br/> - `true`：是；<br/> - `false`：否。 |
+| `state`             | Bool   | 当前请求用户是否添加过该 Reaction。 <li>`true`：是；<li>`false`：否。 |
 | `userList`          | Array  | 追加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。 |
 | `cursor`            | String | 分页获取时使用，传入游标后便从游标起始的地方进行查询，类似于数据库 limit 1,5 中 1 的作用，可以理解为页码。 |
 
