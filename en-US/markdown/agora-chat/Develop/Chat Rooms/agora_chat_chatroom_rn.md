@@ -246,12 +246,62 @@ const roomListener: ChatRoomEventListener = new (class
       params.oldOwner
     );
   }
-  // Occurs when the chat room announcements are updated.
+  // Occurs when the chat room announcement is updated.
   onAnnouncementChanged(params: {
     roomId: string;
     announcement: string;
   }): void {
     console.log(`onAnnouncementChanged:`, params.roomId, params.announcement);
+  }
+
+  // Occurs when a member is added to the allow list of the chat room. 
+  onAllowListAdded(params: { roomId: string; members: string[] }): void {
+    console.log(`onAllowListAdded:`, params.roomId, params.members);
+  }
+  // Occurs when a member is removed from the allow list of the chat room. 
+  onAllowListRemoved(params: { roomId: string; members: string[] }): void {
+    console.log(`onAllowListRemoved:`, params.roomId, params.members);
+  }
+  // Occurs when all members are muted or unmuted. 
+  onAllChatRoomMemberMuteStateChanged(params: {
+    roomId: string;
+    isAllMuted: boolean;
+  }): void {
+    console.log(
+      `onAllChatRoomMemberMuteStateChanged:`,
+      params.roomId,
+      params.isAllMuted ? "true" : "false"
+    );
+  }
+  // Occurs when the chat room specifications change. 
+  onSpecificationChanged?(room: ChatRoom): void {
+    console.log(`onSpecificationChanged:`, room);
+  }
+  // Occurs when the custom chat room attributes (key-value) are updated.
+  onAttributesUpdated?(params: {
+    roomId: string;
+    attributes: Map<string, string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesUpdated:`,
+      params.roomId,
+      params.attributes,
+      params.from
+    );
+  }
+  // Occurs when the custom chat room attributes (key-value) are removed.
+  onAttributesRemoved?(params: {
+    roomId: string;
+    removedKeys: Array<string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesRemoved:`,
+      params.roomId,
+      params.removedKeys,
+      params.from
+    );
   }
 })(this);
 
