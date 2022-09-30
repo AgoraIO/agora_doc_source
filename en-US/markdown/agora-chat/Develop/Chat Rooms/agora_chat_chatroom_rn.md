@@ -277,7 +277,7 @@ const roomListener: ChatRoomEventListener = new (class
   onSpecificationChanged?(room: ChatRoom): void {
     console.log(`onSpecificationChanged:`, room);
   }
-  // Occurs when the custom chat room attributes (key-value) are updated.
+  // Occurs when the custom chat room attributes (key-value maps) are updated.
   onAttributesUpdated?(params: {
     roomId: string;
     attributes: Map<string, string>;
@@ -290,7 +290,7 @@ const roomListener: ChatRoomEventListener = new (class
       params.from
     );
   }
-  // Occurs when the custom chat room attributes (key-value) are removed.
+  // Occurs when the custom chat room attributes (key-value maps) are removed.
   onAttributesRemoved?(params: {
     roomId: string;
     removedKeys: Array<string>;

@@ -29,7 +29,7 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 
 #### Retrieve basic chat room attributes
 
-All the chat room members can call `FetchRoomInfoFromServer` to retrieve the detailed information of the current chat room, including the subject, announcement, description, member type, and admin list. 
+All chat room members can call `FetchRoomInfoFromServer` to retrieve the detailed information of the current chat room, including the subject, announcement, description, member type, and admin list. 
 
 ```c#
 // The chat room members can call FetchRoomInfoFromServer to get the information of the specified chat room.
@@ -65,9 +65,9 @@ SDKClient.Instance.RoomManager.ChangeRoomDescription(roomId, newDesc, new CallBa
 
 #### Retrieve or change chat room announcements
 
-All the chat room members can retrieve the chat room announcement.
+All chat room members can retrieve the chat room announcement.
 
-Only the chat room owner and admin can set and update the announcement. Once the announcement is updated, all the chat room members receive the `OnAnnouncementChangedFromRoom` callback.
+Only the chat room owner and admin can set and update the announcement. Once the announcement is updated, all the other chat room members receive the `OnAnnouncementChangedFromRoom` callback.
 
 ```c#
 // Chat room members can call FetchRoomAnnouncement to retrieve the chat room announcement.
@@ -91,7 +91,7 @@ SDKClient.Instance.RoomManager.UpdateRoomAnnouncement(roomId, announcement, new 
 
 #### Retrieve specified or all custom attributes
 
-All the chat room members can call `FetchAttributes` to retrieve specified or all custom attributes of the chat room.
+All chat room members can call `FetchAttributes` to retrieve the specified or all custom attributes of the chat room.
 
 ```c#
 // Retrieves certain or all custom attributes by specifying chat room ID and attribute keys.  
@@ -103,12 +103,12 @@ SDKClient.Instance.RoomManager.FetchAttributes(roomId, keys, new ValueCallBack<D
 ));
 ```
 
-#### Set custom attributes
+#### Set one or more custom attributes
 
-All the chat room members can call `AddAttributes` to set one or more custom attributes. Use this method to add new custom attributes or update existing attributes that are set by yourself and others. After you successfully call this method, other members in the chat room receive an `OnChatroomAttributesChanged` callback.
+All chat room members can call `AddAttributes` to set one or more custom attributes. Use this method to add new custom attributes or update existing attributes that are set by yourself and others. After you successfully call this method, other members in the chat room receive an `OnChatroomAttributesChanged` callback.
 
 ```c#
-// Sets custom attribute by specifying the chat room ID and the key-value maps of the attributes.
+// Sets custom attributes by specifying the chat room ID and key-value maps of the attributes. 
 SDKClient.Instance.RoomManager.AddAttributes(roomId, kv, deleteWhenExit, forced, new CallBackResult(
     onSuccessResult: (Dictionary<string, int> failInfo) => {
         if(failInfo.Count == 0)
@@ -125,9 +125,9 @@ SDKClient.Instance.RoomManager.AddAttributes(roomId, kv, deleteWhenExit, forced,
 ));
 ```
 
-#### Remove custom attributes
+#### Remove one or more custom attributes
 
-Chat room members can call `RemoveAttributes` to remove one or more custom attributes. After you successfully call this method, other members in the chat room receive an `OnChatroomAttributesRemoved` callback. 
+Chat room members can call `RemoveAttributes` to remove one or more custom attributes that are set by themselves and others. After you successfully call this method, other members in the chat room receive an `OnChatroomAttributesRemoved` callback. 
 
 ```c#
 // Removes custom attributes by specifying the chat room ID and the attribute key list. 
@@ -135,11 +135,11 @@ SDKClient.Instance.RoomManager.RemoveAttributes(roomId, keys, forced, new CallBa
     onSuccessResult: (Dictionary<string, int> failInfo) => {
         if (failInfo.Count == 0)
         {
-            //All the custom attributes are removed successfully. 
+            // All the custom attributes are removed successfully. 
         }
         else
         {
-            //Certain custom attributes are not removed successfully. 
+            // Certain custom attributes are not removed successfully. 
         }
     },
     onError: (code, desc) => {
@@ -147,5 +147,6 @@ SDKClient.Instance.RoomManager.RemoveAttributes(roomId, keys, forced, new CallBa
 ));
 ```
 
+### Listen for chat room events
 
-
+For details, see [Chat Room Events](./agora_chat_chatroom_unity#listen-for-chat-room-events).

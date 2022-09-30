@@ -256,7 +256,7 @@ public interface IRoomManagerDelegate
         */
         void OnAnnouncementChangedFromRoom(string roomId, string announcement);
         /**
-         * Occurs when the custom chat room attributes (key-value) are updated.
+         * Occurs when the custom chat room attributes (key-value maps) are updated.
          *
          * @param roomId        The chat room ID
          * @param kv            The updated attributes
@@ -264,7 +264,7 @@ public interface IRoomManagerDelegate
          */
         void OnChatroomAttributesChanged(string roomId, Dictionary<string, string> kv, string from);
          /**
-         * Occurs when the custom chat room attributes (key-value) are removed.
+         * Occurs when the custom chat room attributes (key-value maps) are removed.
          *
          * @param roomId        The chat room ID.
          * @param keys          The keys of removed attributes

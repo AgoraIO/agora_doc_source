@@ -16,9 +16,9 @@ The Agora Chat SDK provides the `ChatManager` and `ChatRoom` classes for chat ro
 
 Before proceeding, ensure that you meet the following requirements:
 
-- You have initialized the Agora Chat SDK. For details, see [Get Started with rn](./agora_chat_get_started_android?platform=rn).
-- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation?platform=rn).
-- You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan?platform=rn).
+- You have initialized the Agora Chat SDK. For details, see [Get Started with React Native](./agora_chat_get_started_rn).
+- You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora_chat_limitation).
+- You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](./agora_chat_plan).
 
 ## Implementation
 
@@ -31,7 +31,7 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 All the chat room members can call `fetchChatRoomInfoFromServer` to retrieve the detailed information of the current chat room, including the subject, announcement, description, member type, and admin list. 
 
 ```typescript
-// Chat room members can call fetchChatRoomInfoFromServer to retrieve the basic attributes of the a chat room.
+// Chat room members can call fetchChatRoomInfoFromServer to retrieve the basic attributes of the chat room.
 ChatClient.getInstance()
   .roomManager.fetchChatRoomInfoFromServer(roomId)
   .then((response) => {
@@ -70,9 +70,9 @@ ChatClient.getInstance()
 
 #### Retrieve or change the chat room announcement
 
-All the chat room members can retrieve the chat room announcement. 
+All chat room members can retrieve the chat room announcement. 
 
-Only the chat room owner and admin can set and update the announcement. Once the announcement is updated, all the chat room members receive the `onAnnouncementChanged` callback.
+Only the chat room owner and admin can set and update the announcement. Once the announcement is updated, all the other chat room members receive the `onAnnouncementChanged` callback.
 
 ```typescript
 // Chat room members can call fetchChatRoomAnnouncement to retrieve the chat room announcement.
@@ -103,7 +103,8 @@ ChatClient.getInstance()
 All chat room members can call `fetchChatRoomAttributes` to retrieve the specified or all custom attributes of the chat room.
 
 ```typescript
-// Retrieves certain custom attributes by specifying chat room ID and attribute keys. Get all if key is empty.
+// Retrieves certain custom attributes by specifying chat room ID and attribute keys.
+// Retrieves all custom attributes if you pass an empty key.
 ChatClient.getInstance()
   .roomManager.fetchChatRoomAttributes(roomId, keys)
   .then((response) => {
@@ -114,7 +115,7 @@ ChatClient.getInstance()
   });
 ```
 
-#### Set custom attributes
+#### Set one or more custom attributes
 
 All chat room members can call `addAttributes` to set one or more custom attribute. Use this method to add new custom attributes or update existing attributes that are set by yourself and others. After you successfully call this method, other members in the chat room receive an `onAttributesUpdated` callback. 
 
@@ -135,7 +136,7 @@ ChatClient.getInstance()
   });
 ```
 
-#### Remove custom attribute
+#### Remove one or more custom attributes
 
 All chat room members can call `removeAttributes` to remove one or more custom attributes that are set by themselves and others. After you successfully call this method, other members in the chat room receive an `onAttributesRemoved` callback. 
 
@@ -154,3 +155,7 @@ ChatClient.getInstance()
     rollLog(`fail: ${error}`);
   });
 ```
+
+### Listen for chat room events
+
+For details, see [Chat Room Events](./agora_chat_chatroom_rn#listen-for-chat-room-events).

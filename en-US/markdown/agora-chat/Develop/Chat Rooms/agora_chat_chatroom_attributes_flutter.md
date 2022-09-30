@@ -65,7 +65,7 @@ try {
 }
 ```
 
-#### Retrieve or change the chat room announcement
+#### Retrieve or change chat room announcements
 
 All chat room members can retrieve the chat room announcement. 
 
@@ -107,12 +107,12 @@ try {
 } on ChatError catch (e) {}
 ```
 
-#### Set custom attributes
+#### Set one ore more custom attributes
 
 Chat room members can call `addAttributes` to set one or more custom attributes. Use this method to add new custom attributes or update existing attributes that are set by yourself and others. After you successfully call this method, other members in the chat room receive an `EMChatRoomEventHandler#onAttributesUpdated` callback.
 
 ```dart
-// Sets a custom attribute by specifying the chat room ID and the key-value maps of the attributes. 
+// Sets custom attributes by specifying the chat room ID and key-value maps of the attributes. 
 try {
   Map<String, int>? failInfo =
       await ChatClient.getInstance.chatRoomManager.addAttributes(
@@ -124,9 +124,9 @@ try {
 } on ChatError catch (e) {}
 ```
 
-#### Remove custom attributes
+#### Remove one or more custom attributes
 
-Chat room members can call `removeAttributes` to remove one or more custom attributes. After you successfully call this method, other members in the chat room receive an `EMChatRoomEventHandler#onAttributesRemoved` callback.
+Chat room members can call `removeAttributes` to remove one or more custom attributes that are set by themselves and others. After you successfully call this method, other members in the chat room receive an `EMChatRoomEventHandler#onAttributesRemoved` callback.
 
 ```dart
 // Removes custom attributes by specifying the chat room ID and the attribute key list. 
