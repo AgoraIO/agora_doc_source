@@ -258,14 +258,9 @@ To enable your app to send and receive messages between individual users, do the
    import androidx.appcompat.app.AppCompatActivity;
    import java.text.SimpleDateFormat;
    import java.util.Date;
-   import java.util.HashMap;
-   import java.util.List;
-   import java.util.Map;
-   
-   import static io.agora.cloud.HttpClientManager.Method_POST;
+   import java.util.Locale;
    import io.agora.CallBack;
    import io.agora.ConnectionListener;
-   import io.agora.Error;
    import io.agora.chat.ChatClient;
    import io.agora.chat.ChatMessage;
    import io.agora.chat.ChatOptions;
@@ -372,7 +367,7 @@ To enable your app to send and receive messages between individual users, do the
        }
    ```
 
-5. Log in and log out to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
+5. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
    // Log in with Token.
@@ -432,8 +427,8 @@ To enable your app to send and receive messages between individual users, do the
    ```java
    // Send your first message.
    public void sendFirstMessage(View view) {
-       String toSendName = ((TextView)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
-       String content = ((TextView)findViewById(R.id.et_msg_content)).getText().toString().trim();
+       String toSendName = ((EditText)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
+       String content = ((EditText)findViewById(R.id.et_msg_content)).getText().toString().trim();
        // Create a text message
        ChatMessage message = ChatMessage.createTextSendMessage(content, toSendName);
        // Set the message callback before sending the message
