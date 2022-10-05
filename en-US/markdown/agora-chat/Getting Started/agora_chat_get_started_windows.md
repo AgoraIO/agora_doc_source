@@ -12,11 +12,57 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 In order to follow the procedure in this page, you must have the following:
 
+- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
+- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
+- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
+- An Agora project with an App Key and a temporary token.
+
 - A Windows device running Windows 10 or later
 - Visual Studio IDE 2019 or later
 - .Net Framework 4.5.2 or later, or .Net Core 5.0 or later
 
 <div class="alert note">If your network has a firewall, make sure that you open the ports specified in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a>.</div>
+
+## Token generation
+
+This section introduces how to register a user at Agora Console and generate a temporary token.
+
+### Register a user
+
+To register a user, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+[](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
+
+![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+![](https://web-cdn.agora.io/docs-files/1664531162872)
+
+### Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+![](https://web-cdn.agora.io/docs-files/1664531214169)
 
 ## Project setup
 
@@ -30,7 +76,7 @@ This section shows how to prepare the development environment necessary to integ
 
 ### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](https://downloadsdk.easemob.com/downloads/SDK/WinSDK/agora_chat_sdk.1.0.2-beta.nupkg) to download the NuGet package to your local device.
+1. Go to the [SDK download page](here need to user latest 1.0.8 package!!!) to download the NuGet package to your local device.
 
 2. In **Solution Explorer** of **Visual Studio**, right-click **windows-example**, and select **Manage NuGet Packages...** in the drop-down menu.
 
@@ -62,8 +108,8 @@ A <code>JsonConvert.Undefined</code> error occurs when Newtonsoft.Json has not b
 At the top lines of the `MainWindow.xaml.cs` file, add the following:
 
 ```c#
-using ChatSDK;
-using ChatSDK.MessageBody;
+using AgoraChat;
+using AgoraChat.MessageBody;
 ```
 
 ### 2. Initialize the SDK
@@ -71,56 +117,31 @@ using ChatSDK.MessageBody;
 In the `InitSDK` function, add the following to initialize the SDK:
 
 ```c#
-// In this sample project, replace `APPKEY` with `41117440#383391`.
+// Replaces APPKEY with your app key.
 var options = new Options(appKey: "APPKEY");
 options.UsingHttpsOnly = true;
 SDKClient.Instance.InitWithOptions(options);
 ```
 
-### 3. Sign up an account
-
-At the end of the `SignUp_Click` function, add the following to add the sign-up logic:
-
-```c#
-bool result = await RegisterToAppServer(UserIdTextBox.Text, PasswordTextBox.Text);
-if (result)
-{
-    AddLogToLogText("sign up succeed");
-}
-else
-{
-    AddLogToLogText("sign up failed");
-}
-```
-
-### 4. Log in to an account
+### 3. Log in to an account
 
 At the end of the `SignIn_Click` function, add the following to add the login logic:
 
 ```c#
-// Call `LoginToAppServer` to retrieve the Agora token.
-string token = await LoginToAppServer(UserIdTextBox.Text, PasswordTextBox.Text);
-if (token != null)
-{
-    // Call `LoginWithAgoraToken` to log in to the Chat service with username and Agora token.
-   SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, token, handle: new CallBack(
-        onSuccess: () =>
-        {
-            AddLogToLogText("sign in sdk succeed");
-        },
-        onError: (code, desc) =>
-        {
-            AddLogToLogText($"sign in sdk failed, code: {code}, desc: {desc}");
-        }
-    ));
-}
-else
-{
-    AddLogToLogText($"fetch token error");
-}
+// Call `LoginWithAgoraToken` to log in to the Chat service with username and Agora token.
+SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, AgoraToken.Text, handle: new CallBack(
+    onSuccess: () =>
+    {
+        AddLogToLogText("sign in sdk succeed");
+    },
+    onError: (code, desc) =>
+    {
+        AddLogToLogText($"sign in sdk failed, code: {code}, desc: {desc}");
+    }
+));
 ```
 
-### 5. Log out of an account
+### 4. Log out of an account
 
 At the end of the `SignOut_Click` function, add the following to add the logout logic:
 
@@ -137,7 +158,7 @@ SDKClient.Instance.Logout(true, handle: new CallBack(
 ));
 ```
 
-### 6. Send messages
+### 5. Send messages
 
 At the end of the `SendBtn_Click` function, add the following to add the creating and sending logics for messages:
 
@@ -159,7 +180,7 @@ Message msg = Message.CreateTextSendMessage(SingleChatIdTextBox.Text, MessageCon
 ));
 ```
 
-### 7. Receive messages
+### 6. Receive messages
 
 To add the receiving logic for messages, refer to the following steps:
 
@@ -211,44 +232,39 @@ public void OnMessagesReceived(List<Message> messages)
 
 public void OnCmdMessagesReceived(List<Message> messages)
 {
-
 }
 
 public void OnMessagesRead(List<Message> messages)
 {
-
 }
 
 public void OnMessagesDelivered(List<Message> messages)
 {
-
 }
 
 public void OnMessagesRecalled(List<Message> messages)
 {
-
 }
 
 public void OnReadAckForGroupMessageUpdated()
 {
-
 }
 
 public void OnGroupMessageRead(List<GroupReadAck> list)
 {
-
 }
 
 public void OnConversationsUpdate()
 {
-
 }
 
 public void OnConversationRead(string from, string to)
 {
-
 }
 
+public void MessageReactionDidChange(List<MessageReactionChange> list)
+{
+}
 ```
 
 3. In the `AddChatDelegate` function, add the following:
@@ -273,19 +289,16 @@ At the top of **Visual Studio**, click the **Start** button. If the sample proje
 
 In the user interface, perform the following operations to test the project:
 
-1. Sign up  
-Fill in the username in the **user id** box and password in the **password** box, and click **Sign up** to register an account. In this example, register two accounts (`my_sender` and `my_receiver`) to enable sending and receiving messages.
-
-2. Log in  
+1. Log in
 After signing up the accounts, fill in the username in **user id** box and password in the **password** box, and click **Sign in** to log in to the app. In this example, log in as `my_sender`.
 
-3. Send a message  
+2. Send a message
 Fill in the username of the receiver (`my_receiver`) in the **single chat id** box and type in the message ("hello world") you want to send in the **message content** box, and click **Send** to send the message.
 
-4. Sign out  
+3. Sign out
 Click **Sign out** to log out of the app.
 
-5. Receive the message  
+4. Receive the message
 After signing out as `my_sender`, log in as `my_receiver` and receive the message ("hello world") sent in step 3.
 
 You can check the log to see all the operations from this example, as shown in the following figure:

@@ -22,6 +22,11 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 In order to follow the procedure in this page, you must have the following:
 
+- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
+- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
+- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
+- An Agora project with an App Key and a temporary token.
+
 - [Unity Hub](https://unity.com/download)
 - Unity Editor 2019.4.28 or later 
 - Target platform:
@@ -38,6 +43,47 @@ In order to follow the procedure in this page, you must have the following:
     - Windows 7 or later
 - A computer that can access the Internet.  
 Ensure that no firewall is blocking your network communication; otherwise, the project may fail. For details, see [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=Unity).
+
+## Token generation
+
+This section introduces how to register a user at Agora Console and generate a temporary token.
+
+### Register a user
+
+To register a user, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+[](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
+
+![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+![](https://web-cdn.agora.io/docs-files/1664531162872)
+
+### Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+![](https://web-cdn.agora.io/docs-files/1664531214169)
 
 ## Project setup
 
@@ -58,7 +104,7 @@ If your Unity Editor version is inconsistent with that of the sample project, do
 
 ### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](./downloads?platform=Unity), and download the latest version of the Agora Chat SDK package for Unity, and decompress it.
+1. Go to the [SDK download page](here need to use latest 1.0.8 pacakge!!!), and download the latest version of the Agora Chat SDK package for Unity, and decompress it.
 
 2. In Unity Editor, click **Assets** > **Import Package** > **Custom Package...**, and select the decompressed SDK.
 
@@ -75,8 +121,8 @@ In Unity Editor, select the **Project** tab, select **Assets** > **Scripts**, an
 At the top lines of the `TestCode.cs` file, add the following:
 
 ```c#
-using ChatSDK;
-using ChatSDK.MessageBody;
+using AgoraChat;
+using AgoraChat.MessageBody;
 ```
 
 ### 2. Initiate the SDK
@@ -84,51 +130,28 @@ using ChatSDK.MessageBody;
 In the `InitSDK` method, add the following to initialize the SDK:
 
 ```c#
-// In this sample project, initiate the SDK using the App Key of 41117440#383391.
+// Replaces APPKEY with your app key.
 Options options = new Options(APPKEY);
 options.UsingHttpsOnly = true;
 SDKClient.Instance.InitWithOptions(options);
 ```
 
-### 3. Sign up an account
-
-At the end of the `SignUpAction` method, add the following to add the sign-up logic:
-
-```c#
-StartCoroutine(RegisterAgoraAccount(Username.text, Password.text, (error) =>
-{
-    if (error != null) {
-        AddLogToLogText(error);
-    }
-    else {
-        AddLogToLogText("register succeed");
-    }
-}));
-```
-
-### 4. Log in to an account
+### 3. Log in to an account
 
 At the end of the `SignInAction` method, add the following to add the login logic:
 
 ```c#
-StartCoroutine(FetchAgoraToken(Username.text, Password.text, 
-    (agornToken) => {
-        SDKClient.Instance.LoginWithAgoraToken(username: Username.text, agornToken, handle: new CallBack(
-            onSuccess: () => {
-                AddLogToLogText("sign in sdk succeed");
-            },
-            onError: (code, desc) => {
-                AddLogToLogText($"sign in sdk failed, code: {code}, desc: {desc}");
-            }
-        ));
-    }, 
-    (error) => {
-        AddLogToLogText(error);
+SDKClient.Instance.LoginWithAgoraToken(username: Username.text, AgoraToken.text, handle: new CallBack(
+    onSuccess: () => {
+        AddLogToLogText("sign in sdk succeed");
+    },
+    onError: (code, desc) => {
+        AddLogToLogText($"sign in sdk failed, code: {code}, desc: {desc}");
     }
 ));
 ```
 
-### 5. Send messages
+### 4. Send messages
 
 At the end of the `SendMessageAction` method, add the following to add the creating and sending logics for messages:
 
@@ -144,7 +167,7 @@ SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
 ));
 ```
 
-### 6. Receive messages
+### 5. Receive messages
 
 To add the receiving logic for messages, refer to the following steps:
 
@@ -215,6 +238,9 @@ public void OnMessagesReceived(List<Message> messages)
     public void OnConversationRead(string from, string to)
     {
     }
+    public void MessageReactionDidChange(List<MessageReactionChange> list)
+    {
+    }
 ```
 
 3. In the `AddChatDelegate` method, add the following:
@@ -231,7 +257,7 @@ SDKClient.Instance.ChatManager.AddChatManagerDelegate(this);
 SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
 ```
 
-### 7. Log out of the account
+### 6. Log out of the account
 
 In the `SignOutAction` method, add the following:
 
@@ -258,11 +284,8 @@ If the sample project runs properly, the following user interface appears:
 
 In the user interface, perform the following operations to test the project:
 
-1. Sign up  
-Fill in the username in the `user id` box and password in the `password` box, and click **Sign up** to register an account. In this example, register two accounts (`local_user` and `remote_user`) to enable sending and receiving messages.
-
-2. Log in  
-After signing up the accounts, fill in the username in the `user id` box and password in the `password` box, and click **Sign in** to log in to the app. In this example, log in as `local_user`.
+1. Log in
+Fill in the username in the `user id` box and agora token in the `agora token` box, and click **Sign in** to log in to the app. In this example, log in as `local_user`.
 
 3. Send a message
 Fill in the username of the receiver (`remote_user`) in the `single chat id` box and type in the message ("hello world") to send in the `message content` box, and click **Send** to send the message.
