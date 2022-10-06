@@ -31,7 +31,7 @@ This section introduces how to call the APIs provided by the Agora Chat SDK to i
 All the chat room members can call `fetchChatRoomFromServer` to retrieve the detailed information of the current chat room, including the subject, announcements, description, member type, and admin list. 
 
 ```java
-// The fetchPublicChatRoomsFromServer method returns basic attributes including ID, name, description, maximum members, owners, roles, and whether all members are muted.
+// Fetches basic attributes including ID, name, description, maximum members, owners, roles, and whether all members are muted.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
 ```
 
@@ -39,10 +39,10 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFrom
 Only the chat room owner and admin can set and update the chat room subject and description.
 
 ```java
-// The chat room owner and admin call changeChatRoomSubject to modify the chat room subject.
+// Modifies the chat room subject.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatRoomSubject(chatRoomId, newSubject);
 
-// The chat room owner and admin call changeChatroomDescription to modify the chat room description.
+// Modifies the chat room description.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatroomDescription(chatRoomId, newDescription);
 ```
 
@@ -52,17 +52,17 @@ All the chat room members can retrieve the chat room announcements.
 Only the chat room owner and admin can set and update the announcements. Once the announcements are updated, all the chat room members receive the `onAnnouncementChanged` callback.
 
 ```java
-// Chat room members can call fetchChatRoomAnnouncement to retrieve the chat room announcements.
+// Retrieves the chat room announcements.
 String announcement = ChatClient.getInstance().chatroomManager().fetchChatRoomAnnouncement(chatRoomId);
 
-// The chat room owner and admin can call updateChatRoomAnnouncement to set or update the chat room announcements.
+// Sets or updates the chat room announcements.
 ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId, announcement);
 ```
 
 ### Manage custom chat room attributes
 
 #### Retrieve specified or all custom attributes 
-All chat room members can call `asyncFetchChatroomAttributesFromServer` to retrieve specified or all custom attributes of the chat room.
+All chat room members can call `asyncFetchChatroomAttributesFromServer` or `asyncFetchChatRoomAllAttributesFromServer` to retrieve specified or all custom attributes of the chat room.
 
 ```java
 // Retrieves certain custom attributes by specifying chat room ID and attribute keys. 
@@ -124,12 +124,10 @@ To set multiple custom attributes, call the `asyncSetChatroomAttributes` method 
 // Sets multiple custom attribute by specifying chat room ID and the key-value maps of the attributes. 
 ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributes(chatRoomId, map, false, new ResultCallBack<Map<String, Integer>>() {
             @Override
-            public void onSuccess(int code,Map<String, Integer> value) {
-                // code == Error.EM_NO_ERROR indicates all the custom attributes are set successfully. 
-                // value represents the custom attributes that are not successfully set.
-            }
-            @Override
-            public void onError(int error, String errorMsg) {
+            public void onResult(int code,Map<String, Integer> failureMap) {
+                // code == Error.EM_NO_ERROR indicates all the custom attributes are set successfully. In this case, failureMap is an empty map.
+                // code != Error.EM_NO_ERROR indicates that the request fails. For error reasons please refer to the Error class.
+                // In this case, failureMap contains the custom attributes that are not set successfully, and value represents the error code. 
             }
         });
 ```
@@ -140,12 +138,10 @@ If you want to update custom attributes that set by other members, call `asyncSe
 // Sets a custom attribute by specifying chat room ID and the key-value maps of the attributes. 
 ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chatRoomId, map, false, new ResultCallBack<Map<String, Integer>>() {
             @Override
-            public void onSuccess(int code,Map<String, Integer> value) {
-                // code == Error.EM_NO_ERROR indicates all the custom attributes are set successfully. 
-                // value represents the custom attributes that are not successfully set.
-            }
-            @Override
-            public void onError(int error, String errorMsg) {
+            public void onResult(int code,Map<String, Integer> failureMap) {
+                // code == Error.EM_NO_ERROR indicates all the custom attributes are set successfully. In this case, failureMap is an empty map.
+                // code != Error.EM_NO_ERROR indicates that the request fails. For error reasons please refer to the Error class.
+                // In this case, failureMap contains the custom attributes that are not set successfully, and value represents the error code. 
             }
         });
 ```       
@@ -187,13 +183,11 @@ To remove multiple custom attributes, chat room members can call the `asyncRemov
 // Removes multiple custom attributes by specifying chat room ID and the attribute key list. 
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServer(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
-                    public void onSuccess(int code,Map<String, Integer> value) {
-                    // code == Error.EM_NO_ERROR indicates all the custom attributes are removed successfully. 
-                    // value represents the custom attributes that are not successfully removed.
-                    }
-                    @Override
-                    public void onError(int error, String errorMsg) {
-                    }
+                    public void onResult(int code,Map<String, Integer> failureMap) {
+                        // code == Error.EM_NO_ERROR indicates all the custom attributes are removed successfully. In this case, failureMap is an empty map.
+                        // code != Error.EM_NO_ERROR indicates that the request fails. For error reasons please refer to the Error class.
+                        // In this case, failureMap contains the custom attributes that are not removed successfully, and value represents the error code. 
+                        }
                 });
 ```
 
@@ -203,13 +197,11 @@ If you want to update custom attributes that set by other members, call `asyncRe
 // Removes multiple custom attributes by specifying chat room ID and the attribute key list.  
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServerForced(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
-                    public void onSuccess(int code,Map<String, Integer> value) {
-                    // code == Error.EM_NO_ERROR indicates all the custom attributes are removed successfully. 
-                    // value represents the custom attributes that are not successfully removed.
-                    }
-                    @Override
-                    public void onError(int error, String errorMsg) {
-                    }
+                    public void onResult(int code,Map<String, Integer> failureMap) {
+                        // code == Error.EM_NO_ERROR indicates all the custom attributes are removed successfully. In this case, failureMap is an empty map.
+                        // code != Error.EM_NO_ERROR indicates that the request fails. For error reasons please refer to the Error class.
+                        // In this case, failureMap contains the custom attributes that are not removed successfully, and value represents the error code. 
+                        }
                 });
 ```       
 

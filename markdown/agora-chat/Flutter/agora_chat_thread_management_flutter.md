@@ -24,25 +24,22 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 `1.0.5 或以上版本` SDK 初始化，详见 [快速开始](https://docs.agora.io/en/agora-chat/agora_chat_get_started_flutter)。
-- 了解 [使用限制](https://docs.agora.io/en/agora-chat/agora_chat_limitation)中所述。
+- 完成 `1.0.5 或以上版本` SDK 初始化，详见 [快速开始](./agora_chat_get_started_flutter)。
+- 了解 [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
 本节介绍如何使用即时通讯 IM Flutter SDK 提供的 API 实现上述功能。
 
-### 创建线程
+### 创建子区
 
-所有聊天组成员都可以调用`createChatThread`以从聊天组中的特定消息创建线程。
+所有群组成员都可以调用 `createChatThread` 以从群组中的特定消息创建子区。
 
-在聊天组中创建线程后，所有聊天组成员都会收到`ChatThreadEventHandler#onChatThreadCreate`回调。在多设备场景下，所有其他设备都会收到事件`ChatMultiDeviceEventHandler#onChatThreadEvent`触发的回调`ChatMultiDevicesEvent#CHAT_THREAD_CREATE`。
+在群组中创建子区后，所有群组成员都会收到 `ChatThreadEventHandler#onChatThreadCreate` 回调。在多设备场景下，所有其他设备都会收到事件 `ChatMultiDeviceEventHandler#onChatThreadEvent` 触发的回调 `ChatMultiDevicesEvent#CHAT_THREAD_CREATE`。
 
-以下代码示例显示了如何在聊天组中创建线程：
+示例代码如下：
 
 ```dart
-// name: The name of a thread. The maximum length of a thread name is 64 characters.
-// messageId: The ID of a message, from which a thread is created.
-// parentId: The ID of a chat group where a thread resides.
 try {
   ChatThread chatThread =
       await ChatClient.getInstance.chatThreadManager.createChatThread(

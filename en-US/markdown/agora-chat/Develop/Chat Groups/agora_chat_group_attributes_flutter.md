@@ -1,5 +1,3 @@
-# Manage Chat Group Attributes
-
 Chat groups enable real-time messaging among multiple users.
 
 This page shows how to use the Agora Chat SDK to manage the attributes of a chat group in your app.
@@ -7,7 +5,7 @@ This page shows how to use the Agora Chat SDK to manage the attributes of a chat
 
 ## Understand the tech
 
-The Agora Chat SDK provides the `ChatGroup`, `ChatGroupManager`, and `ChatGroupManagerListener` classes for chat group management, which allows you to implement the following features:
+The Agora Chat SDK provides the `ChatGroup`, `ChatGroupManager`, and `ChatGroupEventHandler` classes for chat group management, which allows you to implement the following features:
 
 - Update the name and description of a chat group
 - Retrieve and update the announcements of a chat group
@@ -62,7 +60,7 @@ try {
 
 ### Update the chat group announcements
 
-Only the chat group owner and admins can call `updateGroupAnnouncement` to set and update the announcements. Once the chat group announcements are updated, all the other chat group members receive the `ChatGroupManagerListener#OnAnnouncementChangedFromGroup` callback. The maximum total length of chat group announcements is 512 characters.
+Only the chat group owner and admins can call `updateGroupAnnouncement` to set and update the announcements. Once the chat group announcements are updated, all the other chat group members receive the `ChatGroupEventHandler#onAnnouncementChangedFromGroup` callback. The maximum total length of chat group announcements is 512 characters.
 
 The following code sample shows how to update the chat group announcements:
 
@@ -96,7 +94,7 @@ try {
 
 #### Upload chat group shared files
 
-All chat group members can call `uploadGroupSharedFile` to upload shared files to a chat group. The maximum file size is 10 MB. Once a shared file is uploaded, all the other chat group members receive the `ChatGroupManagerListener#onSharedFileAddedFromGroup` callback.
+All chat group members can call `uploadGroupSharedFile` to upload shared files to a chat group. The maximum file size is 10 MB. Once a shared file is uploaded, all the other chat group members receive the `ChatGroupEventHandler#onSharedFileAddedFromGroup` callback.
 
 The following code sample shows how to upload chat group shared files:
 
@@ -112,7 +110,7 @@ try {
 
 #### Delete chat group shared files
 
-All chat group members can call `removeGroupSharedFile` to delete shared files in a chat group. Once a shared file is deleted, all the other chat group members receive the `ChatGroupManagerListener#onSharedFileDeletedFromGroup` callback. The chat group owner and chat group admins can delete all of the shared files, whereas chat group members can only delete the shared files that they have personally uploaded.
+All chat group members can call `removeGroupSharedFile` to delete shared files in a chat group. Once a shared file is deleted, all the other chat group members receive the `ChatGroupEventHandler#onSharedFileDeletedFromGroup` callback. The chat group owner and chat group admins can delete all of the shared files, whereas chat group members can only delete the shared files that they have personally uploaded.
 
 The following code sample shows how to delete chat group shared files:
 

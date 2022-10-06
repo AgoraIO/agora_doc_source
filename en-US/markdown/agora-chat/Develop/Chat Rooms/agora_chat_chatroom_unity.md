@@ -249,26 +249,26 @@ public interface IRoomManagerDelegate
         */
         void OnOwnerChangedFromRoom(string roomId, string newOwner, string oldOwner);
         /**
-        * Occurs when the chat room announcements are updated.
+        * Occurs when the chat room announcement is updated.
         * @param roomId        The chat room ID
-        * @param announcement  The updated chat room announcements
+        * @param announcement  The updated chat room announcement.
         *
         */
         void OnAnnouncementChangedFromRoom(string roomId, string announcement);
         /**
-         * Occurs when the chat room attribute is changed.
+         * Occurs when the custom chat room attributes (key-value maps) are updated.
          *
-         * @param roomId        The chat room ID.
-         * @param kv            The updated properties.
-         * @param from          The operator to do update.
+         * @param roomId        The chat room ID
+         * @param kv            The updated attributes
+         * @param from          The user ID of the operator
          */
         void OnChatroomAttributesChanged(string roomId, Dictionary<string, string> kv, string from);
          /**
-         * Occurs when the chat room attribute is removeed.
+         * Occurs when the custom chat room attributes (key-value maps) are removed.
          *
          * @param roomId        The chat room ID.
-         * @param keys          The removed keys of properties.
-         * @param from          The operator to do remove.
+         * @param keys          The keys of removed attributes
+         * @param from          The user ID of the operator
          */
         void OnChatroomAttributesRemoved(string roomId, List<string> keys, string from);
     }

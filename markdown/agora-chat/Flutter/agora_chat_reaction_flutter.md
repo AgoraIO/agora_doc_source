@@ -6,7 +6,7 @@
 
 ![img](https://web-cdn.agora.io/docs-files/1655257598155)
 
-本页展示了如何使用 Agora Chat SDK 在你的项目中实现 Reaction。
+本页展示了如何使用即时通讯 IM SDK 在你的项目中实现 Reaction。
 
 ## 技术原理
 
