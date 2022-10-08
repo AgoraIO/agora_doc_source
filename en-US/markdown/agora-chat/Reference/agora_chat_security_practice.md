@@ -9,7 +9,7 @@ Chat has built-in security measures to prevent common attacks in instant messagi
 | Encryption | Yes  | All instant messaging scenarios.                                  |
 | Network geofencing | Yes  | All instant messaging scenarios.                                 |
 
-## Level 1 - Channels separation
+## Level 1 - Channel separation
 The channels architect is the first built-in layer of protection. Chat's communication models contains one-to-one chat, group chat, and chat rooms. Chat creates an independent and isolated channel for data transmission in each one-to-one chat, group chat, and chat room. All channels are logically separated, and only authenticated users from the same App ID can join the same channel.
 
 ## Level 2 - Token authentication
