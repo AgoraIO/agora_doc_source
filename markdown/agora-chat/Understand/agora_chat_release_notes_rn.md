@@ -1,3 +1,17 @@
+## V1.0.9
+
+V1.0.9 于 2022 年 10 月 8 日发布。
+
+#### 新增特性
+
+`ChatGroupEventListener` 中新增两个事件：
+- `onDetailChanged`：群组详情变更事件。
+- `onStateChanged`：群组禁用状态变更事件。
+
+#### 修复
+
+修复聊天室自定义属性问题。
+
 ## V1.0.8
 
 V1.0.8 于 2022 年 9 月 30 日发布。
@@ -5,7 +19,7 @@ V1.0.8 于 2022 年 9 月 30 日发布。
 #### 新增特性
 
 - 新增聊天室自定义属性功能。
-- 在 `ChatOptions` 类中新增  `areaCode` 参数限制连接边缘节点的范围。
+- 在 `ChatOptions` 类中新增 `areaCode` 参数限制连接边缘节点的范围。
 - `ChatGroupOptions` 中增加 `isDisabled` 属性显示群组禁用状态，需要开发者在服务端设置。该属性在调用 `ChatGroupManager` 中的 `fetchGroupInfoFromServer` 方法获取群组详情时返回。
 
 #### 修复
