@@ -8,7 +8,7 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 ## Prerequisites
 
-Before proceeding, ensure that your development and run environment meet the following requirements:
+Before proceeding, ensure that your development and deployment environments meet the following requirements:
 
 - A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
 - An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
