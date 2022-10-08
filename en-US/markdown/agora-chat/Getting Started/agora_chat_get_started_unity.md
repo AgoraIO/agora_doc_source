@@ -104,7 +104,7 @@ If your Unity Editor version is inconsistent with that of the sample project, do
 
 ### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](here need to use latest 1.0.8 pacakge!!!), and download the latest version of the Agora Chat SDK package for Unity, and decompress it.
+1. Go to the [SDK download page](https://downloadsdk.easemob.com/downloads/SDK/Unity/Agora_Unity_Chat_SDK_1.0.5.unitypackage), and download the latest version of the Agora Chat SDK package for Unity, and decompress it.
 
 2. In Unity Editor, click **Assets** > **Import Package** > **Custom Package...**, and select the decompressed SDK.
 
@@ -121,8 +121,8 @@ In Unity Editor, select the **Project** tab, select **Assets** > **Scripts**, an
 At the top lines of the `TestCode.cs` file, add the following:
 
 ```c#
-using AgoraChat;
-using AgoraChat.MessageBody;
+using ChatSDK;
+using ChatSDK.MessageBody;
 ```
 
 ### 2. Initiate the SDK
@@ -131,7 +131,7 @@ In the `InitSDK` method, add the following to initialize the SDK:
 
 ```c#
 // Replaces APPKEY with your app key.
-Options options = new Options(APPKEY);
+Options options = new Options("APPKEY");
 options.UsingHttpsOnly = true;
 SDKClient.Instance.InitWithOptions(options);
 ```
