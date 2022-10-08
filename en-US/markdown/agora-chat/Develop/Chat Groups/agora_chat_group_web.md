@@ -78,7 +78,12 @@ Refer to the following sample code to join and leave a chat group:
 
 ```javascript
 // Call getJoinedGroups to retrieve the list of joined groups.
-conn.getJoinedGroups().then(res => console.log(res))
+conn.getJoinedGroups({
+                pageNum: 1,
+                pageSize: 500,
+                needAffiliations: true,
+                needRole: true
+})
 
 // Call getPublicGroups to list public groups by page.
 let limit = 20,
