@@ -1,5 +1,26 @@
 This page provides release notes for the Agora Chat SDK for C#.
 
+## v1.0.8
+
+V1.0.8 was released on September 30, 2022. 
+#### New features
+
+- Supports custom chat room attributes.
+- Adds the `areaCode` attribute to the `ChatOptions` class to restrict the scope of accessible edge nodes.
+- Adds the `isDisabled` attribute to the `ChatGroup` class to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `GetGroupSpecificationFromServer` method in `IGroupManager` to get group details.
+
+#### Improvements
+
+- Removed some redundant logs of the SDK.
+- Changed the namespace from ChatSDK to AgoraChat.
+
+#### Bugs fixed
+
+- Failures in getting a large number of messages from the server in rare scenarios.
+- The issue of incorrect data statistics.
+- Crashes caused by log printing in rare scenarios.
+- The issue that the connection listener occasionally fails to receive connection callbacks.
+
 ## v1.0.5
 
 v1.0.5 was released on August 12, 2022.
