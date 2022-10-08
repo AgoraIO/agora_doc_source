@@ -76,7 +76,7 @@ This section shows how to prepare the development environment necessary to integ
 
 ### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](here need to user latest 1.0.8 package!!!) to download the NuGet package to your local device.
+1. Go to the [SDK download page](https://downloadsdk.easemob.com/downloads/SDK/WinSDK/agora_chat_sdk.1.0.2-beta.nupkg) to download the NuGet package to your local device.
 
 2. In **Solution Explorer** of **Visual Studio**, right-click **windows-example**, and select **Manage NuGet Packages...** in the drop-down menu.
 
@@ -108,8 +108,8 @@ A <code>JsonConvert.Undefined</code> error occurs when Newtonsoft.Json has not b
 At the top lines of the `MainWindow.xaml.cs` file, add the following:
 
 ```c#
-using AgoraChat;
-using AgoraChat.MessageBody;
+using ChatSDK;
+using ChatSDK.MessageBody;
 ```
 
 ### 2. Initialize the SDK
@@ -129,7 +129,7 @@ At the end of the `SignIn_Click` function, add the following to add the login lo
 
 ```c#
 // Call `LoginWithAgoraToken` to log in to the Chat service with username and Agora token.
-SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, AgoraToken.Text, handle: new CallBack(
+SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, AgoraTokenBox.Text, handle: new CallBack(
     onSuccess: () =>
     {
         AddLogToLogText("sign in sdk succeed");
@@ -164,7 +164,7 @@ At the end of the `SendBtn_Click` function, add the following to add the creatin
 
 ```c#
 Message msg = Message.CreateTextSendMessage(SingleChatIdTextBox.Text, MessageContentTextBox.Text);
-    SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
+SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(
     onSuccess: () =>
     {
         // The success callback uses the System.Windows.Threading.Dispatcher to invoke UI elements `SingleChatIdTextBox.Text` and `MessageContentTextBox.Text`.
@@ -259,10 +259,6 @@ public void OnConversationsUpdate()
 }
 
 public void OnConversationRead(string from, string to)
-{
-}
-
-public void MessageReactionDidChange(List<MessageReactionChange> list)
 {
 }
 ```
