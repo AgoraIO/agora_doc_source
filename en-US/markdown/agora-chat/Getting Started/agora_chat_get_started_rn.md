@@ -487,7 +487,7 @@ If the project runs properly, the following user interface appears:
 
 ## Test your app
 
-<div class="alert note">You can log in to the app by either modifying the fields in the <code>App.js</code> as stated below, or entering the required fields in the user interface.</div>
+<div class="alert note">You can log in to the app by either modifying the fields in the <code>App.js</code> file as stated below, or entering the required fields in the user interface.</div>
 
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
