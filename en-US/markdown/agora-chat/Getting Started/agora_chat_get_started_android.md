@@ -253,6 +253,7 @@ To enable your app to send and receive messages between individual users, do the
    import android.text.TextUtils;
    import android.text.method.ScrollingMovementMethod;
    import android.view.View;
+   import android.widget.EditText;
    import android.widget.TextView;
    import android.widget.Toast;
    import java.text.SimpleDateFormat;
@@ -269,7 +270,7 @@ To enable your app to send and receive messages between individual users, do the
 2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` funtion created by default.
 
    ```java
-   // Create a user from Agora Console or by your app server
+   // Creates a user from Agora Console or by your app server
    private static final String USERNAME = "<Your username>";
    // Gets token from Agora Console or generates by your app server
    private static final String TOKEN = "<Your token>";
@@ -280,7 +281,7 @@ To enable your app to send and receive messages between individual users, do the
    protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_main);
-       // Add methods for initialization and listen for message and connection events.
+       // Adds methods for initialization and listen for message and connection events.
        initView();
        initSDK();
        addMessageListener();
@@ -291,11 +292,11 @@ To enable your app to send and receive messages between individual users, do the
 3. Initialize the view and the app. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `onCreate` function: 
 
    ```java
-   // Initialize the view.
+   // Initializes the view.
    private void initView() {
        ((TextView)findViewById(R.id.tv_log)).setMovementMethod(new ScrollingMovementMethod());
    }
-   // Initialize the SDK.
+   // Initializes the SDK.
    private void initSDK() {
        ChatOptions options = new ChatOptions();
        // Get your appkey applied from Agora Console
@@ -303,13 +304,13 @@ To enable your app to send and receive messages between individual users, do the
            Toast.makeText(MainActivity.this, "You should set your AppKey first!", Toast.LENGTH_SHORT).show();
            return;
        }
-       // Set your appkey to options
+       // Sets your appkey to options
        options.setAppKey(APP_KEY);
        // To initialize Agora Chat SDK
        ChatClient.getInstance().init(this, options);
-       // Make Agora Chat SDK debuggable
+       // Makes Agora Chat SDK debuggable
        ChatClient.getInstance().setDebugMode(true);
-       // Show current user
+       // Shows current user
        ((TextView)findViewById(R.id.tv_username)).setText("Current user: "+USERNAME);
    }
    ```
@@ -318,7 +319,7 @@ To enable your app to send and receive messages between individual users, do the
 
    ```java
    private void initListener() {
-       // Add message events callbacks.
+       // Adds message events callbacks.
        ChatClient.getInstance().chatManager().addMessageListener(messages -> {
            for(ChatMessage message : messages) {
                StringBuilder builder = new StringBuilder();
@@ -331,7 +332,7 @@ To enable your app to send and receive messages between individual users, do the
                showLog(builder.toString(), false);
            }
        });
-       // Add connection events callbacks.
+       // Adds connection events callbacks.
        ChatClient.getInstance().addConnectionListener(new ConnectionListener() {
            @Override
            public void onConnected() {
@@ -360,16 +361,12 @@ To enable your app to send and receive messages between individual users, do the
           }
       });
    }
-   
-       public void execute(Runnable runnable) {
-           new Thread(runnable).start();
-       }
    ```
 
-5. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
+5. Log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
-   // Log in with Token.
+   // Logs in with Token.
    public void signInWithToken(View view) {
        loginToAgora();
    }
@@ -392,7 +389,7 @@ To enable your app to send and receive messages between individual users, do the
        });
    }
    
-   // Sign out.
+   // Signs out.
    public void signOut(View view) {
        if(ChatClient.getInstance().isLoggedInBefore()) {
            ChatClient.getInstance().logout(true, new CallBack() {
@@ -405,15 +402,6 @@ To enable your app to send and receive messages between individual users, do the
                public void onError(int code, String error) {
                    showLog(error, true);
                }
-           String preContent = tvLog.getText().toString().trim();
-           StringBuilder builder = new StringBuilder();
-           builder.append(formatCurrentTime())
-                   .append(" ")
-                   .append(content)
-                   .append("\n")
-                   .append(preContent);
-           tvLog.post(()-> {
-               tvLog.setText(builder);
            });
        }else {
            showLog("You were not logged in", false);
@@ -424,13 +412,13 @@ To enable your app to send and receive messages between individual users, do the
 6. Start a chat. To enable the function of sending messages, add the following lines after the `signOut` function:
 
    ```java
-   // Send your first message.
+   // Sends your first message.
    public void sendFirstMessage(View view) {
        String toSendName = ((EditText)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
        String content = ((EditText)findViewById(R.id.et_msg_content)).getText().toString().trim();
-       // Create a text message
+       // Creates a text message
        ChatMessage message = ChatMessage.createTextSendMessage(content, toSendName);
-       // Set the message callback before sending the message
+       // Sets the message callback before sending the message
        message.setMessageStatusCallback(new CallBack() {
            @Override
            public void onSuccess() {
@@ -442,15 +430,15 @@ To enable your app to send and receive messages between individual users, do the
                showLog(error, true);
            }
        });
-       // Send the message
+       // Sends the message
        ChatClient.getInstance().chatManager().sendMessage(message);
    }
    ```
 
-7. Show log. To show log, add the following lines after the `sendFirstMessage` function:
+7. Show logs. To show logs, add the following lines after the `sendFirstMessage` function:
 
    ```java
-   // Show log.
+   // Shows logs.
    private void showLog(String content, boolean showToast) {
        if(TextUtils.isEmpty(content)) {
            return;
@@ -478,15 +466,15 @@ To validate the peer-to-peer messaging you have just integrated into your app us
 1. In Android Studio, click `Run 'app'`.
 
    You see the following interface on your simulator or physical device: 
-   ![](../images/android-sdk-quick-start1.png)
+   ![](../images/android_sdk_quick_start-1.png)
 
 2. Sign in with the user account and send a message.
-   ![](../images/android-sdk-quick-start2.png)
+   ![](../images/android_sdk_quick_start-2.png)
 
 3. Run the app on another Android device or simulator with another user account. Ensure that the usernames are unique.
 
 4. Send messages between the users.
-   ![](../images/android-sdk-quick-start3.png)
+   ![](../images/android_sdk_quick_start-3.png)
 
 ## Next Steps
 
