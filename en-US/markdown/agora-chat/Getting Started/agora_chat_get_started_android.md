@@ -244,7 +244,8 @@ To make this step easier to test, use the temporary token server "https://a41.ch
 
 To enable your app to send and receive messages between individual users, do the following:
 
-1. Import classes. In  `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after `import android.os.Bundle;` :
+1. Import classes.  
+In  `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after `import android.os.Bundle;` :
 
    ```java
    import android.text.TextUtils;
@@ -265,7 +266,8 @@ To enable your app to send and receive messages between individual users, do the
    
 <a name="sign-in"></a>
 
-2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
+2. Define global variables.  
+In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
 
    ```java
    // Replaces <Your username>, <Your token>, and <Your AppKey> with your own App Key, user ID, and user token generated in Agora Console.
@@ -283,7 +285,8 @@ To enable your app to send and receive messages between individual users, do the
    }
    ```
    
-3. Initialize the view and the app. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `onCreate` function: 
+3. Initialize the view and the app.  
+In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `onCreate` function: 
 
    ```java
    // Initializes the view.
@@ -309,7 +312,8 @@ To enable your app to send and receive messages between individual users, do the
    }
    ```
 
-4. Add event callbacks. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initSDK` function:
+4. Add event callbacks.  
+In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initSDK` function:
 
    ```java
    private void initListener() {
@@ -357,7 +361,8 @@ To enable your app to send and receive messages between individual users, do the
    }
    ```
 
-5. Create a user account, log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
+5. Create a user account and log in to the app.  
+To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
    // Logs in with a token.
@@ -402,7 +407,8 @@ To enable your app to send and receive messages between individual users, do the
    }
    ```
 
-6. Start a chat. To enable the function of sending messages, add the following lines after the `signOut` function:
+6. Start a chat.  
+To enable the function of sending messages, add the following lines after the `signOut` function:
 
    ```java
    // Sends the first message.
@@ -429,7 +435,8 @@ To enable your app to send and receive messages between individual users, do the
    }
    ```
 
-7. Show logs. To show logs, add the following lines after the `sendFirstMessage` function:
+7. Show logs.  
+To show logs, add the following lines after the `sendFirstMessage` function:
 
    ```java
    // Shows logs.
@@ -451,7 +458,7 @@ To enable your app to send and receive messages between individual users, do the
    }
    ```
 
-8. Click `Sync Project with Gradle Files` to sync your project. Now you are ready to test your app.
+8. Click **Sync Project with Gradle Files** to sync your project. Now you are ready to test your app.
 
 
 ## Test your app
