@@ -1,5 +1,24 @@
 This page provides release notes for the Agora Chat Web SDK.
 
+## v1.0.6
+
+v1.0.6 was released on August 26, 2022.
+
+#### New Features
+
+- Adds disaster preparedness policies.
+- Adds `resourceId` to the group and chat room APIs to deliver event notifications to multiple devices of a user.
+- Adds the `needAffiliations` and `needRole` parameters to the `getJoinedGroups` method to return the number of group members and their roles.
+
+#### Improvements
+
+- Optimized communication protocols to reduce the data volume.
+- Added inline documents.
+
+#### Issues fixed
+
+Some type definition errors.
+
 ## v1.0.5
 
 v1.0.5 was released on Jul 22, 2022.
