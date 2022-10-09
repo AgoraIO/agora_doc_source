@@ -94,9 +94,11 @@ https://github.com/AgoraIO/AgoraChat_iOS.git
 You need a ViewController to create the UI controls you need.
 In `ViewController.swift`, replace the code with the following:
 
+<a name="sign-in"></a>
+
 ```swift
 class ViewController: UIViewController {
-    // Defines UIViews
+    // Defines UI views.
     var userIdField, tokenField, remoteUserIdField, textField: UITextField!
     var loginButton, logoutButton, sendButton: UIButton!
     var logView: UITextView!
@@ -122,7 +124,7 @@ class ViewController: UIViewController {
     }
 
     func initViews() {
-        // creates UI controls
+        // Creates UI controls.
         userIdField = createField(placeholder: "User Id")
         self.view.addSubview(userIdField)
         tokenField = createField(placeholder: "Token")
@@ -139,14 +141,14 @@ class ViewController: UIViewController {
         self.view.addSubview(sendButton)
         logView = createLogView()
         self.view.addSubview(logView)
-        // Input userId and token which generated on console
+        // Replaces <#Input Your UserId#> and <#Input Your Token#> with your own user ID and token generated in Agora Console.
         self.userIdField.text = <#Input Your UserId#>
         self.tokenField.text = <#Input Your Token#>
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Defines layout UI controls
+        // Defines layout UI controls.
         let fullWidth = self.view.frame.width
         userIdField.frame = CGRect(x: 30, y: 50, width: fullWidth - 60, height: 30)
         tokenField.frame = CGRect(x: 30, y: 100, width: fullWidth - 60, height: 30)
@@ -163,7 +165,7 @@ class ViewController: UIViewController {
         initViews()
     }
 
-    // Outputs running log
+    // Outputs running logs.
     func printLog(_ log: Any...) {
         DispatchQueue.main.async {
             self.logView.text.append(
@@ -187,36 +189,36 @@ Modify the `ViewController.swift` file as follows:
 
 ```swift
 import UIKit
-// Imports the Agora Chat SDK
+// Imports the Agora Chat SDK.
 import AgoraChat
 class ViewController: UIViewController {
     ...
     func initChatSDK() {
-        // Initializes the Agora Chat SDK
+        // Replaces <#Agora App Key#> with your own App Key.
+        // Initializes the Agora Chat SDK.
         let options = AgoraChatOptions(appkey: "<#Agora App Key#>")
-        options.isAutoLogin = false // disable auto login
+        options.isAutoLogin = false // Disables auto login.
         options.enableConsoleLog = true
         AgoraChatClient.shared.initializeSDK(with: options)
-        // Adds the chat delegate to receive messages
+        // Adds the chat delegate to receive messages.
         AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
     }
 
     override func viewDidLoad() {
         ...
-        // Calls the SDK initializing function here
+        // Calls the initialization function.
         initChatSDK()
     }
 }
 ```
 
 
-#### Create an account and login with token
+#### Log in with tokens
 
 ```swift
-// Button action
 extension ViewController {
 
-    // login with the token.
+    // Logs in with the token.
     @objc func loginAction() {
         guard let userId = self.userIdField.text,
               let token = self.tokenField.text else {
@@ -288,6 +290,8 @@ Use Xcode to compile and run the project on an iOS device or an simulator. If th
 
 ![](https://web-cdn.agora.io/docs-files/1665309003658)
 
+<div class="alert note">You can log in to the app by either entering the required fields in the user interface as stated below, or modifying the fields in the <a href="#sign-in"><code>ViewController.swift</code></a> file.</div>
+
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
 1. Log in  
@@ -318,7 +322,7 @@ For demonstration purposes, Agora Chat uses temporary tokens generated from Agor
 
 2. In the Terminal, navigate to the project root directory and run the `pod init` command to create a text file `Podfile` in the project folder.
 
-3. Open the `Podfile` file and add the Agora Chat SDK. Remember to replace `AgoraChatExample` with the target name of your project.
+3. Open the `Podfile` file and add the Agora Chat SDK. Remember to replace `Your project target` with the target name of your project.
 
    ```
    platform :ios, '11.0'
