@@ -84,6 +84,9 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
+<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+
+
 ## Project setup
 
 Follow these steps to create a React Native project and add Agora Chat into your app.
@@ -122,7 +125,7 @@ To send a one-to-one message, users must register a Chat account, log in to Agor
 Open `token_login_demo/App.js`, and replace the code with the following:
 
 ```javascript
-// Import depend packages.
+// Imports dependencies.
 import React, {useEffect} from 'react';
 import {
   SafeAreaView,
@@ -144,8 +147,8 @@ const App = () => {
   const title = 'AgoraChatQuickstart';
   // Replaces <your appKey> with your app key.
   const appKey = '<your appKey>';
-  // Replaces <your token> with your token.
-  const [username, setUsername] = React.useState('<your token>');
+  // Replaces <your agoraToken> with your token.
+  const [username, setUsername] = React.useState('<your agoraToken>');
   const [chatToken, setChatToken] = React.useState('');
   const [targetId, setTargetId] = React.useState('');
   const [content, setContent] = React.useState('');
@@ -468,8 +471,7 @@ To build and run the project on an Android device, take the following steps:
    yarn start
    ```
 
-5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
-
+5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.  
 <img src="https://web-cdn.agora.io/docs-files/1662546788690" width=50%>
 
 ## Test your app
