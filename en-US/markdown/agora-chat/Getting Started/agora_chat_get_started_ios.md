@@ -294,14 +294,14 @@ To validate the peer-to-peer messaging you have just integrated into your app us
 On your simulator or physical device, enter the user ID (lxm) and Agora token of the sender in the **User Id** and **Token** box respectively, and click **Login**.
 
 2. Send a message  
-Fill in the user ID of the receiver (Lxm2) in the **Remote User Id** box, type in the message ("Hello") to send in the **Input text message** box, and click **Send**.  
+Fill in the user ID of the receiver (lxm2) in the **Remote User Id** box, type in the message ("Hello") to send in the **Input text message** box, and click **Send**.  
 ![](https://web-cdn.agora.io/docs-files/1665309009543)
 
 3. Log out  
 Click **Logout** to log out of the sender account.
 
 4. Receive the message  
-After signing out, log in with the user ID and Agora token of the receiver (Lxm2) and receive the message "Hello" sent in step 2.  
+After signing out, log in with the user ID and Agora token of the receiver (lxm2) and receive the message "Hello" sent in step 2.  
 ![](https://web-cdn.agora.io/docs-files/1665309015042)
 
 
