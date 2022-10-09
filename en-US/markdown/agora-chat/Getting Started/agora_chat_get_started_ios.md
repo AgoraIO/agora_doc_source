@@ -5,6 +5,7 @@ This page shows how to add one-to-one messaging into your app by using the Agora
 
 ~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
+
 ## Prerequisites
 
 Before proceeding, ensure that your development environment meets the following requirements:
@@ -12,29 +13,79 @@ Before proceeding, ensure that your development environment meets the following 
 - Xcode. This page uses Xcode 13.0 as an example.
 - A device running iOS 10 or later.
 
+
+## Token generation
+
+This section introduces how to register a user at Agora Console and generate a temporary token.
+
+### 1. Register a user
+
+To register a user, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+<a name="userid"></a>
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
+
+
+### 2. Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+
+    
 ## Project setup
 
 In this section, we prepare the development environment necessary to integrate Agora Chat into your app.
 
-### Create an iOS project
+### 1. Create an iOS project
 
 In Xcode, follow the steps to create an iOS app project.
 
-- Open Xcode and click **Create a new Xcode project**.
+1. Open Xcode and click **Create a new Xcode project**.
 
-- Select **iOS** for the platform type and **App** for the project type and click **Next**.
+2. Select **iOS** for the platform type and **App** for the project type and click **Next**.
 
-- Choose **Storyboard** and **Swift** for this example, and create the project.
+3. Choose **Storyboard** and **Swift** for this example, and create the project.
 
-### Integrate the Agora Chat SDK
+### 2. Integrate the Agora Chat SDK
 
-Go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
+1. Go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
 
 ```text
 https://github.com/AgoraIO/AgoraChat_iOS.git
 ```
 
-In **Choose Package Options**, specify the Chat SDK version you want to use.
+2. In **Choose Package Options**, specify the Chat SDK version you want to use.
+
 
 ## Implement a one-to-one chat client
 
@@ -43,11 +94,13 @@ In **Choose Package Options**, specify the Chat SDK version you want to use.
 You need a ViewController to create the UI controls you need.
 In `ViewController.swift`, replace the code with the following:
 
+<a name="sign-in"></a>
+
 ```swift
 class ViewController: UIViewController {
-    // Defines UIViews
-    var userIdField, passwordField, remoteUserIdField, textField: UITextField!
-    var registerButton, loginButton, logoutButton, sendButton: UIButton!
+    // Defines UI views.
+    var userIdField, tokenField, remoteUserIdField, textField: UITextField!
+    var loginButton, logoutButton, sendButton: UIButton!
     var logView: UITextView!
 
     func createField(placeholder: String?) -> UITextField {
@@ -71,17 +124,15 @@ class ViewController: UIViewController {
     }
 
     func initViews() {
-        // creates UI controls
+        // Creates UI controls.
         userIdField = createField(placeholder: "User Id")
         self.view.addSubview(userIdField)
-        passwordField = createField(placeholder: "Password")
-        self.view.addSubview(passwordField)
+        tokenField = createField(placeholder: "Token")
+        self.view.addSubview(tokenField)
         remoteUserIdField = createField(placeholder: "Remote User Id")
         self.view.addSubview(remoteUserIdField)
         textField = createField(placeholder: "Input text message")
         self.view.addSubview(textField)
-        registerButton = createButton(title: "Register", action: #selector(registerAction))
-        self.view.addSubview(registerButton)
         loginButton = createButton(title: "Login", action: #selector(loginAction))
         self.view.addSubview(loginButton)
         logoutButton = createButton(title: "Logout", action: #selector(logoutAction))
@@ -90,16 +141,18 @@ class ViewController: UIViewController {
         self.view.addSubview(sendButton)
         logView = createLogView()
         self.view.addSubview(logView)
+        // Replaces <#Input Your UserId#> and <#Input Your Token#> with your own user ID and token generated in Agora Console.
+        self.userIdField.text = <#Input Your UserId#>
+        self.tokenField.text = <#Input Your Token#>
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Defines layout UI controls
+        // Defines layout UI controls.
         let fullWidth = self.view.frame.width
         userIdField.frame = CGRect(x: 30, y: 50, width: fullWidth - 60, height: 30)
-        passwordField.frame = CGRect(x: 30, y: 100, width: fullWidth - 60, height: 30)
-        registerButton.frame = CGRect(x: 30, y: 150, width: 80, height: 30)
-        loginButton.frame = CGRect(x: 130, y: 150, width: 80, height: 30)
+        tokenField.frame = CGRect(x: 30, y: 100, width: fullWidth - 60, height: 30)
+        loginButton.frame = CGRect(x: 30, y: 150, width: 80, height: 30)
         logoutButton.frame = CGRect(x: 230, y: 150, width: 80, height: 30)
         remoteUserIdField.frame = CGRect(x: 30, y: 200, width: fullWidth - 60, height: 30)
         textField.frame = CGRect(x: 30, y: 250, width: fullWidth - 60, height: 30)
@@ -112,7 +165,7 @@ class ViewController: UIViewController {
         initViews()
     }
 
-    // Outputs running log
+    // Outputs running logs.
     func printLog(_ log: Any...) {
         DispatchQueue.main.async {
             self.logView.text.append(
@@ -125,65 +178,6 @@ class ViewController: UIViewController {
 }
 ```
 
-The user interface is as the following screenshot shows.
-
-![](https://web-cdn.agora.io/docs-files/1660820049438)
-
-### Retrieve a token
-
-When fetching a token, your token server may differ slightly from our example backend service logic.
-
-To make this step easier to test, use the temporary token server `"https://a41.chat.agora.io"` provided by Agora in the placeholder below. When you're ready to deploy your own server, swap out your server's URL there, and update any of the POST request logic along with that.
-
-<div class="alert info">If you have already got an account and user token, you can ignore this section and go to the next.</div>
-
-Add a file named `AgoraChatHttpRequest.swift` to your project, and copy the following code to the file.
-
-```swift
-import UIKit
-class AgoraChatHttpRequest: NSObject {
-    static var baseUrl = "<#Developer Token Server#>"
-    static var session = URLSession(configuration: URLSessionConfiguration.default)
-
-    // Registers a user ID via the app server
-    static func register(userId: String, password: String, completion: @escaping (String) -> Void) {
-        guard let url = URL(string: AgoraChatHttpRequest.baseUrl + "/app/chat/user/register") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["Content-Type": "application/json"]
-        request.httpMethod = "POST"
-        let params = ["userAccount": userId, "userPassword": password]
-        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        AgoraChatHttpRequest.session.dataTask(with: request) { data, response, err in
-            guard let data = data else {
-                completion("")
-                return
-            }
-            completion(String(data: data, encoding: .utf8) ?? "")
-        }.resume()
-    }
-
-    // Fetches a user token via the app server
-    static func loginWith(userId: String, password: String, completion: @escaping (String) -> Void) {
-        guard let url = URL(string: AgoraChatHttpRequest.baseUrl + "/app/chat/user/login") else {
-            return
-        }
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = ["Content-Type": "application/json"]
-        request.httpMethod = "POST"
-        let params = ["userAccount": userId,"userPassword": password]
-        request.httpBody = try! JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
-        AgoraChatHttpRequest.session.dataTask(with: request) { data, response, err in
-            guard let data = data else {
-                completion("")
-                return
-            }
-            completion(String(data: data, encoding: .utf8) ?? "")
-        }.resume()
-    }
-}
-```
 
 ### Implement the chat logic
 
@@ -195,67 +189,47 @@ Modify the `ViewController.swift` file as follows:
 
 ```swift
 import UIKit
-// Imports the Agora Chat SDK
+// Imports the Agora Chat SDK.
 import AgoraChat
 class ViewController: UIViewController {
     ...
     func initChatSDK() {
-        // Initializes the Agora Chat SDK
+        // Replaces <#Agora App Key#> with your own App Key.
+        // Initializes the Agora Chat SDK.
         let options = AgoraChatOptions(appkey: "<#Agora App Key#>")
-        options.isAutoLogin = false // disable auto login
+        options.isAutoLogin = false // Disables auto login.
         options.enableConsoleLog = true
         AgoraChatClient.shared.initializeSDK(with: options)
-        // Adds the chat delegate to receive messages
-        AgoraChatClient.shared.chatManager.add(self, delegateQueue: nil)
+        // Adds the chat delegate to receive messages.
+        AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
     }
 
     override func viewDidLoad() {
         ...
-        // Calls the SDK initializing function here
+        // Calls the initialization function.
         initChatSDK()
     }
 }
 ```
 
 
-#### Create an account and login with token
+#### Log in with tokens
 
 ```swift
-// Button action
 extension ViewController {
 
-    // Register an account via the app server.
-    @objc func registerAction() {
-        guard let userId = userIdField.text, let password = passwordField.text else {
-            return
-        }
-        AgoraChatHttpRequest.register(userId: userId, password: password) { result in
-            if result.isEmpty {
-                self.printLog("register failed")
-            } else {
-                self.printLog("register result:\(result)")
-            }
-        }
-    }
-
-    // Get a user token via the app server and login with the token.
+    // Logs in with the token.
     @objc func loginAction() {
-        guard let userId = userIdField.text, let password = passwordField.text else {
-            return
+        guard let userId = self.userIdField.text,
+              let token = self.tokenField.text else {
+            self.printLog("userId or token is empty")
+            return;
         }
-        AgoraChatHttpRequest.loginWith(userId: userId, password: password) { result in
-            guard let data = result.data(using: .utf8),
-                  let dic: Dictionary<String, AnyHashable> = try? JSONSerialization.jsonObject(with: data) as? Dictionary<String, AnyHashable>,
-                  let token = dic["accessToken"] else {
-                self.printLog("login failed \(result)")
-                return
-            }
-            let err = AgoraChatClient.shared.login(withUsername: userId, agoraToken: token as! String)
-            if err == nil {
-                self.printLog("login success")
-            } else {
-                self.printLog("login failed:\(err?.errorDescription ?? "")")
-            }
+        let err = AgoraChatClient.shared.login(withUsername: userId, agoraToken: token)
+        if err == nil {
+            self.printLog("login success")
+        } else {
+            self.printLog("login failed:\(err?.errorDescription ?? "")")
         }
     }
 
@@ -286,7 +260,7 @@ extension ViewController: AgoraChatManagerDelegate  {
             conversationId: remoteUser, from: currentUserName,
             to: remoteUser, body: .text(text), ext: nil
         )
-        AgoraChatClient.shared.chatManager.send(msg, progress: nil) { msg, err in
+        AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { msg, err in
             if let err = err {
                 self.printLog("send msg error.\(err.errorDescription)")
             } else {
@@ -307,24 +281,37 @@ extension ViewController: AgoraChatManagerDelegate  {
 }
 ```
 
+
+<a name="test"></a>
+
 ## Run and test the project
 
-Use Xcode to compile and run the project on an iOS device or an emulator.
-To try sending and receiving text messages, follow the steps on two clients:
+Use Xcode to compile and run the project on an iOS device or an simulator. If the project runs properly, the following user interface appears:
 
-1. Enter a user ID (such as `Localuser` and `Remoteuser`) and a password (such as `123456`), and click `Register` on each client to create two Agora Chat users.
+![](https://web-cdn.agora.io/docs-files/1665309003658)
 
-2. Log into Agora Chat as `Localuser`, type `Remoteuser` for `Peer username`, and send a text message.
+<div class="alert note">You can log in to the app by either entering the required fields in the user interface as stated below, or modifying the fields in the <a href="#sign-in"><code>ViewController.swift</code></a> file.</div>
 
-  ![](https://web-cdn.agora.io/docs-files/1660820074702)
+To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
-3. Log into Agora Chat as `Remoteuser` and check logs to see whether this message is received.
+1. Log in  
+On your simulator or physical device, enter the user ID (lxm) and Agora token of the sender in the **User Id** and **Token** box respectively, and click **Login**.
 
-  ![](https://web-cdn.agora.io/docs-files/1660820085593)
+2. Send a message  
+Fill in the user ID of the receiver (lxm2) in the **Remote User Id** box, type in the message ("Hello") to send in the **Input text message** box, and click **Send**.  
+![](https://web-cdn.agora.io/docs-files/1665309009543)
+
+3. Log out  
+Click **Logout** to log out of the sender account.
+
+4. Receive the message  
+After signing out, log in with the user ID and Agora token of the receiver (lxm2) and receive the message "Hello" sent in step 2.  
+![](https://web-cdn.agora.io/docs-files/1665309015042)
+
 
 ## Next steps
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=iOS#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=All%20Platforms).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
 
 
 ## Other approaches to integrate the SDK
@@ -335,7 +322,7 @@ For demonstration purposes, Agora Chat provides an app server that enables you t
 
 2. In the Terminal, navigate to the project root directory and run the `pod init` command to create a text file `Podfile` in the project folder.
 
-3. Open the `Podfile` file and add the Agora Chat SDK. Remember to replace `AgoraChatExample` with the target name of your project.
+3. Open the `Podfile` file and add the Agora Chat SDK. Remember to replace `Your project target` with the target name of your project.
 
    ```
    platform :ios, '11.0'
@@ -362,6 +349,7 @@ For demonstration purposes, Agora Chat provides an app server that enables you t
 3. Open Xcode and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 
 4. Click **+ > Add Other… > Add Files** to add `AgoraChat.framework` and set the **Embed** property to **Embed & Sign**. Then the project automatically links to the required system library.
+
 
 ## Reference
 
