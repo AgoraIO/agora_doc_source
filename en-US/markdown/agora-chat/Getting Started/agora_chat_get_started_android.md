@@ -251,6 +251,7 @@ In  `app/java/io.agora.agorachatquickstart/MainActivity`, add the following line
    import android.text.TextUtils;
    import android.text.method.ScrollingMovementMethod;
    import android.view.View;
+   import android.widget.EditText;
    import android.widget.TextView;
    import android.widget.Toast;
    import java.text.SimpleDateFormat;
@@ -401,6 +402,7 @@ To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`
                public void onError(int code, String error) {
                    showLog(error, true);
                }
+           });
        }else {
            showLog("You were not logged in", false);
        }
