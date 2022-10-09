@@ -122,6 +122,8 @@ This section introduces the codes you need to add to your project to start one-t
 
 To send a one-to-one message, users must register a Chat account, log in to Agora Chat, and send a text message.
 
+<a name="sign-in"></a>
+
 Open `token_login_demo/App.js`, and replace the code with the following:
 
 ```javascript
@@ -147,9 +149,10 @@ const App = () => {
   const title = 'AgoraChatQuickstart';
   // Replaces <your appKey> with your app key.
   const appKey = '<your appKey>';
-  // Replaces <your agoraToken> with your token.
-  const [username, setUsername] = React.useState('<your agoraToken>');
-  const [chatToken, setChatToken] = React.useState('');
+  // Replaces <your userId> with your user ID.
+  const [username, setUsername] = React.useState('<your userId>');
+  // Replaces <your agoraToken> with your Agora token.
+  const [chatToken, setChatToken] = React.useState('<your agoraToken>');
   const [targetId, setTargetId] = React.useState('');
   const [content, setContent] = React.useState('');
   const [logText, setWarnText] = React.useState('Show log area');
@@ -443,6 +446,8 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
+<a name="build"></a>
+
 ### Build and run your project
 
 You are now ready to build and run the project you have built.
@@ -452,13 +457,13 @@ To build and run the project on an iOS device, take the following steps:
 1. Connect an iPhone device to your computer, and set the device to Developer mode.
 2. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
 3. In **Targets** > **token_login_demo** > **Signing & Capabilities**, set the signing of the project.
-4. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on your device. You see the app user interface.
+4. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on your device.
 
 To build and run the project on an iOS virtual device, take the following steps:
 
 1. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
 2. In Xcode, set `iPhone 13` as the iOS simulator.
-3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulator. You see the app user interface.
+3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulator.
 
 To build and run the project on an Android device, take the following steps:
 
@@ -471,19 +476,37 @@ To build and run the project on an Android device, take the following steps:
    yarn start
    ```
 
-5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.  
-<img src="https://web-cdn.agora.io/docs-files/1662546788690" width=50%>
+5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. 
+
+If the project runs properly, the following user interface appears:
+
+![](https://web-cdn.agora.io/docs-files/1665304069738)
+
+
+<a name="test"></a>
 
 ## Test your app
 
-Refer to the following steps to register a Chat account, log in to Agora Chat and send and receive a message.
+<div class="alert note">You can log in to the app by either modifying the fields in the <code>App.js</code> as stated below, or entering the required fields in the user interface.</div>
 
-1. On one device or simulator, enter a username and password, and click **SIGN UP** to register a Chat account.
-2. Click **SIGN IN** to log in to Agora Chat.
-3. On a second device or simulator, repeat the above steps to create another account and log in to Agora Chat. Ensure that you use a different user ID (username) on this device or simulator.
-4. From the first device or simulator, enter the username you set in step 3, type in the text message you want to send, and click **SEND TEXT**. You can receive the text message on the other device or simulator.
+To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
-You can also read from the logs on the UI to see whether you have successfully signed up, signed in, and sent a text message.
+1. Log in  
+a. In the [`App.js`](#sign-in) file, replace the placeholders of `appKey`, `username`, and `chatToken` with the App Key, user ID, and Agora token of the sender.  
+b. Run and [build](#build) your app.  
+c. On your simulator or physical device, click **SIGN IN** to log in with the sender account.
+
+2. Send a message  
+Fill in the user ID of the receiver in the **Enter the username you want to send** box, type in te message to send in the **Enter content** box, and click **SEND TEXT** to send the message.
+
+3. Log out  
+Click **SIGN OUT** to log out of the sender account.
+
+4. Receive the message  
+a. After signing out, change the values of `appKey`, `username`, and `chatToken` to the user ID, Agora token, and App Key of the receiver in the [`App.js`](#sign-in) file.  
+b. Run the app on another device or simulator with the receiver account and receive the message sent in step 2.
+
+You can also read from the logs on the UI to see whether you have successfully signed in, signed out, and sent and received a text message.
 
 ## Next steps
 

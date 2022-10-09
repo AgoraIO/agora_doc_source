@@ -466,7 +466,7 @@ To show logs, add the following lines after the `sendFirstMessage` function:
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
 1. Log in  
-a. In the [`MainActivity`](#sign-in) file, replace the placeholders of `USERNAME`, `TOKEN`, and `APP_KEY` to the user Id, Agora token, and App Key of the sender (Som).  
+a. In the [`MainActivity`](#sign-in) file, replace the placeholders of `USERNAME`, `TOKEN`, and `APP_KEY` with the user Id, Agora token, and App Key of the sender (Som).  
 b. In **Android Studio**, select the device to run the project and click **Run 'app'**.  
 c. On your simulator or physical device, click **SIGN IN** to log in with the sender account.
     ![](https://web-cdn.agora.io/docs-files/1665302124510)
