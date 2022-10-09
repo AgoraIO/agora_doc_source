@@ -5,6 +5,7 @@ This page shows how to add one-to-one messaging into your app by using the Agora
 
 ~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
+
 ## Prerequisites
 
 Before proceeding, ensure that your development environment meets the following requirements:
@@ -12,66 +13,79 @@ Before proceeding, ensure that your development environment meets the following 
 - Xcode. This page uses Xcode 13.0 as an example.
 - A device running iOS 10 or later.
 
+
 ## Token generation
 
- This section describes how to register a user at Agora Console and generate a temporary token.
+This section introduces how to register a user at Agora Console and generate a temporary token.
 
- ### Register a user
+### 1. Register a user
 
- To generate a user ID, do the following:
+To register a user, do the following:
 
- 1. On the **Project Management** page, click **Config** for the project you want to use.
+1. On the **Project Management** page, click **Config** for the project that you want to use.
 
- ![](./../images/getStart/step1.png)
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
 
- 2. Click **Config** for **Chat(Beta)** under **Features**.
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
 
- ![](../images/getStart/step2.png)
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
- 3. Click **Create User** on the **User** page under **Operation Management**.
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
 
- ![](../images/getStart/create_user.png)
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
 
- 4. Fill in the user information and click **Save** to create a user.
+<a name="userid"></a>
 
- ![](../images/getStart/create_user2.png)
- 
- ### Generate a user token
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
 
- To ensure communication security, Agora recommends using tokens to authenticate users logging in to an Agora Chat system.
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
 
- For testing purposes, Agora Console supports generating Agora chat tokens. To generate an Agora chat token, do the following:
 
- 1. On the **Project Management** page, click **Config** for the project you want to use.
-    ![](../images/getStart/step1.png)
- 2. Click **Config** for **Chat(Beta)** under **Features** to open the **Application Information** page.
-    ![](../images/getStart/step2.png)
- 3. Under **Data Center**, enter the user ID in the **Chat User Temp Token** text box and click `Generate` to generate a token with user privileges.
-    ![](../images/getStart/generate_token2.png)
+### 2. Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+
     
 ## Project setup
 
 In this section, we prepare the development environment necessary to integrate Agora Chat into your app.
 
-### Create an iOS project
+### 1. Create an iOS project
 
 In Xcode, follow the steps to create an iOS app project.
 
-- Open Xcode and click **Create a new Xcode project**.
+1. Open Xcode and click **Create a new Xcode project**.
 
-- Select **iOS** for the platform type and **App** for the project type and click **Next**.
+2. Select **iOS** for the platform type and **App** for the project type and click **Next**.
 
-- Choose **Storyboard** and **Swift** for this example, and create the project.
+3. Choose **Storyboard** and **Swift** for this example, and create the project.
 
-### Integrate the Agora Chat SDK
+### 2. Integrate the Agora Chat SDK
 
-Go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
+1. Go to **File > Swift Packages > Add Package Dependencies...**, and paste the following URL:
 
 ```text
 https://github.com/AgoraIO/AgoraChat_iOS.git
 ```
 
-In **Choose Package Options**, specify the Chat SDK version you want to use.
+2. In **Choose Package Options**, specify the Chat SDK version you want to use.
+
 
 ## Implement a one-to-one chat client
 
@@ -161,10 +175,6 @@ class ViewController: UIViewController {
     }
 }
 ```
-
-The user interface is as the following screenshot shows.
-
-![](../images/getStart/iOS/start.png)
 
 
 ### Implement the chat logic
@@ -269,23 +279,35 @@ extension ViewController: AgoraChatManagerDelegate  {
 }
 ```
 
+
+<a name="test"></a>
+
 ## Run and test the project
 
-Use Xcode to compile and run the project on an iOS device or an emulator.
-To try sending and receiving text messages, follow the steps on two clients:
+Use Xcode to compile and run the project on an iOS device or an simulator. If the project runs properly, the following user interface appears:
 
+![](https://web-cdn.agora.io/docs-files/1665309003658)
 
-1. Log into Agora Chat as `lxm`, type `lxm2` for `Peer username`, and send a text message.
+To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
-  ![](../images/getStart/iOS/send.png)
+1. Log in  
+On your simulator or physical device, enter the user ID (lxm) and Agora token of the sender in the **User Id** and **Token** box respectively, and click **Login**.
 
-2. Log into Agora Chat as `lxm2` and check logs to see whether this message is received.
+2. Send a message  
+Fill in the user ID of the receiver (Lxm2) in the **Remote User Id** box, type in the message ("Hello") to send in the **Input text message** box, and click **Send**.  
+![](https://web-cdn.agora.io/docs-files/1665309009543)
 
-  ![](../images/getStart/iOS/receive.png)
+3. Log out  
+Click **Logout** to log out of the sender account.
+
+4. Receive the message  
+After signing out, log in with the user ID and Agora token of the receiver (Lxm2) and receive the message "Hello" sent in step 2.  
+![](https://web-cdn.agora.io/docs-files/1665309015042)
+
 
 ## Next steps
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=iOS#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=All%20Platforms).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
 
 
 ## Other approaches to integrate the SDK
@@ -323,6 +345,7 @@ For demonstration purposes, Agora Chat provides an app server that enables you t
 3. Open Xcode and navigate to **TARGETS > Project Name > General > Frameworks, Libraries, and Embedded Content**.
 
 4. Click **+ > Add Other… > Add Files** to add `AgoraChat.framework` and set the **Embed** property to **Embed & Sign**. Then the project automatically links to the required system library.
+
 
 ## Reference
 
