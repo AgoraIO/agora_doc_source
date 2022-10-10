@@ -9,6 +9,11 @@ This page shows a sample code to add peer-to-peer messaging into an app by using
 
 ## Prerequisites
 
+In order to follow the procedure in this page, you must have the following:
+
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
+
 If your target platform is iOS, your development environment must meet the following requirements:
 - Flutter 2.10 or later
 - Dart 2.16 or later
@@ -68,11 +73,11 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
-<div class="alert note">Register two users and generate temporary user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
 
 
 ## Project setup
@@ -114,16 +119,9 @@ android {
 
 Open a terminal, enter the `quick_start` directory, and run the following command to add the `agora_chat_sdk` dependency:
 
-```sh
-import 'package:flutter/material.dart';
-import 'package:agora_chat_sdk/agora_chat_sdk.dart';
-
-// Replaces <#Your app key#>, <#Your created user#>, and <#User Token#> and with your own App Key, user ID, and user token generated in Agora Console.
-class AgoraChatConfig {
-  static const String appKey = "<#Your app key#>";
-  static const String userId = "<#Your created user#>";
-  static const String agoraToken = "<#User Token#>";
-}
+```
+flutter pub add agora_chat_sdk
+flutter pub get
 ```
 
 
@@ -131,10 +129,13 @@ class AgoraChatConfig {
 
 At the top lines of the `quick_start/lib/main.dart` file, add the following to import packages:
 
+<a name="sign-in"></a>
+
 ```dart
 import 'package:flutter/material.dart';
 import 'package:agora_chat_sdk/agora_chat_sdk.dart';
 
+// Replaces <#Your app key#>, <#Your created user#>, and <#User Token#> and with your own App Key, user ID, and user token generated in Agora Console.
 class AgoraChatConfig {
   static const String appKey = "<#Your app key#>";
   static const String userId = "<#Your created user#>";
@@ -281,15 +282,15 @@ In the `_signIn` method, add the following to add the login logic:
 
 ```dart
     void _signIn() async {
-    try {
-      await ChatClient.getInstance.loginWithAgoraToken(
-        AgoraChatConfig.userId,
-        AgoraChatConfig.agoraToken,
-      );
-      _addLogToConsole("login succeed, userId: ${AgoraChatConfig.userId}");
-    } on ChatError catch (e) {
-      _addLogToConsole("login failed, code: ${e.code}, desc: ${e.description}");
-    }
+      try {
+        await ChatClient.getInstance.loginWithAgoraToken(
+          AgoraChatConfig.userId,
+          AgoraChatConfig.agoraToken,
+        );
+        _addLogToConsole("login succeed, userId: ${AgoraChatConfig.userId}");
+      } on ChatError catch (e) {
+        _addLogToConsole("login failed, code: ${e.code}, desc: ${e.description}");
+      }
   }
 ```
 
@@ -340,7 +341,7 @@ In the `_sendMessage` method, add the following to add the creating and sending 
 
 ### 5. Receive messages
 
-1. Add the following handle event in your class:
+1. Add the following callback events in your class:
 
 ```dart
   void onMessagesReceived(List<ChatMessage> messages) {
@@ -431,28 +432,28 @@ In the `_sendMessage` method, add the following to add the creating and sending 
 
 ## Run and test the project
 
-Perform the following operations to test the project:
+To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations to test the project:
 
-1. Log in
-Replace the placeholders of `appKey`, `userId`, and `agoraToken` in the `AgoraChatConfig` class to the App Key, user Id, and Agora token of the sender.  
-Select the device to run the project, run `flutter run` in the `quick_start` directory, and click the **SIGN IN** button.
+1. Log in  
+a. Replace the placeholders of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class with the App Key, user ID, and Agora token of the sender (`flutter001`).  
+b. Select the device to run the project, run `flutter run` in the `quick_start` directory, and click the **SIGN IN** button.
 
-2. Send a message
-Fill in the user ID of the receiver (flutter002) in the **Enter recipient's user Id** box, type in the message ("hello") to send in the **Enter message** box, and click **SEND TEXT** to send the message.  
+2. Send a message  
+Fill in the user ID of the receiver (`flutter002`) in the **Enter recipient's user Id** box, type in the message ("hello") to send in the **Enter message** box, and click **SEND TEXT** to send the message.  
 ![](https://web-cdn.agora.io/docs-files/1665225309901)
 
-3. Log out
+3. Log out  
 Click **SIGN OUT** to log out of the sender account.
 
-4. Receive the message
-After signing out, change the values of `appKey`, `userId`, and `agoraToken` in the `AgoraChatConfig` class to the App Key, user ID, and Agora token of the receiver.  
-Select the device to run the project, run `flutter run` in the `quick_start` directory, and receive the message "hello" sent in step 2. You can check the log to see all the operations from this example, as shown in the following figure:  
+4. Receive the message  
+a. After signing out, change the values of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class to the App Key, user ID, and Agora token of the receiver (`flutter002`).  
+b. Select the device to run the project, run `flutter run` in the `quick_start` directory, and receive the message "hello" sent in step 2.   
 ![](https://web-cdn.agora.io/docs-files/1665225339286)
 
 
 ## Next steps
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to the Agora Chat service. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
 
 
 

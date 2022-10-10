@@ -8,8 +8,10 @@ This page shows how to add one-to-one messaging into your app by using the Agora
 
 ## Prerequisites
 
-Before proceeding, ensure that your development environment meets the following requirements:
+In order to follow the procedure in this page, you must have the following:
 
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
 - Xcode. This page uses Xcode 13.0 as an example.
 - A device running iOS 10 or later.
 
@@ -55,11 +57,11 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
-<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
 
     
 ## Project setup
@@ -295,17 +297,17 @@ Use Xcode to compile and run the project on an iOS device or an simulator. If th
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
 1. Log in  
-On your simulator or physical device, enter the user ID (lxm) and Agora token of the sender in the **User Id** and **Token** box respectively, and click **Login**.
+On your simulator or physical device, enter the user ID (`lxm`) and Agora token of the sender in the **User Id** and **Token** box respectively, and click **Login**.
 
 2. Send a message  
-Fill in the user ID of the receiver (lxm2) in the **Remote User Id** box, type in the message ("Hello") to send in the **Input text message** box, and click **Send**.  
+Fill in the user ID of the receiver (`lxm2`) in the **Remote User Id** box, type in the message ("Hello") to send in the **Input text message** box, and click **Send**.  
 ![](https://web-cdn.agora.io/docs-files/1665309009543)
 
 3. Log out  
 Click **Logout** to log out of the sender account.
 
 4. Receive the message  
-After signing out, log in with the user ID and Agora token of the receiver (lxm2) and receive the message "Hello" sent in step 2.  
+After signing out, log in with the user ID and Agora token of the receiver (`lxm2`) and receive the message "Hello" sent in step 2.  
 ![](https://web-cdn.agora.io/docs-files/1665309015042)
 
 
