@@ -1,9 +1,8 @@
 群组是支持多人沟通的即时通讯系统，本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理群组，并实现群组相关功能。
-如需查看消息相关内容，参见 [消息管理](./agora_chat_send_receive_message_flutter)。
 
 ## 技术原理
 
-即时通讯 IM Flutter SDK 提供了 `ChatGroup`, `ChatGroupManager` 和 `ChatGroupEventHandler` 类用于群组管理，可以实现以下功能：
+即时通讯 IM Flutter SDK 提供了 `ChatGroup`、`ChatGroupManager` 和 `ChatGroupEventHandler` 类用于群组管理，可以实现以下功能：
 
 - 创建、解散群组
 - 加入、退出群组
@@ -29,7 +28,7 @@
 
 在创建群组前，你需要设置群组类型 `ChatGroupStyle` 和进群邀请是否需要对方同意 `inviteNeedConfirm`。
 
-1. 私有群不可被搜索到，公开群可以通过 ID 搜索到。目前支持四种群组类型 ( `ChatGroupStyle`)：
+1. 私有群不可被搜索到，公开群可以通过 ID 搜索到。目前支持四种群组类型 (`ChatGroupStyle`)：
 
 - `PrivateOnlyOwnerInvite`: 私有群，只有群主和管理员可以邀请人进群；
 - `PrivateMemberCanInvite`: 私有群，所有群成员均可以邀请人进群；

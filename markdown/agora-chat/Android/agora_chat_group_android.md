@@ -1,8 +1,4 @@
-群组是支持多人沟通的即时通讯系统。
-
-本页介绍如何使用即时通讯 IM SDK 在你的应用中创建和管理群组。
-
-如需查看消息相关内容，参见 [消息管理](./agora_chat_message_overview)。
+群组是支持多人沟通的即时通讯系统。本页介绍如何使用即时通讯 IM SDK 在你的应用中创建和管理群组。
 
 ## 技术原理
 
@@ -50,10 +46,6 @@
   - 用户设置手动确认群组邀请 (`autoAcceptGroupInvitation` 设置为 `false`)，受邀用户收到 `GroupChangeListener#onInvitationReceived` 回调，并选择同意或拒绝入群邀请：
      - 用户同意入群邀请后，邀请人收到 `GroupChangeListener#onInvitationAccepted` 回调和 `GroupChangeListener#onMemberJoined` 回调，其他群成员收到 `GroupChangeListener#onMemberJoined` 回调；
      - 用户拒绝入群邀请后，邀请人收到 `GroupChangeListener#groupInvitationDidDecline` 回调。
-
-流程如下：
-
-[![img](https://docs-im.easemob.com/_media/ccim/android/8.png?w=1500&tok=db0f36)](https://docs-im.easemob.com/_detail/ccim/android/8.png?id=ccim%3Aandroid%3Agroup2)
 
 - 进群邀请无需用户确认 (`inviteNeedConfirm` 设置为 `false`)。创建群组并发出邀请后，无视用户的 `autoAcceptGroupInvitation` 设置，受邀用户直接进群并收到 `GroupChangeListener#onAutoAcceptInvitationFromGroup` 回调，邀请人收到 `GroupChangeListener#onInvitationAccepted` 和 `GroupChangeListener#onMemberJoined`，其他群成员收到 `GroupChangeListener#onMemberJoined` 回调。
 

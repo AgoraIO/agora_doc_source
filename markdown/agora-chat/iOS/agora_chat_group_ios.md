@@ -1,10 +1,8 @@
 群组是支持多人沟通的即时通讯系统，本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理群组，并实现群组相关功能。
 
-如需查看消息相关内容，参见 [消息管理](./agora_chat_message_overview)。
-
 ## 技术原理
 
-即时通讯 IM SDK 提供了 `IAgoraChatGroupManager`, `AgoraChatGroupManagerDelegate`, 和 `AgoraChatGroup` 类，可以实现以下功能：
+即时通讯 IM SDK 提供了 `IAgoraChatGroupManager`、`AgoraChatGroupManagerDelegate` 和 `AgoraChatGroup` 类，可以实现以下功能：
 
 - 创建、解散群组
 - 加入、退出群组
@@ -114,9 +112,7 @@ do {
 
 ### 解散群组
 
-**注意**
-
-该操作只能群主才能进行。该操作是危险操作，解散群组后，将删除本地数据库及内存中的群相关信息及群会话。
+<div class="alert note">该操作只能群主才能进行。该操作是危险操作，解散群组后，将删除本地数据库及内存中的群相关信息及群会话。</div>
 
 示例代码如下：
 
@@ -195,7 +191,7 @@ AgoraChatGroup *group = [[AgoraChatClient sharedClient].groupManager
                                  getGroupSpecificationFromServerWithId:@"groupID"
                                                                           fetchMembers:YES
                                                                                                  error:nil];
-NSArray *memeberList = [group.memberList];
+NSArray *memberList = [group.memberList];
 ```
 
 ### 获取群组列表
