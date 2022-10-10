@@ -18,11 +18,10 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 ## Prerequisites
 
-In order to follow the procedure in this page, you must have:
+In order to follow the procedure in this page, you must have the following:
 
-- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
-- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
-- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
 - A Windows or macOS computer that meets the following requirements:
   - A browser supported by the Agora Chat SDK: 
     - Internet Explorer 9 or later
@@ -295,6 +294,8 @@ To enable your app to send and receive messages between individual users, do the
 	};
 	```
 
+<a name="test"></a>
+
 ##  Test your app
 
 Use vite to build the project. You can run below commands to run the project.
@@ -324,9 +325,10 @@ To validate the peer-to-peer messaging you have just integrated into your Web ap
 
 	![](https://web-cdn.agora.io/docs-files/1664531311192)
 
+
 ## Next steps
 
-In a production context, the best practice is for your app to retrieve the token used to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
 
 ## See also
 

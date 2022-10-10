@@ -9,6 +9,11 @@ This page shows a sample code to add peer-to-peer messaging into an app by using
 
 ## Prerequisites
 
+In order to follow the procedure in this page, you must have the following:
+
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
+
 If your target platform is iOS, your development environment must meet the following requirements:
 - Flutter 2.10 or later
 - Dart 2.16 or later
@@ -430,25 +435,25 @@ In the `_sendMessage` method, add the following to add the creating and sending 
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations to test the project:
 
 1. Log in  
-a. Replace the placeholders of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class with the App Key, user Id, and Agora token of the sender (flutter001).  
+a. Replace the placeholders of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class with the App Key, user Id, and Agora token of the sender (`flutter001`).  
 b. Select the device to run the project, run `flutter run` in the `quick_start` directory, and click the **SIGN IN** button.
 
 2. Send a message  
-Fill in the user ID of the receiver (flutter002) in the **Enter recipient's user Id** box, type in the message ("hello") to send in the **Enter message** box, and click **SEND TEXT** to send the message.  
+Fill in the user ID of the receiver (`flutter002`) in the **Enter recipient's user Id** box, type in the message ("hello") to send in the **Enter message** box, and click **SEND TEXT** to send the message.  
 ![](https://web-cdn.agora.io/docs-files/1665225309901)
 
 3. Log out  
 Click **SIGN OUT** to log out of the sender account.
 
 4. Receive the message  
-a. After signing out, change the values of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class to the App Key, user ID, and Agora token of the receiver (flutter002).  
+a. After signing out, change the values of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class to the App Key, user ID, and Agora token of the receiver (`flutter002`).  
 b. Select the device to run the project, run `flutter run` in the `quick_start` directory, and receive the message "hello" sent in step 2.   
 ![](https://web-cdn.agora.io/docs-files/1665225339286)
 
 
 ## Next steps
 
-For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
 
 
 

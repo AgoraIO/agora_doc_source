@@ -10,8 +10,10 @@ This page shows a sample code to add peer-to-peer messaging into your app by usi
 
 ## Prerequisites
 
-In order to follow the procedure in this page, you must have:
+In order to follow the procedure in this page, you must have the following:
 
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
 - An Android simulator or a physical Android device.
 - Android Studio 3.6 or higher.
 - Java Development Kit (JDK). You can refer to the [User Guide of Android](https://developer.android.com/studio/write/java8-support) for applicable versions.
@@ -462,33 +464,34 @@ To show logs, add the following lines after the `sendFirstMessage` function:
 
 8. Click **Sync Project with Gradle Files** to sync your project. Now you are ready to test your app.
 
+<a name="test"></a>
 
 ## Test your app
 
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
 1. Log in  
-a. In the [`MainActivity`](#sign-in) file, replace the placeholders of `USERNAME`, `TOKEN`, and `APP_KEY` with the user Id, Agora token, and App Key of the sender (Som).  
+a. In the [`MainActivity`](#sign-in) file, replace the placeholders of `USERNAME`, `TOKEN`, and `APP_KEY` with the user Id, Agora token, and App Key of the sender (`Som`).  
 b. In **Android Studio**, select the device to run the project and click **Run 'app'**.  
 c. On your simulator or physical device, click **SIGN IN** to log in with the sender account.
     ![](https://web-cdn.agora.io/docs-files/1665302124510)
 
 2. Send a message  
-Fill in the user ID of the receiver (Neil) in the **Enter another username** box, type in the message ("How are you doing?") to send in the **Enter content** box, and click **SEND MESSAGE** to send the message.
+Fill in the user ID of the receiver (`Neil`) in the **Enter another username** box, type in the message ("How are you doing?") to send in the **Enter content** box, and click **SEND MESSAGE** to send the message.
    ![](https://web-cdn.agora.io/docs-files/1665302129604)
 
 3. Log out  
 Click **SIGN OUT** to log out of the sender account.
 
 4. Receive the message  
-a. After signing out, change the values of `USERNAME`, `TOKEN`, and `APP_KEY` to the user Id, Agora token, and App Key of the receiver (Neil) in the [`MainActivity`](#sign-in) file.  
+a. After signing out, change the values of `USERNAME`, `TOKEN`, and `APP_KEY` to the user Id, Agora token, and App Key of the receiver (`Neil`) in the [`MainActivity`](#sign-in) file.  
 b. Run the app on another Android device or simulator with the receiver account and receive the message "How are you doing?" sent in step 2.  
     ![](https://web-cdn.agora.io/docs-files/1665302134132)
 
 
 ## Next Steps
 
-For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
 
 
 ## See also
