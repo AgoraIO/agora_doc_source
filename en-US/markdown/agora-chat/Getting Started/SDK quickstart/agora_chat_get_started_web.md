@@ -73,11 +73,11 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
-<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
 
 
 ## Project setup
@@ -313,15 +313,19 @@ The following page opens in your browser:
 
 To validate the peer-to-peer messaging you have just integrated into your Web app using Agora Chat:
 
-1. Register a user **Leo** and generate a temporary token in **Agora Console**.
+1. Log in  
+Fill in the user ID of the sender (`Leo`) in the **user id** box and agora token in the **token** box, and click **Login** to log in to the app.
 
-2. Log in to the app with the user ID **Leo** and token you just generated, and send a message.
+2. Send a message  
+Fill in the user ID of the receiver (`Roy`) in the **single chat id** box and type in the message ("Hi, how are you doing?") to send in the **message content** box, and click **Send** to send the message.  
 
 	![](https://web-cdn.agora.io/docs-files/1664531288522)
 
-3. Open the same page in a new window and create another user **Roy**. Ensure that both user IDs that you created are unique.
+3. Log out  
+Click **Logout** to log out of the app.
 
-4. Log in to the app with the user ID **Roy** and receive the message sent from **Leo**.
+4. Receive the message  
+Open the same page in a new window, log in as the receiver (`Roy`) and receive the message ("Hi, how are you doing?") sent from **Leo**.
 
 	![](https://web-cdn.agora.io/docs-files/1664531311192)
 
@@ -329,6 +333,7 @@ To validate the peer-to-peer messaging you have just integrated into your Web ap
 ## Next steps
 
 For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
+
 
 ## See also
 

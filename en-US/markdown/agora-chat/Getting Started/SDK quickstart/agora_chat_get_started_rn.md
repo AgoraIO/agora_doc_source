@@ -79,11 +79,11 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
-<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
 
 
 ## Project setup

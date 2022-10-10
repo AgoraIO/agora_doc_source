@@ -73,11 +73,11 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
-<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
 
 
 ## Project setup
@@ -435,7 +435,7 @@ In the `_sendMessage` method, add the following to add the creating and sending 
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations to test the project:
 
 1. Log in  
-a. Replace the placeholders of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class with the App Key, user Id, and Agora token of the sender (`flutter001`).  
+a. Replace the placeholders of `appKey`, `userId`, and `agoraToken` in the [`AgoraChatConfig`](#sign-in) class with the App Key, user ID, and Agora token of the sender (`flutter001`).  
 b. Select the device to run the project, run `flutter run` in the `quick_start` directory, and click the **SIGN IN** button.
 
 2. Send a message  

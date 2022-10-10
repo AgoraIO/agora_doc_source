@@ -60,11 +60,11 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
 
-<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
 
 
 ## Project setup
@@ -270,7 +270,7 @@ In  `app/java/io.agora.agorachatquickstart/MainActivity`, add the following line
 <a name="sign-in"></a>
 
 2. Define global variables.  
-In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
+In `app/java/io.agora.agorachatquickstart/MainActivity`, before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
 
    ```java
    // Replaces <Your username>, <Your token>, and <Your AppKey> with your own App Key, user ID, and user token generated in Agora Console.
@@ -299,7 +299,7 @@ In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines
    // Initializes the SDK.
    private void initSDK() {
        ChatOptions options = new ChatOptions();
-       // Gets your App Key applied from Agora Console.
+       // Gets your App Key from Agora Console.
        if(TextUtils.isEmpty(APP_KEY)) {
            Toast.makeText(MainActivity.this, "You should set your AppKey first!", Toast.LENGTH_SHORT).show();
            return;
@@ -364,7 +364,7 @@ In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines
    }
    ```
 
-5. Create a user account and log in to the app.  
+5. Log in to the app.  
 To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
@@ -471,7 +471,7 @@ To show logs, add the following lines after the `sendFirstMessage` function:
 To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
 1. Log in  
-a. In the [`MainActivity`](#sign-in) file, replace the placeholders of `USERNAME`, `TOKEN`, and `APP_KEY` with the user Id, Agora token, and App Key of the sender (`Som`).  
+a. In the [`MainActivity`](#sign-in) file, replace the placeholders of `USERNAME`, `TOKEN`, and `APP_KEY` with the user ID, Agora token, and App Key of the sender (`Som`).  
 b. In **Android Studio**, select the device to run the project and click **Run 'app'**.  
 c. On your simulator or physical device, click **SIGN IN** to log in with the sender account.
     ![](https://web-cdn.agora.io/docs-files/1665302124510)
