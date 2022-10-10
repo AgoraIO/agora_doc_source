@@ -22,11 +22,8 @@ As shown in the figure, the workflow of peer-to-peer messaging is as follows:
 
 In order to follow the procedure in this page, you must have the following:
 
-- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
-- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
-- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
-- An Agora project with an App Key and a temporary token.
-
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
 - [Unity Hub](https://unity.com/download)
 - Unity Editor 2019.4.28 or later 
 - Target platform:
@@ -41,34 +38,38 @@ In order to follow the procedure in this page, you must have the following:
     - Android Studio 3.0 or later
   - Windows:
     - Windows 7 or later
-- A computer that can access the Internet.  
+- A computer with Internet access  
 Ensure that no firewall is blocking your network communication; otherwise, the project may fail. For details, see [Firewall Requirements](https://docs.agora.io/en/Agora%20Platform/firewall?platform=Unity).
+
 
 ## Token generation
 
 This section introduces how to register a user at Agora Console and generate a temporary token.
 
-### Register a user
+### 1. Register a user
 
 To register a user, do the following:
 
 1. On the **Project Management** page, click **Config** for the project that you want to use.
 
-[](https://web-cdn.agora.io/docs-files/1664531061644)
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
 
 2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
 
-![](https://web-cdn.agora.io/docs-files/1664531091562)
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
 3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
 
-![](https://web-cdn.agora.io/docs-files/1664531141100)
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+<a name="userid"></a>
 
 4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
 
-![](https://web-cdn.agora.io/docs-files/1664531162872)
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
 
-### Generate a user token
+
+### 2. Generate a user token
 
 To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
 
@@ -76,14 +77,18 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 1. On the **Project Management** page, click **Config** for the project that you want to use.
 
-![](https://web-cdn.agora.io/docs-files/1664531061644)
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
 
 2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
 
-![](https://web-cdn.agora.io/docs-files/1664531091562)
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
 3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
-![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+
 
 ## Project setup
 
@@ -104,7 +109,7 @@ If your Unity Editor version is inconsistent with that of the sample project, do
 
 ### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](https://downloadsdk.easemob.com/downloads/SDK/Unity/Agora_Unity_Chat_SDK_1.0.5.unitypackage), and download the latest version of the Agora Chat SDK package for Unity, and decompress it.
+1. Go to the [SDK download page](https://docs.agora.io/en/sdks?platform=unity) to download the Chat SDK, and download the latest version of the Agora Chat SDK package for Unity, and decompress it.
 
 2. In Unity Editor, click **Assets** > **Import Package** > **Custom Package...**, and select the decompressed SDK.
 
@@ -130,7 +135,7 @@ using ChatSDK.MessageBody;
 In the `InitSDK` method, add the following to initialize the SDK:
 
 ```c#
-// Replaces APPKEY with your app key.
+// Replaces APPKEY with your own App Key.
 Options options = new Options("APPKEY");
 options.UsingHttpsOnly = true;
 SDKClient.Instance.InitWithOptions(options);
@@ -272,6 +277,8 @@ SDKClient.Instance.Logout(true, handle: new CallBack(
 ));
 ```
 
+<a name="test"></a>
+
 ## Run and test the project
 
 In Unity Editor, select the **Project** tab, select **Assets** > **Scenes**, double-click the `SampleScene.cs` file, and click the **Play** icon at the top of the Unity Editor to run the project.
@@ -280,25 +287,26 @@ In Unity Editor, select the **Project** tab, select **Assets** > **Scenes**, dou
 
 If the sample project runs properly, the following user interface appears:
 
-![](https://web-cdn.agora.io/docs-files/1652780330067) 
+![img](https://web-cdn.agora.io/docs-files/1665382378998)
 
 In the user interface, perform the following operations to test the project:
 
-1. Log in
-Fill in the username in the `user id` box and agora token in the `agora token` box, and click **Sign in** to log in to the app. In this example, log in as `local_user`.
+1. Log in  
+Fill in the user ID of the sender (`my_sender_unity`) in the **user id** box and agora token in the **token** box, and click **Sign in** to log in to the app.
 
-3. Send a message
-Fill in the username of the receiver (`remote_user`) in the `single chat id` box and type in the message ("hello world") to send in the `message content` box, and click **Send** to send the message.
+2. Send a message  
+Fill in the user ID of the receiver (`my_receiver_unity`) in the **single chat id** box and type in the message ("hello world!") to send in the **message content** box, and click **Send** to send the message.
 
-4. Sign out  
+3. Log out  
 Click **Sign out** to log out of the app.
 
-5. Receive the message  
-After signing out as `local_user`, log in as `remote_user` and receive the message ("hello world") sent in step 3.
+4. Receive the message  
+After signing out, log in as the receiver (`my_receiver_unity`) and receive the message ("hello world!") sent in step 2.
 
 You can check the log to see all the operations from this example, as shown in the following figure:
-![](https://web-cdn.agora.io/docs-files/1652781638358)
+
+![](https://web-cdn.agora.io/docs-files/1665382384838)
 
 ## Next steps
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Unity#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens).
