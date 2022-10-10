@@ -305,7 +305,7 @@ After signing out, log in as the receiver (`my_receiver_unity`) and receive the 
 
 You can check the log to see all the operations from this example, as shown in the following figure:
 
-![](https://web-cdn.agora.io/docs-files/1665382384838)
+![](https://web-cdn.agora.io/docs-files/1665386342781)
 
 ## Next steps
 

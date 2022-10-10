@@ -12,42 +12,43 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 In order to follow the procedure in this page, you must have the following:
 
-- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
-- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
-- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
-- An Agora project with an App Key and a temporary token.
-
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
 - A Windows device running Windows 10 or later
 - Visual Studio IDE 2019 or later
 - .Net Framework 4.5.2 or later
 
 <div class="alert note">If your network has a firewall, make sure that you open the ports specified in <a href="https://docs.agora.io/en/Agora%20Platform/firewall?platform=All%20Platforms">Firewall Requirements</a>.</div>
 
+
 ## Token generation
 
 This section introduces how to register a user at Agora Console and generate a temporary token.
 
-### Register a user
+### 1. Register a user
 
 To register a user, do the following:
 
 1. On the **Project Management** page, click **Config** for the project that you want to use.
 
-[](https://web-cdn.agora.io/docs-files/1664531061644)
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
 
 2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
 
-![](https://web-cdn.agora.io/docs-files/1664531091562)
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
 3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
 
-![](https://web-cdn.agora.io/docs-files/1664531141100)
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+<a name="userid"></a>
 
 4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
 
-![](https://web-cdn.agora.io/docs-files/1664531162872)
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
 
-### Generate a user token
+
+### 2. Generate a user token
 
 To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
 
@@ -55,14 +56,18 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 1. On the **Project Management** page, click **Config** for the project that you want to use.
 
-![](https://web-cdn.agora.io/docs-files/1664531061644)
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
 
 2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
 
-![](https://web-cdn.agora.io/docs-files/1664531091562)
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
 3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
-![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+<div class="alert note">Register two users and generate two user tokens for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+
 
 ## Project setup
 
@@ -76,7 +81,7 @@ This section shows how to prepare the development environment necessary to integ
 
 ### 2. Integrate the Agora Chat SDK
 
-1. Go to the [SDK download page](https://downloadsdk.easemob.com/downloads/SDK/WinSDK/agora_chat_sdk.1.0.2-beta.nupkg) to download the NuGet package to your local device.
+1. Go to the [SDK download page](https://docs.agora.io/en/sdks?platform=windows) to download the latest version of Chat SDK for Windows to your local device.
 
 2. In **Solution Explorer** of **Visual Studio**, right-click **windows-example**, and select **Manage NuGet Packages...** in the drop-down menu.
 
@@ -117,7 +122,7 @@ using ChatSDK.MessageBody;
 In the `InitSDK` function, add the following to initialize the SDK:
 
 ```c#
-// Replaces APPKEY with your app key.
+// Replaces APPKEY with your App Key.
 var options = new Options(appKey: "APPKEY");
 options.UsingHttpsOnly = true;
 SDKClient.Instance.InitWithOptions(options);
@@ -128,7 +133,7 @@ SDKClient.Instance.InitWithOptions(options);
 At the end of the `SignIn_Click` function, add the following to add the login logic:
 
 ```c#
-// Call `LoginWithAgoraToken` to log in to the Chat service with username and Agora token.
+// Calls `LoginWithAgoraToken` to log in to the Chat service with username and Agora token.
 SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, AgoraTokenBox.Text, handle: new CallBack(
     onSuccess: () =>
     {
@@ -277,29 +282,32 @@ SDKClient.Instance.ChatManager.AddChatManagerDelegate(this);
 SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(this);
 ```	
 
+<a name="test"></a>
+
 ## Run and test the project
 
 At the top of **Visual Studio**, click the **Start** button. If the sample project runs properly, the following user interface appears:
 
-![](https://web-cdn.agora.io/docs-files/1654504518175)
+![](https://web-cdn.agora.io/docs-files/1665386577667)
 
 In the user interface, perform the following operations to test the project:
 
-1. Log in
-After signing up the accounts, fill in the username in **user id** box and password in the **password** box, and click **Sign in** to log in to the app. In this example, log in as `my_sender`.
+1. Log in  
+Fill in the user ID of the sender (`my_sender_windows`) in the **user id** box and agora token in the **token** box, and click **Sign in** to log in to the app.
 
-2. Send a message
-Fill in the username of the receiver (`my_receiver`) in the **single chat id** box and type in the message ("hello world") you want to send in the **message content** box, and click **Send** to send the message.
+2. Send a message  
+Fill in the user ID of the receiver (`my_receiver_windows`) in the **single chat id** box and type in the message ("hello world!") to send in the **message content** box, and click **Send** to send the message.
 
-3. Sign out
+3. Log out  
 Click **Sign out** to log out of the app.
 
-4. Receive the message
-After signing out as `my_sender`, log in as `my_receiver` and receive the message ("hello world") sent in step 3.
+4. Receive the message  
+After signing out, log in as the receiver (`my_receiver_windows`) and receive the message ("hello world!") sent in step 2.
 
 You can check the log to see all the operations from this example, as shown in the following figure:
 
-![](https://web-cdn.agora.io/docs-files/1654075808753)
+![](https://web-cdn.agora.io/docs-files/1665386618721)
+
 
 ## Next steps
 
