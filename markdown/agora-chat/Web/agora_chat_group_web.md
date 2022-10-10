@@ -144,9 +144,11 @@ conn.listGroupMembers(option).then(res => console.log(res))
 
 ```javascript
 conn.getJoinedGroups({
-    pageNum: 1,
-    pageSize: 20,
-}).then(res => console.log(res))
+                 pageNum: 1,
+                 pageSize: 500,
+                 needAffiliations: true,
+                 needRole: true
+  })
 ```
 
 - 用户还可以分页获取公开群列表：

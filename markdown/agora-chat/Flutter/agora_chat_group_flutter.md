@@ -37,15 +37,15 @@
 - `PublicOpenJoin`: 公开群，任何人都可以进群，无需群主和群管理同意。
 
 2. 进群邀请是否需要对方同意 (`inviteNeedConfirm`) 的具体设置如下：
-    - 进群邀请需要用户确认 (`ChatGroupOptions#inviteNeedConfirm` 设置为 `true`）。创建群组并发送群组邀请后，，根据受邀用户的（`autoAcceptGroupInvitation` 设置）而有所不同：
-       - 是（`autoAcceptGroupInvitation` 设置为 `true`）。被邀请者自动加入群组并接收 `ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 回调，群主接收 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群组成员接收 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
-       - 否（`autoAcceptGroupInvitation` 设置为 `false`）。被邀请者收到 `ChatGroupEventHandler#onInvitationReceivedFromGroup` 事件并选择是否加入聊天组：
-          - 用户同意入群邀请后，群主收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件；
-          - 用户拒绝入群邀请后，群主收到 `ChatGroupEventHandler#onInvitationDeclinedFromGroup` 事件。
+    - 进群邀请需要用户确认 (`ChatGroupOptions#inviteNeedConfirm` 设置为 `true`）。创建群组并发送群组邀请后，根据受邀用户的（`autoAcceptGroupInvitation` 设置）而有所不同：
+       - 用户设置自动接受群组邀请（`autoAcceptGroupInvitation` 设置为 `true`）。受邀用户自动进群并收到`ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 回调，邀请人收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
+       - 用户设置手动确认群组邀请（`autoAcceptGroupInvitation` 设置为 `false`）。受邀用户收到 `ChatGroupEventHandler#onInvitationReceivedFromGroup` 事件并选择是否加入群组：
+          - 用户同意入群邀请后，邀请人收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件；
+          - 用户拒绝入群邀请后，邀请人收到 `ChatGroupEventHandler#onInvitationDeclinedFromGroup` 事件。
 
 ![img](https://web-cdn.agora.io/docs-files/1653385689954)
 
-    - 进群邀请无需用户确认（`ChatGroupOptions#inviteNeedConfirm` 设置为 `false`）。创建群组并发送入组邀请后，无论其 `autoAcceptGroupInvitation` 设置如何，都会将受邀者添加到群组中。被邀请者接收 `ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 事件，群主接收 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他聊天群成员接收 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
+    - 进群邀请无需用户确认（`ChatGroupOptions#inviteNeedConfirm` 设置为 `false`）。创建群组并发送入组邀请后，无论 `autoAcceptGroupInvitation` 设置如何，都会将受邀者添加到群组中。受邀用户收到 `ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 事件，邀请人收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
 
 用户可以调用 `createGroup` 创建群组，并通过 `ChatGroupOptions` 指定设置群组名称、描述、最大成员数、建群原因等群组属性。
 

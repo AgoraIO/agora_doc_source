@@ -40,11 +40,11 @@
 2、进群邀请是否需要对方同意 (`IsInviteNeedConfirm`) 的具体设置如下：
 
 - 进群邀请需要用户确认(`IsInviteNeedConfirm` 设置为 `true`)。创建群组并发出邀请后，根据受邀用户的 `isAutoAcceptGroupInvitation` 设置，处理逻辑如下：
-  - 用户设置自动接受群组邀请 (`isAutoAcceptGroupInvitation` 设置为 `true`)。受邀用户自动进群并收到 `AgoraChatGroupManagerDelegate#didJoinGroup` 回调，群主收到 `AgoraChatGroupManagerDelegate#onInvitationAccepted` 回调和 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调，其他群成员收到 `AgoraChatGroupChangeListener#userDidJoinGroup` 回调。
+  - 用户设置自动接受群组邀请 (`isAutoAcceptGroupInvitation` 设置为 `true`)。受邀用户自动进群并收到 `AgoraChatGroupManagerDelegate#didJoinGroup` 回调，邀请人收到 `AgoraChatGroupManagerDelegate#onInvitationAccepted` 回调和 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调，其他群成员收到 `AgoraChatGroupChangeListener#userDidJoinGroup` 回调。
   - 用户设置手动确认群组邀请 (`isAutoAcceptGroupInvitation` 设置为 `true`)，受邀用户收到 `AgoraChatGroupManagerDelegate#onInvitationReceived` 回调，并选择同意或拒绝入群邀请：
-     - 用户同意入群邀请后，群主收到 `AgoraChatGroupManagerDelegate#onInvitationAccepted` 回调和 `AgoraChatGroupManagerDelegate#onMemberJoined` 回调；其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调；
-     - 用户拒绝入群邀请后，群主收到 `AgoraChatGroupManagerDelegate#onInvitationDeclined` 回调。
-- 进群邀请无需用户确认 (`IsInviteNeedConfirm` 设置为 `false`)。创建群组并发出邀请后，无视用户的 `isAutoAcceptGroupInvitation` 设置，受邀用户直接进群。用户收到 `AgoraChatGroupManagerDelegate#didJoinGroup` 回调；群主收到每个已加入成员对应的群组事件回调 `AgoraChatGroupManagerDelegate#groupInvitationDidAccept` 和 `AgoraChatGroupManagerDelegate#userDidJoinGroup`；先加入的群成员会收到群组事件回调 `AgoraChatGroupManagerDelegate#userDidJoinGroup`。
+     - 用户同意入群邀请后，邀请人收到 `AgoraChatGroupManagerDelegate#onInvitationAccepted` 回调和 `AgoraChatGroupManagerDelegate#onMemberJoined` 回调；其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调；
+     - 用户拒绝入群邀请后，邀请人收到 `AgoraChatGroupManagerDelegate#onInvitationDeclined` 回调。
+- 进群邀请无需用户确认 (`IsInviteNeedConfirm` 设置为 `false`)。创建群组并发出邀请后，无视用户的 `isAutoAcceptGroupInvitation` 设置，受邀用户直接进群并收到 `AgoraChatGroupManagerDelegate#didJoinGroup` 回调，邀请人收到`AgoraChatGroupManagerDelegate#groupInvitationDidAccept` 和 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调，其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
 
 用户可以调用 `createGroup` 方法创建群组，并通过 `AgoraChatGroupOptions` 参数设置群组名称、群组描述、群组成员和建群原因。
 
@@ -60,7 +60,7 @@ options.maxUsersCount = self.maxMemNum;
 options.IsInviteNeedConfirm = YES;
 // 设置群组类型。此处示例为成员可以邀请用户入群的私有群组。
 options.style = AgoraChatGroupStylePrivateMemberCanInvite;
-NSArray *members = @{@"memeber1",@"member2"};
+NSArray *members = @{@"member1",@"member2"};
 // 调用 `createGroupWithSubject` 创建群组。
 [[AgoraChatClient sharedClient].groupManager createGroupWithSubject:@"subject"
                                                                                                              description:@"description"
@@ -70,20 +70,19 @@ NSArray *members = @{@"memeber1",@"member2"};
                                                                                                                              error:nil];
 ```
 
-注：如果 `options.IsInviteNeedConfirm` 设置为 `false`，即直接加被邀请人进群。在此情况下，被邀请人设置非自动进群是不起作用的。
+<div class="alert note">如果 `options.IsInviteNeedConfirm` 设置为 `false`，即直接加被邀请人进群。在此情况下，被邀请人设置非自动进群不起作用。</div>
 
 ### 用户申请入群
 
 根据 [创建群组](agora_chat_group_ios.md#创建群组) 时的群组类型 (`AgoraChatGroupStyle`) 设置，加入群组的处理逻辑差别如下：
 
 - 当群组类型为 `AgoraChatGroupStylePublicOpenJoin` 时，用户直接加入群组，无需群主和群管理员同意；加入群组后，其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
-- 当群组类型为 `AgoraChatGroupStylePublicJoinNeedApprova`，群主和群管理员收到 `AgoraChatGroupManagerDelegate#joinGroupRequestDidReceive` 回调，并选择同意或拒绝入群申请：
+- 当群组类型为 `AgoraChatGroupStylePublicJoinNeedApproval`，群主和群管理员收到 `AgoraChatGroupManagerDelegate#joinGroupRequestDidReceive` 回调，并选择同意或拒绝入群申请：
     - 群主和群管理员同意入群申请，申请人收到群组事件回调 `AgoraChatGroupManagerDelegate#joinGroupRequestDidApprove`；
     - 其他群成员会收到群组事件回调 `AgoraChatGroupManagerDelegate#userDidJoinGroup`。 第二种情况：群主和群管理员拒绝入群申请，申请人会收到群组事件回调 `AgoraChatGroupManagerDelegate#joinGroupRequestDidDecline`。
 
-**注意**
 
-用户只能申请加入公开群组，私有群组不支持用户申请入群。
+<div class="alert note">用户只能申请加入公开群组，私有群组不支持用户申请入群。</div>
 
 用户申请加入群组步骤如下：
 
