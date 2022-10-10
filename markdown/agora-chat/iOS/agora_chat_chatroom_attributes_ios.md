@@ -6,7 +6,7 @@
 
 即时通讯 IM iOS SDK 提供 `IAgoraChatroomManager`、`AgoraChatroomManagerDelegate` 和 `AgoraChatRoom` 类用于聊天室属性管理，可以实现以下功能：
 
-- 获取和更新聊天室基本属性（名称，描述和公告）；
+- 获取和更新聊天室基本属性；
 - 获取聊天室自定义属性；
 - 设置聊天室自定义属性；
 - 删除聊天室自定义属性。
