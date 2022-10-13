@@ -60,9 +60,16 @@
                 <topicref keyref="CHANNEL_PROFILE_TYPE"/>
             </relcell>
         </relrow>
-        <relrow props="ios mac cpp framework">
+        <relrow props="cpp apple unity">
             <relcell>
                 <topicref keyref="setClientRole1"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="CLIENT_ROLE_TYPE"/>
+            </relcell>
+        </relrow>
+        <relrow props="cpp apple framework">
+            <relcell>
                 <topicref keyref="setClientRole2"/>
             </relcell>
             <relcell>
@@ -82,6 +89,13 @@
             <relcell>
                 <topicref keyref="joinChannel2"/>
                 <topicref keyref="joinChannelWithUserAccount2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="ChannelMediaOptions"/>
+            </relcell>
+        </relrow>
+        <relrow props="native electron rn flutter">
+            <relcell>
                 <topicref keyref="joinChannelWithUserAccountEx"/>
             </relcell>
             <relcell>
@@ -181,7 +195,7 @@
                 <topicref keyref="VIDEO_MIRROR_MODE_TYPE" props="cpp apple unity rn electron flutter"/>
             </relcell>
         </relrow>
-        <relrow props="cpp android">
+        <relrow props="cpp android framework">
             <relcell>
                 <topicref keyref="startPreview2"/>
                 <topicref keyref="stopPreview2"/>
@@ -1386,7 +1400,7 @@
                 <topicref keyref="DIRECT_CDN_STREAMING_ERROR"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="cn">
             <relcell>
                 <topicref keyref="onDirectCdnStreamingStats"/>
             </relcell>
@@ -1497,7 +1511,7 @@
                 <topicref keyref="MediaRecorderConfiguration"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="native unity">
             <relcell>
                 <topicref keyref="startEchoTest3"/>
             </relcell>
@@ -1611,9 +1625,17 @@
                 <topicref keyref="onUserOffline"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="native unity">
             <relcell>
                 <topicref keyref="leaveChannel"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onLeaveChannel"/>
+                <topicref keyref="onUserOffline"/>
+            </relcell>
+        </relrow>
+        <relrow>
+            <relcell>
                 <topicref keyref="leaveChannel2"/>
                 <topicref keyref="leaveChannelEx"/>
             </relcell>
@@ -1816,7 +1838,7 @@
         <relrow>
             <relcell>
                 <topicref keyref="registerLocalUserAccount"/>
-                <topicref keyref="joinChannelWithUserAccount1"/>
+                <topicref keyref="joinChannelWithUserAccount1" props="native unity"/>
                 <topicref keyref="joinChannelWithUserAccount2"/>
             </relcell>
             <relcell>
@@ -1852,11 +1874,31 @@
                 <topicref keyref="onAudioVolumeIndication"/>
             </relcell>
         </relrow>
+        <relrow props="native unity">
+            <relcell>
+                <topicref keyref="joinChannelWithUserAccount1"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onLocalUserRegistered"/>
+                <topicref keyref="onJoinChannelSuccess"/>
+                <topicref keyref="onUserJoined"/>
+                <topicref keyref="onUserInfoUpdated"/>
+            </relcell>
+        </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="joinChannelWithUserAccountEx"/>
-                <topicref keyref="joinChannelWithUserAccount1"/>
                 <topicref keyref="joinChannelWithUserAccount2"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="onLocalUserRegistered"/>
+                <topicref keyref="onJoinChannelSuccess"/>
+                <topicref keyref="onUserJoined"/>
+                <topicref keyref="onUserInfoUpdated"/>
+            </relcell>
+        </relrow>
+        <relrow props="native electron rn flutter">
+            <relcell>
+                <topicref keyref="joinChannelWithUserAccountEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="onLocalUserRegistered"/>
@@ -1989,7 +2031,7 @@
             <relcell>
                 <topicref keyref="onContentInspectResult"/>
             </relcell>
-        </relrow>        
+        </relrow>
         <relrow props="ios">
             <relcell>
                 <topicref keyref="openWithCustomSource"/>
@@ -2026,7 +2068,7 @@
             </relcell>
             <relcell>
                 <topicref keyref="getEarMonitoringAudioParams"/>
-            </relcell>            
+            </relcell>
         </relrow>
         <relrow props="ios">
             <relcell>
@@ -2038,8 +2080,8 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="startPreview"/>
-                <topicref keyref="startPreview2" props="android cpp unity"/>
+                <topicref keyref="startPreview" props="native unity"/>
+                <topicref keyref="startPreview2" props="android cpp framework"/>
             </relcell>
             <relcell>
                 <topicref keyref="onVideoSizeChanged"/>
@@ -2052,7 +2094,7 @@
             <relcell>
                 <topicref keyref="onNetworkTypeChanged"/>
             </relcell>
-        </relrow>        
+        </relrow>
     </reltable>
     <reltable title="API-Feature Relations">
         <!--APIs grouped by feature. Topics in each cell in the first column are related to each other. The second column is reserved for related guides.-->
