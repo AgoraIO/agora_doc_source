@@ -32,8 +32,6 @@
             <topicref keyref="setClientRole2" toc="no"/>
             <topicref keyref="renewToken" toc="no"/>
             <topicref keyref="getConnectionState" toc="no"/>
-            <topicref keyref="createCustomVideoTrack" toc="no"/>
-            <topicref keyref="destroyCustomVideoTrack" toc="no"/>
             <topicref keyref="onClientRoleChanged" toc="no"/>
             <topicref keyref="onClientRoleChangeFailed" toc="no"/>
             <topicref keyref="onJoinChannelSuccess" toc="no"/>
@@ -76,9 +74,7 @@
             <topicref keyref="takeSnapshotEx" toc="no"/> 
             <topicref keyref="updateChannelMediaOptionsEx" toc="no"/> 
         </topicref>
-        <topicref href="API/toc_stream-management.dita" chunk="to-content">
-            <topicref keyref="createDataStream1" toc="no"/>
-            <topicref keyref="createDataStream2" toc="no"/>
+        <topicref href="API/toc_stream_management.dita" chunk="to-content">
             <topicref keyref="sendStreamMessage" toc="no"/>
             <topicref keyref="enableDualStreamMode" toc="no"/>
             <topicref keyref="enableDualStreamMode2" toc="no" processing-role="resource-only"/>
@@ -103,9 +99,6 @@
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteSubscribeFallbackOption" toc="no"/>
             <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
-            <topicref keyref="onStreamMessage" toc="no"/>
-            <topicref keyref="onStreamMessageError" toc="no"/>
-            <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
             <topicref keyref="onChannelMediaRelayEvent" toc="no"/>
         </topicref>
         <topicref href="API/toc_audio_process.dita" chunk="to-content">
@@ -233,12 +226,14 @@
             <topicref keyref="addVideoWatermark1" toc="no"/>
             <topicref keyref="addVideoWatermark2" toc="no"/>
             <topicref keyref="clearVideoWatermarks" toc="no"/>
+            <topicref keyref="enableVideo" toc="no"/>
             <topicref keyref="disableVideo" toc="no"/>
+            <topicref keyref="createCustomVideoTrack" toc="no"/>
+            <topicref keyref="destroyCustomVideoTrack" toc="no"/>
             <topicref keyref="enableContentInspect" toc="no"/>
             <topicref keyref="enableFaceDetection" toc="no"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
             <topicref keyref="enableRemoteSuperResolution" toc="no"/>
-            <topicref keyref="enableVideo" toc="no"/>
             <topicref keyref="enableVideoImageSource" toc="no"/>
             <topicref keyref="enableVirtualBackground" toc="no"/>
             <topicref keyref="setBeautyEffectOptions" toc="no"/>
@@ -266,7 +261,6 @@
             <topicref keyref="onVideoPublishStateChanged" toc="no"/>
             <topicref keyref="onVideoSizeChanged" toc="no"/>
             <topicref keyref="onVideoStopped" toc="no"/>
-            <topicref keyref="onVideoSubscribeStateChanged" toc="no"/>
             <topicref keyref="onFacePositionChanged" toc="no"/>
             <topicref keyref="onFirstLocalVideoFrame" toc="no"/>
             <topicref keyref="onFirstLocalVideoFramePublished" toc="no"/>
@@ -282,7 +276,7 @@
             <topicref keyref="onRemoteVideoStats" toc="no"/>
             <topicref keyref="onRemoteVideoTransportStats" toc="no"/>
         </topicref>
-        <topicref href="API/toc_audio-observer.dita" chunk="to-content">
+        <topicref href="API/toc_audio_observer.dita" chunk="to-content">
             <topicref keyref="registerAudioSpectrumObserver" toc="no"/>
             <topicref keyref="unregisterAudioSpectrumObserver" toc="no"/>
             <topicref keyref="registerAudioFrameObserver" toc="no"/>
@@ -451,6 +445,7 @@
             <topicref keyref="onTranscodingUpdated" toc="no"/>
             <topicref keyref="onRtmpStreamingEvent" toc="no"/>
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
+            <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
         </topicref>
         <topicref href="API/toc_local_recording.dita" chunk="to-content">
             <topicref keyref="setMediaRecorderObserver" toc="no"/>
@@ -504,6 +499,8 @@
             <topicref keyref="onAudioDeviceStateChanged" toc="no"/>
             <topicref keyref="onAudioDeviceVolumeChanged" toc="no" props="hide"/>
             <topicref keyref="onMicrophoneEnabled" toc="no" props="hide"/>
+            <topicref keyref="onVideoSubscribeStateChanged" toc="no"/>
+
         </topicref>
         <topicref href="API/toc_video_device_management.dita" chunk="to-content">
             <topicref keyref="enumerateVideoDevices" toc="no"/>
@@ -544,6 +541,8 @@
             <topicref keyref="onCameraReady" toc="no"/>
         </topicref>
         <topicref href="API/toc_network.dita" chunk="to-content">
+            <topicref keyref="createDataStream1" toc="no"/>
+            <topicref keyref="createDataStream2" toc="no"/>
             <topicref keyref="enableExtension" toc="no"/>
             <topicref keyref="getExtensionProperty2" toc="no"/>
             <topicref keyref="loadExtensionProvider" toc="no"/>
@@ -590,6 +589,8 @@
             <topicref keyref="onProxyConnected" toc="no"/>
             <topicref keyref="onLastmileProbeResult" toc="no"/>
             <topicref keyref="onLastmileQuality" toc="no"/>
+            <topicref keyref="onStreamMessage" toc="no"/>
+            <topicref keyref="onStreamMessageError" toc="no"/>
             <topicref keyref="onExtensionError" toc="no"/>
             <topicref keyref="onExtensionEvent" toc="no"/>
             <topicref keyref="onExtensionStarted" toc="no"/>
@@ -820,6 +821,34 @@
             </topicref>
             <topicref keyref="WatermarkOptions" toc="no"/>
             <topicref keyref="WatermarkRatio" toc="no"/>
-        </topicref>
+            <topicref keyref="IRtcEngine" toc="no"/>
+            <topicref keyref="IRtcEngineEx" toc="no"/>
+            <topicref keyref="IRtcEngineEventHandler" toc="no"/>
+            <topicref keyref="IMediaPlayer" toc="no"/>
+            <topicref keyref="IAudioEncodedFrameObserver" toc="no"/>
+            <topicref keyref="IAudioDeviceManager" toc="no"/>
+            <topicref keyref="IAudioDeviceCollection" toc="no"/>
+            <topicref keyref="IVideoDeviceManager" toc="no"/>
+            <topicref keyref="IAudioDeviceCollection" toc="no"/>
+            <topicref keyref="IVideoDeviceManager" toc="no"/>
+            <topicref keyref="IVideoDeviceCollection" toc="no"/>
+            <topicref keyref="IMediaEngine" toc="no"/>
+            <topicref keyref="IMediaPlayerCacheManager" toc="no"/>
+            <topicref keyref="IMediaPlayerCustomDataProvider" toc="no"/>
+            <topicref keyref="IMediaPlayerSourceObserver" toc="no"/>
+            <topicref keyref="IAudioFrameObserver" toc="no"/>
+            <topicref keyref="IAudioFrameObserverBase" toc="no"/>
+            <topicref keyref="IDirectCdnStreamingEventHandler" toc="no"/>
+            <topicref keyref="IAudioSpectrumObserver" toc="no"/>
+            <topicref keyref="IPacketObserver" toc="no"/>
+            <topicref keyref="IMetadataObserver" toc="no"/>
+            <topicref keyref="IVideoEncodedFrameObserver" toc="no"/>
+            <topicref keyref="IVideoFrameObserver" toc="no"/>
+            <topicref keyref="IBaseSpatialAudioEngine" toc="no"/>
+            <topicref keyref="ILocalSpatialAudioEngine" toc="no"/>
+            <topicref keyref="IScreenCaptureSourceList" toc="no"/>
+            <topicref keyref="IMediaRecorder" toc="no"/>
+            <topicref keyref="IMediaRecorderObserver" toc="no"/>
+            </topicref>
     </topichead>
 </map>
