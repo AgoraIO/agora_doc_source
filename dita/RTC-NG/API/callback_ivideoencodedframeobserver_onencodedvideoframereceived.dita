@@ -14,10 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">boolean OnEncodedVideoFrameReceived(ByteBuffer buffer, EncodedVideoFrameInfo info);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)OnEncodedVideoFrameReceived:(NSData * _Nonnull )videoData
-                length:(size_t)length
-                info:(AgoraEncodedVideoFrameInfo * _Nonnull)videoFrameInfo;
-</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEncodedVideoFrameReceived:(NSData * _Nonnull )videoData length:(size_t)length info:(AgoraEncodedVideoFrameInfo * _Nonnull)videoFrameInfo NS_SWIFT_NAME(onEncodedVideoFrameReceived(_:length:info:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool OnEncodedVideoFrameReceived(rtc::uid_t uid, const uint8_t* imageBuffer, size_t length,
                                            const rtc::EncodedVideoFrameInfo&amp; videoEncodedFrameInfo) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onEncodedVideoFrameReceived?(
