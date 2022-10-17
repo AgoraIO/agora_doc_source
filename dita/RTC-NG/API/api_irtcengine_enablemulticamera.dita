@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enablemulticamera">
+    <title><ph keyref="enableMultiCamera"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启多摄像头采集。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableMultiCamera"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableMultiCamera:(BOOL)enabled config:(AgoraCameraCapturerConfiguration* _Nullable)config NS_SWIFT_NAME(enableMultiCamera(_:config:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">#if defined(__APPLE__) &amp;&amp; TARGET_OS_IOS
+    virtual int enableMultiCamera(bool enabled, const CameraCapturerConfiguration&amp; config) = 0;
+#endif</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc"> <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>使用 <codeph>AVCaptureMultiCamSession</codeph> 时，请确保 iOS 设备为 13.0 及以上。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>enabled</pt>
+                <pd>是否采用多个摄像头用于视频采集：
+                    <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：开启多摄像头采集。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：关闭多摄像头采集，。</li>
+                    </ul></pd>
+            </plentry>
+                <plentry>
+                    <pt>config</pt>
+                    <pd/>
+                </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+        </section>
+    </refbody>
+</reference>
