@@ -53,27 +53,7 @@
 
 灵动课堂 Electron 端的源码位于 GitHub [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 仓库，你可参考以下步骤获取源码：
 
-1. 运行以下命令克隆仓库到本地：
-
-    ```bash
-    git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
-    ```
-
-2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
-
-    ```bash
-    git checkout release/{VERSION}
-    ```
-
-    例如要切换到 2.6.0 版本分支，执行以下命令：
-
-    ```bash
-    git checkout release/2.6.9
-    ```
-
-    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
-
-    ![](https://web-cdn.agora.io/docs-files/1658916187924)
+~f38d4cd0-3fce-11ed-8dae-bf25bf08a626~
 
 ## 启动灵动课堂
 
@@ -118,7 +98,7 @@
 
     **Windows**
 
-    1. 将 `packages/agora-electron-edu-demo/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
+    1. 将 `packages/agora-classroom-sdk/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
 
         ```json
         "agora_electron": {
@@ -143,8 +123,9 @@
 
 6. 编译成功后，你可以看到以下页面：
 
-    ![](https://web-cdn.agora.io/docs-files/1623404345070)
+	![](https://web-cdn.agora.io/docs-files/1664335467039)
 
 ## 后续步骤
 
 现在你已经初步体验了灵动课堂的功能，接下来可将[灵动课堂集成到你自己的项目中](/cn/agora-class/agora_class_integrate_electron?platform=Electron)。
+
