@@ -179,9 +179,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ## Remove a custom attribute
 
 Removes custom attributes set by the specified user.
-// TODO: 用户A可以删除用户B设置的自定义属性吗？
 
-<div class="alert note">This method is only used to remove the key-value pairs set by the specified user, but not to overwrite them. <ul><li>To perform the overwrite operation, see [Overwrite a custom attribute](#overwrite-a-custom-attribute).</li><li>To remove the key-value pairs specified by other users, see [Force to remove a custom attribute](#force-to-remove-a-custom-attribute)</li></ul></div>
+<div class="alert note">This method is only used to remove the key-value pairs set by the specified user, but not to overwrite them. <ul><li>To perform the overwrite operation, see <a href="overwrite">Overwrite a custom attribute</a>.</li><li>To remove the key-value pairs specified by other users, see <a href="#force">Force to remove a custom attribute</a></li></ul></div>
 
 ### HTTP request
 
@@ -310,6 +309,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
+<a name="force"></a>
 
 ## Force to remove a custom attribute
 
