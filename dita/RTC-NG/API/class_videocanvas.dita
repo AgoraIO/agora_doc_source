@@ -7,40 +7,109 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class VideoCanvas {
+    public static final int RENDER_MODE_HIDDEN = 1;
+    public static final int RENDER_MODE_FIT = 2;
+    public static final int RENDER_MODE_ADAPTIVE = 3;
 
-  public static final int RENDER_MODE_HIDDEN = 1;
-  public static final int RENDER_MODE_FIT = 2;
-  public static final int RENDER_MODE_ADAPTIVE = 3;
-  public View view;
-  public int renderMode;
-  public int mirrorMode;
-  public int sourceType;
-  public int sourceId;
-  public int uid;
+  public static final int VIEW_SETUP_MODE_REPLACE = 0;
+
+  public static final int VIEW_SETUP_MODE_ADD = 1;
+
+  public static final int VIEW_SETUP_MODE_REMOVE = 2;
+    public View view;
+    public int uid;
+    public int renderMode;
+    public int mirrorMode;
+    public int setupMode = VIEW_SETUP_MODE_REPLACE;
+    public int sourceType;
+    public int mediaPlayerId;
+    public Rect rect;
+
+  public VideoCanvas(View view) {
+    this.view = view;
+    this.renderMode = RENDER_MODE_HIDDEN;
+  }
+
+  public VideoCanvas(View view, int renderMode) {
+    this.view = view;
+    this.renderMode = renderMode;
+    this.uid = 0;
+  }
+
+  public VideoCanvas(View view, int renderMode, int uid) {
+    this.view = view;
+    this.renderMode = renderMode;
+    this.uid = uid;
+  }
+
+  public VideoCanvas(View view, int renderMode, int mirrorMode, int uid) {
+    this.view = view;
+    this.renderMode = renderMode;
+    this.mirrorMode = mirrorMode;
+    this.uid = uid;
+  }
+
+  public VideoCanvas(View view, int renderMode, int mirrorMode, int sourceType, int uid) {
+    this.view = view;
+    this.renderMode = renderMode;
+    this.mirrorMode = mirrorMode;
+    this.sourceType = sourceType;
+    this.uid = uid;
+  }
+
+  public VideoCanvas(
+      View view, int renderMode, int mirrorMode, int sourceType, int mediaPlayerId, int uid) {
+    this.view = view;
+    this.renderMode = renderMode;
+    this.mirrorMode = mirrorMode;
+    this.sourceType = sourceType;
+    this.mediaPlayerId = mediaPlayerId;
+    this.uid = uid;
+  }
+
+  public VideoCanvas(View view, int renderMode, int mirrorMode, int sourceType, int mediaPlayerId,
+      int uid, Rect rect, int setupMode) {
+    this.view = view;
+    this.renderMode = renderMode;
+    this.mirrorMode = mirrorMode;
+    this.sourceType = sourceType;
+    this.mediaPlayerId = mediaPlayerId;
+    this.uid = uid;
+    this.rect = rect;
+    this.setupMode = setupMode;
+  }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
-
 @property(strong, nonatomic) VIEW_CLASS *_Nullable view;
+@property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) AgoraVideoRenderMode renderMode;
 @property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property(assign, nonatomic) NSUInteger uid;
-@property(copy, nonatomic) NSString *_Nullable userId;
+@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
 @property(nonatomic, assign) AgoraVideoSourceType sourceType;
-@property(nonatomic, assign) int sourceId;
-
+@property(nonatomic, assign) int mediaPlayerId;
+@property(assign, nonatomic) CGRect cropArea;
 @end</codeblock>
 <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
-  view_t view;
-  media::base::RENDER_MODE_TYPE renderMode;
-  VIDEO_MIRROR_MODE_TYPE mirrorMode;
-  uid_t uid;
+    view_t view;
+    uid_t uid;
+    media::base::RENDER_MODE_TYPE renderMode;
+    VIDEO_MIRROR_MODE_TYPE mirrorMode;
+    VIDEO_VIEW_SETUP_MODE setupMode;
+    VIDEO_SOURCE_TYPE sourceType;
+    int mediaPlayerId;
+    Rectangle cropArea;
 
-  VideoCanvas() : view(NULL), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
-    uid(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
+  VideoCanvas()
+    : view(NULL), uid(0), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
+      setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
+  
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uid_t u)
-    : view(v), renderMode(m), mirrorMode(mt), uid(u), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
+    : view(v), uid(u), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
+  
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, user_id_t)
-    : view(v), renderMode(m), mirrorMode(mt), uid(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY) {}
+    : view(v), uid(0), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
@@ -155,6 +224,19 @@
                 <pt>sourceId</pt>
                 <pd>视频源 ID。</pd>
             </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>setupMode</pt>
+                    <pd>视图设置模式。详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>mediaPlayerId</pt>
+                    <pd>媒体播放器 ID。可通过 <xref keyref="getMediaPlayerId" /> 获取。</pd>
+                    <pd>当 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，此参数为必填项。</pd>
+                </plentry>
+                <plentry>
+                  <pt>cropArea</pt>
+                  <pd>视图的裁剪区域。详见 <xref keyref="Rectangle"/>。默认值为 <apiname keyref="NULL"/> (表示不做裁剪)。你可以通过设置此参数，仅展示视图的部分区域。</pd>
+              </plentry>
+          </parml> </section>
     </refbody>
 </reference>
