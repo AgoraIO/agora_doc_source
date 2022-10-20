@@ -4,7 +4,9 @@ This page shows how to manage custom attributes by calling Agora Chat RESTful AP
 
 Before calling the following methods, ensure that you understand the frequency limit of calling Agora Chat RESTful API calls described in [Limitations](./agora_chat_limitation).
 
-## <a name="param"></a>Common parameters
+<a name="param"></a>
+
+## Common parameters
 
 The following table lists common request and response parameters of the Agora Chat RESTful APIs:
 
@@ -35,13 +37,18 @@ The following table lists common request and response parameters of the Agora Ch
 
 ## Authorization
 
-~e838c3b0-8e43-11ec-814c-17df6c7c3801~
+Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. Chat RESTful APIs only support authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
+
 
 ## Set a custom attribute
 
-指定用户设置指定聊天室自定义属性。
-
-Sets the custom attributes of 
+Sets a custom attribute of a chat room.
 
 ### HTTP request
 
@@ -55,45 +62,36 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
-| 参数    | 类型   |是否必需 | 描述      |
-| :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 App Token 值。|
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Accept` | String | `application/json` | Yes |
+| `Content-Type` | String | `application/json` | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
-| 参数          | 类型   | 是否必需 | 说明                                                 |
-| :------------ | :----- | :------- | :--------------------------------------------------- |
-| `metaData`        | JSON | 是     | 聊天室的自定义属性，存储为键值对（key-value）集合，即 Map<String,String>。该集合中最多可包含 10 个键值对，在每个键值对中，key 为属性名称，最多可包含 128 个字符；value 为属性值，不能超过 4086 个字符。每个聊天室最多可有 100 个自定义属性，每个应用的聊天室自定义属性总大小为 10 GB。
-  <br/> key 支持以下字符集：
-   <li>26 个小写英文字母 a-z；
-   <li>26 个大写英文字母 A-Z；
-   <li>10 个数字 0-9；
-   <li>“_”, “-”, “.”。 |
-| `autoDelete` | String | 否     | 当前成员退出聊天室时是否自动删除该自定义属性。 <li>（默认）'DELETE'：是； <li>'NO_DELETE'：否。              |
+| Parameter | Type   | Required | Description                          |
+| :------------ | :----- | :------- | :------ |
+| `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs, i.e., `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> //TODO: 一个map内，还是每个key和value的上限|
+| `autoDelete` | String | No  | Whether to automatically delete the custom attributes specified by a chat room member after this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
 
 ### HTTP response
 
 #### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+| Field | Type | Description  |
+| :----- | :------ | :------ |
+| `data.successKeys` | Array | The keys of the custom attributes that are successfully set. |
+| `data.errorKeys` | Object | The keys of the custom attributes that fail to be set paired with the corresponding error descriptions. |
 
-| 字段          | 类型    | 说明                                                         |
-| :------------ | :------ | :----------------------------------------------------------- |
-| `data.successKeys`   | Array | 设置成功的聊天室属性名称列表。 |
-| `data.errorKeys` | Object | 设置失败的聊天室属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
-
-其他字段及说明详见 [公共参数](#param)。
-
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
 ### Example
 
 #### Request example
 
 ```shell
-# 将 <YourAppToken> 替换为你在服务端生成的 AppToken
+# Replaces <YourAppToken> with the app token generated from your token server.
 curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' -d '{
     "metaData": {
         "key1": "value1",
@@ -115,9 +113,10 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
+
 ## Retrieve a custom attribute
 
-获取指定聊天室的自定义属性信息。
+Retrieves the specified custom attributes of a chat room.
 
 ### HTTP request
 
@@ -127,42 +126,38 @@ POST https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}
 
 #### Path parameter
 
-参数及说明详见 [公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
-| 参数    | 类型   |是否必需 | 描述      |
-| :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 App Token 值。|
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Accept` | String | `application/json` | Yes |
+| `Content-Type` | String | `application/json` | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
-| 参数          | 类型   | 是否必需 | 说明                                                 |
-| :------------ | :----- | :------- | :--------------------------------------------------- |
-| `keys`        | Array | 否     | 聊天室自定义属性名称列表。              |
+| Parameter | Type   | Required | Description                          |
+| :------------ | :----- | :------- | :------ |
+| `keys`        | Array | No    | The keys of the custom attributes to retrieve.  //TODO: 假设不指定这个参数则获取聊天室内的全部自定义属性是吗？   |
 
 ### HTTP response
 
 #### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+| Field | Type | Description  |
+| :----- | :------ | :------ |
+| `data`   | Object | The key-value pairs of the retrieved custom attributes. |
 
-| 字段          | 类型    | 说明                                                         |
-| :------------ | :------ | :----------------------------------------------------------- |
-| `data`   | Object | 聊天室自定义属性，为键值对格式，key 为属性名称，value 为属性值。 |
-
-其他字段及说明详见 [公共参数](#param)。
-
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
 ### Example
 
 #### Request example
 
 ```shell
-# 将 <YourAppToken> 替换为你在服务端生成的 AppToken
+# Replaces <YourAppToken> with the app token generated from your token server.
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' -d '{
     "keys": ["key1","key2"]
  }' 'http://XXXX/XXXX/XXXX/metadata/chatroom/662XXXX13'
@@ -180,9 +175,13 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
+
 ## Remove a custom attribute
 
-指定用户删除指定聊天室设置的自定义属性。该方法不覆盖其他成员设置的自定义属性。
+Removes custom attributes set by the specified user.
+// TODO: 用户A可以删除用户B设置的自定义属性吗？
+
+<div class="alert note">This method is only used to remove the key-value pairs set by the specified user, but not to overwrite them. <ul><li>To perform the overwrite operation, see [Overwrite a custom attribute](#overwrite-a-custom-attribute).</li><li>To remove the key-value pairs specified by other users, see [Force to remove a custom attribute](#force-to-remove-a-custom-attribute)</li></ul></div>
 
 ### HTTP request
 
@@ -192,43 +191,39 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 
 #### Path parameter
 
-参数及说明详见 [公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
-| 参数    | 类型   |是否必需 | 描述      |
-| :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 App Token 值。|
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Accept` | String | `application/json` | Yes |
+| `Content-Type` | String | `application/json` | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
-| 参数          | 类型   | 是否必需 | 说明                                                 |
-| :------------ | :----- | :------- | :--------------------------------------------------- |
-| `keys`        | Array | 否     | 聊天室自定义属性名称列表。              |
+| Parameter | Type   | Required | Description                          |
+| :------------ | :----- | :------- | :------ |
+| `keys`        | Array | No    | The keys of the custom attributes to remove.      |
 
 ### HTTP response
 
 #### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+| Field | Type | Description  |
+| :----- | :------ | :------ |
+| `data.successKeys`   | Array | The keys of the custom attributes that are successfully removed.  |
+| `data.errorKeys` | Object | The keys of the custom attributes that fail to be removed paired with the corresponding error descriptions. |
 
-| 字段          | 类型    | 说明                                                         |
-| :------------ | :------ | :----------------------------------------------------------- |
-| `data.successKeys`   | Array | 成功删除的聊天室属性名称列表。 |
-| `data.errorKeys` | Object | 删除失败的聊天室属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
-
-其他字段及说明详见 [公共参数](#param)。
-
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
 ### Example
 
 #### Request example
 
 ```shell
-# 将 <YourAppToken> 替换为你在服务端生成的 AppToken
+# Replaces <YourAppToken> with the app token generated from your token server.
 DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' -d '{
     "keys": ["key1","key2"]
  }' 'http://XXXX/XXXX/XXXX/metadata/chatroom/662XXXX13/user/user1'
@@ -246,10 +241,11 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 }
 ```
 
+<a name="overwrite"></a>
 
-## Force to set a custom attribute
+## Overwrite a custom attribute
 
-指定用户强制设置指定聊天室的自定义属性信息，即该方法可覆盖其他用户设置的聊天室自定义属性。
+Overwrites the custom attributes set by other users.
 
 ### HTTP request
 
@@ -259,49 +255,40 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 
 #### Path parameter
 
-参数及说明详见 [公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
-| 参数    | 类型   |是否必需 | 描述      |
-| :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 App Token 值。|
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Accept` | String | `application/json` | Yes |
+| `Content-Type` | String | `application/json` | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
-| 参数          | 类型   | 是否必需 | 说明                                                 |
-| :------------ | :----- | :------- | :--------------------------------------------------- |
-| `metaData`    | JSON | 是     | 聊天室的自定义属性，存储为键值对（key-value pair）集合，即 Map<String,String>。该集合中最多可包含 10 个键值对，在每个键值对中，key 为属性名称，最多可包含 128 个字符；value 为属性值，不能超过 4086 个字符。每个聊天室最多可有 100 个自定义属性，每个应用的聊天室自定义属性总大小为 10 GB。
-  <br/> key 支持以下字符集：
-   <li>26 个小写英文字母 a-z；
-   <li>26 个大写英文字母 A-Z；
-   <li>10 个数字 0-9；
-   <li>“_”, “-”, “.”。|
-| `autoDelete` | String | 否     | 当前成员退出聊天室时是否自动删除该自定义属性。 <li>（默认）'DELETE'：是； <li>'NO_DELETE'：否。              |
+| Parameter | Type   | Required | Description                          |
+| :------------ | :----- | :------- | :------ |
+| `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs, i.e., `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> //TODO: 一个map内，还是每个key和value的上限|
+| `autoDelete` | String | No  | Whether to automatically delete the custom attributes specified by a chat room member after this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
 
 ### HTTP response
 
 #### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+| Field | Type | Description  |
+| :----- | :------ | :------ |
+| `data.successKeys`   | Array | The keys of the custom attributes that are successfully overwritten. |
+| `data.errorKeys` | Object | The keys of the custom attributes that fail to be overwritten paired with the corresponding error descriptions. |
 
-| 字段          | 类型    | 说明                                                         |
-| :------------ | :------ | :----------------------------------------------------------- |
-| `data.successKeys`   | Array | 设置成功的聊天室属性名称列表。 |
-| `data.errorKeys` | Object | 设置失败的聊天室属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
-
-其他字段及说明详见 [公共参数](#param)。
-
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
 ### Example
 
 #### Request example
 
 ```shell
-# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+# Replaces <YourAppToken> with the app token generated from your token server.
 curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' -d '{
     "metaData": {
         "key1": "value1",
@@ -326,7 +313,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## Force to remove a custom attribute
 
-指定用户强制删除指定聊天室的自定义属性信息，即该方法会删除其他用户设置的聊天室自定义属性。
+Forces to remove the custom attributes set by other users.
 
 ### HTTP request
 
@@ -336,43 +323,39 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 
 #### Path parameter
 
-参数及说明详见 [公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
-| 参数    | 类型   |是否必需 | 描述      |
-| :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 App Token 值。|
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :--------------------- | :------- |
+| `Accept` | String | `application/json` | Yes |
+| `Content-Type` | String | `application/json` | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 #### Request body
 
-| 参数          | 类型   | 是否必需 | 说明                                                 |
-| :------------ | :----- | :------- | :--------------------------------------------------- |
-| `keys`        | Array | 否     | 聊天室自定义属性名称列表。              |
+| Parameter | Type   | Required | Description                          |
+| :------------ | :----- | :------- | :------ |
+| `keys`        | Array | No    | The keys of the custom attributes to remove.      |
 
 ### HTTP response
 
 #### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+| Field | Type | Description  |
+| :----- | :------ | :------ |
+| `data.successKeys`   | Array | The keys of the custom attributes that are successfully removed.  |
+| `data.errorKeys` | Object | The keys of the custom attributes that fail to be removed paired with the corresponding error descriptions. |
 
-| 字段          | 类型    | 说明                                                         |
-| :------------ | :------ | :----------------------------------------------------------- |
-| `data.successKeys`   | Array | 成功删除的聊天室属性名称列表。 |
-| `data.errorKeys` | Object | 删除失败的聊天室属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
-
-其他字段及说明详见 [公共参数](#param)。
-
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
 ### Example
 
 #### Request example
 
 ```shell
-# 将 <YourAppToken> 替换为你在服务端生成的 AppToken
+# Replaces <YourAppToken> with the app token generated from your token server.
 DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' -d '{
     "keys": ["key1","key2"]
  }' 'http://XXXX/XXXX/XXXX/metadata/chatroom/662XXXX13/user/user1/forced'
@@ -390,6 +373,9 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 }
 ```
 
-## <a name="code"></code> Status codes
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+<a name="code"></code>
+
+## Status codes
+
+For details, see [HTTP Status Codes](./agora_chat_status_code).
