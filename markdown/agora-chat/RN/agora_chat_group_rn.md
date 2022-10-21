@@ -1,7 +1,5 @@
 群组是支持多人沟通的即时通讯系统，本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理群组，并实现群组相关功能。
 
-如需查看消息相关内容，参见 [消息管理](./agora_chat_message_overview)。
-
 ## 技术原理
 
 即时通讯 IM React Native SDK 提供 `ChatGroupManager` 类和 `ChatGroup` 类，用于管理群组，以及事件监听回调 `ChatGroupEventListener`。其中包含如下主要方法：
