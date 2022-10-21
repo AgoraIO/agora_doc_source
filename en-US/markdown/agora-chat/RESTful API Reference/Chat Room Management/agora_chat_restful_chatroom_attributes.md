@@ -75,7 +75,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type   | Required | Description                          |
 | :------------ | :----- | :------- | :------ |
 | `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs, i.e., `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> |
-| `autoDelete` | String | No  | Whether to automatically delete the custom attributes specified by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
+| `autoDelete` | String | No  | Whether to automatically delete the custom attributes set by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
 
 ### HTTP response
 
@@ -182,7 +182,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 Removes custom attributes set by the current user.
 
-<div class="alert note">This method is only used to remove the key-value pairs set by the current user rather than others. To remove the key-value pairs specified by other users, see <a href="#force">Forcibly remove custom attributes</a>.</div>
+<div class="alert note">This method is only used to remove the key-value pairs set by the current user rather than others. To remove the key-value pairs set by others, see <a href="#force">Forcibly remove custom attributes</a>.</div>
 
 ### HTTP request
 
@@ -246,7 +246,7 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 
 ## Forcibly set custom attributes
 
-Apart from adding new custom attributes or modifying the existing ones set by the current user, this method can also be used to overwrite the custom attributes set by other users.
+Apart from adding new custom attributes or modifying the existing ones set by the current user, this method can also be used to overwrite the custom attributes set by others.
 
 ### HTTP request
 
@@ -271,7 +271,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type   | Required | Description                          |
 | :------------ | :----- | :------- | :------ |
 | `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs, i.e., `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> |
-| `autoDelete` | String | No  | Whether to automatically delete the custom attributes specified by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
+| `autoDelete` | String | No  | Whether to automatically delete the custom attributes set by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
 
 ### HTTP response
 
