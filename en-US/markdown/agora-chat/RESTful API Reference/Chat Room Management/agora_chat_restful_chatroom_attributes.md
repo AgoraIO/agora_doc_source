@@ -17,7 +17,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service.  For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app must be unique.</li></ul></div> | Yes |
+| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  The following character sets are supported:<li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li><div class="alert note"><ul><li>The username is case insensitive, so `Aa` and `aa` are the same username. </li><li>Ensure that each username under the same app is unique.</li></ul></div> | Yes |
 
 
 ### Response parameters
@@ -50,7 +50,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 Adds new custom chat room attributes or modifies existing ones set by the current user.
 
-<div class="alert note">This method is only used to modify the existing key-value pairs set by the current user rather than others. To perform the overwrite operation, see <a href="overwrite">Forcibly set custom attributes</a>.</div>
+<div class="alert note">This method is only used to modify the existing key-value pairs set by the current user. To perform the overwrite operation, see <a href="overwrite">Forcibly set custom attributes</a>.</div>
 
 ### HTTP request
 
@@ -74,8 +74,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type   | Required | Description                          |
 | :------------ | :----- | :------- | :------ |
-| `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs, i.e., `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> |
-| `autoDelete` | String | No  | Whether to automatically delete the custom attributes set by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
+| `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs in the format `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4,086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> |
+| `autoDelete` | String | No  | Whether to automatically delete the custom attributes set by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Delete the custom attributes.</li> <li><code>NO_DELETE</code>: Do not delete the custom attributes.</li> |
 
 ### HTTP response
 
@@ -182,7 +182,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 Removes custom attributes set by the current user.
 
-<div class="alert note">This method is only used to remove the key-value pairs set by the current user rather than others. To remove the key-value pairs set by others, see <a href="#force">Forcibly remove custom attributes</a>.</div>
+<div class="alert note">This method is only used to remove the key-value pairs set by the current user. To remove the key-value pairs set by others, see <a href="#force">Forcibly remove custom attributes</a>.</div>
 
 ### HTTP request
 
@@ -246,7 +246,7 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 
 ## Forcibly set custom attributes
 
-Apart from adding new custom attributes or modifying the existing ones set by the current user, this method can also be used to overwrite the custom attributes set by others.
+In addition to adding new custom attributes or modifying the existing ones set by the current user, this method can also be used to overwrite the custom attributes set by others.
 
 ### HTTP request
 
@@ -270,8 +270,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type   | Required | Description                          |
 | :------------ | :----- | :------- | :------ |
-| `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs, i.e., `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> |
-| `autoDelete` | String | No  | Whether to automatically delete the custom attributes set by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Yes.</li> <li><code>NO_DELETE</code>: No.</li> |
+| `metaData`  | JSON | Yes  | The custom attributes that are stored as a collection of key-value pairs in the format `Map<String,String>`. Keys in a map are unique attribute names that map to the corresponding attribute values. Note the following limitations: <ul><li>Each chat room can have a maximum of 100 custom attributes.</li><li>The size of all custom attributes in an app can be a maximum of 10 GB.</li><li>Each map can contain a maximum of 10 key-value pairs.</li><li>Each key can contain a maximum of 128 characters.</li><li>Each value can contain a maximum of 4,086 characters.</li></ul> The following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"_", "-", "."</li></ul> |
+| `autoDelete` | String | No  | Whether to automatically delete the custom attributes set by a chat room member when this member leaves the chat room:<li>(Default) <code>DELETE</code>: Delete the custom attributes.</li> <li><code>NO_DELETE</code>: Do not delete the custom attributes.</li> |
 
 ### HTTP response
 
@@ -315,7 +315,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## Forcibly remove custom attributes
 
-Apart from removing the custom attributes set by the current user, this method can also be used to remove custom attributes set by others.
+In addition to removing the custom attributes set by the current user, this method can also be used to remove custom attributes set by others.
 
 ### HTTP request
 
