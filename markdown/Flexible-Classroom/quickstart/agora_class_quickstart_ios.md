@@ -19,25 +19,44 @@
 
 你可参考以下步骤准备开发环境：
 
-1. 打开 App Store，下载并安装 Xcode。要求 Xcode 12.5 或以上版本。
+1. 打开 App Store，下载并安装 Xcode。要求 Xcode 13.0 或以上版本。
 2. 点击[链接](https://guides.cocoapods.org/using/getting-started.html#getting-started)前往下载 CocoaPods。要求 CocoaPods 1.10 或以上版本。
 
 <div class="alert info">如果你使用 Swift 开发，需要使用 Swift 5.0 或以上版本。</div>
 
 ## 获取源码
 
-灵动课堂 iOS 端的源码位于 GitHub [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 仓库和 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 仓库。你可参考以下步骤获取源码：
+灵动课堂 App iOS 端的源码位于 GitHub [flexible-classroom-ios](https://github.com/AgoraIO-Community/flexible-classroom-ios) 仓库。你可参考以下步骤获取源码：
 
-~dcb78160-3fce-11ed-8dae-bf25bf08a626~
+1. 运行以下命令将 flexible-classroom-ios 仓库克隆到本地：
+	
+	```
+	git clone https://github.com/AgoraIO-Community/flexible-classroom-ios.git
+	```
+
+2. 运行以下命令进入 flexible-classroom-ios 目录并切换分支至指定版本。将 {VERSION} 替换为要切换的版本号：
+	
+	```
+	git checkout release/{VERSION} 
+	```
+	
+	例如要切换到 2.8.0 版本分支，执行以下命令：
+	
+	```
+	git checkout release/2.8.0
+	```
+
+   声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
+   // TODO
 
 ## 启动灵动课堂
 
 按照以下步骤启动灵动课堂：
 
-1. 运行以下命令进入 CloudClass-iOS/App 目录：
+1. 运行以下命令进入 flexible-classroom-ios/App 目录：
 
     ```bash
-    cd CloudClass-iOS/App
+    cd flexible-classroom-ios/App
     ```
 
 2. 运行以下命令安装依赖包。
@@ -48,9 +67,9 @@
 
     如下图所示：
 
-    ![](https://web-cdn.agora.io/docs-files/1648725475723)
+    ![](https://web-cdn.agora.io/docs-files/1648725475723) //TODO
 
-3. 成功安装依赖包后，在“访达”窗口中打开 CloudClass-iOS 文件夹，双击 `AgoraEducation.xcworkspace` 在 Xcode 中打开项目。
+3. 成功安装依赖包后，在“访达”窗口中打开 flexible-classroom-ios/App 文件夹，双击 `AgoraEducation.xcworkspace` 在 Xcode 中打开项目。
 
    ![](https://web-cdn.agora.io/docs-files/1648725644218)
 
