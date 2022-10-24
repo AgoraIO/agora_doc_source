@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusicontentcenter_preload">
+    <title><ph keyref="preload"/></title>
+    <shortdesc id="short"><ph id="shortdesc">预加载音乐资源。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="preload"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int preload(long songCode, String jsonOption);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)preloadWithSongCode:(NSInteger)songCode jsonOption:(NSString* _Nullable)jsonOption NS_SWIFT_NAME(preload(songCode:jsonOption:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int preload(int64_t songCode, const char* jsonOption = nullptr) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc"> <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>你可以调用该方法预先加载需要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreloadEvent"/> 回调报告预加载音乐资源的事件。在调用该方法来预加载音乐资源之前，你需要调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取你需要播放的音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<parmname>songCode</parmname>）。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="open_IMusicPlayer/code">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+                <plentry id="option">
+                    <pt>jsonOption</pt>
+                    <pd>扩展 json 字段，默认为 <ph keyref="NULL"/>。</pd>
+                </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
