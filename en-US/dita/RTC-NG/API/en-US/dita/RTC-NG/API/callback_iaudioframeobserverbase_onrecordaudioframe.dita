@@ -33,8 +33,8 @@
             <ul>
                 <li>Before joining the channel, you need to call the <xref keyref="registerAudioFrameObserver"/> to register audio observer object, that is, register the <apiname keyref="onRecordAudioFrame"/> callback.</li>
                 <li>To ensure that the data format of captured audio frame is as expected, Agora recommends that you choose one of the following two methods to set the audio data format:<ul>
-                        <li>If<xref keyref="setRecordingAudioFrameParameters"/> you call  to<apiname keyref="onRecordAudioFrame"/> set the acquired audio data format, the SDK calculates the sampling interval according to the parameters in this method, and triggers the  callback according to the sampling interval.</li>
-                        <li>If you set the<xref keyref="getRecordAudioParams"/> acquired audio data format in the return value of the  callback, the SDK calculates the sampling interval according to the return value of the callback, and trigger the  callback according to the sampling interval<apiname keyref="onRecordAudioFrame"/>.</li>      
+                        <li>If you call <xref keyref="setRecordingAudioFrameParameters"/> to set the acquired audio data format, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
+                        <li>If you set the acquired audio data format in the return value of the <xref keyref="getRecordAudioParams"/> callback, the SDK calculates the sampling interval according to the return value of the callback, and trigger the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>      
                     </ul></li>
                 <li props="flutter">Due to the limitations of Flutter, this callback does not support writing processed audio data back to the SDK.</li>
             </ul>
