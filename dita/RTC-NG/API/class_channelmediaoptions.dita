@@ -35,43 +35,44 @@
   public Boolean isAudioFilterable;
   public Boolean isInteractiveAudience;</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCameraTrack;
+@property(assign, nonatomic) BOOL publishCameraTrack;
+@property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
+@property(assign, nonatomic) BOOL publishMicrophoneTrack;
 #if TARGET_OS_IPHONE
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenCaptureVideo;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenCaptureAudio;
+@property(assign, nonatomic) BOOL publishScreenCaptureVideo;
+@property(assign, nonatomic) BOOL publishScreenCaptureAudio;
 #elif TARGET_OS_MAC
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishScreenTrack;
+@property(assign, nonatomic) BOOL publishScreenTrack;
+@property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
 #endif
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishDirectCustomAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishCustomVideoTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishEncodedVideoTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerAudioTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMediaPlayerVideoTrack;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishMediaPlayerId;
+@property(assign, nonatomic) BOOL publishCustomAudioTrack;
+@property(assign, nonatomic) NSInteger publishCustomAudioSourceId;
+@property(assign, nonatomic) BOOL publishCustomAudioTrackEnableAec;
+@property(assign, nonatomic) BOOL  publishDirectCustomAudioTrack;
 
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable publishCustomAudioSourceId;
-
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishMicrophoneTrack;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeAudio;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable autoSubscribeVideo;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableAudioRecordingOrPlayout;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable clientRoleType;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audienceLatencyLevel;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable defaultVideoStreamType;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable channelProfile;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable audioDelayMs;
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable mediaPlayerAudioDelayMs;
+@property(assign, nonatomic) BOOL publishCustomVideoTrack;
+@property(assign, nonatomic) BOOL publishEncodedVideoTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
+@property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
+@property(assign, nonatomic) BOOL publishTrancodedVideoTrack;
+@property(assign, nonatomic) BOOL autoSubscribeAudio;
+@property(assign, nonatomic) BOOL autoSubscribeVideo;
+@property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
+@property(assign, nonatomic) NSInteger publishMediaPlayerId;
+@property(assign, nonatomic) AgoraClientRole clientRoleType;
+@property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
+@property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
+@property(assign, nonatomic) AgoraChannelProfile channelProfile;
+@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable enableBuiltInMediaEncryption;
+@property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
 
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable publishRhythmPlayerTrack;
+@property(assign, nonatomic) BOOL publishRhythmPlayerTrack;
+@property(assign, nonatomic) BOOL isInteractiveAudience;
 
-@property(strong, nonatomic) AgoraRtcIntOptional* _Nullable customVideoTrackId;
+@property(assign, nonatomic) NSInteger customVideoTrackId;
 
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isAudioFilterable;
-
-@property(strong, nonatomic) AgoraRtcBoolOptional* _Nullable isInteractiveAudience;
+@property(assign, nonatomic) BOOL isAudioFilterable;
 
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
@@ -118,69 +119,69 @@
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaOptions {
-  
+
   publishCameraTrack?: boolean;
-  
+
   publishSecondaryCameraTrack?: boolean;
-  
+
   publishMicrophoneTrack?: boolean;
-  
+
   publishScreenCaptureVideo?: boolean;
-  
+
   publishScreenCaptureAudio?: boolean;
-  
+
   publishScreenTrack?: boolean;
-  
+
   publishSecondaryScreenTrack?: boolean;
-  
+
   publishCustomAudioTrack?: boolean;
-  
+
   publishCustomAudioSourceId?: number;
-  
+
   publishCustomAudioTrackEnableAec?: boolean;
-  
+
   publishDirectCustomAudioTrack?: boolean;
-  
+
   publishCustomVideoTrack?: boolean;
-  
+
   publishEncodedVideoTrack?: boolean;
-  
+
   publishMediaPlayerAudioTrack?: boolean;
-  
+
   publishMediaPlayerVideoTrack?: boolean;
-  
+
   publishTrancodedVideoTrack?: boolean;
-  
+
   autoSubscribeAudio?: boolean;
-  
+
   autoSubscribeVideo?: boolean;
-  
+
   enableAudioRecordingOrPlayout?: boolean;
-  
+
   publishMediaPlayerId?: number;
-  
+
   clientRoleType?: ClientRoleType;
-  
+
   audienceLatencyLevel?: AudienceLatencyLevelType;
-  
+
   defaultVideoStreamType?: VideoStreamType;
-  
+
   channelProfile?: ChannelProfileType;
-  
+
   audioDelayMs?: number;
-  
+
   mediaPlayerAudioDelayMs?: number;
-  
+
   token?: string;
-  
+
   enableBuiltInMediaEncryption?: boolean;
-  
+
   publishRhythmPlayerTrack?: boolean;
-  
+
   isInteractiveAudience?: boolean;
-  
+
   customVideoTrackId?: number;
-  
+
   isAudioFilterable?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
@@ -216,72 +217,72 @@
           public Optional&lt;bool&gt; isInteractiveAudience = new Optional&lt;bool&gt;();
           public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
           public Optional&lt;bool&gt; isAudioFilterable = new Optional&lt;bool&gt;();
-  
+
        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
-  
+
   publishCameraTrack?: boolean;
-  
+
   publishSecondaryCameraTrack?: boolean;
-  
+
   publishMicrophoneTrack?: boolean;
-  
+
   publishScreenCaptureVideo?: boolean;
-  
+
   publishScreenCaptureAudio?: boolean;
-  
+
   publishScreenTrack?: boolean;
-  
+
   publishSecondaryScreenTrack?: boolean;
-  
+
   publishCustomAudioTrack?: boolean;
-  
+
   publishCustomAudioSourceId?: number;
-  
+
   publishCustomAudioTrackEnableAec?: boolean;
-  
+
   publishDirectCustomAudioTrack?: boolean;
-  
+
   publishCustomVideoTrack?: boolean;
-  
+
   publishEncodedVideoTrack?: boolean;
-  
+
   publishMediaPlayerAudioTrack?: boolean;
-  
+
   publishMediaPlayerVideoTrack?: boolean;
-  
+
   publishTrancodedVideoTrack?: boolean;
-  
+
   autoSubscribeAudio?: boolean;
-  
+
   autoSubscribeVideo?: boolean;
-  
+
   enableAudioRecordingOrPlayout?: boolean;
-  
+
   publishMediaPlayerId?: number;
-  
+
   clientRoleType?: ClientRoleType;
-  
+
   audienceLatencyLevel?: AudienceLatencyLevelType;
-  
+
   defaultVideoStreamType?: VideoStreamType;
-  
+
   channelProfile?: ChannelProfileType;
-  
+
   audioDelayMs?: number;
-  
+
   mediaPlayerAudioDelayMs?: number;
-  
+
   token?: string;
-  
+
   enableBuiltInMediaEncryption?: boolean;
-  
+
   publishRhythmPlayerTrack?: boolean;
-  
+
   isInteractiveAudience?: boolean;
-  
+
   customVideoTrackId?: number;
-  
+
   isAudioFilterable?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
@@ -318,7 +319,7 @@
       this.isInteractiveAudience,
       this.customVideoTrackId,
       this.isAudioFilterable});
- 
+
   @JsonKey(name: 'publishCameraTrack')
   final bool? publishCameraTrack;
   @JsonKey(name: 'publishSecondaryCameraTrack')
@@ -393,7 +394,7 @@
             <parml>
             <plentry>
                 <pt>publishCameraTrack</pt>
-                <pd>设置是否发布摄像头采集的视频：                   
+                <pd>设置是否发布摄像头采集的视频：
                     <ul id="ul_vx5_np5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
@@ -401,27 +402,28 @@
             </plentry>
             <plentry>
                 <pt>publishMicrophoneTrack</pt>
-                <pd>设置是否发布麦克风采集到的音频：                   
+                <pd>设置是否发布麦克风采集到的音频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布麦克风采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布麦克风采集到的音频。</li>
                     </ul>
                     <note type="note">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
                 </pd>
-            </plentry>                
+            </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>publishSecondaryCameraTrack</pt>
-                <pd>设置是否发布第二个摄像头采集的视频：                   
+                <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布第二个摄像头采集的视频。</li>
                     </ul>
                 </pd>
             </plentry>
-            <plentry props="ios mac cpp electron unity rn flutter">
-                <pt>publishScreenTrack</pt>
+            <plentry>
+                <pt props="android ios">publishScreenCaptureVideo</pt>
+                <pt props="mac cpp">publishScreenTrack</pt>
                 <pd>
-                    <p>设置是否发布屏幕采集的视频：                   
+                    <p>设置是否发布屏幕采集的视频：
                     <ul>
                     <li> <codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
                     <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
@@ -429,19 +431,19 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt>publishScreenCaptureVideo</pt>
+                <pt props="cpp unity electron rn flutter">publishScreenCaptureVideo</pt>
                 <pd>
-                    <p>设置是否发布屏幕采集的视频：                  
+                    <p>设置是否发布屏幕采集的视频：
                     <ul>
                     <li> <codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
                     <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
                     </ul></p>
-                    <note type="attention" props="cpp">该参数仅适用于 Android 和 iOS 平台。</note> </pd>
+                    <note type="attention" props="cpp unity flutter">该参数仅适用于 Android 和 iOS 平台。</note> </pd>
             </plentry>
             <plentry>
-                <pt>publishScreenCaptureAudio</pt>
+                <pt props="android ios cpp unity electron rn flutter">publishScreenCaptureAudio</pt>
                 <pd>
-                    <p>设置是否发布屏幕采集的音频：                   
+                    <p>设置是否发布屏幕采集的音频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的音频。</li>
@@ -453,7 +455,7 @@
             <plentry props="cpp unity electron rn flutter">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>
-                    <p>设置是否发布第二个屏幕采集的视频：                   
+                    <p>设置是否发布第二个屏幕采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布第二个屏幕采集到的视频。</li>
@@ -463,16 +465,16 @@
             <plentry props="cpp unity electron rn flutter">
                 <pt>publishTrancodedVideoTrack</pt>
                 <pd>
-                    <p>设置是否发布本地的转码视频：                   
+                    <p>设置是否发布本地的转码视频：
                     <ul>
-                    <li><codeph><ph keyref="true"/>：</codeph>发布本地的转码视频。</li>
-                    <li><codeph><ph keyref="false"/>：</codeph>（默认）不发布本地的转码视频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：发布本地的转码视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）不发布本地的转码视频。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>publishCustomAudioTrack</pt>
-                <pd>设置是否发布自定义采集的音频：                   
+                <pd>设置是否发布自定义采集的音频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布自定义采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的音频。</li>
@@ -480,13 +482,13 @@
             </plentry>
             <plentry>
                 <pt>publishCustomAudioSourceId</pt>
-                <pd>待发布的自定义音频源的 ID。默认值为 0。                   
+                <pd>待发布的自定义音频源的 ID。默认值为 0。
                     <p>如果你已在 <xref keyref="setExternalAudioSource2"/> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>publishCustomAudioTrackEnableAec</pt>
-                <pd>设置发布自定义采集的音频时是否启用 AEC：                   
+                <pd>设置发布自定义采集的音频时是否启用 AEC：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的音频时启用 AEC。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）发布自定义采集的音频时不启用 AEC。</li>
@@ -494,7 +496,7 @@
             </plentry>
             <plentry>
                 <pt>publishCustomVideoTrack</pt>
-                <pd>设置是否发布自定义采集的视频：                   
+                <pd>设置是否发布自定义采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布自定义采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布自定义采集到的视频。</li>
@@ -502,7 +504,7 @@
             </plentry>
             <plentry>
                 <pt>publishEncodedVideoTrack</pt>
-                <pd>设置是否发布编码后的视频：                   
+                <pd>设置是否发布编码后的视频：
                     <ul id="ul_ljg_4q5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布编码后的视频 。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布编码后的视频。</li>
@@ -510,7 +512,7 @@
             </plentry>
             <plentry>
                 <pt>publishMediaPlayerAudioTrack</pt>
-                <pd>设置是否发布媒体播放器的音频：                  
+                <pd>设置是否发布媒体播放器的音频：
                     <ul id="ul_gr3_rq5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的音频。</li>
@@ -518,7 +520,7 @@
             </plentry>
             <plentry>
                 <pt>publishMediaPlayerVideoTrack</pt>
-                <pd>设置是否发布媒体播放器的视频：                 
+                <pd>设置是否发布媒体播放器的视频：
                     <ul id="ul_gtd_tq5_3qb">
                     <li><codeph><ph keyref="true"/></codeph>：发布媒体播放器的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布媒体播放器的视频。</li>
@@ -526,7 +528,7 @@
             </plentry>
             <plentry>
                 <pt>autoSubscribeAudio</pt>
-                <pd>设置是否自动订阅所有音频流：                  
+                <pd>设置是否自动订阅所有音频流：
                     <ul id="ul_gxf_vq5_3qb">
                     <li> <codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有音频流。</li>
                     <li> <codeph><ph keyref="false"/></codeph>：不自动订阅任何音频流。</li>
@@ -534,7 +536,7 @@
             </plentry>
             <plentry>
                 <pt>autoSubscribeVideo</pt>
-                <pd>设置是否自动订阅所有视频流：                 
+                <pd>设置是否自动订阅所有视频流：
                     <ul id="ul_gfh_xq5_3qb">
                     <li> <codeph><ph keyref="true"/></codeph>：（默认）自动订阅所有视频流。</li>
                     <li> <codeph><ph keyref="false"/></codeph>：不自动订阅任何视频流。</li>
@@ -542,9 +544,9 @@
             </plentry>
             <plentry>
                 <pt>enableAudioRecordingOrPlayout</pt>
-                <pd>设置是否开启音频录制或播放：                   
+                <pd>设置是否开启音频录制或播放：
                     <ul>
-                    <li> <codeph><ph keyref="true"/></codeph>：（默认）开启音频录制和播放。</li>
+                    <li> <codeph><ph keyref="true"/></codeph>：（默认）开启音频录制或播放。</li>
                     <li> <codeph> <ph keyref="false"/></codeph>：不开启音频录制或播放。</li>
                     </ul> </pd>
             </plentry>
@@ -578,7 +580,7 @@
             </plentry>
             <plentry props="hide">
                 <pt>publishCustomAudioTrackAec</pt>
-                <pd>设置是否发布经过外部回声消除模块处理的音频帧。                   
+                <pd>设置是否发布经过外部回声消除模块处理的音频帧。
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布经过外部回声消除模块处理的音频帧。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布经过外部回声消除模块处理的音频帧。</li>
@@ -596,7 +598,7 @@
             </plentry>
             <plentry props="hide">
                 <pt>startPreview</pt>
-                <pd>设置是否在加入频道时自动开启预览。                   
+                <pd>设置是否在加入频道时自动开启预览。
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）自动开启预览。该参数值生效的前提是已通过 <xref keyref="setupLocalVideo"/> 方法设置了本地视频属性；否则，不会开启预览。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不自动开启预览。</li>
@@ -604,7 +606,7 @@
             </plentry>
             <plentry>
                 <pt>publishRhythmPlayerTrack</pt>
-                <pd>设置是否发布虚拟节拍器声音至远端：                   
+                <pd>设置是否发布虚拟节拍器声音至远端：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布。本地用户和远端用户都能听到节拍器。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布。只有本地用户能听到节拍器。</li>
@@ -612,10 +614,10 @@
             </plentry>
             <plentry>
                 <pt>isInteractiveAudience</pt>
-                <pd>是否开启互动模式：                   
+                <pd>是否开启互动观众模式：
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：开启互动模式。成功开启后，本地用户收到低延时和流畅的远端用户视频。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）不开启互动模式。本地用户收到默认设置的远端用户视频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：开启互动观众模式。成功开启后，本地用户作为互动观众，收到低延时和流畅的远端用户视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）不开启互动观众模式。本地用户作为普通观众，收到默认设置的远端用户视频。</li>
                     </ul>
                     <note type="attention">
                     <ul>
@@ -627,6 +629,13 @@
                 <pt>customVideoTrackId</pt>
                 <pd>调用 <xref keyref="createCustomVideoTrack"/> 方法返回的视频轨道 ID。默认值为 0。</pd>
             </plentry>
+             <plentry>
+                 <pt>isAudioFilterable</pt>
+                 <pd>设置是否让当前音频流根据音强算法参与选流。
+                 <ul><li><codeph><ph keyref="true"/></codeph>：（默认）参与音强选流。如未开启音强选流功能，该参数不会生效。</li>
+                 <li><codeph><ph keyref="false"/></codeph>：不参与音强选流。</li></ul>
+                <note type="attention">如需启用该功能，请联系 <xref keyref="mailto-link"/>。</note></pd>
+             </plentry>
             </parml> </section>
     </refbody>
 </reference>

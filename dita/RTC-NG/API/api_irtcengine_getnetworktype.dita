@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getnetworktype">
+    <title><ph keyref="getNetworkType"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取本地网络连接类型。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getNetworkType"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int getNetworkType();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int) getNetworkType;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getNetworkType() = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+            <p>你可以在任何阶段通过该方法获取正在使用的网络类型。</p>
+            <note type="note">该方法在加入频道前后均可调用。</note>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>≥ 0: 方法调用成功，返回本地网络连接类型。 
+                    <ul>
+                    <li>0：网络连接已断开。</li>
+                    <li>1：网络类型为 LAN。</li>
+                    <li>2：网络类型为 Wi-Fi(包含热点）。</li>
+                    <li>3：网络类型为 2G 移动网络。</li>
+                    <li>4：网络类型为 3G 移动网络。</li>
+                    <li>5：网络类型为 4G 移动网络。</li>
+                    <li>6：网络类型为 5G 移动网络。</li>
+                    </ul> </li>
+            <li>&lt; 0: 方法调用失败，返回错误码。
+                    <ul>
+                    <li>-1：网络连接类型未知。</li>
+                    </ul> </li>    
+            </ul>
+        </section>
+    </refbody>
+</reference>

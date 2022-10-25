@@ -88,9 +88,10 @@
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_BUSY"/>(3): The local video capturing device is in use. Remind the user to check whether another application occupies the camera.</li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/>(4): The local video capture failed. Remind the user to check whether the video capture device is working properly, or the camera is occupied by another application, and then try to rejoin the channel.<ul>
                         <li>If your app runs in the background on a device running Android 9 or later, you cannot access the camera.</li>
-                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. Once the camera is released, the SDK triggers this callback again, reporting stateCAPTURING, and errorERROR_OK<codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph>.</li>
+                        <li>If your app runs on a device running Android 6 or later, this error is reported if the camera is occupied by a third-party app and not property released. Once the camera is released, the SDK triggers this callback again, reporting <codeph>state</codeph> <codeph>CAPTURING</codeph>, and <codeph>error</codeph> <codeph>ERROR_OK</codeph>.</li>
                         </ul></li>
                     <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_ENCODE_FAILURE"/>(5): The local video encoding fails.</li>
+                    <li><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_NOT_FOUND"/>(8): Fails to find a local video capture device. Remind the user to check whether the camera is connected to the device properly or the camera is working properly, and then to rejoin the channel.</li>
                     </ul> </p>
                 </pd>
             </plentry>

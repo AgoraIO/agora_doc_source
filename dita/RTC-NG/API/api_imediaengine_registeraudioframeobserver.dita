@@ -22,8 +22,7 @@
             <codeblock props="flutter" outputclass="language-dart">void registerAudioFrameObserver(AudioFrameObserver observer);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios">该方法用于注册音频观测器对象，即注册回调。当需要 SDK 给出 <xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/> 或 <xref keyref="onEarMonitoringAudioFrame"/> 回调时，需要使用该方法注册回调。</p>
-            <p props="cpp mac unity">该方法用于注册音频观测器对象，即注册回调。当需要 SDK 给出 <xref keyref="onRecordAudioFrame"/> 或 <xref keyref="onPlaybackAudioFrame"/> 回调时，需要使用该方法注册回调。</p>
+            <p>该方法用于注册音频观测器对象，即注册回调。当需要 SDK 给出 <xref keyref="onMixedAudioFrame"/>、<xref keyref="onRecordAudioFrame"/>、<xref keyref="onPlaybackAudioFrame"/> 或 <xref keyref="onEarMonitoringAudioFrame"/> 等回调时，需要使用该方法注册回调。</p>
             <note type="attention">该方法需要在加入频道前调用。</note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -36,10 +35,10 @@
                     <p><ph>接口对象实例。详见 <xref keyref="IAudioFrameObserver"/>。</ph><ph props="android mac ios unity cpp">如果传入 <ph keyref="NULL"/>，则表示取消注册。</ph><ph>Agora 建议在收到 <xref keyref="onLeaveChannel"/> 后调用，来释放音频观测器对象。</ph></p>
                 </pd>
             </plentry>
-                <plentry props="unity">
-                    <pt>mode</pt>
-                    <pd>音频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
-                </plentry>
+            <plentry props="unity">
+                <pt>mode</pt>
+                <pd>音频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values" props="native rn electron">
             <title>返回值</title>

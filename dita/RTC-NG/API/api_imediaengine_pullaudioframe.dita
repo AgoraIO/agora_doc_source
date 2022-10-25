@@ -38,10 +38,10 @@
                 <li>调用该方法后 app 会主动拉取音频数据。通过设置音频数据，SDK 可以调整缓存，帮助 app 处理延时，从而有效避免音频播放抖动。</li>
                 </ul></li>
             </ul> </note> </section>
-        <section id="parameters">
+        <section id="parameters" props="native unity flutter">
             <title>参数</title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity flutter">
                 <pt>frame</pt>
                 <pd>指向 <xref keyref="AudioFrame"/> 的指针。</pd>
             </plentry>
@@ -54,7 +54,7 @@
                 <pd>音频数据长度，单位为字节。该参数的值由音频数据时长、<apiname keyref="setExternalAudioSink"/> 的 <codeph>sampleRate</codeph> 和 <codeph>channels</codeph> 参数确定。<codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × 音频数据时长 (ms)。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity electron rn">
             <title>返回值</title>
             <ul props="android cpp unity">
             <li>0：方法调用成功。</li>
@@ -63,6 +63,10 @@
             <ul props="ios mac">
             <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
             <li><codeph><ph keyref="false"/></codeph>：方法调用失败。</li>
+            </ul>
+            <ul props="electron rn">
+            <li>方法调用成功，返回一个 <apiname keyref="AudioFrame" /> 对象。</li>
+            <li>方法调用失败，返回错误码。</li>
             </ul> </section>
     </refbody>
 </reference>

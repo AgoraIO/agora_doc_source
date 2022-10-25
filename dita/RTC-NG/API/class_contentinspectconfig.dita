@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
-    <title><ph keyref="ContentInspectConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">视频内容审核配置。</ph></shortdesc>
+    <title><ph keyref="ContentInspectConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频截图上传配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android">public class ContentInspectConfig {
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
-  public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
   public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
   public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
   public String extraInfo;
@@ -23,7 +22,7 @@
       type = CONTENT_INSPECT_TYPE_INVALID;
       interval = 0;
     }
-  }</codeblock>
+  }></codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
@@ -93,33 +92,35 @@
             <parml>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
-                <pd>（默认）该功能模块无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
+                <pd>（默认）无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="hide">
                 <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
                 <pd>视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
             </plentry>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_SUPERVISE</pt>
-                <pd>视频截图。SDK 会对本地用户发送的视频进行截图并上传。</pd>
+                <pd>视频截图上传。SDK 会对本地用户发送的视频进行截图并上传。</pd>
             </plentry>
             <plentry props="native electron rn flutter">
                 <pt>extraInfo</pt>
                 <pd>
-                    <p>视频内容审核的附加信息，最大长度为 1024 字节。</p>
-                    <p>SDK 会将附加信息和截图一起上传至 Agora 内容审核服务器；审核完成后，Agora 内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
+                    <p>附加信息，最大长度为 1024 字节。</p>
+                    <p>SDK 会将附加信息和截图一起上传至 Agora 服务器；截图完成后，Agora 服务器会将附加信息随回调通知一起发送给你的服务器。</p>
+                    <p props="hide">SDK 会将附加信息和截图一起上传至 Agora 内容审核服务器；审核完成后，Agora 内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>视频内容审核模块。详见 <xref keyref="ContentInspectModule"/>。</p>
+                    <p>功能模块。详见 <xref keyref="ContentInspectModule"/>。</p>
                     <p>最多支持配置 32 个 <apiname keyref="ContentInspectModule"/> 实例，<parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> 的取值范围为 [1,32] 中的整数。</p>
-                    <note type="attention">一个视频内容审核模块最多只能配置一个实例。</note> </pd>
+                    <note type="attention">一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
+                </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>视频内容审核模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
+                <pd>功能模块数，即配置的 <apiname keyref="ContentInspectModule"/> 实例的数量，必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。</pd>
             </plentry>
             </parml> </section>
     </refbody>

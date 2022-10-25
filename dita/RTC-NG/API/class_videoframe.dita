@@ -6,89 +6,26 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class VideoFrame implements RefCounted {
-    public interface Buffer extends RefCounted {
-        @CalledByNative("Buffer") int getWidth();
-
-        @CalledByNative("Buffer") int getHeight();
-
-        @CalledByNative("Buffer") I420Buffer toI420();
-
-        @Override @CalledByNative("Buffer") void retain();
-
-        @Override @CalledByNative("Buffer") void release();
-
-        @CalledByNative("Buffer")
+            <codeblock props="android" outputclass="language-java">public interface Buffer extends RefCounted {
+    
+    @CalledByNative("Buffer") int getWidth();
+    @CalledByNative("Buffer") int getHeight();   
+    @Override @CalledByNative("Buffer") void retain(); 
+    @Override @CalledByNative("Buffer") void release();
+    @CalledByNative("Buffer")
     Buffer cropAndScale(
         int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth, int scaleHeight);
 
-        @CalledByNative("Buffer") @Nullable Buffer mirror(int frameRotation);
+    
+    @CalledByNative("Buffer") @Nullable Buffer mirror(int frameRotation);
 
-        @CalledByNative("Buffer") @Nullable Buffer rotate(int frameRotation);
-        @CalledByNative("Buffer")
+    
+    @CalledByNative("Buffer") @Nullable Buffer rotate(int frameRotation);
+    
+    @CalledByNative("Buffer")
     @Nullable
     Buffer transform(int cropX, int cropY, int cropWidth, int cropHeight, int scaleWidth,
         int scaleHeight, int frameRotation);
-  }
-
-    public interface I420Buffer extends Buffer {
-        @CalledByNative("I420Buffer") ByteBuffer getDataY();
-        @CalledByNative("I420Buffer") ByteBuffer getDataU();
-        @CalledByNative("I420Buffer") ByteBuffer getDataV();
-
-    @CalledByNative("I420Buffer") int getStrideY();
-    @CalledByNative("I420Buffer") int getStrideU();
-    @CalledByNative("I420Buffer") int getStrideV();
-  }
-
-    public interface I422Buffer extends Buffer {
-    @CalledByNative("I422Buffer") ByteBuffer getDataY();
-    @CalledByNative("I422Buffer") ByteBuffer getDataU();
-    @CalledByNative("I422Buffer") ByteBuffer getDataV();
-
-    @CalledByNative("I422Buffer") int getStrideY();
-    @CalledByNative("I422Buffer") int getStrideU();
-    @CalledByNative("I422Buffer") int getStrideV();
-  }
-  public interface RgbaBuffer extends Buffer {
-    @CalledByNative("RgbaBuffer") ByteBuffer getData();
-  }
-    public interface TextureBuffer extends Buffer {
-        enum Type {
-            OES(GLES11Ext.GL_TEXTURE_EXTERNAL_OES),
-            RGB(GLES20.GL_TEXTURE_2D);
-
-      private final int glTarget;
-
-      private Type(final int glTarget) {
-        this.glTarget = glTarget;
-      }
-
-      public int getGlTarget() {
-        return glTarget;
-      }
-    }
-
-    enum ContextType {
-      EGL_CONTEXT_10,
-      EGL_CONTEXT_14;
-    }
-
-    Type getType();
-
-        @CalledByNative("TextureBuffer") int getTextureId();
-
-        Matrix getTransformMatrix();
-
-        EglBase.Context getEglBaseContext();
-
-    @CalledByNative("TextureBuffer") long getNativeEglContext();
-
-    @CalledByNative("TextureBuffer") int getEglContextType();
-
-    @CalledByNative("TextureBuffer") float[] getTransformMatrixArray();
-
-        @CalledByNative("TextureBuffer") int getSequence();
   }
 
   public interface ColorSpace {
@@ -162,26 +99,50 @@
       Unspecified(2),
       BT470M(4),
       BT470BG(5),
-      kSMPTE170M(6),   private Buffer buffer;
+      kSMPTE170M(6), 
+      kSMPTE240M(7),
+      kFILM(8),
+      kBT2020(9),
+      kSMPTEST428(10),
+      kSMPTEST431(11),
+      kSMPTEST432(12),
+      kJEDECP22(22);
+      private final int primary;
+      private Primary(int primary) {
+        this.primary = primary;
+      }
+      public int getPrimary() {
+        return primary;
+      }
+    }
 
-    private int rotation;
+    Range getRange();
+    Matrix getMatrix();
+    Transfer getTransfer();
+    Primary getPrimary();
+  }
 
-    private long timestampNs;
+  public enum SourceType {
+    kFrontCamera,
+    kBackCamera,
+    kUnspecified,
+  }
+
+  
+  private Buffer buffer;
+  private int rotation;
+  private long timestampNs;
   private ColorSpace colorSpace;
-
+  private SourceType sourceType;
   private float sampleAspectRatio;
-
-  private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
-
-    private byte[] alphaBuffer;
-
-    public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
-    this(buffer, rotation, timestampNs, null, null, 1.0f);
+  private byte[] alphaBuffer;
+  public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
+    this(buffer, rotation, timestampNs, null, null, 1.0f, SourceType.kUnspecified.ordinal());
   }
 
   @CalledByNative
   public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
-      byte[] alphaBuffer, float sampleAspectRatio) {
+      byte[] alphaBuffer, float sampleAspectRatio, int sourceType) {
     if (buffer == null) {
       throw new IllegalArgumentException("buffer not allowed to be null");
     }
@@ -194,47 +155,49 @@
     this.colorSpace = colorSpace;
     this.alphaBuffer = alphaBuffer;
     this.sampleAspectRatio = sampleAspectRatio;
+    this.sourceType = SourceType.values()[sourceType];
+  }
+
+  @CalledByNative
+  public SourceType getSourceType() {
+    return sourceType;
   }
 
   public float getSampleAspectRatio() {
     return sampleAspectRatio;
   }
 
-    @CalledByNative
+  @CalledByNative
   public Buffer getBuffer() {
     return buffer;
   }
 
-    @CalledByNative
+  @CalledByNative
   public int getRotation() {
     return rotation;
   }
 
-    @CalledByNative
+  @CalledByNative
   public long getTimestampNs() {
     return timestampNs;
   }
 
-  @CalledByNative
-  public VideoFrameMetaInfo getMetaInfo() {
-    return metaInfo;
-  }
-
-    public int getRotatedWidth() {
+  public int getRotatedWidth() {
     if (rotation % 180 == 0) {
       return buffer.getWidth();
     }
     return buffer.getHeight();
   }
 
-    public int getRotatedHeight() {
+  public int getRotatedHeight() {
     if (rotation % 180 == 0) {
       return buffer.getHeight();
     }
     return buffer.getWidth();
   }
 
-    public void replaceBuffer(Buffer buffer, int rotation, long timestampNs) {
+  
+  public void replaceBuffer(Buffer buffer, int rotation, long timestampNs) {
     release();
     this.buffer = buffer;
     this.rotation = rotation;
@@ -249,12 +212,12 @@
     return alphaBuffer;
   }
 
-    @Override
+  @Override
   public void retain() {
     buffer.retain();
   }
 
-    @Override
+  @Override
   @CalledByNative
   public void release() {
     buffer.release();
@@ -542,127 +505,137 @@
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>type</pt>
-                <pd props="cpp unity electron rn flutter">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT" />。</pd>
-                <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format"/>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>width</pt>
-                <pd>视频像素宽度。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>height</pt>
-                <pd>视频像素高度。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>yStride</pt>
-                <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>uStride</pt>
-                <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>vStride</pt>
-                <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>yBuffer</pt>
-                <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>uBuffer</pt>
-                <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>vBuffer</pt>
-                <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>I420Buffer</pt>
-                <pd>I420 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>I422Buffer</pt>
-                <pd>I422 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>TextureBuffer</pt>
-                <pd>Texture 视频帧的缓冲区，可以为 OES 或 RGB 格式。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>colorSpace</pt>
-                <pd>表示视频帧的色彩空间。详见 <xref keyref="videocolorspace-link"/>。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>buffer</pt>
-                <pd>缓冲区的数据。<note type="caution">该参数不可为空，否则会发生异常。</note></pd>
-            </plentry>
-            <plentry>
-                <pt>rotation</pt>
-                <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
-            </plentry>
-            <plentry props="apple cpp unity flutter rn electron">
-                <pt>renderTimeMs</pt>
-                <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>timestampNs</pt>
-                <pd>视频帧的时间戳（纳秒）。</pd>
-            </plentry>
-            <plentry>
-                <pt props="apple cpp unity rn electron">avsync_type</pt>
-                <pt props="flutter">avsyncType</pt>
-                <pd>保留参数。</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp electron unity rn">metadata_buffer</pt>
-                <pt props="flutter">metadataBuffer</pt>
-                <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
-            </plentry>
-            <plentry>
-                <pt props="cpp electron unity rn">metadata_size</pt>
-                <pt props="flutter">metadataSize</pt>
-                <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
-            </plentry>
-            <plentry props="cpp unity">
-                <pt>sharedContext</pt>
-                <pd>该参数仅适用于 Texture 格式的视频数据。EGL Context。</pd>
-            </plentry>
-            <plentry props="cpp electron unity rn flutter">
-                <pt>textureId</pt>
-                <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
-            </plentry>
-            <plentry props="cpp electron unity rn flutter">
-                <pt>matrix</pt>
-                <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>pixelBuffer</pt>
-                <pd>将数据填充到 CVPixelBuffer。</pd>
-            </plentry>
-            <plentry>
-                <pt>alphaBuffer</pt>
-                <pd>
-                    <p>表示人像分割算法的输出数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
-                    <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等等。
-                    
-                    <note>该参数需要<xref keyref="ticket-link"/>开通。</note></p>
-                </pd>
-            </plentry>
-            <plentry props="android">
-                <pt>sourceType</pt>
-                <pd/>
-            </plentry>
-            <plentry props="android">
-                <pt>sampleAspectRatio</pt>
-                <pd/>
-            </plentry>
-            <plentry props="android">
-                <pt>metaInfo</pt>
-                <pd/>
-            </plentry>
-            </parml></section>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>type</pt>
+          <pd props="cpp unity electron rn flutter">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+          <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format"/>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>width</pt>
+          <pd>视频像素宽度。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>height</pt>
+          <pd>视频像素高度。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>yStride</pt>
+          <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>uStride</pt>
+          <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>vStride</pt>
+          <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>yBuffer</pt>
+          <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>uBuffer</pt>
+          <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>vBuffer</pt>
+          <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
+        </plentry>
+        <plentry props="hide">
+          <pt>I420Buffer</pt>
+          <pd>I420 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
+        </plentry>
+        <plentry props="hide">
+          <pt>I422Buffer</pt>
+          <pd>I422 视频帧的缓冲区，包括 Y、U、V 平面的数据。</pd>
+        </plentry>
+        <plentry props="hide">
+          <pt>TextureBuffer</pt>
+          <pd>Texture 视频帧的缓冲区，可以为 OES 或 RGB 格式。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>buffer</pt>
+          <pd>
+            <note type="caution">该参数不可为空，否则会发生异常。</note>缓冲区的数据。与该参数相关的方法如下所示：</pd>
+          <pd>
+            <ul>
+              <li><codeph>getRotatedWidth</codeph>：获取旋转后的视频帧宽度。</li>
+              <li><codeph>getRotatedHeight</codeph>：获取旋转后的视频帧高度。</li>
+              <li><codeph>replaceBuffer</codeph>：将缓冲区中的数据替换为新的视频帧。</li>
+              <li><codeph>retain</codeph>：将缓冲区的引用计数加 1。</li>
+              <li><codeph>release</codeph>：将缓冲区的引用计数减 1。当计数为 0 时，缓冲区的资源会被释放。</li>
+            </ul>
+          </pd>
+        </plentry>
+        <plentry>
+          <pt>rotation</pt>
+          <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
+        </plentry>
+        <plentry props="apple cpp unity flutter rn electron">
+          <pt>renderTimeMs</pt>
+          <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>timestampNs</pt>
+          <pd>视频帧的时间戳（纳秒）。</pd>
+        </plentry>
+        <plentry props="apple cpp electron rn unity flutter">
+          <pt props="apple cpp unity rn electron">avsync_type</pt>
+          <pt props="flutter">avsyncType</pt>
+          <pd>保留参数。</pd>
+        </plentry>
+        <plentry props="cpp electron rn unity flutter">
+          <pt props="cpp electron unity rn">metadata_buffer</pt>
+          <pt props="flutter">metadataBuffer</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
+        </plentry>
+        <plentry props="cpp electron rn unity flutter">
+          <pt props="cpp electron unity rn">metadata_size</pt>
+          <pt props="flutter">metadataSize</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
+        </plentry>
+        <plentry props="cpp unity">
+          <pt>sharedContext</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。EGL Context。</pd>
+        </plentry>
+        <plentry props="cpp electron unity rn flutter">
+          <pt>textureId</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
+        </plentry>
+        <plentry props="cpp electron unity rn flutter">
+          <pt>matrix</pt>
+          <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
+        </plentry>
+        <plentry props="ios mac">
+          <pt>pixelBuffer</pt>
+          <pd>将数据填充到 CVPixelBuffer。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>colorSpace</pt>
+          <pd>表示视频帧的色彩空间。详见 <xref keyref="videocolorspace-link"/>。</pd>
+        </plentry>
+        <plentry props="android">
+          <pt>sourceType</pt>
+          <pd>在使用 SDK 采集视频时，表示该视频源的类型。
+            <ul>
+            <li><parmname>kFrontCamera</parmname>：前置摄像头。</li>
+            <li><parmname>kBackCamera</parmname>：后置摄像头。</li>
+            <li><parmname>kUnspecified</parmname>：(默认) 视频源类型未知。</li>
+            </ul></pd>
+        </plentry>
+        <plentry props="android">
+          <pt>sampleAspectRatio</pt>
+          <pd>单个像素的宽高比，即每个像素宽度与高度的比值。</pd>
+        </plentry>
+        <plentry>
+          <pt>alphaBuffer</pt>
+          <pd>
+            <p>表示人像分割算法的输出数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
+            <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等等。 
+              <note>该参数需要<xref keyref="ticket-link"/>开通。</note></p>
+          </pd>
+        </plentry>
+      </parml></section>
     </refbody>
 </reference>

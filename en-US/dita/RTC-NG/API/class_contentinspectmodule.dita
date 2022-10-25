@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectmodule">
     <title><ph keyref="ContentInspectModule" /></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule" />Structure to configure the type and frequency of the video content moderation module.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule" />A structure used to configure the frequency of video screenshot and upload.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -13,7 +13,7 @@
     type = CONTENT_INSPECT_TYPE_INVALID;
     interval = 0;
   }</codeblock>
-      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraContentInspectModule: NSObject
 @property (assign, nonatomic) AgoraContentInspectType type;
 
 @property (assign, nonatomic) NSInteger interval;
@@ -26,13 +26,13 @@
     interval = 0;
   }
 };</codeblock>
-<codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
+            <codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
   
   type?: ContentInspectType;
   
   interval?: number;
 }</codeblock>
-      <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule
+            <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule
     {
         public CONTENT_INSPECT_TYPE type;
         public uint interval;
@@ -43,13 +43,13 @@
             interval = 0;
         }
     };</codeblock>
-      <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
+            <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
   
   type?: ContentInspectType;
   
   interval?: number;
 }</codeblock>
-      <codeblock props="flutter" outputclass="language-dart">class ContentInspectModule {
+            <codeblock props="flutter" outputclass="language-dart">class ContentInspectModule {
 
   const ContentInspectModule({this.type, this.interval});
   @JsonKey(name: 'type')
@@ -67,18 +67,18 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="apple cpp flutter unity rn electron">The type of video content moderation module. See <xref keyref="CONTENT_INSPECT_TYPE" />.</pd>
-                <pd props="android">
-                    <p>The type of video content moderation module.<ul>
+                <pd props="apple cpp flutter">Types of functional module. See <xref keyref="CONTENT_INSPECT_TYPE" />.</pd>
+                <pd props="android unity">
+                    <p>Types of functional modules:<ul>
                     <li><ph keyref="CONTENT_INSPECT_INVALID" />(0): (Default) This module has no actual function. Do not set to this value.</li>
-                    <li><ph keyref="CONTENT_INSPECT_MODERATION" />(1): Video content moderation. SDK takes screenshots, inspects video content of the video stream in the channel, and uploads the screenshots and moderation results.</li>
-                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE" />(2): Screenshot capture. SDK takes screenshots of the video stream in the channel and uploads them.</li>
+                    <li props="en"><ph keyref="CONTENT_INSPECT_MODERATION" />(1): Video content moderation. SDK takes screenshots, inspects video content of the video stream in the channel, and uploads the screenshots and moderation results.</li>
+                    <li><ph keyref="CONTENT_INSPECT_SUPERVISE" />(2): Video screenshot and upload. SDK takes screenshots of the video stream in the channel and uploads them.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>interval</pt>
-                <pd>The frequency (in seconds) of video content moderation. The value should be set as larger than 0. If set as 0 (default), the video content is not inspected. Agora recommends that you set the value as 10; you can also adjust it according to your business needs.</pd>
+                <pd><ph>The frequency (s) of video screenshot and upload. The value should be set as larger than 0. The default value is 0, the SDK does not take screenshots. </ph><ph props="hide">The frequency (s) of video content moderation. The value should be set as larger than 0. If set as 0 (default), the video content is not inspected. </ph><ph>Agora recommends that you set the value as 10; you can also adjust it according to your business needs.</ph></pd>
             </plentry>
             </parml> </section>
     </refbody>

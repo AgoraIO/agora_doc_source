@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setheadphoneeqparameters">
+    <title><ph keyref="setHeadphoneEQParameters" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the low- and high-frequency parameters of the headphone equalizer.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setHeadphoneEQParameters" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setHeadphoneEQParameters(int lowGain, int highGain);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setHeadphoneEQParameters:(int)lowGain highGain:(int)highGain;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setHeadphoneEQParameters(int lowGain, int highGain) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc"> <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+            <p>In a spatial audio effect scenario, if the preset headphone equalization effect is not achieved after calling the <xref keyref="setHeadphoneEQPreset" /> method, you can further adjust the headphone equalization effect by calling this method.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>lowGain</pt>
+                <pd>The low-frequency parameters of the headphone equalizer. The value range is [-10,10]. The larger the value, the deeper the sound.</pd>
+            </plentry>
+                <plentry>
+                    <pt>highGain</pt>
+                    <pd>The high-frequency parameters of the headphone equalizer. The value range is [-10,10]. The larger the value, the sharper the sound.</pd>
+                </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity rn">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.<ul>
+                    <li>-1: A general error occurs (no specified reason).</li>
+                    </ul></li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imediaplayer_addlistener">
+    <title><ph keyref="addListener_IMediaPlayer" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Adds one <xref keyref="IMediaPlayerEvent" /> listener.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addListener_IMediaPlayer" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">addListener?&lt;EventType extends keyof IMediaPlayerEvent&gt;(
+      eventType: EventType,
+      listener: IMediaPlayerEvent[EventType]
+    ): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">addListener?&lt;EventType extends keyof IMediaPlayerEvent&gt;(
+      eventType: EventType,
+      listener: IMediaPlayerEvent[EventType]
+    ): EventSubscription;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>After calling this method, you can listen for the corresponding events in the <xref keyref="IMediaPlayer" /> object and obtain data through <apiname keyref="IMediaPlayerEvent" />. Depending on your project needs, you can add multiple listeners for the same event.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry id="eventType">
+                <pt>eventType</pt>
+                <pd>The name of the target event to listen for. See <apiname keyref="IMediaPlayerEvent" />.</pd>
+            </plentry>
+            <plentry id="listener">
+                <pt>listener</pt>
+                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onPlayerSourceStateChanged" /> as an example: <codeblock outputclass="language-typescript">// Create an onPlayerSourceStateChanged object
+const onPlayerSourceStateChanged = (connection: RtcConnection, elapsed: number) =&gt; {};
+// Add one onPlayerSourceStateChanged listener
+engine.addListener('onPlayerSourceStateChanged', onPlayerSourceStateChanged);</codeblock></pd>
+            </plentry>
+            </parml> </section>
+        <section conkeyref="addListener/return_values" props="rn" />
+    </refbody>
+</reference>

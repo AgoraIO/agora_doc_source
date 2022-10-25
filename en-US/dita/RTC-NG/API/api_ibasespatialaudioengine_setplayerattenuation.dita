@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setplayerattenuation">
+    <title><ph keyref="setPlayerAttenuation" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the sound attenuation properties of the media player.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setPlayerAttenuation" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setPlayerAttenuation(int playerId, double attenuation, boolean forceSet);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setPlayerAttenuation:(double)attenuation playerId:(NSUInteger)playerId forceSet:(BOOL)forceSet;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setPlayerAttenuation(int playerId, double attenuation, bool forceSet) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart" /> </p>
+        </section>
+        <section id="detailed_desc"> <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="updatePlayerPositionInfo/mpkid">
+                    <pt />
+                    <pd />
+                </plentry>
+                <plentry>
+                    <pt>attenuation</pt>
+                    <pd>The sound attenuation coefficient of the remote user or media player. The value range is [0,1]. As shown below:<ul id="attenuation">
+                        <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
+                        <li>(0,0.5): Weak attenuation mode, that is, the volume and timbre are only weakly attenuated during the propagation process, and the sound can travel farther than the real environment.</li>
+                        <li>0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>speaker_attenuation</parmname> parameter.</li>
+                        <li>(0.5,1]: Strong attenuation mode, that is, the volume and timbre attenuate rapidly during the propagation process.</li>
+                        </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>forceSet</pt>
+                    <pd>Whether to force the sound attenuation effect of the media player:<ul>
+                        <li><codeph><ph keyref="true" /></codeph>: Force <parmname>attenuation</parmname> to set the attenuation of the user. At this time, the attenuation coefficient of the sound insulation area set in the <parmname>audioAttenuation</parmname> in the <xref keyref="SpatialAudioZone" /> does not take effect for the user.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: Do not force <parmname>attenuation</parmname> to set the user's sound attenuation effect, as shown in the following two cases.<ul id="forceset-false">
+                            <li>If the sound source and listener are inside and outside the sound isolation area, the sound attenuation effect is determined by the <parmname>audioAttenuation</parmname> in <apiname keyref="SpatialAudioZone" />.</li>
+                            <li>If the sound source and the listener are in the same sound insulation area or outside the same sound insulation area, the sound attenuation effect is determined by <parmname>attenuation</parmname> in this method.</li>
+                            </ul></li>
+                        </ul></pd>
+                </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

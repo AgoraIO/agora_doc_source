@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecontentinspect">
-    <title><ph keyref="enableContentInspect" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开启/关闭视频内容审核。</ph></shortdesc>
+    <title><ph keyref="enableContentInspect"/></title>
+    <shortdesc id="short"><ph id="shortdesc"><ph>开启/关闭视频截图上传。</ph><ph props="hide">开启/关闭视频内容审核。</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableContentInspect" />
+                <indexterm keyref="enableContentInspect"/>
             </keywords>
         </metadata>
     </prolog>
@@ -29,24 +29,29 @@
       {required bool enabled, required ContentInspectConfig config});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>开启视频内容审核后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的内容审核模块类型和频率对本地用户发送的视频进行截图、审核和上传。审核完成后，Agora 内容审核服务器会以 HTTPS 请求的形式，向你的服务器发送审核结果，并将所有截图发送至你指定的第三方云存储。</p>
-            <p>如果你将 <apiname keyref="ContentInspectModule"/> 中的 <parmname>type</parmname> 设置为 <apiname keyref="CONTENT_INSPECT_MODERATION"/>（视频鉴黄），审核完成后，SDK 会触发 <xref keyref="onContentInspectResult"/> 回调，报告鉴黄结果。</p>                                                       
-            <note><ph>调用该方法前，请确保已开通 Agora 视频内容审核服务。</ph><ph props="cn">详见 <xref keyref="enable-content-inspect"/>。</ph></note>
-        </section>
+            <p>开启视频截图上传后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的模块类型和频率对本地用户发送的视频进行截图和上传。截图完成后，Agora 服务器会以 HTTPS 请求的形式，向你的服务器发送回调通知，并将所有截图发送至你指定的第三方云存储。</p>
+            <p props="hide">开启视频内容审核后，SDK 会根据你在 <xref keyref="ContentInspectConfig"/> 中设置的内容审核模块类型和频率对本地用户发送的视频进行截图、审核和上传。审核完成后，Agora 内容审核服务器会以 HTTPS 请求的形式，向你的服务器发送审核结果，并将指定类型的截图发送至你指定的第三方云存储。</p>
+            <note>
+            <ul>
+            <li><ph>调用该方法前，请确保已<xref keyref="ticket-link"/>开通 Agora 视频截图上传服务。</ph><ph props="hide">调用该方法前，请确保已<xref keyref="ticket-link"/>开通 Agora 视频内容审核服务。详见 <xref keyref="enable-content-inspect"/>。</ph></li>
+            <li>该方法依赖于视频内容审核动态库 <codeph><ph keyref="moderation"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
+            </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>设置是否开启视频内容审核：                                                  
+                <pd>设置是否开启<ph>视频截图上传</ph><ph props="hide">视频内容审核</ph>：                                                  
+                    
+                    
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>：开启。</li>
-                    <li><codeph><ph keyref="false" /></codeph>：关闭。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：<ph>开启视频截图上传</ph>。<ph props="hide">开启视频内容审核。</ph></li>
+                    <li><codeph><ph keyref="false"/></codeph>：<ph>关闭视频截图上传</ph>。<ph props="hide">关闭视频内容审核。</ph></li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd>内容审核配置。详见 <xref keyref="ContentInspectConfig" />。</pd>
+                <pd><ph>视频截图上传配置。</ph><ph props="hide">视频内容审核配置。</ph><ph>详见 <xref keyref="ContentInspectConfig"/>。</ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity rn electron">

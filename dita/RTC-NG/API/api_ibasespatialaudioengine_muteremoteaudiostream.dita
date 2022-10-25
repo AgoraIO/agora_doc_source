@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_muteremoteaudiostream">
     <title><ph keyref="muteRemoteAudioStream_IBaseSpatialAudioEngine"/></title>
-    <shortdesc id="short"><ph id="shortdesc"><?oxy-placeholder content="Provide a short description for this API."?></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">取消或恢复订阅指定远端用户的音频流。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,21 +25,42 @@
         <section id="detailed_desc"> <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
-                <dd>v</dd>
+                <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p/>
+            <p>
+                <note>
+                    <ul>
+                        <li>该方法需要在 <xref keyref="joinChannel2"/> 后调用。</li>
+                        <li>在使用空间音效时，如需设置是否订阅指定用户的音频流，Agora 推荐调用该方法替代 <xref keyref="IRtcEngine"/> 的 <xref keyref="muteRemoteAudioStream"/> 方法。</li>
+                    </ul>
+                </note>
+            </p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt><?oxy-placeholder content="The name of the parameter."?></pt>
-                <pd><?oxy-placeholder content="The description of the parameter. Please specify if the parameter is optional, output, and has a default value or value range."?></pd>
-            </plentry>
+            <plentry conkeyref="removeRemotePosition/uid">
+                    <pt/>
+                    <pd/>
+                </plentry>
+                <plentry>
+                    <pt>mute</pt>
+                    <pd>
+                        <p>是否取消订阅指定远端用户的音频流。 
+                            <ul>
+                            <li><codeph><ph keyref="true"/></codeph>: 取消订阅指定用户的音频流。</li>
+                            <li><codeph><ph keyref="false"/></codeph>:（默认）订阅指定用户的音频流，SDK 根据本地用户和远端用户的距离决定是否订阅。</li>
+                            </ul></p>
+                    </pd>
+                </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
         </section>
     </refbody>
 </reference>

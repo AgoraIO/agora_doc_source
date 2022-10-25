@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_ibasespatialaudioengine_setzones">
+    <title><ph keyref="setZones"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置隔声区域。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setZones"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setZones(SpatialAudioZone[] zones);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setZones:(NSArray&lt;AgoraSpatialAudioZone*> * _Nonnull)zones;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setZones(const SpatialAudioZone *zones, unsigned int zoneCount) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc"> <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.0.1</dd>
+            </dlentry>
+            </dl>
+            <p>在虚拟互动场景下，你可以通过该方法设置隔声区域和声音衰减系数。当音源（可以为用户或媒体播放器）跟听声者分属于音障区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。</p>
+            <ul>
+                <li>当音源跟听声者分属于音障区域内部和外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+                <li>当用户或媒体播放器同在一个隔声区域或离开隔声区域后，不受 <apiname keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <xref keyref="setPlayerAttenuation"/> 或 <xref keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。</li>
+                <li>如果用户或媒体播放器同在一个隔声区域内，则不受<apiname keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。如果不调用 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
+                <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
+            </ul>
+            <note>如果多次调用该方法，以最后一次设置的隔声区域为准。</note>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>zones</pt>
+                <pd>隔声区域的设置。详见 <apiname keyref="SpatialAudioZone"/>。</pd>
+            </plentry>
+                <plentry props="cpp">
+                    <pt>zoneCount</pt>
+                    <pd>隔声区域的数量。</pd>
+                </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <ul>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

@@ -2,13 +2,12 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
     <title><ph keyref="ContentInspectConfig" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Configuration of video content moderation.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Configuration of video screenshot and upload.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android">public class ContentInspectConfig {
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
-  public final static int CONTENT_INSPECT_TYPE_MODERATION = 1;
   public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
   public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
   public String extraInfo;
@@ -23,7 +22,7 @@
       type = CONTENT_INSPECT_TYPE_INVALID;
       interval = 0;
     }
-  }</codeblock>
+  }&gt;</codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
@@ -93,33 +92,35 @@
             <parml>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
-                <pd>(Default) This module has no actual function. Do not set <parmname>type</parmname> to this value.</pd>
+                <pd>(Default) No actual function. Do not set <parmname>type</parmname> to this value.</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="hide">
                 <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
                 <pd>Video content moderation. The SDK takes screenshots and inspect videos sent by local users, and uploads the screenshots and moderation results.</pd>
             </plentry>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_SUPERVISE</pt>
-                <pd>Screenshots capture. The SDK takes screenshots of videos sent by local users and upload them.</pd>
+                <pd>Video screenshot and upload. The SDK takes screenshots of videos sent by local users and upload them.</pd>
             </plentry>
             <plentry props="native electron rn flutter">
                 <pt>extraInfo</pt>
                 <pd>
-                    <p>Additional information for video content moderation, with a maximum length of 1024 bytes.</p>
-                    <p>The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
+                    <p>Additional information on the video content (maximum length: 1024 Bytes).</p>
+                    <p>The SDK sends the screenshots and additional information on the video content to the Agora server. Once the video screenshot and upload process is completed, the Agora server sends the additional information and the callback notification to your server.</p>
+                    <p props="hide">The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>Video content moderation module. See <xref keyref="ContentInspectModule" />.</p>
+                    <p>Functional module. See <xref keyref="ContentInspectModule" />.</p>
                     <p>A maximum of 32 <apiname keyref="ContentInspectModule" /> instances can be configured, and the value range of <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
-                    <note type="attention">A video content moderation module can only be configured with one instance at most.</note> </pd>
+                    <note type="attention">A function module can only be configured with one instance at most. Currently only the video screenshot and upload function is supported.</note>
+                </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>The number of video content moderation modules, that is, the number of configured <apiname keyref="ContentInspectModule" /> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
+                <pd>The number of functional modules, that is,the number of configured <apiname keyref="ContentInspectModule" /> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
             </plentry>
             </parml> </section>
     </refbody>
