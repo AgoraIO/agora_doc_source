@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_iaudioframeobserver_onplaybackaudioframebeforemixing">
+    <title><ph keyref="onPlaybackAudioFrameBeforeMixing"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Retrieves the audio frame of a specified user before mixing.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPlaybackAudioFrameBeforeMixing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract boolean onPlaybackAudioFrameBeforeMixing(int userId, int type,
+                int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
+                long renderTimeMs, int avsync_type);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame uid:(NSUInteger)uid;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onPlaybackAudioFrameBeforeMixing?(
+    channelId: string,
+    uid: number,
+    audioFrame: AudioFrame
+  ): boolean;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnPlaybackAudioFrameBeforeMixing(string channel_id,
+                                                        uint uid,
+                                                        AudioFrame audio_frame)
+        {
+            return false;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onPlaybackAudioFrameBeforeMixing?(
+    channelId: string,
+    uid: number,
+    audioFrame: AudioFrame
+  ): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, AudioFrame audioFrame)?
+      onPlaybackAudioFrameBeforeMixing;</codeblock> </p>
+        </section>
+        <section id="detailed_desc" props="flutter">
+            <note type="attention">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</note>
+        </section>
+        <section id="parameters">
+            <title>Parameter</title>
+            <parml>
+            <plentry props="cpp electron unity rn flutter">
+                <pt props="cpp electron rn flutter">channelId</pt>
+                <pt props="unity">channel_id</pt>
+                <pd>The channel ID.</pd>
+            </plentry>           
+            <plentry>
+                <pt props="cpp ios mac unity electron rn flutter">uid</pt>
+                <pt props="android">userId</pt>
+                <pd>The user ID of the specified user.</pd>
+            </plentry>
+            <plentry props="cpp unity ios mac electron rn flutter">
+                <pt props="cpp electron rn flutter">audioFrame</pt>
+                <pt props="ios mac">frame</pt>
+                <pt props="unity">audio_Frame</pt>
+                <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+            </plentry>
+            </parml>
+            <parml props="android">
+            <plentry conkeyref="onMixedAudioFrame/type">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onMixedAudioFrame/samplesPerChannel">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onMixedAudioFrame/bytesPerSample">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onMixedAudioFrame/channels">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onMixedAudioFrame/samplesPerSec">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onMixedAudioFrame/buffer">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onMixedAudioFrame/renderTimeMs">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="onMixedAudioFrame/avsync">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
+    </refbody>
+</reference>
