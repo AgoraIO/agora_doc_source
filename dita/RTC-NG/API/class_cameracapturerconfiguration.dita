@@ -201,21 +201,19 @@
             <plentry props="cpp android unity electron rn flutter">
                 <pt props="cpp unity electron rn flutter">format</pt>
                 <pt props="android">captureFormat</pt>
-                <pd>详见 <xref keyref="VideoFormat"/>。</pd>
+                <pd>视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>deviceId</pt>
                 <pd>
-                    <note type="attention" props="cpp unity electron">该参数仅适用于 Windows 平台。</note><ph>播放设备的设备 ID。</ph><ph props="cpp electron rn flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
+                    <note type="attention" props="cpp unity electron">该参数仅适用于 Windows 平台。</note><ph>摄像头的 ID。</ph><ph props="cpp electron rn flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
             </plentry>
                 <plentry>
                     <pt>followEncodeDimensionRatio</pt>
                     <pd>是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比： 
                         <ul>
-                        <li><codeph><ph keyref="true"
-                            /></codeph>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比裁剪。</li>
-                        <li><codeph><ph keyref="false"
-                            /></codeph>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
+                        <li><codeph><ph keyref="true" /></codeph>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
                         </ul></pd>
                 </plentry>
             </parml> </section>

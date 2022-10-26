@@ -30,25 +30,26 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>在已经开始摄像头采集后，如果想要同时通过第二个摄像头采集、发布视频，可参考以下步骤：
+            <p>在已有摄像头采集视频的场景下，声网推荐你采用以下步骤实现多路摄像头采集、发布视频：
                 <ol>
                 <li>调用该方法开启多路摄像头采集。</li>
-                <li>调用 <xref keyref="startSecondaryCameraCapture"/> 通过第二个摄像头进行采集。</li>
+                <li>调用 <xref keyref="startPreview"/> 开启本地视频预览。</li>
+                <li>调用 <xref keyref="startSecondaryCameraCapture"/> 开始通过第二个摄像头进行采集。</li>
                 <li>调用 <xref keyref="joinChannelEx"/> 并设置 <parmname>publishSecondaryCameraTrack</parmname> 为 <codeph><ph keyref="true"/></codeph>，在频道内发布第二路摄像头采集的视频流。</li>
                 </ol></p>
-            <p>如果要停止第二个摄像头采集，可参考以下步骤：
+            <p>如果要关闭多路摄像头采集，可参考以下步骤：
                 <ol>
                 <li>调用 <xref keyref="stopSecondaryCameraCapture"/>。</li>
                 <li>调用该方法并将 <parmname>enabled</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
                 </ol></p>
-            <p>你可以在 <xref keyref="startPreview"/> (或其他开启本地摄像头的方法) 前后调用该方法开启多摄像头采集：
+            <note><p>你可以在 <xref keyref="startPreview"/> (或其他开启本地摄像头的方法) 前后调用该方法开启多摄像头采集：
                 <ul>
-                <li>如果在 <apiname keyref="startPreview"/> 之前开启，则前、后摄像头的采集均采用多路摄像头模式。</li>
-                <li>如果在 <apiname keyref="startPreview"/> 之后开启，SDK 会先停止视频采集，然后由单路摄像头模式切换为多路摄像头模式，此时会中断采集，本地视频预览会出现短暂黑屏、然后自动恢复正常。</li>
-                </ul></p>
+                <li>如果在 <apiname keyref="startPreview"/> 之前开启，则开始本地视频预览时会同时出现两个摄像头采集的画面。</li>
+                <li>如果在 <apiname keyref="startPreview"/> 之后开启，SDK 会先停止当前的摄像头采集，然后再开启原摄像头和第二个摄像头，本地视频预览会出现短暂黑屏、然后自动恢复正常。</li>
+                </ul></p></note>
             <p props="cpp">该方法仅适用于 iOS。</p>
             <p>使用多路摄像头采集视频时，请确保系统版本为 13.0 及以上。</p>
-            <p>支持多路双摄像头采集的最低 iOS 设备类型如下所示：
+            <p>支持多路摄像头采集的最低 iOS 设备类型如下所示：
                 <ul>
                 <li>iPhone XR</li>
                 <li>iPhone XS</li>
@@ -59,7 +60,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry prop="cpp">
+            <plentry>
                 <pt>enabled</pt>
                 <pd>是否开启多摄像头视频采集模式： 
                         <ul>
