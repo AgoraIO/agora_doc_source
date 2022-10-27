@@ -188,12 +188,235 @@ $ go run server.go
 
 ### 使用 Token 对用户鉴权
 
-通过 HTTP 请求部署一个 Token 服务器，并使用获取到的 Token 加入频道。
+本节以 Android 客户端为例，展示如何使用 Token 对客户端的用户进行鉴权。
 
-```dart
-// 使用 token 加入频道
-await _engine.joinChannel(token: '', channelId: 'channelid', info: '', uid: 0);
-```
+为了展示鉴权的工作流程，本节介绍如何在你的本地开发环境上使用 Android 模拟器搭建并运行一个 Android 客户端。
+
+1. 基于你在实现互动直播时创建的项目，在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 路径下添加如下依赖：
+
+   ```java
+   dependencies {
+    ...
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.google.code.gson:gson:2.8.4'
+    ...
+    }
+   ```
+
+2. 将 `MainActivity.java` 中的内容替换为如下代码。 将 `Your App ID` 替换为你的 App ID，必须与服务器中的 App ID 一致。 您还需要将 `<Your Host URL and port>` 替换为你刚刚部署的本地 Golang 服务器的主机 URL 和端口，例如 10.53.3.234:8082。
+
+   在如下代码示例中，你可以看到 Token 与客户端的如下代码逻辑有关：
+
+ - 调用 `joinChannel` 方法，使用 Token、用户 ID 和频道名加入频道。用户 ID 和频道名必须和用于生成 Token 的用户 ID 和频道名一致。
+ - 在 Token 过期前 30 秒，SDK 会触发 `onTokenPrivilegeWillExpire` 回调。收到该回调后，客户端需要从服务器获取新的 Token 并调用 `renewToken` 将新生成的 Token 传给 SDK。
+ - Token 过期时，SDK 会触发 `onRequestToken` 回调。收到该回调后，客户端需要从服务器获取新的 Token 并调用 `joinChannel` 方法，再使用新的 Token 重新加入频道。
+
+  ```java
+  package com.example.rtcquickstart;
+
+  import androidx.appcompat.app.AppCompatActivity;
+
+  import android.os.Bundle;
+
+  import androidx.core.app.ActivityCompat;
+  import androidx.core.content.ContextCompat;
+
+  import android.Manifest;
+  import android.content.pm.PackageManager;
+  import android.view.SurfaceView;
+  import android.widget.FrameLayout;
+  import android.widget.Toast;
+  import io.agora.rtc2.Constants;
+  import io.agora.rtc2.IRtcEngineEventHandler;
+  import io.agora.rtc2.RtcEngine;
+  import io.agora.rtc2.video.VideoCanvas;
+  import io.agora.rtc2.ChannelMediaOptions;
+
+  import okhttp3.MediaType;
+  import okhttp3.OkHttpClient;
+  import okhttp3.Request;
+  import okhttp3.RequestBody;
+  import okhttp3.Response;
+  import okhttp3.Call;
+  import okhttp3.Callback;
+
+  import com.google.gson.Gson;
+
+  import java.util.Map;
+
+  import org.json.JSONException;
+  import org.json.JSONObject;
+
+  import java.io.IOException;
+
+  public class MainActivity extends AppCompatActivity {
+
+      // 填入在 Agora 控制台创建项目时生成的 App ID
+      private String appId = "Your App ID";
+      // 填入频道名称
+      private String channelName = "1234";
+
+      private String token = "";
+
+      private RtcEngine mRtcEngine;
+
+      private int joined = 1;
+
+      private final IRtcEngineEventHandler mRtcEventHandler = new IRtcEngineEventHandler() {
+          @Override
+          // 监听远端用户加入频道，并获取远端用户的用户 ID
+          public void onUserJoined(int uid, int elapsed) {
+              runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      // 在 onUserJoined 回调中获取用户 ID 后，调用 setupRemoteVideo 设置远端用户视图
+                      setupRemoteVideo(uid);
+                  }
+              });
+          }
+
+          @Override
+          public void onTokenPrivilegeWillExpire(String token) {
+              fetchToken(1234, channelName, 1);
+              runOnUiThread(new Runnable() {
+                  @Override
+                  public void run() {
+                      Toast toast = Toast.makeText(MainActivity.this, "Token renewed", Toast.LENGTH_SHORT);
+                      toast.show();
+                  }
+              });
+              super.onTokenPrivilegeWillExpire(token);
+          }
+
+          @Override
+          public void onRequestToken() {
+              joined = 1;
+              fetchToken(1234, channelName, 1);
+              super.onRequestToken();
+          }
+
+      };
+
+      private static final int PERMISSION_REQ_ID = 22;
+
+      private static final String[] REQUESTED_PERMISSIONS = {
+              Manifest.permission.RECORD_AUDIO,
+              Manifest.permission.CAMERA
+      };
+
+      private boolean checkSelfPermission(String permission, int requestCode) {
+          if (ContextCompat.checkSelfPermission(this, permission) !=
+                  PackageManager.PERMISSION_GRANTED) {
+              ActivityCompat.requestPermissions(this, REQUESTED_PERMISSIONS, requestCode);
+              return false;
+          }
+          return true;
+      }
+
+      // 获取 RTC token
+      private void fetchToken(int uid,String channelName,int tokenRole){
+          OkHttpClient client = new OkHttpClient();
+          MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+          JSONObject json = new JSONObject();
+          try {
+              json.put("uid", uid);
+              json.put("ChannelName", channelName);
+              json.put("role", tokenRole);
+          } catch (JSONException e) {
+              e.printStackTrace();
+          }
+
+          RequestBody requestBody = RequestBody.create(JSON, String.valueOf(json));
+          Request request = new Request.Builder()
+                  .url("http://<Your Host URL and port>/fetch_rtc_token")
+                  .header("Content-Type", "application/json; charset=UTF-8")
+                  .post(requestBody)
+                  .build();
+          Call call = client.newCall(request);
+          call.enqueue(new Callback() {
+              @Override
+              public void onFailure(Call call, IOException e) {
+
+              }
+
+              @Override
+              public void onResponse(Call call, Response response) throws IOException {
+                  if(response.isSuccessful()){
+                      Gson gson = new Gson();
+                      String result = response.body().string();
+                      Map map = gson.fromJson(result, Map.class);
+                      new Thread(new Runnable() {
+                          @Override
+                          public void run() {
+                              token = map.get("token").toString();
+                              // 如果用户未加入频道，使用 token 加入频道
+                              ChannelMediaOptions options = new ChannelMediaOptions();
+                              if (joined != 0){joined = mRtcEngine.joinChannel(token, channelName, 1234, options);}
+                              // 如果用户已加入频道，调用 renewToken 重新生成 token
+                              else {mRtcEngine.renewToken(token);}
+                          }
+                      });
+                  }
+              }
+          });
+      }
+
+      @Override
+      protected void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.activity_main);
+
+          // 如果所有权限都被授予，则初始化 RtcEngine 对象并加入频道
+          if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
+                  checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID)) {
+              initializeAndJoinChannel();
+          }
+      }
+
+      protected void onDestroy() {
+          super.onDestroy();
+
+          mRtcEngine.leaveChannel();
+          mRtcEngine.destroy();
+      }
+
+      private void initializeAndJoinChannel() {
+          try {
+              mRtcEngine = RtcEngine.create(getBaseContext(), appId, mRtcEventHandler);
+          } catch (Exception e) {
+              throw new RuntimeException("Check the error.");
+          }
+
+          // 在互动直播中，设置频道场景为 BROADCASTING
+          mRtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
+          // 根据实际情况，设置用户角色为 BROADCASTER 或 AUDIENCE
+          mRtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
+
+          // SDK 默认关闭视频。调用 enableVideo 开启视频
+          mRtcEngine.enableVideo();
+
+          FrameLayout container = findViewById(R.id.local_video_view_container);
+          // 调用 CreateRendererView 创建一个 SurfaceView 对象并将其作为子项添加到 FrameLayout
+          SurfaceView surfaceView = new SurfaceView (getBaseContext());
+          container.addView(surfaceView);
+          // 将 SurfaceView 对象传给 Agora，渲染本地视频
+          mRtcEngine.setupLocalVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, 0));
+          // 开始本地视频预览
+          mRtcEngine.startPreview();
+          // 从 token 服务器获取 token
+          fetchToken(1234, channelName, 1);
+      }
+
+      private void setupRemoteVideo(int uid) {
+          FrameLayout container = findViewById(R.id.remote_video_view_container);
+          SurfaceView surfaceView = new SurfaceView (getBaseContext());
+          surfaceView.setZOrderMediaOverlay(true);
+          container.addView(surfaceView);
+          mRtcEngine.setupRemoteVideo(new VideoCanvas(surfaceView, VideoCanvas.RENDER_MODE_FIT, uid));
+      }
+
+  }
+  ```
 
 ### 运行项目
 
