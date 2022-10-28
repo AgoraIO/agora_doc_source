@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_encodingpreference">
+    <title><ph keyref="ENCODING_PREFERENCE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频编码器偏好。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="PREFER_AUTO"/></pt>
+                <pd>-1：默认偏好。SDK 优先使用的编码器。</pd>
+            </plentry>
+            </parml>
+            <parml>
+            <plentry>
+                <pt><ph keyref="PREFER_SOFTWARE"/></pt>
+                <pd>0：软件编码偏好。SDK 优先使用软件编码器进行视频编码。</pd>
+            </plentry>
+            </parml>
+            <parml>
+            <plentry>
+                <pt><ph keyref="PREFER_HARDWARE"/></pt>
+                <pd>1：硬件编码偏好。SDK 优先使用硬件编码器进行视频编码。当设备不支持硬件编码时，SDK 会自动使用软件编码，并通过 <xref keyref="onLocalVideoStats"/> 回调中的 <parmname>hwEncoderAccelerating</parmname> 报告当前使用的视频编码器类型。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

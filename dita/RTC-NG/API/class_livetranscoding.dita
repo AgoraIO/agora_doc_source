@@ -62,7 +62,6 @@
   public boolean lowLatency;
   @Deprecated public boolean lowLatency;
   public int videoGop;
-  public AgoraImage watermark;
   private ArrayList&lt;AgoraImage&gt; watermarkList;
   public void addWatermark(AgoraImage watermark) {
     if (watermarkList == null) {
@@ -79,7 +78,6 @@
   public ArrayList&lt;AgoraImage&gt; getWatermarkList() {
     return watermarkList;
   }
-  public AgoraImage backgroundImage;
   private ArrayList&lt;AgoraImage&gt; backgroundImageList;
   public void addBackgroundImage(AgoraImage backgroundImage) {
     if (backgroundImageList == null) {
@@ -138,8 +136,6 @@
     videoCodecType = VideoCodecType.H264;
     videoGop = 30;
     videoFramerate = 15;
-    watermark = new AgoraImage();
-    backgroundImage = new AgoraImage();
     lowLatency = false;
     audioSampleRate = AudioSampleRateType.TYPE_44100;
     audioBitrate = 48;
@@ -240,9 +236,7 @@
 @property(assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
 @property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
 @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
-@property(strong, nonatomic) AgoraImage *_Nullable watermark;
 @property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
-@property(strong, nonatomic) AgoraImage *_Nullable backgroundImage;
 @property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
 @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
 @property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;
@@ -682,31 +676,18 @@
           <p>发送给 CDN 客户端的 metadata。</p>
         </pd>
       </plentry>
-      <plentry>
+      <plentry props="cpp unity flutter electron rn">
         <pt>watermark</pt>
         <pd>
-          <dl outputclass="deprecated" props="android ios mac">
-          <dlentry>
-            <dt>弃用</dt>
-            <dd props="android">请改用 <xref keyref="addWatermark" />。</dd>
-            <dd props="ios mac">请改用 <parmname>watermarkArray</parmname>。</dd>
-          </dlentry>
-          </dl>
           <p>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage" />。</p>
-          <p props="cpp unity flutter electron rn">你可以添加一个水印，或使用数组的方式添加多个水印。<ph props="cpp unity electron rn">该参数与 <parmname>watermarkCount</parmname>搭配使用。</ph></p>
+          <p>你可以添加一个水印，或使用数组的方式添加多个水印。<ph props="cpp unity electron rn">该参数与 <parmname>watermarkCount</parmname>搭配使用。</ph></p>
         </pd>
       </plentry>
-      <plentry>
+      <plentry props="cpp unity electron rn flutter">
         <pt>backgroundImage</pt>
         <pd>
-          <dl props="android ios mac" outputclass="deprecated">
-          <dlentry>
-            <dt>弃用</dt>
-            <dd><ph>请改用 <parmname props="android">addBackgroundImage</parmname><parmname props="ios mac">backgroundImageArray</parmname>。</ph></dd>
-          </dlentry>
-          </dl>
-          <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage" />。</p>
-          <p props="cpp unity electron rn flutter">你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</p>
+          <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
+          <p>你可以添加一张背景图，或使用数组的方式添加多张背景图。该参数与 <parmname>backgroundImageCount</parmname> 搭配使用。</p>
         </pd>
       </plentry>
       <plentry props="ios mac">
