@@ -20,15 +20,22 @@
 @end
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
-  ScreenCaptureSourceType type;
-  view_t sourceId;
-  const char* sourceName;
-  ThumbImageBuffer thumbImage;
-  ThumbImageBuffer iconImage;
-  const char* processPath;
-  const char* sourceTitle;
-  bool primaryMonitor;
-  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false) {}
+    ScreenCaptureSourceType type;
+    view_t sourceId;
+    const char* sourceName;
+    ThumbImageBuffer thumbImage;
+    ThumbImageBuffer iconImage;
+    const char* processPath;
+    const char* sourceTitle;
+    bool primaryMonitor;
+  bool isOccluded;
+#if defined(_WIN32)
+    bool minimizeWindow;
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr),
+                              processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false), minimizeWindow(false) {}
+#else
+  ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
+#endif
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
   
