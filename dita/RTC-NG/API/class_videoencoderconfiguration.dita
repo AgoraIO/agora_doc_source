@@ -130,8 +130,6 @@
 
     public MIRROR_MODE_TYPE mirrorMode;
 
-    public COMPRESSION_PREFERENCE compressionPreference;
-
     public AdvanceOptions advanceOptions;
 
   public VideoEncoderConfiguration() {
@@ -143,7 +141,6 @@
     this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
-    this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
     this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
@@ -157,7 +154,6 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
-    this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
     this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
@@ -171,7 +167,6 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
-    this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
     this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
@@ -185,7 +180,6 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
-    this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
     this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
@@ -199,7 +193,6 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
-    this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
     this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 }</codeblock>
@@ -235,7 +228,6 @@
   ORIENTATION_MODE orientationMode;
   DEGRADATION_PREFERENCE degradationPreference;
   VIDEO_MIRROR_MODE_TYPE mirrorMode;
-  COMPRESSION_PREFERENCE compressionPreference;
   AdvanceOptions advanceOptions;
 
   VideoEncoderConfiguration(const VideoDimensions&amp; d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
@@ -247,7 +239,6 @@
         orientationMode(m),
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(mirror),
-        compressionPreference(compressionPreference),
         advanceOptions(PREFER_AUTO) {}
   VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
       : codecType(VIDEO_CODEC_H264),
@@ -258,7 +249,6 @@
         orientationMode(m),
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(mirror),
-        compressionPreference(compressionPreference),
         advanceOptions(PREFER_AUTO) {}
   VideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config)
       : codecType(config.codecType),
@@ -269,7 +259,6 @@
         orientationMode(config.orientationMode),
         degradationPreference(config.degradationPreference),
         mirrorMode(config.mirrorMode),
-        compressionPreference(config.compressionPreference),
         advanceOptions(config.advanceOptions) {}
   VideoEncoderConfiguration()
       : codecType(VIDEO_CODEC_H264),
@@ -280,7 +269,6 @@
         orientationMode(ORIENTATION_MODE_ADAPTIVE),
         degradationPreference(MAINTAIN_QUALITY),
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
-        compressionPreference(PREFER_LOW_LATENCY),
         advanceOptions(PREFER_AUTO) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
@@ -497,15 +485,6 @@
                 <pd>
                     <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
-            </plentry>
-            <plentry props="native">
-                <pt>compressionPreference</pt>
-                <pd props="ios mac cpp">视频编码的压缩偏好。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。 </pd>
-                <pd props="android">视频编码的压缩偏好。                                      
-                    <ul>
-                    <li><ph keyref="PREFER_LOW_LATENCY"/> (0): 低延时偏好。SDK 会对视频帧进行压缩处理，以降低延时。该偏好适用于流畅性优先且允许画质降低的场景。</li>
-                    <li><ph keyref="PREFER_QUALITY"/> (1):（默认）高质量偏好。SDK 会对视频帧进行压缩处理，同时保持视频质量。该偏好适用于流畅性优先且允许画质降低的场景。</li>
-                    </ul></pd>
             </plentry>
             <plentry props="native">
                 <pt>advanceOptions</pt>
