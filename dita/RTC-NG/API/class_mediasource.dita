@@ -146,7 +146,7 @@
                 <pt>url</pt>
                 <pd>
                     <p>需要播放的媒体资源的 URL。</p>
-                    <note><ph>如果你打开媒体资源为自定义媒体资源，则无需向 <parmname>url</parmname> 传值。</ph></note></pd>
+                    <note>如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请仅向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，无需再向 <parmname>url</parmname> 传值，否则方法调用会失败。</note></pd>
             </plentry>
             <plentry>
                 <pt>uri</pt>
@@ -212,7 +212,7 @@
                     <pd>
                         <p>自定义媒体资源文件的回调。详见 <xref keyref="IMediaPlayerCustomDataProvider"/>。</p>
                         <note>
-                            <p>如果你需要打开自定义的媒体资源，例如需要自行解密的媒体资源，直接向 <parmname>provider</parmname> 传值，无需再向 <parmname>url</parmname> 传值。</p>
+                            <p>如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，仅需向 <parmname>provider</parmname> 传值。同时向 <parmname>url</parmname> 和 <parmname>provider</parmname> 传值会导致方法调用会失败。</p>
                         </note>
                     </pd>
                 </plentry>
@@ -221,7 +221,7 @@
                 <pd>
                     <p>读取媒体资源数据回调。详见 <xref keyref="onReadData" />。</p>
                     <note id="note">
-                    <p>如果你需要打开自定义的媒体资源，例如需要自行解密的媒体资源，直接向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，无需再向 <parmname>url</parmname> 传值。</p>
+                    <p>如果你需要打开自定义的媒体资源，例如需要自行解密的媒体资源，仅需向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，无需再向 <parmname>url</parmname> 传值，否则方法调用会失败。</p>
                     </note></pd>
             </plentry>
             <plentry props="apple">

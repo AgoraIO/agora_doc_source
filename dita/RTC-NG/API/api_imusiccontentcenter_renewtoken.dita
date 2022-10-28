@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_imusiccontentcenter_ispreloaded">
-    <title><ph keyref="isPreloaded"/></title>
-    <shortdesc id="short"><ph id="shortdesc">检测音乐资源是否已被预加载。</ph></shortdesc>
+<reference id="api_imusiccontentcenter_renewtoken">
+    <title><ph keyref="renewToken_IMusicContentCenter"/></title>
+    <shortdesc id="short"><ph id="shortdesc">更新 Token。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="isPreloaded"/>
+                <indexterm keyref="renewToken_IMusicContentCenter"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int isPreloaded(long songCode);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)isPreloadedWithSongCode:(NSInteger)songCode NS_SWIFT_NAME(isPreloaded(songCode:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int isPreloaded(int64_t songCode) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int renewToken(String token);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)renewToken:(NSString * _Nonnull)token;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -28,20 +28,20 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>该方法为同步调用。调用 <xref keyref="preload"/> 方法之后你可以调用该方法来检测音乐资源是否已被预加载。</p>
+            <p>当你用于鉴权的 Token 快要过期或已过期时，你可以调用该方法来传入新生成的 Token。 </p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="Music/code">
-                <pt></pt>
-                <pd></pd>
+            <plentry>
+                <pt>token</pt>
+                <pd>新的 Token。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功，该音乐资源已被预加载。</li>
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul>
         </section>
