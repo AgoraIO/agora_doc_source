@@ -17,7 +17,27 @@
 
   public void setSrcChannelInfo(ChannelMediaInfo srcInfo) {
     this.srcInfo = srcInfo;
-  }</codeblock>
+  }
+
+  public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo) {
+    if (destInfos.size() &lt; Constants.MAX_CROSS_DEST_CHANNEL_SIZE) {
+      destInfos.put(channelName, destInfo);
+    }
+  }
+
+  public void removeDestChannelInfo(String channelName) {
+    destInfos.remove(channelName);
+  }
+
+  public ChannelMediaInfo getSrcChannelMediaInfo() {
+    return srcInfo;
+  }
+
+  public Map&lt;String, ChannelMediaInfo&gt; getDestChannelMediaInfos() {
+    return destInfos;
+  }
+}
+</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayConfiguration: NSObject
 
 @property (strong, nonatomic, readonly) NSDictionary&lt;NSString *, AgoraChannelMediaRelayInfo *&gt; *_Nullable destinationInfos;
@@ -85,8 +105,7 @@
     factory ChannelMediaRelayConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
         _$ChannelMediaRelayConfigurationFromJson(json);
     Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
-  }</codeblock>
-            </p>
+  }</codeblock> </p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>

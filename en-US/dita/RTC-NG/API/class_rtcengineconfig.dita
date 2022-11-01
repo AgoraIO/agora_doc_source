@@ -44,7 +44,6 @@
     mAppId = "";
     mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
     mEventHandler = null;
-    mAudioScenario = Constants.AUDIO_SCENARIO_HIGH_DEFINITION;
     mAreaCode = Constants.AreaCode.AREA_CODE_GLOB;
     mExtensionList = new ArrayList&lt;&gt;();
     mExtensionObserver = null;
@@ -112,9 +111,10 @@
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        audioScenario(AUDIO_SCENARIO_HIGH_DEFINITION),
+        license(NULL),
+        audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
-        logConfig() {}
+        logConfig(), 
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
   

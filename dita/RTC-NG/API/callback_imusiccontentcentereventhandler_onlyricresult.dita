@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onlyricresult">
+    <title><ph keyref="onLyricResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">歌词下载地址回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLyricResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onLyricResult(String requestId, String lyricUrl);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onLyricResult:(NSString*)requestId lyricUrl:(NSString*)lyricUrl;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onLyricResult(const char* requestId, const char* lyricUrl) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>当你调用 <xref keyref="getLyric"/> 获取指定歌曲的歌词下载地址后，SDK 会触发该回调。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry conkeyref="onMusicChartsResult/id">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+                <plentry>
+                    <pt>lyricUrl</pt>
+                    <pd>歌词的下载地址。</pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
