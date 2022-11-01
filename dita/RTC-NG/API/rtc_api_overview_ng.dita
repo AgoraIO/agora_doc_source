@@ -373,19 +373,23 @@
                 <stentry><xref keyref="muteAllRemoteVideoStreams"/></stentry>
                 <stentry><ph conkeyref="muteAllRemoteVideoStreams/shortdesc"/></stentry>
             </strow>
+            <strow>
+                <stentry><xref keyref="setRemoteVideoSubscriptionOptions"/></stentry>
+                <stentry><ph conkeyref="setRemoteVideoSubscriptionOptions/shortdesc"/></stentry>
+            </strow>
             </simpletable> </section>
-        <section props="cpp" id="section_hj2_ph1_jqb">
+        <section props="cpp ios" id="section_hj2_ph1_jqb">
             <title>多设备采集</title>
             <simpletable>
             <sthead>
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
             </sthead>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="startPrimaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="startPrimaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="startPrimaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="startPrimaryScreenCapture/shortdesc"/></stentry>
             </strow>
@@ -393,15 +397,15 @@
                 <stentry><xref keyref="startSecondaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="startSecondaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="startSecondaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="startSecondaryScreenCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="stopPrimaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="stopPrimaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="stopPrimaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="stopPrimaryScreenCapture/shortdesc"/></stentry>
             </strow>
@@ -409,13 +413,14 @@
                 <stentry><xref keyref="stopSecondaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="stopSecondaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="stopSecondaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="stopSecondaryScreenCapture/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
         <section id="section_vw3_mlb_jqb">
             <title>媒体播放器</title>
+            <note>要查看更多关于媒体播放器的方法，详见 <xref href="toc_mediaplayer.dita"/>。</note>
             <simpletable>
             <sthead>
                 <stentry>方法</stentry>
@@ -1738,6 +1743,10 @@
                 <stentry><xref keyref="getExtensionProperty2"/></stentry>
                 <stentry><ph conkeyref="getExtensionProperty2/shortdesc"/></stentry>
             </strow>
+            <strow props="cpp">
+                <stentry><xref keyref="registerExtension"/></stentry>
+                <stentry><ph conkeyref="registerExtension/shortdesc"/>(仅适用于 Windows)</stentry>
+            </strow>
             </simpletable> <simpletable>
             <sthead>
                 <stentry>事件</stentry>
@@ -1860,70 +1869,78 @@
             </simpletable> </section>
         <section id="camera_control" props="android ios cpp flutter">
             <title>摄像头管理</title>
-            <note props="cpp flutter" type="attention">本组方法仅适用于 Android 和 iOS。</note> <simpletable>
+            <simpletable>
             <sthead>
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
             </sthead>
+            <strow props="cpp ios">
+                <stentry><xref keyref="enableMultiCamera"/></stentry>
+                <stentry><ph conkeyref="enableMultiCamera/shortdesc"/><ph props="cpp">(仅适用于 iOS)</ph></stentry>
+            </strow>
             <strow>
                 <stentry><xref keyref="switchCamera"/></stentry>
-                <stentry><ph conkeyref="switchCamera/shortdesc"/></stentry>
+                <stentry><ph conkeyref="switchCamera/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraCapturerConfiguration"/></stentry>
-                <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraZoomSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getCameraMaxZoomFactor"/></stentry>
-                <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraZoomFactor"/></stentry>
-                <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph>/stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraTorchSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraTorchOn"/></stentry>
-                <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow props="android cpp unity flutter">
                 <stentry><xref keyref="isCameraFaceDetectSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/><ph props="cpp unity flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraFocusSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraFocusPositionInPreview"/></stentry>
-                <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraAutoFocusFaceModeSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraAutoFocusFaceModeEnabled"/></stentry>
-                <stentry><ph conkeyref="setCameraAutoFocusFaceModeEnabled/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraAutoFocusFaceModeEnabled/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraExposurePositionSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
             </strow>
             <strow props="ios cpp flutter">
                 <stentry><xref keyref="isCameraAutoExposureFaceModeSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/><ph props="cpp unity flutter">（仅适用于 iOS）</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraExposurePosition"/></stentry>
-                <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/><ph props="cpp flutter">（仅适用于 Android 和 iOS）</ph></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setCameraAutoExposureFaceModeEnabled"/></stentry>
+                <stentry><ph conkeyref="setCameraAutoExposureFaceModeEnabled/shortdesc"/><ph props="cpp flutter">（仅适用于 iOS）</ph></stentry>
             </strow>
             </simpletable> <simpletable>
             <sthead>
@@ -2115,7 +2132,6 @@
         <section props="cpp unity flutter" id="section_ts1_shw_jqb">
             <title>视频设备管理</title>
             <note type="attention" props="cpp unity flutter">
-            <p>该组方法仅适用于 Windows。</p>
             </note> <simpletable id="simpletable_us1_shw_jqb">
             <sthead>
                 <stentry>方法</stentry>
@@ -2123,36 +2139,37 @@
             </sthead>
             <strow>
                 <stentry><xref keyref="enumerateVideoDevices"/></stentry>
-                <stentry><ph conkeyref="enumerateVideoDevices/shortdesc"/></stentry>
+                <stentry><ph conkeyref="enumerateVideoDevices/shortdesc"/>(仅适用于 Windows）</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setDevice_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="setDevice_IVideoDeviceManager/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setDevice_IVideoDeviceManager/shortdesc"/>(仅适用于 Windows）</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getDevice_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/>(仅适用于 Windows）</stentry>
             </strow>
             <strow props="cpp flutter">
                 <stentry><xref keyref="release_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/></stentry>
+                <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/>(仅适用于 Windows）</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="numberOfCapabilities"/></stentry>
-                <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/></stentry>
+                <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/>(仅适用于 Windows）</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getCapability"/></stentry>
-                <stentry><ph conkeyref="getCapability/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getCapability/shortdesc"/>(仅适用于 Windows）</stentry>
             </strow>
-            </simpletable> <simpletable props="hide">
+            </simpletable>
+            <simpletable props="cpp">
             <sthead>
                 <stentry>事件</stentry>
                 <stentry>描述</stentry>
             </sthead>
             <strow>
                 <stentry><xref keyref="onVideoDeviceStateChanged"/></stentry>
-                <stentry><ph conkeyref="onVideoDeviceStateChanged/shortdesc"/></stentry>
+                <stentry><ph conkeyref="onVideoDeviceStateChanged/shortdesc"/>(仅适用于 Windows 和 macOS）</stentry>
             </strow>
             </simpletable> </section>
         <section props="cpp" id="section_ws1_shw_jqb">
@@ -2309,7 +2326,7 @@
                 <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
                 <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/>（仅适用于 Windows 和 macOS）</stentry>
             </strow>
-            <strow props="hide">
+            <strow>
                 <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
                 <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/></stentry>
             </strow>
@@ -2461,6 +2478,10 @@
                 <stentry><xref keyref="setHeadphoneEQPreset"/></stentry>
                 <stentry><ph conkeyref="setHeadphoneEQPreset/shortdesc"/></stentry>
             </strow>            
+            <strow>
+                <stentry><xref keyref="setHeadphoneEQParameters"/></stentry>
+                <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
+            </strow>            
             </simpletable> </section>
         <section id="miscellaneous_events">
             <title>其他事件</title>
@@ -2469,10 +2490,6 @@
                 <stentry>事件</stentry>
                 <stentry>描述</stentry>
             </sthead>
-            <strow>
-                <stentry><xref keyref="onApiCallExecuted"/></stentry>
-                <stentry><ph conkeyref="onApiCallExecuted/shortdesc"/></stentry>
-            </strow>
             <strow props="android cpp unity flutter">
                 <stentry><xref keyref="onProxyConnected"/></stentry>
                 <stentry><ph conkeyref="onProxyConnected/shortdesc"/></stentry>

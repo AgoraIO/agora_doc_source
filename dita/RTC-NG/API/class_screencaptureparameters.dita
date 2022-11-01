@@ -253,8 +253,6 @@
                 <pt>captureMouseCursor</pt>
                 <pd>
                     <p>是否采集鼠标用于屏幕共享：
-
-
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>:（默认）采集鼠标。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 不采集鼠标。</li>
@@ -265,11 +263,6 @@
                 <pt>windowFocus</pt>
                 <pd>
                     <p>调用 <xref keyref="startScreenCaptureByWindowId"/> 方法共享窗口时，是否将该窗口前置：
-
-
-
-
-
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 前置窗口。</li>
                     <li><codeph><ph keyref="false"/></codeph>:（默认）不前置窗口。</li>
@@ -280,10 +273,10 @@
                 <pt>excludeWindowList</pt>
                 <pd>待屏蔽窗口的 ID 列表。调用 <xref keyref="startScreenCaptureByDisplayId"/> 开启屏幕共享时，你可以通过该参数屏蔽指定的窗口。你可以在调用 <xref keyref="updateScreenCaptureParameters"/> 更新屏幕共享的配置参数时，通过该参数动态屏蔽指定的窗口。</pd>
             </plentry>
-            <plentry props="mac cpp electron unity flutter">
+            <plentry props="mac cpp electron unity rn flutter">
                 <pt props="mac">highLighted</pt>
                 <pt props="cpp electron unity flutter">enableHighLight</pt>
-                <pd><ph>是否对共享的窗口或屏幕进行描边：</ph>
+                <pd><ph props="cpp framework">(仅适用于 macOS 和 Windows)</ph><ph>是否对共享的窗口或屏幕进行描边：</ph>
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 描边。</li>
                     <li><codeph><ph keyref="false"/></codeph>: （默认）不描边。</li>
@@ -292,17 +285,19 @@
             </plentry>
             <plentry props="mac cpp electron unity flutter">
                 <pt>highLightColor</pt>
-                <pd><ph>描边的 RGBA 颜色。默认值为 0xFF8CBF26。</ph>
-                    <note>在 macOS 平台上，<codeph>COLOR_CLASS</codeph> 指 <codeph>NSColor</codeph>。</note></pd>
+                <pd props="cpp framework">(仅适用于 macOS 和 Windows) 在 Windows 平台上，指描边的 ARGB 颜色。默认值为 0xFF8CBF26。</pd>
+                <pd>在 macOS 平台上，<codeph>COLOR_CLASS</codeph> 指 <codeph>NSColor</codeph>。</pd>
             </plentry>
             <plentry props="mac cpp electron unity flutter">
                 <pt>highLightWidth</pt>
-                <pd><ph>描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。</ph>
+                <pd><ph props="cpp framework">(仅适用于 macOS 和 Windows)</ph><ph>描边的宽度 (px)。默认值为 5，取值范围为 (0,50]。</ph>
                     <note>该参数仅在 <parmname>highLighted</parmname> 设置为 <codeph><ph keyref="true"/></codeph> 时生效。</note></pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>excludeWindowCount</pt>
-                <pd>待屏蔽窗口的数量。</pd>
+                <pd>待屏蔽窗口的数量。
+                    <note>在 Windows 平台上，该参数最大值不超过 24，如果超过该值，则屏蔽窗口功能失效。</note>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
