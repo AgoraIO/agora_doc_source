@@ -130,6 +130,8 @@
 
     public MIRROR_MODE_TYPE mirrorMode;
 
+    public AdvanceOptions advanceOptions;
+
   public VideoEncoderConfiguration() {
     this.dimensions = new VideoDimensions(640, 480);
     this.frameRate = FRAME_RATE.FRAME_RATE_FPS_15.getValue();
@@ -139,6 +141,7 @@
     this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
@@ -151,6 +154,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
@@ -163,6 +167,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(
@@ -175,6 +180,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(int width, int height, FRAME_RATE frameRate, int bitrate,
@@ -187,6 +193,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
@@ -221,6 +228,7 @@
   ORIENTATION_MODE orientationMode;
   DEGRADATION_PREFERENCE degradationPreference;
   VIDEO_MIRROR_MODE_TYPE mirrorMode;
+  AdvanceOptions advanceOptions;
 
   VideoEncoderConfiguration(const VideoDimensions&amp; d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
       : codecType(VIDEO_CODEC_H264),
@@ -230,7 +238,8 @@
         minBitrate(DEFAULT_MIN_BITRATE),
         orientationMode(m),
         degradationPreference(MAINTAIN_QUALITY),
-        mirrorMode(mirror) {}
+        mirrorMode(mirror),
+        advanceOptions(PREFER_AUTO) {}
   VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
       : codecType(VIDEO_CODEC_H264),
         dimensions(width, height),
@@ -239,7 +248,8 @@
         minBitrate(DEFAULT_MIN_BITRATE),
         orientationMode(m),
         degradationPreference(MAINTAIN_QUALITY),
-        mirrorMode(mirror) {}
+        mirrorMode(mirror),
+        advanceOptions(PREFER_AUTO) {}
   VideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config)
       : codecType(config.codecType),
         dimensions(config.dimensions),
@@ -248,7 +258,8 @@
         minBitrate(config.minBitrate),
         orientationMode(config.orientationMode),
         degradationPreference(config.degradationPreference),
-        mirrorMode(config.mirrorMode) {}
+        mirrorMode(config.mirrorMode),
+        advanceOptions(config.advanceOptions) {}
   VideoEncoderConfiguration()
       : codecType(VIDEO_CODEC_H264),
         dimensions(FRAME_WIDTH_640, FRAME_HEIGHT_360),
@@ -257,7 +268,8 @@
         minBitrate(DEFAULT_MIN_BITRATE),
         orientationMode(ORIENTATION_MODE_ADAPTIVE),
         degradationPreference(MAINTAIN_QUALITY),
-        mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
+        mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
+        advanceOptions(PREFER_AUTO) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
