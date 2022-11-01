@@ -41,7 +41,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 <div class="alert note">此示例服务器仅用于演示，请勿用于生产环境中。 </div>
 
-1. 创建一个 `server.go` 文件，然后贴入如下代码。将其中的 `<Your App ID> `和 `<Your App Certificate>` 替换为你的 App ID 和 App 证书。
+1. 创建一个 `server.go` 文件，然后贴入如下代码。将其中的 `<Your App ID>` 和 `<Your App Certificate>` 替换为你的 App ID 和 App 证书。
 
 ```golang
 package main
@@ -69,19 +69,19 @@ var channel_name string
 var role_num uint32
 var role rtctokenbuilder.Role
   
-// 使用 RtcTokenBuilder 来生成 RTC Token
+// 使用 RtcTokenBuilder 来生成 RTC Token。
 func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
   
     appID := "<Your App ID>"
     appCertificate := "<Your App Certificate>"
-    // AccessToken2 过期的时间，单位为秒
+    // AccessToken2 过期的时间，单位为秒。
     // 当 AccessToken2 过期但权限未过期时，用户仍在频道里并且可以发流，不会触发 SDK 回调。
     // 但一旦用户和频道断开连接，用户将无法使用该 Token 加入同一频道。请确保 AccessToken2 的过期时间晚于权限过期时间。
     tokenExpireTimeInSeconds := uint32(40)
     // 权限过期的时间，单位为秒。
     // 权限过期30秒前会触发 token-privilege-will-expire 回调。
     // 权限过期时会触发 token-privilege-did-expire 回调。
-    // 为作演示，在此将过期时间设为 40 秒。你可以看到客户端自动更新 Token 的过程
+    // 为作演示，在此将过期时间设为 40 秒。你可以看到客户端自动更新 Token 的过程。
     privilegeExpireTimeInSeconds := uint32(40)
   
     result, err := rtctokenbuilder.BuildTokenWithUid(appID, appCertificate, channelName, int_uid, role, tokenExpireTimeInSeconds, privilegeExpireTimeInSeconds)
@@ -158,7 +158,7 @@ func errorResponse(w http.ResponseWriter, message string, httpStatusCode int){
 }
   
 func main(){
-    // 使用 int 型 uid 生成 RTC Token
+    // 使用 int 型 uid 生成 RTC Token。
     http.HandleFunc("/fetch_rtc_token", rtcTokenHandler)
     fmt.Printf("Starting server at port 8082\n")
   
@@ -192,18 +192,18 @@ $ go run server.go
 
 为了展示鉴权的工作流程，本节介绍如何在你的本地开发环境上使用 Android 模拟器搭建并运行一个 Android 客户端。
 
-1. 基于你在实现互动直播时创建的项目，在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 路径下添加如下依赖：
+1. 基于你在实现互动直播时创建的项目，在 `pubspec.yaml` 文件的 `dependencies` 下添加如下依赖：
 
-   ```java
-   dependencies {
-    ...
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'com.google.code.gson:gson:2.8.4'
-    ...
-    }
-   ```
+```
+dependencies {
+ ...
+ implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+ implementation 'com.google.code.gson:gson:2.8.4'
+ ...
+ }
+```
 
-2. 将 `MainActivity.java` 中的内容替换为如下代码。 将 `Your App ID` 替换为你的 App ID，必须与服务器中的 App ID 一致。 您还需要将 `<Your Host URL and port>` 替换为你刚刚部署的本地 Golang 服务器的主机 URL 和端口，例如 10.53.3.234:8082。
+2. 将 `/lib/main.dart` 中的内容替换为如下代码。 将 `<Your App ID>` 替换为你的 App ID，必须与服务器中的 App ID 一致。 您还需要将 `<Your Host URL and port>` 替换为你刚刚部署的本地 Golang 服务器的主机 URL 和端口，例如 10.53.3.234:8082。
 
    在如下代码示例中，你可以看到 Token 与客户端的如下代码逻辑有关：
 
@@ -252,7 +252,7 @@ $ go run server.go
   public class MainActivity extends AppCompatActivity {
 
       // 填入在 Agora 控制台创建项目时生成的 App ID
-      private String appId = "Your App ID";
+      private String appId = "<Your App ID>";
       // 填入频道名称
       private String channelName = "1234";
 
