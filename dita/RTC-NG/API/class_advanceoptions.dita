@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_advanceoptions">
+    <title><ph keyref="AdvanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频编码的高级选项。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">static public class AdvanceOptions {
+  public ENCODING_PREFERENCE encodingPreference;
+  public COMPRESSION_PREFERENCE compressionPreference;
+  public AdvanceOptions(
+      ENCODING_PREFERENCE encodingPreference, COMPRESSION_PREFERENCE compressionPreference) {
+    this.encodingPreference = encodingPreference;
+    this.compressionPreference = compressionPreference;
+  }
+  public AdvanceOptions() {
+    this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
+    this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAdvancedVideoOptions : NSObject
+@property(assign, nonatomic) AgoraCompressionPreference compressionPreference;
+@property(assign, nonatomic) AgoraEncodingPreference encodingPreference;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">
+  ENCODING_PREFERENCE encodingPreference;
+
+  COMPRESSION_PREFERENCE compressionPreference;
+
+  AdvanceOptions() : encodingPreference(PREFER_AUTO), 
+                     compressionPreference(PREFER_LOW_LATENCY) {}
+
+  AdvanceOptions(ENCODING_PREFERENCE encoding_preference, 
+                 COMPRESSION_PREFERENCE compression_preference) : 
+                 encodingPreference(encoding_preference),
+                 compressionPreference(compression_preference) {}
+
+  bool operator==(const AdvanceOptions&amp; rhs) const {
+    return encodingPreference == rhs.encodingPreference &amp;&amp; 
+           compressionPreference == rhs.compressionPreference;
+  }
+}；</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>encodingPreference</pt>
+                <pd>视频编码器偏好。详见 <xref keyref="ENCODING_PREFERENCE"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>compressionPreference</pt>
+                <pd props="ios mac cpp">视频编码的压缩偏好。详见 <xref keyref="COMPRESSION_PREFERENCE"/>。 </pd>
+                <pd props="android">视频编码的压缩偏好。                                      
+                    <ul>
+                    <li><ph keyref="PREFER_LOW_LATENCY"/> (0): 低延时偏好。SDK 会对视频帧进行压缩处理，以降低延时。该偏好适用于流畅性优先且允许画质降低的场景。</li>
+                    <li><ph keyref="PREFER_QUALITY"/> (1):（默认）高质量偏好。SDK 会对视频帧进行压缩处理，同时保持视频质量。该偏好适用于流畅性优先且允许画质降低的场景。</li>
+                    </ul></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
