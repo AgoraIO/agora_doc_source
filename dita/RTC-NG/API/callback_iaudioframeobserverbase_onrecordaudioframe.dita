@@ -29,7 +29,7 @@
       onRecordAudioFrame</codeblock> </p>
         </section>
         <section id="detailed_desc">
-                <p>为保证播放的音频数据格式符合预期，Agora 推荐你按照如下两种方法设置播放的音频数据格式：                   
+                <p>为保证采集的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置音频的数据格式：                   
                 <ul>
                 <li>方法一：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
                 <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getRecordAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>

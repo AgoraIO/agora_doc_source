@@ -52,9 +52,11 @@
         </topicref>
         <topicref href="API/toc_multi_channel.dita" chunk="to-content">
             <topicref keyref="addVideoWatermarkEx" toc="no"/>
+            <topicref keyref="adjustUserPlaybackSignalVolumeEx" toc="no"/>
             <topicref keyref="clearVideoWatermarkEx" toc="no"/>
             <topicref keyref="createDataStreamEx1" toc="no"/>
             <topicref keyref="createDataStreamEx2" toc="no"/>
+            <topicref keyref="enableAudioVolumeIndicationEx" toc="no"/>
             <topicref keyref="enableDualStreamModeEx" toc="no"/>
             <topicref keyref="getConnectionStateEx" toc="no"/>
             <topicref keyref="getUserInfoByUidEx" toc="no"/>
@@ -70,6 +72,7 @@
             <topicref keyref="sendCustomReportMessageEx" toc="no"/>
             <topicref keyref="sendStreamMessageEx" toc="no"/>
             <topicref keyref="setDualStreamModeEx" toc="no"/>
+            <topicref keyref="setRemoteVideoSubscriptionOptionsEx" toc="no"/>
             <topicref keyref="setRemoteRenderModeEx2" toc="no"/>
             <topicref keyref="setRemoteVoice3DPositionEx" toc="no" props="hide"/>
             <topicref keyref="setRemoteVoicePositionEx" toc="no"/>
@@ -204,7 +207,7 @@
             <topicref keyref="setAudioEffectPreset" toc="no"/>
             <topicref keyref="setBeautyEffectOptions" toc="no"/>
             <topicref keyref="setEffectPosition" toc="no"/>
-            <topicref keyref="setHeadphoneEQParameters" toc="no" props="hide"/>
+            <topicref keyref="setHeadphoneEQParameters" toc="no"/>
             <topicref keyref="setHeadphoneEQPreset" toc="no"/>
             <topicref keyref="setLocalVoiceEqualization" toc="no"/>
             <topicref keyref="setLocalVoicePitch" toc="no"/>
@@ -289,6 +292,7 @@
             <topicref keyref="onRemoteVideoStateChanged" toc="no"/>
             <topicref keyref="onRemoteVideoStats" toc="no"/>
             <topicref keyref="onRemoteVideoTransportStats" toc="no"/>
+            <topicref keyref="onRhythmPlayerStateChanged" toc="no"/>
             <topicref keyref="onSnapshotTaken" toc="no"/>
             <topicref keyref="onUserEnableLocalVideo" toc="no"/>
             <topicref keyref="onUserEnableVideo" toc="no"/>
@@ -315,6 +319,7 @@
             <topicref keyref="onPlaybackAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
             <topicref keyref="onRecordAudioFrame" toc="no"/>
+            <topicref keyref="getObservedAudioFramePosition" toc="no"/>
             <topicref keyref="getRecordAudioParams" toc="no"/>
             <topicref keyref="getMixedAudioParams" toc="no"/>
             <topicref keyref="getPlaybackAudioParams" toc="no"/>
@@ -412,6 +417,29 @@
             <topicref keyref="onPreloadEvent" toc="no"/>
             <topicref keyref="onFrame_IVideoFrameObserver" toc="no"/>
 </topicref>
+<topicref href="API/toc_drm.dita" chunk="to-content">
+    <topicref keyref="createMusicPlayer" toc="no"/>
+    <topicref keyref="getLyric" toc="no"/>
+    <topicref keyref="getMusicCharts" toc="no"/>
+    <topicref keyref="getMusicCollectionByMusicChartId" toc="no"/>
+    <topicref keyref="getMusicCollectionByMusicChartId2" toc="no"/>
+    <topicref keyref="preload" toc="no"/>
+    <topicref keyref="initialize_IMusicContentCenter" toc="no"/>
+    <topicref keyref="isPreloaded" toc="no"/>
+    <topicref keyref="registerEventHandler_IMusicContentCenter" toc="no"/>
+    <topicref keyref="release_IMusicContentCenter" toc="no"/>
+    <topicref keyref="destroy_IMusicContentCenter" toc="no"/>
+    <topicref keyref="destroy_IMusicPlayer" toc="no"/>
+    <topicref keyref="renewToken_IMusicContentCenter" toc="no"/>
+    <topicref keyref="unregisterEventHandler" toc="no"/>
+    <topicref keyref="searchMusic" toc="no"/>
+    <topicref keyref="searchMusic2" toc="no"/>
+    <topicref keyref="open_IMusicPlayer" toc="no"/>
+    <topicref keyref="onPreLoadEvent_IMusicContentCenterEventHandler" toc="no"/>
+    <topicref keyref="onLyricResult" toc="no"/>
+    <topicref keyref="onMusicChartsResult" toc="no"/>
+    <topicref keyref="onMusicCollectionResult" toc="no"/>
+</topicref>
         <topicref href="API/toc_screen_share.dita" chunk="to-content">
             <topicref keyref="startScreenCapture" toc="no"/>
             <topicref keyref="stopScreenCapture" toc="no"/>
@@ -422,6 +450,7 @@
             <topicref keyref="removeInjectStreamUrl" toc="no" props="hide"/>
             <topicref keyref="setDirectCdnStreamingAudioConfiguration" toc="no" props="cn"/>
             <topicref keyref="setDirectCdnStreamingVideoConfiguration" toc="no" props="cn"/>
+            <topicref keyref="setRemoteVideoSubscriptionOptions" toc="no"/>
             <topicref keyref="startDirectCdnStreaming" toc="no" props="cn"/>
             <topicref keyref="startRtmpStreamWithoutTranscoding" toc="no"/>
             <topicref keyref="startRtmpStreamWithTranscoding" toc="no"/>
@@ -540,11 +569,13 @@
             <topicref keyref="AUDIO_SAMPLE_RATE_TYPE" toc="no"/>
             <topicref keyref="AUDIO_SCENARIO_TYPE" toc="no" processing-role="resource-only"/>
             <topicref keyref="CAPTURER_OUTPUT_PREFERENCE" toc="no" props="hide"/>
+            <topicref keyref="COMPRESSION_PREFERENCE" toc="no"/>
             <topicref keyref="DEGRADATION_PREFERENCE" toc="no"/>
             <topicref keyref="DIRECT_CDN_STREAMING_ERROR" toc="no" props="cn"/>
             <topicref keyref="DIRECT_CDN_STREAMING_STATE" toc="no" props="cn"/>
             <topicref keyref="ENCRYPTION_ERROR_TYPE" toc="no"/>
             <topicref keyref="ENCRYPTION_MODE" toc="no"/>
+            <topicref keyref="ENCODING_PREFERENCE" toc="no"/>
             <topicref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" toc="no"/>
             <topicref keyref="FRAME_RATE" toc="no"/>
             <topicref keyref="HEADPHONE_EQUALIZER_PRESET" toc="no"/>
@@ -567,6 +598,8 @@
             <topicref keyref="AdvancedAudioOptions" toc="no">
                 <topicref keyref="AUDIO_PROCESSING_CHANNELS" toc="no"/>
             </topicref>
+            <topicref keyref="AdvanceOptions" toc="no"/>
+            <topicref keyref="AdvancedConfigInfo" toc="no"/>
             <topicref keyref="AgoraFacePositionInfo" toc="no"/>
             <topicref keyref="AudioEncodedFrameObserverConfig" toc="no"/>
             <topicref keyref="AudioFrame" toc="no"/>
@@ -631,6 +664,7 @@
             <topicref keyref="LocalAudioStats" toc="no"/>
             <topicref keyref="LocalVideoStats" toc="no"/>
             <topicref keyref="LogConfig" toc="no"/>
+            <topicref keyref="LogUploadServerInfo" toc="no"/>
             <topicref keyref="LowlightEnhanceOptions" toc="no"/>
             <topicref keyref="MediaRecorderConfiguration" toc="no"/>
             <topicref keyref="MediaSource" toc="no"/>
@@ -665,6 +699,7 @@
             <topicref keyref="VideoDimensions" toc="no"/>
             <topicref keyref="VideoEncoderConfiguration" toc="no"/>
             <topicref keyref="VideoFrame" toc="no"/>
+            <topicref keyref="VideoSubscriptionOptions" toc="no"/>
             <topicref keyref="VirtualBackgroundSource" toc="no"/>
             <topicref keyref="WatermarkOptions" toc="no"/>
             <topicref keyref="IRtcEngine" toc="no"/>
@@ -690,6 +725,9 @@
             <topicref keyref="ILocalSpatialAudioEngine" toc="no"/>
             <topicref keyref="IMediaRecorder" toc="no"/>
             <topicref keyref="IMediaRecorderObserver" toc="no"/>
+            <topicref keyref="IAgoraMusicContentCenter" toc="no"/>
+            <topicref keyref="IMusicPlayer" toc="no"/>
+            <topicref keyref="IMusicContentCenterEventHandler" toc="no"/>
         </topicref>
     </topichead>
 </map>

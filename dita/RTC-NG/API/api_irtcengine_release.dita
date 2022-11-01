@@ -39,9 +39,10 @@
             <plentry>
                 <pt>sync</pt>
                 <pd>
+                    <p>该方法是否为同步调用：</p>
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 该方法为同步调用。需要等待 <apiname keyref="IRtcEngine"/> 资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议在 SDK 的回调中调用 <apiname keyref="release"/>，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 该方法为异步调用。目前该方法仅支持同步调用，请不要将该参数设置为 <codeph><ph keyref="false"/></codeph>。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 该方法为异步调用。目前该方法仅支持同步调用，请不要将该参数设置为该值。</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
