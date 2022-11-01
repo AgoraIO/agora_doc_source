@@ -30,7 +30,7 @@
             <note type="attention">
             <ul>
             <li>请在加入频道前调用该方法。</li>
-            <li>如果你调用该方法注册了 <xref keyref="IVideoEncodedFrameObserver"/> 对象，声网建议你不要再注册 <xref keyref="IVideoFrameObserver"/> 对象。如果注册了两种对象，则根据远端视频流的订阅选项不同，分为以下几种情况：
+            <li>如果你调用该方法注册了 <xref keyref="IVideoEncodedFrameObserver"/> 对象，声网建议你不要再注册 <xref keyref="IVideoFrameObserver"/> 对象。如果注册了两种对象，会导致你无法从回调中获得预期的数据。
                 <ul id="diff">
                     <li>默认情况下，只有 <apiname keyref="IVideoFrameObserver"/> 生效。</li>
                     <li>如果调用 <xref keyref="setRemoteVideoSubscriptionOptions"/> 并将 <parmname>encodedFrameOnly</parmname> 设置为 <codeph><ph keyref="true"/></codeph>，则 <apiname keyref="IVideoEncodedFrameObserver"/> 的优先级更高，你将无法收到 <apiname keyref="IVideoFrameObserver"/> 中的 <xref keyref="onRenderVideoFrame"/> 回调。</li>
