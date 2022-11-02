@@ -8,13 +8,13 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class MusicContentCenterConfiguration {
   public String appId;
-  public String rtmToken;
+  public String token;
   public long mccUid;
   public IMusicContentCenterEventHandler eventHandler;
 
   public MusicContentCenterConfiguration() {
     this.appId = null;
-    this.rtmToken = null;
+    this.token = null;
     this.mccUid = 0;
     eventHandler = null;
   }
@@ -22,7 +22,7 @@
   public MusicContentCenterConfiguration(
       String appid, String token, long mccUid, IMusicContentCenterEventHandler eventHandler) {
     this.appId = appid;
-    this.rtmToken = token;
+    this.token = token;
     this.mccUid = mccUid;
     this.eventHandler = eventHandler;
   }
@@ -33,8 +33,8 @@
   }
 
   @CalledByNative
-  public String getRtmToken() {
-    return this.rtmToken;
+  public String getToken() {
+    return this.token;
   }
 
   @CalledByNative
@@ -51,16 +51,21 @@
 @property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, copy) NSString *rtmToken;
+@property (nonatomic, copy) NSString *token;
 @property (nonatomic, assign) NSInteger mccUid;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
     const char *appId;
     const char *rtmToken;
+    const char *token;
     int64_t mccUid;
+
     IMusicContentCenterEventHandler* eventHandler;
     MusicContentCenterConfiguration():appId(nullptr),rtmToken(nullptr),eventHandler(nullptr),mccUid(0){}
+    MusicContentCenterConfiguration():appId(nullptr),token(nullptr),eventHandler(nullptr),mccUid(0){}
     MusicContentCenterConfiguration(const char*appid,const char* token,int64_t id,IMusicContentCenterEventHandler* handler):
         appId(appid),rtmToken(token),mccUid(id),eventHandler(handler){}
+        appId(appid),token(token),mccUid(id),eventHandler(handler){}
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -89,7 +94,7 @@
                 </plentry>
                 <plentry>
                     <pt>rtmToken</pt>
-                    <pd>使用音乐内容中心时，用于鉴权的 RTM Token，详见<xref keyref="rtm-token"/>。</pd>
+                    <pd>使用音乐内容中心时，用于鉴权的 Token。当你的 Token 即将过期时，你可以调用 <xref keyref="renewToken"/> 来传入新的 Token。</pd>
                 </plentry>
                 <plentry>
                     <pt>mccUid</pt>
