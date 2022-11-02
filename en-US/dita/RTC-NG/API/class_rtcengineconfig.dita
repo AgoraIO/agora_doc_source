@@ -107,13 +107,15 @@
   AUDIO_SCENARIO_TYPE audioScenario;
   unsigned int areaCode;
   commons::LogConfig logConfig;
+  bool domainLimit;
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        audioScenario(AUDIO_SCENARIO_HIGH_DEFINITION),
+        license(NULL),
+        audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
-        logConfig() {}
+        logConfig(), domainLimit(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
   
