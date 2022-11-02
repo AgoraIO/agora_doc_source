@@ -107,6 +107,7 @@
   AUDIO_SCENARIO_TYPE audioScenario;
   unsigned int areaCode;
   commons::LogConfig logConfig;
+  bool domainLimit;
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
@@ -114,7 +115,7 @@
         license(NULL),
         audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
-        logConfig(), 
+        logConfig(), domainLimit(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
   
