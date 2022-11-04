@@ -97,7 +97,8 @@
         AgoraClassroomSDK.setConfig(AgoraClassSdkConfig(appId))
         AgoraClassroomSDK.launch(this, config, AgoraEduLaunchCallback { event ->
             Log.e(TAG, ":launch-课堂状态:" + event.name)
-        }
+            }
+		)
     }
     ```
 

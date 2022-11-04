@@ -121,19 +121,22 @@
 
    示例代码中需要传入 `rtmToken`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
 
-5.（可选）自定义课堂界面的显示模式（明亮/暗黑）和语言（中文/英文）。
+5. （可选）自定义课堂界面的显示模式（明亮/暗黑）和语言（中文/英文）。
 
-   ```swift
-   import AgoraUIBaseViews         // 导入 AgoraUIBaseViews 库。该库提供自定义显示模式和语言的两个变量：agora_ui_mode 和 agora_ui_language。
-   agora_ui_mode = .agoraLight     // 设置界面显示模式，可设为 agoraLight 或 agoraDark，默认为 agoraLight。
-   agora_ui_language = "zh-Hans"   // 设置界面语言，可设为 "zh-Hans" 或 "en"。如果不设置，界面语言跟随系统语言。
-   ```
+    ```swift
+    /* Swift */
+    import AgoraUIBaseViews         /* 导入 AgoraUIBaseViews 库。该库提供自定义显示模式和语言的两个变量：agora_ui_mode 和 agora_ui_language。*/
+    agora_ui_mode = .agoraLight     /* 设置界面显示模式，可设为 agoraLight 或 agoraDark，默认为 agoraLight。 */
+    agora_ui_language = "zh-Hans"   /* 设置界面语言，可设为 "zh-Hans" 或 "en"。如果不设置，界面语言跟随系统语言。 */
+    ```
 
-   ```objc
-   #import <AgoraUIBaseViews/AgoraUIBaseView-Swift.h> // 导入 AgoraUIBaseViews 库。该库提供自定义显示模式和语言的两个变量：agora_ui_mode 和 agora_ui_language。
-   agora_ui_mode = AgoraUIModeAgoraLight              // 设置界面显示模式，可设为 AgoraUIModeAgoraLight 或 AgoraUIModeAgoraDark，默认为 AgoraUIModeAgoraLight。
-   agora_ui_language = @"zh-Hans"                     // 设置界面语言，可设为 "zh-Hans" 或 "en"。如果不设置，界面语言跟随系统语言。
-   ```
+    ```objc
+    /* Objective-C */
+    /* 导入 AgoraUIBaseViews 库。该库提供自定义显示模式和语言的两个变量：agora_ui_mode 和 agora_ui_language。*/
+    #import <AgoraUIBaseViews/AgoraUIBaseView-Swift.h> 
+    agora_ui_mode = AgoraUIModeAgoraLight              /* 设置界面显示模式，可设为 AgoraUIModeAgoraLight 或 AgoraUIModeAgoraDark，默认为 AgoraUIModeAgoraLight。*/
+    agora_ui_language = @"zh-Hans"                     /* 设置界面语言，可设为 "zh-Hans" 或 "en"。如果不设置，界面语言跟随系统语言。*/
+    ```
 
 ## 集成注意事项
 
@@ -146,3 +149,4 @@
 - 如果你的工程为 OC 工程，需要在 Build Settings 中 Add User-Defined Setting：
   - Key 设为 SWIFT_VERSION。
   - Value 设为你指定的 Swift 版本。
+

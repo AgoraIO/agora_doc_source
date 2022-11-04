@@ -62,7 +62,7 @@
    <head>
        <meta charset="UTF-8" />
        <meta name="viewport" content="width=device-width, initial-scale=1" />
-       <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.0.bundle.js"></script>
+       <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.1.bundle.js"></script>
    </head>
 
    <body>
@@ -92,7 +92,7 @@
                duration: 60 * 30, // 课程时间，单位为秒。
                recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.3.3/record_page.html',
                courseWareList: [],
-               uiMode: FcrMultiThemeMode.light // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
+               uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
                listener: (evt, args) => {
                },
            }).then(() => {
@@ -115,31 +115,7 @@
 
 <div class="alert info">开始前请确保你的设备上已准备好<a href="/cn/agora-class/agora_class_quickstart_electron?platform=Electron#dev-env">开发环境</a>。</div>
 
-1. 运行以下命令将 CloudClass-Desktop 克隆至本地。
-
-    ```bash
-    git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
-    ```
-
-    ```bash
-    cd CloudClass-Desktop
-    ```
-
-2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
-
-    ```bash
-    git checkout release/{VERSION}
-    ```
-
-    例如要切换到 2.6.0 版本分支，执行以下命令：
-
-    ```bash
-    git checkout release/2.6.0
-    ```
-
-    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
-
-    ![](https://web-cdn.agora.io/docs-files/1658916187924)
+~f38d4cd0-3fce-11ed-8dae-bf25bf08a626~
 
 3. 执行以下命令复制一个环境变量配置文件：
 
@@ -182,3 +158,4 @@
      yarn build:demo
      yarn pack:electron:win
      ```
+

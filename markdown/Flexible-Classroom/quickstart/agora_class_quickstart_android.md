@@ -26,27 +26,7 @@
 
 灵动课堂 Android 端的源码位于 GitHub [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库，你可参考以下步骤获取源码：
 
-1. 运行以下命令克隆仓库到本地：
-
-    ```bash
-    git clone https://github.com/AgoraIO-Community/CloudClass-Android.git
-    ```
-
-2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
-
-    ```bash
-    git checkout release/{VERSION}
-    ```
-
-    例如要切换到 2.6.0 版本分支，执行以下命令：
-
-    ```bash
-    git checkout release/2.6.0
-    ```
-
-    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
-
-    ![](https://web-cdn.agora.io/docs-files/1658914705722)
+~c7706c40-3fce-11ed-8dae-bf25bf08a626~
 
 ## 启动灵动课堂
 
