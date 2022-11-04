@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_initialize">
+    <title><ph keyref="initialize_IMusicContentCenter"/></title>
+    <shortdesc id="short">Initializes .<ph id="shortdesc"><xref keyref="IAgoraMusicContentCenter"/></ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="initialize_IMusicContentCenter"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int initialize(MusicContentCenterConfiguration configuration);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype)sharedContentCenterWithConfig:(AgoraMusicContentCenterConfig *)config NS_SWIFT_NAME(sharedContentCenter(config:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const MusicContentCenterConfiguration &amp; configuration) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>Before calling<xref keyref="IAgoraMusicContentCenter"/> other methods of the  class, you need to call this method to initialize <xref keyref="IAgoraMusicContentCenter"/>.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="android cpp">configuration</pt>
+                <pt props="apple">config</pt>
+                <pd><apiname keyref="IAgoraMusicContentCenter"/>的设置，详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul props="android cpp">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
+            <ul props="apple">
+            <li>The  instance, if the<apiname keyref="IAgoraMusicContentCenter"/> method call succeeds.</li>
+            <li>An error code, if the call fails,.</li>
+            </ul> </section>
+    </refbody>
+</reference>
