@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onapicallexecuted">
-    <title><ph keyref="onApiCallExecuted"/></title>
+    <title><ph keyref="onApiCallExecuted" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when a method is executed by the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onApiCallExecuted"/>
+                <indexterm keyref="onApiCallExecuted" />
             </keywords>
         </metadata>
     </prolog>
@@ -25,20 +25,29 @@
      (void)api;
      (void)result;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onApiCallExecuted?(err: ErrorCodeType, api: string, result: string): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onApiCallExecuted?(err: ErrorCodeType, api: string, result: string): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnApiCallExecuted(int err, string api, string result)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onApiCallExecuted?(err: ErrorCodeType, api: string, result: string): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onApiCallExecuted?(err: ErrorCodeType, api: string, result: string): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(ErrorCodeType err, String api, String result)?
       onApiCallExecuted;
 </codeblock> </p>
         </section>
+        <section id="detailed_desc">
+        <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>Deprecated as of v3.2.0. 该方法既不能准确表征具体的 API 方法，也不能代表 API 的执行结果。</dd>
+                <dd>声网建议你通过相关频道和媒体的事件通知得知 API 的执行结果。 例如，当调用 <xref keyref="enableLocalAudio"/> 方法开启麦克风后，通过 <xref keyref="onLocalAudioStateChanged"/> 回调判断麦克风的开启状态。</dd>
+            </dlentry>
+            </dl>
+        </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt props="cpp unity electron rn flutter">err</pt>
