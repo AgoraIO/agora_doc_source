@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventgandler_onpreloadevent">
+    <title><ph keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the events of preloaded media resources.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">void onPreLoadEvent(long songCode, int percent, int status, String msg, String lyricUrl);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent status:(AgoraMusicContentCenterPreloadStatus)status msg:(NSString *)msg lyricUrl:(NSString *)lyricUrl;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, PreloadStatusCode status, const char* msg, const char* lyricUrl = nullptr) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>当你调用 <xref keyref="preload"/> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>songCode</pt>
+                <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+            </plentry>
+            <plentry>
+                <pt>percent</pt>
+                <pd>音乐资源当前的加载进度，取值范围为 [0,100]。</pd>
+            </plentry>
+            <plentry id="status">
+                <pt>status</pt>
+                <pd> <p props="apple cpp">当前音乐资源的加载状态。 See <xref keyref="PreloadStatusCode"/>.</p> <p props="android">当前音乐资源的加载状态：
+                    <ul>
+                    <li>0：音乐资源加载完成。</li>
+                    <li>1：音乐资源加载失败。</li>
+                    <li>2：音乐资源正在加载中。</li>
+                    </ul></p></pd>
+            </plentry>
+            <plentry>
+                <pt>msg</pt>
+                <pd>字符串类型的事件信息。</pd>
+            </plentry>
+            <plentry>
+                <pt>lyricUrl</pt>
+                <pd>歌词下载地址。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
