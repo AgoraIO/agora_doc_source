@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccollection">
+    <title><ph keyref="MusicCollection"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音乐资源列表的详细信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicCollection : NSObject
+@property(nonatomic, assign) NSInteger count;
+@property(nonatomic, assign) NSInteger total;
+@property(nonatomic, assign) NSInteger page;
+@property(nonatomic, assign) NSInteger pageSize;
+@property(nonatomic, strong) NSArray&lt;AgoraMusic *>* musicList;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">class MusicCollection : public RefCountInterface {
+public:
+    virtual int getCount() = 0;
+    virtual int getTotal() = 0;
+    virtual int getPage() = 0;
+    virtual int getPageSize() = 0;
+    virtual Music* getMusic(int32_t index) = 0;
+protected:
+    virtual ~MusicCollection() = default;
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>count</pt>
+                <pd>此次请求所返回的音乐资源列表的大小。</pd>
+            </plentry>
+                <plentry>
+                    <pt>total</pt>
+                    <pd>列表内音乐资源的总数量。</pd>
+                </plentry>
+                <plentry>
+                    <pt>page</pt>
+                    <pd>当前页面编号。</pd>
+                </plentry>
+                <plentry>
+                    <pt>pageSize</pt>
+                    <pd>当前音乐资源列表的总页面数量。</pd>
+                </plentry>
+                <plentry>
+                    <pt>musicList</pt>
+                    <pd>当前页面列表中音乐资源的详细信息，详见 <xref keyref="Music"/>。</pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
