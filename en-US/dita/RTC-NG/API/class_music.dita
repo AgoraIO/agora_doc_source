@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_music">
+    <title><ph keyref="Music"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音乐资源的详细信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class Music {
+  public long songCode;
+  public String name;
+  public String singer;
+  public String poster;
+  public String releaseTime;
+  public int type;
+  public int pitchType;
+  public int durationS;
+  public int[] lyricTypes;
+  public MvProperty[] mvProperties;
+  public ClimaxSegment[] climaxSegments;
+
+  public Music() {}
+
+  @CalledByNative
+  public Music(long songCode, String name, String singer, String poster, String releaseTime,
+      int type, int pitchType, int durationS, int[] lyricTypes, MvProperty[] mvProperties,
+      ClimaxSegment[] climaxSegments) {
+    this.songCode = songCode;
+    this.name = name;
+    this.singer = singer;
+    this.poster = poster;
+    this.releaseTime = releaseTime;
+    this.type = type;
+    this.pitchType = pitchType;
+    this.durationS = durationS;
+    this.lyricTypes = lyricTypes;
+    this.mvProperties = mvProperties;
+    this.climaxSegments = climaxSegments;
+  }
+
+  @CalledByNative
+  public long getSongCode() {
+    return songCode;
+  }
+
+  @CalledByNative
+  public String getName() {
+    return name;
+  }
+
+  @CalledByNative
+  public String getSinger() {
+    return singer;
+  }
+
+  @CalledByNative
+  public String getPoster() {
+    return poster;
+  }
+
+  @CalledByNative
+  public String getReleaseTime() {
+    return releaseTime;
+  }
+
+  @CalledByNative
+  public int getType() {
+    return type;
+  }
+
+  @CalledByNative
+  public int getPitchType() {
+    return pitchType;
+  }
+
+  @CalledByNative
+  public int getDurationS() {
+    return durationS;
+  }
+
+  @CalledByNative
+  public int[] getLyricTypes() {
+    return lyricTypes;
+  }
+
+  @CalledByNative
+  public MvProperty[] getMvProperties() {
+    return mvProperties;
+  }
+
+  @CalledByNative
+  public ClimaxSegment[] getClimaxSegments() {
+    return climaxSegments;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusic : NSObject
+@property(nonatomic, assign) NSInteger songCode;
+@property(nonatomic, assign) NSInteger type;
+@property(nonatomic, assign) NSInteger pitchType;
+@property(nonatomic, copy) NSString* name;
+@property(nonatomic, copy) NSString* singer;
+@property(nonatomic, copy) NSString* poster;
+@property(nonatomic, copy) NSString* releaseTime;
+@property(nonatomic, assign) NSInteger durationS;
+@property(nonatomic, strong) NSArray&lt;NSNumber *>* lyricList;
+@property(nonatomic, strong) NSArray&lt;AgoraMvProperty *>* mvPropertyList;
+@property(nonatomic, strong) NSArray&lt;AgoraClimaxSegment *>* climaxSegmentList;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct Music
+{
+    int64_t songCode;
+    const char* name;
+    const char* singer;
+    const char* poster;
+    const char* releaseTime;
+    int32_t durationS;
+    int32_t type;
+    int32_t pitchType;
+    int32_t lyricCount;
+    int32_t* lyricList;
+    int32_t climaxSegmentCount;
+    ClimaxSegment* climaxSegmentList;
+    int32_t mvPropertyCount;
+    MvProperty* mvPropertyList;
+    
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry id="code">
+                <pt>songCode</pt>
+                <pd>音乐资源的编号，用于标识一个音乐资源。</pd>
+            </plentry>
+                <plentry>
+                    <pt>name</pt>
+                    <pd>音乐资源名称。</pd>
+                </plentry>
+                <plentry>
+                    <pt>singer</pt>
+                    <pd>歌手名。</pd>
+                </plentry>
+                <plentry>
+                    <pt>poster</pt>
+                    <pd>音乐资源海报的下载地址。</pd>
+                </plentry>
+                <plentry>
+                    <pt>releaseTime</pt>
+                    <pd>音乐资源发布的时间。</pd>
+                </plentry>
+                <plentry>
+                    <pt>type</pt>
+                    <pd>音乐资源类型：
+                    <ul><li>1：左声道伴奏，右声道原唱的单音轨纯音频音源。</li>
+                    <li>2：只有伴唱的单音轨纯音频音源。</li>
+                    <li>3：只有原唱的单音轨纯音频音源。</li>
+                    <li>4：既有多音轨纯音频又有多音轨 MV 资源的音源。</li>
+                    <li>5：只有多音轨 MV 资源的音源。</li>
+                    <li>6：既有多音轨纯音频又有多音轨 MV 资源的音源（该音源受数字版权保护）。</li></ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>pitchType</pt>
+                    <pd>歌曲是否支持演唱评分功能：
+                    <ul>
+                        <li>1：歌曲支持演唱评分功能。</li>
+                        <li>2：歌曲不支持演唱评分功能。</li>
+                    </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt>durationS</pt>
+                    <pd>音乐资源总时长 （秒）。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="android">lyricTypes</pt>
+                    <pt props="apple cpp">lyricList</pt>
+                    <pd>支持的歌词类型：<ul>
+                        <li>0：xml 格式。</li>
+                        <li>1：lrc 格式。</li>
+                    </ul></pd>
+                </plentry>
+                <plentry>
+                    <pt props="android">mvProperties</pt>
+                    <pt props="apple cpp">mvPropertyList</pt>
+                    <pd props="apple cpp">播放的 MV 的属性，详见 <xref keyref="MvProperty"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="android">climaxSegments</pt>
+                    <pt props="apple cpp">climaxSegmentList</pt>
+                    <pd>音乐高潮片段列表，详见 <xref keyref="ClimaxSegment"/>。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>lyricCount</pt>
+                    <pd>歌曲的歌词数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>climaxSegmentCount</pt>
+                    <pd>高潮片段的数量。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>mvPropertyCount</pt>
+                    <pd>MV 资源的数量。 0 表示该歌曲暂无 MV 资源。</pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
