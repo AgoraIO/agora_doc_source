@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccontentcenterconfiguration">
+    <title><ph keyref="MusicContentCenterConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音乐内容中心的设置。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class MusicContentCenterConfiguration {
+  public String appId;
+  public String token;
+  public long mccUid;
+  public IMusicContentCenterEventHandler eventHandler;
+
+  public MusicContentCenterConfiguration() {
+    this.appId = null;
+    this.token = null;
+    this.mccUid = 0;
+    eventHandler = null;
+  }
+
+  public MusicContentCenterConfiguration(
+      String appid, String token, long mccUid, IMusicContentCenterEventHandler eventHandler) {
+    this.appId = appid;
+    this.token = token;
+    this.mccUid = mccUid;
+    this.eventHandler = eventHandler;
+  }
+
+  @CalledByNative
+  public String getAppId() {
+    return this.appId;
+  }
+
+  @CalledByNative
+  public String getToken() {
+    return this.token;
+  }
+
+  @CalledByNative
+  public long getMccUid() {
+    return this.mccUid;
+  }
+
+  @CalledByNative
+  public IMusicContentCenterEventHandler getEventHandler() {
+    return eventHandler;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig : NSObject
+@property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
+@property (nonatomic, copy) NSString *appId;
+@property (nonatomic, copy) NSString *rtmToken;
+@property (nonatomic, copy) NSString *token;
+@property (nonatomic, assign) NSInteger mccUid;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
+    const char *appId;
+    const char *rtmToken;
+    const char *token;
+    int64_t mccUid;
+
+    IMusicContentCenterEventHandler* eventHandler;
+    MusicContentCenterConfiguration():appId(nullptr),rtmToken(nullptr),eventHandler(nullptr),mccUid(0){}
+    MusicContentCenterConfiguration():appId(nullptr),token(nullptr),eventHandler(nullptr),mccUid(0){}
+    MusicContentCenterConfiguration(const char*appid,const char* token,int64_t id,IMusicContentCenterEventHandler* handler):
+        appId(appid),rtmToken(token),mccUid(id),eventHandler(handler){}
+        appId(appid),token(token),mccUid(id),eventHandler(handler){}
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry props="apple">
+                <pt>rtcEngine</pt>
+                <pd><apiname keyref="IRtcEngine"/>The  instance.</pd>
+            </plentry>
+                <plentry>
+                    <pt>appId</pt>
+                    <pd>已启用内容中心的项目的 App ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>rtmToken</pt>
+                    <pd>使用音乐内容中心时，用于鉴权的 Token。 当你的 Token 即将过期时，你可以调用 <xref keyref="renewToken"/> 来传入新的 Token。</pd>
+                </plentry>
+                <plentry>
+                    <pt>mccUid</pt>
+                    <pd>使用音乐内容中心的用户 ID，该 ID 可以和你加入 RTC 频道时使用的 <codeph>uid</codeph> 一致，但不能为 0。</pd>
+                </plentry>
+                <plentry props="android cpp">
+                    <pt>eventHandler</pt>
+                    <pd>待接收的事件回调，详见 <xref keyref="IMusicContentCenterEventHandler"/>。</pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
