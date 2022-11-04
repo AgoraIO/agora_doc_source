@@ -59,14 +59,14 @@
 @property(assign, nonatomic) BOOL enable_doppler;
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
-  Optional&lt;double&gt; speaker_azimuth;
-  Optional&lt;double&gt; speaker_elevation;
-  Optional&lt;double&gt; speaker_distance;
-  Optional&lt;int&gt; speaker_orientation;
-  Optional&lt;bool&gt; enable_blur;
-  Optional&lt;bool&gt; enable_air_absorb;
-  Optional&lt;double&gt; speaker_attenuation;
-  Optional&lt;bool&gt; enable_doppler;
+  Optional&lt;double> speaker_azimuth;
+  Optional&lt;double> speaker_elevation;
+  Optional&lt;double> speaker_distance;
+  Optional&lt;int> speaker_orientation;
+  Optional&lt;bool> enable_blur;
+  Optional&lt;bool> enable_air_absorb;
+  Optional&lt;double> speaker_attenuation;
+  Optional&lt;bool> enable_doppler;
 };</codeblock>
 <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
   
@@ -194,13 +194,13 @@
         <plentry>
           <pt>enable_doppler</pt>
           <pd>Whether to enable the Doppler effect: When there is a relative displacement between the sound source and the receiver of the sound source, the tone heard by the receiver changes.<ul>
-            <li><codeph><ph keyref="true" /></codeph>: Enable the Doppler effect.</li>
-            <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the Doppler effect.</li>
+            <li><codeph><ph keyref="true"/></codeph>: Enable the Doppler effect.</li>
+            <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the Doppler effect.</li>
             </ul>
             <note type="caution">
             <ul>
               <li>This parameter is suitable for scenarios where the sound source is moving at high speed (for example, racing games). It is not recommended for common audio and video interactive scenarios (for example, voice chat, cohosting, or online KTV).</li>
-              <li>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref keyref="updatePlayerPositionInfo" />, <xref keyref="updateSelfPosition" />, and <xref keyref="updateRemotePosition" /> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
+              <li>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref keyref="updatePlayerPositionInfo"/>, <xref keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"/> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
             </ul>
             </note></pd>
         </plentry>
