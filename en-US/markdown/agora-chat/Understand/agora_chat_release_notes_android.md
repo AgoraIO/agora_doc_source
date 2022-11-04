@@ -2,13 +2,7 @@ This page provides release notes for the Agora Chat Android SDK.
 
 ## V1.0.8
 
-V1.0.8 was released on September 30, 2022. 
-
-#### New features
-
-- Supports custom chat room attributes.
-- Adds the `setAreaCode` method to restrict the scope of accessible edge nodes.
-- Adds the `getJoinedGroupsFromServer` method to allow you to get the number of members and your group role when getting the groups that you join.
+V1.0.8 was released on November 3, 2022. 
 
 #### Bugs fixed
 

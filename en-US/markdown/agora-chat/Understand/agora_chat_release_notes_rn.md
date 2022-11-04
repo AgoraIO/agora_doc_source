@@ -1,8 +1,8 @@
 This page provides release notes for the Agora React Native Chat SDK.
 
-## V1.0.9
+## V1.0.10
 
-V1.0.9 was released on October 8, 2022. 
+V1.0.10 was released on November 3, 2022. 
 
 #### New features
 
@@ -12,17 +12,11 @@ Adds two events to the `ChatGroupEventListener` class:
 
 #### Bugs fixed
 
-The issue relating to custom chat room attributes.
+The overlimit issue during JSON conversion on the Android platform.
 
 ## V1.0.8
 
 V1.0.8 was released on September 30, 2022. 
-
-#### New features
-
-- Supports custom chat room attributes.
-- Adds the `areaCode` attribute to the `ChatOptions` class to restrict the scope of accessible edge nodes.
-- Adds the `isDisabled` attribute to the `ChatGroupOptions` class to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `fetchGroupInfoFromServer` method in `ChatGroupManager` to get group details.
 
 #### Bugs fixed
 
