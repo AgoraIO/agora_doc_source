@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
-    <title><ph keyref="LocalVideoStats" /></title>
+    <title><ph keyref="LocalVideoStats"/></title>
     <shortdesc id="short"><ph id="shortdesc">The statistics of the local video stream.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -287,19 +287,21 @@
   @JsonKey(name: 'captureBrightnessLevel')
   final CaptureBrightnessLevelType? captureBrightnessLevel;
 
-  factory LocalVideoStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LocalVideoStats.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalVideoStatsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalVideoStatsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
 }
 </codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
-                <pd>The user ID of the local user.</pd>
+                <pd>The ID of the local user.</pd>
             </plentry>
             <plentry>
                 <pt>sentBitrate</pt>
@@ -353,7 +355,7 @@
             </plentry>
             <plentry>
                 <pt>qualityAdaptIndication</pt>
-                <pd><ph>The quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp ios mac unity">See <xref keyref="QUALITY_ADAPT_INDICATION" />.</ph><p props="android">
+                <pd><ph>Quality adaption of the local video stream in the reported interval (based on the target frame rate and target bitrate). </ph><ph props="cpp ios mac unity electron rn flutter">See <xref keyref="QUALITY_ADAPT_INDICATION" />.</ph><p props="android">
                     <ul>
                     <li><ph keyref="ADAPT_NONE" />(0): The local video quality stays the same.</li>
                     <li><ph keyref="ADAPT_UP_BANDWIDTH" />(1): The local video quality improves because the network bandwidth increases.</li>
@@ -368,16 +370,16 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt>encodedFrameWidth</pt>
-                <pd>The width of the encoded video (px).</pd>
-            </plentry>
-            <plentry>
                 <pt>encodedFrameHeight</pt>
                 <pd>The height of the encoded video (px).</pd>
             </plentry>
             <plentry>
+                <pt>encodedFrameWidth</pt>
+                <pd>The width of the encoded video (px).</pd>
+            </plentry>
+            <plentry>
                 <pt>encodedFrameCount</pt>
-                <pd>The number of sent video frames, represented by an aggregate value.</pd>
+                <pd>The number of the sent video frames, represented by an aggregate value.</pd>
             </plentry>
             <plentry>
                 <pt>codecType</pt>
@@ -392,9 +394,13 @@
                 <pt>txPacketLossRate</pt>
                 <pd>The video packet loss rate (%) from the local client to the Agora server before applying the anti-packet loss strategies.</pd>
             </plentry>
+            <plentry props="unity electron rn flutter">
+                <pt>captureFrameRate</pt>
+                <pd>The frame rate (fps) for capturing the local video stream.</pd>
+            </plentry>
             <plentry>
                 <pt>captureBrightnessLevel</pt>
-                <pd props="ios mac cpp unity electron rn flutter">The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" />.</pd>
+                <pd props="ios mac cpp unity">The brightness level of the video image captured by the local camera. See <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE" />.</pd>
                 <pd props="android">The brightness level of the video image captured by the local camera.<ul>
                     <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID" />(-1): The SDK does not detect the brightness level of the video image. Wait a few seconds to get the brightness level from <parmname>captureBrightnessLevel</parmname> in the next callback.</li>
                     <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL" />(0): The brightness level of the video image is normal.</li>
@@ -402,6 +408,13 @@
                     <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK" />(2): The brightness level of the video image is too dark.</li>
                     </ul></pd>
             </plentry>
+                <plentry>
+                    <pt>hwEncoderAccelerating</pt>
+                    <pd>本地视频编码加速类型。 <ph props="apple">See <xref keyref="hwEncoderAccelerating"/>.</ph><ul props="cpp android">
+                        <li>0：采用软件编码，未加速。</li>
+                        <li>1：采用硬件编码进行加速。</li>
+                        </ul></pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>
