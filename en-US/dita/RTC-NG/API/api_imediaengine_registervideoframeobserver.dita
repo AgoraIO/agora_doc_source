@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoframeobserver">
-    <title><ph keyref="registerVideoFrameObserver" /></title>
+    <title><ph keyref="registerVideoFrameObserver"/></title>
     <shortdesc id="short"><ph id="shortdesc">Registers a video frame observer object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerVideoFrameObserver" />
+                <indexterm keyref="registerVideoFrameObserver"/>
             </keywords>
         </metadata>
     </prolog>
@@ -22,14 +22,16 @@
             <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(VideoFrameObserver observer);</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>You need to implement the <xref keyref="IVideoFrameObserver" /> class in this method and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
+            <p>如果你想要观测原始视频数据 (如 YUV 或 RGBA 格式)，声网推荐你通过该方法实现一个 <xref keyref="IVideoFrameObserver"/> 类。</p>
+            <p>注册该类后，你需要根据需求注册该类中的回调。 After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
+            <p conkeyref="registerVideoEncodedFrameObserver/mix"/>
             <note type="attention">
             <ul>
-            <li>When handling the video data returned in the callbacks, pay attention to the changes in the <parmname>width</parmname> and <parmname>height</parmname> parameters, which may be adapted under the following circumstances:<ul id="ul_qms_zys_r4b">
+                <li>Ensure that you call this method before joining a channel.</li>
+                <li>When handling the video data returned in the callbacks, pay attention to the changes in the <parmname>width</parmname> and <parmname>height</parmname> parameters, which may be adapted under the following circumstances:<ul id="ul_qms_zys_r4b">
                 <li>When the network condition deteriorates, the video resolution decreases incrementally.</li>
                 <li>If the user adjusts the video profile, the resolution of the video returned in the callbacks also changes.</li>
                 </ul></li>
-            <li>Ensure that you call this method before joining a channel.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -38,11 +40,11 @@
                 <pt props="android cpp electron rn flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pt props="unity">videoFrameObserver</pt>
-                <pd><ph>The observer object instance. See <xref keyref="IVideoFrameObserver" />. </ph><ph props="android cpp ios mac unity">To release the instance, set the value as <ph keyref="NULL" />.</ph></pd>
+                <pd>The observer object instance. See . <ph props="android cpp ios mac unity">To release the instance<ph keyref="NULL"/>, set the value as .</ph><xref keyref="IVideoFrameObserver"/></pd>
             </plentry>
             <plentry props="unity">
                 <pt>mode</pt>
-                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE" />.</pd>
+                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
             </plentry>
             </parml> </section>
         <section props="native electron rn">
@@ -52,8 +54,8 @@
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="ios mac">
-            <li><codeph><ph keyref="true" /></codeph>: Success.</li>
-            <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
