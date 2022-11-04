@@ -218,12 +218,25 @@
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
-                <pd>The type of the video source, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
             </plentry>
             <plentry props="android ios mac">
                 <pt>sourceId</pt>
                 <pd>The ID of the video source.</pd>
             </plentry>
-            </parml> </section>
+                <plentry>
+                    <pt>setupMode</pt>
+                    <pd>视图设置模式。 See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                </plentry>
+                <plentry>
+                    <pt>mediaPlayerId</pt>
+                    <pd>The ID of the media player. You can get the media player ID by calling .<xref keyref="getMediaPlayerId" /></pd>
+                    <pd>当 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，此参数为必填项。</pd>
+                </plentry>
+                <plentry>
+                  <pt>cropArea</pt>
+                  <pd>（可选）视频帧的展示区域，详见 <xref keyref="Rectangle" />。 其中，<parmname>width</parmname> 和 <parmname>hight</parmname> 表示该区域的视频像素宽度和高度。 默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
+              </plentry>
+          </parml> </section>
     </refbody>
 </reference>
