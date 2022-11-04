@@ -26,14 +26,13 @@
         </section>
         <section id="detailed_desc">
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data captured by the local camera. You can then pre-process the data according to your scenarios.</p>
-            <p props="native unity electron rn">After pre-processing, you can send the processed video data back to the SDK by this callback.</p>
+            <p props="native unity electron rn">After pre-processing, you can send the processed video data back to the SDK through this callback.</p>
             <note type="attention" id="note">
-                <ul>
-                    <li>The video data that this callback gets has not been pre-processed, and is not watermarked, cropped, rotated or beautified.</li>
-                    <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
-                </ul>
-            </note>
-        </section>
+            <ul>
+            <li>The video data that this callback gets has not been pre-processed, and is not watermarked, cropped, rotated or beautified.</li>
+            <li>如果你获取到的视频数据类型为 RGBA，Agora 不支持对 alpha 通道的值进行处理。</li>
+            <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
+        </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -50,20 +49,19 @@
             <title>Returns</title>
             <p id="return">
             <ul>
-            <li props="native electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
-                <li><codeph><ph keyref="true"/></codeph>:The SDK ignores this return value.</li>
-                <li><codeph><ph keyref="false"/></codeph>:The SDK ignores this return value.</li>
+            <li props="native electron rn">When the video processing mode is<apiname keyref="PROCESS_MODE_READ_ONLY"/> :<ul>
+                <li><codeph><ph keyref="true"/></codeph>Reserved for future use.</li>
+                <li><codeph><ph keyref="false"/></codeph>Reserved for future use.</li>
                 </ul></li>
-            <li props="native electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
+            <li props="native electron rn">When the video processing mode is<apiname keyref="PROCESS_MODE_READ_WRITE"/> :<ul>
                 <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
                 <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
-                </ul></li>                              
+                </ul></li>
             </ul>
-                <ul props="unity">
-                <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
-                <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
-                </ul>            
-            </p>
+            <ul props="unity">
+            <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
+            </ul> </p>
         </section>
     </refbody>
 </reference>
