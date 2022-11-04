@@ -23,28 +23,45 @@
   (void)errCode;
 }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(string channel, uint uid, string filePath, int width, int height, int errCode)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="electron" outputclass="language-typescript">  onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnSnapshotTaken(RtcConnection connection, uint uid, string filePath, int width, int height, int errCode) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onSnapshotTaken?(
+    connection: RtcConnection,
+    uid: number,
+    filePath: string,
+    width: number,
+    height: number,
+    errCode: number
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">  final void Function(RtcConnection connection, int uid, String filePath,
+      int width, int height, int errCode)? onSnapshotTaken;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After a successful <xref keyref="takeSnapshot"/> method call, the SDK triggers this callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
+            <p>After a successful  method call<xref keyref="takeSnapshot"/>, the SDK triggers this callback to report whether the snapshot is successfully taken as well as the details for the snapshot taken.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
+            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry props="unity">
-                <pt>channel</pt>
-                <pd>The channel name.</pd>
-            </plentry>
             <plentry>
                 <pt>uid</pt>
                 <pd>The user ID. A <parmname>uid</parmname> of 0 indicates the local user.</pd>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection"
+                props="unity flutter electron rn">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>filePath</pt>
@@ -64,8 +81,8 @@
                     <li>0: Success.</li>
                     <li>&lt; 0: Failure:<ul>
                         <li>-1: The SDK fails to write data to a file or encode a JPEG image.</li>
-                        <li>-2: The SDK does not find the video stream of the specified user within one second after the <apiname keyref="takeSnapshot"/> method call succeeds.</li>
-                        <li>-3: Calling the <apiname keyref="takeSnapshot"/> method too frequently.</li>
+                        <li>-2:<apiname keyref="takeSnapshot"/> The SDK does not find the video stream of the specified user within one second after the  method call succeeds. 可能的原因有：本地采集停止、远端停止发布或者视频数据处理堵塞。</li>
+                        <li>-3:<apiname keyref="takeSnapshot"/> Calling the  method too frequently.</li>
                         </ul></li>
                     </ul></pd>
             </plentry>
