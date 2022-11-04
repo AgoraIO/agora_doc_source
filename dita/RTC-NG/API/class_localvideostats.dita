@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_localvideostats">
-    <title><ph keyref="LocalVideoStats" /></title>
+    <title><ph keyref="LocalVideoStats"/></title>
     <shortdesc id="short"><ph id="shortdesc">本地视频流统计信息。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -28,6 +28,7 @@
   public int codecType;
   public int txPacketLossRate;
   public int captureBrightnessLevel;
+  public int hwEncoderAccelerating;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger sentBitrate;
@@ -51,6 +52,7 @@
 @property(assign, nonatomic) NSInteger encodedFrameHeight;
 @property(assign, nonatomic) NSInteger encodedFrameCount;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
+@property(assign, nonatomic) AgoraVideoHwEncoderAccelerating hwEncoderAccelerating;
 @property(assign, nonatomic) NSInteger txPacketLossRate;
 @property(assign, nonatomic) AgoraCaptureBrightnessLevelType captureBrightnessLevel NS_SWIFT_NAME(captureBrightnessLevel);
 @end</codeblock>
@@ -77,6 +79,8 @@
     VIDEO_CODEC_TYPE codecType;
     unsigned short txPacketLossRate;
     CAPTURE_BRIGHTNESS_LEVEL_TYPE captureBrightnessLevel;
+    int hwEncoderAccelerating;
+
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
   
@@ -288,11 +292,12 @@
 
   Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
 }
-</codeblock>
-            </p>
+</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>uid</pt>
@@ -304,6 +309,7 @@
                     <p>实际发送码率 (Kbps)
 
 
+                    
                     <note type="attention">不包含丢包后重传视频等的发送码率。</note></p>
                 </pd>
             </plentry>
@@ -312,6 +318,7 @@
                 <pd>实际发送帧率 (fps)。
 
 
+                    
                     <note type="attention">不包含丢包后重传视频等的发送帧率。</note></pd>
             </plentry>
             <plentry>
@@ -370,6 +377,7 @@
                 <pd>
                     <p>视频编码码率（Kbps）。
 
+                    
                     <note type="attention">不包含丢包后重传视频等的编码码率。</note></p>
                 </pd>
             </plentry>
@@ -415,6 +423,14 @@
                     <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK" /> (2): 本地采集的画质亮度偏暗。</li>
                     </ul></pd>
             </plentry>
+                <plentry>
+                    <pt>hwEncoderAccelerating</pt>
+                    <pd>本地视频编码加速类型。<ph props="apple">详见 <xref keyref="hwEncoderAccelerating"/>。</ph>
+                        <ul props="cpp android">
+                        <li>0：采用软件编码，未加速。</li>
+                        <li>1：采用硬件编码进行加速。</li>
+                        </ul></pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

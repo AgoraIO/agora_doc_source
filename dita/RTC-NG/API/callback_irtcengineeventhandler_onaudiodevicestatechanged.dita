@@ -39,7 +39,7 @@
         </section>
         <section id="detailed_desc">
             <p id="desc">提示系统音频设备状态发生改变，比如耳机被拔出。</p>
-            <note type="attention">该方法仅适用于 Windows 和 macOS 平台。</note> </section>
+            <note type="attention" props="cpp">该方法仅适用于 Windows 和 macOS。</note> </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title" /> </title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
@@ -52,19 +52,9 @@
                 <pt>deviceType</pt>
                 <pd>设备类型定义。详见 <xref keyref="MEDIA_DEVICE_TYPE" />。</pd>
             </plentry>
-            <plentry>
-                <pt>deviceState</pt>
-                <pd>设备状态定义。
-
-                    <ul>
-                    <li>macOS 平台：
-
-                        <ul>
-                        <li>0: 设备就绪。</li>
-                        <li>8: 设备被拔出。</li>
-                        </ul> </li>
-                    <li>Windows 平台：详见 <xref keyref="MEDIA_DEVICE_STATE_TYPE" />。</li>
-                    </ul> </pd>
+            <plentry conkeyref="onVideoDeviceStateChanged/state">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
     </refbody>

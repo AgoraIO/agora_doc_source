@@ -62,7 +62,6 @@
   public boolean lowLatency;
   @Deprecated public boolean lowLatency;
   public int videoGop;
-  public AgoraImage watermark;
   private ArrayList&lt;AgoraImage&gt; watermarkList;
   public void addWatermark(AgoraImage watermark) {
     if (watermarkList == null) {
@@ -79,7 +78,6 @@
   public ArrayList&lt;AgoraImage&gt; getWatermarkList() {
     return watermarkList;
   }
-  public AgoraImage backgroundImage;
   private ArrayList&lt;AgoraImage&gt; backgroundImageList;
   public void addBackgroundImage(AgoraImage backgroundImage) {
     if (backgroundImageList == null) {
@@ -138,8 +136,6 @@
     videoCodecType = VideoCodecType.H264;
     videoGop = 30;
     videoFramerate = 15;
-    watermark = new AgoraImage();
-    backgroundImage = new AgoraImage();
     lowLatency = false;
     audioSampleRate = AudioSampleRateType.TYPE_44100;
     audioBitrate = 48;
@@ -240,9 +236,7 @@
 @property(assign, nonatomic) AgoraVideoCodecTypeForStream videoCodecType;
 @property(copy, nonatomic) NSArray&lt;AgoraLiveTranscodingUser *&gt; *_Nullable transcodingUsers;
 @property(copy, nonatomic) NSString *_Nullable transcodingExtraInfo;
-@property(strong, nonatomic) AgoraImage *_Nullable watermark;
 @property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable watermarkArray;
-@property(strong, nonatomic) AgoraImage *_Nullable backgroundImage;
 @property (copy, nonatomic) NSArray&lt;AgoraImage *&gt; *_Nullable backgroundImageArray;
 @property(strong, nonatomic) COLOR_CLASS *_Nullable backgroundColor;
 @property(assign, nonatomic) AgoraAudioSampleRateType audioSampleRate;

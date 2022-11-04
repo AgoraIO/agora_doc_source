@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getmusiccollectionbymusicchartid">
+    <title><ph keyref="getMusicCollectionByMusicChartId"/></title>
+    <shortdesc id="short"><ph id="shortdesc">通过音乐榜单的 ID 获取指定榜单的音乐资源列表。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getMusicCollectionByMusicChartId"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public String getMusicCollectionByMusicChartId(int musicChartId, int page, int pageSize) {
+    return getMusicCollectionByMusicChartId(musicChartId, page, pageSize, null);
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)getMusicCollectionWithMusicChartId:(NSInteger)musicChartId page:(NSInteger)page pageSize:(NSInteger)pageSize jsonOption:(NSString * _Nullable)jsonOption NS_SWIFT_NAME(getMusicCollection(musicChartId:page:pageSize:jsonOption:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getMusicCollectionByMusicChartId(agora::util::AString&amp; requestId, int32_t musicChartId, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p id="desc">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调报告榜单中音乐资源列表的详细信息。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry props="cpp" conkeyref="onMusicChartsResult/id">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry id="chartid">
+                <pt>musicChartId</pt>
+                <pd>音乐榜单的 ID，可以通过 <xref keyref="onMusicChartsResult"/> 回调获取。你也可以通过 RESTful API 来<xref keyref="song-lists"/>或<xref keyref="new-songs"/>。</pd>
+            </plentry>
+            <plentry id="page">
+                <pt>page</pt>
+                <pd>当前页面编号。</pd>
+            </plentry>
+            <plentry id="size">
+                <pt>pageSize</pt>
+                <pd>当前音乐资源列表的总页面数量。</pd>
+            </plentry>
+            <plentry props="apple cpp" conkeyref="preload/option">
+                <pt/>
+                <pd/>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" conkeyref="getMusicCharts/return_values"> </section>
+    </refbody>
+</reference>

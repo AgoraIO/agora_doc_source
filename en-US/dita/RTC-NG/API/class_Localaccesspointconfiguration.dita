@@ -7,16 +7,70 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class LocalAccessPointConfiguration {
+  public static class LogUploadServerInfo {
+    public String serverDomain = null;
+    public String serverPath = null;
+    public int serverPort = 0;
+    public boolean serverHttps = true;
+    public LogUploadServerInfo() {
+      serverDomain = null;
+      serverPath = null;
+      serverPort = 0;
+      serverHttps = true;
+    }
+
+    public LogUploadServerInfo(String domain, String path, int port, boolean https) {
+      serverDomain = domain;
+      serverPath = path;
+      serverPort = port;
+      serverHttps = https;
+    }
+
+    @CalledByNative("LogUploadServerInfo")
+    public String getServerDomain() {
+      return serverDomain;
+    }
+
+    @CalledByNative("LogUploadServerInfo")
+    public String getServerPath() {
+      return serverPath;
+    }
+
+    @CalledByNative("LogUploadServerInfo")
+    public int getServerPort() {
+      return serverPort;
+    }
+
+    @CalledByNative("LogUploadServerInfo")
+    public boolean getServerHttps() {
+      return serverHttps;
+    }
+  };
+
+  public static class AdvancedConfigInfo {
+    public LogUploadServerInfo logUploadServer = null;
+
+    public AdvancedConfigInfo() {
+      logUploadServer = new LogUploadServerInfo();
+    }
+
+    @CalledByNative("AdvancedConfigInfo")
+    public LogUploadServerInfo getLogUploadServerInfo() {
+      return logUploadServer;
+    }
+  };
   public ArrayList&lt;String&gt; ipList = null;
   public ArrayList&lt;String&gt; domainList = null;
   public String verifyDomainName = null;
   public int mode = Constants.LOCAL_RPOXY_CONNECTIVITY_FIRST;
+  public AdvancedConfigInfo advancedConfig = null;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraLocalAccessPointConfiguration) __attribute__((visibility("default"))) @interface AgoraLocalAccessPointConfiguration : NSObject
 @property(copy, nonatomic) NSArray* _Nullable ipList NS_SWIFT_NAME(ipList);
 @property(copy, nonatomic) NSArray* _Nullable domainList NS_SWIFT_NAME(domainList);
 @property(copy, nonatomic) NSString* _Nullable verifyDomainName NS_SWIFT_NAME(verifyDomainName);
 @property(assign, nonatomic) AgoraLocalProxyMode mode NS_SWIFT_NAME(mode);
+@property(strong, nonatomic) AdvancedConfigInfo* _Nullable advancedConfig NS_SWIFT_NAME(advancedConfig);
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct LocalAccessPointConfiguration {
   const char** ipList;
@@ -25,6 +79,7 @@
   int domainListSize;
   const char* verifyDomainName;
   LOCAL_PROXY_MODE mode;
+  AdvancedConfigInfo advancedConfig;
   LocalAccessPointConfiguration() : ipList(NULL), ipListSize(0), domainList(NULL), domainListSize(0), verifyDomainName(NULL), mode(ConnectivityFirst) {}
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
