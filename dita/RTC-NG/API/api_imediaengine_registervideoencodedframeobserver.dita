@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoencodedframeobserver">
-    <title><ph keyref="registerVideoEncodedFrameObserver" /></title>
+    <title><ph keyref="registerVideoEncodedFrameObserver"/></title>
     <shortdesc id="short"><ph id="shortdesc">为编码后的视频图像注册视频帧接收观测器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerVideoEncodedFrameObserver" />
+                <indexterm keyref="registerVideoEncodedFrameObserver"/>
             </keywords>
         </metadata>
     </prolog>
@@ -27,11 +27,22 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerVideoEncodedFrameObserver(VideoEncodedFrameObserver observer);</codeblock> </section>
         <section id="detailed_desc">
+            <p>如果你想要观测编码后的视频数据 (如 h.264 格式)，声网推荐你通过该方法实现一个 <xref keyref="IVideoEncodedFrameObserver"/> 类。</p>
+            <p id="mix">如果你想获取一部分远端用户的原始视频数据 (简称为 A 组)、获取另一部分远端用户的编码后视频数据 (简称为 B 组)，可参考以下步骤： 
+                <ol>
+                <li>在加入频道前调用 <xref keyref="registerVideoFrameObserver"/> 注册原始视频帧观测器。</li>
+                <li>在加入频道前调用 <xref keyref="registerVideoEncodedFrameObserver"/> 注册编码后的视频帧观测器。</li>
+                <li>加入频道后通过 <xref keyref="onUserJoined"/> 获取 B 组用户的 ID，然后调用 <xref keyref="setRemoteVideoSubscriptionOptions"/> 设置该组用户的 <parmname>encodedFrameOnly</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
+                <li>调用 <xref keyref="muteAllRemoteVideoStreams"/>，开始接收所有远端用户的视频流。此时： 
+                    <ul>
+                    <li>可通过 <xref keyref="IVideoFrameObserver"/> 中的回调获取 A 组用户的原始视频数据，你也可以将这部分视频数据发回给 SDK 进行渲染。</li>
+                    <li>可通过 <xref keyref="IVideoEncodedFrameObserver"/> 中的回调获取 B 组用户的已编码视频数据。</li>
+                    </ul> </li>
+                </ol> </p>
             <note type="attention">
             <ul>
-            <li>请在加入频道后调用该方法。</li>
-            <li>如果你调用该方法注册了 <xref keyref="IVideoEncodedFrameObserver" /> 对象，则不能再注册 <xref keyref="IVideoFrameObserver" /> 对象。</li>
-            </ul> </note> </section>
+            <li>请在加入频道前调用该方法。</li>
+        </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -40,12 +51,12 @@
                 <pt props="android">receiver</pt>
                 <pt props="cpp electron rn flutter">observer</pt>
                 <pt props="unity">videoEncodedImageReceiver</pt>
-                <pd props="android cpp unity rn electron flutter">视频帧接收观测器，详见 <xref keyref="IVideoEncodedFrameObserver" />。</pd>
-                <pd props="ios mac">接口对象实例。详见 <xref keyref="IVideoEncodedFrameObserver" />。如果传入 <ph keyref="NULL" />，则表示取消注册。</pd>
+                <pd props="android cpp unity rn electron flutter">视频帧接收观测器，详见 <xref keyref="IVideoEncodedFrameObserver"/>。</pd>
+                <pd props="ios mac">接口对象实例。详见 <xref keyref="IVideoEncodedFrameObserver"/>。如果传入 <ph keyref="NULL"/>，则表示取消注册。</pd>
             </plentry>
             <plentry props="unity">
                 <pt>mode</pt>
-                <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE" />。</pd>
+                <pd>视频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron rn">

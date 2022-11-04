@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="classmusicchartinfo">
+    <title><ph keyref="MusicChartInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音乐榜单的详细信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class MusicChartInfo {
+  public String name;
+  public int type;
+
+  @CalledByNative
+  public MusicChartInfo(String name, int type) {
+    this.name = name;
+    this.type = type;
+  }
+
+  @CalledByNative
+  public String getName() {
+    return name;
+  }
+
+  @CalledByNative
+  public int getType() {
+    return type;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicChartInfo : NSObject
+@property (nonatomic, copy) NSString *chartName;
+@property (nonatomic, assign) NSInteger identify;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">{
+    const char* chartName;
+    int32_t id;
+} MusicChartInfo;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt props="apple cpp">chartName</pt>
+                <pt props="android">name</pt>
+                <pd>榜单名。</pd>
+            </plentry>
+                <plentry>
+                    <pt props="apple">identify</pt>
+                    <pt props="android">type</pt>
+                    <pt props="cpp">id</pt>
+                    <pd>音乐榜单的 ID。</pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

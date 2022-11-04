@@ -44,7 +44,6 @@
     mAppId = "";
     mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
     mEventHandler = null;
-    mAudioScenario = Constants.AUDIO_SCENARIO_HIGH_DEFINITION;
     mAreaCode = Constants.AreaCode.AREA_CODE_GLOB;
     mExtensionList = new ArrayList&lt;&gt;();
     mExtensionObserver = null;
@@ -108,13 +107,15 @@
   AUDIO_SCENARIO_TYPE audioScenario;
   unsigned int areaCode;
   commons::LogConfig logConfig;
+  bool domainLimit;
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        audioScenario(AUDIO_SCENARIO_HIGH_DEFINITION),
+        license(NULL),
+        audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
-        logConfig() {}
+        logConfig(), domainLimit(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
   
@@ -284,6 +285,16 @@
             <plentry props="ios mac">
                 <pt>mediaFilterExtensions</pt>
                 <pd><xref keyref="AgoraMediaFilterExtensionDelegate"/> 实例。</pd>
+            </plentry>
+            <plentry>
+                <pt>domainLimit</pt>
+                <pd>
+                    <p>是否开启域名限制：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：开启域名限制。该设置适用于 IoT 设备使用物联网卡进行网络访问的场景。SDK 会仅连接到已向运营商报备的域名或 IP 白名单中的服务器。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：（默认）关闭域名限制。该设置适用于大部分普通场景。 </li>
+                    </ul></p>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
