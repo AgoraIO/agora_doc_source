@@ -1,0 +1,307 @@
+## 概览
+
+<div class="alert note">本文仅针对 2.7.0 或之后版本。</div>
+
+灵动课堂提供插件机制，帮助开发者集成源代码时为业务需求扩展课堂能力。同时，通过插件机制，可以降低自定义业务与课堂的代码耦合程度，从而降低集成源代码的后期升级难度。
+
+插件的技术原理分为：
+
+- 插件的生命周期
+- 插件的实例化
+- 插件的挂载点
+- 插件的通信机制
+- 插件用于扩展教室能力
+- 插件用于调用教室能力
+- 插件的轨迹同步和多语言能力
+
+## 插件生命周期
+
+插件提供了 `AgoraWidgetLifecycle` 接口，你可基于生命周期钩子实现自定义逻辑。
+
+`AgoraWidgetLifecycle` 接口的 API 定义如下：
+
+```ts
+export interface AgoraWidgetLifecycle {
+  /**
+   * Widget 被安装
+   */
+  onInstall(controller: AgoraWidgetController): void;
+  /**
+   * Widget 被实例化完成
+   */
+  onCreate(properties: any, userProperties: any): void;
+  /**
+   * Widget 属性变更
+   */
+  onPropertiesUpdate(properties: any): void;
+  /**
+   * Widget 用户属性变更
+   */
+  onUserPropertiesUpdate(userProperties: any): void;
+  /**
+   * Widget 被销毁
+   */
+  onDestroy(): void;
+  /**
+   * Widget 被卸载
+   */
+  onUninstall(controller: AgoraWidgetController): void;
+}
+```
+
+插件生命周期中的各回调触发时机：
+
+- `onInstall`: 进入教室（或小组房间）后，且 `WidgetController` 实例被成功创建后。
+- `onCreate`:
+    - 调用 `WidgetUIStore.createWidget` 创建一个 `Widget` 实例时。
+    - 调用 `Widget.setActive` 激活一个 `Widget` 时。
+- `onPropertiesUpdate`: `Widget` 属性发生变更时。
+- `onUserPropertiesUpdate`: `Widget` 对应的用户私有属性发生变更时。
+- `onDestroy`:
+    - 调用 `WidgetUIStore.destroyWidget` 销毁一个 `Widget` 实例时。
+    - 调用 `Widget.setInactive` 设置 `Widget` 为未激活状态时。
+- `onUninstall`: 离开教室（或小组房间）后。
+
+## 插件实例化
+
+实例化插件需要了解创建和销毁插件的方式。
+
+### 创建插件
+
+你可以使用如下任一方式创建：
+
+- 方式一：调用 `WidgetUIStore.createWidget` 创建 `Widget` 实例。
+    <div class="alert note"><ul>
+    <li>这种方式创建的插件仅在本地客户端激活。例如，当你实现计算器功能时，如果你只需要该插件在教师端出现，不需要学生端也能看到。</li>
+    <li>如需对远端客户端也激活插件，你还需要调用 <code>Widget.setActive</code> 或 <code>WidgetStore.setActive</code>。例如，当你实现某教学道具时，如果你需要课堂内所有用户都看到该道具。</li></ul>
+    </div>
+- 方式二：调用 `WidgetStore.setActive` 创建并激活 `Widget`。这种方式创建的插件在本地客户端和远端客户端都激活，无需进行额外的激活操作。
+
+### 销毁插件
+
+不同情况下销毁插件的方式也不同：
+
+- 如果你仅需在本地客户端销毁插件：调用 `WidgetUIStore.destroyWidget` 销毁一个 `Widget` 实例。
+- 如果你需要在本地客户端和远端客户端销毁插件：调用 `Widget.setInactive` 设置 `Widget` 为未激活状态。
+
+
+## 插件挂载点
+
+灵动课堂提供的插件机制目前支持两种挂载点：
+
+- 挂载在 Widget 容器内。
+- 挂载在特定 DOM 节点内。
+
+Widget 默认挂载在 Widget 容器内部。如需挂载在教室内固定位置，你可以重写 `locate` 方法，返回要挂载的 DOM 节点。
+
+`AgoraWidgetRenderable` 的 API 定义如下：
+
+```ts
+export interface AgoraWidgetRenderable {
+  /**
+   * 组件渲染
+   */
+  render(dom: HTMLElement): void;
+  /**
+   * 组件卸载
+   */
+  unload(): void;
+  /**
+   * 挂载点
+   */
+  locate(): HTMLElement | undefined | null;
+}
+```
+
+灵动课堂内置插件中，白板插件和消息聊天插件挂载在固定位置，其余内置插件挂载在 Widget 容器内。你可以参考[内置插件](/cn/agora-class/agora_class_widget_web?platform=Web#内置插件)了解详情。
+
+## 插件通信机制
+
+灵动课堂为插件提供了双向通信机制：
+
+- 插件与插件之间的双向通信
+- 插件与教室之间的双向通信
+
+通过 `AgoraWidgetBase`，你可以获取到 `WidgetController` `实例。WidgetController` 提供了以下方法用于消息通信：
+
+| 方法                   | 用途                  |
+| --------------------------- | ---------------------- |
+| `sendMessage`                 | 向指定 Widget 发送消息 |
+| `addWidgetMessageListener`    | 增加一个消息监听器     |
+| `removeWidgetMessageListener` | 移除一个消息监听器     |
+| `broadcast`                   | 广播消息               |
+| `addBroadcastListener`        | 监听广播消息           |
+| `removeBroadcastListener`     | 移除一个广播消息监听器 |
+
+## 教室内能力扩展
+
+灵动课堂通过定义一套扩展协议来将特定交互交由教室内 Widget 实现，例如如下交互：
+
+- 白板工具切换
+- 云盘内打开特定类型的课件
+- 打开一个浏览器窗口
+- 打开一个同步视频播放器
+
+灵动课堂还通过定义一系列事件完成插件与教室之间的事件通知：
+
+- `AgoraExtensionRoomEvent`：教室事件。事件由教室发出，被 Widget 监听。
+- `AgoraExtensionWidgetEvent`：Widget 事件。事件由 Widget 发出，被教室监听。
+
+灵动课堂内置的教室事件 `AgoraExtensionRoomEvent` 的说明如下：
+
+```ts
+/**
+ * 教室事件
+ * 此类事件从教室内发出，并在 Widget 中监听
+ */
+export enum AgoraExtensionRoomEvent {
+  /** 白板在教室内的事件 */
+  BoardSelectTool = 'board-select-tool',
+  BoardAddPage = 'board-add-page',
+  BoardRemovePage = 'board-remove-page',
+  BoardGotoPage = 'board-goto-page',
+  BoardUndo = 'board-undo',
+  BoardRedo = 'board-redo',
+  BoardClean = 'board-clean',
+  BoardPutImageResource = 'board-put-image-resource',
+  BoardPutImageResourceIntoWindow = 'board-put-image-resource-into-window',
+  BoardOpenMaterialResourceWindow = 'board-open-material-resource-window',
+  BoardOpenMediaResourceWindow = 'board-open-media-resource-window',
+  BoardOpenH5ResourceWindow = 'board-open-h5-resource-window',
+  BoardDrawShape = 'board-draw-shape',
+  BoardGrantPrivilege = 'board-grant-privilege',
+  BoardChangeStrokeWidth = 'board-change-stroke-width',
+  BoardChangeStrokeColor = 'board-change-stroke-color',
+  BoardSaveAttributes = 'board-save-attributes',
+  BoardLoadAttributes = 'board-load-attributes',
+  BoardGetSnapshotImageList = 'board-get-snapshot-image-list',
+  BoardSetDelay = 'board-set-delay',
+  // 开关白板
+  ToggleBoard = 'toggle-board',
+  // 打开 Webview
+  OpenWebview = 'open-webview',
+  // 打开流媒体播放器
+  OpenStreamMediaPlayer = 'open-stream-media-player',
+  // 返回授权用户列表
+  ResponseGrantedList = 'response-granted-list',
+}
+```
+
+灵动课堂内置的插件事件 `AgoraExtensionWidgetEvent` 的说明如下：
+
+```ts
+/**
+ * Widget 事件
+ * 此类事件从 Widget 内发出，在教室中监听
+ */
+export enum AgoraExtensionWidgetEvent {
+  /** 白板在插件内的事件 */
+  // 连接状态变更
+  BoardConnStateChanged = 'board-connection-state-changed',
+  // 挂载状态变更
+  BoardMountStateChanged = 'board-mount-state-changed',
+  // 房间属性变更
+  BoardMemberStateChanged = 'board-member-state-changed',
+  // 页码属性变更
+  BoardPageInfoChanged = 'board-page-info-changed',
+  // 重做步数变更
+  BoardRedoStepsChanged = 'board-redo-steps-changed',
+  // 撤销步数变更
+  BoardUndoStepsChanged = 'board-undo-steps-changed',
+  // 授权用户变更
+  BoardGrantedUsersUpdated = 'board-granted-users-updated',
+  // 收到白板截图
+  BoardSnapshotImageReceived = 'board-snapshot-image-received',
+  // 白板文件拖入事件
+  BoardDragOver = 'board-drag-over',
+  // 白板文件放入事件
+  BoardDrop = 'board-drop',
+  // Widget 即将打开
+  WidgetBecomeActive = 'widget-become-active',
+  // Widget 即将关闭
+  WidgetBecomeInactive = 'widget-become-inactive',
+  // 向工具栏注册工具
+  RegisterCabinetTool = 'register-cabinet-tool',
+  // 向工具栏反注册工具
+  UnregisterCabinetTool = 'unregister-cabinet-tool',
+  // 请求授权用户列表
+  RequestGrantedList = 'request-granted-list',
+}
+```
+
+如需扩展事件，你可扩展协议。
+
+## 调用教室能力
+
+Widget 内部注入了 `EduClassroomStore` `实例。EduClassroomStore` 实例内拥有各个模块 Store 的实例，例如 `CloudDriveStore`、`GroupStore`，详见 [Edu Store API](/cn/agora-class/API%20Reference/edu_context_web/index.html)。
+
+通过 `EduClassroomStore` 实例，你可以完成如下任务：
+
+- 通过 Edu Store API 中的方法调用教室能力。
+- 通过 Edu Store API 中的回调监听教室内事件、教室内状态变更。
+
+`EduClassroomStore` 类的定义如下：
+
+```ts
+export declare class EduClassroomStore {
+    private _api;
+    get api(): EduApiService;
+    readonly connectionStore: ConnectionStore;
+    readonly widgetStore: WidgetStore;
+    readonly cloudDriveStore: CloudDriveStore;
+    readonly userStore: UserStore;
+    readonly messageStore: MessagesStore;
+    readonly mediaStore: MediaStore;
+    readonly roomStore: RoomStore;
+    readonly statisticsStore: StatisticsStore;
+    readonly streamStore: StreamStore;
+    readonly handUpStore: HandUpStore;
+    readonly recordingStore: RecordingStore;
+    readonly groupStore: GroupStore;
+    readonly remoteControlStore: RemoteControlStore;
+    private readonly reportStore;
+    private readonly logReporter;
+    initialize(): void;
+    destroy(): void;
+}
+```
+
+如下示例代码展示如何监听教室内状态变更：
+
+```ts
+// 引入 mobx 库提供的 reaction 函数
+import { reaction } from 'mobx';
+
+// 使用 reaction 对 Store 中的属性进行监听
+reaction(
+    () => this.classroomStore.navigationBarUIStore.networkQuality,
+    (networkQuality) => {
+        // networkQuality 状态变更
+    }
+);
+```
+
+## 轨迹同步和多语言
+
+### 实现轨迹同步
+
+灵动课堂为插件提供了轨迹同步的能力，轨迹同步有两种模式：`TrackPositionOnly` 和 `TrackPositionAndDimensions`。
+
+```ts
+export enum AgoraWidgetTrackMode {
+  // 仅同步 Widget 位置信息
+  TrackPositionOnly = 'track-position-only',
+  // 同步 Widget 位置和尺寸信息
+  TrackPositionAndDimensions = 'track-position-and-dimensions',
+}
+```
+
+你可以参考 [rollback-widget](/cn/agora-class/agora_class_widget_web?platform=Web#rollbook) 来了解设置轨迹同步的详情。
+
+### 实现多语言
+
+你可以借助第三方开源库 `i18next` 提供的国际化能力，并提供多语言文本配置，来实现插件多语言。详细步骤可参考[实现插件多语言](/cn/agora-class/agora_class_widget_web_previous?platform=Web#实现插件多语言)。
+
+## 后续步骤
+
+了解技术原理后，你可以[自定义插件](/cn/agora-class/agora_class_widget_web?platform=Web)。
