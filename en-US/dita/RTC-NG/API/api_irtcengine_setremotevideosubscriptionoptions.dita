@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setremotevideosubscriptionoptions">
-    <title><ph keyref="setRemoteVideoSubscriptionOptions" /></title>
+    <title><ph keyref="setRemoteVideoSubscriptionOptions"/></title>
     <shortdesc id="short"><ph id="shortdesc">Options for subscribing remote video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setRemoteVideoSubscriptionOptions" />
+                <indexterm keyref="setRemoteVideoSubscriptionOptions"/>
             </keywords>
         </metadata>
     </prolog>
@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideo:(NSUInteger)uid
     SubscriptionOptions:(AgoraVideoSubscriptionOptions* _Nonnull)options NS_SWIFT_NAME(setRemoteVideo(_:SubscriptionOptions:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVideoSubscriptionOptions(uid_t uid, const VideoSubscriptionOptions &amp;options) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVideoSubscriptionOptions(
     uid: number,
     options: VideoSubscriptionOptions
@@ -27,12 +27,24 @@
     uid: number,
     options: VideoSubscriptionOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVideoSubscriptionOptions(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteVideoSubscriptionOptions(
       {required int uid, required VideoSubscriptionOptions options});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>When a remote user has enabled the dual-stream mode, you can call this method to choose the option for subscribing the video streams sent by the remote user.</p>
-            <p>Agora recommends calling this method after receiving the <xref keyref="onUserJoined" /> callback.</p>
+            <p><ul>
+                <li>如果你只注册了 <xref keyref="IVideoFrameObserver"/> 对象，则默认订阅原始视频数据和编码后的视频数据 (效果等同于 <parmname>encodedFrameOnly</parmname> 设置为 <codeph><ph keyref="false"/></codeph>)。</li>
+                <li>如果你只注册了 <xref keyref="IVideoEncodedFrameObserver"/> 对象，则默认只订阅编码后的视频数据 (效果等同于 <parmname>encodedFrameOnly</parmname> 设置为 <codeph><ph keyref="true"/></codeph>)。</li>
+                <li>如果你先后注册了 <apiname keyref="IVideoFrameObserver"/> 和 <apiname keyref="IVideoEncodedFrameObserver"/> 对象，则默认订阅原始视频数据和编码后的视频数据 (效果等同于 <parmname>encodedFrameOnly</parmname> 设置为 <codeph><ph keyref="false"/></codeph>)。</li>
+                <li>如果你先调用该方法设置了 <parmname>options</parmname> 参数、然后再注册 <apiname keyref="IVideoFrameObserver"/> 或 <apiname keyref="IVideoEncodedFrameObserver"/> 对象，则需要再次调用该方法并按照以上两项描述设置 <parmname>options</parmname> 参数，以获得预期的效果。</li>
+            </ul>
+            </p>
+            <note>声网推荐你按照以下步骤调用该方法：<ol>
+            <li>调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeVideo</parmname> 为 <codeph><ph keyref="false"/></codeph>。</li>
+            <li>在收到 <xref keyref="onUserJoined"/> 回调后调用该方法，设置对指定远端用户视频流的订阅选项。</li>
+            <li>调用 <xref keyref="muteRemoteVideoStream"/> 方法，开始恢复订阅指定远端用户的视频流。 如果你在上一步中将 <parmname>encodedFrameOnly</parmname> 设置为 <codeph><ph keyref="true"/></codeph>，SDK 会在本地触发 <xref keyref="OnEncodedVideoFrameReceived"/> 回调，上报接收到的编码后视频帧信息。</li>
+        </ol>
+        </note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -43,7 +55,7 @@
             </plentry>
             <plentry id="op">
                 <pt>options</pt>
-                <pd>The video subscription options. See <xref keyref="VideoSubscriptionOptions" />.</pd>
+                <pd>The video subscription options. See <xref keyref="VideoSubscriptionOptions"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
