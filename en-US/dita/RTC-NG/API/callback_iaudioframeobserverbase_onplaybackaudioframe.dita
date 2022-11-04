@@ -28,15 +28,16 @@
       onPlaybackAudioFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note type="note" id="note">
-            <ul>
-                <li>Before joining the channel, you need to call the <xref keyref="registerAudioFrameObserver"/> to register audio observer object, that is, register the <apiname keyref="onPlaybackAudioFrame"/> callback.</li>
-                <li>To ensure that the data format of audio frame for playback is as expected, Agora recommends that you choose one of the following two methods to set the audio data format:<ul>
-                        <li>If you call <xref keyref="setPlaybackAudioFrameParameters"/> to set the audio data format, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</li>
-                        <li>If you set the audio data format in the return value of the <xref keyref="getPlaybackAudioParams"/> callback, the SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</li>      
-                    </ul></li>
-            </ul>
-            </note></section>
+            <p>为保证播放的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置音频的数据格式：                   
+                <ul>
+                <li>方法一：调用 <xref keyref="setPlaybackAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onPlaybackAudioFrame"/> 回调。</li>
+                <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getPlaybackAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onPlaybackAudioFrame"/> 回调。</li>
+                </ul>
+            </p> 
+            <note type="note" id="attention"><ul>
+                <li>方法一的优先级高于方法二，如果使用方法一设置音频数据格式，方法二设置无效。</li>
+                <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed audio data back to the SDK.</li>
+            </ul></note></section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>
