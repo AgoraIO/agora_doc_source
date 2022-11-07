@@ -49,9 +49,11 @@
         </topicref>
         <topicref href="API/toc_multi_channel.dita" chunk="to-content"> 
             <topicref keyref="addVideoWatermarkEx" toc="no"/> 
+            <topicref keyref="adjustUserPlaybackSignalVolumeEx" toc="no"/>
             <topicref keyref="clearVideoWatermarkEx" toc="no"/> 
             <topicref keyref="createAgoraRtcEngineEx" toc="no"/>
             <topicref keyref="createDataStreamEx2" toc="no"/> 
+            <topicref keyref="enableDualStreamModeEx" toc="no"/>
             <topicref keyref="enableLoopbackRecordingEx" toc="no"/> 
             <topicref keyref="getConnectionStateEx" toc="no"/> 
             <topicref keyref="joinChannelEx" toc="no"/> 
@@ -60,7 +62,9 @@
             <topicref keyref="muteRemoteAudioStreamEx" toc="no"/> 
             <topicref keyref="muteRemoteVideoStreamEx" toc="no"/> 
             <topicref keyref="sendCustomReportMessageEx" toc="no"/> 
+            <topicref keyref="setDualStreamModeEx" toc="no"/>
             <topicref keyref="setRemoteVoicePositionEx" toc="no"/> 
+            <topicref keyref="setRemoteVideoSubscriptionOptionsEx" toc="no"/>
             <topicref keyref="setSubscribeAudioBlacklistEx" toc="no"/> 
             <topicref keyref="setSubscribeAudioWhitelistEx" toc="no"/> 
             <topicref keyref="setSubscribeVideoBlacklistEx" toc="no"/> 
@@ -85,8 +89,10 @@
             <topicref keyref="sendStreamMessage" toc="no"/>
             <topicref keyref="setDefaultMuteAllRemoteAudioStreams" toc="no"/>
             <topicref keyref="setDefaultMuteAllRemoteVideoStreams" toc="no"/>
+            <topicref keyref="setDualStreamMode2" toc="no"/>
             <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
+            <topicref keyref="setRemoteVideoSubscriptionOptions" toc="no"/>
             <topicref keyref="setSubscribeAudioBlacklist" toc="no"/>
             <topicref keyref="setSubscribeAudioWhitelist" toc="no"/>
             <topicref keyref="setSubscribeVideoBlacklist" toc="no"/>
@@ -158,6 +164,7 @@
             <topicref keyref="onRemoteAudioStateChanged" toc="no"/>
             <topicref keyref="onRemoteAudioStats" toc="no"/>
             <topicref keyref="onRemoteAudioTransportStats" toc="no"/>
+            <topicref keyref="onRhythmPlayerStateChanged" toc="no"/>
             <topicref keyref="onUserMuteAudio" toc="no"/>
         </topicref>
         <topicref href="API/toc_audio_effect.dita" chunk="to-content">
@@ -186,15 +193,20 @@
             <topicref keyref="setDistanceUnit" toc="no"/>
             <topicref keyref="setEffectPosition" toc="no"/>
             <topicref keyref="setEffectsVolume" toc="no"/>
+            <topicref keyref="setHeadphoneEQParameters" toc="no"/>
+            <topicref keyref="setHeadphoneEQPreset" toc="no"/>
             <topicref keyref="setLocalVoiceEqualization" toc="no"/>
             <topicref keyref="setLocalVoicePitch" toc="no"/>
             <topicref keyref="setLocalVoiceReverb" toc="no"/>
             <topicref keyref="setMaxAudioRecvCount" toc="no"/>
+            <topicref keyref="setPlayerAttenuation" toc="no"/>
+            <topicref keyref="setRemoteAudioAttenuation" toc="no"/>
             <topicref keyref="setRemoteVoicePosition" toc="no"/>
             <topicref keyref="setVoiceBeautifierParameters" toc="no"/>
             <topicref keyref="setVoiceBeautifierPreset" toc="no"/>
             <topicref keyref="setVoiceConversionPreset" toc="no"/>
             <topicref keyref="setVolumeOfEffect" toc="no"/>
+            <topicref keyref="setZones" toc="no"/>
             <topicref keyref="stopAllEffects" toc="no"/>
             <topicref keyref="stopEffect" toc="no"/>
             <topicref keyref="unloadAllEffects" toc="no"/>
@@ -213,6 +225,7 @@
             <topicref keyref="enableContentInspect" toc="no"/>
             <topicref keyref="enableFaceDetection" toc="no"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
+            <topicref keyref="enableMultiCamera" toc="no"/>
             <topicref keyref="enableRemoteSuperResolution" toc="no"/>
             <topicref keyref="enableVideo" toc="no"/>
             <topicref keyref="enableVideoImageSource" toc="no"/>
@@ -270,6 +283,7 @@
             <topicref keyref="unregisterAudioEncodedFrameObserver" toc="no"/>
             <topicref keyref="unregisterAudioSpectrumObserver" toc="no"/>
             <topicref keyref="unregisterAudioFrameObserver_IMediaEngine" toc="no"/>
+            <topicref keyref="onEarMonitoringAudioFrame" toc="no"/>
             <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver" toc="no"/>
             <topicref keyref="onLocalAudioSpectrum" toc="no"/>
             <topicref keyref="onMixedAudioEncodedFrame" toc="no"/>
@@ -424,10 +438,12 @@
         <topicref href="API/toc_audio_device_management.dita" chunk="to-content">
             <topicref keyref="enumeratePlaybackDevices" toc="no"/>
             <topicref keyref="enumerateRecordingDevices" toc="no"/>
+            <topicref keyref="followSystemLoopbackDevice" toc="no"/>
             <topicref keyref="followSystemPlaybackDevice" toc="no"/>
             <topicref keyref="followSystemRecordingDevice" toc="no"/>
             <topicref keyref="getAudioDeviceInfo" toc="no"/>
             <topicref keyref="getAudioDeviceManager" toc="no"/>
+            <topicref keyref="getLoopbackDevice" toc="no"/>
             <topicref keyref="getPlaybackDevice" toc="no"/>
             <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
             <topicref keyref="getRecordingDevice" toc="no"/>
@@ -435,6 +451,7 @@
             <topicref keyref="isSpeakerphoneEnabled" toc="no"/>
             <topicref keyref="release_IAudioDeviceManager" toc="no"/>
             <topicref keyref="setEnableSpeakerphone" toc="no"/>
+            <topicref keyref="setLoopbackDevice" toc="no"/>
             <topicref keyref="setPlaybackDevice" toc="no"/>
             <topicref keyref="setRecordingDevice" toc="no"/>
             <topicref keyref="setRecordingDeviceVolume" toc="no"/>
@@ -485,6 +502,7 @@
             <topicref keyref="getCallId" toc="no"/>
             <topicref keyref="getErrorDescription" toc="no"/>
             <topicref keyref="getExtensionProperty2" toc="no"/>
+            <topicref keyref="getNetworkType" toc="no"/>
             <topicref keyref="getUserInfoByUid" toc="no"/>
             <topicref keyref="getUserInfoByUserAccount" toc="no"/>
             <topicref keyref="getVersion" toc="no"/>
