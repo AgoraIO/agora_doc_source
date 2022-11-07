@@ -28,9 +28,13 @@
     attenuation: number,
     forceSet: boolean
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setPlayerAttenuation(
+      {required int playerId,
+      required double attenuation,
+      required bool forceSet});</codeblock> </p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.0.1</dd>
@@ -41,38 +45,40 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="updatePlayerPositionInfo/mpkid">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry>
-                    <pt>attenuation</pt>
-                    <pd>媒体播放器的声音衰减系数，取值范围为[0,1]。其中： 
-                        <ul id="attenuation">
-                        <li>0：广播模式，即音量和音色均不随距离衰减，无论距离远近，本地用户听到的音量和音色都无变化。</li>
-                        <li>(0,0.5)：弱衰减模式，即音量和音色在传播过程中仅发生微弱衰减，跟真实环境相比，声音可以传播得更远。</li>
-                        <li>0.5：（默认）模拟音量在真实环境下的衰减，效果等同于不设置 <parmname>attenuation</parmname> 参数。</li>
-                        <li>(0.5,1]：强衰减模式，即音量和音色在传播过程中发生迅速衰减。</li>
-                        </ul></pd>
-                </plentry>
-                <plentry>
-                    <pt>forceSet</pt>
-                    <pd>是否强制设定媒体播放器的声音衰减效果： 
-                        <ul>
-                        <li><codeph><ph keyref="true"/></codeph>：强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，此时 <xref keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 中设置的隔声区域衰减系数对媒体播放器不生效。</li>
-                        <li><codeph><ph keyref="false"/></codeph>：不强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，分为以下两种情况。
-                            <ul id="forceset-false">
-                            <li>如果音源和听声者分属于隔声区域内部和外部，则声音衰减效果由 <apiname keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 决定。 </li>
-                            <li>如果音源和听声者在同一个隔声区域内或同在隔声区域外，则声音衰减效果由该方法中的 <parmname>attenuation</parmname> 决定。</li>
-                            </ul></li>
-                        </ul></pd>
-                </plentry>
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>attenuation</pt>
+                <pd>媒体播放器的声音衰减系数，取值范围为[0,1]。其中： 
+                        
+                    <ul id="attenuation">
+                    <li>0：广播模式，即音量和音色均不随距离衰减，无论距离远近，本地用户听到的音量和音色都无变化。</li>
+                    <li>(0,0.5)：弱衰减模式，即音量和音色在传播过程中仅发生微弱衰减，跟真实环境相比，声音可以传播得更远。</li>
+                    <li>0.5：（默认）模拟音量在真实环境下的衰减，效果等同于不设置 <parmname>attenuation</parmname> 参数。</li>
+                    <li>(0.5,1]：强衰减模式，即音量和音色在传播过程中发生迅速衰减。</li>
+                    </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>forceSet</pt>
+                <pd>是否强制设定媒体播放器的声音衰减效果： 
+                        
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，此时 <xref keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 中设置的隔声区域衰减系数对媒体播放器不生效。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，分为以下两种情况。
+                            
+                        <ul id="forceset-false">
+                        <li>如果音源和听声者分属于隔声区域内部和外部，则声音衰减效果由 <apiname keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 决定。 </li>
+                        <li>如果音源和听声者在同一个隔声区域内或同在隔声区域外，则声音衰减效果由该方法中的 <parmname>attenuation</parmname> 决定。</li>
+                        </ul></li>
+                    </ul></pd>
+            </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
-            </ul>
-        </section>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>
