@@ -48,7 +48,7 @@
 1. 在项目的 HTML 文件中添加以下代码：
 
     ```html
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.0.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.1.bundle.js"></script>
     ```
 
 2. 在项目的 JavaScript 代码中调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
@@ -63,7 +63,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.0.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.1.bundle.js"></script>
 </head>
 
 <body>
@@ -96,7 +96,7 @@
             duration: 60 * 30, // 课程时间，单位为秒。
             recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.3.3/record_page.html',
             courseWareList: [],
-            uiMode: FcrMultiThemeMode.light // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
+            uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
             listener: (evt, args) => {
             },
         }).then(() => {
@@ -121,27 +121,7 @@
 
 <div class="alert info">开始前请确保你的设备上已准备好<a href="/cn/agora-class/agora_class_quickstart_web?platform=Web#dev-env">开发环境</a>。</div>
 
-1. 运行以下命令将 CloudClass-Desktop 克隆至本地。
-
-    ```bash
-    git clone https://github.com/AgoraIO-Community/CloudClass-Desktop.git
-    ```
-
-2. 运行以下命令切换分支至指定版本，将 {VERSION} 替换为要切换的版本号：
-
-    ```bash
-    git checkout release/{VERSION}
-    ```
-
-    例如要切换到 2.6.0 版本分支，执行以下命令：
-
-    ```bash
-    git checkout release/2.6.0
-    ```
-
-    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
-
-    ![](https://web-cdn.agora.io/docs-files/1658916187924)
+~f38d4cd0-3fce-11ed-8dae-bf25bf08a626~
 
 3. 成功拉取代码后，根据你的实际需求，参考[自定义课堂 UI 文档](/cn/agora-class/agora_class_custom_ui_web?platform=Web)修改代码。
 
@@ -170,3 +150,4 @@
    ```
 
 <div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-classroom-sdk/lib/edu_sdk.bundle.js</code>。</div>
+
