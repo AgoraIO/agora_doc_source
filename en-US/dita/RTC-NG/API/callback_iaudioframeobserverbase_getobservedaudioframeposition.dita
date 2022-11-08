@@ -23,26 +23,24 @@
             <codeblock props="flutter" outputclass="language-dart"/> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册音频数据观测器后，SDK 会在每个特定的音频帧处理节点通过该回调来判断是否触发如下回调：
-            <ul>
+            <p>After successfully registering the audio data observer, the SDK uses this callback for each specific audio frame processing node to determine whether to trigger the following callbacks:<ul>
                 <li><xref keyref="onRecordAudioFrame"/></li>
                 <li><xref keyref="onPlaybackAudioFrame"/></li>
                 <li><xref keyref="onPlaybackAudioFrameBeforeMixing"/></li>
                 <li><xref keyref="onMixedAudioFrame"/></li>
                 <li><xref keyref="onEarMonitoringAudioFrame"/></li>
             </ul></p>
-            <p>You can set one or more positions you need to observe by modifying<apiname keyref="getObservedAudioFramePosition"/> the return value of   according to your scenario:</p>
-            <p>注解观测多个位置时，需要使用 |（或运算符）。 To conserve the system consumption, you can reduce the number of frame positions that you want to observe.</p>
+            <p>You can set one or more positions you need to observe by modifyingthe return value of <apiname keyref="getObservedAudioFramePosition"/> based on your scenario requirement:</p>
+            <p>When the annotation observes multiple locations, the | (or operator) is required. To conserve the system consumption, you can reduce the number of frame positions that you want to observe.</p>
         </section>
         <section id="return_values">
             <title>Returns</title>   
-            <p>返回设置观测位置的位掩码，取值如下：
-            <ul>
-                <li><ph keyref="AUDIO_FRAME_POSITION_PLAYBACK"/>(0x0001)：该位置可观测所有远端用户混音后的播放音频，对应 <apiname keyref="onPlaybackAudioFrame"/> 回调。</li>
-                <li><ph keyref="AUDIO_FRAME_POSITION_RECORD"/>(0x0002)：该位置可观测采集的本地用户的音频，对应 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
-                <li><ph keyref="AUDIO_FRAME_POSITION_MIXED"/>(0x0004)：该位置可观测本地和所有远端用户混音后的音频，对应 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
-                <li><ph keyref="AUDIO_FRAME_POSITION_BEFORE_MIXING"/>(0x0008)：该位置可观测单个远端用户混音前的音频，对应 <apiname keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</li>
-                <li><ph keyref="AUDIO_FRAME_POSITION_EAR_MONITORING"/>(0x0010)：该位置可观测单个远端用户混音前的音频，对应 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+            <p>Returns a bitmask that sets the observation position, with the following values:<ul>
+                <li><ph keyref="AUDIO_FRAME_POSITION_PLAYBACK"/>(0x0001): This position can observe the playback audio mixed by all remote users, corresponding to the <apiname keyref="onPlaybackAudioFrame"/> callback.</li>
+                <li><ph keyref="AUDIO_FRAME_POSITION_RECORD"/>(0x0002): This position can observe the collected local user's audio, corresponding to the <apiname keyref="onRecordAudioFrame"/> callback.</li>
+                <li><ph keyref="AUDIO_FRAME_POSITION_MIXED"/>(0x0004): This position can observe the playback audio mixed by the loacl user and all remote users, corresponding to the <apiname keyref="onMixedAudioFrame"/> callback.</li>
+                <li><ph keyref="AUDIO_FRAME_POSITION_BEFORE_MIXING"/>(0x0008): This position can observe the audio of a single remote user before mixing, corresponding to the <apiname keyref="onPlaybackAudioFrameBeforeMixing"/> callback.</li>
+                <li><ph keyref="AUDIO_FRAME_POSITION_EAR_MONITORING"/>(0x0010): This position can observe the audio of a single remote user before mixing, corresponding to the <apiname keyref="onEarMonitoringAudioFrame"/> callback.</li>
             </ul></p>
         </section>
     </refbody>
