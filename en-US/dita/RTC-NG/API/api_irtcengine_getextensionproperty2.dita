@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getextensionproperty2">
-    <title><ph keyref="getExtensionProperty2" /></title>
+    <title><ph keyref="getExtensionProperty2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Gets detailed information on the extensions.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getExtensionProperty2" />
+                <indexterm keyref="getExtensionProperty2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,7 +25,7 @@
       const char* provider, const char* extension,
       const char* key, char* value, int buf_len, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
 </codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract getExtensionProperty(
     provider: string,
     extension: string,
@@ -44,36 +44,36 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String> getExtensionProperty(
       {required String provider,
       required String extension,
+      required ExtensionInfo extensionInfo,
       required String key,
-      required int bufLen,
-      MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock></p>
+      required int bufLen});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p />
+            <p/>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-                <plentry id="vendor">
-                    <pt>provider</pt>
-                    <pd><ph props="cpp unity">Output parameter. </ph>The name of the extension provider.</pd>
-                </plentry>
-                <plentry id="extension">
-                    <pt>extension</pt>
-                    <pd><ph props="cpp unity">Output parameter. </ph>The name of the extension.</pd>
-                </plentry>
-                <plentry id="key">
-                    <pt>key</pt>
-                    <pd><ph props="cpp unity">Output parameter. </ph>The key of the extension.</pd>
-                </plentry>
-                <plentry id="value" props="cpp unity">
-                    <pt>value</pt>
-                    <pd>Output parameter. The value of the extension key.</pd>
-                </plentry>
-                <plentry>
+            <plentry id="vendor">
+                <pt>provider</pt>
+                <pd><ph props="cpp unity">Output parameter. </ph>The name of the extension provider.</pd>
+            </plentry>
+            <plentry id="extension">
+                <pt>extension</pt>
+                <pd><ph props="cpp unity">Output parameter. </ph>The name of the extension.</pd>
+            </plentry>
+            <plentry id="key">
+                <pt>key</pt>
+                <pd><ph props="cpp unity">Output parameter. </ph>The key of the extension.</pd>
+            </plentry>
+            <plentry id="value" props="cpp unity">
+                <pt>value</pt>
+                <pd>Output parameter. The value of the extension key.</pd>
+            </plentry>
+            <plentry>
                 <pt props="android apple">sourceType</pt>
                 <pt props="cpp unity flutter electron rn">type</pt>
-                <pd>Source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE" />.</pd>
+                <pd>Source type of the extension. See <xref keyref="MEDIA_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry props="cpp electron rn unity flutter">
                 <pt props="cpp unity flutter">buf_len</pt>
@@ -84,13 +84,12 @@
         <section id="return_values">
             <title>Returns</title>
             <ul props="cpp unity">
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="android apple electron rn flutter">
-                <li>The extension information, if the method call succeeds.</li>
-                <li>An empty string, if the method call fails.</li>
-            </ul> 
-</section>
+            <li>The extension information, if the method call succeeds.</li>
+            <li>An empty string, if the method call fails.</li>
+            </ul> </section>
     </refbody>
 </reference>
