@@ -12,14 +12,7 @@ Adds two events to the `ChatGroupEventListener` class:
 
 #### Bugs fixed
 
-The overlimit issue during JSON conversion on the Android platform.
-
-## v1.0.8
-
-v1.0.8 was released on September 30, 2022. 
-
-#### Bugs fixed
-
+- The overlimit issue during JSON conversion on the Android platform.
 - Failures in getting a large number of messages from the server in few scenarios.
 - The issue of incorrect data statistics.
 - Crashes caused by log printing in rare scenarios.
