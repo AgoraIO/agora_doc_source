@@ -6,7 +6,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-                <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
+            <codeblock props="android" outputclass="language-java">public class VideoEncoderConfiguration {
     static public class VideoDimensions {
         public int width;
         public int height;
@@ -196,7 +196,7 @@
     this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 }</codeblock>
-                <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
 @property(assign, nonatomic) CGSize dimensions;
 @property(assign, nonatomic) AgoraVideoCodecType codecType;
 @property(assign, nonatomic) AgoraVideoFrameRate frameRate;
@@ -219,7 +219,7 @@
                        orientationMode:(AgoraVideoOutputOrientationMode)orientationMode
                             mirrorMode:(AgoraVideoMirrorMode)mirrorMode;
 @end</codeblock>
-                <codeblock props="cpp" outputclass="language-cpp">struct VideoEncoderConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoEncoderConfiguration {
   VIDEO_CODEC_TYPE codecType;
   VideoDimensions dimensions;
   int frameRate;
@@ -271,7 +271,7 @@
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
         advanceOptions(PREFER_AUTO) {}
 };</codeblock>
-                <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
+            <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
   codecType?: VideoCodecType;
   
@@ -289,7 +289,7 @@
   
   mirrorMode?: VideoMirrorModeType;
 }</codeblock>
-                <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
+            <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
         public VIDEO_CODEC_TYPE codecType { set; get; }
         public VideoDimensions dimensions { set; get; }
@@ -351,7 +351,7 @@
         }
     }
         </codeblock>
-                <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
+            <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
   codecType?: VideoCodecType;
   
@@ -369,7 +369,7 @@
   
   mirrorMode?: VideoMirrorModeType;
 }</codeblock>
-                <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
+            <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
   const VideoEncoderConfiguration(
       {this.codecType,
       this.dimensions,
@@ -378,38 +378,55 @@
       this.minBitrate,
       this.orientationMode,
       this.degradationPreference,
-      this.mirrorMode});
+      this.mirrorMode,
+      this.advanceOptions});
 
   @JsonKey(name: 'codecType')
   final VideoCodecType? codecType;
+
   @JsonKey(name: 'dimensions')
   final VideoDimensions? dimensions;
+
   @JsonKey(name: 'frameRate')
   final int? frameRate;
+
   @JsonKey(name: 'bitrate')
   final int? bitrate;
+
   @JsonKey(name: 'minBitrate')
   final int? minBitrate;
+
   @JsonKey(name: 'orientationMode')
   final OrientationMode? orientationMode;
+
   @JsonKey(name: 'degradationPreference')
   final DegradationPreference? degradationPreference;
+
   @JsonKey(name: 'mirrorMode')
   final VideoMirrorModeType? mirrorMode;
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'advanceOptions')
+  final AdvanceOptions? advanceOptions;
+
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoEncoderConfigurationFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
-}</codeblock>
-            </p>
+
+  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
+}</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="cpp unity electron rn flutter">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions"/>。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
+                    <p props="cpp unity electron rn flutter"
+                    >视频编码的分辨率（px），详见 <xref keyref="VideoDimensions"
+                    />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
                     <p props="android ios mac">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：                    
+                    
                     <ul>
                     <li><ph keyref="VD_120x120"/>：视频分辨率为 120 × 120。</li>
                     <li><ph keyref="VD_160x120"/>：视频分辨率为 160 × 120。</li>
@@ -454,10 +471,13 @@
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity">详见 <xref keyref="BITRATE"/>。</ph></p>
+                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity">详见 <xref
+                    keyref="BITRATE"/>。</ph></p>
                     <ul props="native flutter">
-                    <li><option keyref="STANDARD_BITRATE"/>: (推荐) 标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
-                    <li><option keyref="COMPATIBLE_BITRATE"/>: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。</li>
+                    <li><option keyref="STANDARD_BITRATE"
+                        />: (推荐) 标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
+                    <li><option keyref="COMPATIBLE_BITRATE"
+                        />: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -473,12 +493,14 @@
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"/> 。</pd>
+                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"
+                    /> 。</pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
+                    keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
             </plentry>
             <plentry>

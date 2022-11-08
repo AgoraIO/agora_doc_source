@@ -20,9 +20,11 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setZones(zones: SpatialAudioZone, zoneCount: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript">abstract setZones(zones: SpatialAudioZone, zoneCount: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setZones(
+      {required SpatialAudioZone zones, required int zoneCount});</codeblock> </p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.0.1</dd>
@@ -30,12 +32,11 @@
             </dl>
             <p>在虚拟互动场景下，你可以通过该方法设置隔声区域和声音衰减系数。当音源（可以为用户或媒体播放器）跟听声者分属于隔声区域区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。</p>
             <ul>
-                <li>当音源跟听声者分属于隔声区域区域内部和外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
-                <li>如果用户或媒体播放器同在一个隔声区域内，则不受 <apiname keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。如果不调用 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
-                <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
+            <li>当音源跟听声者分属于隔声区域区域内部和外部时，声音的衰减效果由 <xref keyref="SpatialAudioZone"/> 中的声音衰减系数决定。</li>
+            <li>如果用户或媒体播放器同在一个隔声区域内，则不受 <apiname keyref="SpatialAudioZone"/> 的影响，声音的衰减效果由 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/> 中的 <parmname>attenuation</parmname> 参数决定。如果不调用 <apiname keyref="setPlayerAttenuation"/> 或 <apiname keyref="setRemoteAudioAttenuation"/>，则 SDK 默认声音的衰减系数为 0.5，即模拟声音在真实环境下的衰减。</li>
+            <li>如果音源跟接收者分别属于两个隔声区域，则接收者无法听到音源。</li>
             </ul>
-            <note>如果多次调用该方法，以最后一次设置的隔声区域为准。</note>
-        </section>
+            <note>如果多次调用该方法，以最后一次设置的隔声区域为准。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -43,17 +44,16 @@
                 <pt>zones</pt>
                 <pd>隔声区域的设置。详见 <apiname keyref="SpatialAudioZone"/>。</pd>
             </plentry>
-                <plentry props="cpp">
-                    <pt>zoneCount</pt>
-                    <pd>隔声区域的数量。</pd>
-                </plentry>
+            <plentry props="cpp">
+                <pt>zoneCount</pt>
+                <pd>隔声区域的数量。</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
             <ul>
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
-            </ul>
-        </section>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>

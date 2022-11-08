@@ -88,10 +88,73 @@
   SpatialAudioZone() = default;
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioZone {
+  zoneSetId?: number;
+  position?: number[];
+  forward?: number[];
+  right?: number[];
+  up?: number[];
+  forwardLength?: number;
+  rightLength?: number;
+  upLength?: number;
+  audioAttenuation?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioZone {
+  zoneSetId?: number;
+  position?: number[];
+  forward?: number[];
+  right?: number[];
+  up?: number[];
+  forwardLength?: number;
+  rightLength?: number;
+  upLength?: number;
+  audioAttenuation?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SpatialAudioZone {
+  const SpatialAudioZone(
+      {this.zoneSetId,
+      this.position,
+      this.forward,
+      this.right,
+      this.up,
+      this.forwardLength,
+      this.rightLength,
+      this.upLength,
+      this.audioAttenuation});
+
+  @JsonKey(name: 'zoneSetId')
+  final int? zoneSetId;
+
+  @JsonKey(name: 'position')
+  final List&lt;double&gt;? position;
+
+  @JsonKey(name: 'forward')
+  final List&lt;double&gt;? forward;
+
+  @JsonKey(name: 'right')
+  final List&lt;double&gt;? right;
+
+  @JsonKey(name: 'up')
+  final List&lt;double&gt;? up;
+
+  @JsonKey(name: 'forwardLength')
+  final double? forwardLength;
+
+  @JsonKey(name: 'rightLength')
+  final double? rightLength;
+
+  @JsonKey(name: 'upLength')
+  final double? upLength;
+
+  @JsonKey(name: 'audioAttenuation')
+  final double? audioAttenuation;
+
+  factory SpatialAudioZone.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$SpatialAudioZoneFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioZoneToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
