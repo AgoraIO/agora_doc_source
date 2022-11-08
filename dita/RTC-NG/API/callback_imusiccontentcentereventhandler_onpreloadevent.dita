@@ -17,9 +17,21 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent status:(AgoraMusicContentCenterPreloadStatus)status msg:(NSString *)msg lyricUrl:(NSString *)lyricUrl;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, PreloadStatusCode status, const char* msg, const char* lyricUrl = nullptr) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onPreLoadEvent?(
+    songCode: number,
+    percent: number,
+    status: PreloadStatusCode,
+    msg: string,
+    lyricUrl?: string
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onPreLoadEvent?(
+    songCode: number,
+    percent: number,
+    status: PreloadStatusCode,
+    msg: string,
+    lyricUrl?: string
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int songCode, int percent, PreloadStatusCode status,
       String msg, String lyricUrl)? onPreLoadEvent;</codeblock> </p>
         </section>
@@ -48,6 +60,7 @@
                 <pd>
                     <p props="apple cpp">当前音乐资源的加载状态。详见 <xref keyref="PreloadStatusCode"/>。</p>
                     <p props="android">当前音乐资源的加载状态：
+                    
                     
                     <ul>
                     <li>0：音乐资源加载完成。</li>
