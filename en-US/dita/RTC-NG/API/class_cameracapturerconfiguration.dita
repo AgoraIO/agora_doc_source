@@ -196,7 +196,7 @@
             <plentry>
                 <pt>cameraDirection</pt>
                 <pd>
-                    <note type="attention" props="cpp unity electron rn flutter">This parameter applies to Android and iOS only.</note><ph>The camera direction. </ph>See .<ph props="ios cpp unity android rn flutter"><xref keyref="CAMERA_DIRECTION" /></ph></pd>
+                    <note type="attention" props="cpp unity electron rn flutter">This parameter applies to Android and iOS only.</note><ph>The camera direction. </ph><ph props="ios cpp unity android rn flutter">See <xref keyref="CAMERA_DIRECTION" />.</ph></pd>
             </plentry>
             <plentry props="cpp android unity electron rn flutter">
                 <pt props="cpp unity electron rn flutter">format</pt>
@@ -206,14 +206,13 @@
             <plentry props="cpp unity electron rn flutter">
                 <pt>deviceId</pt>
                 <pd>
-                    <note type="attention" props="cpp unity electron">This method applies to Windows only.</note><ph>摄像头的 ID。 </ph>The maximum length is .<ph props="cpp electron rn flutter"><xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/></ph></pd>
+                    <note type="attention" props="cpp unity electron">This method applies to Windows only.</note><ph>The ID of the camera. </ph><ph props="cpp electron rn flutter">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</ph></pd>
             </plentry>
                 <plentry>
                     <pt>followEncodeDimensionRatio</pt>
-                    <pd>是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比： 
-                        <ul>
-                        <li><codeph><ph keyref="true" /></codeph>：(默认) 跟随。 SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Do not follow. SDK不改变采集到的视频帧宽高比。</li>
+                    <pd>Whether to follow the video aspect ratio set in <xref keyref="setVideoEncoderConfiguration"/>:<ul>
+                        <li><codeph><ph keyref="true" /></codeph>: (Default) Follow. The SDK crops the captured video according to the set video aspect ratio, and synchronously changes the local preview screen, and the video frame in <xref keyref="onCaptureVideoFrame"/> and <xref keyref="onPreEncodeVideoFrame"/>.</li>
+                        <li><codeph><ph keyref="false"/></codeph>: Do not follow. The SDK does not change the aspect ratio of the captured video frame.</li>
                         </ul></pd>
                 </plentry>
             </parml> </section>
