@@ -88,10 +88,73 @@
   SpatialAudioZone() = default;
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioZone {
+  zoneSetId?: number;
+  position?: number[];
+  forward?: number[];
+  right?: number[];
+  up?: number[];
+  forwardLength?: number;
+  rightLength?: number;
+  upLength?: number;
+  audioAttenuation?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioZone {
+  zoneSetId?: number;
+  position?: number[];
+  forward?: number[];
+  right?: number[];
+  up?: number[];
+  forwardLength?: number;
+  rightLength?: number;
+  upLength?: number;
+  audioAttenuation?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class SpatialAudioZone {
+  const SpatialAudioZone(
+      {this.zoneSetId,
+      this.position,
+      this.forward,
+      this.right,
+      this.up,
+      this.forwardLength,
+      this.rightLength,
+      this.upLength,
+      this.audioAttenuation});
+
+  @JsonKey(name: 'zoneSetId')
+  final int? zoneSetId;
+
+  @JsonKey(name: 'position')
+  final List&lt;double>? position;
+
+  @JsonKey(name: 'forward')
+  final List&lt;double>? forward;
+
+  @JsonKey(name: 'right')
+  final List&lt;double>? right;
+
+  @JsonKey(name: 'up')
+  final List&lt;double>? up;
+
+  @JsonKey(name: 'forwardLength')
+  final double? forwardLength;
+
+  @JsonKey(name: 'rightLength')
+  final double? rightLength;
+
+  @JsonKey(name: 'upLength')
+  final double? upLength;
+
+  @JsonKey(name: 'audioAttenuation')
+  final double? audioAttenuation;
+
+  factory SpatialAudioZone.fromJson(Map&lt;String, dynamic> json) =>
+      _$SpatialAudioZoneFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$SpatialAudioZoneToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -103,49 +166,51 @@
             <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>zoneSetId</pt>
                 <pd>The ID of the sound insulation area.</pd>
             </plentry>
-                <plentry>
-                    <pt>position</pt>
-                    <pd>The spatial center point of the sound insulation area. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-                </plentry>
-                <plentry>
-                    <pt>forward</pt>
-                    <pd>Starting at <parmname>position</parmname>, the forward unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-                </plentry>
-                <plentry>
-                    <pt>right</pt>
-                    <pd>Starting at <parmname>position</parmname>, the right unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-                </plentry>
-                <plentry>
-                    <pt>up</pt>
-                    <pd>Starting at <parmname>position</parmname>, the up unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
-                </plentry>
-                <plentry>
-                    <pt>forwardLength</pt>
-                    <pd>The entire sound insulation area is regarded as a cube; this represents the length of the forward side in the unit length of the game engine.</pd>
-                </plentry>
-                <plentry>
-                    <pt>rightLength</pt>
-                    <pd>The entire sound insulation area is regarded as a cube; this represents the length of the right side in the unit length of the game engine.</pd>
-                </plentry>
-                <plentry>
-                    <pt>upLength</pt>
-                    <pd>The entire sound insulation area is regarded as a cube; this represents the length of the up side in the unit length of the game engine.</pd>
-                </plentry>
-                <plentry>
-                    <pt>audioAttenuation</pt>
-                    <pd>The sound attenuation coefficient when users within the sound insulation area communicate with external users. The value range is [0,1]. As shown below:<ul>
-                        <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
-                        <li>(0,0.5): Weak attenuation mode, that is, the volume and timbre are only weakly attenuated during the propagation process, and the sound can travel farther than the real environment.</li>
-                        <li>0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>audioAttenuation</parmname> parameter.</li>
-                        <li>(0.5,1]: Strong attenuation mode (default value is 1), that is, the volume and timbre attenuate rapidly during propagation.</li>
-                        </ul></pd>
-                </plentry>
+            <plentry>
+                <pt>position</pt>
+                <pd>The spatial center point of the sound insulation area. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+            </plentry>
+            <plentry>
+                <pt>forward</pt>
+                <pd>Starting at <parmname>position</parmname>, the forward unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+            </plentry>
+            <plentry>
+                <pt>right</pt>
+                <pd>Starting at <parmname>position</parmname>, the right unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+            </plentry>
+            <plentry>
+                <pt>up</pt>
+                <pd>Starting at <parmname>position</parmname>, the up unit vector. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
+            </plentry>
+            <plentry>
+                <pt>forwardLength</pt>
+                <pd>The entire sound insulation area is regarded as a cube; this represents the length of the forward side in the unit length of the game engine.</pd>
+            </plentry>
+            <plentry>
+                <pt>rightLength</pt>
+                <pd>The entire sound insulation area is regarded as a cube; this represents the length of the right side in the unit length of the game engine.</pd>
+            </plentry>
+            <plentry>
+                <pt>upLength</pt>
+                <pd>The entire sound insulation area is regarded as a cube; this represents the length of the up side in the unit length of the game engine.</pd>
+            </plentry>
+            <plentry>
+                <pt>audioAttenuation</pt>
+                <pd>The sound attenuation coefficient when users within the sound insulation area communicate with external users. The value range is [0,1]. The values are as follows:<ul>
+                    <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
+                    <li>(0,0.5): Weak attenuation mode, that is, the volume and timbre are only weakly attenuated during the propagation process, and the sound can travel farther than the real environment.</li>
+                    <li>0.5: (Default) simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>audioAttenuation</parmname> parameter.</li>
+                    <li>(0.5,1]: Strong attenuation mode (default value is 1), that is, the volume and timbre attenuate rapidly during propagation.</li>
+                    </ul></pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
