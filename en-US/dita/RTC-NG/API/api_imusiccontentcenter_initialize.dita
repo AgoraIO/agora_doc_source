@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_initialize">
     <title><ph keyref="initialize_IMusicContentCenter"/></title>
-    <shortdesc id="short">Initializes .<ph id="shortdesc"><xref keyref="IAgoraMusicContentCenter"/></ph></shortdesc>
+    <shortdesc id="short">Initializes .<ph id="shortdesc"><xref keyref="IMusicContentCenter"/></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,10 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype)sharedContentCenterWithConfig:(AgoraMusicContentCenterConfig *)config NS_SWIFT_NAME(sharedContentCenter(config:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const MusicContentCenterConfiguration &amp; configuration) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract initialize(configuration: MusicContentCenterConfiguration): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract initialize(configuration: MusicContentCenterConfiguration): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> initialize(MusicContentCenterConfiguration configuration);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -29,7 +29,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>Before calling any other methods in the <xref keyref="IAgoraMusicContentCenter"/> class, you need to call this method to initialize <xref keyref="IAgoraMusicContentCenter"/>.</p>
+            <p>Before calling any other methods in the <xref keyref="IMusicContentCenter"/> class, you need to call this method to initialize <xref keyref="IMusicContentCenter"/>.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -37,7 +37,7 @@
             <plentry>
                 <pt props="android cpp">configuration</pt>
                 <pt props="apple">config</pt>
-                <pd>The configuration of <apiname keyref="IAgoraMusicContentCenter"/>. See <xref keyref="MusicContentCenterConfiguration"/>.</pd>
+                <pd>The configuration of <apiname keyref="IMusicContentCenter"/>. See <xref keyref="MusicContentCenterConfiguration"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -47,7 +47,7 @@
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="apple">
-            <li>The <apiname keyref="IAgoraMusicContentCenter"/> instance, if the method call succeeds.</li>
+            <li>The <apiname keyref="IMusicContentCenter"/> instance, if the method call succeeds.</li>
             <li>An error code, if the method call fails.</li>
             </ul> </section>
     </refbody>
