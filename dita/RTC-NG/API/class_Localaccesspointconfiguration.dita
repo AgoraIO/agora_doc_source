@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_Localaccesspointconfiguration">
-    <title><ph keyref="LocalAccessPointConfiguration" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Local Access Point 配置。</ph></shortdesc>
+    <title><ph keyref="LocalAccessPointConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >Local Access Point 配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -82,7 +83,7 @@
   AdvancedConfigInfo advancedConfig;
   LocalAccessPointConfiguration() : ipList(NULL), ipListSize(0), domainList(NULL), domainListSize(0), verifyDomainName(NULL), mode(ConnectivityFirst) {}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAccessPointConfiguration {
   
   ipList?: string[];
@@ -105,6 +106,7 @@
         public int domainListSize { set; get; }
         public string verifyDomainName { set; get; }
         public LOCAL_PROXY_MODE mode { set; get; }
+        public AdvancedConfigInfo advancedConfig { set; get; }
 
         public LocalAccessPointConfiguration()
         {
@@ -114,6 +116,7 @@
             domainListSize = 0;
             verifyDomainName = "";
             mode = LOCAL_PROXY_MODE.kConnectivityFirst;
+            advancedConfig = new AdvancedConfigInfo();
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalAccessPointConfiguration {
@@ -131,14 +134,14 @@
   mode?: LocalProxyMode;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalAccessPointConfiguration {
-
   const LocalAccessPointConfiguration(
       {this.ipList,
       this.ipListSize,
       this.domainList,
       this.domainListSize,
       this.verifyDomainName,
-      this.mode});
+      this.mode,
+      this.advancedConfig});
 
   @JsonKey(name: 'ipList')
   final List&lt;String>? ipList;
@@ -158,6 +161,9 @@
   @JsonKey(name: 'mode')
   final LocalProxyMode? mode;
 
+  @JsonKey(name: 'advancedConfig')
+  final AdvancedConfigInfo? advancedConfig;
+
   factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalAccessPointConfigurationFromJson(json);
 
@@ -165,7 +171,9 @@
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>ipList</pt>
@@ -190,19 +198,23 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp electron unity rn flutter">连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</p>
+                    <p props="ios mac cpp electron unity rn flutter"
+                    >连接模式。详见 <xref keyref="LOCAL_PROXY_MODE"/>。</p>
                     <p props="android">连接模式：
                     
+                    
                     <ul>
-                    <li><ph keyref="ConnectivityFirst" /> (0)：SDK 优先尝试连接指定的声网私有媒体服务器；如果无法连接到指定的声网私有媒体服务器，则连接声网 SD-RTN™。</li>
-                    <li><ph keyref="LocalOnly" /> (1)：SDK 只尝试连接指定的声网私有媒体服务器。</li>
+                    <li><ph keyref="ConnectivityFirst"
+                        /> (0)：SDK 优先尝试连接指定的声网私有媒体服务器；如果无法连接到指定的声网私有媒体服务器，则连接声网 SD-RTN™。</li>
+                    <li><ph keyref="LocalOnly"/> (1)：SDK 只尝试连接指定的声网私有媒体服务器。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>advancedConfig</pt>
-                <pd>Local Access Point 的高级选项。详见 <xref keyref="AdvancedConfigInfo"/>。</pd>
-            </plentry>                
+                <pd>Local Access Point 的高级选项。详见 <xref
+                    keyref="AdvancedConfigInfo"/>。</pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

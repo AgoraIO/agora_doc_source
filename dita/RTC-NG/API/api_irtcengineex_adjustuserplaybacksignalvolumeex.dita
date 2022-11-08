@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_adjustuserplaybacksignalvolumeex">
     <title><ph keyref="adjustUserPlaybackSignalVolumeEx"/></title>
-    <shortdesc id="short" conkeyref="adjustUserPlaybackSignalVolume/short"></shortdesc>
+    <shortdesc id="short" conkeyref="adjustUserPlaybackSignalVolume/short"/>
     <prolog>
         <metadata>
             <keywords>
@@ -20,10 +20,21 @@
                           connection:(AgoraRtcConnection* _Nonnull)connection;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolumeEx(unsigned int uid, int volume, const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolumeEx(
+    uid: number,
+    volume: number,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustUserPlaybackSignalVolumeEx(uint uid, int volume, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolumeEx(
+    uid: number,
+    volume: number,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustUserPlaybackSignalVolumeEx(
+      {required int uid,
+      required int volume,
+      required RtcConnection connection});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -37,30 +48,28 @@
             <ul>
             <li>该方法需要在加入频道后调用。</li>
             <li>该方法调节的是本地播放的指定远端用户混音后的音量。</li>
-            </ul> </note>
-        </section>
+            </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="adjustUserPlaybackSignalVolume/uid">
-                <pt></pt>
-                <pd></pd>
-            </plentry>   
-            <plentry conkeyref="adjustUserPlaybackSignalVolume/volume">
-                <pt></pt>
-                <pd></pd>
+                <pt/>
+                <pd/>
             </plentry>
-                <plentry conkeyref="joinChannelEx/connection">
-                    <pt></pt>
-                    <pd></pd>
-                </plentry>
+            <plentry conkeyref="adjustUserPlaybackSignalVolume/volume">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
-            </ul>
-        </section>
+            </ul> </section>
     </refbody>
 </reference>

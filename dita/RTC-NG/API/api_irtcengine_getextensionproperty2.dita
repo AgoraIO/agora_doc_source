@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getextensionproperty2">
-    <title><ph keyref="getExtensionProperty2" /></title>
+    <title><ph keyref="getExtensionProperty2"/></title>
     <shortdesc id="short"><ph id="shortdesc">获取插件的详细信息。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getExtensionProperty2" />
+                <indexterm keyref="getExtensionProperty2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,7 +25,7 @@
       const char* provider, const char* extension,
       const char* key, char* value, int buf_len, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
 </codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract getExtensionProperty(
     provider: string,
     extension: string,
@@ -44,36 +44,36 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String> getExtensionProperty(
       {required String provider,
       required String extension,
+      required ExtensionInfo extensionInfo,
       required String key,
-      required int bufLen,
-      MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock></p>
+      required int bufLen});</codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p />
+            <p/>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-                <plentry id="vendor">
-                    <pt>provider</pt>
-                    <pd><ph props="cpp unity">输出参数。</ph>提供插件的服务商名称。</pd>
-                </plentry>
-                <plentry id="extension">
-                    <pt>extension</pt>
-                    <pd><ph props="cpp unity">输出参数。</ph>插件的名称。</pd>
-                </plentry>
-                <plentry id="key">
-                    <pt>key</pt>
-                    <pd><ph props="cpp unity">输出参数。</ph>插件属性的 Key。</pd>
-                </plentry>
-                <plentry id="value" props="cpp unity">
-                    <pt>value</pt>
-                    <pd>输出参数。插件属性 Key 对应的值。</pd>
-                </plentry>
-                <plentry>
+            <plentry id="vendor">
+                <pt>provider</pt>
+                <pd><ph props="cpp unity">输出参数。</ph>提供插件的服务商名称。</pd>
+            </plentry>
+            <plentry id="extension">
+                <pt>extension</pt>
+                <pd><ph props="cpp unity">输出参数。</ph>插件的名称。</pd>
+            </plentry>
+            <plentry id="key">
+                <pt>key</pt>
+                <pd><ph props="cpp unity">输出参数。</ph>插件属性的 Key。</pd>
+            </plentry>
+            <plentry id="value" props="cpp unity">
+                <pt>value</pt>
+                <pd>输出参数。插件属性 Key 对应的值。</pd>
+            </plentry>
+            <plentry>
                 <pt props="android apple">sourceType</pt>
                 <pt props="cpp unity flutter electron rn">type</pt>
-                <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。</pd>
+                <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
             </plentry>
             <plentry props="cpp electron rn unity flutter">
                 <pt props="cpp unity flutter">buf_len</pt>
@@ -84,13 +84,12 @@
         <section id="return_values">
             <title>返回值</title>
             <ul props="cpp unity">
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败</li>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败</li>
             </ul>
             <ul props="android apple electron rn flutter">
-                <li>方法调用成功，则返回插件信息。</li>
-                <li>方法调用失败，则返回空字符串。</li>
-            </ul> 
-</section>
+            <li>方法调用成功，则返回插件信息。</li>
+            <li>方法调用失败，则返回空字符串。</li>
+            </ul> </section>
     </refbody>
 </reference>

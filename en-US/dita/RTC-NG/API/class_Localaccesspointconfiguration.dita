@@ -105,6 +105,7 @@
         public int domainListSize { set; get; }
         public string verifyDomainName { set; get; }
         public LOCAL_PROXY_MODE mode { set; get; }
+        public AdvancedConfigInfo advancedConfig { set; get; }
 
         public LocalAccessPointConfiguration()
         {
@@ -114,6 +115,7 @@
             domainListSize = 0;
             verifyDomainName = "";
             mode = LOCAL_PROXY_MODE.kConnectivityFirst;
+            advancedConfig = new AdvancedConfigInfo();
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalAccessPointConfiguration {
@@ -131,14 +133,14 @@
   mode?: LocalProxyMode;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalAccessPointConfiguration {
-
   const LocalAccessPointConfiguration(
       {this.ipList,
       this.ipListSize,
       this.domainList,
       this.domainListSize,
       this.verifyDomainName,
-      this.mode});
+      this.mode,
+      this.advancedConfig});
 
   @JsonKey(name: 'ipList')
   final List&lt;String&gt;? ipList;
@@ -157,6 +159,9 @@
 
   @JsonKey(name: 'mode')
   final LocalProxyMode? mode;
+
+  @JsonKey(name: 'advancedConfig')
+  final AdvancedConfigInfo? advancedConfig;
 
   factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalAccessPointConfigurationFromJson(json);
