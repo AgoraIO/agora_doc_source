@@ -1,8 +1,8 @@
 This page provides release notes for the Agora Chat iOS SDK.
 
-##  V1.0.8 
+##  v1.0.8 
 
-V1.0.8 was released on November 3, 2022.
+v1.0.8 was released on November 3, 2022.
 
 #### Bugs fixed
 
@@ -10,7 +10,7 @@ V1.0.8 was released on November 3, 2022.
 - An issue of incorrect data statistics.
 - Crashes caused by log printing in rare scenarios.
 
-##  V1.0.7
+##  v1.0.7
 
 v1.0.7 was released on September 7, 2022. 
 

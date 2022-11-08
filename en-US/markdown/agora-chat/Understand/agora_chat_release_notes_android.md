@@ -1,6 +1,6 @@
 This page provides release notes for the Agora Chat Android SDK.
 
-## V1.0.8
+## v1.0.8
 
 V1.0.8 was released on November 3, 2022. 
 
