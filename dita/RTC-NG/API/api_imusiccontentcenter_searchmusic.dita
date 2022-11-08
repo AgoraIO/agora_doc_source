@@ -19,12 +19,29 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)searchMusicWithKeyWord:(NSString *)keyWord page:(NSInteger)page pageSize:(NSInteger)pageSize jsonOption:(NSString * _Nullable)jsonOption NS_SWIFT_NAME(searchMusic(keyWord:page:pageSize:jsonOption:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int searchMusic(agora::util::AString&amp; requestId, const char* keyWord, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract searchMusic(
+    requestId: string,
+    keyWord: string,
+    page: number,
+    pageSize: number,
+    jsonOption?: string
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract searchMusic(
+    requestId: string,
+    keyWord: string,
+    page: number,
+    pageSize: number,
+    jsonOption?: string
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;String> searchMusic(
+      {required String keyWord,
+      required int page,
+      required int pageSize,
+      String? jsonOption});</codeblock> </p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.1.0</dd>
@@ -39,24 +56,23 @@
                 <pt>keyword</pt>
                 <pd>搜索关键词。</pd>
             </plentry>
-                <plentry id="page">
-                    <pt>page</pt>
-                    <pd>想要获取的音乐资源列表的目标页编号。</pd>
-                </plentry>
-                <plentry id="size">
-                    <pt>pageSize</pt>
-                    <pd>每页所展示的音乐资源的最大数量，最大值为 50。</pd>
-                </plentry>
-                <plentry conkeyref="preload/option" props="apple cpp">
-                    <pt></pt>
-                    <pd></pd>
-                </plentry>
-                <plentry props="cpp" conkeyref="onMusicChartsResult/id">
-                    <pt></pt>
-                    <pd></pd>
-                </plentry>
+            <plentry id="page">
+                <pt>page</pt>
+                <pd>想要获取的音乐资源列表的目标页编号。</pd>
+            </plentry>
+            <plentry id="size">
+                <pt>pageSize</pt>
+                <pd>每页所展示的音乐资源的最大数量，最大值为 50。</pd>
+            </plentry>
+            <plentry conkeyref="preload/option" props="apple cpp">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry props="cpp" conkeyref="onMusicChartsResult/id">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="getMusicCollectionByMusicChartId/return_values">
-        </section>
+        <section id="return_values" conkeyref="getMusicCollectionByMusicChartId/return_values"> </section>
     </refbody>
 </reference>
