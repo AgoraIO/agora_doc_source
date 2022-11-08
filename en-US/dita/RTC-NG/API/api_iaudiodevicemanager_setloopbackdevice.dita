@@ -17,12 +17,13 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLoopbackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLoopbackDevice(deviceId: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLoopbackDevice(String deviceId);</codeblock> </p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since</dt>
                 <dd>v4.0.1</dd>
@@ -30,31 +31,29 @@
             </dl>
             <p>The SDK uses the current playback device as the loopback device by default. If you want to specify another audio device as the loopback device, call this method, and set <parmname>deviceId</parmname> to the loopback device you want to specify.</p>
             <note type="note">
-                <p>The scenarios where this method is applicable are as follows:</p>
-                <p>Use app A to play music through a Bluetooth headset; when using app B for a video conference, play through the speakers.<ul>
-                    <li>If the loopback device is set as the Bluetooth headset, the SDK publishes the music in app A to the remote end.</li>
-                    <li>If the loopback device is set as the speaker, the SDK does not publish the music in app A to the remote end.</li>
-                    <li>If you set the loopback device as the Bluetooth headset, and then use a wired headset to play the music in app A, you need to call this method again, set the loopback device as the wired headset, and the SDK continues to publish the music in app A to remote end.</li>
-                    </ul></p>
-            </note>
-        </section>
+            <p>The scenarios where this method is applicable are as follows:</p>
+            <p>Use app A to play music through a Bluetooth headset; when using app B for a video conference, play through the speakers.<ul>
+            <li>If the loopback device is set as the Bluetooth headset, the SDK publishes the music in app A to the remote end.</li>
+            <li>If the loopback device is set as the speaker, the SDK does not publish the music in app A to the remote end.</li>
+            <li>If you set the loopback device as the Bluetooth headset, and then use a wired headset to play the music in app A, you need to call this method again, set the loopback device as the wired headset, and the SDK continues to publish the music in app A to remote end.</li>
+            </ul></p>
+            </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>deviceId</pt>
                 <pd>
-                    <p>Specifies the loopback device of the SDK. You can get the device ID by calling <xref keyref="enumeratePlaybackDevices" />. Connecting or disconnecting the audio device does not change the value of <parmname>deviceId</parmname>.</p>
-                    <p props="cpp electron">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</p>
+                    <p>Specifies the loopback device of the SDK. You can get the device ID by calling <xref keyref="enumeratePlaybackDevices"/>. Connecting or disconnecting the audio device does not change the value of <parmname>deviceId</parmname>.</p>
+                    <p props="cpp electron">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-                </ul> 
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>
