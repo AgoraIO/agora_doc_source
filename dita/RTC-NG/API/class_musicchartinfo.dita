@@ -38,7 +38,20 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class MusicChartInfo {
+  const MusicChartInfo({this.chartName, this.id});
+
+  @JsonKey(name: 'chartName')
+  final String? chartName;
+
+  @JsonKey(name: 'id')
+  final int? id;
+
+  factory MusicChartInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$MusicChartInfoFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$MusicChartInfoToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">

@@ -30,7 +30,17 @@
             <codeblock props="rn" outputclass="language-typescript">export class AdvancedConfigInfo {
   logUploadServer?: LogUploadServerInfo;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">class AdvancedConfigInfo {
+  const AdvancedConfigInfo({this.logUploadServer});
+
+  @JsonKey(name: 'logUploadServer')
+  final LogUploadServerInfo? logUploadServer;
+
+  factory AdvancedConfigInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$AdvancedConfigInfoFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$AdvancedConfigInfoToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
