@@ -1,5 +1,25 @@
 This page provides release notes for the Agora Chat Web SDK.
 
+## V1.0.7
+
+V1.0.7 was released on September 30, 2022. 
+#### New features
+
+- Supports custom chat room attributes.
+- Adds the `onLog`  method to implement user log callbacks.
+- Adds the `needAffiliations` and `needRole` parameters in the `getJoinedGroups` method to allow you to get the number of members and your role in the groups that you join. 
+
+#### Improvements
+
+- Split the SDK into several modules.
+- Added in-line comments.
+- Optimized the reconnection logic.
+
+#### Bugs fixed
+
+- An issue with compatibility with Internet Explorer. 
+- An issue of lacking the longest validity period of token.
+
 ## v1.0.6
 
 v1.0.6 was released on August 26, 2022.

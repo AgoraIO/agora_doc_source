@@ -1,7 +1,5 @@
 群组是支持多人沟通的即时通讯系统，本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理群组，并实现群组相关功能。
 
-如需查看消息相关内容，参见 [消息管理](./agora_chat_send_receive_message_unity)。
-
 ## 技术原理
 
 即时通讯 IM SDK 提供 `Group`、`IGroupManager` 和 `IGroupManagerDelegate` 类用于群组管理，支持你通过调用 API 在项目中实现如下功能：
@@ -39,11 +37,11 @@
 
 2. 进群邀请是否需要对方同意 (`inviteNeedConfirm`) 的具体设置如下：
     - 进群邀请需要用户确认 (`option.InviteNeedConfirm` 设置为 `true`)。创建群组并发出邀请后，根据受邀用户的 `AutoAcceptGroupInvitation` 设置，处理逻辑如下：
-        - 用户设置自动接受群组邀请 (`AutoAcceptGroupInvitation` 设置为 `true`)。受邀用户自动进群并收到 `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` 回调，群主收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调。
+        - 用户设置自动接受群组邀请 (`AutoAcceptGroupInvitation` 设置为 `true`)。受邀用户自动进群并收到 `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` 回调，邀请人收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调。
         - 用户设置手动确认群组邀请 (`AutoAcceptGroupInvitation` 设置为 `false`)。受邀用户收到 `IGroupManagerDelegate#OnInvitationReceivedFromGroup` 回调，并选择同意或拒绝入群邀请：
-            - 用户同意入群邀请后，群主收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调；
-            - 用户拒绝入群邀请后，群主收到 `IGroupManagerDelegate#OnInvitationDeclinedFromGroup` 回调。
-    - 进群邀请无需用户确认 (`option.InviteNeedConfirm` 设置为 `false`)。创建群组并发出邀请后，无视用户的 `IsAutoAcceptGroupInvitation` 设置，受邀用户直接进群。用户收到 `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` 回调，群主收到每个加入成员的 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调。
+            - 用户同意入群邀请后，邀请人收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调；
+            - 用户拒绝入群邀请后，邀请人收到 `IGroupManagerDelegate#OnInvitationDeclinedFromGroup` 回调。
+    - 进群邀请无需用户确认 (`option.InviteNeedConfirm` 设置为 `false`)。创建群组并发出邀请后，无视用户的 `IsAutoAcceptGroupInvitation` 设置，受邀用户直接进群。用户收到 `IGroupManagerDelegate#OnAutoAcceptInvitationFromGroup` 回调，邀请人收到 `IGroupManagerDelegate#OnInvitationAcceptedFromGroup` 回调和 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调，其他群成员收到 `IGroupManagerDelegate#OnMemberJoinedFromGroup` 回调。
 
 用户可以调用 `CreateGroup` 方法创建群组，并通过 `GroupOptions` 参数设置群组名称、群组描述、群组成员和建群原因。
 

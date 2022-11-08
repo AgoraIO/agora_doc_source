@@ -2,17 +2,70 @@ Instant messaging connects people wherever they are and allows them to communica
 
 This page shows a sample code to add peer-to-peer messaging into your app by using the Agora Chat SDK for Android.
 
+
 ## Understand the tech
 
 ~338e0e30-e568-11ec-8e95-1b7dfd4b7cb0~
 
+
 ## Prerequisites
 
-In order to follow the procedure in this page, you must have:
+In order to follow the procedure in this page, you must have the following:
 
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
 - An Android simulator or a physical Android device.
 - Android Studio 3.6 or higher.
 - Java Development Kit (JDK). You can refer to the [User Guide of Android](https://developer.android.com/studio/write/java8-support) for applicable versions.
+
+
+## Token generation
+
+This section introduces how to register a user at Agora Console and generate a temporary token.
+
+### 1. Register a user
+
+To register a user, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531141100)
+
+<a name="userid"></a>
+
+4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
+
+	![](https://web-cdn.agora.io/docs-files/1664531162872)
+
+
+### 2. Generate a user token
+
+To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
+
+For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
+
+1. On the **Project Management** page, click **Config** for the project that you want to use.
+
+	![](https://web-cdn.agora.io/docs-files/1664531061644)
+
+2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+
+	![](https://web-cdn.agora.io/docs-files/1664531091562)
+
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
+
+	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+
 
 ## Project setup
 
@@ -98,11 +151,6 @@ This section shows how to use the Agora Chat SDK to implement peer-to-peer messa
    ```xml
    <resources>
        <string name="app_name">AgoraChatQuickstart</string>
-
-       <string name="app_key">41117440#383391</string>
-       <string name="base_url"><#Developer Token Server#></string>
-       <string name="login_url">%1$s/app/chat/user/login</string>
-       <string name="register_url">%1$s/app/chat/user/register</string>
    </resources>
    ``` 
 
@@ -117,12 +165,10 @@ To make this step easier to test, use the temporary token server "https://a41.ch
    ```xml
    <?xml version="1.0" encoding="utf-8"?>
    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:tools="http://schemas.android.com/tools"
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:orientation="vertical"
-       tools:context="io.agora.agorachatquickstart.MainActivity">
-
+       android:orientation="vertical">
+   
        <ScrollView
            android:layout_width="match_parent"
            android:layout_height="0dp"
@@ -135,22 +181,14 @@ To make this step easier to test, use the temporary token server "https://a41.ch
                android:gravity="center_horizontal"
                android:layout_marginStart="20dp"
                android:layout_marginEnd="20dp">
-
-               <EditText
-                   android:id="@+id/et_username"
+   
+               <TextView
+                   android:id="@+id/tv_username"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
-                   android:hint="Enter username"
+                   android:hint="Username"
                    android:layout_marginTop="20dp"/>
-
-               <EditText
-                   android:id="@+id/et_pwd"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:hint="Enter password"
-                   android:inputType="textPassword"
-                   android:layout_marginTop="10dp"/>
-
+   
                <Button
                    android:id="@+id/btn_sign_in"
                    android:layout_width="match_parent"
@@ -158,7 +196,7 @@ To make this step easier to test, use the temporary token server "https://a41.ch
                    android:text="Sign in"
                    android:onClick="signInWithToken"
                    android:layout_marginTop="10dp"/>
-
+   
                <Button
                    android:id="@+id/btn_sign_out"
                    android:layout_width="match_parent"
@@ -167,28 +205,20 @@ To make this step easier to test, use the temporary token server "https://a41.ch
                    android:onClick="signOut"
                    android:layout_marginTop="10dp"/>
 
-               <Button
-                   android:id="@+id/btn_sign_up"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:text="Sign up"
-                   android:onClick="signUp"
-                   android:layout_marginTop="10dp"/>
-
                <EditText
                    android:id="@+id/et_to_chat_name"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:hint="Enter another username"
                    android:layout_marginTop="20dp"/>
-
+   
                <EditText
                    android:id="@+id/et_msg_content"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:hint="Enter content"
                    android:layout_marginTop="10dp"/>
-
+   
                <Button
                    android:id="@+id/btn_send_message"
                    android:layout_width="match_parent"
@@ -196,11 +226,11 @@ To make this step easier to test, use the temporary token server "https://a41.ch
                    android:text="Send message"
                    android:onClick="sendFirstMessage"
                    android:layout_marginTop="20dp"/>
-
+   
            </LinearLayout>
-
+   
        </ScrollView>
-
+   
        <TextView
            android:id="@+id/tv_log"
            android:layout_width="match_parent"
@@ -208,49 +238,45 @@ To make this step easier to test, use the temporary token server "https://a41.ch
            android:hint="Show log area..."
            android:scrollbars="vertical"
            android:padding="10dp"/>
-
+   
    </LinearLayout>
    ```
 
-### Implement the sending and receiving of messages
+### Implement sending and receiving messages
 
 To enable your app to send and receive messages between individual users, do the following:
 
-1. Import classes. In  `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after `import android.os.Bundle;` :
+1. Import classes.  
+In  `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after `import android.os.Bundle;` :
 
    ```java
-   import static io.agora.cloud.HttpClientManager.Method_POST;
    import android.text.TextUtils;
    import android.text.method.ScrollingMovementMethod;
    import android.view.View;
    import android.widget.EditText;
    import android.widget.TextView;
    import android.widget.Toast;
-   import androidx.annotation.NonNull;
-   import androidx.appcompat.app.AppCompatActivity;
-   import org.json.JSONException;
-   import org.json.JSONObject;
    import java.text.SimpleDateFormat;
    import java.util.Date;
-   import java.util.HashMap;
    import java.util.Locale;
-   import java.util.Map;
    import io.agora.CallBack;
    import io.agora.ConnectionListener;
-   import io.agora.Error;
-   import io.agora.ValueCallBack;
    import io.agora.chat.ChatClient;
    import io.agora.chat.ChatMessage;
    import io.agora.chat.ChatOptions;
    import io.agora.chat.TextMessageBody;
-   import io.agora.cloud.HttpClientManager;
-   import io.agora.cloud.HttpResponse;
    ```
    
-2. Define global variables. In `app/java/io.agora.agorachatquickstart/MainActivity`,  before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
+<a name="sign-in"></a>
+
+2. Define global variables.  
+In `app/java/io.agora.agorachatquickstart/MainActivity`, before adding the following lines after `AppCompatActivity {`, ensure you delete the `onCreate` function created by default.
 
    ```java
-   private EditText et_username;
+   // Replaces <Your username>, <Your token>, and <Your AppKey> with your own App Key, user ID, and user token generated in Agora Console.
+   private static final String USERNAME = "<Your username>";
+   private static final String TOKEN = "<Your token>";
+   private static final String APP_KEY = "<Your AppKey>";
    
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -262,121 +288,39 @@ To enable your app to send and receive messages between individual users, do the
    }
    ```
    
-3. Initialize the view and the app. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `onCreate` function: 
+3. Initialize the view and the app.  
+In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `onCreate` function: 
 
    ```java
    // Initializes the view.
    private void initView() {
-       et_username = findViewById(R.id.et_username);
        ((TextView)findViewById(R.id.tv_log)).setMovementMethod(new ScrollingMovementMethod());
    }
    // Initializes the SDK.
    private void initSDK() {
        ChatOptions options = new ChatOptions();
-       // Sets your app key applied via Agora Console.
-       String sdkAppkey = getString(R.string.app_key);
-       if(TextUtils.isEmpty(sdkAppkey)) {
+       // Gets your App Key from Agora Console.
+       if(TextUtils.isEmpty(APP_KEY)) {
            Toast.makeText(MainActivity.this, "You should set your AppKey first!", Toast.LENGTH_SHORT).show();
            return;
        }
-       // Sets your app key to options.
-       options.setAppKey(sdkAppkey);
+       // Sets your App Key to options.
+       options.setAppKey(APP_KEY);
        // Initializes the Agora Chat SDK.
        ChatClient.getInstance().init(this, options);
        // Makes the Agora Chat SDK debuggable.
        ChatClient.getInstance().setDebugMode(true);
+       // Shows the current user.
+       ((TextView)findViewById(R.id.tv_username)).setText("Current user: "+USERNAME);
    }
    ```
 
-4. Retrieve a token. To get a token from the app server, add the following lines after the `initSDK` function:
-
-   ```java
-   private void getTokenFromAppServer(boolean isRenewToken) {
-       if(ChatClient.getInstance().isLoggedInBefore()) {
-           showLog("An account has been signed in, please sign out first and then sign in", false);
-           return;
-       }
-       String username = et_username.getText().toString().trim();
-       String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
-       getAgoraTokenFromAppServer(username, pwd, new ValueCallBack<String>() {
-           @Override
-           public void onSuccess(String token) {
-               if(isRenewToken) {
-                   ChatClient.getInstance().renewToken(token);
-               }else {
-                   login(username,token);
-               }
-           }
-           @Override
-           public void onError(int error, String errorMsg) {
-               showLog(errorMsg, true);
-           }
-       });
-   }
-   // Retrieves a token from the app server.
-   private void getAgoraTokenFromAppServer(String username, String pwd, @NonNull ValueCallBack<String> callBack) {
-       showLog("begin to getTokenFromAppServer ...", false);
-       executeRequest(getString(R.string.login_url, getString(R.string.base_url)), username, pwd, new ValueCallBack<String>() {
-           @Override
-           public void onSuccess(String response) {
-               try {
-                   JSONObject object = new JSONObject(response);
-                   String token = object.getString("accessToken");
-                   callBack.onSuccess(token);
-               } catch (JSONException e) {
-                   callBack.onError(Error.GENERAL_ERROR, e.getMessage());
-               }
-           }
-           @Override
-           public void onError(int error, String errorMsg) {
-               callBack.onError(error, errorMsg);
-           }
-       });
-   }
-   private void executeRequest(String url, String username, String password, @NonNull ValueCallBack<String> callBack) {
-       if(TextUtils.isEmpty(url) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-           callBack.onError(Error.INVALID_PARAM, "Request url, username or password should not be empty");
-           return;
-       }
-       Map<String, String> headers = new HashMap<>();
-       headers.put("Content-Type", "application/json");
-       JSONObject request = new JSONObject();
-       try {
-           request.putOpt("userAccount", username);
-           request.putOpt("userPassword", password);
-       } catch (JSONException e) {
-           callBack.onError(Error.GENERAL_ERROR, e.getMessage());
-           return;
-       }
-       execute(()-> {
-           try {
-               HttpResponse response = HttpClientManager.httpExecute(url, headers, request.toString(), Method_POST);
-               int code = response.code;
-               String responseInfo = response.content;
-               if (code == 200) {
-                   if (responseInfo != null && responseInfo.length() > 0) {
-                       callBack.onSuccess(responseInfo);
-                   } else {
-                       callBack.onError(Error.SERVER_UNKNOWN_ERROR, responseInfo);
-                   }
-               } else {
-                   callBack.onError(code, responseInfo);
-               }
-           } catch (Exception e) {
-               callBack.onError(Error.GENERAL_ERROR, e.getMessage());
-           }
-       });
-   }
-   private void execute(Runnable runnable) {
-       new Thread(runnable).start();
-   }
-   ```
-
-5. Add event callbacks. In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `execute` function:
+4. Add event callbacks.  
+In `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initSDK` function:
 
    ```java
    private void initListener() {
-       // Add message events callbacks.
+       // Adds message event callbacks.
        ChatClient.getInstance().chatManager().addMessageListener(messages -> {
            for(ChatMessage message : messages) {
                StringBuilder builder = new StringBuilder();
@@ -389,16 +333,18 @@ To enable your app to send and receive messages between individual users, do the
                showLog(builder.toString(), false);
            }
        });
-       // Add connection events callbacks.
+       // Adds connection event callbacks.
        ChatClient.getInstance().addConnectionListener(new ConnectionListener() {
            @Override
            public void onConnected() {
                showLog("onConnected",false);
            }
+
           @Override
           public void onDisconnected(int error) {
               showLog("onDisconnected: "+error,false);
           }
+
           @Override
           public void onLogout(int errorCode) {
               showLog("User needs to log out: "+errorCode, false);
@@ -408,31 +354,36 @@ To enable your app to send and receive messages between individual users, do the
           @Override
           public void onTokenExpired() {
               showLog("ConnectionListener onTokenExpired", true);
-              signInWithToken(null);
           }
-          // This callback occurs when the token is to expire. 
+          // This callback occurs when the token is about to expire. 
           @Override
           public void onTokenWillExpire() {
               showLog("ConnectionListener onTokenWillExpire", true);
-              getTokenFromAppServer(true);
           }
       });
    }
-   
    ```
 
-6. Create a user account and log in to the app. To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
+5. Log in to the app.  
+To implement this logic, in `app/java/io.agora.agorachatquickstart/MainActivity`, add the following lines after the `initListener` function:
 
    ```java
-   // Signs up with a username and a password.
-   public void signUp(View view) {
-       String username = et_username.getText().toString().trim();
-       String pwd = ((EditText) findViewById(R.id.et_pwd)).getText().toString().trim();
-       register(username, pwd, new CallBack() {
+   // Logs in with a token.
+   public void signInWithToken(View view) {
+       loginToAgora();
+   }
+
+   private void loginToAgora() {
+       if(TextUtils.isEmpty(USERNAME) || TextUtils.isEmpty(TOKEN)) {
+           showLog("Username or token is empty!", true);
+           return;
+       }
+       ChatClient.getInstance().loginWithAgoraToken(USERNAME, TOKEN, new CallBack() {
            @Override
            public void onSuccess() {
-               showLog("Sign up success!", true);
+               showLog("Sign in success!", true);
            }
+
            @Override
            public void onError(int code, String error) {
                showLog(error, true);
@@ -440,12 +391,7 @@ To enable your app to send and receive messages between individual users, do the
        });
    }
    
-   // Logs in with the token.
-   public void signInWithToken(View view) {
-       getTokenFromAppServer(false);
-   }
-   
-   // Signs out.
+   // Logs out.
    public void signOut(View view) {
        if(ChatClient.getInstance().isLoggedInBefore()) {
            ChatClient.getInstance().logout(true, new CallBack() {
@@ -453,46 +399,26 @@ To enable your app to send and receive messages between individual users, do the
                public void onSuccess() {
                    showLog("Sign out success!", true);
                }
+
                @Override
                public void onError(int code, String error) {
                    showLog(error, true);
                }
            });
+       }else {
+           showLog("You were not logged in", false);
        }
-   }
-   private void register(String username, String pwd, @NonNull CallBack callBack) {
-       showLog("begin to sign up...",false);
-       executeRequest(getString(R.string.register_url, getString(R.string.base_url)), username, pwd, new ValueCallBack<String>() {
-           @Override
-           public void onSuccess(String response) {
-               String resultCode = null;
-               try {
-                   JSONObject object = new JSONObject(response);
-                   resultCode = object.getString("code");
-                   if(resultCode.equals("RES_OK")) {
-                       callBack.onSuccess();
-                   }else{
-                       callBack.onError(Error.GENERAL_ERROR, "Sign up failed!");
-                   }
-               } catch (JSONException e) {
-                   callBack.onError(Error.GENERAL_ERROR, e.getMessage());
-               }
-           }
-           @Override
-           public void onError(int error, String errorMsg) {
-               callBack.onError(error, errorMsg);
-           }
-       });
    }
    ```
 
-7. Start a chat. To enable the function of sending messages, add the following lines after the `register` function:
+6. Start a chat.  
+To enable the function of sending messages, add the following lines after the `signOut` function:
 
    ```java
-   // Sends your first message.
+   // Sends the first message.
    public void sendFirstMessage(View view) {
-       String toSendName = ((TextView)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
-       String content = ((TextView)findViewById(R.id.et_msg_content)).getText().toString().trim();
+       String toSendName = ((EditText)findViewById(R.id.et_to_chat_name)).getText().toString().trim();
+       String content = ((EditText)findViewById(R.id.et_msg_content)).getText().toString().trim();
        // Creates a text message.
        ChatMessage message = ChatMessage.createTextSendMessage(content, toSendName);
        // Sets the message callback before sending the message.
@@ -501,40 +427,72 @@ To enable your app to send and receive messages between individual users, do the
            public void onSuccess() {
                showLog("Send message success!", true);
            }
+
            @Override
            public void onError(int code, String error) {
                showLog(error, true);
            }
        });
+
        // Sends the message.
        ChatClient.getInstance().chatManager().sendMessage(message);
    }
    ```
 
-8. Click `Sync Project with Gradle Files` to sync your project. Now you are ready to test your app.
+7. Show logs.  
+To show logs, add the following lines after the `sendFirstMessage` function:
+
+   ```java
+   // Shows logs.
+   private void showLog(String content, boolean showToast) {
+       if(TextUtils.isEmpty(content)) {
+           return;
+       }
+       runOnUiThread(()-> {
+           if(showToast) {
+               Toast.makeText(this, content, Toast.LENGTH_SHORT).show();
+           }
+           TextView tv_log = findViewById(R.id.tv_log);
+           String preContent = tv_log.getText().toString().trim();
+           StringBuilder builder = new StringBuilder();
+           builder.append(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date()))
+                   .append(" ").append(content).append("\n").append(preContent);
+           tv_log.setText(builder);
+       });
+   }
+   ```
+
+8. Click **Sync Project with Gradle Files** to sync your project. Now you are ready to test your app.
+
+<a name="test"></a>
 
 ## Test your app
 
-To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat:
+To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
-1. In Android Studio, click `Run 'app'`.
+1. Log in  
+a. In the [`MainActivity`](#sign-in) file, replace the placeholders of `USERNAME`, `TOKEN`, and `APP_KEY` with the user ID, Agora token, and App Key of the sender (`Som`).  
+b. In **Android Studio**, select the device to run the project and click **Run 'app'**.  
+c. On your simulator or physical device, click **SIGN IN** to log in with the sender account.
+    ![](https://web-cdn.agora.io/docs-files/1665302124510)
 
-   You see the following interface on your simulator or physical device: 
-   <img src="https://web-cdn.agora.io/docs-files/1637661621212" style="zoom:50%;" />
+2. Send a message  
+Fill in the user ID of the receiver (`Neil`) in the **Enter another username** box, type in the message ("How are you doing?") to send in the **Enter content** box, and click **SEND MESSAGE** to send the message.
+   ![](https://web-cdn.agora.io/docs-files/1665302129604)
 
-2. Create a user account and click **SIGN UP**. 
+3. Log out  
+Click **SIGN OUT** to log out of the sender account.
 
-3. Sign in with the user account you just created and send a message.
-   <img src="https://web-cdn.agora.io/docs-files/1637562675862" style="zoom:50%;" />
+4. Receive the message  
+a. After signing out, change the values of `USERNAME`, `TOKEN`, and `APP_KEY` to the user Id, Agora token, and App Key of the receiver (`Neil`) in the [`MainActivity`](#sign-in) file.  
+b. Run the app on another Android device or simulator with the receiver account and receive the message "How are you doing?" sent in step 2.  
+    ![](https://web-cdn.agora.io/docs-files/1665302134132)
 
-4. Run the app on another Android device or simulator and create another user account. Ensure that the usernames you created are unique.
-
-5. Send messages between the users.
-   <img src="https://web-cdn.agora.io/docs-files/1637562770527" style="zoom:50%;" />
 
 ## Next Steps
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=All%20Platforms).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=Android#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. To see how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
+
 
 ## See also
 
@@ -553,6 +511,7 @@ In addition to integrating the Agora Chat SDK into your project with mavenCentra
 | `/x86_64/libagora-chat-sdk.so` and `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
 
 <div class="alert info"> X.Y.Z refers to the version number of the Agora Chat SDK you downloaded.</div>
+
 
 ## Reference
 

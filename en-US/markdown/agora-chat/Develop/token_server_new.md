@@ -4,19 +4,19 @@ To ensure security in real-time communication, Agora provide tokens for you to a
 
 | Applicable scenarios  | Used Token  |  Token consists of the following  |  Token maximum validity period | 
 | -------------------- | ---------------------- | ---------------------- | ---------------------- |
-| RESTful API calls | App token | <ul><li>App ID of your Agora Chat project</li><li>App certificate of your Agora Chat project</li><li>Token validity period for your IM project</li></ul> | 24 hours |
-| SDK API calls | User token | <ul><li>App ID of your Agora Chat project</li><li>App certificate of your Agora Chat project</li><li>UUID of the user to be authenticated. </li></ul><div class="alert info">The UUID is a unique internal identification that Agora Chat generates for a user through <a href="https://docs.agora.io/en/agora-chat/agora_chat_restful_registration#registering-a-user">User Registration REST APIs</a>.</div> | 24 hours |
+| RESTful API calls | Token with app privileges | <ul><li>App ID of your Agora Chat project</li><li>App certificate of your Agora Chat project</li><li>Token validity period for your Agora Chat project</li></ul> | 24 hours |
+| SDK API calls | Token with user privileges | <ul><li>App ID of your Agora Chat project</li><li>App certificate of your Agora Chat project</li><li>Token validity period for your Agora Chat project</li><li>UUID of the user to be authenticated. </li></ul><div class="alert info">The UUID is a unique internal identifier that Agora Chat generates for a user through <a href="https://docs.agora.io/en/agora-chat/agora_chat_restful_registration#registering-a-user">User Registration REST APIs</a>.</div> | 24 hours |
 
 This page introduces how to retrieve tokens from your app server to authenticate your users.
 
 
 ## Understand the tech
 
--  The following diagram shows the process of authenticating users with an app token.
-    ![](https://web-cdn.agora.io/docs-files/1662693714087)
+-  The following diagram shows the process of authenticating users using a token with app privileges.
+    ![](https://web-cdn.agora.io/docs-files/1663232522276)
 
-- The following diagram shows the process of authenticating users with a user token.
-   ![](https://web-cdn.agora.io/docs-files/1662693728233)
+- The following diagram shows the process of authenticating users using a token with user privileges.
+   ![](https://web-cdn.agora.io/docs-files/1663232538814)
 
 
 ## Prerequisites
@@ -43,8 +43,8 @@ To show the authentication workflow, this section shows how to build and run a t
 
 <div class="alert warning">This sample server is for demonstration purposes only. Do not use it in a production environment.</div>
 
-The following figure shows the API call sequence of generating an Agora Chat user token:
-![](https://web-cdn.agora.io/docs-files/1663036659059)
+The following figure shows the API call sequence of generating an Agora Chat token with user privileges:
+![](https://web-cdn.agora.io/docs-files/1663232557791)
 
 1. Create a Maven project in IntelliJ, set the name of your project, choose the location to save your project, then click **Finish**.
 
@@ -183,14 +183,14 @@ The following figure shows the API call sequence of generating an Agora Chat use
 
         private final RestTemplate restTemplate = new RestTemplate();
 
-        // Gets an app token.
+        // Gets a token with app privileges.
         @GetMapping("/chat/app/token")
         public String getAppToken() {
             if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
                 return "appid or appcert is not empty";
             }
 
-            // Generates an app token.
+            // Generates a token with app privileges.
             AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
             AccessToken2.Service serviceChat = new AccessToken2.ServiceChat();
             serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_APP, expire);
@@ -204,7 +204,7 @@ The following figure shows the API call sequence of generating an Agora Chat use
             }
         }
 
-        // Gets a user token.
+        // Gets a token with user privileges.
         @GetMapping("/chat/user/{chatUserName}/token")
         public String getChatUserToken(@PathVariable String chatUserName) {
             if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
@@ -225,7 +225,7 @@ The following figure shows the API call sequence of generating an Agora Chat use
                 chatUserUuid = registerChatUser(chatUserName);
             }
 
-            // Generates a user token.
+            // Generates a token with user privileges.
             AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
             AccessToken2.Service serviceChat = new AccessToken2.ServiceChat(chatUserUuid);
             serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_USER, expire);
@@ -310,12 +310,12 @@ The following figure shows the API call sequence of generating an Agora Chat use
 
 ### Call Agora Chat RESTful APIs with tokens
 
-This section introduces how to get an app token and call the Agora Chat RESTful APIs to create a user in your app.
+This section introduces how to get a token with app privileges and call the Agora Chat RESTful APIs to create a user in your app.
 
-The core methods for generating an app token in the app server are as follows:
+The core methods for generating a token with app privileges in the app server are as follows:
 
 ```java
-// Generates an app token. The parameters `appid`, `appcert`, and `expire` refer to App ID, App certificate, and token validity period respectively.
+// Generates a token with app privileges. The parameters `appid`, `appcert`, and `expire` refer to App ID, App certificate, and token validity period respectively.
 AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
 AccessToken2.Service serviceChat = new AccessToken2.ServiceChat();
 serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_APP, expire);
@@ -385,10 +385,10 @@ try {
 
 This section uses the Web client as an example to show how to use a token for client-side user authentication.
 
-The core methods of generating a user token in the app server are as follows:
+The core methods of generating a token with user privileges in the app server are as follows:
 
 ```java
-// Generates an app token. The parameters `appid`, `appcert`, `expire` and  `chatUserUuid` refer to App ID, App certificate, token validity period and UUID of the Agora Chat user respectively.
+// Generates a token with app privileges. The parameters `appid`, `appcert`, `expire` and  `chatUserUuid` refer to App ID, App certificate, token validity period and UUID of the Agora Chat user respectively.
 AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
 AccessToken2.Service serviceChat = new AccessToken2.ServiceChat(chatUserUuid);
 
@@ -499,11 +499,11 @@ To implement the Web client, do the following:
 		let username;
 		document.getElementById("login").onclick = function () {
 				username = document.getElementById("username").value.toString();
-				// Gets a user token with the user name.
+				// Use the user name to gets a token with user privileges.
 				fetch(`http://localhost:8090/chat/user/${username}/token`)
 				.then((res) => res.text())
 				.then((token) => {
-						// Logs in to Agora Chat with the user name and the user token.
+						// Logs in to Agora Chat using the user name and the token with user privileges.
 						WebIM.conn.open({
 						user: username,
 						agoraToken: token,
@@ -580,7 +580,7 @@ To implement the Web client, do the following:
 
     3. Input a user name and click the login button.
     Open the browser console, and you can see the web client performs the following actions:
-        - Generates a user token.
+        - Generates a token with user privileges.
         - Connects to the Agora Chat system.
         - Renews a token when it is about to expire.
 
@@ -598,7 +598,7 @@ Agora Chat provides an open-source [AgoraDynamicKey](https://github.com/AgoraIO/
 
 This section introduces the method to generate a token for Agora Chat. Take Java as an example:
 
-- Generate a user token
+- Generate a token with user privileges
 
     ```java
     public String buildUserToken(String appId, String appCertificate, String uuid, int expire) {
@@ -615,7 +615,7 @@ This section introduces the method to generate a token for Agora Chat. Take Java
     }
     ```
 
-- Generate an app token
+- Generate a token with app privileges
 
     ```java
     public String buildAppToken(String appId, String appCertificate, int expire) {

@@ -8,11 +8,10 @@ This page shows a sample code to add peer-to-peer messaging into a Windows proje
 
 ## Prerequisites
 
-Before proceeding, ensure that your development and run environment meet the following requirements:
+In order to follow the procedure in this page, you must have the following:
 
-- A valid [Agora account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account).
-- An [Agora project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) that has [enabled the Chat service](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project).
-- An [App Key](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) of the project.
+- A valid Agora [account](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-account)
+- An Agora [project](https://docs.agora.io/en/video-calling/reference/manage-agora-account/#create-an-agora-project) with an [App Key](https://docs.agora.io/en/agora-chat/get-started/enable#get-the-information-of-the-chat-project) that has [enabled the Chat service](https://docs.agora.io/en/agora-chat/get-started/enable) 
 
 If your target platform is iOS:
 
@@ -80,9 +79,12 @@ For testing purposes, Agora Console supports generating temporary tokens for Ago
 
 	![](https://web-cdn.agora.io/docs-files/1664531091562)
 
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** text box and click **Generate** to generate a token with user privileges.
+3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
 
 	![](https://web-cdn.agora.io/docs-files/1664531214169)
+
+<div class="alert note">Register a user and generate a user token for a sender and a receiver respectively for <a href="https://docs.agora.io/en/agora-chat/get-started/get-started-sdk#test">test use</a> later in this demo.</div>
+
 
 ## Project setup
 
@@ -119,10 +121,12 @@ This section introduces the codes you need to add to your project to start one-t
 
 To send a one-to-one message, users must register a Chat account, log in to Agora Chat, and send a text message.
 
+<a name="sign-in"></a>
+
 Open `token_login_demo/App.js`, and replace the code with the following:
 
 ```javascript
-// Import depend packages.
+// Imports dependencies.
 import React, {useEffect} from 'react';
 import {
   SafeAreaView,
@@ -144,9 +148,10 @@ const App = () => {
   const title = 'AgoraChatQuickstart';
   // Replaces <your appKey> with your app key.
   const appKey = '<your appKey>';
-  // Replaces <your token> with your token.
-  const [username, setUsername] = React.useState('<your token>');
-  const [chatToken, setChatToken] = React.useState('');
+  // Replaces <your userId> with your user ID.
+  const [username, setUsername] = React.useState('<your userId>');
+  // Replaces <your agoraToken> with your Agora token.
+  const [chatToken, setChatToken] = React.useState('<your agoraToken>');
   const [targetId, setTargetId] = React.useState('');
   const [content, setContent] = React.useState('');
   const [logText, setWarnText] = React.useState('Show log area');
@@ -440,6 +445,8 @@ const styles = StyleSheet.create({
 export default App;
 ```
 
+<a name="build"></a>
+
 ### Build and run your project
 
 You are now ready to build and run the project you have built.
@@ -449,13 +456,13 @@ To build and run the project on an iOS device, take the following steps:
 1. Connect an iPhone device to your computer, and set the device to Developer mode.
 2. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
 3. In **Targets** > **token_login_demo** > **Signing & Capabilities**, set the signing of the project.
-4. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on your device. You see the app user interface.
+4. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on your device.
 
 To build and run the project on an iOS virtual device, take the following steps:
 
 1. Open `token_login_demo/ios`, and open `token_login_demo.xcworkspace` with Xcode.
 2. In Xcode, set `iPhone 13` as the iOS simulator.
-3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulator. You see the app user interface.
+3. Click `Build` in Xcode to build the project. When the build succeeds, Xcode runs the project and installs it on the simulator.
 
 To build and run the project on an Android device, take the following steps:
 
@@ -468,24 +475,41 @@ To build and run the project on an Android device, take the following steps:
    yarn start
    ```
 
-5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. You see the app interface.
+5. Click `Build` in Android Studio to build the project. When the build succeeds, Android Studio runs the project and installs it on the device. 
 
-<img src="https://web-cdn.agora.io/docs-files/1662546788690" width=50%>
+If the project runs properly, the following user interface appears:
+
+![](https://web-cdn.agora.io/docs-files/1665304069738)
+
+
+<a name="test"></a>
 
 ## Test your app
 
-Refer to the following steps to register a Chat account, log in to Agora Chat and send and receive a message.
+<div class="alert note">You can log in to the app by either modifying the fields in the <code>App.js</code> file as stated below, or entering the required fields in the user interface.</div>
 
-1. On one device or simulator, enter a username and password, and click **SIGN UP** to register a Chat account.
-2. Click **SIGN IN** to log in to Agora Chat.
-3. On a second device or simulator, repeat the above steps to create another account and log in to Agora Chat. Ensure that you use a different user ID (username) on this device or simulator.
-4. From the first device or simulator, enter the username you set in step 3, type in the text message you want to send, and click **SEND TEXT**. You can receive the text message on the other device or simulator.
+To validate the peer-to-peer messaging you have just integrated into your app using Agora Chat, perform the following operations:
 
-You can also read from the logs on the UI to see whether you have successfully signed up, signed in, and sent a text message.
+1. Log in  
+a. In the [`App.js`](#sign-in) file, replace the placeholders of `appKey`, `username`, and `chatToken` with the App Key, user ID, and Agora token of the sender.  
+b. Run and [build](#build) your app.  
+c. On your simulator or physical device, click **SIGN IN** to log in with the sender account.
+
+2. Send a message  
+Fill in the user ID of the receiver in the **Enter the username you want to send** box, type in te message to send in the **Enter content** box, and click **SEND TEXT** to send the message.
+
+3. Log out  
+Click **SIGN OUT** to log out of the sender account.
+
+4. Receive the message  
+a. After signing out, change the values of `appKey`, `username`, and `chatToken` to the user ID, Agora token, and App Key of the receiver in the [`App.js`](#sign-in) file.  
+b. Run the app on another device or simulator with the receiver account and receive the message sent in step 2.
+
+You can also read from the logs on the UI to see whether you have successfully signed in, signed out, and sent and received a text message.
 
 ## Next steps
 
-For demonstration purposes, Agora Chat provides an app server that enables you to quickly retrieve a token using the App Key given in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=React%20Native#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. For how to implement a server that generates and serves tokens on request, see [Generate a User Token](./generate_user_tokens?platform=React%20Native).
+For demonstration purposes, Agora Chat uses temporary tokens generated from Agora Console for authentication in this guide. In a production context, the best practice is for you to deploy your own token server, use your own [App Key](./enable_agora_chat?platform=React%20Native#get-the-information-of-the-agora-chat-project) to generate a token, and retrieve the token on the client side to log in to Agora. For how to implement a server that generates and serves tokens on request, see [Generate a User Token](../Develop/Authentication).
 
 ## Reference
 For details, see the [sample code](https://github.com/AgoraIO/Agora-Chat-API-Examples/tree/main/Chat-RN/quick_start_demo) for getting started with Agora Chat.
