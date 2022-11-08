@@ -19,10 +19,24 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)getMusicCollectionWithMusicChartId:(NSInteger)musicChartId page:(NSInteger)page pageSize:(NSInteger)pageSize jsonOption:(NSString * _Nullable)jsonOption NS_SWIFT_NAME(getMusicCollection(musicChartId:page:pageSize:jsonOption:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getMusicCollectionByMusicChartId(agora::util::AString&amp; requestId, int32_t musicChartId, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract getMusicCollectionByMusicChartId(
+    musicChartId: number,
+    page: number,
+    pageSize: number,
+    jsonOption?: string
+  ): string;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract getMusicCollectionByMusicChartId(
+    musicChartId: number,
+    page: number,
+    pageSize: number,
+    jsonOption?: string
+  ): string;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;String> getMusicCollectionByMusicChartId(
+      {required int musicChartId,
+      required int page,
+      required int pageSize,
+      String? jsonOption});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -46,11 +60,11 @@
             </plentry>
             <plentry id="page">
                 <pt>page</pt>
-                <pd>The current page.</pd>
+                <pd>The number of the current page.</pd>
             </plentry>
             <plentry id="size">
                 <pt>pageSize</pt>
-                <pd>The number of pages of the music list.</pd>
+                <pd>The number of pages of the music collection.</pd>
             </plentry>
             <plentry props="apple cpp" conkeyref="preload/option">
                 <pt/>
