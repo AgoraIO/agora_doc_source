@@ -38,10 +38,10 @@
             <topicref keyref="ILocalSpatialAudioEngine" toc="no"/>
             <topicref keyref="IMediaRecorder" toc="no"/>
             <topicref keyref="IMediaRecorderObserver" toc="no"/>
-            <topicref keyref="IAgoraMusicContentCenter" toc="no"/>
+            <topicref keyref="IMusicContentCenter" toc="no"/>
             <topicref keyref="IMusicPlayer" toc="no"/>
             <topicref keyref="IMusicContentCenterEventHandler" toc="no"/>
-        </topicref>        
+        </topicref>
         <topicref href="API/rtc_api_overview_ng.dita"/>
         <topicref href="API/toc_core_method.dita" chunk="to-content">
             <topicref keyref="addHandler" toc="no"/>
@@ -240,7 +240,6 @@
             <topicref keyref="setLocalVoiceEqualization" toc="no"/>
             <topicref keyref="setLocalVoicePitch" toc="no"/>
             <topicref keyref="setLocalVoiceReverb" toc="no"/>
-            <topicref keyref="setLocalVoiceReverbPreset" toc="no"/>
             <topicref keyref="setRemoteUserSpatialAudioParams" toc="no"/>
             <topicref keyref="setRemoteVoice3DPosition" toc="no" props="hide"/>
             <topicref keyref="setRemoteVoicePosition" toc="no"/>
@@ -459,8 +458,8 @@
             <topicref keyref="destroy_IMusicContentCenter" toc="no"/>
             <topicref keyref="destroy_IMusicPlayer" toc="no"/>
             <topicref keyref="renewToken_IMusicContentCenter" toc="no"/>
-            <topicref keyref="unregisterEventHandler_IMusicContentCenterEventHandler" toc="no"/>
-            <topicref keyref="searchMusic1" toc="no"/>
+            <topicref keyref="unregisterEventHandler_IMusicContentCenter" toc="no"/>
+            <topicref keyref="searchMusic" toc="no"/>
             <topicref keyref="searchMusic2" toc="no"/>
             <topicref keyref="open_IMusicPlayer" toc="no"/>
             <topicref keyref="onPreLoadEvent_IMusicContentCenterEventHandler" toc="no"/>
@@ -506,7 +505,7 @@
             <topicref keyref="setGreen" toc="no"/>
             <topicref keyref="setRed" toc="no"/>
             <topicref keyref="setUsers" toc="no"/>
-            <topicref keyref="setUsers2" toc="no"/>          
+            <topicref keyref="setUsers2" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
             <topicref keyref="onDirectCdnStreamingStateChanged" toc="no" props="cn"/>
             <topicref keyref="onDirectCdnStreamingStats" toc="no" props="cn"/>
@@ -543,6 +542,7 @@
             <topicref keyref="setCameraFocusPositionInPreview" toc="no"/>
             <topicref keyref="setCameraTorchOn" toc="no"/>
             <topicref keyref="setCameraZoomFactor" toc="no"/>
+            <topicref keyref="setCameraAutoExposureFaceModeEnabled" toc="no"/>
             <topicref keyref="switchCamera" toc="no"/>
             <topicref keyref="onCameraExposureAreaChanged" toc="no"/>
             <topicref keyref="onCameraFocusAreaChanged" toc="no"/>
@@ -609,156 +609,6 @@
             <topicref keyref="onStreamMessageError" toc="no"/>
             <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
         </topicref>
-        <topicref href="API/rtc_api_data_type.dita" chunk="to-content">
-            <topicref keyref="AREA_CODE" toc="no"/>
-            <topicref keyref="AUDIO_CODEC_PROFILE_TYPE" toc="no"/>
-            <topicref keyref="AUDIO_DUAL_MONO_MODE" toc="no"/>
-            <topicref keyref="AUDIO_EQUALIZATION_BAND_FREQUENCY" toc="no"/>
-            <topicref keyref="AUDIO_MIXING_DUAL_MONO_MODE" toc="no"/>
-            <topicref keyref="AUDIO_PROFILE_TYPE" toc="no" processing-role="resource-only"/>
-            <topicref keyref="AUDIO_REVERB_TYPE" toc="no"/>
-            <topicref keyref="AUDIO_SAMPLE_RATE_TYPE" toc="no"/>
-            <topicref keyref="AUDIO_SCENARIO_TYPE" toc="no" processing-role="resource-only"/>
-            <topicref keyref="CAPTURER_OUTPUT_PREFERENCE" toc="no" props="hide"/>
-            <topicref keyref="COMPRESSION_PREFERENCE" toc="no"/>
-            <topicref keyref="DEGRADATION_PREFERENCE" toc="no"/>
-            <topicref keyref="DIRECT_CDN_STREAMING_ERROR" toc="no" props="cn"/>
-            <topicref keyref="DIRECT_CDN_STREAMING_STATE" toc="no" props="cn"/>
-            <topicref keyref="ENCRYPTION_ERROR_TYPE" toc="no"/>
-            <topicref keyref="ENCRYPTION_MODE" toc="no"/>
-            <topicref keyref="ENCODING_PREFERENCE" toc="no"/>
-            <topicref keyref="EXTERNAL_VIDEO_SOURCE_TYPE" toc="no"/>
-            <topicref keyref="FRAME_RATE" toc="no"/>
-            <topicref keyref="HEADPHONE_EQUALIZER_PRESET" toc="no"/>
-            <topicref keyref="LOG_LEVEL" toc="no"/>
-            <topicref keyref="MEDIA_PLAYER_ERROR" toc="no"/>
-            <topicref keyref="MEDIA_PLAYER_EVENT" toc="no"/>
-            <topicref keyref="MEDIA_PLAYER_METADATA_TYPE" toc="no"/>
-            <topicref keyref="MEDIA_PLAYER_STATE" toc="no"/>
-            <topicref keyref="MEDIA_SOURCE_TYPE" toc="no"/>
-            <topicref keyref="MEDIA_STREAM_TYPE" toc="no"/>
-            <topicref keyref="ORIENTATION_MODE" toc="no"/>
-            <topicref keyref="PLAYER_PRELOAD_EVENT" toc="no"/>
-            <topicref keyref="QUALITY_REPORT_FORMAT_TYPE" toc="no" props="hide"/>
-            <topicref keyref="STREAM_PUBLISH_STATE" toc="no"/>
-            <topicref keyref="VIDEO_CAPTURE_TYPE" toc="no" props="hide"/>
-            <topicref keyref="VIDEO_CODEC_PROFILE_TYPE" toc="no"/>
-            <topicref keyref="VIDEO_CODEC_TYPE_FOR_STREAM" toc="no"/>
-            <topicref keyref="VIDEO_MIRROR_MODE_TYPE" toc="no"/>
-            <topicref keyref="VIDEO_SOURCE_TYPE" toc="no"/>
-            <topicref keyref="AdvancedAudioOptions" toc="no">
-                <topicref keyref="AUDIO_PROCESSING_CHANNELS" toc="no"/>
-            </topicref>
-            <topicref keyref="AdvanceOptions" toc="no"/>
-            <topicref keyref="AdvancedConfigInfo" toc="no"/>
-            <topicref keyref="AgoraFacePositionInfo" toc="no"/>
-            <topicref keyref="AudioEncodedFrameObserverConfig" toc="no"/>
-            <topicref keyref="AudioFrame" toc="no"/>
-            <topicref keyref="AudioParams" toc="no"/>
-            <topicref keyref="AgoraRhythmPlayerConfig" toc="no"/>
-            <topicref keyref="AudioRecordingConfiguration" toc="no"/>
-            <topicref keyref="AudioSpectrumData" toc="no"/>
-            <topicref keyref="AudioVolumeInfo" toc="no"/>
-            <topicref keyref="BeautyOptions" toc="no"/>
-            <topicref keyref="CacheStatistics" toc="no"/>
-            <topicref keyref="CameraCapturerConfiguration" toc="no">
-                <topicref keyref="CAMERA_DIRECTION" toc="no"/>
-                <topicref keyref="VideoFormat" toc="no"/>
-            </topicref>
-            <topicref keyref="ChannelMediaInfo" toc="no"/>
-            <topicref keyref="ChannelMediaOptions" toc="no"/>
-            <topicref keyref="ChannelMediaRelayConfiguration" toc="no"/>
-            <topicref keyref="setDestChannelInfo" toc="no"/>
-            <topicref keyref="setSrcChannelInfo" toc="no"/>
-            <topicref keyref="getDestChannelMediaInfos" toc="no"/>
-            <topicref keyref="getSrcChannelMediaInfo" toc="no"/>
-            <topicref keyref="removeDestChannelInfo" toc="no"/>
-            <topicref keyref="ContentInspectConfig" toc="no"/>
-            <topicref keyref="ContentInspectModule" toc="no"/>
-            <topicref keyref="ClientRoleOptions" toc="no"/>
-            <topicref keyref="ColorEnhanceOptions" toc="no"/>
-            <topicref keyref="DataStreamConfig" toc="no"/>
-            <topicref keyref="DeviceInfo" toc="no"/>
-            <topicref keyref="DirectCdnStreamingMediaOptions" toc="no" props="cn"/>
-            <topicref keyref="DirectCdnStreamingStats" toc="no" props="cn"/>
-            <topicref keyref="EchoTestConfiguration" toc="no"/>
-            <topicref keyref="EncodedVideoFrameInfo" toc="no"/>
-            <topicref keyref="EncryptionConfig" toc="no"/>
-            <topicref keyref="ExternalVideoFrame" toc="no"/>
-            <topicref keyref="ImageTrackOptions" toc="no"/>
-            <topicref keyref="InjectStreamConfig" toc="no" props="hide"/>
-            <topicref keyref="LastmileProbeConfig" toc="no"/>
-            <topicref keyref="LastmileProbeOneWayResult" toc="no"/>
-            <topicref keyref="LastmileProbeResult" toc="no"/>
-            <topicref keyref="LeaveChannelOptions" toc="no"/>
-            <topicref keyref="LiveTranscoding" toc="no">
-                <topicref keyref="addBackgroundImage" toc="no"/>
-                <topicref keyref="addUser" toc="no"/>
-                <topicref keyref="addWatermark" toc="no"/>
-                <topicref keyref="getAdvancedFeatures" toc="no"/>
-                <topicref keyref="getBackgroundColor" toc="no"/>
-                <topicref keyref="getBackgroundImageList" toc="no"/>
-                <topicref keyref="getBlue" toc="no"/>
-                <topicref keyref="getGreen" toc="no"/>
-                <topicref keyref="getRed" toc="no"/>
-                <topicref keyref="getUserCount" toc="no"/>
-                <topicref keyref="getUsers" toc="no"/>
-                <topicref keyref="getWatermarkList" toc="no"/>
-                <topicref keyref="removeBackgroundImage" toc="no"/>
-                <topicref keyref="removeUser" toc="no"/>
-                <topicref keyref="removeWatermark" toc="no"/>
-                <topicref keyref="setAdvancedFeatures" toc="no"/>
-                <topicref keyref="setBackgroundColor" toc="no"/>
-                <topicref keyref="setBackgroundColor2" toc="no"/>
-                <topicref keyref="setBlue" toc="no"/>
-                <topicref keyref="setGreen" toc="no"/>
-                <topicref keyref="setRed" toc="no"/>
-                <topicref keyref="setUsers" toc="no"/>
-                <topicref keyref="setUsers2" toc="no"/>
-            </topicref>
-            <topicref keyref="LocalAccessPointConfiguration" toc="no" props="cn"/>
-            <topicref keyref="LocalAudioStats" toc="no"/>
-            <topicref keyref="LocalVideoStats" toc="no"/>
-            <topicref keyref="LogConfig" toc="no"/>
-            <topicref keyref="LogUploadServerInfo" toc="no"/>
-            <topicref keyref="LowlightEnhanceOptions" toc="no"/>
-            <topicref keyref="MediaRecorderConfiguration" toc="no"/>
-            <topicref keyref="MediaSource" toc="no"/>
-            <topicref keyref="PlayerStreamInfo" toc="no"/>
-            <topicref keyref="PlayerUpdatedInfo" toc="no"/>
-            <topicref keyref="RecorderInfo" toc="no"/>
-            <topicref keyref="Rectangle" toc="no"/>
-            <topicref keyref="RemoteAudioStats" toc="no"/>
-            <topicref keyref="RemoteVideoStats" toc="no"/>
-            <topicref keyref="RemoteVoicePositionInfo" toc="no"/>
-            <topicref keyref="RtcEngineConfig" toc="no">
-                <topicref keyref="addExtension" toc="no"/>
-            </topicref>
-            <topicref keyref="RtcConnection" toc="no"/>
-            <topicref keyref="RtcImage" toc="no"/>
-            <topicref keyref="RtcStats" toc="no"/>
-            <topicref keyref="ScreenCaptureParameters2" toc="no">
-                <topicref keyref="ScreenVideoParameters" toc="no"/>
-                <topicref keyref="ScreenAudioParameters" toc="no"/>
-            </topicref>
-            <topicref keyref="SegmentationProperty" toc="no"/>
-            <topicref keyref="SimulcastStreamConfig" toc="no"/>
-            <topicref keyref="SpatialAudioParams" toc="no"/>
-            <topicref keyref="SpatialAudioZone" toc="no"/>
-            <topicref keyref="SrcInfo" toc="no"/>
-            <topicref keyref="TranscodingUser" toc="no"/>
-            <topicref keyref="UplinkNetworkInfo" toc="no"/>
-            <topicref keyref="UserAudioSpectrumInfo" toc="no"/>
-            <topicref keyref="UserInfo" toc="no"/>
-            <topicref keyref="VideoCanvas" toc="no"/>
-            <topicref keyref="VideoDenoiserOptions" toc="no"/>
-            <topicref keyref="VideoDimensions" toc="no"/>
-            <topicref keyref="VideoEncoderConfiguration" toc="no"/>
-            <topicref keyref="VideoFrame" toc="no"/>
-            <topicref keyref="VideoSubscriptionOptions" toc="no"/>
-            <topicref keyref="VirtualBackgroundSource" toc="no"/>
-            <topicref keyref="WatermarkOptions" toc="no"/>
-
-        </topicref>
+        <topicref href="API/rtc_api_data_type.dita" chunk="to-content"/>
     </topichead>
 </map>
