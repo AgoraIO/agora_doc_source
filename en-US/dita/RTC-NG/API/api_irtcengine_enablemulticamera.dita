@@ -19,39 +19,49 @@
     virtual int enableMultiCamera(bool enabled, const CameraCapturerConfiguration&amp; config) = 0;
 #endif</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract enableMultiCamera(
+    enabled: boolean,
+    config: CameraCapturerConfiguration
+  ): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract enableMultiCamera(
+    enabled: boolean,
+    config: CameraCapturerConfiguration
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableMultiCamera(
+      {required bool enabled, required CameraCapturerConfiguration config});</codeblock> </p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since</dt>
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
             <p>In the scenario where there are existing cameras to capture video, Agora recommends you to use the following steps to capture and publish video with multiple cameras:<ol>
-                <li>Call this method to enable multi-channel camera capture.</li>
-                <li>Call <xref keyref="startPreview"/> to start the local video preview.</li>
-                <li>Call <xref keyref="startSecondaryCameraCapture"/> to start video capture with the second camera.</li>
-                <li>Call <xref keyref="joinChannelEx"/> and set <parmname>publishSecondaryCameraTrack</parmname> to <codeph><ph keyref="true"/></codeph> to publish the video stream captured by the second camera in the channel.</li>
-                </ol></p>
+            <li>Call this method to enable multi-channel camera capture.</li>
+            <li>Call <xref keyref="startPreview"/> to start the local video preview.</li>
+            <li>Call <xref keyref="startSecondaryCameraCapture"/> to start video capture with the second camera.</li>
+            <li>Call <xref keyref="joinChannelEx"/> and set <parmname>publishSecondaryCameraTrack</parmname> to <codeph><ph keyref="true"/></codeph> to publish the video stream captured by the second camera in the channel.</li>
+            </ol></p>
             <p>If you want to disable multi-channel camera capture, see the following steps:<ol>
-                <li>Call <xref keyref="stopSecondaryCameraCapture"/>.</li>
-                <li>Call this method with <parmname>enabled</parmname> set to <codeph><ph keyref="false"/></codeph>.</li>
-                </ol></p>
-            <note><p>You can call this method before and after <xref keyref="startPreview"/> to enable multi-camera capture:<ul>
-                <li>If it is enabled before <apiname keyref="startPreview"/>, the local video preview shows the image captured by the two cameras at the same time.</li>
-                <li>If it is enabled after <apiname keyref="startPreview"/>, the SDK stops the current camera capture first, and then enables the primary camera and the second camera. The local video preview appears black for a short time, and then automatically return to normal.</li>
-                </ul></p></note>
+            <li>Call <xref keyref="stopSecondaryCameraCapture"/>.</li>
+            <li>Call this method with <parmname>enabled</parmname> set to <codeph><ph keyref="false"/></codeph>.</li>
+            </ol></p>
+            <note>
+            <p>You can<xref keyref="startPreview"/> call this method before and after  to enable multi-camera capture:<ul>
+            <li>If it is enabled before <apiname keyref="startPreview"/>, the local video preview shows the image captured by the two cameras at the same time.</li>
+            <li>If it is enabled after <apiname keyref="startPreview"/>, the SDK stops the current camera capture first, and then enables the primary camera and the second camera. The local video preview appears black for a short time, and then automatically return to normal.</li>
+            </ul></p>
+            </note>
             <p props="cpp">This method applies to iOS only.</p>
             <p>When using this function, please ensure that the system version is 13.0 and above.</p>
             <p>The minimum iOS device types that support multi-camera capture are as follows:<ul>
-                <li>iPhone XR</li>
-                <li>iPhone XS</li>
-                <li>iPhone XS Max</li>
-                <li>iPad Pro 3rd generation and later</li>
-                </ul></p>
+            <li>iPhone XR</li>
+            <li>iPhone XS</li>
+            <li>iPhone XS Max</li>
+            <li>iPad Pro 3rd generation and later</li>
+            </ul></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -59,21 +69,20 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Whether to enable multi-camera video capture mode:<ul>
-                        <li><codeph><ph keyref="true"/></codeph>: Enable multi-camera capture mode, the SDK uses multi-cameras to capture video.</li>
-                        <li><codeph><ph keyref="false"/></codeph>: Disable multi-camera capture mode, the SDK uses single camera to capture video.</li>
-                        </ul></pd>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable multi-camera capture mode, the SDK uses multi-cameras to capture video.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Disable multi-camera capture mode, the SDK uses single camera to capture video.</li>
+                    </ul></pd>
             </plentry>
-                <plentry>
-                    <pt>config</pt>
-                    <pd>Capture configuration for the second camera. See <xref keyref="CameraCapturerConfiguration"/>.</pd>
-                </plentry>
+            <plentry>
+                <pt>config</pt>
+                <pd>Capture configuration for the second camera. See <xref keyref="CameraCapturerConfiguration"/>.</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-               <li>0: Success.</li>
-               <li>&lt; 0: Failure.</li>
-               </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>
