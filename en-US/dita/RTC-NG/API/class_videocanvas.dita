@@ -89,7 +89,7 @@
 @property(nonatomic, assign) int mediaPlayerId;
 @property(assign, nonatomic) CGRect cropArea;
 @end</codeblock>
-<codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
     uid_t uid;
     media::base::RENDER_MODE_TYPE renderMode;
@@ -160,23 +160,41 @@
             <codeblock props="flutter" outputclass="language-dart">class VideoCanvas {
   const VideoCanvas(
       {this.view,
+      this.uid,
       this.renderMode,
       this.mirrorMode,
-      this.uid,
-      this.sourceType});
+      this.setupMode,
+      this.sourceType,
+      this.mediaPlayerId,
+      this.cropArea});
 
   @JsonKey(name: 'view')
   final int? view;
-  @JsonKey(name: 'renderMode')
-  final RenderModeType? renderMode;
-  @JsonKey(name: 'mirrorMode')
-  final VideoMirrorModeType? mirrorMode;
+
   @JsonKey(name: 'uid')
   final int? uid;
+
+  @JsonKey(name: 'renderMode')
+  final RenderModeType? renderMode;
+
+  @JsonKey(name: 'mirrorMode')
+  final VideoMirrorModeType? mirrorMode;
+
+  @JsonKey(name: 'setupMode')
+  final VideoViewSetupMode? setupMode;
+
   @JsonKey(name: 'sourceType')
   final VideoSourceType? sourceType;
+
+  @JsonKey(name: 'mediaPlayerId')
+  final int? mediaPlayerId;
+
+  @JsonKey(name: 'cropArea')
+  final Rectangle? cropArea;
+
   factory VideoCanvas.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoCanvasFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
 }</codeblock> </p>
         </section>

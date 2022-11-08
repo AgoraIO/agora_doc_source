@@ -68,7 +68,7 @@
   Optional&lt;double&gt; speaker_attenuation;
   Optional&lt;bool&gt; enable_doppler;
 };</codeblock>
-<codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
+      <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
   
   speaker_azimuth?: number;
   
@@ -83,8 +83,10 @@
   enable_air_absorb?: boolean;
   
   speaker_attenuation?: number;
+
+  enable_doppler?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
+      <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioParams : OptionalJsonParse
     {
         public Optional&lt;double&gt; speaker_azimuth = new Optional&lt;double&gt;();
         public Optional&lt;double&gt; speaker_elevation = new Optional&lt;double&gt;();
@@ -94,7 +96,7 @@
         public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
         Optional&lt;double&gt; speaker_attenuation = new Optional&lt;double&gt;();
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
+      <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
   
   speaker_azimuth?: number;
   
@@ -109,30 +111,47 @@
   enable_air_absorb?: boolean;
   
   speaker_attenuation?: number;
+
+  enable_doppler?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class SpatialAudioParams {
+      <codeblock props="flutter" outputclass="language-dart">lass SpatialAudioParams {
   const SpatialAudioParams(
       {this.speakerAzimuth,
       this.speakerElevation,
       this.speakerDistance,
       this.speakerOrientation,
       this.enableBlur,
-      this.enableAirAbsorb});
+      this.enableAirAbsorb,
+      this.speakerAttenuation,
+      this.enableDoppler});
 
   @JsonKey(name: 'speaker_azimuth')
   final double? speakerAzimuth;
+
   @JsonKey(name: 'speaker_elevation')
   final double? speakerElevation;
+
   @JsonKey(name: 'speaker_distance')
   final double? speakerDistance;
+
   @JsonKey(name: 'speaker_orientation')
   final int? speakerOrientation;
+
   @JsonKey(name: 'enable_blur')
   final bool? enableBlur;
+
   @JsonKey(name: 'enable_air_absorb')
   final bool? enableAirAbsorb;
+
+  @JsonKey(name: 'speaker_attenuation')
+  final double? speakerAttenuation;
+
+  @JsonKey(name: 'enable_doppler')
+  final bool? enableDoppler;
+
   factory SpatialAudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SpatialAudioParamsFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioParamsToJson(this);
 }</codeblock></p>
     </section>
