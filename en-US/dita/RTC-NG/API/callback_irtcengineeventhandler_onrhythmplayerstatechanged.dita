@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrhythmplayerstatechanged">
     <title><ph keyref="onRhythmPlayerStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc"/>虚拟节拍器状态发生改变回调。</shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"/>The virtual metronome state change callback.</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,34 +30,32 @@
 </codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>虚拟节拍器状态发生改变时，SDK 会触发该回调报告当前的虚拟节拍器状态。 This callback indicates the state of the local audio stream, and allows you to troubleshoot issues when audio exceptions occur.</p>
-            <note type="attention" props="cpp">This method is for Android and iOS only.</note> </section>
+            <p>When the state of the virtual metronome changes, the SDK triggers this callback to report the current state of the virtual metronome. This callback indicates the state of the local audio stream, and allows you to troubleshoot issues when audio exceptions occur.</p>
+            <note type="attention" props="cpp">This callback is for Android and iOS only.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry>
                 <pt>state</pt>
-                <pd props="ios mac cpp framework">当前的虚拟节拍器状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
-                <pd props="android">当前的虚拟节拍器状态。                   
-                    <ul>
-                    <li><ph keyref="RHYTHM_PLAYER_STATE_IDLE"/>(810): 虚拟节拍器未开启或已关闭。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_STATE_OPENING"/>(811): 正在打开节拍音频文件。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_STATE_DECODING"/>(812): 正在解码节拍音频文件。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_STATE_PLAYING"/>(813): 正在播放节拍音频文件。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/>(814): 开启虚拟节拍器失败。 你可以通过报告的错误码 <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/> 排查错误原因，也可以重新尝试开启虚拟节拍器。</li>
+                <pd props="ios mac cpp framework">For the current virtual metronome status, see <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
+                <pd props="android">The current virtual metronome state.<ul>
+                    <li><ph keyref="RHYTHM_PLAYER_STATE_IDLE"/>(810): The virtual metronome is not enabled or disabled already.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_STATE_OPENING"/>(811): Opening the beat files.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_STATE_DECODING"/>(812): Decoding the beat files.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_STATE_PLAYING"/>(813): The beat files are playing.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/>(814): Failed to start virtual metronome. You can troubleshoot the cause of the error through the reported error code <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>, or you can try to start the virtual metronome again.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>errorCode</pt>
-                <pd props="ios mac cpp framework">虚拟节拍器发生错误的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>。</pd>
-                <pd props="android">虚拟节拍器发生错误的错误码和错误信息。                   
-                    <ul>
-                    <li><ph keyref="RHYTHM_PLAYER_ERROR_OK"/>(0): 正常播放节拍音频文件，没有错误。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_ERROR_FAILED"/>(1): 一般性错误，没有明确原因。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_ERROR_CAN_NOT_OPEN"/>(801): 打开节拍音频文件出错。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_ERROR_CAN_NOT_PLAY"/>(802): 播放节拍音频文件出错。</li>
-                    <li><ph keyref="RHYTHM_PLAYER_ERROR_FILE_OVER_DURATION_LIMIT"/>(803): 节拍音频文件时长超出限制。 最大时长为 1.2 秒。</li>
+                <pd props="ios mac cpp framework">For the error codes and error messages of virtual metronome errors, see <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>.</pd>
+                <pd props="android">Error codes and error messages for virtual metronome errors.<ul>
+                    <li><ph keyref="RHYTHM_PLAYER_ERROR_OK"/>(0): The beat files are played normally without errors.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_ERROR_FAILED"/>(1): General error with no clear cause.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_ERROR_CAN_NOT_OPEN"/>(801): There is an error when opening the beat files.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_ERROR_CAN_NOT_PLAY"/>(802): There is an error when playing beat files.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_ERROR_FILE_OVER_DURATION_LIMIT"/>(803): The duration of the beat audio file exceeds the limit. The maximum duration is 1.2 seconds.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
