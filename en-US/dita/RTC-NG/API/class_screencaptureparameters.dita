@@ -227,15 +227,15 @@
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-            <note type="note" props="mac cpp unity">The video profiles of the shared screen stream are only<xref keyref="ScreenCaptureParameters"/> set by , independent of<xref keyref="setVideoEncoderConfiguration"/>  .</note>
+            <note type="note" props="mac cpp unity">The video profiles of the shared screen stream are only  set by <xref keyref="ScreenCaptureParameters"/>, independent of <xref keyref="setVideoEncoderConfiguration"/>.</note>
             <parml>
             <plentry>
                 <pt props="mac cpp unity flutter electron rn">dimensions</pt>
                 <pd>
-                    <p><ph props="flutter">The maximum dimensions of encoding the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding resolution of the shared screen stream. </ph>See . The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.<xref keyref="VideoDimensions"/></p>
+                    <p><ph props="flutter">The maximum dimensions of encoding the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp">On Windows and macOS, it represents the video encoding resolution of the shared screen stream. </ph>See <xref keyref="VideoDimensions"/>. The default value is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
                     <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unity flutter">dimensions</parmname> is set to 1920 x 1080:<ul>
                     <li>If the value of the screen dimensions is lower than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 1000 x 1000 pixels, the SDK uses 1000 x 1000 pixels for encoding.</li>
-                    <li>If the value of the screen dimensions is higher than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 2000 x 1500, the SDK uses the maximum value under dimensions with the aspect ratio of the screen dimension (4:3<parmname props="mac cpp unity flutter"></parmname>) for encoding, that is, 1440 x 1080.</li>
+                    <li>If the value of the screen dimensions is higher than that of <parmname props="mac cpp unity flutter">dimensions</parmname>, for example, 2000 x 1500, the SDK uses the maximum value under <parmname props="mac cpp unity flutter">dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 x 1080.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -267,30 +267,29 @@
             </plentry>
             <plentry props="mac cpp unity electron rn flutter">
                 <pt>excludeWindowList</pt>
-                <pd>The ID list of the windows to be blocked. When calling<xref keyref="startScreenCaptureByDisplayId"/>  to start screen sharing, you can use this parameter to block a specified window. When calling  to<xref keyref="updateScreenCaptureParameters"/> update screen sharing configurations, you can use this parameter to dynamically block a specified window.</pd>
+                <pd>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</pd>
             </plentry>
             <plentry props="mac cpp electron unity rn flutter">
                 <pt props="mac">highLighted</pt>
                 <pt props="cpp electron unity flutter">enableHighLight</pt>
-                <pd><ph props="cpp framework">(仅适用于 macOS 和 Windows)</ph><ph>是否对共享的窗口或屏幕进行描边：</ph>
-                    <ul>
+                <pd><ph props="cpp framework">(For macOS and Windows only) </ph><ph>Whether to place a border around the shared window or screen:</ph><ul>
                     <li><codeph><ph keyref="true"/></codeph>: Place a border.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not place a border.</li>
                     </ul>
-                    <note><codeph><ph keyref="true"/></codeph>When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set this parameter to .</note></pd>
+                    <note>When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set this parameter to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
             <plentry props="mac cpp electron unity flutter">
                 <pt>highLightColor</pt>
-                <pd props="cpp framework">(仅适用于 macOS 和 Windows) 在 Windows 平台上，指描边的 ARGB 颜色。 The default value is 0xFF8CBF26.</pd>
+                <pd props="cpp framework">(For macOS and Windows only) On Windows platforms, the color of the border in ARGB format. The default value is 0xFF8CBF26.</pd>
                 <pd>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</pd>
             </plentry>
             <plentry props="mac cpp electron unity flutter">
                 <pt>highLightWidth</pt>
-                <pd><ph props="cpp framework">(仅适用于 macOS 和 Windows)</ph><ph>描边的宽度 (px)。 The default value is 5, and the value range is (0, 50].</ph><note><codeph><ph keyref="true"/></codeph>This parameter only takes effect when <parmname>highLighted</parmname> is set to .</note></pd>
+                <pd><ph props="cpp framework">(For macOS and Windows only) </ph><ph>The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>excludeWindowCount</pt>
-                <pd>The number of windows to be blocked.<note>在 Windows 平台上，该参数最大值不超过 24，如果超过该值，则屏蔽窗口功能失效。</note>
+                <pd>The number of windows to be excluded.<note>On Windows platform, the maximum value of this parameter cannot exceed 24, otherwise, excluding the window fails.</note>
                 </pd>
             </plentry>
             </parml> </section>
