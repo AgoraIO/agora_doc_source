@@ -21,13 +21,18 @@
   (void)errorCode;
 }</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">onRhythmPlayerStateChanged?(
+    state: RhythmPlayerStateType,
+    errorCode: RhythmPlayerErrorType
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">onRhythmPlayerStateChanged?(
+    state: RhythmPlayerStateType,
+    errorCode: RhythmPlayerErrorType
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
           RhythmPlayerStateType state, RhythmPlayerErrorType errorCode)?
-      onRhythmPlayerStateChanged;
-</codeblock> </p>
+      onRhythmPlayerStateChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>When the state of the virtual metronome changes, the SDK triggers this callback to report the current state of the virtual metronome. This callback indicates the state of the local audio stream, and allows you to troubleshoot issues when audio exceptions occur.</p>
@@ -44,7 +49,7 @@
                     <li><ph keyref="RHYTHM_PLAYER_STATE_OPENING"/>(811): Opening the beat files.</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_DECODING"/>(812): Decoding the beat files.</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_PLAYING"/>(813): The beat files are playing.</li>
-                    <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/>(814): Failed to start virtual metronome. You can troubleshoot the cause of the error through the reported error code <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>, or you can try to start the virtual metronome again.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/>(814): Failed to start virtual metronome. 你可以通过报告的错误码 <parmname>errorCode</parmname> 排查错误原因，也可以重新尝试开启虚拟节拍器。</li>
                     </ul></pd>
             </plentry>
             <plentry>
