@@ -17,10 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)openMediaWithSongCode:(NSInteger)songCode startPos:(NSInteger)startPos NS_SWIFT_NAME(openMedia(songCode:startPos:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int open(int64_t songCode, int64_t startPos = 0) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract openWithSongCode(songCode: number, startPos?: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract openWithSongCode(songCode: number, startPos?: number): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> openWithSongCode({required int songCode, int startPos = 0});</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -40,17 +40,16 @@
                 <pt>songCode</pt>
                 <pd>The code of the music, which is an unique identifier of the music.</pd>
             </plentry>
-                <plentry id="pos">
-                    <pt>startPos</pt>
-                    <pd>The starting position (ms) for playback. Default value is 0.</pd>
-                </plentry>
+            <plentry id="pos">
+                <pt>startPos</pt>
+                <pd>The starting position (ms) for playback. Default value is 0.</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            </ul> </section>
     </refbody>
 </reference>
