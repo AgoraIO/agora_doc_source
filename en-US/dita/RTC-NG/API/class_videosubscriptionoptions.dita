@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videosubscriptionoptions">
-    <title><ph keyref="VideoSubscriptionOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Video subscription options.</ph></shortdesc>
-    <refbody>
-        <section id="prototype">
-            <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class VideoSubscriptionOptions {
+  <title><ph keyref="VideoSubscriptionOptions"/></title>
+  <shortdesc id="short"><ph id="shortdesc">Video subscription options.</ph></shortdesc>
+  <refbody>
+    <section id="prototype">
+      <p outputclass="codeblock">
+      <codeblock props="android" outputclass="language-java">public class VideoSubscriptionOptions {
   public enum REMOTE_VIDEO_STREAM_TYPE {
     REMOTE_VIDEO_STREAM_HIGH,
     REMOTE_VIDEO_STREAM_LOW,
@@ -41,39 +41,38 @@
     this.streamType = streamType;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoSubscriptionOptions: NSObject
+      <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoSubscriptionOptions: NSObject
 
 @property (nonatomic, assign) AgoraVideoStreamType type;
 @property (nonatomic, assign) bool encodedFrameOnly;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoSubscriptionOptions {
-        Optional&lt;VIDEO_STREAM_TYPE&gt; type;
-        Optional&lt;bool&gt; encodedFrameOnly;
+      <codeblock props="cpp" outputclass="language-cpp">struct VideoSubscriptionOptions {
+        Optional&lt;VIDEO_STREAM_TYPE> type;
+        Optional&lt;bool> encodedFrameOnly;
 
     VideoSubscriptionOptions() {}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
+      <codeblock props="cs" outputclass="language-csharp"/>
+      <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
   type?: VideoStreamType;
   
   encodedFrameOnly?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class VideoSubscriptionOptions:OptionalJsonParse
+      <codeblock props="unity" outputclass="language-csharp">public class VideoSubscriptionOptions:OptionalJsonParse
     {
-        public Optional&lt;VIDEO_STREAM_TYPE&gt; type = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
+        public Optional&lt;VIDEO_STREAM_TYPE> type = new Optional&lt;VIDEO_STREAM_TYPE>();
 
-        public Optional&lt;bool&gt; encodedFrameOnly = new Optional&lt;bool&gt;();
+        public Optional&lt;bool> encodedFrameOnly = new Optional&lt;bool>();
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class VideoSubscriptionOptions {
+      <codeblock props="rn" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
   type?: VideoStreamType;
  
   encodedFrameOnly?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class VideoSubscriptionOptions {
-  
+      <codeblock props="flutter" outputclass="language-dart">class VideoSubscriptionOptions {
   const VideoSubscriptionOptions({this.type, this.encodedFrameOnly});
 
   @JsonKey(name: 'type')
@@ -82,24 +81,29 @@
   @JsonKey(name: 'encodedFrameOnly')
   final bool? encodedFrameOnly;
 
-  factory VideoSubscriptionOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory VideoSubscriptionOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoSubscriptionOptionsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoSubscriptionOptionsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$VideoSubscriptionOptionsToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd>The video stream type that you want to subscribe to. The default value is <ph keyref="VIDEO_STREAM_HIGH" />, meaning the high-quality video streams. See <xref keyref="VIDEO_STREAM_TYPE" />.</pd>
+                <pd props="ios mac cpp framework">The video stream type that you want to subscribe to. The default value is <ph keyref="VIDEO_STREAM_HIGH"/>, indicating that the high-quality video streams are subscribed. See .<xref keyref="VIDEO_STREAM_TYPE"/></pd>
+                <pd props="android">The default video-stream type:<ul>
+                    <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): (Default) High-quality video stream, that is, high-resolution, high-bit-rate video stream.</li>
+                    <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
+                  </ul>
+                </pd>
             </plentry>
             <plentry>
                 <pt>encodedFrameOnly</pt>
                 <pd>Whether to subscribe to encoded video frames only:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Subscribe to encoded video frames only (structured data).</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Subscribe to raw video frames.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Only the encoded video data (structured data) is subscribed, and the SDK does not decode or render the video data.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Subscribe to raw video data and encoded data.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
