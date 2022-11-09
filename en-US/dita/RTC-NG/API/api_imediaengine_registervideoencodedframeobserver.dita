@@ -27,16 +27,14 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerVideoEncodedFrameObserver(VideoEncodedFrameObserver observer);</codeblock> </section>
         <section id="detailed_desc">
-            <p>如果你只想要观测编码后的视频帧 (如 h.264 格式)，而不需要对视频进行解码和渲染，声网推荐你通过该方法实现一个 <xref keyref="IVideoEncodedFrameObserver"/> 类。</p>
-            <p id="mix">如果你想获取一部分远端用户的原始视频数据 (简称为 A 组)、获取另一部分远端用户的编码后视频数据 (简称为 B 组)，可参考以下步骤： 
-                
-            <ol>
-            <li>在加入频道前调用 <xref keyref="registerVideoFrameObserver"/> 注册原始视频帧观测器。</li>
-            <li>在加入频道前调用 <xref keyref="registerVideoEncodedFrameObserver"/> 注册编码后的视频帧观测器。</li>
-            <li>加入频道后通过 <xref keyref="onUserJoined"/> 获取 B 组用户的 ID，然后调用 <xref keyref="setRemoteVideoSubscriptionOptions"/> 设置该组用户的 <parmname>encodedFrameOnly</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
-            <li>调用 <xref keyref="muteAllRemoteVideoStreams"/>，开始接收所有远端用户的视频流。 Then:<ul>
-                <li>可通过 <xref keyref="IVideoFrameObserver"/> 中的回调获取 A 组用户的原始视频数据，SDK 默认对该数据进行渲染。</li>
-                <li>可通过 <xref keyref="IVideoEncodedFrameObserver"/> 中的回调获取 B 组用户的已编码视频数据。</li>
+            <p>If you only want to observe encoded video frames (such as h.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver"/> class through this method.</p>
+            <p id="mix">If you want to obtain the original video data of some remote users (referred to as group A) and the encoded video data of other remote users (referred to as group B), you can refer to the following steps:<ol>
+            <li>Call <xref keyref="registerVideoFrameObserver"/> to register the raw video frame observer before joining the channel.</li>
+            <li>Call <xref keyref="registerVideoEncodedFrameObserver"/> to register the encoded video frame observer before joining the channel.</li>
+            <li>After joining the channel, get the ID of group B users through <xref keyref="onUserJoined"/>, and then call <xref keyref="setRemoteVideoSubscriptionOptions"/> to set the <parmname>encodedFrameOnly</parmname> of this group of users to <codeph><ph keyref="true"/></codeph>.</li>
+            <li>Call <xref keyref="muteAllRemoteVideoStreams"/> to start receiving video streams of all remote users. Then:<ul>
+                <li>The raw video data of group A users can be obtained through the callback in <xref keyref="IVideoFrameObserver"/>, and the SDK renders the data by default.</li>
+                <li>The encoded video data of group B users can be obtained through the callback in <xref keyref="IVideoEncodedFrameObserver"/>.</li>
                 </ul> </li>
             </ol> </p>
             <note type="attention">
@@ -52,7 +50,7 @@
                 <pt props="cpp electron rn flutter">observer</pt>
                 <pt props="unity">videoEncodedImageReceiver</pt>
                 <pd props="android cpp unity rn electron flutter">The video frame observer object. See <xref keyref="IVideoEncodedFrameObserver"/>.</pd>
-                <pd props="ios mac">The observer object instance. See <xref keyref="IVideoEncodedFrameObserver"/>. Set the value as  to release the instance.<ph keyref="NULL"/></pd>
+                <pd props="ios mac">The observer object instance. See <xref keyref="IVideoEncodedFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the instance.</pd>
             </plentry>
             <plentry props="unity">
                 <pt>mode</pt>
