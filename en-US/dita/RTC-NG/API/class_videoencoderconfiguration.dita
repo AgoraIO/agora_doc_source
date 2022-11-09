@@ -299,6 +299,8 @@
         public ORIENTATION_MODE orientationMode { set; get; }
         public DEGRADATION_PREFERENCE degradationPreference { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
+        public AdvanceOptions advanceOptions { set; get; }
+
         public VideoEncoderConfiguration(ref VideoDimensions d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
         {
             codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
@@ -309,8 +311,8 @@
             orientationMode = m;
             degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
             mirrorMode = mirror;
+            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
-
 
         public VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
         {
@@ -322,8 +324,8 @@
             orientationMode = m;
             degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
             mirrorMode = mirror;
+            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
-
 
         public VideoEncoderConfiguration(ref VideoEncoderConfiguration config)
         {
@@ -335,8 +337,8 @@
             orientationMode = config.orientationMode;
             degradationPreference = config.degradationPreference;
             mirrorMode = config.mirrorMode;
+            advanceOptions = new AdvanceOptions(config.advanceOptions.encodingPreference, config.advanceOptions.compressionPreference);
         }
-
 
         public VideoEncoderConfiguration()
         {
@@ -348,9 +350,9 @@
             orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
             degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
             mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED;
+            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
-    }
-        </codeblock>
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
   codecType?: VideoCodecType;
