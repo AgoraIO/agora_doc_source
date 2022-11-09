@@ -28,7 +28,7 @@
       onPlaybackAudioFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>To ensure that the format of the collected audio data is as expected, you can choose one of the following two methods to set the audio data format:<ul>
+            <p>To ensure that the data format of the audio played is as expected, you can choose one of the following two methods to set the audio data format:<ul>
                 <li>Method 1: After calling <xref keyref="setPlaybackAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</li>
                 <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register audio observer object, set the specific audio observation position in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback, and then set the audio data format in the return value of the <xref keyref="getPlaybackAudioParams"/> callback. The SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onPlaybackAudioFrame"/> callback according to the sampling interval.</li>
                 </ul>
