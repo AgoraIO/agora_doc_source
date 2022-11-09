@@ -28,8 +28,7 @@
       onMixedAudioFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>为保证采集和播放混音后的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置音频的数据格式：                    
-                <ul>
+            <p>To ensure that the data format of the audio mixed is as expected, you can choose one of the following two methods to set the audio data format:<ul>
                 <li>Method 1: After calling <xref keyref="setMixedAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sampling interval.</li>
                 <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register audio observer object, set the specific audio observation position in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback, and then set the audio data format in the return value of the <xref keyref="getMixedAudioParams"/> callback. The SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onMixedAudioFrame"/> callback according to the sampling interval.</li>
                 </ul>
