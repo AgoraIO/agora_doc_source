@@ -27,7 +27,7 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerVideoEncodedFrameObserver(VideoEncodedFrameObserver observer);</codeblock> </section>
         <section id="detailed_desc">
-            <p>如果你想要观测编码后的视频数据 (如 h.264 格式)，声网推荐你通过该方法实现一个 <xref keyref="IVideoEncodedFrameObserver"/> 类。</p>
+            <p>如果你只想要观测编码后的视频帧 (如 h.264 格式)，而不需要对视频进行解码和渲染，声网推荐你通过该方法实现一个 <xref keyref="IVideoEncodedFrameObserver"/> 类。</p>
             <p id="mix">如果你想获取一部分远端用户的原始视频数据 (简称为 A 组)、获取另一部分远端用户的编码后视频数据 (简称为 B 组)，可参考以下步骤： 
                 
             <ol>
@@ -35,7 +35,7 @@
             <li>在加入频道前调用 <xref keyref="registerVideoEncodedFrameObserver"/> 注册编码后的视频帧观测器。</li>
             <li>加入频道后通过 <xref keyref="onUserJoined"/> 获取 B 组用户的 ID，然后调用 <xref keyref="setRemoteVideoSubscriptionOptions"/> 设置该组用户的 <parmname>encodedFrameOnly</parmname> 为 <codeph><ph keyref="true"/></codeph>。</li>
             <li>调用 <xref keyref="muteAllRemoteVideoStreams"/>，开始接收所有远端用户的视频流。 Then:<ul>
-                <li>可通过 <xref keyref="IVideoFrameObserver"/> 中的回调获取 A 组用户的原始视频数据，你也可以将这部分视频数据发回给 SDK 进行渲染。</li>
+                <li>可通过 <xref keyref="IVideoFrameObserver"/> 中的回调获取 A 组用户的原始视频数据，SDK 默认对该数据进行渲染。</li>
                 <li>可通过 <xref keyref="IVideoEncodedFrameObserver"/> 中的回调获取 B 组用户的已编码视频数据。</li>
                 </ul> </li>
             </ol> </p>
