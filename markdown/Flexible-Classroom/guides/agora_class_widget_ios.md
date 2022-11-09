@@ -91,19 +91,19 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWi
 在 `AgoraEduLaunchConfig.widgets` 中加入倒计时的 `AgoraWidgetConfig`，在调用 `launch` 时将实现好的插件注册到 Agora Classroom SDK 中：
 
 ```swift
-let launchConfig = AgoraEduLaunchConfig(userName: userName,
-                                        userUuid: userUuid,
-                                        userRole: userRole,
-                                        roomName: roomName,
-                                        roomUuid: roomUuid,
-                                        roomType: roomStyle,
-                                        appId: appId,
-                                        token: rtmToken,
-                                        startTime: nil,
-                                        duration: NSNumber(value: duration),
-                                        region: region.eduType,
-                                        mediaOptions: mediaOptions,
-                                        userProperties: nil)
+   let launchConfig = AgoraEduLaunchConfig(userName: userName,          
+                                           userUuid: userUuid,          
+                                           userRole: userRole,          
+                                           roomName: roomName,          
+                                           roomUuid: roomUuid,          
+                                           roomType: roomType,          
+                                           appId: appId,                
+                                           token: token,                
+                                           startTime: nil,              
+                                           duration: nil,               
+                                           region: region,              
+                                           mediaOptions: mediaOptions,  
+                                           userProperties: nil)         
  
 let widgetId = "countdownTimer"
  
@@ -111,7 +111,7 @@ launchConfig.widgets[widgetId] = AgoraWidgetConfig(with: AgoraCountdownTimerWidg
                                                    widgetId: widgetId)
  
 AgoraClassroomSDK.launch(launchConfig,
-                         success: launchSuccessBlock,
+                         success: successBlock,
                          failure: failureBlock)
 ```
 
@@ -205,7 +205,8 @@ AgoraClassroomSDK.launch(launchConfig,
    extension AgoraClassToolsViewController: AgoraWidgetSyncFrameObserver {
        // 当 syncFrame 更新时，更新 Widget 的位置与尺寸
        func onWidgetSyncFrameUpdated(_ syncFrame: CGRect,
-                                     widgetId: String) {
+                                     widgetId: String,
+                                     operatorUser: AgoraWidgetUserInfo?) {
            let size = getWidgetSize(widgetId)
            updateWidgetFrame(widgetId,
                              size: size)
@@ -239,107 +240,93 @@ AgoraClassroomSDK.launch(launchConfig,
 
 | 名称   | 类型              | 描述                                               |
 | :----- | :---------------- | :------------------------------------------------- |
-| `info` | `AgoraWidgetInfo` | Widget 所需的基础信息，由 Widget controller 来赋值 |
+| `info` | `AgoraWidgetInfo` | Widget 所需的基础信息 |
 | `view` | View              | Widget 的容器 view                                 |
-
-#### init
-
-```swift
-init(AgoraWidgetInfo info)
-```
-
-初始化 Widget。
-
-**参数**
-
-| 名称   | 类型              | 描述              |
-| :----- | :---------------- | :---------------- |
-| `info` | `AgoraWidgetInfo` | Widget 的基础信息 |
 
 #### updateWidgetRoomProperties
 
-```swift
-void updateWidgetRoomProperties(Map<String: Any> properties,
-                                Map<String: Any> cause,
-                                Callback<Void> success,
-                                Callback<Error> failure)
+```
+- (void)updateWidgetRoomProperties:(NSDictionary<NSString *, id> *)properties
+                             cause:(NSDictionary<NSString *, id> * _Nullable)cause
+                           success:(AgoraWidgetCompletion _Nullable)success
+                           failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-更新 Widget 的房间属性。更新的房间属性会通过 `onWidgetUpdateRoomProperties` 回调传给 Controller。
+更新 Widget 的房间属性。更新的房间属性会通过 `onWidgetUpdateRoomProperties` 回调传给 Widget。
 
 **参数**
 
 | 名称         | 类型               | 描述                                                      |
 | :----------- | :----------------- | :-------------------------------------------------------- |
-| `properties` | `Map<String: Any>` | 需要更新的 properties，支持 keyPath，只需要传入待更新的值 |
-| `cause`      | `Map<String: Any>` | 更新的原因，可以为空                                      |
-| `success`    | `Callback<Void>`   | 请求成功                                                  |
-| `failure`    | `Callback<Error>`  | 请求失败，返回一个 error                                  |
+| `properties` | `NSDictionary<NSString *, id>` | 需要更新的 properties，支持 keyPath，只需要传入待更新的值 |
+| `cause`      | `NSDictionary<NSString *, id>` | 更新的原因，可以为空                                      |
+| `success`    | `AgoraWidgetCompletion`   | 请求成功                                                  |
+| `failure`    | `AgoraWidgetErrorCompletion`  | 请求失败，返回一个 error                                  |
 
 #### deleteWidgetRoomProperties
 
 ```
-void deleteRoomProperties(Array<String> keys,
-                          Map<String: Any> cause,
-                          Callback<Void> success,
-                          Callback<Error> failure)
+- (void)deleteWidgetRoomProperties:(NSArray<NSString *> *)keyPaths
+                             cause:(NSDictionary<NSString *, id> * _Nullable)cause
+                           success:(AgoraWidgetCompletion _Nullable)success
+                           failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-删除 Widget 的房间属性。删除的房间属性会通过 `onWidgetDeleteRoomProperties` 回调传给 Controller。
+删除 Widget 的房间属性。删除的房间属性会通过 `onWidgetDeleteRoomProperties` 回调传给 Widget。
 
 **参数**
 
 | 名称      | 类型               | 描述                                            |
 | :-------- | :----------------- | :---------------------------------------------- |
-| `keys`    | `Array<String>`    | 需要删除的 properties 的 key 数组，支持 keyPath |
-| `cause`   | `Map<String: Any>` | 更新的原因，可以为空                            |
-| `success` | `Callback<Void>`   | 请求成功                                        |
-| `failure` | `Callback<Error>`  | 请求失败，返回一个 error                        |
+| `keyPaths`    | `NSArray<NSString *>`    | 需要删除的 properties 的 key 数组，支持 keyPath |
+| `cause`   | `NSDictionary<NSString *, id>` | 更新的原因，可以为空                            |
+| `success` | `AgoraWidgetCompletion`   | 请求成功                                        |
+| `failure` | `AgoraWidgetErrorCompletion`  | 请求失败，返回一个 error                        |
 
 #### updateWidgetUserProperties
 
-```swift
-void updateUserProperties(Map<String: Any> properties,
-                          Map<String: Any> cause,
-                          Callback<Void> success,
-                          Callback<Error> failure)
+```
+- (void)updateWidgetUserProperties:(NSDictionary<NSString *, id> *)properties
+                             cause:(NSDictionary<NSString *, id> * _Nullable)cause
+                           success:(AgoraWidgetCompletion _Nullable)success
+                           failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-更新 Widget 的用户属性。更新的房间属性会通过 `onWidgetUpdateUserProperties` 回调传给 Controller。
+更新 Widget 的用户属性。更新的房间属性会通过 `onWidgetUpdateUserProperties` 回调传给 Widget。
 
 **参数**
 
 | 名称         | 类型               | 描述                                                      |
 | :----------- | :----------------- | :-------------------------------------------------------- |
-| `properties` | `Map<String: Any>` | 需要更新的 properties，支持 keyPath，只需要传入待更新的值 |
-| `cause`      | `Map<String: Any>` | 更新的原因，可以为空                                      |
-| `success`    | `Callback<Void>`   | 请求成功                                                  |
-| `failure`    | `Callback<Error>`  | 请求失败，返回一个 error                                  |
+| `properties` | `NSDictionary<NSString *, id>` | 需要更新的 properties，支持 keyPath，只需要传入待更新的值 |
+| `cause`      | `NSDictionary<NSString *, id>` | 更新的原因，可以为空                                      |
+| `success`    | `AgoraWidgetCompletion `   | 请求成功                                                  |
+| `failure`    | `AgoraWidgetErrorCompletion `  | 请求失败，返回一个 error                                  |
 
 #### deleteWidgetUserProperties
 
-```swift
-void deleteWidgetUserProperties(Array<String> keys,
-                                Map<String: Any> cause,
-                                Callback<Void> success,
-                                Callback<Error> failure)
+```
+- (void)deleteWidgetUserProperties:(NSArray<NSString *> *)keyPaths
+                             cause:(NSDictionary<NSString *, id> * _Nullable)cause
+                           success:(AgoraWidgetCompletion _Nullable)success
+                           failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-删除 Widget 的用户属性。删除的房间属性会通过 `onWidgetDeleteUserProperties` 回调传给 Controller。
+删除 Widget 的用户属性。删除的房间属性会通过 `onWidgetDeleteUserProperties` 回调传给 Widget。
 
 **参数**
 
 | 名称      | 类型               | 描述                                            |
 | :-------- | :----------------- | :---------------------------------------------- |
-| `keys`    | `Array<String>`    | 需要删除的 properties 的 key 数组，支持 keyPath |
-| `cause`   | `Map<String: Any>` | 更新的原因，可以为空                            |
-| `success` | `Callback<Void>`   | 请求成功                                        |
-| `failure` | `Callback<Error>`  | 请求失败，返回一个 error                        |
+| `keyPaths`    | `NSArray<NSString *>`    | 需要删除的 properties 的 key 数组，支持 keyPath |
+| `cause`   | `NSDictionary<NSString *, id>` | 更新的原因，可以为空                            |
+| `success` | `AgoraWidgetCompletion`   | 请求成功                                        |
+| `failure` | `AgoraWidgetErrorCompletion`  | 请求失败，返回一个 error                        |
 
 #### sendMessage
 
-```swift
-void sendMessage(String message)
+```
+- (void)sendMessage:(NSString *)message
 ```
 
 发送消息给观察者。
@@ -348,23 +335,23 @@ void sendMessage(String message)
 
 | 名称      | 类型     | 描述     |
 | :-------- | :------- | :------- |
-| `message` | `String` | 消息内容 |
+| `message` | `NSString ` | 消息内容 |
 
 #### onLoad
 
-```swift
-void onLoad()
+```
+- (void)onLoad
 ```
 
-Widget 在 Controller 内部加载完成。
+Widget 加载完成。
 
 #### onMessageReceived
 
-```swift
-void onMessageReceived(String message)
+```
+- (void)onMessageReceived:(NSString *)message
 ```
 
-Controller 通知 Widget 收到消息。
+Widget 收到消息。
 
 调用 WidgetContext 协议中的 `sendMessageToWidget` 后会触发此回调。
 
@@ -372,215 +359,112 @@ Controller 通知 Widget 收到消息。
 
 | 名称      | 类型     | 描述     |
 | :-------- | :------- | :------- |
-| `message` | `String` | 消息内容 |
+| `message` | `NSString` | 消息内容 |
 
 #### onLocalUserInfoUpdated
 
-```swift
-void onLocalUserInfoUpdated(AgoraExtAppUserInfo localUserInfo)
+```
+- (void)onLocalUserInfoUpdated:(AgoraWidgetUserInfo *)localUserInfo
 ```
 
-Controller 通知 Widget 本地用户信息更新。
+Widget 收到本地用户信息更新。
 
 **参数**
 
 | 名称            | 类型                  | 描述           |
 | :-------------- | :-------------------- | :------------- |
-| `localUserInfo` | `AgoraExtAppUserInfo` | 本地的用户信息 |
+| `localUserInfo` | `AgoraWidgetUserInfo` | 本地的用户信息 |
 
 #### onRoomInfoUpdated
 
-```swift
-void onRoomInfoUpdated(AgoraExtAppRoomInfo roomInfo)
+```
+- (void)onRoomInfoUpdated:(AgoraWidgetRoomInfo *)roomInfo
 ```
 
-Controller 通知 Widget 房间信息更新。
+Widget 收到房间信息更新。
 
 **参数**
 
 | 名称       | 类型                  | 描述     |
 | :--------- | :-------------------- | :------- |
-| `roomInfo` | `AgoraExtAppRoomInfo` | 房间信息 |
+| `roomInfo` | `AgoraWidgetRoomInfo` | 房间信息 |
 
 #### onWidgetRoomPropertiesUpdated
 
-```swift
-void onWidgetRoomPropertiesUpdated(Map<String: Any> properties,
-                                   Map<String: Any> cause,
-                                   Array<String> keys)
+```
+- (void)onWidgetRoomPropertiesUpdated:(NSDictionary<NSString *,id> *)properties
+                                cause:(NSDictionary<NSString *,id> * _Nullable)cause
+                             keyPaths:(NSArray<NSString *> *)keyPaths
+                         operatorUser:(AgoraWidgetUserInfo *_Nullable)operatorUser
 ```
 
-Controller 通知 Widget 房间属性更新。
+Widget 收到房间属性更新。
 
 **参数**
 
 | 名称         | 类型               | 描述                      |
 | :----------- | :----------------- | :------------------------ |
-| `keys`       | `Array<String>`    | 发生改变的属性的 key 数组 |
-| `properties` | `Map<String: Any>` | 最终完整的属性            |
-| `cause`      | `Map<String: Any>` | 原因，可以为空            |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
+| `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
+| `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |
 
 #### onWidgetRoomPropertiesDeleted
 
-```swift
-void onWidgetRoomPropertiesDeleted(Map<String: Any> properties,
-                                   Map<String: Any> cause,
-                                   Array<String> keys)
+```
+- (void)onWidgetRoomPropertiesDeleted:(NSDictionary<NSString *,id> * _Nullable)properties
+                                cause:(NSDictionary<NSString *,id> * _Nullable)cause
+                             keyPaths:(NSArray<NSString *> *)keyPaths
+                         operatorUser:(AgoraWidgetUserInfo *_Nullable)operatorUser
 ```
 
-Controller 通知 Widget 房间属性删除。
+Widget 收到房间属性删除。
 
 **参数**
 
 | 名称         | 类型               | 描述                  |
 | :----------- | :----------------- | :-------------------- |
-| `keys`       | `Array<String>`    | 被删除属性的 key 数组 |
-| `properties` | `Map<String: Any>` | 最终完整的属性        |
-| `cause`      | `Map<String: Any>` | 原因，可以为空        |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
+| `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
+| `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |
+
 
 #### onWidgetUserPropertiesUpdated
 
-```swift
-void onWidgetUserPropertiesUpdated(Map<String: Any> properties,
-                                   Map<String: Any> cause,
-                                   Array<String> keys)
+```
+- (void)onWidgetUserPropertiesUpdated:(NSDictionary<NSString *,id> *)properties
+                                cause:(NSDictionary<NSString *,id> * _Nullable)cause
+                             keyPaths:(NSArray<NSString *> *)keyPaths
+                         operatorUser:(AgoraWidgetUserInfo *_Nullable)operatorUser
 ```
 
-Controller 通知 Widget 用户属性更新。
+Widget 收到用户属性更新。
 
 **参数**
 
-| 名称         | 类型               | 描述                      |
-| :----------- | :----------------- | :------------------------ |
-| `keys`       | `Array<String>`    | 发生改变的属性的 key 数组 |
-| `properties` | `Map<String: Any>` | 最终完整的属性            |
-| `cause`      | `Map<String: Any>` | 原因，可以为空            |
+| 名称         | 类型               | 描述                  |
+| :----------- | :----------------- | :-------------------- |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
+| `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
+| `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |
 
 #### onWidgetUserPropertiesDeleted
 
-```swift
+```
 void onWidgetUserPropertiesDeleted(Map<String: Any> properties,
                                    Map<String: Any> cause,
                                    Array<String> keys)
 ```
 
-Controller 通知 Widget 用户属性删除。
+Widget 收到用户属性删除。
 
 **参数**
 
 | 名称         | 类型               | 描述                  |
 | :----------- | :----------------- | :-------------------- |
-| `keys`       | `Array<String>`    | 被删除属性的 key 数组 |
-| `properties` | `Map<String: Any>` | 最终完整的属性        |
-| `cause`      | `Map<String: Any>` | 原因，可以为空        |
-
-#### release
-
-```swift
-void release()
-```
-
-Widget 即将被销毁，可在此处销毁一些资源。
-
-#### onWidgetUpdateRoomProperties
-
-```swift
-void onWidgetUpdateRoomProperties(AgoraBaseWidget widget,
-                                  Map<String: Any> properties,
-                                  Map<String: Any> cause,
-                                  Callback<Void> success,
-                                  Callback<Error> failure)
-```
-
-Widget 房间属性更新回调。Controller 监听该方法，由 Controller 来实现更新。
-
-**参数**
-
-| 名称         | 类型               | 描述                     |
-| :----------- | :----------------- | :----------------------- |
-| `widget`     | `AgoraBaseWidget`  | Widget 对象              |
-| `properties` | `Map<String: Any>` | 更新的 properties        |
-| `cause`      | `Map<String: Any>` | 更新的原因               |
-| `success`    | `Callback<Void>`   | 请求成功                 |
-| `failure`    | `Callback<Error>`  | 请求失败，返回一个 error |
-
-#### onWidgetDeleteRoomProperties
-
-```swift
-void onWidgetDeleteRoomProperties(AgoraBaseWidget widget,
-                                  Array<String> keys,
-                                  Map<String: Any> cause,
-                                  Callback<Void> success,
-                                  Callback<Error> failure)
-```
-
-Widget 房间属性删除回调。Controller 监听该方法，由 Controller 来实现删除。
-
-**参数**
-
-| 名称      | 类型               | 描述                     |
-| :-------- | :----------------- | :----------------------- |
-| `widget`  | `AgoraBaseWidget`  | Widget 对象              |
-| `keys`    | `Array<String>`    | 删除的 properties        |
-| `cause`   | `Map<String: Any>` | 删除的原因               |
-| `success` | `Callback<Void>`   | 请求成功                 |
-| `failure` | `Callback<Error>`  | 请求失败，返回一个 error |
-
-#### onWidgetUpdateUserProperties
-
-```swift
-void onWidgetUpdateUserProperties(AgoraBaseWidget widget,
-                                  Map<String: Any> properties,
-                                  Map<String: Any> cause,
-                                  Callback<Void> success,
-                                  Callback<Error> failure)
-```
-
-Widget 用户属性更新回调。Controller 监听该方法，由 Controller 来实现更新。
-
-**参数**
-
-| 名称         | 类型               | 描述                     |
-| :----------- | :----------------- | :----------------------- |
-| `widget`     | `AgoraBaseWidget`  | Widget 对象              |
-| `properties` | `Map<String: Any>` | 更新的 properties        |
-| `success`    | `Callback<Void>`   | 请求成功                 |
-| `failure`    | `Callback<Error>`  | 请求失败，返回一个 error |
-
-#### onWidgetDeleteUserProperties
-
-```swift
-void onWidgetDeleteUserProperties(AgoraBaseWidget widget,
-                                  Array<String> keys,
-                                  Map<String: Any> cause,
-                                  Callback<Void> success,
-                                  Callback<Error> failure)
-```
-
-Widget 用户属性删除回调。Controller 监听该方法，由 Controller 来实现删除。
-
-**参数**
-
-| 名称      | 类型               | 描述                     |
-| :-------- | :----------------- | :----------------------- |
-| `widget`  | `AgoraBaseWidget`  | Widget 对象              |
-| `keys`    | `Array<String>`    | 删除的 properties        |
-| `cause`   | `Map<String: Any>` | 删除的原因               |
-| `success` | `Callback<Void>`   | 请求成功                 |
-| `failure` | `Callback<Error>`  | 请求失败，返回一个 error |
-
-#### onWidgetSendMessage
-
-```
-void onWidgetSendMessage(AgoraBaseWidget widget,
-                         String message)
-```
-
-Widget 收到消息回调。
-
-**参数**
-
-| 名称      | 类型              | 描述        |
-| :-------- | :---------------- | :---------- |
-| `widget`  | `AgoraBaseWidget` | Widget 对象 |
-| `message` | String            | 消息内容    |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
+| `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
+| `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |

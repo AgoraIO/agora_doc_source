@@ -4,16 +4,16 @@
 
 灵动课堂包含以下库：
 
--   `AgoraClassroomSDK`: 胶水层，串联起 `AgoraEduUI` 和 `AgoraEduCore`。`AgoraClassroomSDK` 在 GitHub 与 CocoaPods 上开源发布。
+-   `AgoraClassroomSDK`: 灵动课堂-教育场景的胶水层，串联起 `AgoraEduUI` 和 `AgoraEduCore`。`AgoraClassroomSDK` 在 GitHub 与 CocoaPods 上开源发布。
 -   `AgoraEduUI`: 提供灵动课堂-教育场景交互层的代码，并包含交互层所使用的文案信息和资源文件。`AgoraEduCore` 为该层提供灵动课堂中的能力与数据。`AgoraEduUI` 在 GitHub 与 CocoaPods 上开源发布。
--   `AgoraProctorSDK`: 胶水层，串联起 `AgoraProctorUI ` 和 `AgoraEduCore`。`AgoraProctorSDK ` 在 GitHub 与 CocoaPods 上开源发布。
+-   `AgoraProctorSDK`: 灵动课堂-监考场景的胶水层，串联起 `AgoraProctorUI ` 和 `AgoraEduCore`。`AgoraProctorSDK ` 在 GitHub 与 CocoaPods 上开源发布。
 -   `AgoraProctorUI`: 提供灵动课堂-监考场景交互层的代码，并包含交互层所使用的文案信息和资源文件。`AgoraEduCore` 为该层提供灵动课堂中的能力与数据。`AgoraProctorUI ` 在 GitHub 与 CocoaPods 上开源发布。
 -   `AgoraEduCore`: 提供灵动课堂中的能力与数据。`AgoraEduCore` 闭源，以二进制包在 CocoaPods 上发布。
 -   `Widget`: 包含界面与功能的独立插件，由 `AgoraClassroomSDK` 或 `AgoraEduCore` 注入灵动课堂内。`Widget` 与 `Widget` 之间，以及与 UI 层中的其他组件都能进行通讯。
 
 下图展示了灵动课堂的架构。
 
-![](../images/classroom_ios_arch.png)
+![](../images/ios_libs_structure.png) // TODO
 
 ## 通过 CocoaPods 集成灵动课堂-教育场景
 
@@ -228,7 +228,7 @@
            failure:failureBlock];
    ```
 
-   示例代码中需要传入 `token`。你可以参考[TODO 获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
+   示例代码中需要传入 `token`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
 
 5. （可选）灵动课堂-监考场景界面的显示模式（明亮/暗黑）和语言（中文/英文）。
 
