@@ -22,7 +22,10 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEarMonitoringAudioFrame(AudioFrame audioFrame)
+        {
+            return true;
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioFrame audioFrame)? onEarMonitoringAudioFrame;</codeblock> </p>
         </section>
@@ -30,8 +33,8 @@
             <p>为保证耳返的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置耳返音频数据格式：                           
             
             <ul>
-            <li>方法一：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
-            <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getEarMonitoringAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+            <li>Method 1: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
+            <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register audio observer object, set the specific audio observation position in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback, and then set the audio data format in the return value of the <xref keyref="getEarMonitoringAudioParams"/> callback. The SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
             </ul> </p>
             <note type="note" id="attention">方法一的优先级高于方法二，如果已使用方法一设置了音频数据格式，则使用方法二的设置不生效。</note></section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
