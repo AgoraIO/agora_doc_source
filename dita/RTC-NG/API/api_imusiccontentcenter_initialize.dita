@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_initialize">
     <title><ph keyref="initialize_IMusicContentCenter"/></title>
-    <shortdesc id="short"><ph id="shortdesc">初始化 <xref keyref="IAgoraMusicContentCenter"/>。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">初始化 <xref keyref="IMusicContentCenter"/>。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const MusicContentCenterConfiguration &amp; configuration) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract initialize(configuration: MusicContentCenterConfiguration): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize(MusicContentCenterConfiguration configuration);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract initialize(configuration: MusicContentCenterConfiguration): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> initialize(MusicContentCenterConfiguration configuration);</codeblock> </p>
         </section>
@@ -29,7 +29,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>在调用 <xref keyref="IAgoraMusicContentCenter"/> 类下的其他方法前，你需要先调用该方法初始化 <xref keyref="IAgoraMusicContentCenter"/>。</p>
+            <p>在调用 <xref keyref="IMusicContentCenter"/> 类下的其他方法前，你需要先调用该方法初始化 <xref keyref="IMusicContentCenter"/>。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -37,7 +37,7 @@
             <plentry>
                 <pt props="android cpp">configuration</pt>
                 <pt props="apple">config</pt>
-                <pd><apiname keyref="IAgoraMusicContentCenter"/> 的设置，详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
+                <pd><apiname keyref="IMusicContentCenter"/> 的设置，详见 <xref keyref="MusicContentCenterConfiguration"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -47,7 +47,7 @@
             <li>&lt; 0: 方法调用失败。</li>
             </ul>
             <ul props="apple">
-            <li>方法调用成功，返回一个 <apiname keyref="IAgoraMusicContentCenter"/> 实例。</li>
+            <li>方法调用成功，返回一个 <apiname keyref="IMusicContentCenter"/> 实例。</li>
             <li>方法调用失败，返回错误码。</li>
             </ul> </section>
     </refbody>
