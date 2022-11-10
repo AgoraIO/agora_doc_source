@@ -40,13 +40,11 @@
     height: number,
     errCode: number
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, String filePath,
-      int width, int height, int errCode)? onSnapshotTaken;</codeblock>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart">  final void Function(RtcConnection connection, int uid, String filePath,
+      int width, int height, int errCode)? onSnapshotTaken;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>After a successful <xref keyref="takeSnapshot"
-            /> method call, the SDK triggers this callback to report whether the snapshot is successfully taken as well as the details for the snapshot taken.</p>
+            <p>After a successful <xref keyref="takeSnapshot"/> method call, the SDK triggers this callback to report whether the snapshot is successfully taken as well as the details for the snapshot taken.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -60,8 +58,7 @@
                 <pt>uid</pt>
                 <pd>The user ID. One <parmname>uid</parmname> of 0 indicates the local user.</pd>
             </plentry>
-            <plentry conkeyref="joinChannelEx/connection"
-                props="unity flutter electron rn">
+            <plentry conkeyref="joinChannelEx/connection" props="unity flutter electron rn">
                 <pt/>
                 <pd/>
             </plentry>
@@ -83,8 +80,7 @@
                     <li>0: Success.</li>
                     <li>&lt; 0: Failure:<ul>
                         <li>-1: The SDK fails to write data to a file or encode a JPEG image.</li>
-                        <li>-2: The SDK does not find the video stream of the specified user within one second after the <apiname keyref="takeSnapshot"
-                            /> method call succeeds. The possible reasons are: local capture stops, remote end stops publishing, or video data processing is blocked.</li>
+                        <li>-2: The SDK does not find the video stream of the specified user within one second after the <apiname keyref="takeSnapshot"/> method call succeeds. The possible reasons are: local capture stops, remote end stops publishing, or video data processing is blocked.</li>
                         <li>-3: Calling the <apiname keyref="takeSnapshot"/> method too frequently.</li>
                         </ul></li>
                     </ul></pd>
