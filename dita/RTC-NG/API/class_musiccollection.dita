@@ -25,7 +25,13 @@ protected:
     virtual ~MusicCollection() = default;
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export abstract class MusicCollection {
+  abstract getCount(): number;
+  abstract getTotal(): number;
+  abstract getPage(): number;
+  abstract getPageSize(): number;
+  abstract getMusic(index: number): Music;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class MusicCollection
     {
         public int count;
@@ -34,7 +40,13 @@ protected:
         public int pageSize;
         public Music[] music;
     };</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">export abstract class MusicCollection {
+  abstract getCount(): number;
+  abstract getTotal(): number;
+  abstract getPage(): number;
+  abstract getPageSize(): number;
+  abstract getMusic(index: number): Music;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">abstract class MusicCollection {
   int getCount();
 
