@@ -28,16 +28,16 @@
 
   COMPRESSION_PREFERENCE compressionPreference;
 
-  AdvanceOptions() : encodingPreference(PREFER_AUTO), 
+  AdvanceOptions() : encodingPreference(PREFER_AUTO),
                      compressionPreference(PREFER_LOW_LATENCY) {}
 
-  AdvanceOptions(ENCODING_PREFERENCE encoding_preference, 
-                 COMPRESSION_PREFERENCE compression_preference) : 
+  AdvanceOptions(ENCODING_PREFERENCE encoding_preference,
+                 COMPRESSION_PREFERENCE compression_preference) :
                  encodingPreference(encoding_preference),
                  compressionPreference(compression_preference) {}
 
   bool operator==(const AdvanceOptions&amp; rhs) const {
-    return encodingPreference == rhs.encodingPreference &amp;&amp; 
+    return encodingPreference == rhs.encodingPreference &amp;&amp;
            compressionPreference == rhs.compressionPreference;
   }
 }；</codeblock>
@@ -45,7 +45,23 @@
             <codeblock props="electron" outputclass="language-typescript">export class AdvanceOptions {
   encodingPreference?: EncodingPreference;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">    public class AdvanceOptions
+              {
+                  public ENCODING_PREFERENCE encodingPreference { set; get; }
+                  public COMPRESSION_PREFERENCE compressionPreference { set; get; }
+
+                  public AdvanceOptions()
+                  {
+                      encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
+                      compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+                  }
+
+                  public AdvanceOptions(ENCODING_PREFERENCE encoding_preference, COMPRESSION_PREFERENCE compression_preference)
+                  {
+                      encodingPreference = encoding_preference;
+                      compressionPreference = compression_preference;
+                  }
+              }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class AdvanceOptions {
   encodingPreference?: EncodingPreference;
 }</codeblock>

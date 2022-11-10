@@ -126,8 +126,6 @@
   
   captureBrightnessLevel?: CaptureBrightnessLevelType;
 
-  dualStreamEnabled?: boolean;
-
   hwEncoderAccelerating?: number;
 
 }</codeblock>
@@ -204,8 +202,6 @@
   
   captureBrightnessLevel?: CaptureBrightnessLevelType;
 
-  dualStreamEnabled?: boolean;
-
   hwEncoderAccelerating?: number;
   
 }</codeblock>
@@ -232,7 +228,6 @@
       this.codecType,
       this.txPacketLossRate,
       this.captureBrightnessLevel,
-      this.dualStreamEnabled,
       this.hwEncoderAccelerating});
 
   @JsonKey(name: 'uid')
@@ -297,9 +292,6 @@
 
   @JsonKey(name: 'captureBrightnessLevel')
   final CaptureBrightnessLevelType? captureBrightnessLevel;
-
-  @JsonKey(name: 'dualStreamEnabled')
-  final bool? dualStreamEnabled;
 
   @JsonKey(name: 'hwEncoderAccelerating')
   final int? hwEncoderAccelerating;
@@ -444,21 +436,16 @@
                 
                     
                     <ul>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"
-                        /> (-1): SDK 未检测出本地采集的画质亮度级别。请等待几秒，通过下一次回调的 <parmname>captureBrightnessLevel</parmname> 获取亮度级别。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"
-                        /> (0): 本地采集的画质亮度正常。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT"
-                        /> (1): 本地采集的画质亮度偏亮。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK"
-                        /> (2): 本地采集的画质亮度偏暗。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"/> (-1): SDK 未检测出本地采集的画质亮度级别。请等待几秒，通过下一次回调的 <parmname>captureBrightnessLevel</parmname> 获取亮度级别。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"/> (0): 本地采集的画质亮度正常。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT"/> (1): 本地采集的画质亮度偏亮。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK"/> (2): 本地采集的画质亮度偏暗。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>hwEncoderAccelerating</pt>
-                <pd>本地视频编码加速类型。<ph props="apple">详见 <xref
-                    keyref="hwEncoderAccelerating"/>。</ph>
-                    <ul props="cpp android">
+                <pd>本地视频编码加速类型。<ph props="apple">详见 <xref keyref="hwEncoderAccelerating"/>。</ph>
+                    <ul props="cpp android framework">
                     <li>0：采用软件编码，未加速。</li>
                     <li>1：采用硬件编码进行加速。</li>
                     </ul></pd>
