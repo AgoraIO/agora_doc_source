@@ -40,13 +40,11 @@
     height: number,
     errCode: number
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int uid, String filePath,
-      int width, int height, int errCode)? onSnapshotTaken;</codeblock>
-            </p>
+            <codeblock props="flutter" outputclass="language-dart">  final void Function(RtcConnection connection, int uid, String filePath,
+      int width, int height, int errCode)? onSnapshotTaken;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>成功调用 <xref keyref="takeSnapshot"
-            /> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
+            <p>成功调用 <xref keyref="takeSnapshot"/> 后，SDK 触发该回调报告截图是否成功和获取截图的详情。</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -60,8 +58,7 @@
                 <pt>uid</pt>
                 <pd>用户 ID。如果 <parmname>uid</parmname> 为 0，表示本地用户。</pd>
             </plentry>
-            <plentry conkeyref="joinChannelEx/connection"
-                props="unity flutter electron rn">
+            <plentry conkeyref="joinChannelEx/connection" props="unity flutter electron rn">
                 <pt/>
                 <pd/>
             </plentry>
@@ -80,15 +77,12 @@
             <plentry>
                 <pt>errCode</pt>
                 <pd>截图成功的提示或失败的原因。
-                    
                     <ul>
                     <li>0：截图成功。</li>
                     <li>&lt; 0: 截图失败。
-                        
                         <ul>
                         <li>-1：写入文件失败或 JPEG 编码失败。</li>
-                        <li>-2：<apiname keyref="takeSnapshot"
-                            /> 方法调用后 1 秒内没有收到指定用户的视频帧。可能的原因有：本地采集停止、远端停止发布或者视频数据处理堵塞。</li>
+                        <li>-2：<apiname keyref="takeSnapshot"/> 方法调用后 1 秒内没有收到指定用户的视频帧。可能的原因有：本地采集停止、远端停止发布或者视频数据处理堵塞。</li>
                         <li>-3：<apiname keyref="takeSnapshot"/> 方法调用过于频繁。</li>
                         </ul></li>
                     </ul></pd>
