@@ -30,13 +30,11 @@
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioFrame audioFrame)? onEarMonitoringAudioFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <p>为保证耳返的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置耳返音频数据格式：                           
-            
-            <ul>
+            <p>To ensure that the data format of the in-ear monitoring audio frame is as expected, you can choose one of the following two methods to set the audio data format:<ul>
             <li>Method 1: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
             <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register audio observer object, set the specific audio observation position in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback, and then set the audio data format in the return value of the <xref keyref="getEarMonitoringAudioParams"/> callback. The SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
             </ul> </p>
-            <note type="note" id="attention">方法一的优先级高于方法二，如果已使用方法一设置了音频数据格式，则使用方法二的设置不生效。</note></section>
+            <note type="note" id="attention">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</note></section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>
