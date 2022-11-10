@@ -14,20 +14,19 @@
 
 | 文件夹         | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
-| `/Scense`       | 在灵动课堂中提供场景的 `UIScene`，如一对一课堂、小班课等。 |
+| `/Scenes`       | 在灵动课堂中提供场景的 `UIScene`，如一对一课堂、小班课等。 |
 | `/Components`  | 灵动课堂使用的 UI 组件 	`UIComponent`，如花名册、状态栏等。 |
-| `/Configs`      | 灵动课堂的 UI 配置。能够根据 `AgoraUIMode` 自动适配背景颜色、字体颜色、边框宽度等。开发者可以在此文件中定义自己的 `AgoraUIMode`。 |
+| `/Configs`      | 灵动课堂的 UI 配置，用于设置颜色，字体，图片等 |
 | `/Views` | 灵动课堂使用的 UI 元素，如视频渲染窗口、设置界面等。         |
-| `/Utils`       | 灵动课堂的扩展功能，如获取图片、数据类型转换等。             |
 | `/Models` | 用于在 `AgoraEduUI` 中的数据模型。 |
 
 ### 类型说明
 
 -   `UIScene`
 
-    -   一个 `UIScene ` 对应一种班型场景，类型为 `UIViewController`。
+    -   一个 `UIScene` 对应一种班型场景，类型为 `UIViewController`。
     -   `UIScene` 管理多个 `UIComponent`，负责 `UIComponent` 之间的通讯。
-    -   每个 `UIScene` 都持有一个 `contextPool`，用于使用 `AgoraEduCore` 层的能力。
+    -   `UIScene` 持有一个 `contextPool` 对象，用于使用 `AgoraEduCore` 层的能力。
 
 -   `UIComponent`
     -   一个 `UIComponent` 对应一个 UI 组件，类型为 `UIViewController`。
@@ -276,6 +275,6 @@ case .camera:
 
 新增 UI 组件的基本步骤如下：
 
-1. 在 `CloudClass-iOS/SDKs/AgoraEduUI/Classes/Components` 文件夹中新增一个 `UIComponent`。
-2. 在 `UIScene` 中创建该 `UIComponent` 并添加视图。
+1. 在 `CloudClass-iOS/SDKs/AgoraEduUI/Classes/Components` 文件夹中新增一个 `UIComponent` 类。
+2. 在 `UIScene` 中创建该 `UIComponent` 对象并添加视图。
 

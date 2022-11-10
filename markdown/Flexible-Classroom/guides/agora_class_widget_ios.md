@@ -252,7 +252,7 @@ AgoraClassroomSDK.launch(launchConfig,
                            failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-更新 Widget 的房间属性。更新的房间属性会通过 `onWidgetUpdateRoomProperties` 回调传给 Widget。
+更新 Widget 的房间属性。更新的房间属性会通过 `onWidgetRoomPropertiesUpdated` 回调传给 Widget。
 
 **参数**
 
@@ -272,7 +272,7 @@ AgoraClassroomSDK.launch(launchConfig,
                            failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-删除 Widget 的房间属性。删除的房间属性会通过 `onWidgetDeleteRoomProperties` 回调传给 Widget。
+删除 Widget 的房间属性。删除的房间属性会通过 `onWidgetRoomPropertiesDeleted` 回调传给 Widget。
 
 **参数**
 
@@ -312,7 +312,7 @@ AgoraClassroomSDK.launch(launchConfig,
                            failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-删除 Widget 的用户属性。删除的房间属性会通过 `onWidgetDeleteUserProperties` 回调传给 Widget。
+删除 Widget 的用户属性。删除的房间属性会通过 `onWidgetUserPropertiesDeleted` 回调传给 Widget。
 
 **参数**
 
