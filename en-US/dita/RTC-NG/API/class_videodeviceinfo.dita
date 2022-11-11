@@ -6,68 +6,30 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class ChannelMediaInfo {
-  public String channelName = null;
-  public String token = null;
-  public int uid = 0;
-  }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraChannelMediaRelayInfo: NSObject
-
-@property (copy, nonatomic) NSString * _Nullable token;
-@property (copy, nonatomic) NSString * _Nullable channelName;
-@property (assign, nonatomic) NSUInteger uid;
-- (instancetype _Nonnull)initWithToken:(NSString *_Nullable)token;
-@end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaInfo {
-	const char* channelName;
-	const char* token;
-	uid_t uid;
-    };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class ChannelMediaInfo {
-  
-  channelName?: string;
-  
-  token?: string;
-  
-  uid?: number;
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="cpp" outputclass="language-cpp" />
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">export class VideoDeviceInfo {
+  deviceId?: string;
+  deviceName?: string;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaInfo
-    {
-        public ChannelMediaInfo()
-        {
-        }
-
-        public ChannelMediaInfo(string channelName, string token, uint uid)
-        {
-            this.channelName = channelName;
-            this.token = token;
-            this.uid = uid;
-
-        public string channelName { set; get; }
-        public string token { set; get; }
-        public uint uid { set; get; }
-    }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaInfo {
-  
-  channelName?: string;
-  
-  token?: string;
-  
-  uid?: number;
+            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="rn" outputclass="language-typescript">export class VideoDeviceInfo {
+  deviceId?: string;
+  deviceName?: string;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaInfo {
-  const ChannelMediaInfo({this.channelName, this.token, this.uid});
+            <codeblock props="flutter" outputclass="language-dart">class VideoDeviceInfo {
+  const VideoDeviceInfo({this.deviceId, this.deviceName});
 
-  @JsonKey(name: 'channelName')
-  final String? channelName;
-  @JsonKey(name: 'token')
-  final String? token;
-  @JsonKey(name: 'uid')
-  final int? uid;
-  factory ChannelMediaInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$ChannelMediaInfoFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaInfoToJson(this);
-}</codeblock>            
+  @JsonKey(name: 'deviceId')
+  final String? deviceId;
+  @JsonKey(name: 'deviceName')
+  final String? deviceName;
+  factory VideoDeviceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$VideoDeviceInfoFromJson(json);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoDeviceInfoToJson(this);
+}</codeblock>
             <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="parameters">
