@@ -6,58 +6,238 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public class UserInfo {
-                    public int uid;
-                    public String userAccount;
+            <codeblock props="android" outputclass="language-java">public class Music {
+  public long songCode;
+  public String name;
+  public String singer;
+  public String poster;
+  public String releaseTime;
+  public int type;
+  public int pitchType;
+  public int durationS;
+  public int[] lyricTypes;
+  public MvProperty[] mvProperties;
+  public ClimaxSegment[] climaxSegments;
 
-                    @CalledByNative
-                    public UserInfo(int uid, String userAccount) {
-                    this.uid = uid;
-                    this.userAccount = userAccount;
-                    }
-                    }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">
-            public struct UserInfo
+  public Music() {}
+
+  @CalledByNative
+  public Music(long songCode, String name, String singer, String poster, String releaseTime,
+      int type, int pitchType, int durationS, int[] lyricTypes, MvProperty[] mvProperties,
+      ClimaxSegment[] climaxSegments) {
+    this.songCode = songCode;
+    this.name = name;
+    this.singer = singer;
+    this.poster = poster;
+    this.releaseTime = releaseTime;
+    this.type = type;
+    this.pitchType = pitchType;
+    this.durationS = durationS;
+    this.lyricTypes = lyricTypes;
+    this.mvProperties = mvProperties;
+    this.climaxSegments = climaxSegments;
+  }
+
+  @CalledByNative
+  public long getSongCode() {
+    return songCode;
+  }
+
+  @CalledByNative
+  public String getName() {
+    return name;
+  }
+
+  @CalledByNative
+  public String getSinger() {
+    return singer;
+  }
+
+  @CalledByNative
+  public String getPoster() {
+    return poster;
+  }
+
+  @CalledByNative
+  public String getReleaseTime() {
+    return releaseTime;
+  }
+
+  @CalledByNative
+  public int getType() {
+    return type;
+  }
+
+  @CalledByNative
+  public int getPitchType() {
+    return pitchType;
+  }
+
+  @CalledByNative
+  public int getDurationS() {
+    return durationS;
+  }
+
+  @CalledByNative
+  public int[] getLyricTypes() {
+    return lyricTypes;
+  }
+
+  @CalledByNative
+  public MvProperty[] getMvProperties() {
+    return mvProperties;
+  }
+
+  @CalledByNative
+  public ClimaxSegment[] getClimaxSegments() {
+    return climaxSegments;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusic : NSObject
+@property(nonatomic, assign) NSInteger songCode;
+@property(nonatomic, assign) NSInteger type;
+@property(nonatomic, assign) NSInteger pitchType;
+@property(nonatomic, copy) NSString* name;
+@property(nonatomic, copy) NSString* singer;
+@property(nonatomic, copy) NSString* poster;
+@property(nonatomic, copy) NSString* releaseTime;
+@property(nonatomic, assign) NSInteger durationS;
+@property(nonatomic, strong) NSArray&lt;NSNumber *&gt;* lyricList;
+@property(nonatomic, strong) NSArray&lt;AgoraMvProperty *&gt;* mvPropertyList;
+@property(nonatomic, strong) NSArray&lt;AgoraClimaxSegment *&gt;* climaxSegmentList;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct Music
+{
+    int64_t songCode;
+    const char* name;
+    const char* singer;
+    const char* poster;
+    const char* releaseTime;
+    int32_t durationS;
+    int32_t type;
+    int32_t pitchType;
+    int32_t lyricCount;
+    int32_t* lyricList;
+    int32_t climaxSegmentCount;
+    ClimaxSegment* climaxSegmentList;
+    int32_t mvPropertyCount;
+    MvProperty* mvPropertyList;
+    
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">export class Music {
+  songCode?: number;
+  name?: string;
+  singer?: string;
+  poster?: string;
+  releaseTime?: string;
+  durationS?: number;
+  type?: number;
+  pitchType?: number;
+  lyricCount?: number;
+  lyricList?: number[];
+  climaxSegmentCount?: number;
+  climaxSegmentList?: ClimaxSegment[];
+  mvPropertyCount?: number;
+  mvPropertyList?: MvProperty[];
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">    public class Music
     {
-        public uint uid;
-        public string userAccount;
+        public Int64 songCode;
+        public string name;
+        public string singer;
+        public string poster;
+        public string releaseTime;
+        public int durationS;
+        public int type;
+        public int pitchType;
+        public int lyricCount;
+        public int[] lyricList;
+        public int climaxSegmentCount;
+        public ClimaxSegment[] climaxSegmentList;
+        public int mvPropertyCount;
+        public MvProperty[] mvPropertyList;
     }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraUserInfo: NSObject
- @property(assign, nonatomic) NSUInteger uid;
- @property (copy, nonatomic) NSString * _Nullable userAccount;
- @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct UserInfo {
-                    uid_t uid;
-                    char userAccount[MAX_USER_ACCOUNT_LENGTH];
-                    UserInfo()
-                    : uid(0) {
-                    userAccount[0] = '\0';
-                    }
-                    };</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">export class UserInfo {
-  
-  uid?: number;
-  
-  userAccount?: string;
+            <codeblock props="rn" outputclass="language-typescript">export class Music {
+  songCode?: number;
+  name?: string;
+  singer?: string;
+  poster?: string;
+  releaseTime?: string;
+  durationS?: number;
+  type?: number;
+  pitchType?: number;
+  lyricCount?: number;
+  lyricList?: number[];
+  climaxSegmentCount?: number;
+  climaxSegmentList?: ClimaxSegment[];
+  mvPropertyCount?: number;
+  mvPropertyList?: MvProperty[];
 }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">export class UserInfo {
-  
-  uid?: number;
-  
-  userAccount?: string;
-}</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class UserInfo {
-  const UserInfo({this.uid, this.userAccount});
+            <codeblock props="flutter" outputclass="language-dart">class Music {
+  const Music(
+      {this.songCode,
+      this.name,
+      this.singer,
+      this.poster,
+      this.releaseTime,
+      this.durationS,
+      this.type,
+      this.pitchType,
+      this.lyricCount,
+      this.lyricList,
+      this.climaxSegmentCount,
+      this.climaxSegmentList,
+      this.mvPropertyCount,
+      this.mvPropertyList});
 
-  @JsonKey(name: 'uid')
-  final int? uid;
-  @JsonKey(name: 'userAccount')
-  final String? userAccount;
-  factory UserInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$UserInfoFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$UserInfoToJson(this);
-}
-</codeblock> </p>
+  @JsonKey(name: 'songCode')
+  final int? songCode;
+
+  @JsonKey(name: 'name')
+  final String? name;
+
+  @JsonKey(name: 'singer')
+  final String? singer;
+
+  @JsonKey(name: 'poster')
+  final String? poster;
+
+  @JsonKey(name: 'releaseTime')
+  final String? releaseTime;
+
+  @JsonKey(name: 'durationS')
+  final int? durationS;
+
+  @JsonKey(name: 'type')
+  final int? type;
+
+  @JsonKey(name: 'pitchType')
+  final int? pitchType;
+
+  @JsonKey(name: 'lyricCount')
+  final int? lyricCount;
+
+  @JsonKey(name: 'lyricList')
+  final List&lt;int&gt;? lyricList;
+
+  @JsonKey(name: 'climaxSegmentCount')
+  final int? climaxSegmentCount;
+
+  @JsonKey(name: 'climaxSegmentList')
+  final List&lt;ClimaxSegment&gt;? climaxSegmentList;
+
+  @JsonKey(name: 'mvPropertyCount')
+  final int? mvPropertyCount;
+
+  @JsonKey(name: 'mvPropertyList')
+  final List&lt;MvProperty&gt;? mvPropertyList;
+
+  factory Music.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$MusicFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MusicToJson(this);
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
