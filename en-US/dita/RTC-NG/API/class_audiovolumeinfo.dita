@@ -6,13 +6,85 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="mac" outputclass="language-objectivec">(int) followSystemPlaybackDevice:(BOOL)enable;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int followSystemPlaybackDevice(bool enable) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract followSystemPlaybackDevice(enable: boolean): number;</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract followSystemPlaybackDevice(enable: boolean): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int FollowSystemPlaybackDevice(bool enable);</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; followSystemPlaybackDevice(bool enable);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="android" outputclass="language-java">public static class AudioVolumeInfo {
+    public int uid;
+    public int volume;
+    public int vad;
+    public double voicePitch;
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcAudioVolumeInfo : NSObject
+@property(assign, nonatomic) NSUInteger uid;
+@property(assign, nonatomic) NSUInteger volume;
+@property(assign, nonatomic) NSUInteger vad;
+@property (assign, nonatomic) double voicePitch;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct AudioVolumeInfo {
+                    uid_t uid;
+                    unsigned int volume;
+                    unsigned int vad;
+                    double voicePitch;
+                    AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
+                    };</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class AudioVolumeInfo
+    {
+        public AudioVolumeInfo()
+        {
+            uid = 0;
+            volume = 0;
+            vad = 0;
+            voicePitch = 0.0;
+        }
+
+        public AudioVolumeInfo(uint uid, uint volume, uint vad, double voicePitch)
+        {
+            this.uid = uid;
+            this.volume = volume;
+            this.vad = vad;
+            this.voicePitch = voicePitch;
+        }
+
+        public uint uid { set; get; }
+        public uint volume { set; get; }
+        public uint vad { set; get; }
+        public double voicePitch { set; get; }
+    }
+    </codeblock>
+            <codeblock props="electron" outputclass="language-typescript">export class AudioVolumeInfo {
+  
+  uid?: number;
+  
+  volume?: number;
+  
+  vad?: number;
+  
+  voicePitch?: number;
+}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export class AudioVolumeInfo {
+  
+  uid?: number;
+  
+  volume?: number;
+  
+  vad?: number;
+  
+  voicePitch?: number;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class AudioVolumeInfo {
+    const AudioVolumeInfo({this.uid, this.volume, this.vad, this.voicePitch});
+  
+    @JsonKey(name: 'uid')
+    final int? uid;
+    @JsonKey(name: 'volume')
+    final int? volume;
+    @JsonKey(name: 'vad')
+    final int? vad;
+    @JsonKey(name: 'voicePitch')
+    final double? voicePitch;
+    factory AudioVolumeInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+        _$AudioVolumeInfoFromJson(json);
+    Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioVolumeInfoToJson(this);
+  }</codeblock>
+              <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
