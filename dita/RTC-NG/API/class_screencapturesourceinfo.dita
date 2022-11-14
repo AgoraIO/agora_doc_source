@@ -29,7 +29,6 @@
     const char* processPath;
     const char* sourceTitle;
     bool primaryMonitor;
-  bool isOccluded;
 #if defined(_WIN32)
     bool minimizeWindow;
   ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr),
@@ -55,8 +54,6 @@
   sourceTitle?: string;
   
   primaryMonitor?: boolean;
-
-  isOccluded?: boolean;
 
   minimizeWindow?: boolean;
 }</codeblock>
@@ -101,8 +98,6 @@
   
   primaryMonitor?: boolean;
 
-  isOccluded?: boolean;
-
   minimizeWindow?: boolean;
   }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
@@ -115,7 +110,6 @@
       this.processPath,
       this.sourceTitle,
       this.primaryMonitor,
-      this.isOccluded,
       this.minimizeWindow});
 
   @JsonKey(name: 'type')
@@ -141,9 +135,6 @@
 
   @JsonKey(name: 'primaryMonitor')
   final bool? primaryMonitor;
-
-  @JsonKey(name: 'isOccluded')
-  final bool? isOccluded;
 
   @JsonKey(name: 'minimizeWindow')
   final bool? minimizeWindow;
@@ -198,7 +189,7 @@
                     <li><codeph><ph keyref="false"/></codeph>: 屏幕不是主显示屏。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="cpp flutter">
+            <plentry props="cpp flutter rn electron">
                 <pt>minimizeWindow</pt>
                 <pd>(仅适用于 Windows)  窗口是否已最小化：
                         
