@@ -189,14 +189,10 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
  */
     ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributes(chatRoomId, map, false, new ResultCallBack<Map<String, Integer>>() {
                 @Override
-                public void onSuccess(int code,Map<String, Integer> value) {
-                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
-                    // value 为添加失败自定义的属性
-                }
-
-                @Override
-                public void onError(int error, String errorMsg) {
-
+                public void onResult(int code,Map<String, Integer> failureMap) {
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
+                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
                 }
             });
 ```
@@ -217,13 +213,10 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
  */
     ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chatRoomId, map, false, new ResultCallBack<Map<String, Integer>>() {
                 @Override
-                public void onSuccess(int code,Map<String, Integer> value) {
-                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
-                    // value 为添加失败自定义的属性
-                }
-
-                @Override
-                public void onError(int error, String errorMsg) {
+                public void onResult(int code,Map<String, Integer> failureMap) {
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
+                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
 
                 }
             });
@@ -241,8 +234,8 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
  *
  * @param String chatRoomId         聊天室 ID。
  * @param String attributeKey       聊天室属性的 key。
- * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link CallBack#onSuccess()}，
+ *                                  失败时回调 {@link CallBack#onError(int, String)}。
  */
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServer(chatRoomId,attributeKey, new CallBack() {
                     @Override
@@ -267,8 +260,8 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
  *
  * @param String chatRoomId         聊天室 ID。
  * @param String attributeKey       聊天室属性的 key。
- * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调，成功时回调 {@link CallBack#onSuccess()}，
+ *                                  失败时回调 {@link CallBack#onError(int, String)}。
  */
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServerForced(chatRoomId,attributeKey, new CallBack() {
                     @Override
@@ -295,18 +288,15 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
  *
  * @param String chatRoomId         聊天室 ID。
  * @param List<String> keyList      聊天室自定义属性的 key 列表。
- * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调 {@link ResultCallBack#onResult(int,Object)}，
+ *
  */
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServer(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
-                    public void onSuccess(int code,Map<String, Integer> value) {
-                        // code == Error.EM_NO_ERROR 表明自定义属性全部成功删除。
-                        // value 为添加失败自定义的属性
-                    }
-
-                    @Override
-                    public void onError(int error, String errorMsg) {
+                public void onResult(int code,Map<String, Integer> failureMap) {
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
+                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
 
                     }
                 });
@@ -322,18 +312,15 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServ
  *
  * @param String chatRoomId         聊天室 ID。
  * @param List<String> keyList      聊天室自定义属性的 key 列表。
- * @param callBack                  结果回调，成功时回调 {@link ResultCallBack#onSuccess(int,Object)}，
- *                                  失败时回调 {@link ResultCallBack#onError(int, String)}。
+ * @param callBack                  结果回调 {@link ResultCallBack#onResult(int,Object)}，
+ *
  */
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServerForced(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
-                    public void onSuccess(int code,Map<String, Integer> value) {
-                        // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。
-                        // value 为添加失败自定义的属性
-                    }
-
-                    @Override
-                    public void onError(int error, String errorMsg) {
+                public void onResult(int code,Map<String, Integer> failureMap) {
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
+                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
 
                     }
                 });
