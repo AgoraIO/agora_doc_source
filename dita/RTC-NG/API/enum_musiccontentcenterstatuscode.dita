@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_musiccontentcenterstatuscode">
+    <title><ph keyref="MusicContentCenterStatusCode"/></title>
+    <shortdesc id="short"><ph id="shortdesc">音乐内容中心的请求状态码。</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>枚举值</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="kMusicContentCenterStatusOk"/></pt>
+                <pd>(0)：请求成功。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="kMusicContentCenterStatusErrGateway"/></pt>
+                <pd>(1)：网关异常。可能的原因有：
+                    <ul>
+                        <li>当前使用的 Token 已过期。</li>
+                        <li>输入的 Token 无效。请检查生成 Token 的方法是否正确。</li>
+                        <li>网络错误。请检查你的网络。</li>
+                    </ul>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="kMusicContentCenterStatusErrPermissionAndResource"/></pt>
+                <pd>(2)：权限错误或音乐资源不存在。请确保你的 Agora 项目已开通内容中心权限，详情请<xref keyref="mailto-link"/>。</pd>
+            </plentry>
+                <plentry>
+                    <pt><ph keyref="kMusicContentCenterStatusErrInternalDataParse"/></pt>
+                    <pd>(3)：内部数据解析错误，请联系 <xref keyref="ticket-link"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kMusicContentCenterStatusErrMusicLoading"/></pt>
+                    <pd>(4)：音乐加载时出错，请联系 <xref keyref="ticket-link"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt><ph keyref="kMusicContentCenterStatusErrMusicDecryption"/></pt>
+                    <pd>(5)：音乐资源解密时出错，请联系 <xref keyref="ticket-link"/>。</pd>
+                </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

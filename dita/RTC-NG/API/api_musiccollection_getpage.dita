@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_musiccollection_gettotal">
-    <title><ph keyref="getTotal_MusicCollection"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取列表内音乐资源的总数量。</ph></shortdesc>
+<reference id="api_musiccollection_getpage">
+    <title><ph keyref="getPage_MusicCollection"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取当前页的页码。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="getTotal_MusicCollection"/>
+                <indexterm keyref="getPage_MusicCollection"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,12 +15,12 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getTotal() = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getPage() = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract getPage(): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">abstract getPage(): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">int getPage();</codeblock></p>
         </section>
         <section id="detailed_desc"> <dl outputclass="since">
             <dlentry props="native">
@@ -32,7 +32,7 @@
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p>列表内音乐资源的总数量。</p>
+            <p>当前页的页码。</p>
         </section>
     </refbody>
 </reference>

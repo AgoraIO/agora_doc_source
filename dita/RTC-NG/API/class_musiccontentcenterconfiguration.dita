@@ -50,21 +50,16 @@
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig : NSObject
 @property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
 @property (nonatomic, copy) NSString *appId;
-@property (nonatomic, copy) NSString *rtmToken;
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, assign) NSInteger mccUid;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
     const char *appId;
-    const char *rtmToken;
     const char *token;
     int64_t mccUid;
-
     IMusicContentCenterEventHandler* eventHandler;
-    MusicContentCenterConfiguration():appId(nullptr),rtmToken(nullptr),eventHandler(nullptr),mccUid(0){}
     MusicContentCenterConfiguration():appId(nullptr),token(nullptr),eventHandler(nullptr),mccUid(0){}
     MusicContentCenterConfiguration(const char*appid,const char* token,int64_t id,IMusicContentCenterEventHandler* handler):
-        appId(appid),rtmToken(token),mccUid(id),eventHandler(handler){}
         appId(appid),token(token),mccUid(id),eventHandler(handler){}
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
@@ -139,9 +134,8 @@
                 <pd>已启用内容中心的项目的 App ID。</pd>
             </plentry>
             <plentry>
-                <pt>rtmToken</pt>
-                <pd>使用音乐内容中心时，用于鉴权的 Token。当你的 Token 即将过期时，你可以调用 <xref
-                    keyref="renewToken"/> 来传入新的 Token。</pd>
+                <pt>token</pt>
+                <pd>使用音乐内容中心时，用于鉴权的 Token。当你的 Token 即将过期时，你可以调用 <xref keyref="renewToken_IMusicContentCenter"/> 来传入新的 Token。</pd>
             </plentry>
             <plentry>
                 <pt>mccUid</pt>
@@ -149,8 +143,7 @@
             </plentry>
             <plentry props="android cpp">
                 <pt>eventHandler</pt>
-                <pd>待接收的事件回调，详见 <xref keyref="IMusicContentCenterEventHandler"
-                    />。</pd>
+                <pd>待接收的事件回调，详见 <xref keyref="IMusicContentCenterEventHandler"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>
