@@ -28,7 +28,6 @@
     const char* processPath;
     const char* sourceTitle;
     bool primaryMonitor;
-  bool isOccluded;
 #if defined(_WIN32)
     bool minimizeWindow;
   ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr),
@@ -55,6 +54,7 @@
   
   primaryMonitor?: boolean;
 
+  minimizeWindow?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ScreenCaptureSourceInfo
     {
@@ -97,7 +97,8 @@
   
   primaryMonitor?: boolean;
 
-}</codeblock>
+  minimizeWindow?: boolean;
+  }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ScreenCaptureSourceInfo {
   const ScreenCaptureSourceInfo(
       {this.type,
@@ -108,7 +109,6 @@
       this.processPath,
       this.sourceTitle,
       this.primaryMonitor,
-      this.isOccluded,
       this.minimizeWindow});
 
   @JsonKey(name: 'type')
@@ -134,9 +134,6 @@
 
   @JsonKey(name: 'primaryMonitor')
   final bool? primaryMonitor;
-
-  @JsonKey(name: 'isOccluded')
-  final bool? isOccluded;
 
   @JsonKey(name: 'minimizeWindow')
   final bool? minimizeWindow;
