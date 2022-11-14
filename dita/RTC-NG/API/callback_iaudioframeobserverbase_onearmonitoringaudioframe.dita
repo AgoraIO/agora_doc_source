@@ -36,8 +36,7 @@
             <li>方法一：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
             <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getEarMonitoringAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
             </ul> </p>
-            <p props="flutter rn electron">为保证耳返的音频数据格式符合预期，你可以使用如下方法设置耳返音频数据格式：
-            <li>调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li></p>
+            <p props="flutter rn electron">为保证耳返的音频数据格式符合预期，你可以使用如下方法设置耳返音频数据格式：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</p>
             <note type="note" id="attention" props="native unity flutter"><ul>
             <li props="native unity">方法一的优先级高于方法二，如果已使用方法一设置了音频数据格式，则使用方法二的设置不生效。</li>
             <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li></ul></note>
