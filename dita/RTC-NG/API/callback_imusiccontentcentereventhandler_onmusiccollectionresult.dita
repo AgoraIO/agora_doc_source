@@ -13,8 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">@CalledByNative
-  void onMusicCollectionResult(
+            <codeblock props="android" outputclass="language-java">void onMusicCollectionResult(
   String requestId, int page, int pageSize, int total, Music[] list, int errorCode);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicCollectionResult:(NSString *)requestId result:(AgoraMusicCollection *)result errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicCollectionResult(const char* requestId, agora_refptr&lt;MusicCollection> result, MusicContentCenterStatusCode error_code = kMusicContentCenterStatusOk) = 0;</codeblock>
@@ -40,7 +39,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>当你调 <xref keyref="getMusicCollectionByMusicChartId"/> 方法来通过音乐榜单的 ID 获取指定榜单的音乐资源列表，SDK 会触发此回调报告榜单中音乐资源列表的详细信息。</p>
+            <p>当你调 <xref keyref="getMusicCollectionByMusicChartId"/> 方法来获取指定榜单的音乐资源列表，SDK 会触发此回调报告榜单中音乐资源列表的详细信息。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
