@@ -144,6 +144,8 @@
   
   format?: VideoFormat;
 
+  followEncodeDimensionRatio?: boolean;
+
 }</codeblock>
       <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
@@ -177,6 +179,8 @@
   
   format?: VideoFormat;
 
+  followEncodeDimensionRatio?: boolean;
+
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class CameraCapturerConfiguration {
   const CameraCapturerConfiguration(
@@ -201,43 +205,33 @@
       _$CameraCapturerConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$CameraCapturerConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
-      <title> <text
-      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
+      <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>
       <parml>
-      <plentry>
+      <plentry props="android ios cpp unity rn flutter">
         <pt>cameraDirection</pt>
         <pd>
-          <note type="attention" props="cpp unity electron rn flutter"
-          >该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。</ph><ph
-          props="ios cpp unity android rn flutter">详见 <xref
-          keyref="CAMERA_DIRECTION"/>。</ph></pd>
+          <note type="attention" props="cpp unity rn flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。</ph><ph props="ios cpp unity android rn flutter">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
       </plentry>
       <plentry props="cpp android unity electron rn flutter">
         <pt props="cpp unity electron rn flutter">format</pt>
         <pt props="android">captureFormat</pt>
         <pd>视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter">
+      <plentry props="cpp unity electron flutter">
         <pt>deviceId</pt>
         <pd>
-          <note type="attention" props="cpp unity electron"
-          >该参数仅适用于 Windows 平台。</note><ph>摄像头的 ID。</ph><ph
-          props="cpp electron rn flutter">最大长度为 <xref
-          keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
+          <note type="attention" props="cpp unity electron flutter">该参数仅适用于 Windows 平台。</note><ph>摄像头的 ID。</ph><ph props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>
-        <pd>是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比： 
-                        
+        <pd>是否跟随 <xref keyref="setVideoEncoderConfiguration"/> 中设置的视频宽高比：             
           <ul>
-          <li><codeph><ph keyref="true"
-            /></codeph>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref
-            keyref="onCaptureVideoFrame"/> 和 <xref
-            keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
+          <li><codeph><ph keyref="true"/></codeph>：(默认) 跟随。SDK 会将采集到的视频按照已设置的视频宽高比进行裁剪，会同步改变本地预览画面、<xref keyref="onCaptureVideoFrame"/> 和 <xref keyref="onPreEncodeVideoFrame"/> 中的视频画面。</li>
           <li><codeph><ph keyref="false"/></codeph>：不跟随。SDK不改变采集到的视频帧宽高比。</li>
           </ul></pd>
       </plentry>
