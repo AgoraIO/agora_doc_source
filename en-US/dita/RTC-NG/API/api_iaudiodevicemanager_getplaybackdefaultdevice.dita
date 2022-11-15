@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_iaudiodevicemanager_getplaybackdefaultdevice">
+    <title><ph keyref="getPlaybackDefaultDevice"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Gets the default audio playback device.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getPlaybackDefaultDevice"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract getPlaybackDefaultDevice(): AudioDeviceInfo;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetPlaybackDefaultDevice(ref string deviceId, ref string deviceName);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;AudioDeviceInfo> getPlaybackDefaultDevice();</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <note type="attention">This method is for Windows and macOS only.</note> 
+        </section>
+        <section id="parameters" props="unity">
+            <title>Parameter</title>
+            <parml>
+            <plentry>
+                <pt>deviceId</pt>
+                <pd>Output parameter, the device ID of the default audio playback device.</pd>
+            </plentry>
+            <plentry>
+                <pt>deviceName</pt>
+                <pd>Output parameter, the device name of the default audio playback device.</pd>
+            </plentry></parml>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <p props="flutter electron">The details about the default audio playback device. See <xref keyref="AudioDeviceInfo"/>.</p>
+            <ul props="unity">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
