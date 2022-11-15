@@ -113,10 +113,13 @@
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
+  uid?: number;
   renderMode?: RenderModeType
   mirrorMode?: VideoMirrorModeType
-  uid?: number
+  setupMode?: VideoViewSetupMode;
   sourceType?: VideoSourceType
+  mediaPlayerId?: number;
+  cropArea?: Rectangle;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoCanvas
     {
@@ -151,11 +154,14 @@
         public VIDEO_SOURCE_TYPE sourceType { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
-  view?: any;
-  renderMode?: RenderModeType;
-  mirrorMode?: VideoMirrorModeType;
+  view?: any
   uid?: number;
-  sourceType?: VideoSourceType;
+  renderMode?: RenderModeType
+  mirrorMode?: VideoMirrorModeType
+  setupMode?: VideoViewSetupMode;
+  sourceType?: VideoSourceType
+  mediaPlayerId?: number;
+  cropArea?: Rectangle;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoCanvas {
   const VideoCanvas(
@@ -196,7 +202,8 @@
       _$VideoCanvasFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc"> </section>
         <section id="parameters">

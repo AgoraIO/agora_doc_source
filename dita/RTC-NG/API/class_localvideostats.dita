@@ -126,6 +126,8 @@
   
   captureBrightnessLevel?: CaptureBrightnessLevelType;
 
+  hwEncoderAccelerating?: number;
+
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalVideoStats
     {
@@ -200,6 +202,8 @@
   
   captureBrightnessLevel?: CaptureBrightnessLevelType;
 
+  hwEncoderAccelerating?: number;
+  
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalVideoStats {
   const LocalVideoStats(
@@ -224,7 +228,6 @@
       this.codecType,
       this.txPacketLossRate,
       this.captureBrightnessLevel,
-      this.dualStreamEnabled,
       this.hwEncoderAccelerating});
 
   @JsonKey(name: 'uid')
@@ -290,9 +293,6 @@
   @JsonKey(name: 'captureBrightnessLevel')
   final CaptureBrightnessLevelType? captureBrightnessLevel;
 
-  @JsonKey(name: 'dualStreamEnabled')
-  final bool? dualStreamEnabled;
-
   @JsonKey(name: 'hwEncoderAccelerating')
   final int? hwEncoderAccelerating;
 
@@ -300,7 +300,8 @@
       _$LocalVideoStatsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LocalVideoStatsToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text
@@ -314,21 +315,13 @@
             <plentry>
                 <pt>sentBitrate</pt>
                 <pd>
-                    <p>实际发送码率 (Kbps)
-
-
-                    
-                    
+                    <p>实际发送码率 (Kbps) 
                     <note type="attention">不包含丢包后重传视频等的发送码率。</note></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>sentFrameRate</pt>
                 <pd>实际发送帧率 (fps)。
-
-
-                    
-                    
                     <note type="attention">不包含丢包后重传视频等的发送帧率。</note></pd>
             </plentry>
             <plentry>
@@ -373,16 +366,12 @@
             </plentry>
             <plentry>
                 <pt>qualityAdaptIndication</pt>
-                <pd> <ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph
-                    props="cpp ios mac unity electron rn flutter">详见 <xref
-                    keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
+                <pd><ph>统计周期内本地视频质量（基于目标帧率和目标码率）的自适应情况。</ph><ph props="cpp ios mac unity electron rn flutter">详见 <xref keyref="QUALITY_ADAPT_INDICATION"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="ADAPT_NONE"/> (0): 本地视频质量不变。</li>
-                    <li><ph keyref="ADAPT_UP_BANDWIDTH"
-                        /> (1): 因网络带宽增加，本地视频质量改善。</li>
-                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"
-                        /> (2): 因网络带宽减少，本地视频质量变差。</li>
+                    <li><ph keyref="ADAPT_UP_BANDWIDTH"/> (1): 因网络带宽增加，本地视频质量改善。</li>
+                    <li><ph keyref="ADAPT_DOWN_BANDWIDTH"/> (2): 因网络带宽减少，本地视频质量变差。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -390,9 +379,6 @@
                 <pt>encodedBitrate</pt>
                 <pd>
                     <p>视频编码码率（Kbps）。
-
-                    
-                    
                     <note type="attention">不包含丢包后重传视频等的编码码率。</note></p>
                 </pd>
             </plentry>
@@ -410,9 +396,7 @@
             </plentry>
             <plentry>
                 <pt>codecType</pt>
-                <pd><ph>视频的编码类型。</ph><ph
-                    props="ios mac cpp unity electron rn flutter">详见 <xref
-                    keyref="VIDEO_CODEC_TYPE"/>。</ph>
+                <pd><ph>视频的编码类型。</ph><ph props="ios mac cpp unity electron rn flutter">详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="VIDEO_CODEC_VP8"/> (1): VP8。</li>
@@ -430,27 +414,19 @@
             </plentry>
             <plentry>
                 <pt>captureBrightnessLevel</pt>
-                <pd props="ios mac cpp unity">本地采集的画质亮度级别。详见 <xref
-                    keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
+                <pd props="ios mac cpp unity">本地采集的画质亮度级别。详见 <xref keyref="CAPTURE_BRIGHTNESS_LEVEL_TYPE"/>。</pd>
                 <pd props="android">本地采集的画质亮度级别。
-                
-                    
                     <ul>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"
-                        /> (-1): SDK 未检测出本地采集的画质亮度级别。请等待几秒，通过下一次回调的 <parmname>captureBrightnessLevel</parmname> 获取亮度级别。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"
-                        /> (0): 本地采集的画质亮度正常。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT"
-                        /> (1): 本地采集的画质亮度偏亮。</li>
-                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK"
-                        /> (2): 本地采集的画质亮度偏暗。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_INVALID"/> (-1): SDK 未检测出本地采集的画质亮度级别。请等待几秒，通过下一次回调的 <parmname>captureBrightnessLevel</parmname> 获取亮度级别。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_NORMAL"/> (0): 本地采集的画质亮度正常。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_BRIGHT"/> (1): 本地采集的画质亮度偏亮。</li>
+                    <li><ph keyref="CAPTURE_BRIGHTNESS_LEVEL_DARK"/> (2): 本地采集的画质亮度偏暗。</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>hwEncoderAccelerating</pt>
-                <pd>本地视频编码加速类型。<ph props="apple">详见 <xref
-                    keyref="hwEncoderAccelerating"/>。</ph>
-                    <ul props="cpp android">
+                <pd>本地视频编码加速类型。<ph props="apple">详见 <xref keyref="hwEncoderAccelerating"/>。</ph>
+                    <ul props="cpp android framework">
                     <li>0：采用软件编码，未加速。</li>
                     <li>1：采用硬件编码进行加速。</li>
                     </ul></pd>

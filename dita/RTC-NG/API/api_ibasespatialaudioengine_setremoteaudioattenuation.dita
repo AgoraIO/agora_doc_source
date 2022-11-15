@@ -22,14 +22,15 @@
     attenuation: number,
     forceSet: boolean
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteAudioAttenuation(uint uid, double attenuation, bool forceSet);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setRemoteAudioAttenuation(
     uid: number,
     attenuation: number,
     forceSet: boolean
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteAudioAttenuation(
-      {required int uid, required double attenuation, required bool forceSet});</codeblock> </p>
+      {required int uid, required double attenuation, required bool forceSet});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -49,20 +50,20 @@
             </plentry>
             <plentry>
                 <pt>attenuation</pt>
-                <pd>针对该用户的声音衰减系数，取值范围为[0,1]。其中： 
-                        
+                <pd>针对该用户的声音衰减系数，取值范围为[0,1]。其中：
+
                     <ul conkeyref="setPlayerAttenuation/attenuation">
                     <li/>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>forceSet</pt>
-                <pd>是否强制设定该用户的声音衰减效果： 
-                        
+                <pd>是否强制设定该用户的声音衰减效果：
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：强制使用 <parmname>attenuation</parmname> 设置该用户的声音衰减效果，此时 <xref keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 中设置的隔声区域衰减系数对该用户不生效。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不强制使用 <parmname>attenuation </parmname>设置用户的声音衰减效果，分为以下两种情况。
-                            
+
                         <ul conkeyref="setPlayerAttenuation/forceset-false">
                         <li/>
                         </ul></li>

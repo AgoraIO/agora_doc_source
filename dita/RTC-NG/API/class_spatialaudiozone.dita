@@ -99,7 +99,18 @@
   upLength?: number;
   audioAttenuation?: number;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioZone
+    {
+        public int zoneSetId;
+        public float[] position;
+        public float[] forward;
+        public float[] right;
+        public float[] up;
+        public float forwardLength;
+        public float rightLength;
+        public float upLength;
+        public float audioAttenuation;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioZone {
   zoneSetId?: number;
   position?: number[];
@@ -154,7 +165,8 @@
       _$SpatialAudioZoneFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$SpatialAudioZoneToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -206,6 +218,7 @@
                 <pt>audioAttenuation</pt>
                 <pd>隔声区域以内的用户和外部用户互通时的声音衰减系数，取值范围为 [0,1]。其中： 
                         
+                    
                     <ul>
                     <li>0：广播模式，即音量和音色均不随距离衰减，无论距离远近，本地用户听到的音量和音色都无变化。</li>
                     <li>(0,0.5)：弱衰减模式，即音量和音色在传播过程中仅发生微弱衰减，跟真实环境相比，声音可以传播得更远。</li>

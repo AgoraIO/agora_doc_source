@@ -14,9 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(
-      boolean enabled, VirtualBackgroundSource backgroundSource);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData NS_SWIFT_NAME(enableVirtualBackground(_:backData:));</codeblock>
-            <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;</codeblock>
+      boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:));</codeblock>
+            <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;
+</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(
     enabled: boolean,
     backgroundSource: VirtualBackgroundSource,
@@ -32,7 +34,8 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
     {required bool enabled,
-    required VirtualBackgroundSource backgroundSource});</codeblock> </p>
+    required VirtualBackgroundSource backgroundSource});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <p>The virtual background function allows you to replace the original background image of the local user or to blur the background. After successfully enabling the virtual background function, all users in the channel can see the customized background.</p>

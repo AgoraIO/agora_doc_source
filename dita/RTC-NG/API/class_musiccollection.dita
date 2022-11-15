@@ -25,9 +25,28 @@ protected:
     virtual ~MusicCollection() = default;
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export abstract class MusicCollection {
+  abstract getCount(): number;
+  abstract getTotal(): number;
+  abstract getPage(): number;
+  abstract getPageSize(): number;
+  abstract getMusic(index: number): Music;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public class MusicCollection
+    {
+        public int count;
+        public int total;
+        public int page;
+        public int pageSize;
+        public Music[] music;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">export abstract class MusicCollection {
+  abstract getCount(): number;
+  abstract getTotal(): number;
+  abstract getPage(): number;
+  abstract getPageSize(): number;
+  abstract getMusic(index: number): Music;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">abstract class MusicCollection {
   int getCount();
 
@@ -38,7 +57,8 @@ protected:
   int getPageSize();
 
   Music getMusic(int index);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -48,12 +68,12 @@ protected:
             </dlentry>
             </dl>
         </section>
-        <section id="parameters">
+        <section id="parameters" props="apple unity">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>count</pt>
-                <pd>此次请求所返回的音乐资源的数量。</pd>
+                <pd>此次请求的音乐资源列表中的音乐数量。</pd>
             </plentry>
             <plentry>
                 <pt>total</pt>
@@ -65,12 +85,13 @@ protected:
             </plentry>
             <plentry>
                 <pt>pageSize</pt>
-                <pd>当前音乐资源列表的总页面数量。</pd>
+                <pd>当前音乐资源列表的页面总数量。</pd>
             </plentry>
             <plentry>
                 <pt>musicList</pt>
                 <pd>当前页面列表中音乐资源的详细信息，详见 <xref keyref="Music"/>。</pd>
             </plentry>
-            </parml> </section>
+            </parml>
+        </section>
     </refbody>
 </reference>

@@ -99,7 +99,18 @@
   upLength?: number;
   audioAttenuation?: number;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp">public class SpatialAudioZone
+    {
+        public int zoneSetId;
+        public float[] position;
+        public float[] forward;
+        public float[] right;
+        public float[] up;
+        public float forwardLength;
+        public float rightLength;
+        public float upLength;
+        public float audioAttenuation;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioZone {
   zoneSetId?: number;
   position?: number[];
@@ -154,7 +165,8 @@
       _$SpatialAudioZoneFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioZoneToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
