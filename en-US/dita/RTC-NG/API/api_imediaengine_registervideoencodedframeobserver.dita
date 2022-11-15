@@ -31,7 +31,7 @@
             <p id="mix">If you want to obtain the original video data of some remote users (referred to as group A) and the encoded video data of other remote users (referred to as group B), you can refer to the following steps:<ol>
             <li>Call <xref keyref="registerVideoFrameObserver"/> to register the raw video frame observer before joining the channel.</li>
             <li>Call <xref keyref="registerVideoEncodedFrameObserver"/> to register the encoded video frame observer before joining the channel.</li>
-            <li>After joining the channel, get the ID of group B users through <xref keyref="onUserJoined"/>, and then call <xref keyref="setRemoteVideoSubscriptionOptions"/> to set the <parmname>encodedFrameOnly</parmname> of this group of users to <codeph><ph keyref="true"/></codeph>.</li>
+            <li>After joining the channel, get the user IDs of group B users through <xref keyref="onUserJoined"/>, and then call <xref keyref="setRemoteVideoSubscriptionOptions"/> to set the <parmname>encodedFrameOnly</parmname> of this group of users to <codeph><ph keyref="true"/></codeph>.</li>
             <li>Call <xref keyref="muteAllRemoteVideoStreams"/> to start receiving the video streams of all remote users. Then:<ul>
                 <li>The raw video data of group A users can be obtained through the callback in <xref keyref="IVideoFrameObserver"/>, and the SDK renders the data by default.</li>
                 <li>The encoded video data of group B users can be obtained through the callback in <xref keyref="IVideoEncodedFrameObserver"/>.</li>
