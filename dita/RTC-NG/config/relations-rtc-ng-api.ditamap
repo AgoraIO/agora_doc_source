@@ -2261,6 +2261,7 @@
                 <topicref keyref="createDataStream2"/>
                 <topicref keyref="createMediaPlayer"/>
                 <topicref keyref="createCustomVideoTrack"/>
+                <topicref keyref="delegate" props="apple"/>
                 <topicref keyref="destroyCustomVideoTrack"/>
                 <topicref keyref="destroyMediaPlayer" props="ios mac cpp framework"/>
                 <topicref keyref="disableAudio"/>
@@ -2282,6 +2283,7 @@
                 <topicref keyref="enableLocalAudio"/>
                 <topicref keyref="enableLocalVideo"/>
                 <topicref keyref="enableLoopbackRecording" props="ios mac cpp unity electron flutter"/>
+                <topicref keyref="enableMainQueueDispatch" props="apple"/>
                 <topicref keyref="enableRemoteSuperResolution" props="android ios cpp framework"/>
                 <topicref keyref="enableSpatialAudio"/>
                 <topicref keyref="enableSoundPositionIndication"/>
@@ -2289,6 +2291,9 @@
                 <topicref keyref="enableVideoImageSource"/>
                 <topicref keyref="enableVirtualBackground"/>
                 <topicref keyref="enableWebSdkInteroperability"/>
+                <topicref keyref="enumerateDevices" toc="no" props="mac"/>
+                <topicref keyref="followSystemPlaybackDevice" toc="no" props="mac"/>
+                <topicref keyref="followSystemRecordingDevice" toc="no" props="mac"/>
                 <topicref keyref="getAudioDeviceInfo" props="android cpp framework"/>
                 <topicref keyref="getAudioEffectManager" props="android"/>
                 <topicref keyref="getAudioMixingCurrentPosition"/>
@@ -2299,13 +2304,15 @@
                 <topicref keyref="getCallId"/>
                 <topicref keyref="getCameraMaxZoomFactor" props="android ios cpp framework"/>
                 <topicref keyref="getConnectionState"/>
+                <topicref keyref="getDeviceInfo" toc="no" props="mac"/>
+                <topicref keyref="getDeviceVolume" toc="no" props="mac"/>
                 <topicref keyref="getEffectCurrentPosition"/>
                 <topicref keyref="getEffectDuration"/>
                 <topicref keyref="getEffectsVolume"/>
                 <topicref keyref="getErrorDescription"/>
-                <topicref keyref="getExtensionProperty" props="android"/>
+                <topicref keyref="getExtensionProperty" props="android apple"/>
                 <topicref keyref="getExtensionProperty2"/>
-                <topicref keyref="getMediaPlayerCacheManager" props="android"/>
+                <topicref keyref="getMediaPlayerCacheManager" props="android apple"/>
                 <topicref keyref="getNativeHandle"/>
                 <topicref keyref="getNetworkType"/>
                 <topicref keyref="getScreenCaptureSources" props="ios mac cpp framework"/>
@@ -2329,6 +2336,7 @@
                 <topicref keyref="leaveChannel" props="native unity"/>
                 <topicref keyref="leaveChannel2"/>
                 <topicref keyref="loadExtensionProvider" props="cpp framework"/>
+                <topicref keyref="monitorDeviceChange" toc="no" props="mac"/>
                 <topicref keyref="muteAllRemoteAudioStreams"/>
                 <topicref keyref="muteAllRemoteVideoStreams"/>
                 <topicref keyref="muteLocalAudioStream"/>
@@ -2341,6 +2349,8 @@
                 <topicref keyref="pauseAudioMixing"/>
                 <topicref keyref="pauseEffect"/>
                 <topicref keyref="playAllEffects" props="cpp framework"/>
+                <topicref keyref="playEffect1" props="apple"/>
+                <topicref keyref="playEffect2" props="apple android"/>
                 <topicref keyref="playEffect3"/>
                 <topicref keyref="preloadEffect"/>
                 <topicref keyref="pushCaptureAudioFrame1" props="hide"/>
@@ -2403,7 +2413,7 @@
                 <topicref keyref="setExtensionProperty"/>
                 <topicref keyref="setExtensionProviderProperty"/>
                 <topicref keyref="setExternalAudioSink"/>
-                <topicref keyref="setExternalAudioSource" props="android"/>
+                <topicref keyref="setExternalAudioSource" props="android apple"/>
                 <topicref keyref="setHeadphoneEQParameters"/>
                 <topicref keyref="setHeadphoneEQPreset"/>
                 <topicref keyref="setInEarMonitoringVolume"/>
@@ -2443,6 +2453,7 @@
                 <topicref keyref="setVideoEncoderConfiguration"/>
                 <topicref keyref="setupLocalVideo"/>
                 <topicref keyref="setVideoProfile" props="android ios mac"/>
+                <topicref keyref="setVideoProfile2" props="apple"/>
                 <topicref keyref="setVideoQualityParameters" props="hide"/>
                 <topicref keyref="setVoiceBeautifierParameters"/>
                 <topicref keyref="setVoiceBeautifierPreset"/>
@@ -2467,9 +2478,9 @@
                 <topicref keyref="startRtmpStreamWithoutTranscoding"/>
                 <topicref keyref="startRtmpStreamWithTranscoding"/>
                 <topicref keyref="startScreenCapture"/>
-                <topicref keyref="startScreenCaptureByDisplayId" props="ios mac cpp framework"/>
-                <topicref keyref="startScreenCaptureByScreenRect" props="cpp unity flutter electron"/>
-                <topicref keyref="startScreenCaptureByWindowId" props="ios mac cpp framework"/>
+                <topicref keyref="startScreenCaptureByDisplayId" props="mac cpp framework"/>
+                <topicref keyref="startScreenCaptureByScreenRect" props="mac unity flutter electron"/>
+                <topicref keyref="startScreenCaptureByWindowId" props="mac cpp framework"/>
                 <topicref keyref="startSecondaryCameraCapture" props="cpp framework"/>
                 <topicref keyref="startSecondaryScreenCapture" props="cpp framework"/>
                 <topicref keyref="stopAllEffects"/>
@@ -2505,17 +2516,19 @@
                 <topicref keyref="updateScreenCaptureParameters"/>
                 <topicref keyref="updateScreenCaptureRegion1" props="cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion2" props="hide"/>
-                <topicref keyref="pullAudioFrame" props="android"/>
+                <topicref keyref="pullAudioFrame" props="android apple"/>
                 <topicref keyref="pullAudioFrame2" props="android"/>
-                <topicref keyref="pushAudioFrame1" props="android"/>
-                <topicref keyref="pushAudioFrame2" props="android"/>
-                <topicref keyref="pushVideoFrame" props="android"/>
-                <topicref keyref="registerAudioFrameObserver" props="android"/>
-                <topicref keyref="registerVideoEncodedFrameObserver" props="android"/>
-                <topicref keyref="registerVideoFrameObserver" props="android"/>
-                <topicref keyref="setExternalAudioSink" props="android"/>
-                <topicref keyref="setExternalAudioSource2" props="android"/>
-                <topicref keyref="setExternalVideoSource" props="android"/>
+                <topicref keyref="pullPlaybackAudioFrameSampleBufferByLengthInByte" props="apple"/>
+                <topicref keyref="pushAudioFrame1" props="android apple"/>
+                <topicref keyref="pushAudioFrame2" props="android apple"/>
+                <topicref keyref="pushExternalAudioFrameSampleBuffer1" props="apple"/>
+                <topicref keyref="pushVideoFrame" props="android apple"/>
+                <topicref keyref="registerAudioFrameObserver" props="android apple"/>
+                <topicref keyref="registerVideoEncodedFrameObserver" props="android apple"/>
+                <topicref keyref="registerVideoFrameObserver" props="android apple"/>
+                <topicref keyref="setExternalAudioSink" props="android apple"/>
+                <topicref keyref="setExternalAudioSource2" props="android apple"/>
+                <topicref keyref="setExternalVideoSource" props="android apple"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngine"/>
@@ -2750,7 +2763,7 @@
                 <topicref keyref="IAudioDeviceManager" chunk="to-content"/>
             </relcell>
         </relrow>
-        <relrow props="mac android">
+        <relrow props="apple android">
             <relcell>
                 <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
                 <topicref keyref="startPlaybackDeviceTest" props="mac"/>
@@ -2760,6 +2773,10 @@
                 <topicref keyref="stopRecordingDeviceTest"/>
                 <topicref keyref="getDefaultDevice_IAudioDeviceCollection" props="mac"/>
                 <topicref keyref="setDevice_IVideoDeviceCollection" props="mac"/>
+                <topicref keyref="setDeviceVolume" props="mac"/>
+                <topicref keyref="setMediaMetadataDataSource" props="apple"/>
+                <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
+                <topicref keyref="stateChanged" props="mac"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngine" chunk="to-content"/>
@@ -3055,20 +3072,20 @@
             <relcell>
                 <topicref keyref="initialize_IMusicContentCenter" toc="no"/>
                 <topicref keyref="renewToken_IMusicContentCenter" toc="no"/>
-                <topicref keyref="release_IMusicContentCenter" toc="no" props="cpp android"/>
+                <topicref keyref="release_IMusicContentCenter" props="cpp android"/>
                 <topicref keyref="registerEventHandler_IMusicContentCenter" toc="no"/>
-                <topicref keyref="unregisterEventHandler_IMusicContentCenter" toc="no" props="cpp android framework"/>
+                <topicref keyref="unregisterEventHandler_IMusicContentCenter" props="cpp android framework"/>
                 <topicref keyref="createMusicPlayer" toc="no"/>
                 <topicref keyref="getMusicCharts" toc="no"/>
                 <topicref keyref="getMusicCollectionByMusicChartId" toc="no"/>
-                <topicref keyref="getMusicCollectionByMusicChartId2" toc="no" props="android"/>
+                <topicref keyref="getMusicCollectionByMusicChartId2" props="android"/>
                 <topicref keyref="searchMusic" toc="no"/>
-                <topicref keyref="searchMusic2" toc="no" props="android"/>
+                <topicref keyref="searchMusic2" props="android"/>
                 <topicref keyref="preload" toc="no"/>
                 <topicref keyref="isPreloaded" toc="no"/>
                 <topicref keyref="getLyric" toc="no"/>
-                <topicref keyref="sharedContentCenterWithConfig" toc="no" props="ios"/>
-                <topicref keyref="enableMainQueueDispatch_IMusicContentCenter" toc="no" props="ios"/>
+                <topicref keyref="sharedContentCenterWithConfig" props="ios"/>
+                <topicref keyref="enableMainQueueDispatch_IMusicContentCenter" props="ios"/>
                 <topicref keyref="destroy_IMusicContentCenter" props="ios android"/>
             </relcell>
             <relcell>
@@ -3078,7 +3095,7 @@
         <relrow props="cpp android ios framework">
             <relcell>
                 <topicref keyref="open_IMusicPlayer" toc="no"/>
-                <topicref keyref="destroy_IMusicPlayer" toc="no" props="android"/>
+                <topicref keyref="destroy_IMusicPlayer" props="android"/>
             </relcell>
             <relcell>
                 <topicref keyref="IMusicPlayer" chunk="to-content"/>
