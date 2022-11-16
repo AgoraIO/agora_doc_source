@@ -1144,7 +1144,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
     data['id'] = api_id
     data['name'] = api_name.strip("\n ")
-    data['description'] = api_desc
+    data['description'] = api_desc.rstrip("\n")
     data['parameters'] = json_array
     data['returns'] = return_values.strip("\n ")
     data['is_hide'] = True if api_id in json_hide_id_list else False
