@@ -40,10 +40,6 @@
 
 ![](../images/ios_ui_structure.png)
 
-以小班课教师端举例，UI 组件布局如下：
-
-![](https://web-cdn.agora.io/docs-files/1651750043245)
-
 ## 自定义课堂 UI
 
 本节以灵动课堂-教育场景为例，介绍自定义课堂 UI 的具体步骤。
