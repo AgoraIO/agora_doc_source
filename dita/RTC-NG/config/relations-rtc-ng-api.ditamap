@@ -1113,10 +1113,9 @@
                 <topicref keyref="MEDIA_PLAYER_METADATA_TYPE"/>
             </relcell>
         </relrow>
-        <relrow>
+        <relrow props="apple">
             <relcell>
                 <topicref keyref="createMediaPlayer"/>
-                <topicref keyref="destroyMediaPlayer"/>
                 <topicref keyref="onMetaData" props="ios mac"/>
                 <topicref keyref="onPlayBufferUpdated" props="ios mac"/>
                 <topicref keyref="onPlayerInfoUpdated" props="ios mac"/>
@@ -1125,6 +1124,9 @@
                 <topicref keyref="onPositionChanged" props="ios mac"/>
                 <topicref keyref="onPlayerEvent" props="ios mac"/>
                 <topicref keyref="onPreloadEvent" props="ios mac"/>
+                <topicref keyref="onReadData"/>
+                <topicref keyref="onSeek"/>
+                <topicref keyref="sharedInstance"/>
             </relcell>
             <relcell>
                 <topicref keyref="IMediaPlayer"/>
@@ -2091,7 +2093,7 @@
                 <topicref keyref="onContentInspectResult"/>
             </relcell>
         </relrow>
-        <relrow props="ios">
+        <relrow props="apple">
             <relcell>
                 <topicref keyref="openWithCustomSource"/>
             </relcell>
@@ -2261,8 +2263,9 @@
                 <topicref keyref="createDataStream2"/>
                 <topicref keyref="createMediaPlayer"/>
                 <topicref keyref="createCustomVideoTrack"/>
+                <topicref keyref="delegate" props="apple"/>
                 <topicref keyref="destroyCustomVideoTrack"/>
-                <topicref keyref="destroyMediaPlayer" props="ios mac cpp framework"/>
+                <topicref keyref="destroyMediaPlayer" props="apple cpp framework"/>
                 <topicref keyref="disableAudio"/>
                 <topicref keyref="disableAudioSpectrumMonitor"/>
                 <topicref keyref="disableVideo"/>
@@ -2282,6 +2285,7 @@
                 <topicref keyref="enableLocalAudio"/>
                 <topicref keyref="enableLocalVideo"/>
                 <topicref keyref="enableLoopbackRecording" props="mac cpp unity electron flutter"/>
+                <topicref keyref="enableMainQueueDispatch" props="apple"/>
                 <topicref keyref="enableRemoteSuperResolution" props="android ios cpp framework"/>
                 <topicref keyref="enableSpatialAudio"/>
                 <topicref keyref="enableSoundPositionIndication"/>
@@ -2289,6 +2293,9 @@
                 <topicref keyref="enableVideoImageSource"/>
                 <topicref keyref="enableVirtualBackground"/>
                 <topicref keyref="enableWebSdkInteroperability"/>
+                <topicref keyref="enumerateDevices" props="mac"/>
+                <topicref keyref="followSystemPlaybackDevice" props="mac"/>
+                <topicref keyref="followSystemRecordingDevice" props="mac"/>
                 <topicref keyref="getAudioDeviceInfo" props="android cpp framework"/>
                 <topicref keyref="getAudioEffectManager" props="android"/>
                 <topicref keyref="getAudioMixingCurrentPosition"/>
@@ -2299,13 +2306,15 @@
                 <topicref keyref="getCallId"/>
                 <topicref keyref="getCameraMaxZoomFactor" props="android ios cpp framework"/>
                 <topicref keyref="getConnectionState"/>
+                <topicref keyref="getDeviceInfo" props="mac"/>
+                <topicref keyref="getDeviceVolume" props="mac"/>
                 <topicref keyref="getEffectCurrentPosition"/>
                 <topicref keyref="getEffectDuration"/>
                 <topicref keyref="getEffectsVolume"/>
                 <topicref keyref="getErrorDescription"/>
-                <topicref keyref="getExtensionProperty" props="android"/>
+                <topicref keyref="getExtensionProperty" props="android apple"/>
                 <topicref keyref="getExtensionProperty2"/>
-                <topicref keyref="getMediaPlayerCacheManager" props="android"/>
+                <topicref keyref="getMediaPlayerCacheManager" props="android apple"/>
                 <topicref keyref="getNativeHandle"/>
                 <topicref keyref="getNetworkType"/>
                 <topicref keyref="getScreenCaptureSources" props="mac cpp framework"/>
@@ -2329,6 +2338,7 @@
                 <topicref keyref="leaveChannel" props="native unity"/>
                 <topicref keyref="leaveChannel2"/>
                 <topicref keyref="loadExtensionProvider" props="cpp framework"/>
+                <topicref keyref="monitorDeviceChange" props="mac"/>
                 <topicref keyref="muteAllRemoteAudioStreams"/>
                 <topicref keyref="muteAllRemoteVideoStreams"/>
                 <topicref keyref="muteLocalAudioStream"/>
@@ -2341,6 +2351,8 @@
                 <topicref keyref="pauseAudioMixing"/>
                 <topicref keyref="pauseEffect"/>
                 <topicref keyref="playAllEffects" props="cpp framework"/>
+                <topicref keyref="playEffect1" props="apple"/>
+                <topicref keyref="playEffect2" props="apple android"/>
                 <topicref keyref="playEffect3"/>
                 <topicref keyref="preloadEffect"/>
                 <topicref keyref="pushCaptureAudioFrame1" props="hide"/>
@@ -2403,7 +2415,7 @@
                 <topicref keyref="setExtensionProperty"/>
                 <topicref keyref="setExtensionProviderProperty"/>
                 <topicref keyref="setExternalAudioSink"/>
-                <topicref keyref="setExternalAudioSource" props="android"/>
+                <topicref keyref="setExternalAudioSource" props="android apple"/>
                 <topicref keyref="setHeadphoneEQParameters"/>
                 <topicref keyref="setHeadphoneEQPreset"/>
                 <topicref keyref="setInEarMonitoringVolume"/>
@@ -2443,6 +2455,7 @@
                 <topicref keyref="setVideoEncoderConfiguration"/>
                 <topicref keyref="setupLocalVideo" props="native rn electron flutter"/>
                 <topicref keyref="setVideoProfile" props="android ios mac"/>
+                <topicref keyref="setVideoProfile2" props="apple"/>
                 <topicref keyref="setVideoQualityParameters" props="hide"/>
                 <topicref keyref="setVoiceBeautifierParameters"/>
                 <topicref keyref="setVoiceBeautifierPreset"/>
@@ -2467,7 +2480,7 @@
                 <topicref keyref="startRtmpStreamWithoutTranscoding"/>
                 <topicref keyref="startRtmpStreamWithTranscoding"/>
                 <topicref keyref="startScreenCapture"/>
-                <topicref keyref="startScreenCaptureByDisplayId" props="ios mac cpp framework"/>
+                <topicref keyref="startScreenCaptureByDisplayId" props="mac cpp framework"/>
                 <topicref keyref="startScreenCaptureByScreenRect" props="cpp unity flutter electron"/>
                 <topicref keyref="startScreenCaptureByWindowId" props="mac cpp framework"/>
                 <topicref keyref="startSecondaryCameraCapture" props="cpp framework"/>
@@ -2505,17 +2518,19 @@
                 <topicref keyref="updateScreenCaptureParameters" props="mac android cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion1" props="cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion2" props="hide"/>
-                <topicref keyref="pullAudioFrame" props="android"/>
+                <topicref keyref="pullAudioFrame" props="android apple"/>
                 <topicref keyref="pullAudioFrame2" props="android"/>
-                <topicref keyref="pushAudioFrame1" props="android"/>
-                <topicref keyref="pushAudioFrame2" props="android"/>
-                <topicref keyref="pushVideoFrame" props="android"/>
-                <topicref keyref="registerAudioFrameObserver" props="android"/>
-                <topicref keyref="registerVideoEncodedFrameObserver" props="android"/>
-                <topicref keyref="registerVideoFrameObserver" props="android"/>
-                <topicref keyref="setExternalAudioSink" props="android"/>
-                <topicref keyref="setExternalAudioSource2" props="android"/>
-                <topicref keyref="setExternalVideoSource" props="android"/>
+                <topicref keyref="pullPlaybackAudioFrameSampleBufferByLengthInByte" props="apple"/>
+                <topicref keyref="pushAudioFrame1" props="android apple"/>
+                <topicref keyref="pushAudioFrame2" props="android apple"/>
+                <topicref keyref="pushExternalAudioFrameSampleBuffer1" props="apple"/>
+                <topicref keyref="pushVideoFrame" props="android apple"/>
+                <topicref keyref="registerAudioFrameObserver" props="android apple"/>
+                <topicref keyref="registerVideoEncodedFrameObserver" props="android apple"/>
+                <topicref keyref="registerVideoFrameObserver" props="android apple"/>
+                <topicref keyref="setExternalAudioSink" props="android apple"/>
+                <topicref keyref="setExternalAudioSource2" props="android apple"/>
+                <topicref keyref="setExternalVideoSource" props="android apple"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngine"/>
@@ -2555,7 +2570,7 @@
                 <topicref keyref="updateChannelMediaOptionsEx"/>
             </relcell>
             <relcell>
-                <topicref keyref="IRtcEngineEx" chunk="to-content"/>
+                <topicref keyref="IRtcEngineEx"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2586,10 +2601,10 @@
                 <topicref keyref="onContentInspectResult" props="hide"/>
                 <topicref keyref="onEncryptionError"/>
                 <topicref keyref="onError"/>
-                <topicref keyref="onExtensionError"/>
-                <topicref keyref="onExtensionEvent"/>
-                <topicref keyref="onExtensionStarted"/>
-                <topicref keyref="onExtensionStopped"/>
+                <topicref keyref="onExtensionError" props="cpp framework"/>
+                <topicref keyref="onExtensionEvent" props="cpp framework"/>
+                <topicref keyref="onExtensionStarted" props="cpp framework"/>
+                <topicref keyref="onExtensionStopped" props="cpp framework"/>
                 <topicref keyref="onFacePositionChanged" props="android ios cpp framework"/>
                 <topicref keyref="onFirstLocalAudioFramePublished"/>
                 <topicref keyref="onFirstLocalVideoFrame"/>
@@ -2646,7 +2661,18 @@
                 <topicref keyref="onVideoSubscribeStateChanged"/>
             </relcell>
             <relcell>
-                <topicref keyref="IRtcEngineEventHandler" chunk="to-content"/>
+                <topicref keyref="IRtcEngineEventHandler"/>
+            </relcell>
+        </relrow>
+        <relrow props="android apple">
+            <relcell>
+                <topicref keyref="onExtensionError"/>
+                <topicref keyref="onExtensionEvent"/>
+                <topicref keyref="onExtensionStarted"/>
+                <topicref keyref="onExtensionStopped"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IMediaExtensionObserver" />
             </relcell>
         </relrow>
         <relrow>
@@ -2702,7 +2728,7 @@
                 <topicref keyref="unregisterVideoFrameObserver_IMediaPlayer" props="cpp electron flutter rn"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaPlayer" chunk="to-content"/>
+                <topicref keyref="IMediaPlayer"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2712,7 +2738,7 @@
                 <topicref keyref="onRecordAudioEncodedFrame"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioEncodedFrameObserver" chunk="to-content"/>
+                <topicref keyref="IAudioEncodedFrameObserver"/>
             </relcell>
         </relrow>
         <relrow props="cpp framework">
@@ -2747,10 +2773,10 @@
                 <topicref keyref="stopRecordingDeviceTest" props="cpp electron flutter unity"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioDeviceManager" chunk="to-content"/>
+                <topicref keyref="IAudioDeviceManager"/>
             </relcell>
         </relrow>
-        <relrow props="mac android">
+        <relrow props="apple android">
             <relcell>
                 <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
                 <topicref keyref="startPlaybackDeviceTest" props="mac"/>
@@ -2760,9 +2786,13 @@
                 <topicref keyref="stopRecordingDeviceTest"/>
                 <topicref keyref="getDefaultDevice_IAudioDeviceCollection" props="mac"/>
                 <topicref keyref="setDevice_IVideoDeviceCollection" props="mac"/>
+                <topicref keyref="setDeviceVolume" props="mac"/>
+                <topicref keyref="setMediaMetadataDataSource" props="apple"/>
+                <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
+                <topicref keyref="stateChanged" props="mac"/>
             </relcell>
             <relcell>
-                <topicref keyref="IRtcEngine" chunk="to-content"/>
+                <topicref keyref="IRtcEngine"/>
             </relcell>
         </relrow>
         <relrow props="cpp">
@@ -2778,7 +2808,7 @@
                 <topicref keyref="setDevice_IAudioDeviceCollection"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioDeviceCollection" chunk="to-content"/>
+                <topicref keyref="IAudioDeviceCollection"/>
             </relcell>
         </relrow>
         <relrow props="cpp framework">
@@ -2793,7 +2823,7 @@
                 <topicref keyref="stopDeviceTest" props="hide"/>
             </relcell>
             <relcell>
-                <topicref keyref="IVideoDeviceManager" chunk="to-content"/>
+                <topicref keyref="IVideoDeviceManager"/>
             </relcell>
         </relrow>
         <relrow props="cpp">
@@ -2804,7 +2834,7 @@
                 <topicref keyref="setDevice_IVideoDeviceCollection"/>
             </relcell>
             <relcell>
-                <topicref keyref="IVideoDeviceCollection" chunk="to-content"/>
+                <topicref keyref="IVideoDeviceCollection"/>
             </relcell>
         </relrow>
         <relrow props="cpp framework">
@@ -2823,7 +2853,7 @@
                 <topicref keyref="setExternalVideoSource"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaEngine" chunk="to-content"/>
+                <topicref keyref="IMediaEngine"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2841,7 +2871,7 @@
                 <topicref keyref="setMaxCacheFileSize"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaPlayerCacheManager" chunk="to-content"/>
+                <topicref keyref="IMediaPlayerCacheManager"/>
             </relcell>
         </relrow>
         <relrow props="android cpp unity">
@@ -2850,7 +2880,7 @@
                 <topicref keyref="onSeek"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaPlayerCustomDataProvider" chunk="to-content"/>
+                <topicref keyref="IMediaPlayerCustomDataProvider"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2867,7 +2897,7 @@
                 <topicref keyref="onPreloadEvent"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaPlayerSourceObserver" chunk="to-content"/>
+                <topicref keyref="IMediaPlayerSourceObserver"/>
             </relcell>
         </relrow>
         <relrow props="ios mac cpp framework">
@@ -2876,7 +2906,7 @@
                 <topicref keyref="onPlaybackAudioFrameBeforeMixing"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioFrameObserver" chunk="to-content"/>
+                <topicref keyref="IAudioFrameObserver"/>
             </relcell>
         </relrow>
         <relrow props="android">
@@ -2884,7 +2914,7 @@
                 <topicref keyref="onFrame_IAudioFrameObserver"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaPlayerAudioFrameObserver" chunk="to-content"/>
+                <topicref keyref="IMediaPlayerAudioFrameObserver"/>
             </relcell>
         </relrow>
         <relrow props="android">
@@ -2892,7 +2922,7 @@
                 <topicref keyref="onPlaybackAudioFrameBeforeMixing"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioFrameObserver" chunk="to-content"/>
+                <topicref keyref="IAudioFrameObserver"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2907,8 +2937,8 @@
                 <topicref keyref="getEarMonitoringAudioParams" props="native unity"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioFrameObserverBase" chunk="to-content" props="cpp framework"/>
-                <topicref keyref="IAudioFrameObserver" chunk="to-content" props="android ios mac"/>
+                <topicref keyref="IAudioFrameObserverBase" props="cpp framework"/>
+                <topicref keyref="IAudioFrameObserver" props="android ios mac"/>
             </relcell>
         </relrow>
         <relrow props="cn">
@@ -2917,7 +2947,7 @@
                 <topicref keyref="onDirectCdnStreamingStats"/>
             </relcell>
             <relcell>
-                <topicref keyref="IDirectCdnStreamingEventHandler" chunk="to-content"/>
+                <topicref keyref="IDirectCdnStreamingEventHandler"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2926,7 +2956,7 @@
                 <topicref keyref="onRemoteAudioSpectrum"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioSpectrumObserver" chunk="to-content"/>
+                <topicref keyref="IAudioSpectrumObserver"/>
             </relcell>
         </relrow>
         <relrow props="cpp">
@@ -2937,7 +2967,7 @@
                 <topicref keyref="onSendVideoPacket"/>
             </relcell>
             <relcell>
-                <topicref keyref="IPacketObserver" chunk="to-content"/>
+                <topicref keyref="IPacketObserver"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2947,7 +2977,8 @@
                 <topicref keyref="onReadyToSendMetadata" props="cpp apple unity"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMetadataObserver" chunk="to-content"/>
+                <topicref keyref="IMetadataObserver" props="cpp unity"/>
+                <topicref keyref="AgoraMediaMetadataDataSource" props="apple"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2955,7 +2986,7 @@
                 <topicref keyref="onEncodedVideoFrameReceived"/>
             </relcell>
             <relcell>
-                <topicref keyref="IVideoEncodedFrameObserver" chunk="to-content"/>
+                <topicref keyref="IVideoEncodedFrameObserver"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2976,7 +3007,7 @@
                 <topicref keyref="onRenderVideoFrame"/>
             </relcell>
             <relcell>
-                <topicref keyref="IVideoFrameObserver" chunk="to-content"/>
+                <topicref keyref="IVideoFrameObserver"/>
             </relcell>
         </relrow>
         <relrow props="android">
@@ -2984,7 +3015,7 @@
                 <topicref keyref="onFrame_IVideoFrameObserver"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaPlayerVideoFrameObserver" chunk="to-content"/>
+                <topicref keyref="IMediaPlayerVideoFrameObserver"/>
             </relcell>
         </relrow>
         <relrow>
@@ -3011,12 +3042,13 @@
                 <topicref keyref="clearRemotePositions"/>
                 <topicref keyref="create_ILocalSpatialAudioEngine" props="android"/>
                 <topicref keyref="initialize_ILocalSpatialAudioEngine"/>
+                <topicref keyref="release_ILocalSpatialAudioEngine" props="android apple unity"/>
                 <topicref keyref="removeRemotePosition"/>
                 <topicref keyref="updateRemotePosition"/>
                 <topicref keyref="LocalSpatialAudioConfig" props="native unity"/>
             </relcell>
             <relcell>
-                <topicref keyref="ILocalSpatialAudioEngine" chunk="to-content"/>
+                <topicref keyref="ILocalSpatialAudioEngine"/>
             </relcell>
         </relrow>
         <relrow props="cpp">
@@ -3027,7 +3059,7 @@
                 <topicref keyref="ScreenCaptureSourceInfo"/>
             </relcell>
             <relcell>
-                <topicref keyref="IScreenCaptureSourceList" chunk="to-content"/>
+                <topicref keyref="IScreenCaptureSourceList"/>
             </relcell>
         </relrow>
         <relrow>
@@ -3037,9 +3069,10 @@
                 <topicref keyref="startRecording"/>
                 <topicref keyref="stopRecording"/>
                 <topicref keyref="releaseRecorder"/>
+                <topicref keyref="enableMainQueueDispatch_IMediaRecorder" props="apple"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaRecorder" chunk="to-content"/>
+                <topicref keyref="IMediaRecorder"/>
             </relcell>
         </relrow>
         <relrow>
@@ -3048,39 +3081,40 @@
                 <topicref keyref="onRecorderInfoUpdated"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaRecorderObserver" chunk="to-content"/>
+                <topicref keyref="IMediaRecorderObserver"/>
             </relcell>
         </relrow>
         <relrow props="cpp andriod ios framework">
             <relcell>
-                <topicref keyref="initialize_IMusicContentCenter" toc="no"/>
-                <topicref keyref="renewToken_IMusicContentCenter" toc="no"/>
-                <topicref keyref="release_IMusicContentCenter" toc="no" props="cpp android"/>
-                <topicref keyref="registerEventHandler_IMusicContentCenter" toc="no"/>
-                <topicref keyref="unregisterEventHandler_IMusicContentCenter" toc="no" props="cpp android framework"/>
-                <topicref keyref="createMusicPlayer" toc="no"/>
-                <topicref keyref="getMusicCharts" toc="no"/>
-                <topicref keyref="getMusicCollectionByMusicChartId" toc="no"/>
-                <topicref keyref="getMusicCollectionByMusicChartId2" toc="no" props="android"/>
-                <topicref keyref="searchMusic" toc="no"/>
-                <topicref keyref="searchMusic2" toc="no" props="android"/>
-                <topicref keyref="preload" toc="no"/>
-                <topicref keyref="isPreloaded" toc="no"/>
-                <topicref keyref="getLyric" toc="no"/>
-                <topicref keyref="enableMainQueueDispatch_IMusicContentCenter" toc="no" props="ios"/>
+                <topicref keyref="initialize_IMusicContentCenter" props="cpp andriod ios framework"/>
+                <topicref keyref="renewToken_IMusicContentCenter"/>
+                <topicref keyref="release_IMusicContentCenter" props="cpp android"/>
+                <topicref keyref="registerEventHandler_IMusicContentCenter"/>
+                <topicref keyref="unregisterEventHandler_IMusicContentCenter" props="cpp android framework"/>
+                <topicref keyref="createMusicPlayer"/>
+                <topicref keyref="getMusicCharts"/>
+                <topicref keyref="getMusicCollectionByMusicChartId"/>
+                <topicref keyref="getMusicCollectionByMusicChartId2" props="android"/>
+                <topicref keyref="searchMusic"/>
+                <topicref keyref="searchMusic2" props="android"/>
+                <topicref keyref="preload"/>
+                <topicref keyref="isPreloaded"/>
+                <topicref keyref="getLyric"/>
+                <topicref keyref="sharedContentCenterWithConfig" props="ios"/>
+                <topicref keyref="enableMainQueueDispatch_IMusicContentCenter" props="ios"/>
                 <topicref keyref="destroy_IMusicContentCenter" props="ios android"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMusicContentCenter" chunk="to-content"/>
+                <topicref keyref="IMusicContentCenter"/>
             </relcell>
         </relrow>
         <relrow props="cpp android ios framework">
             <relcell>
-                <topicref keyref="open_IMusicPlayer" toc="no"/>
-                <topicref keyref="destroy_IMusicPlayer" toc="no" props="android"/>
+                <topicref keyref="open_IMusicPlayer"/>
+                <topicref keyref="destroy_IMusicPlayer" props="android"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMusicPlayer" chunk="to-content"/>
+                <topicref keyref="IMusicPlayer"/>
             </relcell>
         </relrow>
         <relrow props="cpp android ios framework">
@@ -3091,7 +3125,7 @@
                 <topicref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMusicContentCenterEventHandler" chunk="to-content"/>
+                <topicref keyref="IMusicContentCenterEventHandler"/>
             </relcell>
         </relrow>
         <relrow props="rn">
@@ -3100,7 +3134,7 @@
                 <topicref keyref="RtcRendererViewProps"/>
             </relcell>
             <relcell>
-                <topicref keyref="RtcSurfaceView" chunk="to-content"/>
+                <topicref keyref="RtcSurfaceView"/>
             </relcell>
         </relrow>
         <relrow props="rn">
@@ -3108,7 +3142,7 @@
                 <topicref keyref="RtcRendererViewProps"/>
             </relcell>
             <relcell>
-                <topicref keyref="RtcTextureView" chunk="to-content"/>
+                <topicref keyref="RtcTextureView"/>
             </relcell>
         </relrow>
     </reltable>
