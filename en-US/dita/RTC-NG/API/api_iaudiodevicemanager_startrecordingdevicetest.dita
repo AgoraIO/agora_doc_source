@@ -19,11 +19,17 @@
             <codeblock props="electron" outputclass="language-typescript">abstract startRecordingDeviceTest(indicationInterval: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartRecordingDeviceTest(int indicationInterval);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startRecordingDeviceTest(indicationInterval: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRecordingDeviceTest(int indicationInterval);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRecordingDeviceTest(int indicationInterval);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>This method tests whether the audio capture device works properly. After calling this method, the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback at the time interval set in this method, which reports <parmname>uid</parmname> = 0 and the volume information of the capturing device.</p>
-            <note type="attention">Ensure that you call this method before joining a channel.</note> </section>
+            <note type="note">
+            <ul>
+            <li props="cpp framework">This method is for Windows and macOS only.</li>
+            <li>Ensure that you call this method before joining a channel.</li>
+            </ul></note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -32,7 +38,7 @@
                 <pd>The time interval (ms) at which the SDK triggers the <xref keyref="onAudioVolumeIndication"/> callback. Agora recommends a setting greater than 200 ms. This value must not be less than 10 ms; otherwise, you can not receive the <apiname keyref="onAudioVolumeIndication"/> callback.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values" props="native electron unity">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
