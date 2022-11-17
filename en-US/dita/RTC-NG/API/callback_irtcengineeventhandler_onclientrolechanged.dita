@@ -20,25 +20,27 @@ NS_SWIFT_NAME(rtcEngine(_:didClientRoleChanged:newRole:newRoleOptions:));</codeb
     connection: RtcConnection,
     oldRole: ClientRoleType,
     newRole: ClientRoleType
+    newRoleOptions: ClientRoleOptions
   ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"> public virtual void OnClientRoleChanged(RtcConnection connection, CLIENT_ROLE_TYPE oldRole, CLIENT_ROLE_TYPE newRole, ClientRoleOptions newRoleOptions) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onClientRoleChanged?(
     connection: RtcConnection,
     oldRole: ClientRoleType,
     newRole: ClientRoleType
+    newRoleOptions: ClientRoleOptions
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
       RtcConnection connection,
       ClientRoleType oldRole,
       ClientRoleType newRole,
-      ClientRoleOptions newRoleOptions)? onClientRoleChanged;</codeblock> </p>
+      ClientRoleOptions newRoleOptions)? onClientRoleChanged;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>The SDK triggers this callback when the local user switches their user role by calling <xref keyref="setClientRole2"/> after joining the channel.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
