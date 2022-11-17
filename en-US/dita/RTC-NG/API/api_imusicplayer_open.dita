@@ -20,7 +20,8 @@
             <codeblock props="electron" outputclass="language-typescript">abstract openWithSongCode(songCode: number, startPos?: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int Open(Int64 songCode, Int64 startPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract openWithSongCode(songCode: number, startPos?: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> openWithSongCode({required int songCode, int startPos = 0});</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> openWithSongCode({required int songCode, int startPos = 0});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -29,8 +30,8 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <note type="note">If the music you want to open is protected by Digital Rights Management(DRM), you need to call this method to open the music. For music that are not DRM protected, you can either call this method or <xref keyref="open"/> method for opening.</note>
-            <p>Before calling this method, make sure the music you want to play has been preloaded. You can call the <xref keyref="isPreloaded"/> or <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> method to check whether the music has been preloaded.</p>
+            <note type="note">If the music you want to open is protected by Digital Rights Management(DRM), you need to call this method to open the music. For music that are not DRM protected, you can either call this method or<apiname keyref="IMediaPlayer"/><xref keyref="open"/>  method for opening.</note>
+            <p>Before calling this method, make sure the music you want to play has been preloaded. 你可以调用 <xref keyref="isPreloaded"/> 方法来检测音乐资源是否已被预加载，或通过 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调得知。</p>
             <p conkeyref="open/open"/>
         </section>
         <section id="parameters">
@@ -45,7 +46,7 @@
                 <pd>The starting position (ms) for playback. Default value is 0.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn electron">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
