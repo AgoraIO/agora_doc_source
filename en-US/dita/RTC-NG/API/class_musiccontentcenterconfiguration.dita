@@ -50,25 +50,24 @@
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig : NSObject
 @property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
 @property (nonatomic, copy) NSString *appId;
-@property (nonatomic, copy) NSString *rtmToken;
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, assign) NSInteger mccUid;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
     const char *appId;
-    const char *rtmToken;
     const char *token;
     int64_t mccUid;
-
     IMusicContentCenterEventHandler* eventHandler;
-    MusicContentCenterConfiguration():appId(nullptr),rtmToken(nullptr),eventHandler(nullptr),mccUid(0){}
     MusicContentCenterConfiguration():appId(nullptr),token(nullptr),eventHandler(nullptr),mccUid(0){}
     MusicContentCenterConfiguration(const char*appid,const char* token,int64_t id,IMusicContentCenterEventHandler* handler):
-        appId(appid),rtmToken(token),mccUid(id),eventHandler(handler){}
         appId(appid),token(token),mccUid(id),eventHandler(handler){}
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="electron" outputclass="language-typescript">export class MusicContentCenterConfiguration {
+  appId?: string;
+  token?: string;
+  mccUid?: number;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class MusicContentCenterConfiguration
     {
         public string appId;
@@ -89,7 +88,11 @@
             this.mccUid = uid;
         }
     }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="rn" outputclass="language-typescript">export class MusicContentCenterConfiguration {
+  appId?: string;
+  token?: string;
+  mccUid?: number;
+}</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class MusicContentCenterConfiguration {
   const MusicContentCenterConfiguration({this.appId, this.token, this.mccUid});
 
@@ -107,7 +110,8 @@
 
   Map&lt;String, dynamic&gt; toJson() =&gt;
       _$MusicContentCenterConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
