@@ -40,7 +40,8 @@
     error: LocalVideoStreamError
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType source, LocalVideoStreamState state,
-      LocalVideoStreamError error)? onLocalVideoStateChanged;</codeblock> </p>
+      LocalVideoStreamError error)? onLocalVideoStateChanged;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p id="desc1">When the state of the local video stream changes (including the state of the video capture and encoding), the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
@@ -52,7 +53,6 @@
             <note id="note" type="attention">For some device models, the SDK does not trigger this callback when the state of the local video changes while the local video capturing device is in use, so you have to make your own timeout judgment.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt/>
