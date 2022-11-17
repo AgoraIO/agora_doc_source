@@ -22,12 +22,24 @@
                                    const SimulcastStreamConfig&amp; streamConfig,
                                    const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract setDualStreamModeEx(
+    mode: SimulcastStreamMode,
+    streamConfig: SimulcastStreamConfig,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetDualStreamModeEx(SIMULCAST_STREAM_MODE mode, SimulcastStreamConfig streamConfig, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setDualStreamModeEx(
+    mode: SimulcastStreamMode,
+    streamConfig: SimulcastStreamConfig,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDualStreamModeEx(
+      {required SimulcastStreamMode mode,
+      required SimulcastStreamConfig streamConfig,
+      required RtcConnection connection});</codeblock> </p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.0.1</dd>
@@ -35,34 +47,33 @@
             </dl>
             <p conkeyref="setDualStreamMode/desc"/>
             <note id="note">该方法和 <xref keyref="enableDualStreamModeEx"/> 的区别与联系如下：
-                <ul>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
-                <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
-                </ul></note>
-        </section>
+            
+            <ul>
+            <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
+            <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
+            <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+            </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-                <plentry conkeyref="setDualStreamMode/mode">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="enableDualStreamMode3/streamconfig">
-                    <pt/>
-                    <pd/>
-                </plentry>
-                <plentry conkeyref="joinChannelEx/connection">
-                    <pt/>
-                    <pd/>
-                </plentry>
+            <plentry conkeyref="setDualStreamMode/mode">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="enableDualStreamMode3/streamconfig">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul id="ul_bpp_x2z_hqb">
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败 </li>
-            </ul>
-        </section>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败 </li>
+            </ul> </section>
     </refbody>
 </reference>

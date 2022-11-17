@@ -17,20 +17,20 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setHeadphoneEQPreset:(AgoraHeadphoneEQPreset)preset;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setHeadphoneEQPreset(HEADPHONE_EQUALIZER_PRESET preset) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract setHeadphoneEQPreset(preset: HeadphoneEqualizerPreset): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetHeadphoneEQPreset(HEADPHONE_EQUALIZER_PRESET preset);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setHeadphoneEQPreset(preset: HeadphoneEqualizerPreset): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setHeadphoneEQPreset(HeadphoneEqualizerPreset preset);</codeblock> </p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
             <p>该方法主要应用于空间音效场景下，你可以选择预设的耳机均衡器收听音频，以达到预期的音频体验。</p>
-            <note type="note">如果你使用的耳机已经具备良好的均衡效果，调用该方法时可能不会获得明显的体验提升效果，甚至可能导致体验下降。</note>
-        </section>
+            <note type="note">如果你使用的耳机已经具备良好的均衡效果，调用该方法时可能不会获得明显的体验提升效果，甚至可能导致体验下降。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -42,12 +42,13 @@
         <section id="return_values" props="native unity rn">
             <title>返回值</title>
             <ul>
-                <li>0: 方法调用成功</li>
-                <li>&lt; 0: 方法调用失败
-                    <ul>
-                    <li>-1：一般性的错误（未明确归类）。</li>
-                    </ul></li>
-            </ul>
-        </section>
+            <li>0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败
+                
+                
+                <ul>
+                <li>-1：一般性的错误（未明确归类）。</li>
+                </ul></li>
+            </ul> </section>
     </refbody>
 </reference>
