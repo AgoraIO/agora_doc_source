@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediasource">
-    <title><ph keyref="MediaSource"/></title>
+    <title><ph keyref="MediaSource" /></title>
     <shortdesc id="short"><ph id="shortdesc">Information related to the media file to be played and the playback scenario configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -134,10 +134,10 @@
   @JsonKey(name: 'isLiveSource')
   final bool? isLiveSource;
 
-  factory MediaSource.fromJson(Map&lt;String, dynamic> json) =>
+  factory MediaSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$MediaSourceFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$MediaSourceToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
 }</codeblock></p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -177,7 +177,7 @@
                     </ul>
                     <note>
                     <ul>
-                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the url of the media file<parmname></parmname>.</li>
+                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the url of the media file<parmname />.</li>
                     <li>If you enable this function, the Media Player caches part of the media file being played on your local device, and you can play the cached media file without internet connection. The statistics about the media file being cached are updated every second after the media file is played. See <xref keyref="CacheStatistics" />.</li>
                     </ul> </note></pd>
             </plentry>
@@ -188,7 +188,7 @@
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream or on-demand video distributed through Media Broadcast service.</li>
                     </ul>
                     <note>
-                    <p><codeph><ph keyref="true" /></codeph>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the<parmname> URL</parmname> of the media resource to url, and set <parmname>isAgoraSource</parmname> as ; otherwise, you don't need to set the isAgoraSource parameter<parmname></parmname>.</p>
+                    <p><codeph><ph keyref="true" /></codeph>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the<parmname> URL</parmname> of the media resource to url, and set <parmname>isAgoraSource</parmname> as ; otherwise, you don't need to set the isAgoraSource parameter<parmname />.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -205,7 +205,7 @@
             <plentry props="android cpp unity">
                     <pt>provider</pt>
                     <pd>
-                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
+                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider" />.</p>
                         <note>
                             <p>如果你打开媒体资源为自定义媒体资源，请仅向 <parmname>provider</parmname> 传值，如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值。 同时向 <parmname>url</parmname> 和 <parmname>provider</parmname> 传值会导致方法调用会失败。</p>
                         </note>
@@ -214,15 +214,15 @@
             <plentry props="apple">
                 <pt>playerOnReadCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData"/>.</p>
+                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData" />.</p>
                     <note id="note">
-                    <p conkeyref="MediaSource/url"/>
+                    <p conkeyref="MediaSource/url" />
                     </note></pd>
             </plentry>
             <plentry props="apple">
                 <pt>playerOnSeekCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek"/>.</p>
+                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek" />.</p>
                     <note conkeyref="MediaSource/note">
                     <p />
                     </note></pd>
