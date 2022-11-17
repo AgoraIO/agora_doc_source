@@ -187,10 +187,6 @@
                 <stentry><xref keyref="getAudioDeviceInfo"/></stentry>
                 <stentry><ph conkeyref="getAudioDeviceInfo/shortdesc"/></stentry>
             </strow>
-            <strow>
-                <stentry/>
-                <stentry/>
-            </strow>
             </simpletable> </section>
         <section id="section_gxr_pjb_jqb">
             <title>Video management</title>
@@ -334,20 +330,20 @@
                 <stentry>Description</stentry>
             </sthead>
             <strow>
-                <stentry><xref keyref="setSubscribeAudioBlacklist"/></stentry>
-                <stentry><ph conkeyref="setSubscribeAudioBlacklist/shortdesc"/></stentry>
+                <stentry><xref keyref="setSubscribeAudioBlocklist"/></stentry>
+                <stentry><ph conkeyref="setSubscribeAudioBlocklist/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="setSubscribeAudioWhitelist"/></stentry>
-                <stentry><ph conkeyref="setSubscribeAudioWhitelist/shortdesc"/></stentry>
+                <stentry><xref keyref="setSubscribeAudioAllowlist"/></stentry>
+                <stentry><ph conkeyref="setSubscribeAudioAllowlist/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="setSubscribeVideoBlacklist"/></stentry>
-                <stentry><ph conkeyref="setSubscribeVideoBlacklist/shortdesc"/></stentry>
+                <stentry><xref keyref="setSubscribeVideoBlocklist"/></stentry>
+                <stentry><ph conkeyref="setSubscribeVideoBlocklist/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="setSubscribeVideoWhitelist"/></stentry>
-                <stentry><ph conkeyref="setSubscribeVideoWhitelist/shortdesc"/></stentry>
+                <stentry><xref keyref="setSubscribeVideoAllowlist"/></stentry>
+                <stentry><ph conkeyref="setSubscribeVideoAllowlist/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="muteLocalAudioStream"/></stentry>
@@ -377,19 +373,23 @@
                 <stentry><xref keyref="muteAllRemoteVideoStreams"/></stentry>
                 <stentry><ph conkeyref="muteAllRemoteVideoStreams/shortdesc"/></stentry>
             </strow>
+            <strow>
+                <stentry><xref keyref="setRemoteVideoSubscriptionOptions"/></stentry>
+                <stentry><ph conkeyref="setRemoteVideoSubscriptionOptions/shortdesc"/></stentry>
+            </strow>
             </simpletable> </section>
-        <section props="cpp" id="section_hj2_ph1_jqb">
+        <section props="cpp ios" id="section_hj2_ph1_jqb">
             <title>Multi-device capture</title>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
             </sthead>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="startPrimaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="startPrimaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="startPrimaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="startPrimaryScreenCapture/shortdesc"/></stentry>
             </strow>
@@ -397,15 +397,15 @@
                 <stentry><xref keyref="startSecondaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="startSecondaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="startSecondaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="startSecondaryScreenCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="stopPrimaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="stopPrimaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="stopPrimaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="stopPrimaryScreenCapture/shortdesc"/></stentry>
             </strow>
@@ -413,13 +413,14 @@
                 <stentry><xref keyref="stopSecondaryCameraCapture"/></stentry>
                 <stentry><ph conkeyref="stopSecondaryCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="cpp">
                 <stentry><xref keyref="stopSecondaryScreenCapture"/></stentry>
                 <stentry><ph conkeyref="stopSecondaryScreenCapture/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
         <section id="section_vw3_mlb_jqb">
             <title>Media player</title>
+            <note>To see more about the media player method, see <xref href="toc_mediaplayer.dita"/>.</note>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -697,7 +698,7 @@
             <strow>
                 <stentry><xref keyref="getEarMonitoringAudioParams"/></stentry>
                 <stentry><ph conkeyref="getEarMonitoringAudioParams/shortdesc"/></stentry>
-            </strow>            
+            </strow>
             </simpletable> </section>
         <section id="audio_file_playback_and_mixing">
             <title>Music file playback and mixing</title>
@@ -856,6 +857,54 @@
                 <stentry><ph conkeyref="setEffectPosition/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
+        <section props="android ios">
+            <title>DRM-protected music</title>
+           <simpletable>
+            <sthead>
+                <stentry>Method</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="initialize_IMusicContentCenter"/></stentry>
+                <stentry><ph conkeyref="initialize_IMusicContentCenter/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="createMusicPlayer"/></stentry>
+                <stentry><ph conkeyref="createMusicPlayer/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="preload"/></stentry>
+                <stentry><ph conkeyref="preload/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="open_IMusicPlayer"/></stentry>
+                <stentry><ph conkeyref="open_IMusicPlayer/shortdesc"/></stentry>
+            </strow>
+               <strow>
+                <stentry><xref keyref="registerEventHandler_IMusicContentCenter"/></stentry>
+                <stentry><ph conkeyref="registerEventHandler_IMusicContentCenter/shortdesc"/></stentry>
+            </strow></simpletable><simpletable><sthead>
+                <stentry>Event</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></stentry>
+                <stentry><ph conkeyref="onPreLoadEvent_IMusicContentCenterEventHandler/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onLyricResult"/></stentry>
+                <stentry><ph conkeyref="onLyricResult/shortdesc"/></stentry>
+            </strow>
+                <strow>
+                <stentry><xref keyref="onMusicChartsResult"/></stentry>
+                <stentry><ph conkeyref="onMusicChartsResult/shortdesc"/></stentry>
+            </strow>
+                <strow>
+                <stentry><xref keyref="onMusicCollectionResult"/></stentry>
+                <stentry><ph conkeyref="onMusicCollectionResult/shortdesc"/></stentry>
+            </strow>
+            </simpletable>
+        </section>
         <section id="rhythm_player" props="cpp android ios unity flutter">
             <title>Virtual metronome</title>
             <note props="cpp unity flutter" type="attention">
@@ -877,7 +926,17 @@
                 <stentry><xref keyref="configRhythmPlayer"/></stentry>
                 <stentry><ph conkeyref="configRhythmPlayer/shortdesc"/></stentry>
             </strow>
-            </simpletable> </section>
+            </simpletable>
+            <simpletable>
+                <sthead>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onRhythmPlayerStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onRhythmPlayerStateChanged/shortdesc"/></stentry>
+                </strow>
+                </simpletable> </section>
         <section>
             <title>Voice changer and reverberation</title>
             <simpletable id="simpletable_sw5_xd1_jqb">
@@ -977,7 +1036,7 @@
             </strow>
             </simpletable> </section>
         <section id="screen_capture">
-            <title>Screen share API</title>
+            <title>Screen Sharing</title>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -1054,10 +1113,6 @@
             <strow props="native">
                 <stentry><xref keyref="enableDualStreamMode"/></stentry>
                 <stentry><ph conkeyref="enableDualStreamMode/shortdesc"/></stentry>
-            </strow>
-            <strow props="native">
-                <stentry><xref keyref="enableDualStreamMode2"/></stentry>
-                <stentry><ph conkeyref="enableDualStreamMode2/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="enableDualStreamMode3"/></stentry>
@@ -1278,7 +1333,7 @@
                 <stentry><ph conkeyref="onTeammateLeft/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section id="media_push" props="native flutter">
+        <section id="media_push">
             <title>Media push</title>
             <simpletable>
             <sthead>
@@ -1496,6 +1551,10 @@
                 <stentry><xref keyref="onMixedAudioFrame"/></stentry>
                 <stentry><ph conkeyref="onMixedAudioFrame/shortdesc"/></stentry>
             </strow>
+            <strow>
+                <stentry><xref keyref="getObservedAudioFramePosition"/></stentry>
+                <stentry><ph conkeyref="getObservedAudioFramePosition/shortdesc"/></stentry>
+            </strow>
             <strow props="native">
                 <stentry><xref keyref="getRecordAudioParams"/></stentry>
                 <stentry><ph conkeyref="getRecordAudioParams/shortdesc"/></stentry>
@@ -1508,10 +1567,6 @@
                 <stentry><xref keyref="getMixedAudioParams"/></stentry>
                 <stentry><ph conkeyref="getMixedAudioParams/shortdesc"/></stentry>
             </strow>
-            <strow props="native">
-                <stentry><xref keyref="getMixedAudioParams"/></stentry>
-                <stentry><ph conkeyref="getMixedAudioParams/shortdesc"/></stentry>
-            </strow>                       
             </simpletable> </section>
         <section>
             <title>Encoded audio data</title>
@@ -1736,6 +1791,10 @@
                 <stentry><xref keyref="getExtensionProperty2"/></stentry>
                 <stentry><ph conkeyref="getExtensionProperty2/shortdesc"/></stentry>
             </strow>
+            <strow props="cpp">
+                <stentry><xref keyref="registerExtension"/></stentry>
+                <stentry><ph conkeyref="registerExtension/shortdesc"/> (For Windows only)</stentry>
+            </strow>
             </simpletable> <simpletable>
             <sthead>
                 <stentry>Event</stentry>
@@ -1858,70 +1917,78 @@
             </simpletable> </section>
         <section id="camera_control" props="android ios cpp flutter">
             <title>Camera management</title>
-            <note props="cpp flutter" type="attention">This method is for Android and iOS only.</note> <simpletable>
+            <simpletable>
             <sthead>
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
             </sthead>
+            <strow props="cpp ios">
+                <stentry><xref keyref="enableMultiCamera"/></stentry>
+                <stentry><ph conkeyref="enableMultiCamera/shortdesc"/><ph props="cpp">(For iOS only)</ph></stentry>
+            </strow>
             <strow>
                 <stentry><xref keyref="switchCamera"/></stentry>
-                <stentry><ph conkeyref="switchCamera/shortdesc"/></stentry>
+                <stentry><ph conkeyref="switchCamera/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraCapturerConfiguration"/></stentry>
-                <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraZoomSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getCameraMaxZoomFactor"/></stentry>
-                <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraZoomFactor"/></stentry>
-                <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraTorchSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraTorchOn"/></stentry>
-                <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow props="android cpp unity flutter">
                 <stentry><xref keyref="isCameraFaceDetectSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraFocusSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraFocusPositionInPreview"/></stentry>
-                <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraAutoFocusFaceModeSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraAutoFocusFaceModeEnabled"/></stentry>
-                <stentry><ph conkeyref="setCameraAutoFocusFaceModeEnabled/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraAutoFocusFaceModeEnabled/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="isCameraExposurePositionSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow props="ios cpp flutter">
                 <stentry><xref keyref="isCameraAutoExposureFaceModeSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/></stentry>
+                <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/><ph props="cpp unity flutter">(For iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setCameraExposurePosition"/></stentry>
-                <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setCameraAutoExposureFaceModeEnabled"/></stentry>
+                <stentry><ph conkeyref="setCameraAutoExposureFaceModeEnabled/shortdesc"/><ph props="cpp flutter">(For iOS only)</ph></stentry>
             </strow>
             </simpletable> <simpletable>
             <sthead>
@@ -2113,7 +2180,6 @@
         <section props="cpp unity flutter" id="section_ts1_shw_jqb">
             <title>Video device management</title>
             <note type="attention" props="cpp unity flutter">
-            <p>This group of methods is for Windows only.</p>
             </note> <simpletable id="simpletable_us1_shw_jqb">
             <sthead>
                 <stentry>Method</stentry>
@@ -2121,36 +2187,37 @@
             </sthead>
             <strow>
                 <stentry><xref keyref="enumerateVideoDevices"/></stentry>
-                <stentry><ph conkeyref="enumerateVideoDevices/shortdesc"/></stentry>
+                <stentry><ph conkeyref="enumerateVideoDevices/shortdesc"/> (For Windows only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setDevice_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="setDevice_IVideoDeviceManager/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setDevice_IVideoDeviceManager/shortdesc"/> (For Windows only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getDevice_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/> (For Windows only)</stentry>
             </strow>
             <strow props="cpp flutter">
                 <stentry><xref keyref="release_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/></stentry>
+                <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/> (For Windows only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="numberOfCapabilities"/></stentry>
-                <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/></stentry>
+                <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/> (For Windows only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getCapability"/></stentry>
-                <stentry><ph conkeyref="getCapability/shortdesc"/></stentry>
+                <stentry><ph conkeyref="getCapability/shortdesc"/> (For Windows only)</stentry>
             </strow>
-            </simpletable> <simpletable props="hide">
+            </simpletable>
+            <simpletable props="cpp">
             <sthead>
                 <stentry>Event</stentry>
                 <stentry>Description</stentry>
             </sthead>
             <strow>
                 <stentry><xref keyref="onVideoDeviceStateChanged"/></stentry>
-                <stentry><ph conkeyref="onVideoDeviceStateChanged/shortdesc"/></stentry>
+                <stentry><ph conkeyref="onVideoDeviceStateChanged/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             </simpletable> </section>
         <section props="cpp" id="section_ws1_shw_jqb">
@@ -2307,7 +2374,7 @@
                 <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
                 <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
-            <strow props="hide">
+            <strow>
                 <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
                 <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/></stentry>
             </strow>
@@ -2454,11 +2521,15 @@
             <strow props="native">
                 <stentry><xref keyref="getNetworkType"/></stentry>
                 <stentry><ph conkeyref="getNetworkType/shortdesc"/></stentry>
-            </strow>            
+            </strow>
             <strow>
                 <stentry><xref keyref="setHeadphoneEQPreset"/></stentry>
                 <stentry><ph conkeyref="setHeadphoneEQPreset/shortdesc"/></stentry>
-            </strow>            
+            </strow>
+            <strow>
+                <stentry><xref keyref="setHeadphoneEQParameters"/></stentry>
+                <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
+            </strow>
             </simpletable> </section>
         <section id="miscellaneous_events">
             <title>Miscellaneous events</title>
@@ -2467,10 +2538,6 @@
                 <stentry>Event</stentry>
                 <stentry>Description</stentry>
             </sthead>
-            <strow>
-                <stentry><xref keyref="onApiCallExecuted"/></stentry>
-                <stentry><ph conkeyref="onApiCallExecuted/shortdesc"/></stentry>
-            </strow>
             <strow props="android cpp unity flutter">
                 <stentry><xref keyref="onProxyConnected"/></stentry>
                 <stentry><ph conkeyref="onProxyConnected/shortdesc"/></stentry>

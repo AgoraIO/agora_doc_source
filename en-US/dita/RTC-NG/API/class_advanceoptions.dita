@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_advanceoptions">
+    <title><ph keyref="AdvanceOptions"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Advanced options for video encoding.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">static public class AdvanceOptions {
+  public ENCODING_PREFERENCE encodingPreference;
+  public COMPRESSION_PREFERENCE compressionPreference;
+  public AdvanceOptions(
+      ENCODING_PREFERENCE encodingPreference, COMPRESSION_PREFERENCE compressionPreference) {
+    this.encodingPreference = encodingPreference;
+    this.compressionPreference = compressionPreference;
+  }
+  public AdvanceOptions() {
+    this.encodingPreference = ENCODING_PREFERENCE.PREFER_AUTO;
+    this.compressionPreference = COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY;
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAdvancedVideoOptions : NSObject
+@property(assign, nonatomic) AgoraCompressionPreference compressionPreference;
+@property(assign, nonatomic) AgoraEncodingPreference encodingPreference;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">
+  ENCODING_PREFERENCE encodingPreference;
+
+  COMPRESSION_PREFERENCE compressionPreference;
+
+  AdvanceOptions() : encodingPreference(PREFER_AUTO), 
+                     compressionPreference(PREFER_LOW_LATENCY) {}
+
+  AdvanceOptions(ENCODING_PREFERENCE encoding_preference, 
+                 COMPRESSION_PREFERENCE compression_preference) : 
+                 encodingPreference(encoding_preference),
+                 compressionPreference(compression_preference) {}
+
+  bool operator==(const AdvanceOptions&amp; rhs) const {
+    return encodingPreference == rhs.encodingPreference &amp;&amp; 
+           compressionPreference == rhs.compressionPreference;
+  }
+}；</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">export class AdvanceOptions {
+  encodingPreference?: EncodingPreference;
+}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript">export class AdvanceOptions {
+  encodingPreference?: EncodingPreference;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class AdvanceOptions {
+  const AdvanceOptions({this.encodingPreference, this.compressionPreference});
+
+  @JsonKey(name: 'encodingPreference')
+  final EncodingPreference? encodingPreference;
+
+  @JsonKey(name: 'compressionPreference')
+  final CompressionPreference? compressionPreference;
+
+  factory AdvanceOptions.fromJson(Map&lt;String, dynamic> json) =>
+      _$AdvanceOptionsFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$AdvanceOptionsToJson(this);
+}</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
+            <parml>
+            <plentry>
+                <pt>encodingPreference</pt>
+                <pd>Video encoder preference. See <xref keyref="ENCODING_PREFERENCE"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>compressionPreference</pt>
+                <pd>Compression preference for video encoding. See <xref keyref="COMPRESSION_PREFERENCE"/> for details.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediasource">
-    <title><ph keyref="MediaSource" /></title>
+    <title><ph keyref="MediaSource"/></title>
     <shortdesc id="short"><ph id="shortdesc">Information related to the media file to be played and the playback scenario configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -134,10 +134,10 @@
   @JsonKey(name: 'isLiveSource')
   final bool? isLiveSource;
 
-  factory MediaSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory MediaSource.fromJson(Map&lt;String, dynamic> json) =>
       _$MediaSourceFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
+  Map&lt;String, dynamic> toJson() => _$MediaSourceToJson(this);
 }</codeblock></p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -146,7 +146,10 @@
                 <pt>url</pt>
                 <pd>
                     <p>The URL of the media file to be played.</p>
-                    <note><ph>If you need to open a custom media resource, you do not have to pass in a value to the <parmname>url</parmname>.</ph></note></pd>
+                    <note>
+                        <p props="apple" id="url">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，同时传值会导致方法调用失败。</p>
+                        <p props="android cpp unity">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>provider</parmname> 传值，同时传值会导致方法调用失败。</p>
+                    </note></pd>
             </plentry>
             <plentry>
                 <pt>uri</pt>
@@ -154,7 +157,7 @@
             </plentry>
             <plentry>
                 <pt>startPos</pt>
-                <pd>The starting position (ms) for playback. The default value is 0.</pd>
+                <pd>The starting position (ms) for playback. Default value is 0.</pd>
             </plentry>
             <plentry>
                 <pt>autoPlay</pt>
@@ -163,7 +166,7 @@
                     <li><codeph><ph keyref="false" /></codeph>: Disable autoplay.</li>
                     </ul>
                     <note>
-                    <p>If autoplay is disabled, you need to call the <xref keyref="play" /> method to play a media file after it is opened.</p>
+                    <p>If autoplay is disabled, you need to call the<xref keyref="play" />  method to play a media file after it is opened.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -174,7 +177,7 @@
                     </ul>
                     <note>
                     <ul>
-                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the <parmname>url</parmname> of the media file.</li>
+                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the url of the media file<parmname></parmname>.</li>
                     <li>If you enable this function, the Media Player caches part of the media file being played on your local device, and you can play the cached media file without internet connection. The statistics about the media file being cached are updated every second after the media file is played. See <xref keyref="CacheStatistics" />.</li>
                     </ul> </note></pd>
             </plentry>
@@ -185,7 +188,7 @@
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream or on-demand video distributed through Media Broadcast service.</li>
                     </ul>
                     <note>
-                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the URL of the media resource to <parmname>url</parmname>, and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true" /></codeph>; otherwise, you don't need to set the <parmname>isAgoraSource</parmname> parameter.</p>
+                    <p><codeph><ph keyref="true" /></codeph>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the<parmname> URL</parmname> of the media resource to url, and set <parmname>isAgoraSource</parmname> as ; otherwise, you don't need to set the isAgoraSource parameter<parmname></parmname>.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -194,32 +197,32 @@
                     <li><codeph><ph keyref="true" /></codeph>: The media resource is a live stream.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream.</li>
                     </ul>
-                    <p>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as <codeph><ph keyref="true" /></codeph> so that the live stream can be loaded more quickly.</p>
+                    <p><codeph><ph keyref="true" /></codeph>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as  so that the live stream can be loaded more quickly.</p>
                     <note>
-                    <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true" /></codeph>, the media resource is not to be loaded more quickly.</p>
+                    <p><codeph><ph keyref="true" /></codeph>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as , the media resource<parmname> is</parmname> not to be loaded more quickly.</p>
                     </note> </pd>
             </plentry>
             <plentry props="android cpp unity">
                     <pt>provider</pt>
                     <pd>
-                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider" />.</p>
+                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
                         <note>
-                            <p>If you need to open a custom media resource, such as an encrypted media file, pass in a value to <parmname>provider</parmname> rather than to <parmname>url</parmname>.</p>
+                            <p>如果你打开媒体资源为自定义媒体资源，请仅向 <parmname>provider</parmname> 传值，如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值。 同时向 <parmname>url</parmname> 和 <parmname>provider</parmname> 传值会导致方法调用会失败。</p>
                         </note>
                     </pd>
                 </plentry>
             <plentry props="apple">
                 <pt>playerOnReadCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData" />.</p>
+                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData"/>.</p>
                     <note id="note">
-                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in values to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname> instead of to <parmname>url</parmname>.</p>
+                    <p conkeyref="MediaSource/url"/>
                     </note></pd>
             </plentry>
             <plentry props="apple">
                 <pt>playerOnSeekCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek" />.</p>
+                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek"/>.</p>
                     <note conkeyref="MediaSource/note">
                     <p />
                     </note></pd>

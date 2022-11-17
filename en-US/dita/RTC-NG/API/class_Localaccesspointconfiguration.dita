@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_Localaccesspointconfiguration">
-    <title><ph keyref="LocalAccessPointConfiguration" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The configurations of the Local Access Point.</ph></shortdesc>
+    <title><ph keyref="LocalAccessPointConfiguration"/></title>
+    <shortdesc id="short"><ph id="shortdesc"
+        >The configurations of the Local Access Point.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -59,8 +60,8 @@
       return logUploadServer;
     }
   };
-  public ArrayList&lt;String&gt; ipList = null;
-  public ArrayList&lt;String&gt; domainList = null;
+  public ArrayList&lt;String> ipList = null;
+  public ArrayList&lt;String> domainList = null;
   public String verifyDomainName = null;
   public int mode = Constants.LOCAL_RPOXY_CONNECTIVITY_FIRST;
   public AdvancedConfigInfo advancedConfig = null;
@@ -82,7 +83,7 @@
   AdvancedConfigInfo advancedConfig;
   LocalAccessPointConfiguration() : ipList(NULL), ipListSize(0), domainList(NULL), domainListSize(0), verifyDomainName(NULL), mode(ConnectivityFirst) {}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAccessPointConfiguration {
   
   ipList?: string[];
@@ -143,13 +144,13 @@
       this.advancedConfig});
 
   @JsonKey(name: 'ipList')
-  final List&lt;String&gt;? ipList;
+  final List&lt;String>? ipList;
 
   @JsonKey(name: 'ipListSize')
   final int? ipListSize;
 
   @JsonKey(name: 'domainList')
-  final List&lt;String&gt;? domainList;
+  final List&lt;String>? domainList;
 
   @JsonKey(name: 'domainListSize')
   final int? domainListSize;
@@ -163,14 +164,16 @@
   @JsonKey(name: 'advancedConfig')
   final AdvancedConfigInfo? advancedConfig;
 
-  factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalAccessPointConfigurationFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAccessPointConfigurationToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LocalAccessPointConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>ipList</pt>
@@ -195,12 +198,19 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp electron unity rn flutter">The connection mode. See <xref keyref="LOCAL_PROXY_MODE" />.</p>
+                    <p props="ios mac cpp electron unity rn flutter"
+                    >The connection mode. See <xref keyref="LOCAL_PROXY_MODE"/>.</p>
                     <p props="android">Select one of the following connection modes:<ul>
-                    <li><ph keyref="ConnectivityFirst" />(0): The SDK firstly tries to connect to the specified Agora private media server; if the connection attempt fails, it will connect to the Agora SD-RTN™ instead.</li>
-                    <li><ph keyref="LocalOnly" />(2) The SDK only tries to connect to the specified Agora private media server.</li>
+                    <li><ph keyref="ConnectivityFirst"
+                        />(0): The SDK firstly tries to connect to the specified Agora private media server; if the connection attempt fails, it will connect to the Agora SD-RTN™ instead.</li>
+                    <li><ph keyref="LocalOnly"/>(1) The SDK only tries to connect to the specified Agora private media server.</li>
                     </ul></p>
                 </pd>
+            </plentry>
+            <plentry>
+                <pt>advancedConfig</pt>
+                <pd>The advanced options for the Local Access Point. See <xref
+                    keyref="AdvancedConfigInfo"/>.</pd>
             </plentry>
             </parml> </section>
     </refbody>

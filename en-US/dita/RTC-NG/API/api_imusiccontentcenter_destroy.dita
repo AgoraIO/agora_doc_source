@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_destroy">
+    <title><ph keyref="destroy_IMusicContentCenter"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Destroys the <xref keyref="IMusicContentCenter"/> instance.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="destroy_IMusicContentCenter"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">  public static synchronized void destroy() {
+    if (mInstance == null)
+      return;
+    mInstance.release();
+    mInstance = null;
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>Make sure you have called the <xref keyref="release"/> method in the <apiname keyref="IRtcEngine"/> class before calling this method.</p>
+        </section>
+    </refbody>
+</reference>

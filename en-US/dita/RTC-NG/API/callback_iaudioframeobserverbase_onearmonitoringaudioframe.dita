@@ -19,19 +19,22 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEarMonitoringAudioFrame:(AgoraAudioFrame* _Nonnull)frame;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock></p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEarMonitoringAudioFrame(AudioFrame audioFrame)
+        {
+            return true;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioFrame audioFrame)? onEarMonitoringAudioFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
-            <note type="note" id="note">
-            <ul>
-                <li>Before joining the channel, you need to call the <xref keyref="registerAudioFrameObserver"/> to register audio observer object, that is, register the <apiname keyref="onEarMonitoringAudioFrame"/> callback.</li>
-                <li>In order to ensure that the obtained in-ear audio data meets the expectations, Agora recommends that you choose one of the following two methods to set the in-ear monitoring-ear audio data format:<ul>
-                        <li>If you call <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the acquired audio data format, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
-                        <li>If you set the acquired audio data format in the return value of the <xref keyref="getEarMonitoringAudioParams"/> callback, the SDK calculates the sampling interval according to the return value of the callback, and trigger the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>      
-                    </ul></li>
-            </ul>
-            </note>
-            </section>           
+            <p>To ensure that the data format of the in-ear monitoring audio frame is as expected, you can choose one of the following two methods to set the audio data format:<ul>
+            <li>Method 1: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK calculates the sampling interval according to the parameters in this method, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
+            <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register audio observer object, set the specific audio observation position in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback, and then set the audio data format in the return value of the <xref keyref="getEarMonitoringAudioParams"/> callback. The SDK calculates the sampling interval according to the return value of the callback, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
+            </ul> </p>
+            <note type="note" id="attention">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</note></section>
         <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
         <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
     </refbody>
