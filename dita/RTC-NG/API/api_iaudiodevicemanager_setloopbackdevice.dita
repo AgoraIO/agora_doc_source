@@ -20,7 +20,8 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setLoopbackDevice(deviceId: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopbackDevice(string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLoopbackDevice(String deviceId);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLoopbackDevice(String deviceId);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -31,6 +32,7 @@
             </dl>
             <p>SDK 默认采用当前的播放设备作为声卡采集设备，如果想要指定其他音频设备作为声卡采集设备，则调用该方法并设置 <parmname>deviceId</parmname> 为你想要指定的声卡采集设备。</p>
             <note type="note">
+            <p>该方法仅适用于 Windows。</p>
             <p>该方法适用的场景如下： </p>
             <p>使用 app A 播放音乐，通过蓝牙耳机播放；同时使用 app B 进行视频会议，通过扬声器播放。
 
@@ -48,11 +50,11 @@
                 <pt>deviceId</pt>
                 <pd>
                     <p>指定 SDK 的声卡采集设备。由 <xref keyref="enumeratePlaybackDevices"/> 获取。插拔设备不会影响 <parmname>deviceId</parmname>。</p>
-                    <p props="cpp electron">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</p>
+                    <p props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="cpp electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>
