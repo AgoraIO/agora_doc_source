@@ -14,9 +14,9 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onMusicCollectionResult(
-      String requestId, int status, int page, int pageSize, int total, Music[] list);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicCollectionResult:(NSString *)requestId status:(AgoraMusicContentCenterStatusCode)status result:(AgoraMusicCollection *)result;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicCollectionResult(const char* requestId, MusicContentCenterStatusCode status, agora_refptr&lt;MusicCollection> result) = 0;</codeblock>
+  String requestId, int page, int pageSize, int total, Music[] list, int errorCode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicCollectionResult:(NSString *)requestId result:(AgoraMusicCollection *)result errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicCollectionResult(const char* requestId, agora_refptr&lt;MusicCollection> result, MusicContentCenterStatusCode error_code = kMusicContentCenterStatusOk) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">onMusicCollectionResult?(
     requestId: string,
@@ -30,7 +30,8 @@
     result: MusicCollection
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, MusicContentCenterStatusCode status,
-      MusicCollection result)? onMusicCollectionResult;</codeblock> </p>
+      MusicCollection result)? onMusicCollectionResult;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -39,7 +40,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>This callback occurs when you call the <xref keyref="getMusicCollectionByMusicChartId"/> method to get music collection by music chart ID, and reports the details of music assets in the collection.</p>
+            <p>This callback occurs when you call<xref keyref="getMusicCollectionByMusicChartId"/> the  method to get music collection by music chart ID, and reports the details of music assets in the collection.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -48,15 +49,9 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry id="status">
+            <plentry id="status" props="framework">
                 <pt>status</pt>
-                <pd>
-                    <p props="apple cpp">The request status. See <xref keyref="MusicContentCenterStatusCode"/> for details.</p>
-                    <p props="android">The request statuses are as follows:<ul>
-                    <li>0: The request succeeds.</li>
-                    <li>1: The request fails.</li>
-                    </ul></p>
-                </pd>
+                <pd>The request status. See  for details<xref keyref="MusicContentCenterStatusCode"/>.</pd>
             </plentry>
             <plentry props="android">
                 <pt>page</pt>
@@ -72,9 +67,13 @@
             </plentry>
             <plentry>
                 <pt props="android">list</pt>
-                <pt props="apple cpp">result</pt>
-                <pd><ph>The details of musci assets in the collection. </ph><ph>See <xref keyref="Music" props="android"/><xref keyref="MusicCollection" props="apple cpp"/>.</ph></pd>
+                <pt props="apple cpp framework">result</pt>
+                <pd><ph>The details of musci assets in the collection. </ph><ph>See <xref keyref="Music" props="android"/><xref keyref="MusicCollection" props="apple cpp framework"/>.</ph></pd>
             </plentry>
+                <plentry props="native" conkeyref="onPreLoadEvent_IMusicContentCenterEventHandler/error">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>
