@@ -28,7 +28,8 @@
     options: VideoSubscriptionOptions
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteVideoSubscriptionOptions(
-      {required int uid, required VideoSubscriptionOptions options});</codeblock> </p>
+      {required int uid, required VideoSubscriptionOptions options});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>When a remote user has enabled dual-stream mode, you can call this method to choose the option for subscribing to the video streams sent by the remote user.</p>
@@ -42,7 +43,7 @@
             <note>Agora recommends the following steps:<ol>
             <li>Set <parmname>autoSubscribeVideo</parmname> to <codeph><ph keyref="false"/></codeph> when calling <xref keyref="joinChannel2"/> to join a channel.</li>
             <li>Call this method after receiving the <xref keyref="onUserJoined"/> callback to set the subscription options for the specified remote user's video stream.</li>
-            <li>Call the <xref keyref="muteRemoteVideoStream"/> method to resume subscribing to the video stream of the specified remote user. If you set <parmname>encodedFrameOnly</parmname> to <codeph><ph keyref="true"/></codeph> in the previous step, the SDK triggers the <xref keyref="OnEncodedVideoFrameReceived"/> callback locally to report the received encoded video frame information.</li>
+            <li>Call the <xref keyref="muteRemoteVideoStream"/> method to resume subscribing to the video stream of the specified remote user. If you set <parmname>encodedFrameOnly</parmname> to <codeph><ph keyref="true"/></codeph> in the previous step, the SDK triggers the <xref keyref="onEncodedVideoFrameReceived"/> callback locally to report the received encoded video frame information.</li>
             </ol> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -56,7 +57,7 @@
                 <pd>The video subscription options. See <xref keyref="VideoSubscriptionOptions"/>.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
