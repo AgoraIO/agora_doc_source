@@ -22,16 +22,23 @@
      (void)deviceType;
      (void)deviceState;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onAudioDeviceStateChanged?(deviceId: string, deviceType: MediaDeviceType, deviceState: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onAudioDeviceStateChanged?(
+    deviceId: string,
+    deviceType: MediaDeviceType,
+    deviceState: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceStateChanged(string deviceId, MEDIA_DEVICE_TYPE deviceType, MEDIA_DEVICE_STATE_TYPE deviceState) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">  onAudioDeviceStateChanged?(
+    deviceId: string,
+    deviceType: MediaDeviceType,
+    deviceState: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String deviceId, MediaDeviceType deviceType,
-      MediaDeviceStateType deviceState)? onAudioDeviceStateChanged;
-</codeblock> </p>
+      MediaDeviceStateType deviceState)? onAudioDeviceStateChanged;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p id="desc">This callback notifies the application that the system's audio device state is changed. For example, a headset is unplugged from the device.</p>
-            <note type="attention">This method is for Windows and macOS only.</note> </section>
+            <note type="attention" props="cpp">This method is for Windows and macOS only.</note> </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title"/> </title>
             <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
@@ -42,17 +49,11 @@
             </plentry>
             <plentry>
                 <pt>deviceType</pt>
-                <pd>The evice type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                <pd>The device type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
             </plentry>
-            <plentry>
-                <pt>deviceState</pt>
-                <pd>The device state.<ul>
-                    <li>On macOS:<ul>
-                        <li>0: The device is ready for use.</li>
-                        <li>8: The device is not connected.</li>
-                        </ul> </li>
-                    <li>On Windows: see <xref keyref="MEDIA_DEVICE_STATE_TYPE"/>.</li>
-                    </ul> </pd>
+            <plentry conkeyref="onVideoDeviceStateChanged/state">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
     </refbody>

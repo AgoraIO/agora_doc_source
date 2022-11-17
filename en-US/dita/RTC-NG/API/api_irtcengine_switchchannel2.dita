@@ -25,7 +25,7 @@
             <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
-            <p>When the viewers in the live channel want to switch from one channel to another, this method can be called to achieve fast switching.</p>
+            <p>This method allows the audience of an interactive live streaming channel to switch to a different channel.</p>
             <p>After the user successfully switches to another channel, the <xref keyref="onLeaveChannel" /> and <xref keyref="onJoinChannelSuccess" /> callbacks are triggered to indicate that the user has left the original channel and joined a new one.</p>
             <p>Once the user switches to another channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
         </section>
@@ -46,12 +46,12 @@
                 <pt props="android ios mac unity electron">channelId</pt>
                 <pt props="flutter">channelName</pt>
                 <pd>
-                    <p>The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same <codeph>channelId</codeph> enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul>
+                    <p>The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same <codeph>channelId</codeph> enter the same<codeph> channel</codeph> for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul>
                     <li>All lowercase English letters: a to z.</li>
                     <li>All uppercase English letters: A to Z.</li>
                     <li>All numeric characters: 0 to 9.</li>
                     <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;amp;", "(", ")", "+", "-", ":", ";", "&amp;lt;", "= ", ".", "&amp;gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                    <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、"&gt;"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -65,12 +65,12 @@
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-1(ERR_FAILED): A general error occurs (no specified reason).</li>
-                <li>-2 (ERR_INVALID_ARGUMENT): The parameter is invalid.</li>
-                <li>-5(ERR_REFUSED): The request is rejected. Probably because the user is not an audience member.</li>
-                <li>-7(ERR_NOT_INITIALIZED): The SDK is not initialized.</li>
-                <li>-102(ERR_INVALID CHANNEL_NAME): The channel name is invalid. Please use a valid channel name.</li>
-                <li>-113(ERR_NOT_IN_CHANNEL): The user is not in the channel.</li>
+                <li>-1: A general error occurs (no specified reason).</li>
+                <li>-2: The parameter is invalid.</li>
+                <li>-5: The request is rejected. Probably because the user is not an audience member.</li>
+                <li>-7: The SDK is not initialized.</li>
+                <li>-102: The channel name is invalid. Please use a valid channel name.</li>
+                <li>-113: The user is not in the channel.</li>
                 </ul></li>
             </ul> </section>
     </refbody>

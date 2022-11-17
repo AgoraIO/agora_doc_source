@@ -243,11 +243,37 @@
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
-                <pd>The type of the video source, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
             </plentry>
             <plentry props="android ios mac">
                 <pt>sourceId</pt>
                 <pd>The ID of the video source.</pd>
+            </plentry>
+            <plentry>
+                <pt>setupMode</pt>
+                <pd props="ios mac cpp framework">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE" />.</pd>
+                <pd props="android">Setting mode of the view.<ul>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE" />(0): (Default) Replaces a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_ADD" />(1): Adds a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Delete a view.</li>
+                </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>mediaPlayerId</pt>
+                <pd>The ID of the media player. You can get the media player ID by calling <xref keyref="getMediaPlayerId" />.</pd>
+                <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>cropArea</pt>
+                <pd>
+                    <p props="android cpp framework"><ph props="cpp framework">(Android and iOS only)</ph> (Optional) The display area for the video frame. See <xref keyref="Rectangle" />. Where <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</p>
+                    <p props="apple">(Optional) The display area for video frames, which consists of the following parameters:<ul>
+                    <li>x: The horizontal offset from the top-left corner.</li>
+                    <li>y: The vertical offset from the top-left corner.</li>
+                    <li>width: The width of the region.</li>
+                    <li>height: The height of the region.</li>
+                    </ul><parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</p>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiodevicevolumechanged">
     <title><ph keyref="onAudioDeviceVolumeChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the volume on the playback or audio capture device, or the volume in the application changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the volume change of the audio device or app.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,19 +15,27 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType,
-    int volume,
-    bool muted) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted) {
     (void)deviceType;
     (void)volume;
     (void)muted;
-    }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+  }</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onAudioDeviceVolumeChanged?(
+    deviceType: MediaDeviceType,
+    volume: number,
+    muted: boolean
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="rn" outputclass="language-typescript">  onAudioDeviceVolumeChanged?(
+    deviceType: MediaDeviceType,
+    volume: number,
+    muted: boolean
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(MediaDeviceType deviceType, int volume, bool muted)?
-      onAudioDeviceVolumeChanged;
-</codeblock> </p>
+      onAudioDeviceVolumeChanged;</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>Occurs when the volume on the playback device, audio capture device, or the volume in the application changes.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -35,11 +43,11 @@
             <parml>
             <plentry>
                 <pt>deviceType</pt>
-                <pd>The evice type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
+                <pd>The device type. See <xref keyref="MEDIA_DEVICE_TYPE"/>.</pd>
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd>The volume. The value range is [0,255].</pd>
+                <pd>The volume value. The range is [0, 255].</pd>
             </plentry>
             <plentry>
                 <pt>muted</pt>

@@ -19,11 +19,10 @@ didReceiveChannelMediaRelayEvent:(AgoraChannelMediaRelayEvent)event;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(int code) {
   (void)code;
 }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp"> public virtual void OnChannelMediaRelayEvent(int code) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(ChannelMediaRelayEvent code)? onChannelMediaRelayEvent;
-</codeblock> </p>
+            <codeblock props="rn" outputclass="language-typescript">  onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ChannelMediaRelayEvent code)? onChannelMediaRelayEvent;</codeblock> </p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
@@ -47,7 +46,6 @@ didReceiveChannelMediaRelayEvent:(AgoraChannelMediaRelayEvent)event;</codeblock>
                     <li><ph keyref="RELAY_EVENT_PACKET_RECEIVED_VIDEO_FROM_SRC"/>(5): The server receives the video stream from the source channel.</li>
                     <li><ph keyref="RELAY_EVENT_PACKET_RECEIVED_AUDIO_FROM_SRC"/>(6): The server receives the audio stream from the source channel.</li>
                     <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL"/>(7): The destination channel is updated.</li>
-                    <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED"/>(8): The destination channel update fails due to internal reasons.</li>
                     <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_NOT_CHANGE"/>(9): The destination channel does not change, which means that the destination channel fails to be updated.</li>
                     <li><ph keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_IS_NULL"/>(10): The destination channel name is <codeph><ph keyref="NULL"/></codeph>.</li>
                     <li><ph keyref="RELAY_EVENT_VIDEO_PROFILE_UPDATE"/>(11): The video profile is sent to the server.</li>

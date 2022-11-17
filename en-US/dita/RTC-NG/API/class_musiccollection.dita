@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_musiccollection">
+    <title><ph keyref="MusicCollection" /></title>
+    <shortdesc id="short"><ph id="shortdesc">The details of musci assets in the collection.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicCollection : NSObject
+@property(nonatomic, assign) NSInteger count;
+@property(nonatomic, assign) NSInteger total;
+@property(nonatomic, assign) NSInteger page;
+@property(nonatomic, assign) NSInteger pageSize;
+@property(nonatomic, strong) NSArray&lt;AgoraMusic *&gt;* musicList;
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">class MusicCollection : public RefCountInterface {
+public:
+    virtual int getCount() = 0;
+    virtual int getTotal() = 0;
+    virtual int getPage() = 0;
+    virtual int getPageSize() = 0;
+    virtual Music* getMusic(int32_t index) = 0;
+protected:
+    virtual ~MusicCollection() = default;
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript" />
+            <codeblock props="unity" outputclass="language-csharp">public class MusicCollection
+    {
+        public int count;
+        public int total;
+        public int page;
+        public int pageSize;
+        public Music[] music;
+    };</codeblock>
+            <codeblock props="rn" outputclass="language-typescript" />
+            <codeblock props="flutter" outputclass="language-dart">abstract class MusicCollection {
+  int getCount();
+
+  int getTotal();
+
+  int getPage();
+
+  int getPageSize();
+
+  Music getMusic(int index);
+}</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters" props="apple unity">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>count</pt>
+                <pd>此次请求的音乐资源列表中的音乐数量。</pd>
+            </plentry>
+            <plentry>
+                <pt>total</pt>
+                <pd>The total number of music assets in the collection.</pd>
+            </plentry>
+            <plentry>
+                <pt>page</pt>
+                <pd>The number of the current page.</pd>
+            </plentry>
+            <plentry>
+                <pt>pageSize</pt>
+                <pd>The number of pages of the music collection.</pd>
+            </plentry>
+            <plentry>
+                <pt>musicList</pt>
+                <pd>The details of music assets on the current page. See <xref keyref="Music" />.</pd>
+            </plentry>
+            </parml>
+        </section>
+    </refbody>
+</reference>

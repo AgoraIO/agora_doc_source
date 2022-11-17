@@ -30,7 +30,13 @@
             <parml>
             <plentry>
                 <pt>scenario</pt>
-                <pd>The audio scenarios. See <xref keyref="AUDIO_SCENARIO_TYPE" />. Under different audio scenarios, the device uses different volume types.</pd>
+                <pd props="cpp mac ios framework">The audio scenarios. See <xref keyref="AUDIO_SCENARIO_TYPE" />. Under different audio scenarios, the device uses different volume types.</pd>
+                <pd props="android">The audio scenarios:<ul><li><ph keyref="AUDIO_SCENARIO_DEFAULT" />(0): (Default) Automatic scenario, where the SDK chooses the appropriate audio quality according to the user role and audio route.</li>
+                    <li><ph keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3): High-quality audio scenario, where users mainly play music.</li>
+                    <li><ph keyref="AUDIO_SCENARIO_CHATROOM" />(5): Chatroom scenario, where users need to frequently switch the user role or mute and unmute the microphone. In this scenario, audience members receive a pop-up window to request permission of using microphones.</li>
+                    <li><ph keyref="AUDIO_SCENARIO_CHORUS" />(7): Real-time chorus scenario,  where users have good network conditions and require extremely low latency.<note>Before using this enumeration, you need to call <xref keyref="getAudioDeviceInfo" /> to see whether the audio device supports ultra-low-latency capture and playback. To experience ultra-low latency, you need to ensure that your audio device supports ultra-low latency (<parmname>isLowLatencyAudioSupported</parmname> = <codeph><ph keyref="true" /></codeph>).</note></li>
+                    <li><ph keyref="AUDIO_SCENARIO_MEETING" />(8): Meeting scenario that mainly involves the human voice.</li></ul>
+                </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native rn electron unity">

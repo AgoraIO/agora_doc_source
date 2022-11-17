@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setsubscribeaudioallowlist">
+    <title><ph keyref="setSubscribeAudioAllowlist" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Sets the allowlist of subscriptions for audio streams.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setSubscribeAudioAllowlist" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int setSubscribeAudioAllowlist(int[] uidList);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setSubscribeAudioAllowlist:(NSArray &lt;NSNumber *&gt; *_Nonnull)allowlist;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int setSubscribeAudioAllowlist(uid_t* uidList, int uidNumber) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract setSubscribeAudioAllowlist(
+    uidList: number[],
+    uidNumber: number
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetSubscribeAudioAllowlist(uint[] uidList, int uidNumber);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setSubscribeAudioAllowlist(
+    uidList: number[],
+    uidNumber: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setSubscribeAudioAllowlist(
+      {required List&lt;int&gt; uidList, required int uidNumber});</codeblock> </p>
+        </section>
+        <section id="detailed_desc">
+            <p>You can call this method to specify the audio streams of a user that you want to subscribe to.</p>
+            <note>
+            <ul>
+            <li conkeyref="setSubscribeAudioBlocklist/order" />
+            <li>The allowlist is not affected by the setting in <xref keyref="muteRemoteAudioStream" />, <xref keyref="muteAllRemoteAudioStreams" /> and <parmname>autoSubscribeAudio</parmname> in <xref keyref="ChannelMediaOptions" />.</li>
+            <li id="effect">Once the allowlist of subscriptions is set, it is effective even if you leave the current channel and rejoin the channel.</li>
+            <li conkeyref="setSubscribeAudioBlocklist/priority" />
+            </ul> </note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry id="list">
+                <pt props="android cpp electron rn flutter unity">uidList</pt>
+                <pt props="apple">allowlist</pt>
+                <pd>
+                    <p>The user ID list of users that you want to subscribe to.</p>
+                    <p>If you want to specify the audio streams of a user for subscription, add the user ID in this list. If you want to remove a user from the allowlist, you need to call the <xref keyref="setSubscribeAudioAllowlist" /> method to update the user ID list; this means you only add the <parmname>uid</parmname> of users that you want to subscribe to in the new user ID list.</p>
+                </pd>
+            </plentry>
+            <plentry props="cpp electron unity rn flutter" id="uidnumber">
+                <pt>uidNumber</pt>
+                <pd>The number of users in the user ID list.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

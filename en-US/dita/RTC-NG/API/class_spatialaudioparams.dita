@@ -162,7 +162,7 @@
       <parml>
       <plentry>
         <pt>speaker_azimuth</pt>
-        <pd>The azimuth angle of the remote user or media player relative to the local user. The value range is [0,360], and the unit is degrees, as follows:<ul>
+        <pd>The azimuth angle of the remote user or media player relative to the local user. The value range is [0,360], and the unit is degrees, The values are as follows:<ul>
           <li>0: (Default) 0 degrees, which means directly in front on the horizontal plane.</li>
           <li>90: 90 degrees, which means directly to the left on the horizontal plane.</li>
           <li>180: 180 degrees, which means directly behind on the horizontal plane.</li>
@@ -172,7 +172,7 @@
       </plentry>
       <plentry>
         <pt>speaker_elevation</pt>
-        <pd>The elevation angle of the remote user or media player relative to the local user. The value range is [-90,90], and the unit is degrees, as follows:<ul>
+        <pd>The elevation angle of the remote user or media player relative to the local user. The value range is [-90,90], and the unit is degrees, The values are as follows:<ul>
           <li>0: (Default) 0 degrees, which means that the horizontal plane is not rotated.</li>
           <li>-90: -90 degrees, which means that the horizontal plane is rotated 90 degrees downwards.</li>
           <li>90: 90 degrees, which means that the horizontal plane is rotated 90 degrees upwards.</li>
@@ -184,7 +184,7 @@
       </plentry>
       <plentry>
         <pt>speaker_orientation</pt>
-        <pd>The orientation of the remote user or media player relative to the local user. The value range is [0,180], and the unit is degrees, as follows:<ul>
+        <pd>The orientation of the remote user or media player relative to the local user. The value range is [0,180], and the unit is degrees, The values are as follows:<ul>
           <li>0: (Default) 0 degrees, which means that the sound source and listener face the same direction.</li>
           <li>180: 180 degrees, which means that the sound source and listener face each other.</li>
           </ul></pd>
@@ -206,25 +206,24 @@
       <plentry>
         <pt>speaker_attenuation</pt>
         <pd>The sound attenuation coefficient of the remote user or media player. The value range is [0,1]. The values are as follows:<ul>
-            <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
-            <li>(0,0.5): Weak attenuation mode, where the volume and timbre only have a weak attenuation during the propagation, and the sound can travel farther than that in a real environment. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. </li>
-            <li>0.5: (Default) Simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>speaker_attenuation</parmname> parameter.</li>
-            <li>(0.5,1]: Strong attenuation mode, where volume and timbre attenuate rapidly during the propagation. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. </li>
-            </ul></pd>
+          <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
+          <li>(0,0.5): Weak attenuation mode, where the volume and timbre only have a weak attenuation during the propagation, and the sound can travel farther than that in a real environment. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. </li>
+          <li>0.5: (Default) Simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>speaker_attenuation</parmname> parameter.</li>
+          <li>(0.5,1]: Strong attenuation mode, where volume and timbre attenuate rapidly during the propagation. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. </li>
+          </ul></pd>
       </plentry>
-        <plentry>
-          <pt>enable_doppler</pt>
-          <pd>Whether to enable the Doppler effect: When there is a relative displacement between the sound source and the receiver of the sound source, the tone heard by the receiver changes.<ul>
-            <li><codeph><ph keyref="true" /></codeph>: Enable the Doppler effect.</li>
-            <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the Doppler effect.</li>
-            </ul>
-            <note type="caution">
-            <ul>
-              <li>This parameter is suitable for scenarios where the sound source is moving at high speed (for example, racing games). It is not recommended for common audio and video interactive scenarios (for example, voice chat, cohosting, or online KTV).</li>
-              <li>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref keyref="updatePlayerPositionInfo" />, <xref keyref="updateSelfPosition" />, and <xref keyref="updateRemotePosition" /> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
-            </ul>
-            </note></pd>
-        </plentry>
+      <plentry>
+        <pt>enable_doppler</pt>
+        <pd>Whether to enable the Doppler effect: When there is a relative displacement between the sound source and the receiver of the sound source, the tone heard by the receiver changes.<ul>
+          <li><codeph><ph keyref="true" /></codeph>: Enable the Doppler effect.</li>
+          <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the Doppler effect.</li>
+          </ul>
+          <note type="caution">
+          <ul>
+          <li>This parameter is suitable for scenarios where the sound source is moving at high speed (for example, racing games). It is not recommended for common audio and video interactive scenarios (for example, voice chat, cohosting, or online KTV).</li>
+          <li>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref keyref="updatePlayerPositionInfo" />, <xref keyref="updateSelfPosition" />, and <xref keyref="updateRemotePosition" /> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
+          </ul> </note></pd>
+      </plentry>
       </parml> </section>
   </refbody>
 </reference>

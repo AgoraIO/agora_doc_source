@@ -453,23 +453,23 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                 <pd>Whether to publish the video captured by the second camera:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured by the second camera.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video captured by the second camera.</li>
-                    </ul>
-                </pd>
+                    </ul> </pd>
             </plentry>
             <plentry>
                 <pt props="android ios">publishScreenCaptureVideo</pt>
                 <pt props="mac cpp">publishScreenTrack</pt>
                 <pd>
-                    <p>Whether to publish the video captured from the screen:<ul>
+                    <p>Whether to publish the captured video from the screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video captured from the screen.</li>
                     </ul></p>
+                    <note type="note" props="android ios">Since v4.0.0, the parameter name has been changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt props="cpp unity electron rn flutter">publishScreenCaptureVideo</pt>
                 <pd>
-                    <p>Whether to publish the video captured from the screen:<ul>
+                    <p>Whether to publish the captured video from the screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video captured from the screen.</li>
                     </ul></p>
@@ -647,12 +647,14 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                 <pt>customVideoTrackId</pt>
                 <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack" /> method. The default value is 0.</pd>
             </plentry>
-             <plentry>
-                 <pt>isAudioFilterable</pt>
-                 <pd>Whether the audio stream being published is filtered according to the volume algorithm:<ul><li><codeph><ph keyref="true" /></codeph>: (Default) The audio stream is filtered. If the audio stream filter is not enabled, this setting does not takes effect.</li>
-                 <li><codeph><ph keyref="false" /></codeph>: The audio stream is not filtered.</li></ul>
-                <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link" />.</note></pd>
-             </plentry>
+            <plentry>
+                <pt>isAudioFilterable</pt>
+                <pd>Whether the audio stream being published is filtered according to the volume algorithm:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) The audio stream is filtered. If the audio stream filter is not enabled, this setting does not takes effect.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: The audio stream is not filtered.</li>
+                    </ul>
+                    <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link" />.</note></pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
