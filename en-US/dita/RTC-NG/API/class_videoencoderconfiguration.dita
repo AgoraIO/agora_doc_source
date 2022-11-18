@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
-    <title><ph keyref="VideoEncoderConfiguration" /></title>
+    <title><ph keyref="VideoEncoderConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">Video encoder configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -414,7 +414,7 @@
   @JsonKey(name: 'advanceOptions')
   final AdvanceOptions? advanceOptions;
 
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoEncoderConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
@@ -422,32 +422,36 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="cpp unity electron rn flutter">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions" />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
+                    <p props="cpp unity electron rn flutter"
+                    >The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"
+                    />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
                     <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list:<ul>
-                    <li><ph keyref="VD_120x120" />: The video resolution is 120 × 120.</li>
-                    <li><ph keyref="VD_160x120" />: The video resolution is 160 × 120.</li>
-                    <li><ph keyref="VD_180x180" />: The video resolution is 180 × 180.</li>
-                    <li><ph keyref="VD_240x180" />: The video resolution is 240 × 180.</li>
-                    <li><ph keyref="VD_320x180" />: The video resolution is 320 × 180.</li>
-                    <li><ph keyref="VD_240x240" />: The video resolution is 240 × 240.</li>
-                    <li><ph keyref="VD_320x240" />: The video resolution is 320 × 240.</li>
-                    <li><ph keyref="VD_424x240" />: The video resolution is 424 × 240.</li>
-                    <li><ph keyref="VD_360x360" />: The video resolution is 360 × 360.</li>
-                    <li><ph keyref="VD_480x360" />: The video resolution is 480 × 360.</li>
-                    <li><ph keyref="VD_640x360" />: The video resolution is 640 × 360.</li>
-                    <li><ph keyref="VD_480x480" />: The video resolution is 480 × 480.</li>
-                    <li><ph keyref="VD_640x480" />: The video resolution is 640 × 480.</li>
-                    <li><ph keyref="VD_840x480" />: The video resolution is 840 × 480.</li>
-                    <li><ph keyref="VD_960x720" />: The video resolution is 960 × 720.</li>
-                    <li><ph keyref="VD_1280x720" />: The video resolution is 1280 × 720.</li>
-                    <li><ph keyref="VD_1920x1080" />: The video resolution is 1920 × 1080.</li>
-                    <li><ph keyref="VD_2540x1440" />: The video resolution is 2540 × 1440.</li>
-                    <li><ph keyref="VD_3840x2160" />: The video resolution is 3840 × 2160.</li>
+                    <li><ph keyref="VD_120x120"/>: The video resolution is 120 × 120.</li>
+                    <li><ph keyref="VD_160x120"/>: The video resolution is 160 × 120.</li>
+                    <li><ph keyref="VD_180x180"/>: The video resolution is 180 × 180.</li>
+                    <li><ph keyref="VD_240x180"/>: The video resolution is 240 × 180.</li>
+                    <li><ph keyref="VD_320x180"/>: The video resolution is 320 × 180.</li>
+                    <li><ph keyref="VD_240x240"/>: The video resolution is 240 × 240.</li>
+                    <li><ph keyref="VD_320x240"/>: The video resolution is 320 × 240.</li>
+                    <li><ph keyref="VD_424x240"/>: The video resolution is 424 × 240.</li>
+                    <li><ph keyref="VD_360x360"/>: The video resolution is 360 × 360.</li>
+                    <li><ph keyref="VD_480x360"/>: The video resolution is 480 × 360.</li>
+                    <li><ph keyref="VD_640x360"/>: The video resolution is 640 × 360.</li>
+                    <li><ph keyref="VD_480x480"/>: The video resolution is 480 × 480.</li>
+                    <li><ph keyref="VD_640x480"/>: The video resolution is 640 × 480.</li>
+                    <li><ph keyref="VD_840x480"/>: The video resolution is 840 × 480.</li>
+                    <li><ph keyref="VD_960x720"/>: The video resolution is 960 × 720.</li>
+                    <li><ph keyref="VD_1280x720"/>: The video resolution is 1280 × 720.</li>
+                    <li><ph keyref="VD_1920x1080"/>: The video resolution is 1920 × 1080.</li>
+                    <li><ph keyref="VD_2540x1440"/>: The video resolution is 2540 × 1440.</li>
+                    <li><ph keyref="VD_3840x2160"/>: The video resolution is 3840 × 2160.</li>
                     </ul>
                     <note type="attention">
                     <ul>
@@ -459,11 +463,11 @@
             </plentry>
             <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>codecType</pt>
-                <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE" />.</pd>
+                <pd>The codec type of the local video stream. See <xref keyref="VIDEO_CODEC_TYPE"/>.</pd>
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd>The frame rate (fps) of the encoding video frame. The default value is 15. See <xref keyref="FRAME_RATE" />.</pd>
+                <pd>The frame rate (fps) of the encoding video frame. The default value is 15. See <xref keyref="FRAME_RATE"/>.</pd>
             </plentry>
             <plentry props="native">
                 <pt>minFramerate</pt>
@@ -472,10 +476,13 @@
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity">See <xref keyref="BITRATE" />.</ph></p>
+                    <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity">See <xref
+                    keyref="BITRATE"/>.</ph></p>
                     <ul props="native flutter">
-                    <li><option keyref="STANDARD_BITRATE" />: (Recommended) Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
-                    <li><option keyref="COMPATIBLE_BITRATE" />: Adaptive bitrate mode In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
+                    <li><option keyref="STANDARD_BITRATE"
+                        />: (Recommended) Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
+                    <li><option keyref="COMPATIBLE_BITRATE"
+                        />: Adaptive bitrate mode In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -487,21 +494,23 @@
             </plentry>
             <plentry>
                 <pt>orientationMode</pt>
-                <pd>The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE" />.</pd>
+                <pd>The orientation mode of the encoded video. See <xref keyref="ORIENTATION_MODE"/>.</pd>
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE" />.</pd>
+                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"
+                    />.</pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref
+                    keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
                     <note type="attention">By default, the video is not mirrored.</note> </pd>
             </plentry>
             <plentry>
                 <pt>advanceOptions</pt>
-                <pd>Advanced options for video encoding. See <xref keyref="AdvanceOptions" />.</pd>
+                <pd>Advanced options for video encoding. See <xref keyref="AdvanceOptions"/>.</pd>
             </plentry>
             </parml> </section>
     </refbody>
