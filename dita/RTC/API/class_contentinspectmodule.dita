@@ -4,7 +4,7 @@
     <title><ph keyref="ContentInspectModule"/></title>
     <shortdesc id="short"><ph id="shortdesc"><apiname
         keyref="ContentInspectModule"/>
-            结构体，用于配置内容审核模块的类型和频率。</ph></shortdesc>
+            结构体，用于配置视频截图上传的频率。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock" props="rtc-ng">
@@ -93,21 +93,20 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="android apple cpp flutter">内容审核模块的类型。详见 <xref
+                <pd props="android apple cpp flutter">功能模块的类型，详见 <xref
                     keyref="ContentInspectType"/>。</pd>
                 <pd props="cs">
-                    <p>内容审核模块的类型。
+                    <p>功能模块的类型，详见
                     
                     <ul>
                     <li>0: （默认）该功能模块无实际功能。请不要设为该值。</li>
-                    <li>1: 鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</li>
                     <li>2: 截图。SDK 会对视频流进行截图并上传。</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>interval</pt>
-                <pd>内容审核的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行内容审核。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
+                <pd>视频截图上传的间隔，单位为秒，取值必须大于 0。默认值为 0，表示不进行截图上传。推荐值为 10 秒，你也可以根据业务需求自行调整。</pd>
             </plentry>
             </parml> </section>
     </refbody>

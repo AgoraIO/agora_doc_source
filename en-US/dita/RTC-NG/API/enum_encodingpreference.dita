@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="enum_encodingpreference">
+    <title><ph keyref="ENCODING_PREFERENCE"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Video encoder preference.</ph></shortdesc>
+    <refbody>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title>Enumerator</title>
+            <parml>
+            <plentry>
+                <pt><ph keyref="PREFER_AUTO"/></pt>
+                <pd>-1: Default preference. The SDK automatically selects the optimal encoding type for encoding based on factors such as platform and device type.</pd>
+            </plentry>
+            </parml>
+            <parml>
+            <plentry>
+                <pt><ph keyref="PREFER_SOFTWARE"/></pt>
+                <pd>0: Software coding preference. The SDK prefers software encoders for video encoding.</pd>
+            </plentry>
+            </parml>
+            <parml>
+            <plentry>
+                <pt><ph keyref="PREFER_HARDWARE"/></pt>
+                <pd>1: Hardware encoding preference. The SDK prefers a hardware encoder for video encoding. When the device does not support hardware encoding, the SDK automatically uses software encoding and reports the currently used video encoder type through <parmname>hwEncoderAccelerating</parmname> in the <xref keyref="onLocalVideoStats"/> callback.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

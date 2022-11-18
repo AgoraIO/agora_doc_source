@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_registereventhandler">
+    <title><ph keyref="registerEventHandler_IMusicContentCenter" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers callback events of the music content center.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="registerEventHandler_IMusicContentCenter" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int registerEventHandler(IMusicContentCenterEventHandler eventHandler);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)registerEventDelegate:(id&lt;AgoraMusicContentCenterEventDelegate&gt; _Nullable)eventDelegate;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int registerEventHandler(IMusicContentCenterEventHandler* eventHandler) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract registerEventHandler(
+    eventHandler: IMusicContentCenterEventHandler
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterEventHandler(IMusicContentCenterEventHandler eventHandler);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract registerEventHandler(
+    eventHandler: IMusicContentCenterEventHandler
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">void registerEventHandler(MusicContentCenterEventHandler eventHandler);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p />
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="cpp android">eventHandler</pt>
+                <pt props="apple">eventDelegate</pt>
+                <pd><ph>Callback events to be registered.See <xref keyref="IMusicContentCenterEventHandler" />. </ph><ph props="apple">If you want to remove a callback event that is registered, pass in <ph keyref="NULL" />.</ph></pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>
