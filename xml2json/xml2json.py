@@ -169,7 +169,17 @@ elif defined_path_text == "cs":
 # Other types of full path
 rust_topicref_list = []
 json_hide_id_list = []
-dita_file_tree = ET.parse(defined_path)
+try:
+    dita_file_tree = ET.parse(defined_path)
+except Exception as ex:
+    print("\n")
+    print("Woops!\n")
+    print("It most likely an error occur when parsing the xml file: {}\n".format(defined_path))
+    print("The exception detail show below:\n")
+    print(ex)
+
+    raise ex
+
 dita_file_root = dita_file_tree.getroot()
 for topicref in dita_file_root.iter("keydef"):
     print(topicref)
