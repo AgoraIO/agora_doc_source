@@ -258,9 +258,9 @@ class _State extends State<JoinChannelVideoToken> {
  
   bool isJoined = false, switchCamera = true, switchRender = true;
   Set<int> remoteUid = {};
-  static const String appId = '<Your App ID>';
-  static const String channelId = 'test_channel_id';
-  static const String hostUrl = '<Your Host URL and port>';
+  static const String appId = '<Your App ID>'; // 填入在 Agora 控制台创建项目时生成的 App ID
+  static const String channelId = '<Your Channel Name>'; // 填入频道名称
+  static const String hostUrl = '<Your Host URL and port>'; // 填入服务器的 URL 和端口
  
   @override
   void initState() {
