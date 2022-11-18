@@ -38,7 +38,8 @@
       {required String keyWord,
       required int page,
       required int pageSize,
-      String? jsonOption});</codeblock> </p>
+      String? jsonOption});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -47,8 +48,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p id="desc">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"
-            /> 回调报告检索到的音乐资源列表。</p>
+            <p id="desc">成功调用该方法后，SDK 会触发 <xref keyref="onMusicCollectionResult"/> 回调报告检索到的音乐资源列表。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -65,17 +65,22 @@
                 <pt>pageSize</pt>
                 <pd>每页所展示的音乐资源的最大数量，最大值为 50。</pd>
             </plentry>
-            <plentry id="option" props="apple cpp">
+            <plentry id="option" props="apple cpp framework">
                 <pt>jsonOption</pt>
                 <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。</pd>
             </plentry>
-            <plentry props="cpp" conkeyref="onMusicChartsResult/id">
+            <plentry props="cpp rn electron unity" conkeyref="onMusicChartsResult/id">
                 <pt/>
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values"
-            conkeyref="getMusicCollectionByMusicChartId/return_values">
-        </section>
+        <section>
+        <title>返回值</title>
+            <ul props="cpp unity electron rn">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+            <p props="android apple flutter">一个 <parmname>requestId</parmname>，为本次请求的唯一标识。</p> 
+    </section>
     </refbody>
 </reference>

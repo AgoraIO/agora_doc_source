@@ -13,14 +13,15 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onLyricResult(String requestId, String lyricUrl);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onLyricResult:(NSString*)requestId lyricUrl:(NSString*)lyricUrl;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onLyricResult(const char* requestId, const char* lyricUrl) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java"> @CalledByNative void onLyricResult(String requestId, String lyricUrl, int errorCode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onLyricResult:(NSString*)requestId lyricUrl:(NSString* _Nullable)lyricUrl errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onLyricResult(const char* requestId, const char* lyricUrl, MusicContentCenterStatusCode error_code = kMusicContentCenterStatusOk) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">onLyricResult?(requestId: string, lyricUrl: string): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract void OnLyricResult(string requestId, string lyricUrl);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onLyricResult?(requestId: string, lyricUrl: string): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, String lyricUrl)? onLyricResult;</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, String lyricUrl)? onLyricResult;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -41,6 +42,10 @@
             <plentry>
                 <pt>lyricUrl</pt>
                 <pd>歌词的下载地址。</pd>
+            </plentry>
+                <plentry conkeyref="onPreLoadEvent_IMusicContentCenterEventHandler/error" props="native">
+                    <pt/>
+                    <pd/>
             </plentry>
             </parml> </section>
     </refbody>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
-    <title><ph keyref="ScreenCaptureParameters"/></title>
+    <title><ph keyref="ScreenCaptureParameters" /></title>
     <shortdesc id="short"><ph id="shortdesc">Screen sharing configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java" />
             <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenCaptureParameters: NSObject
 @property (assign, nonatomic) CGSize dimensions;
 @property (assign, nonatomic) NSInteger frameRate;
@@ -206,7 +206,7 @@
   final bool? windowFocus;
 
   @JsonKey(name: 'excludeWindowList')
-  final List&lt;int>? excludeWindowList;
+  final List&lt;int&gt;? excludeWindowList;
 
   @JsonKey(name: 'excludeWindowCount')
   final int? excludeWindowCount;
@@ -220,7 +220,7 @@
   @JsonKey(name: 'enableHighLight')
   final bool? enableHighLight;
 
-  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic> json) =>
+  factory ScreenCaptureParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenCaptureParametersFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$ScreenCaptureParametersToJson(this);
@@ -253,17 +253,17 @@
                 <pt>captureMouseCursor</pt>
                 <pd>
                     <p>Whether to capture the mouse in screen sharing:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Capture the mouse.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not capture the mouse.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry props="mac cpp unity electron rn flutter">
                 <pt>windowFocus</pt>
                 <pd>
-                    <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId"/> method to share it:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Bring the window to the front.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not bring the window to the front.</li>
+                    <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Bring the window to the front.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -282,8 +282,7 @@
             </plentry>
             <plentry props="mac cpp electron unity flutter">
                 <pt>highLightColor</pt>
-                <pd props="cpp framework"
-                    >(For macOS and Windows only) On Windows platforms, the color of the border in ARGB format. The default value is 0xFF8CBF26.</pd>
+                <pd props="cpp framework">(For macOS and Windows only) On Windows platforms, the color of the border in ARGB format. The default value is 0xFF8CBF26.</pd>
                 <pd>On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</pd>
             </plentry>
             <plentry props="mac cpp electron unity flutter">

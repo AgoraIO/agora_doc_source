@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_loguploadserverinfo">
-    <title><ph keyref="LogUploadServerInfo"/></title>
+    <title><ph keyref="LogUploadServerInfo" /></title>
     <shortdesc id="short"><ph id="shortdesc">Configuration information of the log server.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -50,14 +50,14 @@
   UploadServerInfo(const char* domain, const char* path, int port, bool https) : serverDomain(domain),
 serverPath(path), serverPort(port), serverHttps(https) {}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">export class LogUploadServerInfo {
   serverDomain?: string;
   serverPath?: string;
   serverPort?: number;
   serverHttps?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript">export class LogUploadServerInfo {
   serverDomain?: string;
   serverPath?: string;
@@ -80,11 +80,12 @@ serverPath(path), serverPort(port), serverHttps(https) {}
   @JsonKey(name: 'serverHttps')
   final bool? serverHttps;
 
-  factory LogUploadServerInfo.fromJson(Map&lt;String, dynamic> json) =>
+  factory LogUploadServerInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LogUploadServerInfoFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$LogUploadServerInfoToJson(this);
-}</codeblock> </p>
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$LogUploadServerInfoToJson(this);
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -93,12 +94,10 @@ serverPath(path), serverPort(port), serverHttps(https) {}
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p/>
+            <p />
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>serverDomain</pt>
@@ -115,8 +114,8 @@ serverPath(path), serverPort(port), serverHttps(https) {}
             <plentry>
                 <pt>serverHttps</pt>
                 <pd>Whether the log server uses the HTTPS protocol:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Uses HTTPS protocol.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not use HTTPS protocol. Uses the HTTP protocol.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Uses HTTPS protocol.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not use HTTPS protocol. Uses the HTTP protocol.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>

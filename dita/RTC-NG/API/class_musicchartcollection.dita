@@ -16,10 +16,21 @@ protected:
     virtual ~MusicChartCollection() = default;
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export abstract class MusicChartCollection {
+  abstract getCount(): number;
+  abstract get(index: number): MusicChartInfo;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export abstract class MusicChartCollection {
+  abstract getCount(): number;
+  abstract get(index: number): MusicChartInfo;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">abstract class MusicChartCollection {
+  Future&amp;lt;int> getCount();
+
+  Future&amp;lt;MusicChartInfo> get(int index);
+}</codeblock>
+<codeblock props="unreal" outputclass="language-cpp"></codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -29,13 +40,5 @@ protected:
             </dlentry>
             </dl>
         </section>
-        <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-            <parml>
-            <plentry>
-                <pt>MusicChartInfo</pt>
-                <pd>音乐榜单的详细信息，详见 <xref keyref="MusicChartInfo"/>。</pd>
-            </plentry>
-            </parml> </section>
     </refbody>
 </reference>
