@@ -16,14 +16,13 @@
   public int pitchType;
   public int durationS;
   public int[] lyricTypes;
-  public MvProperty[] mvProperties;
   public ClimaxSegment[] climaxSegments;
 
   public Music() {}
 
   @CalledByNative
   public Music(long songCode, String name, String singer, String poster, String releaseTime,
-      int type, int pitchType, int durationS, int[] lyricTypes, MvProperty[] mvProperties,
+      int type, int pitchType, int durationS, int[] lyricTypes,
       ClimaxSegment[] climaxSegments) {
     this.songCode = songCode;
     this.name = name;
@@ -34,7 +33,6 @@
     this.pitchType = pitchType;
     this.durationS = durationS;
     this.lyricTypes = lyricTypes;
-    this.mvProperties = mvProperties;
     this.climaxSegments = climaxSegments;
   }
 
@@ -84,11 +82,6 @@
   }
 
   @CalledByNative
-  public MvProperty[] getMvProperties() {
-    return mvProperties;
-  }
-
-  @CalledByNative
   public ClimaxSegment[] getClimaxSegments() {
     return climaxSegments;
   }
@@ -103,7 +96,6 @@
 @property(nonatomic, copy) NSString* releaseTime;
 @property(nonatomic, assign) NSInteger durationS;
 @property(nonatomic, strong) NSArray&lt;NSNumber *&gt;* lyricList;
-@property(nonatomic, strong) NSArray&lt;AgoraMvProperty *&gt;* mvPropertyList;
 @property(nonatomic, strong) NSArray&lt;AgoraClimaxSegment *&gt;* climaxSegmentList;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct Music
@@ -120,9 +112,7 @@
     int32_t* lyricList;
     int32_t climaxSegmentCount;
     ClimaxSegment* climaxSegmentList;
-    int32_t mvPropertyCount;
-    MvProperty* mvPropertyList;
-    
+
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">export class Music {
@@ -138,8 +128,6 @@
   lyricList?: number[];
   climaxSegmentCount?: number;
   climaxSegmentList?: ClimaxSegment[];
-  mvPropertyCount?: number;
-  mvPropertyList?: MvProperty[];
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">    public class Music
     {
@@ -155,8 +143,6 @@
         public int[] lyricList;
         public int climaxSegmentCount;
         public ClimaxSegment[] climaxSegmentList;
-        public int mvPropertyCount;
-        public MvProperty[] mvPropertyList;
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class Music {
   songCode?: number;
@@ -171,8 +157,6 @@
   lyricList?: number[];
   climaxSegmentCount?: number;
   climaxSegmentList?: ClimaxSegment[];
-  mvPropertyCount?: number;
-  mvPropertyList?: MvProperty[];
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class Music {
   const Music(
@@ -187,9 +171,7 @@
       this.lyricCount,
       this.lyricList,
       this.climaxSegmentCount,
-      this.climaxSegmentList,
-      this.mvPropertyCount,
-      this.mvPropertyList});
+      this.climaxSegmentList});
 
   @JsonKey(name: 'songCode')
   final int? songCode;
@@ -227,16 +209,10 @@
   @JsonKey(name: 'climaxSegmentList')
   final List&lt;ClimaxSegment&gt;? climaxSegmentList;
 
-  @JsonKey(name: 'mvPropertyCount')
-  final int? mvPropertyCount;
-
-  @JsonKey(name: 'mvPropertyList')
-  final List&lt;MvProperty&gt;? mvPropertyList;
-
   factory Music.fromJson(Map&lt;String, dynamic&gt; json) =&gt; _$MusicFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$MusicToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
