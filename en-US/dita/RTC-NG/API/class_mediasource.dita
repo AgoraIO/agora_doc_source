@@ -148,8 +148,8 @@
                 <pd>
                     <p>The URL of the media file to be played.</p>
                     <note>
-                        <p props="apple" id="url">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，同时传值会导致方法调用失败。</p>
-                        <p props="android cpp unity">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>provider</parmname> 传值，同时传值会导致方法调用失败。</p>
+                        <p props="apple" id="url">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname>. Agora recommends that you do not pass in values to all these parameters in one call; otherwise, this call may fail.</p>
+                        <p props="android cpp unity">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>provider</parmname>. Agora recommends that you do not pass in values to both parameters in one call; otherwise, this call may fail.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -208,7 +208,7 @@
                     <pd>
                         <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
                         <note>
-                            <p>如果你打开媒体资源为自定义媒体资源，请仅向 <parmname>provider</parmname> 传值，如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值。 同时向 <parmname>url</parmname> 和 <parmname>provider</parmname> 传值会导致方法调用会失败。</p>
+                            <p>If you open a custom media resource, pass in the value to <parmname>provider</parmname>. If you open a common media resource, pass in the value to <parmname>url</parmname>. Agora recommends that you do not pass in values to both <parmname>url</parmname> and <parmname>provider</parmname> in one call; otherwise, this call may fail.</p>
                         </note>
                     </pd>
                 </plentry>
