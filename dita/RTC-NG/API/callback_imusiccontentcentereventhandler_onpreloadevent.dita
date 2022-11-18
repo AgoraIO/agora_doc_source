@@ -13,9 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onPreLoadEvent(long songCode, int percent, String lyricUrl, int status, int errorCode);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl status:(AgoraMusicContentCenterPreloadStatus)status errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, const char* lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode error_code = kMusicContentCenterStatusOk) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">void onPreLoadEvent(long songCode, int percent, int status, String msg, String lyricUrl);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent status:(AgoraMusicContentCenterPreloadStatus)status msg:(NSString *)msg lyricUrl:(NSString *)lyricUrl;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, PreloadStatusCode status, const char* msg, const char* lyricUrl = nullptr) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">onPreLoadEvent?(
     songCode: number,
@@ -65,7 +65,6 @@
                 <pd>
                     <p props="apple cpp framework">当前音乐资源的加载状态。详见 <xref keyref="PreloadStatusCode"/>。</p>
                     <p props="android">当前音乐资源的加载状态：
-                    
                     <ul>
                     <li>0：音乐资源加载完成。</li>
                     <li>1：音乐资源加载失败。</li>
@@ -73,26 +72,10 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry id="error" props="native">
-                <pt props="android apple">errorCode</pt>
-                <pt props="cpp">error_code</pt>
-                <pd><p props="cpp apple">错误码信息，详见 <xref keyref="MusicContentCenterStatusCode"/>。</p>
-                    <p props="android">错误码信息：
-                    <ul>
-                    <li>(0)：请求成功。</li>
-                    <li>(1)：网关异常。可能的原因有：
-                    
-                        <ul>
-                        <li>当前使用的 Token 已过期。</li>
-                        <li>输入的 Token 无效。请检查生成 Token 的方法是否正确。</li>
-                        <li>网络错误。请检查你的网络。</li>
-                        </ul></li>
-                    <li>(2)：权限错误或音乐资源不存在。请确保你的 Agora 项目已开通内容中心权限，请联系 <xref keyref="mailto-link"/>。</li>
-                    <li>(3)：内部数据解析错误，请<xref keyref="ticket-link"/>。</li>
-                    <li>(4)：音乐加载时出错，请<xref keyref="ticket-link"/>。</li>
-                    <li>(5)：音乐资源解密时出错，请<xref keyref="ticket-link"/>。</li>
-                    </ul></p></pd>
-            </plentry>
+                <plentry>
+                    <pt>msg</pt>
+                    <pd>加载状态信息。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>
