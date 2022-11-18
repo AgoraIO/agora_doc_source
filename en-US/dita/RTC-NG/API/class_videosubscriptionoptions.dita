@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videosubscriptionoptions">
-  <title><ph keyref="VideoSubscriptionOptions" /></title>
+  <title><ph keyref="VideoSubscriptionOptions"/></title>
   <shortdesc id="short"><ph id="shortdesc">Video subscription options.</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -48,12 +48,12 @@
 
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct VideoSubscriptionOptions {
-        Optional&lt;VIDEO_STREAM_TYPE&gt; type;
-        Optional&lt;bool&gt; encodedFrameOnly;
+        Optional&lt;VIDEO_STREAM_TYPE> type;
+        Optional&lt;bool> encodedFrameOnly;
 
     VideoSubscriptionOptions() {}
 };</codeblock>
-      <codeblock props="cs" outputclass="language-csharp" />
+      <codeblock props="cs" outputclass="language-csharp"/>
       <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
   type?: VideoStreamType;
@@ -62,9 +62,9 @@
 }</codeblock>
       <codeblock props="unity" outputclass="language-csharp">public class VideoSubscriptionOptions:OptionalJsonParse
     {
-        public Optional&lt;VIDEO_STREAM_TYPE&gt; type = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
+        public Optional&lt;VIDEO_STREAM_TYPE> type = new Optional&lt;VIDEO_STREAM_TYPE>();
 
-        public Optional&lt;bool&gt; encodedFrameOnly = new Optional&lt;bool&gt;();
+        public Optional&lt;bool> encodedFrameOnly = new Optional&lt;bool>();
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
@@ -81,7 +81,7 @@
   @JsonKey(name: 'encodedFrameOnly')
   final bool? encodedFrameOnly;
 
-  factory VideoSubscriptionOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory VideoSubscriptionOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoSubscriptionOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoSubscriptionOptionsToJson(this);
@@ -89,23 +89,23 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt props="android">streamType</pt>
                 <pt props="ios mac cpp framework">type</pt>
                 <pd props="ios mac cpp framework">The video stream type that you want to subscribe to. The default value is <ph keyref="VIDEO_STREAM_HIGH"/>, indicating that the high-quality video streams are subscribed. See <xref keyref="VIDEO_STREAM_TYPE"/>.</pd>
                 <pd props="android">The default video-stream type:<ul>
-                    <li><ph keyref="VIDEO_STREAM_HIGH" />(0): (Default) High-quality video stream, that is, a high-resolution, high-bit-rate video stream.</li>
-                    <li><ph keyref="VIDEO_STREAM_LOW" />(1): Low-quality stream, that is, a low-resolution, low-bitrate video stream.</li>
+                    <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): (Default) High-quality video stream, that is, a high-resolution, high-bit-rate video stream.</li>
+                    <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution, low-bitrate video stream.</li>
                   </ul>
                 </pd>
             </plentry>
             <plentry>
                 <pt>encodedFrameOnly</pt>
                 <pd>Whether to subscribe to encoded video frames only:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Subscribe to the encoded video data (structured data) only; the SDK does not decode or render raw video data.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Subscribe to both raw video data and encoded video data.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Subscribe to the encoded video data (structured data) only; the SDK does not decode or render raw video data.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Subscribe to both raw video data and encoded video data.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
