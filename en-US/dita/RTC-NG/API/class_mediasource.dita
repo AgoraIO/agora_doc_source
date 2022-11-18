@@ -137,9 +137,9 @@
   factory MediaSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$MediaSourceFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
+  Map&lt;String, dynamic> toJson() => _$MediaSourceToJson(this);
 }</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p></section>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
@@ -148,8 +148,8 @@
                 <pd>
                     <p>The URL of the media file to be played.</p>
                     <note>
-                        <p props="apple" id="url">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>playerOnReadCallback</parmname> 及 <parmname>playerOnSeekCallback</parmname> 传值，同时传值会导致方法调用失败。</p>
-                        <p props="android cpp unity">如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值；如果你打开媒体资源为自定义媒体资源，请向 <parmname>provider</parmname> 传值，同时传值会导致方法调用失败。</p>
+                        <p props="apple" id="url">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname>. Agora recommends that you do not pass in values to all these parameters in one call; otherwise, this call may fail.</p>
+                        <p props="android cpp unity">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>provider</parmname>. Agora recommends that you do not pass in values to both parameters in one call; otherwise, this call may fail.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -163,22 +163,22 @@
             <plentry>
                 <pt>autoPlay</pt>
                 <pd>Whether to enable autoplay once the media file is opened:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enable autoplay.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable autoplay.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enables autoplay.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disables autoplay.</li>
                     </ul>
                     <note>
-                    <p>If autoplay is disabled, you need to call the<xref keyref="play" />  method to play a media file after it is opened.</p>
+                    <p>If autoplay is disabled, you need to call the <xref keyref="play" /> method to play a media file after it is opened.</p>
                     </note></pd>
             </plentry>
             <plentry>
                 <pt>enableCache</pt>
                 <pd>Whether to cache the media file when it is being played:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>:Enable caching.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable caching.</li>
+                    <li><codeph><ph keyref="true" /></codeph>:Enables caching.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disables caching.</li>
                     </ul>
                     <note>
                     <ul>
-                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the url of the media file<parmname />.</li>
+                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the <parmname>url</parmname> of the media file.</li>
                     <li>If you enable this function, the Media Player caches part of the media file being played on your local device, and you can play the cached media file without internet connection. The statistics about the media file being cached are updated every second after the media file is played. See <xref keyref="CacheStatistics" />.</li>
                     </ul> </note></pd>
             </plentry>
@@ -189,7 +189,7 @@
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream or on-demand video distributed through Media Broadcast service.</li>
                     </ul>
                     <note>
-                    <p><codeph><ph keyref="true" /></codeph>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the<parmname> URL</parmname> of the media resource to url, and set <parmname>isAgoraSource</parmname> as ; otherwise, you don't need to set the isAgoraSource parameter<parmname />.</p>
+                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the<parmname> URL</parmname> of the media resource to url, and set <parmname>isAgoraSource</parmname> as ; otherwise, you don't need to set the isAgoraSource parameter<parmname></parmname>.<codeph><ph keyref="true" /></codeph></p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -208,7 +208,7 @@
                     <pd>
                         <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider" />.</p>
                         <note>
-                            <p>如果你打开媒体资源为自定义媒体资源，请仅向 <parmname>provider</parmname> 传值，如果你打开的为普通媒体资源，请向 <parmname>url</parmname> 传值。 同时向 <parmname>url</parmname> 和 <parmname>provider</parmname> 传值会导致方法调用会失败。</p>
+                            <p>If you open a custom media resource, pass in the value to <parmname>provider</parmname>. If you open a common media resource, pass in the value to <parmname>url</parmname>. Agora recommends that you do not pass in values to both <parmname>url</parmname> and <parmname>provider</parmname> in one call; otherwise, this call may fail.</p>
                         </note>
                     </pd>
                 </plentry>

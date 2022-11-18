@@ -39,7 +39,7 @@
       required int page,
       required int pageSize,
       String? jsonOption});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -48,7 +48,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p id="desc">After calling this method successfully, the SDK triggers the <xref keyref="onMusicCollectionResult" /> callback to report the list of search results.</p>
+            <p id="desc">After calling this method successfully, the SDK triggers the <xref keyref="onMusicCollectionResult"/> callback to report the list of search results.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -65,16 +65,22 @@
                 <pt>pageSize</pt>
                 <pd>The number of music displayed on each page. The maximum value is 50.</pd>
             </plentry>
-            <plentry id="option" props="apple cpp">
+            <plentry id="option" props="apple cpp framework">
                 <pt>jsonOption</pt>
                 <pd>The json field. The default value is <ph keyref="NULL" />.</pd>
             </plentry>
-            <plentry props="cpp" conkeyref="onMusicChartsResult/id">
-                <pt />
-                <pd />
+            <plentry props="cpp rn electron unity" conkeyref="onMusicChartsResult/id">
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="getMusicCollectionByMusicChartId/return_values">
-        </section>
+        <section>
+        <title>Returns</title>
+            <ul props="cpp unity electron rn">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+            <p props="android apple flutter">A <parmname>requestId</parmname>, which is a unique identifier of this request.</p> 
+    </section>
     </refbody>
 </reference>

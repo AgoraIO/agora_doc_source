@@ -20,8 +20,8 @@
             <codeblock props="electron" outputclass="language-typescript">abstract getMusicCharts(): string;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetMusicCharts(ref string requestId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getMusicCharts(): string;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getMusicCharts();</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;String> getMusicCharts();</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -32,21 +32,22 @@
             </dl>
             <p>After you call this method successfully, the SDK triggers the <xref keyref="onMusicChartsResult" /> callback to report the detailed information of the music charts.</p>
         </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp unity">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="onMusicChartsResult/id">
-                <pt />
-                <pd />
-            </plentry>
-            </parml> </section>
+                <plentry conkeyref="onMusicChartsResult/id">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            </parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul props="cpp">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <ul props="cpp unity">
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
-            <p props="android apple" id="request">A <parmname>requestId</parmname>, which is a unique identifier of this request.</p>
+            <p props="android apple rn electron flutter" id="request">A <parmname>requestId</parmname>, which is a unique identifier of this request.</p>
         </section>
     </refbody>
 </reference>
