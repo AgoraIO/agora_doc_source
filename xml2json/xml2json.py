@@ -191,7 +191,7 @@ for topichead in dita_file_root.iter("topichead"):
             dita_id = path.basename(keydef.get("href")).replace(".dita", "")
             if is_hide_topichead:
                 json_hide_id_list.append(dita_id)
-            elif keydef.get("props") is not None and keydef.get("props") == "hide":
+            elif keydef.get("props") is not None and (keydef.get("props") == "hide" or keydef.get("props") == "cn"):
                 json_hide_id_list.append(dita_id)
 
 
