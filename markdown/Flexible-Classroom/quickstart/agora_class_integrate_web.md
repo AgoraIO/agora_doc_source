@@ -5,20 +5,19 @@
 灵动课堂代码包含以下包：
 
 -   `agora-demo-app`: 灵动课堂demo app，支持web，h5，electron客户端等平台，集成在线教育SDK、在线监考SDK等能力，提供在线课堂的课前、课中、课后等场景化代码示例
-
 -   `agora-classroom-sdk`: 在线教育场景SDK，包含以下模块：
     -   `/src/infra/stores`: UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
-    -   `/src/capabilities`:
+    -   `/src/infra/capabilities`:
         -   `/containers`: UI 业务组件目录。UI 功能组件与 UI Store 结合成为 UI 业务组件。
         -   `/scenarios`: 场景目录。场景是由多个业务组件组合而成。
 -   `agora-proctor-sdk`: 在线监考场景SDK，包含以下模块：
     -   `/src/infra/stores`: UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
-    -   `/src/capabilities`:
+    -   `/src/infra/capabilities`:
         -   `/containers`: UI 业务组件目录。UI 功能组件与 UI Store 结合成为 UI 业务组件。
         -   `/scenarios`: 场景目录。场景是由多个业务组件组合而成。
 -   `agora-common-libs`: 通用工具类库，包含ThemeProvider、I18nProvider等全局通用工具。
--   `agora-edu-core`: 提供灵动课堂中的能力与数据。
--   `agora-rte-sdk`: 提供灵动课堂中的能力与数据。
+-   `agora-edu-core`: 提供灵动课堂中教育和监考场景的上行API调用和下行数据结构封装。
+-   `agora-rte-sdk`: 提供跨端RTC适配能力以及教室内事件回调与数据结构封装。
 -   `agora-plugin-gallery`: 独立插件库，继承`AgoraWidgetBase`类并实现`AgoraWidgetLifecycle`接口，包含互动白板、IM聊天、答题器、投票器、计时器等插件。
 
 
@@ -30,7 +29,7 @@
 灵动课堂 Web 端支持多种集成方式。根据是否需要修改课堂 UI，你可选择不同的集成方式：
 
 - 如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 或 CDN 集成。
-- 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/CloudClass-Desktop)集成。
+- 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/flexible-classroom-desktop)集成。
 
 <a name="default_ui"></a>
 
@@ -59,7 +58,7 @@
 1. 在项目的 HTML 文件中添加以下代码：
 
     ```html
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.1.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.0.bundle.js"></script>
     ```
 
 2. 在项目的 JavaScript 代码中调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
@@ -74,7 +73,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.1.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.0.bundle.js"></script>
 </head>
 
 <body>
@@ -103,9 +102,9 @@
             roomName: 'room name',
             pretest: true, // 是否开启课前设备检测。
             rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
-            language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。 
+            language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。
             duration: 60 * 30, // 课程时间，单位为秒。
-            recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.3.3/record_page.html',
+            recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.0/record_page.html',
             courseWareList: [],
             uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
             listener: (evt, args) => {
@@ -168,7 +167,7 @@
 灵动课堂 Web 端支持多种集成方式。根据是否需要修改课堂 UI，你可选择不同的集成方式：
 
 - 如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 或 CDN 集成。
-- 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/CloudClass-Desktop)集成。
+- 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/flexible-classroom-desktop)集成。
 
 <a name="default_ui"></a>
 
@@ -196,7 +195,7 @@
 1. 在项目的 HTML 文件中添加以下代码：
 
     ```html
-    <script src="https://download.agora.io/edu-apaas/release/proctor_sdk@2.7.1.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/proctor_sdk@1.0.0.bundle.js"></script>
     ```
 
 2. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraProctorSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
@@ -211,7 +210,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://download.agora.io/edu-apaas/release/proctor_sdk@2.7.1.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/proctor_sdk@1.0.0.bundle.js"></script>
 </head>
 
 <body>
@@ -236,16 +235,16 @@
          * 2. 注：监考场景下学生用户标识规则：`${用户id}-${设备类型（main/sub）}`，考场内依据主副设备的用户id前缀判断是否为同一学生
             例：学生A标识为 'studentA',学生WEB端为主设备，移动端为副设备
             学生A传入 WEb SDK 的 userUuid 为 'studentA-main'
-            学生A传入 IOS/Android SDK 的 userUuid 为 'studentA-sub' 
+            学生A传入 IOS/Android SDK 的 userUuid 为 'studentA-sub'
             在考场中 'studentA-main' 和 'studentA-sub' 会被识别为 学生A('studentA') 的多台设备
         */
         AgoraProctorSDK.launch(document.querySelector('#root'), {
             /**
              * 用户唯一标识
-             * 
+             *
              * 请在此处传入根据上述规则拼接好的userUuid
              * */
-            userUuid: 'user id', 
+            userUuid: 'user id',
             userName: 'user name',
             roomUuid: 'room id',
             roleType: 1, // 用户角色：1 为老师，2 为学生。
@@ -254,7 +253,7 @@
             roomName: 'room name',
             pretest: true, // 是否开启课前设备检测。
             rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
-            language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。 
+            language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。
             duration: 60 * 30, // 课程时间，单位为秒。
             courseWareList: [],
             listener: (evt, args) => {
@@ -306,8 +305,8 @@
 3. 完成开发后，通过以下命令打包 SDK JS 文件：
 
    ```bash
-   yarn pack:classroom:sdk
+   yarn pack:proctor:sdk
    ```
 
-<div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-classroom-sdk/lib/edu_sdk.bundle.js</code>。</div>
+<div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-proctor-sdk/lib/proctor_sdk.bundle.js</code>。</div>
 
