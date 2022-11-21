@@ -449,7 +449,8 @@
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：（默认）发布麦克风采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布麦克风采集到的音频。</li>
-                    </ul>
+                </ul></pd>
+                <pd>
                     <note type="note">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
                 </pd>
             </plentry>
@@ -462,7 +463,7 @@
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布第二个摄像头采集的视频。</li>
                     </ul> </pd>
             </plentry>
-            <plentry>
+            <plentry props="native framework">
                 <pt props="android ios">publishScreenCaptureVideo</pt>
                 <pt props="mac cpp framework">publishScreenTrack</pt>
                 <pd>
@@ -475,8 +476,8 @@
                     <note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp framework">publishScreenCaptureVideo</pt>
+            <plentry props="cpp framework">
+                <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
                     
@@ -486,11 +487,10 @@
                     </ul></p>
                     <note type="attention" props="cpp framework">该参数仅适用于 Android 和 iOS 平台。</note> </pd>
             </plentry>
-            <plentry>
-                <pt props="android ios cpp framework">publishScreenCaptureAudio</pt>
+            <plentry props="android ios cpp framework">
+                <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的音频：
-                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的音频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的音频。</li>
@@ -613,10 +613,13 @@
                 <pt>publishMediaPlayerId</pt>
                 <pd>待发布的媒体播放器的 ID。默认值为 0。</pd>
             </plentry>
-            <plentry>
+            <plentry props="native unity">
                 <pt>clientRoleType</pt>
-                <pd conkeyref="setClientRole1/clientrole" props="native unity"/>
-                <pd props="rn electron flutter">用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
+                <pd conkeyref="setClientRole1/clientrole"/>
+            </plentry>
+            <plentry  props="rn electron flutter">
+                <pt>clientRoleType</pt>
+                <pd>用户角色。详见 <xref keyref="CLIENT_ROLE_TYPE"/>。</pd>
             </plentry>
             <plentry conkeyref="ClientRoleOptions/audiencelatencylevel">
                 <pt/>
