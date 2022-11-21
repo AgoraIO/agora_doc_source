@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onencryptionerror">
-    <title><ph keyref="onEncryptionError"/></title>
+    <title><ph keyref="onEncryptionError" /></title>
     <shortdesc id="short"><ph id="shortdesc">Reports the built-in encryption errors.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onEncryptionError"/>
+                <indexterm keyref="onEncryptionError" />
             </keywords>
         </metadata>
     </prolog>
@@ -20,37 +20,43 @@
   (void)errorType;
 }
 </codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onEncryptionError?(connection: RtcConnection, errorType: EncryptionErrorType): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onEncryptionError?(
+    connection: RtcConnection,
+    errorType: EncryptionErrorType
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnEncryptionError(RtcConnection connection, ENCRYPTION_ERROR_TYPE errorType) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onEncryptionError?(
-  connection: RtcConnection,
-  errorType: EncryptionErrorType
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onEncryptionError?(
+    connection: RtcConnection,
+    errorType: EncryptionErrorType
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, EncryptionErrorType errorType)?
-      onEncryptionError;
-</codeblock> </p>
+      onEncryptionError;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>When encryption is enabled by calling <xref keyref="enableEncryption"/>, the SDK triggers this callback if an error occurs in encryption or decryption on the sender or the receiver side.</p>
+            <p>When encryption<xref keyref="enableEncryption" /> is enabled by calling , the SDK triggers this callback if an error occurs in encryption or decryption on the sender or the receiver side.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
-            <plentry>
+            <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>errorType</pt>
-                <pd props="ios mac cpp unity electron rn flutter">For details about the error type, see <xref keyref="ENCRYPTION_ERROR_TYPE"/>.</pd>
-                <pd props="android">Error type.<ul>
-                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE"/>(0): Internal reasons.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE"/>(1): Decryption errors. Ensure that the receiver and the sender use the same encryption mode and key.</li>
-                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE"/>(2): Encryption errors.</li>
+                <pd>For details about the error type, see <xref keyref="ENCRYPTION_ERROR_TYPE" />.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>errorType</pt>
+                <pd>Error types.<ul>
+                    <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE" />(0): Internal reasons.</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE" />(1): Decryption errors. Ensure that the receiver and the sender use the same encryption mode and key.</li>
+                    <li><ph keyref="ENCRYPTION_ERROR_ENCRYPTION_FAILURE" />(2): Encryption errors.</li>
                 </ul></pd>
             </plentry>
             </parml> </section>
