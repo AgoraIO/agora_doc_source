@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrhythmplayerstatechanged">
     <title><ph keyref="onRhythmPlayerStateChanged"/></title>
-    <shortdesc id="short"><ph id="shortdesc"/>The virtual metronome state change callback.</shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"/>Occurs when the state of virtual metronome changes.</shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,24 +32,24 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
           RhythmPlayerStateType state, RhythmPlayerErrorType errorCode)?
-      onRhythmPlayerStateChanged;</codeblock> </p>
+      onRhythmPlayerStateChanged;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>When the state of the virtual metronome changes, the SDK triggers this callback to report the current state of the virtual metronome. This callback indicates the state of the local audio stream and enables you to troubleshoot issues when audio exceptions occur.</p>
-            <note type="attention" props="cpp">This callback is for Android and iOS only.</note> </section>
+            <note type="attention" props="cpp unity flutter">This callback is for Android and iOS only.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
             <parml>
             <plentry>
                 <pt>state</pt>
                 <pd props="ios mac cpp framework">For the current virtual metronome status, see <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
-                <pd props="android">The current virtual metronome state.<ul>
+                <pd props="android">The current virtual metronome status.<ul>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_IDLE"/>(810): The virtual metronome is not enabled or is already disabled.</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_OPENING"/>(811): Opening the beat files.</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_DECODING"/>(812): Decoding the beat files.</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_PLAYING"/>(813): The beat files are playing.</li>
-                    <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/>(814): Failed to start virtual metronome. You can use the reported <parmname>errorcode</parmname>errorCode to troubleshoot the cause of the error, or you can try to start the virtual metronome again.</li>
+                    <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/>(814): Failed to start virtual metronome. You can use the reported errorcode to<parmname> troubleshoot the cause of the error</parmname>, or you can try to start the virtual metronome again.</li>
                     </ul></pd>
             </plentry>
             <plentry>
