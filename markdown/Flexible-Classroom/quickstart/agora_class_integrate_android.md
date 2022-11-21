@@ -42,26 +42,28 @@
 
     ```
     dependencies {
-        ...
-        // 如果你使用 2.7.0 及以上版本，删除下面第一行代码
-        implementation "io.github.agoraio-community:hyphenate:版本号"
         implementation "io.github.agoraio-community:AgoraEduCore:版本号"
         implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
         implementation "io.github.agoraio-community:AgoraClassSDK:版本号"
     }
     ```
 
-    假设你想获取 2.2.0 的版本，可以这样写：
+    假设你想获取 2.8.0 的版本，可以这样写：
 
     ```
     dependencies {
-        // 如果你使用 2.7.0 及以上版本，删除下面第一行代码
-        implementation "io.github.agoraio-community:hyphenate:2.2.0"
-        implementation "io.github.agoraio-community:AgoraEduCore:2.2.0"
-        implementation "io.github.agoraio-community:AgoraEduUIKit:2.2.0"
-        implementation "io.github.agoraio-community:AgoraClassSDK:2.2.0"
-        }
+        implementation "io.github.agoraio-community:AgoraEduCore:2.8.0"
+        implementation "io.github.agoraio-community:AgoraEduUIKit:2.8.0"
+        implementation "io.github.agoraio-community:AgoraClassSDK:2.8.0"
+     }
     ```
+
+如果版本是2.7.0以下版本，需要添加hyphenate依赖
+```
+implementation "io.github.agoraio-community:hyphenate:2.8.0"
+```
+
+查看当前最新版本，可以查看 github：https://github.com/AgoraIO-Community/CloudClass-Android
 
     <div class="alert info">点击<a href="https://search.maven.org/search?q=io.github.agoraio-community" target="_blank">此处</a>查看灵动课堂最新版本。</div>
 

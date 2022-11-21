@@ -44,7 +44,6 @@
    ```kotlin
    dependencies {
     // ...
-    implementation "io.github.agoraio-community:hyphenate:版本号"
     implementation "io.github.agoraio-community:AgoraEduCore:版本号"
     // implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
     // implementation "io.github.agoraio-community:AgoraClassSDK:版本号"
