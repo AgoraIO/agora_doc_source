@@ -41,10 +41,13 @@
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <parml>
-            <plentry>
+            <plentry props="ios mac cpp framework">
                 <pt>state</pt>
-                <pd props="ios mac cpp framework">当前的虚拟节拍器状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
-                <pd props="android">当前的虚拟节拍器状态。
+                <pd>当前的虚拟节拍器状态，详见 <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>state</pt>
+                <pd>当前的虚拟节拍器状态。
                     <ul>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_IDLE"/> (810): 虚拟节拍器未开启或已关闭。</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_OPENING"/> (811): 正在打开节拍音频文件。</li>
@@ -53,10 +56,13 @@
                     <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/> (814): 开启虚拟节拍器失败。你可以通过报告的错误码 <parmname>errorCode</parmname> 排查错误原因，也可以重新尝试开启虚拟节拍器。</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry props="ios mac cpp framework">
                 <pt>errorCode</pt>
-                <pd props="ios mac cpp framework">虚拟节拍器发生错误的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>。</pd>
-                <pd props="android">虚拟节拍器发生错误的错误码和错误信息。
+                <pd>虚拟节拍器发生错误的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>errorCode</pt>
+                <pd>虚拟节拍器发生错误的错误码和错误信息。
                     <ul>
                     <li><ph keyref="RHYTHM_PLAYER_ERROR_OK"/> (0): 正常播放节拍音频文件，没有错误。</li>
                     <li><ph keyref="RHYTHM_PLAYER_ERROR_FAILED"/> (1): 一般性错误，没有明确原因。</li>
