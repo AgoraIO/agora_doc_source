@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoencoderconfiguration">
-    <title><ph keyref="VideoEncoderConfiguration" /></title>
+    <title><ph keyref="VideoEncoderConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">视频编码器的配置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -130,6 +130,8 @@
 
     public MIRROR_MODE_TYPE mirrorMode;
 
+    public AdvanceOptions advanceOptions;
+
   public VideoEncoderConfiguration() {
     this.dimensions = new VideoDimensions(640, 480);
     this.frameRate = FRAME_RATE.FRAME_RATE_FPS_15.getValue();
@@ -139,6 +141,7 @@
     this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
@@ -151,6 +154,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(VideoDimensions dimensions, FRAME_RATE frameRate, int bitrate,
@@ -163,6 +167,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(
@@ -175,6 +180,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = MIRROR_MODE_TYPE.MIRROR_MODE_DISABLED;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 
   public VideoEncoderConfiguration(int width, int height, FRAME_RATE frameRate, int bitrate,
@@ -187,6 +193,7 @@
     this.orientationMode = orientationMode;
     this.degradationPrefer = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
     this.mirrorMode = mirrorMode;
+    this.advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO);
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoEncoderConfiguration : NSObject
@@ -221,6 +228,7 @@
   ORIENTATION_MODE orientationMode;
   DEGRADATION_PREFERENCE degradationPreference;
   VIDEO_MIRROR_MODE_TYPE mirrorMode;
+  AdvanceOptions advanceOptions;
 
   VideoEncoderConfiguration(const VideoDimensions&amp; d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
       : codecType(VIDEO_CODEC_H264),
@@ -230,7 +238,8 @@
         minBitrate(DEFAULT_MIN_BITRATE),
         orientationMode(m),
         degradationPreference(MAINTAIN_QUALITY),
-        mirrorMode(mirror) {}
+        mirrorMode(mirror),
+        advanceOptions(PREFER_AUTO) {}
   VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_DISABLED)
       : codecType(VIDEO_CODEC_H264),
         dimensions(width, height),
@@ -239,7 +248,8 @@
         minBitrate(DEFAULT_MIN_BITRATE),
         orientationMode(m),
         degradationPreference(MAINTAIN_QUALITY),
-        mirrorMode(mirror) {}
+        mirrorMode(mirror),
+        advanceOptions(PREFER_AUTO) {}
   VideoEncoderConfiguration(const VideoEncoderConfiguration&amp; config)
       : codecType(config.codecType),
         dimensions(config.dimensions),
@@ -248,7 +258,8 @@
         minBitrate(config.minBitrate),
         orientationMode(config.orientationMode),
         degradationPreference(config.degradationPreference),
-        mirrorMode(config.mirrorMode) {}
+        mirrorMode(config.mirrorMode),
+        advanceOptions(config.advanceOptions) {}
   VideoEncoderConfiguration()
       : codecType(VIDEO_CODEC_H264),
         dimensions(FRAME_WIDTH_640, FRAME_HEIGHT_360),
@@ -257,7 +268,8 @@
         minBitrate(DEFAULT_MIN_BITRATE),
         orientationMode(ORIENTATION_MODE_ADAPTIVE),
         degradationPreference(MAINTAIN_QUALITY),
-        mirrorMode(VIDEO_MIRROR_MODE_DISABLED) {}
+        mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
+        advanceOptions(PREFER_AUTO) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
@@ -276,6 +288,8 @@
   degradationPreference?: DegradationPreference;
   
   mirrorMode?: VideoMirrorModeType;
+
+  advanceOptions?: AdvanceOptions;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoEncoderConfiguration
     {
@@ -287,6 +301,8 @@
         public ORIENTATION_MODE orientationMode { set; get; }
         public DEGRADATION_PREFERENCE degradationPreference { set; get; }
         public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
+        public AdvanceOptions advanceOptions { set; get; }
+
         public VideoEncoderConfiguration(ref VideoDimensions d, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
         {
             codecType = VIDEO_CODEC_TYPE.VIDEO_CODEC_H264;
@@ -297,8 +313,8 @@
             orientationMode = m;
             degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
             mirrorMode = mirror;
+            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
-
 
         public VideoEncoderConfiguration(int width, int height, int f, int b, ORIENTATION_MODE m, VIDEO_MIRROR_MODE_TYPE mirror = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED)
         {
@@ -310,8 +326,8 @@
             orientationMode = m;
             degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
             mirrorMode = mirror;
+            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
-
 
         public VideoEncoderConfiguration(ref VideoEncoderConfiguration config)
         {
@@ -323,8 +339,8 @@
             orientationMode = config.orientationMode;
             degradationPreference = config.degradationPreference;
             mirrorMode = config.mirrorMode;
+            advanceOptions = new AdvanceOptions(config.advanceOptions.encodingPreference, config.advanceOptions.compressionPreference);
         }
-
 
         public VideoEncoderConfiguration()
         {
@@ -336,9 +352,9 @@
             orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
             degradationPreference = DEGRADATION_PREFERENCE.MAINTAIN_QUALITY;
             mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_DISABLED;
+            advanceOptions = new AdvanceOptions(ENCODING_PREFERENCE.PREFER_AUTO, COMPRESSION_PREFERENCE.PREFER_LOW_LATENCY);
         }
-    }
-        </codeblock>
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
   codecType?: VideoCodecType;
@@ -356,6 +372,8 @@
   degradationPreference?: DegradationPreference;
   
   mirrorMode?: VideoMirrorModeType;
+
+  advanceOptions?: AdvanceOptions;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoEncoderConfiguration {
   const VideoEncoderConfiguration(
@@ -366,74 +384,92 @@
       this.minBitrate,
       this.orientationMode,
       this.degradationPreference,
-      this.mirrorMode});
+      this.mirrorMode,
+      this.advanceOptions});
 
   @JsonKey(name: 'codecType')
   final VideoCodecType? codecType;
+
   @JsonKey(name: 'dimensions')
   final VideoDimensions? dimensions;
+
   @JsonKey(name: 'frameRate')
   final int? frameRate;
+
   @JsonKey(name: 'bitrate')
   final int? bitrate;
+
   @JsonKey(name: 'minBitrate')
   final int? minBitrate;
+
   @JsonKey(name: 'orientationMode')
   final OrientationMode? orientationMode;
+
   @JsonKey(name: 'degradationPreference')
   final DegradationPreference? degradationPreference;
+
   @JsonKey(name: 'mirrorMode')
   final VideoMirrorModeType? mirrorMode;
-  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'advanceOptions')
+  final AdvanceOptions? advanceOptions;
+
+  factory VideoEncoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoEncoderConfigurationFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoEncoderConfigurationToJson(this);
-}</codeblock> </p>
+
+  Map&lt;String, dynamic> toJson() => _$VideoEncoderConfigurationToJson(this);
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="cpp unity electron rn flutter">视频编码的分辨率（px），详见 <xref keyref="VideoDimensions" />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
-                    <p props="android ios mac">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：
-                            <ul>
-                            <li><ph keyref="VD_120x120" />：视频分辨率为 120 × 120。</li>
-                            <li><ph keyref="VD_160x120" />：视频分辨率为 160 × 120。</li>
-                            <li><ph keyref="VD_180x180" />：视频分辨率为 180 × 180。</li>
-                            <li><ph keyref="VD_240x180" />：视频分辨率为 240 × 180。</li>
-                            <li><ph keyref="VD_320x180" />：视频分辨率为 320 × 180。</li>
-                            <li><ph keyref="VD_240x240" />：视频分辨率为 240 × 240。</li>
-                            <li><ph keyref="VD_320x240" />：视频分辨率为 320 × 240。</li>
-                            <li><ph keyref="VD_424x240" />：视频分辨率为 424 × 240。</li>
-                            <li><ph keyref="VD_360x360" />：视频分辨率为 360 × 360。</li>
-                            <li><ph keyref="VD_480x360" />：视频分辨率为 480 × 360。</li>
-                            <li><ph keyref="VD_640x360" />：视频分辨率为 640 × 360。</li>
-                            <li><ph keyref="VD_480x480" />：视频分辨率为 480 × 480。</li>
-                            <li><ph keyref="VD_640x480" />：视频分辨率为 640 × 480。</li>
-                            <li><ph keyref="VD_840x480" />：视频分辨率为 840 × 480。</li>
-                            <li><ph keyref="VD_960x720" />：视频分辨率为 960 × 720。</li>
-                            <li><ph keyref="VD_1280x720" />：视频分辨率为 1280 × 720。</li>
-                            <li><ph keyref="VD_1920x1080" />：视频分辨率为 1920 × 1080。</li>
-                            <li><ph keyref="VD_2540x1440" />：视频分辨率为 2540 × 1440。</li>
-                            <li><ph keyref="VD_3840x2160" />：视频分辨率为 3840 × 2160。</li>
-                            </ul>
-                            <note type="attention">
-                            <ul>
-                                <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
-                                <li props="ios">iPhone 不支持 720P 以上的分辨率。</li>
-                                <li props="android apple">默认值为 640 × 360。</li>
-                            </ul>
-                            </note> </p>
+                    <p props="cpp unity electron rn flutter"
+                    >视频编码的分辨率（px），详见 <xref keyref="VideoDimensions"
+                    />。该参数用于衡量编码质量，以长 × 宽表示，默认值为 640 × 360。用户可以自行设置分辨率。</p>
+                    <p props="android ios mac">用户可以自行设置分辨率，也可以在如下列表中直接选择想要的分辨率：                    
+                    
+                    <ul>
+                    <li><ph keyref="VD_120x120"/>：视频分辨率为 120 × 120。</li>
+                    <li><ph keyref="VD_160x120"/>：视频分辨率为 160 × 120。</li>
+                    <li><ph keyref="VD_180x180"/>：视频分辨率为 180 × 180。</li>
+                    <li><ph keyref="VD_240x180"/>：视频分辨率为 240 × 180。</li>
+                    <li><ph keyref="VD_320x180"/>：视频分辨率为 320 × 180。</li>
+                    <li><ph keyref="VD_240x240"/>：视频分辨率为 240 × 240。</li>
+                    <li><ph keyref="VD_320x240"/>：视频分辨率为 320 × 240。</li>
+                    <li><ph keyref="VD_424x240"/>：视频分辨率为 424 × 240。</li>
+                    <li><ph keyref="VD_360x360"/>：视频分辨率为 360 × 360。</li>
+                    <li><ph keyref="VD_480x360"/>：视频分辨率为 480 × 360。</li>
+                    <li><ph keyref="VD_640x360"/>：视频分辨率为 640 × 360。</li>
+                    <li><ph keyref="VD_480x480"/>：视频分辨率为 480 × 480。</li>
+                    <li><ph keyref="VD_640x480"/>：视频分辨率为 640 × 480。</li>
+                    <li><ph keyref="VD_840x480"/>：视频分辨率为 840 × 480。</li>
+                    <li><ph keyref="VD_960x720"/>：视频分辨率为 960 × 720。</li>
+                    <li><ph keyref="VD_1280x720"/>：视频分辨率为 1280 × 720。</li>
+                    <li><ph keyref="VD_1920x1080"/>：视频分辨率为 1920 × 1080。</li>
+                    <li><ph keyref="VD_2540x1440"/>：视频分辨率为 2540 × 1440。</li>
+                    <li><ph keyref="VD_3840x2160"/>：视频分辨率为 3840 × 2160。</li>
+                    </ul>
+                    <note type="attention">
+                    <ul>
+                    <li>视频能否达到 720P 的分辨率取决于设备的性能，在性能配备较低的设备上有可能无法实现。如果采用 720P 分辨率而设备性能跟不上，则有可能出现帧率过低的情况。</li>
+                    <li props="ios">iPhone 不支持 720P 以上的分辨率。</li>
+                    <li props="android apple">默认值为 640 × 360。</li>
+                    </ul> </note> </p>
                 </pd>
             </plentry>
             <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>codecType</pt>
-                <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE" />。</pd>
+                <pd>视频编码类型，详见 <xref keyref="VIDEO_CODEC_TYPE"/>。</pd>
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd>视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE" />。</pd>
+                <pd>视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
             </plentry>
             <plentry props="native">
                 <pt>minFramerate</pt>
@@ -442,12 +478,14 @@
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity">详见 <xref keyref="BITRATE" />。</ph></p>
+                    <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity">详见 <xref
+                    keyref="BITRATE"/>。</ph></p>
                     <ul props="native flutter">
-                    <li><option keyref="STANDARD_BITRATE" />: (推荐) 标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
-                    <li><option keyref="COMPATIBLE_BITRATE" />: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。</li>
-                    </ul>
-                    </pd>
+                    <li><option keyref="STANDARD_BITRATE"
+                        />: (推荐) 标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
+                    <li><option keyref="COMPATIBLE_BITRATE"
+                        />: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。</li>
+                    </ul> </pd>
             </plentry>
             <plentry>
                 <pt>minBitrate</pt>
@@ -458,17 +496,23 @@
             </plentry>
             <plentry>
                 <pt>orientationMode</pt>
-                <pd>视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE" />。</pd>
+                <pd>视频编码的方向模式，详见 <xref keyref="ORIENTATION_MODE"/>。</pd>
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE" /> 。</pd>
+                <pd>带宽受限时，视频编码降级偏好。详见 <xref keyref="DEGRADATION_PREFERENCE"
+                    /> 。</pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
+                    <p>发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref
+                    keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
+            </plentry>
+            <plentry>
+                <pt>advanceOptions</pt>
+                <pd>视频编码的高级选项。详见 <xref keyref="AdvanceOptions"/>。</pd>
             </plentry>
             </parml> </section>
     </refbody>

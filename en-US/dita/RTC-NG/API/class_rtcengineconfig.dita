@@ -44,7 +44,6 @@
     mAppId = "";
     mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
     mEventHandler = null;
-    mAudioScenario = Constants.AUDIO_SCENARIO_HIGH_DEFINITION;
     mAreaCode = Constants.AreaCode.AREA_CODE_GLOB;
     mExtensionList = new ArrayList&lt;&gt;();
     mExtensionObserver = null;
@@ -108,13 +107,15 @@
   AUDIO_SCENARIO_TYPE audioScenario;
   unsigned int areaCode;
   commons::LogConfig logConfig;
+  bool domainLimit;
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        audioScenario(AUDIO_SCENARIO_HIGH_DEFINITION),
+        license(NULL),
+        audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
-        logConfig() {}
+        logConfig(), domainLimit(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
   
@@ -206,7 +207,8 @@
   factory RtcEngineContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$RtcEngineContextFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcEngineContextToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -237,8 +239,8 @@
                 <pd>
                     <p>Specifies the storage directory for the <codeph>.so</codeph> files. The storage directory must be a valid and private directory of the app, which can be obtained using <codeph>Context.getDir()</codeph>.</p>
                     <ul>
-                    <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so</codeph> files when it runs, thereby reducing the package size.</li>
-                    <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.so</codeph> files from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which increases the package size compared to the previous method.</li>
+                    <li>If you set this parameter, the SDK automatically loads the <codeph>.so</codeph> files in the directory you specify, so that the app dynamically loads the required <codeph>.so </codeph>files when it runs, thereby reducing the package size.</li>
+                    <li>If you do not set this parameter or set it to null, the SDK loads the <codeph>.so </codeph>files from the default app's <codeph>nativeLibraryPath</codeph> when compiling the app, which increases the package size compared to the previous method.</li>
                     </ul>
                     <note type="attention">
                     <ul>
@@ -284,6 +286,15 @@
             <plentry props="ios mac">
                 <pt>mediaFilterExtensions</pt>
                 <pd>The <xref keyref="AgoraMediaFilterExtensionDelegate" /> instance.</pd>
+            </plentry>
+            <plentry>
+                <pt>domainLimit</pt>
+                <pd>
+                    <p>Whether to enable domain name restriction:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Enables the domain name restriction. This value is suitable for scenarios where IoT devices use IoT cards for network access. The SDK will only connect to servers in the domain name or IP whitelist that has been reported to the operator.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disables the domain name restriction. This value is suitable for most common scenarios.</li>
+                    </ul></p>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

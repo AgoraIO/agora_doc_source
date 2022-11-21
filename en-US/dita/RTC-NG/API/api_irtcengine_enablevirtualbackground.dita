@@ -14,9 +14,11 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int enableVirtualBackground(
-      boolean enabled, VirtualBackgroundSource backgroundSource);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData NS_SWIFT_NAME(enableVirtualBackground(_:backData:));</codeblock>
-            <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource) = 0;</codeblock>
+      boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty);
+</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:));</codeblock>
+            <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;
+</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(
     enabled: boolean,
     backgroundSource: VirtualBackgroundSource,
@@ -32,7 +34,8 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
     {required bool enabled,
-    required VirtualBackgroundSource backgroundSource});</codeblock> </p>
+    required VirtualBackgroundSource backgroundSource});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <p>The virtual background function allows you to replace the original background image of the local user or to blur the background. After successfully enabling the virtual background function, all users in the channel can see the customized background.</p>
@@ -58,6 +61,7 @@
                 <li>A high-definition camera device is used, and the environment is uniformly lit.</li>
                 <li>There are few objects in the captured video. Portraits are half-length and unobstructed. Ensure that the background is a solid color that is different from the color of the user's clothing.</li>
                 </ul></li>
+            <li>This method relies on the video enhancement dynamic library <codeph><ph keyref="segmentation" /></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -82,7 +86,7 @@
             </plentry>
             <plentry props="cpp unity rn electron">
                 <pt>type</pt>
-                <pd>Type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
+                <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
                     <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE" />.</li>
                     <li>If you want to use the second camera to capture video, set this parameter to <apiname keyref="SECONDARY_CAMERA_SOURCE" />.</li>
                     </ul></note></pd>

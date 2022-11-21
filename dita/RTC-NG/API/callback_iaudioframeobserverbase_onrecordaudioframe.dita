@@ -26,20 +26,21 @@
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRecordAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
-      onRecordAudioFrame</codeblock> </p>
+      onRecordAudioFrame</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <note type="note" id="note">
+            <p props="native unity">为保证采集的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置音频的数据格式：                   
             <ul>
-                <li>你需要在加入频道前，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，即注册 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
-                <li>为保证采集到的音频数据格式符合预期，Agora 推荐你在如下两种方式中选其一设置采集到的音频数据格式：
-                    <ul>
-                        <li>调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置获取的耳返音频数据格式，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
-                        <li>在 <xref keyref="getRecordAudioParams"/> 回调的返回值中设置获取的耳返音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>      
-                    </ul></li>
-                <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li>
+            <li>方法一：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
+            <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getRecordAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
             </ul>
-            </note></section>
+            </p> 
+            <p props="flutter electron rn">为保证采集的音频数据格式符合预期，你可以在如下方法设置音频的数据格式：调用 <xref keyref="setRecordingAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onRecordAudioFrame"/> 回调。</p>
+            <note type="note" id="attention" props="native unity flutter"><ul>
+                <li props="native unity">方法一的优先级高于方法二，如果使用方法一设置音频数据格式，方法二设置无效。</li>
+                <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li>
+            </ul></note></section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -70,6 +71,7 @@
                 <pt>channels</pt>
                 <pd>
                     <p>声道数：
+                    
                     <ul>
                     <li>1：单声道。</li>
                     <li>2：双声道。双声道的音频数据是交叉存储的。</li>

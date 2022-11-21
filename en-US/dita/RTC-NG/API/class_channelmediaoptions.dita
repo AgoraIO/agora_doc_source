@@ -298,6 +298,7 @@
       this.publishCustomAudioSourceId,
       this.publishCustomAudioTrackEnableAec,
       this.publishDirectCustomAudioTrack,
+      this.publishCustomAudioTrackAec,
       this.publishCustomVideoTrack,
       this.publishEncodedVideoTrack,
       this.publishMediaPlayerAudioTrack,
@@ -322,73 +323,111 @@
 
   @JsonKey(name: 'publishCameraTrack')
   final bool? publishCameraTrack;
+
   @JsonKey(name: 'publishSecondaryCameraTrack')
   final bool? publishSecondaryCameraTrack;
+
   @JsonKey(name: 'publishMicrophoneTrack')
   final bool? publishMicrophoneTrack;
+
   @JsonKey(name: 'publishScreenCaptureVideo')
   final bool? publishScreenCaptureVideo;
+
   @JsonKey(name: 'publishScreenCaptureAudio')
   final bool? publishScreenCaptureAudio;
+
   @JsonKey(name: 'publishScreenTrack')
   final bool? publishScreenTrack;
+
   @JsonKey(name: 'publishSecondaryScreenTrack')
   final bool? publishSecondaryScreenTrack;
+
   @JsonKey(name: 'publishCustomAudioTrack')
   final bool? publishCustomAudioTrack;
+
+  @JsonKey(name: 'publishCustomAudioSourceId')
+  final int? publishCustomAudioSourceId;
+
   @JsonKey(name: 'publishCustomAudioTrackEnableAec')
   final bool? publishCustomAudioTrackEnableAec;
+
   @JsonKey(name: 'publishDirectCustomAudioTrack')
   final bool? publishDirectCustomAudioTrack;
+
+  @JsonKey(name: 'publishCustomAudioTrackAec')
+  final bool? publishCustomAudioTrackAec;
+
   @JsonKey(name: 'publishCustomVideoTrack')
   final bool? publishCustomVideoTrack;
+
   @JsonKey(name: 'publishEncodedVideoTrack')
   final bool? publishEncodedVideoTrack;
+
   @JsonKey(name: 'publishMediaPlayerAudioTrack')
   final bool? publishMediaPlayerAudioTrack;
+
   @JsonKey(name: 'publishMediaPlayerVideoTrack')
   final bool? publishMediaPlayerVideoTrack;
+
   @JsonKey(name: 'publishTrancodedVideoTrack')
   final bool? publishTrancodedVideoTrack;
+
   @JsonKey(name: 'autoSubscribeAudio')
   final bool? autoSubscribeAudio;
+
   @JsonKey(name: 'autoSubscribeVideo')
   final bool? autoSubscribeVideo;
+
   @JsonKey(name: 'enableAudioRecordingOrPlayout')
   final bool? enableAudioRecordingOrPlayout;
+
   @JsonKey(name: 'publishMediaPlayerId')
   final int? publishMediaPlayerId;
+
   @JsonKey(name: 'clientRoleType')
   final ClientRoleType? clientRoleType;
+
   @JsonKey(name: 'audienceLatencyLevel')
   final AudienceLatencyLevelType? audienceLatencyLevel;
+
   @JsonKey(name: 'defaultVideoStreamType')
   final VideoStreamType? defaultVideoStreamType;
+
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
   @JsonKey(name: 'audioDelayMs')
   final int? audioDelayMs;
+
   @JsonKey(name: 'mediaPlayerAudioDelayMs')
   final int? mediaPlayerAudioDelayMs;
+
   @JsonKey(name: 'token')
   final String? token;
+
   @JsonKey(name: 'enableBuiltInMediaEncryption')
   final bool? enableBuiltInMediaEncryption;
+
   @JsonKey(name: 'publishRhythmPlayerTrack')
   final bool? publishRhythmPlayerTrack;
+
   @JsonKey(name: 'isInteractiveAudience')
   final bool? isInteractiveAudience;
+
   @JsonKey(name: 'customVideoTrackId')
   final int? customVideoTrackId;
+
   @JsonKey(name: 'isAudioFilterable')
   final bool? isAudioFilterable;
+
   factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ChannelMediaOptionsFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname props="native">publishMicrophoneTrack</parmname>, <parmname props="unity">publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph> at the same time,
-but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname>, <parmname props="mac cpp">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph>.</section>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname>publishMicrophoneTrack</parmname><parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname><parmname props="mac cpp framework">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph>.</section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
@@ -404,49 +443,50 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                 <pd>Whether to publish the audio captured by the microphone:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: (Default) Publish the audio captured by the microphone.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the audio captured by the microphone.</li>
-                    </ul>
+                    </ul></pd>
+                <pd>
                     <note type="note">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</note>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp framework">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>Whether to publish the video captured by the second camera:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured by the second camera.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video captured by the second camera.</li>
-                    </ul>
-                </pd>
+                    </ul> </pd>
             </plentry>
-            <plentry>
+            <plentry props="native framework">
                 <pt props="android ios">publishScreenCaptureVideo</pt>
-                <pt props="mac cpp">publishScreenTrack</pt>
+                <pt props="mac cpp framework">publishScreenTrack</pt>
                 <pd>
-                    <p>Whether to publish the video captured from the screen:<ul>
+                    <p>Whether to publish the captured video from the screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video captured from the screen.</li>
                     </ul></p>
+                    <note type="note" props="android ios">Since v4.0.0, the parameter name has been changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp unity electron rn flutter">publishScreenCaptureVideo</pt>
+            <plentry props="native framework">
+                <pt>publishScreenCaptureVideo</pt>
                 <pd>
-                    <p>Whether to publish the video captured from the screen:<ul>
+                    <p>Whether to publish the captured video from the screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <note type="attention" props="cpp unity flutter">This parameter applies to Android and iOS only.</note> </pd>
+                    <note type="attention" props="cpp framework">This parameter applies to Android and iOS only.</note> </pd>
             </plentry>
-            <plentry>
-                <pt props="android ios cpp unity electron rn flutter">publishScreenCaptureAudio</pt>
+            <plentry props="android ios cpp framework">
+                <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>Whether to publish the audio captured from the screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the audio captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Do not publish the audio captured from the screen.</li>
                     </ul></p>
                     <p>
-                    <note type="attention" props="cpp">This parameter applies to Android and iOS only.</note></p>
+                    <note type="attention" props="cpp framework">This parameter applies to Android and iOS only.</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp framework">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>
                     <p>Whether to publish the video captured from the second screen:<ul>
@@ -455,7 +495,7 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp framework">
                 <pt>publishTrancodedVideoTrack</pt>
                 <pd>
                     <p>Whether to publish the local transcoded video:<ul>
@@ -476,7 +516,7 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                 <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set <parmname>sourceNumber</parmname> in <xref keyref="setExternalAudioSource2" /> to a value greater than 1, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track, starting from 0.</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp framework">
                 <pt>publishCustomAudioTrackEnableAec</pt>
                 <pd>Whether to enable AEC when publishing the audio captured from a custom source:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Enable AEC when publishing the audio captured from the custom source.</li>
@@ -607,12 +647,14 @@ but only one of <parmname>publishCameraTrack</parmname>, <parmname props="androi
                 <pt>customVideoTrackId</pt>
                 <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack" /> method. The default value is 0.</pd>
             </plentry>
-             <plentry>
-                 <pt>isAudioFilterable</pt>
-                 <pd>Whether the audio stream being published is filtered according to the volume algorithm:<ul><li><codeph><ph keyref="true" /></codeph>: (Default) The audio stream is filtered. If the audio stream filter is not enabled, this setting does not takes effect.</li>
-                 <li><codeph><ph keyref="false" /></codeph>: The audio stream is not filtered.</li></ul>
-                <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link" />.</note></pd>
-             </plentry>
+            <plentry>
+                <pt>isAudioFilterable</pt>
+                <pd>Whether the audio stream being published is filtered according to the volume algorithm:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) The audio stream is filtered. If the audio stream filter is not enabled, this setting does not takes effect.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: The audio stream is not filtered.</li>
+                    </ul>
+                    <note type="attention">If you need to enable this function, contact <xref keyref="mailto-link" />.</note></pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

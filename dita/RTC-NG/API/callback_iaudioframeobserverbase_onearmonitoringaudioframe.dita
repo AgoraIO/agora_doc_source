@@ -19,21 +19,81 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onEarMonitoringAudioFrame:(AgoraAudioFrame* _Nonnull)frame;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock></p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual bool onEarMonitoringAudioFrame(AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnEarMonitoringAudioFrame(AudioFrame audioFrame)
+        {
+            return true;
+        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onEarMonitoringAudioFrame?(audioFrame: AudioFrame): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioFrame audioFrame)? onEarMonitoringAudioFrame;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <note type="note" id="note">
+            <p props="native unity">为保证耳返的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置耳返音频数据格式：                           
             <ul>
-                <li>你需要在加入频道前，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，即注册 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
-                <li>为保证获得的耳返音频数据格式符合预期，声网推荐你在如下两种方式中选其一设置耳返音频数据格式：
+            <li>方法一：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+            <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getEarMonitoringAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+            </ul> </p>
+            <p props="flutter rn electron">为保证耳返的音频数据格式符合预期，你可以使用如下方法设置耳返音频数据格式：调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</p>
+            <note type="note" id="attention" props="native unity flutter"><ul>
+            <li props="native unity">方法一的优先级高于方法二，如果已使用方法一设置了音频数据格式，则使用方法二的设置不生效。</li>
+            <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li></ul></note>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt props="cpp framework">audioFrame</pt>
+                <pt props="ios mac">frame</pt>
+                <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+            </plentry>
+            </parml>
+            <parml props="android">
+            <plentry id="type">
+                <pt>type</pt>
+                <pd>音频数据的类型。</pd>
+            </plentry>
+            <plentry id="samplesPerChannel">
+                <pt>samplesPerChannel</pt>
+                <pd>每声道的采样点数。</pd>
+            </plentry>
+            <plentry id="bytesPerSample">
+                <pt>bytesPerSample</pt>
+                <pd>每个采样点的字节数（byte）。对于 PCM 音频数据，一般是两个字节。</pd>
+            </plentry>
+            <plentry id="channels">
+                <pt>channels</pt>
+                <pd>
+                    <p>声道数：                    
+                    
                     <ul>
-                        <li>调用 <xref keyref="setEarMonitoringAudioFrameParameters"/> 设置获取的耳返音频数据格式，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
-                        <li>在 <xref keyref="getEarMonitoringAudioParams"/> 回调的返回值中设置获取的耳返音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>      
-                    </ul></li>
-            </ul>
-            </note>
-            </section>           
-        <section id="parameters" conkeyref="onMixedAudioFrame/parameters"/>
-        <section id="return_values" conkeyref="onMixedAudioFrame/return_values"/>
+                    <li>1：单声道。</li>
+                    <li>2：双声道。双声道的音频数据是交叉存储的。</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry id="samplesPerSec">
+                <pt>samplesPerSec</pt>
+                <pd>音频采样率（Hz）。</pd>
+            </plentry>
+            <plentry id="buffer">
+                <pt>buffer</pt>
+                <pd>音频 buffer。buffer 大小为 samplesPerChannel x channels x bytesPerSample。</pd>
+            </plentry>
+            <plentry id="renderTimeMs">
+                <pt>renderTimeMs</pt>
+                <pd>外部音频帧的渲染时间戳（毫秒）。你可以使用该时间戳还原音频帧的顺序。在音视频场景下（包含使用外部视频源的场景），该时间戳可以用于实现音频和视频的同步。</pd>
+            </plentry>
+            <plentry id="avsync">
+                <pt>avsync_type</pt>
+                <pd>预留参数。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron rn unity">
+            <title>返回值</title>
+            <p>无实际含义。</p>
+        </section>
     </refbody>
 </reference>

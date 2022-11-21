@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopsecondarycameracapture">
     <title><ph keyref="stopSecondaryCameraCapture" /></title>
-    <shortdesc id="short"> <ph id="shortdesc">Stops capturing video through the secondary camera.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"> Stops capturing video through the second camera.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -14,16 +14,18 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopSecondaryCameraCapture NS_SWIFT_NAME(stopSecondaryCameraCapture());</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int stopSecondaryCameraCapture() = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract stopSecondaryCameraCapture(): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StopSecondaryCameraCapture();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract stopSecondaryCameraCapture(): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopSecondaryCameraCapture();</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopSecondaryCameraCapture();</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
-            <p>You can call this method to stop capturing video through the secondary camera after calling the <xref keyref="startSecondaryCameraCapture" />.</p>
+            <p><xref keyref="startSecondaryCameraCapture" />You can call this method to stop capturing video through the second camera after calling the .</p>
+            <p props="cpp unity rn flutter">On the iOS platform, if you want to disable multi-camera capture, you need to call <xref keyref="enableMultiCamera" />after calling this method and set <parmname>enabled</parmname> to <codeph><ph keyref="false" /></codeph>.</p>
         </section>
         <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
