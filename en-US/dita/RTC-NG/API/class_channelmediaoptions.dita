@@ -445,7 +445,8 @@
                 <pd>Whether to publish the audio captured by the microphone:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) Publish the audio captured by the microphone.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio captured by the microphone.</li>
-                    </ul>
+                </ul></pd>
+                <pd>
                     <note type="note">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</note>
                 </pd>
             </plentry>
@@ -456,7 +457,7 @@
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video captured by the second camera.</li>
                     </ul> </pd>
             </plentry>
-            <plentry>
+            <plentry props="native framework">
                 <pt props="android ios">publishScreenCaptureVideo</pt>
                 <pt props="mac cpp framework">publishScreenTrack</pt>
                 <pd>
@@ -467,8 +468,8 @@
                     <note type="note" props="android ios">Since v4.0.0, the parameter name has been changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="cpp framework">publishScreenCaptureVideo</pt>
+            <plentry props="cpp framework">
+                <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>Whether to publish the captured video from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
@@ -476,8 +477,8 @@
                     </ul></p>
                     <note type="attention" props="cpp framework">This parameter applies to Android and iOS only.</note> </pd>
             </plentry>
-            <plentry>
-                <pt props="android ios cpp framework">publishScreenCaptureAudio</pt>
+            <plentry props="android ios cpp framework">
+                <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>Whether to publish the audio captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured from the screen.</li>
@@ -577,10 +578,13 @@
                 <pt>publishMediaPlayerId</pt>
                 <pd>The ID of the media player to be published. The default value is 0.</pd>
             </plentry>
-            <plentry>
+            <plentry props="native unity">
                 <pt>clientRoleType</pt>
-                <pd conkeyref="setClientRole1/clientrole" props="native unity"/>
-                <pd props="rn electron flutter">The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
+                <pd conkeyref="setClientRole1/clientrole"/>
+            </plentry>
+            <plentry  props="rn electron flutter">
+                <pt>clientRoleType</pt>
+                <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE"/>.</pd>
             </plentry>
             <plentry conkeyref="ClientRoleOptions/audiencelatencylevel">
                 <pt/>
