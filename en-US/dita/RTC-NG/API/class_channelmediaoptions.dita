@@ -427,7 +427,7 @@
 }</codeblock>            
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same . For example, publishMicrophoneTrack, publishAudioTrack, publishCustomAudioTrack, and publishMediaPlayerAudioTrack can be set as  at the same time, but only one of publishCameraTrack, publishScreenCaptureVideopublishScreenTrack, publishCustomVideoTrack, or publishEncodedVideoTrack can be set as .<xref keyref="RtcConnection"/><parmname></parmname><parmname></parmname><parmname></parmname><parmname></parmname><codeph><ph keyref="true"/></codeph><parmname></parmname><parmname props="android ios"></parmname><parmname props="mac cpp framework"></parmname><parmname></parmname><parmname></parmname><codeph><ph keyref="true"/></codeph></section>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname>, <parmname props="mac cpp framework">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.</section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
@@ -463,7 +463,7 @@
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the screen.</li>
                     </ul></p>
-                    <p><note type="note" props="android ios">Since v4.0.0, the parameter name has been changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p>
+                    <p><note type="note" props="android ios">As of v4.0.0, the parameter name has been changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p>
                 </pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron">
@@ -471,7 +471,7 @@
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the video captured from the screen.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not publish the captured video from the screen.</li>
                     </ul></p>
                     <p><note type="attention" props="cpp unity flutter rn electron">This parameter applies to Android and iOS only.</note></p> </pd>
             </plentry>
@@ -510,7 +510,7 @@
             </plentry>
             <plentry>
                 <pt>publishCustomAudioSourceId</pt>
-                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have<xref keyref="setExternalAudioSource2"/> set the value of <parmname>sourceNumber</parmname> greater than 1 in , the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
+                <pd>The ID of the custom audio source to publish. The default value is 0.<p>If you have set the value of <parmname>sourceNumber</parmname> greater than 1 in <xref keyref="setExternalAudioSource2"/>, the SDK creates the corresponding number of custom audio tracks and assigns an ID to each audio track starting from 0.</p>
                 </pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron">
@@ -566,7 +566,7 @@
                 <pt>enableAudioRecordingOrPlayout</pt>
                 <pd>Whether to enable audio capturing or playback:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: (Default) Enable audio capturing or playback.</li>
-                    <li><codeph><ph keyref="false"/></codeph> : Do not enable audio capturing or playback.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not enable audio capturing or playback.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -610,17 +610,17 @@
             <plentry>
                 <pt>token</pt>
                 <pd>
-                    <p>(Optional) The token generated on your server for authentication. See<xref keyref="guide-token" props="native"> Authenticate Your Users with Token</xref>.</p>
+                    <p>(Optional) The token generated on your server for authentication. See <xref keyref="guide-token" props="native">Authenticate Your Users with Token</xref>.</p>
                     <note type="caution">
                     <ul>
-                    <li>This parameter takes effect only when calling<xref keyref="updateChannelMediaOptions"/>  or<xref keyref="updateChannelMediaOptionsEx"/> .</li>
-                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same as<xref keyref="initialize"/> those used by the  method for initializing the RTC engine, and<xref keyref="joinChannel2"/> those used by the  and<xref keyref="joinChannelEx"/>  methods for joining the channel.</li>
+                    <li>This parameter takes effect only when calling <xref keyref="updateChannelMediaOptions"/> or <xref keyref="updateChannelMediaOptionsEx"/>.</li>
+                    <li>Ensure that the App ID, channel name, and user name used for creating the token are the same as those used by the <xref keyref="initialize"/> method for initializing the RTC engine, and those used by the <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/> methods for joining the channel.</li>
                     </ul></note></pd>
             </plentry>
             <plentry props="hide">
                 <pt>startPreview</pt>
                 <pd>Whether to automatically start the preview when joining a channel:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically start preview. Ensure that you have called the<xref keyref="setupLocalVideo"/>  method to set the local video property; otherwise, the preview is not enabled.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically start preview. Ensure that you have called the <xref keyref="setupLocalVideo"/> method to set the local video property; otherwise, the preview is not enabled.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not automatically start the preview.</li>
                     </ul></pd>
             </plentry>
@@ -639,13 +639,13 @@
                     </ul>
                     <note type="attention">
                     <ul>
-                    <li>This parameter only applies to scenarios involving cohosting across channels. The cohosts need to call<xref keyref="joinChannelEx"/> the  method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
+                    <li>This parameter only applies to scenarios involving cohosting across channels. The cohosts need to call the <xref keyref="joinChannelEx"/> method to join the other host's channel as an audience member, and set <parmname>isInteractiveAudience</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
                     <li>This parameter takes effect only when the user role is <apiname keyref="CLIENT_ROLE_AUDIENCE"/>.</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry id="customvideotrackid">
                 <pt>customVideoTrackId</pt>
-                <pd>The video track ID returned by calling<xref keyref="createCustomVideoTrack"/> the  method. The default value is 0.</pd>
+                <pd>The video track ID returned by calling <xref keyref="createCustomVideoTrack"/> the method. The default value is 0.</pd>
             </plentry>
             <plentry>
                 <pt>isAudioFilterable</pt>
