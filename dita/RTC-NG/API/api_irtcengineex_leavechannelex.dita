@@ -29,8 +29,20 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> leaveChannelEx(
       {required RtcConnection connection, LeaveChannelOptions? options});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
+        <section id="detailed_desc">
+            <p>离开频道，即挂断或退出通话。</p>
+            <p>调用 <xref keyref="joinChannelEx"/> 加入频道后，必须调用本方法结束通话，才能开始下一次通话。</p>
+            <p>不管当前是否在通话中，都可以调用该方法。该方法会把会话相关的所有资源释放掉。</p>
+            <p props="native unity electron flutter">该方法是异步操作，调用返回时并没有真正退出频道。在真正退出频道后，SDK 会触发 <xref keyref="onLeaveChannel"/> 回调。</p>
+            <p props="rn">调用该方法返回时并没有真正退出频道。在真正退出频道后，SDK 会触发 <xref keyref="onLeaveChannel"/> 回调。</p>
+            <p>成功调用该方法离开频道后，本地会触发 <apiname keyref="onLeaveChannel"/> 回调；通信场景下的用户和直播场景下的主播离开频道后，远端会触发 <xref keyref="onUserOffline"/> 回调。</p>
+            <note type="attention" id="note">
+            <ul>
+            <li>如果你调用了本方法后立即调用 <xref keyref="release"/> 方法，SDK 将无法触发 <apiname keyref="onLeaveChannel"/> 回调。</li>
+            <li>调用 <xref keyref="leaveChannel"/> 后会同时离开 <xref keyref="joinChannel2"/> 和 <xref keyref="joinChannelEx"/> 加入的频道。</li>
+            </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
