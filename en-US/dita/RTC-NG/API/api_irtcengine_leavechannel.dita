@@ -26,7 +26,7 @@
             <p>This method releases all resources related to the session.</p>
             <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
             <p props="rn">Calling this method does not necessarily mean that the user has left the channel.</p>
-            <p>After joining the channel, you must call this method or  to<apiname keyref="leaveChannel2"/> end the call, otherwise, the next call cannot be started.</p>
+            <p>After joining the channel, you must call this method or <apiname keyref="leaveChannel2"/> to end the call, otherwise, the next call cannot be started.</p>
             <p>If you successfully call this method and leave the channel, the following callbacks are triggered:<ul id="ul_enf_q2p_lpb">
             <li>The local client:<xref keyref="onLeaveChannel"/> .</li>
             <li>The remote client: , if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile<xref keyref="onUserOffline"/>.</li>
@@ -34,7 +34,7 @@
             <note type="attention" id="note">
             <ul>
             <li>If you call  immediately after calling this method<xref keyref="release"/>, the SDK does not trigger the<apiname keyref="onLeaveChannel"/>  callback.</li>
-            <li>如果你已调用 <xref keyref="joinChannelEx"/> 加入多频道，调用本方法后会同时离开 <xref keyref="joinChannel2"/> 和 <apiname keyref="joinChannelEx"/> 加入的频道。</li>
+            <li>If you have called<xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave<xref keyref="joinChannel2"/> and<apiname keyref="joinChannelEx"/> joined channels at the same time.</li>
             <li props="hide">If you call this method during a Media Push, the SDK automatically calls the<xref keyref="removePublishStreamUrl"/>  method.</li>
             </ul> </note> </section>
         <section props="ios mac" id="parameters">
