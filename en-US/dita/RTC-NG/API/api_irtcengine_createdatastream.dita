@@ -22,14 +22,14 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, bool reliable, bool ordered);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream(DataStreamConfig config);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine" />.</p>
+            <p id="desc">Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine" />. The data stream will be destroyed when leaving the channel, and the data stream needs to be recreated if needed.</p>
             <note type="attention" id="note">
             <ul>
             <li>Call this method after joining a channel.</li>
-            <li>Agora does not support setting <parmname>reliable</parmname> as <codeph><ph keyref="true" /></codeph> and <parmname>ordered</parmname> as <codeph><ph keyref="true" /></codeph>.</li>
+            <li>Agora does not support setting<parmname>reliable</parmname> as <codeph><ph keyref="true" /></codeph> and <parmname>ordered</parmname> as <codeph><ph keyref="true" /></codeph>.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -50,7 +50,7 @@
             <plentry id="ordered">
                 <pt>ordered</pt>
                 <pd>
-                    <p>Whether or not the recipients receive the data stream in the sent order:<ul>
+                    <p>Whether or not the recipients receive the data stream in the sent order: <ul>
                     <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data in the sent order.</li>
                     <li><codeph><ph keyref="false" /></codeph>: The recipients do not receive the data in the sent order.</li>
                     </ul></p>
