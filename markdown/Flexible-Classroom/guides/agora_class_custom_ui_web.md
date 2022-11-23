@@ -6,7 +6,7 @@
 
 功能组件是灵动课堂中最基础的 UI 组件，不和业务逻辑绑定。一个功能组件维护一个功能的内部状态和逻辑，例如 `Button`、`Modal`、`Select`、 `Tree` 等。
 
-功能组件在 `agora-scenario-ui-kit` 目录下，采用 `react`+`ts`+`storybook` 架构。每个功能组件文件夹均包含以下三个文件：
+功能组件位于 `packages/agora-classroom-sdk/ui-kit`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/ui-kit`(灵动课堂 - 监考场景) 目录中，采用 `react`+`ts`+`storybook` 架构。每个功能组件文件夹均包含以下三个文件：
 
 -   `.tsx`: 实现 UI 组件的功能。
 -   `.css`: 实现 UI 组件的样式。
@@ -19,14 +19,9 @@
 | `/affix`        | 固钉，用于将页面元素钉在可视范围。                           |
 | `/biz-header`   | 教室内头部导航栏。                                           |
 | `/button`       | 按钮组件。                                                   |
-| `/calendar`     | 日历组件。                                                   |
 | `/card`         | 通用卡片容器。                                               |
-| `/chat-new`     | 聊天组件。                                                   |
 | `/checkbox`     | 复选框。                                                     |
-| `/countdown`    | 倒计时组件。                                                 |
 | `/date-picker`  | 用于选择日期的组件。                                         |
-| `/home-about`   | 首页关于的弹窗组件。                                         |
-| `/icon`         | `iconfont` 图标组件。                                        |
 | `/input`        | 输入框。                                                     |
 | `/layout`       | 布局组件，协助进行页面级整体布局。                           |
 | `/loading`      | 加载组件，用于加入教室的加载、文件上传中的加载等。           |
@@ -57,36 +52,46 @@
 
 ![](https://web-cdn.agora.io/docs-files/1649917547117)
 
-业务组件位于 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers` 目录下。
+业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂 - 监考场景) 目录下。
 
 下表详细介绍灵动课堂中使用的业务组件：
 
-| 文件夹                     | 对应的业务                                                   |
-| :------------------------- | :----------------------------------------------------------- |
-| `/award`                   | 奖励组件，实现老师发放奖励给学生的业务。                     |
-| `/big-widget-window`       | Widget 大窗口，实现大窗口、可获取是否激活大窗口等业务。      |
-| `/board`                   | 白板组件，实现白板相关业务，包括设置白板高度、比例等。       |
-| `/cloud-driver`            | 云盘组件，实现文件上传、文件删除等业务。                     |
-| `/device-setting`          | 设备设置，实现获取摄像头、麦克风、扬声器列表以及切换设备等业务。 |
-| `/dialog`                  | Dialog 窗口，实现课中弹窗的功能。                            |
-| `/extension-app-container` | extApp 容器，实现插件业务。                                  |
-| `/hand-up`                 | 举手组件，实现学生举手上讲台、老师接受或拒绝的业务。         |
-| `/loading`                 | 加载组件，处理加载逻辑。                                     |
-| `/nav`                     | 导航组件，处理网络状态、上课状态等。                         |
-| `/pretest`                 | 设备预检组件，实现进入课堂前设备预检业务，包含获取设备列表信息、切换设备等功能。 |
-| `/root-box`                | 根容器，整个课堂的根组件。                                   |
-| `/roster`                  | 花名册组件，实现查看学生信息、处理上讲台请求、发奖励等业务。 |
-| `/scene-switch`            | 场景切换组件，处理分组相关业务。                             |
-| `/scenes-controller`       | 白板场景控制组件，实现新增或删除白板页。                     |
-| `/screen-share`            | 屏幕共享组件，处理屏幕共享逻辑。                             |
-| `/stream`                  | 音视频流组件，处理各班型音视频渲染。                         |
-| `/toast`                   | Toast 提示组件。                                             |
-| `/toolbar`                 | 工具栏，实现白板老师学生教具相关业务。                       |
-| `/widget`                  | Widget 组件，处理 Widget 渲染加载等逻辑。                    |
+
+#### 教育场景
+| 文件夹                         | 对应的业务                                                   |
+| :-------------------------    | :----------------------------------------------------------- |
+| `/award`                      | 奖励组件，实现老师发放奖励给学生的业务。                     |
+| `/cloud-driver`               | 云盘组件，实现文件上传、文件删除等业务。                     |
+| `/device-setting`             | 设备设置，实现获取摄像头、麦克风、扬声器列表以及切换设备等业务。 |
+| `/dialog`                     | Dialog 窗口，实现课中弹窗的功能。                            |
+| `/hand-up`                    | 举手组件，实现学生举手上讲台、老师接受或拒绝的业务。         |
+| `/loading`                    | 加载组件，处理加载逻辑。                                     |
+| `/nav`                        | 导航组件，处理网络状态、上课状态等。                         |
+| `/pretest`                    | 设备预检组件，实现进入课堂前设备预检业务，包含获取设备列表信息、切换设备等功能。 |
+| `/root-box`                   | 根容器，整个课堂的根组件。                                   |
+| `/roster`                     | 花名册组件，实现查看学生信息、处理上讲台请求、发奖励等业务。 |
+| `/scene-switch`               | 场景切换组件，处理分组相关业务。                             |
+| `/scenes-controller`          | 白板场景控制组件，实现新增或删除白板页。                     |
+| `/screen-share`               | 屏幕共享组件，处理屏幕共享逻辑。                             |
+| `/stream`                     | 音视频流组件，处理各班型音视频渲染。                         |
+| `/stream-windows-container`   | 可拖拽窗口容器组件，处理视频窗口拖拽逻辑。                         |
+| `/toast`                      | Toast 提示组件。                                             |
+| `/toolbar`                    | 工具栏，实现白板老师学生教具相关业务。                       |
+| `/widget`                     | Widget 组件，处理 Widget 渲染加载等逻辑。                    |
+#### 监考场景
+| 文件夹                         | 对应的业务                                                   |
+| :-------------------------    | :----------------------------------------------------------- |
+| `/dialog`                     | Dialog 窗口，实现课中弹窗的功能。                            |
+| `/pretest`                    | 设备预检组件，实现进入课堂前设备预检业务，包含获取设备列表信息、切换设备等功能。 |
+| `/root-box`                   | 根容器，整个课堂的根组件。                                   |
+| `/stream`                     | 音视频流组件，处理各班型音视频渲染。                         |
+| `/toast`                      | Toast 提示组件。                                             |
+| `/widget`                     | Widget 组件，处理 Widget 渲染加载等逻辑。                    |
 
 ### 场景组件
+#### 教育场景
 
-场景组件是由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课三个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios` 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
+场景组件是由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课和监考四个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 监考场景) 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
 
 | 文件夹          | 场景组件                     |
 | :-------------- | :--------------------------- |
@@ -94,8 +99,11 @@
 | `/big-class`    | 互动直播大班课场景           |
 | `/big-class-h5` | 针对 H5 的互动直播大班课场景 |
 | `/mid-class`    | 在线互动小班课场景           |
-|`/vocational-class` | 职业教育场景|
-|`/vocational-class-h5`  |针对 H5 的职业教育场景 |
+#### 监考场景
+| 文件夹          | 场景组件                     |
+| :-------------- | :--------------------------- |
+| `/proctor`          |     监考老师端场景          |
+| `/examinee`         |     监考学生端场景          |
 
 ### UI 组件关系示意图
 
@@ -105,15 +113,15 @@
 
 ### 新增功能组件
 
-你可参考以下步骤在灵动课堂中新增功能组件：
+你可参考以下步骤在灵动课堂中新增功能组件，下面以灵动课堂 - 教育场景举例：
 
-1. 在 `packages/agora-scenario-ui-kit/src/components` 目录下新建文件夹，用于存放你所需要新增的功能组件。请注意，文件夹中需包含以下三个文件：
+1. 在 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下新建文件夹，用于存放你所需要新增的功能组件。请注意，文件夹中需包含以下三个文件：
 
     - `index.tsx`: 实现 UI 组件的功能。
     - `index.css`: 实现 UI 组件的样式。
     - `index.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。
 
-2. 实现功能组件后，在 `packages/agora-scenario-ui-kit/src/components/index.ts` 下导出该组件。这样你就可以后续在你自己的项目中导入新写的组件。
+2. 实现功能组件后，在 `packages/agora-classroom-sdk/src/ui-kit/components/index.ts` 下导出该组件。这样你就可以后续在你自己的项目中导入新写的组件。
 
 以下示例展示了如何新增一个名为 `agora-demo` 的功能组件：
 
@@ -164,7 +172,7 @@ export const Docs = () => (
 
 #### 修改导航栏颜色
 
-你可修改 `packages/agora-scenario-ui-kit/src/components/biz-header/index.css` 文件，将导航栏组件 BizHeader 的背景颜色从白色修改为红色。
+你可修改 `packages/agora-classroom-sdk/src/ui-kit/components/biz-header/index.css` 文件，将导航栏组件 BizHeader 的背景颜色从白色修改为红色。
 
 **修改前**
 
@@ -194,7 +202,7 @@ export const Docs = () => (
 
 #### 修改 input 组件占位文字的颜色
 
-你可修改 `packages/agora-scenario-ui-kit/src/components/input/index.css` 文件来修改 input 组件中占位文字的颜色。
+你可修改 `packages/agora-classroom-sdk/src/ui-kit/components/input/index.css` 文件来修改 input 组件中占位文字的颜色。
 
 **修改前**
 
@@ -224,7 +232,7 @@ export const Docs = () => (
 
 ### 新增业务组件
 
-如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers` 下新建文件夹，包含以下文件：
+如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/infra/capabilities/containers` 下新建文件夹，包含以下文件：
 
 -   `index.tsx`: 组合你的功能组件，注入业务逻辑，实现业务功能。
 -   `index.css`: 实现业务组件的样式。
@@ -256,7 +264,7 @@ export const Docs = () => (
 }
 
 // index.tsx
-import { useStore } from '@/infra/hooks/use-edu-stores';
+import { useStore } from '@classroom/infra/hooks/ui-store';
 import React from 'react'
 import './index.css'
 
@@ -273,61 +281,74 @@ export default function AgoraDemo() {
     )
 }
 
-// packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/mid-class/index.tsx
+// packages/agora-classroom-sdk/src/infra/capabilities/scenarios/mid-class/index.tsx
 // 在小班课场景引入该组件
-import { Aside, Layout } from '~components/layout';
-import { observer } from 'mobx-react';
 import classnames from 'classnames';
-import { NavigationBarContainer } from '~containers/nav';
-import { DialogContainer } from '~containers/dialog';
-import { LoadingContainer } from '~containers/loading';
-import Room from '../room';
-import { RoomMidStreamsContainer } from '~containers/stream/room-mid-player';
-import { CollectorContainer } from '~containers/board';
-import { WhiteboardContainer } from '~containers/board';
-import { FixedAspectRatioRootBox } from '~containers/root-box';
-import { ChatWidgetPC } from '~containers/widget/chat-widget';
-import { ExtensionAppContainer } from '~containers/extension-app-container';
-import { ToastContainer } from '~containers/toast';
-import { HandsUpContainer } from '~containers/hand-up';
-import { SceneSwitch } from '~containers/scene-switch';
+import { Layout } from '@classroom/ui-kit/components/layout';
+import { DialogContainer } from '@classroom/infra/capabilities/containers/dialog';
+import { HandsUpContainer } from '@classroom/infra/capabilities/containers/hand-up';
+import { LoadingContainer } from '@classroom/infra/capabilities/containers/loading';
+import { NavigationBar } from '@classroom/infra/capabilities/containers/nav';
+import { FixedAspectRatioRootBox } from '@classroom/infra/capabilities/containers/root-box';
+import { SceneSwitch } from '@classroom/infra/capabilities/containers/scene-switch';
+import { RoomMidStreamsContainer } from '@classroom/infra/capabilities/containers/stream/room-mid-player';
+import { ToastContainer } from '@classroom/infra/capabilities/containers/toast';
 import { Award } from '../../containers/award';
-import { BigWidgetWindowContainer } from '../../containers/big-widget-window';
-import AgoraDemo from '../../containers/agora-demo';
+import Room from '../room';
+import { useStore } from '@classroom/infra/hooks/ui-store';
+import { Float } from '@classroom/ui-kit';
+import { RemoteControlContainer } from '../../containers/remote-control';
+import { ScenesController } from '../../containers/scenes-controller';
+import { ScreenShareContainer } from '../../containers/screen-share';
+import { WhiteboardToolbar } from '../../containers/toolbar';
+import { WidgetContainer } from '../../containers/widget';
+import { Chat, Watermark, Whiteboard } from '../../containers/widget/slots';
+import { StreamWindowsContainer } from '../../containers/stream-windows-container';
+import { RemoteControlToolbar } from '../../containers/remote-control/toolbar';
 
-
-export const MidClassScenario = observer(() => {
+export const MidClassScenario = () => {
   // 场景布局
   const layoutCls = classnames('edu-room', 'mid-class-room');
+  const { shareUIStore } = useStore();
 
   return (
     <Room>
       {/* 这里是新增的业务组件 */}
       <AgoraDemo/>
-      <FixedAspectRatioRootBox trackMargin={{ top: 27 }}>
+      <FixedAspectRatioRootBox trackMargin={{ top: shareUIStore.navHeight }}>
         <SceneSwitch>
           <Layout className={layoutCls} direction="col">
-            <NavigationBarContainer />
-            <RoomMidStreamsContainer />
-            <BigWidgetWindowContainer>
-              <WhiteboardContainer></WhiteboardContainer>
-            </BigWidgetWindowContainer>
-            <Aside className="aisde-fixed">
-              <CollectorContainer />
+            <NavigationBar />
+            <Layout
+              className="flex-grow items-stretch relative justify-center fcr-room-bg"
+              direction="col">
+              <RoomMidStreamsContainer />
+              <Whiteboard />
+              <ScreenShareContainer />
+              <RemoteControlContainer />
+              <StreamWindowsContainer />
+            </Layout>
+            <RemoteControlToolbar />
+            <WhiteboardToolbar />
+            <ScenesController />
+            <Float bottom={15} right={10} align="flex-end" gap={2}>
               <HandsUpContainer />
-              <ChatWidgetPC />
-            </Aside>
+              <Chat />
+            </Float>
             <DialogContainer />
             <LoadingContainer />
           </Layout>
-          <ExtensionAppContainer />
+          <WidgetContainer />
           <ToastContainer />
           <Award />
+          <Watermark />
         </SceneSwitch>
       </FixedAspectRatioRootBox>
     </Room>
   );
-});
+};
+
+
 ```
 
 该业务组件在灵动课堂中的效果如下：
