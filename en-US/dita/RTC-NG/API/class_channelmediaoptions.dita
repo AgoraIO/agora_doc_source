@@ -420,7 +420,7 @@
   @JsonKey(name: 'isAudioFilterable')
   final bool? isAudioFilterable;
 
-  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory ChannelMediaOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$ChannelMediaOptionsFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
@@ -429,7 +429,7 @@
         </section>
         <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname>, <parmname props="mac cpp framework">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph>.</section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>publishCameraTrack</pt>
@@ -552,15 +552,15 @@
             <plentry>
                 <pt>autoSubscribeAudio</pt>
                 <pd>Whether to automatically subscribe to all remote audio streams when the user joins a channel:<ul id="ul_gxf_vq5_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe to all remote audio streams.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not automatically subscribe to any remote audio streams.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically subscribe to all remote audio streams.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote audio streams.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>autoSubscribeVideo</pt>
                 <pd>Whether to automatically subscribe to all remote video streams when the user joins the channel:<ul id="ul_gfh_xq5_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Subscribe to all remote video streams.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not automatically subscribe to any remote video streams.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Automatically subscribe to all remote video streams.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not automatically subscribe to any remote video streams.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -576,23 +576,23 @@
             </plentry>
             <plentry props="native unity">
                 <pt>clientRoleType</pt>
-                <pd conkeyref="setClientRole1/clientrole" />
+                <pd conkeyref="setClientRole1/clientrole"/>
             </plentry>
             <plentry props="rn electron flutter">
                 <pt>clientRoleType</pt>
                 <pd>The user role. See <xref keyref="CLIENT_ROLE_TYPE" />.</pd>
             </plentry>
             <plentry conkeyref="ClientRoleOptions/audiencelatencylevel">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>defaultVideoStreamType</pt>
-                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype" />
+                <pd conkeyref="setRemoteDefaultVideoStreamType/defaultstreamtype"/>
             </plentry>
             <plentry>
                 <pt>channelProfile</pt>
-                <pd conkeyref="setChannelProfile/channelprofiletype" />
+                <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry props="hide">
                 <pt>audioDelayMs</pt>
@@ -646,7 +646,7 @@
             </plentry>
             <plentry id="customvideotrackid">
                 <pt>customVideoTrackId</pt>
-                <pd>The video track ID returned by calling <xref keyref="createCustomVideoTrack" /> the method. The default value is 0.</pd>
+                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
             </plentry>
             <plentry>
                 <pt>isAudioFilterable</pt>
