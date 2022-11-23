@@ -240,7 +240,21 @@ Agora 目前在 macOS/Windows 平台上支持以下两种屏幕共享方案：
 如果仅需发布屏幕共享流，参考如下代码：
 
 ```dart
-// 补充代码
+await _engine.joinChannelEx(
+    token: '',
+    connection: RtcConnection(
+        channelId: _controller.text, localUid: shareShareUid),
+    options: const ChannelMediaOptions(
+      autoSubscribeVideo: true,
+      autoSubscribeAudio: true,
+      publishScreenTrack: true,
+      publishSecondaryScreenTrack: true,
+      publishCameraTrack: false,
+      publishMicrophoneTrack: false,
+      publishScreenCaptureAudio: true,
+      publishScreenCaptureVideo: true,
+      clientRoleType: ClientRoleType.clientRoleBroadcaster,
+    ));
 ```
 
 如需发布屏幕共享流和本地摄像头采集的视频流，在你的项目中添加如下代码：
