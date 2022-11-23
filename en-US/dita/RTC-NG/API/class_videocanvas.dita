@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
-    <title><ph keyref="VideoCanvas" /></title>
+    <title><ph keyref="VideoCanvas"/></title>
     <shortdesc id="short"><ph id="shortdesc">Attributes of video canvas object.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -198,16 +198,18 @@
   @JsonKey(name: 'cropArea')
   final Rectangle? cropArea;
 
-  factory VideoCanvas.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory VideoCanvas.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoCanvasFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
+  Map&lt;String, dynamic> toJson() => _$VideoCanvasToJson(this);
 }</codeblock>            
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc"> </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>view</pt>
@@ -216,20 +218,22 @@
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity electron rn flutter"
+                    >The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/rendermodetype">
-                    <li />
+                    <li/>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity electron rn flutter"
+                    >The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
-                    <li />
+                    <li/>
                     </ul> </p>
                     <note type="attention">
                     <ul>
@@ -243,7 +247,7 @@
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
-                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry props="android ios mac">
                 <pt>sourceId</pt>
@@ -256,19 +260,20 @@
             <plentry props="android">
                 <pt>setupMode</pt>
                 <pd>Setting mode of the view.<ul>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE" />(0): (Default) Replaces a view.</li>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_ADD" />(1): Adds a view.</li>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Delete a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/>(0): (Default) Replaces a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/>(1): Adds a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/>(2): Delete a view.</li>
                 </ul></pd>
             </plentry>
             <plentry>
                 <pt>mediaPlayerId</pt>
-                <pd>The ID of the media player. You can get the media player ID by calling <xref keyref="getMediaPlayerId" />.</pd>
-                <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER" />.</pd>
+                <pd>The ID of the media player. You can get the media player ID by calling <xref keyref="getMediaPlayerId"/>.</pd>
+                <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname
+                    keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
             </plentry>
             <plentry props="android cpp framework">
                 <pt>cropArea</pt>
-                <pd><ph props="cpp framework">(Android and iOS only)</ph> (Optional) The display area for the video frame. See <xref keyref="Rectangle" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
+                <pd><ph props="cpp framework">(Android and iOS only)</ph> (Optional) The display area for the video frame. See <xref keyref="Rectangle"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
              </plentry>   
              <plentry props="apple">
                 <pt>cropArea</pt>
