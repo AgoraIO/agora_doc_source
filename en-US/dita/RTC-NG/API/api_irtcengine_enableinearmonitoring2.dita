@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableinearmonitoring2">
-    <title><ph keyref="enableInEarMonitoring2" /></title>
+    <title><ph keyref="enableInEarMonitoring2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Enables in-ear monitoring.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableInEarMonitoring2" />
+                <indexterm keyref="enableInEarMonitoring2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,16 +25,16 @@
     enabled: boolean,
     includeAudioFilters: EarMonitoringFilterType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableInEarMonitoring(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableInEarMonitoring(
       {required bool enabled,
       required EarMonitoringFilterType includeAudioFilters});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>This method enables or disables in-ear monitoring.</p>
             <note type="attention">
             <ul>
-            <li>Users must use wired earphones to hear their own voices.</li>
+            <li>Users must use headphones (both wired and Bluetooth) to hear the in-ear monitoring effect.</li>
             <li>You can call this method either before or after joining a channel.</li>
             </ul></note> </section>
         <section id="parameters">
@@ -43,17 +43,17 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Enables or disables in-ear monitoring.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enables in-ear monitoring.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disables in-ear monitoring.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Enables in-ear monitoring.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disables in-ear monitoring.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>includeAudioFilters</pt>
-                <pd props="ios mac cpp electron unity rn flutter">The audio filter of in-ear monitoring: See <xref keyref="EAR_MONITORING_FILTER_TYPE" />.</pd>
+                <pd props="ios mac cpp electron unity rn flutter">The audio filter of in-ear monitoring: See <xref keyref="EAR_MONITORING_FILTER_TYPE"/>.</pd>
                 <pd props="android">The audio filter of in-ear monitoring:<ul id="ul_nwv_hcy_4qb">
-                    <li><ph keyref="EAR_MONITORING_FILTER_NONE" />(1 &lt;&lt; 0): Do not add an audio filter to the in-ear monitor.</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS" />(1 &lt;&lt; 1): Add an audio filter to the in-ear monitor. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects.</li>
-                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION" />(1 &lt;&lt; 2): Enable noise suppression to the in-ear monitor.<p>You can use the bitwise OR operator (|) to specify multiple audio filters.<note type="attention">If you set the <parmname>enabled</parmname> parameter to <codeph><ph keyref="false" /></codeph>, you do not need to set the <parmname>includeAudioFilters</parmname> parameter.</note></p>
+                    <li><ph keyref="EAR_MONITORING_FILTER_NONE"/>(1 &lt;&lt; 0): Do not add an audio filter to the in-ear monitor.</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/>(1 &lt;&lt; 1): Add an audio filter to the in-ear monitor. If you implement functions such as voice beautifier and audio effect, users can hear the voice after adding these effects.</li>
+                    <li><ph keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>(1 &lt;&lt; 2): Enable noise suppression to the in-ear monitor.<p>You can use the bitwise or operator (|) to specify multiple audio filters.<note type="attention">If you set the <parmname>enabled</parmname> parameter to<codeph><ph keyref="false"/></codeph>, you do not need to set the <parmname>includeAudioFilters</parmname> parameter.</note></p>
                     </li>
                     </ul></pd>
             </plentry>
