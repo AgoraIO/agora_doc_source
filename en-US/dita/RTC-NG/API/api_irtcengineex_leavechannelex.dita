@@ -13,22 +13,17 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int leaveChannelEx(RtcConnection connection, LeaveChannelOptions options);</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract int leaveChannelEx(RtcConnection connection);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannelEx:(AgoraRtcConnection * _Nonnull)connection
-              options:(AgoraLeaveChannelOptions * _Nonnull)options
-    leaveChannelBlock:(void(^ _Nullable)(AgoraChannelStats* _Nonnull stat))leaveChannelBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options) = 0;</codeblock>
+    leaveChannelBlock:(void(^ _Nullable)(AgoraChannelStats* _Nonnull stat))leaveChannelBlock NS_SWIFT_NAME(leaveChannelEx(_:leaveChannelBlock:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract leaveChannelEx(
     connection: RtcConnection,
     options?: LeaveChannelOptions
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannelEx(RtcConnection connection, LeaveChannelOptions options);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract leaveChannelEx(
-    connection: RtcConnection,
-    options?: LeaveChannelOptions
-  ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> leaveChannelEx(
-      {required RtcConnection connection, LeaveChannelOptions? options});</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannelEx(RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -50,24 +45,12 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry>
-                <pt>options</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry props="native">
-                        <dt>Since</dt>
-                        <dd>v4.1.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</p>
-                    <note>This parameter only supports the <parmname>stopMicrophoneRecording</parmname> member in the <apiname keyref="LeaveChannelOptions"/> settings; setting other members does not take effect.</note></pd>
-            </plentry>
             <plentry props="ios mac" conkeyref="leaveChannel2/leavechannelblock">
                 <pt/>
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
