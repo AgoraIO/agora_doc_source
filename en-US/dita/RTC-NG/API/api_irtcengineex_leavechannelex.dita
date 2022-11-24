@@ -33,7 +33,7 @@
         </section>
         <section id="detailed_desc">
             <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p>
-            <p>After joining the channel, you must call this method or <xref keyref="joinChannelEx"/> to end the call, otherwise, the next call cannot be started.</p>
+            <p>After calling <xref keyref="joinChannelEx"/> to join the channel, this method must be called to end the call before starting the next call.</p>
             <p>This method can be called whether or not a call is currently in progress. This method releases all resources related to the session.</p>
             <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
             <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
