@@ -10,10 +10,11 @@ public abstract int join(JoinChannelOptions options);
 
 加入频道。
 
-成功调用该接口后会触发 `onJoinResult` 事件回调和 `onPresenceEvent` 事件回调，频道中的其他用户会收到 `join` 事件通知。该接口的回调通过 [`IRtmEventHandler`](#api-config-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
+调用该接口会触发 `onJoinResult` 事件回调，成功加入后频道中的其他用户会收到 `onPresenceEvent` 的 `join` 事件回调。该接口的回调通过 [`IRtmEventHandler`](#api-client-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
 
 > 注意：
 > 单次调用该接口只能加入一个频道。单个客户端可以同时加入最多 100 个频道。
+> 用户需要收到成功加入频道的 `onJoinResult` 回调才能继续进行频道相关的操作。
 
 | 参数       | 描述        |
 | ---------------  | ------------------ |
@@ -36,7 +37,7 @@ public abstract int join(JoinChannelOptions options);
 public abstract String getChannelName();
 ```
 
-获取频道名称。
+获取当前频道名称。
 
 #### 返回值
 频道名称。
@@ -50,7 +51,7 @@ public abstract int leave();
 
 离开频道。
 
-成功调用该接口后会触发 `onLeaveResult` 事件回调和 `onPresenceEvent` 事件回调，频道中的其他用户会收到 `leave` 事件通知。该接口的回调通过 [`IRtmEventHandler`](api-config-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
+调用该接口会触发 `onLeaveResult` 事件回调，成功离开频道后频道中的其他用户会收到 `onPresenceEvent` 的 `leave` 事件通知。该接口的回调通过 [`IRtmEventHandler`](api-client-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
 
 #### 基本用法
 
@@ -94,9 +95,11 @@ public abstract int joinTopic(String topicName, JoinTopicOptions options);
 
 只有加入 Topic 才能执行发送 Topic 消息的操作。
 
-调用该接口成功后会触发对应的 Presence 事件，该频道的参与者会收到相应的事件通知。该接口的回调通过 [`IRtmEventHandler`](api-config-java#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
+调用该接口会触发 `onJoinTopicResult` 事件回调，频道中的其他用户会收到相应的 `onPresenceEvent` 事件通知。该接口的回调通过 [`IRtmEventHandler`](api-client-java#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
 
-> 注意：同一个客户端同时只能加入 8 个 Topic，超出数量会报错。
+> 注意：
+> - 请在加入频道后调用该方法。
+> - 同一个客户端同时只能加入 8 个 Topic，超出数量会报错。
 
 | 参数 | 描述                                                    |
 | --------- | ------------------------------------------------- |
@@ -104,9 +107,8 @@ public abstract int joinTopic(String topicName, JoinTopicOptions options);
 | `options` | （选填）加入 Topic 时的配置选项，详见 [`JoinTopicOptions`](#jointopicoptions)                                             |
 
 
-#### 基本用法 （需提供示例代码）
+#### 基本用法
 
-##### 加入Topic
 <mark>待补充</mark>
 
 
@@ -123,14 +125,16 @@ public abstract int leaveTopic(String topicName);
 
 离开一个 Topic。
 
-当客户端加入的 Topic 达到上限时，需要调用 `leaveTopic` 离开某些不再需要的 Topic 以释放资源。调用成功会触发对应的 `Presence` 事件，该频道的参与者会收到相应的事件通知。该接口的回调通过 [`IRtmEventHandler`](#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
+当客户端加入的 Topic 达到上限时，需要调用 `leaveTopic` 离开某些不再需要的 Topic 以释放资源。
+
+调用该接口会触发 `onLeaveTopicResult` 事件回调，频道中的其他用户会收到相应的 `onPresenceEvent` 事件通知。该接口的回调通过 [`IRtmEventHandler`](#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
 
 
 | 参数 | 描述                                                    |
 | --------- | -------------------------------------------------------------- |
 | `topicName`   | Topic 名称，同一个频道内相同的 Topic 名称属于同一个 Topic。 |
 
-#### 基本用法 （需提供示例代码）
+#### 基本用法
 <mark>待补充</mark>
 
 
@@ -147,7 +151,7 @@ public abstract int publishTopicMessage(String topicName, byte[] message);
 
 在指定 Topic 中发送文本消息。消息在传输的过程中默认已经被 SSL/TLS 加密，以保证数据链路层安全。
 
-成功调用该接口后会触发 [`onMessageEvent`](#IRtmEventHandler) 事件回调，频道中订阅该 Topic 且订阅该消息发布者的用户会收到该事件回调。该接口的回调通过 [`IRtmEventHandler`](#api-config-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
+成功调用该接口后会触发 [`onMessageEvent`](#IRtmEventHandler) 事件回调，频道中订阅该 Topic 且订阅该消息发布者的用户会收到该事件回调。该接口的回调通过 [`IRtmEventHandler`](#api-client-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
 
 > 注意：
 > - 调用该接口前需先调用 `joinTopic` 加入 Topic。
@@ -185,16 +189,15 @@ public abstract int subscribeTopic(String topicName, TopicOptions options);
 
 `subscribeTopic` 为增量接口。例如，第一次调用该接口时，订阅消息发布者列表为 `[UserA,UserB]`  , 第二次调用该接口时，订阅消息发布者列表为 `[UserB,UserC]`，则最后成功订阅的结果是 `[UserA，UserB,UserC]`。你可以通过 [`getSubscribedUserList`](#getsubscribeduserlist) 查询当前已经订阅的消息发布者名单列表。
 
-频道中单个 Topic 的消息发布者的数量没有上限，但对于 Topic 订阅者，目前只能同时订阅单个 Topic 中最多 50 个消息发布者的消息。
+频道中单个 Topic 的消息发布者的数量没有上限，但对于 Topic 订阅者，目前只能同时订阅 50 个 Topic，每个 Topic 中最多 64 个消息发布者的消息。
 
-该接口的回调通过 [`IRtmEventHandler](#api-config-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
-
-你的 APP 可以通过 `IRtmEventHandler` 收到消息和事件通知，`IRtmEventHandler`  是你的 APP 中接收你订阅的 Topic 消息及事件的唯一入口点。默认情况下，你只能收取到 `subscribeTopic` 调用成功后的消息和事件通知。如果用户网络连接出现问题，RTM 2.0 将自动尝试重新连接，但在断连期间的消息将丢失。<mark>默认情况指的是？这段话只对这个接口适用？断连这句话在这里很突兀，没有上下文</mark>
+调用该接口会触发 `onTopicSubscribed` 回调。该接口的回调通过 [`IRtmEventHandler](#api-client-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
+如果用户网络连接出现问题，RTM 2.0 将自动尝试重新连接，但在断连期间的消息将丢失。
 
 | 参数    | 描述                                                    |
 | ------------| -------------------------------------------------------------- |
 | `topicName`      | Topic 名称，同一个频道内相同的 Topic 名称属于同一个 Topic。 |
-| `options`    | （选填）订阅 Topic 时的配置选项，详见 [`TopicOptions`](api-topic-android#topicoptions)。如果不填写该字段，SDK 将随机订阅该 Topic 中 50 个消息发布者；如果该 Topic 中消息发布者不超过 50 人，则订阅所有消息发布者。<mark>超过50个是取前50个吗？</mark>）                     |
+| `options`    | （选填）订阅 Topic 时的配置选项，详见 [`TopicOptions`](api-channel-android#topicoptions)。如果不填写该字段，SDK 将随机订阅该 Topic 中 64 个消息发布者；如果该 Topic 中消息发布者不超过 64 人，则订阅所有消息发布者。）                     |
 
 #### 基本用法
 
@@ -215,12 +218,12 @@ public abstract int unsubscribeTopic(String topicName, TopicOptions options);
 
 取消订阅某 Topic 或取消对该 Topic 中指定的消息发布者的订阅。
 
-该接口的回调通过 [`IRtmEventHandler](#api-config-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
+调用该接口会触发 `onTopicUnsubscribed` 回调。该接口的回调通过 [`IRtmEventHandler](#api-client-android#irtmeventhandler) 处理。如需要在 App 中接收消息和事件通知，需要在调用该接口前添加 `IRtmEventHandler`。
 
 | 参数   | 描述                                                    |
 | ------------ | -------------------------------------------------------------- |
 | `topic`      | Topic 名称，同一个频道内相同的 Topic 名称属于同一个 Topic。 |
-| `options`    | （选填）取消订阅 Topic 时的配置选项，详见 [`TopicOptions`](api-topic-android#topicoptions)。你可以指定想要取消订阅的消息发布者。如果 `options` 中配置的用户列表不在已订阅的用户名单中，API 调用会正常返回，但不会有任何变化。如果该字段为空，将取消订阅该 Topic及取消订阅该 Topic 中所有消息发布者。        |
+| `options`    | （选填）取消订阅 Topic 时的配置选项，详见 [`TopicOptions`](api-channel-android#topicoptions)。你可以指定想要取消订阅的消息发布者。如果 `options` 中配置的用户列表不在已订阅的用户名单中，API 调用会正常返回，但不会有任何变化。如果该字段为空，将取消订阅该 Topic及取消订阅该 Topic 中所有消息发布者。        |
 
 #### 基本用法
 
@@ -245,10 +248,12 @@ public abstract int getSubscribedUserList(String topicName, UserList users);
 
 查询指定 Topic 中已订阅的消息发布者列表。
 
+> 注意：请在加入频道后调用该接口。
+
 | 参数  | 描述                                                    |
 | ---------| -------------------------------------------------------------- |
 | `topicName`   |  Topic 名称，同一个频道内相同的 Topic 名称属于同一个 Topic。 |
-| `users`   | 已订阅的用户列表，详见  [`UserList`](#userlist)。                                                  |
+| `users`   | `UserList` 对象的引用，用于返回已订阅的用户列表。详见  [`UserList`](#userlist)。                                                  |
 
 
 #### 基本用法
@@ -310,7 +315,7 @@ public class TopicOptions {
 
 | 参数 | 描述                         |
 | ---------------- | ---------------- |
-| `users`     | 该 Topic 中想要订阅的消息发布者列表，消息发布者数量不能超过 50 个。    |
+| `users`     | 该 Topic 中想要订阅的消息发布者列表，消息发布者数量不能超过 64 个。    |
 
 
 ### TopicInfo

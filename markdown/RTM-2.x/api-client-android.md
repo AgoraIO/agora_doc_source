@@ -17,6 +17,8 @@ RtmClient ~03f2af90-60ca-11ed-8dae-bf25bf08a626~
 ```
 
 创建一个 `RtmClient` 实例。
+> 注意：
+> 该方法需要在 [initialize](#initialize) 之后调用。
 
 #### 返回值
 - 一个 `RtmClient` 对象：调用成功。
@@ -32,7 +34,7 @@ public abstract int initialize(RtmConfig config);
 初始化 `RtmClient` 实例。
 
 > 注意：
-> 创建并初始化实例必须在你使用 RTM 其他功能之前完成，以建立正确的账号级别的凭据（例如 APP ID）。
+> 创建并初始化实例必须在你调用 [create](#create) 之后，使用 RTM 其他功能之前完成，以建立正确的账号级别的凭据（例如 APP ID）。
 
 
 | 参数  | 描述                    |
@@ -117,7 +119,7 @@ public abstract StreamChannel createStreamChannel(@NonNull String channelName);
 @CalledByNative public void onPresenceEvent(PresenceEvent event);
 ```
 
-当频道中有用户的 Presence 状态发生变更时会触发该回调。比如，远端用户加入或离开频道，同一频道内远端用户加入或离开 Topic，本地用户加入频道。
+当频道中有用户的 Presence 状态发生变更时会触发该回调。比如，远端用户加入或离开频道，同一频道内远端用户加入或离开 Topic，本地用户加入频道时收到 Topic 内消息。
 
 
 | 参数   | 描述      | 
@@ -209,8 +211,8 @@ public abstract StreamChannel createStreamChannel(@NonNull String channelName);
 | `channelName` | 发生事件所属频道。 |
 | `userId`      | 订阅 Topic 的用户 ID。  |
 | `topicName`   | 发生事件所属 Topic。 |
-| `successUsers` | 本次操作订阅成功的消息发布者列表，详见 [`UserList`](api-message-android#userlist)。                       |
-| `failedUsers`  | 本次操作订阅失败的消息发布者列表，详见 [`UserList`](api-message-android#userlist)。                       |
+| `successUsers` | 本次操作订阅成功的消息发布者列表，详见 [`UserList`](api-channel-android#userlist)。                       |
+| `failedUsers`  | 本次操作订阅失败的消息发布者列表，详见 [`UserList`](api-channel-android#userlist)。                       |
 | `errorCode`    | 频道错误码，详见[`STREAM_CHANNEL_ERROR_CODE`](api-channel-android#stream_channel_error_code)。 
 
 ### onTopicUnsubscribed
@@ -229,8 +231,8 @@ public abstract StreamChannel createStreamChannel(@NonNull String channelName);
 | `channelName` | 发生事件所属频道。 |
 | `userId`      | 取消订阅 Topic 的用户 ID。  |
 | `topicName`   | 发生事件所属 Topic。 |
-| `successUsers` | 本次操作订阅成功的消息发布者列表，详见 [`UserList`](api-message-android#userlist)。                       |
-| `failedUsers`  | 本次操作订阅失败的消息发布者列表，详见 [`UserList`](api-message-android#userlist)。                       |
+| `successUsers` | 本次操作订阅成功的消息发布者列表，详见 [`UserList`](api-channel-android#userlist)。                       |
+| `failedUsers`  | 本次操作订阅失败的消息发布者列表，详见 [`UserList`](api-channel-android#userlist)。                       |
 | `errorCode`    | 频道错误码，详见[`STREAM_CHANNEL_ERROR_CODE`](api-channel-android#stream_channel_error_code)。 
 
 
@@ -388,8 +390,8 @@ Presence 回调事件。
 | `channelType`     | 频道类型，详见 [`RtmChannelType`](#rtmchanneltype)。  | 
 | `type`     | Presence 类型，详见 [`RtmPresenceType`](#rtmpresencetype)。  | 
 | `channelName`     | 频道名称。  | 
-| `topicInfos`    | Topic 信息，详见 [TopicInfo](#api-topic-android#topicinfo)。  | 
-| `userId`    | Presence 所属用户 ID。  | 
+| `topicInfos`    | Topic 信息，详见 [TopicInfo](#api-channel-android#topicinfo)。  | 
+| `userId`    | 触发 Presence 事件的用户 ID。  | 
 
 ## Enum
 
