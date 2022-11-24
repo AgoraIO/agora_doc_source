@@ -109,10 +109,6 @@
             uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
             listener: (evt, args) => {
             },
-        }).then(() => {
-            console.log('start launch');
-        }).catch((e) => {
-            console.error('fail to launch', e);
         });
     </script>
 </body>
@@ -258,10 +254,6 @@
             courseWareList: [],
             listener: (evt, args) => {
             },
-        }).then(() => {
-            console.log('start launch');
-        }).catch((e) => {
-            console.error('fail to launch', e);
         });
     </script>
 </body>
