@@ -21,51 +21,52 @@
      (void)width;
      (void)height;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">  onCameraExposureAreaChanged?(
+    x: number,
+    y: number,
+    width: number,
+    height: number
+  ): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual void OnCameraExposureAreaChanged(int x, int y, int width, int height)</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onCameraExposureAreaChanged?(
-  x: number,
-  y: number,
-  width: number,
-  height: number
-): void;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onCameraExposureAreaChanged?(
+    x: number,
+    y: number,
+    width: number,
+    height: number
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int x, int y, int width, int height)?
-      onCameraExposureAreaChanged;
-</codeblock> </p>
+      onCameraExposureAreaChanged;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc" props="android ios cpp electron rn">
             <p>The SDK triggers this callback when the local user changes the camera exposure position by calling <xref keyref="setCameraExposurePosition"/>.</p>
-            <note type="attention" props="cpp unity">This method is for Android and iOS only.</note> </section>
+            <note type="attention" props="cpp unity">This callback is for Android and iOS only.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
-            <parml props="cpp unity electron rn">
-            <plentry>
+            <parml>
+            <plentry props="cpp unity electron rn">
                 <pt>x</pt>
                 <pd>The x coordinate of the changed camera exposure area.</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity electron rn">
                 <pt>y</pt>
                 <pd>The y coordinate of the changed camera exposure area.</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity electron rn">
                 <pt>width</pt>
                 <pd>The width of the changed camera exposure area.</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity electron rn">
                 <pt>height</pt>
                 <pd>The height of the changed exposure area.</pd>
             </plentry>
-            </parml>
-            <parml props="android ios mac">
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+            <pt/>
+            <pd/>
+            </plentry> <plentry props="android ios">
+            <pt>rect</pt>
+            <pd>The focus rectangle in the local preview. See <xref keyref="rect-link"/>.</pd>
             </plentry>
-            <plentry>
-                <pt>rect</pt>
-                <pd>The focus rectangle in the local preview.</pd>
-            </plentry>
-            </parml> </section>
+        </parml></section>
     </refbody>
 </reference>
