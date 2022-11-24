@@ -30,7 +30,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>你可以调用该方法预先加载需要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreloadEvent"/> 回调报告预加载音乐资源的事件。</p>
+            <p>你可以调用该方法预先加载需要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载音乐资源的事件。</p>
             <p>在调用该方法来预加载音乐资源之前，你需要调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取你需要播放的音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<parmname>songCode</parmname>）。</p>
         </section>
         <section id="parameters">
@@ -42,18 +42,23 @@
             </plentry>
             <plentry id="option">
                 <pt>jsonOption</pt>
-                <pd><p>扩展 JSON 字段。</p>
-                <p><ph>Agora 会根据你在场景字段（<parmname>sceneType</parmname>）传入的应用场景进行收费。</ph><ph props="cn">不同的应用场景对应不同的费率，你可以参考 <xref keyref="ktv-billing"/> 查看详细的计费。</ph></p>
-                <p><ul><li>1：直播场景：K 歌及背景音乐播放。</li>
-                <li>2：直播场景：背景音乐播放。</li>
-                <li>3：语聊场景：K 歌。（默认）</li>
-                <li>4：语聊场景：背景音乐播放。</li>
-                <li>5：VR 场景：K 歌及背景音乐播放。</li></ul>
+                <pd>
+                    <p>扩展 JSON 字段。</p>
+                    <p><ph>Agora 会根据你在场景字段（<parmname>sceneType</parmname>）传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 <xref keyref="ktv-billing"/> 查看详细的计费。</ph></p>
+                    <p>
+                    <ul>
+                    <li>1：直播场景：K 歌及背景音乐播放。</li>
+                    <li>2：直播场景：背景音乐播放。</li>
+                    <li>3：（默认）语聊场景：K 歌。</li>
+                    <li>4：语聊场景：背景音乐播放。</li>
+                    <li>5：VR 场景：K 歌及背景音乐播放。</li>
+                    </ul>
                 如果需要切换到不同场景，需要重新调用此方法并在该字段中传入 <parmname>sceneType</parmname> 的值。</p>
-                <p>示例：{"sceneType":1}</p></pd>
+                    <p>示例：<codeph>{"sceneType":1}</codeph></p>
+                </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native rn electron unity">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功。</li>

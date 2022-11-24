@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_imusiccontentcentereventhandler_onlyricresult">
+    <title><ph keyref="onLyricResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the download URL for lyrics.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onLyricResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java"> @CalledByNative void onLyricResult(String requestId, String lyricUrl, int errorCode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onLyricResult:(NSString*)requestId lyricUrl:(NSString* _Nullable)lyricUrl errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onLyricResult(const char* requestId, const char* lyricUrl, MusicContentCenterStatusCode error_code = kMusicContentCenterStatusOk) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">onLyricResult?(requestId: string, lyricUrl: string): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void OnLyricResult(string requestId, string lyricUrl);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onLyricResult?(requestId: string, lyricUrl: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, String lyricUrl)? onLyricResult;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>When you call the <xref keyref="getLyric"/> method to get the download URL for lyrics, the SDK triggers this callback.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry conkeyref="onMusicChartsResult/id">
+                <pt/>
+                <pd/>
+            </plentry>
+            <plentry>
+                <pt>lyricUrl</pt>
+                <pd>The download URL for lyrics.</pd>
+            </plentry>
+                <plentry conkeyref="onPreLoadEvent_IMusicContentCenterEventHandler/error" props="native">
+                    <pt/>
+                    <pd/>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

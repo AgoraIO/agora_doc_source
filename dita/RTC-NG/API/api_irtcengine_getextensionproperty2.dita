@@ -44,9 +44,9 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String> getExtensionProperty(
       {required String provider,
       required String extension,
-      required ExtensionInfo extensionInfo,
       required String key,
-      required int bufLen});</codeblock>
+      required int bufLen,
+      MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -57,15 +57,18 @@
             <parml>
             <plentry id="vendor">
                 <pt>provider</pt>
-                <pd><ph props="cpp unity">输出参数。</ph>提供插件的服务商名称。</pd>
+                <pd props="cpp unity">输出参数。提供插件的服务商名称。</pd>
+                <pd props="android apple flutter rn electron">提供插件的服务商名称。</pd>
             </plentry>
             <plentry id="extension">
                 <pt>extension</pt>
-                <pd><ph props="cpp unity">输出参数。</ph>插件的名称。</pd>
+                <pd props="cpp unity">输出参数。插件的名称。</pd>
+                <pd props="android apple flutter rn electron">插件的名称。</pd>
             </plentry>
             <plentry id="key">
                 <pt>key</pt>
-                <pd><ph props="cpp unity">输出参数。</ph>插件属性的 Key。</pd>
+                <pd props="cpp unity">输出参数。插件属性的 Key。</pd>
+                <pd props="android apple flutter rn electron">插件属性的 Key。</pd>
             </plentry>
             <plentry id="value" props="cpp unity">
                 <pt>value</pt>
@@ -77,8 +80,8 @@
                 <pd>插件的媒体源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。</pd>
             </plentry>
             <plentry props="cpp electron rn unity flutter">
-                <pt props="cpp unity flutter">buf_len</pt>
-                <pt props="electron rn">bufLen</pt>
+                <pt props="cpp unity">buf_len</pt>
+                <pt props="electron rn flutter">bufLen</pt>
                 <pd>插件属性 JSON 字符串的最大长度。最大值为 512 字节。</pd>
             </plentry>
             </parml> </section>

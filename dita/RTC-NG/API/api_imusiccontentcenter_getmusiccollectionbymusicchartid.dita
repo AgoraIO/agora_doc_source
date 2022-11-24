@@ -51,27 +51,34 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp" conkeyref="onMusicChartsResult/id">
+            <plentry props="cpp unity" conkeyref="onMusicChartsResult/id">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry id="chartid">
-                <pt>musicChartId</pt>
+                <pt props="native rn flutter electron">musicChartId</pt>
+                <pt props="unity">musicChartType</pt>
                 <pd>音乐榜单的 ID，可以通过 <xref keyref="onMusicChartsResult"/> 回调获取。你也可以通过 RESTful API 来<xref keyref="song-lists"/>或<xref keyref="new-songs"/>。</pd>
             </plentry>
             <plentry id="page">
                 <pt>page</pt>
-                <pd>当前页面编号。</pd>
+                <pd>当前页面编号，默认从 1 开始。</pd>
             </plentry>
             <plentry id="size">
                 <pt>pageSize</pt>
-                <pd>当前音乐资源列表的总页面数量。</pd>
+                <pd>当前音乐资源列表的总页面数量，最大值为 50。</pd>
             </plentry>
-            <plentry props="apple cpp">
+            <plentry props="apple cpp framework">
                 <pt>jsonOption</pt>
                 <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" conkeyref="getMusicCharts/return_values"> </section>
-    </refbody>
+        <section>
+        <title>返回值</title>
+            <ul props="cpp unity">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+            <p props="android apple rn electron flutter" id="request">一个 <parmname>requestId</parmname>，为本次请求的唯一标识。</p>
+    </section></refbody>
 </reference>

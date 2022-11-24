@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_imusiccontentcentereventgandler_onpreloadevent">
+<reference id="callback_imusiccontentcentereventhandler_onpreloadevent">
     <title><ph keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></title>
     <shortdesc id="short"><ph id="shortdesc">报告预加载音乐资源的事件。</ph></shortdesc>
     <prolog>
@@ -34,7 +34,7 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int songCode, int percent, PreloadStatusCode status,
       String msg, String lyricUrl)? onPreLoadEvent;</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -56,13 +56,15 @@
                 <pt>percent</pt>
                 <pd>音乐资源当前的加载进度，取值范围为 [0,100]。</pd>
             </plentry>
+            <plentry>
+                <pt>lyricUrl</pt>
+                <pd>歌词下载地址。</pd>
+            </plentry>
             <plentry id="status">
                 <pt>status</pt>
                 <pd>
-                    <p props="apple cpp">当前音乐资源的加载状态。详见 <xref keyref="PreloadStatusCode"/>。</p>
+                    <p props="apple cpp framework">当前音乐资源的加载状态。详见 <xref keyref="PreloadStatusCode"/>。</p>
                     <p props="android">当前音乐资源的加载状态：
-
-
                     <ul>
                     <li>0：音乐资源加载完成。</li>
                     <li>1：音乐资源加载失败。</li>
@@ -70,14 +72,10 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
-                <pt>msg</pt>
-                <pd>字符串类型的事件信息。</pd>
-            </plentry>
-            <plentry>
-                <pt>lyricUrl</pt>
-                <pd>歌词下载地址。</pd>
-            </plentry>
+                <plentry>
+                    <pt>msg</pt>
+                    <pd>加载状态信息。</pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

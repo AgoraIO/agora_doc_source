@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
-    <title>C++ API Reference for All Platforms</title>
+    <title>Agora C++ API Reference for All Platforms</title>
     <topicmeta>
         <navtitle>C++ API Reference</navtitle>
     </topicmeta>
@@ -42,10 +42,10 @@
             <topicref keyref="IScreenCaptureSourceList" toc="no"/>
             <topicref keyref="IMediaRecorder" toc="no"/>
             <topicref keyref="IMediaRecorderObserver" toc="no"/>
-            <topicref keyref="IMusicContentCenterEventHandler" toc="no"/>
-            <topicref keyref="IMusicContentCenter" toc="no"/>
-            <topicref keyref="IMusicPlayer" toc="no"/>
-            </topicref>
+            <topicref keyref="IMusicContentCenterEventHandler" toc="no" props="cn"/>
+            <topicref keyref="IMusicContentCenter" toc="no" props="cn"/>
+            <topicref keyref="IMusicPlayer" toc="no" props="cn"/>
+        </topicref>
         <topicref href="API/toc_core_method.dita" chunk="to-content">
             <topicref keyref="create" toc="no" processing-role="resource-only"/>
             <topicref keyref="createAgoraRtcEngine" toc="no"/>
@@ -89,24 +89,37 @@
             <topicref keyref="joinChannelEx" toc="no"/>
             <topicref keyref="joinChannelWithUserAccountEx" toc="no"/>
             <topicref keyref="leaveChannelEx" toc="no"/>
+            <topicref keyref="muteAllRemoteAudioStreamsEx" toc="no"/>
+            <topicref keyref="muteAllRemoteVideoStreamsEx" toc="no"/>
+            <topicref keyref="muteLocalAudioStreamEx" toc="no"/>
+            <topicref keyref="muteLocalVideoStreamEx" toc="no"/>
             <topicref keyref="muteRemoteAudioStreamEx" toc="no"/>
             <topicref keyref="muteRemoteVideoStreamEx" toc="no"/>
+            <topicref keyref="pauseAllChannelMediaRelayEx" toc="no"/>
             <topicref keyref="pushEncodedVideoImageEx" toc="no" props="hide"/>
             <topicref keyref="pushVideoFrameEx" toc="no" props="hide"/>
+            <topicref keyref="resumeAllChannelMediaRelayEx" toc="no"/>
             <topicref keyref="sendCustomReportMessageEx" toc="no"/>
             <topicref keyref="sendStreamMessageEx" toc="no"/>
             <topicref keyref="setDualStreamModeEx" toc="no"/>
             <topicref keyref="setRemoteVideoSubscriptionOptionsEx" toc="no"/>
             <topicref keyref="setRemoteVoice3DPositionEx" toc="no" props="hide"/>
             <topicref keyref="setRemoteVoicePositionEx" toc="no"/>
-            <topicref keyref="setSubscribeAudioBlocklistEx" toc="no"/>
             <topicref keyref="setSubscribeAudioAllowlistEx" toc="no"/>
-            <topicref keyref="setSubscribeVideoBlocklistEx" toc="no"/>
+            <topicref keyref="setSubscribeAudioBlocklistEx" toc="no"/>
             <topicref keyref="setSubscribeVideoAllowlistEx" toc="no"/>
+            <topicref keyref="setSubscribeVideoBlocklistEx" toc="no"/>
             <topicref keyref="setupRemoteVideoEx" toc="no"/>
             <topicref keyref="setVideoEncoderConfigurationEx" toc="no"/>
+            <topicref keyref="startChannelMediaRelayEx" toc="no"/>
+            <topicref keyref="startRtmpStreamWithoutTranscodingEx" toc="no"/>
+            <topicref keyref="startRtmpStreamWithTranscodingEx" toc="no"/>
+            <topicref keyref="stopChannelMediaRelayEx" toc="no"/>
+            <topicref keyref="stopRtmpStreamEx" toc="no"/>
             <topicref keyref="takeSnapshotEx" toc="no"/>
             <topicref keyref="updateChannelMediaOptionsEx" toc="no"/>
+            <topicref keyref="updateChannelMediaRelayEx" toc="no"/>
+            <topicref keyref="updateRtmpTranscodingEx" toc="no"/>
         </topicref>
         <topicref href="API/toc_stream_management.dita" chunk="to-content">
             <topicref keyref="enableDualStreamMode" toc="no"/>
@@ -124,7 +137,7 @@
             <topicref keyref="setDualStreamMode" toc="no"/>
             <topicref keyref="setDualStreamMode2" toc="no"/>
             <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
-            <topicref keyref="setRemoteSubscribeFallbackOption" toc="no"/>
+            <topicref keyref="setRemoteSubscribeFallbackOption" toc="no" props="hide"/>
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteVideoSubscriptionOptions" toc="no"/>
             <topicref keyref="setSubscribeAudioBlocklist" toc="no"/>
@@ -135,7 +148,7 @@
             <topicref keyref="stopChannelMediaRelay" toc="no"/>
             <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
             <topicref keyref="onChannelMediaRelayEvent" toc="no"/>
-            <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
+            <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no" props="hide"/>
         </topicref>
         <topicref href="API/toc_audio_process.dita" chunk="to-content">
             <topicref keyref="adjustAudioMixingPlayoutVolume" toc="no"/>
@@ -440,11 +453,13 @@
             <topicref keyref="onReadData" toc="no"/>
             <topicref keyref="onSeek" toc="no"/>
         </topicref>
-        <topicref href="API/toc_drm.dita" chunk="to-content">
+        <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
             <topicref keyref="createMusicPlayer" toc="no"/>
+            <topicref keyref="get" toc="no"/>
             <topicref keyref="getCount_MusicChartCollection" toc="no"/>
             <topicref keyref="getCount_MusicCollection" toc="no"/>
-            <topicref keyref="getToal_MusicCollection" toc="no"/>
+            <topicref keyref="getTotal_MusicCollection" toc="no"/>
+            <topicref keyref="getPage_MusicCollection" toc="no"/>
             <topicref keyref="getPageSize_MusicCollection" toc="no"/>
             <topicref keyref="getMusic_MusicCollection" toc="no"/>
             <topicref keyref="getLyric" toc="no"/>
@@ -469,7 +484,6 @@
             <topicref keyref="getScreenCaptureSources" toc="no"/>
             <topicref keyref="getSourceInfo_IScreenCaptureSourceList" toc="no"/>
             <topicref keyref="release_IScreenCaptureSourceList" toc="no"/>
-            <topicref keyref="ScreenCaptureSourceInfo" toc="no"/>
             <topicref keyref="setScreenCaptureContentHint" toc="no"/>
             <topicref keyref="setScreenCaptureScenario" toc="no"/>
             <topicref keyref="startPrimaryScreenCapture" toc="no"/>

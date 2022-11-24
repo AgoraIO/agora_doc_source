@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getnativehandle">
     <title><ph keyref="getNativeHandle" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the C++ handle of the Native SDK.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the C++ handle of the native SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,9 +25,21 @@
         <section id="detailed_desc">
             <p>This method retrieves the C++ handle of the SDK, for example for registering the audio and video frame observer.</p>
         </section>
+        <section id="parameters" props="unity">
+            <title>Parameter</title>
+            <parml>
+            <plentry>
+                <pt>nativeHandler</pt>
+                <pd>Output parameter, the native handle of the SDK.</pd>
+            </plentry></parml>
+        </section>
         <section id="return_values">
             <title>Returns</title>
-            <p>The native handle of the SDK.</p>
+            <p props="android ios mac flutter electron rn">The native handle of the SDK.</p>
+            <ul props="unity">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul>
         </section>
     </refbody>
 </reference>
