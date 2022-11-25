@@ -54,7 +54,7 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
 
   - 如果你只需使用 Agora 提供的 `AgoraReplayKitExtension.xcframework` 中的功能，修改方式为：选中 `Target` 为刚刚创建的 Extension，在 **Info** 中将 **NSExtension > NSExtensionPrincipalClass** 所对应的 **Value** 从 **SampleHandler** 改为 **AgoraReplayKitHandler**。
 
-    ![](https://web-cdn.agora.io/docs-files/1660719905345)
+    ![](https://web-cdn.agora.io/docs-files/1669346575589)
 
   - 如果你还需要自定义一些业务逻辑，修改方式为：将如下代码替换到 `SampleHandler.h` 文件中：
 
@@ -174,10 +174,6 @@ Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutte
 │   └── SampleHandler.m
 ```
 
-- `example/ios/ScreenSharing/SampleHandler.h`
-- `example/ios/ScreenSharing/SampleHandler.m`
-- `example/lib/examples/advanced/screen_sharing/screen_sharing.dart`
-
 #### API 参考
 
 - [`startScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapture)
@@ -260,8 +256,15 @@ await _engine.joinChannelEx(
 如需发布屏幕共享流和本地摄像头采集的视频流，在你的项目中添加如下代码：
 
 ```dart
-// 补充代码
+// 补充代码 是否还适用？
 ```
+
+##### 同时共享屏幕和开启视频
+
+如需要在桌面端（macOS/Windows）支持通过子进程进行屏幕共享，可参考我们提供的示例文件 [screen_sharing_with_subprocess](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing_with_subprocess/screen_sharing_with_subprocess.dart) 。
+
+<div class="alert note">对于 macOS 平台，在调用 <a href="./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_getscreensharehelper"><code>getScreenShareHelper</code></a> 前，请设置 <code>AppGroup</code> 并将其设为 <code>getScreenShareHelper</code>  中的 <code>appGroup</code> 参数的值。详见<a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW21">相关苹果开发者文档</a>。</div>
+
 
 ### 相关参考
 #### 注意事项
@@ -282,14 +285,3 @@ Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutte
 - [`setScreenCaptureContentHint`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setscreencapturecontenthint)
 - [`setScreenCaptureScenario`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setscreencapturescenario)
 - [`stopScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopscreencapture)
-
-
-
-
-
-
-### 同时共享屏幕和开启视频
-
-如需要在桌面端（macOS/Windows）支持通过子进程进行屏幕共享，可参考我们提供的示例文件 [screen_sharing_with_subprocess](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing_with_subprocess/screen_sharing_with_subprocess.dart) 。
-
-<div class="alert note">对于 macOS 平台，在调用 <a href="./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_getscreensharehelper"><code>getScreenShareHelper</code></a> 前，请设置 <code>AppGroup</code> 并将其设为 <code>getScreenShareHelper</code>  中的 <code>appGroup</code> 参数的值。详见<a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW21">相关苹果开发者文档</a>。</div>
