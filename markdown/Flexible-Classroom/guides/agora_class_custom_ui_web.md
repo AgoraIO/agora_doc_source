@@ -360,7 +360,7 @@ export const MidClassScenario = () => {
 如果你想修改某个业务组件的功能和样式，找到该组件所在的文件夹，修改代码即可。以下提供几个修改示例。
 
 #### 在设备设置弹窗上显示摄像头设备个数
-
+`packages/agora-classroom-sdk/src/infra/capabilities/containers/pretest/pretest-video.tsx`
 ```tsx
 const VideoDeviceList = observer(() => {
   const {

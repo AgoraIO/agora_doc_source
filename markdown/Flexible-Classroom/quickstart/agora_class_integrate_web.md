@@ -227,20 +227,17 @@
         // 启动课堂。
         /**
          * 注意事项：
-         * 1. 监考场景下试卷由WebView Widget承载，试卷链接会读取房间属性中的examinationUrl字段，请在考试前设置房间属性中的examinationUrl字段为需要的考卷链接
-         * 2. 注：监考场景下学生用户标识规则：`${用户id}-${设备类型（main/sub）}`，考场内依据主副设备的用户id前缀判断是否为同一学生
+         监考场景下学生用户标识规则：`${用户id}-${设备类型（main/sub）}`，考场内依据主副设备的用户id前缀判断是否为同一学生
             例：学生A标识为 'studentA',学生WEB端为主设备，移动端为副设备
             学生A传入 WEb SDK 的 userUuid 为 'studentA-main'
             学生A传入 IOS/Android SDK 的 userUuid 为 'studentA-sub'
-            在考场中 'studentA-main' 和 'studentA-sub' 会被识别为 学生A('studentA') 的多台设备
+            在考场中 'studentA-main' 和 'studentA-sub' 会被识别为 学生A(studentA) 的多台设备
         */
+
+      
+
         AgoraProctorSDK.launch(document.querySelector('#root'), {
-            /**
-             * 用户唯一标识
-             *
-             * 请在此处传入根据上述规则拼接好的userUuid
-             * */
-            userUuid: 'user id',
+            userUuid: 'user id',//用户唯一标识，请在此处传入根据上述规则拼接好的userUuid
             userName: 'user name',
             roomUuid: 'room id',
             roleType: 1, // 用户角色：1 为老师，2 为学生。
@@ -264,9 +261,46 @@
 示例代码中需要传入 `rtmToken`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
 
 
+
+###设置考卷链接
+在开始考试后，考场内的考生会在本地通过 `Widget` 创建一个Webview窗口，用来加载考卷，考卷的地址被存储在 `房间属性`中的`examinationUrl`字段，通常考卷内容需要在考试前设置。下面是可以参考的设置方法。
+#####创建房间时设置
+通过[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)中的 创建房间 接口创建房间，在请求体的`roomProperties`中设置`examinationUrl`字段，例：
+```
+{
+    "roomName": "jasoncai61734",
+    "roomType": 4,
+    "roomProperties": {
+        "schedule": {
+            "startTime": 1655452800000,
+            "duration": 600,
+            "closeDelay": 300
+        },
+        "processes": {
+            "handsUp": {
+                "maxAccept": 10
+            }
+        },
+        //传入本场考试的考卷链接
+        "examinationUrl": "your examination url"
+    }
+}
+```
+#####创建房间后设置
+通过[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)中的 更新课堂属性 接口，在请求体的`roomProperties`中修改`examinationUrl`字段，例：
+```
+{
+    "properties": {
+         //传入本场考试的考卷链接
+        "examinationUrl": "your examination url"
+    },
+    "cause": {}
+}
+
+```
 <a name="change_default_ui"></a>
 
-### 修改灵动课堂的默认 UI
+<!-- ### 修改灵动课堂的默认 UI
 
 如果你想要基于灵动课堂的默认 UI 进行修改，则参考以下步骤集成灵动课堂的 GitHub 源码：
 
@@ -301,4 +335,4 @@
    ```
 
 <div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-proctor-sdk/lib/proctor_sdk.bundle.js</code>。</div>
-
+ -->
