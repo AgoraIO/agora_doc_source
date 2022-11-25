@@ -32,9 +32,11 @@
     segproperty: SegmentationProperty,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
-    {required bool enabled,
-    required VirtualBackgroundSource backgroundSource});</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVirtualBackground(
+      {required bool enabled,
+      required VirtualBackgroundSource backgroundSource,
+      required SegmentationProperty segproperty,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -91,12 +93,12 @@
                 <pt props="mac ios">backData</pt>
                 <pd>自定义的背景图。详见 <xref keyref="VirtualBackgroundSource"/>。为将自定义背景图的分辨率与 SDK 的视频采集分辨率适配，SDK 会在保证自定义背景图不变形的前提下，对自定义背景图进行缩放和裁剪。</pd>
             </plentry>
-            <plentry props="android cpp unity ios mac">
-                <pt props="android cpp unity">segproperty</pt>
+            <plentry>
+                <pt props="android cpp unity electron rn flutter">segproperty</pt>
                 <pt props="ios mac">segData</pt>
                 <pd>背景图像的处理属性。详见 <xref keyref="SegmentationProperty"/>。</pd>
             </plentry>
-            <plentry props="cpp unity rn electron">
+            <plentry props="cpp unity rn electron flutter">
                 <pt>type</pt>
                 <pd>视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
                     
