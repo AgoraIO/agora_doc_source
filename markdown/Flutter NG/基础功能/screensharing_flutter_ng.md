@@ -192,14 +192,14 @@ Agora 目前在 macOS/Windows 平台上支持以下两种屏幕共享方案：
 
 API 的调用时序如下图所示：
 
-
+![](https://web-cdn.agora.io/docs-files/1669355133839)
 
 ### 实现步骤
 #### 1. 获取屏幕 ID 或窗口 ID
 
-<div class="alert note"><ul><code>getScreenCaptureSources</code> 通过 Apple 和 Windows 原生的 API 实现屏幕共享的数据流转：<li>在 macOS 中，该方法通过 <code>NSScreen</code> 获取 Display ID，详情参考 <a href="https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription">Apple deviceDescription 说明</a>，通过 <code>CGWindowListCopyWindowInfo</code> 获取 Window ID，详情参考 <a href="https://developer.apple.com/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo">Apple CGWindowListCopyWindowInfo 说明</a>；</li><li>在 Windows 中，该方法通过 <code>EnumDisplayDevices</code> 获取 Display ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaydevices">EnumDisplayDevicesA function (winuser.h)</a>，通过 <code>EnumerateWindows</code> 获取 Window ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows">EnumWindows function (winuser.h)</a>。</li></ul></div>
+<div class="alert note"><code>getScreenCaptureSources</code> 通过 Apple 和 Windows 原生的 API 实现屏幕共享的数据流转：<ul><li>在 macOS 中，该方法通过 <code>NSScreen</code> 获取 Display ID，详情参考 <a href="https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription">Apple deviceDescription 说明</a>，通过 <code>CGWindowListCopyWindowInfo</code> 获取 Window ID，详情参考 <a href="https://developer.apple.com/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo">Apple CGWindowListCopyWindowInfo 说明</a>；</li><li>在 Windows 中，该方法通过 <code>EnumDisplayDevices</code> 获取 Display ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaydevices">EnumDisplayDevicesA function (winuser.h)</a>，通过 <code>EnumerateWindows</code> 获取 Window ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows">EnumWindows function (winuser.h)</a>。</li></ul></div>
 
-你可以直接通过 agora_rtc_engine 提供的 [`getScreenCaptureSources`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_getscreencapturesources) 来获取 Display ID 或 Window ID。
+你可以直接通过 agora_rtc_engine 提供的 [`getScreenCaptureSources`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_getscreencapturesources) 来获取 Display ID 或 Window ID，示例代码如下：
 
 ```dart
   await rtcEngine.getScreenCaptureSources(
@@ -263,7 +263,7 @@ await _engine.joinChannelEx(
 
 ##### 同时共享屏幕和开启视频
 
-如需要在桌面端（macOS/Windows）支持通过子进程进行屏幕共享，可参考我们提供的示例文件 [screen_sharing_with_subprocess](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing_with_subprocess/screen_sharing_with_subprocess.dart) 。
+如需要在桌面端（macOS/Windows）支持通过子进程进行屏幕共享，可参考我们提供的示例文件 [screen_sharing_with_subprocess](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing_with_subprocess/screen_sharing_with_subprocess.dart)。
 
 <div class="alert note">对于 macOS 平台，在调用 <a href="./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_getscreensharehelper"><code>getScreenShareHelper</code></a> 前，请设置 <code>AppGroup</code> 并将其设为 <code>getScreenShareHelper</code>  中的 <code>appGroup</code> 参数的值。详见<a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW21">相关苹果开发者文档</a>。</div>
 
