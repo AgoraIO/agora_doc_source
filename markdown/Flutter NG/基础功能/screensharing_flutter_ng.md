@@ -188,14 +188,16 @@ Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutte
 Agora 目前在 macOS/Windows 平台上支持以下两种屏幕共享方案：
 
 - 通过 `displayId` 共享指定屏幕，或指定屏幕的部分区域。
-  - 在 macOS 中，`getScreenCaptureSources` 方法通过 `NSScreen` 获取 Display ID，详情参考 [Apple deviceDescription 说明](https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription)。
-  - 在 Windows 中，`getScreenCaptureSources` 方法通过 `EnumDisplayDevices` 获取 Display ID，详情参考 [EnumDisplayDevicesA function (winuser.h)](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaydevicesa)。
 - 通过 `windowId` 共享指定窗口，或指定窗口的部分区域。
-  - 在 macOS 中，`getScreenCaptureSources` 方法通过 `CGWindowListCopyWindowInfo` 获取 Window ID 的详情参考 [Apple CGWindowListCopyWindowInfo 说明](https://developer.apple.com/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo)。
-  - 在 Windows 中，`getScreenCaptureSources` 方法通过 `EnumerateWindows` 获取 Window ID，详情参考 [EnumWindows function (winuser.h)](https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows)。
+
+API 的调用时序如下图所示：
+
+
 
 ### 实现步骤
 #### 1. 获取屏幕 ID 或窗口 ID
+
+<div class="alert note"><ul><code>getScreenCaptureSources</code> 通过 Apple 和 Windows 原生的 API 实现屏幕共享的数据流转：<li>在 macOS 中，该方法通过 <code>NSScreen</code> 获取 Display ID，详情参考 <a href="https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription">Apple deviceDescription 说明</a>，通过 <code>CGWindowListCopyWindowInfo</code> 获取 Window ID，详情参考 <a href="https://developer.apple.com/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo">Apple CGWindowListCopyWindowInfo 说明</a>；</li><li>在 Windows 中，该方法通过 <code>EnumDisplayDevices</code> 获取 Display ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaydevices">EnumDisplayDevicesA function (winuser.h)</a>，通过 <code>EnumerateWindows</code> 获取 Window ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows">EnumWindows function (winuser.h)</a>。</li></ul></div>
 
 你可以直接通过 agora_rtc_engine 提供的 [`getScreenCaptureSources`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_getscreencapturesources) 来获取 Display ID 或 Window ID。
 
