@@ -362,64 +362,40 @@ export const MidClassScenario = () => {
 #### 在设备设置弹窗上显示摄像头设备个数
 
 ```tsx
-const Setting: React.FC<SettingProps> = observer(({className, ...restProps}) => {
-    const cls = classnames({
-        [`setting`]: 1,
-        [`${className}`]: !!className,
-    });
-
-    const {
-        deviceSettingUIStore: {cameraDevicesList},
-    } = useStore();
-
-    return (
-        <div className={cls} {...restProps} style={{width: 318}}>
-            <div className="device-choose">
-                <div
-                    className="device-title"
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                    }}>
-                    {/* 展示设备个数。这里 -1 是因为要减去默认的禁用选项 */}
-                    <div>
-                        {transI18n("device.camera")} 设备个数: {cameraDevicesList.length - 1}
-                    </div>
-                    <div style={{display: "flex"}}>
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                            }}>
-                            <CameraMirrorCheckBox />
-                            <span className="beauty-desc" style={{marginLeft: 5}}>
-                                {transI18n("media.mirror")}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <CameraSelect />
-            </div>
-            <div className="device-choose">
-                <div className="device-title">{transI18n("device.microphone")}</div>
-                <MicrophoneSelect />
-            </div>
-            <div className="device-choose">
-                <div className="device-title">{transI18n("device.speaker")}</div>
-                <PlaybackSelect />
-            </div>
-        </div>
-    );
-});
+const VideoDeviceList = observer(() => {
+  const {
+    pretestUIStore: { setCameraDevice, currentCameraDeviceId, cameraDevicesList },
+  } = useStore();
+  const t = useI18n();
+  return (
+    <VideoDeviceListPanel>
+      {/* 展示设备个数。这里 -1 是因为要减去默认的禁用选项 */}
+      <div className="-mt-10">{`${t('device.camera')} 设备个数: ${
+        cameraDevicesList.length - 1
+      }`}</div>
+      <Field
+        label=""
+        type="select"
+        value={currentCameraDeviceId}
+        options={cameraDevicesList.map((value) => ({
+          text: value.label,
+          value: value.value,
+        }))}
+        onChange={(value) => {
+          setCameraDevice(value);
+        }}
+      />
+    </VideoDeviceListPanel>
+  );
 ```
 
 **修改前**
 
-![](https://web-cdn.agora.io/docs-files/1650366786587)
+![](device-count-before.png)
 
 **修改后**
 
-![](https://web-cdn.agora.io/docs-files/1650366838206)
+![](device-count-after.png)
 
 ## 自定义场景布局
 
@@ -427,7 +403,7 @@ const Setting: React.FC<SettingProps> = observer(({className, ...restProps}) => 
 
 #### 移动视频区域和聊天区域的位置
 
-以下示例演示了如何将灵动课堂右侧的视频区域和聊天区域移动到左侧。这是一个跨组件的调整，因此需要修改这两个组件的父容器，也就是一对一互动教学场景容器 `packages/agora-classroom-sdk/src/ui-kit/capabilities/scenarios/1v1/index.tsx` 文件。
+以下示例演示了如何将灵动课堂右侧的视频区域和聊天区域移动到左侧。这是一个跨组件的调整，因此需要修改这两个组件的父容器，也就是一对一互动教学场景容器 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios/1v1/index.tsx` 文件。
 
 **修改前**
 
@@ -588,34 +564,33 @@ UI Store 位于 `packages/agora-classroom-sdk/src/infra/stores` 目录下，具�
 以下示例代码展示了如何定制大班课的 UI Store。
 
 ```typescript
-import {EduClassroomStore} from "agora-edu-core";
-import {EduClassroomUIStore} from "../common";
-import {LectureBoardUIStore} from "./board-ui";
-import {LectureRosterUIStore} from "./roster";
-import {LectureRoomStreamUIStore} from "./stream-ui";
-import {LectrueToolbarUIStore} from "./toolbar-ui";
-import {LectureWidgetUIStore} from "./widget-ui";
+import { EduClassroomStore } from 'agora-edu-core';
+import { EduClassroomUIStore } from '../common';
+import { LectureBoardUIStore } from './board-ui';
+import { LectureRosterUIStore } from './roster';
+import { LectureRoomStreamUIStore } from './stream-ui';
+import { LectrueToolbarUIStore } from './toolbar-ui';
 
 export class EduLectureUIStore extends EduClassroomUIStore {
-    constructor(store: EduClassroomStore) {
-        super(store);
-        this._streamUIStore = new LectureRoomStreamUIStore(store, this.shareUIStore); // 重写 Stream UI Store
-        this._rosterUIStore = new LectureRosterUIStore(store, this.shareUIStore); // 重写 Roster UI Store
-        this._boardUIStore = new LectureBoardUIStore(store, this.shareUIStore); // 重写 Board UI Store
-        this._toolbarUIStore = new LectrueToolbarUIStore(store, this.shareUIStore); // 重写 Toolbar UI Store
-        this._widgetUIStore = new LectureWidgetUIStore(store, this.shareUIStore); // 重写 Widget UI Store
-    }
+  constructor(store: EduClassroomStore) {
+    super(store);
+    //重写 Stream UI Store
+    this._streamUIStore = new LectureRoomStreamUIStore(store, this.shareUIStore);
+    //重写 Roster UI Store
+    this._rosterUIStore = new LectureRosterUIStore(store, this.shareUIStore);
+    //重写 Board UI Store
+    this._boardUIStore = new LectureBoardUIStore(store, this.shareUIStore);
+    //重写 Toolbar UI Store
+    this._toolbarUIStore = new LectrueToolbarUIStore(store, this.shareUIStore);
+  }
 
-    get streamUIStore() {
-        return this._streamUIStore as LectureRoomStreamUIStore;
-    }
+  get streamUIStore() {
+    return this._streamUIStore as LectureRoomStreamUIStore;
+  }
 
-    get rosterUIStore() {
-        return this._rosterUIStore as LectureRosterUIStore;
-    }
-    get widgetUIStore() {
-        return this._widgetUIStore as LectureWidgetUIStore;
-    }
+  get rosterUIStore() {
+    return this._rosterUIStore as LectureRosterUIStore;
+  }
 }
 ```
 
@@ -631,64 +606,100 @@ export class EduLectureUIStore extends EduClassroomUIStore {
 // 继承基类 Toolbar UI Store
 export class OneToOneToolbarUIStore extends ToolbarUIStore {
   ...
-  get teacherTools(): ToolbarItem[] {
-    // 筛选老师的教具
-    return [
-      ToolbarItem.fromData({
-        value: 'clicker',
-        label: 'scaffold.clicker',
-        icon: 'select',
-      }),
-      ToolbarItem.fromData({
-        value: 'selection',
-        label: 'scaffold.selector',
-        icon: 'clicker',
-      }),
-      ToolbarItem.fromData({
-        value: 'pen',
-        label: 'scaffold.pencil',
-        icon: 'pen',
-        category: ToolbarItemCategory.PenPicker,
-      }),
-      ToolbarItem.fromData({
-        value: 'text',
-        label: 'scaffold.text',
-        icon: 'text',
-      }),
-      ToolbarItem.fromData({
-        value: 'eraser',
-        label: 'scaffold.eraser',
-        icon: 'eraser',
-      }),
-      ToolbarItem.fromData({
-        value: 'hand',
-        label: 'scaffold.move',
-        icon: 'hand',
-      }),
-      {
-        value: 'cloud',
-        label: 'scaffold.cloud_storage',
-        icon: 'cloud',
-      },
-      {
-        value: 'tools',
-        label: 'scaffold.tools',
-        icon: 'tools',
-        category: ToolbarItemCategory.Cabinet,
-      },
-    ];
+ get teacherTools(): ToolbarItem[] {
+    let _tools: ToolbarItem[] = [];
+    if (this.boardApi.mounted && !this.classroomStore.remoteControlStore.isHost) {
+      _tools = [
+        ToolbarItem.fromData({
+          value: 'clicker',
+          label: 'scaffold.clicker',
+          icon: 'select',
+          category: ToolbarItemCategory.Clicker,
+        }),
+        ToolbarItem.fromData({
+          // selector use clicker icon
+          value: 'selection',
+          label: 'scaffold.selector',
+          icon: 'clicker',
+          category: ToolbarItemCategory.Selector,
+        }),
+        ToolbarItem.fromData({
+          value: 'pen',
+          label: 'scaffold.pencil',
+          icon: 'pen',
+          category: ToolbarItemCategory.PenPicker,
+        }),
+        ToolbarItem.fromData({
+          value: 'text',
+          label: 'scaffold.text',
+          icon: 'text',
+          category: ToolbarItemCategory.Text,
+        }),
+        ToolbarItem.fromData({
+          value: 'eraser',
+          label: 'scaffold.eraser',
+          icon: 'eraser',
+          category: ToolbarItemCategory.Eraser,
+        }),
+
+        ToolbarItem.fromData({
+          value: 'hand',
+          label: 'scaffold.move',
+          icon: 'hand',
+          category: ToolbarItemCategory.Hand,
+        }),
+        ToolbarItem.fromData({
+          value: 'save',
+          label: 'scaffold.save',
+          icon: 'save-ghost',
+          category: ToolbarItemCategory.Save,
+        }),
+        {
+          value: 'cloud',
+          label: 'scaffold.cloud_storage',
+          icon: 'cloud',
+          category: ToolbarItemCategory.CloudStorage,
+        },
+        {
+          value: 'tools',
+          label: 'scaffold.tools',
+          icon: 'tools',
+          category: ToolbarItemCategory.Cabinet,
+        },
+      ];
+
+      if (AgoraRteEngineConfig.platform === AgoraRteRuntimePlatform.Electron) {
+        _tools.splice(
+          5,
+          0,
+          ToolbarItem.fromData({
+            value: 'slice',
+            label: 'scaffold.slice',
+            icon: 'slice',
+            category: ToolbarItemCategory.Slice,
+          }),
+        );
+      }
+    } else {
+      _tools = [
+        {
+          value: 'tools',
+          label: 'scaffold.tools',
+          icon: 'tools',
+          category: ToolbarItemCategory.Cabinet,
+        },
+      ];
+    }
+    return _tools;
   }
 
 
   @computed
   get studentTools(): ToolbarItem[] {
-    // 筛选学生的教具
     const { sessionInfo } = EduClassroomConfig.shared;
-    const whiteboardAuthorized = this.classroomStore.boardStore.grantUsers.has(
-      sessionInfo.userUuid,
-    );
+    const whiteboardAuthorized = this.boardApi.grantedUsers.has(sessionInfo.userUuid);
 
-    if (!whiteboardAuthorized) {
+    if (!whiteboardAuthorized || this.classroomStore.remoteControlStore.isHost) {
       return [];
     }
 
@@ -697,11 +708,14 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
         value: 'clicker',
         label: 'scaffold.clicker',
         icon: 'select',
+        category: ToolbarItemCategory.Selector,
       }),
       ToolbarItem.fromData({
+        // selector use clicker icon
         value: 'selection',
         label: 'scaffold.selector',
         icon: 'clicker',
+        category: ToolbarItemCategory.Clicker,
       }),
       ToolbarItem.fromData({
         value: 'pen',
@@ -713,11 +727,13 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
         value: 'text',
         label: 'scaffold.text',
         icon: 'text',
+        category: ToolbarItemCategory.Text,
       }),
       ToolbarItem.fromData({
         value: 'eraser',
         label: 'scaffold.eraser',
         icon: 'eraser',
+        category: ToolbarItemCategory.Eraser,
       }),
     ];
   }
@@ -752,36 +768,37 @@ export class OneToOneStreamUIStore extends StreamUIStore {
 
 
 // 对应的业务组件
-const LocalStreamPlayerTools = observer(({ isFullScreen = true }: { isFullScreen?: boolean }) => {
-  const { streamUIStore } = useStore();
-  const { localStreamTools, toolbarPlacement, fullScreenToolTipPlacement } = streamUIStore;
-
-
-  return localStreamTools.length > 0 ? (
-    <div className={`video-player-tools`}>
-      {localStreamTools.map((tool, key) => (
-        <Tooltip
-          key={key}
-          title={tool.toolTip}
-          // Tooltip 组件，placement 属性控制工具栏位置
-          placement={isFullScreen ? fullScreenToolTipPlacement : toolbarPlacement}>
-          <span>
+const ToolItem: FC<{
+  tool: EduStreamTool;
+}> = visibilityListItemControl(
+  observer(({ tool }) => {
+    const { streamUIStore } = useStore();
+    const { toolbarPlacement } = streamUIStore;
+    return (
+      // Tooltip 组件，placement 属性控制工具栏位置
+      <Tooltip title={tool.toolTip} placement={toolbarPlacement}>
+        <span>
+          {tool.interactable ? (
             <SvgIcon
-              canHover={tool.interactable}
-              style={tool.style}
-              // hoverType={tool.hoverIconType}
-              type={tool.iconType}
               size={22}
-              onClick={tool.interactable ? tool.onClick : () => {}}
+              onClick={tool.onClick}
+              type={tool.iconType.icon}
+              colors={{ iconPrimary: tool.iconType.color }}
+              hoverType={tool.hoverIconType?.icon ?? tool.iconType.icon}
+              hoverColors={{ iconPrimary: tool.hoverIconType?.color ?? tool.iconType.color }}
             />
-          </span>
-        </Tooltip>
-      ))}
-    </div>
-  ) : (
-    <></>
-  );
-});
+          ) : (
+            <SvgImg
+              colors={{ iconPrimary: tool.iconType.color }}
+              type={tool.iconType.icon}
+              size={22}
+            />
+          )}
+        </span>
+      </Tooltip>
+    );
+  }),
+);
 ```
 
 效果如下：
@@ -798,7 +815,7 @@ const LocalStreamPlayerTools = observer(({ isFullScreen = true }: { isFullScreen
 
 ### 修改教室背景色
 
-如需修改教室背景色，可修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/root-box/fixed-aspect-ratio.tsx` 文件中的代码。
+如需修改教室背景色，可修改 `packages/agora-classroom-sdk/src/infra/capabilities/containers/root-box/fixed-aspect-ratio.tsx` 文件中的代码。
 
 ```tsx
 const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
@@ -824,46 +841,72 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
 
 ### 修改白板背景色
 
-如需修改白板背景色，可修改 `packages/agora-classroom-sdk/src/ui-kit/capabilities/containers/board/index.css` 文件中的代码。
+如需修改白板背景色，可修改 `packages/agora-plugin-gallery/src/gallery/whiteboard/style.css` 文件中的代码。
 
 ```css
-.whiteboard {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
-    border: 1px solid #ececf1;
-    border-radius: 4px;
-    background: #000; /* 这行设置白板颜色背景色为黑色 */
+.netless-whiteboard-wrapper {
+  height: 100%;
+  width: 100%;
+  border: 1px solid;
+  border-radius: 4px;
+  @apply bg-foreground border-divider;
+  background: #000; /* 这行设置白板颜色背景色为黑色 */
 }
 ```
 
 ### 修改白板布局比例
 
-如需调整白板布局，可修改 `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts` 文件中的代码。灵动课堂根据 `heightRatio` 和 `viewportHeight` 计算出白板的高度，然后根据白板的比例动态设置白板的大小。
+如需调整白板布局，可修改 `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts` 文件中的代码。灵动课堂会先按照`packages/agora-classroom-sdk/src/infra/stores/common/share-ui.ts`中的`viewportAspectRatio`计算出整体教室区域的宽高, 再计算出白板容器的高度，最后根据白板占白板容器的比例`heightRatio`动态设置白板的大小。
 
 ```typescript
+// packages/agora-classroom-sdk/src/infra/stores/common/share-ui.ts
+...
+//设置教室尺寸
+updateClassroomViewportSize() {
+  ...
+    //获取当前窗口宽高
+    const { width, height } = getRootDimensions(this._containerNode);
+
+    const aspectRatio = this._viewportAspectRatio;
+
+    const curAspectRatio = height / width;
+
+    const scopeSize = { height, width };
+    //计算教室保持固定宽高比
+    if (curAspectRatio > aspectRatio) {
+      // shrink height
+      scopeSize.height = width * aspectRatio;
+    } else if (curAspectRatio < aspectRatio) {
+      // shrink width
+      scopeSize.width = height / aspectRatio;
+    }
+  ...
+}
+...
 // packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts
+//设置白板比例
 ...
   protected get uiOverrides() {
     return {
       ...super.uiOverrides,
-      heightRatio: 1,
-      aspectRatio: 9 / 16,
+      heightRatio: 1
     };
   }
 
   /**
-   * 白板高度
+   * 白板容器高度
    * @returns
    */
-  get boardHeight() {
-    const { roomType } = EduClassroomConfig.shared.sessionInfo;
-    const viewportHeight = this.shareUIStore.classroomViewportSize.height;
-    const height = this.uiOverrides.heightRatio * viewportHeight; // 计算白板高度
-    if (roomType === EduRoomTypeEnum.Room1v1Class) {
-      return height - this.shareUIStore.navBarHeight;
-    }
+  @computed
+  get boardAreaHeight() {
+    //设置白板交互区高度（减去导航栏高度）
+    const viewportHeight =
+      this.shareUIStore.classroomViewportSize.height - this.shareUIStore.navHeight;
+    //设置白板比例
+    const heightRatio = this.getters.stageVisible ? this.uiOverrides.heightRatio : 1;
+    //设置白板高度
+    const height = heightRatio * viewportHeight;
+
     return height;
   }
 ...
@@ -880,7 +923,6 @@ export class OneToOneBoardUIStore extends BoardUIStore {
         return {
             ...super.uiOverrides,
             heightRatio: 1,
-            aspectRatio: 0.706,
         };
     }
 }
