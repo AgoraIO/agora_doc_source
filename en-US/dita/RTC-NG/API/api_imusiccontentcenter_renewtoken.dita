@@ -18,7 +18,14 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int RenewToken(string token);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public override int RenewToken(string token)
+ 	 	        {
+ 	 	            if (_rtcEngineInstance == null || _musicContentCenterImpl == null)
+ 	 	            {
+ 	 	                return ErrorCode;
+ 	 	            }
+ 	 	            return _musicContentCenterImpl.RenewToken(token);
+ 	 	        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; renewToken(String token);</codeblock>
             <codeblock props="unreal" outputclass="language-cpp" /></p>
