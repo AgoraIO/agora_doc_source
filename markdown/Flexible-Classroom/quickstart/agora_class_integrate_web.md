@@ -224,7 +224,7 @@
                 appId: 'Your App ID',
                 region: 'NA'
         });
-        // 启动课堂。
+        // 启动云监考。
         /**
          * 注意事项：
          监考场景下学生用户标识规则：`${用户id}-${设备类型（main/sub）}`，考场内依据主副设备的用户id前缀判断是否为同一学生
@@ -234,7 +234,7 @@
             在考场中 'studentA-main' 和 'studentA-sub' 会被识别为 学生A(studentA) 的多台设备
         */
 
-      
+
 
         AgoraProctorSDK.launch(document.querySelector('#root'), {
             userUuid: 'user id',//用户唯一标识，请在此处传入根据上述规则拼接好的userUuid
@@ -262,9 +262,9 @@
 
 
 
-###设置考卷链接
+### 设置考卷链接
 在开始考试后，考场内的考生会在本地通过 `Widget` 创建一个Webview窗口，用来加载考卷，考卷的地址被存储在 `房间属性`中的`examinationUrl`字段，通常考卷内容需要在考试前设置。下面是可以参考的设置方法。
-#####创建房间时设置
+##### 创建房间时设置
 通过[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)中的 创建房间 接口创建房间，在请求体的`roomProperties`中设置`examinationUrl`字段，例：
 ```
 {
@@ -286,7 +286,7 @@
     }
 }
 ```
-#####创建房间后设置
+##### 创建房间后设置
 通过[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)中的 更新课堂属性 接口，在请求体的`roomProperties`中修改`examinationUrl`字段，例：
 ```
 {
