@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_create">
-    <title><ph keyref="create" /></title>
-    <shortdesc id="short"><ph id="shortdesc">创建并初始化 <xref keyref="IRtcEngine" />。</ph></shortdesc>
+    <title><ph keyref="create"/></title>
+    <shortdesc id="short"><ph id="shortdesc">创建并初始化 <xref keyref="IRtcEngine"/>。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="create" />
+                <indexterm keyref="create"/>
             </keywords>
         </metadata>
     </prolog>
@@ -18,20 +18,20 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithAppId:(NSString * _Nonnull)appId
                                       delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>            
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="cpp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p props="native unity electron flutter"><apiname keyref="IRtcEngine" /> 类的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。</p>
+            <p props="native unity electron flutter"><apiname keyref="IRtcEngine"/> 类的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。</p>
             <note type="attention">
             <ul id="ul_uy4_mtq_4qb">
-            <li>请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine" />。</li>
-            <li>调用该方法和 <xref keyref="initialize" /> 均能创建 <apiname keyref="IRtcEngine" /> 实例。该方法与 <apiname keyref="initialize" /> 的区别在于，<apiname keyref="initialize" /> 支持在创建 <apiname keyref="IRtcEngine" /> 实例时进行更多配置，如指定访问区域、设置日志文件等。</li>
-            <li>SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngine" /> 实例。
+            <li>请确保在调用其他 API 前先调用该方法创建并初始化 <apiname keyref="IRtcEngine"/>。</li>
+            <li>调用该方法和 <xref keyref="initialize"/> 均能创建 <apiname keyref="IRtcEngine"/> 实例。该方法与 <apiname keyref="initialize"/> 的区别在于，<apiname keyref="initialize"/> 支持在创建 <apiname keyref="IRtcEngine"/> 实例时进行更多配置，如指定访问区域、设置日志文件等。</li>
+            <li>SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 实例。
                     </li>
             </ul> </note> </section>
         <section id="parameters">
@@ -39,24 +39,31 @@
             <parml>
             <plentry props="android cpp">
                 <pt>context</pt>
-                <pd conkeyref="RtcEngineConfig/context" />
+                <pd conkeyref="RtcEngineConfig/context"/>
             </plentry>
             <plentry>
                 <pt>appId</pt>
-                <pd conkeyref="RtcEngineConfig/appid" />
+                <pd conkeyref="RtcEngineConfig/appid"/>
             </plentry>
             <plentry props="android ios mac">
                 <pt props="android">handler</pt>
                 <pt props="ios mac">delegate</pt>
-                <pd id="handler"><xref keyref="IRtcEngine" /> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler" />。
+                <pd id="handler"><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"/>。
                     </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li>方法调用成功，返回一个 <apiname keyref="IRtcEngine" /> 对象。</li>
-            <li>方法调用失败，返回错误码。</li>
+            <li>方法调用成功，返回一个 <apiname keyref="IRtcEngine"/> 对象。</li>
+            <li>方法调用失败，返回错误码：
+                <ul>
+                <li>-1: 一般性的错误（未明确归类）。</li>
+                <li>-2: 设置了无效的参数。</li>
+                <li>-7: SDK 初始化失败。</li>
+                <li>-22: 资源申请失败。当 app 占用资源过多，或系统资源耗尽时，SDK 分配资源失败，会返回该错误。</li>
+                <li>-101: App ID 无效。</li>
+                </ul></li>
             </ul> </section>
         <section id="section_yqx_kwq_4qb" props="android">
             <title>异常</title>

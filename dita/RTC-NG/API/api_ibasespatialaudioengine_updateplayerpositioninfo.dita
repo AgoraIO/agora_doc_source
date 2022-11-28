@@ -20,7 +20,7 @@
     playerId: number,
     positionInfo: RemoteVoicePositionInfo
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int UpdatePlayerPositionInfo(int playerId, float[] position, float[] forward);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int UpdatePlayerPositionInfo(int playerId, RemoteVoicePositionInfo positionInfo);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract updatePlayerPositionInfo(
     playerId: number,
     positionInfo: RemoteVoicePositionInfo
@@ -39,18 +39,10 @@
                 <pt>playerId</pt>
                 <pd><ph>媒体播放器 ID。</ph><ph props="native">可通过 <xref keyref="getMediaPlayerId" /> 获取。</ph></pd>
             </plentry>
-            <plentry props="native electron rn flutter">
-                <pt>positionInfo</pt>
-                <pd>媒体播放器的空间位置信息。详见 <xref keyref="RemoteVoicePositionInfo" />。</pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>position</pt>
-                <pd>在世界坐标系中的坐标。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>forward</pt>
-                <pd>在世界坐标系前轴的单位向量。该参数是长度为 3 的数组，三个值依次表示前、右、上的坐标值。</pd>
-            </plentry>
+            <plentry props="native rn unity electron flutter">
+                    <pt>positionInfo</pt>
+                    <pd>媒体播放器的空间位置信息。详见 <xref keyref="RemoteVoicePositionInfo"/>。</pd>
+                </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
             <title>返回值</title>
