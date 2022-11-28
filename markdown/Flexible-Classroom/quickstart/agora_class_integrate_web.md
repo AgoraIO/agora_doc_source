@@ -224,11 +224,7 @@
                 appId: 'Your App ID',
                 region: 'NA'
         });
-        // 启动课堂。
-       
-
-      
-
+        // 启动云监考。
         AgoraProctorSDK.launch(document.querySelector('#root'), {
             userUuid: 'user id',//用户唯一标识，请在此处传入根据下方规则拼接好的userUuid
             userName: 'user name',
