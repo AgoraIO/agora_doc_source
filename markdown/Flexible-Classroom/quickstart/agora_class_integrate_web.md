@@ -225,19 +225,12 @@
                 region: 'NA'
         });
         // 启动课堂。
-        /**
-         * 注意事项：
-         监考场景下学生用户标识规则：`${用户id}-${设备类型（main/sub）}`，考场内依据主副设备的用户id前缀判断是否为同一学生
-            例：学生A标识为 'studentA',学生WEB端为主设备，移动端为副设备
-            学生A传入 WEb SDK 的 userUuid 为 'studentA-main'
-            学生A传入 IOS/Android SDK 的 userUuid 为 'studentA-sub'
-            在考场中 'studentA-main' 和 'studentA-sub' 会被识别为 学生A(studentA) 的多台设备
-        */
+       
 
       
 
         AgoraProctorSDK.launch(document.querySelector('#root'), {
-            userUuid: 'user id',//用户唯一标识，请在此处传入根据上述规则拼接好的userUuid
+            userUuid: 'user id',//用户唯一标识，请在此处传入根据下方规则拼接好的userUuid
             userName: 'user name',
             roomUuid: 'room id',
             roleType: 1, // 用户角色：1 为老师，2 为学生。
@@ -260,11 +253,25 @@
 
 示例代码中需要传入 `rtmToken`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
 
+### 如何设置用户ID
+监考场景下，考试学生会拥有主/副两种设备，主设备用于分享考试屏幕和拍摄人像，副设备用于拍摄周边环境。
+![](proctor-user.png)
+
+在考场中，需要开发者在调用launch时自行拼接用户userUuid，以分辨主副设备是否属于同一个考生。
+
+##### 监考场景下学生用户标识规则：`${用户id}-${设备类型（main/sub）}`
+##### 例：
+`学生A` 唯一标识为 `studentA`, 学生WEB端为主设备，移动端为副设备
+ - `学生A`传入 Proctor WEB SDK 的 userUuid 为 `studentA-main`
+ - `学生A`传入 Proctor IOS/Android SDK 的 userUuid 为 `studentA-sub`
+在考场中 `studentA-main` 和 `studentA-sub` 会被识别为 `studentA` 的多台设备,并合并展示在老师的监考画面中。
+         
+           
 
 
-###设置考卷链接
+### 设置考卷链接
 在开始考试后，考场内的考生会在本地通过 `Widget` 创建一个Webview窗口，用来加载考卷，考卷的地址被存储在 `房间属性`中的`examinationUrl`字段，通常考卷内容需要在考试前设置。下面是可以参考的设置方法。
-#####创建房间时设置
+##### 创建房间时设置
 通过[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)中的 创建房间 接口创建房间，在请求体的`roomProperties`中设置`examinationUrl`字段，例：
 ```
 {
@@ -274,19 +281,14 @@
         "schedule": {
             "startTime": 1655452800000,
             "duration": 600,
-            "closeDelay": 300
-        },
-        "processes": {
-            "handsUp": {
-                "maxAccept": 10
-            }
+            "closeDelay": 0
         },
         //传入本场考试的考卷链接
         "examinationUrl": "your examination url"
     }
 }
 ```
-#####创建房间后设置
+##### 创建房间后设置
 通过[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)中的 更新课堂属性 接口，在请求体的`roomProperties`中修改`examinationUrl`字段，例：
 ```
 {
