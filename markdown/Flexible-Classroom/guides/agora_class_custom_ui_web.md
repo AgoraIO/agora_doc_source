@@ -50,7 +50,7 @@
 
 业务组件指灵动课堂中和业务逻辑绑定的 UI 组件。业务组件大部分是由多个功能组件组合并注入相关的业务逻辑。业务组件依赖于 UI Store 中注入的 Observable 对象和行为函数来自动更新 UI 和调用 API。以举手上讲台功能为例，此功能对应的业务组件可以根据当前举手数据展示举手的用户列表，并提供按钮供用户点击，业务组件内部会调用 API 发送举手请求。
 
-![](https://web-cdn.agora.io/docs-files/1649917547117)
+![](drawio.png)
 
 业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂 - 监考场景) 目录下。
 
@@ -170,36 +170,6 @@ export const Docs = () => (
 
 如果你想修改某个功能组件的功能和样式，找到该组件所在的文件夹，修改代码即可。以下提供几个修改示例。
 
-#### 修改导航栏颜色
-
-你可修改 `packages/agora-classroom-sdk/src/ui-kit/components/biz-header/index.css` 文件，将导航栏组件 BizHeader 的背景颜色从白色修改为红色。
-
-**修改前**
-
-```css
-.biz-header {
-    @apply bg-white;
-    padding: 0 15px 0 8px;
-    border-top: 0px;
-    border: 1px solid #ececf1;
-}
-```
-
-![](https://web-cdn.agora.io/docs-files/1649914581018)
-
-**修改后**
-
-```css
-.biz-header {
-    background: red !important;
-    padding: 0 15px 0 8px;
-    border-top: 0px;
-    border: 1px solid #ececf1;
-}
-```
-
-![](https://web-cdn.agora.io/docs-files/1649914602349)
-
 #### 修改 input 组件占位文字的颜色
 
 你可修改 `packages/agora-classroom-sdk/src/ui-kit/components/input/index.css` 文件来修改 input 组件中占位文字的颜色。
@@ -207,7 +177,7 @@ export const Docs = () => (
 **修改前**
 
 ```css
-.input-wrapper input::-webkit-input-placeholder {
+.fcr-input-wrapper input::-webkit-input-placeholder {
     /* WebKit browsers */
     color: #7b88a0;
     font-size: 14px;
@@ -219,7 +189,7 @@ export const Docs = () => (
 **修改后**
 
 ```css
-.input-wrapper input::-webkit-input-placeholder {
+.fcr-input-wrapper input::-webkit-input-placeholder {
     /* WebKit browsers */
     color: skyblue;
     font-size: 14px;
@@ -232,7 +202,7 @@ export const Docs = () => (
 
 ### 新增业务组件
 
-如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/infra/capabilities/containers` 下新建文件夹，包含以下文件：
+如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/infra/capabilities/containers` 下新建agora-demo文件夹，包含以下文件：
 
 -   `index.tsx`: 组合你的功能组件，注入业务逻辑，实现业务功能。
 -   `index.css`: 实现业务组件的样式。
@@ -264,22 +234,26 @@ export const Docs = () => (
 }
 
 // index.tsx
+import React from 'react';
+import { observer } from 'mobx-react';
 import { useStore } from '@classroom/infra/hooks/ui-store';
-import React from 'react'
-import './index.css'
+import './index.css';
 
-export default function AgoraDemo() {
-    const { navigationBarUIStore } = useStore();
-    const { classStatusText, networkQualityLabel, delay, packetLoss } = navigationBarUIStore;
-    return (
-        <div className="agora-demo">
-            <h1 className="agora-demo-title">这是我们新写的业务组件</h1>
-            <h2>用于展示网络状态和课堂状态</h2>
-            <div>网络状态: {networkQualityLabel} 网络延迟: {delay} 丢包率：{packetLoss}</div>
-            <div>课堂状态: {classStatusText}</div>
-        </div>
-    )
-}
+export default observer(function AgoraDemo() {
+  const { navigationBarUIStore } = useStore();
+  const { classStatusText, networkQualityLabel, delay, packetLoss } = navigationBarUIStore;
+  return (
+    <div className="agora-demo">
+      <h1 className="agora-demo-title">这是我们新写的业务组件</h1>
+      <h2>用于展示网络状态和课堂状态</h2>
+      <div>
+        网络状态: {networkQualityLabel} 网络延迟: {delay} 丢包率：{packetLoss}
+      </div>
+      <div>课堂状态: {classStatusText}</div>
+    </div>
+  );
+});
+
 
 // packages/agora-classroom-sdk/src/infra/capabilities/scenarios/mid-class/index.tsx
 // 在小班课场景引入该组件
@@ -293,18 +267,20 @@ import { FixedAspectRatioRootBox } from '@classroom/infra/capabilities/container
 import { SceneSwitch } from '@classroom/infra/capabilities/containers/scene-switch';
 import { RoomMidStreamsContainer } from '@classroom/infra/capabilities/containers/stream/room-mid-player';
 import { ToastContainer } from '@classroom/infra/capabilities/containers/toast';
-import { Award } from '../../containers/award';
+import { Award } from '@classroom/infra/capabilities/containers/award';
 import Room from '../room';
 import { useStore } from '@classroom/infra/hooks/ui-store';
 import { Float } from '@classroom/ui-kit';
-import { RemoteControlContainer } from '../../containers/remote-control';
-import { ScenesController } from '../../containers/scenes-controller';
-import { ScreenShareContainer } from '../../containers/screen-share';
-import { WhiteboardToolbar } from '../../containers/toolbar';
-import { WidgetContainer } from '../../containers/widget';
-import { Chat, Watermark, Whiteboard } from '../../containers/widget/slots';
-import { StreamWindowsContainer } from '../../containers/stream-windows-container';
-import { RemoteControlToolbar } from '../../containers/remote-control/toolbar';
+import { RemoteControlContainer } from '@classroom/infra/capabilities/containers/remote-control';
+import { ScenesController } from '@classroom/infra/capabilities/containers/scenes-controller';
+import { ScreenShareContainer } from '@classroom/infra/capabilities/containers/screen-share';
+import { WhiteboardToolbar } from '@classroom/infra/capabilities/containers/toolbar';
+import { WidgetContainer } from '@classroom/infra/capabilities/containers/widget';
+import { Chat, Watermark, Whiteboard } from '@classroom/infra/capabilities/containers/widget/slots';
+import { StreamWindowsContainer } from '@classroom/infra/capabilities/containers/stream-windows-container';
+import { RemoteControlToolbar } from '@classroom/infra/capabilities/containers/remote-control/toolbar';
+import AgoraDemo from '@classroom/infra/capabilities/containers/agora-demo';
+
 
 export const MidClassScenario = () => {
   // 场景布局
@@ -353,7 +329,7 @@ export const MidClassScenario = () => {
 
 该业务组件在灵动课堂中的效果如下：
 
-![](https://web-cdn.agora.io/docs-files/1649915609848)
+![](WX20221128-224347@2x.png)
 
 ### 修改业务组件
 
@@ -408,128 +384,137 @@ const VideoDeviceList = observer(() => {
 **修改前**
 
 ```tsx
-import classnames from "classnames";
-import {observer} from "mobx-react";
-import {FC} from "react";
-import {WhiteboardContainer} from "~containers/board";
-import {DialogContainer} from "~containers/dialog";
-import {LoadingContainer} from "~containers/loading";
-import {NavigationBarContainer} from "~containers/nav";
-import {Aside, Layout} from "~components/layout";
-import {ScreenShareContainer} from "~containers/screen-share";
-import {Room1v1StreamsContainer} from "~containers/stream/room-1v1-player";
-import {ChatWidgetPC} from "~containers/widget/chat-widget";
-import Room from "../room";
-import {FixedAspectRatioRootBox} from "~containers/root-box/fixed-aspect-ratio";
-import {ExtensionAppContainer} from "~containers/extension-app-container";
+import { useStore } from '@classroom/infra/hooks/ui-store';
+import classnames from 'classnames';
+import { Layout } from '@classroom/ui-kit/components/layout';
+import { DialogContainer } from '@classroom/infra/capabilities/containers/dialog';
+import { LoadingContainer } from '@classroom/infra/capabilities/containers/loading';
+import { NavigationBar } from '@classroom/infra/capabilities/containers/nav';
+import { FixedAspectRatioRootBox } from '@classroom/infra/capabilities/containers/root-box/fixed-aspect-ratio';
+import { Room1v1StreamsContainer } from '@classroom/infra/capabilities/containers/stream/room-1v1-player';
+import { ToastContainer } from '@classroom/infra/capabilities/containers/toast';
+import { RemoteControlContainer } from '../../containers/remote-control';
+import { SceneSwitch } from '../../containers/scene-switch';
+import { ScenesController } from '../../containers/scenes-controller';
+import { ScreenShareContainer } from '../../containers/screen-share';
+import { StreamWindowsContainer } from '../../containers/stream-windows-container';
+import { WhiteboardToolbar } from '../../containers/toolbar';
+import { WidgetContainer } from '../../containers/widget';
+import { Chat, Watermark, Whiteboard } from '../../containers/widget/slots';
+import { OneToOneClassAside as Aside } from '@classroom/infra/capabilities/containers/aside';
+import Room from '../room';
+import { RemoteControlToolbar } from '../../containers/remote-control/toolbar';
 
-import {ToastContainer} from "~containers/toast";
-import {CollectorContainer} from "~containers/board";
-import {BigWidgetWindowContainer} from "../../containers/big-widget-window";
-
-const Content: FC = ({children}) => {
-    return <div className="flex-grow">{children}</div>;
+export const OneToOneScenario = () => {
+  const layoutCls = classnames('edu-room', 'one-on-one-class-room');
+  const { shareUIStore } = useStore();
+  return (
+    <Room>
+      <FixedAspectRatioRootBox trackMargin={{ top: shareUIStore.navHeight }}>
+        <SceneSwitch>
+          <Layout className={layoutCls} direction="col">
+            <NavigationBar />
+            <Layout className="flex-grow items-stretch fcr-room-bg h-full">
+              <Layout
+                className="flex-grow items-stretch relative"
+                direction="col"
+                style={{ paddingTop: 2 }}>
+                <Whiteboard />
+                <ScreenShareContainer />
+                <WhiteboardToolbar />
+                <ScenesController />
+                <RemoteControlContainer />
+                <StreamWindowsContainer />
+                <RemoteControlToolbar />
+              </Layout>
+              <Aside>
+                <Room1v1StreamsContainer />
+                <Chat />
+              </Aside>
+            </Layout>
+            <DialogContainer />
+            <LoadingContainer />
+          </Layout>
+          <WidgetContainer />
+          <ToastContainer />
+          <Watermark />
+        </SceneSwitch>
+      </FixedAspectRatioRootBox>
+    </Room>
+  );
 };
 
-export const OneToOneScenario = observer(() => {
-    const layoutCls = classnames("edu-room");
-
-    return (
-        <Room>
-            <FixedAspectRatioRootBox trackMargin={{top: 27}}>
-                <Layout className={layoutCls} direction="col">
-                    <NavigationBarContainer />
-                    <Layout className="horizontal">
-                        <Content>
-                            <BigWidgetWindowContainer>
-                                <WhiteboardContainer></WhiteboardContainer>
-                            </BigWidgetWindowContainer>
-
-                            <Aside className="aisde-fixed">
-                                <CollectorContainer />
-                            </Aside>
-                        </Content>
-                        <Aside>
-                            <Room1v1StreamsContainer />
-                            <ChatWidgetPC />
-                        </Aside>
-                    </Layout>
-                    <DialogContainer />
-                    <LoadingContainer />
-                </Layout>
-                {/* <ExtAppContainer /> */}
-                <ExtensionAppContainer />
-                <ToastContainer />
-            </FixedAspectRatioRootBox>
-        </Room>
-    );
-});
 ```
 
-![](https://web-cdn.agora.io/docs-files/1649915965800)
+![](WX20221128-213357@2x.png)
 
 **修改后**
 
 ```tsx
-import classnames from "classnames";
-import {observer} from "mobx-react";
-import {FC} from "react";
-import {WhiteboardContainer} from "~containers/board";
-import {DialogContainer} from "~containers/dialog";
-import {LoadingContainer} from "~containers/loading";
-import {NavigationBarContainer} from "~containers/nav";
-import {Aside, Layout} from "~components/layout";
-import {ScreenShareContainer} from "~containers/screen-share";
-import {Room1v1StreamsContainer} from "~containers/stream/room-1v1-player";
-import {ChatWidgetPC} from "~containers/widget/chat-widget";
-import Room from "../room";
-import {FixedAspectRatioRootBox} from "~containers/root-box/fixed-aspect-ratio";
-import {ExtensionAppContainer} from "~containers/extension-app-container";
+import { useStore } from '@classroom/infra/hooks/ui-store';
+import classnames from 'classnames';
+import { Layout } from '@classroom/ui-kit/components/layout';
+import { DialogContainer } from '@classroom/infra/capabilities/containers/dialog';
+import { LoadingContainer } from '@classroom/infra/capabilities/containers/loading';
+import { NavigationBar } from '@classroom/infra/capabilities/containers/nav';
+import { FixedAspectRatioRootBox } from '@classroom/infra/capabilities/containers/root-box/fixed-aspect-ratio';
+import { Room1v1StreamsContainer } from '@classroom/infra/capabilities/containers/stream/room-1v1-player';
+import { ToastContainer } from '@classroom/infra/capabilities/containers/toast';
+import { RemoteControlContainer } from '../../containers/remote-control';
+import { SceneSwitch } from '../../containers/scene-switch';
+import { ScenesController } from '../../containers/scenes-controller';
+import { ScreenShareContainer } from '../../containers/screen-share';
+import { StreamWindowsContainer } from '../../containers/stream-windows-container';
+import { WhiteboardToolbar } from '../../containers/toolbar';
+import { WidgetContainer } from '../../containers/widget';
+import { Chat, Watermark, Whiteboard } from '../../containers/widget/slots';
+import { OneToOneClassAside as Aside } from '@classroom/infra/capabilities/containers/aside';
+import Room from '../room';
+import { RemoteControlToolbar } from '../../containers/remote-control/toolbar';
 
-import {ToastContainer} from "~containers/toast";
-import {CollectorContainer} from "~containers/board";
-import {BigWidgetWindowContainer} from "../../containers/big-widget-window";
-
-const Content: FC = ({children}) => {
-    return <div className="flex-grow">{children}</div>;
+export const OneToOneScenario = () => {
+  const layoutCls = classnames('edu-room', 'one-on-one-class-room');
+  const { shareUIStore } = useStore();
+  return (
+    <Room>
+      <FixedAspectRatioRootBox trackMargin={{ top: shareUIStore.navHeight }}>
+        <SceneSwitch>
+          <Layout className={layoutCls} direction="col">
+            <NavigationBar />
+            <Layout className="flex-grow items-stretch fcr-room-bg h-full">
+              /** 调整 Layout 中 Content 与 Aside 的顺序。*/
+              <Aside>
+                <Room1v1StreamsContainer />
+                <Chat />
+              </Aside>
+              <Layout
+                className="flex-grow items-stretch relative"
+                direction="col"
+                style={{ paddingTop: 2 }}>
+                <Whiteboard />
+                <ScreenShareContainer />
+                <WhiteboardToolbar />
+                <ScenesController />
+                <RemoteControlContainer />
+                <StreamWindowsContainer />
+                <RemoteControlToolbar />
+              </Layout>
+            </Layout>
+            <DialogContainer />
+            <LoadingContainer />
+          </Layout>
+          <WidgetContainer />
+          <ToastContainer />
+          <Watermark />
+        </SceneSwitch>
+      </FixedAspectRatioRootBox>
+    </Room>
+  );
 };
 
-export const OneToOneScenario = observer(() => {
-    const layoutCls = classnames("edu-room");
-
-    return (
-        <Room>
-            <FixedAspectRatioRootBox trackMargin={{top: 27}}>
-                <Layout className={layoutCls} direction="col">
-                    <NavigationBarContainer />
-                    <Layout className="horizontal">
-                        /** 调整 Layout 中 Content 与 Aside 的顺序。*/
-                        <Aside>
-                            <Room1v1StreamsContainer />
-                            <ChatWidgetPC />
-                        </Aside>
-                        <Content>
-                            <BigWidgetWindowContainer>
-                                <WhiteboardContainer></WhiteboardContainer>
-                            </BigWidgetWindowContainer>
-                            <Aside className="aisde-fixed">
-                                <CollectorContainer />
-                            </Aside>
-                        </Content>
-                    </Layout>
-                    <DialogContainer />
-                    <LoadingContainer />
-                </Layout>
-                {/* <ExtAppContainer /> */}
-                <ExtensionAppContainer />
-                <ToastContainer />
-            </FixedAspectRatioRootBox>
-        </Room>
-    );
-});
 ```
 
-![](https://web-cdn.agora.io/docs-files/1649916010668)
+![](WX20221128-213140@2x.png)
 
 #### 添加 logo
 
@@ -605,8 +590,13 @@ export class EduLectureUIStore extends EduClassroomUIStore {
 ...
 // 继承基类 Toolbar UI Store
 export class OneToOneToolbarUIStore extends ToolbarUIStore {
-  ...
- get teacherTools(): ToolbarItem[] {
+  readonly allowedCabinetItems: string[] = [
+    CabinetItemEnum.Whiteboard,
+    CabinetItemEnum.ScreenShare,
+    CabinetItemEnum.Laser,
+  ];
+  @computed
+  get teacherTools(): ToolbarItem[] {
     let _tools: ToolbarItem[] = [];
     if (this.boardApi.mounted && !this.classroomStore.remoteControlStore.isHost) {
       _tools = [
@@ -693,7 +683,6 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
     return _tools;
   }
 
-
   @computed
   get studentTools(): ToolbarItem[] {
     const { sessionInfo } = EduClassroomConfig.shared;
@@ -742,74 +731,9 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
 
 上述设置能覆盖 `/common` 中的教具，效果如下：
 
-![](https://web-cdn.agora.io/docs-files/1649916757576)
+![](WX20221128-214344@2x.png)
 
-![](https://web-cdn.agora.io/docs-files/1649916722388)
-
-### 修改视频窗口工具栏的位置
-
-当前灵动课堂中视频窗口的工具栏会悬浮出现在视频窗口下方。如果你想将一对一场景中的工具栏位置改为视频窗口的左侧，可在 `/one-on-one` 目录下创建 `stream-ui.ts`，重写 `toolbarPlacement` 方法。
-
-```typescript
-// packages/agora-classroom-sdk/src/infra/stores/one-on-one/stream-ui.ts
-import { computed } from 'mobx';
-import { StreamUIStore } from '../common/stream';
-
-
-export class OneToOneStreamUIStore extends StreamUIStore {
-  ...
-  // override
-  @computed get toolbarPlacement(): 'bottom' | 'left' {
-    return 'left';
-  }
-
-  ...
-}
-
-
-// 对应的业务组件
-const ToolItem: FC<{
-  tool: EduStreamTool;
-}> = visibilityListItemControl(
-  observer(({ tool }) => {
-    const { streamUIStore } = useStore();
-    const { toolbarPlacement } = streamUIStore;
-    return (
-      // Tooltip 组件，placement 属性控制工具栏位置
-      <Tooltip title={tool.toolTip} placement={toolbarPlacement}>
-        <span>
-          {tool.interactable ? (
-            <SvgIcon
-              size={22}
-              onClick={tool.onClick}
-              type={tool.iconType.icon}
-              colors={{ iconPrimary: tool.iconType.color }}
-              hoverType={tool.hoverIconType?.icon ?? tool.iconType.icon}
-              hoverColors={{ iconPrimary: tool.hoverIconType?.color ?? tool.iconType.color }}
-            />
-          ) : (
-            <SvgImg
-              colors={{ iconPrimary: tool.iconType.color }}
-              type={tool.iconType.icon}
-              size={22}
-            />
-          )}
-        </span>
-      </Tooltip>
-    );
-  }),
-);
-```
-
-效果如下：
-
-**修改前**
-
-![](https://web-cdn.agora.io/docs-files/1649917042806)
-
-**修改后**
-
-![](https://web-cdn.agora.io/docs-files/1649917031341)
+![](WX20221128-215107@2x.png)
 
 ## 更多示例
 
