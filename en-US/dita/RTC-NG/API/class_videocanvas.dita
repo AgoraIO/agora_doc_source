@@ -89,7 +89,7 @@
 @property(nonatomic, assign) int mediaPlayerId;
 @property(assign, nonatomic) CGRect cropArea;
 @end</codeblock>
-<codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
     uid_t uid;
     media::base::RENDER_MODE_TYPE renderMode;
@@ -113,10 +113,13 @@
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
+  uid?: number;
   renderMode?: RenderModeType
   mirrorMode?: VideoMirrorModeType
-  uid?: number
+  setupMode?: VideoViewSetupMode;
   sourceType?: VideoSourceType
+  mediaPlayerId?: number;
+  cropArea?: Rectangle;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class VideoCanvas
     {
@@ -151,34 +154,56 @@
         public VIDEO_SOURCE_TYPE sourceType { set; get; }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
-  view?: any;
-  renderMode?: RenderModeType;
-  mirrorMode?: VideoMirrorModeType;
+  view?: any
   uid?: number;
-  sourceType?: VideoSourceType;
+  renderMode?: RenderModeType
+  mirrorMode?: VideoMirrorModeType
+  setupMode?: VideoViewSetupMode;
+  sourceType?: VideoSourceType
+  mediaPlayerId?: number;
+  cropArea?: Rectangle;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class VideoCanvas {
   const VideoCanvas(
       {this.view,
+      this.uid,
       this.renderMode,
       this.mirrorMode,
-      this.uid,
-      this.sourceType});
+      this.setupMode,
+      this.sourceType,
+      this.mediaPlayerId,
+      this.cropArea});
 
   @JsonKey(name: 'view')
   final int? view;
-  @JsonKey(name: 'renderMode')
-  final RenderModeType? renderMode;
-  @JsonKey(name: 'mirrorMode')
-  final VideoMirrorModeType? mirrorMode;
+
   @JsonKey(name: 'uid')
   final int? uid;
+
+  @JsonKey(name: 'renderMode')
+  final RenderModeType? renderMode;
+
+  @JsonKey(name: 'mirrorMode')
+  final VideoMirrorModeType? mirrorMode;
+
+  @JsonKey(name: 'setupMode')
+  final VideoViewSetupMode? setupMode;
+
   @JsonKey(name: 'sourceType')
   final VideoSourceType? sourceType;
+
+  @JsonKey(name: 'mediaPlayerId')
+  final int? mediaPlayerId;
+
+  @JsonKey(name: 'cropArea')
+  final Rectangle? cropArea;
+
   factory VideoCanvas.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoCanvasFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc"> </section>
         <section id="parameters">
@@ -218,11 +243,37 @@
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
-                <pd>The type of the video source, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
             </plentry>
             <plentry props="android ios mac">
                 <pt>sourceId</pt>
                 <pd>The ID of the video source.</pd>
+            </plentry>
+            <plentry>
+                <pt>setupMode</pt>
+                <pd props="ios mac cpp framework">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE" />.</pd>
+                <pd props="android">Setting mode of the view.<ul>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE" />(0): (Default) Replaces a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_ADD" />(1): Adds a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Delete a view.</li>
+                </ul></pd>
+            </plentry>
+            <plentry>
+                <pt>mediaPlayerId</pt>
+                <pd>The ID of the media player. You can get the media player ID by calling <xref keyref="getMediaPlayerId" />.</pd>
+                <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER" />.</pd>
+            </plentry>
+            <plentry>
+                <pt>cropArea</pt>
+                <pd>
+                    <p props="android cpp framework"><ph props="cpp framework">(Android and iOS only)</ph> (Optional) The display area for the video frame. See <xref keyref="Rectangle" />. Where <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</p>
+                    <p props="apple">(Optional) The display area for video frames, which consists of the following parameters:<ul>
+                    <li>x: The horizontal offset from the top-left corner.</li>
+                    <li>y: The vertical offset from the top-left corner.</li>
+                    <li>width: The width of the region.</li>
+                    <li>height: The height of the region.</li>
+                    </ul><parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</p>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

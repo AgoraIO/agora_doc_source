@@ -16,12 +16,22 @@
             <codeblock props="android" outputclass="language-java">void onMusicCollectionResult(
       String requestId, int status, int page, int pageSize, int total, Music[] list);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicCollectionResult:(NSString *)requestId status:(AgoraMusicContentCenterStatusCode)status result:(AgoraMusicCollection *)result;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onMusicCollectionResult(const char* requestId, MusicContentCenterStatusCode status, agora_refptr&lt;MusicCollection> result) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp"> virtual void onMusicCollectionResult(const char* requestId, MusicContentCenterStatusCode status, agora_refptr&lt;MusicCollection> result) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="electron" outputclass="language-typescript">onMusicCollectionResult?(
+    requestId: string,
+    status: MusicContentCenterStatusCode,
+    result: MusicCollection
+  ): void;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract void OnMusicCollectionResult(string requestId, MusicContentCenterStatusCode status, MusicCollection result);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onMusicCollectionResult?(
+    requestId: string,
+    status: MusicContentCenterStatusCode,
+    result: MusicCollection
+  ): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, MusicContentCenterStatusCode status,
+      MusicCollection result)? onMusicCollectionResult;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -30,39 +40,41 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>当你调 <xref keyref="getMusicCollectionByMusicChartId"/> 方法来通过音乐榜单的 ID 获取指定榜单的音乐资源列表，SDK 会触发此回调报告榜单中音乐资源列表的详细信息。</p>
+            <p>当你调 <xref keyref="getMusicCollectionByMusicChartId"/> 方法来获取指定榜单的音乐资源列表，SDK 会触发此回调报告榜单中音乐资源列表的详细信息。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="onMusicChartsResult/id">
-                <pt></pt>
-                <pd></pd>
+                <pt/>
+                <pd/>
             </plentry>
-             <plentry id="status">
-                 <pt>status</pt>
-                 <pd><p props="apple cpp">请求状态，详见 <xref keyref="MusicContentCenterStatusCode"/>。</p>
-                 <p props="android">请求状态：
-                 <ul><li>0：请求成功。</li>
-                 <li>1：请求失败。</li></ul></p></pd>
-             </plentry>
-                <plentry props="android">
-                    <pt>page</pt>
-                    <pd>当前页面编号。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>pageSize</pt>
-                    <pd>当前音乐资源列表的总页面数量。</pd>
-                </plentry>
-                <plentry props="android">
-                    <pt>total</pt>
-                    <pd>列表内音乐资源的总数量。</pd>
-                </plentry>
-                <plentry>
-                    <pt props="android">list</pt>
-                    <pt props="apple cpp">result</pt>
-                    <pd><ph>音乐资源列表的详细信息。</ph><ph>详见 <xref keyref="Music" props="android"/><xref keyref="MusicCollection" props="apple cpp"/>。</ph></pd>
-                </plentry>
+            <plentry>
+                <pt>status</pt>
+                <pd><p props="cpp apple framework">请求状态，详见 <xref keyref="MusicContentCenterStatusCode"/>。</p> <p props="android">请求状态：
+
+                    <ul>
+                    <li>0: 请求成功。</li>
+                    <li>1: 请求失败。</li>
+                    </ul> </p> </pd>
+            </plentry>
+            <plentry props="android">
+                <pt>page</pt>
+                <pd>当前页面编号，默认从 1 开始。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>pageSize</pt>
+                <pd>当前音乐资源列表的总页面数量，最大值为 50。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>total</pt>
+                <pd>列表内音乐资源的总数量。</pd>
+            </plentry>
+            <plentry>
+                <pt props="android">list</pt>
+                <pt props="apple cpp framework">result</pt>
+                <pd><ph>音乐资源列表的详细信息。</ph><ph>详见 <xref keyref="Music" props="android"/><xref keyref="MusicCollection" props="apple cpp framework"/>。</ph></pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

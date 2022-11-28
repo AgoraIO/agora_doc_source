@@ -17,12 +17,23 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int) setRemoteAudioAttenuation:(double)attenuation userId:(NSUInteger)uid forceSet:(BOOL)forceSet;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteAudioAttenuation(uid_t uid, double attenuation, bool forceSet) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract setRemoteAudioAttenuation(
+    uid: number,
+    attenuation: number,
+    forceSet: boolean
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetRemoteAudioAttenuation(uint uid, double attenuation, bool forceSet);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setRemoteAudioAttenuation(
+    uid: number,
+    attenuation: number,
+    forceSet: boolean
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteAudioAttenuation(
+      {required int uid, required double attenuation, required bool forceSet});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since</dt>
                 <dd>v4.0.1</dd>
@@ -33,32 +44,31 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-                <plentry conkeyref="removeRemotePosition/uid">
-                    <pt />
-                    <pd />
-                </plentry>
+            <plentry conkeyref="removeRemotePosition/uid">
+                <pt />
+                <pd />
+            </plentry>
             <plentry>
                 <pt>attenuation</pt>
-                    <pd>For the user's sound attenuation coefficient, the value range is [0,1]. As shown below:<ul conkeyref="setPlayerAttenuation/attenuation">
-                            <li />
-                        </ul></pd>
+                <pd>For the user's sound attenuation coefficient, the value range is [0,1]. The values are as follows:<ul conkeyref="setPlayerAttenuation/attenuation">
+                    <li />
+                    </ul></pd>
             </plentry>
-                <plentry>
-                    <pt>forceSet</pt>
-                    <pd>Whether to force the user's sound attenuation effect:<ul>
-                        <li><codeph><ph keyref="true" /></codeph>: Force <parmname>attenuation</parmname> to set the sound attenuation of the user. At this time, the <parmname>attenuation</parmname> coefficient of the sound insulation area set in the <parmname>audioAttenuation</parmname> in the <xref keyref="SpatialAudioZone" /> does not take effect for the user.</li>
-                        <li><codeph><ph keyref="false" /></codeph>: Do not force <parmname>attenuation</parmname> to set the user's sound attenuation effect, as shown in the following two cases.<ul conkeyref="setPlayerAttenuation/forceset-false">
-                            <li />
-                            </ul></li>
-                        </ul></pd>
-                </plentry>
+            <plentry>
+                <pt>forceSet</pt>
+                <pd>Whether to force the user's sound attenuation effect:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Force <parmname>attenuation</parmname> to set the sound attenuation of the user. At this time, the <parmname>attenuation</parmname> coefficient of the sound insulation area set in the <parmname>audioAttenuation</parmname> in the <xref keyref="SpatialAudioZone" /> does not take effect for the user.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not force <parmname>attenuation</parmname> to set the user's sound attenuation effect, as shown in the following two cases.<ul conkeyref="setPlayerAttenuation/forceset-false">
+                        <li />
+                        </ul></li>
+                    </ul></pd>
+            </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
             <ul>
-                <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
-            </ul>
-        </section>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

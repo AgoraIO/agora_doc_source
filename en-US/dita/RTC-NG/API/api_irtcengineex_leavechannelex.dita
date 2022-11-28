@@ -18,10 +18,18 @@
               options:(AgoraLeaveChannelOptions * _Nonnull)options
     leaveChannelBlock:(void(^ _Nullable)(AgoraChannelStats* _Nonnull stat))leaveChannelBlock;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract leaveChannelEx(connection: RtcConnection): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannelEx(RtcConnection connection);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract leaveChannelEx(connection: RtcConnection): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannelEx(RtcConnection connection);</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract leaveChannelEx(
+    connection: RtcConnection,
+    options?: LeaveChannelOptions
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannelEx(RtcConnection connection, LeaveChannelOptions options);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract leaveChannelEx(
+    connection: RtcConnection,
+    options?: LeaveChannelOptions
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannelEx(
+      {required RtcConnection connection, LeaveChannelOptions? options});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -29,6 +37,18 @@
             <plentry conkeyref="joinChannelEx/connection">
                 <pt />
                 <pd />
+            </plentry>
+            <plentry props="native">
+                <pt>options</pt>
+                <pd>
+                    <dl outputclass="since">
+                    <dlentry>
+                        <dt>Since</dt>
+                        <dd>v4.1.0</dd>
+                    </dlentry>
+                    </dl>
+                    <p>The options for leaving the channel. See <xref keyref="LeaveChannelOptions" />.</p>
+                    <note>This parameter only supports the <parmname>stopMicrophoneRecording</parmname> member in the <apiname keyref="LeaveChannelOptions" />settings; setting other members does not take effect.</note></pd>
             </plentry>
             <plentry props="ios mac" conkeyref="leaveChannel2/leavechannelblock">
                 <pt />

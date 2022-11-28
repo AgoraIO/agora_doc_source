@@ -16,8 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver receiver);
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setEncodedVideoFrameDelegate:(id&lt;AgoraEncodedVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver* observer) = 0;
-</codeblock></p>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoEncodedFrameObserver(IVideoEncodedFrameObserver* observer) = 0;</codeblock>           
             <codeblock props="electron" outputclass="language-typescript">abstract registerVideoEncodedFrameObserver(
     observer: IVideoEncodedFrameObserver
   ): number;</codeblock>
@@ -25,13 +24,24 @@
             <codeblock props="rn" outputclass="language-typescript">abstract registerVideoEncodedFrameObserver(
     observer: IVideoEncodedFrameObserver
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">void registerVideoEncodedFrameObserver(VideoEncodedFrameObserver observer);</codeblock> </section>
+            <codeblock props="flutter" outputclass="language-dart">void registerVideoEncodedFrameObserver(VideoEncodedFrameObserver observer);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
+ </section>
         <section id="detailed_desc">
+            <p>If you only want to observe encoded video frames (such as h.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver" /> class through this method.</p>
+            <p id="mix">If you want to obtain the original video data of some remote users (referred to as group A) and the encoded video data of other remote users (referred to as group B), you can refer to the following steps:<ol>
+            <li>Call <xref keyref="registerVideoFrameObserver" /> to register the raw video frame observer before joining the channel.</li>
+            <li>Call <xref keyref="registerVideoEncodedFrameObserver" /> to register the encoded video frame observer before joining the channel.</li>
+            <li>After joining the channel, get the user IDs of group B users through <xref keyref="onUserJoined" />, and then call <xref keyref="setRemoteVideoSubscriptionOptions" /> to set the <parmname>encodedFrameOnly</parmname> of this group of users to <codeph><ph keyref="true" /></codeph>.</li>
+            <li>Call <xref keyref="muteAllRemoteVideoStreams" /> to start receiving the video streams of all remote users. Then:<ul>
+                <li>The raw video data of group A users can be obtained through the callback in <xref keyref="IVideoFrameObserver" />, and the SDK renders the data by default.</li>
+                <li>The encoded video data of group B users can be obtained through the callback in <xref keyref="IVideoEncodedFrameObserver" />.</li>
+                </ul> </li>
+            </ol> </p>
             <note type="attention">
             <ul>
-            <li>Call this method after joining a channel.</li>
-            <li>If you register an <xref keyref="IVideoEncodedFrameObserver" /> object, you cannot register an <xref keyref="IVideoFrameObserver" /> object.</li>
-            </ul> </note> </section>
+            <li>Call this method before joining a channel.</li>
+            </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -47,10 +57,6 @@
                 <pt>mode</pt>
                 <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE" />.</pd>
             </plentry>
-                <plentry props="unity">
-                    <pt>mode</pt>
-                    <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE" />.</pd>
-                </plentry>
             </parml> </section>
         <section id="return_values" props="native electron rn">
             <title>Returns</title>

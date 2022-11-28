@@ -26,12 +26,13 @@
     mediaPlayerId: number
   ): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame, int mediaPlayerId)?
-      onMediaPlayerVideoFrame;</codeblock> </p>
+      onMediaPlayerVideoFrame;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册视频数据观测器并调用 <xref keyref="createMediaPlayer"/> 后， SDK 会在捕捉到每个视频帧时触发该回调。
-                你可以在回调中获取媒体播放器中的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
-            <p>完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
+            <p>成功注册视频数据观测器并调用 <xref keyref="createMediaPlayer"/> 后， SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取媒体播放器中的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
+            <p props="native unity electron rn">完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
+            <note type="attention" props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的视频数据发送回 SDK。</note>
         </section>
         <section id="parameters">
             <title>参数</title>

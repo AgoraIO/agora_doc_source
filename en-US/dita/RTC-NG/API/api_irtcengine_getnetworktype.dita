@@ -17,10 +17,11 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int) getNetworkType;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getNetworkType() = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
-            <codeblock props="electron" outputclass="language-typescript" />
-            <codeblock props="unity" outputclass="language-csharp" />
-            <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+            <codeblock props="electron" outputclass="language-typescript">abstract getNetworkType(): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetNetworkType();</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract getNetworkType(): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getNetworkType();</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -30,24 +31,22 @@
             </dlentry>
             </dl>
             <p>You can use this method to get the type of network in use at any stage.</p>
-            <note type="note">You can call this method either before or after joining a channel.</note>
-        </section>
+            <note type="note">You can call this method either before or after joining a channel.</note> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
             <li>≥ 0: The method call is successful, and the local network connection type is returned.<ul>
-                    <li>0: The SDK disconnects from the network.</li>
-                    <li>1: The network type is LAN.</li>
-                    <li>2: The network type is Wi-Fi (including hotspots).</li>
-                    <li>3: The network type is mobile 2G.</li>
-                    <li>4: The network type is mobile 3G.</li>
-                    <li>5: The network type is mobile 4G.</li>
-                    <li>6: The network type is mobile 5G.</li>
-                    </ul> </li>
+                <li>0: The SDK disconnects from the network.</li>
+                <li>1: The network type is LAN.</li>
+                <li>2: The network type is Wi-Fi (including hotspots).</li>
+                <li>3: The network type is mobile 2G.</li>
+                <li>4: The network type is mobile 3G.</li>
+                <li>5: The network type is mobile 4G.</li>
+                <li>6: The network type is mobile 5G.</li>
+                </ul> </li>
             <li>&lt; 0: The method call failed with an error code.<ul>
-                    <li>-1: The network type is unknown.</li>
-                    </ul> </li>    
-            </ul>
-        </section>
+                <li>-1: The network type is unknown.</li>
+                </ul> </li>
+            </ul> </section>
     </refbody>
 </reference>

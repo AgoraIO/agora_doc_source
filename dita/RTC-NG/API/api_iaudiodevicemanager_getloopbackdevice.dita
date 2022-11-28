@@ -17,33 +17,35 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int getLoopbackDevice(char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract getLoopbackDevice(): string;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int GetLoopbackDevice(ref string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;String> getLoopbackDevice();</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p/>
+            <p>该方法仅适用于 Windows。</p>
         </section>
-        <section id="parameters">
+        <section id="parameters" props="cpp unity">
             <title>参数</title>
             <parml>
-                <plentry id="deviceid">
-                    <pt>deviceId</pt>
-                    <pd>输出参数，当前声卡采集设备的 ID。最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
-                </plentry>
+            <plentry id="deviceid">
+                <pt>deviceId</pt>
+                <pd>输出参数，当前声卡采集设备的 ID。</pd><pd props="cpp">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <ul>
+            <ul props="cpp unity">
             <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul>
-        </section>
+            <p props="electron flutter">当前声卡采集设备的 ID。</p></section>
     </refbody>
 </reference>

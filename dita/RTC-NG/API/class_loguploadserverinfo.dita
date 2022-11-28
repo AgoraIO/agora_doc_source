@@ -51,10 +51,41 @@
 serverPath(path), serverPort(port), serverHttps(https) {}
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="electron" outputclass="language-typescript">export class LogUploadServerInfo {
+  serverDomain?: string;
+  serverPath?: string;
+  serverPort?: number;
+  serverHttps?: boolean;
+}</codeblock>
             <codeblock props="unity" outputclass="language-csharp"/>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="rn" outputclass="language-typescript">export class LogUploadServerInfo {
+  serverDomain?: string;
+  serverPath?: string;
+  serverPort?: number;
+  serverHttps?: boolean;
+}</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">class LogUploadServerInfo {
+  const LogUploadServerInfo(
+      {this.serverDomain, this.serverPath, this.serverPort, this.serverHttps});
+
+  @JsonKey(name: 'serverDomain')
+  final String? serverDomain;
+
+  @JsonKey(name: 'serverPath')
+  final String? serverPath;
+
+  @JsonKey(name: 'serverPort')
+  final int? serverPort;
+
+  @JsonKey(name: 'serverHttps')
+  final bool? serverHttps;
+
+  factory LogUploadServerInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$LogUploadServerInfoFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$LogUploadServerInfoToJson(this);
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -66,7 +97,9 @@ serverPath(path), serverPort(port), serverHttps(https) {}
             <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>serverDomain</pt>
@@ -79,17 +112,16 @@ serverPath(path), serverPort(port), serverHttps(https) {}
             <plentry>
                 <pt>serverPort</pt>
                 <pd>日志服务器的端口。</pd>
-            </plentry>       
+            </plentry>
             <plentry>
                 <pt>serverHttps</pt>
                 <pd>日志服务器是否使用 HTTPS 协议：
+                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 使用 HTTPS 协议。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 使用 HTTP 协议。</li>
-                    </ul>
-                 </pd>
-            </plentry>                  
-            </parml>
-        </section>
+                    </ul> </pd>
+            </plentry>
+            </parml> </section>
     </refbody>
 </reference>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiodevicevolumechanged">
-    <title><ph keyref="onAudioDeviceVolumeChanged" /></title>
+    <title><ph keyref="onAudioDeviceVolumeChanged"/></title>
     <shortdesc id="short"><ph id="shortdesc">音频设备或 app 的音量发生改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioDeviceVolumeChanged" />
+                <indexterm keyref="onAudioDeviceVolumeChanged"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioDeviceVolumeChanged(MEDIA_DEVICE_TYPE deviceType, int volume, bool muted) {
     (void)deviceType;
     (void)volume;
@@ -32,20 +32,19 @@
     muted: boolean
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(MediaDeviceType deviceType, int volume, bool muted)?
-      onAudioDeviceVolumeChanged;
-</codeblock> </p>
+      onAudioDeviceVolumeChanged;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>当音频播放、采集设备或 app 的音量发生改变时，会触发该回调。</p>
-
+            <note>该回调仅适用于 Windows 和 macOS。</note>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
+            <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry>
                 <pt>deviceType</pt>
-                <pd>设备类型定义。详见 <xref keyref="MEDIA_DEVICE_TYPE" />。</pd>
+                <pd>设备类型定义。详见 <xref keyref="MEDIA_DEVICE_TYPE"/>。</pd>
             </plentry>
             <plentry>
                 <pt>volume</pt>
@@ -55,9 +54,10 @@
                 <pt>muted</pt>
                 <pd>
                     <p>音频设备是否为静音状态：
+                    
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 音频设备已静音。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: 音频设备未被静音。</li>
+                    <li><codeph><ph keyref="true"/></codeph>: 音频设备已静音。</li>
+                    <li><codeph><ph keyref="false"/></codeph>: 音频设备未被静音。</li>
                     </ul></p>
                 </pd>
             </plentry>

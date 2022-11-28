@@ -96,6 +96,8 @@
   verifyDomainName?: string;
   
   mode?: LocalProxyMode;
+
+  advancedConfig?: AdvancedConfigInfo;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalAccessPointConfiguration
     {
@@ -105,6 +107,7 @@
         public int domainListSize { set; get; }
         public string verifyDomainName { set; get; }
         public LOCAL_PROXY_MODE mode { set; get; }
+        public AdvancedConfigInfo advancedConfig { set; get; }
 
         public LocalAccessPointConfiguration()
         {
@@ -114,6 +117,7 @@
             domainListSize = 0;
             verifyDomainName = "";
             mode = LOCAL_PROXY_MODE.kConnectivityFirst;
+            advancedConfig = new AdvancedConfigInfo();
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalAccessPointConfiguration {
@@ -129,16 +133,18 @@
   verifyDomainName?: string;
   
   mode?: LocalProxyMode;
+
+  advancedConfig?: AdvancedConfigInfo;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalAccessPointConfiguration {
-
   const LocalAccessPointConfiguration(
       {this.ipList,
       this.ipListSize,
       this.domainList,
       this.domainListSize,
       this.verifyDomainName,
-      this.mode});
+      this.mode,
+      this.advancedConfig});
 
   @JsonKey(name: 'ipList')
   final List&lt;String&gt;? ipList;
@@ -158,11 +164,15 @@
   @JsonKey(name: 'mode')
   final LocalProxyMode? mode;
 
+  @JsonKey(name: 'advancedConfig')
+  final AdvancedConfigInfo? advancedConfig;
+
   factory LocalAccessPointConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalAccessPointConfigurationFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAccessPointConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -193,9 +203,13 @@
                     <p props="ios mac cpp electron unity rn flutter">The connection mode. See <xref keyref="LOCAL_PROXY_MODE" />.</p>
                     <p props="android">Select one of the following connection modes:<ul>
                     <li><ph keyref="ConnectivityFirst" />(0): The SDK firstly tries to connect to the specified Agora private media server; if the connection attempt fails, it will connect to the Agora SD-RTN™ instead.</li>
-                    <li><ph keyref="LocalOnly" />(2) The SDK only tries to connect to the specified Agora private media server.</li>
+                    <li><ph keyref="LocalOnly" />(1) The SDK only tries to connect to the specified Agora private media server.</li>
                     </ul></p>
                 </pd>
+            </plentry>
+            <plentry>
+                <pt>advancedConfig</pt>
+                <pd>The advanced options for the Local Access Point. See <xref keyref="AdvancedConfigInfo" />.</pd>
             </plentry>
             </parml> </section>
     </refbody>

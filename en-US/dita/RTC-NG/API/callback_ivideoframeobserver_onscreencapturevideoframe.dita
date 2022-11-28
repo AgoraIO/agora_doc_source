@@ -23,20 +23,18 @@
         </section>
         <section id="detailed_desc">
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data for screen sharing. You can then pre-process the data according to your scenarios.</p>
-            <p>After pre-processing, you can send the processed video data back to the SDK through this callback.</p>
-            <note type="attention">
+            <p props="native unity electron rn">After pre-processing, you can send the processed video data back to the SDK through this callback.</p>
+            <note type="attention" props="native unity electron rn">
             <ul>
             <li>This callback does not support sending processed RGBA video data back to the SDK.</li>
             <li>The video data that this callback gets has not been pre-processed, and is not watermarked, cropped, rotated or beautified.</li>
-            </ul> </note> </section>
+            </ul> </note>
+            <note type="attention" props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</note>
+        </section>
         <section id="parameters" conkeyref="onCaptureVideoFrame/parameters"/>
         <section id="return_values" props="native electron rn">
             <title>Returns</title>
-            <p id="return">
-            <ul>
-            <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
-            <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
-            </ul></p>
+            <p conkeyref="onCaptureVideoFrame/return"/>
         </section>
     </refbody>
 </reference>
