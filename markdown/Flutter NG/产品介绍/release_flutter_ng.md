@@ -321,26 +321,9 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - `LocalAccessPointConfiguration`
 - `AdvancedConfigInfo`
 - `LogUploadServerInfo`
-- `MusicContentCenter` 类 (Android, iOS)
-    - `initialize`
-    - `renewToken`
-    - `release`
-    - `registerEventHandler`
-    - `unregisterEventHandler`
-    - `createMusicPlayer`
-    - `getMusicCharts`
-    - `getMusicCollectionByMusicChartId`
-    - `searchMusic`
-    - `preload`
-    - `isPreloaded`
-    - `getLyric`
-- `MusicPlayer` 类 (Android, iOS)
-    - `openWithSongCode`
-- `MusicContentCenterEventHandler` 类 (Android, iOS)
-    - `onMusicChartsResult`
-    - `onMusicCollectionResult`
-    - `onLyricResult`
-    - `onPreLoadEvent`
+- `MusicContentCenter` 接口类及其中方法 (Android, iOS)
+- `MusicPlayer` 接口类及其中方法 (Android, iOS)
+- `MusicContentCenterEventHandler` 接口类及其中回调 (Android, iOS)
 - `MusicChartInfo` 类 (Android, iOS)
 - `ClimaxSegment` 类 (Android, iOS)
 - `Music` 类 (Android, iOS)
