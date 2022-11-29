@@ -34,11 +34,11 @@
 
 **4. 音强选流**
 
-该版本新增音强选流功能，如需开启该功能，请联系[技术支持](mailto:sales@agora.io)。
-
 Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音量最大的音频流并传输至接收端。N 默认为 3 路，如需自定义设置 N，请联系技术支持。
 
 同时，Agora 还支持发流端自定义设置是否参与音强选流，不参与选流的音频流会直接和被选出的 N 路音频流一同传输至接收端。在大型会议等多人发流的场景下，开启音强选流功能可以帮助减轻接收端的下行带宽压力和系统资源消耗，详见音强选流。
+
+<div class="alert info">该版本新增音强选流功能，如需开启该功能，请联系 <a href="https://agora-ticket.agora.io/">技术支持</a>。</div>
 
 
 **5. 双流模式**
@@ -92,14 +92,14 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 该版本新增 `setRemoteVideoSubscriptionOptions` 和 `setRemoteVideoSubscriptionOptionsEx` 方法，当你调用 `registerVideoEncodedFrameObserver` 方法为编码后的视频注册视频帧观测器时，SDK 默认订阅编码后的视频帧。如果你想要修改订阅选项，可以调用新增的方法进行设置。
 
-有关更多注册视频观测器和订阅选项的介绍，详见 [API 参考](./API%20Reference/flutter_ng/API/toc_video_observer.html)。
+有关更多注册视频观测器和订阅选项的介绍，详见 [API 参考](./API%20Reference/flutter_ng/API/toc_video_observer.html#api_imediaengine_registervideoencodedframeobserver)。
 
 
 **12. MPUDP (MultiPath UDP)**
 
 自该版本起，SDK 支持 MPUDP 协议，在 UDP 协议的基础上，允许连接并使用多个路径来最大化信道资源的使用。你可以同时在移动端和桌面端使用不同的物理网卡并将其聚合，达到有效对抗网络抖动、提升传输质量的效果。
 
-<div class="alert note">如果你希望体验该功能，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。</div>
+<div class="alert info">如果你希望体验该功能，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。</div>
 
 
 **13. 注册插件 (Windows)**
@@ -129,11 +129,9 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 - 新增 `muteLocalAudioStreamEx` 和 `muteLocalVideoStreamEx` 方法，分别用于取消或恢复发布本地音频流和视频流。
 - 新增 `muteAllRemoteAudioStreamsEx` 和 `muteAllRemoteVideoStreamsEx` 方法，分别用于取消或恢复订阅所有远端用户的音频流和视频流。
-- 新增 `startRtmpStreamWithoutTranscodingEx`、`startRtmpStreamWithTranscodingEx``、updateRtmpTranscodingEx` 和 `stopRtmpStreamEx` 方法，用于实现多频道场景下的旁路推流。
+- 新增 `startRtmpStreamWithoutTranscodingEx`、`startRtmpStreamWithTranscodingEx`、`updateRtmpTranscodingEx` 和 `stopRtmpStreamEx` 方法，用于实现多频道场景下的旁路推流。
 - 新增 `startChannelMediaRelayEx`、`updateChannelMediaRelayEx`、`pauseAllChannelMediaRelayEx`、`resumeAllChannelMediaRelayEx` 和 `stopChannelMediaRelayEx` 方法，用于实现多频道场景下的跨频道媒体流转发。
 - `leaveChannelEx` 方法新增 `options` 参数，用于在多频道场景下离开频道时，选择是否停止麦克风采集。
-
-<div class="alert note"><code>options</code> 参数仅支持设置是否停止麦克风采集 (<code>stopMicrophoneRecording</code>) ，设置 <code>LeaveChannelOptions</code> 其他成员均不生效。</div>
 
 
 **17. 视频编码偏好**
@@ -174,14 +172,17 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 **3. 屏幕共享**
 
-该版本对屏幕共享功能做了一系列优化，除以下列出的功能性改进之外，还有一部分可用性提升，详见问题修复。
+该版本对屏幕共享功能做了一系列优化，除以下列出的功能性改进之外，还有一部分可用性提升，详见[问题修复](#问题修复)。
 
-- 在 `ScreenCaptureSourceInfo` 中增加了 `minimizeWindow` 成员，用于表示目标窗口是否已最小化。 (Windows)
-- 在 `ScreenCaptureParameters` 中增加了 `enableHighLight`、`highLightColor` 和 `highLightWidth` 成员，支持你在屏幕共享时对目标窗口或屏幕进行描边。(Windows)
-- 兼容更多主流 app，包括但不限于：WPS Office，Microsoft Office PowerPoint，Visual Studio Code，Adobe Photoshop，Windows Media Player，Scratch。(Windows)
+**Windows**
+- 在 `ScreenCaptureSourceInfo` 中增加了 `minimizeWindow` 成员，用于表示目标窗口是否已最小化。 
+- 在 `ScreenCaptureParameters` 中增加了 `enableHighLight`、`highLightColor` 和 `highLightWidth` 成员，支持你在屏幕共享时对目标窗口或屏幕进行描边。
+- 兼容更多主流 app，包括但不限于：WPS Office，Microsoft Office PowerPoint，Visual Studio Code，Adobe Photoshop，Windows Media Player，Scratch。
+- 兼容更多设备和操作系统，包括但不限于：Window 8 系统，无独立显卡的设备，双显卡设备。 
+- 支持超高清视频 (分辨率为 4K，帧率为 60 fps)，你可以在满足要求的设备上使用该功能。声网推荐的最低设备规格为：inter(R) Core(TM) i7-9750H CPU @ 2.60GHZ。
+
+**macOS**
 - 兼容更多设备和场景，包括但不限于：双显卡设备，使用外接屏幕进行屏幕共享。(macOS)
-- 兼容更多设备和操作系统，包括但不限于：Window 8 系统，无独立显卡的设备，双显卡设备。 (Windows)
-- 支持超高清视频 (分辨率为 4K，帧率为 60 fps)，你可以在满足要求的设备上使用该功能。声网推荐的最低设备规格为：inter(R) Core(TM) i7-9750H CPU @ 2.60GHZ。(Windows) 
 - 支持超高清视频 (分辨率为 4K，帧率为 60 fps)，你可以在满足要求的设备上使用该功能。声网推荐的最低设备规格为：MacBook Pro (16 英寸，M1，2021 年)。 (macOS) 
 
 
@@ -350,7 +351,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - `VideoEncoderConfiguration`：新增 `advanceOptions`
 - `LocalAccessPointConfiguration`：新增 `advancedConfig`
 - `onClientRoleChanged`：新增 `newRoleOptions`
-- `VideoCanvas`：新增 `setupMode`、`mediaPlayerId`、`cropArea`
+- `VideoCanvas`：新增 `setupMode`、`mediaPlayerId` 和 `cropArea`
 - `LocalVideoStats`：新增 `hwEncoderAccelerating`
 
 
