@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enableloopbackrecordingex">
     <title><ph keyref="enableLoopbackRecordingEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capture.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capturing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,14 +32,14 @@
       {required RtcConnection connection,
       required bool enabled,
       String? deviceName});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>If you enable loopback audio capture, the output of the sound card is mixed into the audio stream sent to the other end.</p>
+            <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
-            <li props="cpp unity">Applies to the macOS and Windows platforms only.</li>
-            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this method, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends that you use Soundflower for loopback audio capture.</li>
+            <li props="cpp unity">This method applies to the macOS and Windows platforms only.</li>
+            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this method, use a virtual sound card and pass its name in the <parmname>deviceName</parmname> parameter. Agora recommends that you use Soundflower for loopback audio capture.</li>
             <li>You can call this method either before or after joining a channel.</li>
             </ul></note> </section>
         <section id="parameters">
@@ -51,16 +51,15 @@
             </plentry>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Sets whether to enable loopback audio capture:
-                    <ul id="ul_kgm_wbx_jqb">
-                    <li><codeph><ph keyref="true" /></codeph>: Enable loopback audio capture.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable loopback audio capture.</li>
+                <pd>Sets whether to enable loopback audio capture:<ul id="ul_kgm_wbx_jqb">
+                    <li><codeph><ph keyref="true" /></codeph>: Enable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable loopback audio capturing.</li>
                     </ul></pd>
             </plentry>
-            <plentry conkeyref="enableLoopbackRecording/device_name">
-                <pt />
-                <pd />
-            </plentry>
+                <plentry props="unity electron flutter">
+                    <pt>deviceName</pt>
+                    <pd>The device name.</pd>
+                </plentry>
             </parml> </section>
         <section id="return_values" props="mac cpp unity rn electron">
             <title>Returns</title>
