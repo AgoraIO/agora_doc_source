@@ -30,7 +30,7 @@ This release introduces filtering audio streams based on volume. Once this funct
 
 Agora also supports publishers in choosing whether the audio streams being published are to be filtered based on volume. Streams that are not filtered bypass this filter mechanism and are transported directly to the receivers. In scenarios with a number of publishers, enabling this function helps reduce the bandwidth and device system pressure for the receivers.
 
-<div class="alert info">To enable this function, contact <a href="mailto:support@agora.io/">support@agora.io</a>。</div>
+<div class="alert info">To enable this function, contact <a href="mailto:support@agora.io/">support@agora.io</a>.</div>
 
 **5. Loopback device (Windows)**
 
@@ -60,7 +60,7 @@ This release adds the `setHeadphoneEQParameters` method, which is used to adjust
 
 As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
-<div class="alert info">To enable this feature, contact <a href="mailto:sales@agora.io">sales@agora.io</a>。</div>
+<div class="alert info">To enable this feature, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>
 
 
 **9. Register extensions (Windows)**

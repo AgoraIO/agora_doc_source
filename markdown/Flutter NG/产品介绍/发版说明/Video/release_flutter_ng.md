@@ -475,12 +475,12 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 
 在 Windows 和 macOS 平台：
 
-- 在加入频道前调用 `startScreenCaptureByDisplayId`，然后调用 `joinChannel` [2/2] 加入频道并设置 `publishScreenTrack` 或 `publishSecondaryScreenTrack` 为 `true`，即可开始屏幕共享。
+- 在加入频道前调用 `startScreenCaptureByDisplayId`，然后调用 `joinChannel` 加入频道并设置 `publishScreenTrack` 或 `publishSecondaryScreenTrack` 为 `true`，即可开始屏幕共享。
 - 在加入频道后调用 `startScreenCaptureByDisplayId`，然后调用 `updateChannelMediaOptions` 设置 `publishScreenTrack` 或 `publishSecondaryScreenTrack` 为 `true`，即可开始屏幕共享。
 
 在 Android 和 iOS 平台：
 
-- 在加入频道前调用 `startScreenCapture`，然后调用 `joinChannel` [2/2] 加入频道并设置 `publishScreenCaptureVideo` 为 `true`，即可开始屏幕共享。
+- 在加入频道前调用 `startScreenCapture`，然后调用 `joinChannel` 加入频道并设置 `publishScreenCaptureVideo` 为 `true`，即可开始屏幕共享。
 - 在加入频道后调用 `startScreenCapture`，然后调用 `updateChannelMediaOptions` 设置 `publishScreenCaptureVideo` 为 `true`，即可开始屏幕共享。
 
 
