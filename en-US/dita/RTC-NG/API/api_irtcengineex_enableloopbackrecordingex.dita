@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_enableloopbackrecordingex">
-    <title><ph keyref="enableLoopbackRecordingEx" /></title>
+    <title><ph keyref="enableLoopbackRecordingEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capturing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableLoopbackRecordingEx" />
+                <indexterm keyref="enableLoopbackRecordingEx"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecordingEx:(BOOL)enabled
-                    connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
+                      deviceName:(NSString* _Nullable)deviceName
+                      connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(enableLoopbackRecordingEx(_:deviceName:connection:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(const RtcConnection&amp; connection, bool enabled, const char* deviceName = NULL) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecordingEx(
     connection: RtcConnection,
@@ -32,34 +33,33 @@
       {required RtcConnection connection,
       required bool enabled,
       String? deviceName});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
-            <li props="cpp unity">This method applies to the macOS and Windows platforms only.</li>
-            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this method, use a virtual sound card and pass its name in the <parmname>deviceName</parmname> parameter. Agora recommends that you use Soundflower for loopback audio capture.</li>
-            <li>You can call this method either before or after joining a channel.</li>
-            </ul></note> </section>
+            <li props="cpp unity electron flutter">This method applies to the macOS and Windows platforms only.</li>
+            <li>macOS 系统默认声卡不支持采集功能，如果你需要使用该功能，请启用一个虚拟声卡，并将 <parmname>deviceName</parmname> 设为该虚拟声卡的设备名。 声网推荐你使用声网自研的虚拟声卡 AgoraALD 进行采集。</li>
+        </ul></note></section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry>
                 <pt>enabled</pt>
                 <pd>Sets whether to enable loopback audio capture:<ul id="ul_kgm_wbx_jqb">
-                    <li><codeph><ph keyref="true" /></codeph>: Enable loopback audio capturing.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
                     </ul></pd>
             </plentry>
-                <plentry props="unity electron flutter">
-                    <pt>deviceName</pt>
-                    <pd>The device name.</pd>
-                </plentry>
+            <plentry conkeyref="enableLoopbackRecording/device_name">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
             </parml> </section>
         <section id="return_values" props="mac cpp unity rn electron">
             <title>Returns</title>
