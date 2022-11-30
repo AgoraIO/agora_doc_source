@@ -34,7 +34,7 @@
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
             <li props="cpp unity electron flutter">This method applies to the macOS and Windows platforms only.</li>
-            <li>macOS 系统默认声卡不支持采集功能，如果你需要使用该功能，请启用一个虚拟声卡，并将 <parmname>deviceName</parmname> 设为该虚拟声卡的设备名。 声网推荐你使用声网自研的虚拟声卡 AgoraALD 进行采集。</li>
+            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
             <li>You can call this method either before or after joining a channel.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -42,18 +42,18 @@
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable loopback audio capture.<ul id="ul_qjq_swq_t4b">
+                <pd>Whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
                     <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
-                    <li>: (Default) Disable loopback capturing.<codeph><ph keyref="false"/></codeph></li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
                     </ul></pd>
             </plentry>
             <plentry id="device_name">
                 <pt>deviceName</pt>
-                <pd props="mac">The device name of the virtual sound card. 默认为空，代表使用 AgoraALD 虚拟声卡进行采集。</pd>
+                <pd props="mac">The device name of the virtual sound card. The default value is set to NULL, which means using AgoraALD for loopback audio capturing.</pd>
                 <pd props="electron cpp unity flutter">
                     <ul>
-                    <li>macOS: The device name of the virtual sound card. 默认为空，代表使用 AgoraALD 虚拟声卡进行采集。</li>
-                    <li>Windows: The device name of the sound card. The default is set to null, which means the SDK uses the sound card of your device for loopback audio capture.</li>
+                    <li>macOS: The device name of the virtual sound card. The default value is set to NULL, which means using AgoraALD for loopback audio capturing.</li>
+                    <li>Windows: The device name of the sound card. The default is set to null, which means the SDK uses the sound card of your device for loopback audio capturing.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
