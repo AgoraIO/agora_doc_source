@@ -166,7 +166,6 @@ This release fixed the following issues:
 **Added**
 
 - `getNativeHandle`
-- `getMusicContentCenter`
 - `getPlaybackDefaultDevice`
 - `getRecordingDefaultDevice`
 - `SimulcastStreamMode`
@@ -202,20 +201,6 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `LocalAccessPointConfiguration`
-- `AdvancedConfigInfo`
-- `LogUploadServerInfo`
-- `MusicContentCenter` interface class and methods in it (Android, iOS)
-- `MusicPlayer` interface class and methods in it (Android, iOS)
-- `MusicContentCenterEventHandler` interface class and callbacks in it (Android, iOS)
-- `MusicChartInfo` class (Android, iOS)
-- `ClimaxSegment` class (Android, iOS)
-- `Music` class (Android, iOS)
-- `MusicContentCenterConfiguration` class (Android, iOS)
-- `MusicChartCollection` class (iOS)
-- `MusicCollection` class (iOS)
-- `PreloadStatusCode` (iOS)
-- `MusicContentCenterStatusCode` (iOS)
 
 
 **Modified**
@@ -223,7 +208,6 @@ This release fixed the following issues:
 - Adds `isAudioFilterable` in `ChannelMediaOptions`
 - Adds `enableDoppler` in `SpatialAudioParams`
 - Adds `options` in `leaveChannelEx`
-- Adds `advancedConfig` in `LocalAccessPointConfiguration`
 - Adds `newRoleOptions` in `onClientRoleChanged`
 - `enableInEarMonitoring`: Supports Windows and macOS
 - `setEarMonitoringAudioFrameParameters`: Supports Windows and macOS

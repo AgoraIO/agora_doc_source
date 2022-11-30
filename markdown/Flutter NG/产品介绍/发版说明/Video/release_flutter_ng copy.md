@@ -257,7 +257,6 @@ This release fixed the following issues:
 **Added**
 
 - `getNativeHandle`
-- `getMusicContentCenter`
 - `getPlaybackDefaultDevice`
 - `getRecordingDefaultDevice`
 - `enableDualStreamModeEx`
@@ -303,20 +302,6 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `LocalAccessPointConfiguration`
-- `AdvancedConfigInfo`
-- `LogUploadServerInfo`
-- `MusicContentCenter` interface class and methods in it (Android, iOS)
-- `MusicPlayer` interface class and methods in it (Android, iOS)
-- `MusicContentCenterEventHandler` interface class and callbacks in it (Android, iOS)
-- `MusicChartInfo` class (Android, iOS)
-- `ClimaxSegment` class (Android, iOS)
-- `Music` class (Android, iOS)
-- `MusicContentCenterConfiguration` class (Android, iOS)
-- `MusicChartCollection` class (iOS)
-- `MusicCollection` class (iOS)
-- `PreloadStatusCode` (iOS)
-- `MusicContentCenterStatusCode` (iOS)
 
 
 **Modified**
@@ -327,7 +312,6 @@ This release fixed the following issues:
 - Adds `followEncodeDimensionRatio` in `CameraCapturerConfiguration`
 - Adds `options` in `leaveChannelEx`
 - Adds `advanceOptions` in `VideoEncoderConfiguration`
-- Adds `advancedConfig` in `LocalAccessPointConfiguration`
 - Adds `newRoleOptions` in `onClientRoleChanged`
 - Adds `setupMode`, `mediaPlayerId`, and `cropArea` in `VideoCanvas`
 - Adds `hwEncoderAccelerating` in `LocalVideoStats`
