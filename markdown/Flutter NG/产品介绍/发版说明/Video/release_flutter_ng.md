@@ -1,4 +1,4 @@
-## v6.1.0 版 (对应 Native v4.1.0 版)
+## v6.1.0 版 (对应 Native v6.1.0 版)
 
 该版本于 2022 年 11 月 xx 日发布。
 
@@ -50,7 +50,7 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 1. 接收端主播调用 `setRemoteVideoStreamType` 或 `setRemoteDefaultVideoStreamType` 发起接收小流申请。
 2. 发送端收到申请后自动切换为发送小流模式。
 
-如果你想修改上述发送端的默认行为，可以调用 `setDualStreamMode` 方法，将 `mode` 参数设置为 `disableSimulcastStream` (始终不发送小流) 或 `enableSimulcastStream` (始终发送小流) 。
+如果你想修改上述发送端的默认行为，可以调用 `setDualStreamMode` 方法，将 `mode` 参数设置为 `disableSimulcastStream` (始终不发送小流) 或 `enableSimulcastStream` (始终发送小流)。
 
 
 **6. 声卡采集设备 (Windows)**
@@ -200,8 +200,8 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 该版本对 `updateChannelMediaRelay` 方法做了如下优化：
 
-- 4.1.0 版本前：如果服务器内部原因导致目标频道更新失败，SDK 返回错误码 `relayEventPacketUpdateDestChannelRefused (8)`，你需要重新调用 `updateChannelMediaRelay` 方法。
-- 4.1.0 版本及之后：如果服务器内部原因导致目标频道更新失败，SDK 会重新尝试更新直到目标频道更新成功。
+- 6.1.0 版本前：如果服务器内部原因导致目标频道更新失败，SDK 返回错误码 `relayEventPacketUpdateDestChannelRefused (8)`，你需要重新调用 `updateChannelMediaRelay` 方法。
+- 6.1.0 版本及之后：如果服务器内部原因导致目标频道更新失败，SDK 会重新尝试更新直到目标频道更新成功。
 
 
 **7. AIAEC**
