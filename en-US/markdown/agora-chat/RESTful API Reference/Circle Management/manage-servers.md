@@ -17,43 +17,48 @@ This page shows how to implement servers in circle using RESTful APIs. Before pr
 
 ### Request parameters
 
-| 参数       | 类型   | 描述                                                         | 是否必需 | 
-| :--------- | :----- | :------- | :----------------------------------------------------------- |
-| `host`       | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       | 
-| `org_name`   | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。            | 是       |
-| `app_name`   | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。   | 是       |
-| `server_id`  | String | 社区 ID。                | 是       |
-| `channel_id` | String | 频道 ID。             | 是       |
-| `user_id`    | String | 用户 ID。     |
-| `role`       | Number    | 用户的角色：<br/> - `0`：社区所有者；<br/> - `1`：社区管理员；<br/> - `2`：社区的普通成员。 | 是       |
+| Parameter | Type | Description | Required |
+| :--------- | :----- | :------ | :------- |
+| `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service.  For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `server_id`  | String | The server.         | Yes   |
+| `channel_id` | String | The channel ID.         | Yes     |
+| `user_id`    | String | The user ID.   | Yes |
+| `role`       | Number    | The role of the user in a server.<li>`0`: Owner.</li><li>`1`: Admin.</li><li>`2`: Member.</li> | Yes    |
+
 
 ### Response parameters
 
-| 参数             | 类型    | 描述                                                         |
-| :-----------------| :----- | :----------------------------------------------------------- |
-| `name`              | String | 社区名称。                                              |
-| `owner`             | String | 社区的所有者。                                            |
-| `description`      | String  | 社区描述。                                              |
-| `custom`            | String | 社区的扩展信息。                                            |
-| `icon_url`         | String  | 社区图标的 URL。                                          |
-| `server_tag_id`   | String   | 社区标签 ID。                                           |
-| `tag_name`        | String   | 社区标签名称。                                          |
-| `tag_count`       | Number   | 社区标签数量。                                          |
-| `server_id`       | String   | 社区 ID。                                                  |
-| `default_channel_id` | String | 社区的默认频道的 ID。                                   |
-| `user_id`           | String | 用户 ID。                                                |
-| `role`              | Number | 社区成员的角色：<br/> - `0`：社区所有者；<br/> - `1`：社区管理员；<br/> - `2`：社区的普通成员。 |
-| `created`          | Number  | 社区的创建时间，Unix 时间戳，单位为毫秒。                      |
+| Parameter | Type | Description |
+| :---------------- | :----- | :--------------- |
+| `name`              | String | The server name.     |
+| `owner`             | String | The server owner.      |
+| `description`      | String  | The server description.    |
+| `custom`            | String | The server extension.    |
+| `icon_url`         | String  | The URL of the server icon.                   |
+| `server_tag_id`   | String   | The ID of the server tag.             |
+| `tag_name`        | String   | The name of the server tag.               |
+| `tag_count`       | Number   | The number of the server tags.             |
+| `server_id`       | String   | The server ID.                   |
+| `default_channel_id` | String | The channel ID of the default channel.             |
+| `user_id`   | String |  The user ID.      |
+| `role`              | Number | The role of the user in a server.<li>`0`: Owner.</li><li>`1`: Admin.</li><li>`2`: Member.</li> |
+| `created`          | Number  | The Unix timestamp (ms) when the server is created.     |
 
-## 认证方式
 
-即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入如下 `Authorization` 字段：
 
-```shell
-Authorization：Bearer ${YourAppToken}
+## Authorization
+
+Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
+
+```http
+Authorization: Bearer ${YourAppToken}
 ```
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的开发者进行鉴权。即时通讯 RESTful API 仅支持使用 App Token 的鉴权方式，详见 [使用 app token 鉴权](https://docs.agora.io/en/agora-chat/develop/authentication?platform=android)。
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
+
+
 
 ## 查询环信超级社区用户是否存在
 
