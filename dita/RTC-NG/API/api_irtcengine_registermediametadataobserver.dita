@@ -21,13 +21,14 @@
     observer: IMetadataObserver,
     type: MetadataType
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterMediaMetadataObserver(IMetadataObserver observer, METADATA_TYPE type);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterMediaMetadataObserver(IMetadataObserver observer, METADATA_TYPE type);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerMediaMetadataObserver(
     observer: IMetadataObserver,
     type: MetadataType
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerMediaMetadataObserver(
-      {required MetadataObserver observer, required MetadataType type});</codeblock> </p>
+      {required MetadataObserver observer, required MetadataType type});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>你需要自行实现 <xref keyref="IMetadataObserver" /> 类并在本方法中指定 metadata 类型。本方法允许你为视频流添加同步的 metadata，用于多样化的直播互动，如发送购物链接、电子优惠券和在线测试。</p>
@@ -47,11 +48,12 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron rn">
+        <section id="return_values" props="native rn unity electron">
             <title>返回值</title>
             <ul>
-            <li>0：方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。</li>
-            </ul> </section>
+                <li>0：方法调用成功。</li>
+                <li>&lt; 0：方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

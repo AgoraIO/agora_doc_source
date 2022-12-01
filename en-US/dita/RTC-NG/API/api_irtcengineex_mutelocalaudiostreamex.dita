@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineex_mutelocalaudiostreamex">
+    <title><ph keyref="muteLocalAudioStreamEx" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local audio stream.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="muteLocalAudioStreamEx" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int muteLocalAudioStreamEx(boolean muted, RtcConnection connection);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteLocalAudioStreamEx:(BOOL)mute connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteLocalAudioStreamEx(_:connection:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int muteLocalAudioStreamEx(bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract muteLocalAudioStreamEx(
+    mute: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int MuteLocalAudioStreamEx(bool mute, RtcConnection connection);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract muteLocalAudioStreamEx(
+    mute: boolean,
+    connection: RtcConnection
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; muteLocalAudioStreamEx(
+      {required bool mute, required RtcConnection connection});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
+        </section>
+        <section id="detailed_desc">
+            <note type="attention">This method does not affect any ongoing audio recording, because it does not disable the audio capture device.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt props="android">muted</pt>
+                <pt props="ios mac cpp unity flutter rn electron">mute</pt>
+                <pd id="mute">
+                    <p>Whether to stop publishing the local audio stream:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Stops publishing the local audio stream.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Resumes publishing the local audio stream.</li>
+                    </ul></p>
+                </pd>
+            </plentry>
+            <plentry conkeyref="joinChannelEx/connection">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native electron unity rn">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li> &lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>
