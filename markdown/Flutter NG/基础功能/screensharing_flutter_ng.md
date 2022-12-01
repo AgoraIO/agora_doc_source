@@ -143,8 +143,6 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
 
    - 方式一：提示用户在 iOS 系统的控制中心长按**屏幕录制**按钮，并选择用你创建的 Extension 开启录制。
    - 方式二：使用 Apple 在 iOS 12.0 中新增的 [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)，使 app 界面弹出“开启屏幕共享”的按钮。提示用户通过点击该按钮开启录制。
-    
-   <div class="alert note">在 Flutter 中您需要自行实现与 <code>RPSystemBroadcastPickerView</code> 交互逻辑。<code>RPSystemBroadcastPickerView</code> 存在一些使用限制并可能在之后版本的 iOS 系统中失效。因此，请酌情使用方式二。</div>
 
 ### 相关参考
 #### 注意事项
@@ -196,8 +194,6 @@ API 的调用时序如下图所示：
 
 ### 实现步骤
 #### 1. 获取屏幕 ID 或窗口 ID
-
-<div class="alert note"><code>getScreenCaptureSources</code> 通过 Apple 和 Windows 原生的 API 实现屏幕共享的数据流转：<ul><li>在 macOS 中，该方法通过 <code>NSScreen</code> 获取 Display ID，详情参考 <a href="https://developer.apple.com/documentation/appkit/nsscreen/1388360-devicedescription">Apple deviceDescription 说明</a>，通过 <code>CGWindowListCopyWindowInfo</code> 获取 Window ID，详情参考 <a href="https://developer.apple.com/documentation/coregraphics/1455137-cgwindowlistcopywindowinfo">Apple CGWindowListCopyWindowInfo 说明</a>；</li><li>在 Windows 中，该方法通过 <code>EnumDisplayDevices</code> 获取 Display ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumdisplaydevices">EnumDisplayDevicesA function (winuser.h)</a>，通过 <code>EnumerateWindows</code> 获取 Window ID，详情参考 <a href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows">EnumWindows function (winuser.h)</a>。</li></ul></div>
 
 你可以直接通过 agora_rtc_engine 提供的 [`getScreenCaptureSources`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_getscreencapturesources) 来获取 Display ID 或 Window ID，示例代码如下：
 
@@ -258,15 +254,33 @@ await _engine.joinChannelEx(
 如需发布屏幕共享流和本地摄像头采集的视频流，在你的项目中添加如下代码：
 
 ```dart
-// 补充代码 是否还适用？
+await _engine.joinChannelEx(
+    token: '',
+    connection:
+        RtcConnection(channelId: _controller.text, localUid: localUid),
+    options: const ChannelMediaOptions(
+      publishCameraTrack: true,
+      publishMicrophoneTrack: true,
+      clientRoleType: ClientRoleType.clientRoleBroadcaster,
+    ));
+
+
+await _engine.joinChannelEx(
+    token: '',
+    connection: RtcConnection(
+        channelId: _controller.text, localUid: shareShareUid),
+    options: const ChannelMediaOptions(
+      autoSubscribeVideo: true,
+      autoSubscribeAudio: true,
+      publishScreenTrack: true,
+      publishSecondaryScreenTrack: true,
+      publishCameraTrack: false,
+      publishMicrophoneTrack: false,
+      publishScreenCaptureAudio: true,
+      publishScreenCaptureVideo: true,
+      clientRoleType: ClientRoleType.clientRoleBroadcaster,
+    ));
 ```
-
-##### 同时共享屏幕和开启视频
-
-如需要在桌面端（macOS/Windows）支持通过子进程进行屏幕共享，可参考我们提供的示例文件 [screen_sharing_with_subprocess](https://github.com/AgoraIO/Agora-Flutter-SDK/blob/master/example/lib/examples/advanced/screen_sharing_with_subprocess/screen_sharing_with_subprocess.dart)。
-
-<div class="alert note">对于 macOS 平台，在调用 <a href="./API%20Reference/flutter/v5.3.0/API/class_irtcengine.html#api_getscreensharehelper"><code>getScreenShareHelper</code></a> 前，请设置 <code>AppGroup</code> 并将其设为 <code>getScreenShareHelper</code>  中的 <code>appGroup</code> 参数的值。详见<a href="https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AppSandboxInDepth/AppSandboxInDepth.html#//apple_ref/doc/uid/TP40011183-CH3-SW21">相关苹果开发者文档</a>。</div>
-
 
 ### 相关参考
 #### 注意事项
