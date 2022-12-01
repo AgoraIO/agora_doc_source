@@ -27,7 +27,7 @@
 
 iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit 框架实现录制屏幕，然后将屏幕共享流作为一个用户加入频道实现的。由于 Apple 不支持在主 app 进程采集屏幕，因此你需要为屏幕共享流单独创建一个 Extension。
 
-![img](https://web-cdn.agora.io/docs-files/1606368135907)
+<img src="https://web-cdn.agora.io/docs-files/1669876715125" width="80%">
 
 ### 实现步骤
 #### 1. 打开项目
@@ -37,16 +37,13 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
 #### 2. 创建 Broadcast Upload Extension
 
   a. 在 Xcode 菜单栏，点击 **File > New > Target...**, 在弹出的窗口中选择 **Broadcast Upload Extension**, 点击 **Next**。
-  
-  ![](https://web-cdn.agora.io/docs-files/1669197671714)
+  <img src="https://web-cdn.agora.io/docs-files/1669197671714" width="80%">
 
   b. 在弹出的窗口中填写 **Product Name** 等信息，取消勾选 **Include UI Extension**，点击 **Finish**。Xcode 会自动创建该 Extension 的文件夹，其中包含 `SampleHandler.h` 文件。
-
-  ![](https://web-cdn.agora.io/docs-files/1669197908653)
+  <img src="https://web-cdn.agora.io/docs-files/1669197908653" width="80%">
 
   c. 在 **Target** 下选中刚创建的 Extension，点击 **General**，在 **Deployment Info** 下将 iOS 的版本设置为 12.0 或以上。
-
-  ![](https://web-cdn.agora.io/docs-files/1669199079385)
+  <img src="https://web-cdn.agora.io/docs-files/1669199079385" width="80%">
 
 #### 3. 修改 SampleHandler
 
@@ -106,26 +103,26 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
           switch (reason) {
               case AgoraReplayKitExtReasonInitiativeStop:
                   {
-      //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Host app stop screen capture"};
-      //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
-      //                [self finishBroadcastWithError:error];
+                    // NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Host app stop screen capture"};
+                    // NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+                    // [self finishBroadcastWithError:error];
                       NSLog(@"AgoraReplayKitExtReasonInitiativeStop");
                   }
                   break;
               case AgoraReplayKitExtReasonConnectFail:
                   {
-      //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Connect host app fail need startScreenCapture in host app"};
-      //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
-      //                [self finishBroadcastWithError:error];
+                    // NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Connect host app fail need startScreenCapture in host app"};
+                    // NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+                    // [self finishBroadcastWithError:error];
                       NSLog(@"AgoraReplayKitExReasonConnectFail");
                   }
                   break;
     
               case AgoraReplayKitExtReasonDisconnect:
                   {
-      //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"disconnect with host app"};
-      //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
-      //               [self finishBroadcastWithError:error];
+                    // NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"disconnect with host app"};
+                    // NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+                    // [self finishBroadcastWithError:error];
                       NSLog(@"AgoraReplayKitExReasonDisconnect");
                   }
                   break;
@@ -149,11 +146,11 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
 
 - 如果你使用 Cocoapods，则需要在 `Podfile` 文件中添加如下内容，为你的屏幕共享 Extension 添加依赖。
 
-```
-    target 'Your Extension Name' do
-         pod 'AgoraRtcEngine_iOS', 'x.x.x.x'
-    end
-```
+  ```
+  target 'Your Extension Name' do
+        pod 'AgoraRtcEngine_iOS', 'x.x.x.x'
+  end
+  ```
 
    <div class="alert note"><ul><li>将 <code>Your Extension Name</code> 替换为你的 Extension 名。</li><li>pod 依赖版本需要与 <a href="https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/ios/agora_rtc_engine.podspec">agora_rtc_engine/ios/agora_rtc_engine.podspec</a> 文件中的 SDK 依赖版本保持一致。</li></ul></div>
 
@@ -165,12 +162,12 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
 
 Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK) 的 `example/ios` 目录下提供了屏幕共享的示例，包含以下文件：
 
-```
-├── ScreenSharing
-│   ├── Info.plist
-│   ├── SampleHandler.h
-│   └── SampleHandler.m
-```
+  ```
+  ├── ScreenSharing
+  │   ├── Info.plist
+  │   ├── SampleHandler.h
+  │   └── SampleHandler.m
+  ```
 
 #### API 参考
 
@@ -197,16 +194,16 @@ API 的调用时序如下图所示：
 
 你可以直接通过 agora_rtc_engine 提供的 [`getScreenCaptureSources`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_getscreencapturesources) 来获取 Display ID 或 Window ID，示例代码如下：
 
-```dart
+  ```dart
   await rtcEngine.getScreenCaptureSources(
           thumbSize: thumbSize, iconSize: iconSize, includeScreen: true);
-```
+  ```
 
 #### 2. 共享指定的屏幕或窗口
 
 以下示例代码演示如何在 macOS/Windows 上通过 Display ID 共享指定屏幕：
 
-```dart
+  ```dart
   await rtcEngine.startScreenCaptureByDisplayId(
       displayId: sourceId!,
       regionRect: const Rectangle(x: 0, y: 0, width: 0, height: 0),
@@ -214,11 +211,11 @@ API 的调用时序如下图所示：
         captureMouseCursor: true,
         frameRate: 30,
       ));
-```
+  ```
 
 以下示例代码演示如何在 macOS/Windows上 通过 Window ID 共享指定窗口：
 
-```dart
+  ```dart
   await rtcEngine.startScreenCaptureByWindowId(
     windowId: sourceId!,
     regionRect: const Rectangle(x: 0, y: 0, width: 0, height: 0),
@@ -227,60 +224,60 @@ API 的调用时序如下图所示：
       frameRate: 30,
     ),
   );
-```
+  ```
 
 #### 3. 加入频道并发布屏幕共享流
 
 如果仅需发布屏幕共享流，参考如下代码：
 
-```dart
-await _engine.joinChannelEx(
-    token: '',
-    connection: RtcConnection(
-        channelId: _controller.text, localUid: shareShareUid),
-    options: const ChannelMediaOptions(
-      autoSubscribeVideo: true,
-      autoSubscribeAudio: true,
-      publishScreenTrack: true,
-      publishSecondaryScreenTrack: true,
-      publishCameraTrack: false,
-      publishMicrophoneTrack: false,
-      publishScreenCaptureAudio: true,
-      publishScreenCaptureVideo: true,
-      clientRoleType: ClientRoleType.clientRoleBroadcaster,
-    ));
-```
+  ```dart
+  await _engine.joinChannelEx(
+      token: '',
+      connection: RtcConnection(
+          channelId: _controller.text, localUid: shareShareUid),
+      options: const ChannelMediaOptions(
+        autoSubscribeVideo: true,
+        autoSubscribeAudio: true,
+        publishScreenTrack: true,
+        publishSecondaryScreenTrack: true,
+        publishCameraTrack: false,
+        publishMicrophoneTrack: false,
+        publishScreenCaptureAudio: true,
+        publishScreenCaptureVideo: true,
+        clientRoleType: ClientRoleType.clientRoleBroadcaster,
+      ));
+  ```
 
 如需发布屏幕共享流和本地摄像头采集的视频流，在你的项目中添加如下代码：
 
-```dart
-await _engine.joinChannelEx(
-    token: '',
-    connection:
-        RtcConnection(channelId: _controller.text, localUid: localUid),
-    options: const ChannelMediaOptions(
-      publishCameraTrack: true,
-      publishMicrophoneTrack: true,
-      clientRoleType: ClientRoleType.clientRoleBroadcaster,
-    ));
+  ```dart
+  await _engine.joinChannelEx(
+      token: '',
+      connection:
+          RtcConnection(channelId: _controller.text, localUid: localUid),
+      options: const ChannelMediaOptions(
+        publishCameraTrack: true,
+        publishMicrophoneTrack: true,
+        clientRoleType: ClientRoleType.clientRoleBroadcaster,
+      ));
 
 
-await _engine.joinChannelEx(
-    token: '',
-    connection: RtcConnection(
-        channelId: _controller.text, localUid: shareShareUid),
-    options: const ChannelMediaOptions(
-      autoSubscribeVideo: true,
-      autoSubscribeAudio: true,
-      publishScreenTrack: true,
-      publishSecondaryScreenTrack: true,
-      publishCameraTrack: false,
-      publishMicrophoneTrack: false,
-      publishScreenCaptureAudio: true,
-      publishScreenCaptureVideo: true,
-      clientRoleType: ClientRoleType.clientRoleBroadcaster,
-    ));
-```
+  await _engine.joinChannelEx(
+      token: '',
+      connection: RtcConnection(
+          channelId: _controller.text, localUid: shareShareUid),
+      options: const ChannelMediaOptions(
+        autoSubscribeVideo: true,
+        autoSubscribeAudio: true,
+        publishScreenTrack: true,
+        publishSecondaryScreenTrack: true,
+        publishCameraTrack: false,
+        publishMicrophoneTrack: false,
+        publishScreenCaptureAudio: true,
+        publishScreenCaptureVideo: true,
+        clientRoleType: ClientRoleType.clientRoleBroadcaster,
+      ));
+  ```
 
 ### 相关参考
 #### 注意事项
