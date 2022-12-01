@@ -1785,3 +1785,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
      "cursor" : "ZGNiMjRmNGY1YjczYjlhYTNkYjk1MDY2YmEyNzFmODQ6aW06ZGlzY29yZDo2MjI0MjEwMiM5MDoy"
 }
 ```
+
+## Status codes
+
+For details, see [HTTP Status Codes](https://docs.agora.io/en/agora-chat/reference/http-status-codes).
