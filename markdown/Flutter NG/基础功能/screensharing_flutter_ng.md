@@ -7,7 +7,7 @@
 - 视频会议场景中，屏幕共享可以将讲话者本地的文件、数据、网页、PPT 等画面分享给其他与会人；
 - 在线课堂场景中，屏幕共享可以将老师的课件、笔记、讲课内容等画面展示给学生观看。
 
-本文介绍如何使用 Flutter SDK 6.x 在 Android，iOS，macOS 和 Windows 平台实现屏幕共享。
+本文介绍如何使用 Agora Flutter SDK 6.x 在 Android，iOS，macOS 和 Windows 平台实现屏幕共享。
 
 
 ## 前提条件
@@ -17,7 +17,7 @@
 
 ## Android 平台
 
-在 Android 平台实现屏幕共享时，只需要调用 [`startScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapture) 开启屏幕共享。你可以参考 Agora-Flutter-SDK 中的 [screen_sharing.dart](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/screen_sharing/screen_sharing.dart) 文件实现屏幕共享。
+在 Android 平台实现屏幕共享时，只需要调用 [`startScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapture) 开启屏幕共享。你可以参考 Agora 视频 SDK 中的 [screen_sharing.dart](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/screen_sharing/screen_sharing.dart) 文件实现屏幕共享。
 
 ## iOS 平台
 
@@ -27,7 +27,7 @@
 
 iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit 框架实现录制屏幕，然后将屏幕共享流作为一个用户加入频道实现的。由于 Apple 不支持在主 app 进程采集屏幕，因此你需要为屏幕共享流单独创建一个 Extension。
 
-<img src="https://web-cdn.agora.io/docs-files/1669876715125" width="80%">
+<img src="https://web-cdn.agora.io/docs-files/1669950976994" width="80%">
 
 ### 实现步骤
 #### 1. 打开项目
@@ -187,8 +187,7 @@ Agora 目前在 macOS/Windows 平台上支持以下两种屏幕共享方案：
 
 API 的调用时序如下图所示：
 
-![](https://web-cdn.agora.io/docs-files/1669355133839)
-
+![](https://web-cdn.agora.io/docs-files/1669950827142)
 ### 实现步骤
 #### 1. 获取屏幕 ID 或窗口 ID
 
