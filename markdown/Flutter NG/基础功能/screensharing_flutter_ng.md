@@ -45,7 +45,23 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
   c. 在 **Target** 下选中刚创建的 Extension，点击 **General**，在 **Deployment Info** 下将 iOS 的版本设置为 12.0 或以上。
   <img src="https://web-cdn.agora.io/docs-files/1669199079385" width="80%">
 
-#### 3. 修改 SampleHandler
+  <div class="alert note">Broadcast Upload Extension 的内存使用限制为 50 MB，请确保屏幕共享的 Extension 内存使用不超过 50 MB。</div>
+
+#### 3. 修改 Podfile
+
+如果你使用 Cocoapods，则需要在 `Podfile` 文件中添加如下内容，为你的屏幕共享 Extension 添加依赖。
+
+  ```
+  target 'Your Extension Name' do
+        pod 'AgoraRtcEngine_iOS', 'x.x.x.x'
+  end
+  ```
+
+  <div class="alert note"><ul><li>将 <code>Your Extension Name</code> 替换为你的 Extension 名。</li><li>pod 依赖版本需要与 <a href="https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/ios/agora_rtc_engine.podspec">agora_rtc_engine/ios/agora_rtc_engine.podspec</a> 文件中的 SDK 依赖版本保持一致。</li></ul></div>
+
+打开终端，进入 `./ios` 目录，运行 `pod install`。
+
+#### 4. 修改 SampleHandler
 
 修改 `SampleHandler.h` 文件，以修改实现屏幕共享的代码逻辑：
 
@@ -141,43 +157,8 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
    - 方式一：提示用户在 iOS 系统的控制中心长按**屏幕录制**按钮，并选择用你创建的 Extension 开启录制。
    - 方式二：使用 Apple 在 iOS 12.0 中新增的 [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)，使 app 界面弹出“开启屏幕共享”的按钮。提示用户通过点击该按钮开启录制。
 
-### 相关参考
-#### 注意事项
 
-- 如果你使用 Cocoapods，则需要在 `Podfile` 文件中添加如下内容，为你的屏幕共享 Extension 添加依赖。
-
-  ```
-  target 'Your Extension Name' do
-        pod 'AgoraRtcEngine_iOS', 'x.x.x.x'
-  end
-  ```
-
-   <div class="alert note"><ul><li>将 <code>Your Extension Name</code> 替换为你的 Extension 名。</li><li>pod 依赖版本需要与 <a href="https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/ios/agora_rtc_engine.podspec">agora_rtc_engine/ios/agora_rtc_engine.podspec</a> 文件中的 SDK 依赖版本保持一致。</li></ul></div>
-
-- Broadcast Upload Extension 的内存使用限制为 50 MB，请确保屏幕共享的 Extension 内存使用不超过 50 MB。
-
-- 屏幕共享的进程中，需要调用 [`muteAllRemoteVideoStreams`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_muteallremotevideostreams) 和 [`muteAllRemoteAudioStreams`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_muteallremoteaudiostreams) 方法取消接收远端用户的流，避免重复订阅。
-
-#### 示例项目
-
-Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK) 的 `example/ios` 目录下提供了屏幕共享的示例，包含以下文件：
-
-  ```
-  ├── ScreenSharing
-  │   ├── Info.plist
-  │   ├── SampleHandler.h
-  │   └── SampleHandler.m
-  ```
-
-#### API 参考
-
-- [`startScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapture)
-- [`stopScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopscreencapture)
-- [`updateScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatescreencapture)
-
-
-
-## macOS 平台/Windows 平台
+## macOS/Windows 平台
 ### 技术原理
 
 Agora 目前在 macOS/Windows 平台上支持以下两种屏幕共享方案：
@@ -278,22 +259,37 @@ API 的调用时序如下图所示：
       ));
   ```
 
-### 相关参考
-#### 注意事项
 
-视频共享编码属性 `ScreenCaptureParameters` 类中各参数的设置可能会影响计费。如果你将 `dimensions` 参数设为默认值，会按照 1920 × 1080 进行计费。
+## 相关参考
+### 注意事项
 
-#### 示例项目
+屏幕共享流的视频单价以你在 [`ScreenCaptureParameters`](https://docs.agora.io/cn/video-call-4.x/API%20Reference/flutter_ng/API/rtc_api_data_type.html#class_screencaptureparameters) 中设置的视频分辨率为准，`dimensions` 参数的默认值为 1920 × 1080 进行计费。详见 [屏幕共享流的分辨率](https://docs.agora.io/cn/video-call-4.x/billing_rtc_ng?platform=Flutter#屏幕共享流的分辨率)。
 
-Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK) 中提供屏幕共享的示例，你可以参考其中的 [`screen_sharing.dart`](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/screen_sharing/screen_sharing.dart) 文件实现屏幕共享。
+### 示例项目
 
-#### API 参考
+Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK) 中提供屏幕共享的代码示例，你可以参考以下文件实现屏幕共享：
 
-- [`getScreenCaptureSources`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_getscreencapturesources)
-- [`startScreenCaptureByDisplayId`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapturebydisplayid)
-- [`startScreenCaptureByWindowId`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapturebywindowid) 
-- [`updateScreenCaptureParameters`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatescreencaptureparameters)
-- [`updateScreenCaptureRegion`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatescreencaptureregion)
-- [`setScreenCaptureContentHint`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setscreencapturecontenthint)
-- [`setScreenCaptureScenario`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setscreencapturescenario)
-- [`stopScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopscreencapture)
+- [`screen_sharing.dart`](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/screen_sharing/screen_sharing.dart)
+- [`info.plist`](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/ios/ScreenSharing/Info.plist)
+- [`SampleHandler.h`](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/ios/ScreenSharing/SampleHandler.h)
+- [`SampleHandler.m`](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/ios/ScreenSharing/SampleHandler.m)
+
+
+### API 参考
+
+- Android, iOS
+
+  - [`startScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapture)
+  - [`stopScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopscreencapture)
+  - [`updateScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatescreencapture)
+
+- Windows, macOS
+
+  - [`getScreenCaptureSources`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_getscreencapturesources)
+  - [`startScreenCaptureByDisplayId`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapturebydisplayid)
+  - [`startScreenCaptureByWindowId`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startscreencapturebywindowid) 
+  - [`updateScreenCaptureParameters`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatescreencaptureparameters)
+  - [`updateScreenCaptureRegion`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatescreencaptureregion)
+  - [`setScreenCaptureContentHint`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setscreencapturecontenthint)
+  - [`setScreenCaptureScenario`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setscreencapturescenario)
+  - [`stopScreenCapture`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopscreencapture)
