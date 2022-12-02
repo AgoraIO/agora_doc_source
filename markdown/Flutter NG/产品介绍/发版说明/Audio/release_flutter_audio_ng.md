@@ -30,7 +30,7 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 
 同时，Agora 还支持发流端自定义设置是否参与音强选流，不参与选流的音频流会直接和被选出的 N 路音频流一同传输至接收端。在大型会议等多人发流的场景下，开启音强选流功能可以帮助减轻接收端的下行带宽压力和系统资源消耗，详见音强选流。
 
-<div class="alert info">该版本新增音强选流功能，如需开启该功能，请联系 <a href="https://agora-ticket.agora.io/">技术支持</a>。</div>
+<div class="alert info">该版本新增音强选流功能，如需开启该功能，请联系<a href="https://agora-ticket.agora.io/">技术支持</a>。</div>
 
 
 **5. 声卡采集设备 (Windows)**
