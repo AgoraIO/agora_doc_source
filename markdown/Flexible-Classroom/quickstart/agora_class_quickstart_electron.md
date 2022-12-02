@@ -51,7 +51,7 @@
 
 ## 获取源码
 
-灵动课堂 Electron 端的源码位于 GitHub [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 仓库，你可参考以下步骤获取源码：
+灵动课堂 Electron 端的源码位于 GitHub [flexible-classroom-desktop](https://github.com/AgoraIO-Community/flexible-classroom-desktop) 仓库，你可参考以下步骤获取源码：
 
 ~f38d4cd0-3fce-11ed-8dae-bf25bf08a626~
 
@@ -71,10 +71,10 @@
     yarn bootstrap
     ```
 
-3. 将项目根目录下的 `.env.example` 文件移动至 `packages/agora-classroom-sdk` 并更名为 `.env`：
+3. 将项目根目录下的 `.env.example` 文件重命名为 `.env`：
 
     ```bash
-    mv .env.example packages/agora-classroom-sdk/.env
+    mv .env.example .env
     ```
 
 4. 将你的 App ID 和 App Certificate 填写到 `.env` 文件中指定位置：
@@ -84,7 +84,7 @@
     REACT_APP_AGORA_APP_CERTIFICATE={your app certificate}
     ```
 
-    为方便你快速测试，CloudClass-Desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
+    为方便你快速测试，flexible-classroom-desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
 
 5. 参考以下步骤分别在 macOS 或 Windows 设备上运行灵动课堂 Electron 端：
 
@@ -98,7 +98,7 @@
 
     **Windows**
 
-    1. 将 `packages/agora-classroom-sdk/package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
+    1. 将项目根目录下 `package.json` 文件中的 `"agora_electron"` 对象替换成以下内容：
 
         ```json
         "agora_electron": {
