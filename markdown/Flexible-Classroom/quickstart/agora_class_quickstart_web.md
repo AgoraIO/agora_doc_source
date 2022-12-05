@@ -85,7 +85,7 @@
     REACT_APP_AGORA_APP_CERTIFICATE={your app certificate}
     ```
 
-    为方便你快速测试，flexible-classroom-desktop 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
+    为方便你快速测试，`flexible-classroom-desktop` 项目中已包含一个临时 RTM Token 生成器，会用你传入的 App ID 和 App 证书生成一个临时 RTM Token。但是在正式环境中，为确保安全，RTM Token 必须在服务端生成。
 
 5. 运行以下命令以开发模式启动灵动课堂 Web 端：
 

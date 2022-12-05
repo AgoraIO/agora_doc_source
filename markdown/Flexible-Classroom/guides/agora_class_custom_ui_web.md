@@ -6,11 +6,11 @@
 
 功能组件是灵动课堂中最基础的 UI 组件，不和业务逻辑绑定。一个功能组件维护一个功能的内部状态和逻辑，例如 `Button`、`Modal`、`Select`、 `Tree` 等。
 
-功能组件位于 `packages/agora-classroom-sdk/ui-kit`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/ui-kit`(灵动课堂 - 监考场景) 目录中，采用 `react`+`ts`+`storybook` 架构。每个功能组件文件夹均包含以下三个文件：
+功能组件位于 `packages/agora-classroom-sdk/src/ui-kit`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/ui-kit`(灵动课堂 - 监考场景) 目录中，采用 React + Typescript+ Storybook 的架构。每个功能组件文件夹均包含以下三个文件：
 
 -   `.tsx`: 实现 UI 组件的功能。
 -   `.css`: 实现 UI 组件的样式。
--   `.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。开发者可通过 `yarn dev:ui-kit ` 或 `npm run dev:ui-kit` 命令启动项目，在 Storybook 中查看各功能组件。
+-   `.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。你可通过 `yarn dev:ui-kit ` 或 `npm run dev:ui-kit` 命令启动项目，在 Storybook 中查看各功能组件。
 
 下表详细介绍灵动课堂中使用的功能组件：
 
@@ -91,7 +91,7 @@
 ### 场景组件
 #### 教育场景
 
-场景组件是由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课和监考四个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 监考场景) 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
+场景组件由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课和监考四个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 监考场景) 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
 
 | 文件夹          | 场景组件                     |
 | :-------------- | :--------------------------- |
@@ -121,7 +121,7 @@
     - `index.css`: 实现 UI 组件的样式。
     - `index.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。
 
-2. 实现功能组件后，在 `packages/agora-classroom-sdk/src/ui-kit/components/index.ts` 下导出该组件。这样你就可以后续在你自己的项目中导入新写的组件。
+2. 实现功能组件后，在 `packages/agora-classroom-sdk/src/ui-kit/components/index.ts` 下导出该组件，以便后续在你自己的项目中导入新写的组件。
 
 以下示例展示了如何新增一个名为 `agora-demo` 的功能组件：
 
@@ -168,11 +168,11 @@ export const Docs = () => (
 
 ### 修改功能组件
 
-如果你想修改某个功能组件的功能和样式，找到该组件所在的文件夹，修改代码即可。以下提供几个修改示例。
+如果你想修改某个功能组件的功能和样式，找到该组件所在的文件夹并修改代码即可。以下提供几个修改示例。
 
 #### 修改 input 组件占位文字的颜色
 
-你可修改 `packages/agora-classroom-sdk/src/ui-kit/components/input/index.css` 文件来修改 input 组件中占位文字的颜色。
+你可以通过修改 `packages/agora-classroom-sdk/src/ui-kit/components/input/index.css` 文件来修改 Input 组件中占位文字的颜色。
 
 **修改前**
 
@@ -202,7 +202,7 @@ export const Docs = () => (
 
 ### 新增业务组件
 
-如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/infra/capabilities/containers` 下新建agora-demo文件夹，包含以下文件：
+如需新增业务组件，你可以在 `packages/agora-classroom-sdk/src/infra/capabilities/containers` 下新建 `agora-demo` 文件夹，包含以下文件：
 
 -   `index.tsx`: 组合你的功能组件，注入业务逻辑，实现业务功能。
 -   `index.css`: 实现业务组件的样式。
@@ -333,7 +333,7 @@ export const MidClassScenario = () => {
 
 ### 修改业务组件
 
-如果你想修改某个业务组件的功能和样式，找到该组件所在的文件夹，修改代码即可。以下提供几个修改示例。
+如果你想修改某个业务组件的功能和样式，找到该组件所在的文件夹并修改代码即可。以下提供几个修改示例。
 
 #### 在设备设置弹窗上显示摄像头设备个数
 `packages/agora-classroom-sdk/src/infra/capabilities/containers/pretest/pretest-video.tsx`
@@ -375,7 +375,7 @@ const VideoDeviceList = observer(() => {
 
 ## 自定义场景布局
 
-如果你想修改场景布局，找到该场景所在的文件夹，修改代码即可。
+如果你想修改场景布局，找到该场景所在的文件夹并修改代码即可。
 
 #### 移动视频区域和聊天区域的位置
 
@@ -607,7 +607,7 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
           category: ToolbarItemCategory.Clicker,
         }),
         ToolbarItem.fromData({
-          // selector use clicker icon
+          // 设置选择器的图标
           value: 'selection',
           label: 'scaffold.selector',
           icon: 'clicker',
@@ -700,7 +700,7 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
         category: ToolbarItemCategory.Selector,
       }),
       ToolbarItem.fromData({
-        // selector use clicker icon
+        // 设置选择器的图标
         value: 'selection',
         label: 'scaffold.selector',
         icon: 'clicker',
@@ -780,7 +780,7 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
 
 ### 修改白板布局比例
 
-如需调整白板布局，可修改 `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts` 文件中的代码。灵动课堂会先按照`packages/agora-classroom-sdk/src/infra/stores/common/share-ui.ts`中的`viewportAspectRatio`计算出整体教室区域的宽高, 再计算出白板容器的高度，最后根据白板占白板容器的比例`heightRatio`动态设置白板的大小。
+如需调整白板布局，可修改 `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts` 文件中的代码。灵动课堂会先按照 `packages/agora-classroom-sdk/src/infra/stores/common/share-ui.ts` 中的 `viewportAspectRatio` 计算出整体教室区域的宽高，再计算出白板容器的高度，最后根据白板占白板容器的比例 `heightRatio` 动态设置白板的大小。
 
 ```typescript
 // packages/agora-classroom-sdk/src/infra/stores/common/share-ui.ts

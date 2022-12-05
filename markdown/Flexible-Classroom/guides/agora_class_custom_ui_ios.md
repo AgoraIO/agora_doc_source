@@ -2,7 +2,7 @@
 
 ### 数据交互流程
 
-灵动课堂的 UI 层和核心业务逻辑层是相隔离，独立成 **UI** 和 **Core** 两个库。以灵动课堂-教育场景的设备开关功能为例，通过一个按钮改变设备状态。为实现该功能，我们在 `AgoraEduUI` 中调用 `AgoraEduMediaContext` 的 `openLocalDevice` 方法，并监听 `AgoraEduMediaHandler` 抛出的设备状态改变相关事件。
+灵动课堂的 UI 层和核心业务逻辑层相互隔离，分为 **UI**（`AgoraEduUI`） 和 **Core**（`AgoraEduCore`） 两个独立的库。以灵动课堂-教育场景的设备开关功能为例，该功能使用户通过一个按钮改变设备状态。为实现该功能，你需要在 `AgoraEduUI` 中调用 `AgoraEduMediaContext` 类的 `openLocalDevice` 方法，并监听 `AgoraEduMediaHandler` 抛出的设备状态改变相关事件。
 
 数据流转示意图如下：
 
@@ -10,15 +10,15 @@
 
 ### 教室和 UI 组件结构说明
 
-`AgoraEduUI` 中包含灵动课堂的 UI 组件代码。`AgoraEduUI` 的源码位于 GitHub 上 CloudClass-iOS 仓库 `/SDKs/AgoraEduUI/Classes` 目录下，核心项目结构介绍如下：
+`AgoraEduUI` 包含灵动课堂的 UI 组件代码。`AgoraEduUI` 的源码位于 GitHub 仓库中 `CloudClass-iOS/SDKs/AgoraEduUI/Classes` 目录下，核心项目结构介绍如下：
 
 | 文件夹         | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
-| `/Scenes`       | 在灵动课堂中提供场景的 `UIScene`，如一对一课堂、小班课等。 |
-| `/Components`  | 灵动课堂使用的 UI 组件 	`UIComponent`，如花名册、状态栏等。 |
-| `/Configs`      | 灵动课堂的 UI 配置，用于设置颜色，字体，图片等 |
+| `/Scenes`       | 灵动课堂班型场景的组件 `UIScene`，适用于一对一课堂、小班课等班型。 |
+| `/Components`  | 灵动课堂的 UI 组件 `UIComponent`，可用于花名册、状态栏等 UI 设计。 |
+| `/Configs`      | 灵动课堂的 UI 配置，用于设置颜色，字体，图片等。 |
 | `/Views` | 灵动课堂使用的 UI 元素，如视频渲染窗口、设置界面等。         |
-| `/Models` | 用于在 `AgoraEduUI` 中的数据模型。 |
+| `/Models` | 用于 `AgoraEduUI` 的数据模型。 |
 
 ### 类型说明
 
@@ -62,7 +62,7 @@
 
 3. 基于最新的发版分支创建一个你自己的分支，推向你的项目仓库。
 
-4. 在你的项目的 `Podfile` 文件中添加如下代码引用 CloudClass-iOS 项目中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduUI.podspec` 和 apaas-extapp-ios 项目中的 `AgoraWidgets.podspec` 以及其它依赖的库。
+4. 在你的项目的 `Podfile` 文件中添加如下代码引用 `CloudClass-iOS` 项目中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduUI.podspec` 和 `apaas-extapp-ios` 项目中的 `AgoraWidgets.podspec` 以及其它依赖的库。
 
    ```
    # third libs
@@ -101,16 +101,17 @@
 
 - 方式一：直接修改 `RoomStateUIComponent` 中的代码。
 
-- 方式二：通过修改 UIConfigs 中的 `FcrUIComponentStateBar` 的 `backgroundColor`
+- 方式二：修改 `UIConfigs` 中的 `FcrUIComponentStateBar` 的 `backgroundColor` 变量。
 
 以下为方式二的示例代码：
 
 **修改前**
 
-```
+```swift
 struct FcrUIComponentStateBar: FcrUIComponentProtocol {
     var visible: Bool = true
     var enable: Bool = true
+    // 导航栏的颜色为 systemForegroundColor。
     var backgroundColor: UIColor = FcrUIColorGroup.systemForegroundColor
     
     /**Scene Builder Set**/
@@ -129,10 +130,11 @@ struct FcrUIComponentStateBar: FcrUIComponentProtocol {
 
 **修改后**
 
-```
+```swift
 struct FcrUIComponentStateBar: FcrUIComponentProtocol {
     var visible: Bool = true
     var enable: Bool = true
+    // 导航栏的颜色为 systemTeal。
     var backgroundColor: UIColor = .systemTeal
     
     /**Scene Builder Set**/
@@ -188,7 +190,7 @@ struct FcrUIComponentStateBar: FcrUIComponentProtocol {
 **修改前**
 
 ```swift
-// colors
+// 颜色设置
 let onColor = UIColor(hex: 0x0073FF)
 let offColor = UIColor(hex: 0xF04C36)
 let disabledColor = UIColor(hex: 0xE2E2EE)
@@ -196,28 +198,28 @@ let disabledColor = UIColor(hex: 0xE2E2EE)
 // state
 case .camera:
     if !model.stageState.isOn {
-        // unCohost
+        // 未上台
         let image = UIImage.agedu_named("ic_nameroll_camera_on")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)
         }
         cameraButton.tintColor = disabledColor
     } else if !model.cameraState.deviceOn {
-        // cohost + device off
+        // 已上台，设备关闭
         let image = UIImage.agedu_named("ic_nameroll_camera_off")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)
         }
         cameraButton.tintColor = disabledColor
     } else if !model.cameraState.streamOn {
-        // cohost + device on + no video stream privilege
+        // 已上台，设备开启，发流权限关闭
         let image = UIImage.agedu_named("ic_nameroll_camera_off")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)
         }
         cameraButton.tintColor = offColor
     } else {
-        // cohost + device on + video stream privilege
+        // 已上台，设备开启，发流权限开启
         let image = UIImage.agedu_named("ic_nameroll_camera_on")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)
@@ -232,28 +234,28 @@ case .camera:
 ```swift
 case .camera:
     if !model.stageState.isOn {
-        // unCohost
+        // 未上台
         let image = UIImage.agedu_named("new_camera_on")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)
         }
         cameraButton.tintColor = disabledColor
     } else if !model.cameraState.deviceOn {
-        // cohost + device off
+        // 已上台，设备关闭
         let image = UIImage.agedu_named("new_camera_off")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)
         }
         cameraButton.tintColor = disabledColor
     } else if !model.cameraState.streamOn {
-        // cohost + device on + no video stream privilege
+        // 已上台，设备开启，发流权限关闭
         let image = UIImage.agedu_named("new_camera_off")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)
         }
         cameraButton.tintColor = offColor
     } else {
-        // cohost + device on + video stream privilege
+        // 已上台，设备开启，发流权限开启
         let image = UIImage.agedu_named("new_camera_on")
         if let i = image?.withRenderingMode(.alwaysTemplate) {
             cameraButton.setImageForAllStates(i)

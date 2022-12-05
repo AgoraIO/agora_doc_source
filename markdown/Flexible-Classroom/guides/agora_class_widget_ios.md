@@ -292,7 +292,7 @@ AgoraClassroomSDK.launch(launchConfig,
                            failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-更新 Widget 的用户属性。更新的房间属性会通过 `onWidgetUpdateUserProperties` 回调传给 Widget。
+更新 Widget 的用户属性。更新的房间属性会通过 `onWidgetUserPropertiesUpdated` 回调传给 Widget。
 
 **参数**
 
