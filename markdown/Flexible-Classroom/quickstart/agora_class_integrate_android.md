@@ -58,12 +58,14 @@
      }
     ```
 
-如果版本是2.7.0以下版本，需要添加hyphenate依赖
-```
-implementation "io.github.agoraio-community:hyphenate:2.8.0"
-```
-
-查看当前最新版本，可以查看 github：https://github.com/AgoraIO-Community/CloudClass-Android
+    如果你想获取 2.6.x 或之前版本，例如 2.6.0。你还需要在 dependencies 中添加 hyphenate 依赖：
+    
+    ```
+    dependencies {
+        ......
+        implementation "io.github.agoraio-community:hyphenate:2.6.0"
+    }
+    ```
 
     <div class="alert info">点击<a href="https://search.maven.org/search?q=io.github.agoraio-community" target="_blank">此处</a>查看灵动课堂最新版本。</div>
 

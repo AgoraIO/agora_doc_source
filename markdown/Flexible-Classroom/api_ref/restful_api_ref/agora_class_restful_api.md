@@ -131,6 +131,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | `roomProperties.hostingScene.videoURL` |String|（非必填）老师的 CDN 流地址（主播放地址）。|
 | `roomProperties.hostingScene.reserveVideoURL` | String|（非必填）老师的 CDN 流地址（备用播放地址）。|
 | `roomProperties.hostingScene.finishType` |Integer|（非必填）课堂结束方式：<li>0:录像播放结束时，自动结束课堂。</li><li>1: 用户点击结束课堂的按钮时，结束录像播放和课堂。</li>|
+| `roomProperties.examinationUrl`| String |（非必填）在线监考场景中的考卷链接。|
 
 #### 请求示例
 
@@ -689,6 +690,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数         | 类型   | 描述       |
 | :----------- | :----- | :--------- |
 | `properties` | Object | 课堂属性。 |
+| `roomProperties.examinationUrl`| String |（非必填）在线监考场景中的考卷链接。|
 | `cause`      | Object | 更新原因。 |
 
 #### 请求示例
