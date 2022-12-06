@@ -37,7 +37,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 本节展示如何使用 Golang 在你的本地设备上搭建并运行一个 Token 服务器。
 
-此示例服务器使用 `BuildTokenWithUid[1/2]`。
+此示例服务器使用 `BuildTokenWithUid` [1/2]。
 
 <div class="alert note">此示例服务器仅用于演示，请勿用于生产环境中。 </div>
 
