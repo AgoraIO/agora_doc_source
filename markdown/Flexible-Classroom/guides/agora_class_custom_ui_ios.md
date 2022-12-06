@@ -38,7 +38,7 @@
 
 ### UI 结构示意图
 
-![](../images/ios_ui_structure.png)
+![](https://web-cdn.agora.io/docs-files/1670308423580)
 
 ## 自定义课堂 UI
 

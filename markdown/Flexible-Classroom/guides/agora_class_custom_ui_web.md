@@ -50,7 +50,7 @@
 
 业务组件指灵动课堂中和业务逻辑绑定的 UI 组件。业务组件大部分是由多个功能组件组合并注入相关的业务逻辑。业务组件依赖于 UI Store 中注入的 Observable 对象和行为函数来自动更新 UI 和调用 API。以举手上讲台功能为例，此功能对应的业务组件可以根据当前举手数据展示举手的用户列表，并提供按钮供用户点击，业务组件内部会调用 API 发送举手请求。
 
-![](drawio.png)
+![](https://web-cdn.agora.io/docs-files/1670308000479)
 
 业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂 - 监考场景) 目录下。
 
@@ -329,7 +329,7 @@ export const MidClassScenario = () => {
 
 该业务组件在灵动课堂中的效果如下：
 
-![](WX20221128-224347@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308239474)
 
 ### 修改业务组件
 
@@ -367,11 +367,11 @@ const VideoDeviceList = observer(() => {
 
 **修改前**
 
-![](device-count-before.png)
+![](https://web-cdn.agora.io/docs-files/1670307845321)
 
 **修改后**
 
-![](device-count-after.png)
+![](https://web-cdn.agora.io/docs-files/1670307959016)
 
 ## 自定义场景布局
 
@@ -446,7 +446,7 @@ export const OneToOneScenario = () => {
 
 ```
 
-![](WX20221128-213357@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308259047)
 
 **修改后**
 
@@ -514,7 +514,7 @@ export const OneToOneScenario = () => {
 
 ```
 
-![](WX20221128-213140@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308274433)
 
 #### 添加 logo
 
@@ -731,9 +731,9 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
 
 上述设置能覆盖 `/common` 中的教具，效果如下：
 
-![](WX20221128-214344@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308289675)
 
-![](WX20221128-215107@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308305757)
 
 ## 更多示例
 
