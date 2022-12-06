@@ -22,7 +22,7 @@
 1. 打开 App Store，下载并安装 Xcode。要求 Xcode 13.0 或以上版本。
 2. 点击[链接](https://guides.cocoapods.org/using/getting-started.html#getting-started)前往下载 CocoaPods。要求 CocoaPods 1.10 或以上版本。
 
-<div class="alert info">如果你使用 Swift 开发，需要使用 Swift 5.0 或以上版本。</div> // TODO
+<div class="alert info">如果你使用 Swift 开发，需要使用 Swift 5.0 或以上版本。</div> 
 
 ## 获取源码
 
@@ -47,7 +47,7 @@
 	```
 
    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
-   // TODO
+   ![](https://web-cdn.agora.io/docs-files/1670308184065)
 
 ## 启动灵动课堂
 
@@ -67,7 +67,7 @@
 
     如下图所示：
 
-    ![](https://web-cdn.agora.io/docs-files/1648725475723) //TODO
+    ![](https://web-cdn.agora.io/docs-files/1670310132026)
 
 3. 成功安装依赖包后，在“访达”窗口中打开 flexible-classroom-ios/App 文件夹，双击 `AgoraEducation.xcworkspace` 在 Xcode 中打开项目。
 

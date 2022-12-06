@@ -109,13 +109,13 @@ interface IAgoraUIProvider {
        constructor(context: Context, attr: AttributeSet) : super(context, attr)
        constructor(context: Context, attr: AttributeSet, defStyleAttr: Int) : super(context, attr, defStyleAttr)
     
-       // TODO: 替换成你自己定义的 xml
+       // 替换成你自己定义的 XML
        private var binding: xxxxBinding = xxxBinding.inflate(LayoutInflater.from(context), this, true)
     
        override fun initView(agoraUIProvider: IAgoraUIProvider) {
           super.initView(agoraUIProvider)
-          // TODO: 在这里处理 View      
-          // TODO: agoraUIProvider 提供教室数据能力和 View 需要的数据，你可自行定义
+          // 在这里处理 View      
+          // agoraUIProvider 提供教室数据能力和 View 需要的数据，你可自行定义
        }
       
    }

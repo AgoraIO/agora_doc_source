@@ -8,47 +8,13 @@
 
 ## 前提条件
 
--   在声网控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
--   在声网控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+~56f1c6e0-5378-11ed-8dae-bf25bf08a626~
 
 <a name="dev-env"></a>
 
 ## 准备开发环境
 
-在你的设备上运行灵动课堂依赖于 Git（用于下载源码）、Node.js（用于构建运行项目）、Yarn（源码包管理工具）、Lerna（源码包管理工具）和 nvm（Node.js 版本管理命令行工具）。
-
-你可参考以下步骤准备开发环境：
-
-1. 点击[链接](https://git-scm.com/downloads)前往下载 Git。
-
-2. 点击[链接](https://nodejs.org/zh-cn/download/)前往下载 Node.js，建议 Node.js 14 或以上版本。
-
-3. 安装 Yarn：
-
-    - 如果你安装了 Node.js 16.10 及以上版本，可使用以下命令直接启用 Yarn（Windows 系统需要管理员身份运行 CMD 执行命令）：
-
-        ```bash
-        corepack enable
-        ```
-
-    - 如果你安装了 Node.js 16.10 以下版本，需要使用以下命令先安装 Corepack，再启用 Yarn：
-
-        ```bash
-        npm i -g corepack enable
-        ```
-
-4. 安装 Lerna：
-
-    ```bash
-    yarn add global lerna
-    ```
-
-5. （可选）安装 nvm：
-
-    ```bash
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-    ```
-
+~e31d5f40-5377-11ed-8dae-bf25bf08a626~
 ## 获取源码
 
 灵动课堂 Electron 端的源码位于 GitHub [flexible-classroom-desktop](https://github.com/AgoraIO-Community/flexible-classroom-desktop) 仓库，你可参考以下步骤获取源码：
