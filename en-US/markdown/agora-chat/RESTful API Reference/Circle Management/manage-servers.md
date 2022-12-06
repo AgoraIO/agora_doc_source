@@ -31,7 +31,7 @@ This page shows how to implement servers in circle using RESTful APIs. Before pr
 | Parameter | Type | Description |
 | :---------------- | :----- | :--------------- |
 | `name`              | String | The server name.     |
-| `owner`             | String | The server owner.      |
+| `owner`             | String | The server owner.     |
 | `description`      | String  | The server description.    |
 | `custom`            | String | The server extension.    |
 | `icon_url`         | String  | The URL of the server icon.                   |
@@ -673,7 +673,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ## Retrieve details of joined servers
 
-Retrieves the detailed information of the servers that the specified user exists.
+Retrieves the detailed information of the servers that the specified user exists (by page).
 
 ### HTTP request
 
@@ -887,7 +887,7 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppTok
 
 ## Retrieve the member list of a server
 
-Retrieves the list of members in a server.
+Retrieves the list of members in a server (by page).
 
 ### HTTP request
 

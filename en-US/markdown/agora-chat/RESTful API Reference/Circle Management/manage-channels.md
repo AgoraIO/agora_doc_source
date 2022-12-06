@@ -13,107 +13,102 @@ Once a server is created, a default channel with all server members in is automa
 This page shows how to implement channels in circle using RESTful APIs. Before proceeding, ensure that you understand the frequency limit of Chat RESTful API calls described in [Limitations](https://docs.agora.io/en/agora-chat/reference/limitations#call-limit-of-server-sides).
 
 
-## <a name="param"></a>公共参数
+## <a name="param"></a>Common parameters
 
-### 请求参数
+### Request parameters
 
-| 参数       | 类型   | 描述    | 是否必需 | 
-| :--------- | :----- | :------- | :----------------------------------------------------------- |
-| `host`       | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       | 
-| `org_name`   | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。            | 是       |
-| `app_name`   | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。   | 是       |
-| `server_id`  | String | 社区 ID。                                                  | 是       | 
-| `channel_id` | String | 频道 ID。                                                 | 是       | 
-| `user_id`    | String | 用户 ID。                                                    | 是       | 
-| `role`       | Number    | 频道成员的角色：<br/> - `0`：频道所有者；<br/> - `2`：频道的普通成员。 | 是       | 
-| `limit`      | Number    | 每次期望返回的数量。该参数仅在分页获取时为必需。            | 否       | 
-| `cursor`     | String | 游标，数据查询的起始位置。该参数仅在分页获取时为必需。       | 否       | 
+| Parameter | Type | Description | Required |
+| :--------- | :----- | :------ | :------- |
+| `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service.  For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
+| `server_id`  | String | The server ID.         | Yes   |
+| `channel_id`    | String | The channel ID.   | Yes |
+| `user_id`    | String | The user ID.   | Yes |
 
-### 响应参数
 
-| 参数         | 类型   | 描述                                                     |
-| :-------| :----- | :----------------------------------------------------------- |
-| `name`            | String     | 频道名称。                                             |
-| `type`            | Number     | 频道类型：<br/> - `0`：公开频道；<br/> - `1`：私密频道。      				|
-| `invite_mode`     | Number   | 邀请用户时是否需受邀方确认才能加入频道：<br/> - `0`：受邀方直接加入频道，无需确认；<br/> - `1`：受邀方需确认是否加入频道。 |
-| `description`     | String      | 频道描述。|
-| `custom`       | String     | 频道的扩展信息。                                           |
-| `default_channel` | Number | 是否为社区的默认频道：<br/> - `0`：否；<br/> - `1`：是。                 |
-| `user_id`     | String    | 用户 ID。                                                    |
-| `role`        | Number     | 频道成员的角色：<br/> - `0`：频道所有者；<br/> - `2`：频道的普通成员。 |
-| `created`      | Number    | 频道的创建时间，Unix 时间戳，单位为毫秒。                                         |
-| `cursor`       | String     | 游标，数据查询的起始位置。该参数仅在分页获取时为必需。       |
-| `server_id`     | String    | 社区 ID。                                                  |
+### Response parameters
 
-## 认证方式
+| Parameter | Type | Description |
+| :---------------- | :----- | :--------------- |
+| `name`              | String |  The channel name.     |
+| `type`            | Number     |  The channel type:<li>`0`: Public.</li><li>`1`: Private.</li>      				|
+| `invite_mode`     | Number   |  Whether the channel invitation is automatically accepted:<li>`0`</li>: Yes.</li><li>`1`: No. After being invited, the invitee manually accepts or declines the invitation.</li> |
+| `rank`        | Number | The maximum number of users in the channel:<li>(Default) `0`: 2,000; </li><li>`1`: 20,000</li><li>`2`: 100,000.    |
+| `description`     | String      |  The channel description. |
+| `custom`       | String     |  The channel extension.   |
+| `default_channel` | Number |  Whether the channel serves as the default one in the server:<li>`0`: No.</li><li>`1`: Yes.</li>  |
+| `created`      | Number    |  The Unix timestamp (ms) when the channel was created.        |
+| `server_id`     | String    |  The ID of the server to which the channel belongs.     |
+| `channel_id`     | String    |  The channel ID.    |
 
-即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入如下 `Authorization` 字段：
 
-```shell
-Authorization：Bearer ${YourAppToken}
+## Authorization
+
+Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
+
+```http
+Authorization: Bearer ${YourAppToken}
 ```
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的开发者进行鉴权。即时通讯 RESTful API 仅支持使用 App 权限 Token 的鉴权方式，详见 [使用 Token 鉴权](https://docs.agora.io/en/agora-chat/develop/authentication?platform=android)。
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
-## 创建和管理频道
 
-### 创建频道
+## Create a channel
 
-每个社区最多可以创建 100 个频道。 
+Creates a channel.
 
-#### HTTP 请求
+Note that one server can have a maximum of 100 channels.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/channel
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述                    | 是否必需 | 
-| :------------ | :----- | :------- | :--------------------------------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                          | 是       | 
-| `Accept`        | String | 内容类型。请填 `application/json`。                          | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Content-Type` | String | `application/json` | Yes  |
+| `Accept` | String | `application/json` | Yes  |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
-##### 请求 body
+#### Request body
 
-| 参数        | 类型   | 描述                  | 是否必需 | 
-| :------------ | :----- | :------- | :----------------- |
-| `server_id`   | String | 社区 ID。                                                  | 是       | 
-| `name`        | String | 频道名称，长度不能超过 50 个字符。                       | 是       | 
-| `type`        | Number    | 频道类型：<br/> - `0`：公开频道；<br/> - `1`：私密频道。           | 是       | 
-| `rank`        | Number    | 频道成员数量上限级别：<br/> - （默认）`0`：2,000；<br/> - `1`：20,000；<br/> - `2`：100,000。      |否       | 
-| `invite_mode` | Number    | 邀请用户时是否需受邀方确认才能加入频道：<br/> - `0`：受邀方直接加入频道，无需确认；<br/> - `1`：受邀方需确认是否加入加入频道。 | 
-| `description` | String | 频道描述，长度不能超过 500 个字符。                      | 否       | 
-| `custom`      | String | 频道扩展信息，例如可以给社区添加业务相关的标记，长度不能超过 500 个字符。 | 否       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id`   | String | The server ID.  | Yes       | 
+| `name`        | String | The channel name. The length cannot exceed 50 characters.      | Yes   | 
+| `type`        | Number | The channel type:<li>`0`: Public.</li><li>`1`: Private.</li>       | Yes   | 
+| `rank`        | Number | The maximum number of users in the channel:<li>(Default) `0`: 2,000; </li><li>`1`: 20,000</li><li>`2`: 100,000.    | No    | 
+| `invite_mode` | Number | Whether the channel invitation is automatically accepted:<li>`0`</li>: Yes.</li><li>`1`: No. After being invited, the invitee manually accepts or declines the invitation.</li> | No | 
+| `description` | String | The channel description. The length cannot exceed 500 characters.  | No       | 
+| `custom`  | String | The channel extension. The length cannot exceed 500 characters. | No       | 
 
-#### HTTP 响应
+### HTTP response
+#### Response body
 
-##### 响应 body
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
+| `channel_id` | String | The channel ID. |
 
-| 字段       | 类型   | 描述                |
-| :--------- | :----- | :------------------ |
-| `code`       | Number    | 环信超级社区的服务状态码。 |
-| `channel_id` | String | 频道 ID。        |
-
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
-
-#### 示例
-
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+### Example
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel'
 -d '{
 	"server_id" : "19VM9oPBasxxxxxx0tvWViEsdM",
-	"name" : "easemob",
+	"name" : "chat",
 	"type" : 0,
   "rank"：0,
 	"invite_mode" : 0,
@@ -122,7 +117,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -131,139 +126,147 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 修改频道信息
 
-修改指定频道的信息。
+## Modify a channel
 
-#### HTTP 请求
+Modifies the detailed information of the specified channel.
+
+### HTTP request
 
 ```http
 PUT https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}?serverId={server_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                                         |是否必需 | 
-| ------------- | ------ | -------- | ------------------------------------------------------------ |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 
-##### 请求 body
+#### Request header
 
-| 参数        | 类型   | 是否必需 | 描述                                                         |
-| ----------- | ------ | -------- | ------------------------------------------------------------ |
-| `name`        | String |频道名称，长度不能超过 50 个字符。                           | 否       | 
-| `rank`        | Number    | 频道的成员数量上限级别，1、2级别需要开通服务后才可以有效的设置。<br/> - （默认）`0`：2,000；<br/> - `1`：20,000；<br/> - `2`：100,000。 | 否       | 
-| `invite_mode` | Number    | 邀请用户时是否需受邀方确认才能加入频道：<br/> - `0`：受邀方直接加入频道，无需确认；<br/> - `1`：受邀方需确认是否加入加入频道。 | 否       | 
-| `description` | String | 频道描述，长度不能超过 500 个字符。        | 否       | 
-| `custom`      | String | 频道的扩展信息，例如可以给社区添加业务相关的标记，长度不能超过 500 个字符。 | 否       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Content-Type` | String | `application/json` | Yes  |
+| `Accept` | String | `application/json` | Yes  |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
-#### HTTP 响应
+#### Request body
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `name`        | String | The channel name. The length cannot exceed 50 characters.      | No   | 
+| `rank`        | Number | The maximum number of users in the channel:<li>(Default) `0`: 2,000; </li><li>`1`: 20,000</li><li>`2`: 100,000.    | No    | 
+| `description` | String | The channel description. The length cannot exceed 500 characters.  | No   | 
+| `custom`  | String | The channel extension. The length cannot exceed 500 characters. | No       | 
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
+#### Response body
 
-| 字段    | 类型 | 描述                |
-| :------ | :--- | :------------------ |
-| `code`    | Number  | 环信超级社区的服务状态码。 |
-| `channel` | JSON | 频道详情。    |
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-其他字段及描述详见[公共参数](#param)。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
+| `channel` | JSON | The detailed information of the channel. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
-#### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-##### 请求示例
+### Example
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX' -d '{
- "name" : "easemob",
+ "name" : "chat",
  "rank" : 1,
  "description" : "chat Channel",
-  "custom" : "custom"
+ "custom" : "custom"
 }'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
     "code": 200,
     "channel": {
-        "name": "easemob",
+        "name": "chat",
         "type": 1,
         "description": "chat Channel11",
         "custom": "custom",
         "created": 1658201254843,
         "server_id": "19UyPIsiwxxxxxxxgLrfI9Z",
         "channel_id": "198900125668",
+        "rank" : 1,
         "invite_mode": 0,
         "default_Channel": 1
     }
 }
 ```
 
-### 查询指定频道
+## Retrieve a channel
 
-查询指定的频道。
+Retrieves the specified channel.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}?serverId={server_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                 | 是否必需 |
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept` | String | `application/json` | Yes  |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段    | 类型 | 描述                |
-| :------ | :--- | :------------------ |
-| `code`    | Number  | 环信超级社区的服务状态码。 |
-| `channel` | JSON | 频道详情。    |
-| `channel.rank` | Number | 频道的成员数量上限级别。<br/> - （默认）`0`：2,000；<br/> - `1`：20,000；<br/> - `2`：100,000。 |
+#### Response body
 
-其他字段及描述详见[[公共参数](#param)。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
+| `channel` | JSON | The detailed information of the channel. |
 
-#### 示例
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel?serverId=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
     "code": 200,
     "channel": {
-        "name": "easemob",
+        "name": "chat",
         "type": 1,
         "description": "chat Channel11",
         "custom": "custom",
@@ -277,72 +280,61 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 获取单个社区下的所有公开频道
+## Retrieve all public channels within one server
 
-获取单个社区下的所有公开频道。
+Retrieves the detailed information of all public channels within the specified server (by page).
 
-#### HTTP 请求
-
-获取第一页：
-
-```http
-GET https://{host}/{org_name}/{app_name}/circle/channel/public?serverId={server_id}
-```
-
-分页获取：
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/channel/public?serverId={server_id}&limit={limit}&cursor={cursor} 
 ```
 
-##### 路径参数
+#### Path parameter
 
-| 参数  | 类型 | 描述       | 是否必需            |
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `limit` | Number      | 每页获取的频道数量。取值范围为 [1,20]，默认值为 20。该参数仅在分页获取时必须。 | 否       |
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-其他参数及描述详见[公共参数](#param)。
+#### Query parameter
 
-##### 请求 header
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 是       | 内容类型。请填 `application/json`。                           |
-| `Authorization` | String | 是       | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+#### Request header
 
-#### HTTP 响应
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | Yes | `application/json` |
+| `Authorization` | String | Yes | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
-##### 响应 body
+### HTTP response
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+#### Response body
 
-| 字段     | 类型  | 描述                        |
-| -------- | ----- | --------------------------- |
-| `code`     | Number   | 环信超级社区的服务状态码。         |
-| `count`    | Number   | 获取到的频道数量。     |
-| `channels` | List | 获取到的频道详情列表。 |
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:\
 
-其他字段及描述详见[公共参数](#param)。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
+| `count`    | Number   | The number of retrieved channels.   |
+| `channels` | List | The list of the retrieved channels and the detailed information. |
+| `cursor`  | String  | The start position of next query. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
-#### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-##### 请求示例
+### Example
 
-```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/public?serverId=XXX'
-```
-
-分页获取：
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/public?serverId=XXX&limit=1&cursor=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -350,7 +342,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
     "count": 1,
     "channels": [
         {
-            "name": "easemob",
+            "name": "chat",
         		"type": 0,
             "rank" : 0,
         		"description": "chat Channel11",
@@ -366,72 +358,63 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 获取单个用户已加入的频道列表
+## Retrieve the joined channels
 
-获取单个用户已加入的频道列表。
+Retrieves the detailed information of the channels where the specified user exists (by page).
 
-#### HTTP 请求
-
-获取第一页：
-
-```http
-GET https://{host}/{org_name}/{app_name}/circle/channel/user/joined/list?userId={user_id}&serverId={server_id}
-```
-
-分页获取：
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/channel/user/joined/list?userId={user_id}&serverId={server_id}&limit={limit}&cursor={cursor} 
 ```
 
-##### 路径参数
+#### Path parameter
 
-| 参数  | 类型 | 描述       | 是否必需            |
-| :------------ | :----- | :------- | :------------------------ |
-| `limit` | Number      | 每页获取的频道数量。取值范围为 [1,20]，默认值为 20。该参数仅在分页获取时必须。 | 否       |
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-其他参数及描述详见[公共参数](#param)。
+#### Query parameter
 
-##### 请求 header
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `user_Id` | String | The user ID. | Yes  |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
 
-| 参数          | 类型   | 描述          | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 是       | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | Yes | `application/json` |
+| `Authorization` | String | Yes | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段     | 类型 | 描述                        |
-| :------- | :--- | :-------------------------- |
-| `code`     | Number  | 环信超级社区的服务状态码。         |
-| `channels` | List | 获取到的频道详情列表。 |
-| `count`    | Number  | 获取到的频道数量。      |
+#### Response body
 
-其他字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
+| `count`    | Number   | The number of retrieved channels.   |
+| `channels` | List | The list of the retrieved channels and the detailed information. |
+| `cursor`  | String  | The start position of next query. |
 
-#### 示例
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/user/joined/list?userId=XXX&serverId=XXX'
-```
-
-分页获取：
-
-```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/user/joined/list?userId=XXX&serverId=XXX&limit=1&cursor=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -439,13 +422,14 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
     "count": 1,
     "channels": [
         {
-          "name": "easemob",
+          "name": "chat",
           "type": 1,
           "description": "chat Channel11",
           "custom": "custom",
           "created": 1658201254843,
           "server_id": "19UyPIsiwxxxxxxxgLrfI9Z",
           "channel_id": "198900125668",
+          "rank": 1,
           "invite_mode": 0,
           "default_Channel": 1
         }
@@ -454,72 +438,65 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 获取当前用户可见的所有私密频道列表
 
-获取当前用户可见的所有私密频道列表。
+## Retrieve all private channels visible to the current user
 
-#### HTTP 请求
+Retrieves the detailed information of all private channels that are visible to the current user (by page).
 
-获取第一页：
-
-```http
-GET https://{host}/{org_name}/{app_name}/circle/channel/private?serverId={server_id}
-```
-
-分页获取：
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/channel/private?serverId={server_id}&limit={limit}&cursor={cursor} 
 ```
 
-##### 路径参数
+#### Path parameter
 
-| 参数  | 类型 | 描述       | 是否必需            |
-| :------------ | :----- | :------- | :------------------------ |
-| `limit` | Number      | 每页获取的私密频道数量。取值范围为 [1,20]，默认值为 20。该参数仅在分页获取时必须。 | 否       |
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-其他参数及描述详见[公共参数](#param)。
+#### Query parameter
 
-##### 请求 header
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
 
-| 参数          | 类型   | 描述                        | 是否必需 | 
-| :------------ | :----- | :------- | :------------------------ |
-| `Accept`        | String | 内容类型。请填 `application/json`。      | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
 
-#### HTTP 响应
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 响应 body
+#### Request header
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`      | Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       | 
 
-| 字段     | 类型 | 描述                            |
-| :------- | :--- | :------------------------------ |
-| `code`     | Number  | 环信超级社区的服务状态码。             |
-| `count`    | Number   | 获取到的频道数量。         |
-| `channels` | List | 获取到的私密频道详情列表。 |
+### HTTP response
 
-其他字段及描述详见[公共参数](#param)。
+#### Response body
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-#### 示例
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
+| `count`    | Number   | The number of retrieved channels.   |
+| `channels` | List | The list of the retrieved channels and the detailed information. |
+| `cursor`  | String  | The start position of next query. |
 
-##### 请求示例
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/private?serverId=XXX'
-```
-
-分页获取：
-
-```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/private?serverId=XXX&limit=1&cursor=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -527,7 +504,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
     "count": 1,
     "channels": [
         {
-            "name": "easemob",
+            "name": "chat",
         		"type": 1,
             "rank": 0,
         		"description": "chat Channel11",
@@ -543,49 +520,55 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 删除频道
 
-删除指定的频道。
+## Destroy a channel
 
-#### HTTP 请求
+Destroys the specified channel.
+
+### HTTP request
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}?serverId={server_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`      | Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       | 
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+#### Response body
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-#### 示例
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX?serverId=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -593,61 +576,62 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## 发送消息
 
-通过 RESTful API 在频道中发送消息与在群组中发送消息的方式类似，唯一的区别在于请求体中的 `to` 参数需要设置为频道 ID。详见 [发送群聊消息](https://docs.agora.io/en/agora-chat/restful-api/message-management?platform=android)。
+## Send a message
 
-## 管理 Reaction
+Sending a message to a channel via RESTful API is basically the same as sending a message to a chat group. The only difference lies in the setting of `to`. For sending a channel message, you need to set the `to` parameter to the targeted channel ID.
 
-### 添加消息 Reaction
+For details, see [Send a group message](https://docs.agora.io/en/agora-chat/restful-api/message-management#send-a-group-message).
 
-添加消息 Reaction。
 
-#### HTTP 请求
+## Add a reaction
+
+Adds a reaction to the specified message.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/reaction
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   |描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Content-Type` | String | `application/json` | Yes  |
+| `Accept` | String | `application/json` | Yes  |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
-##### 请求 body
+#### Request body
 
-| 参数       | 类型   | 描述                               | 是否必需 | 
-| :--------- | :----- | :------- | :--------------------------------- |
-| `user_id`    | String | 用户 ID。                          | 是       |
-| `message_id` | String | 消息 ID。                          | 是       |
-| `message`    | String | 表情 ID，长度不可超过 128 个字符。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `user_id`    | String | The user ID.    | Yes       |
+| `message_id` | String | The ID of the message to which you want to add the reaction.   | Yes       |
+| `message` | String | The name of the reaction. The length cannot exceed 128 characters. | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段        | 类型   | 描述                |
-| :---------- | :----- | :------------------ |
-| `code`        | Number    | 环信超级社区的服务状态码。 |
-| `reaction_id` | String | Reaction ID。       |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`        | Number    | The HTTP status code. |
+| `reaction_id` | String | The ID of the reaction.     |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 示例
+### Example
 
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/reaction'
 -d '{
   "user_id" : "user1",
@@ -656,7 +640,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -665,49 +649,63 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 获取指定消息的 Reaction
+## Retrieve reactions from a message
 
-获取指定消息的 Reaction。
+Retrieves the detailed information of the reactions from the specified message.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/reaction/user/{user_id}?msgIdList={message_id}&channelId={channel_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `message_id` | String | The ID of the message to which the reactions belong. | Yes  |
+| `channel_id` | String | The ID of the channel to which the message belongs. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`  | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+#### Response body
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-#### 示例
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`  | Number    | The HTTP status code. |
+| `count` | Number  | The number of the reactions. |
+| `msgId` | String  | The ID of the message to which the reactions belong.  |
+| `reactionList` | List  | The list of the reactions and detailed information.  |
+| `reactionList.reactionId` | String  | The reaction ID.  |
+| `reactionList.message` | String  | The reaction name.  |
+| `reactionList.state` | Bool  | Whether the current user sending this request has added a reaction to this message:<li>`true`: Yes.</li><li>`false`: No.</li> |
+| `reactionList.count` | Number  | The number of users that have added this reaction to the message.  |
+| `reactionList.userList` | Number  | The list of user IDs that have added this reaction.  |
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/reaction/user/XXX?msgIdList=XXX&channelId=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -718,10 +716,10 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
             "msgId":"message id",
             "reactionList":[
                 {
-                    "reactionId":"reaction id",
-                    "message":"Reaction id",
+                    "reactionId":"Reaction id",
+                    "message":"Reaction name",
+                    "state":"Whether the current user adds the reaction.",
                     "count":2,
-                    "state":"Whether this user adds the reaction",
                     "userList":[
                         "user1",
                         "user2"
@@ -733,49 +731,55 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-### 删除指定消息的 Reaction
+## Remove a reaction
 
-删除指定消息的 Reaction。
+Removes a reaction from the specified message.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/circle/reaction/user/{user_id}?messageId={message_id}&message={message}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `message_id` | String | The ID of the message to which the reactions belong. | Yes  |
+| `message` | String | The name of the reaction to remove. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`  | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+#### Response body
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-#### 示例
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`  | Number    | The HTTP status code. |
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/reaction/user/XXX?messageId=XXX&message=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -783,65 +787,72 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## 管理频道成员
+## Add a user to a channel
 
-### 将用户加入频道
+Adds a user to the specified channel.
 
-将用户加入频道，每个用户最多可以加入 10,000 个频道。
+Each user can join a maximum of 10,000 channels.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/join?userId={user_id}&serverId={server_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                    | 是否必需 |
-| :------------ | :----- | :------- | :----------------------------------------- |
-| `Accept`        | String |内容类型。请填 `application/json`。                            | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `user_id` | String | The user ID. | Yes  |
+| `server_id` | String | The server ID. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`  | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段    | 类型 | 描述                |
-| :------ | :--- | :------------------ |
-| `code`    | Number  | 环信超级社区的服务状态码。 |
-| `channel` | JSON | 频道详情。    |
+#### Response body
 
-其他字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
+| `channel` | JSON | The detailed information of the channel. |
 
-#### 示例
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX/join?userId=XXX&serverId=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
     "code": 200,
     "channel": {
-        "name": "easemob",
+        "name": "chat",
         "type": 1,
         "description": "chat Channel11",
         "custom": "custom",
         "created": 1658201254843, 
         "server_id": "19UyPIsiwxxxxxxxgLrfI9Z",
+        "rank": 0,
         "channel_id": "198900125668",
         "invite_mode": 0,
         "default_Channel": 1
@@ -849,49 +860,56 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppTok
 }
 ```
 
-### 将成员移出频道
 
-将指定成员移出频道。
+## Remove a user from a channel
 
-#### HTTP 请求
+Removes a user from the specified channel.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/remove?userId={user_id}&serverId={server_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `user_id` | String | The user ID. | Yes  |
+| `server_id` | String | The server ID. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`   | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+#### Response body
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-#### 示例
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code. |
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX/user/remove?userId=XXX&serverId=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -899,50 +917,50 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppTok
 }
 ```
 
-### 查询用户是否在频道
 
-查询用户是否在频道中。
+## Check if a user exists in a channel
 
-#### HTTP 请求
+Checks if a user exists in the specified channel.
+
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/{user_id}?serverId={server_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述                  | 是否必需 | 
-| :------------ | :----- | :------- | :--------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`   | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段   | 类型    | 描述                                                         |
-| :----- | :------ | :----------------------------------------------------------- |
-| `code`   | Number     | 环信超级社区的服务状态码。                                          |
-| `result` | Boolean | 查询结果：<br/>- `true`：用户在频道中；<br/>- `false`：用户不在频道中。 |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `result` | Boolean | Whether the user exists in the channel: <li>`true`: Yes.</li><li>`false`: No.</li> |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 示例
+### Example
 
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX/user/XXX?serverId=XXX'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -951,72 +969,62 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 获取频道的成员列表
+## Retrieve the member list of a channel
 
-获取频道的成员列表。
+Retrieves the member list of the specified channel (by page).
 
-#### HTTP 请求
-
-获取第一页：
-
-```http
-GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/users?serverId={server_id}
-```
-
-分页获取：
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/users?serverId={server_id}&limit={limit}&cursor={cursor} 
 ```
 
-##### 路径参数
+#### Path parameter
 
-| 参数  | 类型 | 描述             | 是否必需 |
-| :------------ | :----- | :------- | :----------------------- |
-| `limit` | Number      | 每页获取的成员数量。取值范围为 [1,20]，默认值为 20。该参数仅在分页获取时必须。 | 否       | 
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-其它参数及描述详见[公共参数](#param)。
+#### Query parameter
 
-##### 请求 header
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `limit` | Number    |   The number of members to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+#### Request header
 
-#### HTTP 响应
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`   | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-##### 响应 body
+### HTTP response
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+#### Response body
 
-| 字段  | 类型 | 描述                     |
-| :---- | :--- | :----------------------- |
-| `code`  | Number  | 环信超级社区的服务状态码。      |
-| `users` | List | 获取到的成员详情列表。 |
-| `count` | Number  | 获取到的成员数量。     |
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-其他字段及描述详见[公共参数](#param)。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `count`   | Number     | The number of retrieved members.  |
+| `users` | List | The list of users and detailed information. |
+| `users.user_id` | String | The ID of the user. |
+| `users.role` | Number | The role of the user in a channel:<li>`0`</li>: Owner.<li>`1`</li>: Member. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
-#### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-##### 请求示例
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX/users?serverId=XXX'
-```
-
-分页获取：
-
-```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX/users?serverId=XXX&limit=1&cursor=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1032,51 +1040,58 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 获取频道的禁言列表
 
-获取频道的禁言列表。
+## Retrieve the mute list of a channel
 
-#### HTTP 请求
+Retrieves the mute list of the specified channel.
+
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/mute/list?serverId={server_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                    | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------- |
-| Accept        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`   | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段   | 类型   | 描述                |
-| :----- | :----- | :------------------ |
-| `code`   | Number    | 环信超级社区的服务状态码。 |
-| `expire` | Number   | 禁言的到期时间。    |
-| `user`   | String | 被禁言的成员的用户 ID。   |
+#### Response body
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-#### 示例
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `mute_users`   | List    | The list of muted users and their detailed information. |
+| `mute_users.expire` | Number   | The Unix time stamp (ms) when the mute duration expires.    |
+| `mute_users.user`   | String | The ID of the muted user.  |
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/Channel/XXX/user/mute/list?serverId=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1094,56 +1109,53 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 将成员加入频道禁言列表
+## Add a user to the channel mute list
 
-将成员加入频道禁言列表。
+Adds a user to the mute list of the specified channel.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/mute
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Content-Type` | String | `application/json` | Yes  |
+| `Accept` | String | `application/json` | Yes  |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
-##### 请求 body
+#### Request body
 
-| 参数      | 类型   | 描述                       | 是否必需 | 
-| :-------- | :----- | :------- | :------------------------- |
-| `server_id` | String | 社区 ID。                | 是       |
-| `user_id`   | String | 被禁言的成员的用户 ID。          | 是       |
-| `duration`  | Number   | 禁言时长，单位为毫秒。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id`    | String | The ID of the server to which the channel belongs. | Yes       |
+| `user_id`    | String | The ID of the user to be muted. | Yes       |
+| `duration`    | Number | The mute duration (ms). | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
 
-其他字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+### Example
 
-#### 示例
-
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX/user/mute' -d '{
   "server_id" : "19UyPIsiwxxxxxxxgLrfI9Z",
   "user_id" : "u1",
@@ -1151,7 +1163,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1159,51 +1171,55 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 将成员移出频道禁言列表
+## Remove a user from the channel mute list
 
-将成员移出频道禁言列表。
+Removes a user from the mute list of the specified channel.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/mute?serverId={server_id}&userId={user_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述               | 是否必需 | 
-| :------------ | :----- | :------- | :--------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `user_id` | String | The ID of the user to be unmuted. | Yes  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`  | Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       | 
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+#### Response body
 
-其他字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
 
-#### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-##### 请求示例
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/channel/XXX/user/mute?serverId=XXX&userId=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1211,58 +1227,58 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## 管理子区
 
-### 创建子区
 
-创建子区。
 
-#### HTTP 请求
+## Create a thread
+
+Creates a thread.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/thread
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Content-Type`  | String | `application/json`  | Yes       |
+| `Accept`        | String | `application/json`  | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-##### 请求 body
+#### Request body
 
-| 参数       | 类型   | 描述          | 是否必需 | 
-| :--------- | :----- | :------- | :------------ |
-| `channel_id` | String | 频道 ID。  | 是       |
-| `user_id`    | String | 用户 ID。     | 是       |
-| `name`       | String | 子区名称。 | 是       |
-| `message_id` | String | 消息 ID。     | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `channel_id` | String | The ID of the channel to which the thread belongs. | Yes       |
+| `user_id`    | String | The user ID.     | Yes       |
+| `name`       | String | The thread name. | Yes       |
+| `message_id` | String | The ID of the message based on which the thread is created.   | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段      | 类型   | 描述                |
-| :-------- | :----- | :------------------ |
-| `code`      | Number    | 环信超级社区的服务状态码。 |
-| `thread_id` | String | 子区 ID。         |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `thread_id` | String | The thread ID.    |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 示例
+### Example
 
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread' -d '{
   "channel_id" : "156900086",
   "user_id" : "user1",
@@ -1271,7 +1287,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1280,58 +1296,57 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 修改子区信息
+## Modify a thread
 
-修改指定子区的信息。
+Changes the name of the specified thread.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 PUT https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   |  描述                      | 是否必需 |
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Content-Type`  | String | `application/json`  | Yes       | 
+| `Accept`        | String | `application/json`  | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-##### 请求 body
+#### Request body
 
-| 参数 | 类型   | 描述          | 是否必需 | 
-| :--- | :----- | :------- | :------------ |
-| `name` | String | 子区名称。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `name` | String | The updated thread name. | Yes       | 
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 示例
+### Example
 
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/XXX' -d '{
   "name" :"thread-name"
 }'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1339,51 +1354,53 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
-### 查询子区的详情
+### Retrieve the details of a thread
 
-查询指定子区的详情。
+Retrieves the detailed information of the specified thread.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述               | 是否必需 |
-| :------------ | :----- | :------- | :------------------------ |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`  | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `thread_id` | String | The thread ID.    |
+| `msgId` | String | The ID of the message based on which the thread was created.   |
+| `channelId` | String | The ID of the channel to which the thread belongs. |
+| `owner`    | String | The ID of the user who creates the thread.     |
+| `created`    | Number | The Unix timestamp (md) when the thread was created.     |
 
-其它字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+### Example
 
-#### 示例
-
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1396,51 +1413,48 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 删除子区
+## Destroy a thread
 
-删除指定的子区。
+Destroys the specified thread.
 
-#### HTTP 请求
+### HTTP request
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json` | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| code | Number  | 环信超级社区的服务状态码。 |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
 
-其它字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+### Example
 
-#### 示例
-
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1448,49 +1462,49 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-### 加入子区
 
-加入指定的子区。
+## Add a user to a thread
 
-#### HTTP 请求
+Adds users to the specified thread.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}/user/join?userId={user_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`                           | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 示例
+### Example
 
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/XXX/user/join?userId=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1498,50 +1512,50 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 将成员移出子区
 
-将成员移出指定的子区。
+## Remove a user from a thread
 
-#### HTTP 请求
+Removes users from the specified thread.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}/user/remove?userId={user_id}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Request header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Content-Type`  | String | `application/json`                           | Yes       |
+| `Accept`        | String | `application/json`                           | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-#### HTTP 响应
+### HTTP response
 
-##### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段 | 类型 | 描述                |
-| :--- | :--- | :------------------ |
-| `code` | Number  | 环信超级社区的服务状态码。 |
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 示例
+### Example
 
-##### 请求示例
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/XXX/user/remove?userId=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
@@ -1549,72 +1563,70 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 用户获取自己创建的子区
+## Retrieve threads created by a user
 
-用户获取自己创建的子区。
+Retrieves the detailed information of the threads created by the specified user.
 
-#### HTTP 请求
-
-获取第一页：
-
-```http
-GET https://{host}/{org_name}/{app_name}/circle/thread/created?userId={user_id}&channelId={channel_id}
-```
-
-分页获取：
+### HTTP request
 
 ```shell
 GET https://{host}/{org_name}/{app_name}/circle/thread/created?userId={user_id}&channelId={channel_id}&limit={limit}&cursor={cursor}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `user_id` | String | The user ID. | Yes  |
+| `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
+| `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`                           | Yes       |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段    | 类型 | 描述                       |
-| :------ | :--- | :------------------------- |
-| `code`    | Number  | 环信超级社区的服务状态码。        |
-| `threads` | List | 获取到的子区详情列表。 |
-| `count`   | Number  | 获取到的子区数量。     |
+#### Response body
 
-其它字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `count`   | Number  | The number of retrieved threads.    |
+| `threads` | List | The list of threads and their detailed information. |
+| `threads.id` | String | The thread ID.    |
+| `threads.msgId` | String | The ID of the message based on which the thread was created.   |
+| `threads.channelId` | String | The ID of the channel to which the thread belongs. |
+| `threads.owner`    | String | The ID of the user who creates the thread.     |
+| `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |
 
-#### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-##### 请求示例
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/created?userId=XXX&channelId=XXX'
-```
-
-分页获取：
-
-```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/created?userId=XXX&channelId=XXX&limit=1&cursor=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
   "code" : 200,
+  "count" : 1,
   "threads" : [
     {
       "id" : "1895600",
@@ -1628,72 +1640,72 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 用户获取频道中的子区
+## Retrieve threads in a channel
 
-用户获取频道中的子区。
+Retrieves the detailed information of all threads in the specified channel.
 
-#### HTTP 请求
-
-获取第一页：
-
-```http
-GET https://{host}/{org_name}/{app_name}/circle/thread/list?channelId={channel_id}
-```
-
-分页获取：
+### HTTP request
 
 ```shell
 curl -X GET https://{host}/{org_name}/{app_name}/circle/thread/list?channelId={channel_id}&limit={limit}&cursor={cursor}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+#### Query parameter
 
-#### HTTP 响应
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
+| `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
 
-##### 响应 body
+#### Request header
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`                           | Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       | 
 
-| 字段    | 类型 | 描述                       |
-| :------ | :--- | :------------------------- |
-| `code`    | Number  | 环信超级社区的服务状态码。        |
-| `threads` | List | 获取到的子区详情列表。 |
-| `count`   | Number  | 获取到的子区数量。     |
+### HTTP response
 
-其他字段及描述详见[公共参数](#param)。
+#### Response body
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-#### 示例
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `count`   | Number  | The number of retrieved threads.    |
+| `threads` | List | The list of threads and their detailed information. |
+| `threads.id` | String | The thread ID.    |
+| `threads.msgId` | String | The ID of the message based on which the thread was created.   |
+| `threads.channelId` | String | The ID of the channel to which the thread belongs. |
+| `threads.owner`    | String | The ID of the user who creates the thread.     |
+| `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |
 
-##### 请求示例
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/list?channelId=XXX'
-```
-
-分页获取：
-
-```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/list?channelId=XXX&limit=1&cursor=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
   "code" : 200,
+  "count" : 1,
   "threads" : [
     {
        "id" : "1895600",
@@ -1707,68 +1719,68 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-### 用户获取频道中加入的子区
 
-用户获取频道中加入的子区。
+## Retrieve threads joined by a user
 
-#### HTTP 请求
+Retrieves the detailed information of the threads joined by the specified user.
 
-获取第一页：
-
-```http
-GET https://{host}/{org_name}/{app_name}/circle/thread/joined?userId={user_id}&channelId={channel_id}
-```
-
-分页获取：
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/circle/thread/joined?userId={user_id}&channelId={channel_id}&limit={limit}&cursor={cursor}
 ```
 
-##### 路径参数
+#### Path parameter
 
-参数及描述详见[公共参数](#param)。
+For the parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求 header
+#### Query parameter
 
-| 参数          | 类型   | 描述                                                         | 是否必需 | 
-| :------------ | :----- | :------- | :----------------------------------------------------------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `user_id` | String | The user ID. | Yes  |
+| `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
+| `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
 
-#### HTTP 响应
+#### Request header
 
-##### 响应 body
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `Accept`        | String | `application/json`                           | Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       | 
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+### HTTP response
 
-| 字段    | 类型 | 描述                       |
-| :------ | :--- | :------------------------- |
-| `code`    | Number  | 环信超级社区的服务状态码。        |
-| `threads` | List | 获取到的子区详情列表。 |
-| `count`   | Number  | 获取到的子区数量。     |
+#### Response body
 
-其他字段及描述详见[公共参数](#param)。
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+|  Parameter  |  Type  |  Description  |
+| :-------- | :------- | :------- |
+| `code`   | Number     | The HTTP status code.   |
+| `count`   | Number  | The number of retrieved threads.    |
+| `threads` | List | The list of threads and their detailed information. |
+| `threads.id` | String | The thread ID.    |
+| `threads.msgId` | String | The ID of the message based on which the thread was created.   |
+| `threads.channelId` | String | The ID of the channel to which the thread belongs. |
+| `threads.owner`    | String | The ID of the user who creates the thread.     |
+| `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
+| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |
 
-#### 示例
+For other parameters and detailed descriptions, see [Common parameters](#param).
 
-##### 请求示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
 
 ```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/joined?userId={user_id}&channelId=XXX'
-```
-
-分页获取：
-
-```shell
-将 <YourAppToken> 替换为你在服务端生成的 App 权限 Token
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/thread/joined?userId={user_id}&channelId=XXX&limit=1&cursor=XXX'
 ```
 
-##### 响应示例
+#### Response example
 
 ```json
 {
