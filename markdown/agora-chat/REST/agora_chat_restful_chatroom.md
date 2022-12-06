@@ -451,7 +451,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 字段      | 类型   | 描述                                                              |
 | :-------- | :----- | :---------------------------------------------------------------- |
-| `success` | Bool   | 聊天室是否删除成功：<li>`true`：删除成功。<li>`false`：删除失败。 |
+| `success` | Bool   | 聊天室是否删除成功：<li> `true`：删除成功。<li> `false`：删除失败。 |
 | `id`      | String | 已被删除的聊天室 ID。                                             |
 
 其他字段及说明详见 [公共参数](#param)。
@@ -483,6 +483,152 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
     "duration": 0,
     "organization": "XXXX",
     "applicationName": "XXXX"
+}
+```
+
+### 获取聊天室公告
+
+获取指定聊天室 ID 的聊天室公告。
+
+#### HTTP 请求
+
+```http
+GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
+```
+
+##### 路径参数
+
+| 参数            | 类型   | 描述                   | 是否必填 |
+| :-------------- | :----- | :--------------------- | :------- |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。 | 是       |
+
+其他参数及描述详见 [公共参数](#param)。
+
+##### 请求 header
+
+| 参数            | 类型   | 是否必需 | 描述                                                         |
+| :-------------- | :----- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String | 是       | 内容类型。请填 `application/json`。                          |
+| `Accept`        | String | 是       | 内容类型。请填 `application/json`。                          |
+| `Authorization` | String | 是       | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+
+#### HTTP 响应
+
+##### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+在返回值中查看 data 字段包含的信息，获取到的聊天室公告信息。
+
+| 参数                | 类型   | 说明             |
+| :------------------ | :----- | :--------------- |
+| `data.announcement` | String | 聊天室公告内容。 |
+
+其他字段及描述详见 [公共参数](#param)。
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](http://docs-im-beta.easemob.com/document/server-side/error.html) 了解可能的原因。
+
+#### 示例
+
+##### 请求示例
+
+```shell
+# 将 <YourToken> 替换为你在服务端生成的 Token
+
+curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement'
+```
+
+##### 响应示例
+
+```json
+{
+  "action": "get",
+  "application": "52XXXXf0",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement",
+  "entities": [],
+  "data": {
+    "announcement" : "XXXX."
+  },
+  "timestamp": 1542363546590,
+  "duration": 0,
+  "organization": "XXXX",
+  "applicationName": "testapp"
+}
+```
+
+### 修改聊天室公告
+
+修改指定聊天室 ID 的聊天室公告。聊天室公告内容不能超过 512 个字符。
+
+#### HTTP 请求
+
+```http
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
+```
+
+##### 路径参数
+
+| 参数            | 类型   | 描述                   | 是否必填 |
+| :-------------- | :----- | :--------------------- | :------- |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。 | 是       |
+
+其他参数及描述详见 [公共参数](#param)。
+
+##### 请求 header
+
+| 参数            | 类型   | 是否必需 | 描述                                                         |
+| :-------------- | :----- | :------- | :----------------------------------------------------------- |
+| `Content-Type`  | String | 是       | 内容类型。请填 `application/json`。                          |
+| `Accept`        | String | 是       | 内容类型。请填 `application/json`。                          |
+| `Authorization` | String | 是       | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+
+##### 请求 body
+
+| 字段           | 类型   | 是否必需 | 描述                 |
+| :------------- | :----- | :------- | :------------------- |
+| `announcement` | String | 是       | 修改后的聊天室公告。 |
+
+#### HTTP 响应
+
+##### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+| 字段          | 类型   | 描述                                          |
+| :------------ | :----- | :-------------------------------------------- |
+| `data.id`     | String | 聊天室 ID。                                   |
+| `data.result` | Bool   | 修改是否成功： <br/> - `true`：是； <br/>  - `false`：否。 |
+
+其他字段及描述详见 [公共参数](#param)。
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](http://docs-im-beta.easemob.com/document/server-side/error.html) 了解可能的原因。
+
+#### 示例
+
+##### 请求示例
+
+```shell
+# 将 <YourToken> 替换为你在服务端生成的 Token
+
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement' -d '{"announcement" : "聊天室公告…"}'
+```
+
+##### 响应示例
+
+```json
+{
+  "action": "post",
+  "application": "52XXXXf0",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement",
+  "entities": [],
+  "data": {
+    "id": "12XXXX11",
+    "result": true
+  },
+  "timestamp": 1594808604236,
+  "duration": 0,
+  "organization": "XXXX",
+  "applicationName": "testapp"
 }
 ```
 
