@@ -1,16 +1,16 @@
 # Channels
 
-Circle is an online chat and community solution built on Chat SDKs. It allows users to connect with communities by interest and communicate with thousands of kindred spirits in real time.
+Circle is an online chat and community solution built on the Chat SDKs. It enables users to connect with communities of mutual interest and communicate with thousands of other users worldwide in real time.
 
-Circle provides a three-layer structure that contains the following:
+Circle provides a three-layer structure, as follows:
 
-- **Server**: Servers are different communities within Circle. You can not only find and join servers by your interest, but also create and manage your own servers.
-- **Channel**: A server is organized into topic-based channels, where you can share with kindred spirits and talk over specific topics. A default channel is automatically created in tandem with the server creation.
+- **Server**: Each server represents one of the communities within Circle. Users can search for and join servers by subject/interest. They can also create and manage their own servers.
+- **Channel**: A server is organized into topic-based channels, where users can connect with other interested users to talk over specific topics. A default channel is automatically created during server creation.
 - **Thread**: Threads serve as temporary sub-channels inside an existing channel, to help better organize conversations in a busy channel.
 
-Once a server is created, a default channel with all server members in is automatically created to receive system notifications. The server owner can then create public or private channels by demand. Note that users can join and leave a server freely without anyone's approval.
+Once a server is created, a default channel containing all server members is automatically created to receive system notifications. The server owner can then create public or private channels, as desired. Note that users can join and leave a server freely; they do not require approval from anyone.
 
-This page shows how to implement channels in circle using RESTful APIs. Before proceeding, ensure that you understand the frequency limit of Chat RESTful API calls described in [Limitations](https://docs.agora.io/en/agora-chat/reference/limitations#call-limit-of-server-sides).
+This page shows how to implement channels in Circle using RESTful APIs. Before proceeding, ensure that you understand the frequency limit of Chat RESTful API calls described in [Limitations](https://docs.agora.io/en/agora-chat/reference/limitations#call-limit-of-server-sides).
 
 
 ## <a name="param"></a>Common parameters
@@ -51,7 +51,7 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
 
 ## Create a channel
@@ -300,7 +300,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :----- | :----- | :------- | :-------- |
 | `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 | `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
 #### Request header
 
@@ -320,7 +320,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `code`   | Number     | The HTTP status code. |
 | `count`    | Number   | The number of retrieved channels.   |
 | `channels` | List | The list of the retrieved channels and the detailed information. |
-| `cursor`  | String  | The start position of next query. |
+| `cursor`  | String  | The start position of the next query. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -360,7 +360,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Retrieve the joined channels
 
-Retrieves the detailed information of the channels where the specified user exists (by page).
+Retrieves the detailed information of the channels where the specified user that has joined (by page).
 
 ### HTTP request
 
@@ -379,7 +379,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `user_Id` | String | The user ID. | Yes  |
 | `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 | `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
 
 #### Request header
@@ -400,7 +400,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `code`   | Number     | The HTTP status code. |
 | `count`    | Number   | The number of retrieved channels.   |
 | `channels` | List | The list of the retrieved channels and the detailed information. |
-| `cursor`  | String  | The start position of next query. |
+| `cursor`  | String  | The start position of the next query. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -459,7 +459,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :----- | :----- | :------- | :-------- |
 | `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 | `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
@@ -482,7 +482,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `code`   | Number     | The HTTP status code. |
 | `count`    | Number   | The number of retrieved channels.   |
 | `channels` | List | The list of the retrieved channels and the detailed information. |
-| `cursor`  | String  | The start position of next query. |
+| `cursor`  | String  | The start position of the next query. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -686,7 +686,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
 | `code`  | Number    | The HTTP status code. |
-| `count` | Number  | The number of the reactions. |
+| `count` | Number  | The number of reactions. |
 | `msgId` | String  | The ID of the message to which the reactions belong.  |
 | `reactionList` | List  | The list of the reactions and detailed information.  |
 | `reactionList.reactionId` | String  | The reaction ID.  |
@@ -918,9 +918,9 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppTok
 ```
 
 
-## Check if a user exists in a channel
+## Check whether a user exists in a channel
 
-Checks if a user exists in the specified channel.
+Checks whether a user exists in the specified channel.
 
 ### HTTP request
 
@@ -989,7 +989,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :----- | :----- | :------- | :-------- |
 | `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
 | `limit` | Number    |   The number of members to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
 #### Request header
 
@@ -1010,7 +1010,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `count`   | Number     | The number of retrieved members.  |
 | `users` | List | The list of users and detailed information. |
 | `users.user_id` | String | The ID of the user. |
-| `users.role` | Number | The role of the user in a channel:<li>`0`</li>: Owner.<li>`1`</li>: Member. |
+| `users.role` | Number | The role of the user in the channel:<li>`0`</li>: Owner.<li>`1`</li>: Member. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -1584,7 +1584,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `user_id` | String | The user ID. | Yes  |
 | `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
 | `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
 #### Request header
 
@@ -1609,7 +1609,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `threads.channelId` | String | The ID of the channel to which the thread belongs. |
 | `threads.owner`    | String | The ID of the user who creates the thread.     |
 | `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
@@ -1661,7 +1661,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :----- | :----- | :------- | :-------- |
 | `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
 | `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
 #### Request header
 
@@ -1686,7 +1686,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `threads.channelId` | String | The ID of the channel to which the thread belongs. |
 | `threads.owner`    | String | The ID of the user who creates the thread.     |
 | `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -1741,7 +1741,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `user_id` | String | The user ID. | Yes  |
 | `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
 | `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |  No  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
 #### Request header
 
@@ -1766,7 +1766,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `threads.channelId` | String | The ID of the channel to which the thread belongs. |
 | `threads.owner`    | String | The ID of the user who creates the thread.     |
 | `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
-| `cursor` | String  | The start position of next query. This parameter is only required when retrieving by page.  |
+| `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 

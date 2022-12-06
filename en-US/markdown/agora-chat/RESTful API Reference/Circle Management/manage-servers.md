@@ -1,16 +1,16 @@
 # Servers
 
-Circle is an online chat and community solution built on Chat SDKs. It allows users to connect with communities by interest and communicate with thousands of kindred spirits in real time.
+Circle is an online chat and community solution built on the Chat SDKs. It enables users to connect with communities of mutual interest and communicate with thousands of other users worldwide in real time.
 
-Circle provides a three-layer structure that contains the following:
+Circle provides a three-layer structure, as follows:
 
-- **Server**: Servers are different communities within Circle. You can not only find and join servers by your interest, but also create and manage your own servers.
-- **Channel**: A server is organized into topic-based channels, where you can share with kindred spirits and talk over specific topics. A default channel is automatically created in tandem with the server creation.
+- **Server**: Each server represents one of the communities within Circle. Users can search for and join servers by subject/interest. They can also create and manage their own servers.
+- **Channel**: A server is organized into topic-based channels, where users can connect with other interested users to talk over specific topics. A default channel is automatically created during server creation.
 - **Thread**: Threads serve as temporary sub-channels inside an existing channel, to help better organize conversations in a busy channel.
 
-Once a server is created, a default channel with all server members in is automatically created to receive system notifications. The server owner can then create public or private channels by demand. Note that users can join and leave a server freely without anyone's approval.
+Once a server is created, a default channel containing all server members is automatically created to receive system notifications. The server owner can then create public or private channels, as desired. Note that users can join and leave a server freely; they do not require approval from anyone.
 
-This page shows how to implement servers in circle using RESTful APIs. Before proceeding, ensure that you understand the frequency limit of Chat RESTful API calls described in [Limitations](https://docs.agora.io/en/agora-chat/reference/limitations#call-limit-of-server-sides).
+This page shows how to implement servers in Circle using RESTful APIs. Before proceeding, ensure that you understand the frequency limit of Chat RESTful API calls described in [Limitations](https://docs.agora.io/en/agora-chat/reference/limitations#call-limit-of-server-sides).
 
 
 ## <a name="param"></a>Common parameters
@@ -22,7 +22,7 @@ This page shows how to implement servers in circle using RESTful APIs. Before pr
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `org_name` | String | The unique identifier assigned to each company (organization) by the Agora Chat service.  For how to get the org name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
 | `app_name` | String | The unique identifier assigned to each app by the Agora Chat service. For how to get the app name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes |
-| `server_id`  | String | The server.         | Yes   |
+| `server_id`  | String | The server ID.         | Yes   |
 | `user_id`    | String | The user ID.   | Yes |
 
 
@@ -37,7 +37,7 @@ This page shows how to implement servers in circle using RESTful APIs. Before pr
 | `icon_url`         | String  | The URL of the server icon.                   |
 | `server_tag_id`   | String   | The ID of the server tag.             |
 | `tag_name`        | String   | The name of the server tag.               |
-| `tag_count`       | Number   | The number of the server tags.             |
+| `tag_count`       | Number   | The number of server tags.             |
 | `server_id`       | String   | The server ID.                   |
 | `default_channel_id` | String | The channel ID of the default channel.             |
 | `user_id`   | String |  The user ID.      |
@@ -54,7 +54,7 @@ Agora Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP r
 Authorization: Bearer ${YourAppToken}
 ```
 
-In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log into the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Agora Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens?platform=RESTful).
 
 
 
@@ -111,7 +111,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ## Create a server
 
-Creates a server and sets its name, icon URL, description, and extension.
+Creates a server, and sets its name, icon URL, description, and extension.
 
 Each user can create a maximum of 100 servers. To raise this limit, contact [support@agora.io](support@agora.io).
 
@@ -137,8 +137,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `owner` | String | The user ID of the server creator (owner). The length of the user ID cannot exceed 64 characters. | Yes  |
-| `name` | String | The server name. The length of the server name cannot exceed 500 characters. | Yes  |
+| `owner` | String | The user ID of the server creator (owner). The length cannot exceed 64 characters. | Yes  |
+| `name` | String | The server name. The length cannot exceed 50 characters. | Yes  |
 | `icon_url` | String | The URL of the server icon. The length cannot exceed 500 characters. | No |
 | `description` | String | The server description. The length cannot exceed 500 characters. | No |
 | `custom` | String | The server extension. The length cannot exceed 500 characters. | No |
@@ -204,7 +204,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `name` | String | The server name. The length of the server name cannot exceed 500 characters. | No  |
+| `name` | String | The server name. The length cannot exceed 50 characters. | No  |
 | `icon_url` | String | The URL of the server icon. The length cannot exceed 500 characters. | No |
 | `description` | String | The server description. The length cannot exceed 500 characters. | No |
 | `custom` | String | The server extension. The length cannot exceed 500 characters. | No |
@@ -446,9 +446,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ```
 
 
-## Search a server
+## Search for a server
 
-Searches servers by specifying the server names.
+Searches for servers by specifying the server names.
 
 Each query can contain a maximum of 15 results.
 
@@ -484,7 +484,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :--- | :--- | :------------------ |
 | `code` | Number  | The HTTP status code. |
-| `count`   | Number  | The number of the matched servers. |
+| `count`   | Number  | The number of matched servers. |
 | `servers` | List | The details of the matched servers. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
@@ -528,7 +528,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```
 
 
-## Retrieve details of a server
+## Retrieve the details of a server
 
 Retrieves the detailed information of the specified server.
 
@@ -598,9 +598,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```
 
 
-## Retrieve details of recommended servers
+## Retrieve the details of recommended servers
 
-For now, this method retrieves the detailed information of five servers that are last created.
+This method currently retrieves the detailed information of five servers that are last created.
 
 ### HTTP request
 
@@ -628,7 +628,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :--- | :--- | :------------------ |
 | `code`   | Number  | The HTTP status code. |
-| `count`   | Number  | The number of the recommended servers. |
+| `count`   | Number  | The number of recommended servers. |
 | `server` | JSON | The detailed information of the recommended servers.  |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
@@ -671,9 +671,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 ```
 
 
-## Retrieve details of joined servers
+## Retrieve the details of joined servers
 
-Retrieves the detailed information of the servers that the specified user exists (by page).
+Retrieves the detailed information of the servers that the specified user that has joined (by page).
 
 ### HTTP request
 
@@ -691,7 +691,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :----- | :----- | :------- | -------- |
 | `user_id` | String    |  The user ID.  | Yes  |
 | `limit` | Number    |   The number of servers to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor`     | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
+| `cursor`     | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
 #### Request header
 
@@ -709,9 +709,9 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | Parameter | Type | Description |
 | :----- | :----- | :------- |
 | `code`    | Number  | The HTTP status code.    |
-| `count`   | Number  | The number of the servers. |
+| `count`   | Number  | The number of servers. |
 | `servers` | List | The detailed information of the servers. |
-| `cursor`  | String  | The start position of next query. |
+| `cursor`  | String  | The start position of the next query. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -759,7 +759,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 Destroys the specified server.
 
-Once a server is destroyed, all channels within it are destroyed as well.
+When a server is destroyed, all channels within it are destroyed as well.
 
 ### HTTP request
 
@@ -904,7 +904,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
 | `limit` | Number    |  The number of members to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
-| `cursor`     | String  | The start position of next query. This parameter is only required when retrieving by page.    |  No  |
+| `cursor`     | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
 #### Request header
 
@@ -923,8 +923,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | :---- | :--- | :------------------- |
 | `code`  | Number  | The HTTP status code.  |
 | `count` | Number  | The number of users. |
-| `users` | List | The detailed information of members. |
-| `cursor` | String  | The start position of next query. |
+| `users` | List | The detailed information of the users on the member list. |
+| `cursor` | String  | The start position of the next query. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -955,9 +955,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```
 
 
-## Check if a user exists in a server
+## Check whether a user exists in a server
 
-Checks if a user exists in the specified server.
+Checks whether a user exists in the specified server.
 
 ### HTTP request
 
@@ -1045,7 +1045,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :---- | :--- | :------------------- |
 | `code` | Number  | The HTTP status code.                                          |
-| `role` | Number  | The role of the user in a server.<li>`0`: Owner.</li><li>`1`: Admin.</li><li>`2`: Member.</li> |
+| `role` | Number  | The role of the user in the server.<li>`0`: Owner.</li><li>`1`: Admin.</li><li>`2`: Member.</li> |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
@@ -1086,7 +1086,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
 | `user_id` | String  |  The user ID.  | Yes  |
-| `role` | Number  | The role of the user. You can pass the following values:<li>`1`: Admin.</li><li>`2`: Member.</li> <div class="alert note">An error occurs if you pass <code>0</code> that represents the role of the server owner.</div>。| Yes ｜
+| `role` | Number  | The role of the user. You can pass the following values:<li>`1`: Admin.</li><li>`2`: Member.</li> <div class="alert note">An error occurs if you pass <code>0</code> representing the role of the server owner.</div>。| Yes ｜
 
 #### Request header
 
@@ -1128,7 +1128,7 @@ curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 Removes the specified user from a server.
 
-Once a user is removed from a server, this user is removed from the channels within the server as well.
+Once a user is removed from a server, they are automatically removed all of that server's channels as well.
 
 ### HTTP request
 
