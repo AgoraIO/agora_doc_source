@@ -179,7 +179,7 @@
    import <AgoraProctorSDK/AgoraProctorSDK.h>
    ```
 
-4. 调用 [AgoraProctorSDK.launch](//TODO) 方法启动监考场景的灵动课堂。示例代码如下：
+4. 调用 [AgoraProctorSDK.launch](//TODO add link) 方法启动监考场景的灵动课堂。示例代码如下：
 
    ```swift
    /* Swift */

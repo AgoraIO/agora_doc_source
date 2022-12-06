@@ -58,8 +58,8 @@
      }
     ```
 
-    如果你想获取 2.6.x 或之前版本，例如 2.6.0。你还需要在 dependencies 中添加 hyphenate 依赖：
-    
+    如果你想获取 2.6.x 或之前版本，例如 2.6.0，你还需要在 `dependencies` 中添加 `hyphenate` 依赖：
+
     ```
     dependencies {
         ......
@@ -76,7 +76,7 @@
         val appId = "" // 填入你的 App ID。
         val rtmToken = "" // 填入你的 RTM Token。
         val streamState = AgoraEduStreamState(videoState = 1, audioState = 1)
-    
+
         val config = AgoraEduLaunchConfig(
             "xiaoming", // 用户名。
             "xiaoming2", // 用户 ID。
@@ -95,7 +95,7 @@
             null,
             null
         )
-    
+
         config.appId = appId
         config.uiMode = AgoraEduUIMode.LIGHT // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 AgoraEduUIMode.DARK 即可。
         AgoraClassroomSDK.setConfig(AgoraClassSdkConfig(appId))

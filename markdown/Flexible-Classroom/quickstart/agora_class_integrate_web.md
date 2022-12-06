@@ -161,7 +161,7 @@
 - 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/flexible-classroom-desktop)集成。
 
 
-<a name="default_ui"></a>
+<a name="default_ui_proctor"></a>
 
 ### 使用默认 UI 的方式集成
 
@@ -181,7 +181,7 @@
     import { AgoraProctorSDK } from 'agora-proctor-sdk'
     ```
 
-3. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config //TODO) 和 [AgoraProctorSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch //TODO) 方法启动课堂。
+3. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](//TODO add link) 和 [AgoraProctorSDK.launch](//TODO add link) 方法启动课堂。
 
 #### 使用 CDN 集成
 
@@ -191,7 +191,7 @@
     <script src="https://download.agora.io/edu-apaas/release/proctor_sdk@1.0.0.bundle.js"></script>
     ```
 
-2. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config //TODO) 和 [AgoraProctorSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch //TODO) 方法启动课堂。
+2. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](//TODO add link) 和 [AgoraProctorSDK.launch](//TODO add link) 方法启动课堂。
 
 
 #### 示例代码
@@ -249,7 +249,7 @@
 示例代码中 `rtmToken` 的填写方式：你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
 
 
-<a name="change_default_ui"></a> //TODO
+<a name="change_default_ui_proctor"></a>
 
 ### 使用自定义 UI 的方式集成
 
@@ -287,7 +287,7 @@
 
 <div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-proctor-sdk/lib/proctor_sdk.bundle.js</code>。</div>
 
-### 设置考卷链接 //TODO
+### 设置考卷链接
 
 在线考试开始后，考生会在本地通过 `Widget` 创建的 Webview 窗口加载考卷。考卷的链接通过房间属性（`roomProperties`）中的 `examinationUrl` 字段设置。你可以参考如下方式设置考卷链接：
 
