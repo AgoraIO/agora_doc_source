@@ -32,23 +32,6 @@ static launch(dom: HTMLElement, option: LaunchOption) {}
 | `option` | 课堂启动配置，详见 [LaunchOption](#launchoption)。                           |
 
 
-### launchWindow
-
-```typescript
-static launchWindow(dom: HTMLElement, option: LaunchWindowOption) {
-```
-
-启动 xxx //TODO
-
-**参数**
-
-| 参数     | 描述                                                             |
-| :------- | :--------------------------------------------------------------- |
-| `dom`    | 详见 [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document)。 |
-| `option` | 课堂启动配置，详见 [LaunchWindowOption](#launchwindowoption)。                           |
-
-
-
 ## 类型定义
 
 ### ConfigParams
