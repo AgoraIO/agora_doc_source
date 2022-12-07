@@ -100,6 +100,8 @@
             duration: 60 * 30, // 课程时间，单位为秒。
             recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.0/record_page.html',
             courseWareList: [],
+            virtualBackgroundImages: [], // 虚拟背景图片资源列表
+            webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC插件部署地址
             uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
             listener: (evt, args) => {
             },
