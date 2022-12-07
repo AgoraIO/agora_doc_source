@@ -239,7 +239,7 @@ Agora Proctor SDK 退出回调，会在用户退出房间或被踢出房间时�
 
 ### AgoraProctorLatencyLevel
 
-观众端延时级别，只对台下学生有效。在 [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig) 中设置。
+观众端延时级别，只对非连麦用户有效。在 [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig) 中设置。
 
 | 参数       | 描述                                                           |
 | :--------- | :------------------------------------------------------------- |
