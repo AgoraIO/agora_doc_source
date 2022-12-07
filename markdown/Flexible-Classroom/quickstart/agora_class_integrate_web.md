@@ -106,6 +106,8 @@
             duration: 60 * 30, // 课程时间，单位为秒。
             recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.0/record_page.html',
             courseWareList: [],
+            virtualBackgroundImages: [], // 虚拟背景图片资源列表
+            webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC插件部署地址
             uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
             listener: (evt, args) => {
             },
@@ -117,6 +119,12 @@
 ```
 
 示例代码中需要传入 `rtmToken`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
+
+### Web端新增功能：美颜、降噪、虚拟背景
+灵动课堂2.8.0版本Web端支持了美颜、降噪、虚拟背景等功能。如需要这几项功能，需要在AgoraEduSDK.launch中传入以下两个参数：
+* virtualBackgroundImages	（选填）视频虚拟背景墙图片链接，资源所在域名应与webrtcExtensionBaseUrl相同，支持PNG，JPG格式。
+* webrtcExtensionBaseUrl	（选填）WebRTC插件部署地址，默认为：[https://solutions-apaas.agora.io/static](https://solutions-apaas.agora.io/static)，若需在Web端使用虚拟背景墙，AI降噪，美颜等功能需要将WebRTC插件和相应的资源文件部署至灵动课堂SDK相同域名下。运行`yarn build:demo`打包后，会在packages/agora-demo-app/build/extensions目录下生成对应的文件，将extensions目录部署至灵动课堂SDK相同域名下即可。
+
 
 ### 修改灵动课堂的默认 UI
 
@@ -261,8 +269,8 @@
  - `学生A`传入 Proctor WEB SDK 的 userUuid 为 `studentA-main`
  - `学生A`传入 Proctor IOS/Android SDK 的 userUuid 为 `studentA-sub`
 在考场中 `studentA-main` 和 `studentA-sub` 会被识别为 `studentA` 的多台设备,并合并展示在老师的监考画面中。
-         
-           
+
+
 
 
 ### 设置考卷链接
