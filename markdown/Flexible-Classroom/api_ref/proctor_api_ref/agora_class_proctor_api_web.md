@@ -98,7 +98,7 @@ export type LaunchOption = {
 | `widgets`|（选填）插件。详见[AgoraWidgetBase](#agorawidgetbase)。|
 | `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                 |
 | `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 [LaunchMediaOptions](#launchmediaoptions)。                                                                                 |
-| `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li>                                     |
+| `latencyLevel`           | （选填）观众端延时级别。只对非连麦用户有效。<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li>                                     |
 | `platform`               | （选填）适用平台，可设为 `'PC'` 和 `'H5'` //TODO 研发确认。                                                                                                                                                         |
 | `uiMode` |（选填）课堂界面模式，详见 [FcrMultiThemeMode](#fcrmultithememode)。 |
 |`shareUrl`       | （选填）//TODO 研发确认     |
@@ -143,13 +143,12 @@ export interface EduVideoEncoderConfiguration {
 
 视频编码参数配置。
 
-> -  在小班课中，分辨率的默认值为 120p（160 * 120）。
-> -  在一对一和大班课中，分辨率的默认值为 240p（320 * 240）。
+//TODO 这里是否有 mirrorMode
 
 | 参数        | 描述                 |
 | :---------- | :------------------- |
-| `width`     | 视频帧宽度(pixel)。  |
-| `height`    | 视频帧高度 (pixel)。 |
+| `width`     | 视频帧宽度(pixel)。默认值为 320。  |
+| `height`    | 视频帧高度 (pixel)。默认值为 240。 |
 | `frameRate` | 视频帧率 (fps)。     |
 | `bitrate`   | 视频码率 (Kbps)。    |
 
