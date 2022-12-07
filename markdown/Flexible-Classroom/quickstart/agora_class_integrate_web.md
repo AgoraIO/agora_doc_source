@@ -100,8 +100,8 @@
             duration: 60 * 30, // 课程时间，单位为秒。
             recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.0/record_page.html',
             courseWareList: [],
-            virtualBackgroundImages: [], // 虚拟背景图片资源列表
-            webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC插件部署地址
+            virtualBackgroundImages: [], // 虚拟背景图片资源列表。
+            webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC 插件部署地址。
             uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
             listener: (evt, args) => {
             },
@@ -113,6 +113,8 @@
 ```
 
 示例代码中需要传入 `rtmToken`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
+
+其他参数取值详见 [LaunchOption 说明](/cn/agora-class/agora_class_api_ref_web?platform=Web#launchoption)。
 
 
 <a name="change_default_ui"></a>
