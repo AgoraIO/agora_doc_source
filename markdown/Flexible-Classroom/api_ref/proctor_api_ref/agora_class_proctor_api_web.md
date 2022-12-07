@@ -31,7 +31,7 @@
 | 参数     | 描述                                                             |
 | :------- | :--------------------------------------------------------------- |
 | `success` | 启动成功。 |
-| `failure` | 启动失败，返回一个 Error//TODO 有错误码吗。 |
+| `failure` | 启动失败，返回一个 Error。 |
 
 
 ## 类型定义
@@ -42,7 +42,7 @@
 
 ```
 
-监考启动配置，用于 [launch](#launch) 方法。
+课堂启动配置，用于 [launch](#launch) 方法。
 
 | 属性             | 描述                |
 | :--------------- | :--------------------- |
@@ -53,10 +53,10 @@
 | `roomUuid`       | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","</li></ul>  |
 | `appId`          | Agora App ID。|
 | `token`          | 用于鉴权的 Token。 详见[使用 RTM Token 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms)。  |
-| `region`         | 区域。建议设置为靠近你的课件或录制文件对象存储服务所在的区域，因为跨区域传输较大的静态资源会造成比较大的延迟。举例来说，如果你的 S3 服务在北美，则建议将 `region` 也设为北美区域。所有灵动课堂客户端必须设置相同的区域，否则无法互通。支持的区域详见 [AgoraProctorRegion](#agoraproctorregion)。    |
+| `region`         | 区域默认值为 `CN`，即中国大陆。建议设置为靠近你的课件或录制文件对象存储服务所在的区域，因为跨区域传输较大的静态资源会造成比较大的延迟。举例来说，如果你的 S3 服务在北美，则建议将 `region` 也设为北美区域。所有灵动课堂客户端必须设置相同的区域，否则无法互通。支持的区域详见 [AgoraProctorRegion](#agoraproctorregion)。    |
 | `uiMode`         | UI 模式。可选择明亮（默认）或暗黑。    |
 | `mediaOptions`   | 媒体流相关设置，包含媒体流加密，详见 [AgoraProctorMediaOptions](#agoraproctormediaoptions)。     |
-| `userProperties` | 由开发者自定义的用户属性，会传入 `AgoraProctorUserContext` 的 `userProperties`。//TODO 没找到 user context  |
+| `userProperties` | 由开发者自定义的用户属性，会传入 [`AgoraEduUserContext`](./API%20Reference/edu_context_swift/API/edu_context_api_overview.html#api-title__user_context) 的 `userProperties`，详见[如何设置自定义用户属性](faq/agora_class_custom_properties)。 |
 | `widgets`        | 传入 Widget ID 和 Widget Config。     |
 
 
@@ -72,7 +72,7 @@
 | :------------------- | :-------------------------------------------------------------------------------------- |
 | `encryptionConfig`   | 媒体流加密配置，详见 [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig).   |
 | `videoEncoderConfig` | 视频编码配置，详见 [AgoraProctorVideoEncoderConfig](#agoraproctorvideoencoderconfig).           |
-| `latencyLevel`       | 观众端延时级别，详见 [AgoraProctorLatencyLevel](#agoraproctorlatencylevel)。                    |
+| `latencyLevel`       | 观众端延时级别，默认值为 `ultraLow`，即超低延时。详见 [AgoraProctorLatencyLevel](#agoraproctorlatencylevel)。                    |
 
 ### AgoraProctorMediaEncryptionConfig
 
@@ -96,20 +96,19 @@
 
 视频编码参数配置类，用于 [AgoraProctorMediaOptions](#agoraproctormediaoptions)。
 
-> -  在小班课中，分辨率的默认值为 120p（160 * 120）。
-> -  在一对一和大班课中，分辨率的默认值为 240p（320 * 240）。
+
 
 | 属性              | 描述                                                           |
 | :---------------- | :------------------------------------------------------------- |
-| `dimensionWidth`  | 视频帧宽度，单位为像素。                                   |
-| `dimensionHeight` | 视频帧高度，单位为像素。                                   |
+| `dimensionWidth`  | 视频帧宽度，单位为像素，默认值为 320。                                   |
+| `dimensionHeight` | 视频帧高度，单位为像素，默认值为 240。                                   |
 | `frameRate`       | 视频帧率，单位为 fps，默认值为 15。                      |
 | `bitRate`         | 视频码率，单位为 Kbps，默认值为 200。                        |
-| `mirrorMode`      | 视频镜像模式，详见 [`AgoraProctorMirrorMode`](#agoraproctormirrormode)。 |
+| `mirrorMode`      | 视频镜像模式，默认值为 `AgoraProctorMirrorModeDisable`，即关闭镜像模式，详见 [`AgoraProctorMirrorMode`](#agoraproctormirrormode)。 |
 
 ### AgoraProctorMirrorMode
 
-镜像模式，用于 [`AgoraProctorVideoEncoderConfig`](#agoraproctorvideoencoderconfig)。//TODO 指的是视频镜像？有无默认值？
+镜像模式，用于 [`AgoraProctorVideoEncoderConfig`](#agoraproctorvideoencoderconfig)。
 
 | 参数       | 描述            |
 | :--------- | :-------------- |
@@ -118,18 +117,18 @@
 
 ### AgoraProctorRegion
 
-区域，用于 [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig)。//TODO 有无默认值？
+区域，用于 [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig)。
 
 | 属性 | 描述               |
 | :--- | :----------------- |
-| `CN` | `0`: （默认）中国大陆。 |
+| `CN` | `0`: 中国大陆。 |
 | `NA` | `1`: 北美。             |
 | `EU` | `2`: 欧洲。             |
 | `AP` | `3`: 东南亚。             |
 
 ### AgoraProctorExitReason
 
-退出 Agora Proctor SDK 原因，用于 [`onProctorSDKExited`](#onproctorsdkexited) 回调。//TODO 确认有无默认值？
+退出 Agora Proctor SDK 原因。
 
 | 属性      | 描述       |
 | :-------- | :--------- |
@@ -139,12 +138,12 @@
 
 ### AgoraProctorLatencyLevel
 
-观众端延时级别，只对台下学生有效。在 [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig) 中设置。//TODO 确认描述是否正确，有无默认值？
+观众端延时级别，只对台下学生有效。在 [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig) 中设置。
 
 | 参数       | 描述                                                           |
 | :--------- | :------------------------------------------------------------- |
 | `low`      | `1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。        |
-| `ultraLow` | `2`: （默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。 |
+| `ultraLow` | `2`: 超低延时。发流端与观众端的延时为 400 ms - 800 ms。 |
 
 ### AgoraProctorUserRole
 
@@ -160,7 +159,7 @@
 
 ### AgoraProctorMediaEncryptionMode
 
-媒体流加密模式，用于 [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig)。//TODO 确认描述是否适用，有无默认值？
+媒体流加密模式，用于 [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig)。
 
 | 参数         | 描述     |
 | :----------- | :------------------------------------------------------- |

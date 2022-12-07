@@ -181,7 +181,7 @@
     import { AgoraProctorSDK } from 'agora-proctor-sdk'
     ```
 
-3. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](//TODO add link) 和 [AgoraProctorSDK.launch](//TODO add link) 方法启动课堂。
+3. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](//TODO add link) 和 [AgoraProctorSDK.launch](agora_class_proctor_api_web#launch) 方法启动课堂。
 
 #### 使用 CDN 集成
 
@@ -191,7 +191,7 @@
     <script src="https://download.agora.io/edu-apaas/release/proctor_sdk@1.0.0.bundle.js"></script>
     ```
 
-2. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](//TODO add link) 和 [AgoraProctorSDK.launch](//TODO add link) 方法启动课堂。
+2. 在项目的 JavaScript 代码中调用 [AgoraProctorSDK.config](//TODO add link) 和 [AgoraProctorSDK.launch](agora_class_proctor_api_web#launch) 方法启动课堂。
 
 
 #### 示例代码
