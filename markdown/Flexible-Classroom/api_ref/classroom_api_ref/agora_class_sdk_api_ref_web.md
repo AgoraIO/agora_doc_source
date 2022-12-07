@@ -2,7 +2,7 @@
 
 ## AgoraEduSDK
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，提供教育场景下灵动课堂的核心方法。
 
 ### config
 
@@ -10,7 +10,7 @@
 static config(params: ConfigParams):void
 ```
 
-配置 SDK。
+配置 Classroom SDK。
 
 | 参数     | 描述                                               |
 | :------- | :------------------------------------------------- |
@@ -132,7 +132,7 @@ export type MediaOptions = {
 | `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。   |
 | `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。                             |
 | `channelProfile`                | 频道配置，详见 [ChannelProfile](#channelprofile)。                             |
-| `web`   | 用于配置浏览器编码格式和频道场景：<ul><li>`codec`: 浏览器编码格式，可以为如下：<ul><li>`"vp8"`: VP8 编码。</li><li>`"h264"`: H.264 编码。</li></li></ul><li>`mode`: 频道场景，可以为如下：<ul><li>`"rtc"`: 通信模式，一般用于一对多或一对一的小班课。</li><li>`"live"`: 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。</li></ul></li></ul>
+| `web`   | 用于配置浏览器编码格式和频道场景：<ul><li>`codec`: 浏览器编码格式，可以为如下：<ul><li>`"vp8"`: VP8 编码。</li><li>`"h264"`: H.264 编码。</li></li></ul><li>`mode`: 频道场景，可以为如下：<ul><li>`"rtc"`: 通信模式，一般用于一对多或一对一的小班课。</li><li>`"live"`: 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。</li></ul></li></ul>|
 
 ### EduVideoEncoderConfiguration
 
