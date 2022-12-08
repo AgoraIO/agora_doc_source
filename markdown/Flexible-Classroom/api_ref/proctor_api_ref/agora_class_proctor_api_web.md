@@ -83,7 +83,7 @@ export type LaunchOption = {
 | `userName`               | （必填）用户名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
 | `roomUuid`               | （必填）课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                                                                 |
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
-| `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
+| `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                    |
 | `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
 | `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
@@ -221,10 +221,8 @@ export enum FcrMultiThemeMode {
 
 ```typescript
 export enum EduRoleTypeEnum {
-    audience = 0,
     teacher = 1,
     student = 2,
-    assistant = 3,
 }
 ```
 
@@ -232,18 +230,14 @@ export enum EduRoleTypeEnum {
 
 | 参数        | 描述                      |
 | :---------- | :------------------------ |
-| `audience`  | `0`: 观众，用于页面录制。 |
-| `teacher`   | `1`: 老师。               |
-| `student`   | `2`: 学生。               |
-| `assistant` | `3`: 助教。               |
+| `teacher`   | `1`: 老师，监考官。               |
+| `student`   | `2`: 学生，参考线上考试。              |
 
 ### EduRoomTypeEnum
 
 ```typescript
 export enum EduRoomTypeEnum {
-    Room1v1Class = 0,
-    RoomBigClass = 2,
-    RoomSmallClass = 4,
+    RoomProctor = 6,
 }
 ```
 
@@ -251,10 +245,7 @@ export enum EduRoomTypeEnum {
 
 | 参数             | 描述                                                                                             |
 | :--------------- | :----------------------------------------------------------------------------------------------- |
-| `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                  |
-| `RoomBigClass`   | `2`: 大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课课堂人数上限为 5000。|
-| `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200    |
-
+| `RoomProctor`   | `6`: 在线监考房间。在线监考场景下，`roomType` 仅支持设为此类型。 |
 
 ### LanguageEnum
 
