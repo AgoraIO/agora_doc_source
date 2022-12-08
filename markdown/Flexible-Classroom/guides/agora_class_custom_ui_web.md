@@ -6,7 +6,7 @@
 
 功能组件是灵动课堂中最基础的 UI 组件，不和业务逻辑绑定。一个功能组件维护一个功能的内部状态和逻辑，例如 `Button`、`Modal`、`Select`、 `Tree` 等。
 
-功能组件位于 `packages/agora-classroom-sdk/src/ui-kit`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/ui-kit`(灵动课堂 - 监考场景) 目录中，采用 React + Typescript+ Storybook 的架构。每个功能组件文件夹均包含以下三个文件：
+功能组件位于 `packages/agora-classroom-sdk/src/ui-kit`(灵动课堂教育场景) 和 `packages/agora-proctor-sdk/src/ui-kit`(灵动课堂监考场景) 目录中，采用 React + Typescript+ Storybook 的架构。每个功能组件文件夹均包含以下三个文件：
 
 -   `.tsx`: 实现 UI 组件的功能。
 -   `.css`: 实现 UI 组件的样式。
@@ -52,7 +52,7 @@
 
 ![](https://web-cdn.agora.io/docs-files/1670308000479)
 
-业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂 - 监考场景) 目录下。
+业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂监考场景) 目录下。
 
 下表详细介绍灵动课堂中使用的业务组件：
 
@@ -91,7 +91,7 @@
 ### 场景组件
 #### 教育场景
 
-场景组件由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课和监考四个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 监考场景) 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
+场景组件由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课和监考四个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios`(灵动课堂教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/scenarios`(灵动课堂监考场景) 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
 
 | 文件夹          | 场景组件                     |
 | :-------------- | :--------------------------- |
@@ -113,7 +113,7 @@
 
 ### 新增功能组件
 
-你可参考以下步骤在灵动课堂中新增功能组件，下面以灵动课堂 - 教育场景举例：
+你可参考以下步骤在灵动课堂中新增功能组件，下面以灵动课堂教育场景举例：
 
 1. 在 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下新建文件夹，用于存放你所需要新增的功能组件。请注意，文件夹中需包含以下三个文件：
 
