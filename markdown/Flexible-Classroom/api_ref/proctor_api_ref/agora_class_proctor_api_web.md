@@ -61,7 +61,6 @@ export type LaunchOption = {
   roomUuid: string;
   roleType: EduRoleTypeEnum;
   roomType: EduRoomTypeEnum;
-  roomServiceType?: EduRoomServiceTypeEnum;
   roomName: string;
   listener: ListenerCallback;
   pretest: boolean;
@@ -73,39 +72,34 @@ export type LaunchOption = {
   userFlexProperties?: { [key: string]: any };
   mediaOptions?: LaunchMediaOptions;
   latencyLevel?: 1 | 2;
-  platform?: Platform;
   uiMode?: FcrMultiThemeMode;
-  shareUrl?: string;
   checkStudentScreenShareState?: boolean;
 };
 ```
 
 | 参数                     | 描述                                                                                                                                                                                                |
 | :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `userUuid`               | （必填）用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。填写方式见[集成文档](/cn/agora-class/agora_class_integrate_web?platform=Web#main-sub-device)。同时需满足长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                   |
+| `userUuid`               | （必填）用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。填写方式见 [userUuid 的填写方式](/cn/agora-class/agora_class_integrate_web?platform=Web#main-sub-device)。同时需满足长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                   |
 | `userName`               | （必填）用户名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
 | `roomUuid`               | （必填）课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                                                                 |
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
 | `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
 | `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
-| `roomServiceType`  |（选填）职业教育大班课使用的服务类型。详见 [EduRoomServiceTypeEnum](#eduroomservicetypeenum)。  |
 | `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `rtmToken`               | （必填）用于鉴权的 RTM Token。详见[使用 RTM Token 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms)。                                                                                                                                                                      |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
 | `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。                                                                                                                                |
 | `duration`               | （必填）课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。最大值为 86,400 秒，建议根据课堂实际时长设置。                                                                                    |
-| `widgets`|（选填）插件。详见[AgoraWidgetBase](#agorawidgetbase)。//TODO 能否写"扩展插件集合，扩展教室能力，详见[自定义插件](/cn/agora-class/agora_class_widget_web)。"|
+| `widgets`|（选填）扩展插件集合，扩展教室能力，详见[自定义插件](/cn/agora-class/agora_class_widget_web)。|
 | `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                 |
 | `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 [LaunchMediaOptions](#launchmediaoptions)。                                                                                 |
 | `latencyLevel`           | （选填）观众端延时级别。只对非连麦用户有效。<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li>                                     |
-| `platform`               | （选填）适用平台，可设为 `'PC'` 和 `'H5'` //TODO 研发确认。                                                                                                                                                         |
 | `uiMode` |（选填）课堂界面模式，详见 [FcrMultiThemeMode](#fcrmultithememode)。 |
-|`shareUrl`       | （选填）//TODO 研发确认     |
-|`checkStudentScreenShareState`       | （选填）是否检查学生屏幕共享状态：<li>`true`: </li><li>`false`: </li> //TODO 研发确认 true 的含义，是否有默认值      |
+|`checkStudentScreenShareState`       | （选填）是否在学生屏幕共享断开后，立即将学生踢出房间：<li>`true`: 立即踢出房间。</li><li>`false`: 不立即踢出房间。</li> |
 
 
-### LaunchMediaOptions //TODO 这一节研发确认，不知道 MediaOptions 里有什么字段，这里抄的 Classroom SDK
+### LaunchMediaOptions
 
 ```typescript
 export type LaunchMediaOptions = {
@@ -143,7 +137,6 @@ export interface EduVideoEncoderConfiguration {
 
 视频编码参数配置。
 
-//TODO 这里是否有 mirrorMode
 
 | 参数        | 描述                 |
 | :---------- | :------------------- |
@@ -262,6 +255,7 @@ export enum EduRoomTypeEnum {
 | `RoomBigClass`   | `2`: 大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课课堂人数上限为 5000。|
 | `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200    |
 
+
 ### LanguageEnum
 
 ```typescript
@@ -284,9 +278,9 @@ export enum DeviceTypeEnum {
 }
 ```
 
-设备类型。在 //TODO 中设置。
+设备类型。
 
-主副设备介绍详见[集成文档](/cn/agora-class/agora_class_integrate_web?platform=Web#main-sub-device)。
+主副设备介绍详见 [userUuid 的填写方式](/cn/agora-class/agora_class_integrate_web?platform=Web#main-sub-device)。
 
 | 参数   | 描述   |
 | :----- | :----- |
