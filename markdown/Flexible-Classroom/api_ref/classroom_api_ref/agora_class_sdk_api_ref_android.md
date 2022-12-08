@@ -116,7 +116,6 @@ class AgoraEduLaunchConfig(val userName: String,
                            val latencyLevel: AgoraEduLatencyLevel? = AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow,
                            val userProperties: MutableMap<String, String>? = null,
                            val widgetConfigs: MutableList<AgoraWidgetConfig>? = null) : Parcelable,
-                           val serviceType: AgoraServiceType = AgoraServiceType.LivePremium
                            var uiMode: AgoraEduUIMode = AgoraEduUIMode.LIGHT
 ```
 
@@ -139,7 +138,6 @@ class AgoraEduLaunchConfig(val userName: String,
 | `streamState`        | 用于控制学生上台后是否发音视频流，详见 [AgoraEduStreamState](#agoraedustreamstate)。                                                                                                                                                                                                                                                                             |
 | `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                                             |
 | `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                                                                                                                                                                                      |
-| `serviceType`     | （非必填）职业教育大班课使用的服务类型。详见 [AgoraServiceType](#agoraservicetype)。                                                                                                                                                                                                                                                     |
 | `uiMode`| （非必填）课堂界面模式，详见 [AgoraEduUIMode](#agoraeduuimode)。  |
 
 
@@ -192,30 +190,8 @@ public enum AgoraEduRoomType {
 | 属性                    | 描述                                                                                             |
 | :---------------------- | :----------------------------------------------------------------------------------------------- |
 | `AgoraEduRoomType1V1`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                  |
-| `AgoraEduRoomTypeBig`   | `2`: 大班课。1 位老师进行在线教学，多名学生实时观看和收听：<ul><li>当 `serviceType` 为空时，`RoomBigClass` 代表互动直播大班课。老师和学生均使用声网 RTC 服务，课堂人数上限为 5000。</li><li>当 `serviceType` 不为空时，`RoomBigClass` 代表职业教育大班课。除去声网 RTC 服务外，老师和学生还使用灵动课堂 CDN 推拉流功能，课堂人数无上限。</li></ul>  |
+| `AgoraEduRoomTypeBig`   | `2`: 大班课。1 位老师进行在线教学，多名学生实时观看和收听。老师和学生均使用声网 RTC 服务，课堂人数上限为 5000。  |
 | `AgoraEduRoomTypeSmall` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200。  |
-
-### AgoraServiceType
-
-```kotlin
-enum class AgoraServiceType(var value: Int) {
-    Unknown(-1),
-
-    LivePremium(0),
-
-    LiveStandard(1)
-
-}
-```
-
-职业教育大班课使用的服务类型，仅在 `AgoraEduRoomType` 为 `AgoraEduRoomTypeBig` 时有效。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
-
-| 属性       | 描述                                                                                                             |
-| :--------- | :--------------------------------------------------------------------------------------------------------------- |
-| `LivePremium` | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时，约 400 毫秒。与互动直播大班课逻辑一致。                                                  |
-| `LiveStandard`    | 课堂使用 RTC 服务。频道为直播模式，延时为低延时，约 1 秒。又称极速直播模式。                  |
-|`MixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务延时一般大于 4 秒。  |
-|`HostingScene`  | 老师的音视频流和白板的录像文件存放在 CDN 上。学生通过 CDN 地址观看教学。各端的课堂时间通过服务器时间对齐。 |
 
 
 ###  AgoraEduUIMode 
