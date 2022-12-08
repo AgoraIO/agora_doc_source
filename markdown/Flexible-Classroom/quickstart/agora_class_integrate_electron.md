@@ -84,8 +84,7 @@
                userName: 'user name',
                roomUuid: 'room id',
                roleType: 1, // 用户角色：1 为老师，2 为学生。
-               roomType: 0, // 房间类型：0 为一对一，2 为大班课（根据 roomSubType 还可分为互动直播大班课，职业教育大班课），4 为小班课。
-               roomSubType: 0, // 房间子类型。默认为 0。如需设置职业教育大班课，则需 roomType 为 2 且 roomSubType 为 1。
+               roomType: 0, // 房间类型：0 为一对一，2 为大班课，4 为小班课。
                roomName: 'room name',
                pretest: true, // 是否开启课前设备检测。
                rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
