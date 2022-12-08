@@ -26,6 +26,18 @@
             <codeblock props="flutter" outputclass="language-dart" />
             <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
+        <section id="detailed_desc">
+            <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p>
+            <p>After calling <xref keyref="joinChannelEx" /> to join the channel, this method must be called to end the call before starting the next call.</p>
+            <p>This method can be called whether or not a call is currently in progress. This method releases all resources related to the session.</p>
+            <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback.</p>
+            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback.</p>
+            <p>A successful call of this method triggers the following callbacks: The local client: <apiname keyref="onLeaveChannel" />.The remote client: <xref keyref="onUserOffline" />, if the user joining the channel is in the COMMUNICATION profile, or is a host in the LIVE_BROADCASTING profile.</p>
+            <note type="attention" id="note">
+            <ul>
+            <li>If you call <xref keyref="release" /> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel" /> callback.</li>
+            <li>Calling <xref keyref="leaveChannel" /> will leave the channels when calling <xref keyref="joinChannel2" /> and <xref keyref="joinChannelEx" /> at the same time.</li>
+            </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -33,24 +45,12 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry>
-                <pt>options</pt>
-                <pd>
-                    <dl outputclass="since">
-                    <dlentry props="native">
-                        <dt>Since</dt>
-                        <dd>v4.1.0</dd>
-                    </dlentry>
-                    </dl>
-                    <p>The options for leaving the channel. See <xref keyref="LeaveChannelOptions" />.</p>
-                    <note>This parameter only supports the <parmname>stopMicrophoneRecording</parmname> member in the <apiname keyref="LeaveChannelOptions" /> settings; setting other members does not take effect.</note></pd>
-            </plentry>
             <plentry props="ios mac" conkeyref="leaveChannel2/leavechannelblock">
                 <pt />
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
