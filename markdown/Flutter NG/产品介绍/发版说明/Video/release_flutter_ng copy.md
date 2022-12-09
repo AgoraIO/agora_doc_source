@@ -190,6 +190,16 @@ This release optimizes the `updateChannelMediaRelay` method as follows:
 This release reconstructs the AEC algorithm based on the AI method. Compared with the traditional AEC algorithm, the new algorithm can preserve the complete, clear, and smooth near-end vocals under poor echo-to-signal conditions, significantly improving the system's echo cancellation and dual-talk performance. This gives users a more comfortable call and live-broadcast experience. AIAEC is suitable for conference calls, chats, karaoke, and other scenarios.
 
 
+**6. Virtual background**
+
+This release optimizes the virtual background algorithm. Improvements include the following:
+
+- The boundaries of virtual backgrounds are handled in a more nuanced way and image matting is is now extremely thin.
+- The stability of the virtual background is improved whether the portrait is still or moving, effectively eliminating the problem of background flickering and exceeding the range of the picture.
+- More application scenarios are now supported, and a user obtains a good virtual background effect day or night, indoors or out.
+- A larger variety of postures are now recognized, when half the body is motionless, the body is shaking, the hands are swinging, or there is fine finger movement. This helps to achieve a good virtual background effect in conjunction with many different gestures.
+
+
 **Other improvements**
 
 This release includes the following additional improvements:
