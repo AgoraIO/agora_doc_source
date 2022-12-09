@@ -5,10 +5,10 @@ Circle is an online chat and community solution built on the Chat SDKs. It enabl
 Circle provides a three-layer structure, as follows:
 
 - **Server**: Each server represents one of the communities within Circle. Users can search for and join servers by subject/interest. They can also create and manage their own servers.
-- **Channel**: A server is organized into topic-based channels, where users can connect with other interested users to talk over specific topics. A default channel is automatically created during server creation.
-- **Thread**: Threads serve as temporary sub-channels inside an existing channel, to help better organize conversations in a busy channel.
+- **Channel**: A server is organized into topic-based channels, where users can connect with other interested users to discuss specific topics. A default channel is automatically created during server creation.
+- **Thread**: Threads serve as sub-channels inside an existing channel, to help better organize conversations in a busy channel.
 
-Once a server is created, a default channel containing all server members is automatically created to receive system notifications. The server owner can then create public or private channels, as desired. Note that users can join and leave a server freely; they do not require approval from anyone.
+Once a server is created, a default channel containing all server members is automatically created to receive system notifications. The server owner can then create public or private channels, as desired. Note that users can join and leave a server freely without requiring anyone's approval.
 
 This page shows how to implement servers in Circle using RESTful APIs. Before proceeding, ensure that you understand the frequency limit of Chat RESTful API calls described in [Limitations](https://docs.agora.io/en/agora-chat/reference/limitations#call-limit-of-server-sides).
 
@@ -41,7 +41,7 @@ This page shows how to implement servers in Circle using RESTful APIs. Before pr
 | `server_id`       | String   | The server ID.                   |
 | `default_channel_id` | String | The channel ID of the default channel.             |
 | `user_id`   | String |  The user ID.      |
-| `role`              | Number | The role of the user in a server.<li>`0`: Owner.</li><li>`1`: Admin.</li><li>`2`: Member.</li> |
+| `role`              | Number | The role of the user in a server.<li>`0`: Owner.</li><li>`1`: Moderator.</li><li>`2`: Member.</li> |
 | `created`          | Number  | The Unix timestamp (ms) when the server was created.     |
 
 
@@ -96,7 +96,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```shellcurl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/user/{user_id}'
+```shell
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/user/{user_id}'
 ```
 
 #### Response example
@@ -159,7 +160,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```shellcurl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server' -d '{
+```shell
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server' -d '{
     "owner" : "user1",
     "name" : "server",
     "icon_url" : "http://circle.oss/19b1d7b0-7079-11e9-9bd8-25c5e81b42a1",
@@ -180,7 +182,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ## Modify a server
 
-Modifies the name, iconURL, description, and extension of the specified server.
+Modifies the name, icon URL, description, and extension of the specified server.
 
 ### HTTP request
 
@@ -228,7 +230,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```shellcurl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server/XXX' -d '{
+```shell
+curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server/XXX' -d '{
  "name" : "chat",
  "icon_url" : "http://discord.oss/19b1d7b0-7079-11e9-9bd8-25c5e81b42a1",
  "description" : "community",
@@ -309,7 +312,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```shellcurl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server/XXX/tag/add' -d '{
+```shell
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server/XXX/tag/add' -d '{
  "tags": ["social networking"]
 }'
 ```
@@ -367,7 +371,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```shellcurl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken>' 'http://XXX/XXX/XXX/circle/server/XXX/tag'
+```shell
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken>' 'http://XXX/XXX/XXX/circle/server/XXX/tag'
 ```
 
 #### Response example
@@ -450,7 +455,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 Searches for servers by specifying the server names.
 
-Each query can contain a maximum of 15 results.
+Each query can return a maximum of 15 results.
 
 ### HTTP request
 
@@ -466,7 +471,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `name` | String | The server name. The length cannot exceed 50 characters. Note that fuzzy matching is not supported. Enter a complete server name rather than keywords.</div> | Yes  |
+| `name` | String | The server name. The length cannot exceed 50 characters. <div class="alert note">Note that fuzzy matching is not supported. Enter a complete server name rather than keywords.</div> | Yes  |
 
 #### Request header
 
@@ -639,7 +644,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```shellcurl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server/recommend/list'
+```shell
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXX/XXX/XXX/circle/server/recommend/list'
 ```
 
 #### Response example
@@ -689,7 +695,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `user_id` | String    |  The user ID.  | Yes  |
+| `userId` | String    |  The user ID.  | Yes  |
 | `limit` | Number    |   The number of servers to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor`     | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
@@ -827,7 +833,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `user_id` | String    |  The user ID.  | Yes  |
+| `userId` | String    |  The user ID.  | Yes  |
 
 #### Request header
 
@@ -1026,7 +1032,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `user_id` | String  |  The user ID.  | Yes  |
+| `userId` | String  |  The user ID.  | Yes  |
 
 
 #### Request header
@@ -1045,7 +1051,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :---- | :--- | :------------------- |
 | `code` | Number  | The HTTP status code.                                          |
-| `role` | Number  | The role of the user in the server.<li>`0`: Owner.</li><li>`1`: Admin.</li><li>`2`: Member.</li> |
+| `role` | Number  | The role of the user in the server.<li>`0`: Owner.</li><li>`1`: Moderator.</li><li>`2`: Member.</li> |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
@@ -1085,8 +1091,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `user_id` | String  |  The user ID.  | Yes  |
-| `role` | Number  | The role of the user. You can pass the following values:<li>`1`: Admin.</li><li>`2`: Member.</li> <div class="alert note">An error occurs if you pass <code>0</code> representing the role of the server owner.</div>。| Yes ｜
+| `userId` | String  |  The user ID.  | Yes  |
+| `role` | Number  | The role of the user. You can pass the following values:<li>`1`: Moderator.</li><li>`2`: Member.</li> <div class="alert note">An error occurs if you pass <code>0</code> representing the role of the server owner.</div>。| Yes ｜
 
 #### Request header
 
@@ -1144,7 +1150,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `user_id` | String    |  The user ID.  | Yes  |
+| `userId` | String    |  The user ID.  | Yes  |
 
 
 #### Request header

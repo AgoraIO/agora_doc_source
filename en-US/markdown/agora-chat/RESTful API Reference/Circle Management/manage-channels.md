@@ -5,10 +5,10 @@ Circle is an online chat and community solution built on the Chat SDKs. It enabl
 Circle provides a three-layer structure, as follows:
 
 - **Server**: Each server represents one of the communities within Circle. Users can search for and join servers by subject/interest. They can also create and manage their own servers.
-- **Channel**: A server is organized into topic-based channels, where users can connect with other interested users to talk over specific topics. A default channel is automatically created during server creation.
-- **Thread**: Threads serve as temporary sub-channels inside an existing channel, to help better organize conversations in a busy channel.
+- **Channel**: A server is organized into topic-based channels, where users can connect with other interested users to discuss specific topics. A default channel is automatically created during server creation.
+- **Thread**: Threads serve as sub-channels inside an existing channel, to help better organize conversations in a busy channel.
 
-Once a server is created, a default channel containing all server members is automatically created to receive system notifications. The server owner can then create public or private channels, as desired. Note that users can join and leave a server freely; they do not require approval from anyone.
+Once a server is created, a default channel containing all server members is automatically created to receive system notifications. The server owner can then create public or private channels, as desired. Note that users can join and leave a server freely without requiring anyone's approval.
 
 This page shows how to implement channels in Circle using RESTful APIs. Before proceeding, ensure that you understand the frequency limit of Chat RESTful API calls described in [Limitations](https://docs.agora.io/en/agora-chat/reference/limitations#call-limit-of-server-sides).
 
@@ -34,12 +34,12 @@ This page shows how to implement channels in Circle using RESTful APIs. Before p
 | `name`              | String |  The channel name.     |
 | `type`            | Number     |  The channel type:<li>`0`: Public.</li><li>`1`: Private.</li>      				|
 | `invite_mode`     | Number   |  Whether the channel invitation is automatically accepted:<li>`0`</li>: Yes.</li><li>`1`: No. After being invited, the invitee manually accepts or declines the invitation.</li> |
-| `rank`        | Number | The maximum number of users in the channel:<li>(Default) `0`: 2,000; </li><li>`1`: 20,000</li><li>`2`: 100,000.    |
+| `rank`        | Number | The maximum number of users in the channel:<li>(Default) `0`: 2,000; </li><li>`1`: 20,000</li><li>`2`: 100,000. <div class="alert note">To raise the maximum users in the channel to 20,000 or 100,000, contact <a href="mailto:support@agora.io">support@agora.io</a>.</div>  |
 | `description`     | String      |  The channel description. |
 | `custom`       | String     |  The channel extension.   |
-| `default_channel` | Number |  Whether the channel serves as the default one in the server:<li>`0`: No.</li><li>`1`: Yes.</li>  |
+| `default_channel` | Number |  Whether the channel serves as the default channel in the server:<li>`0`: No.</li><li>`1`: Yes.</li>  |
 | `created`      | Number    |  The Unix timestamp (ms) when the channel was created.        |
-| `server_id`     | String    |  The ID of the server to which the channel belongs.     |
+| `server_id`     | String    |  The ID of the server to which the channels belong.     |
 | `channel_id`     | String    |  The channel ID.    |
 
 
@@ -58,7 +58,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 Creates a channel.
 
-Note that one server can have a maximum of 100 channels.
+Note that each server can have a maximum of 100 channels. To raise the limit. contact [support@agora.io](support@agora.io).
 
 ### HTTP request
 
@@ -145,7 +145,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `serverId` | String | The ID of the server to which the channel belongs. | Yes  |
 
 #### Request header
 
@@ -228,7 +228,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `serverId` | String | The ID of the server to which the channel belongs. | Yes  |
 
 #### Request header
 
@@ -298,7 +298,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `serverId` | String | The ID of the server to which the channel belongs. | Yes  |
 | `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
@@ -313,7 +313,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:\
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
@@ -360,7 +360,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Retrieve the joined channels
 
-Retrieves the detailed information of the channels where the specified user that has joined (by page).
+Retrieves the detailed information of the channels that the specified user has joined (by page).
 
 ### HTTP request
 
@@ -376,8 +376,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `user_Id` | String | The user ID. | Yes  |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `userId` | String | The user ID. | Yes  |
+| `serverId` | String | The ID of the server to which the channels belong. | Yes  |
 | `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
@@ -457,7 +457,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `serverId` | String | The ID of the server to which the channels belong. | Yes  |
 | `limit` | Number    |   The number of channels to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.    |  No  |
 
@@ -539,7 +539,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `serverId` | String | The ID of the server to which the channel belongs. | Yes  |
 
 #### Request header
 
@@ -579,14 +579,14 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## Send a message
 
-Sending a message to a channel via RESTful API is basically the same as sending a message to a chat group. The only difference lies in the setting of `to`. For sending a channel message, you need to set the `to` parameter to the targeted channel ID.
+Sending a message to a channel via the RESTful API is basically the same as sending a message to a chat group. The only difference lies in the setting of `to`. For sending a channel message, you need to set the `to` parameter to the targeted channel ID.
 
 For details, see [Send a group message](https://docs.agora.io/en/agora-chat/restful-api/message-management#send-a-group-message).
 
 
 ## Add a reaction
 
-Adds a reaction to the specified message.
+Adds a [reaction](https://docs.agora.io/en/agora-chat/client-api/reaction) to the specified message.
 
 ### HTTP request
 
@@ -612,7 +612,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :----- | :----- | :------- | :-------- |
 | `user_id`    | String | The user ID.    | Yes       |
 | `message_id` | String | The ID of the message to which you want to add the reaction.   | Yes       |
-| `message` | String | The name of the reaction. The length cannot exceed 128 characters. | Yes       |
+| `message` | String | The ID of the emoji that is added as the reaction. The length cannot exceed 128 characters. | Yes       |
 
 ### HTTP response
 
@@ -649,9 +649,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## Retrieve reactions from a message
+## Retrieve reactions from one or more messages
 
-Retrieves the detailed information of the reactions from the specified message.
+Retrieves the detailed information of the reactions from the specified messages.
 
 ### HTTP request
 
@@ -667,8 +667,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `message_id` | String | The ID of the message to which the reactions belong. | Yes  |
-| `channel_id` | String | The ID of the channel to which the message belongs. | Yes  |
+| `msgIdList` | List | The List of message IDs. | Yes  |
+| `channelId` | String | The ID of the channel to which the message belongs. | Yes  |
 
 #### Request header
 
@@ -713,12 +713,12 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
     "count" : 1,
     "reactions":[
         {
-            "msgId":"message id",
+            "msgId":"198008034121000",
             "reactionList":[
                 {
-                    "reactionId":"Reaction id",
-                    "message":"Reaction name",
-                    "state":"Whether the current user adds the reaction.",
+                    "reactionId":"15890012560",
+                    "message":"reactionName",
+                    "state":"true",
                     "count":2,
                     "userList":[
                         "user1",
@@ -749,8 +749,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `message_id` | String | The ID of the message to which the reactions belong. | Yes  |
-| `message` | String | The name of the reaction to remove. | Yes  |
+| `messageId` | String | The ID of the message to which the reactions belong. | Yes  |
+| `message` | String | The ID of the emoji that is added as the reaction. The length cannot exceed 128 characters. | Yes  |
 
 #### Request header
 
@@ -807,8 +807,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `user_id` | String | The user ID. | Yes  |
-| `server_id` | String | The server ID. | Yes  |
+| `userId` | String | The user ID. | Yes  |
+| `serverId` | String | The server ID. | Yes  |
 
 #### Request header
 
@@ -879,8 +879,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `user_id` | String | The user ID. | Yes  |
-| `server_id` | String | The server ID. | Yes  |
+| `userId` | String | The user ID. | Yes  |
+| `serverId` | String | The server ID. | Yes  |
 
 #### Request header
 
@@ -931,6 +931,12 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/{user_
 #### Path parameter
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `serverId` | String | The server ID. | Yes  |
 
 #### Request header
 
@@ -987,7 +993,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `serverId` | String | The ID of the server to which the channel belongs. | Yes  |
 | `limit` | Number    |   The number of members to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
@@ -1059,7 +1065,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
+| `serverId` | String | The ID of the server to which the channel belongs. | Yes  |
 
 #### Request header
 
@@ -1189,8 +1195,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `server_id` | String | The ID of the server to which the channel belongs. | Yes  |
-| `user_id` | String | The ID of the user to be unmuted. | Yes  |
+| `serverId` | String | The ID of the server to which the channel belongs. | Yes  |
+| `userId` | String | The ID of the user to be unmuted. | Yes  |
 
 #### Request header
 
@@ -1384,10 +1390,10 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 |  Parameter  |  Type  |  Description  |
 | :-------- | :------- | :------- |
 | `code`   | Number     | The HTTP status code.   |
-| `thread_id` | String | The thread ID.    |
+| `id` | String | The thread ID.    |
 | `msgId` | String | The ID of the message based on which the thread was created.   |
 | `channelId` | String | The ID of the channel to which the thread belongs. |
-| `owner`    | String | The ID of the user who creates the thread.     |
+| `owner`    | String | The ID of the user who created the thread.     |
 | `created`    | Number | The Unix timestamp (md) when the thread was created.     |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
@@ -1405,7 +1411,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```json
 {
     "code": 200
-    "id" : "1895600",
+    "id": "1895600",
     "msgId" : "198008034121000",
     "channelId" : "156009089",
     "owner" : "user1",
@@ -1465,7 +1471,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## Add a user to a thread
 
-Adds users to the specified thread.
+Adds a user to the specified thread.
 
 ### HTTP request
 
@@ -1477,10 +1483,16 @@ POST https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}/user/join?us
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
 
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `userId` | String | The ID of the user to be added. | Yes  |
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
+| `Content-Type`  | String | `application/json`                           | Yes       |
 | `Accept`        | String | `application/json`                           | Yes       |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       |
 
@@ -1515,7 +1527,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Remove a user from a thread
 
-Removes users from the specified thread.
+Removes a user from the specified thread.
 
 ### HTTP request
 
@@ -1526,6 +1538,12 @@ POST https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}/user/remove?
 #### Path parameter
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+| :----- | :----- | :------- | :-------- |
+| `userId` | String | The ID of the user to be removed. | Yes  |
 
 #### Request header
 
@@ -1581,8 +1599,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `user_id` | String | The user ID. | Yes  |
-| `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
+| `userId` | String | The user ID. | Yes  |
+| `channelId` | String | The ID of the channel to which the thread belongs. | Yes  |
 | `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
@@ -1607,7 +1625,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `threads.id` | String | The thread ID.    |
 | `threads.msgId` | String | The ID of the message based on which the thread was created.   |
 | `threads.channelId` | String | The ID of the channel to which the thread belongs. |
-| `threads.owner`    | String | The ID of the user who creates the thread.     |
+| `threads.owner`    | String | The ID of the user who created the thread.     |
 | `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |
 
@@ -1659,7 +1677,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
+| `channelId` | String | The ID of the channel to which the thread belongs. | Yes  |
 | `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
@@ -1684,7 +1702,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `threads.id` | String | The thread ID.    |
 | `threads.msgId` | String | The ID of the message based on which the thread was created.   |
 | `threads.channelId` | String | The ID of the channel to which the thread belongs. |
-| `threads.owner`    | String | The ID of the user who creates the thread.     |
+| `threads.owner`    | String | The ID of the user who created the thread.     |
 | `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |
 
@@ -1720,9 +1738,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```
 
 
-## Retrieve threads joined by a user
+## Retrieve the joined threads
 
-Retrieves the detailed information of the threads joined by the specified user.
+Retrieves the detailed information of the threads that the specified user has joined.
 
 ### HTTP request
 
@@ -1738,8 +1756,8 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | :-------- |
-| `user_id` | String | The user ID. | Yes  |
-| `channel_id` | String | The ID of the channel to which the thread belongs. | Yes  |
+| `userId` | String | The user ID. | Yes  |
+| `channelId` | String | The ID of the channel to which the thread belongs. | Yes  |
 | `limit` | Number    |   The number of threads to query per page. The value range is [1,20]. The default value is 20. This parameter is only required when retrieving by page.  |  No  |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |  No  |
 
@@ -1764,7 +1782,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `threads.id` | String | The thread ID.    |
 | `threads.msgId` | String | The ID of the message based on which the thread was created.   |
 | `threads.channelId` | String | The ID of the channel to which the thread belongs. |
-| `threads.owner`    | String | The ID of the user who creates the thread.     |
+| `threads.owner`    | String | The ID of the user who created the thread.     |
 | `threads.created`    | Number | The Unix timestamp (md) when the thread was created.     |
 | `cursor` | String  | The start position of the next query. This parameter is only required when retrieving by page.  |
 
@@ -1785,6 +1803,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```json
 {
   "code" : 200,
+  "count" : 1,
   "threads" : [
     {
         "id" : "1895600",
