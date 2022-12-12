@@ -287,7 +287,7 @@ This release fixed the following issues:
 - `setRemoteVideoSubscriptionOptions`
 - `setRemoteVideoSubscriptionOptionsEx`
 - `VideoSubscriptionOptions`
-- `AdvancedOptions`
+- `AdvanceOptions`
 - `EncodingPreference`
 - `CompressionPreference`
 - `adjustUserPlaybackSignalVolumeEx`

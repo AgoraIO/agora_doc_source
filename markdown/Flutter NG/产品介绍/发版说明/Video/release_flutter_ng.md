@@ -144,7 +144,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 **18. 日志上传**
 
-使用声网私有媒体服务器的场景下，为支持用户在调用 `setLocalAccessPoint` 方法时的进阶设置，该版本在 `LocalAccessPointConfiguration`中新增 `advancedConfig` 成员参数，该参数支持如下设置：
+使用声网私有媒体服务器的场景下，为支持用户在调用 `setLocalAccessPoint` 方法时的进阶设置，该版本在 `LocalAccessPointConfiguration` 中新增 `advancedConfig` 成员参数，该参数支持如下设置：
 
 - `logUploadServer`：默认情况下，SDK 会将日志上传至 Agora 的日志服务器。你可以通过该参数自定义日志上传的服务器。
 
@@ -153,8 +153,8 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 为方便用户分辨切换后的用户角色属于互动直播还是极速直播，该版本在 `onClientRoleChanged` 回调中新增 `newRoleOptions` 参数，该参数取值如下：
 
-- `audienceLatencyLevelLowLatency (1)`: 低延时，属于极速直播。
-- `audienceLatencyLevelUltraLowLatency (2)`: 超低延时，属于互动直播。
+- `audienceLatencyLevelLowLatency (1)`：低延时，属于极速直播。
+- `audienceLatencyLevelUltraLowLatency (2)`：超低延时，属于互动直播。
 
 
 
@@ -182,8 +182,8 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - 支持超高清视频 (分辨率为 4K，帧率为 60 fps)，你可以在满足要求的设备上使用该功能。声网推荐的最低设备规格为：inter(R) Core(TM) i7-9750H CPU @ 2.60GHZ。
 
 **macOS**
-- 兼容更多设备和场景，包括但不限于：双显卡设备，使用外接屏幕进行屏幕共享。(macOS)
-- 支持超高清视频 (分辨率为 4K，帧率为 60 fps)，你可以在满足要求的设备上使用该功能。声网推荐的最低设备规格为：MacBook Pro (16 英寸，M1，2021 年)。 (macOS) 
+- 兼容更多设备和场景，包括但不限于：双显卡设备，使用外接屏幕进行屏幕共享。
+- 支持超高清视频 (分辨率为 4K，帧率为 60 fps)，你可以在满足要求的设备上使用该功能。声网推荐的最低设备规格为：MacBook Pro (16 英寸，M1，2021 年)。
 
 
 **4. 蓝牙权限 (Android)**
@@ -304,7 +304,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - `setRemoteVideoSubscriptionOptions`
 - `setRemoteVideoSubscriptionOptionsEx`
 - `VideoSubscriptionOptions`
-- `AdvancedOptions`
+- `AdvanceOptions`
 - `EncodingPreference`
 - `CompressionPreference`
 - `adjustUserPlaybackSignalVolumeEx`
@@ -434,7 +434,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 
 **4. 新版 AI 降噪**
 
-自该版本起，SDK 支持新版 AI 降噪 (相对于 agora_rtc_engine: ^5.x 中的基础 AI 降噪) 功能。相比原版 AI 降噪，新版 AI 降噪具有更好的人声保真度、更干净的噪声抑制，并新增了去混响 (Dereverberation) 能力。
+自该版本起，SDK 支持新版 AI 降噪 (相对于 agora_rtc_engine：^5.x 中的基础 AI 降噪) 功能。相比原版 AI 降噪，新版 AI 降噪具有更好的人声保真度、更干净的噪声抑制，并新增了去混响 (Dereverberation) 能力。
 如果你希望体验新版 AI 降噪，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 
@@ -542,7 +542,7 @@ SDK 会根据你在 `VideoEncoderConfiguration` 中的设置，自动选择选�
 
 **1. 快速切换频道**
 
-该版本通过 `leaveChannel` 和 `joinChannel` 切换频道即可实现和 agora_rtc_engine: ^5.x 中 `switchChannel` 一样的切换速度，无需额外调用 `switchChannel` 方法。
+该版本通过 `leaveChannel` 和 `joinChannel` 切换频道即可实现和 agora_rtc_engine：^5.x 中 `switchChannel` 一样的切换速度，无需额外调用 `switchChannel` 方法。
 
 
 **2. 推送外部视频帧**

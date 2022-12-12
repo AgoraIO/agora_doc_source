@@ -96,7 +96,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 **13. 日志上传**
 
-使用声网私有媒体服务器的场景下，为支持用户在调用 `setLocalAccessPoint` 方法时的进阶设置，该版本在 `LocalAccessPointConfiguration`中新增 `advancedConfig` 成员参数，该参数支持如下设置：
+使用声网私有媒体服务器的场景下，为支持用户在调用 `setLocalAccessPoint` 方法时的进阶设置，该版本在 `LocalAccessPointConfiguration` 中新增 `advancedConfig` 成员参数，该参数支持如下设置：
 
 - `logUploadServer`：默认情况下，SDK 会将日志上传至 Agora 的日志服务器。你可以通过该参数自定义日志上传的服务器。
 
@@ -187,7 +187,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - `setHeadphoneEQPreset`
 - `setHeadphoneEQParameters`
 - `HeadphoneEqualizerPreset`
-- `AdvancedOptions`
+- `AdvanceOptions`
 - `EncodingPreference`
 - `CompressionPreference`
 - `adjustUserPlaybackSignalVolumeEx`
