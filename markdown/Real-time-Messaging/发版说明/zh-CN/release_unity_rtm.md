@@ -4,13 +4,13 @@
 
 #### 改进
 
-改版本将 OpenSSL 升级到 1.1.1q。
+该版本将 OpenSSL 升级到 1.1.1q。
 
 #### 新增功能
 
-**1. 提前 30 秒提醒 Token 即将过期**
+**1. Token 过期提醒机制**
 
-由于 Token 具有一定的时效，在连接状态下如果 Token 即将失效，SDK 会提前 30 秒触发 `OnTokenPrivilegeWillExpireHandler` 回调，提醒更新 Token。当收到该回调时，用户需要重新在服务端生成新的 Token，然后调用 `renewToken` 将新生成的 Token 传给 SDK。
+由于 Token 具有一定的时效，在连接状态下如果 Token 即将失效，SDK 会提前 30 秒触发 `OnTokenPrivilegeWillExpireHandler` 回调，提醒用户更新 Token。当收到该回调时，用户需要重新在服务端生成新的 Token，然后调用 `renewToken` 将新生成的 Token 传给 SDK。
 
 相关参考：
 - `OnTokenPrivilegeWillExpireHandler`
