@@ -434,7 +434,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 
 **4. 新版 AI 降噪**
 
-自该版本起，SDK 支持新版 AI 降噪 (相对于 agora_rtc_engine：^5.x 中的基础 AI 降噪) 功能。相比原版 AI 降噪，新版 AI 降噪具有更好的人声保真度、更干净的噪声抑制，并新增了去混响 (Dereverberation) 能力。
+自该版本起，SDK 支持新版 AI 降噪 (相对于 agora_rtc_engine: ^5.x 中的基础 AI 降噪) 功能。相比原版 AI 降噪，新版 AI 降噪具有更好的人声保真度、更干净的噪声抑制，并新增了去混响 (Dereverberation) 能力。
 如果你希望体验新版 AI 降噪，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 
@@ -542,7 +542,7 @@ SDK 会根据你在 `VideoEncoderConfiguration` 中的设置，自动选择选�
 
 **1. 快速切换频道**
 
-该版本通过 `leaveChannel` 和 `joinChannel` 切换频道即可实现和 agora_rtc_engine：^5.x 中 `switchChannel` 一样的切换速度，无需额外调用 `switchChannel` 方法。
+该版本通过 `leaveChannel` 和 `joinChannel` 切换频道即可实现和 agora_rtc_engine: ^5.x 中 `switchChannel` 一样的切换速度，无需额外调用 `switchChannel` 方法。
 
 
 **2. 推送外部视频帧**
