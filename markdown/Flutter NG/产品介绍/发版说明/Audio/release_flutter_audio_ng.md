@@ -105,8 +105,8 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 为方便用户分辨切换后的用户角色属于互动直播还是极速直播，该版本在 `onClientRoleChanged` 回调中新增 `newRoleOptions` 参数，该参数取值如下：
 
-- `audienceLatencyLevelLowLatency (1)`: 低延时，属于极速直播。
-- `audienceLatencyLevelUltraLowLatency (2)`: 超低延时，属于互动直播。
+- `audienceLatencyLevelLowLatency (1)`：低延时，属于极速直播。
+- `audienceLatencyLevelUltraLowLatency (2)`：超低延时，属于互动直播。
 
 
 
