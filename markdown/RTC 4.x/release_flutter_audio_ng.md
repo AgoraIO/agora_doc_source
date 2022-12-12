@@ -179,7 +179,7 @@ This release fixed the following issues:
 - `setHeadphoneEQPreset`
 - `setHeadphoneEQParameters`
 - `HeadphoneEqualizerPreset`
-- `AdvancedOptions`
+- `AdvanceOptions`
 - `EncodingPreference`
 - `CompressionPreference`
 - `adjustUserPlaybackSignalVolumeEx`
