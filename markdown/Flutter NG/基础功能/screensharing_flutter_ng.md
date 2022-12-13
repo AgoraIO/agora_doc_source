@@ -25,9 +25,9 @@
 
 ### 技术原理
 
-iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit 框架实现录制屏幕，然后将屏幕共享流作为一个用户加入频道实现的。由于 Apple 不支持在主 app 进程采集屏幕，因此你需要为屏幕共享流单独创建一个 Extension。
+由于 Apple 不支持在 app 主进程采集屏幕，因此你需要为屏幕共享流单独创建一个 Extension，并在 Extension 中使用 iOS 原生的 ReplayKit 框架实现录制屏幕，然后将屏幕共享流发送给主进程、实现屏幕共享。详见下图：
 
-<img src="https://web-cdn.agora.io/docs-files/1669950976994" width="80%">
+<img src="https://web-cdn.agora.io/docs-files/1670577226929"/>
 
 ### 实现步骤
 #### 1. 打开项目
@@ -65,11 +65,11 @@ iOS 端的屏幕共享是通过在 Extension 中使用 iOS 原生的 ReplayKit �
 
 修改 `SampleHandler.h` 文件，以修改实现屏幕共享的代码逻辑：
 
-  - 如果你只需使用 Agora 提供的 `AgoraReplayKitExtension.xcframework` 中的功能，修改方式为：选中 `Target` 为刚刚创建的 Extension，在 **Info** 中将 **NSExtension > NSExtensionPrincipalClass** 所对应的 **Value** 从 **SampleHandler** 改为 **AgoraReplayKitHandler**。
+  - 如果你只需使用 Agora 提供的 `AgoraReplayKitExtension.xcframework` 中的功能，选中 `Target` 为刚刚创建的 Extension，在 **Info** 中将 **NSExtension > NSExtensionPrincipalClass** 所对应的 **Value** 从 **SampleHandler** 改为 **AgoraReplayKitHandler**。
 
     ![](https://web-cdn.agora.io/docs-files/1669346575589)
 
-  - 如果你还需要自定义一些业务逻辑，修改方式为：将如下代码替换到 `SampleHandler.h` 文件中：
+  - 如果你还需要自定义一些业务逻辑，将如下代码替换到 `SampleHandler.h` 文件中：
 
     ```objectivec
       // Objective-C
