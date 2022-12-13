@@ -30,13 +30,13 @@
     {required RenderModeType renderMode,
     VideoMirrorModeType mirrorMode =
         VideoMirrorModeType.videoMirrorModeAuto});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
             <note type="attention">
             <ul>
-            <li props="native electron rn flutter">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
+            <li props="native electron rn flutter unity">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -58,7 +58,7 @@
                 <pt props="android cpp unity flutter rn electron">mirrorMode</pt>
                 <pt props="ios mac">mirror</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter rn electron">The rendering mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity flutter rn electron">The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention" props="unity">This parameter is only effective when rendering custom videos. If you want to mirror the video view, set the scaleX of the GameObject attached to the video view as <codeph>-1</codeph> or <codeph>+1</codeph>.</note></p>
                     <p props="android">For the local user:<ul id="videomirrormodetype">
                     <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): (Default) The mirror mode determined by the SDK. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
                     <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirror mode.</li>

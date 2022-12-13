@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_leavechannel2">
-    <title><ph keyref="leaveChannel2" /></title>
+    <title><ph keyref="leaveChannel2"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets channel options and leaves the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="leaveChannel2" />
+                <indexterm keyref="leaveChannel2"/>
             </keywords>
         </metadata>
     </prolog>
@@ -21,25 +21,25 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int LeaveChannel(LeaveChannelOptions options); </codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract leaveChannel(options?: LeaveChannelOptions): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; leaveChannel({LeaveChannelOptions? options});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <p>This method will release all resources related to the session, leave the channel, that is, hang up or exit the call. This method can be called whether or not a call is currently in progress.</p>
             <p>After joining the channel, you must call this method or  to end the call, otherwise, the next call cannot be started.</p>
-            <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel" /> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline" /> callback.</p>
-            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel" /> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline" /> callback.</p>
-            <note conkeyref="leaveChannel/note" props="native flutter unity electron rn" /> </section>
+            <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel"/> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline"/> callback.</p>
+            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel"/> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline"/> callback.</p>
+            <note conkeyref="leaveChannel/note" props="native flutter unity electron rn"/> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml id="parml_jsr_dky_hqb">
             <plentry id="options">
                 <pt>options</pt>
-                <pd>The options for leaving the channel. See <xref keyref="LeaveChannelOptions" />.</pd>
+                <pd>The options for leaving the channel. See <xref keyref="LeaveChannelOptions"/>.</pd>
             </plentry>
             <plentry props="ios mac" id="leavechannelblock">
                 <pt>leaveChannelBlock</pt>
                 <pd>
-                    <p>This callback indicates that a user leaves a channel, and provides the statistics of the call in <xref keyref="RtcStats" />.</p>
+                    <p>This callback indicates that a user leaves a channel, and provides the statistics of the call in <xref keyref="RtcStats"/>.</p>
                 </pd>
             </plentry>
             </parml> </section>
