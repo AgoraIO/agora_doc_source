@@ -340,7 +340,8 @@
     "ext":{}, 
     "bodies":[
         { 
-            "customExts": [ {"name": 1 } ], 
+            "customExts": [ {"name": 1 } ],
+            "v2:customExts":{"k":"v","k1":"v1"}, 
             "customEvent": "flower", 
             "type": "custom" 
         }
@@ -352,7 +353,7 @@
 
 | 字段          | 数据类型 | 描述                                                         |
 | ------------- | -------- | ------------------------------------------------------------ |
-| `customExts`  | Json     | 用户自定义的事件属性，类型为 `Map<String, String>`，最多包含 16 个元素。 |
+| `customExts/v2:customExts`  | JSON     | 用户自定义的事件属性，类型必须是 `Map<String,String>`，最多可以包含 16 个元素。该参数可选，`customExts` 为旧版参数，`v2:customExts` 为新版参数。 |
 | `customEvent` | String   | 用户自定义的事件类型。最短一个字符，最长 32 个字符。         |
 | `type`        | String   | 消息类型。自定义消息为 `custom`。                            |
 
