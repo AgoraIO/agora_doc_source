@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablecontentinspect">
-    <title><ph keyref="enableContentInspect" /></title>
+    <title><ph keyref="enableContentInspect"/></title>
     <shortdesc id="short"><ph id="shortdesc"><ph>Enables or disables video screenshot and upload. </ph><ph props="hide">Enables or disables video content moderation.</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableContentInspect" />
+                <indexterm keyref="enableContentInspect"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,31 +25,31 @@
     enabled: boolean,
     config: ContentInspectConfig
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableContentInspect(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableContentInspect(
       {required bool enabled, required ContentInspectConfig config});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>When video screenshot and upload function is enabled, the SDK takes screenshots and upload videos sent by local users based on the type and frequency of the module you set in <xref keyref="ContentInspectConfig" />. After video screenshot and upload, the Agora server sends the callback notification to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
-            <p props="hide">When video content moderation is enabled, the SDK takes screenshots, reviews the content, and uploads videos sent by local users based on the type and frequency of the content moderation module you set in <xref keyref="ContentInspectConfig" />. After content moderation, the Agora content moderation server sends the results to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
+            <p>When video screenshot and upload function is enabled, the SDK takes screenshots and upload videos sent by local users based on the type and frequency of the module you set in <xref keyref="ContentInspectConfig"/>. After video screenshot and upload, the Agora server sends the callback notification to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
+            <p props="hide">When video content moderation is enabled, the SDK takes screenshots, reviews the content, and uploads videos sent by local users based on the type and frequency of the content moderation module you set in <xref keyref="ContentInspectConfig"/>. After content moderation, the Agora content moderation server sends the results to your app server in HTTPS requests and sends all screenshots to the third-party cloud storage service.</p>
             <note>
             <ul>
-            <li><ph>Before calling this method, ensure that you contact <xref keyref="ticket-link" /> to enbale Agora video screenshot and upload service. </ph><ph props="hide">Before calling this method, ensure that you <xref keyref="ticket-link" /> to enable Agora content moderation service. See <xref keyref="enable-content-inspect" />.</ph></li>
-            <li>This method relies on the video content moderation library <codeph><ph keyref="moderation" /></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+            <li><ph>Before calling this method, ensure that you contact <xref keyref="ticket-link"/> to enbale Agora video screenshot and upload service. </ph><ph props="hide">Before calling this method, ensure that you <xref keyref="ticket-link"/> to enable Agora content moderation service. See <xref keyref="enable-content-inspect"/>.</ph></li>
+            <li>This method relies on the video screenshot and upload dynamic library <codeph><ph keyref="moderation"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable <ph>video screenshot and upload</ph><ph props="hide">video content moderation</ph>:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: <ph>Enables video screenshot and upload</ph>. <ph props="hide">Enables video content moderation.</ph></li>
-                    <li><codeph><ph keyref="false" /></codeph>: <ph>Disables video screenshot and upload</ph>. <ph props="hide">Disables video content moderation.</ph></li>
+                <pd>Whether to enable <ph>video screenshot and uploadvideo </ph><ph props="hide">content moderation</ph>:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: <ph>Enables video screenshot and upload</ph>. <ph props="hide">Enables video content moderation.</ph></li>
+                    <li><codeph><ph keyref="false"/></codeph>: <ph>Disables video screenshot and upload</ph>. <ph props="hide">Disables video content moderation.</ph></li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd><ph>Configuration of video screenshot and upload. </ph><ph props="hide">Configuration of video content moderation. </ph><ph>See <xref keyref="ContentInspectConfig" />.</ph></pd>
+                <pd><ph>Configuration of video screenshot and upload. </ph><ph props="hide">Configuration of video content moderation. </ph><ph>See <xref keyref="ContentInspectConfig"/>.</ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity rn electron">
