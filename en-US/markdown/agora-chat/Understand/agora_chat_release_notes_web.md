@@ -10,7 +10,7 @@ Optimized the callback for a message sending failure to make sure that it is tri
 
 #### Issues fixed
 
-The `file_length` parameter in the `create` method does not work when this method is called to create an attachment message.
+The `file_length` parameter in the `create` method did not work when this method was called to create an attachment message.
 
 ## v1.0.7
 
