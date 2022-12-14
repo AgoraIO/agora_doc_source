@@ -31,25 +31,23 @@
     muted: boolean
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
-      onUserMuteVideo;
-</codeblock> </p>
+      onUserMuteVideo;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="hide">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>You can also use the <xref keyref="onRemoteVideoStateChanged" /> callback with the following parameters:<ul>
-                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" /> (5).</li>
-                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /> (6).</li>
+                <dd>You can also use the  callback with<xref keyref="onRemoteVideoStateChanged" /> the following parameters:<ul>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />  (5).</li>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /> (6).</li>
                     </ul> </dd>
             </dlentry>
             </dl>
-            <note props="unity">This method is about to be deprecated. Agora recommends you using <xref keyref="onRemoteVideoStateChanged" /> instead.</note>
-            <p>When a remote user calls <xref keyref="muteLocalVideoStream" /> to stop or resume publishing the video stream, the SDK triggers this callback to report the state of the remote user's publishing stream to the local user.</p>
+            <p>When a remote user calls<xref keyref="muteLocalVideoStream" />  to stop or resume publishing the video stream, the SDK triggers this callback to report the state of the remote user's publishing stream to the local user.</p>
             <note type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live streaming profile) in a channel exceeds 17.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt />
@@ -67,8 +65,8 @@
                 <plentry>
                     <pt>muted</pt>
                     <pd>Whether the remote user stops publishing the video stream:<ul>
-                        <li><codeph><ph keyref="true" /></codeph>: The remote user stops publishing the video stream.</li>
-                        <li><codeph><ph keyref="false" /></codeph>: The remote user resumes publishing the video stream.</li>
+                        <li>: The remote user stops publishing the video stream.<codeph><ph keyref="true" /></codeph></li>
+                        <li>: The remote user resumes publishing the video stream.<codeph><ph keyref="false" /></codeph></li>
                         </ul> </pd>
                 </plentry>
             </parml>
