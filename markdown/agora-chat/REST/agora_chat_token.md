@@ -19,7 +19,7 @@
 
 [app_token_auth.png]
 
-1. 使用用户权限 Token 鉴权的流程，如下图所示：
+2. 使用用户权限 Token 鉴权的流程，如下图所示：
 
 ![](https://web-cdn.agora.io/docs-files/1670990925271)
 
@@ -52,7 +52,7 @@
 
 1. 在 `IntelliJ` 中创建一个 Maven 项目，设置项目名称、选择项目储存路径后，点击 **Finish**。
 
-2. 在 `/pom.xml` 文件中，添加以下依赖并点击 [Reload project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport)：
+2. 在 `<Project name>/pom.xml` 文件中，添加以下依赖并点击 [Reload project](https://www.jetbrains.com/help/idea/delegate-build-and-run-actions-to-maven.html#maven_reimport)：
 
    ```xml
    <properties>
@@ -116,7 +116,7 @@
 
    1. 下载 [chat](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) 和 [media](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) 文件包。
 
-   2. 在你的项目中 `/src/main/java` 路径下，创建 `com.agora.chat.token.io.agora` 文件包。
+   2. 在你的项目中 `<Project name>/src/main/java` 路径下，创建 `com.agora.chat.token.io.agora` 文件包。
 
    3. 将 `chat` 和 `media` 文件包复制到 `com.agora.chat.token.io.agora` 文件包中。此时你的项目结构应如下图所示：
 
@@ -130,7 +130,7 @@
       - 对于 `com.agora.chat.token.io.agora.media` 包中的全部文件，将 `package io.agora.media;` 修改为 `package com.agora.chat.token.io.agora.media;`。
       - 在 `AccessToken` 中，将 `import static io.agora.media.Utils.crc32;` 修改为 `import static com.agora.chat.token.io.agora.media.Utils.crc32`。
 
-4. 在 `/src/main/resource` 路径下创建 `application.properties` 配置文件存储用于生成 Token 的信息。你需要将该文件中的相关值替换你的 Agora 项目的值并设置你的即时通讯 Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
+4. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件存储用于生成 Token 的信息。你需要将该文件中的相关值替换你的 Agora 项目的值并设置你的即时通讯 Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
 
    ```txt
    ## 服务器端口
