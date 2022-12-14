@@ -33,26 +33,24 @@
     enabled: boolean
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
-      onUserEnableVideo;
-</codeblock> </p>
+      onUserEnableVideo;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="hide">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>Use the <xref keyref="onRemoteVideoStateChanged" /> callback instead:<ul>
-                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5).</li>
+                <dd>Use the<xref keyref="onRemoteVideoStateChanged" />  callback instead:<ul>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" /> (5).</li>
                     <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6).</li>
                     </ul> </dd>
             </dlentry>
             </dl>
-            <note props="unity">This method is about to be deprecated. Agora recommends you using <xref keyref="onRemoteVideoStateChanged" /> instead.</note>
             <p id="desc1">Once the video module is disabled, the user can only use a voice call. The user cannot send or receive any video.</p>
-            <p>The SDK triggers this callback when a remote user enables or disables the video module by calling the <xref keyref="enableVideo" /> or <xref keyref="disableVideo" /> method.</p>
+            <p>The SDK triggers this callback when a remote user<xref keyref="enableVideo" /><xref keyref="disableVideo" /> enables or disables the video module by calling the  or  method.</p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title" /> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt />
@@ -71,8 +69,8 @@
                 <pt>enabled</pt>
                 <pd>
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable.</li>
+                    <li>: Enable.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: Disable.<codeph><ph keyref="false" /></codeph></li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
