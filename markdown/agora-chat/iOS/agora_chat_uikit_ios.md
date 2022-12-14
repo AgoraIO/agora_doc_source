@@ -38,7 +38,7 @@
 
 #### 方式 1：使用 pod 方式集成 chat-uikit
 
-1. 开始前确保你已安装 Cocoapods。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+1. 开始前确保你已安装 CocoaPods。详见[CocoaPods 安装指南](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 2. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成 `Podfile` 文本文件。
 3. 打开 `Podfile` 文件，在 `podfile` 文件里添加相关 SDK。注意将 `chatuikitquickstart` 替换为你的 Target 名称。
 
