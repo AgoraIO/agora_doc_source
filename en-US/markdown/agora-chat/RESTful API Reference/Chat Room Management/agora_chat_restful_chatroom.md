@@ -494,8 +494,9 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 <a name="code"></a>
 
 
-## Retrieving chat room announcements
-Retrieves the announcements of one or more specified chat rooms.
+## Retrieving a chat room announcement
+
+Retrieves the announcement of one specific chat room.
 
 ### HTTP request
 
@@ -516,21 +517,23 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type   | Required | Description                                                         |
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | Yes     | Set to `application/json`.                                 |
+| `Accept` | String | Yes | `application/json` |
 | `Authorization` | String | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 ### HTTP response
+
 The response body contains the following fields:
 
 | Parameter      | Type    | Description                                                       |
 | :-------- | :------ | :--------------------------------------------------------- |
-| announcement | String | The announcements of the specified chat rooms. |
+| data.announcement | String | The announcements of the specified chat rooms. |
 
 ### Example
 
 #### Request example
 
 ```
-curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement'
+curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement'
 ```
 
 #### Response example
@@ -538,20 +541,21 @@ curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ```
 {
   "action": "get",
-  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
-  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement",
+  "application": "52XXXXf0",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement",
   "entities": [],
   "data": {
-    "announcement" : "Chat room announcements..."
+    "announcement" : "XXXX."
   },
   "timestamp": 1542363546590,
   "duration": 0,
   "organization": "XXXX",
-  "applicationName": "XXXX"
+  "applicationName": "testapp"
 }
 ```
 
 ## Modifying chat room announcements
+
 Modifies the announcements of the specified chat room. The announcement length cannot exceed 512 characters.
 
 ### HTTP request
@@ -575,21 +579,34 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | `Content-Type`  | String | Yes     | Set to `application/json`.                                 |
 | `Authorization` | String | Yes     | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
+
+#### Request body
+
+| Parameter           | Type   | Required | Description                 |
+| :------------- | :----- | :------- | :------------------- |
+| `announcement` | String | Yes       | The modified announcement. |
+
 ### HTTP response
 
 #### Response body
 
+If the returned HTTP status code is `200`, the request succeeds and the response body contains the following fields:
+
 | Parameter      | Type    | Description                                                       |
 | :-------- | :------ | :--------------------------------------------------------- |
-| id | String | The chat room ID. |
-| result | Boolean | Whether the chat room announcement is successfully modified: <br/> - `true`: Success<br/> - `false`: Failure |
+| `data.id` | String | The chat room ID. |
+| `data.result` | Boolean | Whether the chat room announcement is successfully modified: <li>`true`: Success</li><li>`false`: Failure</li> |
+
+For other fields and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible reasons.
 
 ### Example
 
 #### Request example
 
 ```
-curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul7EeizhBO5TSO_UgAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnG7GyAQBPGgDv4ENRUku7fg05Kev0a_aVC8NyA6O6PgpxIRjajSVN3g' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement' -d '{"announcement" : "chat room annoucement"}'
 ```
 
 #### Response example
@@ -597,17 +614,17 @@ curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ```
 {
   "action": "post",
-  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
-  "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/announcement",
+  "application": "52XXXXf0",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement",
   "entities": [],
   "data": {
-    "id": "XXXX",
+    "id": "12XXXX11",
     "result": true
   },
   "timestamp": 1594808604236,
   "duration": 0,
   "organization": "XXXX",
-  "applicationName": "XXXX"
+  "applicationName": "testapp"
 }
 ```
 
