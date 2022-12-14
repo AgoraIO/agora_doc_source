@@ -41,7 +41,7 @@ This page shows how to implement servers in Circle using RESTful APIs. Before pr
 | `server_id`       | String   | The server ID.                   |
 | `default_channel_id` | String | The channel ID of the default channel.             |
 | `user_id`   | String |  The user ID.      |
-| `role`              | Number | The role of the user in a server.<li>`0`: Owner.</li><li>`1`: Moderator.</li><li>`2`: Member.</li> |
+| `role`              | Number | The role of the user in a server.<li>`0`: Owner.</li><li>`1`: Moderator.</li><li>`2`: Member.</li> <div class="alert note">The moderators of a server serve as the moderators of all channels under the server.</div>  |
 | `created`          | Number  | The Unix timestamp (ms) when the server was created.     |
 
 
