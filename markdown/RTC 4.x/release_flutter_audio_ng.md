@@ -56,7 +56,7 @@ This release adds the `setHeadphoneEQParameters` method, which is used to adjust
 
 
 
-**8. MPUDP (MultiPath UDP)**
+**8. MPUDP (MultiPath UDP) (Beta)**
 
 As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
