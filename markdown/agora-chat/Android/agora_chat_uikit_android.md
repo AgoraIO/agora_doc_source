@@ -1,12 +1,18 @@
 # 即时通讯 IM UIKit 快速开始
 
-即时通讯将各地人们连接在一起，实现实时通信。即时通讯 IM UIKit 内置了用户界面（UI）提供会话列表和联系人列表，使你可将实时通讯嵌入到你的应用程序，而无需在 UI 上进行额外操作。
+即时通讯将各地人们连接在一起，实现实时通信。[即时通讯 IM UIKit]() 内置了用户界面（UI）提供会话列表和联系人列表，使你可将实时通讯嵌入到你的应用程序，而无需在 UI 上进行额外操作。
 
 本页通过示例代码介绍如何利用 Android 版本的即时通讯 IM UIKit 将单聊消息发送和接收的逻辑添加到你的应用程序中。
 
 ## 技术原理
 
-~7aac3300-785d-11ec-bcb4-b56a01c83d2e~
+下图显示了客户如何发送和接收单聊消息的工作流程：
+
+![img](https://web-cdn.agora.io/docs-files/1643335864426)
+
+1. 客户端从你的应用服务器获取 token。
+2. 客户 A 和客户 B 登录即时通讯 IM。
+3. 客户端 A 向客户端 B 发送消息，消息被发送到即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 ## 前提条件
 
@@ -15,12 +21,13 @@
 - Android 模拟器或 Android 设备。
 - Android Studio 3.2 或以上版本。
 - Java 开发工具包 (JDK)。适用版本请参考[Android 用户指南](https://developer.android.com/studio/write/java8-support)。
+- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7)。
 
 ## 项目设置
 
 参考以下步骤创建环境，将视频通话添加到你的应用程序中。
 
-1. 若为新项目，在 **Android Studio** 中，创建一个带有 **Empty Activity** 的 **Phone and Tablet** [Android 项目](https://developer.android.com/studio/projects/create-project)。
+1. 若为新项目，在 **Android Studio** 中，创建一个带有 **Empty Activity** 的 [Android 项目](https://developer.android.com/studio/projects/create-project) **Phone and Tablet** 。
 
 <div class="alert note">创建项目后，Android Studio 会自动启动 gradle 同步。确保同步成功后再进行后续操作。</div>
 
@@ -796,7 +803,7 @@
 
 ## 后续操作
 
-出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好是自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat)生成 token，并在客户端获取 token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户 Token](./generate_user_tokens)。
+出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好是自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat)生成 token，并在客户端获取 token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 token，请参阅[使用 Token 鉴权](./agora_chat_token)。
 
 ## 参考
 

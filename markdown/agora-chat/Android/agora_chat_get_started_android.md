@@ -13,7 +13,7 @@
 开始前，请确保你的开发环境满足以下条件：
 
 - 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-账号)。
-- 带有[开启了 Chat 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 Agora [项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-项目)。
+- 拥有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 Agora [项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-项目)。
 - Android 模拟器或 Android 设备。
 - Android Studio 3.6 或以上版本。
 - Java 开发工具包（JDK）。适用版本请参考 [Android 用户指南](https://developer.android.com/studio/write/java8-support)。

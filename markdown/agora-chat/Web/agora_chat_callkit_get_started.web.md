@@ -18,7 +18,7 @@ AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开
 开始前，请确保你的项目满足如下条件：
 
 - 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7)。
-- 已[开通 Agora Chat 服务](./enable_agora_chat?platform=iOS)的 Agora 项目。
+- 已[开通即时通讯 IM 服务](./enable_agora_chat?platform=iOS)的 Agora 项目。
 - 有一个集成了 Chat SDK 的 Agora Chat 项目，实现了基本的实时聊天功能，包括用户的登录和注销和消息的发送和接收。
 
 ## 项目设置
