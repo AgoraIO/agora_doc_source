@@ -636,7 +636,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 -d '{
   "user_id" : "user1",
   "message_id" : "131345390",
-  "message" : "message"
+  "message" : "emoji ID"
 }'
 ```
 
@@ -717,7 +717,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
             "reactionList":[
                 {
                     "reactionId":"15890012560",
-                    "message":"reactionName",
+                    "message":"emoji ID",
                     "state":"true",
                     "count":2,
                     "userList":[
@@ -1016,7 +1016,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `count`   | Number     | The number of retrieved members.  |
 | `users` | List | The list of users and detailed information. |
 | `users.user_id` | String | The ID of the user. |
-| `users.role` | Number | The role of the user in the channel:<li>`0`</li>: Owner.<li>`1`</li>: Member. |
+| `users.role` | Number | The role of the user in the channel:<li>`0`</li>: Owner.<li>`1`</li>: Member. <div class="alert note">The moderators of a server serve as the moderators of all channels under the server.</div> |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -1143,7 +1143,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :----- | :----- | :------- | :-------- |
 | `server_id`    | String | The ID of the server to which the channel belongs. | Yes       |
 | `user_id`    | String | The ID of the user to be muted. | Yes       |
-| `duration`    | Number | The mute duration (ms). | Yes       |
+| `duration`    | Number | The mute duration (ms). If you pass an empty value for this parameter, the specified user is muted forever. | Yes       |
 
 ### HTTP response
 
