@@ -1,4 +1,4 @@
-登录即时通讯 IM 后，用户可以在单聊、群聊或聊天室中发送如下类型的消息：
+登录即时通讯 IM 后，用户可以在单聊、群聊或聊天室中发送如下类型的消息以及这些类型的自定义扩展消息：
 
 - 文本消息，包括超链接和表情符号。
 - 附件消息，包括图片、语音、视频和文件消息。
@@ -6,7 +6,7 @@
 - 透传消息。
 - 自定义消息。
 
-以及对以上消息进行自定义扩展。
+终端用户可创建其设备支持的任何语言的消息，然后发送出去。
 
 本文介绍如何使用即时通讯 IM Android SDK 实现发送和接收这些类型的消息。
 
@@ -25,8 +25,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解消息相关限制和即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
+- 集成了 SDK，完成了 SDK 初始化，并且实现了账号注册和登录的功能。详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解消息相关限制，详见[消息概述](./agora_chat_message_overview)。
+- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -55,20 +56,21 @@ message.setChatType(ChatType.GroupChat);
          showToast("发送消息失败");
      }
  });
+ //发送消息。
  ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 ### 接收文本消息
 
-你可以注册 `MessageListener` 用来监听消息事件。可添加多个 `MessageListener` 来监听多个事件。不再监听事件时，请确保删除监听器。
+你可以注册 `MessageListener` 用来监听消息事件。可添加多个 `MessageListener` 监听多个事件。不再监听事件时，请及时删除监听器。
 
-收到消息时，收件人会收到 `onMessgesReceived` 回调。每个回调包含一条或多条消息。可以遍历消息列表，并在此回调中解析和呈现这些消息。
+收到消息时，收件人会收到 `onMessagesReceived` 回调。每个回调包含一条或多条消息。你可以遍历消息列表，在该回调中解析和显示这些消息。
 
 ```java
 ChatClient.getInstance().chatManager().addMessageListener(msgListener);
 MessageListener msgListener = new MessageListener() {
 
-// 收到消息时，遍历消息队列，解析和显示消息。
+// 收到消息时，遍历消息列表，解析和显示消息。
 @Override
 public void onMessageReceived(List<ChatMessage> messages) {
 
@@ -79,7 +81,7 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 
 ### 撤回消息
 
-消息发送后 2 分钟之内，消息的发送方可以撤回该消息。如果需要调整可撤回时限，请联系 [support@agora.io。](mailto:support@agora.io)
+消息发送后 2 分钟之内，消息的发送方可以撤回该消息。如果需要调整可撤回时限，请联系 [support@agora.io](mailto:support@agora.io)
 
 ```java
 try {
