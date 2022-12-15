@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onusermutevideo">
     <title><ph keyref="onUserMuteVideo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user stops/resumes publishing the video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user stops or resumes publishing the video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,13 +38,13 @@
             <dl outputclass="deprecated" props="hide">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>You can also use the  callback with<xref keyref="onRemoteVideoStateChanged" /> the following parameters:<ul>
-                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />  (5).</li>
-                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /> (6).</li>
+                <dd>You can also use the <xref keyref="onRemoteVideoStateChanged" /> callback with the following parameters:<ul>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" /> (5).</li>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /> (6).</li>
                     </ul> </dd>
             </dlentry>
             </dl>
-            <p>When a remote user calls<xref keyref="muteLocalVideoStream" />  to stop or resume publishing the video stream, the SDK triggers this callback to report the state of the remote user's publishing stream to the local user.</p>
+            <p>When a remote user calls <xref keyref="muteLocalVideoStream" /> to stop or resume publishing the video stream, the SDK triggers this callback to report to the local user the state of the streams published by the remote user.</p>
             <note type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live streaming profile) in a channel exceeds 17.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
@@ -65,8 +65,8 @@
                 <plentry>
                     <pt>muted</pt>
                     <pd>Whether the remote user stops publishing the video stream:<ul>
-                        <li>: The remote user stops publishing the video stream.<codeph><ph keyref="true" /></codeph></li>
-                        <li>: The remote user resumes publishing the video stream.<codeph><ph keyref="false" /></codeph></li>
+                        <li><codeph><ph keyref="true" /></codeph>: The remote user stops publishing the video stream.</li>
+                        <li><codeph><ph keyref="false" /></codeph>: The remote user resumes publishing the video stream.</li>
                         </ul> </pd>
                 </plentry>
             </parml>
