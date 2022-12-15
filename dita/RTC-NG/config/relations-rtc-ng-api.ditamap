@@ -2520,6 +2520,7 @@
                 <topicref keyref="updateScreenCaptureParameters" props="mac android cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion1" props="cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion2" props="hide"/>
+                <topicref keyref="setRemoteVideoSubscriptionOptions"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngine"/>
@@ -2580,6 +2581,8 @@
                 <topicref keyref="updateChannelMediaOptionsEx"/>
                 <topicref keyref="updateChannelMediaRelayEx"/>
                 <topicref keyref="updateRtmpTranscodingEx"/>
+                <topicref keyref="setRemoteVideoSubscriptionOptionsEx"/>
+                <topicref keyref="adjustUserPlaybackSignalVolumeEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngineEx"/>
@@ -2627,7 +2630,7 @@
                 <topicref keyref="onExtensionStopped" props="cpp framework"/>
                 <topicref keyref="onFacePositionChanged" props="android ios cpp unity rn flutter"/>
                 <topicref keyref="onFirstLocalAudioFramePublished"/>
-                <topicref keyref="onFirstLocalVideoFrame"/>
+                <topicref keyref="onFirstLocalVideoFrame" props="native rn electron flutter"/>
                 <topicref keyref="onFirstLocalVideoFramePublished"/>
                 <topicref keyref="onFirstRemoteAudioFrame"/>
                 <topicref keyref="onFirstRemoteAudioDecoded"/>
@@ -3098,6 +3101,27 @@
                 <topicref keyref="IScreenCaptureSourceList"/>
             </relcell>
         </relrow>
+        <relrow props="apple">
+            <relcell>
+                <topicref keyref="addUser"/>
+                <topicref keyref="defaultTranscoding"/>
+                <topicref keyref="getAdvancedFeatures"/>
+                <topicref keyref="removeUser"/>
+                <topicref keyref="setAdvancedFeatures"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="LiveTranscoding"/>
+            </relcell>
+        </relrow>
+        <relrow props="apple">
+            <relcell>
+                <topicref keyref="initWithSize"/>
+                <topicref keyref="initWithWidth"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="VideoEncoderConfiguration"/>
+            </relcell>
+        </relrow>
         <relrow props="android">
             <relcell>
                 <topicref keyref="onFrame_IVideoFrameObserver" toc="no"/>
@@ -3128,7 +3152,7 @@
                 <topicref keyref="IMediaRecorderObserver"/>
             </relcell>
         </relrow>
-        <relrow props="cpp andriod ios framework">
+        <relrow props="cpp android ios framework">
             <relcell props="cn">
                 <topicref keyref="initialize_IMusicContentCenter"/>
                 <topicref keyref="renewToken_IMusicContentCenter"/>
@@ -3196,27 +3220,6 @@
                 <topicref keyref="setEnable"/>
                 <topicref keyref="setForUser"/>
                 <topicref keyref="onTextureSizeModify"/>
-            </relcell>
-        </relrow>
-                <relrow props="cpp electron rn flutter">
-            <relcell props="cn">
-                <topicref keyref="getCount_MusicChartCollection"/>
-                <topicref keyref="get"/>
-            </relcell>
-            <relcell props="cn">
-                <topicref keyref="MusicChartCollection"/>
-            </relcell>
-        </relrow>
-        <relrow props="cpp flutter electron rn">
-            <relcell props="cn">
-                <topicref keyref="getCount_MusicCollection"/>
-                <topicref keyref="getTotal_MusicCollection"/>
-                <topicref keyref="getPage_MusicCollection"/>
-                <topicref keyref="getPageSize_MusicCollection"/>
-                <topicref keyref="getMusic_MusicCollection"/>
-            </relcell>
-            <relcell props="cn">
-                <topicref keyref="MusicCollection"/>
             </relcell>
         </relrow>
     </reltable>
