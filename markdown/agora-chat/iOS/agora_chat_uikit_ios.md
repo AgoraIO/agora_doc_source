@@ -1,21 +1,25 @@
-本文介绍如何将即时通讯 IM UIKit  应用在项目中并快速搭建出会话页面。
+# 即时通讯 IM UIKit 快速开始
+
+即时通讯将各地人们连接在一起，实现实时通信。[即时通讯 IM UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-ios) 内置了用户界面（UI）提供会话列表和联系人列表，使你可将实时通讯嵌入到你的应用程序，而无需在 UI 上进行额外操作。
+
+本页通过示例代码介绍如何利用 iOS 版本的即时通讯 IM UIKit 将单聊消息发送和接收的逻辑添加到你的应用程序中。
 
 ## 技术原理
 
-下图展示客户端发送和接收单聊消息的工作流程：
+下图显示了客户如何发送和接收单聊消息的工作流程：
 
-~7aac3300-785d-11ec-bcb4-b56a01c83d2e~
+![img](https://web-cdn.agora.io/docs-files/1643335864426)
 
-1. 客户端从你的 App Server 获得 token。
-2. 客户端 A 和客户端 B 登录即时通讯 IM 。
-3. 客户端 A 向客户端 B 发送消息，消息发送到即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
+1. 客户端从你的应用服务器获取 token。
+2. 客户 A 和客户 B 登录即时通讯 IM。
+3. 客户端 A 向客户端 B 发送消息，消息被发送到即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 ## 前提条件
 
 - Xcode，最好是最新版本；
 - iOS 11 及以上版本；
-- 有效的即时通讯 IM 开发者账号;
-- 安装 Cocoapods 工具。
+- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7);
+- 安装 CocoaPods 工具。详见 [CocoaPods 安装指南](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 
 ## 操作步骤
 
@@ -34,7 +38,7 @@
 
 #### 方式 1：使用 pod 方式集成 chat-uikit
 
-1. 开始前确保你已安装 Cocoapods。参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+1. 开始前确保你已安装 CocoaPods。详见[CocoaPods 安装指南](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 2. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成 `Podfile` 文本文件。
 3. 打开 `Podfile` 文件，在 `podfile` 文件里添加相关 SDK。注意将 `chatuikitquickstart` 替换为你的 Target 名称。
 

@@ -18,8 +18,8 @@ AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开
 开始前，请确保你的项目满足如下条件：
 
 - 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7)。
-- 已[开通 Agora Chat 服务](./enable_agora_chat?platform=iOS)的 Agora 项目。
-- 有一个集成了 Chat SDK 的 Agora Chat 项目，实现了基本的实时聊天功能，包括用户的登录和注销和消息的发送和接收。
+- 已[开通即时通讯 IM 服务](./enable_agora_chat)的 Agora 项目。
+- 有一个集成了 Chat SDK 的 Agora Chat 项目，实现了基本的实时聊天功能，包括用户的登录、登出以及消息的发送和接收。
 
 ## 项目设置
 
@@ -157,7 +157,7 @@ function Call() {
 ```
 ### 通话结束
 
-通话中的一方点击页面上的**挂断**按钮可以结束通话。在一对一音视频通话中，若其中一方挂断，双方的通话会自动结束。多人音视频通话场景中，用户主动挂断才能结束通话。若当前用户挂断，则其收到的 `onStateChange` 回调中，`info.type` 为 `hangup`。若通话中的对端用户挂断，当前用户收到的 `onStateChange` 回调中， `info.type` 为 `user-left`。
+通话中的一方点击页面上的**挂断**按钮可以结束通话。在一对一音视频通话中，若其中一方挂断，双方的通话会自动结束。多人音视频通话场景中，用户主动挂断才能结束通话。若当前用户挂断，则其收到的 `onStateChange` 回调中，`info.type` 为 `hangup`。若通话中的对端用户挂断，当前用户收到的 `onStateChange` 回调中，`info.type` 为 `user-left`。
 
 ## 更多操作
 

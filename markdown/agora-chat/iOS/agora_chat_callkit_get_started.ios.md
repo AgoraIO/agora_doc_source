@@ -30,6 +30,7 @@ AgoraChatCallKit 基于 `Agora_Chat_iOS`、`Masonry`、`AgoraRtcEngine_iOS/RtcBa
 
 1. 安装 CocoaPods，详见 [CocoaPods 快速开始](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 2. 若你的项目中没有 `Podfile` 文件，需打开项目的根目录，然后运行 `pod init` 命令在项目文件夹中创建 `Podfile` 文本文件。
+
 3. 打开 `Podfile` 文件，添加 `use_frameworks` 和 `AgoraChatCallKit` 框架，将 `AppName` 替换为你的项目名称：
 
     ```Objective-C
@@ -311,7 +312,7 @@ AgoraChatCallUser *user = [AgoraChatCallUser userWithNickName:info.nickname imag
 
 ### 使用 RTC token 对用户进行身份验证
 
-为提高通信安全性，声网建议你在应用用户加入通话前使用 RTC  token 对其进行身份验证。为此，你需要确保[启用项目的主证书](https://docs.agora.io/cn/All/faq/appid_to_token)，并将 AgoraChatCallKit 中的 `enableRTCTokenValidate` 设置为 `YES`。
+为提高通信安全性，声网建议你在应用用户加入通话前使用 RTC token 对其进行身份验证。为此，你需要确保[启用项目的主证书](https://docs.agora.io/cn/All/faq/appid_to_token)，并将 AgoraChatCallKit 中的 `enableRTCTokenValidate` 设置为 `YES`。
 
 ```Objective-C
 config.enableRTCTokenValidate = YES;  
@@ -370,9 +371,9 @@ config.enableRTCTokenValidate = YES;
 
 1. [下载 AgoraChatCallKit](https://github.com/AgoraIO-Usecase/AgoraChat-CallKit-ios/blob/main/README_CN.md)，并解压下载的文件。
 
-2. 将 AgoraChatCallKit.framework 复制并粘贴 到你的项目目录中。
+2. 将 `AgoraChatCallKit.framework` 复制并粘贴 到你的项目目录中。
 
-3. 打开 `Xcode`，选择 **TARGETS > Project Name > General**，将 `AgoraChatCallKit.framework` 拖拽到项目中，在 `Frameworks, Libraries, and Embedded Content` 中将`AgoraChatCallKit.framework` 设置为 `Embed & Sign`。
+3. 打开 `Xcode`，选择 **TARGETS > Project Name > General**，将 `AgoraChatCallKit.framework` 拖拽到项目中，在 `Frameworks, Libraries, and Embedded Content` 中将 `AgoraChatCallKit.framework` 设置为 `Embed & Sign`。
 
 ### 其他项目设置
 
