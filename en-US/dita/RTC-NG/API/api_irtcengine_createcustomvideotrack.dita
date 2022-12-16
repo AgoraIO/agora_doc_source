@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createcustomvideotrack">
     <title><ph keyref="createCustomVideoTrack"/></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates a customized video track.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,17 +24,17 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p> <ol>
-            <li> </li>
-            <li> </li>
-            <li> </li>
+            <p>When you need to publish multiple custom captured videos in the channel, you can refer to the following steps:<ol>
+            <li>Call this method to create a video track and get the video track ID.</li>
+            <li>In each channel's <xref keyref="ChannelMediaOptions"/>, set the <parmname>customVideoTrackId</parmname> parameter to the ID of the video track you want to publish, and set <parmname>publishCustomVideoTrack</parmname> to <codeph><ph keyref="true"/></codeph>.</li>
+            <li>If you call <xref keyref="pushVideoFrameEx2" props="android"/><xref keyref="pushVideoFrameEx" props="ios mac"/><xref keyref="pushVideoFrame" props="cpp electron unity rn flutter"/>, and specify <parmname>VideoTrackId</parmname> as the video track ID set in step 2, you can publish the corresponding custom video source in multiple channels.</li>
             </ol></p>
         </section>
         <section id="return_values">
-            <title> </title>
+            <title>Returns</title>
             <ul>
-            <li> </li>
-            <li> </li>
+            <li>If the method call is successful, the video track ID is returned as the unique identifier of the video track.</li>
+            <li>If the method call fails, a negative value is returned.</li>
             </ul> </section>
     </refbody>
 </reference>
