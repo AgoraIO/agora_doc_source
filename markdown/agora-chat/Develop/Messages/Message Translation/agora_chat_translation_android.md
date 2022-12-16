@@ -68,3 +68,9 @@ body.setTargetLanguages(languageList);
 TextMessageBody body = (TextMessageBody)message.getBody();
 List<TranslationInfo> infoList = body.getTranslations();
 ```
+
+## 参考
+
+### 设置和获取推送的目标语言
+
+设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见 [离线推送](./agora_chat_push_android)。
