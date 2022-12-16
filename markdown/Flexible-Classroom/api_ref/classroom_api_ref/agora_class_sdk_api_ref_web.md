@@ -60,7 +60,6 @@ export type LaunchOption = {
     roomUuid: string;
     roleType: EduRoleTypeEnum;
     roomType: EduRoomTypeEnum;
-    roomServiceType?: EduRoomServiceTypeEnum;
     roomName: string;
     listener: ListenerCallback;
     pretest: boolean;
@@ -90,7 +89,6 @@ export type LaunchOption = {
 | `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
 | `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
-| `roomServiceType`  |（选填）大班课使用的服务类型。详见 [EduRoomServiceTypeEnum](#eduroomservicetypeenum)。  |
 | `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
@@ -375,21 +373,6 @@ export enum EduRoomTypeEnum {
 | `Room1v1Class`   | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                  |
 | `RoomBigClass`   | `2`: 大班课。1 位老师进行在线教学，多名学生实时观看和收听，课堂人数上限为 5000。 |
 | `RoomSmallClass` | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200。    |
-
-
-### EduRoomServiceTypeEnum
-
-```typescript
-export enum EduRoomServiceTypeEnum {
-  LivePremium = 0,
-}
-```
-
-大班课使用的服务类型，LivePremium表示使用RTC视频通信。目前大班课仅支持此类型。在 [LaunchOption](#launchoption) 中设置。
-
-| 参数             | 描述                                                                                             |
-| :--------------- | :----------------------------------------------------------------------------------------------- |
-|`LivePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时，约 400 毫秒。与互动直播大班课逻辑一致。   |
 
 
 ### LanguageEnum
