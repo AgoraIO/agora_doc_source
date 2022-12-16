@@ -14,12 +14,12 @@ As of this release, the SDK supports MPUDP protocol, which enables you to connec
 
 > To enable this feature, contact [sales-us@agora.io](sales-us@agora.io).
 
-**3. Device management **
+**3. Device management**
 
 This release adds a series of callbacks to help you better understand the status of your audio devices:
 
-- `onAudioDeviceStateChanged`(Windows) : Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged` (Windows) : Occurs when the volume of an audio device or app changes. 
+- `onAudioDeviceStateChanged`(C++) : Occurs when the status of the audio device changes. 
+- `onAudioDeviceVolumeChanged` (C++) : Occurs when the volume of an audio device or app changes. 
 
 **4. Multi-channel management**
 
