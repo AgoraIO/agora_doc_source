@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoframeobserver">
     <title><ph keyref="registerVideoFrameObserver"/></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers a video frame observer object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,40 +23,40 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p> </p>
-            <p> </p>
+            <p>If you want to observe raw video frames (such as YUV or RGBA format), Agora recommends that you implement one <xref keyref="IVideoFrameObserver"/> class with this method.</p>
+            <p>After registering the class, you need to register the callbacks in the class as required. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
             <p conkeyref="registerVideoEncodedFrameObserver/mix"/>
             <note type="attention">
             <ul>
-            <li> </li>
-            <li> <ul id="ul_qms_zys_r4b">
-                <li> </li>
-                <li> </li>
+            <li>Ensure that you call this method before joining a channel.</li>
+            <li>When handling the video data returned in the callbacks, pay attention to the changes in the <parmname>width</parmname> and <parmname>height</parmname> parameters, which may be adapted under the following circumstances:<ul id="ul_qms_zys_r4b">
+                <li>When network conditions deteriorate, the video resolution decreases incrementally.</li>
+                <li>If the user adjusts the video profile, the resolution of the video returned in the callbacks also changes.</li>
                 </ul></li>
             </ul> </note> </section>
         <section id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp electron rn flutter"> </pt>
-                <pt props="ios mac"> </pt>
-                <pt props="unity"> </pt>
-                <pd> </pd>
+                <pt props="android cpp electron rn flutter">observer</pt>
+                <pt props="ios mac">delegate</pt>
+                <pt props="unity">videoFrameObserver</pt>
+                <pd><ph>The observer object instance. See <xref keyref="IVideoFrameObserver"/>. </ph><ph props="android cpp ios mac unity">To release the instance, set the value as <ph keyref="NULL"/>.</ph></pd>
             </plentry>
             <plentry props="unity">
-                <pt> </pt>
-                <pd> </pd>
+                <pt>mode</pt>
+                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
             </plentry>
             </parml> </section>
         <section props="native electron rn unity">
-            <title> </title>
+            <title>Returns</title>
             <ul props="android cpp electron rn unity">
-            <li> </li>
-            <li> </li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="ios mac">
-            <li> </li>
-            <li> </li>
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
