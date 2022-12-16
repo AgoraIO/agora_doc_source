@@ -123,7 +123,7 @@ ChatClient.getInstance().chatManager().addConversationListener(new ConversationL
         });
 ```
 
-<div class="alert note">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
+<div class="alert info">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
 
 ##### 消息已读回执
 

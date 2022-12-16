@@ -157,7 +157,7 @@ Conversation conversation = ChatClient.getInstance().chatManager().getConversati
 conversation.updateMessage(message);
 ```
 
-## 下一步
+## 后续步骤
 
 实现消息管理后，您可以参考以下文档为应用添加更多消息功能：
 

@@ -84,9 +84,9 @@ options.enableRequireReadAck = YES;
 
 消息接收方进入会话页面，查看会话中是否有未读消息。若有，调用 `ackConversationRead` 方法发送会话已读回执。
 
-     ```Objective-C
-     [[AgoraChatClient sharedClient].chatManager ackConversationRead:conversationId completion:nil];
-     ```
+   ```Objective-C
+   [[AgoraChatClient sharedClient].chatManager ackConversationRead:conversationId completion:nil];
+   ```
 
 2. 消息发送方监听消息事件，通过 `onConversationRead` 接收会话已读回执。
 
@@ -97,7 +97,7 @@ options.enableRequireReadAck = YES;
    }
    ```
 
-<div class="alert note">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
+<div class="alert info">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
 
 ##### 消息已读回执
 
@@ -139,6 +139,7 @@ options.enableRequireReadAck = YES;
 2. 消息发送方监听消息已读回调。
 
 可以调用接口监听指定消息是否已读，示例代码如下：
+
      ```Objective-C
      // 收到消息已读回执的回调。
      - (void)messagesDidRead:(NSArray *)aMessages

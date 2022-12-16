@@ -75,7 +75,7 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 // 将指定会话的消息未读数清零。
 [conversation markAllMessagesAsRead:nil];
 // 将一条消息置为已读。
-[onversation markMessageAsReadWithId:messageId error:nil];
+[conversation markMessageAsReadWithId:messageId error:nil];
 ```
 
 ### 删除会话话和历史消息
@@ -146,7 +146,7 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 }];
 ```
 
-## 下一步
+## 后续步骤
 
 实现消息管理后，你可以参考以下文档为应用添加更多消息功能：
 
