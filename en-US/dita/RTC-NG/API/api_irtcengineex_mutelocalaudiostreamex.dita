@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_mutelocalaudiostreamex">
     <title><ph keyref="muteLocalAudioStreamEx"/></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local audio stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,17 +30,17 @@
             <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <note type="attention"> </note> </section>
+            <note type="attention">This method does not affect any ongoing audio recording, because it does not disable the audio capture device.</note> </section>
         <section id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android"> </pt>
-                <pt props="ios mac cpp unity flutter rn electron"> </pt>
+                <pt props="android">muted</pt>
+                <pt props="ios mac cpp unity flutter rn electron">mute</pt>
                 <pd id="mute">
-                    <p> <ul>
-                    <li> </li>
-                    <li> </li>
+                    <p>Whether to stop publishing the local audio stream:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Stops publishing the local audio stream.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Resumes publishing the local audio stream.</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -50,10 +50,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title> </title>
+            <title>Returns</title>
             <ul>
-            <li> </li>
-            <li>  </li>
+            <li>0: Success.</li>
+            <li> &lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
