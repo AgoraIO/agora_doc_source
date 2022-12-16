@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudiospectrumobserver">
     <title><ph keyref="registerAudioSpectrumObserver" /></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers an audio spectrum observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,26 +28,27 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p> </p>
-            <note type="attention" id="note_qwk_mjf_3qb"> </note> </section>
+            <p>After successfully registering the audio spectrum observer and calling
+ <xref keyref="enableAudioSpectrumMonitor" /> to enable the audio spectrum monitoring, the SDK reports the callback that you implement in the <xref keyref="IAudioSpectrumObserver" /> class at the time interval you set.</p>
+            <note type="attention" id="note_qwk_mjf_3qb">You can call this method either before or after joining a channel.</note> </section>
         <section id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp unity electron rn flutter"> </pt>
-                <pt props="ios mac"> </pt>
+                <pt props="android cpp unity electron rn flutter">observer</pt>
+                <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p> </p>
+                    <p>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" />.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native rn electron unity">
-            <title> </title>
+            <title>Returns</title>
             <ul id="ul_jzc_zjf_3qb" props="native unity">
-            <li> </li>
-            <li> </li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul>
-            <p props="rn electron"> </p>
+            <p props="rn electron">One <xref keyref="IAudioSpectrumObserver"/> object.</p>
         </section>
     </refbody>
 </reference>
