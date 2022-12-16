@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableloopbackrecording">
     <title><ph keyref="enableLoopbackRecording"/></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capturing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,38 +30,38 @@
             <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p> </p>
+            <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
-            <li props="cpp unity electron flutter"> </li>
-            <li> </li>
-            <li> </li>
+            <li props="cpp unity electron flutter">This method applies to the macOS and Windows platforms only.</li>
+            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
+            <li>You can call this method either before or after joining a channel.</li>
             </ul> </note> </section>
         <section id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry>
-                <pt> </pt>
-                <pd> <ul id="ul_qjq_swq_t4b">
-                    <li> </li>
-                    <li> </li>
+                <pt>enabled</pt>
+                <pd>Whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
+                    <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
                     </ul></pd>
             </plentry>
             <plentry id="device_name">
-                <pt> </pt>
-                <pd props="mac"> </pd>
+                <pt>deviceName</pt>
+                <pd props="mac">The device name of the virtual sound card. The default value is set to NULL, which means using AgoraALD for loopback audio capturing.</pd>
                 <pd props="electron cpp unity flutter">
                     <ul>
-                    <li> </li>
-                    <li> </li>
+                    <li>macOS: The device name of the virtual sound card. The default value is set to NULL, which means using AgoraALD for loopback audio capturing.</li>
+                    <li>Windows: The device name of the sound card. The default is set to null, which means the SDK uses the sound card of your device for loopback audio capturing.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity">
-            <title> </title>
+            <title>Returns</title>
             <ul>
-            <li> </li>
-            <li> </li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
