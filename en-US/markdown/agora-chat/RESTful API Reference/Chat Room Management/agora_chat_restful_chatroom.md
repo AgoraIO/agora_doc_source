@@ -496,7 +496,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## Retrieving a chat room announcement
 
-Retrieves the announcement of one specific chat room.
+Retrieves the announcement text for the specified chat room.
 
 ### HTTP request
 
@@ -526,7 +526,7 @@ The response body contains the following fields:
 
 | Parameter      | Type    | Description                                                       |
 | :-------- | :------ | :--------------------------------------------------------- |
-| data.announcement | String | The announcements of the specified chat rooms. |
+| data.announcement | String | The announcement text of the specified chat room. |
 
 ### Example
 
@@ -554,9 +554,9 @@ curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
-## Modifying chat room announcements
+## Modifying a chat room announcement
 
-Modifies the announcements of the specified chat room. The announcement length cannot exceed 512 characters.
+Modifies the announcement text of the specified chat room. The length cannot exceed 512 characters.
 
 ### HTTP request
 
@@ -584,7 +584,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter           | Type   | Required | Description                 |
 | :------------- | :----- | :------- | :------------------- |
-| `announcement` | String | Yes       | The modified announcement. |
+| `announcement` | String | Yes       | The modified announcement text. |
 
 ### HTTP response
 
@@ -606,7 +606,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement' -d '{"announcement" : "chat room annoucement"}'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement' -d '{"announcement" : "chat room announcement"}'
 ```
 
 #### Response example
