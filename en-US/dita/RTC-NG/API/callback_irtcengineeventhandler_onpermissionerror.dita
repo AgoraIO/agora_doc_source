@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onpermissionerror">
     <title><ph keyref="onPermissionError" /></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK cannot get the device permission.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,24 +25,24 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p> </p>
-            <note type="attention" props="cpp unity flutter"> </note> </section>
+            <p>When the SDK fails to get the device permission, the SDK triggers this callback to report which device permission cannot be got.</p>
+            <note type="attention" props="cpp unity flutter">This callback is for Android and iOS only.</note> </section>
         <section id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt />
                 <pd />
             </plentry>
             <plentry>
-                <pt props="android"> </pt>
-                <pt props="ios mac"> </pt>
-                <pt props="cpp unity electron rn flutter"> </pt>
-                <pd props="ios mac cpp unity electron rn flutter"> </pd>
-                <pd props="android"> <ul>
-                   <li> </li>
-                   <li> </li>
-                   <li> </li>
+                <pt props="android">permission</pt>
+                <pt props="ios mac">type</pt>
+                <pt props="cpp unity electron rn flutter">permissionType</pt>
+                <pd props="ios mac cpp unity electron rn flutter">The type of the device permission. See <xref keyref="PERMISSION_TYPE" />.</pd>
+                <pd props="android">The type of the device permission.<ul>
+                   <li><ph keyref="RECORD_AUDIO" />(0): Permission for the audio capture device.</li>
+                   <li><ph keyref="CAMERA" />(1): Permission for the camera.</li>
+                   <li><ph keyref="SCREEN_CAPTURE" />(2): Permission for screen sharing.</li>
                 </ul></pd>
             </plentry>
             </parml> </section>
