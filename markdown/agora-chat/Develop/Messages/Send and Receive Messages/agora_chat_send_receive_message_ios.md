@@ -6,19 +6,13 @@
 - 透传消息。
 - 自定义消息。
 
-以及对以上消息进行自定义扩展。
+终端用户可创建其设备支持的任何语言的消息，然后发送消息。
 
 本文介绍如何使用即时通讯 IM SDK 实现发送和接收这些类型的消息。
 
 ## 技术原理
 
-即时通讯 IM SDK 使用 `IAgoraChatManager`和 `Message` 类来发送、接收和撤回消息、发送、接收消息已读回执，并管理用户设备上存储的消息会话数据，其中包含如下主要方法：
-
-- `sendMessage` 发送消息给某个用户，群组或者聊天室；
-- `recallMessage` 撤回自己发出的消息；
-- `addMessageListener` 添加消息接收的回调通知；
-- `ackConversationRead` 发送会话已读通知；
-- `ackMessageRead` 发送指定消息已读的通知；
+即时通讯 IM SDK 使用 `IAgoraChatManager`和 `Message` 类发送、接收和撤回消息、发送、接收消息已读回执，并管理用户设备上存储的消息会话数据。
 
 发送和接收消息的过程如下：
 
@@ -31,7 +25,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解消息相关限制，详见[消息概述](./agora_chat_message_overview)。
+- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -97,15 +92,16 @@ message.chatType = AgoraChatTypeGroupChat;
     }];
 ```
 
-你还可以使用 `messagesDidRecall` 来设置消息撤回回执：
+你还可以使用 `messagesDidRecall` 监听消息撤回状态：
 
 ```objectivec
+// 收到的消息撤回时触发的回调。
 - (void)messagesDidRecall:(NSArray *)aMessages;
 ```
 
 ### 发送和接收附件类型的消息
 
-除文本消息外，还有几种其他类型的消息，其中语音，图片，短视频，文件等消息，是通过先将附件上传到消息服务器的方式实现。收到语音时，会自动下载，而图片和视频会自动下载缩略图。文件消息不会自动下载附件，接收方需调用下载附件的 API，具体实现参考下文。
+语音，图片，视频，和文件消息实际上为附件消息。发送前，需先将附件上传到消息服务器。收到语音时，会自动下载，而图片和视频会自动下载缩略图。文件消息不会自动下载附件，接收方需调用下载附件的 API，具体实现参考下文。
 
 #### 发送和接收语音消息
 
@@ -129,7 +125,7 @@ message.chatType = AgoraChatTypeGroupChat;
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                                      progress:nil
                                                                    completion:nil];
-```
+```                                                           
 
 接收方收到语音消息后，参考如下示例代码获取语音消息的附件：
 
@@ -141,11 +137,11 @@ NSString *voiceRemotePath = voiceBody.remotePath;
 NSString *voiceLocalPath = voiceBody.localPath;
 ```
 
-#### 发送和接收图像消息
+#### 发送和接收图片消息
 
-默认情况下，SDK 在发送之前会压缩图像文件。要发送原始文件，可以设置 `original` 为 `true`。
+默认情况下，SDK 在发送之前会压缩图片文件。要发送原始文件，可以设置 `original` 为 `true`。
 
-请参考以下代码示例来创建和发送图像消息：
+请参考以下代码示例创建和发送图像消息：
 
 ```objectivec
 // `imageData` 为图片本地资源，`displayName` 为附件的显示名称。
@@ -180,13 +176,11 @@ NSString *localPath = body.localPath;
 NSString *thumbnailLocalPath = body.thumbnailLocalPath;
 ```
 
-如果在接收方客户端 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail` 设置为 `YES`，SDK 收到消息后会自动下载缩略图。如果没有，需要调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];`。
+如果在接收方客户端 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail` 设置为 `YES`，SDK 收到消息后会自动下载缩略图。若该选项设置为 `false`，需要调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载缩略图并从 `messageBody` 的 `thumbnailLocalPath` 中获取缩略图路径。
 
-下载完成后，在回调里调用相应消息 `messageBody` 的 `thumbnailLocalPath` 获取缩略图路径。
+#### 发送和接收视频消息
 
-#### 发送和接收短视频消息
-
-发送短视频消息时，应用层需要完成视频文件的选取或者录制。视频消息支持输入视频的首帧作为缩略图，也支持给出视频的时长作为参数，发送给接收方。
+发送视频消息时，应用层需要完成视频文的捕获或者录制。视频消息支持输入视频的首帧作为缩略图，也支持给出视频的时长作为参数，发送给接收方。
 
 请参考以下代码示例来创建和发送视频消息：
 
@@ -201,13 +195,16 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                        body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// 如果是群聊，设置 chatType，默认是单聊。
+// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                                      progress:nil
                                                                    completion:nil];
 ```
+默认情况下，当接收方收到消息时，SDK 下载视频消息的缩略图。
+
+若你要手动下载视频缩略图，需将 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail;` 设置为 `NO`，主动调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载缩略图，并从 `messageBody` 的 `thumbnailLocalPath` 获取视频缩略图路径。
 
 ```objectivec
 AgoraChatVideoMessageBody *body = (AgoraChatVideoMessageBody *)message.body;
@@ -221,13 +218,9 @@ NSString *localPath = body.localPath;
 NSString *thumbnailLocalPath = body.thumbnailLocalPath;
 ```
 
-接收方如果设置了自动下载，即 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail;` 为 `YES`，SDK 接收到消息后会下载缩略图；如果未设置自动下载，需主动调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载。
-
-下载完成后，在回调里调用相应消息 `messagebody` 的 `thumbnailLocalPath` 获取视频缩略图路径。
-
 #### 发送和接收文件消息
 
-请参考以下代码示例来创建、发送和接收文件消息：
+请参考以下代码示例创建、发送和接收文件消息：
 
 ```objectivec
 // `fileData` 为本地资源，`fileName` 为附件的显示名称。
@@ -239,7 +232,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                        body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// 如果是群聊，设置 `ChatType` 为 `GroupChat`，该参数默认是单聊（`Chat`）。
+// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
@@ -247,24 +240,24 @@ message.chatType = AgoraChatTypeGroupChat;
                                                                    completion:nil];
 ```
 
-发送附件类型消息时，可以在 progress 回调中获取附件上传的进度，以百分比表示，示例代码如下：
+发送文件消息时，可以在 progress 回调中获取附件上传的进度，以百分比表示，示例代码如下：
 
 ```objectivec
 // 发送消息时可以设置 `CallBack` 的实例，获得消息发送的状态。可以在该回调中更新消息的显示状态。例如消息发送失败后的提示等等。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
-        // progress 附件上传进度块的百分比。
+        // progress 为附件上传进度块的百分比。
 } completion:^(AgoraChatMessage *message, AgoraChatError *error) {
-    // error 发送结果，message 发送的消息。
+    // error 表示发送结果，message 表示发送的消息。
 }];
 ```
 
-当收件人收到邮件时，参考以下代码示例获取附件文件：
+当接收方收到消息时，参考以下代码示例获取附件文件：
 
 ```objectivec
 AgoraChatFileMessageBody *body = (AgoraChatFileMessageBody *)message.body;
-// 从服务器端获取图片缩略图。
+// 从服务器端获取附件文件。
 NSString *remotePath = body.remotePath;
-// 从本地获取图片缩略图。
+// 从本地获取附件文件。
 NSString *localPath = body.localPath;
 ```
 
@@ -280,9 +273,10 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                            to:toChatUsername
                                                                        body:body
                                                        ext:messageExt];
+// 将会话类型设置单聊，也可设置为群聊或聊天室，默认为单聊。
 message.chatType = AgoraChatTypeChat;
-// 如果是群聊，设置 chatType，默认是单聊。
-message.chatType = AgoraChatTypeGroupChat;
+// 将会话类型设置为群聊。
+// message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                                      progress:nil
@@ -291,10 +285,9 @@ message.chatType = AgoraChatTypeGroupChat;
 
 ### 发送和接收透传消息
 
-可以把透传消息理解为一条指令，通过发送这条指令给对方，通知对方要执行的操作，收到消息可以自定义处理。
+透传消息可视为命令消息，通过发送这条命令给对方，通知对方要进行的操作，收到消息可以自定义处理。具体功能可以根据自身业务需求自定义，例如实现头像、昵称的更新等。
 
-- CMD 消息不存储在本地数据库中，在 UI 上不会显示。
-- 以 `em_` 和 `easemob::` 开头的操作是内部字段。不要使用它们。
+<div class="alert note"><li>透传消息不存入本地数据库中。<li>以 <code>em_</code> 和 <code>easemob::</code> 开头的 action 为内部字段，请勿使用。</div>
 
 ```Objective
 // `action` 自定义 `NSString` 类型的命令内容。
@@ -305,7 +298,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                        body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// 如果是群聊，设置 chatType，默认是单聊。
+// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
@@ -316,11 +309,111 @@ message.chatType = AgoraChatTypeGroupChat;
 请注意透传消息的接收方，也是由单独的回调进行通知，方便用户进行不同的处理。
 
 ```objectivec
-// 收到透传消息。
+// 收到透传消息时触发该回调。
 - (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages{
   for (AgoraChatMessage *message in aCmdMessages) {
         AgoraChatCmdMessageBody *body = (AgoraChatCmdMessageBody *)message.body;
-        // 进行透传消息 body 解析。
+        // 解析消息 body。
+    }
+}
+```
+
+#### 通过透传消息实现输入指示器
+
+输入指示器显示其他用户何时输入消息。通过该功能，用户之间可进行有效沟通，增加了用户对聊天应用中交互的期待感。你可以通过透传消息实现输入指示器。
+
+下图为输入指示器的工作原理。
+
+![](https://web-cdn.agora.io/docs-files/1671159551013)
+
+![img](typing_indicator.png)
+
+监听用户 A 的输入状态。一旦有文本输入，通过透传消息将输入状态发送给用户 B，用户 B 收到该消息，了解到用户 A 正在输入文本。
+
+- 用户 A 向用户 B 发送消息，通知其开始输入文本。
+- 收到消息后，如果用户 B 与用户 A 的聊天页面处于打开状态，则显示用户 A 的输入指示器。
+- 如果用户 B 在几秒后未收到用户 A 的输入，则自动取消输入指示器。
+
+<div class="alert info"> 用户 A 可根据需要设置透传消息发送间隔。</div>
+
+以下示例代码展示如何发送输入状态的透传消息。
+
+```objectivec
+//发送表示正在输入的透传消息
+#define MSG_TYPING_BEGIN @"TypingBegin"
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    long long currentTimestamp = [self getCurrentTimestamp];
+    // 5 秒内不能重复发送消息
+    if ((currentTimestamp - _previousChangedTimeStamp) > 5) {
+        // 发送开始输入的透传消息
+        [self _sendBeginTyping];
+        _previousChangedTimeStamp = currentTimestamp;
+    }
+}
+
+- (void)_sendBeginTyping
+{
+    AgoraChatCmdMessageBody *body = [[AgoraChatCmdMessageBody alloc] initWithAction:MSG_TYPING_BEGIN];
+    body.isDeliverOnlineOnly = YES;
+    AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:conversationId body:body ext:nil];
+    message.chatType = AgoraChatTypeChat;
+    [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
+}
+
+```
+
+以下示例代码展示如何接收和解析输入状态的透传消息。
+
+```objectivec
+#define TypingTimerCountNum 10
+- (void)cmdMessagesDidReceive:(NSArray *)aCmdMessages
+{
+    NSString *conId = self.currentConversation.conversationId;
+    for (AgoraChatMessage *message in aCmdMessages) {
+        if (![conId isEqualToString:message.conversationId]) {
+            continue;
+        }
+        AgoraChatCmdMessageBody *body = (AgoraChatCmdMessageBody *)message.body;
+        // 收到正在输入的透传消息
+        if ([body.action isEqualToString:MSG_TYPING_BEGIN]) {
+            if (_receiveTypingCountDownNum == 0) {
+                [self startReceiveTypingTimer];
+            }else {
+                _receiveTypingCountDownNum = TypingTimerCountNum;
+            }
+        }
+
+    }
+}
+
+- (void)startReceiveTypingTimer {
+    [self stopReceiveTypingTimer];
+    _receiveTypingCountDownNum = TypingTimerCountNum;
+    _receiveTypingTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(startReceiveCountDown) userInfo:nil repeats:YES];
+
+    [[NSRunLoop currentRunLoop] addTimer:_receiveTypingTimer forMode:UITrackingRunLoopMode];
+    [_receiveTypingTimer fire];
+    // 这里需更新 UI，显示“对方正在输入”
+}
+
+- (void)startReceiveCountDown
+{
+    if (_receiveTypingCountDownNum == 0) {
+        [self stopReceiveTypingTimer];
+        // 这里需更新 UI，不再显示“对方正在输入”
+        
+        return;
+    }
+    _receiveTypingCountDownNum--;
+}
+
+- (void)stopReceiveTypingTimer {
+    _receiveTypingCountDownNum = 0;
+    if (_receiveTypingTimer) {
+        [_receiveTypingTimer invalidate];
+        _receiveTypingTimer = nil;
     }
 }
 ```
@@ -340,7 +433,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                        body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// 如果是群聊，设置 chatType，默认是单聊。
+// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
@@ -380,7 +473,7 @@ message.chatType = AgoraChatTypeChat;
 }
 ```
 
-## 下一步
+## 后续步骤
 
 实现消息发送和接收后，可以参考以下文档为您的应用添加更多消息功能：
 

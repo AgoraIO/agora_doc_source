@@ -1,4 +1,4 @@
-登录即时通讯 IM 后，用户可以在单聊、群聊、聊天室中发送如下类型的消息：
+登录即时通讯 IM 后，用户可以在一对一单聊、群聊、聊天室中发送如下类型的消息：
 
 - 文字消息，包含超链接和表情；
 - 附件消息，包含图片、语音、视频及文件消息；
@@ -29,7 +29,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解消息相关限制，详见[消息概述](./agora_chat_message_overview)。
+- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -45,9 +46,9 @@ function sendTextMessage() {
         type: "txt",
         // 设置消息内容。
         msg: "message content",
-        // 设置消息接收方的用户 ID。
+        // 设置消息接收方，单聊为对方用户 ID，群聊和聊天室分别为群组 ID 和聊天室 ID。
         to: "username",
-        // 设置会话类型。
+        // 设置会话类型，单聊、群聊和聊天室分别为 `singleChat`、`groupChat` 和 `chatRoom`，默认为单聊。
         chatType: "singleChat",
     };
     // 创建文本消息。
@@ -60,13 +61,6 @@ function sendTextMessage() {
     });
 }
 ```
-
-**注意**
-
-群组消息和聊天室消息只需修改 option 对象下的其中 2 个参数：`to` 和 `chatType`。
-
-- 群聊：`to` 为群组 ID；`chatType` 为 `groupChat`；
-- 聊天室：`to` 为聊天室 ID`；`chatType` 为 `chatRoom`。
 
 ### 接收消息
 
@@ -100,15 +94,15 @@ conn.addEventHandler("eventName",{
     // 当前用户订阅的其他用户的在线状态更新。
     onPresence: function (message) {},
     // 当前用户收到好友邀请。
-    onContactInvited: function(msg){},
+    onContactInvited: function (msg){},
     // 联系人被删除。
-    onContactDeleted: function(msg){},
+    onContactDeleted: function (msg){},
     // 新增联系人。
-    onContactAdded: function(msg){},
+    onContactAdded: function (msg){},
     // 当前用户发送的好友请求被拒绝。
-    onContactRefuse: function(msg){},
+    onContactRefuse: function (msg){},
     // 当前用户发送的好友请求被同意。
-    onContactAgreed: function(msg){},
+    onContactAgreed: function (msg){},
     // 当前用户收到群组邀请。
     onGroupEvent: function (message) {},
     // 本机网络连接成功。
@@ -167,7 +161,7 @@ conn.addEventHandler('MESSAGES',{
 
 语音、图片、视频和文件消息本质上是附件消息。
 
-SDK在发送附件消息时，采取以下步骤：
+SDK 在发送附件消息时，采取以下步骤：
 
 1. 上传附件到服务器，获取服务器上附件文件的信息
 2. 发送附件消息，其中包含消息的基本信息，以及服务器上附件文件的路径。
@@ -177,7 +171,7 @@ SDK在发送附件消息时，采取以下步骤：
 SDK 接收到附件消息时，会执行以下步骤：
 
 - 对于语音消息，SDK 会自动下载语音文件。
-- 对于图片和视频消息，SDK 会自动下载图片或视频的缩略图。要下载文件，你需要调用该 `download`  方法。
+- 对于图片和视频消息，SDK 会自动下载图片或视频的缩略图。要下载文件，你需要调用该 `download` 方法。
 - 对于文件消息，你需要调用 `download` 方法下载文件。
 
 #### 发送语音消息
@@ -423,6 +417,32 @@ function sendPrivateFile() {
 };
 ```
 
+### 发送位置消息
+
+当你需要发送位置时，需要集成第三方的地图服务，获取到位置点的经纬度信息。接收方接收到位置消息时，需要将该位置的经纬度，借由第三方的地图服务，将位置在地图上显示出来。
+
+```javascript
+const sendLocMsg = () => {
+  let coords;
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      coords = position.coords;
+      let option = {
+        chatType: "singleChat",
+        type: "loc",
+        to: "username",
+        addr: "四通桥东",
+        buildingName: "数码大厦",
+        lat: Math.round(coords.latitude),
+        lng: Math.round(coords.longitude),
+      };
+      let msg = WebIM.message.create(option);
+      conn.send(msg);
+    });
+  }
+};
+```
+
 ### 发送透传消息
 
 透传消息是通知指定用户采取特定操作的命令消息。接收方自己处理透传消息。
@@ -454,6 +474,83 @@ function sendCMDMessage(){
       console.log("Fail");
   });
 }
+```
+
+#### 通过透传消息实现输入指示器
+
+输入指示器显示其他用户何时输入消息。通过该功能，用户之间可进行有效沟通，设定对聊天应用程序中新交互的期望。你可以通过透传消息实现输入指示器。
+
+你可以通过透传消息实现输入指示器。下图为输入指示器的工作原理。
+
+![](https://web-cdn.agora.io/docs-files/1671159551013)
+
+![img](typing_indicator.png)
+
+监听用户 A 的输入状态。一旦有文本输入，通过透传消息将输入状态发送给用户 B，用户 B 收到该消息，了解到用户 A 正在输入文本。
+
+- 用户 A 向用户 B 发送消息，通知其开始输入文本。
+- 收到消息后，如果用户 B 与用户 A 的聊天页面处于打开状态，则显示用户 A 的输入指示器。
+- 如果用户 B 在几秒后未收到用户 A 的输入，则自动取消输入指示器。
+
+<div class="alert info"> 用户 A 可根据需要设置透传消息发送间隔。</div>
+
+以下示例代码展示如何发送输入状态的透传消息。
+
+发送输入状态的用户。
+
+```typescript
+let previousChangedTimeStamp = 0;
+// 监听输入状态的变化
+const onInputChange = function () {
+  const currentTimestamp = new Date().getTime();
+  if (currentTimestamp - previousChangedTimeStamp > 5000) {
+    sendBeginTyping();
+    previousChangedTimeStamp = currentTimestamp;
+  }
+};
+
+// 创建输入状态消息并发送
+const sendBeginTyping = function () {
+  const option = {
+    chatType: "singleChat", // 会话类型，设置为单聊。
+    type: "cmd", // 消息类型。
+    to: "<target id>", // 消息接收方。
+    action: "TypingBegin", // 用户自定义操作。
+  };
+  const typingMessage = message.create(option);
+
+  connection
+    .send(typingMessage)
+    .then(() => {
+      console.log("success");
+    })
+    .catch((e) => {
+      console.log("fail");
+    });
+};
+```
+
+接收输入状态的用户。
+
+```typescript
+// 设置状态监听器
+let timer;
+connection.addEventHandler("message", {
+  onCmdMessage: (msg) => {
+    console.log("onCmdMessage", msg);
+    if (msg.action === "TypingBegin") {
+      // 这里需更新 UI，显示“对方正在输入”
+      beginTimer();
+    }
+  },
+});
+
+const beginTimer = () => {
+  timer && clearTimeout(timer);
+  timer = setTimeout(() => {
+    // 这里需更新 UI，不再显示“对方正在输入”
+  }, 5000);
+};
 ```
 
 ### 发送自定义消息
@@ -522,7 +619,7 @@ function sendTextMessage() {
 }
 ```
 
-## 下一步
+## 后续步骤
 
 实现消息发送和接收后，可以参考以下文档为应用添加更多消息功能：
 
