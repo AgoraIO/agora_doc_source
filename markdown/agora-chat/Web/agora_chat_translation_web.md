@@ -8,17 +8,17 @@
 开始前，请确保满足以下条件：
 
 - 完成 v1.0.3 及以上版本即时通讯 IM SDK 初始化，详见 [快速开始](./agora_chat_get_started_web)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 - 默认情况下不启用翻译。要使用此功能，你需要订阅 **进阶版** 或 **企业版** [套餐包](./agora_chat_plan) 并在 [Agora 控制台](https://console.agora.io/) 中启用它。
-- 该功能由 Microsoft Azure Translation API 启用，因此请确保你了解该功能支持的 [目标语言](https://docs.microsoft.com/en-us/azure) 。
+- 该功能由 Microsoft Azure Translation API 启用，因此请确保你了解该功能支持的 [翻译语言支持](https://docs.microsoft.com/en-us/azure) 。
 
 ## 技术原理
 
 SDK 支持你通过调用 API 在项目中实现如下功能：
 
-- `getSupportedLanguages` ：获取支持的翻译语言；
-- 按需翻译：接收方在收到文本消息后调用 `translateMessage` 进行翻译；
-- 自动翻译：发送方发送消息之前设置 `languages` 字段为目标语言，然后发送消息，接收方会收到消息原文和译文。
+- `getSupportedLanguages`：获取支持的翻译语言；
+- `translateMessage`：翻译收到的文本消息；
+- `msgConfig` 中的 `languages`：设置发送消息前自动翻译。当收件人收到消息时，它包含原始语言和目标语言的消息。
 
 ## 实现方法
 
@@ -40,7 +40,7 @@ conn.translateMessage('hello', ['zh']).then(res => console.log(res))
 
 ### 自动翻译
 
-设置自动翻译的目标语言后，在发送消息时 SDK 会自动将文本翻译为目标语言，并将目标语言一并发送出去。
+设置自动翻译的目标语言后，在发送消息时 SDK 会自动将文本翻译为目标语言，原文和译文一起发送。接收方收到的消息将包含译文信息。
 
 示例代码如下：
 

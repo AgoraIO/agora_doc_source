@@ -6,24 +6,22 @@
 
 实现消息送达回执和已读回执的逻辑如下：
 
-单聊消息送达回执：
+- 单聊消息送达回执
 
   1. SDK 初始化时，用户将 `options.delivery` 设置为 `true` 开启消息送达回执。
   2. 发送方发送一条消息。
-  2. 接收方收到消息后，SDK 会自动向发送方发送送达回执。
-  3. 发送方通过监听 `onDeliveredMessage` 收到送达回执。
-
-消息已读回执：
+  3. 接收方收到消息后，SDK 会自动向发送方发送送达回执。
+  4. 发送方通过监听 `onDeliveredMessage` 收到送达回执。
 
 - 单聊会话及消息已读回执
   1. 发送方发送一条消息。
   2. 消息接收方收到消息后，调用 `send` 发送会话或消息已读回执；
   3. 消息发送方通过监听 `onChannelMessage` 或 `onReadMessage` 回调接收会话或消息已读回执。
 
-- 群聊只支持消息已读回执：
+- 群聊只支持消息已读回执
   1. 发送方发送一条消息，消息中的 `allowGroupAck` 字段设置为 `true`，要求返回已读回执；
   2. 消息接收方收到消息后调用 `send` 方法发送群组消息的已读回执。
-  3. 发送方在线监听  `onReadMessage` 回调或离线监听 `onStatisticsMessage` 回调接收消息回执。
+  3. 发送方在线监听 `onReadMessage` 回调或离线监听 `onStatisticsMessage` 回调接收消息回执。
   4. 发送方通过 `getGroupMsgReadUser` 获取阅读消息的用户的详情。
 
 ## 前提条件
@@ -31,7 +29,7 @@
 开始前，请确保满足以下要求：
 
 - 集成即时通讯 IM Web SDK，初始化 SDK，并实现了注册账号和登录功能。详情请参见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 - 默认情况下不启用群聊的消息已读回执。要使用此功能，请联系 [support@agora.io](mailto:support@agora.io)。
 
 ## 实现方法

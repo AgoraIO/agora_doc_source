@@ -16,16 +16,15 @@
 
 送达和已读回执逻辑分别如下：
 
-单聊消息送达回执：
+- 单聊消息送达回执：
 
-1. 消息发送方在发送消息前通过 `ChatOptions.setRequireDeliveryAck` 开启送达回执功能。
-2. 消息接收方收到消息后，SDK 自动向发送方触发送达回执；
+1. 消息发送方在发送消息前将 `ChatOptions.setRequireDeliveryAck` 设置为 `true` 开启送达回执功能。
+2. 消息接收方收到消息后，SDK 自动向发送方发送送达回执；
 3. 消息发送方通过监听 `OnMessageDelivered` 回调接收消息送达回执。
-已读回执：
 
 - 单聊会话及消息已读回执
-  1. 调用 `ChatOptions.setRequireAck` 设置需要发送已读回执，传 `true`。
-  2. 消息接收方收到消息后，调用 API `ackConversationRead` 或 `ackMessageRead` 发送会话或消息已读回执；
+  1. 消息发送方将 `ChatOptions.setRequireAck` 设置为`true`，开启已读回执功能。
+  2. 消息接收方收到消息后，调用 `ackConversationRead` 或 `ackMessageRead` 发送会话或消息已读回执；
   3. 消息发送方通过监听 `onConversationRead` 或 `onMessageRead` 回调接收会话或消息已读回执 。
 
 - 群聊只支持消息已读回执：
@@ -38,7 +37,7 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 - 默认情况下群聊的消息已读回执是关闭的。要使用此功能，请联系 [support@agora.io](mailto:support@agora.io)。
 
 ## 实现方法
@@ -49,7 +48,7 @@
 
 要发送消息送达回执，请执行以下步骤：
 
-1. 消息发送方在 `setRequireDeliveryAck` 发送消息之前设置：`ChatOptions` 为 `true`。
+1. 在发送消息之前，消息发送方将 `ChatOptions` 中的 `setRequireDeliveryAck` 设置为 `true`。
 
 ```java
 Chatoptions.setRequireDeliveryAck(true);
@@ -73,7 +72,7 @@ MessageListener msgListener = new MessageListener() {
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
-### 消息已读回执
+### 会话和消息已读回执
 
 消息已读回执用于告知单聊或群聊中的用户接收方已阅读其发送的消息。为降低消息已读回执方法的调用次数，SDK 还支持在单聊中使用会话已读回执功能，用于获知接收方是否阅读了会话中的未读消息。
 
@@ -97,7 +96,7 @@ ChatOptions.setRequireAck = true;
 
 1. 接收方发送会话已读回执。
 
-消息接收方进入会话页面，查看会话中是否有未读消息。若有，发送会话已读回执，没有则不再发送。
+消息接收方进入会话页面，查看会话中是否有未读消息。若有，调用 `ackConversationRead` 方法发送会话已读回执，没有则不再发送。
 
 ```java
 // 消息接收方调用 `ackConversationRead` 发送会话已读回执。
@@ -110,7 +109,7 @@ try {
 
 该方法为异步方法，需要捕捉异常。
 
-2. 消息发送方监听会话已读回执的回调。
+2. 消息发送方监听消息事件，通过 `onConversationRead` 收到会话已读回执。
 
 ```java
 // 消息发送方调用 `addConversationListener` 监听会话已读回执。
@@ -124,7 +123,7 @@ ChatClient.getInstance().chatManager().addConversationListener(new ConversationL
         });
 ```
 
-> 同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。
+<div class="alert note">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
 
 ##### 消息已读回执
 
@@ -177,7 +176,7 @@ ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() 
  }
 ```
 
-2. 消息发送方监听消息已读回调。
+3. 消息发送方监听消息已读回调。
 
 你可以调用接口监听指定消息是否已读，示例代码如下：
 
@@ -196,9 +195,9 @@ ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() 
 
 #### 群聊
 
-对于群组消息，消息发送方（目前为群主和群管理员）可设置指定消息是否需要已读回执。
+对于群组消息，消息发送方（目前为群主和群管理员）可设置指定消息是否需要已读回执。确保阅读消息的群成员在阅读群消息后都应发送消息已读回执。
 
-1. 设置 `ChatMessage` 的方法 `setIsNeedGroupAck()` 为 `YES`。
+1. 若需要群消息已读回执，群主或群管理员设置 `ChatMessage` 中的方法 `setIsNeedGroupAck()` 为 `true`。
 
 ```java
 ChatMessage message = ChatMessage.createTxtSendMessage(content, to);

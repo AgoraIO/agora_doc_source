@@ -17,27 +17,25 @@
 实现送达回执和已读回执逻辑分别如下：
 
 - 单聊会话及消息已读回执
-  1. 你可以通过设置 `AgoraChatOptions.enableRequireReadAck` 为 `YES` 开启已读回执功能。
-  2. 消息接收方收到消息后，调用 API `ackConversationRead` 或 `sendMessageReadAck`发送会话或消息已读回执。
-  3. 消息发送方通过监听 `onConversationRead` 或 `messagesDidRead` 来接收会话或消息回执。
-
-已读回执：
+  1. 你可以通过设置 `AgoraChatOptions.enableDeliveryAck` 为 `YES` 开启送达回执功能。
+  2. 消息接收方收到消息后，SDK 自动向发送方发送送达回执。
+  3. 消息发送方通过监听 `messageDidDeliver` 接收送达回执。
 
 - 单聊会话及消息已读回执
-  1. 你可以通过设置 `AgoraChatOptions.enableRequireReadAck` 为 `YES` 开启已读回执功能。
-  2. 消息接收方收到消息后，调用 API `ackConversationRead`或`sendMesageReadAck`发送会话或消息已读回执。
-  3. 消息发送方通过监听 `onConversationRead` 或 `messageDidRead` 来接收会话或消息回执。
+  1. 消息发送方设置 `AgoraChatOptions.enableRequireReadAck` 为 `YES` 开启已读回执功能。
+  2. 消息接收方收到消息后，调用 `ackConversationRead`或`sendMesageReadAck` 方法发送会话或消息已读回执。
+  3. 消息发送方通过监听 `onConversationRead` 或 `messageDidRead` 接收会话或消息回执。
 - 群聊只支持消息已读回执：
-  1. 你可以通过设置 `isNeedGroupAck` 开启群聊消息已读回执功能；
-  2. 消息接收方收到消息后通过 `sendGroupMessageReadAck` 发送群组消息的已读回执。
+  1. 消息发送方设置 `isNeedGroupAck` 开启群聊消息已读回执功能；
+  2. 消息接收方收到消息后调用 `sendGroupMessageReadAck` 方法发送群组消息的已读回执。
 
 ## 前提条件
 
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，并连接到服务器，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
-- 在群组中实现消息已读回执功能默认不开启。如需使用请联系 [support@agora.io](mailto:support@agora.io)。
+- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
+- 群组的消息已读回执功能默认不开启。如需使用请联系 [support@agora.io](mailto:support@agora.io)。
 
 ## 实现方法
 
@@ -49,7 +47,7 @@
     options.enableDeliveryAck = YES;
    ```
 
-2. 发送方监听事件 `onMessageDelivered` 回调，收到接收方的送达回执。
+2. 发送方监听事件 `messagesDidDeliver` 回调，收到接收方的送达回执。
 
    ```Objective-C
      // 收到消息送达回执。
@@ -57,8 +55,7 @@
     {
 
     }
-
-// 记得在不需要的时候移除监听器，如在 viewController 的 dealloc 时。
+     // 记得在不需要的时候移除监听器，如在 viewController 的 dealloc 时。
     [[AgoraChatClient sharedClient].chatManager removeDelegate:self];
    ```
 
@@ -73,7 +70,7 @@
 - 聊天页面未打开时，若有未读消息，进入聊天页面，发送会话已读回执；
 - 聊天页面打开时，若收到消息，发送消息已读回执。
 
-发送方若要接收消息已读回执，你首先需要设置打开已读回执，即将 `enableRequireReadAck` 设置为 `YES`，当接收方阅读消息后，SDK 底层会自动进行消息已读回执。
+发送方若要接收消息已读回执，需首先设置开启已读回执功能，即将 `enableRequireReadAck` 设置为 `YES`，当接收方阅读消息后，SDK 底层会自动发送消息已读回执。
 
 ```objective-c
 options.enableRequireReadAck = YES;
@@ -85,13 +82,13 @@ options.enableRequireReadAck = YES;
 
 1. 接收方发送会话已读回执。
 
-消息接收方进入会话页面，查看会话中是否有未读消息。若有，发送会话已读回执，没有则不再发送。
+消息接收方进入会话页面，查看会话中是否有未读消息。若有，调用 `ackConversationRead` 方法发送会话已读回执。
 
      ```Objective-C
      [[AgoraChatClient sharedClient].chatManager ackConversationRead:conversationId completion:nil];
      ```
 
-2. 消息发送方监听会话已读回执的回调。
+2. 消息发送方监听消息事件，通过 `onConversationRead` 接收会话已读回执。
 
    ```Objective-C
    - (void)onConversationRead:(NSString *)from to:(NSString *)to
@@ -100,15 +97,13 @@ options.enableRequireReadAck = YES;
    }
    ```
 
-同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。
+<div class="alert note">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
 
 ##### 消息已读回执
 
 参考如下步骤在单聊中实现消息已读回执。
 
-1. 接收方发送已读回执消息。
-
-消息接收方进入会话时，发送会话已读回执。
+1. 消息接收方进入会话时，发送会话已读回执。
 
      ```Objective-C
      [[AgoraChatClient sharedClient].chatManager sendMessageReadAck:messageId toUser:conversationId completion:nil];
@@ -117,23 +112,23 @@ options.enableRequireReadAck = YES;
 在会话页面，接收到消息时，根据消息类型发送消息已读回执，如下所示：
 
      ```Objective-C
-     // Occurs when the message is received.
+     // 消息收到的回调。
      - (void)messagesDidReceive:(NSArray *)aMessages
      {
         for (AgoraChatMessage *message in aMessages) {
-            // Sends a message read receipt
+            // 发送消息已读回执
             [self sendReadAckForMessage:message];
         }
      }
 
      - (void)sendReadAckForMessage:(AgoraChatMessage *)aMessage
      {
-        // The received message
+        // 收到的消息
         if (aMessage.direction == AgoraChatMessageDirectionSend || aMessage.isReadAcked || aMessage.chatType != AgoraChatTypeChat)
             return;
 
         MessageBody *body = aMessage.body;
-        // For audio, video, and file messages, send them after the user clicks the file.
+        // 对于语音、视频和文件消息，在用户点击文件时发送消息已读回执。
         if (body.type == MessageBodyTypeFile || body.type == MessageBodyTypeVoice || body.type == MessageBodyTypeImage)
             return;
 
@@ -145,20 +140,20 @@ options.enableRequireReadAck = YES;
 
 可以调用接口监听指定消息是否已读，示例代码如下：
      ```Objective-C
-     // Occurs when the message read receipt is received
+     // 收到消息已读回执的回调。
      - (void)messagesDidRead:(NSArray *)aMessages
      {
         for (AgoraChatMessage *message in aMessages) {
-            // Adds handling logics
+            // 添加处理逻辑
         }
      }
      ```
 
 #### 群聊
 
-对于群消息，消息发送方（目前为群主和群管理员）可设置指定消息是否需要已读回执。
+对于群消息，消息发送方（目前为群主和群管理员）可设置指定消息是否需要已读回执。确保阅读消息的群成员在阅读群消息后都应发送消息已读回执。
 
-按照步骤实现聊天消息已读回执。
+按以下步骤实现聊天消息已读回执。
 
 1. 对于聊天群消息，群主和管理员可以设置在发送消息时要求消息已读回执。
 
@@ -191,7 +186,7 @@ options.enableRequireReadAck = YES;
     - (void)groupMessageDidRead:(AgoraChatMessage *)aMessage groupAcks:(NSArray *)aGroupAcks
     {
         for (AgoraChatGroupMessageAck *messageAck in aGroupAcks) {
-            //receive group message read ack
+            // 收到群组消息的已读回执
         }
     }
    ```
@@ -200,7 +195,7 @@ options.enableRequireReadAck = YES;
 
    ```Objective-C
    /**
-    * 从服务器获取指定群已读回执。
+    * 从服务器获取指定的群消息已读回执。
     */
     [[AgoraChatClient sharedClient].chatManager asyncFetchGroupMessageAcksFromServer:messageId groupId:groupId startGroupAckId:nil pageSize:pageSize completion:^(AgoraChatCursorResult *aResult, AgoraChatError *error, int totalCount) {
    // 页面刷新等操作。
