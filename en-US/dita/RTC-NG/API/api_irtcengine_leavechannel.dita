@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_leavechannel">
     <title><ph keyref="leaveChannel"/></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,22 +23,22 @@
             <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p> </p>
-            <p props="native unity electron flutter"> </p>
-            <p props="rn"> </p>
-            <p> </p>
-            <p> <ul id="ul_enf_q2p_lpb">
-            <li> </li>
-            <li> </li>
+            <p>This method releases all resources related to the session.</p>
+            <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
+            <p props="rn">Calling this method does not necessarily mean that the user has left the channel.</p>
+            <p>After joining the channel, you must call this method or <apiname keyref="leaveChannel2"/> to end the call, otherwise, the next call cannot be started.</p>
+            <p>If you successfully call this method and leave the channel, the following callbacks are triggered:<ul id="ul_enf_q2p_lpb">
+            <li>The local client: <xref keyref="onLeaveChannel"/>.</li>
+            <li>The remote client: <xref keyref="onUserOffline"/>, if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
             </ul></p>
             <note type="attention" id="note">
             <ul>
-            <li> </li>
-            <li> </li>
-            <li props="hide"> </li>
+            <li>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</li>
+            <li>If you have called <xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave the channels when calling <xref keyref="joinChannel2"/> and <apiname keyref="joinChannelEx"/> at the same time.</li>
+            <li props="hide">If you call this method during a Media Push, the SDK automatically calls the <xref keyref="removePublishStreamUrl"/> method.</li>
             </ul> </note> </section>
         <section props="ios mac" id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry conkeyref="leaveChannel2/leavechannelblock">
                 <pt/>
@@ -46,13 +46,13 @@
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
-            <title> </title>
+            <title>Returns</title>
             <ul>
-            <li> </li>
-            <li> <ul>
-                <li> </li>
-                <li> </li>
-                <li> </li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.<ul>
+                <li>-1: A general error occurs (no specified reason).</li>
+                <li>-2: The parameter is invalid.</li>
+                <li>-7: The SDK is not initialized.</li>
                 </ul></li>
             </ul> </section>
     </refbody>
