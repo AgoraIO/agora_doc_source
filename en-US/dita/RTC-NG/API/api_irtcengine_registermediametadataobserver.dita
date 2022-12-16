@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registermediametadataobserver">
     <title><ph keyref="registerMediaMetadataObserver" /></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers the metadata observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,28 +31,29 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p> </p>
-            <p props="native unity"> </p>
-            <note type="attention"> </note> </section>
+            <p>You need to implement the <xref keyref="IMetadataObserver" /> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
+ live interactive streaming, such as sending shopping links, digital coupons, and online quizzes.</p>
+            <p props="native unity">A successful call of this method triggers the <xref keyref="getMaxMetadataSize" /> callback.</p>
+            <note type="attention">Call this method before <apiname keyref="joinChannel2" />.</note> </section>
         <section id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry>
-                <pt> </pt>
-                <pd> </pd>
+                <pt>observer</pt>
+                <pd>The metadata observer. See <xref keyref="IMetadataObserver" />.</pd>
             </plentry>
             <plentry id="metadatatype">
-                <pt> </pt>
+                <pt>type</pt>
                 <pd>
-                    <p> </p>
+                    <p>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA" />. <ph props="ios mac cpp unity rn electron">See <xref keyref="METADATA_TYPE" />.</ph></p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native rn unity electron">
-            <title> </title>
+            <title>Returns</title>
             <ul>
-                <li> </li>
-                <li> </li>
+                <li>0: Success.</li>
+                <li>&lt; 0: Failure.</li>
             </ul>
         </section>
     </refbody>
