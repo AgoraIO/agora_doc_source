@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuserenablevideo">
     <title> <ph keyref="onUserEnableVideo" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user enables/disables the video module.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user enables or disables the video module.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,8 +33,8 @@
     enabled: boolean
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool enabled)?
-      onUserEnableVideo;
-</codeblock> </p>
+      onUserEnableVideo;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="hide">
@@ -46,13 +46,11 @@
                     </ul> </dd>
             </dlentry>
             </dl>
-            <note props="unity">This method is about to be deprecated. Agora recommends you using <xref keyref="onRemoteVideoStateChanged" /> instead.</note>
             <p id="desc1">Once the video module is disabled, the user can only use a voice call. The user cannot send or receive any video.</p>
             <p>The SDK triggers this callback when a remote user enables or disables the video module by calling the <xref keyref="enableVideo" /> or <xref keyref="disableVideo" /> method.</p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title" /> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt />
@@ -71,8 +69,8 @@
                 <pt>enabled</pt>
                 <pd>
                     <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: The video module is enabled.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: The video module is disabled.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
