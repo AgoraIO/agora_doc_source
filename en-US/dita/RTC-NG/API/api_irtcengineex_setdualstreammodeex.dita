@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setdualstreammodeex">
     <title><ph keyref="setDualStreamModeEx"/></title>
-    <shortdesc id="short"> </shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets dual-stream mode on the sender side.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -42,22 +42,22 @@
         <section id="detailed_desc">
             <dl outputclass="since">
             <dlentry props="native">
-                <dt> </dt>
-                <dd> </dd>
+                <dt>Since</dt>
+                <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p> </p>
-            <note id="note"> <ul>
-            <li> </li>
-            <li> </li>
-            <li> </li>
+            <p>The SDK enables the low-quality video stream auto mode on the sender by default, which is equivalent to calling this method and setting the <parmname>mode</parmname> to <apiname keyref="AUTO_SIMULCAST_STREAM"/>. If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/>(never sends low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/>(sends low-quality video streams).</p>
+            <note id="note">The difference and between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:<ul>
+            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="false"/>)</codeph>.</li>
+            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="ENABLE_SIMULCAST_STREAM"/>, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="true"/>)</codeph>.</li>
+            <li>Both methods can be called before and after joining a channel. If they are used at the same time, the settings in the method called later shall prevail.</li>
             </ul></note> </section>
         <section id="parameters">
-            <title> </title>
+            <title>Parameters</title>
             <parml>
             <plentry>
-                <pt> </pt>
-                <pd> </pd>
+                <pt>mode</pt>
+                <pd>The mode in which the video stream is sent. See <xref keyref="SIMULCAST_STREAM_MODE"/>.</pd>
             </plentry>
             <plentry conkeyref="enableDualStreamMode3/streamconfig">
                 <pt/>
@@ -69,10 +69,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity rn electron">
-            <title> </title>
+            <title>Returns</title>
             <ul id="ul_bpp_x2z_hqb">
-            <li> </li>
-            <li> </li>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
