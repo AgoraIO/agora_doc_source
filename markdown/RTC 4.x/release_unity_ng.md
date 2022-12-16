@@ -33,7 +33,7 @@ This release introduces filtering audio streams based on volume. Once this funct
 
 Agora also supports publishers in choosing whether the audio streams being published are to be filtered based on volume. Streams that are not filtered bypass this filter mechanism and are transported directly to the receivers. In scenarios with a number of publishers, enabling this function helps reduce the bandwidth and device system pressure for the receivers.
 
-<div class="alert info">To enable this function, contact <a href="https://agora-ticket.agora.io/">technical support</a>.</div>
+<div class="alert info">To enable this function, contact <a href="support@agora.io">support@agora.io</a>.</div>
 
 **5. Dual-stream mode**
 
@@ -110,7 +110,7 @@ This release adds a series of multi-channel related methods that you can call to
 - The `MuteAllRemoteAudioStreamsEx` and `MuteAllRemoteVideoStreamsEx` are used to cancel or resume the subscription of all remote users to audio or video streams, respectively.
 - The `StartRtmpStreamWithoutTranscodingEx`, `StartRtmpStreamWithTranscodingEx`, `UpdateRtmpTranscodingEx`, and `StopRtmpStreamEx` methods are used to implement Media Push in multi-channel scenarios.
 - The `StartChannelMediaRelayEx`, `UpdateChannelMediaRelayEx`, `PauseAllChannelMediaRelayEx`, `ResumeAllChannelMediaRelayEx`, and `StopChannelMediaRelayEx` methods are used to relay media streams across channels in multi-channel scenarios.
-- Adds the `LeaveChannelEx` [2/2] method. Compared with the `LeaveChannelEx` [1/2] method, a new options parameter is added, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
+- Adds the `LeaveChannelEx` [2/2] method. Compared with the `LeaveChannelEx` [1/2] method, a new `options` parameter is added, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 **16. Video encoding preferences**
 
@@ -184,8 +184,8 @@ This release includes the following additional improvements:
 - Reduces the latency when pushing external audio sources.
 - Improves the performance of echo cancellation when using the `AUDIO_SCENARIO_MEETING` scenario.
 - Improves the smoothness of SDK video rendering.
-- Reduces the CPU usage and power consumption of the local device when the host calls the `MuteLocalVideoStream` method. (Windows, macOS)
 - Enhances the ability to identify different network protocol stacks and improves the SDK's access capabilities in multiple-operator network scenarios.
+- Reduces the CPU usage and power consumption of the local device when the host calls the `MuteLocalVideoStream` method. (Windows, macOS)
 
 #### Issues fixed
 
@@ -316,3 +316,4 @@ This release fixed the following issues:
 - `EnableDualStreamMode` [2/3] 
 - Removes deprecated member parameters `backgroundImage` and `watermark` in `LiveTranscoding` class (Android/iOS/macOS)
 - Removes `RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED`(8) in `OnChannelMediaRelayEvent callback`
+

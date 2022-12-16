@@ -20,13 +20,13 @@ As of this release, the SDK supports MPUDP protocol, which enables you to connec
 
 To enable this feature, contact [sales-us@agora.io](https://docs.agora.io/cn/video-call-4.x/sales-us@agora.io).
 
-**4. Device management **
+**4. Device management**
 
 This release adds a series of callbacks to help you better understand the status of your audio and video devices:
 
-- `onVideoDeviceStateChanged` (Windows) : Occurs when the status of the video device changes. 
-- `onAudioDeviceStateChanged`(Windows) : Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged` (Windows) : Occurs when the volume of an audio device or app changes. 
+- `onVideoDeviceStateChanged` (C++) : Occurs when the status of the video device changes. 
+- `onAudioDeviceStateChanged`(C++) : Occurs when the status of the audio device changes. 
+- `onAudioDeviceVolumeChanged` (C++) : Occurs when the volume of an audio device or app changes. 
 
 **5. Camera capture options**
 
