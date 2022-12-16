@@ -25,8 +25,8 @@ This release adds the `registerExtension` method for registering extensions. Whe
 
 This release adds a series of callbacks to help you better understand the status of your audio devices:
 
-- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
+- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes.
+- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes.
 
 **5. Multi-channel management**
 
@@ -46,7 +46,7 @@ In order to enable users to know whether the switched user role is low-latency o
 - `AUDIENCE_LATENCY_LEVEL_LOW_LATENCY` (1): Low latency.
 - `AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY` (2): Ultra-low latency.
 
-#### Improvements 
+#### Improvements
 
 
 **1. Relaying media streams across channels**
@@ -76,8 +76,8 @@ This release includes the following additional improvements:
 
 This release fixed the following issues:
 
-- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen. 
-- The call `getExtensionProperty` failed and returned an empty string. 
+- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
+- The call `getExtensionProperty` failed and returned an empty string.
 
 
 #### API changes

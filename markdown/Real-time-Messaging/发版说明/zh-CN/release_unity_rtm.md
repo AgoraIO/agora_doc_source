@@ -1,4 +1,62 @@
-<div class="alert note">Agora 云信令（原实时消息）的以下功能即将停服，如果你尚未集成该功能，Agora 建议你不要使用：<ul><li>发送和接收图片或文件消息</li><li>历史消息查询</li><li>离线消息缓存</li></ul></div>
+<div class="alert note">Agora 云信令（原实时消息）的以下功能即将停服，如果你尚未集成该功能，Agora 建议你不要使用：<ul><li>历史消息查询</li><li>离线消息缓存</li></ul></div>
+
+## 1.5.1 版
+
+该版本于 2022 年 12 月 13 日发布。
+
+#### 改进
+
+该版本将 OpenSSL 升级到 1.1.1q。
+
+#### 新增功能
+
+**1. Token 过期提醒机制**
+
+由于 Token 具有一定的时效，在连接状态下如果 Token 即将失效，SDK 会提前 30 秒触发 `OnTokenPrivilegeWillExpireHandler` 回调，提醒用户更新 Token。当收到该回调时，用户需要重新在服务端生成新的 Token，然后调用 `RenewToken` 将新生成的 Token 传给 SDK。
+
+相关参考：
+- [`OnTokenPrivilegeWillExpireHandler`](./API%20Reference/RTM_Unity/classagora__rtm_1_1_rtm_client_event_handler.html#a129adfd628d1daab99c71d88da4ef14b)
+- [`CONNECTION_CHANGE_REASON`](./API%20Reference/RTM_Unity/namespaceagora__rtm.html#a6d63c83059ab9c0f7181fdc514bbfa27) > `CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`
+- [使用 AccessToken2 鉴权](./token2_server_rtm?platform=All%20Platforms)
+
+**2. 细化离开频道失败原因**
+
+改版本新增 `LEAVE_CHANNEL_ERR_KICKED (4)` 错误码。当调用 `Leave` 方法离开频道时，如当前用户已被踢出频道，则返回此错误码。
+
+相关参考：
+- [`LEAVE_CHANNEL_ERR`](./API%20Reference/RTM_Unity/namespaceagora__rtm.html#a2643ac2415e60e59d0f9aa7370abf442) > `LEAVE_CHANNEL_ERR_KICKED (4)`
+
+#### 下架功能
+
+[富媒体传输](./upload_download_media_cpp) 功能于该版本正式下线。旧版本 SDK 会继续支持，已集成富媒体传输功能的用户不受影响，需注意升级到该版本后无法使用。
+
+删除了下列接口：
+
+- `CreateFileMessageByMediaId`
+- `CreateFileMessageByUploading`
+- `CreateImageMessageByMediaId`
+- `CreateImageMessageByUploading`
+- `CancelMediaUpload`
+- `CancelMediaDownload`
+- `DownloadMediaToFile`
+- `DownloadMediaToMemory`
+- `OnFileMessageReceivedHandler`
+- `OnImageMessageReceivedHandler`
+- `OnFileMessageReceivedFromPeerHandler`
+- `OnImageMessageReceivedFromPeerHandler`
+- `OnFileMediaUploadResultHandler`
+- `OnImageMediaUploadResultHandler`
+- `OnMediaUploadingProgressHandler`
+- `OnMediaDownloadingProgressHandler`
+- `OnMediaDownloadToFileResultHandler`
+- `OnMediaDownloadToMemoryResultHandler`
+- `OnMediaCancelResultHandler`
+- `FileMessage`
+- `ImageMessage`
+- `DOWNLOAD_MEDIA_ERR_CODE`
+- `UPLOAD_MEDIA_ERR_CODE`
+- `CANCEL_MEDIA_ERR_CODE`
+- `MediaOperationProgress`
 
 ## 1.4.10 版
 
