@@ -29,7 +29,7 @@ This release introduces filtering audio streams based on volume. Once this funct
 
 Agora also supports publishers in choosing whether the audio streams being published are to be filtered based on volume. Streams that are not filtered bypass this filter mechanism and are transported directly to the receivers. In scenarios with a number of publishers, enabling this function helps reduce the bandwidth and device system pressure for the receivers.
 
-<div class="alert info">To enable this function, contact <a href="https://agora-ticket.agora.io/">technical support</a>.</div>
+<div class="alert info">To enable this function, contact <a href="support@agora.io">support@agora.io</a>.</div>
 
 **5. Loopback device (Windows)** 
 
@@ -55,7 +55,7 @@ This release adds the `SetHeadphoneEQParameters` method, which is used to adjust
 
 As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
-To enable this feature, contact [sales-us@agora.io](https://docs.agora.io/cn/video-call-4.x/sales-us@agora.io).
+<div class="alert info">To enable this feature, contact <a href="sales-us@agora.io">sales-us@agora.io</a>.</div>
 
 **9. Register extensions (Windows)**
 
@@ -65,21 +65,20 @@ This release adds the `RegisterExtension` method for registering extensions. Whe
 
 **10. Device management (Windows,macOS)**
 
-This release adds a series of callbacks to help you better understand the status of your audio and video devices:
+This release adds a series of callbacks to help you better understand the status of your audio devices:
 
-- `OnVideoDeviceStateChanged`: Occurs when the status of the video device changes. 
 - `OnAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
 - `OnAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
 
 **11. Multi-channel management**
 
-This release adds a series of multi-channel related methods that you can call to manage audio and video streams in multi-channel scenarios.
+This release adds a series of multi-channel related methods that you can call to manage audio streams in multi-channel scenarios.
 
-- The `MuteLocalVideoStreamEx` method is used to cancel or resume publishing a local audio stream.
+- The `MuteLocalAudioStreamEx` method is used to cancel or resume publishing a local audio stream.
 - The `MuteAllRemoteAudioStreamsEx`  is used to cancel or resume the subscription of all remote users to audio streams.
 - The `StartRtmpStreamWithoutTranscodingEx`, `StartRtmpStreamWithTranscodingEx`, `UpdateRtmpTranscodingEx`, and `StopRtmpStreamEx` methods are used to implement Media Push in multi-channel scenarios.
 - The `StartChannelMediaRelayEx`, `UpdateChannelMediaRelayEx`, `PauseAllChannelMediaRelayEx`, `ResumeAllChannelMediaRelayEx`, and `StopChannelMediaRelayEx` methods are used to relay media streams across channels in multi-channel scenarios.
-- Adds the `LeaveChannelEx` [2/2] method. Compared with the `LeaveChannelEx` [1/2] method, a new options parameter is added, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
+- Adds the `LeaveChannelEx` [2/2] method. Compared with the `LeaveChannelEx` [1/2] method, a new `options` parameter is added, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 **12. Client role switching**
 
