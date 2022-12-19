@@ -8,8 +8,8 @@ v1.0.9 was released on December 19.
 
 - Some alerts on Android 12.
 - The inconsistency of messages in the memory and the database due to a call to the `updateMessage` method in rare scenarios.
-- The `EMGroupEventHandler#onDestroyedFromGroup` event that occurs when a group is destroyed does not work on the Android platform.
-- The `EMGroupEventHandler#onAutoAcceptInvitationFromGroup` event that occurs when a user's group invitation is accepted automatically does not work on the Android platform.
+- The `EMGroupEventHandler#onDestroyedFromGroup` callback that occurs when a group is destroyed does not work on the Android platform.
+- The `EMGroupEventHandler#onAutoAcceptInvitationFromGroup` callback that occurs when a user's group invitation is accepted automatically does not work on the Android platform.
 - Crashes in rare scenarios.
 
 ## v1.0.8
