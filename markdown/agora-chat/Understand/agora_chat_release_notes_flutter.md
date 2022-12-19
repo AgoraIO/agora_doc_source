@@ -5,7 +5,9 @@ v1.0.9 于 2022 年 12 月 19 日发布。
 #### 修复
 
  - 修复 Android 12 上的一些告警。
- - 修复极少数场景下调用 `updateMessage` 方法导致的内存与数据库中的消息不一致的问题。       
+ - 修复极少数场景下调用 `updateMessage` 方法导致的内存与数据库中的消息不一致的问题。    
+ - 修复群解散回调 `EMGroupEventHandler#onDestroyedFromGroup` 在 Android 平台上不生效的问题。
+ - 修复用户自动接受群组邀请的回调 `EMGroupEventHandler#onAutoAcceptInvitationFromGroup` 在 Android 平台上不生效的问题。   
  - 修复极少数场景下的崩溃问题。
 
 ## v1.0.8 
