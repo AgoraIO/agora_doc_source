@@ -27,6 +27,7 @@
             <p>After initialization, call this method to set the local video and then join the channel. The local video still binds to the view after you leave the channel. To unbind the local video from the view, set the <parmname>view</parmname> parameter as <ph keyref="NULL" />.</p>
             <note type="attention">
             <ul>
+            <li props="unity">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface" /> class instead.</li>
             <li>You can call this method either before or after joining a channel.</li>
             <li>To update the rendering or mirror mode of the local video view during a call, use the <xref keyref="setLocalRenderMode2" /> method.</li>
             </ul> </note> </section>
@@ -36,7 +37,7 @@
             <plentry>
                 <pt props="cpp unity rn electron flutter">canvas</pt>
                 <pt props="android ios mac">local</pt>
-                <pd>Local video display properties. See <xref keyref="VideoCanvas" />.</pd>
+                <pd>The local video view and settings. See <xref keyref="VideoCanvas" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">

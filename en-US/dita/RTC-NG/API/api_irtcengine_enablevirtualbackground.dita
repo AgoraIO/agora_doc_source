@@ -33,8 +33,10 @@
     type?: MediaSourceType
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVirtualBackground(
-    {required bool enabled,
-    required VirtualBackgroundSource backgroundSource});</codeblock>
+      {required bool enabled,
+      required VirtualBackgroundSource backgroundSource,
+      required SegmentationProperty segproperty,
+      MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
             <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
@@ -79,12 +81,12 @@
                 <pt props="mac ios">backData</pt>
                 <pd>The custom background image. See <xref keyref="VirtualBackgroundSource" />. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
             </plentry>
-            <plentry props="android cpp unity ios mac">
-                <pt props="android cpp unity">segproperty</pt>
+            <plentry>
+                <pt props="android cpp unity electron rn flutter">segproperty</pt>
                 <pt props="ios mac">segData</pt>
                 <pd>Processing properties for background images. See <xref keyref="SegmentationProperty" />.</pd>
             </plentry>
-            <plentry props="cpp unity rn electron">
+            <plentry props="cpp unity rn electron flutter">
                 <pt>type</pt>
                 <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
                     <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE" />.</li>

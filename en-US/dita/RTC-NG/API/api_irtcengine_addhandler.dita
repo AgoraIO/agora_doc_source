@@ -19,13 +19,13 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp" />
             <codeblock props="electron" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void InitEventHandler(IRtcEngineEventHandler engineEventHandler);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int InitEventHandler(IRtcEngineEventHandler engineEventHandler);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerEventHandler(RtcEngineEventHandler eventHandler);</codeblock>
             <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
-            <p>The SDK uses the <xref keyref="IRtcEngineEventHandler" /> class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this interface class have default (empty) implementations. Therefore, the application can only inherit some required events. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the <ph keyref="sendStreamMessage" /> method.
+            <p>The SDK uses the <xref keyref="IRtcEngineEventHandler" /> class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this class have default (empty) implementations. Therefore, apps only need to inherits callbacks according to the scenarios. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the <ph keyref="sendStreamMessage" /> method.
 Otherwise, the SDK may not work properly.</p>
         </section>
         <section id="parameters">
@@ -35,8 +35,15 @@ Otherwise, the SDK may not work properly.</p>
                 <pt props="android">handler</pt>
                 <pt props="unity">engineEventHandler</pt>
                 <pt props="rn electron flutter">eventHandler</pt>
-                <pd>Callback events to be added. For details, see <xref keyref="IRtcEngineEventHandler" />.</pd>
+                <pd>Callback events to be added. See <xref keyref="IRtcEngineEventHandler" />.</pd>
             </plentry>
             </parml> </section>
+        <section props="unity">
+        <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+                </ul>
+    </section>
     </refbody>
 </reference>

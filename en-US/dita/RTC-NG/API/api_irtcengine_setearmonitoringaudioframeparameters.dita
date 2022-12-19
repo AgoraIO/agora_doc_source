@@ -42,7 +42,7 @@
             <note type="attention">
             <ul>
             <li>Before calling this method, you need to call <xref keyref="enableInEarMonitoring2" />, and set <parmname>includeAudioFilters</parmname> to <apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS" /> or <apiname keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION" />.</li>
-            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph>The SDK triggers the <apiname keyref="onEarMonitoringAudioFrame" /> callback according to the sampling interval.</ph></li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph>The SDK triggers the <apiname keyref="onEarMonitoringAudioFrame" /> callback according to the sampling interval.</ph></li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -63,7 +63,7 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="cpp ios mac flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
+                    <p props="cpp ios mac flutter unity rn electron">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                 </pd>
             </plentry>

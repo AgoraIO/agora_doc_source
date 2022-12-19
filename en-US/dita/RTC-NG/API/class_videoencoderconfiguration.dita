@@ -452,7 +452,6 @@
                     <note type="attention">
                     <ul>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
-                    <li props="ios">iPhones do not support video frame dimensions above 720p.</li>
                     <li props="android apple">The default value is 640 × 360.</li>
                     </ul> </note> </p>
                 </pd>
@@ -496,7 +495,12 @@
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="android">For the local user:<ul id="videomirrormodetype">
+                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): (Default) The mirror mode determined by the SDK. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirror mode.</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disable the mirror mode.</li>
+                      </ul> </p>
                     <note type="attention">By default, the video is not mirrored.</note> </pd>
             </plentry>
             <plentry>

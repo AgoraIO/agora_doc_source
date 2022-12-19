@@ -126,10 +126,16 @@
         public VideoCanvas()
         {
             view = 0;
-            renderMode = RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
             uid = 0;
+            renderMode = RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
+
             mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
-            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;        }
+            setupMode = VIDEO_VIEW_SETUP_MODE.VIDEO_VIEW_SETUP_REPLACE;
+            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
+            mediaPlayerId = -(int)ERROR_CODE_TYPE.ERR_NOT_READY;
+            cropArea = new Rectangle();
+
+        }
 
         public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uint u)
         {
@@ -137,7 +143,11 @@
             this.renderMode = m;
             this.mirrorMode = mt;
             this.uid = u;
-            this.sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;        }
+            setupMode = VIDEO_VIEW_SETUP_MODE.VIDEO_VIEW_SETUP_REPLACE;
+            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
+            mediaPlayerId = -(int)ERROR_CODE_TYPE.ERR_NOT_READY;
+            cropArea = new Rectangle();
+        }
 
         public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, string u)
         {
@@ -145,14 +155,11 @@
             this.renderMode = m;
             this.mirrorMode = mt;
             this.uid = 0;
-            this.sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
-        }
-        public view_t view { set; get; }
-        public RENDER_MODE_TYPE renderMode { set; get; }
-        public VIDEO_MIRROR_MODE_TYPE mirrorMode { set; get; }
-        public uint uid { set; get; }
-        public VIDEO_SOURCE_TYPE sourceType { set; get; }
-    }</codeblock>
+            setupMode = VIDEO_VIEW_SETUP_MODE.VIDEO_VIEW_SETUP_REPLACE;
+            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
+            mediaPlayerId = -(int)ERROR_CODE_TYPE.ERR_NOT_READY;
+            cropArea = new Rectangle();
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
   view?: any
   uid?: number;
@@ -258,12 +265,12 @@
                 <pd>Setting mode of the view.<ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE" />(0): (Default) Replaces a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD" />(1): Adds a view.</li>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Deletes a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Delete a view.</li>
                 </ul></pd>
             </plentry>
             <plentry>
                 <pt>mediaPlayerId</pt>
-                <pd>The ID of the media player. You can<xref keyref="getMediaPlayerId" /> get the media player ID by calling .</pd>
+                <pd>The ID of the media player. You can get the media player ID by calling <xref keyref="getMediaPlayerId" />.</pd>
                 <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER" />.</pd>
             </plentry>
             <plentry props="android cpp framework">
