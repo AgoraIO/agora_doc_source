@@ -37,11 +37,11 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 本节展示如何使用 Golang 在你的本地设备上搭建并运行一个 Token 服务器。
 
-此示例服务器使用 `BuildTokenWithUid[1/2]`。
+此示例服务器使用 `BuildTokenWithUid` [1/2]。
 
 <div class="alert note">此示例服务器仅用于演示，请勿用于生产环境中。 </div>
 
-1. 创建一个 `server.go` 文件，然后贴入如下代码。将其中的 `<Your App ID> `和 `<Your App Certificate>` 替换为你的 App ID 和 App 证书。
+1. 创建一个 `server.go` 文件，然后贴入如下代码。将其中的 `<Your App ID>` 和 `<Your App Certificate>` 替换为你的 App ID 和 App 证书。
 
 ```golang
 package main
@@ -69,19 +69,19 @@ var channel_name string
 var role_num uint32
 var role rtctokenbuilder.Role
   
-// 使用 RtcTokenBuilder 来生成 RTC Token
+// 使用 RtcTokenBuilder 来生成 RTC Token。
 func generateRtcToken(int_uid uint32, channelName string, role rtctokenbuilder.Role){
   
     appID := "<Your App ID>"
     appCertificate := "<Your App Certificate>"
-    // AccessToken2 过期的时间，单位为秒
+    // AccessToken2 过期的时间，单位为秒。
     // 当 AccessToken2 过期但权限未过期时，用户仍在频道里并且可以发流，不会触发 SDK 回调。
     // 但一旦用户和频道断开连接，用户将无法使用该 Token 加入同一频道。请确保 AccessToken2 的过期时间晚于权限过期时间。
     tokenExpireTimeInSeconds := uint32(40)
     // 权限过期的时间，单位为秒。
     // 权限过期30秒前会触发 token-privilege-will-expire 回调。
     // 权限过期时会触发 token-privilege-did-expire 回调。
-    // 为作演示，在此将过期时间设为 40 秒。你可以看到客户端自动更新 Token 的过程
+    // 为作演示，在此将过期时间设为 40 秒。你可以看到客户端自动更新 Token 的过程。
     privilegeExpireTimeInSeconds := uint32(40)
   
     result, err := rtctokenbuilder.BuildTokenWithUid(appID, appCertificate, channelName, int_uid, role, tokenExpireTimeInSeconds, privilegeExpireTimeInSeconds)
@@ -158,7 +158,7 @@ func errorResponse(w http.ResponseWriter, message string, httpStatusCode int){
 }
   
 func main(){
-    // 使用 int 型 uid 生成 RTC Token
+    // 使用 int 型 uid 生成 RTC Token。
     http.HandleFunc("/fetch_rtc_token", rtcTokenHandler)
     fmt.Printf("Starting server at port 8082\n")
   
@@ -188,11 +188,218 @@ $ go run server.go
 
 ### 使用 Token 对用户鉴权
 
-通过 HTTP 请求部署一个 Token 服务器，并使用获取到的 Token 加入频道。
+本节以 Android 客户端为例，展示如何使用 Token 对客户端的用户进行鉴权。
+
+为了展示鉴权的工作流程，本节介绍如何在你的本地开发环境上使用 Android 模拟器搭建并运行一个 Android 客户端。
+
+1. 基于你在实现互动直播时创建的项目，在 `pubspec.yaml` 文件的 `dependencies` 下添加如下依赖：
+
+```yaml
+dependencies:
+    # Agora Flutter SDK 依赖项，请使用最新版本的 agora_rtc_engine
+    agora_rtc_engine: ^6.0.0
+    # 用于 http 请求
+    http: ^0.13.5
+```
+
+2. 将 `/lib/main.dart` 中的内容替换为如下代码。 将 `<Your App ID>` 替换为你的 App ID，必须与服务器中的 App ID 一致。 您还需要将 `<Your Host URL and port>` 替换为你刚刚部署的本地 Golang 服务器的主机 URL 和端口，例如 10.53.3.234:8082。
+
+在如下代码示例中，你可以看到 Token 与客户端的如下代码逻辑有关：
+
+ - 调用 `joinChannel` 方法，使用 Token、用户 ID 和频道名加入频道。用户 ID 和频道名必须和用于生成 Token 的用户 ID 和频道名一致。
+ - 在 Token 过期前 30 秒，SDK 会触发 `onTokenPrivilegeWillExpire` 回调。收到该回调后，客户端需要从服务器获取新的 Token 并调用 `renewToken` 将新生成的 Token 传给 SDK。
+ - Token 过期时，SDK 会触发 `onRequestToken` 回调。收到该回调后，客户端需要从服务器获取新的 Token 并调用 `joinChannel` 方法，再使用新的 Token 重新加入频道。
 
 ```dart
-// 使用 token 加入频道
-await _engine.joinChannel(token: '', channelId: 'channelid', info: '', uid: 0);
+import 'dart:convert';
+ 
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+ 
+void main() => runApp(const MyApp());
+ 
+/// This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  /// Construct the [MyApp]
+  const MyApp({Key? key}) : super(key: key);
+ 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+ 
+class _MyAppState extends State<MyApp> {
+ 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('APIExample'),
+          ),
+          body: const JoinChannelVideoToken()),
+    );
+  }
+}
+ 
+class JoinChannelVideoToken extends StatefulWidget {
+  const JoinChannelVideoToken({Key? key}) : super(key: key);
+ 
+  @override
+  State<StatefulWidget> createState() => _State();
+}
+ 
+class _State extends State<JoinChannelVideoToken> {
+  late final RtcEngine _engine;
+  bool _isReadyPreview = false;
+ 
+  bool isJoined = false, switchCamera = true, switchRender = true;
+  Set<int> remoteUid = {};
+  static const String appId = '<Your App ID>'; // 填入在 Agora 控制台创建项目时生成的 App ID
+  static const String channelId = '<Your Channel Name>'; // 填入频道名称
+  static const String hostUrl = '<Your Host URL and port>'; // 填入服务器的 URL 和端口
+ 
+  @override
+  void initState() {
+    super.initState();
+    _initEngine();
+  }
+ 
+  @override
+  void dispose() {
+    super.dispose();
+    _dispose();
+  }
+ 
+  Future<void> _dispose() async {
+    await _engine.leaveChannel();
+    await _engine.release();
+  }
+ 
+  Future<void> _initEngine() async {
+    _engine = createAgoraRtcEngine();
+    await _engine.initialize(const RtcEngineContext(
+      appId: appId,
+    ));
+ 
+    _engine.registerEventHandler(RtcEngineEventHandler(
+      onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
+        setState(() {
+          isJoined = true;
+        });
+      },
+      onUserJoined: (RtcConnection connection, int rUid, int elapsed) {
+        setState(() {
+          remoteUid.add(rUid);
+        });
+      },
+      onUserOffline:
+          (RtcConnection connection, int rUid, UserOfflineReasonType reason) {
+        setState(() {
+          remoteUid.removeWhere((element) => element == rUid);
+        });
+      },
+      onLeaveChannel: (RtcConnection connection, RtcStats stats) {
+        setState(() {
+          isJoined = false;
+          remoteUid.clear();
+        });
+      },
+      onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
+        _fetchToken(1234, channelId, 1, false);
+      },
+      onRequestToken: (RtcConnection connection) {
+        _fetchToken(1234, channelId, 1, true);
+      },
+    ));
+ 
+    await _engine.enableVideo();
+ 
+    await _engine.startPreview();
+    await _fetchToken(1234, channelId, 1, true);
+ 
+    setState(() {
+      _isReadyPreview = true;
+    });
+  }
+ 
+  Future<void> _fetchToken(
+    int uid,
+    String channelName,
+    int toeknRole,
+    bool needJoinChannel,
+  ) async {
+    var client = http.Client();
+    try {
+      Map<String, String> headers = {
+        'Content-type': 'application/json',
+        'Accept': 'application/json',
+      };
+ 
+      var response = await client.post(Uri.parse(hostUrl),
+          headers: headers,
+          body: jsonEncode(
+              {'uid': uid, 'ChannelName': channelName, 'role': toeknRole}));
+      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+ 
+      final token = decodedResponse['token'];
+      if (needJoinChannel) {
+        await _engine.joinChannel(
+          token: token,
+          channelId: channelName,
+          uid: uid,
+          options: const ChannelMediaOptions(
+            channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
+            clientRoleType: ClientRoleType.clientRoleBroadcaster,
+          ),
+        );
+      } else {
+        await _engine.renewToken(token);
+      }
+    } finally {
+      client.close();
+    }
+  }
+ 
+  @override
+  Widget build(BuildContext context) {
+    if (!_isReadyPreview) return Container();
+    return Stack(
+      children: [
+        AgoraVideoView(
+          controller: VideoViewController(
+            rtcEngine: _engine,
+            canvas: const VideoCanvas(uid: 0),
+          ),
+        ),
+        Align(
+          alignment: Alignment.topLeft,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.of(remoteUid.map(
+                (e) => SizedBox(
+                  width: 120,
+                  height: 120,
+                  child: AgoraVideoView(
+                    controller: VideoViewController.remote(
+                      rtcEngine: _engine,
+                      canvas: VideoCanvas(uid: e),
+                      connection: const RtcConnection(channelId: channelId),
+                    ),
+                  ),
+                ),
+              )),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+}
 ```
 
 ### 运行项目
