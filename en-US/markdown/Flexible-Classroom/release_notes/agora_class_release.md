@@ -1,3 +1,35 @@
+## v2.8.0
+v2.8.0 was released on December 12, 2022.
+
+### New features
+
+#### Online proctoring scenario (Web, Electron, iOS)
+
+v2.8.0 provides Agora Proctor SDK for online exam proctoring scenarios. For details, see the Agora Proctor SDK API reference.
+
+#### Beauty options, virtual background, noise suppression (Web, Electron)
+
+v2.8.0 supports extensive advanced capabilities including video beauty options, virtual background, and noise suppression. For details, see the documentation of the `webrtcExtensionBaseUrl` field of the `LaunchOption` parameter in the Classroom SDK.
+
+#### New demo features
+
+v2.8.0 adds the following features to the demo:
+	- Signing up, logging in, and deleting the account.
+	- Course list page.
+	- Classroom reports that includes the following information:
+		- Course information
+		- Course recording
+		- Course reports including student presence and interaction.
+	- Speakers are highlighted.
+	- The whiteboard can be partially erased.
+
+### Improvements
+
+- The following features of the demo were enhanced:
+  - The procedures of joining and creating a room. Now users can preserve a room.
+  - The efficiency of conversing course materials
+  - The whiteboard toolbar for better compatibility with touchscreen devices.
+- The `agora-edu-core` libraries were enhanced.
 
 
 ## v2.1.0
