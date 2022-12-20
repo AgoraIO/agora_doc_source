@@ -50,7 +50,3 @@
 - [`updateChannelMediaOptions`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatechannelmediaoptions)
 - [`setParameters`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setparameters)
 - [`ChannelMediaOptions`](./API%20Reference/flutter_ng/API/rtc_api_data_type.html#class_channelmediaoptions)
-
-
-
-
