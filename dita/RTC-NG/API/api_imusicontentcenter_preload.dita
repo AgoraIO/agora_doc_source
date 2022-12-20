@@ -32,6 +32,7 @@
             </dl>
             <p>你可以调用该方法预先加载需要播放的音乐资源。成功调用该方法后，SDK 会触发 <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> 回调报告预加载音乐资源的事件。</p>
             <p>在调用该方法来预加载音乐资源之前，你需要调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取你需要播放的音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<parmname>songCode</parmname>）。</p>
+            <note type="attention" props="framework">如需销毁 <xref keyref="IRtcEngine"/> 对象，请在收到 <xref keyref="onPreloadEvent"/> 回调后，再调用 <xref keyref="release"/> 方法。</note>
         </section>
         <section id="parameters">
             <title>参数</title>
