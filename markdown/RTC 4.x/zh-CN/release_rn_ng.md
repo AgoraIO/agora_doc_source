@@ -51,7 +51,7 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 
 - 隔声区域：你可以通过调用 `setZones` 设置隔声区域和声音衰减系数。当音源 (可以为用户或媒体播放器) 跟听声者分属于音障区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。你也可以通过调用 `setPlayerAttenuation` 和 `setRemoteAudioAttenuation` 方法分别针对媒体播放器和用户设置声音衰减属性，并指定是否使用该设置强制覆盖 `setZones` 中的声音衰减系数。
 - 多普勒音效：你可以通过设置 `SpatialAudioParams` 中的 `enable_doppler` 参数开启多普勒音效，在声源和接收方发生高速相对位移的情况下 (比如赛车游戏场景) ，接收方会体验到明显的音调变化。
-- 耳机均衡器：你可以通过调用 `setHeadphoneEQPreset` 方法使用预设的耳机均衡效果，以改善耳机的听感。
+- 耳机均衡器：你可以通过调用 `setHeadphoneEQPreset` 方法使用预设的耳机均衡效果，以改善耳机的听感。如果在调用 `setHeadphoneEQPreset` 后仍未达到预期的耳机均衡效果，你可以调用该方法进行调节。
 
 **7. 多路摄像头 (iOS)**
 
@@ -63,11 +63,8 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 
 为解决直播、语聊房、在线 K 歌房等场景下歌曲的应用版权问题，该版本新增版权音乐相关 API。你可以通过调用 `MusicContentCenter` 类、`MusicPlayer` 类、`MusicContentCenterEventHandler` 类下的相关 API 实现在实时互动场景中播放版权音乐以及相关功能，例如检索音乐资源、获取音乐榜单及榜单详情、预加载及播放音乐资源、下载歌词及海报等功能。你还可以参考[在线 K 歌房](https://docs.agora.io/cn/online-ktv/ktv_overview)来体验搭配了演唱评分、美声音效等一系列功能的线上 K 歌场景化解决方案。
 
-**9. 耳机均衡器**
 
-该版本新增 `setHeadphoneEQParameters` 方法，用于调节耳机均衡器的低频和高频参数，主要应用于空间音效场景。如果在调用 `setHeadphoneEQPreset` 后仍未达到预期的耳机均衡效果，你可以调用该方法进行调节。
-
-**10. MPUDP (MultiPath UDP)**
+**9. MPUDP (MultiPath UDP)**
 
 自该版本起，SDK 支持 MPUDP 协议，在 UDP 协议的基础上，允许连接并使用多个路径来最大化信道资源的使用。你可以同时在不同终端使用不同的物理网卡并将其聚合，达到有效对抗网络抖动、提升传输质量的效果。
 
@@ -75,11 +72,11 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 
 如果你希望体验该功能，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
-**11. 摄像头采集选项**
+**10. 摄像头采集选项**
 
 该版本在 `CameraCapturerConfiguration` 中增加了 `followEncodeDimensionRatio` 成员参数，你可以在使用摄像头采集视频时，通过该成员参数设置是否跟随 `setVideoEncoderConfiguration` 中已经设置的视频宽高比。
 
-**12. 多频道管理**
+**11. 多频道管理**
 
 该版本增加了一系列多频道相关的方法，你可以通过调用这些方法，实现对多频道中音视频流的管理。
 
@@ -89,20 +86,20 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 - 新增 `startChannelMediaRelayEx`、`updateChannelMediaRelayEx`、`pauseAllChannelMediaRelayEx`、`resumeAllChannelMediaRelayEx` 和 `stopChannelMediaRelayEx` 方法，用于实现多频道场景下的跨频道媒体流转发。
 - `leaveChannelEx` 方法新增 `options` 参数，用于在多频道场景下离开频道时，选择是否停止麦克风采集。
 
-**13. 视频编码偏好**
+**12. 视频编码偏好**
 
 一般场景下，声网默认的视频编码配置能满足需求。对于特定场景，该版本在 `VideoEncoderConfiguration` 中新增 `advanceOptions` 成员参数，用于视频编码属性的进阶设置：
 
 - `compressionPreference`：视频编码的压缩偏好设置，用于选择视频的低延时或高质量偏好。
 - `encodingPreference`：视频编码器偏好设置，用于进阶设置视频编码属性，视频编码器偏好设置，用于选择视频的自适应偏好、软件编码偏好或硬件编码偏好。
 
-**14. 日志上传**
+**13. 日志上传**
 
 使用声网私有媒体服务器的场景下，为支持用户在调用 `setLocalAccessPoint` 方法时的进阶设置，该版本在 `LocalAccessPointConfiguration`中新增 `advancedConfig` 成员参数，该参数支持如下设置：
 
 - `logUploadServer`：默认情况下，SDK 会将日志上传至 Agora 的日志服务器。你可以通过该参数自定义日志上传的服务器。
 
-**15. 用户角色切换**
+**14. 用户角色切换**
 
 为方便用户分辨切换后的用户角色属于互动直播还是极速直播，该版本在 `onClientRoleChanged` 回调中新增 `newRoleOptions` 参数，该参数取值如下：
 
