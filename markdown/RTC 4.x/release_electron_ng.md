@@ -260,9 +260,6 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `LocalAccessPointConfiguration`
-- `AdvancedConfigInfo`
-- `LogUploadServerInfo`
 
 **Modified**
 
