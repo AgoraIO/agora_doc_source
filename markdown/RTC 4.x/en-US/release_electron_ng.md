@@ -15,15 +15,11 @@ This release adds support for in-ear monitoring. You can call `enableInEarMonito
 
 To adjust the in-ear monitoring volume, you can call `setInEarMonitoringVolume`.
 
-**2. Audio capture device test (Android)**
-
-This release adds support for testing local audio capture devices before joining a channel. You can call `startRecordingDeviceTest` to start the audio capture device test. After the test is complete, call the `stopPlaybackDeviceTest` method to stop the audio capture device test.
-
-**3. Local network connection types**
+**2. Local network connection types**
 
 To make it easier for users to know the connection type of the local network at any stage, this release adds the `getNetworkType` method. You can use this method to get the type of network connection in use. The available values are UNKNOWN, DISCONNECTED, LAN, WIFI, 2G, 3G, 4G, and 5G. When the local network connection type changes, the SDK triggers the `onNetworkTypeChanged` callback to report the current network connection type.
 
-**4. Audio stream filter**
+**3. Audio stream filter**
 
 This release introduces filtering audio streams based on volume. Once this function is enabled, the Agora server ranks all audio streams by volume and transports the three audio streams with the highest volumes to the receivers by default. The number of audio streams to be transported can be adjusted; contact [support@agora.io](mailto:support@agora.io) to adjust this number according to your scenarios.
 
@@ -31,7 +27,7 @@ Agora also supports publishers in choosing whether the audio streams being publi
 
 <div class="alert info">To enable this function, contact <a href="mailto:support@agora.io/">support@agora.io</a>.</div>
 
-**5. Dual-stream mode**
+**4. Dual-stream mode**
 
 This release optimizes the dual-stream mode. You can call `enableDualStreamMode` and `enableDualStreamModeEx` before and after joining a channel.
 
@@ -42,23 +38,28 @@ The implementation of subscribing to a low-quality video stream is expanded. The
 
 If you want to modify this default behavior, you can call `setDualStreamMode` and set the `mode` parameter to `disableSimulcastStream` (never send low-quality video streams) or `enableSimulcastStream` (always send low-quality video streams).
 
+
+**5. Loopback device (Windows)**
+
+The SDK uses the playback device as the loopback device by default. As of 6.1.0, you can specify a loopback device separately and publish the captured audio to the remote end.
+
+- `setLoopbackDevice`: Specifies the loopback device. If you do not want the current playback device to be the loopback device, you can call this method to specify another device as the loopback device.
+- `getLoopbackDevice`: Gets the current loopback device.
+- `followSystemLoopbackDevice`: Whether the loopback device follows the default playback device of the system.
+
 **6. Spatial audio effect**
 
 This release adds the following features applicable to spatial audio effect scenarios, which can effectively enhance the user's sense-of-presence experience in virtual interactive scenarios.
 
 - Sound insulation area: You can set a sound insulation area and sound attenuation parameter by calling `setZones`. When the sound source (which can be a user or the media player) and the listener belong to the inside and outside of the sound insulation area, the listener experiences an attenuation effect similar to that of the sound in the real environment when it encounters a building partition. You can also set the sound attenuation parameter for the media player and the user by calling `setPlayerAttenuation` and `setRemoteAudioAttenuation` respectively, and specify whether to use that setting to force an override of the sound attenuation parameter in `setZones`.
-- Doppler sound: You can enable Doppler sound by setting the `enableDoppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
-- Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones.
+- Doppler sound: You can enable Doppler sound by setting the `enable_doppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
+- Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones. If you cannot achieve the expected headphone EQ effect after calling `setHeadphoneEQPreset`, you can call `setHeadphoneEQParameters` to adjust the EQ.
 
-**8. Multiple cameras for video capture (iOS)**
+**7. Encoded video frame observer**
 
-This release supports multi-camera video capture. You can call `enableMultiCamera` to enable multi-camera capture mode, call `startSecondaryCameraCapture` to start capturing video from the second camera, and then publish the captured video to the second channel.
+This release adds the `setRemoteVideoSubscriptionOptions` and `setRemoteVideoSubscriptionOptionsEx` methods. When you call the `registerVideoEncodedFrameObserver` method to register a video frame observer for the encoded video frames, the SDK subscribes to the encoded video frames by default. If you want to change the subscription options, you can call these new methods to set them.
 
-To stop using multi-camera capture, you need to call `stopSecondaryCameraCapture` to stop the second camera capture, then call `enableMultiCamera` and set `enabled` to `false`.
-
-**7. Headphone equalization effect**
-
-This release adds the `setHeadphoneEQParameters` method, which is used to adjust the low- and high-frequency parameters of the headphone EQ. This is mainly useful in spatial audio scenarios. If you cannot achieve the expected headphone EQ effect after calling `setHeadphoneEQPreset`, you can call `setHeadphoneEQParameters` to adjust the EQ.
+For more information about registering video observers and subscription options, see the [API reference](./API%20Reference/electron_ng/API/toc_video_observer.html#api_imediaengine_registervideoencodedframeobserver).
 
 **8. MPUDP (MultiPath UDP) (Beta)**
 
@@ -66,12 +67,27 @@ As of this release, the SDK supports MPUDP protocol, which enables you to connec
 
 <div class="alert info">To enable this feature, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>
 
-**9. Camera capture options**
+**9. Register extensions (Windows)**
+
+This release adds the `registerExtension` method for registering extensions. When using a third-party extension, you need to call the extension-related APIs in the following order:
+
+`loadExtensionProvider` -> `registerExtension` -> `setExtensionProviderProperty` -> `enableExtension`
+
+
+**10. Device management**
+
+This release adds a series of callbacks to help you better understand the status of your audio and video devices:
+
+- `onVideoDeviceStateChanged`: Occurs when the status of the video device changes. 
+- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
+- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
+
+**11. Camera capture options**
 
 This release adds the `followEncodeDimensionRatio` member in `CameraCapturerConfiguration`, which enables you to set whether to follow the video aspect ratio already set in `setVideoEncoderConfiguration` when capturing video with the camera.
 
 
-**10. Multi-channel management**
+**12. Multi-channel management**
 
 This release adds a series of multi-channel related methods that you can call to manage audio and video streams in multi-channel scenarios.
 
@@ -82,19 +98,20 @@ This release adds a series of multi-channel related methods that you can call to
 - The `options` parameter in the `leaveChannelEx` method, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 
-**11. Video encoding preferences**
+**13. Video encoding preferences**
 
 In general scenarios, the default video encoding configuration meets most requirements. For certain specific scenarios, this release adds the `advanceOptions` member in `VideoEncoderConfiguration` for advanced settings of video encoding properties:
 
 - `CompressionPreference`: The compression preferences for video encoding, which is used to select low-latency or high-quality video preferences.
 - `EncodingPreference`: The video encoder preference, which is used to select adaptive preference, software encoder preference, or hardware encoder video preferences.
 
-**12. Client role switching**
+
+**14. Client role switching**
 
 In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `onClientRoleChanged` callback. The value of this parameter is as follows:
 
-- `audienceLatencyLevelLowLatency (1)`: Low latency.
-- `audienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
+- `AudienceLatencyLevelLowLatency (1)`: Low latency.
+- `AudienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
 
 #### Improvements
 
@@ -102,17 +119,35 @@ In order to enable users to know whether the switched user role is low-latency o
 
 This release optimizes the trigger logic of `onVideoSizeChanged`, which can also be triggered and report the local video size change when `startPreview` is called separately.
 
-**2. Bluetooth permissions (Android)**
+**2. First video frame rendering (Windows)**
 
-To simplify integration, as of this release, you can use the SDK to enable Android users to use Bluetooth normally without adding the `BLUETOOTH_CONNECT` permission.
+This release speeds up the first video frame rendering time to improve the video experience.
+
+**3. Screen sharing**
+
+In addition to the usability enhancements detailed in the [fixed issued](#issue-fixed) section, this release includes a number of functional improvements to screen sharing, as follows:
+
+**All**
+
+- Support for Ultra HD video (4K, 60 fps) on devices that meet the requirements. Agora recommends a device with an Intel Core i7-9750H CPU @ 2.60 GHz or better.
+
+**Windows**
+
+- New `minimizeWindow` member in `ScreenCaptureSourceInfo` to indicate whether the target window is minimized.
+- New `enableHighLight`, `highLightColor`, and `highLightWidth` members in `ScreenCaptureParameters` so that you can place a border around the target window or screen when screen sharing.
+- Compatibility with a greater number of mainstream apps, including WPS Office, Microsoft Office PowerPoint, Visual Studio Code, Adobe Photoshop, Windows Media Player, and Scratch.
+- Compatibility with additional devices and operating systems, including: Window 8 systems, devices without discrete graphics cards, and dual graphics devices.
+
+**macOS**
+
+- Compatibility with additional devices and scenarios, including: dual graphics devices and screen sharing using external screens.
 
 **3. Relaying media streams across channels**
 
 This release optimizes the `updateChannelMediaRelay` method as follows:
 
-- Before v6.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `relayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
+- Before v6.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `RelayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
 - v6.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
-
 
 **4. Reconstructed AIAEC algorithm**
 
@@ -128,7 +163,6 @@ This release optimizes the virtual background algorithm. Improvements include th
 - More application scenarios are now supported, and a user obtains a good virtual background effect day or night, indoors or out.
 - A larger variety of postures are now recognized, when half the body is motionless, the body is shaking, the hands are swinging, or there is fine finger movement. This helps to achieve a good virtual background effect in conjunction with many different gestures.
 
-
 **Other improvements**
 
 This release includes the following additional improvements:
@@ -136,8 +170,8 @@ This release includes the following additional improvements:
 - Reduces the latency when pushing external audio sources.
 - Improves the performance of echo cancellation when using the `audioScenarioMeeting` scenario.
 - Improves the smoothness of SDK video rendering.
+- Reduces the CPU usage and power consumption of the local device when the host calls the `muteLocalVideoStream` method.
 - Enhances the ability to identify different network protocol stacks and improves the SDK's access capabilities in multiple-operator network scenarios.
-
 
 
 #### Issue fixed
@@ -150,16 +184,28 @@ This release fixed the following issues:
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 - The call `getExtensionProperty` failed and returned an empty string.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
+- When capturing video through the camera, if the video aspect ratio set in `CameraCapturerConfiguration` was inconsistent with that set in `setVideoEncoderConfiguration`, the aspect ratio of the local video preview was not rendered according to the latter setting.
+- In screen sharing scenarios, the system volume of the local user occasionally decreased.
+- In screen sharing scenarios, the screen seen by the remote user occasionally crashed, lagged, or displayed a black screen.
+- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 
+**Windows**
+- When `stopPreview` was called to disable the local video preview, the virtual background that had been set up was occasionally invalidated.
+- Crashes occasionally occurred when exiting a channel and joining it multiple times with virtual background enabled and set to blur effect.
+- If the local client used a camera with a resolution set to 1920 × 1080 as the video capture source, the resolution of the remote video was occasionally inconsistent with the local client.
+- In screen sharing scenarios, when the user minimized and then restored the shared window, the remote video occasionally switched to the low-quality stream.
+- When the host started screen sharing during live streaming, the audience members sometimes heard echoes.
+- In screen sharing scenarios, a black screen appeared when sharing a screen between a landscape monitor and a portrait monitor.
+- In screen sharing scenarios with a window excluded, the application crashed when the specified shared area exceeded the screen resolution.
+- The application failed to exclude a window using the `startScreenCaptureByDisplayId` method for screen sharing.
+- In screen sharing scenarios, when the user shared the screen by window, the mouse in the shared screen was not in its actual position.
+- When switching from a non-screen sharing scenario to a screen sharing one, the application occasionally crashed if the user did not switch the resolution accordingly.
 
-**Android**
-- In online meeting scenarios, the local user and the remote user occasionally could not hear each other after the local user was interrupted by a call.
-- After calling `setCloudProxy` to set the cloud proxy, calling `joinChannelEx` to join multiple channels failed.
-
-
-**iOS**
-- Calling `startAudioMixing` to play music files in the ipod-library://item path failed.
-- Different timestamps for audio and video data were obtained simultaneously and separately via `onRecordAudioFrame` and `onCaptureVideoFrame` callbacks.
+**macOS**
+- In screen sharing scenarios on Mac devices, when the user minimized or closed a shared application window, another window of the same application was automatically shared.
+- In screen sharing scenarios, the shared window of a split screen was not highlighted correctly.
+- After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started.
+- The `onVideoPublishStateChanged` callback reported an inaccurate video source type.
 
 #### API changes
 
@@ -174,13 +220,15 @@ This release fixed the following issues:
 - `setDualStreamModeEx`
 - `SimulcastStreamMode`
 - `getNetworkType`
+- `setLoopbackDevice` (Windows)
+- `getLoopbackDevice` (Windows)
+- `followSystemLoopbackDevice` (Windows)
 - `setZones`
 - `setPlayerAttenuation`
 - `setRemoteAudioAttenuation`
 - `setHeadphoneEQPreset`
 - `setHeadphoneEQParameters`
 - `HeadphoneEqualizerPreset`
-- `enableMultiCamera` (iOS)
 - `setRemoteVideoSubscriptionOptions`
 - `setRemoteVideoSubscriptionOptionsEx`
 - `VideoSubscriptionOptions`
@@ -188,10 +236,13 @@ This release fixed the following issues:
 - `EncodingPreference`
 - `CompressionPreference`
 - `adjustUserPlaybackSignalVolumeEx`
-- `onRhythmPlayerStateChanged`
 - `RhythmPlayerStateType`
 - `RhythmPlayerErrorType`
 - `enableAudioVolumeIndicationEx`
+- `onVideoDeviceStateChanged`
+- `onAudioDeviceStateChanged`
+- `onAudioDeviceVolumeChanged`
+- `registerExtension` (Windows)
 - `muteLocalAudioStreamEx`
 - `muteLocalVideoStreamEx`
 - `muteAllRemoteAudioStreamsEx`
@@ -205,14 +256,11 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `LocalAccessPointConfiguration`
-- `AdvancedConfigInfo`
-- `LogUploadServerInfo`
 
 **Modified**
 
 - Adds `isAudioFilterable` in `ChannelMediaOptions`
-- Adds `enableDoppler` in `SpatialAudioParams`
+- Adds `enable_doppler` in `SpatialAudioParams`
 - Adds `minimizeWindow` in `ScreenCaptureSourceInfo`
 - Adds `followEncodeDimensionRatio` in `CameraCapturerConfiguration`
 - Adds `options` in `leaveChannelEx`
@@ -221,8 +269,13 @@ This release fixed the following issues:
 - Adds `setupMode`, `mediaPlayerId`, and `cropArea` in `VideoCanvas`
 - Adds `hwEncoderAccelerating` in `LocalVideoStats`
 - Removes `sourceType` in `enableDualStreamMode`
+- `enableInEarMonitoring`: Supports Windows and macOS
+- `setEarMonitoringAudioFrameParameters`: Supports Windows and macOS
+- `setInEarMonitoringVolume`: Supports Windows and macOS
+- `onEarMonitoringAudioFrame`: Supports Windows and macOS
+- `ScreenCaptureParameters`: Supports Windows
 
 **Deprecated**
 
 - `onApiCallExecuted`: Use the callbacks triggered by specific methods instead.
-- `relayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
+- `RelayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
