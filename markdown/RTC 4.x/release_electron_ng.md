@@ -59,21 +59,26 @@ This release adds the following features applicable to spatial audio effect scen
 
 This release adds the `setHeadphoneEQParameters` method, which is used to adjust the low- and high-frequency parameters of the headphone EQ. This is mainly useful in spatial audio scenarios. If you cannot achieve the expected headphone EQ effect after calling `setHeadphoneEQPreset`, you can call `setHeadphoneEQParameters` to adjust the EQ.
 
+**8. Encoded video frame observer**
 
-**8. MPUDP (MultiPath UDP) (Beta)**
+This release adds the `setRemoteVideoSubscriptionOptions` and `setRemoteVideoSubscriptionOptionsEx` methods. When you call the `registerVideoEncodedFrameObserver` method to register a video frame observer for the encoded video frames, the SDK subscribes to the encoded video frames by default. If you want to change the subscription options, you can call these new methods to set them.
+
+For more information about registering video observers and subscription options, see the [API reference](./API%20Reference/electron_ng/API/toc_video_observer.html#api_imediaengine_registervideoencodedframeobserver).
+
+**9. MPUDP (MultiPath UDP) (Beta)**
 
 As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
 <div class="alert info">To enable this feature, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>
 
-**9. Register extensions (Windows)**
+**10. Register extensions (Windows)**
 
 This release adds the `registerExtension` method for registering extensions. When using a third-party extension, you need to call the extension-related APIs in the following order:
 
 `loadExtensionProvider` -> `registerExtension` -> `setExtensionProviderProperty` -> `enableExtension`
 
 
-**10. Device management (Windows, macOS)**
+**11. Device management**
 
 This release adds a series of callbacks to help you better understand the status of your audio and video devices:
 
@@ -81,12 +86,12 @@ This release adds a series of callbacks to help you better understand the status
 - `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
 - `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
 
-**11. Camera capture options**
+**12. Camera capture options**
 
 This release adds the `followEncodeDimensionRatio` member in `CameraCapturerConfiguration`, which enables you to set whether to follow the video aspect ratio already set in `setVideoEncoderConfiguration` when capturing video with the camera.
 
 
-**12. Multi-channel management**
+**13. Multi-channel management**
 
 This release adds a series of multi-channel related methods that you can call to manage audio and video streams in multi-channel scenarios.
 
@@ -97,7 +102,7 @@ This release adds a series of multi-channel related methods that you can call to
 - The `options` parameter in the `leaveChannelEx` method, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 
-**13. Video encoding preferences**
+**14. Video encoding preferences**
 
 In general scenarios, the default video encoding configuration meets most requirements. For certain specific scenarios, this release adds the `advanceOptions` member in `VideoEncoderConfiguration` for advanced settings of video encoding properties:
 
@@ -105,12 +110,12 @@ In general scenarios, the default video encoding configuration meets most requir
 - `EncodingPreference`: The video encoder preference, which is used to select adaptive preference, software encoder preference, or hardware encoder video preferences.
 
 
-**14. Client role switching**
+**15. Client role switching**
 
 In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `onClientRoleChanged` callback. The value of this parameter is as follows:
 
-- `audienceLatencyLevelLowLatency (1)`: Low latency.
-- `audienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
+- `AudienceLatencyLevelLowLatency (1)`: Low latency.
+- `AudienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
 
 #### Improvements
 
@@ -118,9 +123,17 @@ In order to enable users to know whether the switched user role is low-latency o
 
 This release optimizes the trigger logic of `onVideoSizeChanged`, which can also be triggered and report the local video size change when `startPreview` is called separately.
 
-**2. Screen sharing**
+**2. First video frame rendering (Windows)**
+
+This release speeds up the first video frame rendering time to improve the video experience.
+
+**3. Screen sharing**
 
 In addition to the usability enhancements detailed in the [fixed issued](#issue-fixed) section, this release includes a number of functional improvements to screen sharing, as follows:
+
+**All**
+
+- Support for Ultra HD video (4K, 60 fps) on devices that meet the requirements. Agora recommends a device with an Intel Core i7-9750H CPU @ 2.60 GHz or better.
 
 **Windows**
 
@@ -137,7 +150,7 @@ In addition to the usability enhancements detailed in the [fixed issued](#issue-
 
 This release optimizes the `updateChannelMediaRelay` method as follows:
 
-- Before v6.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `relayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
+- Before v6.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `RelayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
 - v6.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
 
 **4. Reconstructed AIAEC algorithm**
@@ -161,7 +174,7 @@ This release includes the following additional improvements:
 - Reduces the latency when pushing external audio sources.
 - Improves the performance of echo cancellation when using the `audioScenarioMeeting` scenario.
 - Improves the smoothness of SDK video rendering.
-- Reduces the CPU usage and power consumption of the local device when the host calls the `muteLocalVideoStream` method. (Windows, macOS)
+- Reduces the CPU usage and power consumption of the local device when the host calls the `muteLocalVideoStream` method.
 - Enhances the ability to identify different network protocol stacks and improves the SDK's access capabilities in multiple-operator network scenarios.
 
 
@@ -175,30 +188,26 @@ This release fixed the following issues:
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 - The call `getExtensionProperty` failed and returned an empty string.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
+- When capturing video through the camera, if the video aspect ratio set in `CameraCapturerConfiguration` was inconsistent with that set in `setVideoEncoderConfiguration`, the aspect ratio of the local video preview was not rendered according to the latter setting.
+- In screen sharing scenarios, the system volume of the local user occasionally decreased.
+- In screen sharing scenarios, the screen seen by the remote user occasionally crashed, lagged, or displayed a black screen.
+- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 
 **Windows**
 - When `stopPreview` was called to disable the local video preview, the virtual background that had been set up was occasionally invalidated.
 - Crashes occasionally occurred when exiting a channel and joining it multiple times with virtual background enabled and set to blur effect.
 - If the local client used a camera with a resolution set to 1920 × 1080 as the video capture source, the resolution of the remote video was occasionally inconsistent with the local client.
-- When capturing video through the camera, if the video aspect ratio set in `CameraCapturerConfiguration` was inconsistent with that set in `setVideoEncoderConfiguration`, the aspect ratio of the local video preview was not rendered according to the latter setting.
 - In screen sharing scenarios, when the user minimized and then restored the shared window, the remote video occasionally switched to the low-quality stream.
 - When the host started screen sharing during live streaming, the audience members sometimes heard echoes.
-- In screen sharing scenarios, the system volume of the local user occasionally decreased.
 - In screen sharing scenarios, a black screen appeared when sharing a screen between a landscape monitor and a portrait monitor.
 - In screen sharing scenarios with a window excluded, the application crashed when the specified shared area exceeded the screen resolution.
 - The application failed to exclude a window using the `startScreenCaptureByDisplayId` method for screen sharing.
-- In screen sharing scenarios, the screen seen by the remote user occasionally crashed, lagged, or displayed a black screen.
-- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - In screen sharing scenarios, when the user shared the screen by window, the mouse in the shared screen was not in its actual position.
 - When switching from a non-screen sharing scenario to a screen sharing one, the application occasionally crashed if the user did not switch the resolution accordingly.
 
 **macOS**
-- When capturing video through the camera, if the video aspect ratio set in `CameraCapturerConfiguration` was inconsistent with that set in `setVideoEncoderConfiguration`, the aspect ratio of the local video preview was not rendered according to the latter setting.
 - In screen sharing scenarios on Mac devices, when the user minimized or closed a shared application window, another window of the same application was automatically shared.
-- In screen sharing scenarios, the system volume of the local user occasionally decreased.
 - In screen sharing scenarios, the shared window of a split screen was not highlighted correctly.
-- In screen sharing scenarios, the screen seen by the remote user occasionally crashed, lagged, or displayed a black screen.
-- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started.
 - The `onVideoPublishStateChanged` callback reported an inaccurate video source type.
 
@@ -276,4 +285,4 @@ This release fixed the following issues:
 **Deprecated**
 
 - `onApiCallExecuted`: Use the callbacks triggered by specific methods instead.
-- `relayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
+- `RelayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`

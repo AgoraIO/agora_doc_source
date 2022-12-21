@@ -79,8 +79,8 @@ This release adds a series of multi-channel related methods that you can call to
 
 This release optimizes the `updateChannelMediaRelay` method as follows:
 
-- Before v6.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `relayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
-- v6.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
+- Before v4.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `RelayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
+- v4.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
 
 **2. Reconstructed AIAEC algorithm**
 
@@ -107,7 +107,6 @@ This release fixed the following issues:
 **Added**
 
 - `getNativeHandle`
-- `getMusicContentCenter`
 - `getPlaybackDefaultDevice`
 - `getRecordingDefaultDevice`
 - `getNetworkType`
@@ -156,5 +155,4 @@ This release fixed the following issues:
 **Deprecated**
 
 - `onApiCallExecuted`: Use the callbacks triggered by specific methods instead.
-- `relayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
-- 
+- `RelayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
