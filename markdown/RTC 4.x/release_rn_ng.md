@@ -47,31 +47,35 @@ If you want to modify this default behavior, you can call `setDualStreamMode` an
 This release adds the following features applicable to spatial audio effect scenarios, which can effectively enhance the user's sense-of-presence experience in virtual interactive scenarios.
 
 - Sound insulation area: You can set a sound insulation area and sound attenuation parameter by calling `setZones`. When the sound source (which can be a user or the media player) and the listener belong to the inside and outside of the sound insulation area, the listener experiences an attenuation effect similar to that of the sound in the real environment when it encounters a building partition. You can also set the sound attenuation parameter for the media player and the user by calling `setPlayerAttenuation` and `setRemoteAudioAttenuation` respectively, and specify whether to use that setting to force an override of the sound attenuation parameter in `setZones`.
-- Doppler sound: You can enable Doppler sound by setting the `enableDoppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
-- Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones.
+- Doppler sound: You can enable Doppler sound by setting the `enable_doppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
+- Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones. If you cannot achieve the expected headphone EQ effect after calling `setHeadphoneEQPreset`, you can call `setHeadphoneEQParameters` to adjust the EQ.
 
-**8. Multiple cameras for video capture (iOS)**
+**7. Multiple cameras for video capture (iOS)**
 
 This release supports multi-camera video capture. You can call `enableMultiCamera` to enable multi-camera capture mode, call `startSecondaryCameraCapture` to start capturing video from the second camera, and then publish the captured video to the second channel.
 
 To stop using multi-camera capture, you need to call `stopSecondaryCameraCapture` to stop the second camera capture, then call `enableMultiCamera` and set `enabled` to `false`.
 
-**7. Headphone equalization effect**
+**8. Encoded video frame observer**
 
-This release adds the `setHeadphoneEQParameters` method, which is used to adjust the low- and high-frequency parameters of the headphone EQ. This is mainly useful in spatial audio scenarios. If you cannot achieve the expected headphone EQ effect after calling `setHeadphoneEQPreset`, you can call `setHeadphoneEQParameters` to adjust the EQ.
+This release adds the `setRemoteVideoSubscriptionOptions` and `setRemoteVideoSubscriptionOptionsEx` methods. When you call the `registerVideoEncodedFrameObserver` method to register a video frame observer for the encoded video frames, the SDK subscribes to the encoded video frames by default. If you want to change the subscription options, you can call these new methods to set them.
 
-**8. MPUDP (MultiPath UDP) (Beta)**
+For more information about registering video observers and subscription options, see the [API reference](./API%20Reference/rn_ng/API/toc_video_observer.html#api_imediaengine_registervideoencodedframeobserver).
+
+
+
+**9. MPUDP (MultiPath UDP) (Beta)**
 
 As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
 <div class="alert info">To enable this feature, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>
 
-**9. Camera capture options**
+**10. Camera capture options**
 
 This release adds the `followEncodeDimensionRatio` member in `CameraCapturerConfiguration`, which enables you to set whether to follow the video aspect ratio already set in `setVideoEncoderConfiguration` when capturing video with the camera.
 
 
-**10. Multi-channel management**
+**11. Multi-channel management**
 
 This release adds a series of multi-channel related methods that you can call to manage audio and video streams in multi-channel scenarios.
 
@@ -82,19 +86,19 @@ This release adds a series of multi-channel related methods that you can call to
 - The `options` parameter in the `leaveChannelEx` method, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 
-**11. Video encoding preferences**
+**12. Video encoding preferences**
 
 In general scenarios, the default video encoding configuration meets most requirements. For certain specific scenarios, this release adds the `advanceOptions` member in `VideoEncoderConfiguration` for advanced settings of video encoding properties:
 
 - `CompressionPreference`: The compression preferences for video encoding, which is used to select low-latency or high-quality video preferences.
 - `EncodingPreference`: The video encoder preference, which is used to select adaptive preference, software encoder preference, or hardware encoder video preferences.
 
-**12. Client role switching**
+**13. Client role switching**
 
 In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `onClientRoleChanged` callback. The value of this parameter is as follows:
 
-- `audienceLatencyLevelLowLatency (1)`: Low latency.
-- `audienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
+- `AudienceLatencyLevelLowLatency (1)`: Low latency.
+- `AudienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
 
 #### Improvements
 
@@ -110,8 +114,8 @@ To simplify integration, as of this release, you can use the SDK to enable Andro
 
 This release optimizes the `updateChannelMediaRelay` method as follows:
 
-- Before v6.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `relayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
-- v6.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
+- Before v4.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `RelayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
+- v4.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
 
 
 **4. Reconstructed AIAEC algorithm**
@@ -205,14 +209,11 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `LocalAccessPointConfiguration`
-- `AdvancedConfigInfo`
-- `LogUploadServerInfo`
 
 **Modified**
 
 - Adds `isAudioFilterable` in `ChannelMediaOptions`
-- Adds `enableDoppler` in `SpatialAudioParams`
+- Adds `enable_doppler` in `SpatialAudioParams`
 - Adds `minimizeWindow` in `ScreenCaptureSourceInfo`
 - Adds `followEncodeDimensionRatio` in `CameraCapturerConfiguration`
 - Adds `options` in `leaveChannelEx`
@@ -225,4 +226,4 @@ This release fixed the following issues:
 **Deprecated**
 
 - `onApiCallExecuted`: Use the callbacks triggered by specific methods instead.
-- `relayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
+- `RelayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
