@@ -32,6 +32,7 @@
             </dl>
             <p>You can call this method to preload music that you want to play. After calling this method successfully, the SDK triggers the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback to report preloading events.</p>
             <p>Before calling this method to preload music, you need to call <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/> method and obtain the <parmname>songCode</parmname> of the music through the <xref keyref="onMusicCollectionResult"/> callback that triggered.</p>
+            <note type="attention" props="framework">如需销毁 <xref keyref="IRtcEngine"/> 对象，请在收到 <xref keyref="onPreloadEvent"/> 回调后，再调用 <xref keyref="release"/> 方法。</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
