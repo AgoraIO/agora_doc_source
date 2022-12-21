@@ -110,8 +110,8 @@ To simplify integration, as of this release, you can use the SDK to enable Andro
 
 This release optimizes the `updateChannelMediaRelay` method as follows:
 
-- Before v6.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `relayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
-- v6.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
+- Before v4.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `relayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
+- v4.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
 
 
 **4. Reconstructed AIAEC algorithm**
@@ -205,9 +205,6 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `LocalAccessPointConfiguration`
-- `AdvancedConfigInfo`
-- `LogUploadServerInfo`
 
 **Modified**
 
