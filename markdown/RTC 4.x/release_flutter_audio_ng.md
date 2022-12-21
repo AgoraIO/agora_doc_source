@@ -89,14 +89,6 @@ This release adds a series of multi-channel related methods that you can call to
 - The `options` parameter in the `leaveChannelEx` method, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 
-**12. Client role switching**
-
-In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `onClientRoleChanged` callback. The value of this parameter is as follows:
-
-- `audienceLatencyLevelLowLatency (1)`: Low latency.
-- `audienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
-
-
 
 #### Improvements
 
@@ -134,9 +126,7 @@ This release includes the following additional improvements:
 This release fixed the following issues:
 
 **All**
-- When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 - The call `getExtensionProperty` failed and returned an empty string.
-- Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
 
 
 **Android**
@@ -148,15 +138,7 @@ This release fixed the following issues:
 - Calling `startAudioMixing` to play music files in the ipod-library://item path failed.
 
 
-**Windows**
-- When the host started screen sharing during live streaming, the audience members sometimes heard echoes.
-- In screen sharing scenarios, the system volume of the local user occasionally decreased.
-- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
-
-
 **macOS**
-- In screen sharing scenarios, the system volume of the local user occasionally decreased.
-- The uplink network quality reported by the `onNetworkQuality` callback was inaccurate for the user who was sharing a screen.
 - After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started.
 
 
