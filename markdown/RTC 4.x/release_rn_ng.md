@@ -56,18 +56,26 @@ This release supports multi-camera video capture. You can call `enableMultiCamer
 
 To stop using multi-camera capture, you need to call `stopSecondaryCameraCapture` to stop the second camera capture, then call `enableMultiCamera` and set `enabled` to `false`.
 
-**8. MPUDP (MultiPath UDP) (Beta)**
+**8. Encoded video frame observer**
+
+This release adds the `setRemoteVideoSubscriptionOptions` and `setRemoteVideoSubscriptionOptionsEx` methods. When you call the `registerVideoEncodedFrameObserver` method to register a video frame observer for the encoded video frames, the SDK subscribes to the encoded video frames by default. If you want to change the subscription options, you can call these new methods to set them.
+
+For more information about registering video observers and subscription options, see the [API reference](./API%20Reference/rn_ng/API/toc_video_observer.html#api_imediaengine_registervideoencodedframeobserver).
+
+
+
+**9. MPUDP (MultiPath UDP) (Beta)**
 
 As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
 <div class="alert info">To enable this feature, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>
 
-**9. Camera capture options**
+**10. Camera capture options**
 
 This release adds the `followEncodeDimensionRatio` member in `CameraCapturerConfiguration`, which enables you to set whether to follow the video aspect ratio already set in `setVideoEncoderConfiguration` when capturing video with the camera.
 
 
-**10. Multi-channel management**
+**11. Multi-channel management**
 
 This release adds a series of multi-channel related methods that you can call to manage audio and video streams in multi-channel scenarios.
 
@@ -78,14 +86,14 @@ This release adds a series of multi-channel related methods that you can call to
 - The `options` parameter in the `leaveChannelEx` method, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 
-**11. Video encoding preferences**
+**12. Video encoding preferences**
 
 In general scenarios, the default video encoding configuration meets most requirements. For certain specific scenarios, this release adds the `advanceOptions` member in `VideoEncoderConfiguration` for advanced settings of video encoding properties:
 
 - `CompressionPreference`: The compression preferences for video encoding, which is used to select low-latency or high-quality video preferences.
 - `EncodingPreference`: The video encoder preference, which is used to select adaptive preference, software encoder preference, or hardware encoder video preferences.
 
-**12. Client role switching**
+**13. Client role switching**
 
 In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `onClientRoleChanged` callback. The value of this parameter is as follows:
 

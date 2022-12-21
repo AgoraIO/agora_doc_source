@@ -70,7 +70,7 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 
 该版本对 `updateChannelMediaRelay` 方法做了如下优化：
 
-- 4.1.0 版本前：如果服务器内部原因导致目标频道更新失败，SDK 返回错误码 `relayEventPacketUpdateDestChannelRefused (8)`，你需要重新调用 `updateChannelMediaRelay` 方法。
+- 4.1.0 版本前：如果服务器内部原因导致目标频道更新失败，SDK 返回错误码 `RelayEventPacketUpdateDestChannelRefused (8)`，你需要重新调用 `updateChannelMediaRelay` 方法。
 - 4.1.0 版本及之后：如果服务器内部原因导致目标频道更新失败，SDK 会重新尝试更新直到目标频道更新成功。
 
 **3. AIAEC**
@@ -154,7 +154,7 @@ Agora 服务器会根据音量大小对音频流进行筛选，选出 N 路音�
 **废弃**
 
 - `onApiCallExecuted`
-- `ChannelMediaRelayEvent`：废弃 `relayEventPacketUpdateDestChannelRefused (8)`
+- `ChannelMediaRelayEvent`：废弃 `RelayEventPacketUpdateDestChannelRefused (8)`
 
 
 ## v4.0.0 版
@@ -224,7 +224,7 @@ v4.0.0 SDK 包名由 `react-native-agora-rtc-ng` 变更为 `react-native-agora`�
 
 **7. 增强的频道管理**
 
-为满足各类业务场景对频道管理的需求，该版本在 `ChannelMediaOptions` 结构体中新增了如下功能：
+为满足各类业务场景对频道管理的需求，该版本在 `ChannelMediaOptions` 中新增了如下功能：
 
 - 设置或切换多种音视频源的发布
 - 设置或切换频道场景、用户角色
