@@ -52,7 +52,7 @@ The SDK uses the playback device as the loopback device by default. As of 6.1.0,
 This release adds the following features applicable to spatial audio effect scenarios, which can effectively enhance the user's sense-of-presence experience in virtual interactive scenarios.
 
 - Sound insulation area: You can set a sound insulation area and sound attenuation parameter by calling `setZones`. When the sound source (which can be a user or the media player) and the listener belong to the inside and outside of the sound insulation area, the listener experiences an attenuation effect similar to that of the sound in the real environment when it encounters a building partition. You can also set the sound attenuation parameter for the media player and the user by calling `setPlayerAttenuation` and `setRemoteAudioAttenuation` respectively, and specify whether to use that setting to force an override of the sound attenuation parameter in `setZones`.
-- Doppler sound: You can enable Doppler sound by setting the `enableDoppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
+- Doppler sound: You can enable Doppler sound by setting the `enable_doppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
 - Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones.
 
 **7. Headphone equalization effect**
@@ -267,7 +267,7 @@ This release fixed the following issues:
 **Modified**
 
 - Adds `isAudioFilterable` in `ChannelMediaOptions`
-- Adds `enableDoppler` in `SpatialAudioParams`
+- Adds `enable_doppler` in `SpatialAudioParams`
 - Adds `minimizeWindow` in `ScreenCaptureSourceInfo`
 - Adds `followEncodeDimensionRatio` in `CameraCapturerConfiguration`
 - Adds `options` in `leaveChannelEx`
