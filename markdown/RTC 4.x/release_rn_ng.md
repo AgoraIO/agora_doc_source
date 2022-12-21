@@ -47,7 +47,7 @@ If you want to modify this default behavior, you can call `setDualStreamMode` an
 This release adds the following features applicable to spatial audio effect scenarios, which can effectively enhance the user's sense-of-presence experience in virtual interactive scenarios.
 
 - Sound insulation area: You can set a sound insulation area and sound attenuation parameter by calling `setZones`. When the sound source (which can be a user or the media player) and the listener belong to the inside and outside of the sound insulation area, the listener experiences an attenuation effect similar to that of the sound in the real environment when it encounters a building partition. You can also set the sound attenuation parameter for the media player and the user by calling `setPlayerAttenuation` and `setRemoteAudioAttenuation` respectively, and specify whether to use that setting to force an override of the sound attenuation parameter in `setZones`.
-- Doppler sound: You can enable Doppler sound by setting the `enableDoppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
+- Doppler sound: You can enable Doppler sound by setting the `enable_doppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
 - Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones.
 
 **7. Multiple cameras for video capture (iOS)**
@@ -93,8 +93,8 @@ In general scenarios, the default video encoding configuration meets most requir
 
 In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `onClientRoleChanged` callback. The value of this parameter is as follows:
 
-- `audienceLatencyLevelLowLatency (1)`: Low latency.
-- `audienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
+- `AudienceLatencyLevelLowLatency (1)`: Low latency.
+- `AudienceLatencyLevelUltraLowLatency (2)`: Ultra-low latency.
 
 #### Improvements
 
@@ -110,7 +110,7 @@ To simplify integration, as of this release, you can use the SDK to enable Andro
 
 This release optimizes the `updateChannelMediaRelay` method as follows:
 
-- Before v4.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `relayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
+- Before v4.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `RelayEventPacketUpdateDestChannelRefused (8)`, and you need to call the `updateChannelMediaRelay` method again.
 - v4.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
 
 
@@ -209,7 +209,7 @@ This release fixed the following issues:
 **Modified**
 
 - Adds `isAudioFilterable` in `ChannelMediaOptions`
-- Adds `enableDoppler` in `SpatialAudioParams`
+- Adds `enable_doppler` in `SpatialAudioParams`
 - Adds `minimizeWindow` in `ScreenCaptureSourceInfo`
 - Adds `followEncodeDimensionRatio` in `CameraCapturerConfiguration`
 - Adds `options` in `leaveChannelEx`
@@ -222,4 +222,4 @@ This release fixed the following issues:
 **Deprecated**
 
 - `onApiCallExecuted`: Use the callbacks triggered by specific methods instead.
-- `relayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
+- `RelayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
