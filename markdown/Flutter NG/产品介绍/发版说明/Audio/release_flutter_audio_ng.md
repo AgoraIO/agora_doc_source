@@ -48,7 +48,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 - 隔声区域：你可以通过调用 `setZones` 设置隔声区域和声音衰减系数。当音源 (可以为用户或媒体播放器) 跟听声者分属于音障区域内部和外部时，会体验到类似真实环境中声音在遇到建筑隔断时的衰减效果。你也可以通过调用 `setPlayerAttenuation` 和 `setRemoteAudioAttenuation` 方法分别针对媒体播放器和用户设置声音衰减属性，并指定是否使用该设置强制覆盖 `setZones` 中的声音衰减系数。
 - 多普勒音效：你可以通过设置 `SpatialAudioParams` 中的 `enableDoppler` 参数开启多普勒音效，在声源和接收方发生高速相对位移的情况下 (比如赛车游戏场景) ，接收方会体验到明显的音调变化。
-- 耳机均衡器：你可以通过调用 `setHeadphoneEQPreset` 方法使用预设的耳机均衡效果，以改善耳机的听感。
+- 耳机均衡器：你可以通过调用 `setHeadphoneEQPreset` 方法使用预设的耳机均衡效果，以改善耳机的听感。如果在调用 `setHeadphoneEQPreset` 后仍未达到预期的耳机均衡效果，你可以调用该方法进行调节。
 
 
 **7. 版权音乐 (iOS, Android)**
@@ -56,26 +56,21 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 为解决直播、语聊房、在线 K 歌房等场景下歌曲的应用版权问题，该版本新增版权音乐相关 API。你可以通过调用 `MusicContentCenter` 类、`MusicPlayer` 类、`MusicContentCenterEventHandler` 类下的相关 API 实现在实时互动场景中播放版权音乐以及相关功能，例如检索音乐资源、获取音乐榜单及榜单详情、预加载及播放音乐资源、下载歌词及海报等功能。你还可以参考[在线 K 歌房](https://docs.agora.io/cn/online-ktv/ktv_overview)来体验搭配了演唱评分、美声音效等一系列功能的线上 K 歌场景化解决方案。
 
 
-**8. 耳机均衡器**
-
-该版本新增 `setHeadphoneEQParameters` 方法，用于调节耳机均衡器的低频和高频参数，主要应用于空间音效场景。如果在调用 `setHeadphoneEQPreset` 后仍未达到预期的耳机均衡效果，你可以调用该方法进行调节。
-
-
-**9. MPUDP (MultiPath UDP)**
+**8. MPUDP (MultiPath UDP)**
 
 自该版本起，SDK 支持 MPUDP 协议，在 UDP 协议的基础上，允许连接并使用多个路径来最大化信道资源的使用。你可以同时在移动端和桌面端使用不同的物理网卡并将其聚合，达到有效对抗网络抖动、提升传输质量的效果。
 
 <div class="alert info">如果你希望体验该功能，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。</div>
 
 
-**10. 注册插件 (Windows)**
+**9. 注册插件 (Windows)**
 
 该版本新增 `registerExtension` 方法，用于注册插件。当使用第三方插件时，你需要按照以下顺序调用插件相关的 API ：
 
 调用 `loadExtensionProvider` -> `registerExtension` -> `setExtensionProviderProperty` -> `enableExtension`。
 
 
-**11. 设备管理 (Windows, macOS)**
+**10. 设备管理 (Windows, macOS)**
 
 该版本新增了一系列回调，帮助你更好地了解音频设备的状态。
 
@@ -83,7 +78,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - `onAudioDeviceVolumeChanged`：当音频设备或 app 的音量发生改变时上报。
 
 
-**12. 多频道管理**
+**11. 多频道管理**
 
 该版本增加了一系列多频道相关的方法，你可以通过调用这些方法，实现对多频道中音频流的管理。
 
@@ -94,7 +89,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - `leaveChannelEx` 方法新增 `options` 参数，用于在多频道场景下离开频道时，选择是否停止麦克风采集。
 
 
-**13. 日志上传**
+**12. 日志上传**
 
 使用声网私有媒体服务器的场景下，为支持用户在调用 `setLocalAccessPoint` 方法时的进阶设置，该版本在 `LocalAccessPointConfiguration` 中新增 `advancedConfig` 成员参数，该参数支持如下设置：
 
