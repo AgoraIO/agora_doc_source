@@ -429,9 +429,7 @@
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p props="cpp unity electron rn flutter"
-                    >The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"
-                    />. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
+                    <p props="cpp unity electron rn flutter">The dimensions of the encoded video (px). See <xref keyref="VideoDimensions"/>. This parameter measures the video encoding quality in the format of length × width. The default value is 640 × 360. You can set a custom value.</p>
                     <p props="android ios mac">Users can set the resolution by themselves, or directly select the desired resolution from the following list:<ul>
                     <li><ph keyref="VD_120x120"/>: The video resolution is 120 × 120.</li>
                     <li><ph keyref="VD_160x120"/>: The video resolution is 160 × 120.</li>
@@ -456,7 +454,6 @@
                     <note type="attention">
                     <ul>
                     <li>Whether the 720p resolution or above can be supported depends on the device. If the device cannot support 720p, the frame rate will be lower than the set value.</li>
-                    <li props="ios">iPhones do not support video frame dimensions above 720p.</li>
                     <li props="android apple">The default value is 640 × 360.</li>
                     </ul> </note> </p>
                 </pd>
@@ -476,13 +473,10 @@
             <plentry>
                 <pt>bitrate</pt>
                 <pd>
-                    <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity">See <xref
-                    keyref="BITRATE"/>.</ph></p>
+                    <p><ph>The encoding bitrate (Kbps) of the video. </ph><ph props="unity">See <xref keyref="BITRATE"/>.</ph></p>
                     <ul props="native flutter">
-                    <li><option keyref="STANDARD_BITRATE"
-                        />: (Recommended) Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
-                    <li><option keyref="COMPATIBLE_BITRATE"
-                        />: Adaptive bitrate mode In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
+                    <li><option keyref="STANDARD_BITRATE"/>: (Recommended) Standard bitrate mode. In this mode, the video bitrate is twice the base bitrate.</li>
+                    <li><option keyref="COMPATIBLE_BITRATE"/>: Adaptive bitrate mode In this mode, the video bitrate is the same as the base bitrate. If you choose this mode in the LIVE_BROADCASTING profile, the video frame rate may be lower than the set value.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -498,14 +492,17 @@
             </plentry>
             <plentry>
                 <pt>degradationPreference</pt>
-                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"
-                    />.</pd>
+                <pd>Video degradation preference under limited bandwidth. See <xref keyref="DEGRADATION_PREFERENCE"/>.</pd>
             </plentry>
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p>Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref
-                    keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                    <p props="ios mac cpp framework">Sets the mirror mode of the published local video stream. It only affects the video that the remote user sees. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                    <p props="android">For the local user:<ul id="videomirrormodetype">
+                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): (Default) The mirror mode determined by the SDK. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirror mode.</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disable the mirror mode.</li>
+                      </ul> </p>
                     <note type="attention">By default, the video is not mirrored.</note> </pd>
             </plentry>
             <plentry>
