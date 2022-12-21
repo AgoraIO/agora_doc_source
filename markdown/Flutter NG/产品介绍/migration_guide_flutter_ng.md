@@ -49,7 +49,7 @@ agora_rtc_engine: ^6.0.0-rc.1 后提供了 top-level 方法 `createAgoraRtcEngin
 
 #### 渲染控件
 
-agora_rtc_engine: ^6.0.0-rc.1 后移除了 [SurfaceView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_surfaceview.html)/[TextureView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_textureview.html) 控件，视频渲染统一使用 [AgoraVideoView](https://docs.agora.io/cn/video-call-4.x/API%20Reference/flutter_ng/API/class_agoravideoview.html) 控件。
+agora_rtc_engine: ^6.0.0-rc.1 后移除了 [SurfaceView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_surfaceview.html)/[TextureView](https://docs.agora.io/cn/video-legacy/API%20Reference/flutter/v5.3.0/API/class_rtc_local_view_textureview.html) 控件，视频渲染统一使用 [AgoraVideoView](./API%20Reference/flutter_ng/API/rtc_interface_class.html#class_agoravideoview) 控件。
 
 #### 多频道
 
@@ -73,7 +73,7 @@ agora_rtc_engine: ^6.0.0-rc.1 后移除了 [SurfaceView](https://docs.agora.io/c
 - 将多路音频流混音后通过一个 `localUid` 发布到远端
 - 将多路视频流合图后通过一个 `localUid` 发布到远端
 
-agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重复、不够正交，因此在 agora_rtc_engine: ^6.0.0-rc.1 中隐藏了 `RtcChannel` 类和 `RtcChannelEventHandler` 类。你可以参考 [JoinMultiChannel](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/MultiChannel) 示例项目，用 `joinChannel` 和 `ChannelMediaOptions` 替代 `RtcChannel`，预计迁移成本在一天以内。如果你需要继续使用 `RtcChannel` 和 `RtcChannelEventHandler` 类，请提交工单[联系技术支持](https://agora-ticket.agora.io/)，Agora 会根据反馈情况决定是否在后续版本中保持兼容。
+agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重复、不够正交，因此在 agora_rtc_engine: ^6.0.0-rc.1 中隐藏了 `RtcChannel` 类和 `RtcChannelEventHandler` 类。你可以参考 [join_multiple_channel](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/tree/main/example/lib/examples/advanced/join_multiple_channel) 示例项目，用 `joinChannel` 和 `ChannelMediaOptions` 替代 `RtcChannel`，预计迁移成本在一天以内。如果你需要继续使用 `RtcChannel` 和 `RtcChannelEventHandler` 类，请提交工单[联系技术支持](https://agora-ticket.agora.io/)，Agora 会根据反馈情况决定是否在后续版本中保持兼容。
 
 #### 媒体流发布控制
 
