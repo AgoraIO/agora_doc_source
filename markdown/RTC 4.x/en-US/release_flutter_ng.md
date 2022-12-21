@@ -66,7 +66,7 @@ This release adds the following features applicable to spatial audio effect scen
 
 - Sound insulation area: You can set a sound insulation area and sound attenuation parameter by calling `setZones`. When the sound source (which can be a user or the media player) and the listener belong to the inside and outside of the sound insulation area, the listener experiences an attenuation effect similar to that of the sound in the real environment when it encounters a building partition. You can also set the sound attenuation parameter for the media player and the user by calling `setPlayerAttenuation` and `setRemoteAudioAttenuation` respectively, and specify whether to use that setting to force an override of the sound attenuation parameter in `setZones`.
 - Doppler sound: You can enable Doppler sound by setting the `enableDoppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
-- Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones.
+- Headphone equalizer: You can use a preset headphone equalization effect by calling the `setHeadphoneEQPreset` method to improve the audio experience for users with headphones. If you cannot achieve the expected headphone EQ effect after calling `setHeadphoneEQPreset`, you can call `setHeadphoneEQParameters` to adjust the EQ.
 
 
 **8. Multiple cameras for video capture (iOS)**
@@ -76,33 +76,28 @@ This release supports multi-camera video capture. You can call `enableMultiCamer
 To stop using multi-camera capture, you need to call `stopSecondaryCameraCapture` to stop the second camera capture, then call `enableMultiCamera` and set `enabled` to `false`.
 
 
-**9. Headphone equalization effect**
-
-This release adds the `setHeadphoneEQParameters` method, which is used to adjust the low- and high-frequency parameters of the headphone EQ. This is mainly useful in spatial audio scenarios. If you cannot achieve the expected headphone EQ effect after calling `setHeadphoneEQPreset`, you can call `setHeadphoneEQParameters` to adjust the EQ.
-
-
-**10. Encoded video frame observer**
+**9. Encoded video frame observer**
 
 This release adds the `setRemoteVideoSubscriptionOptions` and `setRemoteVideoSubscriptionOptionsEx` methods. When you call the `registerVideoEncodedFrameObserver` method to register a video frame observer for the encoded video frames, the SDK subscribes to the encoded video frames by default. If you want to change the subscription options, you can call these new methods to set them.
 
 For more information about registering video observers and subscription options, see the [API reference](./API%20Reference/flutter_ng/API/toc_video_observer.html#api_imediaengine_registervideoencodedframeobserver).
 
 
-**11. MPUDP (MultiPath UDP) (Beta)**
+**10. MPUDP (MultiPath UDP) (Beta)**
 
 As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
 <div class="alert info">To enable this feature, contact <a href="mailto:sales@agora.io">sales@agora.io</a>.</div>
 
 
-**12. Register extensions (Windows)**
+**11. Register extensions (Windows)**
 
 This release adds the `registerExtension` method for registering extensions. When using a third-party extension, you need to call the extension-related APIs in the following order:
 
 `loadExtensionProvider` -> `registerExtension` -> `setExtensionProviderProperty` -> `enableExtension`
 
 
-**13. Device management (Windows, macOS)**
+**12. Device management (Windows, macOS)**
 
 This release adds a series of callbacks to help you better understand the status of your audio and video devices:
 
@@ -111,12 +106,12 @@ This release adds a series of callbacks to help you better understand the status
 - `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
 
 
-**14. Camera capture options**
+**13. Camera capture options**
 
 This release adds the `followEncodeDimensionRatio` member in `CameraCapturerConfiguration`, which enables you to set whether to follow the video aspect ratio already set in `setVideoEncoderConfiguration` when capturing video with the camera.
 
 
-**15. Multi-channel management**
+**14. Multi-channel management**
 
 This release adds a series of multi-channel related methods that you can call to manage audio and video streams in multi-channel scenarios.
 
@@ -127,7 +122,7 @@ This release adds a series of multi-channel related methods that you can call to
 - The `options` parameter in the `leaveChannelEx` method, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
 
 
-**16. Video encoding preferences**
+**15. Video encoding preferences**
 
 In general scenarios, the default video encoding configuration meets most requirements. For certain specific scenarios, this release adds the `advanceOptions` member in `VideoEncoderConfiguration` for advanced settings of video encoding properties:
 
@@ -135,7 +130,7 @@ In general scenarios, the default video encoding configuration meets most requir
 - `EncodingPreference`: The video encoder preference, which is used to select adaptive preference, software encoder preference, or hardware encoder video preferences.
 
 
-**17. Client role switching**
+**16. Client role switching**
 
 In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `onClientRoleChanged` callback. The value of this parameter is as follows:
 

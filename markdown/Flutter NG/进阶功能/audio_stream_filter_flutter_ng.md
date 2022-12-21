@@ -26,10 +26,10 @@
 
 如果用户希望自己的音频流不参与选流，无论其声音大小都需要传输至接收端时，你可以选择下列其中一种方式来设置：
 
-- 调用 [joinChannel](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2) 或 [joinChannelWithUserAccount](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannelwithuseraccount2) 加入频道，通过 `options` 参数将 [ChannelMediaOptions](./API%20Reference/flutter_ng/API/rtc_api_data_type.html#class_channelmediaoptions) 中的 `isAudioFilterable` 设为 `false`。
-- 在加入频道后调用 [updateChannelMediaOptions](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatechannelmediaoptions)，然后通过 `options` 参数将 [ChannelMediaOptions](./API%20Reference/flutter_ng/API/rtc_api_data_type.html#class_channelmediaoptions) 中的 `isAudioFilterable` 设为 `false`。
+- 调用 [joinChannel](./API%20Reference/flutter_ng/API/toc_core_method.html?platform=Flutter#api_irtcengine_joinchannel2) 或 [joinChannelWithUserAccount](./API%20Reference/flutter_ng/API/toc_core_method.html?platform=Flutter#api_irtcengine_joinchannelwithuseraccount2) 加入频道，通过 `options` 参数将 [ChannelMediaOptions](./API%20Reference/flutter_ng/API/class_channelmediaoptions.html?platform=Flutter) 中的 `isAudioFilterable` 设为 `false`。
+- 在加入频道后调用 [updateChannelMediaOptions](./API%20Reference/flutter_ng/API/toc_core_method.html?platform=Flutter#api_irtcengine_updatechannelmediaoptions)，然后通过 `options` 参数将 [ChannelMediaOptions](./API%20Reference/flutter_ng/API/class_channelmediaoptions.html?platform=Flutter) 中的 `isAudioFilterable` 设为 `false`。
 
-此外，如果某一个接收端希望其接收的音频流不受音强选流功能控制，需要拉取所有订阅的远端音频流，可以调用 [`setParameters`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setparameters) 方法通过 JSON 选项进行设置，详情请[联系技术支持](https://agora-ticket.agora.io/)。
+此外，如果某一个接收端希望其接收的音频流不受音强选流功能控制，需要拉取所有订阅的远端音频流，可以调用 [`setParameters`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_setparameters) 方法通过 JSON 选项进行设置，详情请[联系技术支持](https://agora-ticket.agora.io/)。
 
 **场景示例**
 
@@ -45,8 +45,8 @@
 
 ### API 参考
 
-- [`joinChannel`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannel2)
-- [`joinChannelWithUserAccount`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_joinchannelwithuseraccount2)
-- [`updateChannelMediaOptions`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_updatechannelmediaoptions)
-- [`setParameters`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setparameters)
-- [`ChannelMediaOptions`](./API%20Reference/flutter_ng/API/rtc_api_data_type.html#class_channelmediaoptions)
+- [`joinChannel`](./API%20Reference/flutter_ng/API/toc_core_method.html?platform=Flutter#api_irtcengine_joinchannel2)
+- [`joinChannelWithUserAccount`](./API%20Reference/flutter_ng/API/toc_core_method.html?platform=Flutter#api_irtcengine_joinchannelwithuseraccount2)
+- [`updateChannelMediaOptions`](./API%20Reference/flutter_ng/API/toc_core_method.html?platform=Flutter#api_irtcengine_updatechannelmediaoptions)
+- [`setParameters`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_setparameters)
+- [`ChannelMediaOptions`](./API%20Reference/flutter_ng/API/class_channelmediaoptions.html?platform=Flutter)
