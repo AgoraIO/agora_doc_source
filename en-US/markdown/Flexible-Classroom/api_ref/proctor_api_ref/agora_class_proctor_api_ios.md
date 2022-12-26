@@ -2,7 +2,7 @@ This page provides the Objective-C API reference for the Agora Proctor SDK for i
 
 ## AgoraProctorSDK
 
-`AgoraProctorSDK` is the basic interface of the Agora Proctor SDK and provides the main methods for the flexible classroom in proctoring scenarios.
+`AgoraProctorSDK` is the basic interface of the Agora Proctor SDK and provides the main methods for a flexible classroom in proctoring scenarios.
 
 ### init
 
@@ -15,9 +15,9 @@ Initializes the `AgoraProctorSDK` instance.
 
 **Parameters**
 
-| Parameters     |  Description                          |
+| Parameter     |  Description                          |
 | :------- | :--------------------------------------------------------------- |
-| `config` | Configuration for flexible classroom, see [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig). |
+| `config` | Configuration for a flexible classroom, see [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig). |
 | `delegate` | (Optional) The event handler for the Agora Proctor SDK, see [`AgoraProctorSDKDelegate`](#agoraproctorsdkdelegate). |
 
 
@@ -32,10 +32,10 @@ Launches a flexible classroom in a proctoring scenario.
 
 **Parameters**
 
-| Parameters     | Description                                                             |
+| Parameter     | Description                                                             |
 | :------- | :--------------------------------------------------------------- |
 | `success` | The callback triggered by a successful launch. |
-| `failure` | The callback triggered by a failed launched, which returns an error. |
+| `failure` | The callback triggered by a failed launch, which returns an error. |
 
 
 ### version
@@ -65,9 +65,9 @@ The user exits from the SDK. This callback is triggered when a user exits or is 
 
 **Parameter**
 
-| Parameters     | Description                                                             |
+| Parameter     | Description                                                             |
 | :------- | :--------------------------------------------------------------- |
-| `reason` | Reason for the exit, see [AgoraProctorExitReason](#agoraproctorexitreason). |
+| `reason` | The reason for the exit, see [AgoraProctorExitReason](#agoraproctorexitreason). |
 
 
 ## Objects
@@ -121,16 +121,16 @@ The user exits from the SDK. This callback is triggered when a user exits or is 
 
 The classroom launching configuration used in [launch](#launch).
 
-| Properties             | Description                |
+| Property             | Description                |
 | :--------------- | :--------------------- |
-| `userName` | The user name for display in the classroom. The string length must be less than 64 bytes. |
-| `userUuid` | The user ID. This is the globally unique identifier of a user. **Must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. Supported character scopes are:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li></ul> |
+| `userName` | The user name for display in the classroom. This value must be less than 64 bytes. |
+| `userUuid` | The user ID. This is the globally unique identifier of a user. **This value must be the same as the User ID that you use for generating an RTM token**. The string length must be less than 64 bytes. The following characters are supported:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters: 0-9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li></ul> |
 | `userRole` | The user's role in the classroom. See [`agoraproctoruserrole`](#agoraproctoruserrole). |
 | `roomName` | The room name for display in the classroom. The string length must be less than 64 bytes. |
-| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. The string length must be less than 64 bytes. Supported character scopes are:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters.</li><li>0-9</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li></ul> |
+| `roomUuid` | The room ID. This is the globally unique identifier of a classroom. This value must be less than 64 bytes. The following characters are supported:<ul><li>All lowercase English letters: a to z.</li><li>All uppercase English letters: A to Z.</li><li>All numeric characters: 0-9.</li><li>The space character.</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ","</li></ul> |
 | `appId`          | The Agora App ID. See [Get the Agora App ID](https://docs.agora.io/en/flexible-classroom/reference/manage-agora-account?platform=ios#get-the-app-id). |
 | `token` | The signaling token used for authentication. For details, see [Generate a signaling Token](https://docs.agora.io/en/signaling/develop/authentication-workflow). |
-| `region` | The region where the classrooms is located. All clients must use the same region, otherwise, they may fail to communicate with each other. Supported regions are:<ul><li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li></ul> |
+| `region` | The region where the classrooms is. All clients must use the same region; otherwise, they may fail to communicate with each other. The following regions are supported:<ul><li>`CN`: Mainland China</li><li>`NA`: North America</li><li>`EU`: Europe</li><li>`AP`: Asia Pacific</li></ul> |
 | `mediaOptions` | Media options, including the media stream encryption configuration. See [`AgoraProctorMediaOptions`](#agoraproctormediaoptions) for details. |
 | `userProperties` | User properties customized by the developer. For details, see [How can I set user properties? ](https://docs.agora.io/en/help/integration-issues/agora_class_custom_properties) |
 | `widgets`        | Pass in `widgetId` and `AgoraWidgetConfig`.     |
@@ -152,11 +152,11 @@ The classroom launching configuration used in [launch](#launch).
 ```
 
 Media options. Set in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
-| Properties                | Description   |
+| Property                | Description   |
 | :------------------- | :------------------------------- |
 | `encryptionConfig`   | (Optional) The media stream encryption configuration. See [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig) for details.  |
 | `videoEncoderConfig` | (Optional) The video encoder configuration. See [AgoraProctorVideoEncoderConfig](#agoraproctorvideoencoderconfig) for details.           |
-| `latencyLevel`       | The latency level of an audience member. This property does not apply to co-hosting users. The default value is `low`, which means low latency. See [AgoraProctorLatencyLevel](#agoraproctorlatencylevel) for details.                   |
+| `latencyLevel`       | The latency level of an audience member. This property does not apply to cohosting users. The default value is `low`, which means low latency. See [AgoraProctorLatencyLevel](#agoraproctorlatencylevel) for details.                   |
 
 ### AgoraProctorMediaEncryptionConfig
 
@@ -171,9 +171,9 @@ Media options. Set in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
 
 The media stream encryption configuration used in [AgoraProctorMediaOptions](#agoraproctormediaoptions).
 
-| Properties   | Description                                                                         |
+| Property   | Description                                                                         |
 | :----- | :--------------------------------------------------------------------------- |
-| `mode` | Encryption mode. See [AgoraProctorMediaEncryptionMode](#agoraproctormediaencryptionmode). |
+| `mode` | The encryption mode. See [AgoraProctorMediaEncryptionMode](#agoraproctormediaencryptionmode). |
 | `key`  | The encryption key.          |
 
 
@@ -197,30 +197,30 @@ The media stream encryption configuration used in [AgoraProctorMediaOptions](#ag
 The video encoder configuration used in [AgoraProctorMediaOptions](#agoraproctormediaoptions).
 
 
-| Properties              | Description                                                           |
+| Property              | Description                                                           |
 | :---------------- | :------------------------------------------------------------- |
-| `dimensionWidth`  | Width (pixel) of the video frame. The default value is 320.  |
-| `dimensionHeight` | Height (pixel) of the video frame. The default value is 240.     |
+| `dimensionWidth`  | The width (pixels) of the video frame. The default value is 320.  |
+| `dimensionHeight` | The height (pixels) of the video frame. The default value is 240.     |
 | `frameRate`       | The frame rate (FPS) of the video. The default value is 15.    |
 | `bitRate`         | The bitrate (Kbps) of the video. The default value is 200.    |
-| `mirrorMode`      | Video mirror modes. The default value is `AgoraProctorMirrorModeDisable`, which means to disable the mirror mode. See [`AgoraProctorMirrorMode`](#agoraproctormirrormode) for details. |
+| `mirrorMode`      | Whether video mirror mode is enabled. The default value is `AgoraProctorMirrorModeDisable`, which means to disable mirror mode. See [`AgoraProctorMirrorMode`](#agoraproctormirrormode) for details. |
 
 ## Enum
 
 ### AgoraProctorMirrorMode
 
-Whether to enable the mirror mode, used in [`AgoraProctorVideoEncoderConfig`](#agoraproctorvideoencoderconfig).
+Whether to enable mirror mode, used in [`AgoraProctorVideoEncoderConfig`](#agoraproctorvideoencoderconfig).
 
-| Values       | Description            |
+| Value       | Description            |
 | :--------- | :-------------- |
-| `disabled` | `0`: Enable the mirror mode. |
-| `enabled`  | `1`: Disable the mirror mode. |
+| `disabled` | `0`: Enable mirror mode. |
+| `enabled`  | `1`: Disable mirror mode. |
 
 ### AgoraProctorRegion
 
-The region where the classrooms is located, used in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
+The region where classrooms is, used in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
 
-| Values  | Description               |
+| Value  | Description               |
 | :--- | :----------------- |
 | `CN` | `0`: Mainland China |
 | `NA` | `1`: North America.             |
@@ -229,28 +229,28 @@ The region where the classrooms is located, used in [`AgoraProctorLaunchConfig`]
 
 ### AgoraProctorExitReason
 
-Reasons for exiting the Agora Proctor SDK, used in the [`didExit`](#didexit) callback.
+The reason for exiting the Agora Proctor SDK, used in the [`didExit`](#didexit) callback.
 
-| Values       | Description       |
+| Value       | Description       |
 | :-------- | :--------- |
-| `normal`  | Exited the room normally. |
-| `kickOut` | Got kicked out of the room. |
+| `normal`  | User exits the room normally. |
+| `kickOut` | User is kicked out of the room. |
 
 
 ### AgoraProctorLatencyLevel
 
 The latency level of an audience member, used in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
 
-| Values       | Description                                                           |
+| Value       | Description                                                           |
 | :--------- | :------------------------------------------------------------- |
 | `low`      | `1`: Low latency. The latency from the sender to the receiver is between 1500 ms and 2000 ms.       |
 | `ultraLow` | `2`: Ultra-low latency. The latency from the sender to the receiver is between 400 ms and 800 ms. |
 
 ### AgoraProctorUserRole
 
-User role in classrooms, used in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
+The user role in the classroom, used in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
 
-| Values      | Description        |
+| Value      | Description        |
 | :-------- | :---------- |
 | `invalid` | `0`: Recording robot. |
 | `teacher` | `1`: Teacher. |
@@ -260,9 +260,9 @@ User role in classrooms, used in [`AgoraProctorLaunchConfig`](#agoraproctorlaunc
 
 ### AgoraProctorMediaEncryptionMode
 
-Media stream encryption mode, used in [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig).
+The media stream encryption mode, used in [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig).
 
-| Values         | Description     |
+| Value         | Description     |
 | :----------- | :------------------------------------------------------- |
 | `None`       | `0`: No encryption. |
 | `AES128XTS`  | `1`: 128-bit AES encryption, XTS mode.    |
@@ -271,5 +271,5 @@ Media stream encryption mode, used in [AgoraProctorMediaEncryptionConfig](#agora
 | `SM4128ECB`  | `4`: 128-bit SM4 encryption, ECB mode.   |
 | `AES128GCM`  | `5`: 128-bit AES encryption, GCM mode.    |
 | `AES256GCM`  | `6`: 256-bit AES encryption, GCM mode.   |
-| `AES128GCM2` | `7`: Enhanced 128-bit AES encryption, GCM mode. Compared with the `AES128GCM` encryption mode, this mode is more secured and requires setting salt.  |
-| `AES256GCM2` | `8`: Enhanced 256-bit AES encryption, GCM mode. Compared with the `AES256GCM` encryption mode, this mode is more secured and requires setting salt.  |
+| `AES128GCM2` | `7`: Enhanced 128-bit AES encryption, GCM mode. Compared with the `AES128GCM` encryption mode, this mode is more secure and requires setting a salt.  |
+| `AES256GCM2` | `8`: Enhanced 256-bit AES encryption, GCM mode. Compared with the `AES256GCM` encryption mode, this mode is more secure and requires setting a salt.  |

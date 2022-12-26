@@ -5,31 +5,31 @@ v2.8.0 was released on December 12, 2022.
 
 #### Online proctoring scenario (Web, Electron, iOS)
 
-v2.8.0 provides Agora Proctor SDK for online exam proctoring scenarios. For details, see the Agora Proctor SDK API reference.
+v2.8.0 provides the Agora Proctor SDK for online exam proctoring scenarios. For details, see the Agora Proctor SDK API reference.
 
 #### Beauty options, virtual background, noise suppression (Web, Electron)
 
-v2.8.0 supports extensive advanced capabilities including video beauty options, virtual background, and noise suppression. For details, see the documentation of the `webrtcExtensionBaseUrl` field of the `LaunchOption` parameter in the Classroom SDK.
+v2.8.0 adds support for substantial new capabilities including video beauty options, virtual backgrounds, and noise suppression. For details, see the documentation of the `webrtcExtensionBaseUrl` field of the `LaunchOption` parameter in the Classroom SDK.
 
 #### New demo features
 
 v2.8.0 adds the following features to the demo:
 	- Signing up, logging in, and deleting the account.
-	- Course list page.
-	- Classroom reports that includes the following information:
+	- A course list page.
+	- Classroom reports, including the following information:
 		- Course information
 		- Course recording
-		- Course reports including student presence and interaction.
-	- Speakers are highlighted.
-	- The whiteboard can be partially erased.
+		- Course reports, including tracking student attendance and students interaction.
+	- Highlighting of speakers.
+	- The ability to partially erase the whiteboard.
 
 ### Improvements
 
-- The following features of the demo were enhanced:
-  - The procedures of joining and creating a room. Now users can preserve a room.
-  - The efficiency of conversing course materials
-  - The whiteboard toolbar for better compatibility with touchscreen devices.
-- The `agora-edu-core` libraries were enhanced.
+- The following features were improved in the demo:
+  - The procedures of joining and creating a room. Users now can reserve a room in advance, as well.
+  - The efficiency of converting course materials
+  - The compatibility of the whiteboard toolbar with touchscreen devices."
+- The `agora-edu-core` libraries have been enhanced.
 
 
 ## v2.1.0
