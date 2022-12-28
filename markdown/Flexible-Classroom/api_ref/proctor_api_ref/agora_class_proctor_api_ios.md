@@ -154,8 +154,8 @@ Agora Proctor SDK 退出回调，会在用户退出房间或被踢出房间时�
 
 | 属性                 | 描述                                                                                    |
 | :------------------- | :-------------------------------------------------------------------------------------- |
-| `encryptionConfig`   | （选填）媒体流加密配置，详见 [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig).   |
-| `videoEncoderConfig` | （选填）视频编码配置，详见 [AgoraProctorVideoEncoderConfig](#agoraproctorvideoencoderconfig).           |
+| `encryptionConfig`   | （选填）媒体流加密配置，详见 [AgoraProctorMediaEncryptionConfig](#agoraproctormediaencryptionconfig)。   |
+| `videoEncoderConfig` | （选填）视频编码配置，详见 [AgoraProctorVideoEncoderConfig](#agoraproctorvideoencoderconfig)。           |
 | `latencyLevel`       | 观众端延时级别，默认值为 `low`，即低延时。详见 [AgoraProctorLatencyLevel](#agoraproctorlatencylevel)。                    |
 
 ### AgoraProctorMediaEncryptionConfig
@@ -199,9 +199,9 @@ Agora Proctor SDK 退出回调，会在用户退出房间或被踢出房间时�
 
 | 属性              | 描述                                                           |
 | :---------------- | :------------------------------------------------------------- |
-| `dimensionWidth`  | 视频帧宽度，单位为像素，默认值为 320。                                   |
-| `dimensionHeight` | 视频帧高度，单位为像素，默认值为 240。                                   |
-| `frameRate`       | 视频帧率，单位为 fps，默认值为 15。                      |
+| `dimensionWidth`  | 视频帧宽度，单位为 pixel，默认值为 320。                                   |
+| `dimensionHeight` | 视频帧高度，单位为 pixel，默认值为 240。                                   |
+| `frameRate`       | 视频帧率，单位为 FPS，默认值为 15。                      |
 | `bitRate`         | 视频码率，单位为 Kbps，默认值为 200。                        |
 | `mirrorMode`      | 视频镜像模式，默认值为 `AgoraProctorMirrorModeDisable`，即关闭镜像模式，详见 [`AgoraProctorMirrorMode`](#agoraproctormirrormode)。 |
 

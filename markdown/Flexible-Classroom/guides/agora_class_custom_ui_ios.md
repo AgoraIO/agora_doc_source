@@ -2,7 +2,7 @@
 
 ### 数据交互流程
 
-灵动课堂的 UI 层和核心业务逻辑层相互隔离，分为 **UI**（`AgoraEduUI`） 和 **Core**（`AgoraEduCore`） 两个独立的库。以灵动课堂教育场景的设备开关功能为例，该功能使用户通过一个按钮改变设备状态。为实现该功能，你需要在 `AgoraEduUI` 中调用 `AgoraEduMediaContext` 类的 `openLocalDevice` 方法，并监听 `AgoraEduMediaHandler` 抛出的设备状态改变相关事件。
+灵动课堂的 UI 层和核心业务逻辑层相互分离，分为 **UI**（`AgoraEduUI`） 和 **Core**（`AgoraEduCore`） 两个独立的库。以灵动课堂教育场景的设备开关功能为例，该功能使用户通过一个按钮改变设备状态。为实现该功能，你需要在 `AgoraEduUI` 中调用 `AgoraEduMediaContext` 类的 `openLocalDevice` 方法，并监听 `AgoraEduMediaHandler` 抛出的设备状态改变相关事件。
 
 数据流转示意图如下：
 

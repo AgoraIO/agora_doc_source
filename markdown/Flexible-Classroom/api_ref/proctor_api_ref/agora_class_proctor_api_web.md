@@ -140,10 +140,10 @@ export interface EduVideoEncoderConfiguration {
 
 | 参数        | 描述                 |
 | :---------- | :------------------- |
-| `width`     | 视频帧宽度(pixel)。默认值为 320。  |
-| `height`    | 视频帧高度 (pixel)。默认值为 240。 |
-| `frameRate` | 视频帧率 (fps)。     |
-| `bitrate`   | 视频码率 (Kbps)。    |
+| `width`  | 视频帧宽度，单位为 pixel，默认值为 320。                                   |
+| `height` | 视频帧高度，单位为 pixel，默认值为 240。                                   |
+| `frameRate`       | 视频帧率，单位为 FPS，默认值为 15。                      |
+| `bitrate`         | 视频码率，单位为 Kbps，默认值为 200。                        |
 
 ### MediaEncryptionConfig
 
