@@ -33,18 +33,23 @@
     videoFrame: VideoFrame
   ): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int remoteUid, VideoFrame videoFrame)?
-      onRenderVideoFrame;</codeblock> </p>
+      onRenderVideoFrame;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data before encoding. You can then process the data according to your particular scenarios.</p>
-            <note type="attention" props="native electron rn flutter">This function only applies to the scenarios where the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>.</note> </section>
+            <note type="attention" props="native electron rn flutter">
+            <ul>
+            <li>If the video data type you get is RGBA, Agora does not support processing the data of the alpha channel.</li>
+            <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
+            </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="android ios mac unity">uid</pt>
                 <pt props="cpp rn electron flutter">remoteUid</pt>
-                <pd>The ID of the remote user who sends the current video frame.</pd>
+                <pd>The user ID of the remote user who sends the current video frame.</pd>
             </plentry>
             <plentry conkeyref="onCaptureVideoFrame/videoframe">
                 <pt/>
@@ -57,9 +62,7 @@
             </parml> </section>
         <section id="return_values" props="native electron unity rn">
             <title>Returns</title>
-            <ul>
-            <li><codeph><ph keyref="true"/></codeph>:The SDK ignores this return value.</li>
-            <li><codeph><ph keyref="false"/></codeph>:The SDK ignores this return value.</li>
-            </ul> </section>
+            <p conkeyref="onCaptureVideoFrame/return"/>
+        </section>
     </refbody>
 </reference>

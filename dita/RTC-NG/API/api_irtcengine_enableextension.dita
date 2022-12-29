@@ -36,12 +36,13 @@
     {required String provider,
     required String extension,
     bool enable = true,
-    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock> </p>
+    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>该方法需要在加入频道前调用。</p>
+            <p>如需调用本方法，请在初始化 <xref keyref="IRtcEngine" /> 对象后立即调用。</p>
             <note>
-            <ul>
+                <ul>
             <li>如果要开启多个插件，需要多次调用该方法。</li>
             <li>不同插件在 SDK 中处理数据的顺序由插件的开通顺序决定。即先开启的插件会先处理数据。</li>
             </ul> </note> </section>
@@ -78,7 +79,7 @@
                         </ul></note></pd>
                 </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="native unity rn electron">
             <title>返回值</title>
             <ul>
             <li>0: 方法调用成功</li>

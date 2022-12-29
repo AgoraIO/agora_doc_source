@@ -35,7 +35,7 @@
 
 ## 前提条件
 
-在进行操作之前，请确保你已经在项目中实现了基本的实时音视频功能。详见[开始视频通话](start_call_flutter_ng)。
+在进行操作之前，请确保你已经在项目中实现了基本的实时音视频功能。详见[开始视频通话](./start_call_flutter_ng)。
 
 ## 操作步骤
 
@@ -83,5 +83,5 @@
 
 ### API 参考
 
-- [getConnectionState](./API%20Reference/flutter_ng/API/class_irtcengineex.html#api_irtcengineex_getconnectionstateex)
-- [onConnectionStateChanged](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onconnectionstatechanged)
+- [getConnectionState](./API%20Reference/flutter_ng/API/toc_core_method.html#api_irtcengine_getconnectionstate)
+- [onConnectionStateChanged](./API%20Reference/flutter_ng/API/toc_network.html#callback_irtcengineeventhandler_onconnectionstatechanged)

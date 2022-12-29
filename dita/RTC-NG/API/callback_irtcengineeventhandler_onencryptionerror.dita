@@ -30,8 +30,8 @@
     errorType: EncryptionErrorType
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, EncryptionErrorType errorType)?
-      onEncryptionError;
-</codeblock> </p>
+      onEncryptionError;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用 <xref keyref="enableEncryption" /> 开启加密后， 如果发流端、收流端出现加解密出错，SDK 会触发该回调。</p>
@@ -47,10 +47,13 @@
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
-            <plentry>
+            <plentry props="ios mac cpp unity electron rn flutter">
                 <pt>errorType</pt>
-                <pd props="ios mac cpp unity electron rn flutter">错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE" />。</pd>
-                <pd props="android">错误类型。
+                <pd>错误类型，详见 <xref keyref="ENCRYPTION_ERROR_TYPE" />。</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>errorType</pt>
+                <pd>错误类型。
                 <ul>
                     <li><ph keyref="ENCRYPTION_ERROR_INTERNAL_FAILURE" /> (0): 内部原因。</li>
                     <li><ph keyref="ENCRYPTION_ERROR_DECRYPTION_FAILURE" /> (1): 解密错误。请确保接收端和发送端使用的加密模式或密钥一致。</li>

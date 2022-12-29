@@ -29,13 +29,14 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLocalRenderMode(
     {required RenderModeType renderMode,
     VideoMirrorModeType mirrorMode =
-        VideoMirrorModeType.videoMirrorModeAuto});</codeblock></p>
+        VideoMirrorModeType.videoMirrorModeAuto});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>初始化本地用户视图后，你可以调用该方法更新本地用户视图的渲染和镜像模式。该方法只影响本地用户看到的视频画面，不影响本地发布视频。</p>
             <note type="attention">
             <ul>
-            <li props="native electron rn flutter">请在调用 <xref keyref="setupLocalVideo" /> 方法初始化本地视图后，调用该方法。</li>
+            <li props="native electron rn flutter unity">请在调用 <xref keyref="setupLocalVideo" /> 方法初始化本地视图后，调用该方法。</li>
             <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -48,17 +49,9 @@
                     <p props="ios mac cpp unity flutter rn electron">本地视图显示模式。详见 <xref keyref="RENDER_MODE_TYPE" />。</p>
                     <p props="android">本地视图显示模式。
 
-
-
-
-
-
-
                     <ul id="rendermodetype">
-                    <li><ph keyref="RENDER_MODE_HIDDEN" />
-                           (1)：优先保证视窗被填满。视频尺寸等比缩放，直至整个视窗被视频填满。如果视频长宽与显示窗口不同，多出的视频将被截掉。</li>
-                    <li><ph keyref="RENDER_MODE_FIT" />
-                           (2)：优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与视窗边框对齐。如果视频长宽与显示窗口不同，视窗上未被填满的区域将被涂黑。</li>
+                    <li><ph keyref="RENDER_MODE_HIDDEN" /> (1)：优先保证视窗被填满。视频尺寸等比缩放，直至整个视窗被视频填满。如果视频长宽与显示窗口不同，多出的视频将被截掉。</li>
+                    <li><ph keyref="RENDER_MODE_FIT" /> (2)：优先保证视频内容全部显示。视频尺寸等比缩放，直至视频窗口的一边与视窗边框对齐。如果视频长宽与显示窗口不同，视窗上未被填满的区域将被涂黑。</li>
                     <li><ph keyref="RENDER_MODE_ADAPTIVE" /> (3): 该模式已废弃，不推荐使用。</li>
                     </ul> </p>
                 </pd>
@@ -67,15 +60,9 @@
                 <pt props="android cpp unity flutter rn electron">mirrorMode</pt>
                 <pt props="ios mac">mirror</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter rn electron">本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。</p>
+                    <p props="ios mac cpp unity flutter rn electron">本地视图的镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE" />。
+                    <note type="attention" props="unity">该参数仅对 SDK 自渲染生效，如果你想要设置视图镜像，可以将 GameObject 的 scaleX 设为 <codeph>-1</codeph> 或 <codeph>+1</codeph>。</note></p>
                     <p props="android">本地视图的镜像模式。
-
-
-
-
-
-
-
                     <ul id="videomirrormodetype">
                     <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /> (0)：默认的镜像模式（SDK 决定镜像模式）。如果你使用前置摄像头，默认启动本地视图镜像模式；如果你启用后置摄像头，默认关闭本地视图镜像模式。</li>
                     <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1)：开启镜像模式。</li>

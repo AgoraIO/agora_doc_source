@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videocanvas2">
+    <title><ph keyref="VideoCanvas2" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Attributes of video canvas object.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="unreal" outputclass="language-cpp">struct VideoCanvas {
+    view_t view;
+    uid_t uid;
+    VIDEO_SOURCE_TYPE sourceType;
+    int mediaPlayerId;
+
+  VideoCanvas()
+    : view(NULL), uid(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
+  
+  VideoCanvas(view_t v, uid_t u)
+    : view(v), uid(u),
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY)
+  
+  VideoCanvas(view_t v, user_id_t)
+    : view(v), uid(0),
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
+};</codeblock></p>
+        </section>
+        <section id="detailed_desc"> </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <parml>
+            <plentry>
+                <pt>view</pt>
+                <pd>The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="unreal" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
+    UImage* LocalVideo;
+    videoCanvas.view = LocalVideo;</codeblock></pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry id="sourcetype">
+                <pt>sourceType</pt>
+                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+            </plentry>
+            <plentry props="android ios mac">
+                <pt>sourceId</pt>
+                <pd>The ID of the video source.</pd>
+            </plentry>
+            <plentry>
+                <pt>mediaPlayerId</pt>
+                <pd>The ID of the media player. You can get the media player ID by calling <xref keyref="getMediaPlayerId" />.</pd>
+                <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER" />.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

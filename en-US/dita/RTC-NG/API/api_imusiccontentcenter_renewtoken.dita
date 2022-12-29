@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_renewtoken">
+    <title><ph keyref="renewToken_IMusicContentCenter" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Renew the token.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="renewToken_IMusicContentCenter" />
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int renewToken(String token);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)renewToken:(NSString * _Nonnull)token;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int renewToken(const char* token) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="electron" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public override int RenewToken(string token)
+ 	 	        {
+ 	 	            if (_rtcEngineInstance == null || _musicContentCenterImpl == null)
+ 	 	            {
+ 	 	                return ErrorCode;
+ 	 	            }
+ 	 	            return _musicContentCenterImpl.RenewToken(token);
+ 	 	        }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract renewToken(token: string): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; renewToken(String token);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.0</dd>
+            </dlentry>
+            </dl>
+            <p>You can call this method to pass in a new Token if your Token expires or is to be expired.</p>
+        </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry>
+                <pt>token</pt>
+                <pd>The new token.</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values" props="native unity rn electron">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
+    </refbody>
+</reference>

@@ -17,12 +17,14 @@
             <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setLoopbackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript">abstract setLoopbackDevice(deviceId: string): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopbackDevice(string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setLoopbackDevice(String deviceId);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc"> <dl outputclass="since">
+        <section id="detailed_desc">
+            <dl outputclass="since">
             <dlentry props="native">
                 <dt>自从</dt>
                 <dd>v4.0.1</dd>
@@ -30,32 +32,33 @@
             </dl>
             <p>SDK 默认采用当前的播放设备作为声卡采集设备，如果想要指定其他音频设备作为声卡采集设备，则调用该方法并设置 <parmname>deviceId</parmname> 为你想要指定的声卡采集设备。</p>
             <note type="note">
-                <p>该方法适用的场景如下： </p>
-                <p>使用 app A 播放音乐，通过蓝牙耳机播放；同时使用 app B 进行视频会议，通过扬声器播放。
-                    <ul>
-                    <li>如果设置声卡采集设备为蓝牙耳机，则 SDK 会将 app A 中的音乐发布到远端。</li>
-                    <li>如果设置声卡采集设备设置为扬声器，则 SDK 不会将 app A 中的音乐发布到远端。</li>
-                    <li>如果设置声卡采集设备为蓝牙耳机后，又改用有线耳机播放 app A 中的音乐，则需要重新调用该方法，设置声卡采集设备为有线耳机，则 SDK 会继续将 app A 中的音乐发布到远端。</li>
-                    </ul></p>
-            </note>
-        </section>
+            <p>该方法仅适用于 Windows。</p>
+            <p>该方法适用的场景如下： </p>
+            <p>使用 app A 播放音乐，通过蓝牙耳机播放；同时使用 app B 进行视频会议，通过扬声器播放。
+
+
+            <ul>
+            <li>如果设置声卡采集设备为蓝牙耳机，则 SDK 会将 app A 中的音乐发布到远端。</li>
+            <li>如果设置声卡采集设备设置为扬声器，则 SDK 不会将 app A 中的音乐发布到远端。</li>
+            <li>如果设置声卡采集设备为蓝牙耳机后，又改用有线耳机播放 app A 中的音乐，则需要重新调用该方法，设置声卡采集设备为有线耳机，则 SDK 会继续将 app A 中的音乐发布到远端。</li>
+            </ul></p>
+            </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>deviceId</pt>
                 <pd>
-                    <p>指定 SDK 的声卡采集设备。由 <xref keyref="enumeratePlaybackDevices" /> 获取。插拔设备不会影响 <parmname>deviceId</parmname>。</p>
-                    <p props="cpp electron">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</p>
+                    <p>指定 SDK 的声卡采集设备。由 <xref keyref="enumeratePlaybackDevices"/> 获取。插拔设备不会影响 <parmname>deviceId</parmname>。</p>
+                    <p props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
+        <section id="return_values" props="cpp electron unity">
             <title>返回值</title>
             <ul>
-                <li>0: 方法调用成功。</li>
-                <li>&lt; 0: 方法调用失败。</li>
-                </ul> 
-        </section>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
     </refbody>
 </reference>

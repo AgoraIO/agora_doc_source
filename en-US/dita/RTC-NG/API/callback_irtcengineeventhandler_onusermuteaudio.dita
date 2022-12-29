@@ -31,8 +31,8 @@
     muted: boolean
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
-      onUserMuteAudio;
-</codeblock> </p>
+      onUserMuteAudio;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="hide">
@@ -40,13 +40,11 @@
                 <dt>Deprecated:</dt>
                 <dd>Use <xref keyref="onRemoteAudioStateChanged" /> instead.</dd>
             </dlentry>
-            </dl>
-            <note props="unity">This method is about to be deprecated. Agora recommends you using <xref keyref="onRemoteAudioStateChanged" /> instead.</note>
+        </dl>
             <p>The SDK triggers this callback when the remote user stops or resumes sending the audio stream by calling the <xref keyref="muteLocalAudioStream" /> method.</p>
             <note type="attention">This callback does not work properly when the number of users (in the communication profile) or hosts (in the live streaming channel) in a channel exceeds 17.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
                 <plentry props="unity electron rn flutter" conkeyref="joinChannelEx/connection">
                     <pt />
@@ -59,7 +57,7 @@
                 </plentry>
                 <plentry>
                     <pt>muted</pt>
-                    <pd>Whether the remote user's audio stream is muted/unmuted:<ul>
+                    <pd>Whether the remote user's audio stream is muted:<ul>
                         <li><codeph><ph keyref="true" /></codeph>: User's audio stream is muted.</li>
                         <li><codeph><ph keyref="false" /></codeph>: User's audio stream is unmuted.</li>
                         </ul> </pd>

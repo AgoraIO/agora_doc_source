@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectmodule">
     <title><ph keyref="ContentInspectModule" /></title>
-    <shortdesc id="short"><ph id="shortdesc"><apiname keyref="ContentInspectModule" />A structure used to configure the frequency of video screenshot and upload.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">A structure used to configure the frequency of video screenshot and upload.</ph><apiname keyref="ContentInspectModule" /></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -27,9 +27,9 @@
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectModule {
-  
+
   type?: ContentInspectType;
-  
+
   interval?: number;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class ContentInspectModule
@@ -44,9 +44,9 @@
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ContentInspectModule {
-  
+
   type?: ContentInspectType;
-  
+
   interval?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ContentInspectModule {
@@ -60,18 +60,19 @@
       _$ContentInspectModuleFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectModuleToJson(this);
-}</codeblock> </p>
+}</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="apple cpp flutter">Types of functional module. See <xref keyref="CONTENT_INSPECT_TYPE" />.</pd>
-                <pd props="android unity">
+                <pd props="apple cpp flutter unity electron rn">Types of functional module. See <xref keyref="CONTENT_INSPECT_TYPE" />.</pd>
+                <pd props="android">
                     <p>Types of functional modules:<ul>
                     <li><ph keyref="CONTENT_INSPECT_INVALID" />(0): (Default) This module has no actual function. Do not set to this value.</li>
-                    <li props="en"><ph keyref="CONTENT_INSPECT_MODERATION" />(1): Video content moderation. SDK takes screenshots, inspects video content of the video stream in the channel, and uploads the screenshots and moderation results.</li>
+                    <li props="hide"><ph keyref="CONTENT_INSPECT_MODERATION" />(1): Video content moderation. SDK takes screenshots, inspects video content of the video stream in the channel, and uploads the screenshots and moderation results.</li>
                     <li><ph keyref="CONTENT_INSPECT_SUPERVISE" />(2): Video screenshot and upload. SDK takes screenshots of the video stream in the channel and uploads them.</li>
                     </ul></p>
                 </pd>
