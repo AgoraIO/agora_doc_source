@@ -19,11 +19,12 @@
             <codeblock props="electron" outputclass="language-typescript">abstract registerAudioFrameObserver(
     observer: IMediaPlayerAudioFrameObserver
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void RegisterAudioFrameObserver(IMediaPlayerAudioFrameObserver observer);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int RegisterAudioFrameObserver(IMediaPlayerAudioFrameObserver observer);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerAudioFrameObserver(
     observer: IMediaPlayerAudioFrameObserver
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">void registerAudioFrameObserver(MediaPlayerAudioFrameObserver observer);</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">void registerAudioFrameObserver(MediaPlayerAudioFrameObserver observer);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>你需要在该方法中实现一个 <xref props="cpp" keyref="IAudioFrameObserver"/><xref props="electron unity rn flutter" keyref="IMediaPlayerAudioFrameObserver" /> 类，并根据场景需要，注册该类的回调。成功注册音频帧观测器后，SDK 会在捕捉到每个音频帧时，触发你所注册的回调。</p>
@@ -37,11 +38,12 @@
                 <pd props="electron unity rn flutter">音频帧观测器，观测每帧音频的接收，详见 <xref keyref="IMediaPlayerAudioFrameObserver" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="cpp electron rn">
+        <section id="return_values" props="cpp rn unity electron">
             <title>返回值</title>
             <ul id="ul_uns_l2y_hqb">
-            <li>0: 方法调用成功。</li>
-            <li>&lt; 0: 方法调用失败。</li>
-            </ul> </section>
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

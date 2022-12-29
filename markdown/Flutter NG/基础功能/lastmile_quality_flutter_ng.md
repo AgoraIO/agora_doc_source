@@ -38,7 +38,7 @@ SDK 提供了 `startLastmileProbeTest` 方法，用于在加入频道前检测 l
 
 ## 前提条件
 
-在进行操作之前，请确保你已经在项目中实现了基本的实时音视频功能。 有关详细信息，请参考[实现视频通话](start_call_flutter_ng)或[实现视频直播](start_live_flutter_ng)。
+在进行操作之前，请确保你已经在项目中实现了基本的实时音视频功能。 有关详细信息，请参考[实现视频通话](./start_call_flutter_ng)或[实现视频直播](./start_live_flutter_ng)。
 
 
 ## 操作步骤
@@ -170,15 +170,15 @@ Agora 在 GitHub 上提供了一个开源的[通话前检测](https://github.com
 
 ### API 参考
 
-- [`startRecordingDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startrecordingdevicetest)
-- [`stopRecordingDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stoprecordingdevicetest)
-- [`startPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startplaybackdevicetest)
-- [`stopPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stopplaybackdevicetest)
-- [`startAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startaudiodeviceloopbacktest)
-- [`stopAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stopaudiodeviceloopbacktest)
-- [`startEchoTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startechotest2)
-- [`stopEchoTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopechotest)
-- [`startLastmileProbeTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startlastmileprobetest)
-- [`stopLastmileProbeTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stoplastmileprobetest)
-- [`onLastmileQuality`](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onlastmilequality)
-- [`onLastmileProbeResult`](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onlastmileproberesult)
+- [`startRecordingDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_startrecordingdevicetest)
+- [`stopRecordingDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_stoprecordingdevicetest)
+- [`startPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_startplaybackdevicetest)
+- [`stopPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_stopplaybackdevicetest)
+- [`startAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_startaudiodeviceloopbacktest)
+- [`stopAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_stopaudiodeviceloopbacktest)
+- [`startEchoTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_startechotest2)
+- [`stopEchoTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_stopechotest)
+- [`startLastmileProbeTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_startlastmileprobetest)
+- [`stopLastmileProbeTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_stoplastmileprobetest)
+- [`onLastmileQuality`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#callback_irtcengineeventhandler_onlastmilequality)
+- [`onLastmileProbeResult`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#callback_irtcengineeventhandler_onlastmileproberesult)

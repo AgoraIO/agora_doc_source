@@ -19,17 +19,19 @@
             <codeblock props="electron" outputclass="language-typescript">const createAgoraRtcEngine: () => IRtcEngineEx</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public static IRtcEngine CreateAgoraRtcEngine()
         {
-            return instance ?? (instance = new RtcEngine());
+            return instance ?? (instance = new RtcEngine(IntPtr.Zero));
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export function createAgoraRtcEngine(): IRtcEngine {
   return instance;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">RtcEngine createAgoraRtcEngine() {
   return impl.RtcEngineImpl.create();
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>目前 Agora RTC SDK v4.0.0 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 对象。</p>
+            <p props="cpp electron rn unity">目前 Agora RTC SDK v4.x 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 对象。</p>
+            <p props="flutter">目前 Agora RTC SDK v6.x 只支持每个 app 创建一个 <apiname keyref="IRtcEngine"/> 对象。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>

@@ -28,14 +28,16 @@
   sound2: string,
   config: AgoraRhythmPlayerConfig
 ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRhythmPlayer(
-    {required String sound1,
-    required String sound2,
-    required AgoraRhythmPlayerConfig config});</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRhythmPlayer(
+      {required String sound1,
+      required String sound2,
+      required AgoraRhythmPlayerConfig config});</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>在音乐教学、体育教学等场景中，老师通常需要使用节拍器，让学生跟着正确的节拍练习。 节拍由强拍和弱拍组成，每小节的第一拍称为强拍，其余称为弱拍。</p>
+            <p>在音乐教学、体育教学等场景中，老师通常需要使用节拍器，让学生跟着正确的节拍练习。节拍由强拍和弱拍组成，每小节的第一拍称为强拍，其余称为弱拍。</p>
             <p>你需要在该方法中设置强拍和弱拍的文件路径、每小节的拍数、节拍速度以及是否将节拍器的声音发送至远端。</p>
+            <p>成功调用该方法后，SDK 会在本地触发 <xref keyref="onRhythmPlayerStateChanged"/> 回调，报告虚拟节拍器的状态。</p>
             <note type="attention" id="rhythm_play">
             <ul>
             <li props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</li>
@@ -65,6 +67,9 @@
             <ul>
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败
+                
+                
+                
                 
                 <ul>
                 <li>-22: 无法找到音频文件。请填写正确的 <parmname>sound1</parmname> 和 <parmname>sound2</parmname>。</li>

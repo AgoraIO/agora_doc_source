@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onusermutevideo">
     <title><ph keyref="onUserMuteVideo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user stops/resumes publishing the video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user stops or resumes publishing the video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,8 +31,8 @@
     muted: boolean
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid, bool muted)?
-      onUserMuteVideo;
-</codeblock> </p>
+      onUserMuteVideo;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="deprecated" props="hide">
@@ -44,12 +44,10 @@
                     </ul> </dd>
             </dlentry>
             </dl>
-            <note props="unity">This method is about to be deprecated. Agora recommends you using <xref keyref="onRemoteVideoStateChanged" /> instead.</note>
-            <p>When a remote user calls <xref keyref="muteLocalVideoStream" /> to stop or resume publishing the video stream, the SDK triggers this callback to report the state of the remote user's publishing stream to the local user.</p>
+            <p>When a remote user calls <xref keyref="muteLocalVideoStream" /> to stop or resume publishing the video stream, the SDK triggers this callback to report to the local user the state of the streams published by the remote user.</p>
             <note type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live streaming profile) in a channel exceeds 17.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
                 <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt />

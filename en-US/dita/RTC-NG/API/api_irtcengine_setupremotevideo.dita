@@ -19,7 +19,8 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetupRemoteVideo(VideoCanvas canvas);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setupRemoteVideo(canvas: VideoCanvas): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideo(VideoCanvas canvas);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideo(VideoCanvas canvas);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <p>This method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees. Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.</p>
@@ -28,8 +29,9 @@
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
             <note type="attention">
             <ul>
+             <li props="unity">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface" /> class instead.</li>
             <li>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2" /> method.</li>
-            <li>If you use the Agora recording feature, the recording client joins the channel as a dummy client, triggering the <xref keyref="onUserJoined" /> callback. Do not bind the dummy client to the app view because the dummy client does not send any video streams. If your app does not recognize the dummy client, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded" /> callback.</li>
+            <li>If you use the Agora recording function, the recording client joins the channel as a placeholder client, triggering the <xref keyref="onUserJoined" /> callback. Do not bind the placeholder client to the app view because the placeholder client does not send any video streams. If your app does not recognize the placeholder client, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded" /> callback.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>

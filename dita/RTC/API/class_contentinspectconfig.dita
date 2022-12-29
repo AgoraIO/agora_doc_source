@@ -5,7 +5,7 @@
         <ph keyref="ContentInspectConfig" />
     </title>
     <shortdesc id="short">
-        <ph id="shortdesc">内容审核配置。</ph>
+        <ph id="shortdesc">视频截图上传配置。</ph>
     </shortdesc>
     <refbody>
         <section id="prototype">
@@ -51,32 +51,26 @@
                     <pt>extraInfo</pt>
                     <pd>
                         <p>附加信息，最大长度为 1024 字节。</p>
-                        <p>SDK 会将附加信息和截图一起上传至 Agora 内容审核服务器；审核完成后，Agora 内容审核服务器会将附加信息随审核结果一起发送给你的服务器。</p>
+                        <p>SDK 会将附加信息和截图一起上传至 Agora 服务器；截图完成后，Agora 服务器会将附加信息随回调通知一起发送给你的服务器。</p>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>modules</pt>
                     <pd>
                         <p>
-                            内容审核模块。详见
+                            功能模块。详见
                             <xref keyref="ContentInspectModule" />
                             。
                         </p>
-                        <p>
-                            最多支持配置 32 个
-                            <xref keyref="ContentInspectModule" />
-                            实例，
-                            <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname>
-                            的取值范围为 [1,32] 中的整数。
-                        </p>
+                        <note>一个功能模块最多只能配置一个实例。目前仅支持截图上传功能。</note>
                     </pd>
                 </plentry>
                 <plentry>
                     <pt>moduleCount</pt>
                     <pd>
-                        内容审核模块数，即配置的
+                        功能模块数，即配置的
                         <xref keyref="ContentInspectModule" />
-                        实例的数量。最大值为 32。
+                        实例的数量。必须与 <parmname>modules</parmname> 中配置的实例个数一致。最大值为 32。
                     </pd>
                 </plentry>
             </parml>

@@ -102,7 +102,6 @@ AgoraClassSdk.launch(MainActivity2.this, agoraEduLaunchConfig, (state) -> {
 The `AgoraEduClassRoom` class.
 
 
-
 ### configCourseWare
 
 ```kotlin

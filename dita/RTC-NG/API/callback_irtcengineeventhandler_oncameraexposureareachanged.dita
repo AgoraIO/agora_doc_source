@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_oncameraexposureareachanged">
-    <title><ph keyref="onCameraExposureAreaChanged" /></title>
+    <title><ph keyref="onCameraExposureAreaChanged"/></title>
     <shortdesc id="short"><ph id="shortdesc">摄像头曝光区域已改变回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onCameraExposureAreaChanged" />
+                <indexterm keyref="onCameraExposureAreaChanged"/>
             </keywords>
         </metadata>
     </prolog>
@@ -35,42 +35,38 @@
     height: number
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int x, int y, int width, int height)?
-      onCameraExposureAreaChanged;
-</codeblock> </p>
+      onCameraExposureAreaChanged;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
-        <section id="detailed_desc" props="android ios cpp electron rn">
-            <p>该回调是由本地用户调用 <xref keyref="setCameraExposurePosition" /> 方法改变曝光位置触发的。</p>
-            <note type="attention" props="cpp unity">该回调仅适用于 Android 和 iOS。</note> </section>
+        <section id="detailed_desc" props="android ios cpp electron rn flutter">
+            <p>该回调是由本地用户调用 <xref keyref="setCameraExposurePosition"/> 方法改变曝光位置触发的。</p>
+            <note type="attention" props="cpp unity flutter rn">该回调仅适用于 Android 和 iOS。</note> </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
-            <parml props="cpp unity electron rn">
-            <plentry>
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry props="cpp unity electron rn">
                 <pt>x</pt>
                 <pd>发生改变的曝光区域的 x 坐标。</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity electron rn">
                 <pt>y</pt>
                 <pd>发生改变的曝光区域的 y 坐标。</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity electron rn">
                 <pt>width</pt>
                 <pd>发生改变的曝光区域的宽度。</pd>
             </plentry>
-            <plentry>
+            <plentry props="cpp unity electron rn">
                 <pt>height</pt>
                 <pd>发生改变的曝光区域的高度。</pd>
             </plentry>
-            </parml>
-            <parml props="android ios mac">
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt />
-                <pd />
+            <pt/>
+            <pd/>
+            </plentry> <plentry props="android ios">
+            <pt>rect</pt>
+            <pd>镜头内表示曝光的区域。详见 <xref keyref="rect-link"/>。</pd>
             </plentry>
-            <plentry>
-                <pt>rect</pt>
-                <pd>镜头内表示曝光的区域。</pd>
-            </plentry>
-            </parml> </section>
+        </parml></section>
     </refbody>
 </reference>

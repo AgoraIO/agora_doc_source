@@ -138,7 +138,8 @@
       _$MediaSourceFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
-}</codeblock></p></section>
+}</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
@@ -146,7 +147,10 @@
                 <pt>url</pt>
                 <pd>
                     <p>The URL of the media file to be played.</p>
-                    <note><ph>If you need to open a custom media resource, you do not have to pass in a value to the <parmname>url</parmname>.</ph></note></pd>
+                    <note>
+                        <p props="apple" id="url">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname>. Agora recommends that you do not pass in values to all these parameters in one call; otherwise, this call may fail.</p>
+                        <p props="android cpp unity">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>provider</parmname>. Agora recommends that you do not pass in values to both parameters in one call; otherwise, this call may fail.</p>
+                    </note></pd>
             </plentry>
             <plentry>
                 <pt>uri</pt>
@@ -154,13 +158,13 @@
             </plentry>
             <plentry>
                 <pt>startPos</pt>
-                <pd>The starting position (ms) for playback. The default value is 0.</pd>
+                <pd>The starting position (ms) for playback. Default value is 0.</pd>
             </plentry>
             <plentry>
                 <pt>autoPlay</pt>
                 <pd>Whether to enable autoplay once the media file is opened:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enable autoplay.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable autoplay.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: (Default) Enables autoplay.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disables autoplay.</li>
                     </ul>
                     <note>
                     <p>If autoplay is disabled, you need to call the <xref keyref="play" /> method to play a media file after it is opened.</p>
@@ -169,8 +173,8 @@
             <plentry>
                 <pt>enableCache</pt>
                 <pd>Whether to cache the media file when it is being played:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>:Enable caching.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable caching.</li>
+                    <li><codeph><ph keyref="true" /></codeph>:Enables caching.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disables caching.</li>
                     </ul>
                     <note>
                     <ul>
@@ -185,7 +189,7 @@
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream or on-demand video distributed through Media Broadcast service.</li>
                     </ul>
                     <note>
-                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the URL of the media resource to <parmname>url</parmname>, and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true" /></codeph>; otherwise, you don't need to set the <parmname>isAgoraSource</parmname> parameter.</p>
+                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the<parmname> URL</parmname> of the media resource to url, and set <parmname>isAgoraSource</parmname> as ; otherwise, you don't need to set the isAgoraSource parameter<parmname />.<codeph><ph keyref="true" /></codeph></p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -194,9 +198,9 @@
                     <li><codeph><ph keyref="true" /></codeph>: The media resource is a live stream.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream.</li>
                     </ul>
-                    <p>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as <codeph><ph keyref="true" /></codeph> so that the live stream can be loaded more quickly.</p>
+                    <p><codeph><ph keyref="true" /></codeph>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as  so that the live stream can be loaded more quickly.</p>
                     <note>
-                    <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true" /></codeph>, the media resource is not to be loaded more quickly.</p>
+                    <p><codeph><ph keyref="true" /></codeph>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as , the media resource<parmname> is</parmname> not to be loaded more quickly.</p>
                     </note> </pd>
             </plentry>
             <plentry props="android cpp unity">
@@ -204,7 +208,7 @@
                     <pd>
                         <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider" />.</p>
                         <note>
-                            <p>If you need to open a custom media resource, such as an encrypted media file, pass in a value to <parmname>provider</parmname> rather than to <parmname>url</parmname>.</p>
+                            <p>If you open a custom media resource, pass in the value to <parmname>provider</parmname>. If you open a common media resource, pass in the value to <parmname>url</parmname>. Agora recommends that you do not pass in values to both <parmname>url</parmname> and <parmname>provider</parmname> in one call; otherwise, this call may fail.</p>
                         </note>
                     </pd>
                 </plentry>
@@ -213,7 +217,7 @@
                 <pd>
                     <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData" />.</p>
                     <note id="note">
-                    <p>If you need to open a custom media resource, such as an encrypted media file, pass in values to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname> instead of to <parmname>url</parmname>.</p>
+                    <p conkeyref="MediaSource/url" />
                     </note></pd>
             </plentry>
             <plentry props="apple">

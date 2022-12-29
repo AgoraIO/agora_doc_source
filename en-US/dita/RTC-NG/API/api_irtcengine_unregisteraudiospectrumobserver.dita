@@ -19,11 +19,12 @@
             <codeblock props="electron" outputclass="language-typescript">abstract unregisterAudioSpectrumObserver(
     observer: IAudioSpectrumObserver
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract void UnregisterAudioSpectrumObserver();</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int UnregisterAudioSpectrumObserver();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract unregisterAudioSpectrumObserver(
     observer: IAudioSpectrumObserver
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">void unregisterAudioSpectrumObserver(AudioSpectrumObserver observer);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">void unregisterAudioSpectrumObserver(AudioSpectrumObserver observer);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <p>After calling <xref keyref="registerAudioSpectrumObserver" />, if you want to disable audio spectrum monitoring, you can call this method.</p>
@@ -32,12 +33,12 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp">observer</pt>
+                <pt props="android cpp electron rn flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" />.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native">
+        <section id="return_values" props="native electron rn unity">
             <title>Returns</title>
             <ul id="ul_ofs_khn_3qb">
             <li>0: Success.</li>
