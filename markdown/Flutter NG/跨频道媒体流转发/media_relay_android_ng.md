@@ -2,7 +2,7 @@
 
 在直播场景下，跨频道媒体流转发功能可实现主播角色的媒体流从源频道同时转发进多个目标频道，其中：
 
-- 所有主播接收并发布彼此的音视频流，进行跨频道实时互动
+- 所有主播发布并接收彼此的音视频流，进行跨频道实时互动
 - 观众可以接收到所有主播的音视频流，同时观看多位主播互动
 
 该功能因其实时性和互动性，能够丰富直播玩法，尤其适用于连麦 PK、在线合唱等直播场景，为观众带来更好的观看体验的同时，也为主播带来更多的流量和收益。
@@ -30,11 +30,11 @@
 
 参考如下 API 时序图实现相关代码逻辑：
 
-![](https://web-cdn.agora.io/docs-files/1672220710541)
+![](https://web-cdn.agora.io/docs-files/1672716202109)
 
 ### 1. 开始跨频道媒体流转发
 
-该功能支持将源频道的媒体流转发至最多 4 个目标频道，一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
+一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
 
 ```java
 // 将用户填入的目标频道名赋值给 destChannelName
@@ -44,13 +44,14 @@ if(destChannelName.length() == 0){
 }
 
 // 配置源频道信息
-// 基于该特性的实现原理，需要将源频道的 uid 设为 0
-// 注意这里的 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
+// 源频道名的默认值为 NULL，表示 SDK 自动填充当前频道名
+// 基于该特性的实现原理，必须将源频道的 uid 设为 0
+// 这里的 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
 ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(et_channel.getText().toString(), null, myUid);
 ChannelMediaRelayConfiguration mediaRelayConfiguration = new ChannelMediaRelayConfiguration();
 mediaRelayConfiguration.setSrcChannelInfo(srcChannelInfo);
 // 配置目标频道信息
-// 可多次调用，最多设置 4 个目标频道
+// 你可以将 uid 设为 0 由 SDK 随机分配，或自行指定 uid 并确保其与目标频道中的所有 uid 不同
 ChannelMediaInfo destChannelInfo = new ChannelMediaInfo(destChannelName, null, myUid);
 mediaRelayConfiguration.setDestChannelInfo(destChannelName, destChannelInfo);
 // 开始跨频道媒体流转发
@@ -149,7 +150,14 @@ IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEventHandler(){
 | 0 | 0 | /  | 已停止媒体流转发。  |
 
 
-## API 参考
+## 相关参考
+
+### 开发注意事项
+
+- 该功能最多支持将媒体流转发至 64 个目标频道，转发过程中，如果想添加或删除目标频道，可以调用 `updateChannelMediaRelay` 方法
+- 该功能不支持 String 型 `uid`，如需使用跨频道连麦功能，则要在普通连麦中也使用 Int 型 `uid`，否则跨频道连麦功能无法正常使用
+
+### API 参考
 
 - [`startChannelMediaRelay`](./API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_startchannelmediarelay)
 - [`updateChannelMediaRelay`](./API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_updatechannelmediarelay)
