@@ -52,8 +52,32 @@
             <parml>
             <plentry>
                 <pt>elapsedTime</pt>
-                <pd>从开始跟踪视频渲染到触发视频渲染跟踪事件回调的时间间隔。</pd>
+                <pd>开始跟踪视频渲染到触发视频渲染跟踪事件回调的时间间隔。</pd>
             </plentry>
+            <plentry>
+                <pt>start2JoinChannel</pt>
+                <pd>开始跟踪视频渲染到调用 <xref keyref="joinChannel2"/> 的时间间隔。如果在调用 <xref keyref="joinChannel1"/>/<xref keyref="joinChannel2"/> 后开始跟踪视频渲染，则该参数值为负数。</pd>
+            </plentry>     
+            <plentry>
+                <pt>join2JoinSuccess</pt>
+                <pd>调用 <xref keyref="joinChannel2"/> 到加入频道的时间间隔。</pd>
+            </plentry>          
+            <plentry>
+                <pt>joinSuccess2RemoteJoined</pt>
+                <pd>加入频道到远端用户加入频道的时间间隔。如果在加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到远端用户加入频道的时间间隔。最小值为 0。</pd>
+            </plentry>
+            <plentry>
+                <pt>remoteJoined2SetView</pt>
+                <pd>远端用户加入到设置远端视图的时间间隔。如果在远端用户加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到设置远端视图的时间间隔。最小值为 0。</pd>
+            </plentry>        
+            <plentry>
+                <pt>remoteJoined2UnmuteVideo</pt>
+                <pd>远端用户加入频道到订阅远端视频流的时间间隔。如果在远端用户加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到订阅远端视频流的时间间隔。最小值为 0。</pd>
+            </plentry>             
+            <plentry>
+                <pt>remoteJoined2PacketReceived</pt>
+                <pd>远端用户加入频道到接收到远端视频流的时间间隔。如果在远端用户加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到接收到远端视频流的时间间隔。最小值为 0。</pd>
+            </plentry>                  
             </parml> </section>
     </refbody>
 </reference>
