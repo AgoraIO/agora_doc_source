@@ -22,7 +22,7 @@ Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的�
 
 对于你需要在服务端部署的待录制页面，可基于 [flexible-classroom-desktop](https://github.com/AgoraIO-Community/flexible-classroom-desktop) 仓库中 `templates/record_page_prod.html` 文件进行修改和调整，然后将修改后的 HTML 文件部署至你自己的 CDN。
 
-![](https://web-cdn.agora.io/docs-files/1652439400957)
+![](_89d79b0d-60fc-4fcd-ac5f-2d79122adf2a.png)
 
 ## 启动课堂录制
 
@@ -117,7 +117,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
    }
 ```
 
-2. 调用设置录制状态接口至少 60 秒后，再调用[更新录制设置接口](/cn/agora-class/agora_class_restful_api?platform=RESTful#更新录制设置)，将 `onhold` 参数设置为 `false` 来正式开始录制，进行录制切片。示例包体如下：
+2. 当录制页面AgoraEduSDK.setRecordReady()调用完成后，即录制页面加载成功后，再调用更新录制设置接口，将 onhold 参数设置为 false 来正式开始录制，进行录制切片。示例包体如下：
 
    ```json
    {
