@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startmediarenderingtracing">
+    <title><ph keyref="startMediaRenderingTracing"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开始跟踪视频渲染事件。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startMediaRenderingTracing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int startMediaRenderingTracing();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startMediaRenderingTracing NS_SWIFT_NAME(startMediaRenderingTracing());</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startMediaRenderingTracing() = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p id="desc">成功调用该方法后，SDK 会以该时间点为起点，开始跟踪视频渲染相关的事件，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告该事件的相关信息。</p>
+            <note id="note">
+            <ul>
+            <li>SDK 默认在加入频道后自动开始跟踪首帧出图相关的事件。如果你在加入频道时不订阅远端视频流、加入频道后开始订阅远端视频流，声网推荐你在调用 <xref keyref="muteRemoteVideoStream"/> 方法开始订阅远端视频流前先调用该方法重新设置跟踪起始时间点，以确保回调数据中的时间信息（例如首帧出图时间）准确。</li>
+            <li>离开频道后，SDK 会自动重置该时间点。</li>
+            </ul> </note> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>
