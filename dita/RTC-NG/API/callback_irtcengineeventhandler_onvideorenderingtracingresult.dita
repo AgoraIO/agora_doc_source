@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideorenderingtracingresult">
+    <title><ph keyref="onVideoRenderingTracingResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频渲染跟踪事件回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoRenderingTracingResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onVideoRenderingTracingResult(int uid,
+    Constants.MEDIA_RENDER_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoRenderingTracingResultOfUid:(NSUInteger)uid currentEvent:(AgoraMediaRenderTraceEvent)currentEvent tracingInfo:(AgoraVideoRenderingTracingInfo * _Nonnull)tracingInfo NS_SWIFT_NAME(rtcEngine(_:videoRenderingTracingResultOfUid:currentEvent:tracingInfo:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onVideoRenderingTracingResult(uid_t uid, MEDIA_RENDER_TRACE_EVENT currentEvent, VideoRenderingTracingInfo info) {
+  (void)uid;
+  (void)currentEvent;
+  (void)info;
+}</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>用户 ID。</pd>
+            </plentry>
+            <plentry>
+                <pt>currentEvent</pt>
+                <pd>当前视频渲染跟踪事件。详见 <xref keyref="MEDIA_RENDER_TRACE_EVENT"/>。</pd>
+            </plentry>  
+            <plentry props="android ios mac">
+                <pt>tracingInfo</pt>
+                <pd>视频渲染跟踪结果。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+            </plentry>          
+            <plentry props="cpp">
+                <pt>info</pt>
+                <pd>视频渲染跟踪结果。详见 <xref keyref="VideoRenderingTracingInfo"/>。</pd>
+            </plentry>                  
+            </parml> </section>
+    </refbody>
+</reference>
