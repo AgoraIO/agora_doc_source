@@ -13,9 +13,9 @@
 我们在 GitHub 提供了开源的跨频道媒体流转发示例项目 [HostAcrossChannel](https://github.com/AgoraIO/API-Examples/blob/main/Android/APIExample/app/src/main/java/io/agora/api/example/examples/advanced/HostAcrossChannel.java)。下方是 Demo 的演示效果：
 
 | | 主播 A | 主播 B |
-|:---|:------------|:------------|
-| **PK 前** | <img src="https://web-cdn.agora.io/docs-files/1672215833849" width="70%"/> | <img src="https://web-cdn.agora.io/docs-files/1672215840135" width="70%"/> |
-| **PK 中** | <img src="https://web-cdn.agora.io/docs-files/1672215919486" width="70%"/> | <img src="https://web-cdn.agora.io/docs-files/1672215926070" width="70%"/> |
+|:----|:--------|:------------|
+| **PK 前** | <img src="https://web-cdn.agora.io/docs-files/1672803590199" width="70%"/> | <img src="https://web-cdn.agora.io/docs-files/1672803643613" width="75%"/> |
+| **PK 中** | <img src="https://web-cdn.agora.io/docs-files/1672803622116" width="70%"/> | <img src="https://web-cdn.agora.io/docs-files/1672803662758" width="75%"/> |
 
 
 ## 前提条件
