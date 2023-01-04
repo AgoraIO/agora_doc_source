@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableinstantmediarendering">
+    <title><ph keyref="enableInstantMediaRendering"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启媒体实时渲染。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableInstantMediaRendering"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableInstantMediaRendering();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableInstantMediaRendering NS_SWIFT_NAME(enableInstantMediaRendering());</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableInstantMediaRendering() = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p>成功调用该方法后，SDK 会开启音视频帧的实时渲染模式，有效提升播放媒体资源时的渲染效率。
+                
+            <note type="attention">
+            <ul>
+            <li>请谨慎调用该方法，一旦开启实时渲染功能，只能通过调用 <xref keyref="release"/> 方法销毁 <apiname keyref="IRtcEngine"/> 对象来取消。</li>
+            <li>开启该模式会消耗一部分性能体验。</li>
+            </ul> </note></p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>
