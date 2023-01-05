@@ -20,7 +20,7 @@
 
 参考如下 API 时序图实现相关代码逻辑：
 
-![](https://web-cdn.agora.io/docs-files/1672818162076)
+![](https://web-cdn.agora.io/docs-files/1672909939287)
 
 ### 1. 开始跨频道媒体流转发
 
