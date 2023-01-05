@@ -8,18 +8,6 @@
 该功能因其实时性和互动性，能够丰富直播玩法，尤其适用于连麦 PK、在线合唱等直播场景，为观众带来更好的观看体验的同时，也为主播带来更多的流量和收益。
 
 
-## 示例项目
-
-我们在 GitHub 提供了开源的跨频道媒体流转发示例项目 [MediaChannelRelay](https://github.com/AgoraIO/API-Examples/blob/main/iOS/APIExample/APIExample/Examples/Advanced/MediaChannelRelay/MediaChannelRelay.swift)。下方是 Demo 的演示效果：
-
-
-| | PK 前 | PK 中 |
-|:----|:--------|:------------|
-| **主播 A** | <img src="https://web-cdn.agora.io/docs-files/1672803590199" width="70%"/> | <img src="https://web-cdn.agora.io/docs-files/1672803643613" width="75%"/> |
-| **主播 B** | <img src="https://web-cdn.agora.io/docs-files/1672803622116" width="70%"/> | <img src="https://web-cdn.agora.io/docs-files/1672803662758" width="75%"/> |
-| **主播 A 的观众**| | |
-
-
 ## 前提条件
 
 在开始前，请确保满足以下条件：
@@ -128,6 +116,10 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, channelMediaRelayStateDidChange stat
 - 在直播场景中，只有角色为主播的用户才能调用 `startChannelMediaRelay` 开始跨频道媒体流转发
 - 该功能最多支持将媒体流转发至 64 个目标频道
 - 该功能不支持 String 型 `uid`，如需使用跨频道连麦功能，则要在普通连麦中也使用 Int 型 `uid`，否则跨频道连麦功能无法正常使用
+
+### 示例项目
+
+我们在 GitHub 提供了开源的跨频道媒体流转发示例项目 [MediaChannelRelay](https://github.com/AgoraIO/API-Examples/blob/main/iOS/APIExample/APIExample/Examples/Advanced/MediaChannelRelay/MediaChannelRelay.swift) 供参考。
 
 ### API 参考
 
