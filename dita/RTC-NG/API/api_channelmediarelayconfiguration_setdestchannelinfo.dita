@@ -18,7 +18,8 @@
     destInfos.put(channelName, destInfo);
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec"/>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
+</codeblock>
             <codeblock props="cpp" outputclass="language-cpp"/>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
@@ -35,7 +36,8 @@
                 <pd>目标频道的频道名。</pd>
             </plentry>
             <plentry>
-                <pt>destInfo</pt>
+                <pt props="android">destInfo</pt>
+                <pt props="ios mac">destinationInfo</pt>
                 <pd>
                     <p>目标频道信息 <apiname keyref="ChannelMediaInfo"/>，包含如下成员：                    
                     <ul>
@@ -52,5 +54,11 @@
                 </pd>
             </plentry>
             </parml> </section>
+        <section id="return_values" props="ios mac">
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
+            <li><codeph><ph keyref="false"/></codeph>：方法调用失败。</li>
+            </ul>
+        </section>
     </refbody>
 </reference>
