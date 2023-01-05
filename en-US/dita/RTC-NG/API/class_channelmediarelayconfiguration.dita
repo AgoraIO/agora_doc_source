@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_channelmediarelayconfiguration">
     <title> <ph keyref="ChannelMediaRelayConfiguration"/> </title>
-    <shortdesc>Configuration information of relaying media streams across channels.</shortdesc>
+    <shortdesc>Configuration of cross channel media relay.</shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -140,7 +140,7 @@
                 <pt props="cpp framework">srcInfo</pt>
                 <pt props="ios mac">sourceInfo</pt>
                 <pd props="cpp ios mac framework">
-                    <p>The information of the source channel <xref keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
+                    <p>The information of the source channel. See <xref keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
                     <li><parmname>channelName</parmname>: The name of the source channel. The default value is <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the name of the current channel.</li>
                     <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>uid</codeph>. You must set it as 0.</li>
                     <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the source channel. This token is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>srcInfo</parmname>.<ul>
@@ -166,7 +166,7 @@
             </plentry>
             <plentry props="cpp framework">
                 <pt>destCount</pt>
-                <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo"/> structs you define in<parmname> destInfo</parmname>.</pd>
+                <pd>The number of destination channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo"/> structs you define in <parmname>destInfo</parmname>.</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>setDestinationInfo</pt>
