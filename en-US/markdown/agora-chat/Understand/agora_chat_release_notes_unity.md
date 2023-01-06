@@ -1,5 +1,21 @@
 This page provides release notes for the Agora Chat SDK for C#.
 
+## v1.0.8
+
+v1.0.8 was released on November 3, 2022. 
+
+#### Improvements
+
+- Removed some redundant logs of the SDK.
+- Changed the namespace from ChatSDK to AgoraChat.
+
+#### Bugs fixed
+
+- Failures in getting a large number of messages from the server in rare scenarios.
+- The issue of incorrect data statistics.
+- Crashes caused by log printing in rare scenarios.
+- The issue that the connection listener occasionally fails to receive connection callbacks.
+
 ## v1.0.5
 
 v1.0.5 was released on August 12, 2022.

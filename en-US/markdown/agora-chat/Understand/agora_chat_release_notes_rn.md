@@ -1,5 +1,32 @@
 This page provides release notes for the Agora React Native Chat SDK.
 
+## v1.0.11
+
+v1.0.11 was released on December 19.
+
+#### Issues fixed
+
+- Some alerts on Android 12.
+- The inconsistency of messages in the memory and the database due to a call to the `updateMessage` method in rare scenarios.
+- Crashes in rare scenarios.
+
+## v1.0.10
+
+v1.0.10 was released on November 22, 2022. 
+
+#### New features
+
+Adds two events to the `ChatGroupEventListener` class:
+- `onDetailChanged`: Occurs when group details change.
+- `onStateChanged`: Occurs when the group is enabled or disabled.
+
+#### Issues fixed
+
+- The overlimit issue during JSON conversion on the Android platform.
+- Failures in getting a large number of messages from the server in few scenarios.
+- The issue of incorrect data statistics.
+- Crashes caused by log printing in rare scenarios.
+
 ## v1.0.7
 
 v1.0.7 was released on September 7, 2022.

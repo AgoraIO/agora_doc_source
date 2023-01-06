@@ -965,6 +965,8 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 | 字段   | 类型   | 描述           | 是否必填 |
 | :----- | :----- | :------------- | :------- |
 | `file` | String | 文件本地路径。 | 是       |
+| `thumbnail-height` | Number | 图片缩略图的高度。该参数仅在上传的图片超过 10 KB 时，才会生效。若不传该参数，默认为 170 像素。 | 否       |
+| `thumbnail-width` | Number| 图片缩略图的宽度。该参数仅在上传的图片超过 10 KB 时，才会生效。若不传该参数，默认为 170 像素。 | 否       |
 
 ### HTTP 响应
 

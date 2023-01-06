@@ -1,5 +1,31 @@
 This page provides release notes for the Agora Chat Flutter SDK.
 
+## v1.0.9
+
+v1.0.9 was released on December 19.
+
+#### Issues fixed
+
+- Some alerts on Android 12.
+- The inconsistency of messages in the memory and the database due to a call to the `updateMessage` method in rare scenarios.
+- The `EMGroupEventHandler#onDestroyedFromGroup` callback that occurs when a group is destroyed does not work on the Android platform.
+- The `EMGroupEventHandler#onAutoAcceptInvitationFromGroup` callback that occurs when a user's group invitation is accepted automatically does not work on the Android platform.
+- Crashes in rare scenarios.
+
+## v1.0.8
+
+v1.0.8 was released on November 22, 2022.
+
+#### Improvements
+
+Removed some redundant logs of the SDK.
+
+#### Issues fixed
+
+- Failures in getting a large number of messages from the server in few scenarios.
+- The issue of incorrect data statistics.
+- Crashes caused by log printing in rare scenarios.
+
 ## v1.0.7
 
 v1.0.7 was released on September 7, 2022.

@@ -1,5 +1,32 @@
 This page provides release notes for the Agora Chat Web SDK.
 
+## v1.0.8
+
+v1.0.8 was released on December 19.
+
+#### Improvements
+
+Optimized the callback for a message sending failure to make sure that it is triggered immediately when the network is disconnected.
+
+#### Issues fixed
+
+The `file_length` parameter in the `create` method did not work when this method was called to create an attachment message.
+
+## v1.0.7
+
+v1.0.7 was released on November 22, 2022. 
+
+#### Improvements
+
+- Split the SDK into several modules.
+- Added in-line comments.
+- Optimized the reconnection logic.
+
+#### Issues fixed
+
+- An issue with compatibility with Internet Explorer. 
+- An issue of lacking the longest validity period of token.
+
 ## v1.0.6
 
 v1.0.6 was released on August 26, 2022.

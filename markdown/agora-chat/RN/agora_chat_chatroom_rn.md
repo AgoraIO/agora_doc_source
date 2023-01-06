@@ -92,7 +92,7 @@ ChatClient.getInstance()
 
 ### 获取聊天室详情
 
-聊天室所有成员均可调用 `fetchChatRoomInfoFromServer` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
+聊天室所有成员均可调用 `fetchChatRoomInfoFromServer` 从服务器获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
 
 示例代码如下：
 
@@ -107,7 +107,7 @@ ChatClient.getInstance()
   });
 ```
 
-也可以从本地获取聊天室信息。
+此外，你也可以从本地获取聊天室信息。
 
 示例代码如下：
 
@@ -174,7 +174,7 @@ ChatClient.getInstance()
 示例代码如下：
 
 ```typescript
-// 实现监听器以及定义监听器对象
+// 实现监听器以及定义监听器对象。
 const roomListener: ChatRoomEventListener = new (class
   implements ChatRoomEventListener
 {
@@ -281,6 +281,36 @@ const roomListener: ChatRoomEventListener = new (class
       `onAllChatRoomMemberMuteStateChanged:`,
       params.roomId,
       params.isAllMuted ? "true" : "false"
+    );
+  }
+  // 聊天室详情变更。聊天室所有成员会收到该事件。
+  onSpecificationChanged?(room: ChatRoom): void {
+    console.log(`onSpecificationChanged:`, room);
+  }
+  // 聊天室自定义属性（key-value）有更新。聊天室所有成员会收到该事件。
+  onAttributesUpdated?(params: {
+    roomId: string;
+    attributes: Map<string, string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesUpdated:`,
+      params.roomId,
+      params.attributes,
+      params.from
+    );
+  }
+  // 聊天室自定义属性（key-value）被删除。聊天室所有成员会收到该事件。
+  onAttributesRemoved?(params: {
+    roomId: string;
+    removedKeys: Array<string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesRemoved:`,
+      params.roomId,
+      params.removedKeys,
+      params.from
     );
   }
 })(this);

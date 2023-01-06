@@ -1,9 +1,8 @@
 群组是支持多人沟通的即时通讯系统，本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理群组，并实现群组相关功能。
-如需查看消息相关内容，参见 [消息管理](./agora_chat_send_receive_message_flutter)。
 
 ## 技术原理
 
-即时通讯 IM Flutter SDK 提供了 `ChatGroup`, `ChatGroupManager` 和 `ChatGroupEventHandler` 类用于群组管理，可以实现以下功能：
+即时通讯 IM Flutter SDK 提供了 `ChatGroup`、`ChatGroupManager` 和 `ChatGroupEventHandler` 类用于群组管理，可以实现以下功能：
 
 - 创建、解散群组
 - 加入、退出群组
@@ -29,7 +28,7 @@
 
 在创建群组前，你需要设置群组类型 `ChatGroupStyle` 和进群邀请是否需要对方同意 `inviteNeedConfirm`。
 
-1. 私有群不可被搜索到，公开群可以通过 ID 搜索到。目前支持四种群组类型 ( `ChatGroupStyle`)：
+1. 私有群不可被搜索到，公开群可以通过 ID 搜索到。目前支持四种群组类型 (`ChatGroupStyle`)：
 
 - `PrivateOnlyOwnerInvite`: 私有群，只有群主和管理员可以邀请人进群；
 - `PrivateMemberCanInvite`: 私有群，所有群成员均可以邀请人进群；
@@ -37,15 +36,15 @@
 - `PublicOpenJoin`: 公开群，任何人都可以进群，无需群主和群管理同意。
 
 2. 进群邀请是否需要对方同意 (`inviteNeedConfirm`) 的具体设置如下：
-    - 进群邀请需要用户确认 (`ChatGroupOptions#inviteNeedConfirm` 设置为 `true`）。创建群组并发送群组邀请后，，根据受邀用户的（`autoAcceptGroupInvitation` 设置）而有所不同：
-       - 是（`autoAcceptGroupInvitation` 设置为 `true`）。被邀请者自动加入群组并接收 `ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 回调，群主接收 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群组成员接收 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
-       - 否（`autoAcceptGroupInvitation` 设置为 `false`）。被邀请者收到 `ChatGroupEventHandler#onInvitationReceivedFromGroup` 事件并选择是否加入聊天组：
-          - 用户同意入群邀请后，群主收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件；
-          - 用户拒绝入群邀请后，群主收到 `ChatGroupEventHandler#onInvitationDeclinedFromGroup` 事件。
+    - 进群邀请需要用户确认 (`ChatGroupOptions#inviteNeedConfirm` 设置为 `true`）。创建群组并发送群组邀请后，根据受邀用户的（`autoAcceptGroupInvitation` 设置）而有所不同：
+       - 用户设置自动接受群组邀请（`autoAcceptGroupInvitation` 设置为 `true`）。受邀用户自动进群并收到`ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 回调，邀请人收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
+       - 用户设置手动确认群组邀请（`autoAcceptGroupInvitation` 设置为 `false`）。受邀用户收到 `ChatGroupEventHandler#onInvitationReceivedFromGroup` 事件并选择是否加入群组：
+          - 用户同意入群邀请后，邀请人收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件；
+          - 用户拒绝入群邀请后，邀请人收到 `ChatGroupEventHandler#onInvitationDeclinedFromGroup` 事件。
 
 ![img](https://web-cdn.agora.io/docs-files/1653385689954)
 
-    - 进群邀请无需用户确认（`ChatGroupOptions#inviteNeedConfirm` 设置为 `false`）。创建群组并发送入组邀请后，无论其 `autoAcceptGroupInvitation` 设置如何，都会将受邀者添加到群组中。被邀请者接收 `ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 事件，群主接收 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他聊天群成员接收 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
+    - 进群邀请无需用户确认（`ChatGroupOptions#inviteNeedConfirm` 设置为 `false`）。创建群组并发送入组邀请后，无论 `autoAcceptGroupInvitation` 设置如何，都会将受邀者添加到群组中。受邀用户收到 `ChatGroupEventHandler#onAutoAcceptInvitationFromGroup` 事件，邀请人收到 `ChatGroupEventHandler#onInvitationAcceptedFromGroup` 和 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件，其他群成员收到 `ChatGroupEventHandler#onMemberJoinedFromGroup` 事件。
 
 用户可以调用 `createGroup` 创建群组，并通过 `ChatGroupOptions` 指定设置群组名称、描述、最大成员数、建群原因等群组属性。
 
