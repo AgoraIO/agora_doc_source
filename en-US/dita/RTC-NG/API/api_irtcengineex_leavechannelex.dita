@@ -28,15 +28,15 @@
         </section>
         <section id="detailed_desc">
             <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p>
-            <p>After calling<xref keyref="joinChannelEx"/>  to join the channel, this method must be called to end the call before starting the next call.</p>
+            <p>After calling <xref keyref="joinChannelEx"/> to join the channel, this method must be called to end the call before starting the next call.</p>
             <p>This method can be called whether or not a call is currently in progress. This method releases all resources related to the session.</p>
-            <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the<xref keyref="onLeaveChannel"/>  callback.</p>
-            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the<xref keyref="onLeaveChannel"/>  callback.</p>
-            <p>A successful call of this method triggers the following callbacks<apiname keyref="onLeaveChannel"/>: The local client: .The remote client: , if the user joining the channel is in the COMMUNICATION profile, or is a host in the LIVE_BROADCASTING<xref keyref="onUserOffline"/> profile.</p>
+            <p props="native unity electron flutter">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
+            <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel"/> callback.</p>
+            <p>After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel"/> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline"/> callback.</p>
             <note type="attention" id="note">
             <ul>
             <li>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</li>
-            <li>Calling<xref keyref="leaveChannel"/>  will leave the channels when calling  and<xref keyref="joinChannelEx"/>  at the same time<xref keyref="joinChannel2"/>.</li>
+            <li>Calling <xref keyref="leaveChannel"/> will leave the channels when calling <xref keyref="joinChannel2"/> and <xref keyref="joinChannelEx"/> at the same time.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
