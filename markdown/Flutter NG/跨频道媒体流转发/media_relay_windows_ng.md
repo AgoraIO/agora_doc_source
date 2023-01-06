@@ -27,8 +27,25 @@
 
 一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
 
+
 ```cpp
-// TODO: 配置源频道信息，配置目标频道信息，开始跨频道媒体流转发的示例代码
+// 配置源频道信息、目标频道信息和目标频道数量。其中 channelName 使用用户填入的源频道名，uid 需要填为 0
+// 基于该特性的实现原理，必须将源频道的 uid 设为 0
+// 这里的 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
+int nDestCount = m_vecChannelMedias.size();
+ChannelMediaInfo  *lpDestInfos = new ChannelMediaInfo[nDestCount];
+for (int nIndex = 0; nIndex < nDestCount; nIndex++) {
+    lpDestInfos[nIndex].channelName = m_vecChannelMedias[nIndex].channelName;
+    lpDestInfos[nIndex].token = m_vecChannelMedias[nIndex].token;
+    lpDestInfos[nIndex].uid = m_vecChannelMedias[nIndex].uid;
+}
+ChannelMediaRelayConfiguration cmrc;
+cmrc.srcInfo = m_srcInfo;
+cmrc.destInfos = lpDestInfos;
+cmrc.destCount = nDestCount;
+int ret = 0;
+// 开始跨频道媒体流转发
+ret = m_rtcEngine->startChannelMediaRelay(cmrc);
 ```
 
 
@@ -44,13 +61,13 @@
 成功调用 `startChannelMediaRelay` 开始跨频道媒体流转发后，如果想暂停向所有目标频道发送媒体流，可调用 `pauseAllChannelMediaRelay` 方法，示例代码如下：
 
 ```cpp
-// TODO
+m_rtcEngine->pauseAllChannelMediaRelay();
 ```
 
 暂停跨频道媒体流转发后，如果想恢复向所有目标频道转发媒体流，可调用 `resumeAllChannelMediaRelay` 方法，示例代码如下：
 
 ```cpp
-// TODO
+m_rtcEngine->resumeAllChannelMediaRelay();
 ```
 
 
