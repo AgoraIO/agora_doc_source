@@ -70,7 +70,7 @@ Agora 即时通讯 REST 平台提供多租户架构，以集合（Collection）�
 | 获取指定用户的所有用户属性 | GET    | /{org_name}/{app_name}/metadata/user/{username} | 获取指定用户的所有用户属性。                 |
 | 批量获取用户属性           | POST   | /{org_name}/{app_name}/metadata/user/get        | 根据指定的用户名列表和属性列表查询用户属性。 |
 | 删除用户属性               | DELETE | /{org_name}/{app_name}/metadata/user/{username} | 删除指定用户的所有用户属性。                 |
-| 获取用户属性总量大小       | GET    | /{org_name}/{app_name}/metadata/user/capacity   | 获取该 app 下所有用户的用户属性总大小。      |
+| 获取 app 下的用户属性总大小       | GET    | /{org_name}/{app_name}/metadata/user/capacity   | 获取该 app 下所有用户的用户属性总大小。      |
 
 ### 用户关系管理
 
@@ -82,7 +82,7 @@ Agora 即时通讯 REST 平台提供多租户架构，以集合（Collection）�
 | 移除好友     | DELETE | /{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username} | 移除好友列表中的用户。 |
 | 获取好友列表 | GET    | /{org_name}/{app_name}/users/{owner_username}/contacts/users | 获取好友列表。         |
 | 获取黑名单   | GET    | /{org_name}/{app_name}/users/{owner_username}/blocks/users   | 获取黑名单。           |
-| 添加黑名单   | POST   | /{org_name}/{app_name}/users/{owner_username}/blocks/users   | 添加用户至黑名单。     |
+| 添加用户至黑名单   | POST   | /{org_name}/{app_name}/users/{owner_username}/blocks/users   | 添加用户至黑名单。     |
 | 移除黑名单   | DELETE | /{org_name}/{app_name}/users/{owner_username}/blocks/users/{blocked_username} | 移除黑名单中的用户。   |
 
 ### 群组管理

@@ -204,7 +204,7 @@
 | `secret`     | String    | 成功上传图片文件后返回的密钥。|
 | `file_length` | Int      | 图片文件大小，单位为字节（Byte）。 |
 | `size`       | Json      | 图片尺寸，单位为像素。包含如下字段：<ul><li>`height`: 图片高度</li><li>`width`: 图片宽度</li></ul>   |
-| `url`   | String  | 图片 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为文件 ID。成功上传图片文件后，从文件上传的响应 body 中获取。|
+| `url`   | String  | 图片 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`，其中 `file_uuid` 为文件 ID。成功上传图片文件后，从文件上传的响应 body 中获取。|
 | `type`    | String  | 消息类型。图片消息为 `img`。 |
 
 
@@ -237,7 +237,7 @@
 | `secret`          | String    | 成功上传语音文件后返回的密钥。  |
 | `file_length`  |  Long  | 语音文件大小，单位为字节（Byte）。 |
 | `length`    | Int | 语音时间，单位为秒。 |
-| `url`  | String  | 语音文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为文件 ID。成功上传语音文件后，从文件上传的响应 body 中获取。|
+| `url`  | String  | 语音文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`，其中 `file_uuid` 为文件 ID。成功上传语音文件后，从文件上传的响应 body 中获取。|
 | `type`  | String | 消息类型。语音消息为 `audio`。 |
 
 ### 视频消息
@@ -275,10 +275,10 @@
 | `thumb_secret` | String | 成功上传视频缩略图后返回的秘钥。 |
 | `filename` | String | 视频文件的名称。|
 | `size` | Json | 缩略图图片尺寸，包含如下字段：<ul><li>`height`: 图片高度</li><li>`width`: 图片宽度</li></ul> |
-| `thumb` | String  | 视频缩略图的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为缩略图文件 ID。成功上传视频缩略图文件后，从文件上传的响应 body 中获取。 |
+| `thumb` | String  | 视频缩略图的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`，其中 `file_uuid` 为缩略图文件 ID。成功上传视频缩略图文件后，从文件上传的响应 body 中获取。 |
 | `secret` | String | 成功上传视频文件后返回的秘钥。|
 | `file_length` | Long | 视频文件大小，单位为字节（Byte）。|
-| `url` | String | 视频文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`，其中 `uuid` 为视频文件 ID。成功上传视频文件后，从文件上传的响应 body 中获取。|
+| `url` | String | 视频文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`，其中 `file_uuid` 为视频文件 ID。成功上传视频文件后，从文件上传的响应 body 中获取。|
 | `type` | String | 消息类型。视频消息为 `video`。|
 
 ### 位置消息

@@ -115,7 +115,7 @@ The request body is a JSON object, which contains the following parameters:
   | `filename` | String | The name of the image file. | Yes |
   | `secret` | String | The secret for accessing the image file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `resctrict-access` as `true` in the request header of `upload` when uploading the image file, ensure that you set this parameter. | No |
   | `size` | JSON | The size of the image (in pixels). This parameter contains two fields:<ul><li>height: The image height.</li><li>width: The image width.</li></ul> | Yes |
-  | `url` | String | The URL address of the image file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`, in which `uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
+  | `url` | String | The URL address of the image file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
 
 - Voice message
 
@@ -124,18 +124,18 @@ The request body is a JSON object, which contains the following parameters:
   | `filename` | String | The name of the audio file. | Yes |
   | `secret` | String | The secret for accessing the audio file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `resctrict-access` as `true` in the request header of `upload` when uploading the audio file, ensure that you set this parameter. | No |
   | `length` | Int | The length of the audio file (in seconds). | Yes |
-  | `url` | String | The URL address of the audio file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`, in which `uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
+  | `url` | String | The URL address of the audio file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
 
 - Video message
 
   | Parameter | Type | Description | Required |
   | --- | --- | --- | --- |
-  | `thumbnail` | String | The URL address of the video thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`, in which `uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
+  | `thumbnail` | String | The URL address of the video thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
   | `length` | Int | The length of the video file (in seconds). | Yes |
   | `secret` | String | The secret for accessing the video file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `resctrict-access` as `true` in the request header of `upload` when uploading the video file, ensure that you set this parameter. | No |
   | `file_length` | Long | The data length of the video file (in bytes). | Yes |
   | `thumb_secret` | String | The secret for accessing the video thumbnail. You can obtain the value of `thumb_secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `restrict-access` as `true` in the request header of `upload` when uploading the thumbnail, ensure that you set this parameter. | No |
-  | `url` | String | The URL address of the video file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`, in which `uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
+  | `url` | String | The URL address of the video file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
 
 - File message
 
@@ -143,7 +143,7 @@ The request body is a JSON object, which contains the following parameters:
   | --- | --- | --- | --- |
   | `filename` | String | The name of the file. | Yes |
   | `secret` | String | The secret for accessing the file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `restrict-access` as `true` in the request header of `upload` when uploading file, ensure that you set this parameter. | No |
-  | `url` | String | The URL address of the file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`, in which `uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
+  | `url` | String | The URL address of the file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
 
 - Location message
 
@@ -986,7 +986,7 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-GET https://{HOST}/{org_name}/{app_name}/chatfiles/{uuid}
+GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 ```
 
 #### Path parameter

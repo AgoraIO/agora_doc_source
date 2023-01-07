@@ -228,14 +228,14 @@ curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2
 ### HTTP 请求
 
 ```http
-PUT https://{host}/{org}/{app}/users/{username}/notification/{type}/{key}
+PUT https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 ```
 
 #### 路径参数
 
 | 参数   | 类型 | 描述                                                         | 是否必填 |
 | :----- | :--- | :----------------------------------------------------------- | :----- |
-| `type` | String | 会话类型：<br/> - `user`: 单聊；<br/> - `chatgroup`: 群聊。     | 是   |
+| `chattype` | String | 会话类型：<br/> - `user`: 单聊；<br/> - `chatgroup`: 群聊。     | 是   |
 | `key`  | String | 会话标识符：<br/> - 如果 `type` 设置为 `user`，`key` 表示对端用户的用户 ID；<br/> - 如果 `type` 设置为 `chatgroup`，`key` 则表示群组 ID。 | 是   |
 
 要在应用级别设置推送通知，你可以设置 `type` 为 `user` 和 `key` 当前用户的用户 ID。
@@ -254,7 +254,7 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/{type}/{key}
 | 参数             | 类型 | 描述                                                         | 是否必填 |
 | :--------------- | :--- | :----------------------------------------------------------- | :----- |
 | `type`           | String | 推送通知方式：<br/> - `DEFAULT`：继承应用级别的设置；<br/> - `ALL`：接收所有离线消息的推送通知；<br/> - `AT`：仅接收提及消息的推送通知；<br/> - `NONE`：不接收离线消息的推送通知。 | 否    |
-| `ignoreInterval` | String | 免打扰时间段，格式为 {HH:MM-HH:MM}，例如，08:30-10:00。HH 的范围为 [00,23] 小时，MM 的范围为 [00,59] 分钟。<div class="alert note">该参数仅在请求 header 的 `type` 设置为 `user` 和 `key` 设置为当前用户的用户 ID 时有效，即免打扰时间段仅对应用生效，对特定会话不生效。</div> | 否     |
+| `ignoreInterval` | String | 免打扰时间段，格式为 {HH:MM-HH:MM}，例如，08:30-10:00。HH 的范围为 [00,23] 小时，MM 的范围为 [00,59] 分钟。<div class="alert note">该参数仅在请求 header 的 `type` 设置为 `user` 和 `key` 设置为当前用户的用户 ID 时有效，即免打扰时间段仅对应用生效，对特定会话不生效。<ul><li>开始时间和结束时间的设置立即生效，免打扰模式每天定时触发。例如，开始时间为 `08:00`，结束时间为 `10:00`，免打扰模式在每天的 8:00-10:00 内生效。若你在 11:00 设置开始时间为 `08:00`，结束时间为 `12:00`，则免打扰模式在当天的 11:00-12:00 生效，以后每天均在 8:00-12:00 生效。</li><li>若开始时间和结束时间相同，免打扰模式则全天生效。</li><li> 若结束时间早于开始时间，则免打扰模式在每天的开始时间到次日的结束时间内生效。例如，开始时间为 `10:00`，结束时间为 `08:00`，则免打扰模式的在当天的 10:00 到次日的 8:00 生效。</li><li>目前仅支持在每天的一个指定时间段内开启免打扰模式，不支持多个免打扰时间段，新的设置会覆盖之前的设置。<li>若不设置该参数，传空字符串。</li></ul></div> | 否     |
 | `ignoreDuration` | Long | 免打扰时长（以毫秒为单位）。取值范围为 [0,604800000]，其中 `0 ` 表示该参数无效，`604800000` 表示免打扰模式持续 7 天。 | 否     |
 
 ### HTTP 响应

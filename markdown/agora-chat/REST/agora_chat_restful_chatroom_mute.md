@@ -60,8 +60,8 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 | 字段            | 类型   | 描述                                                          | 是否必填 |
 | :-------------- | :----- | :------------------------------------------------------------ | :------- |
-| `mute_duration` | long   | 从当前时间起算，禁言的时间长度。单位毫秒。`-1` 表示永久禁言。 | 是       |
-| `usernames`     | String | 待被禁言的聊天室成员的用户名数组。                            | 是       |
+| `mute_duration` | Number   | 禁言时长，从当前时间开始计算。单位毫秒。`-1` 表示永久禁言。 | 是       |
+| `usernames`     | String | 要被禁言的用户 ID。                          | 是       |
 
 ### HTTP 响应
 

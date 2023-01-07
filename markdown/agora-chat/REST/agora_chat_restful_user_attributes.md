@@ -269,7 +269,7 @@ curl -X POST -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type:  applic
 }
 ```
 
-## 获取用户属性总量大小
+## 获取 app 下的用户属性总大小
 
 获取该 app 下所有用户的属性数据大小，单位为字节。
 

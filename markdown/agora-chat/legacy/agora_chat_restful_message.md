@@ -92,7 +92,7 @@ POST https://{host}/{org_name}/{app_name}/messages
 | `filename` | String | 图片名称。                                                                                                                                                | 是                                                                      |
 | `secret`   | String | 图片访问密钥，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                              | 如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
 | `size`     | JSON   | 图片尺寸，单位为像素，包含以下字段：<li>`height`：图片高度<li>`width`：图片宽度                                                                           | 是                                                                      |
-| `url`      | String | 图片 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为文件 ID，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
+| `url`      | String | 图片 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`<br>`file_uuid` 为文件 ID，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
 | `type`     | String | 消息类型。图片消息为 `img`。                                                                                                                              | 是                                                                      |
 
 **语音消息**
@@ -102,19 +102,19 @@ POST https://{host}/{org_name}/{app_name}/messages
 | `filename` | String | 图片名称。                                                                                                                                                    | 是                                                                      |
 | `secret`   | String | 语音文件访问密钥，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                              | 如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
 | `Length`   | Int    | 语音文件时长，单位为秒。                                                                                                                                      | 是                                                                      |
-| `url`      | String | 语音文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为文件 ID，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
+| `url`      | String | 语音文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`<br>`file_uuid` 为文件 ID，成功上传语音文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
 | `type`     | String | 消息类型。语音消息为 `audio`。                                                                                                                                | 是                                                                      |
 
 **视频消息**
 
 | 字段           | 类型           | 描述                                                                                                                                                                         | 是否必填                                                                      |
 | :------------- | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
-| `thumb`        | String         | 视频缩略图 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>`uuid` 为视频缩略图唯一标识，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                            |
+| `thumb`        | String         | 视频缩略图 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`<br>`file_uuid` 为视频缩略图唯一标识，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                            |
 | `length`       | Number         | 视频时长。单位为秒。                                                                                                                                                         | 是                                                                            |
 | `secret`       | String         | 视频文件访问密钥，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                                             | 如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。   |
 | `file_length`  | Long           | 视频文件大小。单位为字节。                                                                                                                                                   | 是                                                                            |
 | `thumb_secret` | String         | 视频缩略图访问密钥，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。                                                                         | 如果缩略图文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。 |
-| `url`          | （必填）String | 视频文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{uuid}`<br>uuid 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。                  | 是                                                                            |
+| `url`          | （必填）String | 视频文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`<br>`file_uuid` 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。                  | 是                                                                            |
 | `type`         | （必填）String | 消息类型。视频消息为 `video`。                                                                                                                                               | 是                                                                            |
 
 **位置消息**
@@ -569,7 +569,7 @@ curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer <YourApp
 ### HTTP 请求
 
 ```http
-GET https://{HOST}/{org_name}/{app_name}/chatfiles/{uuid}
+GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 ```
 
 #### 路径参数

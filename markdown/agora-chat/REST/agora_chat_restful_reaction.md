@@ -23,12 +23,12 @@
 | :---------- | :----- | :----------------------------- |
 | `data`      | JSON   | 返回的数据。                   |
 | `timestamp` | Long   | HTTP 响应的 Unix 时间戳 (ms)。 |
-| `username`  | String | 用户标识。                     |
-| `groupname` | String | 群组名称。                     |
 
 ## 认证方式 <a name="auth"></a>
 
 ~458499a0-7908-11ec-bcb4-b56a01c83d2e~
+
+<a name="create"></a>
 
 ## 创建/追加 Reaction
 
@@ -66,12 +66,12 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 
 | 参数                | 类型   | 描述                                                           |
 | :------------------ | :----- | :------------------------------------------------------------- |
-| `requestStatusCode` | String | 此请求的状态码。`ok` 表示请求成功。                            |
+| `requestStatusCode` | String | 请求状态。`ok` 表示请求成功。                            |
 | `id`                | String | Reaction ID。                                                  |
 | `msgId`             | String | 消息 ID。                                                      |
-| `msgType`           | String | 消息类型：<li>`chat`: 单聊。<li>`groupchat`: 群聊。            |
-| `groupId`           | String | 群组 ID。如果消息类型为 `chat`，则服务器返回 null。            |
-| `reaction`          | String | 作为响应添加的表情符号的 ID，与 `message` 请求 body 中的相同。 |
+| `msgType`           | String | 消息的会话类型：<li>`chat`: 单聊。<li>`groupchat`: 群聊。            |
+| `groupId`           | String | 群组 ID。如果会话类型为 `chat`，则服务器返回 null。            |
+| `reaction`          | String | 表情 ID，与客户端一致，与请求参数 `message` 相同。 |
 | `createAt`          | Long   | 创建 Reaction 的时间。                                         |
 | `updateAt`          | Long   | 更新 Reaction 的时间。                                         |
 
@@ -110,17 +110,25 @@ curl -g -X POST 'http://XXXX/XXXX/XXXX/reaction/user/e1' -H 'Authorization: Bear
 
 ## 根据消息 ID 获取 Reaction
 
-该方法根据单聊或群聊中的消息 ID 获取指定消息的 Reaction 信息，包括 Reaction ID、使用的表情 ID、以及使用该 Reaction 的用户 ID 及用户人数。获取的 Reaction 的用户列表只展示最早三个添加 Reaction 的用户。
+该方法根据单聊或群聊中的消息 ID 获取单个或多个消息的 Reaction 信息，包括 Reaction ID、使用的表情 ID、以及使用该 Reaction 的用户 ID 及用户人数。获取的 Reaction 的用户列表只展示最早三个添加 Reaction 的用户。
 
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}
+GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}?msgIdList={N,M}&msgType={msgType}&groupId={groupId}
 ```
 
 #### 路径参数
 
 参数及说明详见 [公共参数](#pubparam)。
+
+#### 查询参数
+
+| 参数        | 类型   | 描述                                                          | 是否必填 |
+| :---------- | :----- | :------------------------------------------------------------ | :------- |
+| `msgIdList` | Array  | 你要获取其 Reaction 的消息 ID。                               | 是       |
+| `msgType`   | String | 消息的会话类型：<ul><li>`chat`: 单聊。</li><li>`groupchat`: 群聊。</li></ul>           | 是       |
+| `groupId`   | String | 群组 ID。如果设置 `msgType` 为 `groupchat`，则必须指定群组 ID。 |  否     |
 
 #### 请求 header
 
@@ -128,14 +136,6 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type`  | String | `application/x-www-form-urlencoded` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`            | 是       |
-
-#### 请求 body
-
-| 参数        | 类型   | 描述                                                          | 是否必填 |
-| :---------- | :----- | :------------------------------------------------------------ | :------- |
-| `msgIdList` | Array  | 你要获取其 Reaction 的消息 ID。                               | 是       |
-| `msgType`   | String | 消息类型：<li>`chat`: 单聊。<li>`groupchat`: 群聊。           | 是       |
-| `groupId`   | String | 群组 ID。如果设置 `msgType` 为 `groupchat`，则必须指定组 ID。 |  否     |
 
 ### HTTP 响应
 
@@ -145,13 +145,13 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 
 | 参数                | 类型   | 描述                                                                                                                                                     |
 | :------------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `requestStatusCode` | String | 此请求的状态码。`ok` 表示请求成功。                                                                                                                      |
+| `requestStatusCode` | String | 请求状态。`ok` 表示请求成功。                                                                                                                      |
 | `msgId`             | String | 消息 ID。                                                                                                                                                |
-| `reactionId`        | String | [创建 Reaction](./agora_chat_restful_reaction?platform=RESTful#创建/追加 Reaction) 的响应体数据中返回的 Reaction ID 。 |
-| `reaction`          | String | 作为 Reaction 添加的表情符号的 ID。                                                                                                                      |
-| `count`             | Number | 将此 Reaction 添加到消息中的用户数。                                                                                                                     |
-| `state`             | Bool   | 发送此请求的用户是否对此消息添加了 Reaction 。<li>`true`：是的。<li>`false`：否。                                                                       |
-| `userList`          | Array  | 已添加此 Reaction 的用户 ID 列表。它最多包含三个最先添加此 Reaction 的用户。                                                                             |
+| `reactionId`        | String | Reaction ID，即[创建 Reaction](#create) 的响应体数据中返回的 Reaction ID。 |
+| `reaction`          | String | 表情 ID，与客户端一致。该参数与[创建 Reaction](#create) API 的请求参数中的 `message` 参数相同。                                                                                                                    |
+| `count`             | Number | 添加该 Reaction 的用户数。                                                                                                               |
+| `state`             | Bool   | 当前请求用户是否添加过该 Reaction。<li>`true`：是<li>`false`：否。                                                                       |
+| `userList`          | Array  | 追加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。                                                            |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -206,7 +206,7 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/{{userId}}?msgIdList=msgId1&
 
 ## 删除 Reaction
 
-删除当前用户对该 Reaction 的追加操作。
+删除当前用户追加的 Reaction。
 
 ### HTTP 请求
 
@@ -230,7 +230,7 @@ DELETE https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 | 参数      | 类型   | 描述                                | 是否必填 |
 | :-------- | :----- | :---------------------------------- | :------- |
 | `msgId`   | String | 消息 ID。                           | 是       |
-| `message` | String | 表情 ID。长度不可超过 128 个字符。与客户端一致。  | 是       |
+| `message` | String | 表情 ID。长度不可超过 128 个字符，必须与客户端一致。  | 是       |
 
 ### HTTP 响应
 
@@ -240,8 +240,8 @@ DELETE https://{host}/{org_name}/{app_name}/reaction/user/{userId}
 
 | 参数                | 类型   | 描述                                 |
 | :------------------ | :----- | :----------------------------------- |
-| `requestStatusCode` | String | 此请求的状态码。`ok` 表示请求成功。  |
-| `timestamp`         | Long | 此操作的时间戳，单位为毫秒。|
+| `requestStatusCode` | String | 请求状态。`ok` 表示请求成功。  |
+| `timestamp`         | Long | 请求响应的时间，Unix 时间戳，单位为毫秒。|
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -264,19 +264,28 @@ curl -g -X DELETE 'http://XXXX/XXXX/XXXX/reaction/user/wz?msgId=9976253727931131
 }
 ```
 
-## 根据 消息 ID 和 表情 ID 获取 Reaction 信息
+## 根据消息 ID 和表情 ID 获取 Reaction 信息
 
 该方法根据指定的消息的 ID 和表情 ID 获取对应的 Reaction 信息，包括使用了该 Reaction 的用户 ID 及用户人数。
 
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail
+https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail?msgId={msgId}&message={message}&limit={limit}&cursor={cursor}
 ```
 
 #### 路径参数
 
-参数说明详见 [公共参数](#pubparam)。
+参数及说明详见 [公共参数](#pubparam)。
+
+#### 查询参数
+
+| 参数      | 类型   | 描述                                                                                           | 是否必填 |
+| :-------- | :----- | :--------------------------------------------------------------------------------------------- | :------- |
+| `msgId`   | String | 消息 ID。                                                                                      | 是       |
+| `message` | String | 表情 ID。长度不可超过 128 个字符。该参数的值必须与客户端一致。                                 | 是       |
+| `limit`   | Number | 每页显示的 Reaction 条数。取值范围为 [1,50]。默认值为 `50`。 | 否       |
+| `cursor`  | String | 查询游标，指定数据查询的起始位置。                                         |          |
 
 #### 请求 header
 
@@ -284,15 +293,6 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type`  | String | `application/x-www-form-urlencoded` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`            | 是       |
-
-#### 请求 body
-
-| 参数      | 类型   | 描述                                                                                           | 是否必填 |
-| :-------- | :----- | :--------------------------------------------------------------------------------------------- | :------- |
-| `msgId`   | String | 消息 ID。                                                                                      | 是       |
-| `message` | String | 作为 Reaction 添加的表情符号的 ID。                                                            | 是       |
-| `limit`   | Number | 当使用分页获取 Reaction 时，在每页上获取到的 Reaction 数。取值范围为 [1,100]。默认值为 100。 | 否       |
-| `cursor`  | String | 使用分页获取 Reaction ，则从中获取数据的起始页。                                         |          |
 
 ### HTTP 响应
 
@@ -302,13 +302,13 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail
 
 | 参数                | 类型   | 描述                                                                  |
 | :------------------ | :----- | :-------------------------------------------------------------------- |
-| `requestStatusCode` | String | 接口相应 code 状态。`OK` 表示操作成功。                      |
+| `requestStatusCode` | String | 请求状态。`OK` 表示操作成功。                      |
 | `reactionId`        | String | Reaction  ID。                                                        |
-| `reaction`          | String | 表情 ID，与客户端一致。同请求参数中 “message”。              |
+| `reaction`          | String | 表情 ID，与客户端一致。该参数与[创建 Reaction](#create) API 的请求参数中的 `message` 参数相同。              |
 | `count`             | Number | 添加该 Reaction 的用户人数。                                 |
-| `state`             | Bool   | 当前请求用户是否添加过该 Reaction。 <li>`true`：是；<li>`false`：否。 |
+| `state`             | Bool   | 当前请求用户是否添加过该 Reaction：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 | `userList`          | Array  | 追加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。 |
-| `cursor`            | String | 分页获取时使用，传入游标后便从游标起始的地方进行查询，类似于数据库 limit 1,5 中 1 的作用，可以理解为页码。 |
+| `cursor`            | String | 查询游标，指定下次查询的起始位置。 |
 
 其他字段说明详见[公共参数](#pubparam)。
 

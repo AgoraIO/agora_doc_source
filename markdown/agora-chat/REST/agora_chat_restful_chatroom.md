@@ -109,17 +109,26 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## <a name="getall"></a>查询所有聊天室基本信息
 
-查询 app 下所有的聊天室信息。
+分页获取 app 下所有聊天室的信息。
 
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/chatrooms
+GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 ```
 
 #### 路径参数
 
 参数及说明详见 [公共参数](#param)。
+
+#### 查询参数
+
+| 参数     | 类型   | 描述                   | 是否必填 |
+| :------- | :----- | :------------------------ | :------- |
+| `limit`  | Number | 每次期望获取的聊天室数量。取值范围为 [1,100]，默认值为 `10`。该参数仅在分页获取时为必需。   | 否  |
+| `cursor` | String | 否   | 数据查询的起始位置。该参数仅在分页获取时为必需。 | 否  |
+
+<div class="alert info"> 若请求中均未设置 `limit` 和 `cursor`，服务器返回聊天室列表的第一页中前 10 个聊天室。<div>
 
 #### 请求 header
 
@@ -139,7 +148,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms
 | `id`                 | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 | `name`               | String | 聊天室名称。                                          |
 | `owner`              | String | 聊天室创建者的用户 ID。                                |
-| `affiliations_count` | Int    | 聊天室成员数量（包含聊天室创建者）。                  |
+| `affiliations_count` | Number    | 聊天室成员数量（包含聊天室创建者）。                  |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -152,7 +161,8 @@ GET https://{host}/{org_name}/{app_name}/chatrooms
 ```shell
 # 请将 <YourAppToken> 替换为你在服务端生成的 app token
 
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatrooms'
+curl --location --request GET 'http://XXXX/XXXX/XXXX/chatrooms?limit=10' \
+--header 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### 响应示例

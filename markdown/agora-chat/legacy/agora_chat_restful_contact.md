@@ -242,7 +242,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## 添加黑名单
+## 添加用户至黑名单
 
 将指定用户添加到黑名单。添加后，黑名单中的用户无法给本地用户发消息。每个用户的黑名单人数上限为 500。
 

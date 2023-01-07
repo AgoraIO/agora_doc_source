@@ -64,7 +64,7 @@
 | :------------------- | :----- | :--------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
 | 发送消息             | POST   | /{org_name}/{app_name}/messages                      | 聊天相关 API，一般是模拟系统管理员给用户、群组或聊天室发送消息，支持发送文本消息、图片消息、语音消息、视频消息，透传消息，扩展消息以及文件类型消息。 |
 | 上传文件             | POST   | /{org_name}/{app_name}/chatfiles                     | 上传语音和图片等文件。                                                                                                                         |
-| 下载文件             | POST   | /{org_name}/{app_name}/chatfiles/{uuid}              | 下载语音和图片等文件。                                                                                                                         |
+| 下载文件             | POST   | /{org_name}/{app_name}/chatfiles/{file_uuid}              | 下载语音和图片等文件。                                                                                                                         |
 | 获取聊天历史消息文件 | GET    | /{org_name}/{app_name}/chatmessages/${time}          | 获取聊天历史消息文件。                                                                                                                         |
 | 撤回消息             | POST   | `{org_name}/{app_name}/messages/recall`              | 在消息发送两分钟之内撤回消息。                                                                                                                 |
 | 从服务器中删除对话   | DELETE | `/{orgName}/{appName}/users/{userName}/user_channel` | 从服务器中删除对话。                                                                                                                           |
@@ -79,7 +79,7 @@
 | 获取指定用户的所有用户属性 | GET    | /{org_name}/{app_name}/metadata/user/{username} | 获取指定用户的所有用户属性。                 |
 | 批量获取用户属性           | POST   | /{org_name}/{app_name}/metadata/user/get        | 根据指定的用户 ID 列表和属性列表查询用户属性。 |
 | 删除用户属性               | DELETE | /{org_name}/{app_name}/metadata/user/{username} | 删除指定用户的所有用户属性。                 |
-| 获取用户属性总量大小       | GET    | /{org_name}/{app_name}/metadata/user/capacity   | 获取该 app 下所有用户的用户属性总大小。      |
+| 获取 app 下的用户属性总大小       | GET    | /{org_name}/{app_name}/metadata/user/capacity   | 获取该 app 下所有用户的用户属性总大小。      |
 
 ### 用户关系管理
 
@@ -91,7 +91,7 @@
 | 移除好友     | DELETE | /{org_name}/{app_name}/users/{owner_username}/contacts/users/{friend_username} | 移除好友列表中的用户。 |
 | 获取好友列表 | GET    | /{org_name}/{app_name}/users/{owner_username}/contacts/users                   | 获取好友列表。         |
 | 获取黑名单   | GET    | /{org_name}/{app_name}/users/{owner_username}/blocks/users                     | 获取黑名单。           |
-| 添加黑名单   | POST   | /{org_name}/{app_name}/users/{owner_username}/blocks/users                     | 添加用户至黑名单。     |
+| 添加用户至黑名单   | POST   | /{org_name}/{app_name}/users/{owner_username}/blocks/users                     | 添加用户至黑名单。     |
 | 移除黑名单   | DELETE | /{org_name}/{app_name}/users/{owner_username}/blocks/users/{blocked_username}  | 移除黑名单中的用户。   |
 
 ### 群组管理
@@ -100,8 +100,8 @@
 
 | 名称                            | 方法   | 请求                                           | 描述                                   |
 | :------------------------------ | :----- | :--------------------------------------------- | :------------------------------------- |
-| 获取 app 中所有的群组（可分页） | GET    | /{org_name}/{app_name}/chatgroups              | 获取应用下全部的群组信息。             |
-| 获取一个用户参与的所有群组      | GET    | /{app_name}/users/{username}/joined_chatgroups | 根据用户 ID 称获取此用户加入的全部群组。 |
+| 获取 app 中所有的群组 | GET    | /{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}             | 分页获取应用下全部的群组信息。             |
+| 获取一个用户参与的所有群组      | GET    | /{org_name}/{app_name}/users/{username}/joined_chatgroups | 根据用户 ID 称获取此用户加入的全部群组。 |
 | 获取群组详情                    | GET    | /{org_name}/{app_name}/chatgroups/{group_ids}  | 根据群组 ID 获取群组的详情。           |
 | 创建一个群组                    | POST   | /{org_name}/{app_name}/chatgroups              | 创建一个群组。                         |
 | 修改群组信息                    | PUT    | /{org_name}/{app_name}/chatgroups/{group_id}   | 修改群组信息。                         |
@@ -143,7 +143,7 @@
 
 | 名称                                             | 方法   | 请求                                                                 | 描述                                           |
 | :----------------------------------------------- | :----- | :------------------------------------------------------------------- | :--------------------------------------------- |
-| 获取 app 中所有的子区（分页获取）                | GET    | /{org_name}/{app_name}/thread                                        | 获取应用下全部的子区列表。                     |
+| 获取 app 中所有的子区              | GET    | /{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&sort={sort}                                        | 分页获取应用下全部的子区列表。                     |
 | 获取一个用户加入的所有子区（分页获取）           | GET    | /{org_name}/{app_name}/threads/user/{username}                       | 根据用户 ID  获取用户加入的所有的子区。         |
 | 获取一个用户某个群组下加入的所有子区（分页获取） | GET    | /{org_name}/{app_name}//threads/chatgroups/{group_id}user/{username} | 根据用户 ID 和群组 ID 获取用户加入的所有子区。 |
 | 创建子区                                         | POST   | /{org_name}/{app_name}/thread                                        | 创建一个新子区。                               |
@@ -166,7 +166,7 @@
 
 | 名称                    | 方法   | 请求                                                        | 描述                                     |
 | :---------------------- | :----- | :---------------------------------------------------------- | :--------------------------------------- |
-| 获取 app 中所有的聊天室 | GET    | /{org_name}/{app_name}/chatrooms                            | 获取应用下全部的聊天室信息。             |
+| 获取 app 中所有的聊天室 | GET    | /{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}                            | 分页获取应用下全部的聊天室信息。             |
 | 获取用户加入的聊天室    | GET    | /{org_name}/{app_name}/users/{username}/joined_chatrooms    | 根据用户 ID 称获取此用户加入的全部聊天室。 |
 | 获取聊天室详情          | GET    | /{org_name}/{app_name}/chatrooms/{chatroom_id}              | 根据聊天室 ID 获取此聊天室的详情         |
 | 创建一个聊天室          | POST   | /{org_name}/{app_name}/chatrooms                            | 创建一个新聊天室。                       |
