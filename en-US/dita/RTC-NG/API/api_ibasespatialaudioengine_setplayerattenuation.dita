@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_setplayerattenuation">
-    <title><ph keyref="setPlayerAttenuation"/></title>
+    <title><ph keyref="setPlayerAttenuation" /></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the sound attenuation properties of the media player.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setPlayerAttenuation"/>
+                <indexterm keyref="setPlayerAttenuation" />
             </keywords>
         </metadata>
     </prolog>
@@ -28,7 +28,7 @@
     attenuation: number,
     forceSet: boolean
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setPlayerAttenuation(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlayerAttenuation(
       {required int playerId,
       required double attenuation,
       required bool forceSet});</codeblock>
@@ -46,8 +46,8 @@
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="updatePlayerPositionInfo/mpkid">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>attenuation</pt>
@@ -61,9 +61,9 @@
             <plentry>
                 <pt>forceSet</pt>
                 <pd>Whether to force the sound attenuation effect of the media player:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Force <parmname>attenuation</parmname> to set the attenuation of the user. At this time, the attenuation coefficient of the sound insulation area set in the <parmname>audioAttenuation</parmname> in the <xref keyref="SpatialAudioZone"/> does not take effect for the user.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not force <parmname>attenuation e to set the user's sound attenuation</parmname>ffect, as shown in the following two cases.<ul id="forceset-false">
-                        <li>If the sound source and listener are inside and outside the sound isolation area, the sound attenuation effect is determined by the <parmname>audioAttenuation</parmname> in <apiname keyref="SpatialAudioZone"/>.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Force <parmname>attenuation</parmname> to set the attenuation of the user. At this time, the attenuation coefficient of the sound insulation area set in the <parmname>audioAttenuation</parmname> in the <xref keyref="SpatialAudioZone" /> does not take effect for the user.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not force <parmname>attenuation e to set the user's sound attenuation</parmname>ffect, as shown in the following two cases.<ul id="forceset-false">
+                        <li>If the sound source and listener are inside and outside the sound isolation area, the sound attenuation effect is determined by the <parmname>audioAttenuation</parmname> in <apiname keyref="SpatialAudioZone" />.</li>
                         <li>If the sound source and the listener are in the same sound insulation area or outside the same sound insulation area, the sound attenuation effect is determined by <parmname>attenuation</parmname> in this method.</li>
                         </ul></li>
                     </ul></pd>

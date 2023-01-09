@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_registervideoencodedframeobserver">
-    <title><ph keyref="registerVideoEncodedFrameObserver"/></title>
+    <title><ph keyref="registerVideoEncodedFrameObserver" /></title>
     <shortdesc id="short"><ph id="shortdesc">Registers a receiver object for the encoded video image.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerVideoEncodedFrameObserver"/>
+                <indexterm keyref="registerVideoEncodedFrameObserver" />
             </keywords>
         </metadata>
     </prolog>
@@ -28,14 +28,14 @@
             <codeblock props="unreal" outputclass="language-cpp" /></p>
  </section>
         <section id="detailed_desc">
-            <p>If you only want to observe encoded video frames (such as h.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver"/> class through this method.</p>
+            <p>If you only want to observe encoded video frames (such as h.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver" /> class through this method.</p>
             <p id="mix">If you want to obtain the original video data of some remote users (referred to as group A) and the encoded video data of other remote users (referred to as group B), you can refer to the following steps:<ol>
-            <li>Call <xref keyref="registerVideoFrameObserver"/> to register the raw video frame observer before joining the channel.</li>
-            <li>Call <xref keyref="registerVideoEncodedFrameObserver"/> to register the encoded video frame observer before joining the channel.</li>
-            <li>After joining the channel, get the user IDs of group B users through <xref keyref="onUserJoined"/>, and then call <xref keyref="setRemoteVideoSubscriptionOptions"/> to set the <parmname>encodedFrameOnly</parmname> of this group of users to <codeph><ph keyref="true"/></codeph>.</li>
-            <li>Call <xref keyref="muteAllRemoteVideoStreams"/> to start receiving the video streams of all remote users. Then:<ul>
-                <li>The raw video data of group A users can be obtained through the callback in <xref keyref="IVideoFrameObserver"/>, and the SDK renders the data by default.</li>
-                <li>The encoded video data of group B users can be obtained through the callback in <xref keyref="IVideoEncodedFrameObserver"/>.</li>
+            <li>Call <xref keyref="registerVideoFrameObserver" /> to register the raw video frame observer before joining the channel.</li>
+            <li>Call <xref keyref="registerVideoEncodedFrameObserver" /> to register the encoded video frame observer before joining the channel.</li>
+            <li>After joining the channel, get the user IDs of group B users through <xref keyref="onUserJoined" />, and then call <xref keyref="setRemoteVideoSubscriptionOptions" /> to set the <parmname>encodedFrameOnly</parmname> of this group of users to <codeph><ph keyref="true" /></codeph>.</li>
+            <li>Call <xref keyref="muteAllRemoteVideoStreams" /> to start receiving the video streams of all remote users. Then:<ul>
+                <li>The raw video data of group A users can be obtained through the callback in <xref keyref="IVideoFrameObserver" />, and the SDK renders the data by default.</li>
+                <li>The encoded video data of group B users can be obtained through the callback in <xref keyref="IVideoEncodedFrameObserver" />.</li>
                 </ul> </li>
             </ol> </p>
             <note type="attention">
@@ -50,12 +50,12 @@
                 <pt props="android">receiver</pt>
                 <pt props="cpp electron rn flutter">observer</pt>
                 <pt props="unity">videoEncodedImageReceiver</pt>
-                <pd props="android cpp unity rn electron flutter">The video frame observer object. See <xref keyref="IVideoEncodedFrameObserver"/>.</pd>
-                <pd props="ios mac">The observer object instance. See <xref keyref="IVideoEncodedFrameObserver"/>. Set the value as <ph keyref="NULL"/> to release the instance.</pd>
+                <pd props="android cpp unity rn electron flutter">The video frame observer object. See <xref keyref="IVideoEncodedFrameObserver" />.</pd>
+                <pd props="ios mac">The observer object instance. See <xref keyref="IVideoEncodedFrameObserver" />. Set the value as <ph keyref="NULL" /> to release the instance.</pd>
             </plentry>
             <plentry props="unity">
                 <pt>mode</pt>
-                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
+                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron rn unity">
@@ -65,8 +65,8 @@
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="mac ios">
-            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
-            <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
+            <li><codeph><ph keyref="true" /></codeph>: Success.</li>
+            <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
             </ul> </section>
     </refbody>
 </reference>
