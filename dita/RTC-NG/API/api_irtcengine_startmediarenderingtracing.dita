@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startmediarenderingtracing">
     <title><ph keyref="startMediaRenderingTracing"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始跟踪视频渲染事件。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开启视频渲染数据打点。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,12 +29,16 @@
                 <dd>v4.1.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">成功调用该方法后，SDK 会以调用该方法的时刻作为起点，开始跟踪视频渲染相关的事件，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告该事件的相关信息。</p>
+            <p id="desc">成功调用该方法后，SDK 会以调用该方法的时刻作为起点，开始跟踪首个视频帧的渲染状态，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告视频帧渲染的相关信息。</p>
             <note id="note">
             <ul>
-            <li>SDK 默认在加入频道后自动开始跟踪视频渲染相关的事件。如果你在加入频道时选择不订阅远端视频流、加入频道后开始订阅远端视频流，声网推荐你在调用 <xref keyref="muteRemoteVideoStream"/> 方法开始订阅远端视频流前先调用该方法重新设置跟踪起始时间点，以确保回调数据中的时间信息准确。</li>
-            <li>离开频道后，SDK 会自动重置该时间点。</li>
+            <li>SDK 默认在加入频道的时刻起打点，自动开始跟踪首个视频频的渲染事件。你可以根据实际业务场景，在合适的时机调用该方法，进行自定义打点。</li>
+            <li>当离开频道后，SDK 会自动重置该时间点。</li>
             </ul> </note> </section>
+        <section>
+            <title>适用场景</title>
+            <p>声网推荐你将该方法和 app 中的 UI 设置（按钮、滑动条等）结合使用，用于针对终端用户的体验改进。例如：在终端用户在点击 <q>Join Channel</q> 按钮的时刻调用该方法进行打点，然后通过 <apiname keyref="onVideoRenderingTracingResult"/> 回调获取视频首帧渲染过程中的指标，从而得知哪些指标存在优化空间并进行专项优化。</p>
+        </section>
         <section id="return_values">
             <title>返回值</title>
             <ul>
