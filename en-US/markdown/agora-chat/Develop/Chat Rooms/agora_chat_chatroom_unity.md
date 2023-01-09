@@ -271,5 +271,32 @@ public interface IRoomManagerDelegate
          * @param from          The user ID of the operator
          */
         void OnChatroomAttributesRemoved(string roomId, List<string> keys, string from);
+	 /**
+         * Occurs when the chat room member(s) is/are added to the allow list.
+	 *
+	 * @param roomId The chat room ID.
+	 * @param members  The member(s) added to the allow list.
+	 */
+	void OnAddAllowListMembersFromChatroom(string roomId, List<string> members);
+         /**
+	 * Occurs when the chat room member(s) is/are removed from the allow list.
+	 *
+	 * @param roomId The chat room ID.
+	 * @param members  The member(s) removed from the allow list.
+	 */
+	void OnRemoveAllowListMembersFromChatroom(string roomId, List<string> members);
+         /**
+	 * Occurs when all members in the chat room are muted or unmuted.
+	 *
+	 * @param roomId The chat room ID.
+	 * @param isAllMuted    Whether all chat room members are muted.
+	 */
+	void OnAllMemberMuteChangedFromChatroom(string roomId, bool isAllMuted);
+         /**
+	 * Occurs when the chat room specifications are changed.
+	 *
+	 * @param room The chat room instance.
+	*/
+        void OnSpecificationChangedFromRoom(Room room);
     }
 ```

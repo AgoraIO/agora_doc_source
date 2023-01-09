@@ -11,7 +11,9 @@ The Agora Chat SDK provides the `Room`, `IRoomManager`, and `IRoomManagerDelegat
 - Remove a member from a chat room
 - Retrieve the member list of a chat room
 - Manage the block list of a chat room
+- Manage the chat room allow list
 - Manage the mute list of a chat room
+- Mute and unmute all the chat room members
 - Manage the owner and admins of a chat room
 
 ## Prerequisites
@@ -107,6 +109,54 @@ SDKClient.Instance.RoomManager.FetchRoomBlockList(roomId, pageNum, pageSize, cal
 ));
 ```
 
+### Manage the chat room allow list
+
+Messages sent by members in the chat room allow list are of high priority and will be delivered first, but there is no guarantee that they will be successfully delivered. When the load is high, the server discards low-priority messages first. If the load is high even then, the server also discards high-priority messages.
+
+#### Add a member to the chat room allow list
+
+Only the chat room owner and admins can call `AddAllowListMembers` to add the specified member to the chat room allow list. Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all chat room members. However, if a member is already in the chat room mute list, adding this member to the allow list does not enable them to send messages. The mute list takes precedence. Once added to the allow list, this member and all the other chat room admins or owner receive the `IRoomManagerDelegate#OnAddAllowListMembersFromChatroom` callback.
+
+The following code sample shows how to add a member to the chat room allow list:
+
+```csharp
+SDKClient.Instance.RoomManager.AddAllowListMembers(roomId, list, new CallBack(
+  onSuccess: () => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+#### Remove a member from the chat room allow list
+
+Only the chat room owner and admins can call `RemoveAllowListMembers` to remove the specified member from the chat room allow list. Once removed from the chat room allow list, this member and all the other chat room admins or owner receive the `IRoomManagerDelegate#OnRemoveAllowListMembersFromChatroom` callback.
+
+The following code sample shows how to remove a member from the chat room allow list:
+
+```csharp
+SDKClient.Instance.RoomManager.RemoveAllowListMembers(roomId, list, new CallBack(
+   onSuccess: () => {
+   },
+   onError: (code, desc) => {
+   }
+));
+```
+
+#### Check whether a user is added to the allow list
+
+All chat room members can call `CheckIfInRoomAllowList` to check whether they are added to the chat room allow list.
+
+The following code sample shows how to check whether a user is on the chat room allow list:
+
+```csharp
+SDKClient.Instance.RoomManager.CheckIfInRoomAllowList(roomId, new ValueCallBack<bool>(
+  onSuccess: (b) => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
 ### Manage the chat room mute list
 
 #### Add a member to the chat room mute list
@@ -145,19 +195,51 @@ SDKClient.Instance.RoomManager.UnMuteRoomMembers(roomId, members, new CallBack(
 
 #### Retrieve the chat room mute list
 
-Only the chat room owner and admins can call `FetchRoomMuteList` to retrieve the chat room mute list.
+Only the chat room owner and admins can call `FetchRoomMuteList` to retrieve the chat room mute dictionary.
 
-The following code sample shows how to retrieve the chat room mute list:
+The following code sample shows how to retrieve the chat room mute dictionary:
 
 ```c#
-SDKClient.Instance.RoomManager.FetchRoomMuteList(roomId, pageSize, pageNum, callback: new ValueCallBack<List<string>>(
-  // `list` is of List<string> type
-  onSuccess: (list) => {
+SDKClient.Instance.RoomManager.FetchRoomMuteList(roomId, pageSize, pageNum, callback: new ValueCallBack<Dictionary<string, long>>(
+  onSuccess: (dict) => {
   },
   onError: (code, desc) => {
   }
 ));
 ```
+
+### Mute and unmute all the chat room members
+
+#### Mute all the chat room members
+
+Only the chat room owner and admins can call `MuteRoomMembers` to mute all the chat room members. Once all the members are muted, the `IRoomManagerDelegate#OnAllMemberMuteChangedFromChatroom` callback is triggered and only those in the chat room allow list can send messages in the chat room.
+
+The following sample code shows how to mute all the chat room members:
+
+```csharp
+SDKClient.Instance.RoomManager.MuteRoomMembers(roomId, members, new CallBack(
+  onSuccess: () => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
+#### Unmute all the chat room members
+
+Only the chat room owner and admins can call `UnMuteAllRoomMembers` to unmute all the chat room members. Once all the members are muted, the `IRoomManagerDelegate#OnAllMemberMuteChangedFromChatroom` callback is triggered.
+
+The following sample code shows how to unmute all the chat room members:
+
+```csharp
+SDKClient.Instance.RoomManager.UnMuteAllRoomMembers(roomId, new ValueCallBack<Room>(
+  onSuccess: (room) => {
+  },
+  onError: (code, desc) => {
+  }
+));
+```
+
 
 ### Manage the chat room owner and admins
 
