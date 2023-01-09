@@ -70,7 +70,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 | `membersonly`         | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                                                                        | 否       |
 | `invite_need_confirm` | Bool    | 邀请用户入群时是否需要被邀用户同意。<ul><li> （默认）`true`：是；</li><li> `false`：否。</li></ul>                                                                                            | 否       |
 | `owner`               | String  | 该群组的群主。                                                                                                                                                                   | 是       |
-| `members`             | Array   | 群组成员。该数组中不需要包含群主。如果设置该字段，则至少要提供一个数组元素，最多不能超过 100 个。                                                                                | 否       |
+| `members`             | Array   | 群组成员的用户 ID 数组。该数组可包含 1-100 个元素，不包含群主的用户 ID。                                                                                | 否       |
 | `custom`              | String  | 群组扩展信息，例如给群组添加业务相关标记，最大长度为 1,024 字符。                                                                                                                | 否       |
 
 ### HTTP 响应
@@ -122,6 +122,138 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
+### 封禁群组
+
+封禁指定的群组。例如，群成员经常在群中发送违规消息，可以调用该 API 对该群进行封禁。群组被封禁后，群中任何成员均无法在群组以及该群组下的子区中发送和接收消息，也无法进行群组和子区管理操作。
+
+群组封禁后，可调用[解禁群组](#解禁群组) API 对该群组解禁。
+
+#### HTTP 请求
+
+```http
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/disable
+```
+
+##### 路径参数
+
+参数及描述详见 [公共参数](#公共参数)。
+
+##### 请求 header
+
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
+| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
+|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+
+#### HTTP 响应
+
+##### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+| 字段    | 类型      | 描述 |
+|:------|:--------|:--|
+| data.disabled | Bool | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
+
+其他字段及描述详见 [公共参数](#公共参数)。
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](error.html) 了解可能的原因。
+
+#### 示例
+
+##### 请求示例
+
+```shell
+# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/XXXX/disable' 
+```
+
+##### 响应示例
+
+```json
+{
+    "action": "post",
+    "application": "XXXX",
+    "applicationName": "XXXX",
+    "data": {
+        "disabled": true
+    },
+    "duration": 740,
+    "entities": [],
+    "organization": "XXXX",
+    "properties": {},
+    "timestamp": 1672974260359,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/XXXX/disable"
+}
+```
+
+### 解禁群组
+
+解除对指定群组的封禁。群组解禁后，群成员可以在该群组以及该群组下的子区中发送和接收消息并进行群组和子区管理相关操作。
+
+#### HTTP 请求
+
+```http
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/enable
+```
+
+##### 路径参数
+
+参数及描述详见 [公共参数](#公共参数)。
+
+##### 请求 header
+
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
+| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
+|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+
+#### HTTP 响应
+
+##### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+| 字段       | 类型   | 描述                  |
+| :-------- | :----- |:--------------------|
+| data.disabled | Bool | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
+
+其他字段及描述详见 [公共参数](#公共参数)。
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](error.html) 了解可能的原因。
+
+#### 示例
+
+##### 请求示例
+
+```shell
+# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/XXXX/enable' 
+```
+
+##### 响应示例
+
+```json
+{
+    "action": "post",
+    "application": "XXXX",
+    "applicationName": "XXXX",
+    "data": {
+        "disabled": false
+    },
+    "duration": 22,
+    "entities": [],
+    "organization": "XXXX",
+    "properties": {},
+    "timestamp": 1672974668171,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/XXXX/enable"
+}
+```
+
 ## 获取群组详情
 
 获取指定的一个或多个群组的详情。如果你指定获取多个群组的详情，会返回所有存在群组的详情。如果你指定的群组不存在，会返回 "group id doesn't exist"。
@@ -164,6 +296,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 | `owner`              | String  | 群主的用户 ID，如 `{"owner":"user1"}`。                                                                          |
 | `created`            | Long    | 群组创建的时间戳。                                                                                                      |
 | `affiliations_count` | Number  | 群成员总人数。                                                                                                          |
+| `disabled`           | Boolean | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
 | `affiliations`       | Array   | 现有群成员列表，包含了群主 owner 和其他群成员 member，如：`[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`。 |
 | `public`             | Boolean | 群组是否为公开群：<ul><li>`true`：是</li><li>`false`：否</li></ul>                                                      |
 | `custom`             | String  | 群组扩展信息。                                                                                                          |
@@ -200,6 +333,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
         "created": 1542356598609,
         "custom": "",
         "affiliations_count": 3,
+        "disabled": false,
         "affiliations": [
           {
             "member": "user3"
@@ -379,16 +513,13 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## 获取所有群组（可分页）
+## 获取所有群组
 
-获取 app 所有群组的信息。
+分页获取应用下的群组的信息。
 
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/chatgroups
-
-// 分页获取 app 所有群组的信息
 GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 ```
 
@@ -396,19 +527,20 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 
 路径参数说明详见 [公共参数](#pubparam)。
 
+##### 查询参数
+| 参数     | 类型   | 描述                   | 是否必填 |
+| :------- | :----- | :------------------------ | :------- |
+| `limit`  | Number | 每次期望返回的群组数量。取值范围为 [1,100]，默认值为 `10`。该参数仅在分页获取时为必需。   | 否  |
+| `cursor` | String | 数据查询的起始位置。该参数仅在分页获取时为必需。 |否  |
+
+<div class="alert info">若请求中均未设置 `limit` 和 `cursor`，服务器返回群组列表的第一页中前 10 个群组。</div>
+
 #### 请求 header
 
-| 参数            | 类型   | 描述                              | 是否必填 |
+| 参数            | 类型   | 描述                              |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
-
-#### 请求 body
-
-| 参数     | 类型   | 描述                                                                                               | 是否必填 |
-| :------- | :----- | :------------------------------------------------------------------------------------------------- | :------- |
-| `limit`  | String | 一次请求获取的群组数量。                                                                           | 否       |
-| `cursor` | String | 分页页码。如果你需要分页获取群组详情，则需要设置该参数。设置后，服务器会从游标起始的地方进行查询。 | 否       |
 
 ### HTTP 响应
 
@@ -500,7 +632,14 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 
 #### 路径参数
 
-该方法路径参数说明详见 [公共参数](#pubparam)。
+参数及说明详见 [公共参数](#pubparam)。
+
+##### 查询参数
+
+| 参数       | 类型   | 描述                                                         | 是否必填 | 
+| :--------- | :----- | :------- | :----------------------------------------------------------- |
+| `pagesize` | String | 每页获取的群组数量。该参数仅适用于分页获取方法。             | 否     | 
+| `pagenum`  | String | 否  | 当前页码。该参数仅适用于分页获取方法。                       | 否     | 
 
 #### 请求 header
 

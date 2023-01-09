@@ -68,7 +68,14 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段中就包含群组黑名单用户的 ID。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
+
+| 字段    | 类型  | 描述                |
+| :----- | :---- | :------------------ |
+| `data` | Array | 群组黑名单上的用户 ID。 |
+| `count` | Number | 群组黑名单中的用户数量。 |
+
+其他字段及说明详见[公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
 

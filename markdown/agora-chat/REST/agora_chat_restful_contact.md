@@ -30,7 +30,8 @@
 | `data`               | Array   | 实际请求到的数据。                                           |
 | `entities.uuid`      | String  | 用户的 UUID。系统为该请求中的用户生成唯一内部标识，无需关注。 |
 | `entities.type`      | String  | 对象类型。无需关注。                                         |
-| `entities.created`   | Long  | 注册用户的 Unix 时间戳（毫秒）。                             |
+| `entities.created`   | Number  | 注册用户的 Unix 时间戳（毫秒）。                             |
+| `entities.modified`   | Number  | 用户信息的最新修改时间，为 Unix 时间戳（毫秒）。                             |
 | `entities.username`  | String  | 用户 ID。用户登录的唯一账号。                                |
 | `entities.activated` | Boolean | 用户是否为活跃状态：<ul><li>`true`：用户为活跃状态。</li><li>`false`：用户为封禁状态。</li></ul> |
 | `timestamp`          | Long  | 响应的 Unix 时间戳（毫秒）。                                 |
@@ -56,7 +57,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 
 | 参数            | 类型   | 描述                 | 是否必填 |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username`  | String | 本地用户的用户 ID。   | 是       |
+| `owner_username`  | String | 当前用户的用户 ID。   | 是       |
 | `friend_username` | String | 待添加好友的用户 ID。 | 是       |
 
 其他路径参数说明详见[公共参数](#pubparam)。
@@ -246,7 +247,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## 添加黑名单
+## 添加用户至黑名单
 
 将指定用户添加到黑名单。添加后，黑名单中的用户无法给该用户发消息。每个用户的黑名单人数上限为 500。
 
@@ -262,7 +263,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数             | 类型   | 是否必需 | 描述                                                         |
 | :--------------- | :----- | :------- | :----------------------------------------------------------- |
-| `owner_username` | String | 是    | 被操作用户的用户 ID。                                                 |
+| `owner_username` | String | 是    | 当前的用户 ID。                                                 |
 
 本方法的其他路径参数说明详见 [公共参数](#pubparam)。
 
@@ -338,7 +339,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数 | 类型 | 描述 | 是否必填 |
 | --- | --- | --- | --- |
-| `owner_username` | String | 本地用户的用户 ID。 | 是 |
+| `owner_username` | String | 当前用户的用户 ID。 | 是 |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
@@ -389,7 +390,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 移除黑名单
 
-将指定用户从黑名单中移除。移除后，该用户恢复为好友或未添加为好友的普通用户关系，可以发送和接收消息。
+从用户的黑名单中移除用户：
+- 将好友从黑名单中移除后，恢复好友关系，可以正常收发消息；
+- 将非好友从黑名单中移除后，恢复到未添加好友的状态。
 
 对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 

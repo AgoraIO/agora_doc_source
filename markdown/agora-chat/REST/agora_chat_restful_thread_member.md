@@ -47,10 +47,13 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 | 参数        | 类型   | 描述                                                     | 是否必填 |
 | :---------- | :----- | :------------------------------------------------------- | :------- |
 | `thread_id` | String | 子区的 ID。                                              | 是       |
-| `limit`     | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。      | 否       |
-| `cursor`    | String | 开始获取子区的页面。在第一次查询时传入`null`或空字符串。 | 否       |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及说明详见[公共参数](#pubparam)。
+
+#### 查询参数
+
+| `limit`     | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。      | 否       |
+| `cursor`    | String | 开始获取子区的页面。在第一次查询时传入 `null` 或空字符串。 | 否       |
 
 #### 请求 header
 
@@ -65,6 +68,7 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 | 参数           | 类型 | 描述                 |
 | :------------- | :--- | :------------------- |
 | `affiliations` | 列表 | 子区中成员的用户 ID。 |
+| `properties.cursor` | String | 查询游标，指定下次查询的起始位置。 |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -125,11 +129,17 @@ POST https://{host}/{org_name}/{app_name}/thread/{thread_id}/users
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
+| `usernames` | List | 批量加入子区的用户 ID 列表。每次最多支持 10 个用户加入子区。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功。响应包体中包含以下字段：
+
+| 字段   |  类型     | 描述      |
+|:------|:--------|:--------|
+| `data.status` | Boolean | 添加结果，`ok` 表示成功添加。 |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -192,7 +202,7 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
+| `usernames` | List | 批量移除子区的用户 ID 列表。每次最多可踢出 10 个子区成员。 | 是       |
 
 ### HTTP 响应
 
@@ -202,8 +212,8 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 
 | 参数     | 类型 | 描述                                                                 |
 | :------- | :--- | :------------------------------------------------------------------- |
-| `result` | 布尔 | 指定的子区成员是否从子区中移除：<li>`true`： 是的。<li>`false`：否。 |
-| `user`   | 列表 | 子区中成员的用户 ID。                                                 |
+| `result` | Boolean | 指定的子区成员是否从子区中移除：<ul><li>`true`： 是</li><li>`false`：否</li></ul> |
+| `user`   | String | 被移出子区的用户 ID。                                                |
 
 其他字段说明详见 [公共参数](#pubparam)。
 
