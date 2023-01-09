@@ -122,7 +122,13 @@ List<Message> list = SDKClient.Instance.ChatManager.SearchMsgFromDB(keywords, ti
 Call `ImportMessages` to import multiple messages to the specified conversation. This applies to scenarios where chat users want to formard messages from another conversation.
 
 ```C#
-SDKClient.Instance.ChatManager.ImportMessages(msgs);
+SDKClient.Instance.ChatManager.ImportMessages(messages, new CallBack(
+  onSuccess: () => {
+  },
+  onError: (code, desc) =>
+  {
+  }
+));
 ```
 
 ### Insert messages

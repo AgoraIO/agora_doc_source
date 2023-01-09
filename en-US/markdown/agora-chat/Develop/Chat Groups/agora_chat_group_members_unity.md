@@ -207,11 +207,11 @@ SDKClient.Instance.GroupManager.UnMuteGroupMembers(groupId, members, new CallBac
 
 Only the chat group owner and admins can call `GetGroupMuteListFromServer` to retrieve the chat group mute list from the server.
 
-The following code sample shows how to retrieve the chat group mute list:
+The following code sample shows how to retrieve the chat group mute dictionary:
 
 ```c#
-SDKClient.Instance.GroupManager.GetGroupMuteListFromServer(groupId, callback: new ValueCallBack<List<string>>(
-  onSuccess: (list) => {
+SDKClient.Instance.GroupManager.GetGroupMuteListFromServer(groupId, callback: new ValueCallBack<Dictionary<string, long>>(
+  onSuccess: (dict) => {
   },
   onError: (code, desc) =>
   {
