@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_channelmediarelayconfiguration_setdestchannelinfo">
-    <title><ph keyref="setDestChannelInfo" /></title>
+    <title><ph keyref="setDestChannelInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the information of the destination channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDestChannelInfo" />
+                <indexterm keyref="setDestChannelInfo"/>
             </keywords>
         </metadata>
     </prolog>
@@ -36,18 +36,25 @@
                 <pd>The channel name of the target channel.</pd>
             </plentry>
             <plentry>
-                <pt>destInfo</pt>
+                <pt props="android">destInfo</pt>
+                <pt props="ios mac">destinationInfo</pt>
                 <pd>
-                    <p>The information of the destination channel <apiname keyref="ChannelMediaInfo" />. It contains the following members:<ul>
+                    <p>The information of the destination channel. See <apiname keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
                     <li><parmname>channelName</parmname>: The name of the destination channel.</li>
-                    <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the destination channel. The value ranges from 0 to (2 <sup>32</sup>-1). To avoid user ID conflicts, this user ID must be different from any other user ID in the destination channel. The default value is 0, which means the SDK generates a random user ID. Do not set this parameter as the user ID of the host in the destination channel, and ensure that this user ID is different from any other user ID in the channel.</li>
+                    <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the destination channel. The value ranges from 0 to (2 <sup>32</sup>-1). To avoid user ID conflicts, this user ID must be different from any other user ID in the destination channel. The default value is 0, which means the SDK generates a random user ID.</li>
                     <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the destination channel. This token is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>destInfos</parmname>.<ul>
-                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL" /></codeph>, which means the SDK applies the App ID.</li>
+                        <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <parmname>token</parmname> generated with the <parmname>channelName</parmname> and <parmname>uid</parmname>.</li>
                         </ul> </li>
                     </ul> </p>
                 </pd>
             </plentry>
             </parml> </section>
+        <section id="return_values" props="ios mac">
+            <ul>
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

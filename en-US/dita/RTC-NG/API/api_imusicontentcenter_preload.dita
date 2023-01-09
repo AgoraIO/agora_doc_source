@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusicontentcenter_preload">
-    <title><ph keyref="preload" /></title>
+    <title><ph keyref="preload"/></title>
     <shortdesc id="short"><ph id="shortdesc">Preloads music.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="preload" />
+                <indexterm keyref="preload"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int preload(long songCode, String jsonOption);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)preloadWithSongCode:(NSInteger)songCode jsonOption:(NSString* _Nullable)jsonOption NS_SWIFT_NAME(preload(songCode:jsonOption:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int preload(int64_t songCode, const char* jsonOption = nullptr) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract preload(songCode: number, jsonOption?: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int Preload(Int64 songCode, string jsonOption = "");</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract preload(songCode: number, jsonOption?: string): number;</codeblock>
@@ -30,21 +30,22 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>You can call this method to preload music that you want to play. After calling this method successfully, the SDK triggers the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler" /> callback to report preloading events.</p>
-            <p>Before calling this method to preload music, you need to call <xref keyref="getMusicCollectionByMusicChartId" /> or <xref keyref="searchMusic" /> method and obtain the <parmname>songCode</parmname> of the music through the <xref keyref="onMusicCollectionResult" /> callback that triggered.</p>
+            <p>You can call this method to preload music that you want to play. After calling this method successfully, the SDK triggers the <xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/> callback to report preloading events.</p>
+            <p>Before calling this method to preload music, you need to call <xref keyref="getMusicCollectionByMusicChartId"/> or <xref keyref="searchMusic"/> method and obtain the <parmname>songCode</parmname> of the music through the <xref keyref="onMusicCollectionResult"/> callback that triggered.</p>
+            <note type="attention" props="framework">如需销毁 <xref keyref="IRtcEngine"/> 对象，请在收到 <xref keyref="onPreloadEvent"/> 回调后，再调用 <xref keyref="release"/> 方法。</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="open_IMusicPlayer/code">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry id="option">
                 <pt>jsonOption</pt>
                 <pd>
                     <p>扩展 JSON 字段。</p>
-                    <p><ph>Agora 会根据你在场景字段（<parmname>sceneType</parmname>）传入的应用场景进行收费。 </ph><ph props="cn">不同的应用场景对应不同的费率，你可以参考 <xref keyref="ktv-billing" /> 查看详细的计费。</ph></p>
+                    <p><ph>Agora 会根据你在场景字段（<parmname>sceneType</parmname>）传入的应用场景进行收费。 不同的应用场景对应不同的费率，你可以参考 <xref keyref="ktv-billing"/> 查看详细的计费。</ph></p>
                     <p>
                     <ul>
                     <li>1：直播场景：K 歌及背景音乐播放。</li>

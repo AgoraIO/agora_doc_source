@@ -47,7 +47,7 @@
         <section id="detailed_desc">
             <p id="desc1">This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
             <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-            <li>The remote client: The <xref keyref="onUserJoined" /> callback if the user is in the COMMUNICATION profile, and the <xref keyref="onUserInfoUpdated" /> callback if the user is a host in the LIVE_BROADCASTING profile.</li>
+            <li>The remote client: <xref keyref="onUserJoined" /> and <xref keyref="onUserInfoUpdated" />, if the user is in the COMMUNICATION profile, or if the user is a host in the LIVE_BROADCASTING profile.</li>
             </ul></p>
             <p id="desc2">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
             <p props="android ios mac cpp">Compared to <xref keyref="joinChannelWithUserAccount1" />, this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and billings. To unsubscribe, set the <parmname>options</parmname> parameter or call the <apiname>mute</apiname> methods accordingly.</p>
@@ -69,12 +69,12 @@
             <plentry id="userAccount">
                 <pt>userAccount</pt>
                 <pd>
-                    <p>The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique. The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as <ph keyref="NULL" />. Supported characters are (89 in total):<ul>
+                    <p>The user account. This parameter is used to identify the user in the channel for real-time audio and video engagement. You need to set and manage user accounts yourself and ensure that each user account in the same channel is unique.  The maximum length of this parameter is 255 bytes. Ensure that you set this parameter and do not set it as <ph keyref="NULL" />. Supported characters are (89 in total):<ul>
                     <li>The 26 lowercase English letters: a to z.</li>
                     <li>The 26 uppercase English letters: A to Z.</li>
                     <li>All numeric characters: 0 to 9.</li>
                     <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;amp;", "(", ")", "+", "-", ":", ";", "&amp;lt;", "= ", ".", "&amp;gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                    <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "= ", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -87,6 +87,6 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section conkeyref="joinChannel2/return_values" props="native cpp unity electron rn" />
+        <section conkeyref="joinChannel2/return_values" props="native unity electron rn" />
     </refbody>
 </reference>

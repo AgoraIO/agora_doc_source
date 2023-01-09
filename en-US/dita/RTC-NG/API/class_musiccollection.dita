@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_musiccollection">
-    <title><ph keyref="MusicCollection" /></title>
+    <title><ph keyref="MusicCollection"/></title>
     <shortdesc id="short"><ph id="shortdesc">The details of musci assets in the collection.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicCollection : NSObject
 @property(nonatomic, assign) NSInteger count;
 @property(nonatomic, assign) NSInteger total;
 @property(nonatomic, assign) NSInteger page;
 @property(nonatomic, assign) NSInteger pageSize;
-@property(nonatomic, strong) NSArray&lt;AgoraMusic *&gt;* musicList;
+@property(nonatomic, strong) NSArray&lt;AgoraMusic *>* musicList;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">class MusicCollection : public RefCountInterface {
 public:
@@ -58,7 +58,7 @@ protected:
 
   Music getMusic(int index);
 }</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -69,7 +69,7 @@ protected:
             </dl>
         </section>
         <section id="parameters" props="apple unity">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>count</pt>
@@ -81,16 +81,42 @@ protected:
             </plentry>
             <plentry>
                 <pt>page</pt>
-                <pd>The number of the current page.</pd>
+                <pd>当前页面编号，默认从 1 开始。</pd>
             </plentry>
             <plentry>
                 <pt>pageSize</pt>
-                <pd>The number of pages of the music collection.</pd>
+                <pd>当前音乐资源列表的页面总数量，最大值为 50。</pd>
             </plentry>
             <plentry>
                 <pt>musicList</pt>
-                <pd>The details of music assets on the current page. See <xref keyref="Music" />.</pd>
+                <pd>The details of music assets on the current page. See <xref keyref="Music"/>.</pd>
             </plentry>
+            </parml>
+        </section>
+        <section props="cpp flutter electron rn unreal">
+            <title>Method</title>
+            <parml>
+                <plentry>
+                    <pt>                        getCount
+                    </pt>
+                    <pd>获取本次请求的音乐资源数量，详见 <xref keyref="getCount_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getTotal</pt>
+                    <pd>获取列表内音乐资源的总数量，详见 <xref keyref="getTotal_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getPage</pt>
+                    <pd>获取音乐资源列表当前页的页码，详见 <xref keyref="getPage_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getPageSize</pt>
+                    <pd>获取 SDK 实际返回的音乐资源数量，详见 <xref keyref="getPageSize_MusicCollection"/>。</pd>
+                </plentry>
+                <plentry>
+                    <pt>getMusic</pt>
+                    <pd>The details of music assets on the current page. See <xref keyref="getMusic_MusicCollection"/>.</pd>
+                </plentry>
             </parml>
         </section>
     </refbody>
