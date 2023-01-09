@@ -137,7 +137,7 @@ All chat group members can call `GetGroupFileListFromServer` to retrieve the lis
 The following code sample shows how to retrieve the list of shared files in a chat group:
 
 ```c#
-SDKClient.Instance.GroupManager.GetGroupFileListFromServer(groupId, pageNum, pageSize, handle: new ValueCallBack<List<GroupSharedFile>> (
+SDKClient.Instance.GroupManager.GetGroupFileListFromServer(groupId, pageNum, pageSize, callback: new ValueCallBack<List<GroupSharedFile>> (
   onSuccess: (fileList) =>
   {
   },
