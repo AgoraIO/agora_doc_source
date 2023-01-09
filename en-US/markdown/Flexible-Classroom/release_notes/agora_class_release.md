@@ -1,3 +1,9 @@
+## v2.8.10
+
+v2.8.10 was released on January 5, 2023.
+
+This version improves Edu Store APIs, including adding the `audioDeviceName` and `withAudio` parameters to the [`startScreenShareCapture`](https://api-ref.agora.io/en/flexible-classroom-sdk/electron/2.x/classes/_stores_domain_common_media_index_.MediaStore.html#startScreenShareCapture) method to support sharing the audio when sharing a screen. (Web/Electron)
+
 ## v2.8.0
 v2.8.0 was released on December 12, 2022.
 

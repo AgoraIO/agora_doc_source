@@ -1,4 +1,4 @@
-This page provides the Objective-C API reference for the Agora Proctor SDK for iOS.
+This page provides the Swift API reference for the Agora Proctor SDK for iOS.
 
 ## AgoraProctorSDK
 
@@ -6,7 +6,7 @@ This page provides the Objective-C API reference for the Agora Proctor SDK for i
 
 ### init
 
-```objective-c
+```swift
 - (instancetype)init:(AgoraProctorLaunchConfig *)config
             delegate:(id<AgoraProctorSDKDelegate> _Nullable)delegate;
 ```
@@ -23,7 +23,7 @@ Initializes the `AgoraProctorSDK` instance.
 
 ### launch
 
-```objective-c
+```swift
 - (void)launch:(void (^)(void))success
        failure:(void (^)(NSError *))failure;
 ```
@@ -40,7 +40,7 @@ Launches a flexible classroom in a proctoring scenario.
 
 ### version
 
-```objective-c
+```swift
 - (NSString *)version;
 ```
 
@@ -56,7 +56,7 @@ Gets the SDK version.
 
 ### didExit
 
-```objective-c
+```swift
 - (void)proctorSDK:(AgoraProctorSDK *)proctor
            didExit:(AgoraProctorExitReason)reason;
 ```
@@ -74,7 +74,7 @@ The user exits from the SDK. This callback is triggered when a user exits or is 
 
 ### AgoraProctorLaunchConfig
 
-```objective-c
+```swift
 @interface AgoraProctorLaunchConfig : NSObject
 
 @property (nonatomic, copy) NSString *userName;
@@ -138,7 +138,7 @@ The classroom launching configuration used in [launch](#launch).
 
 ### AgoraProctorMediaOptions
 
-```objective-c
+```swift
 @interface AgoraProctorMediaOptions : NSObject
 @property (nonatomic, strong, nullable) AgoraProctorMediaEncryptionConfig *encryptionConfig;
 
@@ -160,7 +160,7 @@ Media options. Set in [`AgoraProctorLaunchConfig`](#agoraproctorlaunchconfig).
 
 ### AgoraProctorMediaEncryptionConfig
 
-```objective-c
+```swift
 @interface AgoraProctorMediaEncryptionConfig : NSObject
 @property (nonatomic, assign) AgoraProctorMediaEncryptionMode mode;
 @property (nonatomic, copy) NSString *key;
@@ -179,7 +179,7 @@ The media stream encryption configuration used in [AgoraProctorMediaOptions](#ag
 
 ### AgoraProctorVideoEncoderConfig
 
-```objective-c
+```swift
 @interface AgoraProctorVideoEncoderConfig : NSObject
 @property (nonatomic, assign) NSUInteger dimensionWidth;
 @property (nonatomic, assign) NSUInteger dimensionHeight;

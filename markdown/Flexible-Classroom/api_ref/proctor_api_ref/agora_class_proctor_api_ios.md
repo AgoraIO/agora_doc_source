@@ -1,11 +1,11 @@
-本页提供 Agora Proctor SDK for iOS 的 Objective-C API 参考。
+本页提供 Agora Proctor SDK for iOS 的 Swift API 参考。
 
 ## AgoraProctorSDK
 
 `AgoraProctorSDK` 是 Agora Proctor SDK 的基础接口类，提供灵动课堂监考场景的核心方法。
 ### init
 
-```objective-c
+```swift
 - (instancetype)init:(AgoraProctorLaunchConfig *)config
             delegate:(id<AgoraProctorSDKDelegate> _Nullable)delegate;
 ```
@@ -22,7 +22,7 @@
 
 ### launch
 
-```objective-c
+```swift
 - (void)launch:(void (^)(void))success
        failure:(void (^)(NSError *))failure;
 ```
@@ -39,7 +39,7 @@
 
 ### version
 
-```objective-c
+```swift
 - (NSString *)version;
 ```
 
@@ -55,7 +55,7 @@
 
 ### didExit
 
-```objective-c
+```swift
 - (void)proctorSDK:(AgoraProctorSDK *)proctor
            didExit:(AgoraProctorExitReason)reason;
 ```
@@ -73,7 +73,7 @@ Agora Proctor SDK 退出回调，会在用户退出房间或被踢出房间时�
 
 ### AgoraProctorLaunchConfig
 
-```objective-c
+```swift
 @interface AgoraProctorLaunchConfig : NSObject
 
 @property (nonatomic, copy) NSString *userName;
@@ -137,7 +137,7 @@ Agora Proctor SDK 退出回调，会在用户退出房间或被踢出房间时�
 
 ### AgoraProctorMediaOptions
 
-```objective-c
+```swift
 @interface AgoraProctorMediaOptions : NSObject
 @property (nonatomic, strong, nullable) AgoraProctorMediaEncryptionConfig *encryptionConfig;
 
@@ -160,7 +160,7 @@ Agora Proctor SDK 退出回调，会在用户退出房间或被踢出房间时�
 
 ### AgoraProctorMediaEncryptionConfig
 
-```objective-c
+```swift
 @interface AgoraProctorMediaEncryptionConfig : NSObject
 @property (nonatomic, assign) AgoraProctorMediaEncryptionMode mode;
 @property (nonatomic, copy) NSString *key;
@@ -179,7 +179,7 @@ Agora Proctor SDK 退出回调，会在用户退出房间或被踢出房间时�
 
 ### AgoraProctorVideoEncoderConfig
 
-```objective-c
+```swift
 @interface AgoraProctorVideoEncoderConfig : NSObject
 @property (nonatomic, assign) NSUInteger dimensionWidth;
 @property (nonatomic, assign) NSUInteger dimensionHeight;
