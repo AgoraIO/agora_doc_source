@@ -1,37 +1,25 @@
 @startuml
+title 点歌 API 时序图
 autonumber
 skinparam monochrome true
-participant "RTC SDK" as rtc
-participant "Android app" as app
-participant "RTM SDK" as rtm
-participant "云服务" as cloud
-== 登录 RTM 系统 ==
-app -> rtm: createInstance
-app -> rtm: login
-== 创建直播间 ==
-app -> cloud: post create room
-cloud -->> app: create room result
-== 加入直播间 ==
-app -> cloud: post join room
-cloud -->> app: join room result
-note right
-返回直播间信息，包括用户
-列表、用户信息、房间信息
-end note
-== 加入 RTC 和 RTM 频道并开始直播 ==
-app -> rtc: create
-app -> rtc: enableVideo
-app -> rtc: setChannelProfile(BROADCASTING)
-app -> rtc: setClientRole(BROADCASTER)
-app -> rtc: setupLocalVideo
-app -> rtc: joinChannel
-rtc -->> app: onJoinChannelSuccess
-app -> rtm: createChannel˚
-app -> rtm: join
-rtm -->> app: onSuccess
-== 停止直播并离开 RTC 和 RTM 频道 ==
-app -> cloud: post leave room
-app -> rtm: leave
-app -> rtm: logout
-app -> rtc: leaveChannel
+participant "iOS 应用" as a
+participant "声网 SDK" as b
+== 初始化和创建 ==
+a -> b: **AgoraMusicContentCenter**.sharedContentCenterWithConfig
+a -> b: AgoraMusicContentCenter.createMusicPlayerWithDelegate
+== 获取音乐资源(方式一) ==
+a -> b: AgoraMusicContentCenter.searchMusicWithKeyWord
+b -->> a: AgoraMusicContentCenterEventDelegate.onMusicCollectionResult
+== 获取音乐资源(方式二) ==
+a -> b: AgoraMusicContentCenter.getMusicCollectionWithMusicChartId
+b -->> a: AgoraMusicContentCenterEventDelegate.onMusicCollectionResult
+== 预加载音乐资源 ==
+a -> b: AgoraMusicContentCenter.isPreloadedWithSongCode
+a -> b: AgoraMusicContentCenter.preloadWithSongCode
+b -->> a: AgoraMusicContentCenterEventDelegate.onPreLoadEvent (AgoraMusicContentCenterPreloadStatus = 0)
+== 打开并播放音乐资源 ==
+a -> b: **AgoraMusicPlayerProtocol**.openMediaWithSongCode
+b -->> a: AgoraRtcMediaPlayerDelegate.didChangedToState (AgoraMediaPlayerState = 5)
+a ->b: **AgoraRtcMediaPlayerProtocol**.play
+b -->> a: AgoraRtcMediaPlayerDelegate.didChangedToState (AgoraMediaPlayerState = 3)
 @enduml
