@@ -36,7 +36,7 @@ Only the [app super admin](./agora_chat_restful_chatroom_superadmin) can call `C
 The following code sample shows how to create a chat room:
 
 ```c#
-SDKClient.Instance.RoomManager.CreateRoom(subject, description, welcomeMsg, maxUserCount, members,handle: new ValueCallBack<Room>(
+SDKClient.Instance.RoomManager.CreateRoom(subject, description, welcomeMsg, maxUserCount, members,callback: new ValueCallBack<Room>(
   onSuccess: (room) => {
   },
   onError:(code, desc) => {
@@ -71,7 +71,7 @@ The following code sample shows how to join a chat room:
 
 ```c#
 // Retrieve the list of chat rooms from the server
-SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(handle: new ValueCallBack<PageResult<Room>>(
+SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(callback: new ValueCallBack<PageResult<Room>>(
             // `result` is of PageResult<Room> type
             onSuccess: (result) => {
             },
@@ -135,7 +135,7 @@ Users can call `FetchPublicRoomsFromServer` to get the chat room list from the s
 
 ```c#
 // You can set the value of `pageSize` to a maximum of 1000.
-SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(pageNum, pageSize, handle: new ValueCallBack<PageResult<Room>>(
+SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(pageNum, pageSize, callback: new ValueCallBack<PageResult<Room>>(
   // `rooms` is of PageResult<Room> type.
   onSuccess: (rooms) => {
   },

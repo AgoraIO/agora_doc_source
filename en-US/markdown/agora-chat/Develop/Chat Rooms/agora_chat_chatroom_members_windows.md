@@ -48,7 +48,7 @@ All chat room members can call `FetchRoomMembers` to retrieve the member list of
 The following code sample shows how to retrieve the chat room member list:
 
 ```c#
-SDKClient.Instance.RoomManager.FetchRoomMembers(roomId, cursor, pageSize, handle: new ValueCallBack<CursorResult<string>>(
+SDKClient.Instance.RoomManager.FetchRoomMembers(roomId, cursor, pageSize, callback: new ValueCallBack<CursorResult<string>>(
   // `members` is of the CursorResult<string> type
   onSuccess: (members) => {
   },
@@ -98,7 +98,7 @@ Only the chat room owner and admins can call `FetchRoomBlockList` to retrieve th
 The following code sample shows how to retrieve the chat room block list:
 
 ```c#
-SDKClient.Instance.RoomManager.FetchRoomBlockList(roomId, pageNum, pageSize, handle: new ValueCallBack<List<string>>(
+SDKClient.Instance.RoomManager.FetchRoomBlockList(roomId, pageNum, pageSize, callback: new ValueCallBack<List<string>>(
   // `list` is of List<string> type
   onSuccess: (list) => {
   },
@@ -150,7 +150,7 @@ Only the chat room owner and admins can call `FetchRoomMuteList` to retrieve the
 The following code sample shows how to retrieve the chat room mute list:
 
 ```c#
-SDKClient.Instance.RoomManager.FetchRoomMuteList(roomId, pageSize, pageNum, handle: new ValueCallBack<List<string>>(
+SDKClient.Instance.RoomManager.FetchRoomMuteList(roomId, pageSize, pageNum, callback: new ValueCallBack<List<string>>(
   // `list` is of List<string> type
   onSuccess: (list) => {
   },

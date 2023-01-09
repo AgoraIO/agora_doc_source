@@ -41,7 +41,7 @@ Refer to the following code sample to retrieve the messages in the specified con
 // Get the specified conversation on the local device.
 Conversation conv = SDKClient.Instance.ChatManager.GetConversation(conversationId, convType);
 // Call LoadMessages to retrieve messages by specifying the `startMsgId` and `pageSize`.
-conv.LoadMessages(startMsgId, pagesize, handle:new ValueCallBack<List<Message>>(
+conv.LoadMessages(startMsgId, pagesize, callback:new ValueCallBack<List<Message>>(
   onSuccess: (list) => {
      Debug.Log($"{list.Count} Messages retrieved.");
   },

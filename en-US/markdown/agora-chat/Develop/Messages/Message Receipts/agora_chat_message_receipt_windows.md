@@ -187,7 +187,7 @@ Follow the steps to implement chat message read receipts.
     ```C#
     void SendReadAckForGroupMessage(string messageId, string ackContent)
     {
-        SDKClient.Instance.ChatManager.SendReadAckForGroupMessage(messageId, ackContent，handle: new CallBack(
+        SDKClient.Instance.ChatManager.SendReadAckForGroupMessage(messageId, ackContent，callback: new CallBack(
             onSuccess: () =>
             {
                         
