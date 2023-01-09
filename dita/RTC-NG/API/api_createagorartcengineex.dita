@@ -20,7 +20,7 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public static IRtcEngineEx CreateAgoraRtcEngineEx()
         {
-            return (IRtcEngineEx)(instance ?? (instance = new RtcEngine()));
+            return (IRtcEngineEx)(instance ?? (instance = new RtcEngine(IntPtr.Zero)));
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
             <codeblock props="flutter" outputclass="language-dart">RtcEngineEx createAgoraRtcEngineEx() {
@@ -29,7 +29,8 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>目前 Agora RTC v4.x SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngineEx"/> 对象。</p>
+            <p props="unity">目前 Agora RTC v4.x SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngineEx"/> 对象。</p>
+            <p props="flutter">目前 Agora RTC v6.x SDK 只支持每个 app 创建一个 <apiname keyref="IRtcEngineEx"/> 对象。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>

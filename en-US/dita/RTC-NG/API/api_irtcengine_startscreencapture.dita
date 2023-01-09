@@ -22,8 +22,8 @@
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startScreenCapture(captureParams: ScreenCaptureParameters2): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startScreenCapture(ScreenCaptureParameters2 captureParams);</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <p id="apisequence" props="android ios cpp unity flutter">There are two ways to start screen sharing, you can choose one according to your needs:<ul>
@@ -35,18 +35,18 @@
             <ul>
             <li props="cpp rn unity flutter">This method applies to Android and iOS only.</li>
             <li props="cpp rn unity flutter ios">On the iOS platform, screen sharing is only available on iOS 12.0 and later.</li>
-            <li props="cpp ios unity rn flutter">The billing for the screen sharing stream is based on the <parmname>dimensions</parmname> in <apiname keyref="ScreenVideoParameters"/>. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass a value in, Agora bills you at that value. See <xref keyref="guide-bill"/>.</li>
+            <li props="cpp ios unity rn flutter">The billing for the screen sharing stream is based on the <parmname>dimensions</parmname> in <apiname keyref="ScreenVideoParameters" />. When you do not pass in a value, Agora bills you at 1280 × 720; when you pass a value in, Agora bills you at that value. See <xref keyref="guide-bill" />.</li>
             <li props="cpp ios unity rn flutter">If you are using the custom audio source instead of the SDK to capture audio, Agora recommends you add the keep-alive processing logic to your application to avoid screen sharing stopping when the application goes to the background.</li>
             <li props="cpp ios unity rn flutter">This feature requires high-performance device, and Agora recommends that you use it on iPhone X and later models.</li>
             <li props="cpp ios unity rn flutter">This method relies on the iOS screen sharing dynamic library <codeph>AgoraReplayKitExtension.xcframework</codeph>. If the dynamic library is deleted, screen sharing cannot be enabled normally.</li>
             <li props="cpp android unity rn flutter">On the Android platform, make sure the user has granted the app screen capture permission.</li>
-            <li props="cpp android">Make sure that the Android API level is not earlier than 21, otherwise, the SDK reports error codes <codeph><apiname keyref="ERR_SCREEN_CAPTURE_PERMISSION_DENIED"/>(16)</codeph> and <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_NOT_SUPPORTED"/>(2)</codeph>.</li>
-            <li props="cpp android">To capture system audio during screen sharing, ensure that the Android API level is not earlier than 29 as well; otherwise, the SDK reports the error code <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_AUDIO_NOT_SUPPORTED"/>(3)</codeph>.</li>
+            <li props="cpp android">Make sure that the Android API level is not earlier than 21, otherwise, the SDK reports error codes <codeph><apiname keyref="ERR_SCREEN_CAPTURE_PERMISSION_DENIED" />(16)</codeph> and <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_NOT_SUPPORTED" />(2)</codeph>.</li>
+            <li props="cpp android">To capture system audio during screen sharing, ensure that the Android API level is not earlier than 29 as well; otherwise, the SDK reports the error code <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_AUDIO_NOT_SUPPORTED" />(3)</codeph>.</li>
             <li props="cpp android unity rn flutter">On Android 9 and later, to avoid the application being killed by the system after going to the background, Agora recommends you add the foreground service permission <codeph>android.permission.FOREGROUND_SERVICE</codeph> to the <codeph>/app/Manifests/AndroidManifest.xml</codeph> file.</li>
             <li props="cpp android unity rn flutter">Due to performance limitations, screen sharing is not supported on Android TV.</li>
             <li props="cpp android unity rn flutter">Due to system limitations, if you are using Huawei phones, do not adjust the video encoding resolution of the screen sharing stream during the screen sharing, or you could experience crashes.</li>
             <li props="cpp android unity rn flutter">Due to system limitations, some Xiaomi devices do not support capturing system audio during screen sharing.</li>
-            <li props="cpp android unity rn flutter">To avoid system audio capture failure when screen sharing, Agora recommends that you set the audio application scenario to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/> by using the<xref keyref="setAudioScenario"/> method before joining the channel.</li>
+            <li props="cpp android unity rn flutter">To avoid system audio capture failure when screen sharing, Agora recommends that you set the audio application scenario to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" /> by using the<xref keyref="setAudioScenario" /> method before joining the channel.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -55,7 +55,7 @@
                 <pt props="ios">parameters</pt>
                 <pt props="android">ScreenCaptureParameters</pt>
                 <pt props="cpp rn unity flutter">captureParams</pt>
-                <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters2" props="android ios cpp rn unity flutter"/>.</pd>
+                <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters2" props="android ios cpp rn unity flutter" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="cpp android ios unity rn">

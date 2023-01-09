@@ -86,6 +86,6 @@ await rtcEngine.setAudioProfile(AudioProfileType.audioScenarioMeeting);
 
 ### API 参考
 
-- [`initialize`](./API%20Reference/flutter_ng/API/class_irtcengine.html?platform=Windows#api_irtcengine_initialize)
-- [`setAudioProfile`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setaudioprofile)
-- [`setAudioScenario`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_setaudioscenario)
+- [`initialize`](./API%20Reference/flutter_ng/API/toc_core_method.html#api_irtcengine_initialize)
+- [`setAudioProfile`](./API%20Reference/flutter_ng/API/toc_audio_process.html#api_irtcengine_setaudioprofile)
+- [`setAudioScenario`](./API%20Reference/flutter_ng/API/toc_audio_process.html#api_irtcengine_setaudioscenario)

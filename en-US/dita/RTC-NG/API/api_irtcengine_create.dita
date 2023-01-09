@@ -22,7 +22,7 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart">There are no corresponding names available</codeblock>            
+            <codeblock props="flutter" outputclass="language-dart" />
             <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
@@ -54,7 +54,13 @@
             <title>Returns</title>
             <ul>
             <li>The <apiname keyref="IRtcEngine" /> instance, if the method call succeeds.</li>
-            <li>An error code, if the call fails,.</li>
+            <li>An error code, if the method call fails.<ul>
+                <li>-1: A general error occurs (no specified reason).</li>
+                <li>-2: The parameter is invalid.</li>
+                <li>-7: The SDK is not initialized.</li>
+                <li>-22: The resource request failed. The SDK fails to allocate resources because your app consumes too much system resource or the system resources are insufficient.</li>
+                <li>-101: The App ID is invalid.</li>
+                </ul></li>
             </ul> </section>
         <section id="section_yqx_kwq_4qb" props="android">
             <title>Exception</title>
