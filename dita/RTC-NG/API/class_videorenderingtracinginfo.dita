@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videorenderingtracinginfo">
     <title><ph keyref="VideoRenderingTracingInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">视频渲染跟踪结果。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">视频帧渲染过程中的指标信息。用户需要尽可能的降低指标值，以提高出图效率。</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -52,32 +52,56 @@
             <parml>
             <plentry>
                 <pt>elapsedTime</pt>
-                <pd>开始跟踪视频渲染到触发视频渲染跟踪事件回调的时间间隔。</pd>
+                <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔。单位为毫秒。</pd>
             </plentry>
             <plentry>
                 <pt>start2JoinChannel</pt>
-                <pd>开始跟踪视频渲染到调用 <xref keyref="joinChannel2"/> 的时间间隔。如果在调用 <xref keyref="joinChannel1"/>/<xref keyref="joinChannel2"/> 后开始跟踪视频渲染，则该参数值为负数。</pd>
-            </plentry>     
+                <pd>从调用 <apiname keyref="startMediaRenderingTracing"/> 到调用 <xref keyref="joinChannel2"/> 的时间间隔。单位为毫秒。负数表示在调用 <apiname keyref="joinChannel2"/> 后调用 <apiname keyref="startMediaRenderingTracing"/>。</pd>
+            </plentry>
             <plentry>
                 <pt>join2JoinSuccess</pt>
-                <pd>调用 <xref keyref="joinChannel2"/> 到加入频道的时间间隔。</pd>
-            </plentry>          
+                <pd>从调用 <apiname keyref="joinChannel2"/> 到成功加入频道的时间间隔。单位为毫秒。</pd>
+            </plentry>
             <plentry>
                 <pt>joinSuccess2RemoteJoined</pt>
-                <pd>加入频道到远端用户加入频道的时间间隔。如果在加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到远端用户加入频道的时间间隔。最小值为 0。</pd>
+                <pd>
+                <ul>
+                    <li>如果本地用户成功加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户成功加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔。单位为毫秒。</li>
+                </ul>
+                <note type="note">如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</note> 
+                </pd>
             </plentry>
             <plentry>
                 <pt>remoteJoined2SetView</pt>
-                <pd>远端用户加入到设置远端视图的时间间隔。如果在远端用户加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到设置远端视图的时间间隔。最小值为 0。</pd>
-            </plentry>        
+                <pd>
+                <ul>
+                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔。</li>
+                </ul>
+                <note type="note"><ul>
+                    <li>如果本地用户在设置远端视图后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</li>
+                    <li>建议在远端用户加入频道之前设置远端视图，或者远端用户加入频道后立即设置远端视图，以降低该参数值，提升远端用户出图速度。</li>
+                </ul></note> </pd>
+            </plentry>
             <plentry>
                 <pt>remoteJoined2UnmuteVideo</pt>
-                <pd>远端用户加入频道到订阅远端视频流的时间间隔。如果在远端用户加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到订阅远端视频流的时间间隔。最小值为 0。</pd>
-            </plentry>             
+                <pd>
+                <ul>
+                    <li>如果本地用户在订阅远端视频流前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在订阅远端视频流后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔。</li>
+                </ul>
+                <note type="note">如果在订阅远端视频流后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</note> </pd>
+            </plentry>
             <plentry>
                 <pt>remoteJoined2PacketReceived</pt>
-                <pd>远端用户加入频道到接收到远端视频流的时间间隔。如果在远端用户加入频道后开始跟踪视频渲染，该参数值为开始跟踪视频渲染到接收到远端视频流的时间间隔。最小值为 0。</pd>
-            </plentry>                  
+                <pd>
+                <ul>
+                    <li>如果本地用户在接收到远端视频流前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到远端视频流的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在接收到远端视频流后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到接收到远端视频流的时间间隔。</li>
+                </ul>
+                <note type="note">如果在接收到远端视频流后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</note></pd>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>
