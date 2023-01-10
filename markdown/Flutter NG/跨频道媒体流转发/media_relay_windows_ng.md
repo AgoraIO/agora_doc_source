@@ -25,8 +25,7 @@
 
 ### 1. 开始跨频道媒体流转发
 
-一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
-
+成功加入频道后，可以调用 `startChannelMediaRelay` 方法转发媒体流。一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
 
 ```cpp
 // 配置源频道信息
@@ -34,7 +33,7 @@ ChannelMediaInfo* m_srcInfo = new ChannelMediaInfo;
 m_srcInfo->channelName = new char[szChannelId.size() + 1];
 strcpy_s(const_cast<char*>(m_srcInfo->channelName), szChannelId.size() + 1, szChannelId.data());
 m_srcInfo->token = APP_TOKEN; // 注意 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
-m_srcInfo->uid = 0; // 基于该特性的实现原理，建议将源频道的 uid 设为 0
+m_srcInfo->uid = 0; // 基于该特性的实现原理，推荐将源频道的 uid 设为 0 由 SDK 随机分配
 // 配置目标频道信息
 int nDestCount = m_vecChannelMedias.size()
 ChannelMediaInfo  *lpDestInfos = new ChannelMediaInfo[nDestCount];
