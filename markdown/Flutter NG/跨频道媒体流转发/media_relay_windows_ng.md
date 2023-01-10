@@ -25,7 +25,7 @@
 
 ### 1. 开始跨频道媒体流转发
 
-成功加入频道后，可以调用 `startChannelMediaRelay` 方法转发媒体流。一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
+成功加入频道后，可以调用 `startChannelMediaRelay` 方法转发媒体流。示例代码如下：
 
 ```cpp
 // 配置源频道信息
@@ -33,14 +33,14 @@ ChannelMediaInfo* m_srcInfo = new ChannelMediaInfo;
 m_srcInfo->channelName = new char[szChannelId.size() + 1];
 strcpy_s(const_cast<char*>(m_srcInfo->channelName), szChannelId.size() + 1, szChannelId.data());
 m_srcInfo->token = APP_TOKEN; // 注意 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
-m_srcInfo->uid = 0; // 基于该特性的实现原理，推荐将源频道的 uid 设为 0 由 SDK 随机分配
+m_srcInfo->uid = 0; // 基于该特性的实现原理，推荐将源频道的 uid 设为 0，由 SDK 随机分配一个 uid
 // 配置目标频道信息
 int nDestCount = m_vecChannelMedias.size()
 ChannelMediaInfo  *lpDestInfos = new ChannelMediaInfo[nDestCount];
 for (int nIndex = 0; nIndex < nDestCount; nIndex++) {
     lpDestInfos[nIndex].channelName = m_vecChannelMedias[nIndex].channelName;
     lpDestInfos[nIndex].token = m_vecChannelMedias[nIndex].token;
-    lpDestInfos[nIndex].uid = m_vecChannelMedias[nIndex].uid; // 你可以将 uid 设为 0 由 SDK 随机分配，或自行指定 uid 并确保其与目标频道中的所有 uid 不同
+    lpDestInfos[nIndex].uid = m_vecChannelMedias[nIndex].uid; // 你可以将 uid 设为 0，由 SDK 随机分配一个 uid，或自行指定 uid，并确保其与目标频道中的所有 uid 不同
 }
 ChannelMediaRelayConfiguration cmrc;
 cmrc.srcInfo = m_srcInfo;
@@ -76,7 +76,7 @@ m_rtcEngine->resumeAllChannelMediaRelay();
 
 ### 4. 停止跨频道媒体流转发
 
-在成功调用 `startChannelMediaRelay` 方法后，如果想再次调用该方法，必须先调用 `stopChannelMediaRelay` 方法退出当前的转发状态，示例代码如下：
+在成功调用 `startChannelMediaRelay` 方法开始跨频道媒体流转发后，如需退出当前的转发状态，可以调用 `stopChannelMediaRelay`，示例代码如下：
 
 ```cpp
 m_rtcEngine->stopChannelMediaRelay();
@@ -120,7 +120,9 @@ class CAgoraCrossChannelEventHandler : public IRtcEngineEventHandler
 ### 开发注意事项
 
 - 在直播场景中，只有角色为主播的用户才能调用 `startChannelMediaRelay` 开始跨频道媒体流转发
+- 一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay`，SDK 就转发哪个主播的流
 - 该功能最多支持将媒体流转发至 4 个目标频道
+- 在成功调用 `startChannelMediaRelay` 方法后，如果想再次调用该方法，必须先调用 `stopChannelMediaRelay` 方法退出当前的转发状态
 - 该功能不支持 String 型 `uid`，如需使用跨频道连麦功能，则要在普通连麦中也使用 Int 型 `uid`，否则跨频道连麦功能无法正常使用
 
 ### 示例项目
