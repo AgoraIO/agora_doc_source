@@ -20,16 +20,16 @@ v1.0.9 于 2023 年 2 月 1 日发布。
   - `OnRemoveFromRoomByOffline`：成员因为离线被移出聊天室。              
 4. `IConnectionDelegate` 类中新增以下回调方法：
   - `OnLoggedOtherDevice`：当前登录账号在其它设备登录时会收到此回调。
-  - `OnRemovedFromServer`：当前登录账号已经被从服务器端删除时会收到该回调。
+  - `OnRemovedFromServer`：当前登录账号从服务器端删除时会收到该回调。
   - `OnForbidByServer`：当前用户账号被禁用时会收到该回调。
   - `OnChangedIMPwd`：当前登录账号因密码被修改被强制退出。
   - `OnLoginTooManyDevice`：当前登录账号因达到登录设备数量上限被强制退出。
   - `OnKickedByOtherDevice`：当前登录设备账号被登录其他设备的同账号踢下线。
   - `OnAuthFailed`：当前登录设备账号因鉴权失败强制退出。
 5. `Group` 类中新增以下属性：             
-  - `IsMemberOnly`：表示群组不能自由加入，需要申请或者被邀请。
-  - `IsMemberAllowToInvite`：群组是否允许成员邀请。
-  - `MaxUserCount`：群允许加入的最大成员数。
+  - `IsMemberOnly`：表示用户是否只能通过申请或邀请加入群组，而不能自由加入。
+  - `IsMemberAllowToInvite`：群组是否允许成员邀请用户入群。
+  - `MaxUserCount`：群组允许加入的最大成员数。
   - `Ext`：自定义群组扩展信息。
   - `IsDisabled`：群组是否禁用。         
               
@@ -37,7 +37,7 @@ v1.0.9 于 2023 年 2 月 1 日发布。
 
 1. 命名空间由 ChatSDK 修改为 AgoraChat。
 2. 各方法中的 `handle` 参数重命名为 `callback`。
-3. 移除了 `pushmanager` 类。
+3. 移除 `pushmanager` 类。
 4. `UserInfo` 类中的字段名均修改为首字母大写。
 5. `Message` 类的 `AttributeValue` 子类中移除 `UINT32` 和 `JSONSTRING` 类型。
 6. `OnDisconnected` 方法中移除整型参数 `i`。
@@ -60,6 +60,7 @@ v1.0.9 于 2023 年 2 月 1 日发布。
   - `OnRemoveWhiteListMembersFromGroup` 方法重命名为 `OnRemoveAllowListMembersFromGroup`。
   - `OnInvitationAcceptedFromGroup` 方法中移除 `reason` 参数。
   - `OnRequestToJoinDeclinedFromGroup` 方法中移除 `groupName` 和 `decliner` 参数。
+
 ## v1.0.8
 
 v1.0.8 于 2022 年 11 月 22 日发布。
