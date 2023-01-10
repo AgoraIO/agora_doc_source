@@ -24,7 +24,7 @@
 
 ### 1. 开始跨频道媒体流转发
 
-一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
+成功加入频道后，可以调用 `startChannelMediaRelay` 方法转发媒体流。一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
 
 ```java
 // 将用户填入的目标频道名赋值给 destChannelName
@@ -34,9 +34,8 @@ if(destChannelName.length() == 0){
 }
 
 // 配置源频道信息
-// 源频道名的默认值为 NULL，表示 SDK 自动填充当前频道名
-// 基于该特性的实现原理，必须将源频道的 uid 设为 0
-// 这里的 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
+// 基于该特性的实现原理，推荐将源频道的 uid 设为 0 由 SDK 随机分配
+// 注意 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
 ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(et_channel.getText().toString(), null, myUid);
 ChannelMediaRelayConfiguration mediaRelayConfiguration = new ChannelMediaRelayConfiguration();
 mediaRelayConfiguration.setSrcChannelInfo(srcChannelInfo);
@@ -145,7 +144,7 @@ IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEventHandler(){
 ### 开发注意事项
 
 - 在直播场景中，只有角色为主播的用户才能调用 `startChannelMediaRelay` 开始跨频道媒体流转发
-- 该功能最多支持将媒体流转发至 64 个目标频道
+- 该功能最多支持将媒体流转发至 4 个目标频道
 - 该功能不支持 String 型 `uid`，如需使用跨频道连麦功能，则要在普通连麦中也使用 Int 型 `uid`，否则跨频道连麦功能无法正常使用
 
 ### 示例项目
@@ -162,9 +161,4 @@ IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEventHandler(){
 - [`onChannelMediaRelayStateChanged`](./API%20Reference/java_ng/API/toc_stream_management.html#callback_irtcengineeventhandler_onchannelmediarelaystatechanged)
 - [`onChannelMediaRelayEvent`](./API%20Reference/java_ng/API/toc_stream_management.html#callback_irtcengineeventhandler_onchannelmediarelayevent)
 - [`ChannelMediaRelayConfiguration`](./API%20Reference/java_ng/API/class_channelmediarelayconfiguration.html)
-  - [`getDestChannelMediaInfos`](./API%20Reference/java_ng/API/api_channelmediarelayconfiguration_getdestchannelmediainfos.html)
-  - [`getSrcChannelMediaInfo`](./API%20Reference/java_ng/API/api_channelmediarelayconfiguration_getsrcchannelmediainfo.html)
-  - [`removeDestChannelInfo`](./API%20Reference/java_ng/API/api_channelmediarelayconfiguration_removedestchannelinfo.html)
-  - [`setDestChannelInfo`](./API%20Reference/java_ng/API/api_channelmediarelayconfiguration_setdestchannelinfo.html)
-  - [`setSrcChannelInfo`](./API%20Reference/java_ng/API/api_channelmediarelayconfiguration_setsrcchannelinfo.html)
 - [`ChannelMediaInfo`](./API%20Reference/java_ng/API/class_channelmediainfo.html)
