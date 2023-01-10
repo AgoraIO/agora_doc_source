@@ -91,7 +91,7 @@ This section shows how to prepare the development environment necessary to integ
 
 5. Go back to the **NuGet: windows-example** page, open the **Package source** drop-down list at the top right, and select the newly-added one.
 
-6. In the **Browse** tab of the **NuGet: windows-example** page, check the **Include prerelease** box, select the **agora_chat_sdk** item displayed below (if not, refresh the page), and click **Install**.
+6. In the **Browse** tab of the **NuGet: windows-example** page, select the **agora_chat_sdk** item displayed below (if not, refresh the page), and click **Install**.
 
 7. In the pop-up **Preview Changes** windows, click **OK** to proceed and complete the installation.
 
@@ -105,8 +105,8 @@ In **Solution Explorer** of **Visual Studio**, select **windows-example** > **Ma
 At the top lines of the `MainWindow.xaml.cs` file, add the following:
 
 ```c#
-using ChatSDK;
-using ChatSDK.MessageBody;
+using AgoraChat;
+using AgoraChat.MessageBody;
 ```
 
 ### 2. Initialize the SDK
@@ -126,7 +126,7 @@ At the end of the `SignIn_Click` function, add the following to add the login lo
 
 ```c#
 // Calls `LoginWithAgoraToken` to log in to the Chat service with username and Agora token.
-SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, AgoraTokenBox.Text, handle: new CallBack(
+SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, AgoraTokenBox.Text, callback: new CallBack(
     onSuccess: () =>
     {
         AddLogToLogText("sign in sdk succeed");
@@ -143,7 +143,7 @@ SDKClient.Instance.LoginWithAgoraToken(UserIdTextBox.Text, AgoraTokenBox.Text, h
 At the end of the `SignOut_Click` function, add the following to add the logout logic:
 
 ```c#
-SDKClient.Instance.Logout(true, handle: new CallBack(
+SDKClient.Instance.Logout(true, callback: new CallBack(
     onSuccess: () =>
     {
         AddLogToLogText("sign out sdk succeed");
@@ -256,6 +256,10 @@ public void OnConversationsUpdate()
 }
 
 public void OnConversationRead(string from, string to)
+{
+}
+
+public void MessageReactionDidChange(List<MessageReactionChange> list)
 {
 }
 ```
