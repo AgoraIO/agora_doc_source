@@ -23,7 +23,12 @@
         </section>
         <section id="detailed_desc">
             <p>如果你希望获取的视频数据为原始视频的镜像，需要在调用 <xref keyref="registerVideoFrameObserver" /> 方法时注册该回调。成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调，你需要在该回调的返回值中设置是否对原始视频数据作镜像处理。</p>
-            <note type="attention" conkeyref="getRotationApplied/note1" /> </section>
+            <note type="attention">
+                <ul>
+                    <li>该功能仅支持 RGBA 和 YUV420 格式的视频数据。</li>
+                    <li>该方法和 <xref keyref="setVideoEncoderConfiguration"/> 方法均支持设置镜像效果，声网建议你仅选择一种方法进行设置，同时使用两种方法会导致镜像效果叠加从而造成设置镜像失败。</li>
+                </ul>
+            </note> </section>
         <section id="return_values">
             <title>返回值</title>
             <p>设置 SDK 输出视频数据时是否作镜像处理：
