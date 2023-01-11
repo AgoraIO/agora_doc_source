@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_enableinstantmediarendering">
+    <title><ph keyref="enableInstantMediaRendering"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启音视频帧加速渲染。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="enableInstantMediaRendering"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int enableInstantMediaRendering();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableInstantMediaRendering NS_SWIFT_NAME(enableInstantMediaRendering());</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int enableInstantMediaRendering() = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p>成功调用该方法后，SDK 会开启加速出图和出声模式，可加快用户加入频道后的首帧出图与出声速度。 
+                <note type="attention">
+                <ul>
+                    <li>一旦开启快速渲染功能，只能通过调用 <xref keyref="release"/> 方法销毁 <apiname keyref="IRtcEngine"/> 对象来取消。</li>
+                    <li>在该模式下，SDK 启用声网自定义加密算法来缩短建立传输链路的耗时，安全性相对于标准 DTLS (Datagram Transport Layer Security) 有所降低。如果业务场景对安全标准要求较高，请谨慎调用该方法。</li>
+                </ul>
+                </note></p>
+        </section>
+        <section>
+            <title>适用场景</title>
+            <p>声网推荐在直播场景下，对观众开启该模式。</p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul> </section>
+    </refbody>
+</reference>

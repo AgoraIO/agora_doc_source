@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videorenderingtracinginfo">
+    <title><ph keyref="VideoRenderingTracingInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频帧渲染过程中的指标信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static class VideoRenderingTracingInfo {
+  public int elapsedTime;
+  public int start2JoinChannel;
+  public int join2JoinSuccess;
+  public int joinSuccess2RemoteJoined;
+  public int remoteJoined2SetView;
+  public int remoteJoined2UnmuteVideo;
+  public int remoteJoined2PacketReceived;
+};</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraVideoRenderingTracingInfo) __attribute__((visibility("default"))) @interface AgoraVideoRenderingTracingInfo : NSObject
+@property (assign, nonatomic) NSInteger elapsedTime NS_SWIFT_NAME(elapsedTime);
+@property (assign, nonatomic) NSInteger start2JoinChannel NS_SWIFT_NAME(start2JoinChannel);
+@property (assign, nonatomic) NSInteger join2JoinSuccess NS_SWIFT_NAME(join2JoinSuccess);
+@property (assign, nonatomic) NSInteger joinSuccess2RemoteJoined NS_SWIFT_NAME(joinSuccess2RemoteJoined);
+@property (assign, nonatomic) NSInteger remoteJoined2SetView NS_SWIFT_NAME(remoteJoined2SetView);
+@property (assign, nonatomic) NSInteger remoteJoined2UnmuteVideo NS_SWIFT_NAME(remoteJoined2UnmuteVideo);
+@property (assign, nonatomic) NSInteger remoteJoined2PacketReceived NS_SWIFT_NAME(remoteJoined2PacketReceived);</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoRenderingTracingInfo {
+  int elapsedTime;
+  int start2JoinChannel;
+  int join2JoinSuccess;
+  int joinSuccess2RemoteJoined;
+  int remoteJoined2SetView;
+  int remoteJoined2UnmuteVideo;
+  int remoteJoined2PacketReceived;
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>elapsedTime</pt>
+                <pd>从调用 <xref keyref="startMediaRenderingTracing"/> 到触发 <xref keyref="onVideoRenderingTracingResult"/> 回调的时间间隔。单位为毫秒。</pd>
+            </plentry>
+            <plentry>
+                <pt>start2JoinChannel</pt>
+                <pd>从调用 <apiname keyref="startMediaRenderingTracing"/> 到调用 <xref keyref="joinChannel2"/> 的时间间隔。单位为毫秒。负数表示在调用 <apiname keyref="joinChannel2"/> 后调用 <apiname keyref="startMediaRenderingTracing"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>join2JoinSuccess</pt>
+                <pd>从调用 <apiname keyref="joinChannel2"/> 到成功加入频道的时间间隔。单位为毫秒。</pd>
+            </plentry>
+            <plentry>
+                <pt>joinSuccess2RemoteJoined</pt>
+                <pd>
+                    <ul>
+                    <li>如果本地用户成功加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从本地用户成功加入频道到远端用户加入频道的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户成功加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到远端用户加入频道的时间间隔。单位为毫秒。</li>
+                    </ul>
+                    <note type="note">如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteJoined2SetView</pt>
+                <pd>
+                    <ul>
+                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户设置远端视图的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到设置远端视图的时间间隔。单位为毫秒。</li>
+                    </ul>
+                    <note type="note">
+                    <ul>
+                    <li>如果本地用户在设置远端视图后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</li>
+                    <li>建议在远端用户加入频道之前设置远端视图，或者远端用户加入频道后立即设置远端视图，以降低该参数值，提升远端用户出图速度。</li>
+                    </ul></note> </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteJoined2UnmuteVideo</pt>
+                <pd>
+                    <ul>
+                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到订阅远端视频流的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到订阅远端视频流的时间间隔。单位为毫秒。</li>
+                    </ul>
+                    <note type="note">如果在订阅远端视频流后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteJoined2PacketReceived</pt>
+                <pd>
+                    <ul>
+                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到远端视频流的时间间隔。单位为毫秒。</li>
+                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到接收到远端视频流的时间间隔。单位为毫秒。</li>
+                    </ul>
+                    <note type="note">如果在接收到远端视频流后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该参数值为 0，无参考意义。</note></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
