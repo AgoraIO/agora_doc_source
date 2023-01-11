@@ -24,7 +24,7 @@
 
 ### 1. 开始跨频道媒体流转发
 
-成功加入频道后，可以调用 `startChannelMediaRelay` 方法转发媒体流。一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay` 方法，SDK 就转发哪个主播的流，示例代码如下：
+成功加入频道后，可以调用 `startChannelMediaRelay` 方法转发媒体流。示例代码如下：
 
 ```java
 // 将用户填入的目标频道名赋值给 destChannelName
@@ -34,13 +34,13 @@ if(destChannelName.length() == 0){
 }
 
 // 配置源频道信息
-// 基于该特性的实现原理，推荐将源频道的 uid 设为 0 由 SDK 随机分配
+// 推荐将源频道的 uid 设为 0，由 SDK 随机分配一个 uid
 // 注意 token 与用户加入源频道时的 token 不同，需要用源频道名和 uid = 0 重新生成
 ChannelMediaInfo srcChannelInfo = new ChannelMediaInfo(et_channel.getText().toString(), null, myUid);
 ChannelMediaRelayConfiguration mediaRelayConfiguration = new ChannelMediaRelayConfiguration();
 mediaRelayConfiguration.setSrcChannelInfo(srcChannelInfo);
 // 配置目标频道信息
-// 你可以将 uid 设为 0 由 SDK 随机分配，或自行指定 uid 并确保其与目标频道中的所有 uid 不同
+// 你可以将 uid 设为 0，由 SDK 随机分配一个 uid，或自行指定 uid，并确保其与目标频道中的所有 uid 不同
 ChannelMediaInfo destChannelInfo = new ChannelMediaInfo(destChannelName, null, myUid);
 mediaRelayConfiguration.setDestChannelInfo(destChannelName, destChannelInfo);
 // 开始跨频道媒体流转发
@@ -55,7 +55,7 @@ pause.setEnabled(true);
 
 成功调用 `startChannelMediaRelay` 开始跨频道媒体流转发后，如需添加或移除目标频道，可以调用 `updateChannelMediaRelay` 方法更新目标频道。
 
-> 更新后的配置会**全量替换**掉之前的配置。
+<div class="alert info">更新后的配置会<b>全量替换</b>掉之前的配置。</div>
 
 
 ### 3. 暂停/恢复转发媒体流
@@ -79,7 +79,7 @@ pause.setText(R.string.pause);
 
 ### 4. 停止跨频道媒体流转发
 
-在成功调用 `startChannelMediaRelay` 方法后，如果想再次调用该方法，必须先调用 `stopChannelMediaRelay` 方法退出当前的转发状态，示例代码如下：
+在成功调用 `startChannelMediaRelay` 方法开始跨频道媒体流转发后，如需退出当前的转发状态，可以调用 `stopChannelMediaRelay`，示例代码如下：
 
 ```java
 engine.stopChannelMediaRelay();
@@ -89,7 +89,7 @@ join_ex.setText(getString(R.string.join));
 mediaRelaying = false;
 ```
 
-> 如果该方法调用不成功，可以调用 `leaveChannel` 方法离开频道，跨频道媒体流转发会自动停止。
+<div class="alert info">如果该方法调用不成功，可以调用 <code>leaveChannel</code> 方法离开频道，跨频道媒体流转发会自动停止。</div>
 
 
 ### 5. 监听跨频道媒体流状态
@@ -132,19 +132,22 @@ IRtcEngineEventHandler iRtcEngineEventHandler = new IRtcEngineEventHandler(){
 
 主要的状态码和事件码及其对应的媒体流转发状态如下：
 
-| 状态码 | 错误码 | 事件码 | 媒体流转发状态 |
-| ------- | ------ | ------ | ------------- |
-| 2 | 0 | 4 | 源频道开始向目标频道传输数据。  |
-| 3 | 详见[错误码](./API%20Reference/java_ng/API/toc_stream_management.html#callback_irtcengineeventhandler_onchannelmediarelaystatechanged) | /  | 跨频道媒体流转发出现异常，可以参考错误码进行问题排查。  |
-| 0 | 0 | /  | 已停止媒体流转发。  |
+| 状态码 | 事件码 | 媒体流转发状态 |
+| ---------------- | ---------------- | ---------------- |
+| `RELAY_STATE_RUNNING(2)` 和 `RELAY_OK(0)`  | `RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL(4)`     | 源频道开始向目标频道传输数据。      |
+| `RELAY_STATE_FAILURE(3)`    | /   | 跨频道媒体流转发出现异常。可根据[错误码](./API%20Reference/java_ng/API/toc_stream_management.html#callback_irtcengineeventhandler_onchannelmediarelaystatechanged)进行排查。      |
+| `RELAY_STATE_IDLE(0)` 和 `RELAY_OK(0)`     | /      | 已停止媒体流转发。      |
 
 
-## 相关参考
+## 参考信息
 
 ### 开发注意事项
 
 - 在直播场景中，只有角色为主播的用户才能调用 `startChannelMediaRelay` 开始跨频道媒体流转发
+- `startChannelMediaRelay` 必须在成功加入频道后调用，否则会报错
+- 一个频道内可以有多个主播转发媒体流，哪个主播调用 `startChannelMediaRelay`，SDK 就转发哪个主播的流
 - 该功能最多支持将媒体流转发至 4 个目标频道
+- 在成功调用 `startChannelMediaRelay` 方法后，如果想再次调用该方法，必须先调用 `stopChannelMediaRelay` 方法退出当前的转发状态
 - 该功能不支持 String 型 `uid`，如需使用跨频道连麦功能，则要在普通连麦中也使用 Int 型 `uid`，否则跨频道连麦功能无法正常使用
 
 ### 示例项目
