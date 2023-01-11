@@ -48,8 +48,8 @@
             <p> SDK 会在如下情况触发 <apiname keyref="onLocalVideoStateChanged"/> 回调，状态为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph>，错误码为 <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph>：
             <ul>
             <li props="cpp apple framework">应用退到后台，系统回收摄像头。</li>
-            <li props="android">Android 9 及以上版本，应用退到后台，系统回收摄像头。</li>
-            <li props="android">Android 6 及以上版本，摄像头被第三方应用占用。当第三方应用释放摄像头时，SDK 会触发 <codeph><apiname keyref="onLocalVideoStateChanged"/>(<ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/>)</codeph> 回调。</li>
+            <li props="android">在 Android 9 及以上版本的设备上，应用退到后台，系统回收摄像头。</li>
+            <li props="android">在 Android 6 及以上版本的设备上，摄像头被第三方应用占用。当第三方应用释放摄像头时，SDK 会触发 <codeph><apiname keyref="onLocalVideoStateChanged"/>(<ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/>)</codeph> 回调。</li>
             <li>摄像头正常启动，但连续 4 秒都没有输出采集的视频。</li>
             </ul></p>
             <p>摄像头输出采集的视频帧时，如果连续 15 帧中，所有视频帧都一样，SDK 触发 <apiname keyref="onLocalVideoStateChanged"/> 回调，状态为 <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，错误码为 <apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/>。注意，帧重复检测仅针对分辨率大于 200 × 200、帧率大于等于 10 fps、码率小于 20 Kbps 的视频帧。</p>
