@@ -22,11 +22,10 @@ Agora 提供 Android、iOS、macOS、Windows、Web、H5 端的灵动课堂体验
 
 Agora 提供不同平台的灵动课堂 GitHub 项目源码，跑通方法请参见以下文档：
 
-- [跑通 CloudClass-Android 项目](/cn/agora-class/agora_class_quickstart_android?platform=Android)
-- [跑通 CloudClass-iOS 项目](/cn/agora-class/agora_class_quickstart_ios?platform=iOS)
-- 跑通 CloudClass-Desktop 项目
-  - [跑通 Web 端](/cn/agora-class/agora_class_quickstart_web?platform=Web)
-  - [跑通 Electron 端](/cn/agora-class/agora_class_quickstart_electron?platform=Electron)
+- [跑通 Android 端](/cn/agora-class/agora_class_quickstart_android?platform=Android)
+- [跑通 iOS 端](/cn/agora-class/agora_class_quickstart_ios?platform=iOS)
+- [跑通 Web 端](/cn/agora-class/agora_class_quickstart_web?platform=Web)
+- [跑通 Electron 端](/cn/agora-class/agora_class_quickstart_electron?platform=Electron)
 
 ### 集成灵动课堂
 
@@ -69,13 +68,13 @@ Agora 提供不同平台的 GitHub 项目源码，你可前往 GitHub 查看：
 </thead>
 <tbody>
   <tr>
-    <td>Android</td>
+    <td rowspan="1">Android</td>
     <td><a href="https://github.com/AgoraIO-Community/CloudClass-Android" target="_blank" rel="noopener noreferrer">CloudClass-Android</a></td>
     <td>灵动课堂 Android 端的源码</td>
   </tr>
   <tr>
     <td rowspan="2">iOS</td>
-    <td><a href="https://github.com/AgoraIO-Community/CloudClass-iOS" target="_blank" rel="noopener noreferrer">CloudClass-iOS</a></td>
+    <td><a href="https://github.com/AgoraIO-Community/flexible-classroom-ios" target="_blank" rel="noopener noreferrer">flexible-classroom-ios</a></td>
     <td>灵动课堂 iOS 端的源码</td>
   </tr>
   <tr>
@@ -83,8 +82,8 @@ Agora 提供不同平台的 GitHub 项目源码，你可前往 GitHub 查看：
     <td>灵动课堂 iOS 端插件的源码</td>
   </tr>
   <tr>
-    <td>Web/Electron</td>
-    <td><a href="https://github.com/AgoraIO-Community/CloudClass-Desktop" target="_blank" rel="noopener noreferrer">CloudClass-Desktop</a></td>
+    <td rowspan="1">Web/Electron</td>
+    <td><a href="https://github.com/AgoraIO-Community/flexible-classroom-desktop" target="_blank" rel="noopener noreferrer">flexible-classroom-desktop</a></td>
     <td>灵动课堂桌面端的源码，包含 Web 端以及基于 Electron 框架开发的 macOS 和 Windows 端</td>
   </tr>
 </tbody>
@@ -106,25 +105,33 @@ Agora 提供不同平台的 GitHub 项目源码，你可前往 GitHub 查看：
   <tr>
     <td rowspan="2">Android</td>
     <td><a href="/cn/agora-class/agora_class_api_ref_android?platform=Android" target="_blank" rel="noopener noreferrer">Classroom SDK Kotlin API Reference</a></td>
-    <td>启动课堂相关 API</td>
+    <td>启动教育场景课堂相关 API</td>
   </tr>
   <tr>
     <td><a href="/cn/agora-class/API%20Reference/edu_context_kotlin/API/edu_context_api_overview.html" target="_blank" rel="noopener noreferrer">Edu Context Kotlin API Reference</a></td>
     <td>实现灵动课堂业务功能的 API</td>
   </tr>
   <tr>
-    <td rowspan="2">iOS</td>
-    <td><a href="https://confluence.agoralab.co/cn/agora-class/agora_class_api_ref_ios?platform=iOS" target="_blank" rel="noopener noreferrer">Classroom SDK Swift API Reference</a></td>
-    <td>启动课堂相关 API</td>
+    <td rowspan="3">iOS</td>
+    <td><a href="/cn/agora-class/agora_class_api_ref_ios?platform=iOS" target="_blank" rel="noopener noreferrer">Classroom SDK Swift API Reference</a></td>
+    <td>启动教育场景课堂相关 API</td>
+  </tr>
+	<tr>
+    <td><a href="/cn/agora-class/agora_class_proctor_api_ios?platform=iOS" target="_blank" rel="noopener noreferrer">Proctor SDK Swift API Reference</a></td>
+    <td>启动监考场景课堂相关 API</td>
   </tr>
   <tr>
     <td><a href="/cn/agora-class/API%20Reference/edu_context_swift/API/edu_context_api_overview.html" target="_blank" rel="noopener noreferrer">Edu Context Swift API Reference</a></td>
     <td>实现灵动课堂业务功能的 API</td>
   </tr>
   <tr>
-    <td rowspan="2">Web/Electron</td>
+    <td rowspan="3">Web/Electron</td>
     <td><a href="/cn/agora-class/agora_class_api_ref_web?platform=Web" target="_blank" rel="noopener noreferrer">Classroom SDK TypeScript API Reference</a></td>
-    <td>启动课堂相关 API</td>
+    <td>启动教育场景课堂相关 API</td>
+  </tr>
+  <tr>
+    <td><a href="/cn/agora-class/agora_class_proctor_api_web?platform=Web" target="_blank" rel="noopener noreferrer">Proctor SDK TypeScript API Reference</a></td>
+    <td>启动监考场景课堂相关 API</td>
   </tr>
   <tr>
     <td><a href="/cn/agora-class/API%20Reference/edu_context_web/index.html" target="_blank" rel="noopener noreferrer">Edu Store API Reference</a></td>
