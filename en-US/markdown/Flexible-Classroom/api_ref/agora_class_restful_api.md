@@ -1682,38 +1682,6 @@ When the `cmd` property of an event is `1101`, the event indicates the number of
 }
 ```
 
-### The resources in the classroom change
-
-When the `cmd` property of an event is `1003`, the event indicates the resources in the classroom change, and the `data` property contains the following fields:
-
-| Parameter | Type | Description |
-| :---------- | :---------- | :----------------------------------------------------------- |
-| Parameter | Type | Description |
-| `resources` | Object Array | Each object represents a public resource and contains the following fields:<li>`resourceUuid`: String. The resource ID.</li><li>`resourceName`: String. The resource name.</li><li>`size`: Number. The resourc size (bytes).</li><li>`url`: String. The URL address of the resource.</li><li>`taskUuid`: String. The ID of the file conversion task.</li><li>`taskToken`: String. The token used for the file conversion task.</li><li>`taskProgress`: Object. The progress of a file conversion task.</li> |
-| `operator` | Object | It contains the following fields:<li>`userUuid`: String. The user ID.</li><li>`userName`: String. The user name.</li><li>`role`: Integer. Th user role.</li> |
-| `action` | Integer | The resource change type:<li>`1`: The resource is added or updated.</li><li>`2`: The resource is deleted.</li> |
-
-**Example**
-
-```json
-{
-     "resources": [{
-            "resourceUuid":"",
-            "resourceName": "1",
-            "size": 1024,
-            "url": "http://xxx.com/ooo",
-            "taskUuid": "",
-            "taskToken": "",
-            "taskProgress": {},
-        } ],
-      "operator":{
-        "role":"1",
-        "userName":"jason",
-        "userUuid":"jason1"
-        },
-       "action": 1
-}
-```
 
 ### The users "on the stage" change
 
