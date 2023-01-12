@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videorenderingtracinginfo">
     <title><ph keyref="VideoRenderingTracingInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Metric information during video frame rendering.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Indicators during video frame rendering progress.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -52,7 +52,7 @@
             <parml>
             <plentry>
                 <pt>elapsedTime</pt>
-                <pd>The time interval from when the <xref keyref="startMediaRenderingTracing"/> method is called until the <xref keyref="onVideoRenderingTracingResult"/> callback is triggerred. The unit is milliseconds.</pd>
+                <pd>The time interval from calling the <xref keyref="startMediaRenderingTracing"/> method to SDK triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. The unit is milliseconds.</pd>
             </plentry>
             <plentry>
                 <pt>start2JoinChannel</pt>
@@ -69,40 +69,40 @@
                     <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before successfully joining the channel, this value is the time interval from the local user successfully joining the channel to the remote user joining the channel. The unit is milliseconds.</li>
                     <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after successfully joining the channel, the value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to when the remote user joins the channel. The unit is milliseconds.</li>
                     </ul>
-                    <note type="note">如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</note>
+                    <note type="note">If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, the value is 0 and meaningless.</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>remoteJoined2SetView</pt>
                 <pd>
                     <ul>
-                    <li>If the local user calls before the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from when the remote user joins the channel to when the local user sets the remote view. The unit is milliseconds.</li>
-                    <li>If the local user calls after the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the<apiname keyref="startMediaRenderingTracing"/> time interval from calling to setting the remote view. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user sets the remote view. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to setting the remote view. The unit is milliseconds.</li>
                     </ul>
                     <note type="note">
                     <ul>
-                    <li>如果本地用户在设置远端视图后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</li>
-                    <li>It is recommended to set the remote view before the remote user joins the channel, or set the remote view immediately after the remote user joins the channel, so as to reduce the value of this parameter and improve the speed of the remote user's drawing.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after setting the remote view, the value is 0 and meaningless.</li>
+                    <li>Agora recommends you that set the remote view before the remote user joins the channel, or set the remote view immediately after the remote user joins the channel, so as to reduce the value of this parameter and improve the speed of the first video frame rendering.</li>
                     </ul></note> </pd>
             </plentry>
             <plentry>
                 <pt>remoteJoined2UnmuteVideo</pt>
                 <pd>
                     <ul>
-                    <li>If the local user calls before the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from the remote user joining the channel to subscribing to the remote video stream. The unit is milliseconds.</li>
-                    <li>If the local user calls after the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from calling to subscribing<apiname keyref="startMediaRenderingTracing"/> to the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from the remote user joining the channel to subscribing to the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to subscribingto the remote video stream. The unit is milliseconds.</li>
                     </ul>
-                    <note type="note">如果在订阅远端视频流后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</note>
+                    <note type="note">If you call <apiname keyref="startMediaRenderingTracing"/> after subscribing to the remote video stream, the value is 0 and meaningless.</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>remoteJoined2PacketReceived</pt>
                 <pd>
                     <ul>
-                    <li>If the local user calls before the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream. The unit is milliseconds.</li>
-                    <li>If the local user calls after the remote user joins the channel<apiname keyref="startMediaRenderingTracing"/>, this value is the<apiname keyref="startMediaRenderingTracing"/> time interval from calling to receiving the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to receiving the remote video stream. The unit is milliseconds.</li>
                     </ul>
-                    <note type="note">如果在接收到远端视频流后再调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为 0，无参考意义。</note></pd>
+                    <note type="note">If calling <apiname keyref="startMediaRenderingTracing"/> after receiving the remote video stream, the value is 0 and meaningless.</note></pd>
             </plentry>
             </parml> </section>
     </refbody>
