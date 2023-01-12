@@ -31,7 +31,7 @@ When a user logs in to the Agora Chat app, the Agora Chat server sends a callbac
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `reason` | String | The reason that triggers the callback. `login` indicates that a user logs in to the app. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
@@ -65,7 +65,7 @@ When a user logs out of the Agora Chat app, the Agora Chat server sends a callba
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `reason` | String | The reason that triggers the callback. `logout` indicates that a user logs out of the app. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
@@ -98,7 +98,7 @@ When a user logs out of the Agora Chat app due to being kicked out by another de
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `reason` | String | The reason that triggers the callback. `replaced` indicates that a user logs out of the app due to being kicked out by another device. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
@@ -119,7 +119,7 @@ When a user sends a message in a one-to-one chat, chat group, or chat room of th
 
 ```json
 {
-    "callId":"{appkey}_{uuid}",
+    "callId":"{appkey}_{file_uuid}",
     "eventType":"chat_offline",
     "timestamp":1600060847294,
     "chat_type":"groupchat", 
@@ -137,7 +137,7 @@ When a user sends a message in a one-to-one chat, chat group, or chat room of th
 
 | Field | Data Type | Description |
 | -- | -- | -- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as end users are offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
@@ -209,7 +209,7 @@ When a user sends an image message in a one-to-one chat, chat group, or chat roo
 | `secret`     | String    | The secret returned after uploading the image file. |
 | `size`       | Json      | The dimension of the image in pixels. <ul><li>`height`: The height of the image.</li><li>`width`: The width of the image.</li></ul>   |
 | `file_length` | Int      | The size of the image in bytes. |
-| `url`   | String  | The URL of the image, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the image file. You can fetch `uuid` from the response body after the file is uploaded. |
+| `url`   | String  | The URL of the image, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_file_uuid}`, where `file_file_uuid` is the ID of the image file. You can fetch `file_uuid` from the response body after the file is uploaded. |
 | `type`       | String   | The type of the message. `img` indicates an image message. |
 
 #### Send an audio message
@@ -241,7 +241,7 @@ When a user sends an audio message in a one-to-one chat, chat group, or chat roo
 | `secret`          | String    | The secret returned after uploading the audio file.  |
 | `file_length`  |  Long  | The size of the audio file in bytes. |
 | `length`    | Int | The duration of the audio file in seconds. |
-| `url`   | String  | The URL of the audio, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the audio file. You can fetch `uuid` from the response body after the file is uploaded. |
+| `url`   | String  | The URL of the audio, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_file_uuid}`, where `file_file_uuid` is the ID of the audio file. You can fetch `file_uuid` from the response body after the file is uploaded. |
 | `type`       | String   | The type of the message. `audio` indicates an audio message. |
 
 #### Send a video message
@@ -279,10 +279,10 @@ When a user sends a video message in a one-to-one chat, chat group, or chat room
 | `thumb_secret` | String | The secret returned after uploading the video thumbnail. |
 | `filename` | String | The filename of the video. |
 | `size` | Json | The dimension of the video thumbnail.<ul><li>`height`: The height of the thumbnail.</li><li>`width`: The width of the thumbnail.</li></ul> |
-| `thumb`   | String  | The URL of the thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the video thumbnail. You can fetch `uuid` from the response body after the video thumbnail is uploaded. |
+| `thumb`   | String  | The URL of the thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_file_uuid}`, where `file_file_uuid` is the ID of the video thumbnail. You can fetch `file_uuid` from the response body after the video thumbnail is uploaded. |
 | `secret` | String | The secret returned after uploading the video file. |
 | `file_length` | Long | The size of the video file in bytes. |
-| `url`   | String  | The URL of the video, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the video file. You can fetch `uuid` from the response body after the video file is uploaded. |
+| `url`   | String  | The URL of the video, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_file_uuid}`, where `file_file_uuid` is the ID of the video file. You can fetch `file_uuid` from the response body after the video file is uploaded. |
 | `type`       | String   | The type of the message. `video` indicates a video message. |
 
 #### Send a location message
@@ -392,7 +392,7 @@ When a user recalls a message in a one-to-one chat, chat group, or chat room of 
 
 | Field | Data Type | Description |
 | --- | --- | --- |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `chat_type` | String | The type of chat. <ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Chat groups and chat rooms.</li></ul> |
@@ -433,7 +433,7 @@ When a user performs operations on a chat group or chat room in the Agora Chat a
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `chat_type` | String | The type of the event. `muc` indicates a chat group or a chat room. |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `group_id` | String | The ID of the chat group or chat room where the message resides. This field only exists if `chat_type` is set to `groupchat`. |
@@ -1051,7 +1051,7 @@ When a user performs operations on the contacts in the Agora Chat app, the Agora
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `chat_type` | String | The type of the event. `roster` indicates an event occurred in user contacts. |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `eventType` | String | The message type of the callback. <ul><li>`chat`: Uplink messages. The messages that are about to be sent by the Agora Chat server to end devices.</li><li>`chat_offline`: Offline messages. The messages that are not sent by the Agora Chat server as the end user is offline.</li></ul> |
 | `timestamp` | Long | The Unix timestamp when the Agora Chat server receives the callback event, in milliseconds. |
 | `from` | String | The user who operates the contact. |
@@ -1198,7 +1198,7 @@ When a user sends an receipt, the Agora Chat server sends a callback to your app
 | Field | Data Type | Description |
 | :---------- | :------- | :----------------------------------------------------------- |
 | `chat_type` | String   | The type of the event. <ul><li>`read_ack`: Read receipts.</li><li>`delivery_ack`: Delivery receipts.</li></ul>                                        |
-| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{uuid}`, where the value of `uuid` is randomly generated. |
+| `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `payload`   | Object   | The structure of the callback event that contains the following fields:<ul><li>`ext`: The message extension field. </li><li>`ack_message_id`: The message ID of the receipt callback.</li><li>`bodies`: The message body.</li></ul> |
 | `host` | String | The domain name assigned by the Agora Chat service to access RESTful APIs. |

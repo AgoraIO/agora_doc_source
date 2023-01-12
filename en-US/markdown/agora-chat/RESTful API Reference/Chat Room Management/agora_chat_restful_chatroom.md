@@ -115,12 +115,12 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Retrieving basic information of all chat rooms <a name="getall"></a>
 
-Retrieves the basic information of all chat rooms under the app.
+Retrieves the basic information of all chat rooms under the app by page.
 
 ### HTTP request
 
 ```http
-GET https://{host}/{org_name}/{app_name}/chatrooms
+GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 ```
 
 #### Path parameter
@@ -145,7 +145,7 @@ If the returned HTTP status code is `200`, the request succeeds. The response bo
 | `id` | String | The chat room ID. This is the unique identifier assigned to the chat room by the Agora Chat. |
 | `name` | String | The chat room name. |
 | `owner` | String | The username of the chat room creator. |
-| `affiliations_count` | Int | The number of members (including the chat room creator) in the chat room. |
+| `affiliations_count` | Number | The number of members (including the chat room creator) in the chat room. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
@@ -157,7 +157,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```json
 # Replace <YourAppToken> with the app token you generated on the server
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatrooms'
+curl --location --request GET 'http://XXXX/XXXX/XXXX/chatrooms?limit=10' \
+--header 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example

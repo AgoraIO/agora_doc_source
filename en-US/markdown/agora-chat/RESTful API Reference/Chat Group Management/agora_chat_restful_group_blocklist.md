@@ -74,7 +74,14 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the usernames in the group block list.
+If the returned HTTP status code is 200, the request succeeds, and the data field in the response body contains the following parameters.
+
+| Parameter | Type | Description |
+| :----- | :---- | :------------------ |
+| `data` | Array | The user IDs in the chat group block list. |
+| `count` | Number | The number of users in the chat group block list. |
+
+For other fields and descriptions, see [Public parameter](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
 
