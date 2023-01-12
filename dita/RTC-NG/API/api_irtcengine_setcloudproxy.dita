@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcloudproxy">
     <title> <ph keyref="setCloudProxy" /> </title>
-    <shortdesc id="short"> <ph id="shortdesc">设置 Agora 云代理服务。</ph> </shortdesc>
+    <shortdesc id="short"> <ph id="shortdesc">设置云代理服务。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,7 +23,7 @@
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>当用户的网络访问受到防火墙限制时，你需要将 Agora 提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <parmname>proxyType</parmname> 参数设置云代理类型。</p>
+            <p>当用户的网络访问受到防火墙限制时，你需要将声网提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <parmname>proxyType</parmname> 参数设置云代理类型。</p>
             <p>成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) 回调。
             </p>
             <p>如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 <codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph>。</p>
@@ -31,7 +31,7 @@
             </p>
             <note type="attention">
             <ul>
-            <li>Agora 推荐你在频道外调用该方法。</li>
+            <li>建议你在频道外调用该方法。</li>
             <li>如果用户处于内网防火墙环境下，使用 Force UDP 云代理时，旁路推流和跨频道媒体流转发功能不可用。</li>
             <li>使用 Force UDP 云代理时，调用 <xref keyref="startAudioMixing2" /> 方法时无法播放 HTTP 协议的在线音频文件。旁路推流和跨频道媒体流转发功能会使用 TCP 协议的云代理。</li>
             </ul></note></section>
