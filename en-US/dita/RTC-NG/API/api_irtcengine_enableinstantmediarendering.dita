@@ -32,20 +32,20 @@
             <p>After successfully calling this method, the SDK enables the instant frame rendering mode, which can speed up the first frame rendering speed after the user joins the channel.<note type="attention">
                 <ul>
                     <li>Once the instant rendering function is enabled, it can only be canceled by calling the <xref keyref="release"/> method to destroy the <apiname keyref="IRtcEngine"/> object.</li>
-                    <li>在该模式下，SDK 启用声网自定义加密算法来缩短建立传输链路的耗时，安全性相对于标准 DTLS (Datagram Transport Layer Security) 有所降低。 如果业务场景对安全标准要求较高，请谨慎调用该方法。</li>
+                    <li>In this mode, the SDK uses Agora's custom encryption algorithm to shorten the time required to establish transmission links, and the security is reduced compared to the standard DTLS (Datagram Transport Layer Security). If the application scenario requires higher security standards, Agora recommends not to use this method.</li>
                 </ul>
                 </note></p>
         </section>
         <section>
-            <title>Applications</title>
-            <p>声网推荐在直播场景下，对观众开启该模式。</p>
+            <title>Applicable scenarios</title>
+            <p>Agora recommends to enable this mode for the audience in a live streaming scenario.</p>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                    <li>-7:<xref keyref="IRtcEngine"/> A method is called before  is initialized.</li>
+                    <li>-7: The method is called before <xref keyref="IRtcEngine"/> is initialized.</li>
                     </ul></li>    
             </ul></section>
     </refbody>
