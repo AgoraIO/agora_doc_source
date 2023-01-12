@@ -30,7 +30,7 @@
             <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>This function will be discontinued soon, and Agora recommends that you use the server-side streaming function. For details, see Implementing server-side bypass push.<xref keyref="cdn-streaming-restful"></xref></p>
+            <p>Agora recommends that you use the server-side Media Push function. For details, see <xref keyref="cdn-streaming-restful">Use RESTful API</xref>.</p>
             <p>You can call this method to push a live audio-and-video stream to the specified CDN address and set the transcoding configuration. This method can push media streams to only one CDN address at a time, so if you need to push streams to multiple addresses, call this method multiple times.</p>
             <p>After you call this method, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged"/> callback on the local client to report the state of the streaming.</p>
             <note type="attention" id="note">
@@ -61,7 +61,7 @@
             <li>&lt; 0: Failure.<ul>
                 <li>-2: url is null or the string length is 0.</li>
                 <li>-7: The SDK is not initialized before calling this method.</li>
-                <li>-19：该旁路推流 URL 已在使用中，请使用其他旁路推流 URL。</li>
+                <li>-19: The bypass push URL is already in use, please use another bypass push URL.</li>
                 </ul> </li>
             </ul> </section>
     </refbody>
