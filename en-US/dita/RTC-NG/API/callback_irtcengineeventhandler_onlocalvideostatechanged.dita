@@ -46,7 +46,9 @@
         <section id="detailed_desc">
             <p id="desc1">When the state of the local video stream changes (including the state of the video capture and encoding), the SDK triggers this callback to report the current state. This callback indicates the state of the local video stream, including camera capturing and video encoding, and allows you to troubleshoot issues when exceptions occur.</p>
             <p>The SDK triggers the <apiname keyref="onLocalVideoStateChanged"/> callback with the state code of <codeph><ph keyref="LOCAL_VIDEO_STREAM_STATE_FAILED"/></codeph> and error code of <codeph><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/></codeph> in the following situations:<ul>
-            <li>The app switches to the background, and the system gets the camera resource.</li>
+            <li props="cpp apple framework">The app switches to the background, and the system gets the camera resource.</li>
+            <li props="android">在 Android 9 及以上版本的设备上，应用退到后台，系统回收摄像头。</li>
+            <li props="android">在 Android 6 及以上版本的设备上，摄像头被第三方应用占用。 当第三方应用释放摄像头时，SDK 会触发 <codeph><apiname keyref="onLocalVideoStateChanged"/>(<ph keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>，<ph keyref="LOCAL_VIDEO_STREAM_ERROR_OK"/>)</codeph> 回调。</li>
             <li>The camera starts normally, but does not output video frames for four consecutive seconds.</li>
             </ul></p>
             <p>When the camera outputs the captured video frames, if the video frames are the same for 15 consecutive frames, the SDK triggers the <apiname keyref="onLocalVideoStateChanged"/> callback with the state code of <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> and error code of <apiname keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_FAILURE"/>. Note that the video frame duplication detection is only available for video frames with a resolution greater than 200 × 200, a frame rate greater than or equal to 10 fps, and a bitrate less than 20 Kbps.</p>
