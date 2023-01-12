@@ -31,8 +31,9 @@
         </section>
         <section id="detailed_desc">
             <p>After you successfully register the video frame observer and calling the <xref keyref="createMediaPlayer"/> method, the SDK triggers this callback each time when it receives a video frame. In this callback, you can get the video data of the media player. You can then process the data according to your particular scenarios.</p>
-            <p props="native unity electron rn">After pre-processing, you can send the processed video data back to the SDK through this callback.</p>
+            <p props="hide">After pre-processing, you can send the processed video data back to the SDK through this callback.</p>
             <note type="attention" props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</note>
+            <note type="attention">该回调仅支持只读模式。</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -48,7 +49,9 @@
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p conkeyref="onCaptureVideoFrame/return"/>
+            <ul>
+                <li><codeph><ph keyref="true"/></codeph>: Reserved for future use.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Reserved for future use.</li></ul>
         </section>
     </refbody>
 </reference>
