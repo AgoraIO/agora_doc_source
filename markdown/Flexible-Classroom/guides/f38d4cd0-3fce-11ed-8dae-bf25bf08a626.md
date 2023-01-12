@@ -25,3 +25,11 @@
     声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：
 
     ![](flexible-classroom-desktop-screenshot.png)
+
+3. 运行以下命令拉取子模块：
+
+   ```bash
+    git submodule update --init --recursive packages/agora-classroom-sdk
+    git submodule update --init --recursive packages/agora-proctor-sdk
+    git submodule update --init --recursive packages/agora-plugin-gallery
+   ```
