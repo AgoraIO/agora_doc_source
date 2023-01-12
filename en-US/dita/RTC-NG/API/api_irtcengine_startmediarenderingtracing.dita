@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_startmediarenderingtracing">
+    <title><ph keyref="startMediaRenderingTracing"/></title>
+    <shortdesc id="short"><ph id="shortdesc">开启视频帧渲染数据打点。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="startMediaRenderingTracing"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int startMediaRenderingTracing();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startMediaRenderingTracing NS_SWIFT_NAME(startMediaRenderingTracing());</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startMediaRenderingTracing() = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p id="desc">成功调用该方法后，SDK 会以调用该方法的时刻作为起点，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告视频帧渲染的相关信息。</p>
+            <note id="note">
+            <ul>
+            <li>SDK 默认在成功加入频道的时刻起打点，自动开始跟踪视频频的渲染事件。 你可以根据实际业务场景，在合适的时机调用该方法，进行自定义打点。</li>
+            <li>离开当前频道后，SDK 会自动重置该时间点为下一次成功加入频道的时刻。</li>
+            </ul> </note> </section>
+        <section id="scenario">
+            <title>Applications</title>
+            <p>声网推荐你将该方法和 app 中的 UI 设置（按钮、滑动条等）结合使用，用于针对终端用户的体验改进。 例如：在终端用户在点击 <q>加入频道</q> 按钮的时刻调用该方法进行打点，然后通过 <apiname keyref="onVideoRenderingTracingResult"/> 回调获取视频帧渲染过程中的指标，从而针对指标进行专项优化。</p>
+        </section>
+        <section id="return_values">
+            <title>Returns</title>
+            <ul>
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure.<ul>
+                <li>-7:<xref keyref="IRtcEngine"/> A method is called before  is initialized.</li>
+                </ul></li>
+            </ul> </section>
+    </refbody>
+</reference>
