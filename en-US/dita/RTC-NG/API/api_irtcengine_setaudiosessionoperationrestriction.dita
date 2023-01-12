@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setaudiosessionoperationrestriction">
     <title><ph keyref="setAudioSessionOperationRestriction" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the operation permissions of the SDK on the Audio Session.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the operational permission of the SDK on the audio session.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,25 +23,25 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioSessionOperationRestriction(
       AudioSessionOperationRestriction restriction);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>By default, both the SDK and the app have permission to operate the Audio Session. If you only need to use the app to operate the Audio Session, you can call this method to restrict the SDK's operation permissions to the Audio Session.</p>
-            <p>You can call this method either before or after joining a channel. Once this method is called to restrict the SDK's operation permissions to the Audio Session, the restriction taks effect when the SDK needs to change the Audio Session.</p>
+            <p>The SDK and the app can both configure the audio session by default. If you need to only use the app to configure the audio session, this method restricts the operational permission of the SDK on the audio session.</p>
+            <p>You can call this method either before or after joining a channel. Once you call this method to restrict the operational permission of the SDK on the audio session, the restriction takes effect when the SDK needs to change the audio session.</p>
             <note type="attention">
             <ul>
-            <li props="cpp unity flutter rn">This method applies to iOS only.</li>
-            <li>This method does not affect the operation permissions of the app on the Audio Session.</li>
+            <li props="cpp unity flutter rn">This method is only available for iOS platforms.</li>
+            <li>This method does not restrict the operational permission of the app on the audio session.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>restriction</pt>
-                <pd>The operation permissions of the SDK on the audio session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" />. This parameter is in bit mask format, and each bit corresponds to a permission.</pd>
+                <pd>The operational permission of the SDK on the audio session. See <xref keyref="AUDIO_SESSION_OPERATION_RESTRICTION" />. This parameter is in bit mask format, and each bit corresponds to a permission.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values" props="apple cpp electron unity rn">
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
