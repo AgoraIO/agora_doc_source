@@ -29,15 +29,15 @@
                 <dd>v4.1.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">成功调用该方法后，SDK 会以调用该方法的时刻作为起点，并通过 <xref keyref="onVideoRenderingTracingResult"/> 回调报告视频帧渲染的相关信息。</p>
+            <p id="desc">The SDK starts tracing the rendering status of the video frames in the channel from the moment this method is successfully called, and reports information about the event through the <xref keyref="onVideoRenderingTracingResult"/> callback.</p>
             <note id="note">
             <ul>
-            <li>SDK 默认在成功加入频道的时刻起打点，自动开始跟踪视频频的渲染事件。 你可以根据实际业务场景，在合适的时机调用该方法，进行自定义打点。</li>
-            <li>离开当前频道后，SDK 会自动重置该时间点为下一次成功加入频道的时刻。</li>
+            <li>By default, the SDK starts tracing the video rendering event automatically when the local user successfully joins the channel. You can call this method at an appropriate time according to the actual application scenario to customize the tracing process.</li>
+            <li>After the local user leaving the current channel, the SDK automatically resets the time point to the next time when the user successfully joins the channel.</li>
             </ul> </note> </section>
         <section id="scenario">
             <title>Applicable scenarios</title>
-            <p>声网推荐你将该方法和 app 中的 UI 设置（按钮、滑动条等）结合使用，用于针对终端用户的体验改进。 例如：在终端用户在点击 <q>加入频道</q> 按钮的时刻调用该方法进行打点，然后通过 <apiname keyref="onVideoRenderingTracingResult"/> 回调获取视频帧渲染过程中的指标，从而针对指标进行专项优化。</p>
+            <p>Agora recommends that you use this method in conjunction with the UI settings (buttons, sliders, etc.) in your app to improve the experience of the end users. For example, call this method at the moment when the end user clicks the <q>Join Channel</q> button, and then get the indicators in the video frame rendering process through the <apiname keyref="onVideoRenderingTracingResult"/> callback, so as to optimize the indicators accordingly.</p>
         </section>
         <section id="return_values">
             <title>Returns</title>
