@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideorenderingtracingresult">
+    <title><ph keyref="onVideoRenderingTracingResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">视频帧渲染事件回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoRenderingTracingResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onVideoRenderingTracingResult(int uid,
+    Constants.MEDIA_RENDER_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoRenderingTracingResultOfUid:(NSUInteger)uid currentEvent:(AgoraMediaRenderTraceEvent)currentEvent tracingInfo:(AgoraVideoRenderingTracingInfo * _Nonnull)tracingInfo NS_SWIFT_NAME(rtcEngine(_:videoRenderingTracingResultOfUid:currentEvent:tracingInfo:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp"> virtual void onVideoRenderingTracingResult(uid_t uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {
+  (void)uid;
+  (void)currentEvent;
+  (void)tracingInfo;
+}</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p>调用 <xref keyref="startMediaRenderingTracing"/> 方法后，SDK 会触发该回调，报告视频帧渲染的事件和渲染过程中的指标。 开发者可以针对指标进行专项优化，以提高出图效率。</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry>
+                <pt>currentEvent</pt>
+                <pd>当前视频帧渲染事件。 See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>tracingInfo</pt>
+                <pd>视频帧渲染过程中的指标。 开发者需要尽可能降低指标值，以提高出图效率。 See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
