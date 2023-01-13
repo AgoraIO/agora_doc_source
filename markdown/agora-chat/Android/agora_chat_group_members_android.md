@@ -24,15 +24,105 @@
 
 ### 群组加人
 
-群组加人的逻辑取决于创建群组时群组类型 (`GroupStyle`) 和入群邀请是否需要对方同意 (`inviteNeedConfirm`)的设置。详见[创建群组](./agora_chat_group_android#创建群组)。
+用户进群分为两种方式：主动申请入群和群成员邀请入群。
+
+公开群和私有群在两种入群方式方面存在差别：
+
+| 入群方式         | 公开群       | 私有群            |
+| :------------- | :-------------- | :------------ |
+| 是否支持用户申请入群       | 支持 <br/>任何用户均可申请入群，是否需要群主和群管理员审批，取决于群组类型 `GroupStyle` 的设置。 | 不支持     |
+| 是否支持群成员邀请用户入群 | 支持 <br/>只能由群主和管理员邀请。    | 支持 <br/>除了群主和群管理员，群成员是否也能邀请其他用户进群取决于群组类型 `GroupStyle` 的设置。 |
+
+#### 用户申请入群
+
+只有公开群支持用户申请入群，私有群不支持。用户可获取公开群列表，选择相应的群组 ID，然后调用相应方法加入该群组。
+
+任何用户均可申请入群，是否需要群主和群管理员审批，取决于群组类型（`GroupStyle`）的设置：
+
+- `GroupStyle` 为 `GroupStylePublicJoinNeedApproval` 时，群主和群管理员审批后，用户才能加入群组；
+- `GroupStyle` 为 `GroupStylePublicOpenJoin` 时，用户可直接加入群组，无需群主和群管理员审批。
+
+若申请加入公开群，申请人需执行以下步骤：
+
+1. 调用 `getPublicGroupsFromServer` 方法从服务器获取公开群列表，查询到想要加入的群组 ID。示例代码如下：
 
 ```java
-// 群主或群组管理员添加群组成员
-ChatClient.getInstance().groupManager().addUsersToGroup(groupId, newmembers);
-
-// 私有群成员邀请用户入群
-ChatClient.getInstance().groupManager().inviteUser(groupId, newmembers, null);
+CursorResult<GroupInfo> result = ChatClient.getInstance().groupManager().getPublicGroupsFromServer(pageSize, cursor);
+List<GroupInfo> groupsList = List<GroupInfo> returnGroups = result.getData();
+String cursor = result.getCursor();
 ```
+
+1. 调用 `joinGroup` 或 `applyJoinToGroup` 方法传入群组 ID，申请加入对应群组。
+
+   1. 调用 `joinGroup` 方法加入无需群主或管理员审批的公共群组，即 `GroupStyle` 设置为 `GroupStylePublicOpenJoin`。申请人不会收到任何回调，其他群成员会收到 `GroupChangeListener#onMemberJoined` 回调。
+
+   示例代码如下：
+
+   ```java
+   ChatClient.getInstance().groupManager().joinGroup(groupId);
+   ```
+
+   2. 调用 `applyJoinToGroup` 方法加入需要群主或管理员审批的公共群组，即 `GroupStyle` 设置为 `GroupStylePublicJoinNeedApproval`。示例代码如下：
+
+   ```java
+   ChatClient.getInstance().groupManager().applyJoinToGroup(groupId, "your reason");
+   ```
+
+   群主或群管理员收到 `GroupChangeListener#onRequestToJoinReceived` 回调：
+
+   - 若同意加入群组，需要调用 `acceptApplication` 方法。
+
+   申请人会收到 `GroupChangeListener#onRequestToJoinAccepted` 回调，其他群成员会收到 `GroupChangeListener#onMemberJoined` 回调。
+
+   示例代码如下：
+
+   ```java
+   ChatClient.getInstance().groupManager().acceptApplication(username, groupId);
+   ```
+
+   - 若群主或群管理员拒绝申请人入群，需要调用 `declineApplication` 方法。申请人会收到 `GroupChangeListener#onRequestToJoinDeclined` 回调。
+
+   示例代码如下：
+
+   ```java
+   ChatClient.getInstance().groupManager().declineApplication(username, groupId, "your reason");
+   ```
+
+#### 邀请用户入群
+
+邀请用户入群的方式详见 [邀请用户入群的配置](./agora_chat_group_android#创建群组)。
+
+邀请用户入群流程如下：
+
+1. 群成员邀请用户入群。
+
+   - 群主或群管理员加人，需要调用 `addUsersToGroup` 方法：
+
+   ```java
+   ChatClient.getInstance().groupManager().addUsersToGroup(groupId, newmembers);
+   ```
+
+   - 普通成员邀请人入群，需要调用 `inviteUser` 方法：
+
+   对于私有群，`GroupStyle` 设置为 `GroupStylePrivateMemberCanInvite` 时，所有群成员均可以邀请人进群。
+
+   ```java
+   ChatClient.getInstance().groupManager().inviteUser(groupId, newmembers, "your reason");
+   ```
+
+2. 受邀用户自动进群或确认是否加入群组：
+
+   - 受邀用户同意加入群组，需要调用 `acceptInvitation` 方法。
+
+   ```java
+   ChatClient.getInstance().groupManager().acceptInvitation(groupId, inviter);
+   ```
+
+   - 受邀人拒绝入群组，需要调用 `declineInvitation` 方法。
+
+   ```java
+   ChatClient.getInstance().groupManager().declineInvitation(groupId, inviter, "your reason");
+   ```
 
 ### 群组踢人
 

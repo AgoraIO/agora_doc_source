@@ -80,33 +80,6 @@ option.style = GroupStyle.GroupStylePrivateMemberCanInvite;
 ChatClient.getInstance().groupManager().createGroup(groupName, desc, allMembers, reason, option);
 ```
 
-### 用户申请入群
-
-用户只能申请加入公开群组，私有群组不支持用户申请入群。
-
-用户申请加入群组的步骤如下：
-
-1. 调用 `getPublicGroupsFromServer` 方法从服务器获取公开群列表，查询到想要加入的群组 ID。
-
-2. 调用 `joinGroup` 方法传入群组 ID，申请加入对应群组：
-
-   - 如果群组的类型设置为 `GroupStylePublicJoin`，则自动接受用户的请求，其他群组成员收到 `GroupChangeListener#onMemberJoined` 回调。
-   - 如果群组的类型设置为 `GroupStylePublicNeedApproval`，则群主和群组管理员会收到 `GroupChangeListener#onRequestToJoinReceived` 回调，并决定是否接受用户的请求。
-
-用户可以调用 `leaveGroup` 离开群组。一旦用户离开群组，所有其他群组成员都会收到 `GroupChangeListener#onMemberExited` 回调。
-
-请参考以下示例代码加入和退出群组：
-
-```java
-// 从服务器获取公开群组列表。
-CursorResult<GroupInfo> result = ChatClient.getInstance().groupManager().getPublicGroupsFromServer(pageSize, cursor);
-List<GroupInfo> groupsList = List<GroupInfo> returnGroups = result.getData();
-String cursor = result.getCursor();
-
-// 调用 `joinGroup` 方法发送加入群组申请。
-ChatClient.getInstance().groupManager().joinGroup(groupId);
-```
-
 ### 解散群组
 
 仅群主可以调用 `destroyGroup` 方法解散群组。群组解散时，其他群组成员收到 `GroupChangeListener#onGroupDestroyed` 回调并被踢出群组。
@@ -115,6 +88,18 @@ ChatClient.getInstance().groupManager().joinGroup(groupId);
 
 ```java
 ChatClient.getInstance().groupManager().destroyGroup(groupId);
+```
+
+### 退出群组
+
+群成员可以调用 `leaveGroup` 方法退出群组。其他成员收到 `GroupChangeListener#onMemberExited` 回调。
+
+退出群组后，该用户将不再收到群消息。群主不能调用该接口退出群组，只能调用 `DestroyGroup` 解散群组。
+
+示例代码如下：
+
+```java
+ChatClient.getInstance().groupManager().leaveGroup(groupId);
 ```
 
 ### 获取群组详情
@@ -131,18 +116,6 @@ try {
 // 获取群组管理员列表。
 List<String> admins=group.getAdminList();
 ...
-```
-
-### 退出群组
-
-群成员可以调用 `leaveGroup` 方法退出群组。其他成员收到 `GroupChangeListener#onMemberExited` 回调。
-
-退出群组后，该用户将不再收到群消息。群主不能调用该接口退出群组，只能调用 `DestroyGroup` 解散群组。
-
-示例代码如下：
-
-```java
-ChatClient.getInstance().groupManager().leaveGroup(groupId);
 ```
 
 ### 获取群成员列表

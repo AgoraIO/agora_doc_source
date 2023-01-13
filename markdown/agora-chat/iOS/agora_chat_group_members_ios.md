@@ -24,16 +24,121 @@
 
 ### 群组加人
 
-根据创建群组时的群组类型（`AgoraChatGroupStyle`）和进群邀请是否需要对方同意 (`IsInviteNeedConfirm`)设置，群组加人的处理逻辑有差别。具体规则可以参考详见[创建群组](./agora_chat_group_ios#创建群组)。
+用户进群分为两种方式：主动申请入群和群成员邀请入群。
 
-邀请加群的示例代码如下：
+公开群和私有群在两种入群方式方面存在差别：
+
+| 入群方式         | 公开群       | 私有群            |
+| :------------- | :-------------- | :------------ |
+| 是否支持用户申请入群       | 支持 <br/>任何用户均可申请入群，是否需要群主和群管理员审批，取决于群组类型 `AgoraChatGroupStyle` 的设置。 | 不支持     |
+| 是否支持群成员邀请用户入群 | 支持 <br/>只能由群主和管理员邀请。    | 支持 <br/>除了群主和群管理员，群成员是否也能邀请其他用户进群取决于群组类型 `AgoraChatGroupStyle` 的设置。 |
+
+#### 用户申请入群
+
+只有公开群支持用户申请入群，私有群不支持。用户可获取公开群列表，选择相应的群组 ID，然后调用相应方法加入该群组。
+
+任何用户均可申请入群，是否需要群主和群管理员审批，取决于群组类型（`AgoraChatGroupStyle`）的设置：
+
+- `AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicJoinNeedApproval` 时，群主和群管理员审批后，用户才能加入群组；
+- `AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicOpenJoin` 时，用户可直接加入群组，无需群主和群管理员审批。
+
+若申请加入公开群，申请人需执行以下步骤：
+
+1. 调用 `getPublicGroupsFromServerWithCursor` 方法从服务器获取公开群列表，查询到想要加入的群组 ID。示例代码如下：
 
 ```objective-c
-[[AgoraChatClient sharedClient].groupManager addMembers:@{@"member1",@"member2"}
-                                                                                               toGroup:@"groupID"
-                                                                                                 message:@"message"
-                                                                                          completion:nil];
+NSMutableArray *memberList = [[NSMutableArray alloc]init];
+NSInteger pageSize = 50;
+NSString *cursor = nil;
+AgoraChatCursorResult *result = [[AgoraChatCursorResult alloc]init];
+do {
+  result = [[AgoraChatClient sharedClient].groupManager
+                         getPublicGroupsFromServerWithCursor:cursor
+                                                                                pageSize:50
+                                                                                     error:nil];
+  [memberList addObjectsFromArray:result.list];
+  cursor = result.cursor;
+} while (result && result.list < pageSize);
 ```
+
+2. 调用 `joinPublicGroup` 或 `requestToJoinPublicGroup` 方法传入群组 ID，申请加入对应群组。
+
+   1. 调用 `joinPublicGroup` 方法加入无需群主或管理员审批的公开群，即 `AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicOpenJoin` 。申请人不会收到任何回调，其他群成员会收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
+
+   示例代码如下：
+
+   ```objective-c
+   [[AgoraChatClient sharedClient].groupManager joinPublicGroup:@"groupId" completion:^(AgoraChatGroup *aGroup, AgoraChatError *aError) {
+    }];
+   ```
+
+   2. 调用 `requestToJoinPublicGroup` 方法加入需要群主或管理员审批的公共群组，即`AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicJoinNeedApproval`。示例代码如下：
+
+    ```objective-c
+    // 异步方法
+    [[AgoraChatClient sharedClient].groupManager requestToJoinPublicGroup:@"groupId"  message:nil completion:^(AgoraChatGroup *aGroup1, AgoraChatError *aError) {
+    }];
+    ```
+    
+   群主或群管理员收到 `AgoraChatGroupManagerDelegate#joinGroupRequestDidReceive` 回调：
+
+   - 若同意加入群组，需要调用 `approveJoinGroupRequest` 方法。
+
+   申请人会收到 `AgoraChatGroupManagerDelegate#joinGroupRequestDidApprove` 回调，其他群成员会收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
+
+   示例代码如下：
+
+  ```objective-c
+   [[AgoraChatClient sharedClient].groupManager approveJoinGroupRequest:@"groupId" sender:@"userId" completion:^(AgoraChatGroup *aGroup, AgoraChatError *aError) {
+        
+  }];
+   ```
+
+   - 若群主或群管理员拒绝申请人入群，需要调用 `declineJoinApplication` 方法。申请人会收到 `AgoraChatGroupManagerDelegate#joinGroupRequestDidDecline` 回调。
+
+   示例代码如下：
+
+   ```objective-c
+   // 异步方法
+   [[AgoraChatClient sharedClient].groupManager declineJoinGroupRequest:@"groupId" sender:@"userId" reason:@"reason" completion:^(AgoraChatGroup *aGroup, AgoraChatError *aError) {
+           
+    }];
+   ```
+
+#### 邀请用户入群
+
+邀请用户入群的方式详见 [邀请用户入群的配置](./agora_chat_group_ios#创建群组)。
+
+邀请用户入群流程如下：
+
+1. 群成员邀请用户入群。
+
+   - 群主或群管理员可以邀请人入群，对于私有群 `AgoraChatGroupStyle` 设置为 `AgoraChatGroupStylePrivateMemberCanInvite` 时，普通群成员也可以邀请人进群。邀请人入群需要调用 `addMembers` 方法：
+
+   ```objective-c
+   // 异步方法
+   [[AgoraChatClient sharedClient].groupManager addMembers:@{@"member1",@"member2"}
+                         toGroup:@"groupID"
+                         message:@"message"
+                         completion:nil];
+   ```AgoraChatError
+
+2. 受邀用户自动进群或确认是否加入群组：
+
+   - 受邀用户同意加入群组，需要调用 `acceptInvitationFromGroup` 方法。
+
+   ```objective-c
+   [[AgoraChatClient sharedClient].groupManager acceptInvitationFromGroup:@"groupId" inviter:@"userId" completion:^(AgoraChatGroup *aGroup, AgoraChatError *aError) {
+   };
+   ```
+
+   - 受邀人拒绝入群组，需要调用 `declineInvitationFromGroup` 方法。
+
+   ```objective-c
+   [[AgoraChatClient sharedClient].groupManager declineGroupInvitation:@"groupId" inviter:@"inviter" reason:@"reason" completion:^(AgoraChatError *aError) {
+         
+   }];
+   ```
 
 ### 群组踢人
 
