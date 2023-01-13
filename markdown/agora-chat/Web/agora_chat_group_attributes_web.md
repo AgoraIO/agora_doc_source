@@ -1,12 +1,12 @@
-群组是支持多人沟通的即时通讯系统，本文指导你如何使用即时通讯 IM Web SDK 在实时互动 app 中实现群组属性相关功能。
+群组是支持多人沟通的即时通讯系统。本文指导你如何使用即时通讯 IM Web SDK 在实时互动 app 中实现群组属性相关功能。
 
 ## 技术原理
 
-即时通讯 IM Web SDK 提供群组管理，支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM SDK 提供 `Group` 和 `GroupManager` 类用于群组管理，可实现以下功能：
 
-- 修改群组名称和描述；
-- 管理群公告；
-- 管理共享文件；
+- 修改群组名称和描述
+- 获取和更新群组公告
+- 管理群组共享文件
 
 ## 前提条件
 
@@ -19,16 +19,18 @@
 
 ### 修改群组名称和描述
 
-仅群主和群管理员可以调用 `modifyGroup` 方法修改群名称和群描述。
+仅群主和群管理员可以调用 `modifyGroup` 方法修改群名称和群描述。修改后，其他群成员收到 `updateInfo` 事件。
 
 群名称的长度限制为 128 个字符。群描述的长度限制为 512 个字符。
 
 示例代码如下：
+
 ```javascript
 let option = {
     groupId: "groupId",
     groupName: "groupName",
-    description: "A description of group"
+    description: "A description of group",
+    ext: "group detail extensions",
 };
 conn.modifyGroup(option).then(res => console.log(res))
 ```
@@ -52,7 +54,7 @@ conn.fetchGroupAnnouncement(option).then(res => console.log(res))
 
 仅群主和群管理员可以调用 `updateGroupAnnouncement` 方法设置和更新群公告。群公告的长度限制为 512 个字符。
 
-群公告发生变化时，群成员会收到 `updateAnnouncement` 监听事件。
+群公告发生变化时，群成员会收到 `updateAnnouncement` 事件。
 
 示例代码如下：
 
@@ -125,4 +127,4 @@ conn.getGroupSharedFilelist(option).then(res => console.log(res))
 
 ### 监听群组事件
 
-有关详细信息，请参阅 [监听群组事件](./agora_chat_group_web#监听群组事件)。
+详见 [监听群组事件](./agora_chat_group_web#监听群组事件)。

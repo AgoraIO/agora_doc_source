@@ -4,11 +4,11 @@
 
 即时通讯 IM Web SDK 提供以下群成员管理功能：
 
-- 群组加人、踢人；
-- 管理群主及群管理员；
-- 管理群组白名单；
-- 管理群组黑名单；
-- 管理禁言。
+- 群组加人、踢人
+- 管理群主及群管理员
+- 管理群组白名单
+- 管理群组黑名单
+- 管理禁言
 
 ## 前提条件
 
@@ -23,17 +23,13 @@
 
 用户进群分为两种方式：主动申请和群成员邀请。
 
-邀请用户入群，详见 [创建群组](./agora_chat_group_web#创建群组)。
+邀请用户入群，详见 [创建群组](./agora_chat_group_web#创建群组)。本节对用户申请加入群组进行详细介绍。
 
-本节对用户申请加入群组进行详细介绍。
+只有公开群支持用户以申请方式入群，私有群不支持。若申请加入公开群，用户需执行以下步骤：
 
-只有公开群组支持用户以申请方式入群，私有群不支持。
+1. 用户调用 `getPublicGroups` 方法[获取公开群列表](./agora_chat_group_web#获取群组列表)，获得要加入群组的 ID。
 
-若申请加入公开群，用户需执行以下步骤：
-
-1. 用户可获取 [获取群组列表](./agora_chat_group_web#获取群组列表)。
-
-2、调用 `joinGroup` 方法传入群组 ID，申请加入对应群组。示例代码如下：
+2. 调用 `joinGroup` 方法传入群组 ID，申请加入对应群组。示例代码如下：
 
 ```javascript
 let option = {
@@ -45,10 +41,10 @@ conn.joinGroup(option).then(res => console.log(res))
 
 任何用户均可申请入群，是否需要群主和群管理员审批，取决于 `approval` 选项的设置：
 
-  a. `approval` 为 `false` 时，用户可直接加入群组，无需群主和群管理员审批。其他群成员会收到 `memberPresence` 事件。
-  b. `approval` 为 `true` 时，群主和群管理员审批后，用户才能加入群组。群主和群管理员会收到 `requestToJoin` 事件。
+- `approval` 为 `false` 时，用户可直接加入群组，无需群主和群管理员审批。其他群成员会收到 `memberPresence` 事件。
+- `approval` 为 `true` 时，群主和群管理员审批后，用户才能加入群组。群主和群管理员会收到 `requestToJoin` 事件。
 
-    - 若同意用户加入群组，群主或管理员需要调用 `acceptGroupJoinRequest` 方法。
+  - 若同意用户加入群组，群主或管理员需要调用 `acceptGroupJoinRequest` 方法。
 
     申请人会收到 `acceptRequest` 事件且加入群组，其他成员会收到 `memberPresence` 事件。
 
@@ -61,7 +57,7 @@ conn.joinGroup(option).then(res => console.log(res))
     });
     ```
 
-    - 若拒绝用户加入群组，群主或管理员需要调用 `rejectGroupJoinRequest` 方法。
+  - 若拒绝用户加入群组，群主或管理员需要调用 `rejectGroupJoinRequest` 方法。
 
      申请人会收到 `joinPublicGroupDeclined` 事件。
 
@@ -79,7 +75,7 @@ conn.joinGroup(option).then(res => console.log(res))
 
 #### 群成员主动退出群组
 
-所有群成员可调用 `leaveGroup` 方法退出群组。退出群组的成员不会再收到群消息。其他成员会收到 `memberAbsence` 事件。
+所有群成员可调用 `leaveGroup` 方法退出群组。其他成员会收到 `memberAbsence` 事件。退出群组的成员不会再收到群消息。
 
 示例代码如下：
 
@@ -92,7 +88,7 @@ conn.leaveGroup(option).then(res => console.log(res))
 
 #### 群成员被移出群组
 
-仅群主和群管理员可以调用 `removeGroupMember` 方法将指定成员移出群组。被踢出群组后，被踢群成员将会收到 `removeMember` 事件，其他成员会收到 `memberAbsence` 监听事件。被移出群组后，该用户还可以再次加入群组。
+仅群主和群管理员可以调用 `removeGroupMember` 方法将指定成员移出群组。被踢群成员将会收到 `removeMember` 事件，其他成员会收到 `memberAbsence` 监听事件。被移出群组后，该用户还可以重新加入群组。
 
 示例代码如下：
 
@@ -106,9 +102,9 @@ conn.removeGroupMember(option).then(res => console.log(res))
 
 ### 管理群主及群管理员
 
-#### 变更群组所有者
+#### 变更群主
 
-仅群主可以调用 `changeGroupOwner` 方法将权限移交给群组中指定成员。成功移交后，原群主变为普通成员，其他群组成员会收到 `changeOwner` 事件。
+仅群主可以调用 `changeGroupOwner` 方法将群组所有权移交给指定群成员。成功移交后，原群主变为普通成员，其他群组成员会收到 `changeOwner` 事件。
 
 ```javascript
 let option = {
@@ -122,7 +118,7 @@ conn.changeGroupOwner(option).then(res => console.log(res))
 
 仅群主可以调用 `setGroupAdmin` 方法添加群管理员。成功添加后，新管理员及其他管理员会收到 `setAdmin` 监听事件。
 
-群管理员除了不能散群组等少数权限外，拥有对群组的绝大部分权限。
+群管理员除了不具备解散群组等少数权限外，拥有对群组的绝大部分权限。
 
 示例代码如下：
 
@@ -138,7 +134,7 @@ conn.setGroupAdmin(option).then(res => console.log(res))
 
 仅群主可以调用 `removeGroupAdmin` 方法移除群管理员。成功移除后，被移除的管理员及其他管理员会收到 `removeAdmin` 事件。
 
-群主移除指定群管理员的权限后，将只拥有普通群成员的权限。
+群管理员被移除群管理权限后将只拥有普通群成员的权限。
 
 示例代码如下：
 
@@ -152,7 +148,7 @@ conn.removeGroupAdmin(option).then(res => console.log(res))
 
 #### 获取群组管理员列表
 
-所有群成员均可调用 `getGroupAdmin` 获取群组下所有管理员，示例代码如下：
+所有群成员均可调用 `getGroupAdmin` 方法获取指定群组的管理员列表，示例代码如下：
 
 ```javascript
 let option = {
@@ -163,15 +159,15 @@ conn.getGroupAdmin(option).then((res) => {
 })
 ```
 
-也可以通过 [获取群组详情信息](./agora_chat_group_web#获取群组详情信息) 获取管理员列表。
+你也可以通过 [获取群组详情信息](./agora_chat_group_web#获取群组详情信息) 获取管理员列表。
 
 ### 管理群组白名单
-
-群主和群管理员可以将指定群成员加入或者移出群白名单，开启群组全员禁言后，白名单用户不受全员禁言限制。如果白名单用户在群禁言列表中，该用户也不能发言。
 
 #### 将成员加入群组白名单
 
 仅群主或者群管理员可调用 `addUsersToGroupAllowlist` 方法将群成员添加到群白名单。添加后，该群成员及群管理员和群主（除操作者外）会收到 `addUserToAllowlist` 事件。
+
+即使开启了群组全员禁言，群组白名单中的成员仍可以发送群组消息。不过，禁言列表上的用户即使加入了群白名单仍无法在群组中发送消息。
 
 示例代码如下：
 
@@ -213,7 +209,7 @@ conn.isInGroupAllowlist(option).then(res => console.log(res));
 
 #### 获取群组白名单
 
-仅群主和群管理员可以调用 `getGroupBlocklist` 方法获取群组白名单列表。
+仅群主和群管理员可以调用 `getGroupAllowlist` 方法获取群组白名单列表。
 
 示例代码如下：
 
@@ -221,18 +217,14 @@ conn.isInGroupAllowlist(option).then(res => console.log(res));
 let option = {
     groupId: "groupId"
 }
-conn.getGroupBlocklist(option).then(res => console.log(res));
+conn.getGroupAllowlist(option).then(res => console.log(res));
 ```
 
 ### 管理群组黑名单
 
 #### 将成员加入群组黑名单
 
-仅群主和群管理员可以调用 `blockGroupMembers` 方法将指定成员添加至群组黑名单。
-
-被加入黑名单后，该成员会收到 `removeMember` 事件。
-
-群成员被加入黑名单后无法再收发群组消息并被移出群组，如想再次加入群组，群主或群管理员必须先将其移出黑名单。
+仅群主和群管理员可以调用 `blockGroupMembers` 方法将指定成员添加至群组黑名单。被加入黑名单后，该成员会收到 `removeMember` 事件。其他群成员收到 `memberAbsence` 回调。黑名单中的成员会被移出群组，无法再收发群消息，只有先被移出黑名单才能重新加入群组。
 
 示例代码如下：
 
@@ -246,7 +238,7 @@ conn.blockGroupMembers(option).then(res => console.log(res))
 
 ### 将成员移出群组黑名单
 
-仅群主和群管理员可以调用 `unblockGroupMembers` 方法将成员移出群组黑名单。指定用户被群主或者群管理员移出群黑名单后，可以再次申请加入群组。
+仅群主和群管理员可以调用 `unblockGroupMembers` 方法将成员移出群组黑名单。指定用户被移出群黑名单后，可以重新加入群组。
 
 示例代码如下：
 
@@ -260,7 +252,7 @@ conn.unblockGroupMembers(option).then(res => console.log(res))
 
 #### 获取群组黑名单列表
 
-仅群主和群管理员可以调用 `getGroupBlocklist` 方法获取当前群组的黑名单。默认最多取 200 个。
+仅群主和群管理员可以调用 `getGroupBlocklist` 方法获取当前群组的黑名单。默认最多可获取 200 个黑名单上的用户。
 
 示例代码如下：
 
@@ -277,14 +269,16 @@ conn.getGroupBlocklist(option).then(res => console.log(res))
 
 #### 将成员加入群组禁言列表
 
-仅群主和群管理员可以调用 `muteGroupMember` 方法将指定成员添加至群组禁言列表。群成员被加入禁言列表中后，被禁言成员、群组管理员和者群主（除操作者外）会收到 `muteMember` 事件。群成员被加入群禁言列表后，将不能够发言，即使其被加入群白名单也不能发言。
+仅群主和群管理员可以调用 `muteGroupMember` 方法将一个或多个成员添加至群组禁言列表。群成员被加入禁言列表后，被禁言成员、群组管理员和群主（除操作者外）会收到 `muteMember` 事件。
+
+群成员被加入群禁言列表后，将无法发言，即使加入群白名单也不能发言。
 
 示例代码如下：
 
 ```javascript
 let option = {
     groupId: "groupId"，
-    username: "userId",
+    username: "user1" || ["user1", "user2"],
     muteDuration: 886400000 // 禁言时长，单位为毫秒。
 };
 conn.muteGroupMember(option).then(res => console.log(res))
@@ -292,14 +286,14 @@ conn.muteGroupMember(option).then(res => console.log(res))
 
 #### 将成员移出群组禁言列表
 
-仅群主和群管理员可以调用 `unmuteGroupMember` 方法将指定成员移出群组禁言列表。被移出的成员、群组管理员和者群主（除操作者外）会收到 `unmuteMember` 事件。
+仅群主和群管理员可以调用 `unmuteGroupMember` 方法将一个或多个成员移出群组禁言列表。被移出的成员、群组管理员和群主（除操作者外）会收到 `unmuteMember` 事件。
 
 示例代码如下：
 
 ```javascript
 let option = {
     groupId: "groupId",
-    username: "userId"
+    username: "user1" || ["user1", "user2"]
 };
 conn.unmuteGroupMember(option).then(res => console.log(res))
 ```
@@ -319,7 +313,7 @@ conn.getGroupMutelist(option).then(res => console.log(res))
 
 #### 开启群组全员禁言
 
-仅群主和群管理员可以调用 `disableSendGroupMsg` 方法开启群组全员禁言。群组全员开启禁言后，群成员将会收到 `muteAllMembers` 事件，除群组白名单中的成员，其他成员将不能发言。
+仅群主和群管理员可以调用 `disableSendGroupMsg` 方法开启群组全员禁言。开启全员禁言后，群成员将会收到 `muteAllMembers` 事件，除群组白名单中的成员，其他成员将不能发言。
 
 示例代码如下：
 
@@ -345,4 +339,4 @@ conn.enableSendGroupMsg(option).then(res => console.log(res))
 
 ### 监听群组事件
 
-有关详细信息，请参阅 [监听群组事件](./agora_chat_group_web#监听群组事件)。
+详见 [监听群组事件](./agora_chat_group_web#监听群组事件)。
