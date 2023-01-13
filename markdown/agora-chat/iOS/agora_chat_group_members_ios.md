@@ -121,7 +121,7 @@ do {
                          toGroup:@"groupID"
                          message:@"message"
                          completion:nil];
-   ```AgoraChatError
+   ```
 
 2. 受邀用户自动进群或确认是否加入群组：
 
