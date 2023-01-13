@@ -2,7 +2,7 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 提供了 `IAgoraChatGroupManager`, `AgoraChatGroupManagerDelegate`, 和 `AgoraChatGroup`类，可以实现以下功能：
+即时通讯 IM SDK 提供 `IAgoraChatGroupManager`、`AgoraChatGroupManagerDelegate` 和 `AgoraChatGroup` 类，可以实现以下功能：
 
 - 修改群组名称及描述
 - 获取、更新群组公告
@@ -25,6 +25,8 @@
 
 仅群主和群管理员可以调用 `changeGroupSubject` 方法设置和修改群组名称，群名称的长度限制为 128 个字符。
 
+群组名称修改后，其他群成员收到 `AgoraChatGroupManagerDelegate#groupSpecificationDidUpdate` 回调。
+
 ```objective-c
 [[AgoraChatClient sharedClient].groupManager changeGroupSubject:@"subject"
                                                                                                               forGroup:@"groupID"
@@ -34,6 +36,8 @@
 ### 修改群组描述
 
 仅群主和群管理员可以调用 `changeDescription` 方法设置和修改群组描述，群描述的长度限制为 512 个字符。
+
+群组描述修改后，其他群成员收到 `AgoraChatGroupManagerDelegate#groupSpecificationDidUpdate` 回调。
 
 ```objective-c
 [[AgoraChatClient sharedClient].groupManager changeDescription:@"desc"
@@ -48,7 +52,6 @@
 示例代码如下：
 
 ```objective-c
-// The chat group owner and chat group admins can call updateGroupAnnouncementWithId to set or update the chat group announcements. The announcement length can be up to 512 characters.
 [[AgoraChatClient sharedClient].groupManager updateGroupAnnouncementWithId:@"groupID"
                                                                                                                           announcement:@"announcement"
                                                                                                                                        error:nil];
@@ -69,7 +72,7 @@
 
 #### 上传共享文件
 
-所有群组成员均可以调用 `uploadGroupSharedFileWithId` 方法上传共享文件至群组，群共享文件大小限制为 10 MB。上传共享文件后，其他群成员收到 `EMGroupManagerDelegate#addedSharedFile` 回调。
+所有群组成员均可以调用 `uploadGroupSharedFileWithId` 方法上传共享文件至群组，群共享文件大小限制为 10 MB。上传共享文件后，其他群成员收到 `AgoraChatGroupManagerDelegate#groupFileListDidUpdate` 回调。
 
 示例代码如下：
 
@@ -82,7 +85,7 @@
 
 #### 删除共享文件
 
-所有群成员均可以调用 `removeGroupSharedFileWithId` 方法删除群共享文件。删除共享文件后，其他群成员收到 `EMGroupManagerDelegate#groupFileListDidUpdate` 回调。
+所有群成员均可以调用 `removeGroupSharedFileWithId` 方法删除群共享文件。删除共享文件后，其他群成员收到 `AgoraChatGroupManagerDelegate#groupFileListDidUpdate` 回调。
 
 群主和群管理员可删除全部的群共享文件，群成员只能删除自己上传的群文件。
 
@@ -105,7 +108,7 @@
 
 ### 更新群扩展字段
 
-仅群主和群管理员可以调用 `updateGroupExtWithId` 方法更新群组的扩展字段，群组扩展字段设置 JSON 格式的数据，用于自定义更多群组信息。群扩展字段的长度限制为 8 KB。
+仅群主和群管理员可以调用 `updateGroupExtWithId` 方法更新群组的扩展字段。群组扩展字段设置 JSON 格式的数据，用于自定义更多群组信息。群扩展字段的长度限制为 8 KB。
 
 示例代码如下：
 
@@ -117,4 +120,4 @@
 
 ### 监听群组事件
 
-有关详细信息，请参阅 [监听群组事件](./agora_chat_group_ios#监听群组事件)。
+详见 [监听群组事件](./agora_chat_group_ios#监听群组事件)。
