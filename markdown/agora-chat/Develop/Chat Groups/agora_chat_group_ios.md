@@ -5,7 +5,6 @@
 即时通讯 IM SDK 提供 `IAgoraChatGroupManager`、`AgoraChatGroupManagerDelegate` 和 `AgoraChatGroup` 类，可以实现以下功能：
 
 - 创建、解散群组
-- 加入、退出群组
 - 获取群组详情
 - 获取群成员列表
 - 获取群组列表
@@ -53,15 +52,15 @@
 受邀用户直接进群，会收到如下回调：
 
 - 新成员会收到 `AgoraChatGroupManagerDelegate#didJoinGroup` 回调；
-- 邀请人收到 `AgoraChatGroupManagerDelegate#onInvitationAccepted` 回调和 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调；
-- 其他群成员收到 `AgoraChatGroupChangeListener#userDidJoinGroup` 回调。
+- 邀请人收到 `AgoraChatGroupManagerDelegate#groupInvitationDidAccept` 回调和 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调；
+- 其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
 
 2. 受邀用户需要确认才能进群。
 
-只有 `AgoraChatGroupOptions#IsInviteNeedConfirm` 设置为 `true` 和 `isAutoAcceptGroupInvitation` 设置为 `false` 时，受邀用户需要确认才能进群。这种情况下，受邀用户收到 `AgoraChatGroupManagerDelegate#onInvitationReceived` 回调，并选择同意或拒绝进群邀请：
+只有 `AgoraChatGroupOptions#IsInviteNeedConfirm` 设置为 `true` 和 `isAutoAcceptGroupInvitation` 设置为 `false` 时，受邀用户需要确认才能进群。这种情况下，受邀用户收到 `AgoraChatGroupManagerDelegate#groupInvitationDidReceive` 回调，并选择同意或拒绝进群邀请：
 
-- 用户同意入群邀请后，邀请人收到 `AgoraChatGroupManagerDelegate#onInvitationAccepted` 回调和 `AgoraChatGroupManagerDelegate#onMemberJoined` 回调；其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调；
-- 用户拒绝入群邀请后，邀请人收到 `AgoraChatGroupManagerDelegate#onInvitationDeclined` 回调。
+- 用户同意入群邀请后，邀请人收到 `AgoraChatGroupManagerDelegate#groupInvitationDidAccept` 回调和 `AgoraChatGroupManagerDelegate#onMemberJoined` 回调；其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调；
+- 用户拒绝入群邀请后，邀请人收到 `AgoraChatGroupManagerDelegate#groupInvitationDidDecline` 回调。
 
 用户可以调用 `createGroup` 方法创建群组，并通过 `AgoraChatGroupOptions` 参数设置群组名称、群组描述、群组成员和建群原因。
 
@@ -87,44 +86,6 @@ NSArray *members = @{@"member1",@"member2"};
                                                                                                                              error:nil];
 ```
 
-### 用户申请入群
-
-根据 [创建群组](agora_chat_group_ios.md#创建群组) 时的群组类型 (`AgoraChatGroupStyle`) 设置，加入群组的处理逻辑差别如下：
-
-- 当群组类型为 `AgoraChatGroupStylePublicOpenJoin` 时，用户直接加入群组，无需群主和群管理员同意；加入群组后，其他群成员收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
-- 当群组类型为 `AgoraChatGroupStylePublicJoinNeedApproval`，群主和群管理员收到 `AgoraChatGroupManagerDelegate#joinGroupRequestDidReceive` 回调，并选择同意或拒绝入群申请：
-    - 群主和群管理员同意入群申请，申请人收到群组事件回调 `AgoraChatGroupManagerDelegate#joinGroupRequestDidApprove`；其他群成员会收到群组事件回调 `AgoraChatGroupManagerDelegate#userDidJoinGroup`。
-    - 群主和群管理员拒绝入群申请，申请人会收到群组事件回调 `AgoraChatGroupManagerDelegate#joinGroupRequestDidDecline`。
-
-<div class="alert note">用户只能申请加入公开群组，私有群组不支持用户申请入群。</div>
-
-用户申请加入群组步骤如下：
-
-1. 调用 `getPublicGroupsFromServerWithCursor` 方法从服务器获取公开群列表，查询到想要加入的群组 ID。
-
-2. 调用 `joinPublicGroup` 方法传入群组 ID，申请加入对应群组。
-
-示例代码如下：
-
-```objective-c
-// 从服务器获取公开群组列表
-NSMutableArray *memberList = [[NSMutableArray alloc]init];
-NSInteger pageSize = 50;
-NSString *cursor = nil;
-AgoraChatCursorResult *result = [[AgoraChatCursorResult alloc]init];
-do {
-  result = [[AgoraChatClient sharedClient].groupManager
-                         getPublicGroupsFromServerWithCursor:cursor
-                                                                                pageSize:50
-                                                                                     error:nil];
-  [memberList addObjectsFromArray:result.list];
-  cursor = result.cursor;
-} while (result && result.list < pageSize);
-
-// 申请加入群组
-[[AgoraChatClient sharedClient].groupManager joinPublicGroup:@"groupID" error:nil];
-```
-
 ### 解散群组
 
 只有群主可调用 `destroyGroup` 方法解散群组。群组解散后，群成员会收到 `AgoraChatGroupManagerDelegate#didLeaveGroup` 回调。
@@ -135,18 +96,6 @@ do {
 
 ```objective-c
 [[AgoraChatClient sharedClient].groupManager destroyGroup:@"groupID"];
-```
-
-### 退出群组
-
-群成员可以调用 `leaveGroup` 方法退出群组，其他成员将会收到群组事件回调 `AgoraChatGroupManagerDelegate#didLeaveGroup`。
-
-退出群组后，该用户将不再收到群消息。群主不能调用该接口退出群组，只能调用 `destroyGroup` 解散群组。
-
-示例代码如下：
-
-```objective-c
-[[AgoraChatClient sharedClient].groupManager leaveGroup:@"groupID" error:nil];
 ```
 
 ### 获取群组详情
