@@ -4,7 +4,7 @@
 
 即时通讯 IM iOS SDK 提供 `IAgoraChatGroupManager`、`AgoraChatGroupManagerDelegate` 和 `AgoraChatGroup` 类用于群组成员管理，可以实现以下功能：
 
-- 群组加人、踢人
+- 加入、退出群组
 - 管理群主及群管理员
 - 管理群组白名单
 - 管理群组黑名单
@@ -22,7 +22,7 @@
 
 本节介绍如何使用即时通讯 IM SDK 提供的 API 实现上述功能。
 
-### 群组加人
+### 加入群组
 
 用户进群分为两种方式：主动申请入群和群成员邀请入群。
 
@@ -140,7 +140,21 @@ do {
    }];
    ```
 
-### 群组踢人
+### 退出群组
+
+#### 群成员主动退出群组
+
+群成员可以调用 `leaveGroup` 方法退出群组，其他成员将会收到群组事件回调 `AgoraChatGroupManagerDelegate#userDidLeaveGroup`。
+
+退出群组后，该用户将不再收到群消息。群主不能调用该接口退出群组，只能调用 `destroyGroup` 解散群组。
+
+示例代码如下：
+
+```objective-c
+[[AgoraChatClient sharedClient].groupManager leaveGroup:@"groupID" error:nil];
+```
+
+#### 群成员被移出群组
 
 仅群主和群管理员可以调用 `removeMembers` 方法将指定成员移出群组。被踢出群组后，被踢群成员将会收到群组事件回调 `AgoraChatGroupManagerDelegate#didLeaveGroup`，其他成员将会收到回调 `AgoraChatGroupManagerDelegate#userDidLeaveGroup`。被移出群组后，该用户还可以再次加入群组。
 

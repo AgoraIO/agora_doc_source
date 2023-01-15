@@ -5,7 +5,6 @@
 即时通讯 IM SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组管理，可以实现以下功能：
 
 - 创建、解散群组
-- 加入、退出群组
 - 获取群组详情
 - 获取群成员列表
 - 获取群组列表
@@ -88,18 +87,6 @@ ChatClient.getInstance().groupManager().createGroup(groupName, desc, allMembers,
 
 ```java
 ChatClient.getInstance().groupManager().destroyGroup(groupId);
-```
-
-### 退出群组
-
-群成员可以调用 `leaveGroup` 方法退出群组。其他成员收到 `GroupChangeListener#onMemberExited` 回调。
-
-退出群组后，该用户将不再收到群消息。群主不能调用该接口退出群组，只能调用 `DestroyGroup` 解散群组。
-
-示例代码如下：
-
-```java
-ChatClient.getInstance().groupManager().leaveGroup(groupId);
 ```
 
 ### 获取群组详情

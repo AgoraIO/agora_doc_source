@@ -4,7 +4,7 @@
 
 即时通讯 IM SDK 提供 `Group`、`GroupManager` 和 `GroupChangeListener` 类用于群组管理，可实现以下功能：
 
-- 群组加人和踢人
+- 加入、退出群组
 - 管理群主和管理员
 - 管理群组白名单
 - 管理群组黑名单
@@ -22,7 +22,7 @@
 
 本节介绍如何调用即时通讯 IM SDK 提供的 API 实现上述功能。
 
-### 群组加人
+### 加入群组
 
 用户进群分为两种方式：主动申请入群和群成员邀请入群。
 
@@ -123,8 +123,20 @@ String cursor = result.getCursor();
    ```java
    ChatClient.getInstance().groupManager().declineInvitation(groupId, inviter, "your reason");
    ```
+### 退出群组
 
-### 群组踢人
+#### 群成员主动退出群组
+
+群成员可以调用 `leaveGroup` 方法退出群组。其他成员收到 `GroupChangeListener#onMemberExited` 回调。
+
+退出群组后，该用户将不再收到群消息。群主不能调用该接口退出群组，只能调用 `DestroyGroup` 解散群组。
+
+示例代码如下：
+
+```java
+ChatClient.getInstance().groupManager().leaveGroup(groupId);
+```
+#### 群成员被移出群组
 
 仅群主和群管理员可以调用 `removeUserFromGroup` 方法将指定成员移出群组。被踢群成员将会收到群组事件回调 `GroupChangeListener#onUserRemoved`，其他成员将会收到回调 `GroupChangeListener#onMemberExited`。被移出群组后，该用户还可以再次加入群组。
 
