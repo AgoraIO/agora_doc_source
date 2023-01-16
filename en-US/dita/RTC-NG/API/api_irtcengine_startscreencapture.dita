@@ -42,18 +42,18 @@
             <li props="cpp android unity rn flutter">On the Android platform, make sure the user has granted the app screen capture permission.</li>
             <li props="cpp android">Make sure that the Android API level is not earlier than 21, otherwise, the SDK reports error codes <codeph><apiname keyref="ERR_SCREEN_CAPTURE_PERMISSION_DENIED"/>(16)</codeph> and <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_NOT_SUPPORTED"/>(2)</codeph>.</li>
             <li props="cpp android">To capture system audio during screen sharing, ensure that the Android API level is not earlier than 29 as well; otherwise, the SDK reports the error code <codeph><apiname keyref="ERR_SCREEN_CAPTURE_SYSTEM_AUDIO_NOT_SUPPORTED"/>(3)</codeph>.</li>
-            <li props="cpp android unity rn flutter">On Android 9 and later, to avoid the application being killed by the system after going to the background, Agora recommends you add the foreground service <codeph>permission android.permission.FOREGROUND_SERVICE</codeph> to the <codeph>/app/Manifests/AndroidManifest.xml </codeph>file.</li>
+            <li props="cpp android unity rn flutter">On Android 9 and later, to avoid the application being killed by the system after going to the background, Agora recommends you add the foreground service <codeph>android.permission.FOREGROUND_SERVICE</codeph> to the <codeph>/app/Manifests/AndroidManifest.xml</codeph> file.</li>
             <li props="cpp android unity rn flutter">Due to performance limitations, screen sharing is not supported on Android TV.</li>
             <li props="cpp android unity rn flutter">Due to system limitations, if you are using Huawei phones, do not adjust the video encoding resolution of the screen sharing stream during the screen sharing, or you could experience crashes.</li>
             <li props="cpp android unity rn flutter">Due to system limitations, some Xiaomi devices do not support capturing system audio during screen sharing.</li>
-            <li props="cpp android unity rn flutter">To avoid system audio capture failure when screen sharing, Agora recommends that you set the audio application<xref keyref="setAudioScenario"/> scenario to  by using the method before joining the channel<apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/>.</li>
+            <li props="cpp android unity rn flutter">To avoid system audio capture failure when screen sharing, Agora recommends that you set the audio application scenario to <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING"/> by using the <xref keyref="setAudioScenario"/> method before joining the channel.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="params">
                 <pt props="ios">parameters</pt>
-                <pt props="android">ScreenCaptureParameters</pt>
+                <pt props="android">screenCaptureParameters</pt>
                 <pt props="cpp rn unity flutter">captureParams</pt>
                 <pd>The screen sharing encoding parameters. The default video dimension is 1920 x 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges. See <xref keyref="ScreenCaptureParameters2" props="android ios cpp rn unity flutter"/>.</pd>
             </plentry>
