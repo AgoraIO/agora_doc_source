@@ -2,16 +2,14 @@
 
 本页介绍如何使用即时通讯 IM SDK 在应用中创建和管理聊天室。
 
-消息相关内容见 [消息管理](./agora_chat_message_overview)。
+聊天室消息相关内容见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
-即时通讯 IM SDK 提供了聊天室管理的 `ChatManager` 和 `ChatRoom` 类，可以实现以下功能：
+即时通讯 IM SDK 提供了聊天室管理的 `ChatRoomManager`、`ChatRoom` 和 `ChatRoomChangeListener` 类，可以实现以下功能：
 
-- 创建和解散聊天室
-- 加入和退出聊天室
-- 从服务器获取聊天室列表
-- 获取聊天室的详情
+- 创建、解散聊天室
+- 从服务器获取聊天室列表和指定聊天室的详情
 - 监听聊天室事件
 
 ## 前提条件
@@ -21,64 +19,45 @@
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 了解即时通讯 IM 不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan)。
-- 只有超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了超级管理员。
+- 仅超级管理员才能创建聊天室。确保你已调用 [添加超级管理员的 RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了超级管理员。
 - 聊天室创建者和管理员的数量之和不能超过 100，即管理员最多可添加 99 个。
 
 ## 实现方法
 
-本节介绍如何调用即时通讯 IM SDK 提供的 API 来实现上述功能。
+本节介绍如何调用即时通讯 IM SDK 提供的 API 实现上述功能。
 
-### 创建和解散聊天室
+### 创建聊天室
 
-仅 [超级管理员](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加聊天室超级管理员) 可以调用 `createChatRoom` 创建聊天室，设置聊天室名称、描述、最大成员数等聊天室属性。
+仅[超级管理员](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加聊天室超级管理员) 可以调用 `createChatRoom` 创建聊天室，设置聊天室名称、描述、最大成员数等聊天室属性。创建聊天室后，超级管理员自动成为聊天室所有者。
 
-你也可以直接调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加聊天室超级管理员) 创建聊天室。
+你也可以直接调用 RESTful API [从服务端创建聊天室](./agora_chat_restful_chatroom#创建聊天室)。
 
 示例代码如下：
 
 ```java
-// 创建聊天室
 ChatRoom  chatRoom = ChatClient.getInstance().chatroomManager().createChatRoom(subject, description, welcomMessage, maxUserCount, members);
+```
 
-// 解散聊天室
-// 仅聊天室所有者可以调用 `destroyChatRoom` 方法解散聊天室。聊天室解散时，其他成员收到 `onChatRoomDestroyed` 回调并被踢出聊天室。
+### 解散聊天室
+
+仅聊天室所有者可以调用 `destroyChatRoom` 方法解散聊天室。聊天室解散时，其他成员收到 `ChatRoomChangeListener#onChatRoomDestroyed` 回调并被踢出聊天室。
+
+```java 
 ChatClient.getInstance().chatroomManager().destroyChatRoom(chatRoomId);
 ```
 
-### 加入和离开聊天室
+### 获取聊天室列表和详情
 
-所有聊天用户都可以调用 `joinChatRoom` 加入指定的聊天室。
-
-```java
-// 调用 `joinChatRoom` 方法传入聊天室 ID，申请加入对应聊天室。新成员加入聊天室时，其他成员收到 `onMemberJoined` 回调。
-ChatClient.getInstance().chatroomManager().joinChatRoom(chatRoomId, new ValueCallBack<ChatRoom>() {
-    @Override
-    public void onSuccess(ChatRoom value) {
-
-    }
-
-    @Override
-    public void onError(int error, String errorMsg) {
-
-    }
-});
-
-// 聊天室所有成员均可以调用 `leaveChatRoom` 方法退出当前聊天室。成员退出聊天室时，其他成员收到 `onMemberExited` 回调。
-ChatClient.getInstance().chatroomManager().leaveChatRoom(chatRoomId);
-```
-
-默认情况下，离开聊天室时，SDK 会删除本地设备上的所有聊天室消息。如果不想删除这些消息，请设置 `ChatOptions` 中 `setDeleteMessagesAsExitChatRoom` 为 `false`。
-
-### 获取公开聊天室列表和详情
-
-所有聊天用户都可以从服务器获取聊天室列表，并使用聊天室 ID 检索指定聊天室的基本信息。
+- 聊天室所有成员都可以调用 `fetchPublicChatRoomsFromServer` 获取从服务器获取聊天室列表，每次最多可获取 1,000 个。获取聊天室列表后，可使用聊天室 ID 查询指定聊天室的基本信息。
 
 ```java
-// 调用 `fetchPublicChatRoomsFromServer` 获取公开聊天室列表，每次最多可获取 1,000 个。
 PageResult<ChatRoom> chatRooms = ChatClient.getInstance().chatroomManager().
                             fetchPublicChatRoomsFromServer(pageNumber, pageSize);
+```
 
-// 聊天室所有成员均可调用 `fetchChatRoomFromServer` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
+- 聊天室所有成员均可调用 `fetchChatRoomFromServer` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表和禁言列表需单独调用接口获取。
+
+```java
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
 ```
 
@@ -100,17 +79,17 @@ ChatClient.getInstance().chatroomManager().removeChatRoomListener(chatRoomChange
 
 ```java
 public interface ChatRoomChangeListener {
-    // 聊天室被解散
+    // 聊天室被解散。聊天室的所有成员会收到该事件。
     void onChatRoomDestroyed(final String roomId, final String roomName);
 
-    // 有用户加入聊天室
+    // 有用户加入聊天室。聊天室的所有成员（除新成员外）会收到该事件。
     void onMemberJoined(final String roomId, final String participant);
 
-    // 有成员离开聊天室
+    // 有成员主动退出聊天室。聊天室的所有成员（除退出成员外）会收到该事件。
     void onMemberExited(final String roomId, final String roomName, final String participant);
 
     /**
-     * 有成员被移出聊天室
+     * 有成员被踢出聊天室。被踢出聊天室的成员会收到该事件。
      *
      * @param reason        用户被移出聊天室的原因：
      *                        - xxx BE_KICKED：该用户被聊天室管理员移出；
@@ -118,34 +97,34 @@ public interface ChatRoomChangeListener {
      */
     void onRemovedFromChatRoom(final int reason, final String roomId, final String roomName, final String participant);
 
-    // 有成员被加入禁言列表
+    // 有成员被加入禁言列表。聊天室所有者、管理员和被禁言的成员会收到该事件。
     void onMuteListAdded(final String chatRoomId, final List<String> mutes, final long expireTime);
 
-    // 有成员被移出禁言列表
+    // 有成员被移出禁言列表。聊天室所有者、管理员和被解除禁言的成员会收到该事件。
     void onMuteListRemoved(final String chatRoomId, final List<String> mutes);
 
-    // 有成员被加入白名单列表
+    // 有成员被加入白名单列表。被添加的成员及聊天室所有者和管理员（除操作者外）会收到该事件。
     void onWhiteListAdded(final String chatRoomId, final List<String> whitelist);
 
-    // 有成员被移出白名单列表
+    // 有成员被移出白名单列表。被移出的成员及聊天室所有者和管理员（除操作者外）会收到该事件。
     void onWhiteListRemoved(final String chatRoomId, final List<String> whitelist);
 
-    // 全员禁言状态变更
+    // 全员禁言状态变更。聊天室所有者、管理员和禁言状态变更的成员会收到该事件。
     void onAllMemberMuteStateChanged(final String chatRoomId, final boolean isMuted);
 
-    // 有成员被设为管理员
+    // 有成员被设为管理员。新管理员、聊天室所有者和其他管理员会收到该事件。
     void onAdminAdded(final String chatRoomId, final String admin);
 
-    // 有成员被移除管理员权限
+    // 有成员被移除管理员权限。被移除管理权限的管理员、聊天室所有者和其他管理员会收到该事件。
     void onAdminRemoved(final String chatRoomId, final String admin);
 
-    // 聊天室所有者变更
+    // 聊天室所有者变更。聊天室的所有成员会收到该事件。
     void onOwnerChanged(final String chatRoomId, final String newOwner, final String oldOwner);
 
-    // 聊天室公告变更
+    // 聊天室公告变更。聊天室的所有成员（除操作者）会收到该事件。
     void onAnnouncementChanged(String chatRoomId, String announcement);
 
-    // 聊天室自定义属性有更新
+    // 聊天室自定义属性有更新。聊天室的所有成员会收到该事件。
     default void onChatroomAttributesDidChanged(String chatRoomId, Map<String,String> attributeMap , String from){}
 
     // 有聊天室自定义属性被移除
