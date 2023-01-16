@@ -4,7 +4,7 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 提供 `EMChatRoomManager` 类 和 `EMChatRoom` 类，支持对聊天室成员的管理，包括获取、添加和移出聊天室成员等，主要方法如下：
+即时通讯 IM SDK 提供 `ChatRoomManager`、`ChatRoom` 和 `ChatRoomChangeListener` 类，支持对聊天室成员的管理，包括获取、添加和移出聊天室成员等，主要方法如下：
 
 - 加入、退出聊天室
 - 获取聊天室成员列表

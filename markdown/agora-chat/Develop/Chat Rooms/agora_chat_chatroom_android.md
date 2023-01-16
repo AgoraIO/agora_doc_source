@@ -6,7 +6,7 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 提供了聊天室管理的 `ChatManager` 和 `ChatRoom` 类，可以实现以下功能：
+即时通讯 IM SDK 提供了聊天室管理的 `ChatRoomManager`、`ChatRoom` 和 `ChatRoomChangeListener` 类，可以实现以下功能：
 
 - 创建、解散聊天室
 - 从服务器获取聊天室列表和指定聊天室的详情

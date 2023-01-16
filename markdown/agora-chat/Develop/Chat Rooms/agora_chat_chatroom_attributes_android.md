@@ -4,7 +4,7 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性管理，可以实现以下功能：
+即时通讯 IM SDK 提供 `ChatRoomManager`、`ChatRoom` 和 `ChatRoomChangeListener` 类用于聊天室属性管理，可以实现以下功能：
 
 - 获取和更新聊天室基本属性
 - 获取聊天室自定义属性
