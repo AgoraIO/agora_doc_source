@@ -40,7 +40,7 @@ ChatRoom  chatRoom = ChatClient.getInstance().chatroomManager().createChatRoom(s
 
 ### 解散聊天室
 
-仅聊天室所有者可以调用 `destroyChatRoom` 方法解散聊天室。聊天室解散时，其他成员收到 `onChatRoomDestroyed` 回调并被踢出聊天室。
+仅聊天室所有者可以调用 `destroyChatRoom` 方法解散聊天室。聊天室解散时，其他成员收到 `ChatRoomChangeListener#onChatRoomDestroyed` 回调并被踢出聊天室。
 
 ```java 
 ChatClient.getInstance().chatroomManager().destroyChatRoom(chatRoomId);

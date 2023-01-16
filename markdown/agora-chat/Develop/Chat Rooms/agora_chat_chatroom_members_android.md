@@ -58,7 +58,7 @@ ChatClient.getInstance().chatroomManager().joinChatRoom(chatRoomId, new ValueCal
 
 #### 成员主动退出聊天室
 
-聊天室所有成员均可以调用 `leaveChatRoom` 方法退出当前聊天室。成员退出聊天室时，其他成员收到 `onMemberExited` 回调。
+聊天室所有成员均可以调用 `leaveChatRoom` 方法退出当前聊天室。成员退出聊天室时，其他成员收到 `ChatRoomChangeListener#onMemberExited` 回调。
 
 与群主无法退出群组不同，聊天室所有者可以离开聊天室，如果所有者从服务器下线则 5 分钟后自动离开聊天室。如果所有者重新进入聊天室仍是该聊天室的所有者。
 
@@ -72,7 +72,7 @@ ChatClient.getInstance().chatroomManager().leaveChatRoom(chatRoomId);
 
 #### **将成员移出聊天室**
 
-仅聊天室所有者和管理员可调用 `removeChatRoomMembers` 方法将指定成员移出聊天室。被移出的成员收到收到 `onRemovedFromChatRoom` 回调，其他聊天室成员收到 `onMemberExited` 回调。被移出的成员可以重新进入聊天室。被移出的成员仍可以重新进入聊天室。
+仅聊天室所有者和管理员可调用 `removeChatRoomMembers` 方法将指定成员移出聊天室。被移出的成员收到收到 `ChatRoomChangeListener#onRemovedFromChatRoom` 回调，其他聊天室成员收到 `ChatRoomChangeListener#onMemberExited` 回调。被移出的成员可以重新进入聊天室。被移出的成员仍可以重新进入聊天室。
 
 将成员移出聊天室的步骤如下：
 1. 调用 `fetchChatRoomMembers` 方法获取聊天室成员列表，获得要移出的成员的用户 ID。
@@ -103,7 +103,7 @@ Map<String, Long> members = ChatClient.getInstance().chatroomManager().fetchChat
 
 #### 变更聊天室所有者
 
-聊天室所有者可以调用 `changeOwner` 方法将所有权转让给指定的聊天室成员。一旦所有权转移，原来的聊天室所有者会成为普通成员。新的聊天室所有者和聊天室管理员会收到 `onOwnerChanged` 回调。
+聊天室所有者可以调用 `changeOwner` 方法将所有权转让给指定的聊天室成员。一旦所有权转移，原来的聊天室所有者会成为普通成员。新的聊天室所有者和聊天室管理员会收到 `ChatRoomChangeListener#onOwnerChanged` 回调。
 
 示例代码如下：
 
@@ -113,7 +113,7 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeOwner(chatR
 
 #### 添加聊天室管理员
 
-仅聊天室所有者可以调用 `addChatRoomAdmin` 方法添加聊天室管理员。成功添加后，新管理员及其他管理员收到 `onAdminAdded` 回调。
+仅聊天室所有者可以调用 `addChatRoomAdmin` 方法添加聊天室管理员。成功添加后，新管理员及其他管理员收到 `ChatRoomChangeListener#onAdminAdded` 回调。
 
 示例代码如下：
 
@@ -123,7 +123,7 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().addChatRoomAdmin(
 
 #### 移除聊天室管理员
 
-仅聊天室所有者可以调用 `removeChatRoomAdmin` 方法移除聊天室管理员。成功移除后，被移除的管理员及其他管理员收到 `onAdminRemoved` 回调。
+仅聊天室所有者可以调用 `removeChatRoomAdmin` 方法移除聊天室管理员。成功移除后，被移除的管理员及其他管理员收到 `ChatRoomChangeListener#onAdminRemoved` 回调。
 
 示例代码如下：
 
@@ -137,7 +137,7 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().removeChatRoomAdm
 
 #### 将成员加入聊天室白名单
 
-仅聊天室所有者和管理员可以调用 `addToChatRoomWhiteList` 将成员加入聊天室白名单。
+仅聊天室所有者和管理员可以调用 `addToChatRoomWhiteList` 将成员加入聊天室白名单。被添加的成员、聊天室所有者和聊天室管理员（除操作者外）收到 `ChatRoomChangeListener#onWhiteListAdded` 回调。
 
 示例代码如下：
 
@@ -157,7 +157,7 @@ ChatClient.getInstance().chatroomManager().addToChatRoomWhiteList(chatRoomId, me
 
 #### 将成员移出聊天室白名单列表
 
-仅聊天室所有者和管理员可以调用 `removeFromChatRoomWhiteList` 将成员从聊天室白名单移出。
+仅聊天室所有者和管理员可以调用 `removeFromChatRoomWhiteList` 将成员从聊天室白名单移出。被移除的成员、聊天室所有者和聊天室管理员（除操作者外）收到 `ChatRoomChangeListener#onWhiteListRemoved` 回调。
 
 示例代码如下：
 
@@ -217,7 +217,7 @@ ChatClient.getInstance().chatroomManager().fetchChatRoomWhiteList(chatRoomId, ne
 
 #### 将成员加入聊天室黑名单
 
-仅聊天室所有者和管理员可以调用 `blockChatroomMembers` 方法将指定成员添加至黑名单。被加入黑名单后，该成员收到 `onRemovedFromChatRoom` 回调，其他成员收到 `onMemberExited` 回调，移出原因为 `BE_KICKED`。
+仅聊天室所有者和管理员可以调用 `blockChatroomMembers` 方法将指定成员添加至黑名单。被加入黑名单后，该成员收到 `ChatRoomChangeListener#onRemovedFromChatRoom` 回调，其他成员收到 `ChatRoomChangeListener#onMemberExited` 回调，移出原因为 `BE_KICKED`。
 
 黑名单中的成员会被移出聊天室，无法再收发聊天室消息，只有先被移出黑名单才能重新加入聊天室。
 
@@ -265,7 +265,7 @@ ChatClient.getInstance().chatroomManager().fetchChatRoomBlackList(chatRoomId, ne
 
 #### **将成员添加至聊天室禁言列表**
 
-仅聊天室所有者和管理员可以调用 `muteChatRoomMembers` 方法将指定成员添加至聊天室禁言列表，除操作者外的其他成员收到 `onMuteListAdded` 回调。
+仅聊天室所有者和管理员可以调用 `muteChatRoomMembers` 方法将指定成员添加至聊天室禁言列表，除操作者外的其他成员收到 `ChatRoomChangeListener#onMuteListAdded` 回调。
 
 聊天室所有者可禁言聊天室所有成员，聊天室管理员可禁言聊天室普通成员。
 
@@ -277,7 +277,7 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().muteChatRoomMembe
 
 #### 将成员移出聊天室禁言列表
 
-仅聊天室所有者和管理员可以调用 `unMuteChatRoomMembers` 方法将成员移出聊天室禁言列表。被解除禁言后，其他成员收到 `onMuteListRemoved` 回调。
+仅聊天室所有者和管理员可以调用 `unMuteChatRoomMembers` 方法将成员移出聊天室禁言列表。被解除禁言后，其他成员收到 `ChatRoomChangeListener#onMuteListRemoved` 回调。
 
 聊天室所有者可对聊天室所有成员解除禁言，聊天室管理员可对聊天室普通成员解除禁言。
 
@@ -299,7 +299,7 @@ Map<String, Long> memberMap =  ChatClient.getInstance().chatroomManager().fetchC
 
 #### 开启聊天室全员禁言
 
-仅聊天室所有者和管理员可以调用 `muteAllMembers` 方法开启全员禁言。全员禁言开启后，除了在白名单中的成员，其他成员不能发言。调用成功后，聊天室成员会收到 `onAllMemberMuteStateChanged` 回调。
+仅聊天室所有者和管理员可以调用 `muteAllMembers` 方法开启全员禁言。全员禁言开启后，除了在白名单中的成员，其他成员不能发言。调用成功后，聊天室成员会收到 `ChatRoomChangeListener#onAllMemberMuteStateChanged` 回调。
 
 示例代码如下：
 
@@ -319,7 +319,7 @@ ChatClient.getInstance().chatroomManager().muteAllMembers(chatRoomId, new ValueC
 
 #### 关闭聊天室全员禁言
 
-仅聊天室所有者和管理员可以调用 `unmuteAllMembers` 方法解除全员禁言。调用成功后，聊天室成员会收到 `onAllMemberMuteStateChanged` 回调。
+仅聊天室所有者和管理员可以调用 `unmuteAllMembers` 方法解除全员禁言。调用成功后，聊天室成员会收到 `ChatRoomChangeListener#onAllMemberMuteStateChanged` 回调。
 
 示例代码如下：
 

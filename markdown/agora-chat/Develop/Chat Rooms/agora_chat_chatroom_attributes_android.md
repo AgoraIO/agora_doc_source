@@ -35,13 +35,13 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFrom
 
 #### 修改聊天室名称和描述
 
-- 仅聊天室所有者和聊天室管理员可以调用 `changeChatRoomSubject` 方法设置和修改聊天室名称，聊天室其他成员会收到 `onSpecificationChanged`回调。聊天室名称的长度限制为 128 个字符。
+- 仅聊天室所有者和聊天室管理员可以调用 `changeChatRoomSubject` 方法设置和修改聊天室名称，聊天室其他成员会收到 `ChatRoomChangeListener#onSpecificationChanged`回调。聊天室名称的长度限制为 128 个字符。
 
 ```java
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatRoomSubject(chatRoomId, newSubject);
 ```
 
-- 仅聊天室所有者和聊天室管理员可以调用 `changeChatroomDescription` 方法设置和修改聊天室描述，聊天室其他成员会收到 `onSpecificationChanged`回调。聊天室描述的长度限制为 512 个字符。
+- 仅聊天室所有者和聊天室管理员可以调用 `changeChatroomDescription` 方法设置和修改聊天室描述，聊天室其他成员会收到 `ChatRoomChangeListener#onSpecificationChanged`回调。聊天室描述的长度限制为 512 个字符。
 
 ```java
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatroomDescription(chatRoomId, newDescription);
@@ -123,7 +123,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSe
 
 #### 设置单个聊天室自定义属性
 
-聊天室所有成员均可调用 `asyncSetChatroomAttributes` 方法设置和更新单个聊天室自定义属性。该方法只可添加新的自定义属性字段和更新自己设置的现有属性。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+聊天室所有成员均可调用 `asyncSetChatroomAttributes` 方法设置和更新单个聊天室自定义属性。该方法只可添加新的自定义属性字段和更新自己设置的现有属性。设置后，其他聊天室成员收到 `ChatRoomChangeListener#onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -151,7 +151,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttribute(chatRoomId,
             });
 ```
 
-若要覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+若要覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `ChatRoomChangeListener#onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -181,7 +181,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
 
 #### 设置多个聊天室自定义属性
 
-聊天室所有成员均可调用 `asyncSetChatroomAttributes` 方法设置和更新多个聊天室自定义属性。该方法只能添加新属性字段以及更新当前用户已添加的属性字段。设置成功后，其他聊天室成员会收到 `onAttributesUpdate` 回调。
+聊天室所有成员均可调用 `asyncSetChatroomAttributes` 方法设置和更新多个聊天室自定义属性。该方法只能添加新属性字段以及更新当前用户已添加的属性字段。设置成功后，其他聊天室成员会收到 `ChatRoomChangeListener#onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -205,7 +205,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
             });
 ```
 
-若要覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+若要覆盖其他聊天室成员设置的自定义属性，需调用 `asyncSetChatroomAttributesForced` 方法。设置成功后，其他聊天室成员收到 `ChatRoomChangeListener#onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -232,7 +232,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
 
 #### 删除单个聊天室自定义属性
 
-聊天室所有成员均可调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除单个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+聊天室所有成员均可调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除单个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `ChatRoomChangeListener#onAttributesRemoved` 回调。
 
 示例代码如下：
 
@@ -258,7 +258,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
                 });
 ```
 
-若要删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromServerForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+若要删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromServerForced` 方法。删除后，聊天室其他成员收到 `ChatRoomChangeListener#onAttributesRemoved` 回调。
 
 示例代码如下：
 
@@ -286,7 +286,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
 
 #### 删除多个聊天室自定义属性
 
-聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `ChatRoomChangeListener#onAttributesRemoved` 回调。
 
 示例代码如下：
 
@@ -310,7 +310,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServ
                 });
 ```
 
-若要删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromServerForced` 方法。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
+若要删除其他聊天室成员设置的自定义属性，需调用 `asyncRemoveChatRoomAttributesFromServerForced` 方法。删除后，聊天室其他成员收到 `ChatRoomChangeListener#onAttributesRemoved` 回调。
 
 示例代码如下：
 
