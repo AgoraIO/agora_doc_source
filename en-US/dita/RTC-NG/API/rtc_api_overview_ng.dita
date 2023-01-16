@@ -160,6 +160,10 @@
                 <stentry><xref keyref="setAudioScenario"/></stentry>
                 <stentry><ph conkeyref="setAudioScenario/shortdesc"/></stentry>
             </strow>
+            <strow props="ios cpp unity flutter rn">
+                <stentry><xref keyref="setAudioSessionOperationRestriction"/></stentry>
+                <stentry><ph conkeyref="setAudioSessionOperationRestriction/shortdesc"/></stentry>
+            </strow>
             <strow>
                 <stentry><xref keyref="adjustRecordingSignalVolume"/></stentry>
                 <stentry><ph conkeyref="adjustRecordingSignalVolume/shortdesc"/></stentry>
@@ -272,7 +276,24 @@
                 <stentry><xref keyref="muteAllRemoteVideoStreams"/></stentry>
                 <stentry><ph conkeyref="muteAllRemoteVideoStreams/shortdesc"/></stentry>
             </strow>
-            </simpletable> </section>
+            <strow>
+                <stentry><xref keyref="enableInstantMediaRendering"/></stentry>
+                <stentry><ph conkeyref="enableInstantMediaRendering/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="startMediaRenderingTracing"/></stentry>
+                <stentry><ph conkeyref="startMediaRenderingTracing/shortdesc"/></stentry>
+            </strow>
+            </simpletable><simpletable>
+                <sthead>
+                    <stentry>Event</stentry>
+                    <stentry>Description</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="onVideoRenderingTracingResult"/></stentry>
+                    <stentry><ph conkeyref="onVideoRenderingTracingResult/shortdesc"/></stentry>
+                </strow>
+                </simpletable></section>
         <section>
             <title>Capture screenshots</title>
             <simpletable>
@@ -635,10 +656,10 @@
                 <stentry><xref keyref="enableVirtualBackground"/></stentry>
                 <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
             </strow>
-            <strow props="android ios cpp rn flutter unity">
+            <strow props="rn flutter unity">
                 <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
                 <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/><ph props="cpp rn flutter unity">(For Android and iOS only)</ph></stentry>
-            </strow>
+            </strow> 
             <strow>
                 <stentry><xref keyref="setColorEnhanceOptions"/></stentry>
                 <stentry><ph conkeyref="setColorEnhanceOptions/shortdesc"/></stentry>
@@ -1013,9 +1034,13 @@
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
             </sthead>
-            <strow>
+            <strow props="flutter rn elctron">
                 <stentry><xref keyref="startEchoTest2"/></stentry>
                 <stentry><ph conkeyref="startEchoTest2/shortdesc"/></stentry>
+            </strow>
+            <strow props="native unity">
+                <stentry><xref keyref="startEchoTest3"/></stentry>
+                <stentry><ph conkeyref="startEchoTest3/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="stopEchoTest"/></stentry>
@@ -1723,7 +1748,7 @@
                 <stentry><xref keyref="onRenderVideoFrame"/></stentry>
                 <stentry><ph conkeyref="onRenderVideoFrame/shortdesc"/></stentry>
             </strow>
-            <strow props="native flutter electron rn">
+            <strow props="hide">
                 <stentry><xref keyref="onMediaPlayerVideoFrame"/></stentry>
                 <stentry><ph conkeyref="onMediaPlayerVideoFrame/shortdesc"/></stentry>
             </strow>
@@ -2033,7 +2058,7 @@
             </simpletable> </section>
         <section id="audio_routing_control" props="android ios cpp unity flutter rn">
             <title>Audio route</title>
-            <p props="cpp flutter">This group of method is for Android and iOS only.</p>
+            <p props="cpp flutter">This group of methods is for Android and iOS only.</p>
             <simpletable id="simpletable_ns1_shw_jqb">
             <sthead>
                 <stentry>Method</stentry>
@@ -2253,7 +2278,7 @@
             </strow>
             </simpletable> </section>
         <section props="cpp unity flutter electron" id="section_ys1_shw_jqb">
-            <title>Audio device management</title>
+            <title>Audio Device Management</title>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>

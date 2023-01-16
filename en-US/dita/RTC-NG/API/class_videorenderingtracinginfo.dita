@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_videorenderingtracinginfo">
+    <title><ph keyref="VideoRenderingTracingInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Indicators during video frame rendering progress.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public static class VideoRenderingTracingInfo {
+  public int elapsedTime;
+  public int start2JoinChannel;
+  public int join2JoinSuccess;
+  public int joinSuccess2RemoteJoined;
+  public int remoteJoined2SetView;
+  public int remoteJoined2UnmuteVideo;
+  public int remoteJoined2PacketReceived;
+};</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraVideoRenderingTracingInfo) __attribute__((visibility("default"))) @interface AgoraVideoRenderingTracingInfo : NSObject
+@property (assign, nonatomic) NSInteger elapsedTime NS_SWIFT_NAME(elapsedTime);
+@property (assign, nonatomic) NSInteger start2JoinChannel NS_SWIFT_NAME(start2JoinChannel);
+@property (assign, nonatomic) NSInteger join2JoinSuccess NS_SWIFT_NAME(join2JoinSuccess);
+@property (assign, nonatomic) NSInteger joinSuccess2RemoteJoined NS_SWIFT_NAME(joinSuccess2RemoteJoined);
+@property (assign, nonatomic) NSInteger remoteJoined2SetView NS_SWIFT_NAME(remoteJoined2SetView);
+@property (assign, nonatomic) NSInteger remoteJoined2UnmuteVideo NS_SWIFT_NAME(remoteJoined2UnmuteVideo);
+@property (assign, nonatomic) NSInteger remoteJoined2PacketReceived NS_SWIFT_NAME(remoteJoined2PacketReceived);</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct VideoRenderingTracingInfo {
+  int elapsedTime;
+  int start2JoinChannel;
+  int join2JoinSuccess;
+  int joinSuccess2RemoteJoined;
+  int remoteJoined2SetView;
+  int remoteJoined2UnmuteVideo;
+  int remoteJoined2PacketReceived;
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>elapsedTime</pt>
+                <pd>The time interval from calling the <xref keyref="startMediaRenderingTracing"/> method to SDK triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. The unit is milliseconds.</pd>
+            </plentry>
+            <plentry>
+                <pt>start2JoinChannel</pt>
+                <pd>The time interval from calling <apiname keyref="startMediaRenderingTracing"/> to calling <xref keyref="joinChannel2"/>. The unit is milliseconds. A negative number means to call <apiname keyref="joinChannel2"/> after calling <apiname keyref="startMediaRenderingTracing"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>join2JoinSuccess</pt>
+                <pd>Time interval from calling <apiname keyref="joinChannel2"/> to successfully joining the channel. The unit is milliseconds.</pd>
+            </plentry>
+            <plentry>
+                <pt>joinSuccess2RemoteJoined</pt>
+                <pd>
+                    <ul>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before successfully joining the channel, this value is the time interval from the local user successfully joining the channel to the remote user joining the channel. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after successfully joining the channel, the value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to when the remote user joins the channel. The unit is milliseconds.</li>
+                    </ul>
+                    <note type="note">If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, the value is 0 and meaningless.</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteJoined2SetView</pt>
+                <pd>
+                    <ul>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user sets the remote view. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to setting the remote view. The unit is milliseconds.</li>
+                    </ul>
+                    <note type="note">
+                    <ul>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after setting the remote view, the value is 0 and meaningless.</li>
+                    <li>Agora recommends that you set the remote view before the remote user joins the channel, or set the remote view immediately after the remote user joins the channel, in order to reduce the value of this parameter and improve the speed of the first video frame rendering.</li>
+                    </ul></note> </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteJoined2UnmuteVideo</pt>
+                <pd>
+                    <ul>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from the remote user joining the channel to subscribing to the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream. The unit is milliseconds.</li>
+                    </ul>
+                    <note type="note">If you call <apiname keyref="startMediaRenderingTracing"/> after subscribing to the remote video stream, the value is 0 and meaningless.</note>
+                </pd>
+            </plentry>
+            <plentry>
+                <pt>remoteJoined2PacketReceived</pt>
+                <pd>
+                    <ul>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to receiving the remote video stream. The unit is milliseconds.</li>
+                    </ul>
+                    <note type="note">If calling <apiname keyref="startMediaRenderingTracing"/> after receiving the remote video stream, the value is 0 and meaningless.</note></pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

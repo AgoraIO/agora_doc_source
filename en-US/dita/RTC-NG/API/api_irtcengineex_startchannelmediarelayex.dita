@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_startchannelmediarelayex">
-    <title><ph keyref="startChannelMediaRelayEx" /></title>
+    <title><ph keyref="startChannelMediaRelayEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Starts relaying media streams across channels. This method can be used to implement scenarios such as co-host across channels.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startChannelMediaRelayEx" />
+                <indexterm keyref="startChannelMediaRelayEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -26,36 +26,36 @@
     configuration: ChannelMediaRelayConfiguration,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startChannelMediaRelayEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startChannelMediaRelayEx(
       {required ChannelMediaRelayConfiguration configuration,
       required RtcConnection connection});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="unreal" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged" /> and <xref keyref="onChannelMediaRelayEvent" /> callbacks, and these callbacks return the state and events of the media stream relay.<ul>
-            <li>If the <apiname keyref="onChannelMediaRelayStateChanged" /> callback returns <apiname keyref="RELAY_STATE_RUNNING" /> (2) and <apiname keyref="RELAY_OK" /> (0), and the <apiname keyref="onChannelMediaRelayEvent" /> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL" /> (4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
-            <li>If the <apiname keyref="onChannelMediaRelayStateChanged" /> callback returns<apiname keyref="RELAY_STATE_FAILURE" /> (3), an exception occurs during the media stream relay.</li>
+            <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> and <xref keyref="onChannelMediaRelayEvent"/> callbacks, and these callbacks return the state and events of the media stream relay.<ul>
+            <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_RUNNING"/> (2) and <apiname keyref="RELAY_OK"/> (0), and the <apiname keyref="onChannelMediaRelayEvent"/> callback returns <apiname keyref="RELAY_EVENT_PACKET_SENT_TO_DEST_CHANNEL"/> (4), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
+            <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns<apiname keyref="RELAY_STATE_FAILURE"/> (3), an exception occurs during the media stream relay.</li>
             </ul> </p>
             <note type="attention">
             <ul>
             <li>Call this method after joining the channel.</li>
             <li>This method takes effect only when you are a host in a live streaming channel.</li>
-            <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="stopChannelMediaRelayEx" /> method to quit the current relay.</li>
-            <li>The relaying media streams across channels function needs to be <xref keyref="ticket-link" /> enabled.</li>
+            <li>After a successful method call, if you want to call this method again, ensure that you call the <xref keyref="stopChannelMediaRelayEx"/> method to quit the current relay.</li>
+            <li>The relaying media streams across channels function needs to be <xref keyref="ticket-link"/> enabled.</li>
             <li>We do not support string user accounts in this API.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="native electron unity rn flutter">
+            <plentry>
                 <pt props="android">channelMediaRelayConfiguration</pt>
                 <pt props="ios mac">config</pt>
-                <pt props="cpp electron unity rn flutter">configuration</pt>
-                <pd>The configuration of the media stream relay. See <xref keyref="ChannelMediaRelayConfiguration" />.</pd>
+                <pt props="cpp framework">configuration</pt>
+                <pd>The configuration of the media stream relay. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn">

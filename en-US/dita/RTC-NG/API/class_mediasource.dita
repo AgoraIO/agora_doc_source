@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediasource">
-    <title><ph keyref="MediaSource" /></title>
+    <title><ph keyref="MediaSource"/></title>
     <shortdesc id="short"><ph id="shortdesc">Information related to the media file to be played and the playback scenario configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -134,12 +134,12 @@
   @JsonKey(name: 'isLiveSource')
   final bool? isLiveSource;
 
-  factory MediaSource.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory MediaSource.fromJson(Map&lt;String, dynamic> json) =>
       _$MediaSourceFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$MediaSourceToJson(this);
+  Map&lt;String, dynamic> toJson() => _$MediaSourceToJson(this);
 }</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p></section>
+            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
@@ -158,7 +158,7 @@
             </plentry>
             <plentry>
                 <pt>startPos</pt>
-                <pd>The starting position (ms) for playback. Default value is 0.</pd>
+                <pd>The starting position (ms) for playback. The default value is 0.</pd>
             </plentry>
             <plentry>
                 <pt>autoPlay</pt>
@@ -185,11 +185,11 @@
             <plentry>
                 <pt>isAgoraSource</pt>
                 <pd>Whether the media resource to be opened is a live stream or on-demand video distributed through Media Broadcast service:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: The media resource is a live stream or on-demand video distributed through Media Broadcast service.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: The media resource to be played is a live or on-demand video distributed through Media Broadcast service.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream or on-demand video distributed through Media Broadcast service.</li>
                     </ul>
                     <note>
-                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the<parmname> URL</parmname> of the media resource to url, and set <parmname>isAgoraSource</parmname> as ; otherwise, you don't need to set the isAgoraSource parameter<parmname />.<codeph><ph keyref="true" /></codeph></p>
+                    <p>If you need to open a live stream or on-demand video distributed through Broadcast Streaming service, pass in the URL of the media resource to <parmname>url</parmname>, and set <parmname>isAgoraSource</parmname> as <codeph><ph keyref="true" /></codeph>; otherwise, you don't need to set the <parmname>isAgoraSource</parmname> parameter.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -198,15 +198,15 @@
                     <li><codeph><ph keyref="true" /></codeph>: The media resource is a live stream.</li>
                     <li><codeph><ph keyref="false" /></codeph>: (Default) The media resource is not a live stream.</li>
                     </ul>
-                    <p><codeph><ph keyref="true" /></codeph>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as  so that the live stream can be loaded more quickly.</p>
+                    <p>If the media resource you want to open is a live stream, Agora recommends that you set this parameter as <codeph><ph keyref="true" /></codeph> so that the live stream can be loaded more quickly.</p>
                     <note>
-                    <p><codeph><ph keyref="true" /></codeph>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as , the media resource<parmname> is</parmname> not to be loaded more quickly.</p>
+                    <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true" /></codeph>, the media resource is not to be loaded more quickly.</p>
                     </note> </pd>
             </plentry>
             <plentry props="android cpp unity">
                     <pt>provider</pt>
                     <pd>
-                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider" />.</p>
+                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
                         <note>
                             <p>If you open a custom media resource, pass in the value to <parmname>provider</parmname>. If you open a common media resource, pass in the value to <parmname>url</parmname>. Agora recommends that you do not pass in values to both <parmname>url</parmname> and <parmname>provider</parmname> in one call; otherwise, this call may fail.</p>
                         </note>
@@ -215,15 +215,15 @@
             <plentry props="apple">
                 <pt>playerOnReadCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData" />.</p>
+                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData"/>.</p>
                     <note id="note">
-                    <p conkeyref="MediaSource/url" />
+                    <p conkeyref="MediaSource/url"/>
                     </note></pd>
             </plentry>
             <plentry props="apple">
                 <pt>playerOnSeekCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek" />.</p>
+                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek"/>.</p>
                     <note conkeyref="MediaSource/note">
                     <p />
                     </note></pd>
