@@ -1,21 +1,15 @@
-聊天室是支持多人沟通的即时通讯系统。
-
-聊天室中的成员没有固定关系，用户离线后，超过 5 分钟会自动退出聊天室。聊天室成员在离线后，不会收到推送消息。聊天室可以应用于直播、消息广播等。
+聊天室是支持多人沟通的即时通讯系统。聊天室中的成员没有固定关系，用户离线后，超过 5 分钟会自动退出聊天室。聊天室成员在离线后，不会收到推送消息。聊天室可以应用于直播、消息广播等。
 
 本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理聊天室，并实现聊天室的相关功能。
 
-消息相关内容见 [消息管理](./agora_chat_message_overview)。
+聊天室消息相关内容见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
 即时通讯 IM iOS SDK 提供 `IAgoraChatroomManager`、`AgoraChatroomManagerDelegate` 和 `AgoraChatRoom` 类，可以实现以下功能：
 
-- 创建聊天室
-- 从服务器获取聊天室列表
-- 加入聊天室
-- 获取聊天室详情
-- 退出聊天室
-- 解散聊天室
+- 创建、解散聊天室
+- 从服务器获取聊天室列表和聊天室详情
 - 监听聊天室事件
 
 ## 前提条件
@@ -23,70 +17,46 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
 - 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan)。
-- 只有应用超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了应用超级管理员。
+- 仅超级管理员才能创建聊天室。确保你已调用[添加超级管理员的 RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
 
 ## 实现方法
 
 本节介绍如何使用即时通讯 IM SDK 提供的 API 实现上述功能。
 
-### 创建和解散聊天室
+### 创建聊天室
 
-仅 [应用超级管理员](./agora_chat_restful_chatroom_superadmin) 可以调用 `createChatroomWithSubject` 方法创建聊天室，并设置聊天室的主题、描述、最大成员数等聊天室属性。创建聊天室后，超级管理员自动成为聊天室所有者。
+仅[应用超级管理员](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 可以调用 `createChatroomWithSubject` 方法创建聊天室，设置聊天室名称、描述、最大成员数等聊天室属性。创建聊天室后，超级管理员自动成为聊天室所有者。
 
-只有聊天室所有者才能解散聊天室。聊天室一旦解散，所有聊天室成员都会收到 `didDismissFromChatroom` 回调，并立即从聊天室中删除。
+你也可以直接调用 RESTful API [从服务端创建聊天室](./agora_chat_restful_chatroom#创建聊天室)。
 
 ```objective-c
 AgoraChatError *error = nil;
 AgoraChatroom *retChatroom = [[AgoraChatClient sharedClient].roomManager createChatroomWithSubject:@"aSubject" description:@"aDescription" invitees:@[@"user1",@[user2]]message:@"aMessage" maxMembersCount:aMaxMembersCount error:&error];
+```
 
+### 解散聊天室
 
+只有聊天室所有者才能解散聊天室。聊天室一旦解散，所有聊天室成员都会收到 `AgoraChatroomManagerDelegate#didDismissFromChatroom` 回调，并立即从聊天室中删除。
+
+```objective-c
 AgoraChatError *error = nil;
 [[AgoraChatClient sharedClient].roomManager destroyChatroom:self.chatroom.chatroomId error:&error];
 ```
 
-### 加入和退出聊天室
+### 获取聊天室列表和详情
 
-用户申请加入聊天室的步骤如下：
-
-1. 调用 `getChatroomsFromServerWithPage` 方法从服务器获取聊天室列表，查询到想要加入的聊天室 ID。
-
-2. 调用 `joinChatroom` 方法传入聊天室 ID，申请加入对应聊天室。新成员加入聊天室时，其他成员收到 `userDidJoinChatroom` 回调。
-
-3. 所有聊天室成员都可以调用 `leaveChatroom` 离开指定的聊天室。聊天室成员离开聊天室后，所有其他成员都会收到 `userDidLeaveChatroom` 回调，默认删除所有本地数据。要将数据保留在本地设备上，请在 `AgoraChatOptions` 中将 `isDeleteMessagesWhenExitChatRoom` 参数设置为 `NO`。
-
-```objective-c
-// 获取公开聊天室列表，每次最多可获取 1,000 个。
-AgoraChatError *error = nil;
-[[AgoraChatClient sharedClient].roomManager getChatroomsFromServerWithPage:1 pageSize:50 error:&error];
-
-// 加入聊天室。
-AgoraChatError *error = nil;
-[[AgoraChatClient sharedClient].roomManager joinChatroom:@"aChatroomId" error:&error];
-
-// 退出聊天室。
-AgoraChatError *error = nil;
-[AgoraChatClient sharedClient].roomManager leaveChatroom:@"aChatroomId" error:&error];
-```
-
-退出聊天室时，SDK 默认删除该聊天室所有本地消息，若要保留这些消息，可在 SDK 初始化时将 `isDeleteMessagesWhenExitChatRoom` 设置为 `NO`。
-
-```objective-c
-@property (nonatomic, assign) BOOL isDeleteMessagesWhenExitChatRoom;
-
-```
+- 聊天室所有成员都可以调用 `getChatroomsFromServerWithPage` 从服务器获取聊天室列表，每次最多可获取 1,000 个。获取聊天室列表后，可使用聊天室 ID 查询指定聊天室的基本信息。
 
 示例代码如下：
 
 ```objective-c
-AgoraChatOptions *retOpt = [AgoraChatOptions optionsWithAppkey:@"appkey"];
-retOpt.isDeleteMessagesWhenExitChatRoom = NO;
+AgoraChatError *error = nil;
+[[AgoraChatClient sharedClient].roomManager getChatroomsFromServerWithPage:1 pageSize:50 error:&error];
 ```
 
-### 获取聊天室详情
-
-聊天室所有成员均可调用 `getChatroomSpecificationFromServerWithId` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
+- 聊天室所有成员均可调用 `getChatroomSpecificationFromServerWithId` 方法获取聊天室的详情，包括聊天室 ID、聊天室名称、聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
 
 示例代码如下：
 
@@ -103,67 +73,66 @@ AgoraChatroom *chatRoom = [AgoraChatroom chatroomWithId:@"chatroomId"];
 SDK 中提供了聊天室事件的监听接口。你可以通过注册聊天室监听器，获取聊天室事件，并作出相应处理。如不再使用该监听器，需要移除，防止出现内存泄露。
 
 ```objective-c
-// 注册聊天室回调。
+// 注册聊天室监听。
 [[AgoraChatClient sharedClient].roomManager addDelegate:self delegateQueue:nil];
-// 移除聊天室回调。
+// 移除聊天室监听。
 [[AgoraChatClient sharedClient].roomManager removeDelegate:self];
 ```
 
 具体事件如下：
 
 ```objective-c
-// 有用户加入聊天室。
+// 有用户加入聊天室。聊天室的所有成员（除新成员外）会收到该事件。
 - (void)userDidJoinChatroom:(AgoraChatroom *)aChatroom
                    user:(NSString *)aUsername{
 
 }
 
-// 有成员离开聊天室。
+// 有成员主动退出聊天室。聊天室的所有成员（除退出成员外）会收到该事件。
 - (void)userDidLeaveChatroom:(AgoraChatroom *)aChatroom
                         user:(NSString *)aUsername {
 }
 
-// 有成员被踢出聊天室
+// 有成员被踢出聊天室。被踢出聊天室的成员会收到该事件。
 - (void)didDismissFromChatroom:(AgoraChatroom *)aChatroom
                         reason:(AgoraChatroomBeKickedReason)aReason {
 
   }
 
-// 聊天室成员被禁言
-
+// 有成员被加入禁言列表。聊天室所有者、管理员和被禁言的成员会收到该事件。
 - (void)chatroomMuteListDidUpdate:(AgoraChatroom *)aChatroom
                 addedMutedMembers:(NSArray *)aMutes
                        muteExpire:(NSInteger)aMuteExpire {
 
   }
 
-// 聊天室成员被解除禁言
+// 有成员被移出禁言列表。聊天室所有者、管理员和被解除禁言的成员会收到该事件。
 - (void)chatroomMuteListDidUpdate:(AgoraChatroom *)aChatroom
               removedMutedMembers:(NSArray *)aMutes {
 
   }
 
-// 聊天室成员被设为管理员
+// 聊天室成员被设为管理员。新管理员、聊天室所有者和其他管理员会收到该事件。
 - (void)chatroomAdminListDidUpdate:(AgoraChatroom *)aChatroom
                         addedAdmin:(NSString *)aAdmin {
 
   }
 
-// 聊天室成员被移除管理员权限
+// 聊天室成员被移除管理员权限。被移除管理权限的管理员、聊天室所有者和其他管理员会收到该事件。
 - (void)chatroomAdminListDidUpdate:(AgoraChatroom *)aChatroom
                       removedAdmin:(NSString *)aAdmin {
 
   }
 
-// 聊天室所有者变更
+// 聊天室所有者变更。聊天室的所有成员会收到该事件。
 - (void)chatroomOwnerDidUpdate:(AgoraChatroom *)aChatroom
                       newOwner:(NSString *)aNewOwner
                       oldOwner:(NSString *)aOldOwner {
 
-// 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
+// 聊天室自定义属性有更新。聊天室的所有成员会收到该事件。
 - (void)chatroomAttributesDidUpdated:(NSString *_Nonnull)roomId attributeMap:(NSDictionary<NSString *, NSString *> *_Nullable)attributeMap from:(NSString *_Nonnull)fromId;
   }
 
-// 有成员删除聊天室自定义属性。聊天室所有成员会收到该事件。
+// 有聊天室自定义属性被移除。聊天室所有成员会收到该事件。
 - (void)chatroomAttributesDidRemoved:(NSString *_Nonnull)roomId attributes:(NSArray<__kindof NSString *> *_Nullable)attributes from:(NSString *_Nonnull)fromId;
 ```

@@ -6,10 +6,10 @@
 
 即时通讯 IM SDK 提供 `ChatRoomManager` 和 `ChatRoom` 类用于聊天室属性管理，可以实现以下功能：
 
-- 获取和更新聊天室基本属性；
-- 获取聊天室自定义属性；
-- 设置聊天室自定义属性；
-- 删除聊天室自定义属性。
+- 获取和更新聊天室基本属性
+- 获取聊天室自定义属性
+- 设置聊天室自定义属性
+- 删除聊天室自定义属性
 
 ## 前提条件
 
@@ -27,31 +27,39 @@
 
 #### 获取聊天室名称和描述
 
-对于聊天室名称和描述，你可以调用 [`fetchChatRoomFromServer`](./agora_chat_chatroom_android#获取聊天室详情) 方法获取聊天室详情时查看。
+你可以调用 `fetchChatRoomFromServer` 方法查看聊天室名称和描述。
+
+```java
+ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().fetchChatRoomFromServer(chatRoomId);
+```
 
 #### 修改聊天室名称和描述
 
-方法示例如下：
+- 仅聊天室所有者和聊天室管理员可以调用 `changeChatRoomSubject` 方法设置和修改聊天室名称，聊天室其他成员会收到 `onSpecificationChanged`回调。聊天室名称的长度限制为 128 个字符。
 
 ```java
-// 仅聊天室所有者和聊天室管理员可以调用 `changeChatRoomSubject` 方法设置和修改聊天室名称，聊天室名称的长度限制为 128 个字符。
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatRoomSubject(chatRoomId, newSubject);
+```
 
-// 仅聊天室所有者和聊天室管理员可以调用 `changeChatroomDescription` 方法设置和修改聊天室描述，聊天室描述的长度限制为 512 个字符。
+- 仅聊天室所有者和聊天室管理员可以调用 `changeChatroomDescription` 方法设置和修改聊天室描述，聊天室其他成员会收到 `onSpecificationChanged`回调。聊天室描述的长度限制为 512 个字符。
 
+```java
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().changeChatroomDescription(chatRoomId, newDescription);
 ```
 
-#### 管理聊天室公告
+#### 获取聊天室公告
 
-具体方法如下：
+聊天室所有成员均可调用 `fetchChatRoomAnnouncement` 方法获取聊天室公告。
 
 ```java
-// 聊天室所有成员均可调用 `fetchChatRoomAnnouncement` 方法获取聊天室公告。
 String announcement = ChatClient.getInstance().chatroomManager().fetchChatRoomAnnouncement(chatRoomId);
+```
 
-// 仅聊天室所有者和管理员可以设置和更新公告，聊天室公告的长度限制为 512 个字符。公告更新后，所有聊天室成员都会收到 `onAnnouncementChanged` 回调。
+#### 更新聊天室公告
 
+仅聊天室所有者和管理员可以设置和更新公告。公告更新后，所有聊天室成员都会收到 `onAnnouncementChanged` 回调。聊天室公告的长度限制为 512 个字符。
+
+```java
 ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId, announcement);
 ```
 
@@ -59,7 +67,7 @@ ChatClient.getInstance().chatroomManager().updateChatRoomAnnouncement(chatRoomId
 
 #### 获取聊天室指定自定义属性
 
-聊天室所有成员均可调用 `asyncFetchChatroomAttributesFromServer` 方法获取聊天室指定自定义属性。
+聊天室所有成员均可调用 `asyncFetchChatroomAttributesFromServer` 方法获取聊天室指定的自定义属性。
 
 示例代码如下：
 
@@ -85,7 +93,7 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatroomAttributesFromServe
             });
 ```
 
-##### 获取聊天室所有自定义属性
+#### 获取聊天室所有自定义属性
 
 聊天室所有成员均可调用 `asyncFetchChatRoomAllAttributesFromServer` 方法获取聊天室所有自定义属性。
 
@@ -113,9 +121,9 @@ ChatClient.getInstance().chatroomManager().asyncFetchChatRoomAllAttributesFromSe
 
 ```
 
-##### 设置单个聊天室属性
+#### 设置单个聊天室自定义属性
 
-聊天室所有成员均可调用 `asyncSetChatroomAttributes` 方法设置和更新单个聊天室自定义属性。该方法只可添加新自定义属性字段和更新自己设置的现有属性。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
+聊天室所有成员均可调用 `asyncSetChatroomAttributes` 方法设置和更新单个聊天室自定义属性。该方法只可添加新的自定义属性字段和更新自己设置的现有属性。设置后，其他聊天室成员收到 `onAttributesUpdate` 回调。
 
 示例代码如下：
 
@@ -171,7 +179,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
             });
 ```
 
-##### 设置多个聊天室自定义属性
+#### 设置多个聊天室自定义属性
 
 聊天室所有成员均可调用 `asyncSetChatroomAttributes` 方法设置和更新多个聊天室自定义属性。该方法只能添加新属性字段以及更新当前用户已添加的属性字段。设置成功后，其他聊天室成员会收到 `onAttributesUpdate` 回调。
 
@@ -191,7 +199,7 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
                 @Override
                 public void onResult(int code,Map<String, Integer> failureMap) {
                     // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
-                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详见 Error 类
                     // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
                 }
             });
@@ -215,14 +223,14 @@ ChatClient.getInstance().chatroomManager().asyncSetChatroomAttributesForced(chat
                 @Override
                 public void onResult(int code,Map<String, Integer> failureMap) {
                     // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
-                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详见 Error 类
                     // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
 
                 }
             });
 ```
 
-##### 删除单个聊天室自定义属性
+#### 删除单个聊天室自定义属性
 
 聊天室所有成员均可调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除单个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
@@ -276,7 +284,7 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
                 });
 ```
 
-##### 删除多个聊天室自定义属性
+#### 删除多个聊天室自定义属性
 
 聊天室成员可以调用 `asyncRemoveChatRoomAttributesFromServer` 方法删除多个聊天室自定义属性。该方法只能删除自己设置的自定义属性。删除后，聊天室其他成员收到 `onAttributesRemoved` 回调。
 
@@ -288,15 +296,15 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributeFromServe
  *
  * @param String chatRoomId         聊天室 ID。
  * @param List<String> keyList      聊天室自定义属性的 key 列表。
- * @param callBack                  结果回调 {@link ResultCallBack#onResult(int,Object)}，
+ * @param callBack                  结果回调 {@link ResultCallBack#onResult(int,Object)}。
  *
  */
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServer(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
                 public void onResult(int code,Map<String, Integer> failureMap) {
-                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
-                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
-                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map。
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详见 Error 类。
+                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码。
 
                     }
                 });
@@ -312,15 +320,15 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServ
  *
  * @param String chatRoomId         聊天室 ID。
  * @param List<String> keyList      聊天室自定义属性的 key 列表。
- * @param callBack                  结果回调 {@link ResultCallBack#onResult(int,Object)}，
+ * @param callBack                  结果回调 {@link ResultCallBack#onResult(int,Object)}。
  *
  */
 ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServerForced(chatRoomId,keyList, new ResultCallBack<Map<String, Integer>>() {
                     @Override
                 public void onResult(int code,Map<String, Integer> failureMap) {
-                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map
-                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类
-                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码
+                    // code == Error.EM_NO_ERROR 表明自定义属性全部成功添加。此时 failureMap 为一个空的 map。
+                    // code != Error.EM_NO_ERROR 表明请求不成功。此时包含多种错误，详细请参考 Error 类。
+                    // 当操作属性失败时，failureMap 为添加失败的自定义属性，其中 value 为 Error 对应的 code 码。
 
                     }
                 });
