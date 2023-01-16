@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablemulticamera">
-    <title><ph keyref="enableMultiCamera"/></title>
+    <title><ph keyref="enableMultiCamera" /></title>
     <shortdesc id="short"><ph id="shortdesc">Enables or disables multi-camera capture.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableMultiCamera"/>
+                <indexterm keyref="enableMultiCamera" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableMultiCamera:(BOOL)enabled config:(AgoraCameraCapturerConfiguration* _Nullable)config NS_SWIFT_NAME(enableMultiCamera(_:config:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">#if defined(__APPLE__) &amp;&amp; TARGET_OS_IOS
     virtual int enableMultiCamera(bool enabled, const CameraCapturerConfiguration&amp; config) = 0;
 #endif</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">abstract enableMultiCamera(
     enabled: boolean,
     config: CameraCapturerConfiguration
@@ -28,9 +28,9 @@
     enabled: boolean,
     config: CameraCapturerConfiguration
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableMultiCamera(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableMultiCamera(
       {required bool enabled, required CameraCapturerConfiguration config});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -41,18 +41,18 @@
             </dl>
             <p>In scenarios where there are existing cameras to capture video, Agora recommends that you use the following steps to capture and publish video with multiple cameras:<ol>
             <li>Call this method to enable multi-channel camera capture.</li>
-            <li>Call <xref keyref="startPreview"/> to start the local video preview.</li>
-            <li>Call <xref keyref="startSecondaryCameraCapture"/> to start video capture with the second camera.</li>
-            <li>Call <xref keyref="joinChannelEx"/>, and set <parmname>publishSecondaryCameraTrack</parmname> to <codeph><ph keyref="true"/></codeph> to publish the video stream captured by the second camera in the channel.</li>
+            <li>Call <xref keyref="startPreview" /> to start the local video preview.</li>
+            <li>Call <xref keyref="startSecondaryCameraCapture" /> to start video capture with the second camera.</li>
+            <li>Call <xref keyref="joinChannelEx" />, and set <parmname>publishSecondaryCameraTrack</parmname> to <codeph><ph keyref="true" /></codeph> to publish the video stream captured by the second camera in the channel.</li>
             </ol></p>
             <p>If you want to disable multi-channel camera capture, use the following steps:<ol>
-            <li>Call <xref keyref="stopSecondaryCameraCapture"/>.</li>
-            <li>Call this method with <parmname>enabled</parmname> set to <codeph><ph keyref="false"/></codeph>.</li>
+            <li>Call <xref keyref="stopSecondaryCameraCapture" />.</li>
+            <li>Call this method with <parmname>enabled</parmname> set to <codeph><ph keyref="false" /></codeph>.</li>
             </ol></p>
             <note>
-            <p>You can call this method before and after <xref keyref="startPreview"/> to enable multi-camera capture:<ul>
-            <li>If it is enabled before <apiname keyref="startPreview"/>, the local video preview shows the image captured by the two cameras at the same time.</li>
-            <li>If it is enabled after <apiname keyref="startPreview"/>, the SDK stops the current camera capture first, and then enables the primary camera and the second camera. The local video preview appears black for a short time, and then automatically returns to normal.</li>
+            <p>You can call this method before and after <xref keyref="startPreview" /> to enable multi-camera capture:<ul>
+            <li>If it is enabled before <apiname keyref="startPreview" />, the local video preview shows the image captured by the two cameras at the same time.</li>
+            <li>If it is enabled after <apiname keyref="startPreview" />, the SDK stops the current camera capture first, and then enables the primary camera and the second camera. The local video preview appears black for a short time, and then automatically returns to normal.</li>
             </ul></p>
             </note>
             <p props="cpp">This method applies to iOS only.</p>
@@ -70,13 +70,13 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Whether to enable multi-camera video capture mode:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable multi-camera capture mode; the SDK uses multiple cameras to capture video.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Disable multi-camera capture mode; the SDK uses a single camera to capture video.</li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable multi-camera capture mode; the SDK uses multiple cameras to capture video.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable multi-camera capture mode; the SDK uses a single camera to capture video.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
-                <pd>Capture configuration for the second camera. See <xref keyref="CameraCapturerConfiguration"/>.</pd>
+                <pd>Capture configuration for the second camera. See <xref keyref="CameraCapturerConfiguration" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="apple cpp electron unity rn">
