@@ -6,10 +6,10 @@
 
 即时通讯 IM SDK 支持你通过调用 API 在项目中实现如下聊天室属性管理功能：
 
-- 获取和更新聊天室基本属性；
-- 获取聊天室自定义属性；
-- 设置聊天室自定义属性；
-- 删除聊天室自定义属性。
+- 获取和更新聊天室基本属性
+- 获取聊天室自定义属性
+- 设置聊天室自定义属性
+- 删除聊天室自定义属性
 
 ## 前提条件
 
@@ -27,11 +27,20 @@
 
 #### 获取聊天室名称和描述
 
-对于聊天室名称和描述，你可以调用 [`getChatRoomDetails`](./agora_chat_chatroom_web#获取聊天室详情) 获取聊天室详情时查看。
+你可以调用 `getChatRoomDetails` 方法查看聊天室名称和描述。
+
+```javascript
+let option = {
+    chatRoomId: 'chatRoomId'
+}
+conn.getChatRoomDetails(option).then(res => console.log(res))
+```
 
 #### 修改聊天室名称和描述
 
-仅聊天室所有者和管理员可以调用 `modifyChatRoom` 方法更新聊天室名称和描述，聊天室描述的长度限制为 512 个字符。
+仅聊天室所有者和管理员可以调用 `modifyChatRoom` 方法修改聊天室名称和描述。
+
+聊天室名称的长度限制为 128 个字符，聊天室描述的长度限制为 512 个字符。
 
 示例代码如下：
 
@@ -148,4 +157,4 @@ conn.updateChatRoomAnnouncement(option).then(res => console.log(res))
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_web#监听聊天室事件)。
+详见 [监听聊天室事件](./agora_chat_chatroom_web#监听聊天室事件)。

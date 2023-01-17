@@ -2,19 +2,15 @@
 
 本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理聊天室，并实现聊天室的相关功能。
 
-消息内容详见 [消息管理](./agora_chat_message_overview)。
+聊天室消息相关内容详见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
 即时通讯 IM SDK 支持你通过调用 API 在项目中实现如下聊天室管理功能：
 
-- 创建聊天室；
-- 从服务器获取聊天室列表；
-- 加入聊天室；
-- 获取聊天室详情；
-- 退出聊天室；
-- 解散聊天室；
-- 监听聊天室事件。
+- 创建、解散聊天室
+- 从服务器获取聊天室列表和聊天室详情
+- 监听聊天室事件
 
 ## 前提条件
 
@@ -23,7 +19,7 @@
 - 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 了解即时通讯 IM 聊天室不同版本的数量限制，详见 [套餐包](./agora_chat_plan)。
-- 只有应用超级管理员才有创建聊天室的权限。确保已通过调用[super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
+- 仅超级管理员才能创建聊天室。确保你已调用[super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
 
 ## 实现方法
 
@@ -43,48 +39,6 @@ let options = {
 conn.createChatRoom(options).then(res => console.log(res))
 ```
 
-### 从服务器获取聊天室列表
-
-用户可调用 `getChatRooms` 方法从服务器获取指定数目的聊天室列表，能获取到的最大数量为 1,000。
-
-### 加入聊天室
-
-用户申请加入聊天室的步骤如下：
-
-- 调用 `getChatRooms` 方法从服务器获取聊天室列表，查询到想要加入的聊天室 ID。
-- 调用 `joinChatRoom` 方法传入聊天室 ID，申请加入对应聊天室。新成员加入聊天室时，其他成员收到 `memberPresence` 事件。
-
-示例代码如下：
-
-```javascript
-// 获取聊天室列表，最多可获取 1000 个。
-let option = {
-    pagenum: 1,
-    pagesize: 20
-};
-conn.getChatRooms(option).then(res => console.log(res))
-
-// 加入聊天室。聊天室所有成员均可调用该接口。
-let option = {
-    roomId: 'roomId',
-    message: 'reason'
-}
-conn.joinChatRoom(option).then(res => console.log(res))
-```
-
-### 获取聊天室详情
-
-聊天室所有成员均可调用 `getChatRoomDetails` 方法获取聊天室的详情，包括聊天室 ID、聊天室名称、聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
-
-示例代码如下：
-
-```javascript
-let option = {
-    chatRoomId: 'chatRoomId'
-}
-conn.getChatRoomDetails(option).then(res => console.log(res))
-```
-
 ### 解散聊天室
 
 仅聊天室所有者可以调用 `destroyChatRoom` 方法解散聊天室。聊天室解散时，其他成员收到 `destroy` 事件并被踢出聊天室。
@@ -98,6 +52,29 @@ let option = {
     chatRoomId: 'chatRoomId'
 }
 conn.destroyChatRoom(option).then(res => console.log(res))
+```
+
+### 获取聊天室列表和详情
+
+- 用户可调用 `getChatRooms` 方法从服务器获取指定数目的聊天室列表，能获取到的最大数量为 1,000。
+
+```javascript
+let option = {
+    pagenum: 1,
+    pagesize: 20
+};
+conn.getChatRooms(option).then(res => console.log(res))
+```
+
+- 聊天室所有成员均可调用 `getChatRoomDetails` 方法获取聊天室的详情，包括聊天室 ID、聊天室名称、聊天室描述、最大成员数、聊天室所有者、是否全员禁言以及聊天室角色类型。聊天室公告、管理员列表、成员列表、黑名单列表、禁言列表需单独调用接口获取。
+
+示例代码如下：
+
+```javascript
+let option = {
+    chatRoomId: 'chatRoomId'
+}
+conn.getChatRoomDetails(option).then(res => console.log(res))
 ```
 
 ### 监听聊天室事件
@@ -152,12 +129,12 @@ conn.addEventHandler("eventName", {
         // 有用户加入聊天室。聊天室的所有成员（除新成员外）会收到该事件。
         case 'memberPresence':
             break;
-             // 有成员修改/设置聊天室自定义属性，聊天室的所有成员会收到该事件。
-            case 'updateChatRoomAttributes':
-                break;
-            // 有成员删除聊天室自定义属性，聊天室所有成员会收到该事件。
-            case 'removeChatRoomAttributes':
-                break;
+        // 有成员修改/设置聊天室自定义属性。聊天室的所有成员会收到该事件。
+        case 'updateChatRoomAttributes':
+            break;
+        // 有成员删除聊天室自定义属性。聊天室所有成员会收到该事件。
+        case 'removeChatRoomAttributes':
+            break;
         default:
             break;
     }

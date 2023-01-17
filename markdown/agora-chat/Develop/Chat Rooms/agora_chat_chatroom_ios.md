@@ -2,7 +2,7 @@
 
 本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理聊天室，并实现聊天室的相关功能。
 
-聊天室消息相关内容见 [消息管理](./agora_chat_message_overview)。
+聊天室消息相关内容详见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -97,6 +97,35 @@ SDK 中提供了聊天室事件的监听接口。你可以通过注册聊天室�
 - (void)didDismissFromChatroom:(AgoraChatroom *)aChatroom
                         reason:(AgoraChatroomBeKickedReason)aReason {
 
+  }
+
+// 更新聊天室公告。聊天室的所有成员会收到该事件。
+- (void)chatroomAnnouncementDidUpdate:(AgoraChatroom *)aChatroom
+                          announcement:(NSString *_Nullable)aAnnouncement {
+  
+  }  
+
+// 聊天室详情有变更。聊天室的所有成员会收到该事件。
+- (void)chatroomSpecificationDidUpdate:(AgoraChatroom *)aChatroom {
+  
+  }
+
+// 有成员被添加至聊天室白名单。被添加的成员收到该事件。
+- (void)chatroomWhiteListDidUpdate:(AgoraChatroom *)aChatroom
+              addedWhiteListMembers:(NSArray<NSString *> *)aMembers {
+  
+  }
+
+// 有成员被移出白名单。被移出的成员收到该事件。
+- (void)chatroomWhiteListDidUpdate:(AgoraChatroom *)aChatroom
+            removedWhiteListMembers:(NSArray<NSString *> *)aMembers {
+  
+  }
+
+// 聊天室一键禁言状态变化。聊天室所有成员（除操作者外）会收到该事件。
+- (void)chatroomAllMemberMuteChanged:(AgoraChatroom *)aChatroom
+                     isAllMemberMuted:(BOOL)aMuted {
+  
   }
 
 // 有成员被加入禁言列表。聊天室所有者、管理员和被禁言的成员会收到该事件。

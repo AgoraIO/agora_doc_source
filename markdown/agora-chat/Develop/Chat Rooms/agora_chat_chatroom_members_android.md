@@ -70,7 +70,7 @@ ChatClient.getInstance().chatroomManager().leaveChatRoom(chatRoomId);
 
 退出聊天室时，SDK 默认删除该聊天室所有本地消息。若要保留本地数据，可在 SDK 初始化时调用 `ChatOptions#setDeleteMessagesAsExitChatRoom(boolean)` 将参数设置为 `false`。
 
-#### **将成员移出聊天室**
+#### 将成员移出聊天室
 
 仅聊天室所有者和管理员可调用 `removeChatRoomMembers` 方法将指定成员移出聊天室。被移出的成员收到收到 `ChatRoomChangeListener#onRemovedFromChatRoom` 回调，其他聊天室成员收到 `ChatRoomChangeListener#onMemberExited` 回调。被移出的成员可以重新进入聊天室。被移出的成员仍可以重新进入聊天室。
 
@@ -99,7 +99,7 @@ ChatClient.getInstance().chatroomManager().removeChatRoomMembers(chatRoomId, mem
 Map<String, Long> members = ChatClient.getInstance().chatroomManager().fetchChatRoomMembers(chatRoomId, cursor, pageSize);
 ```
 
-### 管理聊天室所有权和管理员
+### 管理聊天室所有者和管理员
 
 #### 变更聊天室所有者
 
