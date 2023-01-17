@@ -641,6 +641,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ### Send a chat room message
 
+For each app, you can send a maximum of 100 messages to chat rooms per second using this API and can send messages to at most 10 chat rooms at each call of this API. If you send a message to 10 chat rooms, the server records that 10 messages are sent. 
+
+For chat room messages, Agora Chat divides the messages priorities into three levels: `high`, `normal`, and `low`. High-priority messages will be delivered first. When you create a message, you can assign a high delivery priority for a certain type of messages in a chat room or of the specified member to ensure that these messages are delivered first. This method ensures that when messages are sent concurrently in large quantities or at a high rate, important ones can be delivered first, thereby increasing the delivery reliability of important messages. When the load on the server is high, low-priority messages will be discarded first to reserve resources for high-priority messages. However, the message prioritization function only ensures that messages arrive first, but not ensure that they are bound to arrive. Even high-priority messages will still be dropped when the server load is too high.
 #### HTTP request
 
 ```http
@@ -666,6 +669,7 @@ The request body is a JSON object, which contains the following parameters:
 | Parameter | Type | Description | Required |
 | --- | --- | --- | --- |
 | `to` | Array | An array of the chat room IDs that receives the message. Within one second, you can send messages to a maximum of 100 chat rooms, and for each request, you can send messages to a maximum of 10 chat rooms. | Yes |
+| `chatroom_msg_level` | String | The chat room message priority: <ul><li>`high`</li><li>(Default) `normal`</li><li>`low`</li></ul> | No       | 
 
 The other parameters and descriptions are the same with those of [Sending a one-to-one message method](#request).
 
