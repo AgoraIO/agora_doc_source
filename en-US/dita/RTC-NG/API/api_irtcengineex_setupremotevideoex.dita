@@ -31,6 +31,7 @@
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <p>This method initializes the video view of a remote stream on the local device. It affects only the video view that the local user sees. Call this method to bind the remote video stream to a video view and to set the rendering and mirror modes of the video view.</p>
             <p>The application specifies the uid of the remote video in the <xref keyref="VideoCanvas" /> method before the remote user joins the channel.</p>
             <p>If the remote uid is unknown to the application, set it after the application receives the <xref keyref="onUserJoined" /> callback. If the Video Recording function is enabled, the Video Recording Service joins the channel as a dummy client, causing other clients to also receive the <codeph>onUserJoined</codeph> callback. Do not bind the dummy client to the application view because the dummy client does not send any video streams.</p>

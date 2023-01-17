@@ -24,6 +24,7 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>该方法会把会话相关的所有资源释放掉，离开频道，即挂断或退出通话。不管当前是否在通话中均可以调用该方法。</p>
             <p>加入频道后，必须调用本方法结束通话，才能开始下一次通话。</p>
             <p props="native unity electron flutter">该方法是异步操作，调用返回时并没有真正退出频道。在真正退出频道后，本地会触发 <apiname keyref="onLeaveChannel"/> 回调；通信场景下的用户和直播场景下的主播离开频道后，远端会触发 <xref keyref="onUserOffline"/> 回调。</p>
