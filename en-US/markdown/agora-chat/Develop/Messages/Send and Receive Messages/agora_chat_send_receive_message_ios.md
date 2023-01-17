@@ -6,6 +6,8 @@ After logging in to Agora Chat, users can send the following types of messages t
 - Extended messages.
 - Custom messages.
 
+For chat room messages, Agora Chat divides the messages delivery priorities into three levels: high, normal, and low. High-priority messages will be delivered first. When you create a message, you can assign a high delivery priority for a certain type of messages in a chat room or of the specified member to ensure that these messages are delivered first. This method ensures that when messages are sent concurrently in large quantities or at a high rate, important ones can be delivered first, thereby increasing the delivery reliability of important messages. When the load on the server is high, low-priority messages will be discarded first to reserve resources for high-priority messages. However, the message prioritization function only ensures that messages arrive first, but not ensure that they are bound to arrive. Even high-priority messages will still be dropped when the server load is too high.
+
 This page shows how to implement sending and receiving these messages using the Agora Chat SDK.
 
 ## Understand the tech
@@ -46,6 +48,17 @@ message.chatType = AgoraChatTypeGroupChat;
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                progress:nil
                                              completion:nil];
+```
+
+For chat room messages, you can set the delivery priority for them. 
+
+```objective-c
+AgoraChatTextMessageBody* textBody = [[AgoraChatTextMessageBody alloc] initWithText:@"Hi"];
+    AgoraChatMessage* message = [[AgoraChatMessage alloc] initWithConversationID:@"roomId" body:textBody ext:nil];
+    message.chatType = AgoraChatTypeChatRoom;
+    // Set the delivery priority of chat room messages. The default value is `Normal`, indicating the normal priority.
+    message.priority = AgoraChatRoomMessagePriorityHigh;
+[AgoraChatClient.sharedClient.chatManager sendMessage:message progress:nil completion:nil];
 ```
 
 ### Receive a message
