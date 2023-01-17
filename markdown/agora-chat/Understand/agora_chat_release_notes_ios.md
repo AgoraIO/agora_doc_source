@@ -7,7 +7,7 @@ v1.1.0 于 2023 年 2 月 28 日发布。
 #### 新增特性
 
 - 新增聊天室自定义属性功能。
-- 新增聊天室消息送达优先级功能。
+- 新增聊天室消息优先级功能。
 - 在 `getConversationsFromServer` 方法中新增分页参数 `pageNum` 和 `pageSize`，支持分页获取会话列表功能。
 - 新增 `removeMessagesFromServer` 方法单向删除漫游消息。
 

@@ -7,7 +7,7 @@ v1.1.0 was released on February 28, 2023.
 #### New features
 
 1. Adds the function of managing custom chat room attributes.
-2. Adds the chat room message delivery prioritization function.
+2. Adds the chat room message priority function.
 3. Adds the pagination parameters `pageNum` and `pageSize` in the `getConversationlist` method to allow users to get the conversation list from the server with pagination.
 4. Adds the `removeHistoryMessages` method to allow users to delete messages on the server in a unidirectional way.
 5. Adds the `create` event which occurs when a group or a chat room is created.
