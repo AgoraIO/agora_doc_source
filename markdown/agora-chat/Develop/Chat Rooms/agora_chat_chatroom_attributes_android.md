@@ -336,4 +336,4 @@ ChatClient.getInstance().chatroomManager().asyncRemoveChatRoomAttributesFromServ
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_android#监听聊天室事件)。
+详见 [监听聊天室事件](./agora_chat_chatroom_android#监听聊天室事件)。

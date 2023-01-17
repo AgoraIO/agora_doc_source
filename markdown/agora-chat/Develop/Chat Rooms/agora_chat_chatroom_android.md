@@ -2,7 +2,7 @@
 
 本页介绍如何使用即时通讯 IM SDK 在应用中创建和管理聊天室。
 
-聊天室消息相关内容见 [消息管理](./agora_chat_message_overview)。
+聊天室消息相关内容详见 [消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 

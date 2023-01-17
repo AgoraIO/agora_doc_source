@@ -97,7 +97,7 @@ AgoraChatError *error = nil;
 [[AgoraChatClient sharedClient].roomManager getChatroomMemberListFromServerWithId:@"chatroomId" cursor:1 pageSize:20 error:&error];
 ```
 
-### 管理聊天室所有权和管理员
+### 管理聊天室所有者和管理员
 
 #### 变更聊天室所有者
 
