@@ -13,9 +13,7 @@ This release adds the `enableInstantMediaRendering` method to enable instant ren
 
 #### Issues fixed
 
-This release fixed the following issues:
-
-- Playing audio files with a sample rate of 48 kHz failed.
+This release fixed the issue that playing audio files with a sample rate of 48 kHz failed.
 
 
 #### API changes
