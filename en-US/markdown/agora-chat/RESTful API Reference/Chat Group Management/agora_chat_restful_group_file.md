@@ -198,6 +198,15 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagen
 
 For the descriptions of other path parameters, see [Common Parameters](#param).
 
+#### Query parameter
+
+| Parameter | Type   | Description   | Required |
+| :------- | :----- | :------------------------ | :------- |
+| `pagesize`  | String |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
+| `pagenum` | String |  The start position for next query.  | No  |
+
+<div class="alert info">If the <code>pagesize</code> and <code>pagenum</code> parameters are not specified, the basic information of 10 chat groups on the first page are returned by default.<div>
+
 #### Request header
 
 | Parameter | Type | Description | Required |

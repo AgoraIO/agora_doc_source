@@ -160,7 +160,7 @@ For the descriptions of path parameters, see [Common Parameters](#request).
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `notification_display_style` | Int | The display style of push notifications:<li>(Default) `0`: The push title is "You have a new message", and the push content is "Click to check".<li>`1`: The push title is "You have a new message", and the push content contains the nickname of the sender and the content of the offline message.  | Yes  |
+| `notification_display_style` | Int | The display style of push notifications:<ul><li>(Default) `0`: The push title is "You have a new message", and the push content is "Click to check".</li><li>`1`: The push title is "You have a new message", and the push content contains the nickname of the sender and the content of the offline message.</li></ul>  | No  |
 
 ### HTTP response
 
@@ -176,7 +176,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 | `modified`  | Number | The Unix timestamp (ms) when the user information is last modified.  |
 | `username`  | String | The ID of the user. |
 | `activated`  | Bool | Whether the user account is active:<li>`true`: The user account is active.<li>`false`: The user account is deactivated. To unban a deactivated user account, refer to [Unbanning a user](./agora_chat_restful_registration#unbanning-a-user). |
-| `notification_display_style`  |  String  | The display style of push notifications. |
+| `notification_display_style`  |  Int  | The display style of push notifications. This parameter is returned only if you specify it when sending the request. |
 | `nickname`  | String | The nickname displayed in push notifications. |
 | `notifier_name` | String  | The name of the push certificate. |
 

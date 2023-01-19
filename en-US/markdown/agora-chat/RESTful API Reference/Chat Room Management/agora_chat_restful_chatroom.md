@@ -127,6 +127,15 @@ GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 
 For the parameters and detailed descriptions, see [Common parameters ](#param).
 
+#### Query parameter
+
+| Parameter | Type   | Description   | Required |
+| :------- | :----- | :------------------------ | :------- |
+| `limit`  | Number |  The number of chat rooms to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
+| `cursor` | String |  The start position for next query.  | No  |
+
+<div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat rooms on the first page are returned by default.<div>
+
 #### Request header
 
 | Parameter | Type | Description | Required |
