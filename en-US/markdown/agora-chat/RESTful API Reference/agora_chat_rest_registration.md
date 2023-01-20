@@ -936,7 +936,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
 | Parameter     | Type | Description                                                         |
-| :------- | :----------------------------------------------------------- |
+| :------- | :---------------- | :------------------------------------------- |
 | `data` | JSON | The online state of a user, in the format of `"username": "online state"`. For example, if user1 is online, returns `"user1": "online"`. Otherwise, returns `"user1": "offline"`. |
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
