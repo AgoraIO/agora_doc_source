@@ -319,14 +319,14 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-GET https://{host}/{org}/{app}/users/{username}/notification/{type}/{key}
+GET https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 ```
 
 #### Path parameter
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `type` | String | The type of the chat:<li>`user`: one-to-one chats.<li>`chatgroup`: Group chats.  | Yes |
+| `chattype` | String | The type of the chat:<li>`user`: One-to-one chats.<li>`chatgroup`: Group chats.  | Yes |
 | `key` | String | The identifier of the chat:<li>If `type` is set to `user`, `key` indicates the user ID of the peer user.<li>If `type` is set to `chatgroup`, `key` indicates the ID of the chat group. | Yes |
 
 For the descriptions of other path parameters, see [Common Parameters](#request).

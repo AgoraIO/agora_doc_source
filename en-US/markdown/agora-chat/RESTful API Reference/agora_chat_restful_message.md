@@ -893,22 +893,34 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ## Upload a file
 
-对于附件类型的消息，如图片、语音、视频或其他类型文件，发送消息前需上传文件。图片和视频存在缩略图，文件上传详情如下：
+This method enables you to upload images, audios, videos, or other types of files. For images and videos that have thumbnails, note the following:
 
-- 图片：可调用文件上传接口上传原图，Agora 服务器会自动为图片生成缩略图。若上传的图片在 10 KB 以内，缩略图与原图等同；若图片超过 10 KB，Agora 服务器会根据你在请求中设置的图片高度和宽度，即 `thumbnail-height` 和 `thumbnail-width` 参数，生成缩略图。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
-- 视频：可调用文件上传接口上传视频文件，。Agora 服务器不会自动为视频文件生成缩略图。如果需要缩略图，你需再次调用文件上传接口上传视频缩略图。上传视频文件时，无需传 `thumbnail-height` 和 `thumbnail-width` 参数。上传视频缩略图时，若图片在 10 KB 以内，视频缩略图即为上传的图片。如果图片超过 10 KB，而且设置了这两个参数，视频缩略图的高度和宽度取决于这两个参数的设置。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
+- Images: After uploading an image, the Agora server automatically generates the thumbnail of the image.
+- Videos: The Agora server does not generate thumbnails for videos automatically. After uploading a video, you must recall this method to upload the thumbnail for the video yourself.
 
-
-This method enables you to upload images, audios, videos, or other types of files, among which images and videos have thumbnails.
-
-- Images: After uploading an image, the Agora server automatically generates the thumbnail of the image. If the size of the uploaded image is smaller than or equal to 10 KB, the size of the thumbnail remain the same as that of the original image. If the image size exceeds 10 KB, the Agora server generates the thumbnail based on the specified values of the `thumbnail-height` and `thumbnail-width` parameters. If you leave these parameters empty, the height and width of the thumbnail is 170 pixels by default.
-
-- Videos: The Agora server does not generate 
+<table>
+    <thead>
+        <tr>
+            <th>File size</th><th>Thumbnail size</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row"><=10</th><td>The size of the thumbnail remains the same as that of the original file.</td>
+        </tr>
+        <tr>
+            <th rowspan="2" scope="rowgroup">>10</th><td>A thumbnail is generated based on the specified <code>thumbnail-height</code> and <code>thumbnail-width</code> parameters.</td>
+        </tr>
+        <tr>
+            <td>If you leave <code>thumbnail-height</code> and <code>thumbnail-width</code> empty, the height and width of the thumbnail is 170 pixels by default.</td>
+        </tr>
+    </tbody>
+</table>
 
 Ensure that you read the following instructions before calling this method:
 
 - Upload a file equal to or smaller than 10 MB; otherwise, the uploading attempt fails.
-- When uploading the file, you can enable restrict access to the file. Once the restrict access is set, users need to provide an access key when downloading the file. The format of the key is `{{url}}?share-secret={{secret}}`.
+- When uploading a file, you can enable restrict access to the file. Once the restrict access is set, users need to provide an access key when downloading the file. The format of the key is `{{url}}?share-secret={{secret}}`.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -1045,7 +1057,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {You
 
 ## Download a thumbnail
 
-When uploading an image or video fle, the Chat server automatically creates a thumbnail for the file on the server. This method has an extra `thumbnail` field in the request header compared with [downloading a file](#download).
+When uploading an image or video file, the Chat server automatically creates a thumbnail for the file on the server. This method has an extra `thumbnail` field in the request header compared with [downloading a file](#download).
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -1126,7 +1138,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Description | Required |
 | :-------------- | :--------------------- | :------- |
-| `Content-Type` | `application/json` | Yes |
+| `Accept`       | String  | The content type. Set it to `application/json`.  | Yes |
 | `Authorization` | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
@@ -1446,6 +1458,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type | Required | Description                                                         |
 | :-------------- | :------- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String   | Yes     | `application/json`                             |
+| `Accept`       | String  | The content type. Set it to `application/json`.  | Yes |
 | `Authorization` | String   | Yes     | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Request body
@@ -1638,7 +1651,7 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
-| `msg_timestamp` | Long | The timestamp for importing the messages. | No |
+| `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 
 ### HTTP Response
@@ -1739,7 +1752,7 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
-| `msg_timestamp` | Long | The timestamp for importing the messages. | No |
+| `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 
 ### HTTP Response

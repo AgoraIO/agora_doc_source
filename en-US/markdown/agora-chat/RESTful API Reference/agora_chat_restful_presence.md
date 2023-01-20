@@ -1,6 +1,6 @@
 # Presence
 
-The presence feature enables users to publicly display their online presence status and quickly determine the status of others. Users can also customize their presence status, which adds fun and diversity to real-time chatting.
+The presence feature enables users to publicly display their online presence status and quickly determine the status of others. Users can also customize their presence status, such as busy, away, in a call, which adds fun and diversity to real-time chatting.
 
 This page shows how to use the Agora Chat RESTful API to implement presence in your project. Before calling the following methods, ensure that you meet the following:
 - You understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
@@ -88,7 +88,7 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/c1/presence/and
 #### Response example
 
 ```json
-{"result":"ok"}%
+{"result":"ok"}
 ```
 
 
@@ -133,12 +133,12 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 
 | Parameter | Type   | Description |
 | :------- |:-------------|:-------------|
-| `result`    | JSON Array | Whether the subscription succeeds. If successful, the presence statuses of the users return; otherwise, you can troubleshoot according to the returned reasons. |
+| `result`    | JSON  | Whether the subscription succeeds. If successful, the presence statuses of the users return; otherwise, you can troubleshoot according to the returned reasons. |
 | `uid`       | String     | The unique login account of the user.                |
-| `last_time` | Number     | The Unix timestamp when the user was last online.                                           |
-| `expiry`    | Number     | The Unix timestamp when the subscription expires.                                           |
+| `last_time` | Number     | The Unix timestamp when the user was last online, in seconds.                                           |
+| `expiry`    | Number     | The Unix timestamp when the subscription expires, in seconds.                                           |
 | `ext`       | String     | The extension information of the presence status.                |
-| `status`    | JSON Array | The presence statuses on multiple devices of the user.<li>`0`: Offline.<li>`1`: Online.<li>Other strings: The custom presence status defined by the user. |
+| `status`    | JSON | The presence statuses on multiple devices of the user.<ul><li>`0`: Offline.</li><li>`1`: Online.</li><li>Other strings: The custom presence status defined by the user.</li></ul> |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible causes.
 
@@ -156,7 +156,7 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/10
 #### Response example
 
 ```json
-{"result":[{"uid":"","last_time":"1644466063","expiry":"1645500371","ext":"123","status":{"android":"1","android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}},{"uid":"c3","last_time":"1645183991","expiry":"1645500371","ext":"","status":{"android":"0","android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}}]}%
+{"result":[{"uid":"","last_time":"1644466063","expiry":"1645500371","ext":"123","status":{"android":"1","android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}},{"uid":"c3","last_time":"1645183991","expiry":"1645500371","ext":"","status":{"android":"0","android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}}]}
 ```
 
 
@@ -195,19 +195,15 @@ For the descriptions of the path parameters, see [Common Parameters](#param).
 
 If the returned HTTP status code is `200`, the request succeeds, and the data field in the response body contains the following parameters:
 
-| Parameter      | Type   | Description |
-| :------- |:-------------|:-------------|
-| `result` | String |  Whether the setting of the presence status succeeds. `ok` indicates the presence setting succeeds; otherwise, troubleshoot according to the returned reasons.  | 
-
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible causes.
-
 | Parameter | Type   | Description |
 | :------- |:-------------|:-------------|
-| `result`    | JSON Array | Whether the retrieving operation succeeds. If successful, the presence statuses of the users return; otherwise, you can troubleshoot according to the returned reasons. |
+| `result`    | JSON | Whether the retrieving operation succeeds. If successful, the presence statuses of the users return; otherwise, you can troubleshoot according to the returned reasons. |
 | `uid`       | String     | The unique login account of the user.                |
-| `last_time` | Number     | The Unix timestamp when the user was last online.                                           |
+| `last_time` | Number     | The Unix timestamp when the user was last online, in seconds.                                           |
 | `ext`       | String     | The extension information of the presence status.                |
-| `status`    | JSON Array | The presence statuses on multiple devices of the user.<li>`0`: Offline.<li>`1`: Online.<li>Other strings: The custom presence status defined by the user. |
+| `status`    | JSON | The presence statuses on multiple devices of the user.<ul><li>`0`: Offline.</li><li>`1`: Online.</li><li>Other strings: The custom presence status defined by the user.</li></ul> |
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible causes.
 
 ### Example
 
@@ -295,7 +291,7 @@ curl -X DELETE 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence'
 #### Response example
 
 ```json
-{"result":"ok"}%
+{"result":"ok"}
 ```
 
 ## Retrieve the subscriptions of a user
@@ -312,12 +308,14 @@ GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&
 
 #### Path parameter
 
+For the descriptions of the path parameters, see [Common Parameters](#param).
+
+#### Query parameter
+
 | Parameter | Type | Description | Required |
 |:---------------| :------ | :------- |:------------------|
 | `pageNum` | Int | The page from which to start retrieving subscriptions. Pass in `1` at the first query.  | Yes |
 | `pageSize` | Int | The maximum number of subscriptions to retrieve per page. The range is [1, 500]. | Yes |
-
-For the descriptions of the other path parameters, see [Common Parameters](#param).
 
 #### Request header
 
@@ -338,7 +336,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 | `totalnum` | String | The total number of the users you subscribe to.                         |
 | `sublist`  | Object | The list of subscriptions. Each object in the list contains the `uid` and `expiry` fields.            |
 | `uid`      | String |  The unique login account of the user.           |
-| `expiry`   | String | The Unix timestamp when the subscription expires.       |
+| `expiry`   | String | The Unix timestamp when the subscription expires, in seconds.       |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible causes.
 
@@ -355,7 +353,7 @@ curl -X GET 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/sub
 #### Response example
 
 ```json
-{"result":{"totalnum":"2","sublist":[{"uid":"lxml2","expiry":"1645822322"},{"uid":"lxml1","expiry":"1645822322"}]}}%
+{"result":{"totalnum":"2","sublist":[{"uid":"lxml2","expiry":"1645822322"},{"uid":"lxml1","expiry":"1645822322"}]}}
 ```
 
 
