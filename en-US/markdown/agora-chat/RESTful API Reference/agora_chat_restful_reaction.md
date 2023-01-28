@@ -125,12 +125,20 @@ For each method call, you can retrieve reactions in either one-to-one chats or g
 ### HTTP request
 
 ```shell
-GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}
+GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}?msgIdList={N,M}&msgType={msgType}&groupId={groupId}
 ```
 
 #### Path parameter
 
 For the path parameters and the detailed descriptions, see [Common parameters](#param).
+
+#### Query parameter
+
+| Parameter        | Type   | Description                                                       | Required |
+| :---------- | :----- | :------------------------------------------------------------ | :------- |
+| `msgIdList` | Array  |  The ID of the message from which you attempt to retrieve reactions.  | Yes      |
+| `msgType`   | String | The chat type:<ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Group chats.</li></ul>  | Yes     |
+| `groupId`   | String | The ID of the chat group. This parameter is only required if you set `msgType` to `groupchat`.  |  No    |
 
 #### Request header
 
@@ -138,14 +146,6 @@ For the path parameters and the detailed descriptions, see [Common parameters](#
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type` | String | `application/x-www-form-urlencoded` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
-
-#### Query parameter
-
-| Parameter | Type | Description | Required |
-| --- | --- | --- | --- |
-| `msgIdList` | Array | The message IDs whose reaction you want to retrieve. | Yes |
-| `msgType` | String | The message type:<ul><li>`chat`: One-to-one chat.</li><li>`groupchat`: Group chat.</li></ul> | Yes |
-| `groupId` | String | The chat group ID. If you set `msgType` as `groupchat`, you must specify a group ID. |
 
 ### HTTP response
 
@@ -157,10 +157,10 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 | --- | --- | --- |
 | `requestStatusCode` | String | The status code of this request. `ok` means that the request succeeds. |
 | `msgId` | String | The message ID. |
-| `reactionId` | String | The reaction ID returned in the data of the response body of [Create a reaction](#create). |
-| `reaction` | String | The ID of the emoji that is added as the reaction. |
+| `reactionId` | String | The reaction ID returned in the response body of [Create a reaction](#create). |
+| `reaction` | String | The emoji ID that is the same as the `message` parameter specified in the request body when [adding a reaction](#create).    |
 | `count` | Number | The number of users that have added this reaction to the message. |
-| `state` | Boolean | Whether the user sending this request has added a reaction to this message.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `state` | Bool | Whether the user sending this request has added a reaction to this message:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 | `userList` | Array | The list of user IDs that have added this reaction. It contains a maximum of three users that first added this reaction. |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
@@ -251,7 +251,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `requestStatusCode` | String | The status code of this request. `ok` means that the request succeeds. |
-| `timestamp` | Long | The Unix timestamp of this response, in miliseconds. |
+| `timestamp` | Long | The Unix timestamp of this response, in milliseconds. |
 
 For other fields and the detailed descriptions, see [Common parameters](#param).
 
@@ -281,12 +281,21 @@ This method retrieves the detailed information of the reaction by specifying the
 ### HTTP request
 
 ```shell
-GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail
+GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}/detail?msgId={msgId}&message={message}&limit={limit}&cursor={cursor}
 ```
 
 #### Path parameter
 
 For the parameters and the detailed description, see [Common parameters](#param).
+
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+| --- | --- | --- | --- |
+| `msgId` | String | The message ID. | Yes |
+| `message` | String | The ID of the emoji that is added as the reaction. | Yes |
+| `limit` | Number | The number of reactions retrieved on each page when you retrieve the reactions with pagination. The value range is [1,100]. The default value is 100. | No |
+| `cursor` | String | The starting page from which to retrieve data if you retrieve the reactions with pagination.| No |
 
 #### Request header
 
@@ -294,15 +303,6 @@ For the parameters and the detailed description, see [Common parameters](#param)
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type` | String | `application/x-www-form-urlencoded` | Yes |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
-
-#### Request body
-
-| Parameter | Type | Description | Required |
-| --- | --- | --- | --- |
-| `msgId` | String | The message ID. | Yes |
-| `message` | String | The ID of the emoji that is added as the reaction. | Yes |
-| `limit` | Number | The number of reactions retrieved on each page when you retrieve the reactions with pagination. The value range is [1,100]. The default value is 100. | No |
-| `cursor` | String | The starting page from which to retrieve data if you retrieve the reactions with pagination.|
 
 ### HTTP response
 
@@ -314,11 +314,11 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 | --- | --- | --- |
 | `requestStatusCode` | String | The status code of this request. `ok` means that the request succeeds. |
 | `reactionId` | String | The reaction ID. |
-| `reaction` | String | The ID of the emoji that is added as the reaction. |
+| `reaction` | String | The emoji ID that is the same as the `message` parameter specified in the request body when [adding a reaction](#create). |
 | `count` | Number | The number of users that have added the reaction. |
-| `state` | String | The state of the this request. |
-| `userList` | Array | The list of the users that have added this reaction. It only contains the three user IDs that last used reaction. |
-| `cursor` | String | The starting page from which to retrieve data if you retrieve the reactions with pagination. |
+| `state` | Bool | Whether the user sending this request has added a reaction to this message:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `userList` | Array | The list of the users that have added this reaction. Note that this list only contains the last three user IDs to do so. |
+| `cursor` | String | The cursor that indicates that starting position of the next query. |
 
 For other fields and the detailed descriptions, see [Common parameters](#param).
 

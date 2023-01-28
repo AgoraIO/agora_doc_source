@@ -60,8 +60,14 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}
 | Parameter | Type | Description | Required |
 | :------- | :----- | :------------------------------------------------ | :------- |
 | `group_id` | String | The group ID. | Yes |
-| `pagenum` | Number | The number of page on which the member list is retrieved. | No |
-| `pagesize` | Number | The number of members displayed on each page. The default value is 10 and the maximum value is 100.  | No |
+
+
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+| :------- | :----- | :------------------------------------------------ | :------- |
+| `pagenum` | Number | The current page number. The query starts from the first page by default. | No |
+| `pagesize` | Number | The number of members to retrieve per page. The default value is 10. The value range is [1,100].  | No |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -83,9 +89,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `owner` | String | The username of the group owner, for example, `{"owner":"user1"}`. |
 | `member` | String | The username of group members, for example, `{"member":"user2"}`. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -166,9 +172,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `action` | String | The request method. |
 | `user` | String | The username added to the chat group. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -243,9 +249,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `groupid` | String | The group ID. |
 | `action` | String | The request method. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -323,9 +329,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `action` | String | The request method. |
 | `user` | String | The usernames removed from the chat group. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -372,8 +378,8 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memeber
 
 | Parameter | Type | Description | Required |
 | :------- | :----- | :----------------------------------------------------------- | :------- |
-| group_id | String | The group ID. | Yes |
-| members | String | The usernames of group members separated by the comma (,). For example, `user1, user2`. | Yes |
+| `group_id` | String | The group ID. | Yes |
+| `members` | String | The usernames of group members, separated by the comma (,). For example, `user1, user2`. Agora recommends that you remove a maximum of 60 members at each request, and ensure that length of the request URL does not exceed 4 KB. | Yes |
 
 For the descriptions of other path parameters, see [Common Parameters](#param).
 
@@ -398,9 +404,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `action` | String | The request method. |
 | `user` | String | The usernames removed from the chat group. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -474,9 +480,9 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds， and the `data` field in the response body contain the information of the chat group admins. For other fields and descriptions, see [Public parameter](#param).
+If the returned HTTP status code is 200, the request succeeds， and the `data` field in the response body contain the information of the chat group admins. For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -539,9 +545,16 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the data field in the response body contains the usernames of the newly added chat group admins. For other fields and descriptions, see [Public parameter](#param).
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters.
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+| Parameter | Type | Description |
+| :------ | :------ | :------------------------------------------------ |
+| `data` | String | The user IDs promoted to group admins. |
+| `count` | Number   | The number of users to be promoted as group admins. |
+
+For other fields and descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -605,9 +618,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `result` | Boolean | Whether the group admin is successfully demoted to a regular group member:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 | `oldadmin` | String | The ID of the group admin demoted to a regular group member. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -678,9 +691,9 @@ If the returned HTTP status code is 200, the request succeeds and the `data` fie
 | :------- | :------ | :---------------------------------------------- |
 | `newowner` | Boolean | Whether the user is successfully set as the chat group owner. true: Yes; false: No. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 

@@ -76,7 +76,7 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 | `owner` | String | The chat group owner. | Yes |
-| `members` | Array | Regular chat group members. This chat group member array does not contain the group owner.  If you want to set this field, you can enter one to 100 elements in this array. | No |
+| `members` | Array | Regular chat group members. This chat group member array does not contain the group owner. If you want to set this field, you can enter 1 to 100 elements in this array. | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
 
 
@@ -90,7 +90,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | :------ | :----- | :-------- |
 | `groupid` | String | The group ID. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](#code) table for possible causes.
 
@@ -128,6 +128,138 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
     "applicationName": "XXXX"
 }
 ```
+
+
+## Banning a chat group
+
+Bans the specified chat group. Groups are typically banned when too many users or messages violate community guidelines.
+
+Once a chat group is banned, the chat group members in the group can no longer send or receive messages, and the owner and admins cannot perform supervisory operations.
+
+### HTTP request
+
+```http
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/disable
+```
+
+#### Path parameter
+
+For the descriptions of other path parameters, see [Common Parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| `Content-Type` | String | The content type. Set it as `application/json`. | Yes |
+| `Accept` | String | The content type. Set it as `application/json`. | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds, and the `data` field in the response body contains the following parameters:
+
+| Parameter | Type | Description |
+|:------|:--------|:--|
+| `disabled` | Bool | Whether the chat group is banned:<li>`true`: Yes.</li><li>`false`: No.</li> |
+
+For other fields and descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/XXXX/disable' 
+```
+
+#### Response example
+
+```json
+{
+    "action": "post",
+    "application": "XXXX",
+    "applicationName": "XXXX",
+    "data": {
+        "disabled": true
+    },
+    "duration": 740,
+    "entities": [],
+    "organization": "XXXX",
+    "properties": {},
+    "timestamp": 1672974260359,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/XXXX/disable"
+}
+```
+
+
+## Unbanning a chat group
+
+Lifts a ban on the specified chat group.
+
+After unbanning a chat group, all chat group members regain permission to send and receive messages in the group, and the owner and admins regain the privileges necessary to perform supervisory operations.
+
+### HTTP request
+
+```http
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/enable
+```
+
+#### Path parameter
+
+For the descriptions of other path parameters, see [Common Parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| `Content-Type` | String | The content type. Set it as `application/json`. | Yes |
+| `Accept` | String | The content type. Set it as `application/json`. | Yes |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
+
+### HTTP response
+
+If the returned HTTP status code is `200`, the request succeeds, and the `data` field in the response body contains the following parameters:
+
+| Parameter | Type | Description |
+|:------|:--------|:--|
+| `disabled` | Bool | Whether the chat group is banned:<li>`true`: Yes.</li><li>`false`: No.</li> |
+
+For other fields and descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/XXXX/enable' 
+```
+
+#### Response example
+
+```json
+{
+    "action": "post",
+    "application": "XXXX",
+    "applicationName": "XXXX",
+    "data": {
+        "disabled": false
+    },
+    "duration": 22,
+    "entities": [],
+    "organization": "XXXX",
+    "properties": {},
+    "timestamp": 1672974668171,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/XXXX/enable"
+}
+```
+
+
 
 ## Retrieving group details
 
@@ -171,6 +303,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `owner` | String | The username of the group owner, for example, `{"owner":"user1"}`. |
 | `created` | Long | The Unix timestamp for creating the chat group. |
 | `affiliations_count` | Number | The total number of the chat group members. |
+| `disabled` | Bool | Whether the chat group is banned:<li>`true`: Yes.</li><li>`false`: No.</li> |
 | `affiliations` | Array | The list of existing group members, including the group owner and regular group members, for example, `[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`. |
 | `public` | Boolean | Whether the chat group is a public group.<ul><li>`true`: Yes.</li><li>`fale`: No.</li></ul> |
 | `custom` | String | The extension information of the chat group. |
@@ -207,6 +340,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
         "created": 1542356598609,
         "custom": "",
         "affiliations_count": 3,
+        "disable":false,
         "affiliations": [
           {
             "member": "user3"
@@ -282,7 +416,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 
 For other fields and descriptions, see [Common parameters](#pubparam).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -356,7 +490,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 
 For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -392,10 +526,7 @@ Retrieves all the chat groups under the app.
 
 ### HTTP request
 
-```shell
-GET https://{host}/{org_name}/{app_name}/chatgroups
-
-// Gets all groups under the app with pagination
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 ```
 
@@ -403,19 +534,21 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
+#### Query parameter
+
+| Parameter | Type   | Description   | Required |
+| :------- | :----- | :------------------------ | :------- |
+| `limit`  | Number |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
+| `cursor` | String |  The start position for the next query.  | No  |
+
+<div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat groups on the first page is returned by default.<div>
+
 #### Request header
 
 | Parameter | Type | Description | Required |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept` | String | The parameter type. Set it as `application/json`. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
-
-#### Request body
-
-| Parameter | Type | Description | Required |
-| :----- | :----- | :----------------------------------------------------------- | :------- |
-| `limit` | String | The number of groups obtained at one go. | No |
-| `cursor` | String | The current page number. This parameter is required if you want to get group details with pagination. This parameter specifies where you want to start querying from. | No |
 
 ### HTTP response
 
@@ -434,9 +567,9 @@ If the returned HTTP status code is 200, the request succeeds， and the `data` 
 | `count` | Number | The number of groups that are returned. |
 | `cursor` | String | The current page number. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -493,13 +626,22 @@ Retrieves all the chat groups that a user joins.
 
 ### HTTP request
 
-```shell
-GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups
+```http
+GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
 ```
 
 #### Path parameter
 
 For the descriptions of path parameters of this method, see [Common parameters](#param).
+
+#### Query parameter
+
+| Parameter | Type   | Description   | Required |
+| :------- | :----- | :------------------------ | :------- |
+| `pagesize`  | String |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
+| `pagenum` | String |  The start position for the next query.  | No  |
+
+<div class="alert info">If the <code>pagesize</code> and <code>pagenum</code> parameters are not specified, the basic information of 10 chat groups on the first page is returned by default.<div>
 
 #### Request header
 
@@ -519,41 +661,47 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `groupid` | String | The group ID. |
 | `groupname` | String | The group name. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
 #### Request example
 
 ```shell
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups?pagesize=1&pagenum=100'
 ```
 
 #### Response example
 
 ```json
 {
-    "action": "get",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups",
-    "entities": [],
-    "data": [
-      {
-        "groupid": "66016455491585",
-        "groupname": "testgroup1"
-      },
-      {
-        "groupid": "66016467025921",
-        "groupname": "testgroup2"
-      },
+    "action":"get",
+    "application":"8bXXXX02",
+    "applicationName":"testapp",
+    "count":0,
+    "data":[
+
     ],
-    "timestamp": 1542359565885,
-    "duration": 1,
-    "organization": "XXXX",
-    "applicationName": "XXXX",
-    "count": 2
+    "duration":0,
+    "entities":[
+
+    ],
+    "organization":"XXXX",
+    "params":{
+        "pagesize":[
+            "1"
+        ],
+        "pagenum":[
+            "100"
+        ]
+    },
+    "properties":{
+
+    },
+    "timestamp":1645177932072,
+    "uri":"http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups"
 }
 ```
 

@@ -897,10 +897,34 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ## Upload a file
 
-This method enables you to upload images, audio, video, or other types of files. Ensure that you read the following instructions before calling this method:
+This method enables you to upload images, audios, videos, or other types of files. For images and videos that have thumbnails, note the following:
 
-- The maximum file size for uploading is 10 MB.
-- When uploading the file, you can enable restrict access to the file. Once the restrict access is set, users need to provide an access key when downloading the file. The format of the key is `{{url}}?share-secret={{secret}}`.
+- Images: After uploading an image, the Agora server automatically generates the thumbnail of the image.
+- Videos: The Agora server does not generate thumbnails for videos automatically. After uploading a video, you must recall this method to upload the thumbnail for the video yourself.
+
+<table>
+    <thead>
+        <tr>
+            <th>File size</th><th>Thumbnail size</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">≤10</th><td>The size of the thumbnail remains the same as that of the original file.</td>
+        </tr>
+        <tr>
+            <th rowspan="2" scope="rowgroup">>10</th><td>A thumbnail is generated based on the specified <code>thumbnail-height</code> and <code>thumbnail-width</code> parameters.</td>
+        </tr>
+        <tr>
+            <td>If you leave <code>thumbnail-height</code> and <code>thumbnail-width</code> empty, the height and width of the thumbnail is 170 × 170 pixels by default.</td>
+        </tr>
+    </tbody>
+</table>
+
+Take note of the following considerations before calling this method:
+
+- You cannot upload a file larger than 10 MB.
+- You can restrict access to the uploaded file by requiring users to provide an access key before they can download the file. The format of the key is `{{url}}?share-secret={{secret}}`.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -954,7 +978,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourToken} with the app token generated on your server, and the path of file with the local full path where the file to be uploaded is located
-curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer {YourToken}' -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' -H 'restrict-access: true' -F file=@/Users/test/9.2/easemob/image/IMG_2953.JPG
+curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer {YourToken}' -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' -H 'restrict-access: true' -F file=@/Users/test/9.2/chat/image/IMG_2953.JPG
 ```
 
 #### Response example
@@ -995,7 +1019,12 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters](#param).
+
+| Parameter      | Type   | Required | Description        |
+| :---------- | :----- | :------- | :------------------------------ |
+| `file_uuid` | String | Yes      | The UUID of the file to be downloaded. |
+
+For the other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -1003,7 +1032,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
 | `Accept` | String | The content type. Set it to`application/octet-stream`, which means to download files in binary data stream format. | Yes |
 | `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${token}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
-| `share-secret` | String | The file access key for downloading the file. After the file is uploaded successfully using the [Upload the file](#upload) method, you can obtain the access key from the response body of `upload`. | This field is mandatory if you set the file access restrictions (`restrict-access`) when uploading the file. |
+| `share-secret` | String | The file access key for downloading the file. After the file is uploaded successfully using the [Upload the file](#upload) method, you can obtain the access key from the response body of `upload`. | This field is mandatory if you set `restrict-access` to `true` when uploading the file. |
 
 ### HTTP response
 
@@ -1019,7 +1048,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourToken} with the app token generated on your server, and the path of file with the local full path where the file to be downloaded is located
-curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {YourToken}' -H 'share-secret: f0Vr-uyyEeiHpHmsu53XXXXXXXXZYgyLkdfsZ4xo2Z0cSBnB' 'http://XXXX/XXXX/XXXX/chatfiles/7f456bf0-XXXX-XXXX-b630-777db304f26c'-o /Users/test/easemob/image/image.JPG
+curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {YourToken}' -H 'share-secret: f0Vr-uyyEeiHpHmsu53XXXXXXXXZYgyLkdfsZ4xo2Z0cSBnB' 'http://XXXX/XXXX/XXXX/chatfiles/7f456bf0-XXXX-XXXX-b630-777db304f26c'-o /Users/test/chat/image/image.JPG
 ```
 
 #### Response example
@@ -1032,7 +1061,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {You
 
 ## Download a thumbnail
 
-When uploading an image or video fle, the Chat server automatically creates a thumbnail for the file on the server. The difference between this method and the [downloading a file](#download) is that this method has an extra `thumbnail: true` field in the request header. 
+When uploading an image or video file, the Chat server can create a thumbnail for the file. This method has an extra `thumbnail` field in the request header compared with [downloading a file](#download).
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -1044,7 +1073,13 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters](#param).
+
+| Parameter  | Type   | Required | Description   |
+| :---------- | :----- | :------- | :------------------------------ |
+| `file_uuid` | String | Yes   | The UUID that the server generates for the thumbnail. |
+
+
+For the other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -1052,7 +1087,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
 | `Accept` | String | `application/octet-stream`, which means to download files in binary data stream format. | Yes |
 | `Authorization` | String | Bearer ${YourAppToken} | Yes |
-| `thumbnail` | Bool | Whether to download the thumnail of the image or video file.<ul><li>`true`: Yes.</li><li>`false`: No.</ul> | No. |
+| `thumbnail` | Bool | Whether to download the thumbnail of the image or video file.<ul><li>`true`: Yes.</li><li>`false`: (Default) No. Download the original file instead.</ul> | No. |
 
 ### HTTP response
 
@@ -1083,23 +1118,23 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {You
 
 This method retrieves historical messages sent and received by the user. 
 
-- For each request, you can retrieve all the hostorical messages sent and received within one hour from the specified time.
+- For each request, you can retrieve all the historical messages sent and received within one hour from the specified time.
 - The response of this method is not returned in real time.
-- The default storage time of historical messages differs by plan version. For details, see [package details](./agora_chat_plan?platform=RESTful) for details.
+- The default storage time of historical messages differs by plan version. For details, see [package details](./agora_chat_plan?platform=RESTful).
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
 ### HTTP request
 
 ```http
-GET https://{HOST}/{org_name}/{app_name}/chatmessages/${time}
+GET https://{host}/{org_name}/{app_name}/chatmessages/${time}
 ```
 
 #### Path parameter
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `time` | String | The start time of the historical message. UTC time, using the ISO8601 standard, in the format `yyyyMMddHH`. <br>For example, if `time` is` 2018112717`, it means to query historical messages from 17:00 on November 27, 2018 to 18:00 on November 27, 2018. | Yes |
+| `time` | String | The start time of the historical messages to query. UTC time, using the ISO8601 standard, in the format of `yyyyMMddHH`. <br>For example, if `time` is` 2018112717`, it means to query historical messages from 17:00 on November 27, 2018 to 18:00 on November 27, 2018. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -1107,7 +1142,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Description | Required |
 | :-------------- | :--------------------- | :------- |
-| `Content-Type` | `application/json` | Yes |
+| `Accept`       | String  | The content type. Set it to `application/json`.  | Yes |
 | `Authorization` | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 
 ### HTTP response
@@ -1164,7 +1199,7 @@ The data format for historical messages are JSON, which contains the following f
 | `timestamp` | Long | The UTC Unix timestamp when the message is sent, in miliseconds. |
 | `from` | String | The username that sends the message. |
 | `to` | String | The message recipient.<ul><li>For a one-to-one chat, this parameter indicates the peer user that receives the message.</li><li>For a group chat, this parameter indicates the chat group ID.</ul>|
-| `chat_type` | String | The chat type.<ul><li>`chat`: One-to-one chat.</li><li>`groupchat`: Group chat.</li><li>`chatroom`: Chat room.</li></ul> |
+| `chat_type` | String | The chat type:<ul><li>`chat`: One-to-one chat.</li><li>`groupchat`: Group chat.</li><li>`chatroom`: Chat room.</li></ul> |
 | `payload` | JSON | The content of the message, including message extensions and customzied message attributes. |
   
 ```json
@@ -1427,6 +1462,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter            | Type | Required | Description                                                         |
 | :-------------- | :------- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String   | Yes     | `application/json`                             |
+| `Accept`       | String  | The content type. Set it to `application/json`.  | Yes |
 | `Authorization` | String   | Yes     | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
 #### Request body
@@ -1619,7 +1655,7 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
-| `msg_timestamp` | Long | The timestamp for importing the messages. | No |
+| `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 
 ### HTTP Response
@@ -1720,7 +1756,7 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 | `type` | String | The message type: <ul><li>`txt`: Text message</li><li>`img`: Image message</li><li>`audio`: Audio message</li><li>`video`: Video message</li><li>`file`: File message</li><li>`loc`: Location message</li><li>`cmd`: Command message</li><li>`custom`: Custom message</li></ul> | Yes |
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
-| `msg_timestamp` | Long | The timestamp for importing the messages. | No |
+| `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
 | `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 
 ### HTTP Response

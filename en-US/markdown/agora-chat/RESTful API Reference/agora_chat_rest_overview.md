@@ -101,8 +101,8 @@ This group of methods enables you to create, retrieve, modify, and delete chat g
 
 | Name | Method | Request | Description |
 | :------------------------------ | :----- | :--------------------------------------------- | :------------------------------------- |
-| Retrieving all chat groups in the app (Pagination) | GET | `/{org_name}/{app_name}/chatgroups` | Retrieves the information of all the groups in the app. |
-| Retrieving all the chat groups the user joins | GET | `/{app_name}/users/{username}/joined_chatgroups` | Retrieves all the groups the user joins by specifying the user name. |
+| Retrieving all chat groups in the app by page | GET | `/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}   ` | Retrieves the information of all the groups in the app by page. |
+| Retrieving all the chat groups the user joins | GET | `/{org_name}/{app_name}/users/{username}/joined_chatgroups` | Retrieves all the groups the user joins by specifying the user name. |
 | Retrieving chat group details | GET | `/{org_name}/{app_name}/chatgroups/{group_ids}` | Retrieves the information of the group details by specifying the group ID. |
 | Creating a chat group | POST | `/{org_name}/{app_name}/chatgroups` | Creates a chat group. |
 | Modifying chat group information | PUT | `/{org_name}/{app_name}/chatgroups/{group_id}` | Modifies the group information. |
@@ -130,7 +130,7 @@ This group of methods enables you to create, retrieve, modify, and delete chat r
 
 | Name | Method | Request | Description |
 | :---------------------- | :----- | :------------------------------------------------------- | :--------------------------------------- |
-| Retrieving all chat rooms | GET | `/{org_name}/{app_name}/chatrooms` | Retrieves the information of all the chat rooms in the app. |
+| Retrieving all chat rooms by page | GET | `/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}` | Retrieves the information of all the chat rooms in the app by page. |
 | Retrieving chat rooms a user joins | GET | `/{org_name}/{app_name}/users/{username}/joined_chatrooms` | Retrieves the chat rooms that a user joins by specifying the username. |
 | Retrieving chat room details | GET | `/{org_name}/{app_name}/chatrooms/{chatroom_id}` | Retrieves the details of the chat room by specifying the chat room ID. |
 | Creating a chat room | POST | `/{org_name}/{app_name}/chatrooms` | Creates a new chat room. |

@@ -115,17 +115,26 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Retrieving basic information of all chat rooms <a name="getall"></a>
 
-Retrieves the basic information of all chat rooms under the app.
+Retrieves the basic information of all chat rooms under the app by page.
 
 ### HTTP request
 
 ```http
-GET https://{host}/{org_name}/{app_name}/chatrooms
+GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 ```
 
 #### Path parameter
 
 For the parameters and detailed descriptions, see [Common parameters ](#param).
+
+#### Query parameter
+
+| Parameter | Type   | Description   | Required |
+| :------- | :----- | :------------------------ | :------- |
+| `limit`  | Number |  The number of chat rooms to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
+| `cursor` | String |  The start position for the next query.  | No  |
+
+<div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat rooms on the first page is returned by default.<div>
 
 #### Request header
 
@@ -145,7 +154,7 @@ If the returned HTTP status code is `200`, the request succeeds. The response bo
 | `id` | String | The chat room ID. This is the unique identifier assigned to the chat room by the Agora Chat. |
 | `name` | String | The chat room name. |
 | `owner` | String | The username of the chat room creator. |
-| `affiliations_count` | Int | The number of members (including the chat room creator) in the chat room. |
+| `affiliations_count` | Number | The number of members (including the chat room creator) in the chat room. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
@@ -157,7 +166,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```json
 # Replace <YourAppToken> with the app token you generated on the server
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatrooms'
+curl --location --request GET 'http://XXXX/XXXX/XXXX/chatrooms?limit=10' \
+--header 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example

@@ -243,7 +243,7 @@ curl -X DELETE http://XXXX.com/XXXX/testapp/thread/177916702949377 -H 'Authoriza
 
 ## Retrieving all the threads under the app
 
-Retrieves all the threads under the app.
+Retrieves all the threads under the app by page.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -255,13 +255,16 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 
 #### Path parameter
 
+For the descriptions of the path parameters, see [Common Parameters](#request).
+
+#### Query parameter
+
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
 | `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
 | `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
 | `sort` | String | The order in which to list the query results:<li>`asc`: In chronological order of thread creation.<li>(Default) `desc`: In reverse chronological order of thread creation. | No |
 
-For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 
@@ -275,7 +278,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the entity 
 
 | Parameter  | Type   | Description |
 | :------- |:-------------|:-------------|
-| `id` | String | The ID of the thread. | 
+| `id` | String | The ID of the thread. |
+| `properties.cursor` | String | The cursor that indicates the starting position of the next query. |
 
 For other fields and descriptions, see [Common parameters](#response).
 
@@ -325,14 +329,15 @@ GET https://{host}/{org_name}/{app_name}/threads/user/{username}?limit={limit}&c
 
 #### Path parameter
 
+For the descriptions of the path parameters, see [Common Parameters](#request).
+
+#### Query parameter
+
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
-| `username` | String | The unique login account of the user. | Yes |
 | `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
 | `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
 | `sort` | String | The order in which to list the query results:<li>`asc`: In chronological order of thread creation.<li>(Default) `desc`: In reverse chronological order of thread creation. | No |
-
-For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 
@@ -352,6 +357,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the entity 
 | `msgId` | String | The ID of the message based on which the thread is created. |
 | `groupId` | String | The ID of the chat group to which the thread belongs. |
 | `created` | String | The Unix timestamp when the thread is created. |
+| `properties.cursor` | String | The cursor that indicates the starting position of the next query. |
 
 For other fields and descriptions, see [Common parameters](#response).
 
@@ -409,11 +415,18 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 |:---------|:-------|:-----|:--------------------------|
 | `group_id`   | String | The ID of the chat group.  | Yes |
 | `username` | String | The unique login account of the user. | Yes |
+
+For the descriptions of the other path parameters, see [Common Parameters](#request).
+
+
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+|:---------|:-------|:-----|:--------------------------|
 | `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
 | `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
 | `sort` | String | The order in which to list the query results:<li>`asc`: In chronological order of thread creation.<li>(Default) `desc`: In reverse chronological order of thread creation. | No |
 
-For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 

@@ -67,7 +67,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 | `friend_username` | String | The username to be added as a contact. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
@@ -137,7 +137,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 | `friend_username` | String | The username to be removed from the contact list. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
@@ -192,7 +192,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## Retrieving the contact list
 
-This method retrieves the local user's contact list.
+This method retrieves the current user's contact list.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -206,9 +206,9 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 
 | Parameter | Type | Description | Required |
 | :------------- | :----- | :----------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -228,7 +228,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | `data` | Array | The contact list data. |
 | `count` | Number | The number of contacts. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -299,7 +299,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | :--- | :---- | :----------------------------- |
 | `data` | Array | An array of usernames to add to the block list. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -345,7 +345,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | Parameter | Type | Description | Required |
 | --- | --- | --- | --- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -367,7 +367,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | :--- | :---- | :------------------------- |
 | `data` | Array | An array of usernames in the block list. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -397,7 +397,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 
 ## Removing a user from the block list
 
-This method removes the specified user from the block list. After removing a user from the block list, that user resumes their previous relationship with the local user, as a contact or a regular chat user, and can send and receive messages with the local user.
+Removes the specified user from the block list. After removing a user from the block list, that user resumes their previous relationship with the current user, as one of the following:
+- A contact who can send and receive messages with the current user.
+- a stranger who has not been added as contact.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -411,7 +413,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 
 | Parameter | Type | Description | Required |
 | :--------------- | :----- | :--------------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 | `blocked_username` | String | The username to be removed from the block list. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).

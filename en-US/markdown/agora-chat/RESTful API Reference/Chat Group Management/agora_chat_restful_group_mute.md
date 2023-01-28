@@ -87,7 +87,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `expire` | Long | The Unix timestamp when the mute state expires, in milliseconds. |
 | `user` | String | The username of the muted chat group member.|
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -157,7 +157,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `result` | Boolean | Whether the user is successfully removed from the mute list.<ul><li>`true`: Yes.</li><li>`fale`: No.</li></ul> |
 | `user` | String | The usernames removed from the mute list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -224,7 +224,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `expire` | Long | The Unix timestamp when the mute state expires, in milliseconds. |
 | `user` | String | The usernames of the muted members. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -299,7 +299,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `result`| Boolean | Whether all the chat group members are muted.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 | `expire` | Long | The Unix timestamp when the mute state expires, in milliseconds. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -364,7 +364,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | :----- | :----- | :---------------------------- |
 | `result`| Boolean | Whether all the chat group members are unmuted.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](./agora_chat_status_code?platform=RESTful) for possible causes.
 
