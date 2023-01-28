@@ -906,21 +906,21 @@ This method enables you to upload images, audios, videos, or other types of file
     </thead>
     <tbody>
         <tr>
-            <th scope="row"><=10</th><td>The size of the thumbnail remains the same as that of the original file.</td>
+            <th scope="row">≤10</th><td>The size of the thumbnail remains the same as that of the original file.</td>
         </tr>
         <tr>
             <th rowspan="2" scope="rowgroup">>10</th><td>A thumbnail is generated based on the specified <code>thumbnail-height</code> and <code>thumbnail-width</code> parameters.</td>
         </tr>
         <tr>
-            <td>If you leave <code>thumbnail-height</code> and <code>thumbnail-width</code> empty, the height and width of the thumbnail is 170 pixels by default.</td>
+            <td>If you leave <code>thumbnail-height</code> and <code>thumbnail-width</code> empty, the height and width of the thumbnail is 170 × 170 pixels by default.</td>
         </tr>
     </tbody>
 </table>
 
-Ensure that you read the following instructions before calling this method:
+Take note of the following considerations before calling this method:
 
-- Upload a file equal to or smaller than 10 MB; otherwise, the uploading attempt fails.
-- When uploading a file, you can enable restrict access to the file. Once the restrict access is set, users need to provide an access key when downloading the file. The format of the key is `{{url}}?share-secret={{secret}}`.
+- You cannot upload a file larger than 10 MB.
+- You can restrict access to the uploaded file by requiring users to provide an access key before they can download the file. The format of the key is `{{url}}?share-secret={{secret}}`.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -1057,7 +1057,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {You
 
 ## Download a thumbnail
 
-When uploading an image or video file, the Chat server automatically creates a thumbnail for the file on the server. This method has an extra `thumbnail` field in the request header compared with [downloading a file](#download).
+When uploading an image or video file, the Chat server can create a thumbnail for the file. This method has an extra `thumbnail` field in the request header compared with [downloading a file](#download).
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -1195,7 +1195,7 @@ The data format for historical messages are JSON, which contains the following f
 | `timestamp` | Long | The UTC Unix timestamp when the message is sent, in miliseconds. |
 | `from` | String | The username that sends the message. |
 | `to` | String | The message recipient.<ul><li>For a one-to-one chat, this parameter indicates the peer user that receives the message.</li><li>For a group chat, this parameter indicates the chat group ID.</ul>|
-| `chat_type` | String | The chat type.<ul><li>`chat`: One-to-one chat.</li><li>`groupchat`: Group chat.</li><li>`chatroom`: Chat room.</li></ul> |
+| `chat_type` | String | The chat type:<ul><li>`chat`: One-to-one chat.</li><li>`groupchat`: Group chat.</li><li>`chatroom`: Chat room.</li></ul> |
 | `payload` | JSON | The content of the message, including message extensions and customzied message attributes. |
   
 ```json

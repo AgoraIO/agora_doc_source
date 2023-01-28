@@ -1,6 +1,6 @@
 # Presence
 
-The presence feature enables users to publicly display their online presence status and quickly determine the status of others. Users can also customize their presence status, such as busy, away, in a call, which adds fun and diversity to real-time chatting.
+The presence feature enables users to publicly display their online presence status and quickly determine the status of others. Users can customize their presence status; using more specific terms such as "busy", "away", or "in a call" can add fun and diversity to real-time chatting.
 
 This page shows how to use the Agora Chat RESTful API to implement presence in your project. Before calling the following methods, ensure that you meet the following:
 - You understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
@@ -138,7 +138,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 | `last_time` | Number     | The Unix timestamp when the user was last online, in seconds.                                           |
 | `expiry`    | Number     | The Unix timestamp when the subscription expires, in seconds.                                           |
 | `ext`       | String     | The extension information of the presence status.                |
-| `status`    | JSON | The presence statuses on multiple devices of the user.<ul><li>`0`: Offline.</li><li>`1`: Online.</li><li>Other strings: The custom presence status defined by the user.</li></ul> |
+| `status`    | JSON | The presence statuses on multiple devices of the user.<ul><li>`0`: Offline.</li><li>`1`: Online.</li><li>Other strings: User-defined custom presence status.</li></ul> |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible causes.
 
@@ -201,7 +201,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 | `uid`       | String     | The unique login account of the user.                |
 | `last_time` | Number     | The Unix timestamp when the user was last online, in seconds.                                           |
 | `ext`       | String     | The extension information of the presence status.                |
-| `status`    | JSON | The presence statuses on multiple devices of the user.<ul><li>`0`: Offline.</li><li>`1`: Online.</li><li>Other strings: The custom presence status defined by the user.</li></ul> |
+| `status`    | JSON | The presence statuses on multiple devices of the user.<ul><li>`0`: Offline.</li><li>`1`: Online.</li><li>Other strings: User-defined custom presence status.</li></ul> |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible causes.
 

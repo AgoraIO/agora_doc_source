@@ -76,7 +76,7 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 | `owner` | String | The chat group owner. | Yes |
-| `members` | Array | Regular chat group members. This chat group member array does not contain the group owner. If you want to set this field, you can enter one to 100 elements in this array. | No |
+| `members` | Array | Regular chat group members. This chat group member array does not contain the group owner. If you want to set this field, you can enter 1 to 100 elements in this array. | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
 
 
@@ -90,7 +90,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | :------ | :----- | :-------- |
 | `groupid` | String | The group ID. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status code](#code) table for possible causes.
 
@@ -132,9 +132,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Banning a chat group
 
-Bans the specified chat group when messages in the group violate community guidelines.
+Bans the specified chat group. Groups are typically banned when too many users or messages violate community guidelines.
 
-Once a chat group is banned, neither the chat group members in the group can send or receive messages, nor the owner and admins can perform supervisory operations.
+Once a chat group is banned, the chat group members in the group can no longer send or receive messages, and the owner and admins cannot perform supervisory operations.
 
 ### HTTP request
 
@@ -164,9 +164,9 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 |:------|:--------|:--|
 | `disabled` | Bool | Whether the chat group is banned:<li>`true`: Yes.</li><li>`false`: No.</li> |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status code](#code) table for possible causes.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -200,7 +200,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 Lifts a ban on the specified chat group.
 
-After unbanning a chat group, all chat group members resume their right to send and receive messages in the group, and the owner and admins resume their privileges to perform supervisory operations.
+After unbanning a chat group, all chat group members regain permission to send and receive messages in the group, and the owner and admins regain the privileges necessary to perform supervisory operations.
 
 ### HTTP request
 
@@ -222,17 +222,15 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 
 ### HTTP response
 
-
-
 If the returned HTTP status code is `200`, the request succeeds, and the `data` field in the response body contains the following parameters:
 
 | Parameter | Type | Description |
 |:------|:--------|:--|
 | `disabled` | Bool | Whether the chat group is banned:<li>`true`: Yes.</li><li>`false`: No.</li> |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not `200`, the request fails. You can refer to [Status code](#code) table for possible causes.
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -418,7 +416,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 
 For other fields and descriptions, see [Common parameters](#pubparam).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -492,7 +490,7 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 
 For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -541,9 +539,9 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type   | Description   | Required |
 | :------- | :----- | :------------------------ | :------- |
 | `limit`  | Number |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
-| `cursor` | String |  The start position for next query.  | No  |
+| `cursor` | String |  The start position for the next query.  | No  |
 
-<div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat groups on the first page are returned by default.<div>
+<div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat groups on the first page is returned by default.<div>
 
 #### Request header
 
@@ -569,9 +567,9 @@ If the returned HTTP status code is 200, the request succeeds， and the `data` 
 | `count` | Number | The number of groups that are returned. |
 | `cursor` | String | The current page number. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -641,9 +639,9 @@ For the descriptions of path parameters of this method, see [Common parameters](
 | Parameter | Type   | Description   | Required |
 | :------- | :----- | :------------------------ | :------- |
 | `pagesize`  | String |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
-| `pagenum` | String |  The start position for next query.  | No  |
+| `pagenum` | String |  The start position for the next query.  | No  |
 
-<div class="alert info">If the <code>pagesize</code> and <code>pagenum</code> parameters are not specified, the basic information of 10 chat groups on the first page are returned by default.<div>
+<div class="alert info">If the <code>pagesize</code> and <code>pagenum</code> parameters are not specified, the basic information of 10 chat groups on the first page is returned by default.<div>
 
 #### Request header
 
@@ -663,9 +661,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `groupid` | String | The group ID. |
 | `groupname` | String | The group name. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 

@@ -241,7 +241,7 @@ When a user sends an audio message in a one-to-one chat, chat group, or chat roo
 | `secret`          | String    | The secret returned after uploading the audio file.  |
 | `file_length`  |  Long  | The size of the audio file in bytes. |
 | `length`    | Int | The duration of the audio file in seconds. |
-| `url`   | String  | The URL of the audio, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the audio file. You can fetch `file_uuid` from the response body after the file is uploaded. |
+| `url`   | String  | The URL of the audio file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the audio file. You can fetch `file_uuid` from the response body after the file is uploaded. |
 | `type`       | String   | The type of the message. `audio` indicates an audio message. |
 
 #### Send a video message
@@ -282,7 +282,7 @@ When a user sends a video message in a one-to-one chat, chat group, or chat room
 | `thumb`   | String  | The URL of the thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the video thumbnail. You can fetch `file_uuid` from the response body after the video thumbnail is uploaded. |
 | `secret` | String | The secret returned after uploading the video file. |
 | `file_length` | Long | The size of the video file in bytes. |
-| `url`   | String  | The URL of the video, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the video file. You can fetch `file_uuid` from the response body after the video file is uploaded. |
+| `url`   | String  | The URL of the video file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, where `file_uuid` is the ID of the video file. You can fetch `file_uuid` from the response body after the video file is uploaded. |
 | `type`       | String   | The type of the message. `video` indicates a video message. |
 
 #### Send a location message

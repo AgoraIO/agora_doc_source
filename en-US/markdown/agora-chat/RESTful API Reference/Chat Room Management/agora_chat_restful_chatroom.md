@@ -132,9 +132,9 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type   | Description   | Required |
 | :------- | :----- | :------------------------ | :------- |
 | `limit`  | Number |  The number of chat rooms to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
-| `cursor` | String |  The start position for next query.  | No  |
+| `cursor` | String |  The start position for the next query.  | No  |
 
-<div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat rooms on the first page are returned by default.<div>
+<div class="alert info">If the <code>limit</code> and <code>cursor</code> parameters are not specified, the basic information of 10 chat rooms on the first page is returned by default.<div>
 
 #### Request header
 

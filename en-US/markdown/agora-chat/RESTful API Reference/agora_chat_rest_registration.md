@@ -937,7 +937,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter     | Type | Description                                                         |
 | :------- | :---------------- | :------------------------------------------- |
-| `data` | JSON | The online state of a user, in the format of `"username": "online state"`. For example, if user1 is online, returns `"user1": "online"`. Otherwise, returns `"user1": "offline"`. |
+| `data` | JSON | The online state of a user, in the format of `"username": "online state"`. For example, if user1 is online, returns `"user1": "online"`; otherwise, returns `"user1": "offline"`. |
 
 For the parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -1005,7 +1005,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter     |  Type | Description                                                         |
 | :------- | :-----| :----------------------------------------------------------- |
-| `data` | JSON | The online state of a user, in the format of `"username": "online state"`. For example, if user1 is online, returns `"user1": "online"`. Otherwise, returns `"user1": "offline"`.|
+| `data` | JSON | The online state of a user, in the format of `"username": "online state"`. For example, if user1 is online, returns `"user1": "online"`; otherwise, returns `"user1": "offline"`.|
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -1073,7 +1073,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter     | Type | Description                                                         |
 | :------- | :-----| :----------------------------------------------------------- |
-| `data` | JSON | The number of offline messages a user has, whether or not they have been delivered, in the format of `"username": "number of offline messages"`. For example, if user1 does not have offline messages, returns `"user1": "0"`. |
+| `data` | JSON | The number of offline messages a user has, regardless of the delivery state, in the format of `"username": "number of offline messages"`. For example, if user1 does not have offline messages, returns `"user1": "0"`. |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -1138,7 +1138,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter   | Type | Description                                                       |
 | :----- | :-----| :----------------------------------------------------------- |
-| `data` | JSON | The delivery state of an offline message, in the format of `"message id": "delivery state"`. The delivery state contains: <li> `delivered`: The offline message has been delivered to the user. <li> `undelivered`: The offline message is temporarily stored at the server and has not been pulled from the server and delivered to the user. |
+| `data` | JSON | The delivery state of an offline message, in the format of `"message id": "delivery state"`. The delivery state: <li> `delivered`: The offline message has been delivered to the user. <li> `undelivered`: The offline message is temporarily stored at the server and has not been pulled from the server and delivered to the user. |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 

@@ -136,8 +136,8 @@ For the path parameters and the detailed descriptions, see [Common parameters](#
 
 | Parameter        | Type   | Description                                                       | Required |
 | :---------- | :----- | :------------------------------------------------------------ | :------- |
-| `msgIdList` | Array  |  The ID of the message from which you attempt to retrieve reactions.            | Yes      |
-| `msgType`   | String | The chat type.<ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Group chats.</li></ul>           | Yes     |
+| `msgIdList` | Array  |  The ID of the message from which you attempt to retrieve reactions.  | Yes      |
+| `msgType`   | String | The chat type:<ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Group chats.</li></ul>  | Yes     |
 | `groupId`   | String | The ID of the chat group. This parameter is only required if you set `msgType` to `groupchat`.  |  No    |
 
 #### Request header
@@ -160,7 +160,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 | `reactionId` | String | The reaction ID returned in the response body of [Create a reaction](#create). |
 | `reaction` | String | The emoji ID that is the same as the `message` parameter specified in the request body when [adding a reaction](#create).    |
 | `count` | Number | The number of users that have added this reaction to the message. |
-| `state` | Boolean | Whether the user sending this request has added a reaction to this message.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `state` | Bool | Whether the user sending this request has added a reaction to this message:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 | `userList` | Array | The list of user IDs that have added this reaction. It contains a maximum of three users that first added this reaction. |
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
@@ -316,8 +316,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 | `reactionId` | String | The reaction ID. |
 | `reaction` | String | The emoji ID that is the same as the `message` parameter specified in the request body when [adding a reaction](#create). |
 | `count` | Number | The number of users that have added the reaction. |
-| `state` | Bool | Whether the user sending this request has added a reaction to this message.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
-| `userList` | Array | The list of the users that have added this reaction. It only contains the three user IDs that last used reaction. |
+| `state` | Bool | Whether the user sending this request has added a reaction to this message:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `userList` | Array | The list of the users that have added this reaction. Note that this list only contains the last three user IDs to do so. |
 | `cursor` | String | The cursor that indicates that starting position of the next query. |
 
 For other fields and the detailed descriptions, see [Common parameters](#param).

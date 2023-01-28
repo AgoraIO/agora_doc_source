@@ -208,7 +208,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 | :------------- | :----- | :----------------- | :------- |
 | `owner_username` | String | The username of the current user. | Yes |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -228,7 +228,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | `data` | Array | The contact list data. |
 | `count` | Number | The number of contacts. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -299,7 +299,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | :--- | :---- | :----------------------------- |
 | `data` | Array | An array of usernames to add to the block list. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -367,7 +367,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | :--- | :---- | :------------------------- |
 | `data` | Array | An array of usernames in the block list. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -397,8 +397,8 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 
 ## Removing a user from the block list
 
-Removes the specified user from the block list. After removing a user from the block list, that user resumes their previous relationship with the current user, as:
-- a contact who can send and receive messages with the current user, or
+Removes the specified user from the block list. After removing a user from the block list, that user resumes their previous relationship with the current user, as one of the following:
+- A contact who can send and receive messages with the current user.
 - a stranger who has not been added as contact.
 
 For each App Key, the call frequency limit of this method is 50 per second.
