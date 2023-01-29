@@ -1,6 +1,7 @@
-登录即时通讯 IM 后，用户可以开始添加联系人并互相聊天。他们还可以管理这些联系人，例如添加、获取和删除联系人。他们还可以将指定的用户添加到黑名单列表以停止接收来自该用户的消息。
+即时通讯 IM SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理：
 
-本页介绍如何使用即时通讯 IM SDK 实现用户关系管理。
+- 好友列表管理：查询好友列表、申请添加好友、同意好友请求、拒绝好友请求和删除好友等操作。
+- 黑名单管理：查询黑名单列表、添加用户至黑名单以及将用户移出黑名单等操作。
 
 ## 技术原理
 
@@ -20,22 +21,22 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解[使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
-本节展示如何在项目中管理好友的添加移除和黑名单的添加移除。
+本节介绍如何利用即时通讯 IM SDK 提供的方法管理联系人。
 
 ### 管理联系人列表
 
-使用本部分了解如何发送好友请求、处理好友请求、监听联系人事件等。
+本节介绍如何发送好友请求、处理好友请求、监听联系人事件等。
 
-#### 申请添加指定用户为联系人
+#### 发送好友请求
 
-调用 `addContact` 添加指定用户为联系人：
+调用 `addContact` 方法添加指定用户为联系人：
 
 ```java
-//The parameters are the username of the contact to be added and the reason for adding
+//需设置好友的用户 ID 和添加好友的原因。
 ChatClient.getInstance().contactManager().addContact(toAddUsername, reason);
 ```
 
@@ -68,18 +69,18 @@ ChatClient.getInstance().contactManager().addContact(toAddUsername, reason);
         });
 ```
 
-#### 接受或拒绝好友申请
+#### 接受或拒绝好友请求
 
-收到 `onContactInvited`，调用 `acceptInvitation` 或 `declineInvitation` 接受或拒绝邀请。
+收到 `onContactInvited` 回调后，调用 `acceptInvitation` 或 `declineInvitation` 接受或拒绝好友请求。
 
 ```java
-// 同意好友申请。
+// 同意好友请求。
 ChatClient.getInstance().contactManager().acceptInvitation(username);
-// 拒绝好友申请。
+// 拒绝好友请求。
 ChatClient.getInstance().contactManager().declineInvitation(username);
 ```
 
-当你同意或者拒绝后，对方会通过好友事件回调，收到 `onContactAgreed` 或者 `onContactRefused`。
+当你同意或者拒绝后，对方会收到 `onContactAgreed` 或 `onContactRefused` 回调。
 
 #### 删除联系人
 
@@ -93,24 +94,24 @@ ChatClient.getInstance().contactManager().deleteContact(username);
 
 #### 获取联系人列表
 
-要获取联系人列表，你可以调用 `getAllContactsFromServer` 从服务器获取联系人列表。之后，你还可以调用 `getContactsFromLocal` 从本地数据库中获取联系人列表。
+要获取联系人列表，你可以调用 `getAllContactsFromServer` 方法从服务器获取联系人列表。之后，你还可以调用 `getContactsFromLocal` 方法从本地数据库中获取联系人列表。
+
+<div class="alert info"> 需要从服务器获取好友列表之后，才能从本地数据库获取到好友列表。<div>
 
 ```java
-// 从服务器获取好友列表。
+// 从服务器获取联系人列表。
 List<String> usernames = ChatClient.getInstance().contactManager().getAllContactsFromServer();
-// 从本地数据库获取好友列表。
+// 从本地数据库获取联系人列表。
 List<String> usernames = ChatClient.getInstance().contactManager().getContactsFromLocal
 ```
 
 ### 管理黑名单
 
-你可以将指定的用户添加到黑名单列表中。完成此操作后，你仍然可以向该用户发送聊天消息，但无法接收来自他们的消息。
-
-用户可以将任何其他聊天用户添加到他们的黑名单列表中，无论该用户是否是联系人。添加到黑名单列表的联系人保留在联系人列表中。
-
 #### 将用户添加到黑名单
 
-调用 `addUserToBlackList` 以将指定用户添加到黑名单。
+你可以调用 `addUserToBlackList` 将指定用户添加到黑名单。你仍然可以向黑名单用户发送聊天消息，但无法接收来自他们的消息。
+
+用户可以将任何其他聊天用户添加到他们的黑名单列表中，无论该用户是否是联系人。添加到黑名单列表的联系人保留在联系人列表中。
 
 ```java
 ChatClient.getInstance().contactManager().addUserToBlackList(username,true);
@@ -126,7 +127,7 @@ ChatClient.getInstance().contactManager().removeUserFromBlackList(username);
 
 #### 从服务器获取黑名单列表
 
-调用 `getBlackListFromServer` 从服务器获取黑名单用户的列表。
+你可以调用 `getBlackListFromServer` 从服务器获取黑名单用户的列表。
 
 ```java
 ChatClient.getInstance().contactManager().getBlackListFromServer();
