@@ -1,10 +1,7 @@
-用户登录后，可进行添加联系人、获取好友列表等操作。
-本文介绍如何通过环信即时通讯 IM SDK 管理好友关系，包括添加、同意、拒绝、删除、查询好友，以及管理黑名单，包括添加、移出、查询黑名单。
+即时通讯 IM SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理：
 
-SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理：
-
-- 好友列表管理：查询好友列表、申请添加好友、同意好友申请、拒绝好友申请和删除好友等操作。
-- 黑名单管理：查询黑名单列表、将添加用户至黑名单以及从黑名单中移出用户等操作。
+- 好友列表管理：查询好友列表、申请添加好友、同意好友请求、拒绝好友请求和删除好友等操作。
+- 黑名单管理：查询黑名单列表、添加用户至黑名单以及将用户移出黑名单等操作。
 
 ## 技术原理
 
@@ -26,15 +23,15 @@ SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理�
 
 ## 实现方法
 
-本节展示如何在项目中管理好友的添加移除和黑名单的添加移除。
+本节介绍如何利用即时通讯 IM SDK 提供的方法管理联系人。
 
 ### 管理联系人列表
 
-使用本部分了解如何发送好友申请、接收好友请求、处理好友请求和好友请求处理结果回调等。
+本节介绍如何发送好友请求、处理好友请求、监听联系人事件等。
 
-#### 申请添加好友
+#### 发送好友请求
 
-调用 `addContact` 添加指定用户为联系人：
+调用 `addContact` 方法添加指定用户为联系人：
 
 ```objective-c
 [[AgoraChatClient sharedClient].contactManager addContact:@"aUsername" message:@"Message" completion:^(NSString *aUsername, AgoraChatError *aError) {
@@ -48,26 +45,26 @@ SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理�
 
 #### 监听与好友请求相关的回调
 
-添加 `ContactListener` 添加以下回调事件。当用户收到好友请求时，可以接受或拒绝邀请。服务器不会重复下发与好友请求相关的事件，建议退出应用时保存相关的请求数据。
+添加 `ContactListener` 实现以下回调事件。当用户收到好友请求时，可以接受或拒绝邀请。服务器不会重复下发与好友请求相关的事件，建议退出应用时保存相关的请求数据。
 
 ```objectivec
 // 注册好友回调。
 [[AgoraChatClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
-    // 移除好友回调。
+// 移除好友回调。
 [[AgoraChatClient sharedClient].contactManager removeDelegate:self];
 
-// 好友申请已收到。
+// 好友请求已收到。
 - (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
                                 message:(NSString *)aMessage
 { }
 ```
 
-#### 接受或拒绝联系邀请
+#### 接受或拒绝好友请求
 
-用户收到 `friendRequestDidReceiveFromUser` 后，调用 `approveFriendRequestFromUser` 或 `declineFriendRequestFromUser` 接受或拒绝邀请。
+用户收到 `friendRequestDidReceiveFromUser` 回调后，调用 `approveFriendRequestFromUser` 或 `declineFriendRequestFromUser` 方法接受或拒绝好友请求。
 
 ```objective-c
-// 同意好友申请。
+// 同意好友请求。
 [[AgoraChatClient sharedClient].contactManager approveFriendRequestFromUser:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Approving the contact invitation succeeds");
@@ -76,7 +73,7 @@ SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理�
     }
 }];
 
-// 拒绝好友申请。
+// 拒绝好友请求。
 [[AgoraChatClient sharedClient].contactManager declineFriendRequestFromUser:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Declining the contact invitation succeeds.");
@@ -91,11 +88,11 @@ SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理�
 示例代码如下：
 
 ```objective-c
-// 对方同意了好友申请。
+// 对方同意了好友请求。
 - (void)friendRequestDidApproveByUser:(NSString *)aUsername
 { }
 
-// 对方拒绝了好友申请。
+// 对方拒绝了好友请求。
 - (void)friendRequestDidDeclineByUser:(NSString *)aUsername
 { }
 ```
@@ -119,9 +116,7 @@ SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理�
 }];
 ```
 
-#### 删除联系人回调
-
-删除联系人部分主要是删除某个好友，删除好友的回调等。用户 B 删除与用户 A 的好友关系后，用户 A，B 都会收到 `friendshipDidRemoveByUser` 回调，示例代码如下：
+一方删除联系人，双方都会收到 `friendshipDidRemoveByUser` 回调，示例代码如下：
 
 ```objective-c
 // 联系人已被删除。
@@ -131,11 +126,9 @@ SDK 提供用户关系管理功能，包括好友列表管理和黑名单管理�
 
 ### 获取好友列表
 
-要获取联系人列表，可以调用 `getContactsFromServerWithCompletion` 从服务器获取。之后，还可以调用`getContacts`从本地数据库中检索联系人。
+要获取联系人列表，可以调用 `getContactsFromServerWithCompletion` 方法从服务器获取。之后，还可以调用 `getContacts` 方法从本地数据库中检索联系人。
 
-**注意**
-
-需要从服务器获取好友列表之后，才能从本地数据库获取到好友列表。
+<div class="alert info"> 需要从服务器获取好友列表之后，才能从本地数据库获取到好友列表。<div>
 
 示例代码如下：
 
@@ -154,18 +147,13 @@ NSArray *userlist = [[AgoraChatClient sharedClient].contactManager getContacts];
 
 ### 管理黑名单
 
-将指定的用户加入黑名单后，对方将无法给你发送消息。黑名单部分主要功能是获取黑名单列表，加入黑名单，从黑名单移出等。获取黑名单可从服务器获取黑名单列表，也可从本地数据库获取已保存的黑名单列表。
-
-黑名单是与好友无任何关系的独立体系。可以将任何用户加入黑名单，不论该用户是否与你是好友关系。同时，如果你将好友加入黑名单，该用户仍然还是你的好友，也在黑名单中。
-
-黑名单部分主要是获取黑名单列表，加入黑名单，从黑名单移出等。
-
 #### 将用户加入黑名单
 
-调用 `addUserToBlackList` 以将指定用户添加到黑名单列表。
+调用 `addUserToBlackList` 方法将指定用户添加到黑名单列表。你仍然可以向黑名单用户发送聊天消息，但无法接收来自他们的消息。
+
+用户可以将任何其他聊天用户添加到他们的黑名单列表中，无论该用户是否是联系人。添加到黑名单列表的联系人保留在联系人列表中。
 
 ```objective-c
-// 从服务器获取黑名单列表。
 [[AgoraChatClient sharedClient].contactManager addUserToBlackList:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Adding the contact to the block list succeeds");
@@ -177,15 +165,9 @@ NSArray *userlist = [[AgoraChatClient sharedClient].contactManager getContacts];
 
 #### 将用户移出黑名单
 
-调用 `removeUserFromBlackList` 将用户移出黑名单列表中删除指定用户。
+调用 `removeUserFromBlackList` 方法将用户移出黑名单列表。
 
 ```objectivec
-/*
- *  Removes the user from the block list.
- *
- *  @param aUsername        The usernames to be removed from the block list
- *  @param aCompletionBlock The completion block for this method call
- */
 [[AgoraChatClient sharedClient].contactManager removeUserFromBlackList:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {
     if (!aError) {
         NSLog(@"Removing the user from the block list succeeds");

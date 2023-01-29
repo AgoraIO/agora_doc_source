@@ -1,13 +1,13 @@
 使用即时通讯 IM 时，用户可以根据需要更新用户的信息，如用户昵称、头像、邮箱、电话、性别、签名、生日等。
 
-本页介绍如何使用即时通讯 IM SDK 实现用户属性管理。
-
 - 用户属性存储在即时通讯 IM 服务器上。如果你有安全方面的顾虑，建议你自行管理用户属性。
 - 为保证信息安全，应用用户只能修改自己的用户属性。只有应用管理员可以修改其他用户的用户属性。
 
+本文介绍如何使用即时通讯 IM SDK 实现用户属性管理。
+
 ## 技术原理
 
-SDK 提供一个 `UserInfoManager` 类，支持获取、设置及修改用户属性信息，其中包含如下方法：
+SDK 提供 `UserInfoManager` 类，支持获取、设置和修改用户属性信息，其中包含如下方法：
 
 - `updateOwnInfo` 设置和修改当前用户自己的属性信息；
 - `updateOwnInfoByAttribute` 设置和修改用户信息中的某个属性；
@@ -25,12 +25,13 @@ SDK 提供一个 `UserInfoManager` 类，支持获取、设置及修改用户属
 
 本节介绍如何使用即时通讯 IM SDK 提供的方法管理用户属性。
 
+<div class="alert note">单个用户的所有属性最大不超过 2 KB，单个 app 所有用户属性数据最大不超过 10 GB。</div>
+
 ### 设置当前用户的属性
 
-参考如下示例代码，在你的项目中当前用户设置自己的所有属性或者仅设置某一项属性。
+- 参考如下示例代码，设置当前用户的所有用户属性：
 
 ```java
-// 设置所有用户属性。
 UserInfo userInfo = new UserInfo();
 userInfo.setUserId(ChatClient.getInstance().getCurrentUser());
 userInfo.setNickname("agora");
@@ -51,7 +52,7 @@ ChatClient.getInstance().userInfoManager().updateOwnInfo(userInfo, new ValueCall
   });
 ```
 
-以修改用户头像为例，演示如何修改指定用户属性。
+- 参考如下示例代码，设置当前用户的指定用户属性，例如修改用户头像：
 
 ```java
 String url = "https://download-sdk.oss-cn-beijing.aliyuncs.com/downloads/IMDemo/avatar/Image1.png";
@@ -66,21 +67,32 @@ ChatClient.getInstance().userInfoManager().updateOwnInfoByAttribute(UserInfoType
    });
 ```
 
+用户属性包括如下字段：
+
+| 字段        | 类型   | 描述                                                         |
+| :---------- | :----- | :----------------------------------------------------------- |
+| `nickname`  | String | 用户昵称，不能超过 64 个字符。                                 |
+| `avatarUrl` | String | 用户头像 URL 地址，不能超过 256 个字符。                       |
+| `phone`     | String | 用户联系方式，不能超过 32 个字符。                             |
+| `mail`      | String | 用户邮箱，不能超过 64 个字符。                                 |
+| `gender`    | Number | 用户性别：<ul><li> `1`：男；</li><li>`2`：女；</li><li>（默认）`0`：未知；</li><li>设置为其他值无效。</li></ul>|
+| `sign`      | String | 用户签名，不能超过 256 个字符。                                |
+| `birth`     | String | 用户生日，不能超过 64 个字符。                                 |
+| `userId`    | String | 用户 ID。                                                    |
+| `ext`       | String | 扩展字段。                                                   |
+
 ### 获取用户属性
 
-调用 `fetchUserInfoByUserId` 来获取指定用户的用户属性。每次调用最多可以获取 100 个用户的用户属性。
-
-请参考以下代码示例：
+调用 `fetchUserInfoByUserId` 方法获取指定用户的全部用户属性。每次最多可获取 100 个用户的用户属性。
 
 ```java
 String[] userId = new String[1];
-// `username` 指用户 ID
+// `username` 为用户 ID
 userId[0] = username;
 ChatClient.getInstance().userInfoManager().fetchUserInfoByUserId(userId, new ValueCallBack<Map<String, UserInfo>>() {});
 ```
 
 ### 获取指定用户的指定用户属性
-
 
 用户可以获取指定用户的指定用户属性信息。
 
@@ -94,28 +106,27 @@ ChatClient.getInstance().userInfoManager().fetchUserInfoByAttribute(userId, user
            new ValueCallBack<Map<String, UserInfo>>() {});
 ```
 
-## 下一步
+## 后续步骤
 
 本节介绍你可以使用用户属性和联系人管理在应用程序中实现的额外功能。
 
 ### 管理用户头像
 
-即时通讯 IM SDK 仅支持存储头像文件的 URL 地址，不支持存储头像文件本身。要管理用户头像，需要使用第三方文件存储服务。
+即时通讯 IM SDK 仅支持存储头像文件的 URL 地址，不支持存储头像文件本身。要管理用户头像，执行以下步骤：
 
-要在应用中实现用户头像管理，请执行以下步骤：
-
-1. 将头像文件上传到第三方文件存储服务。文件上传成功后，将获得头像文件的 URL 地址。
-2. 将 `avatarUrl` 用户属性中的参数设置为头像文件的 URL 地址。
-3. 要显示头像，调用 `fetchUserInfoByUserId` 获取头像文件的 URL，然后在本地 UI 上渲染图像。
+1. 启用第三方文件存储服务。详见文件储存服务商的文档。
+2. 将头像文件上传到第三方文件存储服务。文件上传成功后，获得头像文件的 URL 地址。
+3. 将该 URL 地址传入用户属性的头像字段（`avatarUrl`）。
+4. 要显示头像，调用 `fetchUserInfoByUserId` 方法获取头像文件的 URL，然后在本地 UI 上渲染图像。
 
 ### 使用用户属性创建和发送名片
 
-名片消息是自定义消息，包括指定用户的用户 ID、昵称、头像、电子邮件地址和电话号码。要创建和发送名片，请执行以下步骤：
+名片消息是自定义消息，包括指定用户的用户 ID、昵称、头像、电子邮件地址和电话号码。要创建和发送名片，需执行以下步骤：
 
-1. 创建自定义消息并将自定义消息的 设置 `event` 为 `USER_CARD_EVENT`。
-2. 在 `params` 中添加 `userId`、`getNickname` 和 `getAvatarUrl` 作为文件。发送自定义消息。
+1. 创建自定义消息并将该消息的 `event` 设置为 `USER_CARD_EVENT`。
+2. 在 `params` 中添加 `userId`、`getNickname` 和 `getAvatarUrl` 字段。然后，发送自定义消息。
 
-以下是创建和发送名片消息的示例代码：
+创建和发送名片消息的示例代码如下：
 
 ```java
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.CUSTOM);
