@@ -399,7 +399,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 
 Removes the specified user from the block list. After removing a user from the block list, that user resumes their previous relationship with the current user, as one of the following:
 - A contact who can send and receive messages with the current user.
-- a stranger who has not been added as contact.
+- A user who has not been added as contact.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
