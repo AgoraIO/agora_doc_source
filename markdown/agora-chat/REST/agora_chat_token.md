@@ -2,14 +2,75 @@
 
 鉴权指对用户身份进行校验的过程。当你使用 Agora 服务时，例如加入音视频通话、登录即时通讯系统，Agora 会使用 Token 对用户身份及权限进行验证。
 
-为了保证即时通讯连接的安全性，Agora 提供 Token 用于用户鉴权。Token 由你的 App Server 使用 AgoraTools 生成，用于以下两种场景：
+为了保证即时通讯连接的安全性，Agora 提供以下两种场景的 Token 用于用户鉴权。
 
 | 应用场景         | Token 权限 | Token 构成                                                   | Token 最长有效期           |
 | ---------------- | ---------- | ------------------------------------------------------------ | -------------------------- |
 | RESTful API 调用 | App 权限   | <ul><li>你的即时通讯 IM 项目的 App ID。</li><li>你的即时通讯 IM 项目的 App 证书。</li><li>你设置的即时通讯 Token 的有效期。</li></ul> | 24 小时（以 UTC 时区为准） |
 | SDK API 调用     | 用户权限   | <ul><li>你的即时通讯 IM 项目的 App ID。</li><li>你的即时通讯 IM 项目的 App 证书。</li><li> 你的即时通讯 IM 项目的 Token 有效期。</li><li>待鉴权用户的 UUID。</li></ul><div class="alert info">UUID 是通过[用户注册 RESTful API](./agora_chat_restful_registration#注册单个用户) 为每个用户所生成的唯一内部标识。</a>.</div> |  24 小时（以 UTC 时区为准）                          |
 
-本文介绍如何从你的 App Server 中获取 Token 实现用户鉴权。
+## 体验 Token 生成
+
+出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token，而在生产环境中，Token 需由你的 App Server 使用 AgoraTools 生成。
+
+在测试环境中，用户权限 Token 基于用户 ID 生成。若尚未创建用户，需要首先注册即时通讯 IM 用户。
+
+### 注册用户
+
+参考以下步骤注册用户：
+
+1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+
+![](https://web-cdn.agora.io/docs-files/1670827574193)
+
+![](./images/quickstart/config_project.png)
+
+2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+
+![](https://web-cdn.agora.io/docs-files/1670827609516)
+
+![](./images/quickstart/config_chat.png)
+
+3. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
+
+![](https://web-cdn.agora.io/docs-files/1670827634437)
+
+![](./images/quickstart/user_mgmt.png)
+
+4. 在**创建IM用户**对话框中，填写用户信息并点击**保存**，创建用户。
+
+![](https://web-cdn.agora.io/docs-files/1670827653548)
+
+![](./images/quickstart/create_user.png)
+
+
+### 生成 Token
+
+为了保证通信安全，Agora 推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+
+要生成用户 token，请执行以下操作：
+
+1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+
+![](https://web-cdn.agora.io/docs-files/1670827574193)
+
+![](./images/quickstart/config_project.png)
+
+2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+
+![](https://web-cdn.agora.io/docs-files/1670827609516)
+
+![](./images/quickstart/config_chat.png)
+
+3. 在**应用信息**页面的**数据中心**区域，在 **Chat User Temp Token**框中输入用户 ID，点击**生成**生成一个用户权限 Token，可用于调用 SDK 的 API。
+ 
+   点击 **Chat App Temp Token** 对应的 **生成** 生成一个 App 权限 Token，可用于调用 RESTful API。
+
+![](https://web-cdn.agora.io/docs-files/1670827712260)
+
+![](./images/quickstart/generate_token.png)
+   
+为了安全考虑，在生产环境中 Token 由你的 App Server 使用 AgoraTools 生成。本文介绍如何从你的 App Server 中获取 Token 实现用户鉴权。
 
 ## 技术原理
 
@@ -292,7 +353,7 @@
             return (String) results.get(0).get("uuid");
         }
     }
-    ```
+   ```
    
 6. 在 `com.agora.chat.token` 路径下，创建 `AgoraChatTokenStarter` 类，将以下代码复制到该文件中：
 
@@ -315,7 +376,7 @@
   ![](https://web-cdn.agora.io/docs-files/1670990071861)
 
    [agra_chat_token_starter.png]
-   
+
 ### 使用 Token 调用即时通讯 RESTful API
 
 本节介绍如何获取 App 权限 Token 并调用即时通讯 RESTful API 在你的 App 中注册一个新用户。
