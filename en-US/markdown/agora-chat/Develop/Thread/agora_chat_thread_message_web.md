@@ -86,7 +86,7 @@ Once a message is recalled in a thread, all chat group members receive the `onCh
 ```javascript
 let option = {
   mid: 'msgId',           // The ID of the message to be recalled.
-  to: 'userID',           // The username of the message receiver.
+  to: 'chatThreadId',           // The username of the message receiver.
   chatType: 'groupChat'   // Sets `chatType` to `groupChat` as a thread belongs to a chat group.
   isChatThread: true      // Sets `isChatThread` to `true` to mark this message as a thread message.
 };
