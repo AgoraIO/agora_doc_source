@@ -1061,7 +1061,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer {You
 
 ## Download a thumbnail
 
-When uploading an image or video file, the Chat server can create a thumbnail for the file. This method has an extra `thumbnail` field in the request header compared with [downloading a file](#download).
+When uploading an image or video file, the Chat server can create a thumbnail for the file. This method has an extra `thumbnail:true` field in the request header compared with [downloading a file](#download).
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
