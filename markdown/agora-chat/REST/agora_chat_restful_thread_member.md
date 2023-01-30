@@ -139,7 +139,7 @@ POST https://{host}/{org_name}/{app_name}/thread/{thread_id}/users
 
 | 字段   |  类型     | 描述      |
 |:------|:--------|:--------|
-| `data.status` | Boolean | 添加结果，`ok` 表示成功添加。 |
+| `data.status` | String | 添加结果，`ok` 表示成功添加。否则，您可以根据返回的原因进行故障排除。 |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 

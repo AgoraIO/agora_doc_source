@@ -29,8 +29,6 @@
 | `data`            | JSON   | 返回数据详情。                                                    |
 | `created`            | String | 用户、群组或聊天室的创建时间，Unix 时间戳，单位为毫秒。      |
 | `username`           | String | 用户 ID。                                                    |
-| `affiliations_count` | Int    | 现有成员总数。                                               |
-| `affiliations`       | Array  | 现有成员列表，包含了 owner 和 member 元素，即聊天室所有者和聊天室成员（包括聊天室管理员）。例如： “affiliations”:[{“owner”: “13800138001”},{“member”:”v3y0kf9arx”},{“member”:”xc6xrnbzci”}]。 |
 | `owner`              | String | 聊天室所有者的用户 ID。例如：{“owner”: “13800138001”}。      |
 | `member`             | String | 聊天室成员的用户 ID，包括聊天室管理员和普通成员的用户 ID。例如： {“member”:”xc6xrnbzci”}。        |
 | `timestamp`       | Long   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
