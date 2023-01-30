@@ -47,9 +47,6 @@
 ### HTTP 请求
 
 ```shell
-GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users
-
-// 分页获取
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}&pagesize={N}
 ```
 

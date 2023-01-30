@@ -638,10 +638,8 @@ For the descriptions of path parameters of this method, see [Common parameters](
 
 | Parameter | Type   | Description   | Required |
 | :------- | :----- | :------------------------ | :------- |
-| `pagesize`  | String |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
-| `pagenum` | String |  The start position for the next query.  | No  |
-
-<div class="alert info">If the <code>pagesize</code> and <code>pagenum</code> parameters are not specified, the basic information of 10 chat groups on the first page is returned by default.<div>
+| `pagesize`  | String |  The number of chat groups to retrieve per page. The value range is [1,1000] and the default value is `1000`.   | No  |
+| `pagenum` | String | The current page number. The query starts from the first page by default.  | No  |
 
 #### Request header
 
