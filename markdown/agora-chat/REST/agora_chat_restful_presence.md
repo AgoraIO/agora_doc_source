@@ -50,7 +50,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{resource}/{statu
 | 参数      | 类型 | 描述                                                         | 是否必填|
 | :--------- | :--- | :----------------------------------------------------------- | :----- |
 | `resource` | String | 分配给每个设备资源的唯一标识符，格式为 `{Device Type}_{Resource ID}`，其中设备类型可以是 `android`、`ios` 或 `web`，后跟 SDK 分配的资源 ID。 | 是 |
-| `status`   | String | 用户定义的在线状态：<li>`0`： 离线。<li>`1`： 在线。<li>其他字符串：自定义状态。 | 是 |
+| `status`   | String | 用户定义的在线状态：<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他字符串：自定义状态。</li></ul> | 是 |
 
 其他路径参数的说明详见 [公共参数](#pubparam)。
 
@@ -75,7 +75,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{resource}/{statu
 
 | 参数        | 类型   | 描述        |
 | :------- | :--- | :----------------------------------------------------------- |
-| `result` | String | 在线状态设置是否成功。`ok` 表示出席设置成功；否则，您可以根据退回的原因进行故障排除。 |
+| `result` | String | 在线状态设置是否成功。`ok` 表示在线状态设置成功；否则，您可以根据返回的原因进行故障排除。 |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -206,7 +206,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 | 参数       | 类型      | 描述                                                         |
 | :---------- | :-------- | :----------------------------------------------------------- |
-| `result`    | JSON 数组 | 操作是否成功。如果成功，则返回用户的在线状态；否则，您可以根据退回的原因进行故障排除。 |
+| `result`    | JSON 数组 | 操作是否成功。如果成功，则返回用户的在线状态；否则，您可以根据返回的原因进行故障排除。 |
 | `uid`       | String      | 用户的唯一登录帐户。                                         |
 | `last_time` | Long      | 用户最近在线的 Unix 时间戳。                               |
 | `ext`       | String      | 在线状态的扩展信息。                                         |
@@ -280,7 +280,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 | 参数    | 类型 | 描述                                                         |
 | :------- | :--- | :----------------------------------------------------------- |
-| `result` | String | 取消订阅是否成功。`ok` 表示取消订阅成功，失败则返回相应的错误原因。。 |
+| `result` | String | 取消订阅是否成功。`ok` 表示取消订阅成功，失败则返回相应的错误原因。 |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 

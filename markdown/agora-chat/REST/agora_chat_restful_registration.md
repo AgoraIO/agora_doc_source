@@ -328,11 +328,11 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}
 | 字段                                          | 类型   | 描述                                                                                                                                             |
 | :-------------------------------------------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。                                       |
-| `entities.notification_display_style`         | Int    | 消息推送方式：<ul><li> - `0`：仅通知。推送标题为“您有一条新消息”，推送内容为“请点击查看”；</li><li> - `1`：通知以及消息详情。推送标题为“您有一条新消息”，推送内容为发送人昵称和离线消息的内容。</li><li>若用户未设置该参数，则响应中不返回。</li></ul>                                                         |
-| `entities.notification_no_disturbing`         | Bool   | 是否开启免打扰。<li>`true`：免打扰开启。若用户未设该参数，则响应中不返回。<li>`false`：免打扰关闭。                                      |
+| `entities.notification_display_style`         | Int    | 消息推送方式：<ul><li>`0`：仅通知。推送标题为“您有一条新消息”，推送内容为“请点击查看”；</li><li>`1`：通知以及消息详情。推送标题为“您有一条新消息”，推送内容为发送人昵称和离线消息的内容。</li><li>若用户未设置该参数，则响应中不返回。</li></ul>                                                         |
+| `entities.notification_no_disturbing`         | Bool   | 是否开启免打扰。<ul><li>`true`：免打扰开启。若用户未设该参数，则响应中不返回。</li><li>`false`：免打扰关闭。</li></ul>                                      |
 | `entities.notification_no_disturbing_start`   | String | 免打扰的开始时间。例如，“8” 代表每日 8:00 开启免打扰。若用户未设该参数，则响应中不返回。                                                         |
 | `entities.notification_no_disturbing_end`     | String | 免打扰的结束时间。例如，“18” 代表每日 18:00 关闭免打扰。若用户未设该参数，则响应中不返回。                                                       |
-| `entities.notification_ignore_63112447328257` | Bool   | 是否屏蔽了群组消息的离线推送的设置。参数中的数字表示群组 ID。 <li>`true`：已屏蔽。<li>`false`：未屏蔽。若用户未设该参数，则响应中不返回。 |
+| `entities.notification_ignore_63112447328257` | Bool   | 是否屏蔽了群组消息的离线推送的设置。参数中的数字表示群组 ID。 <ul><li>`true`：已屏蔽。</li><li>`false`：未屏蔽。若用户未设该参数，则响应中不返回。</li></ul> |
 | `entities.notifier_name`                      | String | 客户端推送证书名称。若用户未设置推送证书名称，则响应中不返回。                                                                                   |
 | `entities.device_token`                       | String | 推送 token。若用户没有推送 token，则响应中不返回。                                                                                               |
 | `count`                                       | Number | 返回用户数量。                                                                                                                                   |

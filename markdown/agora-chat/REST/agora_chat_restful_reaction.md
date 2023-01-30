@@ -150,7 +150,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}?msgIdList={N,M}&
 | `reactionId`        | String | Reaction ID，即[创建 Reaction](#create) 的响应体数据中返回的 Reaction ID。 |
 | `reaction`          | String | 表情 ID，与客户端一致。该参数与[创建 Reaction](#create) API 的请求参数中的 `message` 参数相同。                                                                                                                    |
 | `count`             | Number | 添加该 Reaction 的用户数。                                                                                                               |
-| `state`             | Bool   | 当前请求用户是否添加过该 Reaction。<li>`true`：是<li>`false`：否。                                                                       |
+| `state`             | Bool   | 当前请求用户是否添加过该 Reaction：<ul><li>`true`：是</li><li>`false`：否</li></ul>                                                                       |
 | `userList`          | Array  | 追加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。                                                            |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。

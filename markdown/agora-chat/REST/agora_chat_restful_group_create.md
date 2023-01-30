@@ -537,7 +537,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                              |
+| 参数     | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json` | 是       |
 | `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
@@ -612,19 +612,11 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## 获取单个用户加入的所有群组（可分页）
+## 分页获取单个用户加入的所有群组
 
-根据用户 ID 称获取该用户加入的全部群组。
+根据用户 ID 获取该用户加入的全部群组。
 
 ### HTTP 请求
-
-直接请求：
-
-```http
-GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups
-```
-
-分页请求：
 
 ```http
 GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
@@ -638,8 +630,8 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 
 | 参数       | 类型   | 描述                                                         | 是否必填 | 
 | :--------- | :----- | :------- | :----------------------------------------------------------- |
-| `pagesize` | String | 每页获取的群组数量。该参数仅适用于分页获取方法。             | 否     | 
-| `pagenum`  | String | 否  | 当前页码。该参数仅适用于分页获取方法。                       | 否     | 
+| `pagesize` | String | 每页获取的群组数量。取值范围为 [1,1000]，默认值为 1000.           | 否     | 
+| `pagenum`  | String | 当前页码。默认从第 1 页开始获取。                       | 否     | 
 
 #### 请求 header
 

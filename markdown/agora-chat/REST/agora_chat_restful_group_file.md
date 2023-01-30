@@ -204,7 +204,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagen
 
 | 参数     | 类型   | 描述      | 是否必填 |
 | :------- | :----- | :-------- | :------- |
-| `pagesize` | String   |每页期望返回的共享文件数。取值范围为[1,1000]。|否|
+| `pagesize` | String   |每页期望返回的共享文件数。取值范围为 [1,1000]，默认为 1000。|否|
 | `pagenum` | Number | 当前页码。默认从第 1 页开始获取。  |否|
 
 #### 请求 header
