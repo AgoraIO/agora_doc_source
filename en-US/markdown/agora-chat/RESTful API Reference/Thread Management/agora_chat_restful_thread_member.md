@@ -146,9 +146,15 @@ For the descriptions of the request headers, see [Authorization](#auth).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds; otherwise, the request fails, and you can refer to [Status codes](#Status-codes) for possible causes.
+If the returned HTTP status code is `200`, the request succeeds, and the `data` field in the response body contains the following parameter:
+
+| Parameter      | Type           | Description |
+| :------- |:-------------|:-------------|
+| `status` | String | Whether the users are successfully added to the thread. `ok` indicates that the addition succeeds; otherwise, you can troubleshoot according to the returned reasons. | 
 
 For other fields and descriptions, see [Common parameters](#response).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#Status-codes) for possible causes.
 
 ### Example
 

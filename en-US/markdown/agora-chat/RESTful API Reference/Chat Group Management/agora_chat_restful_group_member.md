@@ -49,9 +49,6 @@ Retrieves the member list of the specified chat group with pagination.
 ### HTTP request
 
 ```shell
-GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users
-
-// Gets the member list of the group with pagination.
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}&pagesize={N}
 ```
 
@@ -67,7 +64,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}
 | Parameter | Type | Description | Required |
 | :------- | :----- | :------------------------------------------------ | :------- |
 | `pagenum` | Number | The current page number. The query starts from the first page by default. | No |
-| `pagesize` | Number | The number of members to retrieve per page. The default value is 10. The value range is [1,100].  | No |
+| `pagesize` | Number | The number of members to retrieve per page. The value range is [1,1000] and the default value is `1000`.  | No |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -207,7 +204,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Adding multiple users to the chat group
 
-Adds mutiple users to the specified chat group. You can add a maximum of 60 users into a chat group at one time. If the users are already members of the chat group, an error is returned in the response body.
+Adds multiple users to the specified chat group. You can add a maximum of 60 users into a chat group at one time. If the users are already members of the chat group, an error is returned in the response body.
 
 ### HTTP request
 
