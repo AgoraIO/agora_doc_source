@@ -77,7 +77,7 @@ ChatClient.getInstance().chatThreadManager().destroyChatThread(chatThreadId, new
 
 ### 加入子区
 
-子区所在群组的所有成员均可以调用 `joinChatThread` 方法加入群组，
+子区所在群组的所有成员均可以调用 `joinChatThread` 方法加入群组。
 
 1. 使用以下其中一种方法获取子区 ID：
 
@@ -157,7 +157,7 @@ ChatClient.getInstance().chatThreadManager().removeMemberFromChatThread(chatThre
 
 ```java
 // chatThreadId: 子区 ID
-// newChatThreadName: 修改的子区名称，长度不超过 64 个字符
+// newChatThreadName: 修改后的子区名称，长度不超过 64 个字符
 ChatClient.getInstance().chatThreadManager().updateChatThreadName(chatThreadId, newChatThreadName,
         new CallBack() {
     @Override
@@ -195,7 +195,7 @@ ChatClient.getInstance().chatThreadManager().getChatThreadFromServer(chatThreadI
 
 ```java
 // chatThreadId: 子区 ID
-// limit: 每次获取的成员数，取值范围为 [1, 50]
+// limit: 每次获取的成员数，取值范围为 [1,50]
 // cursor: 数据查询的起始位置，首次调用方法时传 `null` 或空字符串
 ChatClient.getInstance().chatThreadManager().getChatThreadMembers(chatThreadId, limit, cursor,
         new ValueCallBack<CursorResult<String>>() {
@@ -214,7 +214,7 @@ ChatClient.getInstance().chatThreadManager().getChatThreadMembers(chatThreadId, 
 1. 用户可以调用 `getJoinedChatThreadsFromServer` 方法从服务器分页获取自己加入和创建的子区列表：
 
 ```java
-// limit: 每次获取的子区数，取值范围为 [1, 50]
+// limit: 每次获取的子区数，取值范围为 [1,50]
 // cursor: 数据查询的起始位置，首次调用方法时传 `null` 或空字符串
 ChatClient.getInstance().chatThreadManager().getJoinedChatThreadsFromServer(limit, cursor,
         new ValueCallBack<CursorResult<ChatThread>>() {
