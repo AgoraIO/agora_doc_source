@@ -29,7 +29,7 @@
 
 ### 获取本地所有会话
 
-调用 `loadAllConversations` 方法获取本地所有会话：
+调用 `getAllConversations` 方法获取本地所有会话：
 
 ```java
 Map<String, Conversation> conversations = ChatClient.getInstance().chatManager().getAllConversations();
