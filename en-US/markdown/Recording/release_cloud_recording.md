@@ -14,7 +14,7 @@ Agora Cloud Recording is compatible with the following SDKs:
 This release adds the following improvements:
 
 - Improves player compatibility for MPD files generated in individual recording `standard` mode, see [Recording configuration](https://docs.agora.io/en/cloud-recording/reference/rest-api/start#recording-configuration).
-- Optimizes the Agora Format Converter Script for individual recording, see [Merge audio and video files](https://docs.agora.io/en/cloud-recording/develop/merge-files).
+- Optimizes the Agora Format Converter Script for individual recording, you can refer to [Merge audio and video files](https://docs.agora.io/en/cloud-recording/develop/merge-files) to get the latest Agora Format Converter Script.
 
 ## 2022.10.20
 
