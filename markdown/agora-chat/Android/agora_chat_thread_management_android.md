@@ -1,10 +1,8 @@
-子区是群组成员的子集，是支持多人沟通的即时通讯系统。
+子区是群组成员的子集，是支持多人沟通的即时通讯系统。本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理子区。
 
 下图展示了如何创建子区、管理子区中的会话以及可以在子区中执行的操作。
 
 ![](https://web-cdn.agora.io/docs-files/1655176216910)
-
-本文介绍如何使用即时通讯 IM SDK 在应用中创建和管理子区。
 
 ## 技术原理
 
@@ -26,7 +24,7 @@
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解 [使用限制](./agora_chat_limitation)。
 
-在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯 IM 服务后默认开启该功能。
+所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认开启子区功能。
 
 ## 实现方法
 
@@ -34,7 +32,7 @@
 
 ### 创建子区
 
-所有群成员均可以调用 `createChatThread` 方法，基于一条群组消息新建子区。
+所有群成员均可以调用 `createChatThread` 方法基于一条群组消息新建子区。
 
 单设备登录时，子区所属群组的所有成员均会收到 `ChatThreadChangeListener#onChatThreadCreated` 回调；多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 回调，回调事件为 `THREAD_CREATE`。
 
@@ -63,7 +61,6 @@ ChatClient.getInstance().chatThreadManager().createChatThread(parentId, messageI
 单设备登录时，子区所属群组的所有成员均会收到 `ChatThreadChangeListener#onChatThreadDestroyed` 回调；多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 回调，回调事件为 `THREAD_DESTROY`。
 
 <div class="alert note">解散子区或解散子区所在的群组后，将删除本地数据库及内存中关于该子区的全部数据，需谨慎操作。</div>
-
 示例代码如下：
 
 ```java
