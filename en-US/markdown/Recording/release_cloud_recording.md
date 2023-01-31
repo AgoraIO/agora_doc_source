@@ -9,6 +9,16 @@ Agora Cloud Recording is compatible with the following SDKs:
 - Agora Native SDK v1.7.0 or later.
 - Agora Web SDK v1.12 or later.
 
+## 2022.11.20
+
+This release adds the following improvements:
+
+- Improves player compatibility for MPD files generated in individual recording `standard` mode, see [Recording configuration](https://docs.agora.io/en/cloud-recording/reference/rest-api/start#recording-configuration).
+- Optimizes the Agora Format Converter Script for individual recording, see [Merge audio and video files](https://docs.agora.io/en/cloud-recording/develop/merge-files).
+
+## 2022.10.20
+
+This release supports the postpone transcoding feature globally. You need to set the scene field to `2` (postpone transcoding) when calling the `acquire`. After setting this scene, the recording service transcodes the recorded file within 24 hours after recording to generate an MP4 file, and upload the MP4 file to the third-party cloud storage you specify. Please note that the `region` of the third-party cloud storage must be consistent with the `region` set when calling `acquire`. For details, see [Individual recording](https://docs.agora.io/en/cloud-recording/develop/individual-mode).
 
 ## 2022.8.12
 This release adds support for Amazon S3 in some regions. See [Cloud storage configuration](https://docs.agora.io/en/cloud-recording/cloud_recording_api_start?platform=RESTful#cloud-storage-configuration).
