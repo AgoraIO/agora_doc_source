@@ -35,7 +35,7 @@
 发送子区消息和发送群组消息的方法基本一致，区别在于 `isChatThread` 字段，如以下示例代码所示：
 
 ```javascript
-// 在 thread 内发送文本消息
+// 在子区内发送文本消息
 function sendTextMessage() {
     let option = {
         chatType: 'groupChat',     // 会话类型，设置为群聊。
