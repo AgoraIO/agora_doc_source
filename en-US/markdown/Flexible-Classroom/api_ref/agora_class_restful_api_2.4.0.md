@@ -69,7 +69,7 @@ Pass in the following parameters in the request body:
 | `roomProperties.processes`                    | Object  | (Optional) The process of inviting students to go "on the stage". |
 | `roomProperties.processes.handsUp`            | Object  | (Optional) The settings of "on the stage".                   |
 | `roomProperties.processes.handsUp.maxAccept`  | Integer | (Optional) The maximum number of students "on the stage".    |
-| `roomProperties.hostingScene`                 | Object  | (Optional) The unique classroom properties of a vocational lecture hall. |
+| `roomProperties.examinationUrl`| String | (Optional) The URL of the exam papers used in proctoring exam scenarios.|
 | `roomProperties.hostingScene.videoURL`        | String  | (Optional) The teacher's CDN stream URL (main video URL).    |
 | `roomProperties.hostingScene.reserveVideoURL` | String  | (Optional) The teacher's CDN stream URL (backup video URL).  |
 | `roomProperties.hostingScene.finishType`      | Integer | (Optional) The way the class ends.<li>`0`: The class automatically ends when the recording finishes playing.</li><li>`1`: The class ends when the teacher clicks the End Class button; this also stops the recording playback.</li> |
@@ -663,6 +663,7 @@ Pass in the following parameters in the request body.
 | Parameter | Type | Description |
 | :----------- | :----- | :--------- |
 | `properties` | Object | Classroom properties. |
+| `roomProperties.examinationUrl`| String | (Optional) The URL of the exam papers used in proctoring exam scenarios.|
 | `cause` | Object | The update reason. |
 
 #### Request example

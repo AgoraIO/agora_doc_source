@@ -112,6 +112,7 @@ export type ConfigParams = {
 | `appId` | (Required) The Agora App ID. See [Get the Agora App ID](../reference/manage-agora-account#get-the-app-id). |
 | `region` | (Optional) The region where the classrooms is located. Agora recommends you set a region close to the region of the object storage service for your courseware or recording files, because cross-region transmission of large static resources can lead to delay. For example, if your S3 service is in North America, you should set this parameter to `NA`. All Smart Classroom clients must set the same area, otherwise they cannot communicate with each other. All clients must use the same region, otherwise, they may fail to communicate with each other. Flexible Classroom supports the following regions:<li>`CN`: Mainland China</li><li>`AP`: Asia Pacific</li><li>`EU`: Europe</li><li>`NA`: North America</li> |
 
+
 ### LaunchOption
 
 The classroom launching configuration. Used when calling [`AgoraEduSDK.launch`](#launch).
@@ -123,6 +124,7 @@ export type LaunchOption = {
     roomUuid: string;
     roleType: EduRoleTypeEnum;
     roomType: EduRoomTypeEnum;
+    roomServiceType?: EduRoomServiceTypeEnum;
     roomName: string;
     listener: ListenerCallback;
     pretest: boolean;
@@ -131,15 +133,14 @@ export type LaunchOption = {
     startTime?: number;
     duration: number;
     courseWareList: CourseWareList;
-    personalCourseWareList?: CourseWareList;
     recordUrl?: string;
-    extApps?: IAgoraExtApp[];
-    region?: AgoraRegion;
-    widgets?: {[key: string]: IAgoraWidget};
+    widgets?: {[key: string]: AgoraWidgetBase};
     userFlexProperties?: {[key: string]: any};
     mediaOptions?: MediaOptions;
     latencyLevel?: 1 | 2;
     platform?: Platform;
+    virtualBackgroundImages?: string[];
+    webrtcExtensionBaseUrl?: string;
 };
 ```
 
@@ -152,25 +153,33 @@ export type LaunchOption = {
 | `roomName` | (Required) The room name for display in the classroom. The string length must be less than 64 bytes. |
 | `roleType` | (Required) The role of the user in the classroom. See [`EduRoleTypeEnum`](#eduroletypeenum). |
 | `roomType` | (Required) The classroom type. See [`EduRoomTypeEnum`](#eduroomtypeenum). |
+| `roomServiceType`  | （Optional) The service type of big classrooms. See [EduRoomServiceTypeEnum](#eduroomservicetypeenum).  |
 | `listener` | (Required) The state of classroom launching.<li>`ready`: The classroom is ready.</li><li>`destroyed`: The classroom has been destroyed.</li> |
 | `pretest` | (Required) Whether to enable the pre-class device test:<li>`true`: Enable the pre-class device test. After this function is enabled, end users can see a page for the device test before entering the classroom. They can check whether their camera, microphone, and speaker can work properly.</li><li>`false`: Disable the pre-class device test.</li> |
 | `language` | (Required) The UI language. See [`LanguageEnum`](#languageenum). |
 | `startTime` | (Required) The start time (ms) of the class, determined by the first user joining the classroom. |
 | `duration` | (Required) The duration (second) of the class, determined by the first user joining the classroom. |
 | `recordUrl` | (Optional) The URL address to be recorded. Developers need to pass in the URL of the web page deployed by themselves for page recording, such as `https://cn.bing.com/recordUrl`. |
+| `widgets`| (Optional) Extensive widgets that  extend the classroom capabilities. See [Embed a custom plugin](https://docs.agora.io/en/flexible-classroom/develop/embed-custom-plugin?platform=webEmbed) for details.|
 | `courseWareList` | (Optional) The configuration of courseware assigned by the educational institution, which cannot be edited by the client. See [`CourseWareList`](#coursewarelist) for details. After passing this object, the SDK downloads the courseware from the Agora cloud storage component to the local when launching the classroom. |
-| `extApps` | (Optional) Register an extension application by using the ExtApp tool. ExtApp is a tool for embedding extension applications in Flexible Classroom. For details, see [Customize Flexible Classroom with ExtApp](/flexible-classroom/develop/customize-ui/). |
 | `userFlexProperties` | (Optional) User properties customized by the developer.  |
 | `mediaOptions` | (Optional) Media stream configurations, including the encryption configuration and the encoding configurations of the screen-sharing stream and the video stream captured by the camera. See `MediaOptions` for details. |
 | `latencyLevel` | (Optional) The latency level of an audience member in interactive live streaming:<li>`1`: Low latency. The latency from the sender to the receiver is 1500 ms to 2000 ms.</li><li>(Default) Ultra-low latency. The latency from the sender to the receiver is 400 ms to 800 ms.</li> |
+| `virtualBackgroundImages` | (Optional) The URL of the virtual background image. The URL's domain must be the same as `webrtcExtensionBaseUrl`. The PNG and JPG formats are supported. |
+| `webrtcExtensionBaseUrl` | (Optional) The URL or the WebRtc extensions. The default value is `https://solutions-apaas.agora.io/static`. If you want to use the advanced features such as virtual backgrounds, AI noise suppression, and beauty options, you need ti implement the WebRtc extensions and relevant resources in the domain of Flexible Classroom SDK. These are the steps: When you run `yarn build:demo` to complete packaging, the corresponding files are generated in `packages/agora-demo-app/build/extensions`. The you implement the directory in the domain of Flexible Classroom SDK. |
 
 ### MediaOptions
 
 ```typescript
 export type MediaOptions = {
-  cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
-  screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
-  encryptionConfig?: MediaEncryptionConfig;
+    cameraEncoderConfiguration?: EduVideoEncoderConfiguration;
+    screenShareEncoderConfiguration?: EduVideoEncoderConfiguration;
+    encryptionConfig?: MediaEncryptionConfig;
+    channelProfile?: ChannelProfile;
+    web?: {
+        codec: SDK_CODEC;
+        mode: SDK_MODE;
+    };
 };
 ```
 
@@ -181,6 +190,8 @@ Media options.
 | `cameraEncoderConfiguration` | The encoding configuration of the video stream captured by the camera. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
 | `screenShareEncoderConfiguration` | The encoding configuration of the screen-sharing stream. See [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration). |
 | `encryptionConfig` | The media stream encryption configuration. See [MediaEncryptionConfig](#mediaencryptionconfig). |
+| `channelProfile`                | Channel profile configuration. See [ChannelProfile](#channelprofile) for details.     |
+| `web`   | Web configuration for browser codec format and channel mode.<ul><li>`codec`: browser codec format. Available values are as follows:<ul><li>`"vp8"`: VP8</li><li>`"h264"`: H.264</li></li></ul><li>`mode`: channel mode. Available values are as follows:<ul><li>`"rtc"`: communication mode, commonly used for one-to-one or one-to-many classrooms.</li><li>`"live"`: live-streaming mode. It costs less and has a higher latency than the communication mode.</li></ul></li></ul>|
 
 ### EduVideoEncoderConfiguration
 
@@ -376,6 +387,36 @@ The classroom type. Set in [`LaunchOption`](#launchoption).
 | `Room1v1Class` | `0`: One-to-one Classroom. An online teacher gives an exclusive lesson to only one student. |
 | `RoomBigClass` | `2`: Lecture Hall. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. There is no upper limit on the number of students. During the class, students can "raise their hands" to apply for speaking up. Once the teacher approves, the student can send their audio and video to interact with the teacher. |
 | `RoomSmallClass` | `4`: Small Classroom. A teacher gives an online lesson to multiple students. Students do not send their audio and video by default. The maximum number of users in a classroom is 500. During the class, the teacher can invite students to speak up "on stage" and have real-time audio and video interactions with the teacher. |
+
+### EduRoomServiceTypeEnum
+
+```typescript
+export enum EduRoomServiceTypeEnum {
+  LivePremium = 0,
+}
+```
+
+The service type used in [`LaunchOption`](#launchoption).
+
+| Parameter | Description |
+| :--------------- | :----------------------------------------------------- |
+|`LivePremium`  | The classroom use the RTC service in the channel profile of live-broadcasting, with a latency of 400 ms. It works the same as interactive big classes.   |
+
+### ChannelProfile
+
+```typescript
+export enum ChannelProfile {
+  Communication = 0,
+  LiveBroadcasting = 1,
+}
+```
+
+Channel profiles, used in [MediaOptions](#mediaoptions).
+
+| Values  | Description            |
+| :----- | :-------------------------- |
+| `Communication` | communication mode, commonly used for one-to-one or one-to-many classrooms. |
+| `LiveBroadcasting`  | live-streaming mode. It costs less and has a higher latency than the communication mode. |
 
 ### LanguageEnum
 

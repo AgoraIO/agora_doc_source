@@ -5,7 +5,7 @@
 灵动课堂 Electron 端支持多种集成方式。根据是否需要修改课堂 UI，你可选择不同的集成方式：
 
 - 如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 CDN 集成。
-- 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/CloudClass-Desktop)集成。
+- 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/flexible-classroom-desktop)集成。
 
 <a name="default_ui"></a>
 
@@ -50,7 +50,7 @@
    },
    "dependencies": {
      ...
-     "agora-electron-sdk": "3.5.1-build.1116",
+     "agora-electron-sdk": "3.6.1-rc.9-build.817",
    }
    ```
 
@@ -62,7 +62,8 @@
    <head>
        <meta charset="UTF-8" />
        <meta name="viewport" content="width=device-width, initial-scale=1" />
-       <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.7.1.bundle.js"></script>
+       <!-- 灵动课堂教育场景 -->
+       <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.0.bundle.js"></script>
    </head>
 
    <body>
@@ -83,12 +84,11 @@
                userName: 'user name',
                roomUuid: 'room id',
                roleType: 1, // 用户角色：1 为老师，2 为学生。
-               roomType: 0, // 房间类型：0 为一对一，2 为大班课（根据 roomSubType 还可分为互动直播大班课，职业教育大班课），4 为小班课。
-               roomSubType: 0, // 房间子类型。默认为 0。如需设置职业教育大班课，则需 roomType 为 2 且 roomSubType 为 1。
+               roomType: 0, // 房间类型：0 为一对一，2 为大班课，4 为小班课。
                roomName: 'room name',
                pretest: true, // 是否开启课前设备检测。
                rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
-               language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。 
+               language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。
                duration: 60 * 30, // 课程时间，单位为秒。
                recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.3.3/record_page.html',
                courseWareList: [],
