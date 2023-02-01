@@ -72,7 +72,7 @@
                     <note type="note">
                         <ul>
                             <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, the value is 0 and meaningless.</li>
-                            <li>为提升远端用户出图速度，建议远端用户加入频道中后，本地用户再加入频道，以降低该值。</li>
+                            <li>In order to improve the first frame speed of remote users, Agora recommends that the local user joins the channel when the remote user is in the channel to reduce this value.</li>
                         </ul></note>
                 </pd>
             </plentry>
@@ -86,7 +86,7 @@
                     <note type="note">
                     <ul>
                     <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after setting the remote view, the value is 0 and meaningless.</li>
-                    <li>为提升远端用户出图速度，建议在远端用户加入频道之前设置远端视图，或者远端用户加入频道后立即设置远端视图，以降低该值。</li>
+                    <li>In order to improve the first frame speed of remote users, Agora recommends that the local user sets the remote view before the remote user joins the channel, or sets the remote view immediately after the remote user joins the channel to reduce this value.</li>
                     </ul></note> </pd>
             </plentry>
             <plentry>
@@ -98,8 +98,8 @@
                     </ul>
                     <note type="note">
                         <ul>
-                            <li>If you call <apiname keyref="startMediaRenderingTracing"/> after subscribing to the remote video stream, the value is 0 and meaningless.</li>
-                            <li>为提升远端用户出图速度，建议在远端用户加入频道后，本地用户立即订阅远端视频流，以降低该值。</li>
+                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after subscribing to the remote video stream, the value is 0 and meaningless.</li>
+                            <li>In order to improve the first frame speed of remote users, Agora recommends that after the remote user joins the channel, the local user immediately subscribes to the remote video stream to reduce this value.</li>
                         </ul></note>
                 </pd>
             </plentry>
@@ -107,13 +107,13 @@
                 <pt>remoteJoined2PacketReceived</pt>
                 <pd>
                     <ul>
-                    <li>如果本地用户在远端用户加入频道前调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从远端用户加入频道到本地用户接收到首个远端数据包的时间间隔。 The unit is milliseconds.</li>
-                    <li>如果本地用户在远端用户加入频道后调用 <apiname keyref="startMediaRenderingTracing"/>，则该值为从调用 <apiname keyref="startMediaRenderingTracing"/> 到接收到首个远端数据包的时间间隔。 The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to receiving the remote video stream. The unit is milliseconds.</li>
                     </ul>
                     <note type="note">
                         <ul>
-                            <li>If calling <apiname keyref="startMediaRenderingTracing"/> after receiving the remote video stream, the value is 0 and meaningless.</li>
-                            <li>为提升远端用户出图速度，建议在远端用户加入频道后立即发布视频流，本地用户立即订阅远端视频流，以降低该值。</li>
+                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after receiving the remote video stream, the value is 0 and meaningless.</li>
+                            <li>In order to improve the first frame speed of remote users, Agora recommends that the remote user publishes video streams immediately after joining the channel, and the local user immediately subscribes to remote video streams to reduce this value.</li>
                         </ul></note></pd>
             </plentry>
             </parml> </section>
