@@ -9,9 +9,9 @@
 - 撤回子区消息
 - 获取子区消息
 
-消息收发流程如下：
+消息收发流程如下图所示：
 
-![img](https://web-cdn.agora.io/docs-files/1636443945728)
+![img](./agora_doc_source/markdown/agora-chat/images/quickstart/quick_start_workflow.png)
 
 1. 客户端从应用服务器获取 token。
 2. 客户端 A 和 B 登录即时通讯。
@@ -22,16 +22,18 @@
 开始前，请确保满足以下条件：
 
 - 初始化 1.0.3 及以上版本 SDK，详见 [Android 快速开始](./agora_chat_get_started_android)。
+
 - 了解[使用限制](./agora_chat_limitation)。
+
 - 在 [Agora 控制台](http://console.agora.io/) 中启用子区功能。
+
+所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认开启子区功能。  
 
 ## 实现方法
 
 本节介绍如何调用即时通讯 IM SDK 提供的 API 实现上述功能。
 
 ### 发送子区消息
-
-关于发送消息的逻辑，详见 [发送消息](./agora_chat_send_receive_message_android#发送文本消息)。
 
 发送子区消息和发送群组消息的方法基本一致。区别在于 `isChatThreadMessage` 字段，如以下代码所示：
 
@@ -61,9 +63,9 @@ message.setMessageStatusCallback(new CallBack() {
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
-### 接收子区消息
+关于发送消息的逻辑，详见 [发送消息](./agora_chat_send_receive_message_android#发送文本消息)。
 
-关于接收消息的具体逻辑，详见 [接收消息](./agora_chat_send_receive_message_android#接收文本消息)。
+### 接收子区消息
 
 子区有新增消息时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageReceived` 回调。
 
@@ -88,9 +90,9 @@ ChatClient.getInstance().chatManager().addMessageListener(msgListener);
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
-### 撤回子区消息
+关于接收消息的具体逻辑，详见 [接收消息](./agora_chat_send_receive_message_android#接收文本消息)。
 
-关于撤回消息逻辑，详见 [撤回消息](./agora_chat_send_receive_message_android#撤回消息)。此处只介绍子区消息和其他消息的区别。
+### 撤回子区消息
 
 子区有消息撤回时，子区所属群组的所有成员收到 `ChatThreadChangeListener#onChatThreadUpdated` 回调，子区成员收到 `MessageListener#onMessageRecalled` 回调，如下代码示例所示：
 
@@ -109,6 +111,8 @@ MessageListener msgListener = new MessageListener() {
 };
 ```
 
+关于撤回消息逻辑，详见 [撤回消息](./agora_chat_send_receive_message_android#撤回消息)。
+
 ### 获取子区消息
 
 从服务器还是本地数据库获取子区消息取决于你的生产环境。
@@ -117,9 +121,9 @@ MessageListener msgListener = new MessageListener() {
 
 #### 从服务器获取子区消息（消息漫游）
 
-关于如何从服务器获取子区消息，详见 [获取历史消息](./agora_chat_retrieve_message_android#从服务器获取指定会话的历史消息)。
+关于如何从服务器获取子区消息，详见 [从服务器获取历史消息](./agora_chat_retrieve_message_android#从服务器获取指定会话的历史消息)。
 
-#### 从内存和本地数据库中获取子区会话
+#### 从内存和本地数据库中获取子区消息
 
 调用 [`getAllConversations`](./agora_chat_manage_message_android#获取本地所有会话)方法只能获取单聊或群聊会话。要获取子区会话，参考以下示例代码：
 

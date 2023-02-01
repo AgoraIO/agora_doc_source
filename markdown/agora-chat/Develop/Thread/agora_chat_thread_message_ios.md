@@ -1,4 +1,4 @@
-子区消息消息类型属于群聊消息类型。本文介绍即时通讯 IM iOS SDK 如何发送、接收以及撤回子区消息。
+子区消息属于群聊消息类，与普通群消息的区别是需要添加 `isChatThread` 标记。本文介绍即时通讯 IM iOS SDK 如何发送、接收、撤回以及获取子区消息。
 
 ## 技术原理
 
@@ -9,15 +9,13 @@
 - 撤回子区消息
 - 从服务端获取子区消息（消息漫游）
 
-消息收发流程如下：
+消息收发流程如下图所示：
 
-![img](https://web-cdn.agora.io/docs-files/1636443945728)
+![img](./agora_doc_source/markdown/agora-chat/images/quickstart/quick_start_workflow.png)
 
-如图所示，点对点消息的工作流程如下：
-
-1. 用户 A 发送一条消息到环信的消息服务器;
-2. 单聊时消息时，服务器投递消息给用户 B；对于群聊时消息，服务器投递给群内其他每一个成员;
-3. 用户收到消息。
+1. 客户端从应用服务器获取 token。
+2. 客户端 A 和 B 登录即时通讯。
+3. 客户端 A 向客户端 B 发送消息。消息发送至即时通讯 IM 服务器，服务器将消息传递给客户端 B。客户端 B 收到消息后，SDK 触发事件。客户端 B 监听事件并获取消息。
 
 ## 前提条件
 
@@ -26,7 +24,7 @@
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
 
-所有类型的 [定价计划](./agora_chat_plan) 都支持子区功能，并且在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认启用子区功能。
+所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认开启子区功能。
 
 ## 实现方法
 
@@ -34,7 +32,7 @@
 
 ### 发送子区消息
 
-发送子区消息和发送群组消息的方法基本一致，区别在于 `isChatThread` 字段，如以下代码示例所示：
+发送子区消息和发送群组消息的方法基本一致，区别在于 `isChatThread` 字段，如以下示例代码所示：
 
 ```objective-c
 // 调用 `initWithConversationID` 创建一条文本消息
@@ -57,15 +55,14 @@ message.isChatThreadMessage = self.isChatThread;
 }];
 ```
 
-有关发送消息的更多信息，请参阅 [发送消息](./agora_chat_message_ios#发送文本消息)。
+关于发送消息的逻辑，详见 [发送消息](./agora_chat_send_receive_message_ios#发送文本消息)。
 
 ### 接收子区消息
 
 单设备登录时，子区所属群组的所有成员会收到 `AgoraChatThreadManagerDelegate#onChatThreadUpdated` 回调。子区成员也可以通过监听 `AgoraChatManagerDelegate#messagesDidReceive` 回调来接收子区消息，如下代码示例所示：
 
 ```objective-c
-// The SDK triggers the `messagesDidReceive` callback when it receives a message.
-// After receiving this callback, the SDK parses the message and displays it.
+// 收到消息时，SDK 触发 `messagesDidReceive` 回调。收到该回调后，SDK 解析并显示消息。
 - (void)messagesDidReceive:(NSArray *)aMessages
 {
     // 做相关处理。
@@ -76,11 +73,9 @@ message.isChatThreadMessage = self.isChatThread;
 [[AgoraChatClient sharedClient].chatManager removeDelegate:self];
 ```
 
-有关接收消息的更多信息，请参阅 [接收消息](./agora_chat_message_ios#发送文本消息)。
+关于接收消息的具体逻辑，详见 [接收消息](./agora_chat_send_receive_message_ios#接收文本消息)。
 
 ### 撤回子区消息
-
-有关如何撤回消息的详细信息，请参阅 [撤回消息](./agora_chat_message_ios#撤回消息)，此处只介绍子区消息和其他消息的区别。
 
 在子区中撤回消息后，所有群组成员都会收到 `AgoraChatThreadManagerDelegate#onChatThreadUpdated` 回调。子区成员也可以监听 `AgoraChatManagerDelegate#messagesInfoDidRecall` 回调，如下代码示例所示：
 
@@ -89,8 +84,10 @@ message.isChatThreadMessage = self.isChatThread;
 {}
 ```
 
+关于撤回消息的逻辑，详见 [撤回消息](./agora_chat_send_receive_message_ios#撤回消息)。
+
 ### 从服务器获取子区消息 (消息漫游)
 
 进入单个子区会话后默认展示最早消息，iOS 端默认直接从服务器按时间顺序获取子区历史消息。
 
-关于如何从服务器获取消息的详细信息，请参见 [从服务器获取消息](./agora_chat_message_ios#分页获取指定会话的历史消息)。
+关于如何从服务器获取子区消息，详见 [从服务器获取历史消息](./agora_chat_retrieve_message_ios#从服务器获取指定会话的历史消息)。

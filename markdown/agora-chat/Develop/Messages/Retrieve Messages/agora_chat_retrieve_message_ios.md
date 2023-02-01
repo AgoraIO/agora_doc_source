@@ -23,9 +23,9 @@
 你可以调用 `getConversationsFromServer` 从服务端获取会话。我们建议在 app 安装时，或本地没有会话时调用该 API。否则调用 `LoadAllConversations` 即可。示例代码如下：
 
 ```objectivec
-[[AgoraChatClient sharedClient].chatManager getConversationsFromServer:^(NSArray *aCoversations, AgoraChatError *aError) {
+[[AgoraChatClient sharedClient].chatManager getConversationsFromServer:^(NSArray *aConversations, AgoraChatError *aError) {
    if (!aError) {
-      for (AgoraConversation *conversation in aCoversations) {
+      for (AgoraConversation *conversation in aConversations) {
         // conversation 会话解析。
       }
    }
