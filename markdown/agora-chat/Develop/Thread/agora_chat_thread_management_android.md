@@ -294,16 +294,16 @@ ChatClient.getInstance().chatThreadManager().getChatThreadLatestMessage(chatThre
 ```java
 ChatThreadChangeListener chatThreadChangeListener = new ChatThreadChangeListener() {
     @Override
-    // 子区创建
+    // 子区创建。子区所属群组的所有成员收到该事件。
     public void onChatThreadCreated(ChatThreadEvent event) {}
     @Override
-    // 子区名称修改、子区中新增或撤回消息
+    // 子区名称修改、子区中新增或撤回消息。子区所属群组的所有成员会收到该事件。
     public void onChatThreadUpdated(ChatThreadEvent event) {}
     @Override
-    // 子区解散
+    // 子区解散。子区所属群组的所有成员会收到该事件。
     public void onChatThreadDestroyed(ChatThreadEvent event) {}
     @Override
-    // 子区成员被移除
+    // 子区成员被移除。被踢出子区的成员收到该事件。
     public void onChatThreadUserRemoved(ChatThreadEvent event) {}
 };
 // 注册监听

@@ -59,7 +59,7 @@ message.isChatThreadMessage = self.isChatThread;
 
 ### 接收子区消息
 
-单设备登录时，子区所属群组的所有成员会收到 `AgoraChatThreadManagerDelegate#onChatThreadUpdated` 回调。子区成员也可以通过监听 `AgoraChatManagerDelegate#messagesDidReceive` 回调来接收子区消息，如下代码示例所示：
+单设备登录时，子区所属群组的所有成员会收到 `AgoraChatThreadManagerDelegate#onChatThreadUpdated` 回调。子区成员也可以通过监听 `AgoraChatManagerDelegate#messagesDidReceive` 回调接收子区消息，如下代码示例所示：
 
 ```objective-c
 // 收到消息时，SDK 触发 `messagesDidReceive` 回调。收到该回调后，SDK 解析并显示消息。
@@ -86,8 +86,27 @@ message.isChatThreadMessage = self.isChatThread;
 
 关于撤回消息的逻辑，详见 [撤回消息](./agora_chat_send_receive_message_ios#撤回消息)。
 
+### 获取子区消息
+
+从服务器还是本地数据库获取子区消息取决于你的生产环境。
+
+进入单个子区会话后默认展示最早消息，用户可以从服务器获取子区历史消息；若需要合并本地和服务器拉取到的消息（例如有用户撤回子区消息的提示是 SDK 在本地生成的一条消息，可以选择从本地获取子区消息。
+
 ### 从服务器获取子区消息 (消息漫游)
 
-进入单个子区会话后默认展示最早消息，iOS 端默认直接从服务器按时间顺序获取子区历史消息。
-
 关于如何从服务器获取子区消息，详见 [从服务器获取历史消息](./agora_chat_retrieve_message_ios#从服务器获取指定会话的历史消息)。
+
+#### 从内存和本地数据库中获取子区消息
+
+调用 `AgoraChatManager#getAllConversations` 方法只能获取单聊或群聊会话。要获取子区会话，参考以下示例代码：
+
+```objective-c
+// 需设置会话类型为 `AgoraChatConversationTypeGroupChat` 和 `isThread` 为 `YES`
+AgoraChatConversation* conversation = [AgoraChatClient.sharedClient.chatManager getConversation:conversationId type:AgoraChatConversationTypeGroupChat createIfNotExist:NO isThread:YES];
+// 获取此子区会话的消息
+[conversation loadMessagesStartFromId:@"" count:20 searchDirection:AgoraChatMessageSearchDirectionUp completion:^(NSArray<AgoraChatMessage *> * _Nullable aMessages, AgoraChatError * _Nullable aError) {
+           
+}];
+```
+
+<div class="alert info">可以通过 `AgoraChatConversation#isChatThread` 属性判断当前会话是否为子区会话。</div>
