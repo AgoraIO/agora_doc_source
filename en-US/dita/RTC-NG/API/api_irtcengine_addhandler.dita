@@ -22,9 +22,10 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int InitEventHandler(IRtcEngineEventHandler engineEventHandler);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerEventHandler(RtcEngineEventHandler eventHandler);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <p>The SDK uses the <xref keyref="IRtcEngineEventHandler" /> class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this class have default (empty) implementations. Therefore, apps only need to inherits callbacks according to the scenarios. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the <ph keyref="sendStreamMessage" /> method.
 Otherwise, the SDK may not work properly.</p>
         </section>

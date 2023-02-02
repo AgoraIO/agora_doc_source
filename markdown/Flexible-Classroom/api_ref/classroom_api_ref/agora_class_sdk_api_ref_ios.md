@@ -2,7 +2,7 @@
 
 ## AgoraClassroomSDK
 
-`AgoraClassroomSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraClassroomSDK` 是 Agora Classroom SDK 的基础接口类，提供灵动课堂教育场景的核心方法。
 
 ### version
 
@@ -30,26 +30,6 @@ void launch(AgoraEduLaunchConfig config,
 | `success` | 调用成功。                                                         |
 | `failure` | 调用失败。                                                         |
 
-### vocationalLaunch
-
-```swift
-void vocationalLaunch(AgoraEduLaunchConfig config,
-        AgoraEduServiceType serviceType,
-        Callback<Void> success,
-        Callback<Error> failure)
-```
-
-启动灵动课堂。
-**注意**：该方法仅适用于职业教育大班课场景。
-
-**参数**
-
-| 参数      | 描述                                                               |
-| :-------- | :----------------------------------------------------------------- |
-| `config`  | 课堂启动配置，详见 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。 |
-| `serviceType`  | 职业教育大班课使用的服务类型，详见 [AgoraEduServiceType](#agoraeduservicetype)。 |
-| `success` | 调用成功。                                                         |
-| `failure` | 调用失败。                                                         |
 
 ### setDelegate
 
@@ -127,21 +107,7 @@ Classroom SDK 退出回调。
 | :--------- | :--------------------------------------------------------------------------------------------------------------- |
 | `oneToOne` | `0`: 1 对 1 互动教学。1 位老师对 1 名学生进行专属在线辅导教学。                                                  |
 | `small`    | `4`: 在线互动小班课。1 位老师进行在线教学，多名学生实时观看和收听。小班课中课堂人数上限为 200。                  |
-| `lecture`  | `2`:<ul><li>对于 `launch` 方法，该属性为互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。大班课中课堂人数上限为 5000。</li><li> 对于 `vocationalLaunch` 方法，该属性为职业教育大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。使用声网 RTC 服务时，课堂人数上限为 5000。使用灵动课堂 CDN 推拉流功能时，课堂人数无上限。</li> |
-| `vocational`  | `100`: （仅对 `vocationalLaunch` 方法生效）职业教育大班课。1 位老师进行在线教学，多名学生实时观看和收听。学生人数无上限。使用声网 RTC 服务时，课堂人数上限为 5000。使用灵动课堂 CDN 推拉流功能时，课堂人数无上限。|
-
-### AgoraEduServiceType
-
-职业教育大班课使用的服务类型，仅在 `AgoraEduRoomType` 为 `lecture` 或 `vocational` 时生效。
-
-| 属性       | 描述                                                                                                             |
-| :--------- | :--------------------------------------------------------------------------------------------------------------- |
-|`livePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时，约 400 毫秒。与互动直播大班课逻辑一致。   |
-|`liveStandard`  |课堂使用 RTC 服务。频道为直播模式，延时为低延时，约 1 秒。又称极速直播模式。 |
-|`CDN`  | 课堂使用 CDN 推拉流服务。老师的音视频流推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频。CDN 服务延时一般大于 4 秒。 |
-|`fusion`  | 课堂使用 RTC 和 CDN 推拉流服务。老师的音视频流既发送到 RTC 频道内，又推到 CDN 上。学生既可以通过拉取 CDN 流实时观看老师的音视频流，又可以通过上台与老师实时互动。CDN 服务的延时比 RTC 服务延时高。  |
-|`mixStreamCDN` | 课堂使用 CDN 推拉流服务。老师的音视频流和白板经由页面录制后实时推到 CDN 上，学生通过拉取 CDN 流实时观看老师的音视频和白板。CDN 服务延时一般大于 4 秒。  |
-|`hostingScene`  | 老师的音视频流和白板的录像文件存放在 CDN 上。学生通过 CDN 地址观看教学。各端的课堂时间通过服务器时间对齐。 |
+| `lecture`  | `2`: 互动直播大班课。1 位老师进行在线教学，多名学生实时观看和收听。大班课中课堂人数上限为 5000。 |
 
 ### AgoraEduMediaEncryptionMode
 
@@ -189,8 +155,7 @@ Classroom SDK 退出回调。
 | `roomName`       | 课堂名，String 型。用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                      |
 | `roomUuid`       | 课堂 ID，String 型。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","                                                |
 | `roomType`       | 课堂类型，详见 [AgoraEduRoomType](#agoraeduroomtype)。                                                                                                                                                                                                                                                                                                                       |
-| `AgoraEduServiceType`       | 职业教育大班课使用的服务类型。详见 [AgoraEduServiceType](#agoraeduservicetype)。                                                                                                                                                                                                                                                                                                                       |
-| `token`          | 用于鉴权的 RTM Token，String 型。 详见[使用 RTM Token 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms)。                                                                                                                                                                                                                                                                                                                                           |
+| `token`          | 用于鉴权的 RTM Token，String 型，详见[使用 AccessToken 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm)。                                                                                                                                                                                                                                                                                                                                            |
 | `appId`          | Agora App ID，String 型。                                                                                                                                                                                                                                                                                                                                                    |
 | `startTime`      | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                             |
 | `duration`       | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                               |

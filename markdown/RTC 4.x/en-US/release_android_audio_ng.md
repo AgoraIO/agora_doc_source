@@ -1,3 +1,29 @@
+## v4.1.1
+
+v4.1.1 was released on January xx, 2023.
+
+#### New features
+
+**Instant audio frame rendering**
+
+This release adds the `enableInstantMediaRendering` method to enable instant rendering mode for audio and video frames, which can speed up the first video or audio frame rendering after the user joins the channel.
+
+
+
+#### Issues fixed
+
+This release fixed the following issues:
+
+- Playing audio files with a sample rate of 48 kHz failed.
+- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode.
+- When the playback of the local music finished, the `onAudioMixingFinished` callback was not properly triggered.
+
+#### API changes
+
+**Added**
+
+- `enableInstantMediaRendering`
+
 ## v4.1.0
 
 v4.1.0 was released on November xx, 2022.

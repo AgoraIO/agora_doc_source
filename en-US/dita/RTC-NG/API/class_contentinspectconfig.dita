@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
-    <title><ph keyref="ContentInspectConfig"/></title>
+    <title><ph keyref="ContentInspectConfig" /></title>
     <shortdesc id="short"><ph id="shortdesc">Configuration of video screenshot and upload.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -22,7 +22,7 @@
       type = CONTENT_INSPECT_TYPE_INVALID;
       interval = 0;
     }
-  }></codeblock>
+  }&gt;</codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
@@ -76,15 +76,15 @@
   final String? extraInfo;
 
   @JsonKey(name: 'modules')
-  final List&lt;ContentInspectModule>? modules;
+  final List&lt;ContentInspectModule&gt;? modules;
 
   @JsonKey(name: 'moduleCount')
   final int? moduleCount;
 
-  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic> json) =>
+  factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ContentInspectConfigFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ContentInspectConfigToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
@@ -114,14 +114,14 @@
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>Functional module. See <xref keyref="ContentInspectModule"/>.</p>
-                    <p>A maximum of 32 <apiname keyref="ContentInspectModule"/> instances can be configured, and the value range of <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
+                    <p>Functional module. See <xref keyref="ContentInspectModule" />.</p>
+                    <p>A maximum of 32 <apiname keyref="ContentInspectModule" /> instances can be configured, and the value range of <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
                     <note type="attention">A function module can only be configured with one instance at most. Currently only the video screenshot and upload function is supported.</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>The number of functional modules, that is,the number of configured <apiname keyref="ContentInspectModule"/> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
+                <pd>The number of functional modules, that is,the number of configured <apiname keyref="ContentInspectModule" /> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
             </plentry>
             </parml> </section>
     </refbody>

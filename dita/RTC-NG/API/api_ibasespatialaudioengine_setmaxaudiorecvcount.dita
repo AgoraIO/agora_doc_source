@@ -20,9 +20,10 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetMaxAudioRecvCount(int maxCount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setMaxAudioRecvCount(maxCount: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setMaxAudioRecvCount(int maxCount);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>如果在音频接收范围内可接收的音频流数超过设置的值，则本地用户会接收音源距离较近的 <parmname>maxCount</parmname> 路音频。如果房间里有和本地用户属于同一队伍的用户，则本地用户会优先接收队员的音频。例如，当 <parmname>maxCount</parmname> 设为 3 时，如果房间里有 5 位远端用户，其中 2 位和本地用户属于同一队伍、3 位和本地用户属于不同队伍但在本地用户的音频接收范围内，则本地用户可以听到 2 位队友和 1 位离自己最近的不同队伍的用户。</p>
             <note type="note" props="hide"><draft-comment author="LuoDan">因为服务端空间音效不发布，所以不能体现 enterRoom。</draft-comment>该方法在 <xref keyref="enterRoom" /> 前后均可调用，区别如下： 
                 <ul>

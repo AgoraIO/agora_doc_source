@@ -23,9 +23,10 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadSrc(string src, Int64 startPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract preloadSrc(src: string, startPos: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadSrc({required String src, required int startPos});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <p>You can call this method to preload a media resource into the playlist. If you need to preload multiple media resources, you can call this method multiple times.</p>
             <p props="native rn electron">After calling this method, if you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload is successful; If you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload fails.</p>
             <p>If the preload is successful and you want to play the media resource, call <xref keyref="playPreloadedSrc" />; if you want to clear the playlist, call <xref keyref="stop" />.</p>

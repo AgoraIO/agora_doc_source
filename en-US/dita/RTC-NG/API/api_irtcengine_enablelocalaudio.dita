@@ -20,9 +20,10 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLocalAudio(bool enabled);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableLocalAudio(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalAudio(bool enabled);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <p>The audio function is enabled by default. This method disables or re-enables the local audio function to stop or restart local audio capturing.</p>
             <p>This method does not affect receiving or playing the remote audio streams, and <codeph><xref keyref="enableLocalAudio" />(<ph keyref="false" />)</codeph> is applicable to scenarios where the user wants to receive remote audio streams without sending any audio stream to other users in the channel.</p>
             <p>Once the local audio function is disabled or re-enabled, the SDK triggers the <xref keyref="onLocalAudioStateChanged" /> callback, which reports <apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED" /> (0) or <apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING" /> (1).<note type="attention">
