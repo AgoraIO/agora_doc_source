@@ -4,13 +4,15 @@
 
 
 #### 升级必看
-
+**1. 默认分辨率**
 自该版本起，SDK 对视频编码的算法进行了优化，将默认的视频编码分辨率从 640 × 360 提升为 960 × 540，以适应设备性能和网络带宽的提升，在各种音视频互动场景下，为用户提供全链路的高清体验。
 
 如果你想自定义视频编码分辨率，可调用 `setVideoEncoderConfiguration` 方法，重新设置视频编码参数配置中的视频编码分辨率。
 
 <div class="note">由于默认分辨率的提升，会影响集合分辨率从而导致费用变更。详见<a href="./billing_rtc_ng">计费说明</a>。</div>
 
+**2. 设置远端视频流的订阅选项**
+该版本起，`setRemoteVideo` 更名为 `setRemoteVideoSubscriptionOptions`；`setRemoteVideoEx` 更名为 `setRemoteVideoSubscriptionOptionsEx`。如果你将 SDK 升级至该版本或更高版本，请修改以上两个方法的实现。
 
 
 #### 新增特性
@@ -58,6 +60,10 @@
 - `videoRenderingTracingResultOfUid`
 - `AgoraMediaRenderTraceEvent`
 - `AgoraVideoRenderingTracingInfo`
+
+**修改**
+- `setRemoteVideo` 更名为 `setRemoteVideoSubscriptionOptions`
+- `setRemoteVideoEx` 更名为 `setRemoteVideoSubscriptionOptionsEx`
 
 **删除**
 
