@@ -13,7 +13,7 @@ You can call the `setVideoEncoderConfiguration` method to set the expected video
 <div class="note">The increase in the default resolution affects the aggregate resolution and thus the billing rate. See <a href="./billing_rtc_ng">Pricing</a>.</div>
 
 **2. Options for subscribing to remote video streams**
-This release changes the name of `setRemoteVideo` to `setRemoteVideoSubscriptionOptions`, and the name of `setRemoteVideoEx` to `setRemoteVideoSubscriptionOptionsEx`. If you upgrade the SDK to this version or later, to avoid affecting your service, ensure that you modify the implementation of these two methods.
+This release changes the name of `setRemoteVideo` to `setRemoteVideoSubscriptionOptions`, and the name of `setRemoteVideoEx` to `setRemoteVideoSubscriptionOptionsEx`. If you upgrade the SDK to this version or later, to avoid affecting your service, ensure that you modify the names of these two methods.
 
 #### New features
 
