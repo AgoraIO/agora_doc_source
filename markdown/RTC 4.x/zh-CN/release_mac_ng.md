@@ -12,7 +12,7 @@
 <div class="note">由于默认分辨率的提升，会影响集合分辨率从而导致费用变更。详见<a href="./billing_rtc_ng">计费说明</a>。</div>
 
 **2. 设置远端视频流的订阅选项**
-该版本起，`setRemoteVideo` 更名为 `setRemoteVideoSubscriptionOptions`；`setRemoteVideoEx` 更名为 `setRemoteVideoSubscriptionOptionsEx`。如果你将 SDK 升级至该版本或更高版本，请修改以上两个方法的实现。
+该版本起，`setRemoteVideo` 更名为 `setRemoteVideoSubscriptionOptions`；`setRemoteVideoEx` 更名为 `setRemoteVideoSubscriptionOptionsEx`。如果你将 SDK 升级至该版本或更高版本，请在调用处同步修改以上两个方法的名称。
 
 
 #### 新增特性

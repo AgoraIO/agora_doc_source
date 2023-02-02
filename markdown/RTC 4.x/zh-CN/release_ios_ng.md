@@ -14,7 +14,7 @@
 
 
 **2. 设置远端视频流的订阅选项**
-该版本起，`setRemoteVideo` 更名为 `setRemoteVideoSubscriptionOptions`；`setRemoteVideoEx` 更名为 `setRemoteVideoSubscriptionOptionsEx`。如果你将 SDK 升级至该版本或更高版本，请修改以上两个方法的实现。
+该版本起，`setRemoteVideo` 更名为 `setRemoteVideoSubscriptionOptions`；`setRemoteVideoEx` 更名为 `setRemoteVideoSubscriptionOptionsEx`。如果你将 SDK 升级至该版本或更高版本，请在调用处同步修改以上两个方法的名称。
 
 
 #### 新增特性
