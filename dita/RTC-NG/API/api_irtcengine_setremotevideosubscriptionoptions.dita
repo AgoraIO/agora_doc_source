@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setRemoteVideoSubscriptionOptions(int uid, VideoSubscriptionOptions options);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideo:(NSUInteger)uid
-    SubscriptionOptions:(AgoraVideoSubscriptionOptions* _Nonnull)options NS_SWIFT_NAME(setRemoteVideo(_:SubscriptionOptions:));</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setRemoteVideoSubscriptionOptions:(NSUInteger)uid
+                                 options:(AgoraVideoSubscriptionOptions* _Nonnull)options NS_SWIFT_NAME(setRemoteVideoSubscriptionOptions(_:options:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setRemoteVideoSubscriptionOptions(uid_t uid, const VideoSubscriptionOptions &amp;options) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteVideoSubscriptionOptions(
@@ -29,7 +29,7 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteVideoSubscriptionOptions(
       {required int uid, required VideoSubscriptionOptions options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
@@ -42,6 +42,7 @@
             <li>如果你先调用该方法设置了 <parmname>options</parmname> 参数、然后再注册 <apiname keyref="IVideoFrameObserver"/> 或 <apiname keyref="IVideoEncodedFrameObserver"/> 对象，则需要再次调用该方法并按照以上两项描述设置 <parmname>options</parmname> 参数，以获得预期的效果。</li>
             </ul> </p>
             <note>声网推荐你按照以下步骤调用该方法：
+            
             <ol>
             <li>调用 <xref keyref="joinChannel2"/> 加入频道时设置 <parmname>autoSubscribeVideo</parmname> 为 <codeph><ph keyref="false"/></codeph>。</li>
             <li>在收到 <xref keyref="onUserJoined"/> 回调后调用该方法，设置对指定远端用户视频流的订阅选项。</li>
