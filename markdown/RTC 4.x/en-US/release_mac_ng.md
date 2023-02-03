@@ -5,11 +5,15 @@ v4.1.1 was released on January xx, 2023.
 
 #### Compatibility changes
 
+**1. Default video encoding resolution**
 As of this release, the SDK optimizes the video encoder algorithm and upgrades the default video encoding resolution from 640 × 360 to 960 × 540 to accommodate improvements in device performance and network bandwidth, providing users with a full-link HD experience in various audio and video interaction scenarios.
 
 You can call the `setVideoEncoderConfiguration` method to set the expected video encoding resolution in the video encoding parameters configuration.
 
 <div class="alert note">The increase in the default resolution affects the aggregate resolution and thus the billing rate. See <a href="./billing_rtc_ng">Pricing</a>.</div>
+
+**2. Options for subscribing to remote video streams**
+This release changes the name of `setRemoteVideo` to `setRemoteVideoSubscriptionOptions`, and the name of `setRemoteVideoEx` to `setRemoteVideoSubscriptionOptionsEx`. If you upgrade the SDK to this version or later, to avoid affecting your service, ensure that you modify the names of these two methods.
 
 
 
@@ -59,6 +63,10 @@ This release fixed the following issues:
 - `videoRenderingTracingResultOfUid`
 - `AgoraMediaRenderTraceEvent`
 - `VideoRenderingTracingInfo`
+
+**Modified**
+- `setRemoteVideo` to `setRemoteVideoSubscriptionOptions`
+- `setRemoteVideoEx` to `setRemoteVideoSubscriptionOptionsEx`
 
 **Deleted**
 
