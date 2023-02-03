@@ -73,6 +73,29 @@ ChatClient.getInstance().groupManager().fetchGroupAnnouncement(groupId);
 ChatClient.getInstance().groupManager().uploadGroupSharedFile(groupId, filePath, callBack);
 ```
 
+#### 下载共享文件
+
+所有群成员均可调用 `asyncDownloadGroupSharedFile` 方法下载群组共享文件。
+
+```java
+// 同步方法，需要放到异步线程
+List<MucSharedFile> sharedFiles = ChatClient.getInstance().groupManager().fetchGroupSharedFileList(groupId, pageNum, pageSize);
+// 获取需要的共享文件信息
+MucSharedFile sharedFile = sharedFiles.get(index);
+// 异步方法
+ChatClient.getInstance().groupManager().asyncDownloadGroupSharedFile(groupId, sharedFile.getFileId(), savePath, new CallBack() {
+    @Override
+    public void onSuccess() {
+        // 在这里处理 savePath 保存的文件
+    }
+
+    @Override
+    public void onError(int code, String error) {
+
+    }
+});
+```
+
 #### 删除共享文件
 
 所有群成员均可以调用 `DeleteGroupSharedFile` 方法删除群共享文件。删除共享文件后，其他群成员收到 `GroupChangeListener#OnSharedFileDeleted` 回调。

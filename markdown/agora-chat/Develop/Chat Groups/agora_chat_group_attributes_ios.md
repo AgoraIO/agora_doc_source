@@ -83,6 +83,16 @@
                                                                                                                              completion:nil];
 ```
 
+#### 下载共享文件
+
+所有群成员均可调用 `downloadGroupSharedFileWithId` 方法下载群组共享文件。
+
+```java
+[AgoraChatClient.sharedClient.groupManager downloadGroupSharedFileWithId:@"groupId" filePath:@"filePath" sharedFileId:@"fileId" progress:nil completion:^(AgoraChatGroup * _Nullable aGroup, AgoraChatError * _Nullable aError) {
+            
+    }];
+```
+
 #### 删除共享文件
 
 所有群成员均可以调用 `removeGroupSharedFileWithId` 方法删除群共享文件。删除共享文件后，其他群成员收到 `AgoraChatGroupManagerDelegate#groupFileListDidUpdate` 回调。
