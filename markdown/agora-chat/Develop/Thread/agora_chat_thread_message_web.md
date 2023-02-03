@@ -42,7 +42,7 @@ function sendTextMessage() {
         type: 'txt',               // 消息类型。
         to: chatThreadId,          // 消息接收方（子区 ID)。
         msg: 'message content'     // 消息内容。
-        isChatThread:true,   // 子区消息标记
+        isChatThread:true,   // 子区消息标记。
     }
     let msg = WebIM.message.create(option);
     connection.send(msg).then(() => {

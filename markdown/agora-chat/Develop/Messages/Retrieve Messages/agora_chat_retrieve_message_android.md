@@ -6,7 +6,7 @@
 
 即时通讯 IM SDK 通过 `ChatManager` 类从服务器获取历史消息。以下是核心方法：
 
-- `asyncFetchConversationsFromServer`：获取会话列表以及会话中的最新一条消息；
+- `asyncFetchConversationsFromServer`：分页获取会话列表以及会话中的最新一条消息；
 - `asyncFetchHistoryMessage`：按服务器接收消息的时间顺序获取服务器上保存的指定会话中的消息
 
 ## 前提条件
@@ -20,24 +20,28 @@
 
 本节介绍如何实现从服务器获取会话和消息。
 
-## 获取服务器端会话列表
+## 从服务器分页获取会话列表
 
-你可以调用 `asyncFetchConversationsFromServer` 方法从服务器获取所有会话。我们建议在首次安装应用或本地设备上没有会话时调用此方法。其他情况下调用 `loadAllConversations` 获取本地设备上的会话列表即可。
+你可以调用 `asyncFetchConversationsFromServer` 方法从服务端分页获取会话列表，每个会话包含最新一条历史消息。我们建议你在首次安装应用或本地设备上没有会话时调用此方法，其他情况下调用 `getAllConversations` 方法获取本地设备上的会话列表。
 
 ```java
-ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(new ValueCallBack<Map<String, Conversation>>() {
+// pageNum：当前页面，从 1 开始。
+// pageSize：每页获取的会话数量。取值范围为 [1,20]。
+ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(pageNum, pageSize, new ValueCallBack<Map<String, Conversation>>() {
     // 获取会话成功处理逻辑。
     @Override
     public void onSuccess(Map<String, Conversation> value) {
+
     }
     // 获取会话失败处理逻辑。
     @Override
     public void onError(int error, String errorMsg) {
+
     }
 });
 ```
 
-默认情况下，SDK 会获取 7 天内的 10 个最新会话，每个会话包含一条最新历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
+对于使用 `asyncFetchConversationsFromServer` 方法未实现分页获取会话的用户，SDK 默认可拉取 7 天内的 10 个会话，每个会话包含最新一条历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
 
 ### 从服务器获取指定会话的历史消息
 

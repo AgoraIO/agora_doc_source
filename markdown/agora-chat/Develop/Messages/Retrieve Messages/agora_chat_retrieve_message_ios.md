@@ -6,7 +6,7 @@
 
 即时通讯 IM SDK 通过 `IAgoraChatManager` 类从服务器获取历史消息。以下是核心方法：
 
-- `getConversationsFromServer` 获取会话列表以及会话中的最新一条消息；
+- `getConversationsFromServer` 分页获取会话列表以及会话中的最新一条消息；
 - `asyncFetchHistoryMessagesFromServer` 获取服务器保存的指定会话中的消息。
 
 ## 前提条件
@@ -18,21 +18,19 @@
 
 ## 实现方法
 
-### 从服务器获取会话列表
+## 从服务器分页获取会话列表
 
-你可以调用 `getConversationsFromServer` 从服务端获取会话。我们建议在 app 安装时，或本地没有会话时调用该 API。否则调用 `LoadAllConversations` 即可。示例代码如下：
+你可以调用 `getConversationsFromServerByPage` 方法从服务端分页获取会话列表，每个会话包含最新一条历史消息。我们建议你在首次安装应用或本地设备上没有会话时调用此方法，其他情况下调用 `getAllConversations` 获取本地设备上的会话列表。
 
-```objectivec
-[[AgoraChatClient sharedClient].chatManager getConversationsFromServer:^(NSArray *aConversations, AgoraChatError *aError) {
-   if (!aError) {
-      for (AgoraConversation *conversation in aConversations) {
-        // conversation 会话解析。
-      }
-   }
+```java
+// pageNum：当前页面，从 1 开始。
+// pageSize：每页获取的会话数量。取值范围为 [1,20]。
+[AgoraChatClient.sharedClient.chatManager getConversationsFromServerByPage:pageNum pageSize:pageSize completion:^(NSArray<AgoraChatConversation *> * _Nullable aConversations, AgoraChatError * _Nullable aError) {
+            
 }];
 ```
 
-默认情况下，SDK 会获取 7 天内的 10 个最新会话，每个会话包含一条最新历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
+对于使用 `getConversationsFromServer` 方法未实现分页获取会话的用户，SDK 默认可拉取 7 天内的 10 个会话，每个会话包含最新一条历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
 
 ### 从服务器获取指定会话的历史消息
 
