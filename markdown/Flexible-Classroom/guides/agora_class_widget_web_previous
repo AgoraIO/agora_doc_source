@@ -12,7 +12,7 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `IAgoraExten
 
 本节介绍通过 Widget 实现自定义插件并在灵动课堂内嵌入该插件的基本步骤。
 
-1. 参考[集成灵动课堂文档](/cn/agora-class/agora_class_integrate_web#change_default_ui)获取灵动课堂 GitHub 源码。
+1. 参考[集成灵动课堂文档](/cn/agora-class/agora_class_integrate_web)获取灵动课堂 GitHub 源码。
 
 2. 在 `/packages/agora-plugin-gallery/src/gallery` 文件夹下创建一个新的文件夹，例如 `agora`。
 
@@ -25,10 +25,10 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `IAgoraExten
      ExtensionStoreEach as ExtensionStore,
      ExtensionController,
    } from 'agora-edu-core';
-    
+
    import { transI18n } from '~ui-kit';
    import { Provider } from 'mobx-react';
-    
+
    // 导出 AgoraWidget 类，实现从 agora-edu-core 中导出的 IAgoraExtensionApp
    export class AgoraWidget implements IAgoraExtensionApp {
      static store: PluginStore | null = null;
@@ -42,13 +42,13 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `IAgoraExten
      minWidth = 258; // 插件最小宽度
      minHeight = 144; // 插件最小高度
      trackPath = true; // 插件是否可以同步位置信息
-    
+
      // 在插件注册成功后调用 apply，用于为插件注入可监听的数据和可调用的方法，详见下文监听数据和调用方法章节
      apply(storeobserver: ExtensionStore, controller: ExtensionController) {
        this.appName = transI18n('widget_agora.appName');
        AgoraWidget.store = new PluginStore(controller, storeobserver); // 插件内部的数据管理
      }
-    
+
      // 渲染插件
      render(dom: Element | null) {
        dom &&
@@ -85,7 +85,7 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `IAgoraExten
   - `localUserInfo` 提供当前用户的 `userUuid`、`userName` 和 `roleType`。
   -  `roomInfo` 提供当前教室的 `roomUuid`、`roomName` 和 `roomType`。
 
-- `roomProperties` 为插件提供可监控的房间相关属性： 
+- `roomProperties` 为插件提供可监控的房间相关属性：
   - `state`: 插件开关状态。
   - `extra`: 用于用户自定义数据交互信息。
 
@@ -113,7 +113,7 @@ reaction(() => pluginStore.context.roomProperties, () => { ... })
 - `deleteWidgetProperties(data)`: 删除插件属性
 - `removeWidgetExtraProperties`: 移除插件 `extra` 属性
 - `setWidgetUserProperties` 设置插件用户属性
-- `removeWidgetUserProperties` 移除插件用户属性   
+- `removeWidgetUserProperties` 移除插件用户属性
 
 以下示例代码展示了如何调用 `updateWidgetProperties` 修改 `roomProperties`:
 
@@ -127,7 +127,7 @@ pluginStore.controller.updateWidgetProperties({
 
 Agora 为插件单独提供多语言的功能，你可参考以下步骤实现：
 
-1. 在插件文件夹中创建一个 `i18n` 文件夹，里面包含需要支持的语言文件夹，如 `en`、`zh`。 
+1. 在插件文件夹中创建一个 `i18n` 文件夹，里面包含需要支持的语言文件夹，如 `en`、`zh`。
 
 2. 在 `/en` 或 `/zh` 文件夹下创建 `index.ts` 文件用于配置多语言字段：
 
@@ -152,7 +152,7 @@ Agora 为插件单独提供多语言的功能，你可参考以下步骤实现�
        award_all: 'Award all participants',
      },
    };
-    
+
    export default selector_en;
    ```
 

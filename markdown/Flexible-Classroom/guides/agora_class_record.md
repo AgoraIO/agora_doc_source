@@ -20,7 +20,7 @@ Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的�
 
 ![](https://web-cdn.agora.io/docs-files/1636452568896)
 
-对于你需要在服务端部署的待录制页面，可基于 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 仓库中 `templates/record_page_prod.html` 文件进行修改和调整，然后将修改后的 HTML 文件部署至你自己的 CDN。
+对于你需要在服务端部署的待录制页面，可基于 [flexible-classroom-desktop](https://github.com/AgoraIO-Community/flexible-classroom-desktop) 仓库中 `templates/record_page_prod.html` 文件进行修改和调整，然后将修改后的 HTML 文件部署至你自己的 CDN。
 
 ![](https://web-cdn.agora.io/docs-files/1652439400957)
 
@@ -42,7 +42,7 @@ Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的�
     },
     ...
     "retryTimeout": 60
-} 
+}
 ```
 
 设置 `retryTimeout` 后，你需要在录制⻚面调用 [launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法设置 `listener` 参数监听枚举值为 `1` 的事件，`1` 代表⻚面加载完成。监听到该事件后，你需要调用以下接口，告知灵动课堂云服务待录制⻚面已经加载完成。如果灵动课堂云服务没有在 `retryTimeout` 内收到这个请求，则会重试录制。
