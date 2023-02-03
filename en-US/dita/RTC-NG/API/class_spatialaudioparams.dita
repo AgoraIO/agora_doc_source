@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudioparams">
-  <title><ph keyref="SpatialAudioParams"/></title>
+  <title><ph keyref="SpatialAudioParams" /></title>
   <shortdesc id="short"><ph id="shortdesc">The spatial audio parameters.</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -59,14 +59,14 @@
 @property(assign, nonatomic) BOOL enable_doppler;
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
-  Optional&lt;double> speaker_azimuth;
-  Optional&lt;double> speaker_elevation;
-  Optional&lt;double> speaker_distance;
-  Optional&lt;int> speaker_orientation;
-  Optional&lt;bool> enable_blur;
-  Optional&lt;bool> enable_air_absorb;
-  Optional&lt;double> speaker_attenuation;
-  Optional&lt;bool> enable_doppler;
+  Optional&lt;double&gt; speaker_azimuth;
+  Optional&lt;double&gt; speaker_elevation;
+  Optional&lt;double&gt; speaker_distance;
+  Optional&lt;int&gt; speaker_orientation;
+  Optional&lt;bool&gt; enable_blur;
+  Optional&lt;bool&gt; enable_air_absorb;
+  Optional&lt;double&gt; speaker_attenuation;
+  Optional&lt;bool&gt; enable_doppler;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
   
@@ -94,8 +94,8 @@
         public Optional&lt;int&gt; speaker_orientation = new Optional&lt;int&gt;();
         public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
-        public Optional&lt;double> speaker_attenuation = new Optional&lt;double>();
-        public Optional&lt;bool> enable_doppler = new Optional&lt;bool>();
+        public Optional&lt;double&gt; speaker_attenuation = new Optional&lt;double&gt;();
+        public Optional&lt;bool&gt; enable_doppler = new Optional&lt;bool&gt;();
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
   
@@ -150,17 +150,15 @@
   @JsonKey(name: 'enable_doppler')
   final bool? enableDoppler;
 
-  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic> json) =>
+  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SpatialAudioParamsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$SpatialAudioParamsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioParamsToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
     </section>
     <section id="parameters">
-      <title><text
-      conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-      /></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry>
         <pt>speaker_azimuth</pt>
@@ -194,16 +192,15 @@
       <plentry>
         <pt>enable_blur</pt>
         <pd>Whether to enable audio blurring:<ul>
-          <li><codeph><ph keyref="true"/></codeph>: Enable audio blurring.</li>
-          <li><codeph><ph keyref="false"/></codeph>: (Default) Disable audio blurring.</li>
+          <li><codeph><ph keyref="true" /></codeph>: Enable audio blurring.</li>
+          <li><codeph><ph keyref="false" /></codeph>: (Default) Disable audio blurring.</li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>enable_air_absorb</pt>
         <pd>Whether to enable air absorption, that is, to simulate the sound attenuation effect of sound transmitting in the air; under a certain transmission distance, the attenuation speed of high-frequency sound is fast, and the attenuation speed of low-frequency sound is slow.<ul>
-          <li><codeph><ph keyref="true"
-            /></codeph>: (Default) Enable air absorption. Make sure that the value of <parmname>speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.</li>
-          <li><codeph><ph keyref="false"/></codeph>: Disable air absorption.</li>
+          <li><codeph><ph keyref="true" /></codeph>: (Default) Enable air absorption. Make sure that the value of <parmname>speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.</li>
+          <li><codeph><ph keyref="false" /></codeph>: Disable air absorption.</li>
           </ul></pd>
       </plentry>
       <plentry>
@@ -218,16 +215,13 @@
       <plentry>
         <pt>enable_doppler</pt>
         <pd>Whether to enable the Doppler effect: When there is a relative displacement between the sound source and the receiver of the sound source, the tone heard by the receiver changes.<ul>
-          <li><codeph><ph keyref="true"/></codeph>: Enable the Doppler effect.</li>
-          <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the Doppler effect.</li>
+          <li><codeph><ph keyref="true" /></codeph>: Enable the Doppler effect.</li>
+          <li><codeph><ph keyref="false" /></codeph>: (Default) Disable the Doppler effect.</li>
           </ul>
           <note type="caution">
           <ul>
           <li>This parameter is suitable for scenarios where the sound source is moving at high speed (for example, racing games). It is not recommended for common audio and video interactive scenarios (for example, voice chat, cohosting, or online KTV).</li>
-          <li>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref
-            keyref="updatePlayerPositionInfo"/>, <xref
-            keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"
-            /> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
+          <li>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref keyref="updatePlayerPositionInfo" />, <xref keyref="updateSelfPosition" />, and <xref keyref="updateRemotePosition" /> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
           </ul> </note></pd>
       </plentry>
       </parml> </section>
