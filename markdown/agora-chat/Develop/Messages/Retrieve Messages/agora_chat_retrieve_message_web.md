@@ -6,7 +6,7 @@
 
 即时通讯 IM SDK 提供 `ChatManager` 类支持从服务器获取会话和历史消息。以下是核心方法：
 
-- `getConversationlist` 获取会话列表以及会话中的最新一条消息；
+- `getConversationlist` 分页获取会话列表以及会话中的最新一条消息；
 - `getHistoryMessages` 按服务器接收消息的时间顺序获取服务器上保存的指定会话中的消息。
 
 ## 前提条件
@@ -18,26 +18,19 @@
 
 ## 实现方法
 
-### 从服务器获取会话列表
+## 从服务器分页获取会话列表
 
-对于单聊或群聊，用户发消息时，会自动将对方添加到用户的会话列表。你可以调用 `getConversationlist` 方法从服务器获取会话列表。我们建议在 app 首次安装或本地设备没有会话的情况下调用该方法。
+你可以调用 `getConversationlist` 方法从服务端分页获取会话列表，每个会话包含最新一条历史消息。
 
 <div class="alert note">登录用户的 ID 大小写混用会导致拉取会话列表时提示会话列表为空，因此避免大小写混用。</div>
 
-```javascript
-WebIM.conn.getConversationlist().then((res) => {
-    console.log(res)
-    /**
-     * 返回参数说明。
-     * channel_infos：所有会话。
-     * channel_id：会话 ID。
-     * lastMessage：最新一条消息。
-     * unread_num：当前会话的未读消息数。
-     */
-})
+```java
+// pageNum：当前页面，从 1 开始。
+// pageSize：每页获取的会话数量。取值范围为 [1,20]。
+connection.getConversationlist({pageNum: 1, pageSize: 20}).then((res) => {})
 ```
 
-默认情况下，SDK 会获取 7 天内的 10 个最新会话，每个会话包含一条最新历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
+对于使用 `getConversationlist` 方法未实现分页获取会话的用户，SDK 默认可拉取 7 天内的 10 个会话，每个会话包含最新一条历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
 
 ### 从服务器获取指定会话的历史消息
 
