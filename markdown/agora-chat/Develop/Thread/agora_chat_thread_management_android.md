@@ -1,18 +1,15 @@
-子区是群组成员的子集，是支持多人沟通的即时通讯系统。
+子区是群组成员的子集，是支持多人沟通的即时通讯系统。本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理子区。
 
 下图展示了如何创建子区、管理子区中的会话以及可以在子区中执行的操作。
 
 ![](https://web-cdn.agora.io/docs-files/1655176216910)
 
-本文介绍如何使用即时通讯 IM SDK 在应用中创建和管理子区。
-
 ## 技术原理
 
-即时通讯 IM SDK 提供 `ChatThreadManager`，`ChatThread`，`ChatThreadChangeListener` 和 `ChatThreadEvent` 类用于子区管理，支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM SDK 提供 `ChatThreadManager`、`ChatThread`、`ChatThreadChangeListener` 和 `ChatThreadEvent` 类用于子区管理，支持你通过调用 API 在项目中实现如下功能：
 
 - 创建、解散子区
 - 加入、退出子区
-- 子区踢人
 - 修改子区名称
 - 获取子区详情
 - 获取子区成员列表
@@ -25,9 +22,9 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解 [使用限制](./agora_chat_limitation)中所述。
+- 了解 [使用限制](./agora_chat_limitation)。
 
-在 [Agora 控制台](https://console.agora.io/) 中启用聊天后默认启用该功能。
+所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认开启子区功能。
 
 ## 实现方法
 
@@ -35,7 +32,7 @@
 
 ### 创建子区
 
-所有群成员均可以调用 `createChatThread` 方法，基于一条群组消息新建子区。
+所有群成员均可以调用 `createChatThread` 方法基于一条群组消息新建子区。
 
 单设备登录时，子区所属群组的所有成员均会收到 `ChatThreadChangeListener#onChatThreadCreated` 回调；多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 回调，回调事件为 `THREAD_CREATE`。
 
@@ -43,7 +40,7 @@
 
 ```java
 // parentId：群组 ID
-// messageId：消息 ID，基于这条消息创建子区
+// messageId：子区的父消息 ID，即基于该消息创建子区
 // threadName：子区名称，长度不超过 64 个字符
 ChatClient.getInstance().chatThreadManager().createChatThread(parentId, messageId, threadName, new ValueCallBack<ChatThread>() {
     @Override
@@ -63,8 +60,7 @@ ChatClient.getInstance().chatThreadManager().createChatThread(parentId, messageI
 
 单设备登录时，子区所属群组的所有成员均会收到 `ChatThreadChangeListener#onChatThreadDestroyed` 回调；多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 回调，回调事件为 `THREAD_DESTROY`。
 
-**注意**
-解散子区或解散子区所在的群组后，将删除本地数据库及内存中关于该子区的全部数据，需谨慎操作。
+<div class="alert note">解散子区或解散子区所在的群组后，将删除本地数据库及内存中关于该子区的全部数据，需谨慎操作。</div>
 
 示例代码如下：
 
@@ -82,16 +78,16 @@ ChatClient.getInstance().chatThreadManager().destroyChatThread(chatThreadId, new
 
 ### 加入子区
 
-子区所在群组的所有成员均可以调用 `joinChatThread` 方法加入群组，
+子区所在群组的所有成员均可以调用 `joinChatThread` 方法加入群组。
 
-1. 使用以下两种方法之一来获取子区 ID：
+1. 使用以下其中一种方法获取子区 ID：
 
-- 调用 [`getChatThreadsFromServer`](./agora_chat_thread_management_android#从服务器获取子区列表) 获取聊天群中的话题列表，找到你想加入的子区 ID。
+- 调用 [`getChatThreadsFromServer`](./agora_chat_thread_management_android#从服务器获取子区列表) 获取群组中的子区列表，获得你想加入的子区 ID。
 - 收到 `ChatThreadChangeListener#onChatThreadCreated` 或 `ChatThreadChangeListener#onChatThreadUpdated` 回调时获取想加入的子区 ID。
 
 2. 调用 `joinChatThread` 传入子区 ID 加入对应子区。
 
-多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 触发的回调 `THREAD_JOIN`。
+多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 回调，事件为 `THREAD_JOIN`。
 
 示例代码如下：
 
@@ -109,9 +105,11 @@ ChatClient.getInstance().chatThreadManager().joinChatThread(chatThreadId, new Va
 
 ### 退出子区
 
-子区成员均可以主动调用 `leaveChatThread` 方法退出子区，退出子区后，该成员将不会再收到子区消息。
+#### 子区成员主动退出子区
 
-多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 回调，回调事件为 `THREAD_LEAVE`。
+子区成员均可以主动调用 `leaveChatThread` 方法退出子区。退出子区后，该成员将不会再收到子区消息。
+
+多设备登录时，其他设备会同时收到 `MultiDeviceListener#onThreadEvent` 回调，事件为 `THREAD_LEAVE`。
 
 示例代码如下：
 
@@ -127,11 +125,11 @@ ChatClient.getInstance().chatThreadManager().leaveChatThread(chatThreadId, new C
 });
 ```
 
-### 从子区移出成员
+#### 子区成员被移出子区
 
 仅群主和群管理员可以调用 `removeMemberFromChatThread` 方法将指定成员 (群管理员或普通成员) 踢出子区，被踢出子区的成员将不再接收到子区消息。
 
-被踢出子区的成员会收到 `ChatThreadChangeListener#onChatThreadUserRemoved` 回调。多设备登录时，执行踢人操作的成员的其他设备会同时收到 `MultiDeviceListener#onChatThreadEvent` 回调，回调事件为 `THREAD_KICK`。
+被踢出子区的成员会收到 `ChatThreadChangeListener#onChatThreadUserRemoved` 回调。多设备登录时，执行踢人操作的成员的其他设备会同时收到 `MultiDeviceListener#onChatThreadEvent` 回调，事件为 `THREAD_KICK`。
 
 示例代码如下：
 
@@ -160,7 +158,7 @@ ChatClient.getInstance().chatThreadManager().removeMemberFromChatThread(chatThre
 
 ```java
 // chatThreadId: 子区 ID
-// newChatThreadName: 修改的子区名称，长度不超过 64 个字符
+// newChatThreadName: 修改后的子区名称，长度不超过 64 个字符
 ChatClient.getInstance().chatThreadManager().updateChatThreadName(chatThreadId, newChatThreadName,
         new CallBack() {
     @Override
@@ -175,7 +173,7 @@ ChatClient.getInstance().chatThreadManager().updateChatThreadName(chatThreadId, 
 
 ### 获取子区详情
 
-子区所属群组的所有成员均可以调用 `getChatThreadFromServer` 从服务器获取子区详情。
+子区所属群组的所有成员均可以调用 `getChatThreadFromServer` 方法从服务器获取子区详情。
 
 示例代码如下：
 
@@ -198,8 +196,8 @@ ChatClient.getInstance().chatThreadManager().getChatThreadFromServer(chatThreadI
 
 ```java
 // chatThreadId: 子区 ID
-// limit: 单次请求返回的成员数，取值范围为 [1, 50]
-// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
+// limit: 每次获取的成员数，取值范围为 [1,50]
+// cursor: 数据查询的起始位置，首次调用方法时传 `null` 或空字符串
 ChatClient.getInstance().chatThreadManager().getChatThreadMembers(chatThreadId, limit, cursor,
         new ValueCallBack<CursorResult<String>>() {
     @Override
@@ -217,8 +215,8 @@ ChatClient.getInstance().chatThreadManager().getChatThreadMembers(chatThreadId, 
 1. 用户可以调用 `getJoinedChatThreadsFromServer` 方法从服务器分页获取自己加入和创建的子区列表：
 
 ```java
-// limit: 单次请求返回的子区数，取值范围为 [1, 50]
-// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
+// limit: 每次获取的子区数，取值范围为 [1,50]
+// cursor: 数据查询的起始位置，首次调用方法时传 `null` 或空字符串
 ChatClient.getInstance().chatThreadManager().getJoinedChatThreadsFromServer(limit, cursor,
         new ValueCallBack<CursorResult<ChatThread>>() {
     @Override
@@ -235,8 +233,8 @@ ChatClient.getInstance().chatThreadManager().getJoinedChatThreadsFromServer(limi
 
 ```java
 // parentId: 群组 ID
-// limit: 单次请求返回的子区数，取值范围为 [1, 50]
-// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
+// limit: 每次获取的子区数，取值范围为 [1, 50]
+// cursor: 数据查询的起始位置，首次调用方法时传 `null` 或空字符串
 ChatClient.getInstance().chatThreadManager().getJoinedChatThreadsFromServer(parentId, limit, cursor,
         new ValueCallBack<CursorResult<ChatThread>>() {
     @Override
@@ -253,8 +251,8 @@ ChatClient.getInstance().chatThreadManager().getJoinedChatThreadsFromServer(pare
 
 ```java
 // parentId: 群组 ID
-// limit: 单次请求返回的子区数，取值范围为 [1, 50]
-// cursor: 开始获取数据的游标位置，首次调用方法时传 `null` 或空字符串
+// limit: 每次获取的子区数，取值范围为 [1, 50]
+// cursor: 数据查询的起始位置，首次调用方法时传 `null` 或空字符串
 ChatClient.getInstance().chatThreadManager().getChatThreadsFromServer(parentId, limit, cursor,
         new ValueCallBack<CursorResult<ChatThread>>() {
     @Override
@@ -296,16 +294,16 @@ ChatClient.getInstance().chatThreadManager().getChatThreadLatestMessage(chatThre
 ```java
 ChatThreadChangeListener chatThreadChangeListener = new ChatThreadChangeListener() {
     @Override
-    // 子区创建
+    // 子区创建。子区所属群组的所有成员收到该事件。
     public void onChatThreadCreated(ChatThreadEvent event) {}
     @Override
-    // 子区名称修改、子区中新增或撤回消息
+    // 子区名称修改、子区中新增或撤回消息。子区所属群组的所有成员会收到该事件。
     public void onChatThreadUpdated(ChatThreadEvent event) {}
     @Override
-    // 子区解散
+    // 子区解散。子区所属群组的所有成员会收到该事件。
     public void onChatThreadDestroyed(ChatThreadEvent event) {}
     @Override
-    // 子区成员被移除
+    // 子区成员被移除。被踢出子区的成员收到该事件。
     public void onChatThreadUserRemoved(ChatThreadEvent event) {}
 };
 // 注册监听

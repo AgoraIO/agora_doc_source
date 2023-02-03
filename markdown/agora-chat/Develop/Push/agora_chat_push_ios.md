@@ -10,6 +10,21 @@
 
 ![](https://web-cdn.agora.io/docs-files/1642564011796)
 
+消息推送流程如下：
+
+1. 用户 B（消息接收者）检查设备支持哪种推送渠道，即 app 配置了哪种第三方推送服务且满足该推送的使用条件。
+2. 用户 B 根据配置的第三方推送 SDK 从第三方推送服务器获取推送 token。
+3. 第三方推送服务器向用户 B 返回推送 token。
+4. 用户 B 向 Agora 即时通讯服务器上传推送证书名称和推送 token。
+5. 用户 A 向 用户 B 发送消息。
+6. Agora 即时通讯服务器检查用户 B 是否在线。若在线，Agora 即时通讯服务器直接将消息发送给用户 B。
+7. 若用户 B 离线，Agora 即时通讯服务器判断该用户的设备使用的推送服务类型。
+8. Agora 即时通讯服务器将将消息发送给第三方推送服务器。
+9. 第三方推送服务器将消息发送给用户 B。
+
+<div class="alert info"><p>开发者通过 Agora 控制台配置 App 的推送证书，需填写证书名称及推送密钥等信息。该步骤须在登录即时通讯 IM SDK 成功后进行。</p><p>证书名称是 Agora 即时通讯服务器用于判断目标设备使用哪种推送通道的唯一条件，因此必须确保与 iOS 终端设备上传的证书名称一致。</p></div>
+
+
 ## 前提条件
 
 - 已开启即时通讯 IM，详见[开启和配置即时通讯服务](./enable_agora_chat)；
@@ -26,18 +41,20 @@
 
 1. 申请证书签名请求 Certificate Signing Request (CSR) 文件。<a name="step1-1"></a>
      1. 在设备上打开 **Keychain Access** 应用，选择 **Keychain Access** > **Certificate Assistant** > **Request a Certificate from a Certificate Authority**。
-     2. 在 **Certificate Assistant** 对话框中填写 **User Email Address**（电子邮件地址）和 **Common Name**（常用名称），选择 **Saved to disk**，点击**Continue**，添加存储路径保存文件。
+     2. 在 **Certificate Assistant** 对话框中填写 **User Email Address**（电子邮件地址）和 **Common Name**（常用名称），对 **Request is** 选择 **Saved to disk**，点击 **Continue**，添加存储路径保存文件。
      ![](https://web-cdn.agora.io/docs-files/1642564150801)
-     3. 你会在该路径获取到一个名为 `CertificateSigningRequest.certSigningRequest` 的 CSR 文件。
+     3. 该存储路径下生成了 CSR 文件 `CertificateSigningRequest.certSigningRequest`。
 
 2.创建 App ID。<a name="step1-2"></a>
-   1. 登录 [iOS Developer Center](https://developer.apple.com/cn/)，选择 **Account** > **Certificates, Identifiers & Profiles** > **Identifiers** 。
-   2. 在 **Identifiers** 页签，点击 **Identifiers**  右侧的 **+** 。
-   3. 在**Register a new identifier** 页面中， **Select a type**: 选择 **App**，点击 **Continue**。
-   4. 在**Register an App ID**页面中，配置如下字段：
+   1. 登录 [iOS Developer Center](https://developer.apple.com/cn/)，选择 **Account** > **Certificates, Identifiers & Profiles** > **Identifiers**。
+   2. 在 **Identifiers** 页签，点击 **Identifiers** 右侧的 **+**。
+   3. 在 **Register a new identifier** 页面中，选择 `App ID`，点击 `Continue`。
+   4. 对 **Select a type** 选择 **App**，点击 **Continue**。
+   5. 在 **Register an App ID** 页面中，配置如下字段：
        - **Description**: App ID 的描述信息。
        - **Bundle ID**: 可以设置为 `com.YourCompany.YourProjectName`。
        - **Capabilities**: 选择 **Push Notification**。
+   6. 确定信息无误，点击 `Register`。
 
 3. 分别创建开发环境和生产环境的消息推送证书。<a name="step1-3"></a>
      1. 在  **Identifiers** 页签中，选择[步骤 2](#step1-2)中创建的 **App ID**。
@@ -66,7 +83,7 @@
 
 按照以下步骤，在 Agora 控制台上传消息推送证书等信息：
 
-1. 登录[控制台](https://sso2.agora.io/cn/)，点击左侧导航栏**项目管理**。
+1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
 2. 选择需要开通即时通讯服务的项目，点击**配置**。
 ![](https://web-cdn.agora.io/docs-files/1642564654253)
 
@@ -106,7 +123,9 @@
 }
 ```
 
-3. 获取 Device Token，并传递给 SDK。
+3. 获取 Device Token 并传递给 SDK。
+
+Device Token 注册后，iOS 系统会通过以下方式将 Device Token 回调给你，你需要将 Device Token 传给 SDK。
 
 ```swift
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -123,45 +142,55 @@
 
 ## 设置推送通知 
 
-为优化用户在处理大量推送通知时的体验，即时通讯 IM 在 app 和会话层面提供了推送通知和免打扰模式的细粒度选项，如下表所示：
-
-<table>
-  <tr>
-    <th>模式</th>
-    <th>选项</th>
-    <th>App</th>
-    <th>会话</th>
-  </tr>
-  <tr>
-    <td rowspan="3">推送通知方式</td>
-    <td>All：接收所有离线消息的推送通知。</td>
-    <td>✓</td>
-    <td>✓</td>
-  <tr>
-    <td>MentionOnly：仅接收提及消息的推送通知。</td>
-    <td>✓</td>
-    <td>✓</td>
-  </tr>
-  <tr>
-     <td>NONE：不接收离线消息的推送通知。</td>
-    <td>✓</td>
-    <td>✓</td>
-  </tr>
-  <tr>
-    <tr>
-    <td rowspan="2">免打扰模式</td>
-    <td>silentModeDuration：在指定时长内不接收推送通知。</td>
-    <td>✓</td>
-    <td>✓</td>
-  <tr>
-    <td>silentModeStartTime & silentModeEndTime：在指定的时间段内不接收推送通知。</td>
-    <td>✓</td>
-    <td>✗</td>
-  </tr>
-  </tr>
-</table>
+为优化用户在处理大量推送通知时的体验，即时通讯 IM 在 app 和会话层面提供了推送通知方式和免打扰模式的细粒度选项。
 
 **推送通知方式**
+
+<table>
+<tbody>
+<tr>
+<td width="184">
+<p><strong>推送通知方式参数</strong></p>
+</td>
+<td width="420">
+<p><strong>描述</strong></p>
+</td>
+<td width="321">
+<p><strong>应用范围</strong></p>
+</td>
+</tr>
+<tr>
+<td width="184">
+<p>`All`</p>
+</td>
+<td width="420">
+<p>接收所有离线消息的推送通知。</p>
+</td>
+<td rowspan="3" width="321">
+<p>&nbsp;</p>
+<p>App 或单聊/群聊会话</p>
+</td>
+</tr>
+<tr>
+<td width="184">
+<p>`MentionOnly`</p>
+</td>
+<td width="420">
+<p>仅接收提及某些用户的消息的推送通知。</p>
+<p>该参数推荐在群聊中使用。若提及一个或多个用户，需在创建消息时对 ext 字段传 "em_at_list":["user1", "user2" ...]；若提及所有人，对该字段传 "em_at_list":"all"。</p>
+</td>
+</tr>
+<tr>
+<td width="184">
+<p>`NONE`</p>
+</td>
+<td width="420">
+<p>不接收离线消息的推送通知。</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
 
 会话级别的推送通知方式设置优先于 app 级别的设置，未设置推送通知方式的会话默认采用 app 的设置。
 
@@ -169,13 +198,18 @@
 
 **免打扰模式**
 
-1. 你可以在 app 级别指定免打扰时长和免打扰时间段。这两个时间段内你不会收到任何离线推送通知。
+你可以在 app 级别指定免打扰时间段和免打扰时长，即时通讯 IM 在这两个时间段内不发送离线推送通知。若既设置了免打扰时间段，又设置了免打扰时长，免打扰模式的生效时间为这两个时间段的累加。
 
-2. 会话仅支持免打扰时长设置；免打扰时间段的设置不生效。
+免打扰时间参数的说明如下表所示：
 
-对于 app 和 app 中的所有会话，免打扰模式的设置优先于推送通知方式的设置。
+| 免打扰时间参数     |  描述   |   应用范围 |
+| :--------| :----- | :----------------------------------------------------------- |
+| `silentModeStartTime & silentModeEndTime`  | 免打扰时间段，精确到分钟，格式为 HH:MM-HH:MM，例如 08:30-10:00。该时间为 24 小时制，免打扰时间段的开始时间和结束时间中的小时数和分钟数的取值范围分别为 [00,23] 和 [00,59]。免打扰时间段的设置说明如下：<ul><li>开始时间和结束时间的设置立即生效，免打扰模式每天定时触发。例如，开始时间为 `08:00`，结束时间为 `10:00`，免打扰模式在每天的 8:00-10:00 内生效。若你在 11:00 设置开始时间为 `08:00`，结束时间为 `12:00`，则免打扰模式在当天的 11:00-12:00 生效，以后每天均在 8:00-12:00 生效。</li><li>若开始时间和结束时间相同，免打扰模式则全天生效。</li><li>若结束时间早于开始时间，则免打扰模式在每天的开始时间到次日的结束时间内生效。例如，开始时间为 `10:00`，结束时间为 `08:00`，则免打扰模式的在当天的 10:00 到次日的 8:00 生效。</li><li>目前仅支持在每天的一个指定时间段内开启免打扰模式，不支持多个免打扰时间段，新的设置会覆盖之前的设置。</li><li>若不设置该参数，传空字符串。</li></ul>  | 仅用于 app 级别，对单聊或群聊会话不生效。 |
+| `silentModeDuration` |  免打扰时长，单位为毫秒。免打扰时长的取值范围为 [0,604800000]，`0` 表示该参数无效，`604800000` 表示免打扰模式持续 7 天。<br/> 与免打扰时间段的设置长久有效不同，该参数为一次有效。    | App 或单聊/群聊会话。  |
 
-例如，假设在 app 级别指定了免打扰时间段，并将指定会话的推送通知方式设置为 `All`。免打扰模式与推送通知方式的设置无关，即在指定的免打扰时间段内，你不会收到任何推送通知。
+**推送通知方式与免打扰时间设置之间的关系**
+
+对于 app 和 app 中的所有会话，免打扰模式的设置优先于推送通知方式的设置。例如，假设在 app 级别指定了免打扰时间段，并将指定会话的推送通知方式设置为 `All`。免打扰模式与推送通知方式的设置无关，即在指定的免打扰时间段内，你不会收到任何推送通知。
 
 或者，假设为会话指定了免打扰时间段，而 app 没有任何免打扰设置，并且其推送通知方式设置为 `All`。在指定的免打扰时间段内，你不会收到来自该会话的任何推送通知，而所有其他会话的推送保持不变。
 
@@ -197,7 +231,7 @@ AgoraChatSilentModeParam *param = [[AgoraChatSilentModeParam alloc]initWithParam
 AgoraChatSilentModeParam *param = [[AgoraChatSilentModeParam alloc]initWithParamType:AgoraChatSilentModeParamTypeDuration];
     param.silentModeDuration = 15;
 //设置离线推送的免打扰时间段为 8:30 到 15:00。
-AgoraChatSilentModeParam *param = [[AgoraChatSilentModeParam alloc]initWithParamType:AgoraChatSilentModeParamTypeDuration];
+AgoraChatSilentModeParam *param = [[AgoraChatSilentModeParam alloc]initWithParamType:AgoraChatSilentModeParamTypeInterval];
     param.silentModeStartTime = [[AgoraChatSilentModeTime alloc]initWithHours:8 minutes:30];
     param.silentModeEndTime = [[AgoraChatSilentModeTime alloc]initWithHours:15 minutes:0];
 ```
@@ -274,7 +308,7 @@ NSArray *conversations = @[conversation1,conversation2];
 
 你可以调用 `clearRemindTypeForConversation` 方法清除指定会话的推送通知方式的设置。清除后，默认情况下，此会话会继承 app 的设置。
 
-以下代码示例显示了如何清除会话的推送通知方式：
+以下代码示例显示了如何清除会话的推送通知方式的设置：
 
 ```java
     [[AgoraChatClient sharedClient].pushManager clearRemindTypeForConversation:@"" conversationType:conversationType completion:^(AgoraChatSilentModeResult *aResult, AgoraChatError *aError) {
@@ -302,8 +336,7 @@ NSArray *conversations = @[conversation1,conversation2];
 你也可以调用 `updatePushDisplayStyle` 设置推送通知的显示样式，如下代码示例所示：
 
 ```java
-// 设置为简单样式 `AgoraPushDisplayStyleSimpleBanner`，即只显示 "你有一条新消息"。
-// 若要显示消息内容，需将 `DisplayStyle` 设置为 `AgoraPushDisplayStyleMessageSummary`。
+// 设置为简单样式 `AgoraPushDisplayStyleSimpleBanner`，只显示 "你有一条新消息"。若要显示消息内容，需设置为 `AgoraPushDisplayStyleMessageSummary`。
 [AgoraChatClient.sharedClient.pushManager updatePushDisplayStyle:AgoraPushDisplayStyleSimpleBanner completion:^(AgoraChatError * aError)
 {
     if(aError)
@@ -357,15 +390,15 @@ NSArray *conversations = @[conversation1,conversation2];
 
 1. 登录 Agora 控制台，点击左侧导航栏中的**项目管理**。
 
-2. 在**项目管理**页面，找到开启聊天功能的项目，点击**配置**。
+2. 在**项目管理** 页面，找到开启即时通讯 IM 的项目，点击**配置**。
 
-3. 在项目编辑页面，点击 **Chat** 旁边的**配置**。
+3. 在**服务配置**页面，点击 **即时通讯IM** 框的**配置**。
 
-4. 在项目配置页面，选择**特性 > 推送模板**并单击**添加推送模板**，在弹出的对话框中配置字段，如下图所示。
+4. 在左侧导航栏，选择**功能配置 > 推送模板**并单击**添加推送模板**，在弹出的对话框中配置字段，如下图所示。
 
    ![image](../doc_cn_easemob/images/push_android/push_android_template_mgmt.png)
 
-5. 创建推送模板后，用户可以在发送消息时选择使用此模板，代码示例如下所示。
+创建推送模板后，用户可以在发送消息时选择使用此模板，代码示例如下所示。
 
 ```java
 // 下面以文本消息为例，其他类型的消息设置方法相同。
@@ -385,8 +418,6 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc]initWithConversationID:@"co
 ```
 
 ## 更多功能
-
-本节介绍更多通用的推送通知功能，如果需要，你可以使用这些功能来实现其他功能。
 
 如果现有的模板不能满足你的要求，你还可以自定义推送通知。
 
@@ -411,7 +442,7 @@ message.chatType = AgoraChatTypeChat;
 | `em_apns_ext`    | 消息扩展字段。      |
 | `extern`         | 消息扩展具体内容。  |
 
-示例如下：
+解析的内容如下：
 	
 ```json
 {
@@ -508,7 +539,8 @@ message.chatType = AgoraChatTypeChat;
 | `em_push_sound`  | 自定义提示铃声。     |
 | `custom.caf`     | 铃声的音频文件名称。 |
 
-示例如下：
+解析的内容如下：
+
 ```json
 {
     "aps":{
@@ -574,7 +606,8 @@ message.chatType = AgoraChatTypeChat;
 | `em_apns_ext`             | 消息扩展内容，包含自定义字段。 |
 | `em_push_mutable_content` | 是否使用 `em_apns_ext`。       |
 
-示例如下：
+解析的内容如下：
+
 ```json
 {
     "aps":{

@@ -558,7 +558,7 @@ try {
 
    在下列示例代码中可以看到，就客户端而言，用户权限 Token 和以下代码逻辑有关：
 
-   - 调用 `open` ，使用 Token 和用户名登录即时通讯 IM 系统。需使用注册时所输入的用户名获得 UUID。
+   - 调用 `open`，使用 Token 和用户名登录即时通讯 IM 系统。需使用注册时所输入的用户名获得 UUID。
    - 当 Token 即将过期或已经过期时，从 App Server 重新获取新的 Token 并调用 `renewToken` 更新 Token。即时通讯 IM 建议你定期（例如每小时）生成一个 Token 并调用 `renewToken` 更新 Token，确保 Token 的有效性。
 
    ```js
@@ -705,10 +705,10 @@ public String buildAppToken(String appId, String appCertificate, int expire) {
 
 即时通讯 Token 的最长有效期为 24 小时。
 
-权限即将过期或已经过期后，SDK 会分别触发 `onTokenWillExpire` 或 `onTokenExpired` 回调。你需要在 app 逻辑中添加如下操作：
+Token 即将过期或已经过期后，即时通讯 IM SDK 会分别触发 `onTokenWillExpire` 或 `onTokenExpired` 回调。你需要在 app 逻辑中添加如下操作：
 
-- 识别即将过期或已经过期的是哪类权限。
-- App 从 Token 服务器获取新的 AccessToken2。 
+- 识别即将过期或已经过期的是哪类权限的 Token。
+- App 从 App Server 获取新的 AccessToken2。 
 - SDK 调用 `renewToken` 更新 AccessToken2。
 
 ### Token 和 RTC 产品

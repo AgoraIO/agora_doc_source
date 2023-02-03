@@ -245,7 +245,7 @@ conn.blockGroupMembers(option).then(res => console.log(res))
 ```javascript
 let option = {
     groupId: "groupId",
-    username: ["user1", "user2"]
+    usernames: ["user1", "user2"]
 }
 conn.unblockGroupMembers(option).then(res => console.log(res))
 ```
