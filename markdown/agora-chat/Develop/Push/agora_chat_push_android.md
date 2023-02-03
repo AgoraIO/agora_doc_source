@@ -4,20 +4,51 @@
 
 当客户端应用进程被关闭等原因导致用户离线，即时通讯 IM 会通过第三方厂商的消息推送服务向该离线用户的设备推送消息通知。当用户再次上线时，会收到离线期间所有消息。
 
-本文以集成小米、华为的消息推送服务为例，介绍如何在客户端应用中实现消息推送。
+本文介绍如何在客户端应用中实现各厂商的推送服务。
 
 ## 技术原理
 
 ![](https://web-cdn.agora.io/docs-files/1642565386008)
 
-假定用户 A 向用户 B 发送消息时用户 B 离线。Agora 即时通讯服务器通过第三方推送服务器将消息推送给用户 B，并且暂时存储该消息。用户 B 上线时，即时通讯 IM SDK 从服务器获取该消息，通过长连接将消息推送给用户 B。
+消息推送流程如下：
+
+1. 用户 B（消息接收者）检查设备支持哪种推送渠道，即 app 配置了哪种第三方推送服务且满足该推送的使用条件。
+2. 用户 B 根据配置的第三方推送 SDK 从第三方推送服务器获取推送 token。
+3. 第三方推送服务器向用户 B 返回推送 token。
+4. 用户 B 向 Agora 即时通讯服务器上传推送证书名称和推送 token。
+5. 用户 A 向 用户 B 发送消息。
+6. Agora 即时通讯服务器检查用户 B 是否在线。若在线，Agora 即时通讯服务器直接将消息发送给用户 B。
+7. 若用户 B 离线，Agora 即时通讯服务器判断该用户的设备使用的推送服务类型。
+8. Agora 即时通讯服务器将将消息发送给第三方推送服务器。
+9. 第三方推送服务器将消息发送给用户 B。
+
+<div class="alert info"><p>开发者通过 Agora 控制台配置 App 的推送证书，需填写证书名称及推送密钥等信息。该步骤须在登录即时通讯 IM SDK 成功后进行。</p><p>证书名称是 Agora 即时通讯服务器用于判断目标设备使用哪种推送通道的唯一条件，因此必须确保与 Android 终端设备上传的证书名称一致。</p></div>
+
 ## 前提条件
 
 - 已开启即时通讯 IM ，详见 [开启和配置即时通讯服务](./enable_agora_chat)。
-- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)。
 - 你已在 [Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
 <div class="alert note">关闭推送高级功能必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
+
+各厂商推送服务的使用条件如下：
+
+- Google FCM：需要 Google Play Service 和能连接 Google 服务器的网络；
+- 小米推送：在小米系统上可用；
+- 华为推送：在华为系统上可用；
+- 魅族推送：在魅族系统上可用；
+- OPPO 推送：在 OPPO 系统上可用；
+- VIVO 推送：在 VIVO 系统上可用。
+
+SDK 内部会按照这个顺序检测设备的推送支持情况。
+
+如果未设置第三方推送或者不满足使用第三方推送的条件，即时通讯 IM SDK 会通过一些保活手段尽可能的保持与环信服务器的长连接，以确保消息及时送达。
+
+<div class="alert info">
+如果你的 App 有海外使用场景，建议开启 FCM 推送；由于各推送使用条件不同，建议尽可能同时支持各家推送。</div>
+
+此外，使用消息推送前，需要你在对应的手机厂商推送服务上注册项目，并将设备的推送证书上传到 Agora 云控制台。
 
 ## 项目配置  
 
@@ -28,27 +59,169 @@
 -keep class io.agora.push.*** {*;}
 ```
 
-你还需要添加第三方推送的混淆规则，详见各厂商的开发者平台文档。
+除此之外，你还需要添加第三方推送的混淆规则，详见各厂商的开发者平台文档。
 
 ## 集成第三方厂商推送服务 
 
-以华为和小米为例，参考以下步骤集成第三方厂家的推送服务：
+### 集成 Google FCM
 
-### 集成华为推送服务
+#### 1. 在 Firebase 控制台添加 Firebase
 
-1. 在 [华为开发者后台](https://developer.huawei.com/)创建 Android 应用，开启消息推送服务，并获取 App ID 和 Secret Key，参考文档详见 [华为推送服务](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-config-agc-0000001050170137#section19884105518498)。
-2. 按照如下步骤，将消息推送证书等信息上传到 Agora 控制台：
-3. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
-4. 选择需要开通即时通讯服务的项目，点击**配置**。
+在 [Firebase 控制台](https://console.firebase.google.com/)添加 Firebase，详见 [FCM 的官网介绍](https://firebase.google.com/docs/android/setup?hl=zh-cn#console)。
+
+将 Firebase SDK 添加到你的应用后，在 Firebase 控制台的 `Project settings` 页面，选择 `Cloud Messaging` 标签，查看 `Server ID` 和 `Server Key`。
+
+#### 2. 上传推送证书
+
+注册完成后，在 [Agora 控制台](https://console.agora.io/)上传推送证书，选择你的应用 > **即时推送** > **配置证书** > **添加推送证书** > **谷歌**，然后输入 Firebase 项目设置里的 `Server ID` 和 `Server Key`。
+
+#### 3. 集成 FCM 推送
+
+1. 在项目根目录下的 `build.gradle` 中添加 FCM 服务插件。
+
+   ```gradle
+   dependencies {
+       // FCM 推送
+       classpath 'com.google.gms:google-services:4.3.8'
+   }
+   ```
+
+2. 在项目的 module 的 gradle 文件中（通常为 /app/build.gradle ）配置 FCM 库的依赖。
+
+   ```gradle
+   dependencies {
+       // ...
+   
+       // FCM：导入 Firebase BoM
+       implementation platform('com.google.firebase:firebase-bom:28.4.1')
+       // FCM：声明 FCM 的依赖项
+       // 使用 BoM 时，不要在 Firebase 库依赖中指定版本
+       implementation 'com.google.firebase:firebase-messaging'
+   
+   }
+   // 添加下行代码：
+   apply plugin: 'com.google.gms.google-services'  // Google 服务插件
+   ```
+
+3. 同步应用后，继承 `FirebaseMessagingService` 的服务，并将其在 `AndroidManifest.xml` 中注册。
+
+   ```xml
+   <service
+       android:name=".java.MyFirebaseMessagingService"
+       android:exported="false">
+       <intent-filter>
+           <action android:name="com.google.firebase.MESSAGING_EVENT" />
+       </intent-filter>
+   </service>
+   ```
+
+4. 在即时通讯 IM SDK 中启用 FCM。
+
+   ```java
+   ChatOptions options = new ChatOptions();
+   ...
+   PushConfig.Builder builder = new PushConfig.Builder(this);
+   // 替换为你的 FCM 发送方的用户 ID
+   builder.enableFCM("Your FCM sender id");
+   // 将 pushconfig 设置到 ChatOptions 中
+   options.setPushConfig(builder.build());
+   // 初始化即时通讯 IM SDK
+   ChatClient.getInstance().init(this, options);
+   // 即时通讯 IM SDK 初始化后
+   PushHelper.getInstance().setPushListener(new PushListener() {
+       @Override
+       public void onError(PushType pushType, long errorCode) {
+           EMLog.e("PushClient", "Push client occur a error: " + pushType + " - " + errorCode);
+       }
+       @Override
+       public boolean isSupportPush(PushType pushType, PushConfig pushConfig) {
+           // 设置是否支持 FCM
+           if(pushType == PushType.FCM) {
+               return GoogleApiAvailabilityLight.getInstance().isGooglePlayServicesAvailable(MainActivity.this)
+                           == ConnectionResult.SUCCESS;
+           }
+           return super.isSupportPush(pushType, pushConfig);
+       }
+   });
+   ```
+
+5. 即时通讯 IM SDK 登录成功后，上传 FCM 的 device token。
+
+   ```java
+   // 查看是否支持 FCM
+   if(GoogleApiAvailabilityLight.getInstance().isGooglePlayServicesAvailable(MainActivity.this) != ConnectionResult.SUCCESS) {
+       return;
+   }
+   FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+       @Override
+       public void onComplete(@NonNull Task<String> task) {
+           if (!task.isSuccessful()) {
+               EMLog.d("PushClient", "Fetching FCM registration token failed:"+task.getException());
+               return;
+           }
+           // 获取新的 FCM 注册 token
+           String token = task.getResult();
+           ChatClient.getInstance().sendFCMTokenToServer(token);
+       }
+   });
+   ```
+
+6. 监控 device token 生成。
+
+重写 `FirebaseMessagingService` 中的 `onNewToken` 方法，device token 更新后及时更新到即时通讯 IM SDK。
+
+   ```java
+   public class FCMMSGService extends FirebaseMessagingService {
+       private static final String TAG = "FCMMSGService";
+   
+       @Override
+       public void onMessageReceived(RemoteMessage remoteMessage) {
+           super.onMessageReceived(remoteMessage);
+           if (remoteMessage.getData().size() > 0) {
+               String message = remoteMessage.getData().get("alert");
+               Log.d(TAG, "onMessageReceived: " + message);
+           }
+       }
+   
+       @Override
+       public void onNewToken(@NonNull String token) {
+           Log.i("MessagingService", "onNewToken: " + token);
+           // 若要对该应用实例发送消息或管理服务端的应用订阅，将 FCM 注册 token 发送至你的应用服务器。
+           if(ChatClient.getInstance().isSdkInited()) {
+               ChatClient.getInstance().sendFCMTokenToServer(token);
+           }
+       }
+   }
+   ```
+
+### 集成华为 HMS 推送
+
+#### 1. 在华为开发者后台创建应用并开启推送
+
+在 [华为开发者后台](https://developer.huawei.com/)创建 Android 应用，开启消息推送服务，并获取 App ID 和 Secret Key。参考文档详见 [华为推送服务](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-config-agc-0000001050170137#section19884105518498)。
+
+#### 2. 将推送证书等信息上传 Agora 控制台
+
+1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
    ![](https://web-cdn.agora.io/docs-files/1642565777918)
-5. 找到**实时互动拓展能力**模块的**即时通讯 IM**，点击**配置**。
+
+3. 找到**实时互动拓展能力**模块的**即时通讯 IM**，点击**配置**。
+
    ![](https://web-cdn.agora.io/docs-files/1642565827058)
-6. 在消息推送模块，点击**添加推送证书**。在弹窗中选择**华为**，并配置如下字段：
+
+4. 在消息推送模块，点击**添加推送证书**。在弹窗中选择**华为**，并配置如下字段：
+
     - 证书名称：消息推送证书名称。填写创建 Android 应用时获取的 app ID。
     - 证书密钥：消息推送证书密钥。填写创建 Android 应用时获取的 Secret Key。
     - 应用包名：Android 应用的包名。填写创建 Android 应用时设置的应用包名。
-7. 集成 HMS Core SDK，参考文档详见[华为官方集成文档](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-integrating-sdk-0000001050040084)。
-8. 参考如下代码，在 `AndroidManifest.xml` 文件中注册 `HmsMessageService` 服务。
+
+#### 3. 集成 HMS Core SDK
+
+1. 集成 HMS Core SDK，详见[华为官方集成文档](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-integrating-sdk-0000001050040084)。
+
+2. 在 `AndroidManifest.xml` 文件中注册 `HmsMessageService` 服务。
 
 ```xml
 <!--华为 HMS Config-->
@@ -61,7 +234,9 @@
 <!-- huawei push end -->
 ```
 
-9. 获取消息推送 Token，详见[获取和注销推送 Token](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-client-dev-0000001050042041)，并参考如下代码，将推送 Token 上传到即时通讯 IM 服务器。
+3. 获取消息推送 Token。
+
+获取消息推送 Token，详见[获取和注销推送 Token](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-client-dev-0000001050042041)，并参考如下代码，将推送 Token 上传到即时通讯 IM 服务器。
 
 ```java
 public class HMSPushService extends HmsMessageService {
@@ -78,7 +253,7 @@ public class HMSPushService extends HmsMessageService {
 }
 ```
 
-10. 在 SDK 初始化时，启用华为推送。
+4. 在 SDK 初始化时启用华为推送
 
 ```java
 ChatOptions options = new ChatOptions();
@@ -93,22 +268,36 @@ ChatClient.getInstance().init(this, options);
 
 ### 集成小米推送服务
 
-1. 在[小米开放平台](https://dev.mi.com/platform)创建 Android 应用，开启消息推送服务，并获取 app ID 和 Secret Key，参考文档详见[推送服务接入指南](https://dev.mi.com/console/doc/detail?pId=68)。
-2. 按照如下步骤，将消息推送证书等信息上传到 Agora 控制台：
+#### 1. 在小米开发者平台开启消息推送服务
+
+在 [小米开放平台](https://dev.mi.com/platform)创建 Android 应用，开启消息推送服务，并获取 app ID 和 Secret Key。详见 [推送服务接入指南](https://dev.mi.com/console/doc/detail?pId=68)。
+
+#### 2. 将消息推送证书等信息上传到 Agora 控制台
+
  1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
+
  2. 选择需要开通即时通讯服务的项目，点击**配置**。
+
    ![](https://web-cdn.agora.io/docs-files/1642565777918)
+
  3. 找到**实时互动拓展能力**模块的**即时通讯 IM**，点击**配置**。
+
    ![](https://web-cdn.agora.io/docs-files/1642565827058)
+
  4. 在消息推送模块，点击**添加推送证书**。在弹窗中选择**小米**，并配置如下字段：
 
     - 证书名称：消息推送证书名称。填写创建 Android 应用时获取的 app ID。
     - 证书密钥：消息推送证书密钥。填写创建 Android 应用时获取的 Secret Key。
     - 应用包名：Android 应用的包名。填写创建 Android 应用时设置的应用包名。
 
-3. 下载[小米推送 SDK](https://admin.xmpush.xiaomi.com/zh_CN/mipush/downpage)，并集成到你的项目中。
-4. 配置 `AndroidManifest.xml`，详见 [官方文档](https://dev.mi.com/console/doc/detail?pId=41#_0_0)。
- 1. 添加如下权限：
+#### 3. 集成小米推送
+
+ 1. 下载[小米推送 SDK](https://admin.xmpush.xiaomi.com/zh_CN/mipush/downpage)并集成到你的项目。
+
+ 2. 按照以下步骤配置 `AndroidManifest.xml`。详见 [官方文档](https://dev.mi.com/console/doc/detail?pId=41#_0_0)。
+
+ - 添加如下权限：
+
     ```xml
     <!--注：以下三个权限在 4.8.0 及以上版本不再依赖-->
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
@@ -122,7 +311,9 @@ ChatClient.getInstance().init(this, options);
     android:protectionLevel="signature" /> <!--这里 com.xiaomi.mipushdemo 改成 app 的包名-->
     <uses-permission android:name="com.xiaomi.mipushdemo.permission.MIPUSH_RECEIVE" /><!--这里 com.xiaomi.mipushdemo 改成 app 的包名-->
     ```
- 2. 配置推送的 `service` 和 `receiver`：
+
+ - 配置推送的 `service` 和 `receiver`：
+
     ```xml
     <service
         android:name="com.xiaomi.push.service.XMPushService"
@@ -168,7 +359,8 @@ ChatClient.getInstance().init(this, options);
     </receiver>
     ```
 
-    3. 自定义一个继承自即时通讯 IM SDK 中 `EMMiMsgReceiver` 类的 `BroadcastReceiver`，并注册到 `AndroidManifest.xml` 文件中：
+ 3. 自定义一个继承自即时通讯 IM SDK 中 `EMMiMsgReceiver` 类的 `BroadcastReceiver` 并注册到 `AndroidManifest.xml` 文件中。
+
     ```xml
     <receiver android:name=".common.receiver.MiMsgReceiver">
         <intent-filter>
@@ -183,7 +375,8 @@ ChatClient.getInstance().init(this, options);
     </receiver>
     ```
 
-5. 在 SDK 初始化时，启用小米推送。
+ 4. 在 SDK 初始化时配置启用小米推送。
+
 ```java
 ChatOptions options = new ChatOptions();
 ...
@@ -192,6 +385,233 @@ builder..enableMiPush(String appId, String appKey);
 //将 pushconfig 设置为 ChatOptions。
 options.setPushConfig(builder.build());
 // 初始化即时通讯 IM SDK。
+ChatClient.getInstance().init(this, options);
+```
+
+### OPPO 推送集成
+
+即时通讯 IM SDK 中已经集成了 OPPO 推送相关逻辑，你还需要完成以下步骤：
+
+#### 1. 在 OPPO 开发者后台创建应用
+
+在 OPPO 开发者后台创建应用，开启 push 服务，并上传对应的证书指纹。详见 OPPO 官方介绍：[ OPPO 推送服务集成](https://open.oppomobile.com/new/developmentDoc/info?id=10195)
+
+#### 2. 上传推送证书
+
+注册完成后，需要在环信即时通讯云控制台上传推送证书，选择你的应用 —> **即时推送** —> **配置证书** —> **添加推送证书** —> **OPPO**，然后输入你在 [OPPO 开发者后台](https://open.oppomobile.com/service/oms?service_id=1000004&app_type=app&app_id=30004346)创建的应用的 `appkey` 和 `mastersecret` 以及程序的 `包名`，MasterSecret 需要到 [OPPO 推送平台](https://open.oppomobile.com/) > **配置管理** > **应用配置** 页面查看。
+
+#### 3. 集成 OPPO 推送
+
+1. 配置 OPPO 推送 jar 包。
+
+在 OPPO 推送官网下载推送 SDK 包，将 jar 包放到 libs 目录下并 sync。也可以直接使用环信 Android IM Demo 中集成的 OPPO 推送的 jar 包。
+
+2. 配置 `AndroidManifest.xml`。
+
+  <div class="alert info">OPPO 推送在 2.1.0 适配了 Android Q，在 Android Q上接收 OPPO 推送需要升级环信 SDK 到 3.7.1 以及之后的版本，并使用 OPPO 推送 2.1.0 的包。从 1.0.3 版本开始，升级 OPPO 推送版本到 3.0.0<div>
+
+ - 推送服务需要的权限列表：
+
+ ```xml
+ <!-- OPPO 推送配置 start -->
+ <uses-permission android:name="com.coloros.mcs.permission.RECIEVE_MCS_MESSAGE"/>
+ <uses-permission android:name="com.heytap.mcs.permission.RECIEVE_MCS_MESSAGE"/>
+ <!-- OPPO 推送配置 end -->
+ ```
+
+ - 推送服务需要的服务：
+
+ ```xml
+ <!-- OPPO 推送配置 start -->
+ <service
+ android:name="com.heytap.msp.push.service.CompatibleDataMessageCallbackService"
+ android:permission="com.coloros.mcs.permission.SEND_MCS_MESSAGE">
+ <intent-filter>
+     <action android:name="com.coloros.mcs.action.RECEIVE_MCS_MESSAGE"/>
+ </intent-filter>
+ </service> <!--兼容 Q 以下版本-->
+
+ <service
+ android:name="com.heytap.msp.push.service.DataMessageCallbackService"
+ android:permission="com.heytap.mcs.permission.SEND_PUSH_MESSAGE">
+ <intent-filter>
+     <action android:name="com.heytap.mcs.action.RECEIVE_MCS_MESSAGE"/>
+     <action android:name="com.heytap.msp.push.RECEIVE_MCS_MESSAGE"/>
+ </intent-filter>
+ </service> <!--兼容 Q 版本-->
+ <!-- OPPO 推送配置 end -->
+ ```
+
+3. 在 SDK 初始化时，配置启用 OPPO 推送。
+
+```java
+ChatOptions options = new ChatOptions();
+...
+PushConfig.Builder builder = new PushConfig.Builder(this);
+builder.enableOppoPush(String appKey,String appSecret);
+// 将 pushconfig 设置为 ChatOptions
+options.setPushConfig(builder.build());
+// 初始化 IM SDK
+ChatClient.getInstance().init(this, options);
+```
+
+4. 初始化 OPPO 推送。
+
+```java
+HeytapPushManager.init(context, true);
+```
+
+### VIVO 推送集成
+
+环信即时通讯 IM SDK 中已经集成了 VIVO 推送（基于 `vivo_push_v2.3.1.jar`）相关逻辑，你还需要完成以下步骤：
+
+#### 1. 在 VIVO 开发者后台创建应用
+
+在 VIVO 开发者后台创建应用，开启推送服务，并上传对应的证书指纹。详见 VIVO 官方介绍：[ VIVO 推送服务集成](https://dev.vivo.com.cn/documentCenter/doc/281)。
+
+#### 2. 上传推送证书
+
+注册完成后，需要在环信即时通讯云控制台上传推送证书，选择你的应用 —> **即时推送** —> **配置证书** —> **添加推送证书** —> **VIVO**，然后输入你在 [VIVO 开发者后台](https://vpush.vivo.com.cn/#/appdetail)创建的应用的 `APP ID`，`APP KEY` 和 `APP SECRET` 以及程序的 `包名`。
+
+#### 3. VIVO 推送集成
+
+1. 配置 VIVO 推送 jar 包： 去 VIVO 推送官网下载推送 SDK 包，把 jar 包放到 libs 目录下并 sync 。也可以直接使用环信 Android IM Demo 中集成的 VIVO 推送的 jar 包。
+
+2. 配置 `AndroidManifest.xml` 。
+
+ - 推送服务需要的 service 和 receiver，并且需要配置 VIVO 的 app_id 和 app_key：
+
+     ```xml
+     <!-- VIVO 推送配置 start -->
+     <!--VIVO Push SDK 的版本信息-->
+     <meta-data
+         android:name="sdk_version_vivo"
+         android:value="484"/>
+     <meta-data
+         android:name="local_iv"
+         android:value="MzMsMzQsMzUsMzYsMzcsMzgsMzksNDAsNDEsMzIsMzgsMzcsMzYsMzUsMzQsMzMsI0AzNCwzMiwzMywzNywzMywzNCwzMiwzMywzMywzMywzNCw0MSwzNSwzNSwzMiwzMiwjQDMzLDM0LDM1LDM2LDM3LDM4LDM5LDQwLDQxLDMyLDM4LDM3LDMzLDM1LDM0LDMzLCNAMzQsMzIsMzMsMzcsMzMsMzQsMzIsMzMsMzMsMzMsMzQsNDEsMzUsMzIsMzIsMzI" />
+     <service
+         android:name="com.vivo.push.sdk.service.CommandClientService"
+         android:permission="com.push.permission.UPSTAGESERVICE"
+         android:exported="true" />
+     <activity
+         android:name="com.vivo.push.sdk.LinkProxyClientActivity"
+         android:exported="false"
+         android:screenOrientation="portrait"
+         android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+     <!--推送配置项-->
+     <meta-data
+         android:name="com.vivo.push.api_key"
+         android:value="开发者自己申请的 appKey" />
+     <meta-data
+         android:name="com.vivo.push.app_id"
+         android:value="开发者自己申请的 appId" />
+
+     <receiver android:name="io.agora.push.platform.vivo.VivoMsgReceiver" >
+         <intent-filter>
+             <!-- 接收推送消息 -->
+             <action android:name="com.vivo.pushclient.action.RECEIVE" />
+         </intent-filter>
+     </receiver>
+     <!-- VIVO 推送配置 end -->
+     ```
+
+3. 在 SDK 初始化的时候，配置启用 VIVO 推送。
+
+   ```java
+   ChatOptions options = new ChatOptions();
+   ...
+   PushConfig.Builder builder = new PushConfig.Builder(this);
+   builder.enableVivoPush();
+   // 将 pushconfig 设置为 ChatOptions
+   options.setPushConfig(builder.build());
+   // 初始化 IM SDK
+   ChatClient.getInstance().init(this, options);
+   ```
+
+4. VIVO 设备安装应用后默认没有打开允许通知权限，测试前需首先在设置中打开该应用的允许通知权限。
+
+[VIVO 推送官方文档](https://dev.vivo.com.cn/documentCenter/doc/363)
+
+### 魅族推送集成
+
+#### 1. 在魅族开发者后台创建应用
+
+在魅族开发者后台创建应用，开启推送服务，并上传对应的证书指纹。详见魅族官方介绍：[Flyme 推送服务集成](https://open.flyme.cn/docs?id=129)。
+
+#### 2. 上传推送证书
+
+注册完成后，需要在 Agora 控制台上传推送证书，选择你的应用 —> **即时推送** —> **配置证书** —> **添加推送证书** —> **魅族**，然后输入你在[ flyme 推送平台](http://push.meizu.com/#/config/app?appId=8843&_k=dnrz9k)创建的应用的 `APP ID` 和 `APP SECRET` 以及程序的 `包名`。
+
+#### 3. 集成魅族推送
+
+ 1. 配置魅族推送 jar 包：
+
+    在 app level/build.gradle 中添加依赖。
+
+   ```gradle
+   dependencies{
+       // 该 aar 托管在 jcenter 中，请确保当前项目已配置 jcenter 仓库。
+       implementation 'com.meizu.flyme.internet:push-internal:3.7.0@aar'
+   }
+   ```
+
+ 2. 配置 `AndroidManifest.xml`。
+
+ - 推送服务需要的权限列表：
+
+ ```xml
+ <!-- 魅族推送配置 start-->
+ <!-- 兼容 flyme5.0 以下版本，魅族内部集成 pushSDK 必填，不然无法收到消息-->
+ <uses-permission android:name="com.meizu.flyme.push.permission.RECEIVE" />
+ <permission
+     android:name="${applicationId}.push.permission.MESSAGE"
+     android:protectionLevel="signature" />
+ <uses-permission android:name="${applicationId}.push.permission.MESSAGE" />
+ <!-- 兼容 flyme3.0 配置权限-->
+ <uses-permission android:name="com.meizu.c2dm.permission.RECEIVE" />
+ <permission
+     android:name="${applicationId}.permission.C2D_MESSAGE"
+     android:protectionLevel="signature" />
+ <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
+ <!-- 魅族推送配置 end-->
+ ```
+
+ - 推送服务需要的 receiver：
+
+```xml
+ <!-- MEIZU 推送配置 start -->
+ <receiver android:name="io.agora.push.platform.meizu.MzMsgReceiver">
+     <intent-filter>
+         <!-- 接收 push 消息 -->
+         <action android:name="com.meizu.flyme.push.intent.MESSAGE"
+             />
+         <!-- 接收 register 消息 -->
+         <action
+             android:name="com.meizu.flyme.push.intent.REGISTER.FEEDBACK" />
+         <!-- 接收 unregister 消息-->
+         <action
+             android:name="com.meizu.flyme.push.intent.UNREGISTER.FEEDBACK"/>
+         <!-- 兼容低版本 Flyme3 推送服务配置 -->
+         <action android:name="com.meizu.c2dm.intent.REGISTRATION"
+             />
+         <action android:name="com.meizu.c2dm.intent.RECEIVE" />
+         <category android:name="${applicationId}"></category>
+     <	/intent-filter>
+ </receiver>
+ <!-- MEIZU 推送配置 end -->
+```
+
+3. 在 SDK 初始化时配置启用魅族推送。
+
+```java
+ChatOptions options = new ChatOptions();
+...
+PushConfig.Builder builder = new PushConfig.Builder(this);
+builder.enableMeiZuPush(String appId,String appKey);
+// 将 pushconfig 设置为 ChatOptions
+options.setPushConfig(builder.build());
+// 初始化 IM SDK
 ChatClient.getInstance().init(this, options);
 ```
 
@@ -216,7 +636,7 @@ ChatClient.getInstance().init(this, options);
 </tr>
 <tr>
 <td width="184">
-<p>ALL</p>
+<p>`ALL`</p>
 </td>
 <td width="420">
 <p>接收所有离线消息的推送通知。</p>
@@ -228,16 +648,16 @@ ChatClient.getInstance().init(this, options);
 </tr>
 <tr>
 <td width="184">
-<p>MENTION_ONLY</p>
+<p>`MENTION_ONLY`</p>
 </td>
 <td width="420">
 <p>仅接收提及消息的推送通知。</p>
-<p>该参数推荐在群聊中使用。若提及一个或多个用户，需在创建消息时对 ext 字段传 "em_at_list":["user1", "user2" ...]；若提及所有人，对该字段传 "em_at_list":"all"。</p>
+<p>该参数推荐在群聊中使用。若提及一个或多个用户，需在创建消息时对 `ext` 字段传 "em_at_list":["user1", "user2" ...]；若提及所有人，对该字段传 "em_at_list":"all"。</p>
 </td>
 </tr>
 <tr>
 <td width="184">
-<p>NONE</p>
+<p>`NONE`</p>
 </td>
 <td width="420">
 <p>不接收离线消息的推送通知。</p>
@@ -259,8 +679,8 @@ ChatClient.getInstance().init(this, options);
 
 | 免打扰时间参数     |  描述   |   应用范围 |
 | :--------| :----- | :----------------------------------------------------------- |
-| SILENT_MODE_INTERVAL | 免打扰时间段，精确到分钟，格式为 HH:MM-HH:MM，例如 08:30-10:00。该时间为 24 小时制，免打扰时间段的开始时间和结束时间中的小时数和分钟数的取值范围分别为 [00,23] 和 [00,59]。免打扰时间段的设置说明如下：<ul><li>开始时间和结束时间的设置立即生效，免打扰模式每天定时触发。例如，开始时间为 `08:00`，结束时间为 `10:00`，免打扰模式在每天的 8:00-10:00 内生效。若你在 11:00 设置开始时间为 `08:00`，结束时间为 `12:00`，则免打扰模式在当天的 11:00-12:00 生效，以后每天均在 8:00-12:00 生效。</li><li>若开始时间和结束时间相同，免打扰模式则全天生效。</li><li>若结束时间早于开始时间，则免打扰模式在每天的开始时间到次日的结束时间内生效。例如，开始时间为 `10:00`，结束时间为 `08:00`，则免打扰模式的在当天的 10:00 到次日的 8:00 生效。</li><li>目前仅支持在每天的一个指定时间段内开启免打扰模式，不支持多个免打扰时间段，新的设置会覆盖之前的设置。</li><li>若不设置该参数，传空字符串。 | 仅用于 app 级别，对单聊或群聊会话不生效。</li></ul> |
-| SILENT_MODE_DURATION|  免打扰时长，单位为毫秒。免打扰时长的取值范围为 [0,604800000]，`0` 表示该参数无效，`604800000` 表示免打扰模式持续 7 天。<br/> 与免打扰时间段的设置长久有效不同，该参数为一次有效。    | App 或单聊/群聊会话。  |
+| `SILENT_MODE_INTERVAL` | 免打扰时间段，精确到分钟，格式为 HH:MM-HH:MM，例如 08:30-10:00。该时间为 24 小时制，免打扰时间段的开始时间和结束时间中的小时数和分钟数的取值范围分别为 [00,23] 和 [00,59]。免打扰时间段的设置说明如下：<ul><li>开始时间和结束时间的设置立即生效，免打扰模式每天定时触发。例如，开始时间为 `08:00`，结束时间为 `10:00`，免打扰模式在每天的 8:00-10:00 内生效。若你在 11:00 设置开始时间为 `08:00`，结束时间为 `12:00`，则免打扰模式在当天的 11:00-12:00 生效，以后每天均在 8:00-12:00 生效。</li><li>若开始时间和结束时间相同，免打扰模式则全天生效。</li><li>若结束时间早于开始时间，则免打扰模式在每天的开始时间到次日的结束时间内生效。例如，开始时间为 `10:00`，结束时间为 `08:00`，则免打扰模式的在当天的 10:00 到次日的 8:00 生效。</li><li>目前仅支持在每天的一个指定时间段内开启免打扰模式，不支持多个免打扰时间段，新的设置会覆盖之前的设置。</li><li>若不设置该参数，传空字符串。</li></ul> | 仅用于 app 级别，对单聊或群聊会话不生效。 |
+| `SILENT_MODE_DURATION`|  免打扰时长，单位为毫秒。免打扰时长的取值范围为 [0,604800000]，`0` 表示该参数无效，`604800000` 表示免打扰模式持续 7 天。<br/> 与免打扰时间段的设置长久有效不同，该参数为一次有效。    | App 或单聊/群聊会话。  |
 
 若在免打扰时段或时长生效期间需要对指定用户推送消息，需设置[强制推送](#forced)。
 
@@ -489,16 +909,37 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 | `g`  | 群组 ID，仅当消息为群组消息时，该字段存在。     |
 | `e`  | 用户自定义扩展字段。     |
 
-其中 e 为用户自定义扩展，而数据来源为 `em_apns_ext` 或者 `em_apns_ext.extern`。
+其中 e 为用户自定义扩展，而数据来源为 `em_apns_ext` 或 `em_apns_ext.extern`。
 
 规则如下：
 
-- 当 `extern` 不存在时，`e` 内容为 `em_apns_ext` 下推送服务未使用字段。具体为移除 `em_push_title`，`em_push_content`，`em_push_name`，`em_push_channel_id`，`em_huawei_push_badge_class` 字段后剩余所有。
+- 当 `extern` 不存在时，`e` 内容为 `em_apns_ext` 下推送服务未使用字段，即除 `em_push_title`，`em_push_content`，`em_push_name`，`em_push_channel_id`，`em_huawei_push_badge_class` 之外的其他字段。
 - 当 `extern` 存在时，使用 `extern` 下字段。
+
 
 ### 示例代码
 
-**解析华为推送字段**
+#### 解析 FCM 推送字段
+
+重写 `FirebaseMessagingService.onMessageReceived` 方法可以在 `RemoteMessage` 对象中获取自定义扩展：
+
+```java
+public class FCMMSGService extends FirebaseMessagingService {
+    @Override
+    public void onMessageReceived(RemoteMessage remoteMessage) {
+        super.onMessageReceived(remoteMessage);
+        if (remoteMessage.getData().size() > 0) {
+            String f = remoteMessage.getData().get("f");
+            String t = remoteMessage.getData().get("t");
+            String m = remoteMessage.getData().get("m");
+            String g = remoteMessage.getData().get("g");
+            Object e = remoteMessage.getData().get("e");
+        }
+    }
+}
+```
+
+#### 解析华为推送字段
 
 ```java
 public class SplashActivity extends BaseActivity {
@@ -516,7 +957,10 @@ public class SplashActivity extends BaseActivity {
 	}
 }
 ```
-**解析小米推送字段**
+
+#### 解析小米推送字段
+
+重写 `EMMiMsgReceiver.onNotificationMessageClicked` 方法可以在 `MiPushMessage` 对象中获取自定义扩展：
 
 ```java
 public class MiMsgReceiver extends EMMiMsgReceiver {
@@ -535,6 +979,35 @@ public class MiMsgReceiver extends EMMiMsgReceiver {
     }
 }
 ```
+
+#### 解析 VIVO 推送字段
+
+重写 `VivoMsgReceiver.onNotificationMessageClicked` 方法可以在 `UPSNotificationMessage` 对象中获取自定义扩展：
+
+```java
+public class MyVivoMsgReceiver extends VivoMsgReceiver {
+    @Override
+    public void onNotificationMessageClicked(Context context, UPSNotificationMessage upsNotificationMessage) {
+        Map<String, String> map = upsNotificationMessage.getParams();
+        if(!map.isEmpty()) {
+            String t = map.get("t");
+            String f = map.get("f");
+            String m = map.get("m");
+            String g = map.get("g");
+            Object e = map.get("e");
+        }
+    }
+}
+```
+
+#### 解析 OPPO 推送字段
+
+解析方式同华为。
+
+#### 解析魅族推送字段
+
+解析方式同华为。
+
 ## 更多功能
 
 ### 自定义字段
