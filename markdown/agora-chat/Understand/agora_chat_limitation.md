@@ -156,7 +156,7 @@
 | 下载文件                     | GET    | /{org_name}/{app_name}/chatfiles/{file_uuid}              | 100 次/秒/App Key                                            |
 | 获取历史消息记录 | GET    | /{org_name}/{app_name}/chatmessages/${time}          | 10 次/分钟/App Key                                           |
 | 服务端消息撤回               | POST   | {org_name}/{app_name}/messages/recall                | 100 次/秒/App Key                                            |
-| 服务端单向删除会话           | DELETE | {org_name}/{app_name}/users/{username}/user_channel    | 5 次/分钟/单用户 ID，100 次/秒/App Key                                            |
+| 服务端单向删除会话           | DELETE | /{org_name}/{app_name}/users/{username}/user_channel    | 5 次/分钟/单用户 ID，100 次/秒/App Key                                            |
 | 拉取会话列表                 | GET    | /{org_name}/{app_name}/user/{username}/user_channels | 5 次/分钟/单用户 ID，100 次/秒/App Key                       |
 
 ### 用户属性
@@ -183,7 +183,7 @@
 | 获取好友列表   | GET    | /{org_name}/{app_name}/users/{owner_username}/contacts/users | 100 次/秒/App Key          |
 | 获取黑名单列表 | GET    | /{org_name}/{app_name}/users/{owner_username}/blocks/users   | 50 次/秒/App Key           |
 | 添加用户至黑名单     | POST   | /{org_name}/{app_name}/users/{owner_username}/blocks/users   | 50 次/秒/App Key           |
-| 移除黑名单     | DELETE | /{org_name}/{app_name}/users/{owner_username}/blocks/users/{blocked_username} | 50 次/秒/App Key           |
+| 从黑名单移除用户     | DELETE | /{org_name}/{app_name}/users/{owner_username}/blocks/users/{blocked_username} | 50 次/秒/App Key           |
 
 ### 群组管理
 
@@ -197,7 +197,7 @@
 | 删除群组                        | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}                 | 100 次/秒/App Key          |
 | 获取群组公告                    | GET    | {org_name}/{app_name}/chatgroups/{group_id}/announcement     | 100 次/秒/App Key          |
 | 修改群组公告                    | POST   | {org_name}/{app_name}/chatgroups/{group_id}/announcement     | 100 次/秒/App Key          |
-| 获取群组共享文件                | GET    | - 不分页：{org_name}/{app_name}/chatgroups/{group_id}/share_files- 分页：{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagenum=1&pagesize=10 | 100 次/秒/App Key          |
+| 获取群组共享文件                | GET    | {org_name}/{app_name}/chatgroups/{group_id}/share_files?pagenum=1&pagesize=10 | 100 次/秒/App Key          |
 | 上传群组共享文件                | POST   | {org_name}/{app_name}/chatgroups/{group_id}/share_files      | 100 次/秒/App Key          |
 | 下载群组共享文件                | GET    | {org_name}/{app_name}/chatgroups/{group_id}/share_files/{file_id} | 100 次/秒/App Key          |
 | 删除群组共享文件                | DELETE | {org_name}/{app_name}/chatgroups/{group_id}/share_files/{file_id} | 100 次/秒/App Key          |
