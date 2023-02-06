@@ -7,58 +7,7 @@ To ensure security in real-time communication, Agora provide tokens for you to a
 | RESTful API calls | Token with app privileges | <ul><li>App ID of your Agora Chat project</li><li>App certificate of your Agora Chat project</li><li>Token validity period for your Agora Chat project</li></ul> | 24 hours |
 | SDK API calls | Token with user privileges | <ul><li>App ID of your Agora Chat project</li><li>App certificate of your Agora Chat project</li><li>Token validity period for your Agora Chat project</li><li>UUID of the user to be authenticated. </li></ul><div class="alert info">The UUID is a unique internal identifier that Agora Chat generates for a user through <a href="https://docs.agora.io/en/agora-chat/agora_chat_restful_registration#registering-a-user">User Registration REST APIs</a>.</div> | 24 hours |
 
-## Experience token generation
-
-For the test purpose, you can generate temporary tokens on Agora Console. However, in the development environment, you need to deploy your own app server to use AgoraTools to generate tokens. 
-
-In the test environment, tokens with user privileges are generated based on the user ID. If no user is created, you need to register a user.
-
-### 1. Register a user
-
-To register a user, do the following:
-
-1. On the **Project Management** page, click **Config** for the project that you want to use.
-
-	![](https://web-cdn.agora.io/docs-files/1664531061644)
-
-2. On the **Service Config** page, click **Config** in the **Chat** section.
-
-	![](agora-chat/images/token_token_config_chat.png)
-
-3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
-
-	![](https://web-cdn.agora.io/docs-files/1664531141100)
-
-4. In the **Create User** dialog box, fill in the **User ID**, **Nickname**, and **Password**, and click **Save** to create a user.
-
-	![](https://web-cdn.agora.io/docs-files/1664531162872)
-
-
-### 2. Generate a user token
-
-To ensure communication security, Agora recommends using tokens to authenticate users who log in to the Agora Chat system.
-
-For testing purposes, Agora Console supports generating temporary tokens for Agora Chat. To generate a user token, do the following:
-
-1. On the **Project Management** page, click **Config** for the project that you want to use.
-
-	![](https://web-cdn.agora.io/docs-files/1664531061644)
-
-2. On the **Service Config** page, click **Config** in the **Chat** section.
-
-	![](agora-chat/images/token_token_config_chat.png)
-
-3. In the **Data Center** section of the **Application Information** page, enter the [user ID](#userid) in the **Chat User Temp Token** box and click **Generate** to generate a token with user privileges.
-
-	![](https://web-cdn.agora.io/docs-files/1664531214169)
-
-### 3. Generate an app token
-
-In the **Data Center** section of the **Application Information** page, click **Generate** next to **Chat App Temp Token** to generate a token with app privileges.
-
-![](agora-chat/images/token_generate_app_token.png)
-
-For security concerns, in the development environment, you need to deploy your own app server to use AgoraTools to generate tokens. This page introduces how to retrieve tokens from your app server to authenticate your users.
+This page introduces how to retrieve tokens from your app server to authenticate your users.
 
 ## Understand the tech
 
