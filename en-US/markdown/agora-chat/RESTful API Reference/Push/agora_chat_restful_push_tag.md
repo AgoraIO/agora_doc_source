@@ -2,81 +2,91 @@
 
 即时通讯服务支持通过设置标签自定义推送用户，实现精准推送。标签用于描述用户的生活习惯、兴趣爱好、行为特征等信息。对用户设置标签后，推送消息时，指定某一推送标签，即可向该标签下的用户发送消息。例如，可以为一些用户打上“时尚弄潮儿”标签后，可定期向该人群推送国内外潮流品牌的相关信息。
 
+// 为推送的目标用户添加标签，对用户进行分组，实现精细化推送。
+
 你可以通过 RESTful API 进行标签管理。用户与标签是多对多的关系，即一个用户可以有多个标签，一个标签下也可以有多个用户。
 
 本文档主要介绍如何调用即时推送 RESTful API 实现创建及管理推送标签。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+## <a name="param"></a>Common parameters
 
-### 请求参数
+The following table lists common request and response parameters of the Chat RESTful APIs:
 
-| 参数       | 类型   | 描述                    | 是否必需 | 
+### Request parameters
+
+| Parameter      | Type | Description    | Required | 
 | :--------- | :----- |:------------- | :------- | 
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。 | 是     | 
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。| 是     | 
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。 | 是    | 
-| `username` | String | 用户 ID。          | 是     | 
+| `host`     | String | The domain name assigned by the Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes   | 
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Chat service. For how to get the organization name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes     | 
+| `app_name` | String | The unique identifier assigned to each app by the Chat service. For how to get the app name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes    | 
+| `username` | String | The unique login account of the user.    | Yes     | 
 
-### 响应参数
+### Response parameters
 
-| 参数         | 类型     | 描述           |
+| Parameter        | Type   | Description          |
 | :----------| :----------- | :----------------- |
-| `timestamp` | Number      | 响应的 Unix 时间戳，单位为毫秒。 |
-| `duration`  | Number      | 从发送请求到响应的时长，单位为毫秒。 |
+| `timestamp` | Number      | The Unix timestamp (ms) of the HTTP response.  |
+| `duration`  | Number      | The duration (ms) from when the HTTP request is sent to the time the response is received. |
 
-## 认证方式
 
-即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入如下 Authorization 字段：
+## Authorization
 
-Authorization：`Bearer ${YourAppToken}`
+Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 app token 鉴权](./agora_chat_token?platform=RESTful)。
+```
+Authorization: Bearer ${YourAppToken}
+```
 
-## 创建推送标签
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
 
-为推送的目标用户添加标签，对用户进行分组，实现精细化推送。当前最多可创建 100 个推送标签。如需提升该上限，请联系[support@agora.io](support@agora.io)。
 
-### HTTP 请求
+## Create a push label
+
+Creates a push label.
+
+<div class="alert note">You can create a maximum of 100 push labels. To lift the upper limit, contact <a href="mailto:support@agora.io">support@agora.io</a>.</div>
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/push/label
 ```
-#### 路径参数
+#### Path parameter
 
-参数及描述详见 [公共参数](#param)。
+For the descriptions of path parameters, see [Common parameters](#param).
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述      | 是否必需 | 
+| Parameter           | Type | Description     | Required | 
 | :-------------- | :----- | :------- | :---------- |
-| `Content-Type`  | String | 内容类型：`application/json`   | 是   | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是    | 
+| `Content-Type`  | String | The content type. Set it as `application/json`.  | Yes   | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value.  | Yes    | 
  
-#### 请求 body
+#### Request body
 
-| 字段          | 类型   | 描述       | 是否必需 | 
+| Parameter         | Type | Description      | Required | 
 | :------------ | :------- | :----- | :--------------- |
-| `name`        | String | 要创建的推送标签的名称，不能超过 64 个字符。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"\_", "-", "."</li></ul><div class="alert note"><li>区分大小写，因此 `Aa` 和 `aa` 为两个标签名称。<li>同一个 app 下，标签名称必须唯一。</div>          | 是     | 
-| `description` | String | 推送标签的描述，不能超过 255 个字符。 | 否     | 
+| `name`        | String | The name of the push label. The length of each label name cannot exceed 64 characters, and the following character sets are supported:<ul><li>26 lowercase English letters (a-z)</li><li>26 uppercase English letters (A-Z)</li><li>10 numbers (0-9)</li><li>"\_", "-", "."</li></ul><div class="alert note"><ul><li>The label name is case insensitive, so "Aa" and "aa" are the same label.</li><li>Ensure that each label name under the same app is unique.</li></ul></div>          | Yes     | 
+| `description` | String | The description of the push label. The length of the label description cannot exceed 255 characters. | No     | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | JSON | 推送标签的数据。 |
-| `name` | String | 推送标签的名称。 |
-| `description` | String | 推送标签的描述。 |
-| `createdAt` | Number | 推送标签的创建时间。该时间为 Unix 时间戳，单位为毫秒。 |
+| `data` | JSON | The detailed information of the push label. |
+| `name` | String | The label name. |
+| `description` | String | The label description. |
+| `createdAt` | Number | The Unix timestamp (ms) when the push label was created. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-### 示例
+### Example
 
-#### 请求示例
+#### Request example
 
 ```shell
 curl -L -X POST 'localhost/hx/hxdemo/push/label' \
@@ -88,7 +98,7 @@ curl -L -X POST 'localhost/hx/hxdemo/push/label' \
 }'
 ``` 
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -102,57 +112,58 @@ curl -L -X POST 'localhost/hx/hxdemo/push/label' \
 }
 ```
 
-## 查询指定的推送标签
+## Query the detailed information of a push label
 
-查询指定的推送标签。
+Retrieves the detailed information of the specified push label.
 
-### HTTP 请求
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/push/label/{labelname}
 ```
 
-#### 路径参数
+#### Path parameter
 
-| 参数        | 类型   | 描述       | 是否必需 | 
+| Parameter       | Type | Description      | Required | 
 | :---------- | :------- | :----- | :------------- |
-| `labelname` | String | 要查询的推送标签的名称。 | 是     | 
+| `labelname` | String | The name of the push label. | Yes     | 
 
-其他参数及描述详见 [公共参数](#param)。
+For the descriptions of other path parameters, see [Common parameters](#param).
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述      | 是否必需 | 
+| Parameter           | Type | Description     | Required | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是    | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes    | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | JSON | 推送标签的数据。 |
-| `name` | String | 推送标签的名称。 |
-| `description` | String | 推送标签的描述。 |
-| `count` | Number | 该推送标签下的用户数量。 |
-| `createdAt` | Number | 推送标签的创建时间。该时间为 Unix 时间戳，单位为毫秒。 |
+| `data` | JSON | The detailed information of the push label. |
+| `name` | String | The label name. |
+| `description` | String | The label description. |
+| `count` | Number | The number of the users added to the push label. |
+| `createdAt` | Number | The Unix timestamp (ms) when the push label was created. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
-### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 请求示例
+### Example
+
+#### Request example
  
 ```shell
 curl -L -X GET 'localhost/hx/hxdemo/push/label/90' \
 -H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -167,62 +178,63 @@ curl -L -X GET 'localhost/hx/hxdemo/push/label/90' \
 }
 ```
 
-## 分页查询推送标签
+## Query the detailed information of push labels by page
 
-分页查询推送标签。
+Retrieves the detailed information of multiple push labels by page.
 
-### HTTP 请求
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/push/label
 ```
 
-#### 路径参数
+#### Path parameter
 
-参数及描述详见 [公共参数](#param)。
+For the descriptions of the other path parameters, see [Common parameters](#param).
 
-#### 查询参数
+#### Query parameters
 
-| 参数     | 类型   | 描述   | 是否必需 | 
+| Parameter    | Type | Description  | Required | 
 | :------- | :------- | :----- | :----------------------- |
-| `limit`  | Number | 每页显示的推送标签的数量，取值范围为 [1,100]，默认为 `100`。 | 否   | 
-| `cursor` | String | 数据查询的起始位置。           | 否  | 
+| `limit`  | Number | The number of push labels displayed per page. The range is [1,100]. The default value is `100`.  | No   | 
+| `cursor` | String | The start position for the next query.  | No  | 
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述      | 是否必需 | 
+| Parameter           | Type | Description     | Required | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型：`application/json`    | 是    | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes     | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | JSON Array | 推送标签的数据。 |
-| `name` | String | 推送标签的名称。 |
-| `description` | String | 推送标签的描述。 |
-| `count` | Number | 该推送标签下的用户数量。 |
-| `createdAt` | Number | 推送标签的创建时间。该时间为 Unix 时间戳，单位为毫秒。 |
+| `data` | JSON Array | The detailed information of the push label. |
+| `name` | String | The label name. |
+| `description` | String | The label description. |
+| `count` | Number | The number of the users added to the push label. |
+| `createdAt` | Number | The Unix timestamp (ms) when the push label was created. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
-### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 请求示例
+### Example
 
-```
+#### Request example
+
+```shell
 curl -L -X GET 'localhost/hx/hxdemo/push/label' \
 -H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
 ```
 
-### 响应示例
+#### Response example
 
-```
+```json
 {
     "timestamp": 1648720425599,
     "data": [
@@ -243,53 +255,54 @@ curl -L -X GET 'localhost/hx/hxdemo/push/label' \
 }
 ```
 
-## 删除指定的推送标签
+## Delete a push label
 
-删除指定的推送标签。每次只能删除单个推送标签。
+Deletes the specified push label. You can delete one push label at each call.
 
-### HTTP 请求
+### HTTP request
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}
 ```
 
-#### 路径参数
+#### Path parameter
 
-| 参数        | 类型   | 描述       | 是否必需 | 
+| Parameter       | Type | Description      | Required | 
 | :---------- | :------- | :----- | :------------- |
-| `labelname` | String | 要删除的推送标签的名称。 | 是     | 
+| `labelname` | String | The name of the push label. | Yes     | 
 
-其他参数及描述详见 [公共参数](#param)。
+For the descriptions of the other path parameters, see [Common parameters](#param).
 
-#### 请求 header 
+#### Request header 
 
-| 参数            | 类型   | 描述   | 是否必需 | 
+| Parameter           | Type | Description  | Required | 
 | :------------- | :----- | :------- | :--------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
-| `Authorization` | String |`Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String |The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes     | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | String | `success` 表示推送标签成功删除。 | 
+| `data` | String | The request result. `success` indicates that the delete operation proceeds properly. | 
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
-### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 请求示例
+### Example
+
+#### Request example
 
 ```shell
 curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s' \
 -H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -299,56 +312,59 @@ curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s' \
 }
 ```
 
-## 在推送标签下添加用户 
 
-为用户分配指定的推送标签。
+## Add users to a push label
 
-### HTTP 请求
+Adds one or more users to the specified push label. You can add a maximum of 100 users at each call.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 ```
 
-#### 路径参数
+#### Path parameter
 
-| 参数        | 类型   | 描述       | 是否必需 | 
+| Parameter       | Type | Description      | Required | 
 | :---------- | :------- | :----- | :------------- |
-| `labelname` | String | 推送标签的名称。 | 是     | 
+| `labelname` | String | The name of the push label. | Yes     | 
 
-其他参数及描述详见 [公共参数](#param)。
+For the descriptions of the other path parameters, see [Common parameters](#param).
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述   | 是否必需 | 
+| Parameter           | Type | Description  | Required | 
 | :------------- | :----- | :------- | :--------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Content-Type`  | String | The content type. Set it as `application/json`.        | Yes     | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes     | 
 
-#### 请求 body
+#### Request body
 
-| 字段        | 类型 | 描述                         | 是否必需 |
+| Parameter       |Type| Description                        | Required |
 | :---------- | :------- | :--- | :---------------------------- |
-| `usernames` | List | 推送标签下的用户 ID 列表，最多可传 100 个用户 ID。 | 是     |
+| `usernames` | List | The IDs of the users to be added to the push label. You can pass a maximum of 100 users for each request. | Yes     |
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | JSON | 用户添加结果。 |
-| `success` | List | 列明成功添加的用户 ID。|
-| `fail` | JSON | 返回的用户添加失败的结果，为键值对格式，其中 key 为添加失败的用户 ID，value 为失败原因。|
+| `data` | JSON | The request result. |
+| `success` | List | The user IDs properly added to the push label. |
+| `fail` | JSON | If add operations fail, the user IDs failed to be added and the corresponding failure reasons are returned in key-value pairs. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
-### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 请求示例
+### Example
 
-```
+#### Request example
+
+```shell
 curl -L -X POST 'localhost/hx/hxdemo/push/label/post-90s/user' \
 -H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A' \
 -H 'Content-Type: application/json' \
@@ -357,9 +373,9 @@ curl -L -X POST 'localhost/hx/hxdemo/push/label/post-90s/user' \
 }'
 ```
 
-### 响应示例
+#### Response example
 
-```
+```json
 {
     "timestamp": 1648721496345,
     "data": {
@@ -373,56 +389,57 @@ curl -L -X POST 'localhost/hx/hxdemo/push/label/post-90s/user' \
 }
 ```
 
-## 查询标签下的指定用户
+## Query the specified user under the specified push label
 
-查询推送标签是否包含指定用户。
+Retrieves the detailed information of the specified user under the specified push label.
 
-### HTTP 请求
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{member}
 ```
 
-#### 路径参数
+#### Path parameter
 
-| 参数        | 类型   | 描述       | 是否必需 | 
+| Parameter       | Type | Description      | Required | 
 | :---------- | :------- | :----- | :------------- |
-| `labelname` | String | 推送标签的名称。 | 是     |
-| `member`    | String | 要查询的用户 ID。 | 是     | 
+| `labelname` | String | The name of the push label. | Yes     |
+| `member`    | String | The ID of the user. | Yes     | 
 
-其他参数及描述详见 [公共参数](#param)。
+For the descriptions of the other path parameters, see [Common parameters](#param).
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述   | 是否必需 | 
+| Parameter           | Type | Description  | Required | 
 | :------------- | :----- | :------- | :--------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes     | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | JSON | 用户数据。 |
-| `username` | String | 要查询的用户 ID。 |
-| `created` | Number | 添加用户的 Unix 时间戳，单位为毫秒。| 
+| `data` | JSON | The detailed information of the user. |
+| `username` | String | The user ID. |
+| `created` | Number | The Unix timestamp (ms) when the user was added to the push label. | 
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
-### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 请求示例
+### Example
+
+#### Request example
 
 ```shell
 curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user/hx1' \
 -H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -435,63 +452,63 @@ curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user/hx1' \
 }
 ```
 
-## 分页查询指定标签下的用户
 
-分页查询指定标签下包含的用户。
+## Query the detailed information of users under the specified push label by page
 
-### HTTP 请求
+Retrieves the detailed information of one or more users under the specified push label by page.
+
+### HTTP request
 
 ```http
 GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 ```
 
-#### 路径参数
+#### Path parameter
 
-| 参数        | 类型   | 描述       | 是否必需 | 
+| Parameter       | Type | Description      | Required | 
 | :---------- | :------- | :----- | :------------- |
-| `labelname` | String | 推送标签的名称。 | 是     |
+| `labelname` | String | The name of the push label. | Yes     |
 
-其他参数及描述详见 [公共参数](#param)。
+For the descriptions of the other path parameters, see [Common parameters](#param).
 
-#### 查询参数
+#### Query parameters
 
-| 字段     | 类型   | 描述           | 是否必需 |
+| Parameter    | Type | Description          | Required |
 | :------- | :------- | :----- | :----------------------- |
-| `limit`  | String | 每次查询的用户数量，取值范围为 [1,100]，默认为 `100`。 | 否   |
-| `cursor` | String | 数据查询的起始位置。           | 否   |
+| `limit`  | String | The number of the users displayed per page. The range is [1,100]. The default value is `100`. | No   |
+| `cursor` | String | The start position for the next query.        | No   |
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述       | 是否必需 | 
+| Parameter           | Type | Description      | Required | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes     | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `cursor` | String | 下次查询的起始位置。 |
-| `data` | JSON Array | 获得的用户的数据。 |
-| `username` | String | 获得的该标签下的用户 ID。 |
-| `created` | Number | 添加用户的 Unix 时间戳，单位为毫秒。| 
+| `cursor` | String | The start position for the next query. |
+| `data` | JSON Array | The detailed information of the users. |
+| `username` | String | The user ID. |
+| `created` | Number | The Unix timestamp (ms) when the user was added to the push label. | 
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-### 示例
+### Example
 
-#### 请求示例
+#### Request example
 
 ```shell
 curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user?limit=1' \
 -H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -507,54 +524,55 @@ curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user?limit=1' \
 }
 ```
 
-## 批量移出指定推送标签下的用户
 
-一次移除指定推送标签下的单个或多个用户。
+## Remove users from a push label
 
-### HTTP 请求
+Removes one or more users from the specified push label. You can remove a maximum of 100 users at each call.
+
+### HTTP request
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 ```
 
-#### 路径参数
+#### Path parameter
 
-| 参数        | 类型   | 描述          | 是否必需 |
+| Parameter       | Type | Description         | Required |
 | :---------- | :------- | :----- | :------------- |
-| `labelname` | String | 推送标签的名称。 | 是     |
+| `labelname` | String | The name of the push label. | Yes     |
 
-其他参数及描述详见[公共参数](#param)。
+For the descriptions of the other path parameters, see [Common parameters](#param).
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述              | 是否必需 | 
+| Parameter           | Type | Description             | Required | 
 | :-------------- | :----- | :------- | :----------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Content-Type`  | String | The content type. Set it as `application/json`.        | Yes     |
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes     | 
 
-#### 请求 body
+#### Request body
 
-| 字段        | 类型 | 描述        | 是否必需 | 
-| :---------- | :------- | :--- | :-------------------------- |
-| `usernames` | List | 要移出标签的用户 ID 列表，最多可传 100 个用户 ID。 | 是   | 
+| `usernames` | List | The IDs of the users to be removed from the push label. You can pass a maximum of 100 users for each request. | Yes     |
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段       | 类型   | 描述     |
+| Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | JSON | 用户移出标签的结果。 |
-| `Success` | List | 被移出标签的用户 ID。 |
-| `fail` | JSON | 返回的用户移出标签失败的结果，为键值对格式，其中 key 为移出失败的用户 ID，value 为失败原因。 | 
+| `data` | JSON | The request result. |
+| `success` | List | The user IDs properly removed from the push label. |
+| `fail` | JSON | If remove operations fail, the user IDs failed to be removed and the corresponding failure reasons are returned in key-value pairs. |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
-### 示例
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-#### 请求示例
+### Example
+
+#### Request example
 
 ```shell
 curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s/user' \
@@ -565,7 +583,7 @@ curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s/user' \
 }'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -580,3 +598,7 @@ curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s/user' \
     "duration": 1
 }
 ```
+
+## Status codes
+
+For details, see [HTTP Status Codes](./agora_chat_status_code).
