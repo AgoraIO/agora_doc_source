@@ -180,7 +180,7 @@ All chat group members can call `getChatThreadMemberListFromServerWithId` to ret
 ```ObjectiveC
 // threadId: The thread ID.
 // pageSize: The maximum number of members to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.
+// cursor: The position from which to start getting data. Pass in `nil` or an empty string at the first call.
 [[AgoraChatClient sharedClient].threadManager getChatThreadMemberListFromServerWithId:self.threadId cursor:aCursor pageSize:pageSize completion:^(AgoraChatCursorResult *aResult, AgoraChatError *aError) {
     if !aError { self.cursor = aResult; }
 }];
@@ -192,7 +192,7 @@ Users can call `getJoinedChatThreadsFromServer` to retrieve a paginated list fro
 
 ```ObjectiveC
 // limit: The maximum number of threads to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call.        
+// cursor: The position from which to start getting data. Pass in `nil` or an empty string at the first call.        
 [AgoraChatClient.sharedClient.threadManager getJoinedChatThreadsFromServerWithCursor:@"" pageSize:20 completion:^(AgoraChatCursorResult * _Nonnull result, AgoraChatError * _Nonnull aError) {
         
 }];
@@ -203,7 +203,7 @@ Users can call `getJoinedChatThreadsFromServer` to retrieve a paginated list fro
 ```ObjectiveC
 // parentId: The chat group ID.
 // pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call. 
+// cursor: The position from which to start getting data. Pass in `nil` or an empty string at the first call. 
 [AgoraChatClient.sharedClient.threadManager getJoinedChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult * _Nonnull result, AgoraChatError * _Nonnull aError) {
     if (!aError) {
 
@@ -216,7 +216,7 @@ Users can also call `getChatThreadsFromServer` to retrieve a paginated list from
 ```ObjectiveC
 // parentId: The chat group ID.
 // pageSize: The maximum number of threads to retrieve per page. The range is [1, 50].
-// cursor: The position from which to start getting data. Pass in `null` or an empty string at the first call. 
+// cursor: The position from which to start getting data. Pass in `nil` or an empty string at the first call. 
 [[AgoraChatClient sharedClient].threadManager getChatThreadsFromServerWithParentId:self.group.groupId cursor:self.cursor ? self.cursor.cursor:@"" pageSize:20 completion:^(AgoraChatCursorResult *result, AgoraChatError *aError) {
     if (!aError) {
 
