@@ -25,6 +25,8 @@
 
 ### 创建群组
 
+群组可分为私有群和公有群。私有群不可被搜索到，公开群可通过群组 ID 搜索到。
+
 用户可以创建群组，并设置群组的名称、描述、群组成员、创建群组的原因等属性。用户还可以设置 `GroupOptions` 参数指定群组的大小和类型。创建群组后，群组创建者自动成为群主。
 
 创建群组前，你需要设置群组的类型（`GroupStyle`）和邀请进群是否需要对方同意（`inviteNeedConfirm`）。其中：
@@ -60,7 +62,7 @@
 只有 `GroupOptions#inviteNeedConfirm` 设置为 `true` 和 `autoAcceptGroupInvitation` 设置为 `false` 时，受邀用户需要确认才能进群。这种情况下，受邀用户收到 `GroupChangeListener#onInvitationReceived` 回调，并选择同意或拒绝进群邀请：
 
 - 用户同意入群邀请后，邀请人收到 `GroupChangeListener#onInvitationAccepted` 回调和 `GroupChangeListener#onMemberJoined` 回调，其他群成员收到 `GroupChangeListener#onMemberJoined` 回调；
-- 用户拒绝入群邀请后，邀请人收到 `GroupChangeListener#groupInvitationDidDecline` 回调。
+- 用户拒绝入群邀请后，邀请人收到 `GroupChangeListener#onInvitationDeclined` 回调。
 
 用户可以调用 `createGroup` 方法创建群组，并通过 `GroupOptions` 参数设置群组名称、群组描述、群组成员和建群原因。
 
