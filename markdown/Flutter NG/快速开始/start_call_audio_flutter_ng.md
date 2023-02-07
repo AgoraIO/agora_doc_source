@@ -18,11 +18,11 @@ $$
 
 ## 获取 App ID 和 Token
 
-### 1. 创建 Agora 项目
+### 1. 创建项目
 
 ~4c028930-19e2-11eb-b0e2-eb6c69fefbc6~
 
-### 2. 获取 Agora 项目的 App ID
+### 2. 获取项目的 App ID
 
 ~bbd6ec60-19e2-11eb-b0e2-eb6c69fefbc6~
 
@@ -42,7 +42,7 @@ $$
 
 在 `pubspec.yaml` 文件中添加以下依赖项：
 
-1. 添加 `agora_rtc_engine` 依赖项，集成 Agora Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
+1. 添加 `agora_rtc_engine` 依赖项，集成声网 Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
 3. 添加 `permission_handler` 依赖项，安装权限处理插件。
 
 ```
@@ -57,7 +57,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
-  # Agora Flutter SDK 依赖项，请使用最新版本的 agora_rtc_engine
+  # 声网 Flutter SDK 依赖项，请使用最新版本的 agora_rtc_engine
   agora_rtc_engine: ^6.0.0
   #  权限处理插件依赖项
   permission_handler: ^8.3.0
@@ -223,4 +223,4 @@ class _MyAppState extends State<MyApp> {
 
 ### 示例项目
 
-Agora 在 GitHub 上提供了一个开源的互动直播[示例项目](https://github.com/AgoraIO/Agora-Flutter-SDK/tree/main/example)供你参考。
+声网在 GitHub 上提供了一个开源的互动直播[示例项目](https://github.com/AgoraIO/Agora-Flutter-SDK/tree/main/example)供你参考。
