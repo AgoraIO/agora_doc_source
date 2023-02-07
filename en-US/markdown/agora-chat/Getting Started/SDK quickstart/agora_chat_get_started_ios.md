@@ -260,7 +260,7 @@ extension ViewController: AgoraChatManagerDelegate  {
         }
         let msg = AgoraChatMessage(
             conversationId: remoteUser, from: currentUserName,
-            to: remoteUser, body: .text(text), ext: nil
+            to: remoteUser, body: .text(content: text), ext: nil
         )
         AgoraChatClient.shared.chatManager?.send(msg, progress: nil) { msg, err in
             if let err = err {
@@ -273,7 +273,7 @@ extension ViewController: AgoraChatManagerDelegate  {
     func messagesDidReceive(_ aMessages: [AgoraChatMessage]) {
         for msg in aMessages {
             switch msg.swiftBody {
-            case let .text(content):
+            case let .text(content: content):
                 self.printLog("receive text msg,content: \(content)")
             default:
                 break
