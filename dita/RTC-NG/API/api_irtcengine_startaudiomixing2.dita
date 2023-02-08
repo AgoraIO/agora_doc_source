@@ -63,7 +63,7 @@
                 <pt>loopback</pt>
                 <pd>
                     <p>是否只在本地播放音乐文件：
-                           
+
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 只在本地播放音乐文件，只有本地用户能听到音乐。</li>
                     <li><codeph><ph keyref="false" /></codeph>: 将本地播放的音乐文件发布至远端，本地用户和远端用户都能听到音乐。</li>
@@ -91,8 +91,19 @@
         <section id="return_values" props="native unity electron rn">
             <title>返回值</title>
             <ul>
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
-            </ul> </section>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败：
+            <ul>
+                <li>-1: 一般性的错误（未明确归类）。</li>
+                <li>-2: 设置了无效的参数。</li>
+                <li>-3：SDK 尚未准备好：<ul>
+                    <li>请检查是否已开启音频模块。</li>
+                    <li>请检查程序集完整性。</li>
+                    <li><xref keyref="IRtcEngine"/> 初始化失败。请重新初始化 <apiname keyref="IRtcEngine" />。</li>
+                </ul></li>
+                </ul>
+            </li>
+            </ul>
+        </section>
     </refbody>
 </reference>

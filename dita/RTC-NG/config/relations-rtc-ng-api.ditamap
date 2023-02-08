@@ -2264,7 +2264,8 @@
                 <topicref keyref="enableLocalVideo"/>
                 <topicref keyref="enableLoopbackRecording" props="mac cpp unity electron flutter"/>
                 <topicref keyref="enableMainQueueDispatch" props="apple"/>
-                <topicref keyref="enableRemoteSuperResolution" props="android ios cpp unity rn flutter"/>
+                <topicref keyref="enableMultiCamera" props="cpp ios framework"/>
+                <topicref keyref="enableRemoteSuperResolution" props="unity rn flutter"/>
                 <topicref keyref="enableSoundPositionIndication"/>
                 <topicref keyref="enableSpatialAudio"/>
                 <topicref keyref="enableVideo"/>
@@ -2292,6 +2293,7 @@
                 <topicref keyref="getErrorDescription"/>
                 <topicref keyref="getExtensionProperty" props="android apple"/>
                 <topicref keyref="getExtensionProperty2"/>
+                <topicref keyref="getLocalSpatialAudioEngine" props="framework"/>
                 <topicref keyref="getMediaPlayerCacheManager" props="android apple"/>
                 <topicref keyref="getNativeHandle" props="android apple unity electron flutter rn"/>
                 <topicref keyref="getNetworkType"/>
@@ -2354,6 +2356,7 @@
                 <topicref keyref="registerAudioFrameObserver" props="android apple"/>
                 <topicref keyref="registerAudioFrameObserver" props="unity"/>
                 <topicref keyref="registerAudioSpectrumObserver"/>
+                <topicref keyref="registerExtension" props="cpp electron flutter unity"/>
                 <topicref keyref="registerLocalUserAccount"/>
                 <topicref keyref="registerMediaMetadataObserver"/>
                 <topicref keyref="registerPacketObserver" props="cpp"/>
@@ -2510,6 +2513,8 @@
                 <topicref keyref="takeSnapshot"/>
                 <topicref keyref="unloadAllEffects" props="cpp framework"/>
                 <topicref keyref="unloadEffect"/>
+                <topicref keyref="unregisterAudioEncodedFrameObserver" props="framework"/>
+                <topicref keyref="unregisterAudioFrameObserver" props="unity"/>
                 <topicref keyref="unregisterAudioSpectrumObserver"/>
                 <topicref keyref="unregisterMediaMetadataObserver" props="android cpp framework"/>
                 <topicref keyref="updateChannelMediaOptions"/>
@@ -2541,6 +2546,7 @@
                 <topicref keyref="clearVideoWatermarkEx"/>
                 <topicref keyref="createDataStreamEx1" props="android cpp unity"/>
                 <topicref keyref="createDataStreamEx2" props="android cpp framework"/>
+                <topicref keyref="EnableAudioVolumeIndicationEx"/>
                 <topicref keyref="enableDualStreamModeEx"/>
                 <topicref keyref="enableLoopbackRecordingEx" props="mac cpp electron unity flutter"/>
                 <topicref keyref="getConnectionStateEx"/>
@@ -2589,12 +2595,13 @@
                 <topicref keyref="IRtcEngineEx"/>
             </relcell>
         </relrow>
-        <relrow props="cpp">
+        <relrow props="cpp unity">
             <relcell>
                 <topicref keyref="setParameters_IAgoraParameter"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAgoraParameter"/>
+                <topicref keyref="IAgoraParameter" props="cpp"/>
+                <topicref keyref="IRtcEngine" props="unity"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2602,7 +2609,7 @@
                 <topicref keyref="onActiveSpeaker"/>
                 <topicref keyref="onApiCallExecuted"/>
                 <topicref keyref="onAudioDeviceStateChanged" props="cpp electron unity flutter"/>
-                <topicref keyref="onAudioDeviceVolumeChanged" props="hide"/>
+                <topicref keyref="onAudioDeviceVolumeChanged" props="cpp framework"/>
                 <topicref keyref="onAudioEffectFinished"/>
                 <topicref keyref="onAudioMixingFinished"/>
                 <topicref keyref="onAudioMixingStateChanged"/>
@@ -2662,6 +2669,7 @@
                 <topicref keyref="onRemoteVideoStats"/>
                 <topicref keyref="onRemoteVideoTransportStats"/>
                 <topicref keyref="onRequestToken"/>
+                <topicref keyref="onRhythmPlayerStateChanged" props="android cpp flutter ios rn unity"/>
                 <topicref keyref="onRtcStats"/>
                 <topicref keyref="onRtmpStreamingEvent"/>
                 <topicref keyref="onRtmpStreamingStateChanged"/>
@@ -2678,7 +2686,7 @@
                 <topicref keyref="onUserMuteAudio"/>
                 <topicref keyref="onUserMuteVideo"/>
                 <topicref keyref="onUserOffline"/>
-                <topicref keyref="onVideoDeviceStateChanged" props="hide"/>
+                <topicref keyref="onVideoDeviceStateChanged" props="cpp electron flutter unity"/>
                 <topicref keyref="onVideoPublishStateChanged"/>
                 <topicref keyref="onVideoSizeChanged"/>
                 <topicref keyref="onVideoStopped"/>
@@ -2703,6 +2711,7 @@
             <relcell>
                 <topicref keyref="adjustPlayoutVolume"/>
                 <topicref keyref="adjustPublishSignalVolume"/>
+                <topicref keyref="dispose_IMediaPlayer" props="unity"/>
                 <topicref keyref="enableAutoSwitchAgoraCDN" props="cn"/>
                 <topicref keyref="getAgoraCDNLineCount" props="cn"/>
                 <topicref keyref="getCurrentAgoraCDNIndex" props="cn"/>
@@ -2716,6 +2725,7 @@
                 <topicref keyref="getState"/>
                 <topicref keyref="getStreamCount"/>
                 <topicref keyref="getStreamInfo"/>
+                <topicref keyref="initEventHandler_IMediaPlayer" props="unity"/>
                 <topicref keyref="mute"/>
                 <topicref keyref="open"/>
                 <topicref keyref="open2" props="android"/>
@@ -2740,7 +2750,7 @@
                 <topicref keyref="setPlaybackSpeed"/>
                 <topicref keyref="setPlayerOption"/>
                 <topicref keyref="setRenderMode"/>
-                <topicref keyref="setSpatialAudioParams" props="hide"/>
+                <topicref keyref="setSpatialAudioParams"/>
                 <topicref keyref="setView"/>
                 <topicref keyref="stop"/>
                 <topicref keyref="switchAgoraCDNLineByIndex" props="cn"/>
@@ -2795,7 +2805,7 @@
                 <topicref keyref="startPlaybackDeviceTest"/>
                 <topicref keyref="startRecordingDeviceTest"/>
                 <topicref keyref="stopAudioDeviceLoopbackTest"/>
-                <topicref keyref="stopPlaybackDeviceTest" props="cpp electron flutter"/>
+                <topicref keyref="stopPlaybackDeviceTest" props="cpp electron flutter unity"/>
                 <topicref keyref="stopRecordingDeviceTest"/>
             </relcell>
             <relcell>
@@ -3200,6 +3210,14 @@
             </relcell>
             <relcell>
                 <topicref keyref="AgoraVideoSurface"/>
+            </relcell>
+        </relrow>
+        <relrow props="framework">
+            <relcell>
+                <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IMediaPlayerAudioFrameObserver"/>
             </relcell>
         </relrow>
     </reltable>
