@@ -1,87 +1,91 @@
-# 发送推送通知
+# Send push notifications
 
-利用 RESTful 接口可通过以下两种方式使用即时推送服务：
-- 对单个或多个用户发送推送通知；
-- 对指定标签下的用户发送推送通知。
+Chat RESTful APIs allow you to send push notifications either by users or by tags.
  
-## <a name="param"></a>公共参数
+## <a name="param"></a>Common parameters
 
-### 请求参数
+The following table lists common request and response parameters of the Chat RESTful APIs:
 
-| 参数       | 类型   | 描述                    | 是否必需 | 
-| :--------- | :----- | :------------- | :------- | 
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。 | 是     | 
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。| 是     | 
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。| 是    | 
-| `username` | String | 用户 ID。          | 是     |
+### Request parameters
 
-### 响应参数
+| Parameter      | Type | Description    | Required | 
+| :--------- | :----- |:------------- | :------- | 
+| `host`     | String | The domain name assigned by the Chat service to access RESTful APIs. For how to get the domain name, see [Get the information of your project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes   | 
+| `org_name` | String | The unique identifier assigned to each company (organization) by the Chat service. For how to get the organization name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes     | 
+| `app_name` | String | The unique identifier assigned to each app by the Chat service. For how to get the app name, see [Get the information of the Chat project](./enable_agora_chat?platform=RESTful#get-the-information-of-the-agora-chat-project). | Yes    | 
+| `username` | String | The unique login account of the user.    | Yes     | 
 
-| 参数       | 类型       | 描述                |
-| :---------------- | :----------------------------------- | :----------------------------------- |
-| `timestamp`    | Number    | 响应的 Unix 时间戳，单位为毫秒。         |
-| `duration`     | Number   | 从发送请求到响应的时长，单位为毫秒。         |
+### Response parameters
 
-## 认证方式
+| Parameter        | Type   | Description          |
+| :----------| :----------- | :----------------- |
+| `timestamp` | Number      | The Unix timestamp (ms) of the HTTP response.  |
+| `duration`  | Number      | The duration (ms) from when the HTTP request is sent to the time the response is received. |
 
-即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入如下 Authorization 字段：
 
-Authorization：`Bearer ${YourAppToken}`
+## Authorization
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 app token 鉴权](./agora_chat_token?platform=RESTful)。
+Chat RESTful APIs require Bearer HTTP authentication. Every time an HTTP request is sent, the following `Authorization` field must be filled in the request header:
 
-## 向指定用户发送推送通知
+```
+Authorization: Bearer ${YourAppToken}
+```
 
-向单个或多个用户发送推送通知。
+In order to improve the security of the project, Agora uses a token (dynamic key) to authenticate users before they log in to the chat system. The Chat RESTful API only supports authenticating users using app tokens. For details, see [Authentication using App Token](./generate_app_tokens).
 
-### HTTP 请求
+
+## Send push notifications by users
+
+Sends push notifications to one or more users by specifying user IDs.
+
+### HTTP request
 
 ```http
 POST https://{host}/{org_name}/{app_name}/push/single
 ```
 
-#### 路径参数
+#### Path parameters
 
-参数及描述详见 [公共参数](#param)。
+For the descriptions of path parameters, see [Common parameters](#param).
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述      | 是否必需 | 
+| Parameter           | Type | Description     | Required | 
 | :-------------- | :----- | :------- | :---------- |
-| `Content-Type`  | String | 内容类型：`application/json`   | 是   | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是    | 
+| `Content-Type`  | String | The content type. Set it as `application/json`.  | Yes   | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value.  | Yes    | 
 
-#### 请求 body
+#### Request body
 
-| 字段          | 类型    | 描述                       | 是否必需 |
-| :------------ | :------- | :------ | :------------------ |
+| Parameter           | Type | Description             | Required | 
+| :-------------- | :----- | :------- | :----------- |
 | `targets`     | List    | 推送的目标用户 ID。最多可传 100 个用户 ID。   | 是     |
 | `async`       | Boolean    | 是否异步推送：<ul><li>（默认）`true`：异步推送，每次最多可推送给 100 个用户。</li><li>`false`：同步推送，每次只能推送给 1 个用户。</li></ul> | 否   | 
 | `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。</li><li>（默认）`2`：只走厂商通道。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   |  
 | `pushMessage` | JSON   | 推送消息。消息内容详见[配置推送通知](./agora_chat_restful_config_push_notification)。| 是     | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段： 
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段         | 类型   | 描述   |
-| :----------- | :----- | :-------- |
+| Parameter      | Type | Description    |
+| :-------- | :----- | :-------- |
 | `data`       | JSON   | 推送结果：<ul><li>同步推送：厂商返回的推送结果；</li><li>异步推送：异步推送的结果。</li></ul>|
 | `id`         | String | 推送的目标用户 ID。             |
 | `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：推送成功；</li><li>`FAIL`：推送失败；</li><li>`ERROR`：推送异常；</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
 | `desc`       | String | 推送结果的相关描述。     | 
 
-其他参数及描述详见 [公共参数](#param)。
+ For other fields and detailed descriptions, see [Common parameters](#param).
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-### 示例
+### Example
 
-#### 请求示例
+#### Request example
 
-```
+```shell
 curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorization: Bearer YWMtOzQVjJ3mEeuJQv1qXhB5QAAAAAAAAAAAAAAAAAAAAAFDtjwasNNKD6W3CET2O3RNAQMAAAF41YIKUABPGgDuIZeu5IMVC_M9G5JlTjUsZeYVSg5o8BwshLgWveZxjA" -H "Content-Type: application/json" --data-raw "{
     \"targets\": [
         \"test2\"
@@ -97,9 +101,9 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 }"
 ```
 
-#### 响应示例
+#### Response example
 
-```
+```json
 {
     "timestamp": 1619506344007,
     "data": [
@@ -113,53 +117,53 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 }
 ```
 
-## 对指定标签下的用户发送推送通知
+## Send push notifications by tags
 
-若传单个标签，则向单个标签内的所有用户发送推送通知。若传多个标签，则消息推送给同时存在这些标签中的用户，即取标签中的用户交集。
+Sends push notifications to all users under one tag, or the intersection of users under multiple tags.
 
-### HTTP 请求
+### HTTP request
 
 ```http
 POST https://{host}/{org}/{app}/push/list/label
 ```
 
-#### 路径参数
+#### Path parameter
 
-参数及说明详见 [公共参数](#param)。
+For the descriptions of path parameters, see [Common parameters](#param).
 
-#### 请求 header
+#### Request header
 
-| 参数            | 类型   | 描述      | 是否必需 | 
+| Parameter           | Type | Description     | Required | 
 | :-------------- | :----- | :------- | :---------- |
-| `Content-Type`  | String | 内容类型：`application/json`   | 是   | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是    | 
+| `Content-Type`  | String | The content type. Set it as `application/json`.  | Yes   | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value.  | Yes    | 
 
-#### 请求 body
+#### Request body
 
-| 字段          | 类型    | 描述     | 是否必需 | 
-| :------------ | :------- | :------ | :---------------- |
+| Parameter           | Type | Description             | Required | 
+| :-------------- | :----- | :------- | :----------- |
 | `targets`     | List    | 标签名称。可传单个或多个标签名称。<ul><li>若传单个标签名称，消息推送给该标签下的所有用户。</li><li>若传多个标签名称，消息推送给同时存在于这些标签中的用户，即取标签中的用户交集。</li></ul>  | 是     | 
 | `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。</li><li>（默认）`2`：只走厂商通道。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   | 
 | `pushMessage` | JSON    | 推送消息。消息内容详见 [配置推送通知](./agora_chat_restful_config_push_notification)。 | 是     | 
 
-### HTTP 响应
+### HTTP response
 
-#### 响应 body
+#### Response body
 
-如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| 字段  | 类型 | 描述      |
-| :----- | :-----| :---------------------- |
+| Parameter      | Type | Description    |
+| :-------- | :----- | :-------- |
 | `data` | JSON | 推送任务数据。 |
 | `taskId` | Number | 推送任务 ID。 |
 
-其他参数及描述详见 [公共参数](#param)。
+For other fields and detailed descriptions, see [Common parameters](#param).
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
-### 示例
+### Example
 
-#### 请求示例
+#### Request example
 
 ```shell
 curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list' \
@@ -179,7 +183,7 @@ curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list' \
 }'
 ```
 
-#### 响应示例
+#### Response example
 
 ```json
 {
@@ -190,3 +194,7 @@ curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list' \
     "duration": 0
 }
 ```
+
+## Status codes
+
+For details, see [HTTP Status Codes](./agora_chat_status_code).
