@@ -11,7 +11,6 @@ Delivering a safe and appropriate chat environment to your users is essential. A
 - Moderation is not enabled by default. To use this feature, you need to subscribe to the **Pro** or **Enterprise** [pricing plan](./agora_chat_plan) and enable it in [Agora Console](https://console.agora.io/).
 
 <div class="alert note">Add-on fees are incurred if you use this feature. See <a href="https://docs.agora.io/en/agora-chat/agora_chat_pricing#optional-add-on-fee">Pricing</a> for details.</div>
-
 ## Enable the moderation feature
 
 1. Log in to Agora Console.
@@ -43,7 +42,7 @@ To use the reporting feature, you need to call the reporting API when you develo
 After a user reports a message from the application, moderators can check and deal with the report on Agora Console:
 
 1. To enter the **Message Report** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Message Report** > **History**, as shown in the following figure:
-	 
+	
 	 ![report_en](https://web-cdn.agora.io/docs-files/1656312948783)
 
 2. On the **Message Report** page, moderators can filter the message report items by time period, session type, or handling method. They can also search for a specific report item by user ID, group ID, or chat room ID. For the reports, Agora Chat supports two handling methods: withdrawing the message or asking the sender to process the message.
@@ -52,13 +51,15 @@ After a user reports a message from the application, moderators can check and de
 
 #### Introduction
 
-Powered by [Microsoft Azure Moderator](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/), Agora Chat's text and image moderation can scan messages for illegal text and image content and mark the content for moderation. Microsoft Azure Moderator uses the following three categories to moderate the message and returns a confidence score between 1 and 5  for a message:
+Powered by [Microsoft Azure Moderator](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/), Agora Chat's text and image moderation can scan messages for illegal text and image content and mark the content for moderation. Microsoft Azure Moderator uses the following three categories to moderate the message:
 
 - Adult: The content may be considered sexually explicit or adult in certain situations.
-- Racial: The content may be considered racial discrimination.
+- Mature: The content may be considered sexually suggestive or mature in certain situations.
 - Offensive: The content may be considered offensive or abusive.
 
-After enabling the text and image moderation feature on Agora Console, you can set a threshold for each moderation category. When the score returned by Microsoft Azure Moderator reaches the threshold, Agora Chat blocks the message. You can also impose a penalty on users who reach the violation limit within a time period. The moderation penalties include the following: banning the user, forcing the user to go offline, or deleting the user.
+After enabling the text and image moderation feature on Agora Console, you can set a sensitivity threshold for each moderation category. If the sensitivity threshold is exceeded, Agora Chat will handle the message as specified in the moderation rule. A greater sensitivity indicates more strict review and that Agora Chat will block more inappropriate contents. You are advised to test the moderation rule to check whether the sensitivity threshold you set meet your requirements. 
+
+You can also impose a penalty on users who reach the violation limit within a time period. The moderation penalties include the following: banning the user, forcing the user to go offline, or deleting the user.
 
 To see how moderation works and determine which moderation settings suit your needs, you can test different text strings and images on Agora Console.
 
@@ -67,11 +68,11 @@ To see how moderation works and determine which moderation settings suit your ne
 Taking a one-to-one chat text as an example, follow these steps to create a text moderation rule:
 
 1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project for which you want > **Config** of Chat > **Text Moderation** or **Image Moderation** > **Rule Config**, as shown in the following figure:
-	 
+	
 	 ![text_rule_en](https://web-cdn.agora.io/docs-files/1656312971641)
 
 2. To create a text moderation rule, click **Add**:
-	 
+	
 	 ![text_rule_create_en](https://web-cdn.agora.io/docs-files/1656312986832)
 
    The following table lists the fields that a text moderation rule supports:
@@ -81,19 +82,19 @@ Taking a one-to-one chat text as an example, follow these steps to create a text
    | Rule name | The rule name. |
    | Conversation type | The moderation scope, which can be one of the following: a one-to-one chat, chat group or chat room, chat groups or chat rooms. If you set a rule for a specific chat group or room, the global moderation rules for chat groups and rooms are overwritten. |
    | Enable | Determines whether to turn a rule on or off. |
-   | Message handling | <ul><li>When the moderation result is **Rejected**, you can set the action on the moderated message to one of the following options:<ul><li>Blocks the message. Agora recommends using this setting for online messages after you fully test this moderation rule and ensure it suits your needs.</li><li>(Default) Sends the message. Agora recommends using this setting when you are testing this moderation rule and do not want this rule to affect online messages.</li><li>Replaces the message with \*\*\*.</li></ul></li><li>When the moderation action fails (for example, the timeout period of the text audit interface is 200 milliseconds; if no result  is returned within 200 milliseconds, this moderation action times out), the message processing policy can be set to one of the following options:<ul><li>Blocks the message.</li><li>(Default) Sends the message.</li><li>If the action on the moderated message is set as **Blocks the message**, the `508, MESSAGE_EXTERNAL_LOGIC_BLOCKED` error is returned after the message is blocked. You can set whether to indicate this error in the application. If you choose to indicate this error in the application, a red exclamation mark is displayed before the blocked message.</li></ul></li></ul> |
+   | Message handling | <ul><li>When the moderation result is **Inappropriate**, you can set the action on the moderated message to one of the following options:<ul><li>Blocks the message. Agora recommends using this setting for online messages after you fully test this moderation rule and ensure it suits your needs.</li><li>(Default) Sends the message. Agora recommends using this setting when you are testing this moderation rule and do not want this rule to affect online messages.</li><li>Replaces the message with \*\*\*.</li></ul></li><li>When the moderation action fails (for example, the timeout period of the text audit interface is 200 milliseconds; if no result  is returned within 200 milliseconds, this moderation action times out), the message processing policy can be set to one of the following options:<ul><li>Blocks the message.</li><li>(Default) Sends the message.</li><li>If the action on the moderated message is set as **Blocks the message**, the `508, MESSAGE_EXTERNAL_LOGIC_BLOCKED` error is returned after the message is blocked. You can set whether to indicate this error in the application. If you choose to indicate this error in the application, a red exclamation mark is displayed before the blocked message.</li></ul></li></ul> |
    | Rule | Sets the threshold for each moderation category. |
    | User management | Imposes a penalty on users who reach the violation limit within a time period. The moderation penalties include the following: banning the user, forcing the user to go offline, or deleting the user. |
 
 3. After creating a rule, you can **edit** or **delete** the rule:
 
-	 ![text_rule_edit_en](https://web-cdn.agora.io/docs-files/1656313385253)
+	 [img][text_rule_edit_en]
 
 #### Conduct a text or image moderation rule test
 
 1. To enter the **Rule Test** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Text Moderation** or **Image Moderation** > **Rule Test**, as shown in the following figure:
 
-	 ![text_rule_test_en](https://web-cdn.agora.io/docs-files/1656313401953)
+	 [img][text_rule_test_en]
 
 2. Select a rule, fill in the text to moderate, and click **Check** to test the rule. The moderation result is displayed on the same page.
 
@@ -116,7 +117,7 @@ The domain filter can detect and filter out certain domains contained in message
 Follow these steps to specify a domain filter configuration:
 
 1. To enter the **Rule Config** page, in the left navigation menu, click **Project Management** > **Config** for the project that you want > **Config** of Chat > **Domain Filter** > **Rule Config**, as shown in the following figure:
-	 
+	
 	 ![domain_en](https://web-cdn.agora.io/docs-files/1656313436703)
 
 2. To create a domain filtering rule, click **Add**:
