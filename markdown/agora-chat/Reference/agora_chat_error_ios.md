@@ -25,8 +25,7 @@ Agora 即时通讯 iOS SDK 在运行过程中，如果方法调用成功，则�
 | 208    | `AgoraChatErrorUserRegisterFailed`          | 用户注册失败：调用服务端注册方法时，传入参数为空或不合法，请确认后重新调用方法。详见[注册用户 RESTful API](./agora_chat_restful_reg?platform=RESTful#注册单个用户)。 |
 | 209    | `AgoraChatErrorUpdateApnsConfigsFailed`     | 更新推送配置错误：用户更新推送配置信息错误，如更新推送显示昵称、更新免打扰模式等。请重新调用方法。 |
 | 210    | `AgoraChatErrorUserPermissionDenied`        | 用户无权限 ：例如，如果用户被封禁，发送消息时会提示该错误。 |
-| 213    | `AgoraChatErrorUserBindAnotherDevice`       | 用户已经在另外设备登录：如果用户设置了设备登录优先级（如先登录的设备优先级高），当已登录的用户登录其他设备时，则登录失败，且收到该错误码。 |
-| 214    | `AgoraChatErrorUserLoginTooManyDevices`     | 用户登录设备数超过限制：用户同一 ID 登录设备数量超过上限 4 时提示该错误。 如对登录设备数量有更高需求，请联系 [support@agora.io](support@agora.io)。 |
+| 214    | `AgoraChatErrorUserLoginTooManyDevices`     | 用户登录设备数超过限制：该错误在多设备自动登录场景中且打开不踢掉其他设备上的登录的开关时超过登录设备数量的限制才会出现。例如，用户最多可同时登录 4 台设备， A（实现了自动登录）、B、C 和 D。手动登录设备 E 后，用户再次自动登录设备 A 时登录失败且提示该错误。如对登录设备数量有更高需求，请联系 [support@agora.io](mailto:support@agora.io)。 |
 | 215    | `AgoraChatErrorUserMuted`                   | 用户被禁言：群组或聊天室中被禁言的用户发送消息。                         |
 | 216    | `AgoraChatErrorUserKickedByChangePassword`  | 用户密码更新：当前登录的用户密码被修改后，当前登录会断开并提示该错误。请使用新密码重新登录。   |
 | 217    | `AgoraChatErrorUserKickedByOtherDevice`     | 用户被踢下线：未开启多设备登录，如果用户在其他设备上登录；或者开启多设备登录后，用户登录设备数量超过限制，则最新一台设备登录时会踢掉第一台设备，SDK 会提示该错误。 |
