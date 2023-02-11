@@ -1,6 +1,6 @@
 # Send push notifications
 
-Chat RESTful APIs allow you to send push notifications either by users or by tags.
+Chat RESTful APIs allow you to send push notifications either by users or by labels.
  
 ## <a name="param"></a>Common parameters
 
@@ -59,10 +59,10 @@ For the descriptions of path parameters, see [Common parameters](#param).
 
 | Parameter           | Type | Description             | Required | 
 | :-------------- | :----- | :------- | :----------- |
-| `targets`     | List    | 推送的目标用户 ID。最多可传 100 个用户 ID。   | 是     |
-| `async`       | Boolean    | 是否异步推送：<ul><li>（默认）`true`：异步推送，每次最多可推送给 100 个用户。</li><li>`false`：同步推送，每次只能推送给 1 个用户。</li></ul> | 否   | 
-| `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。</li><li>（默认）`2`：只走厂商通道。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   |  
-| `pushMessage` | JSON   | 推送消息。消息内容详见[配置推送通知](./agora_chat_restful_config_push_notification)。| 是     | 
+| `targets`     | List    | The targeting user IDs. You can pass one user at most for synchronous push and a maximum of 100 users for asynchronous push.   | Yes     |
+| `async`       | Boolean    | Whether to implement a synchronous or asynchronous push:<ul><li>`true`: (Default) Push asynchronously to a maximum of 100 users.</li><li>`false`: Push synchronously to one user at most.</li></ul> <div class="alert">You can send push notifications to multiple users only if you set <code>async</code> to <code>true</code>.</div>  | No   | 
+| `strategy`    | Number | The push strategies.<ul><li>`0`: Use third-party push service first. When the pushing attempt fails, use Agora push service instead.</li><li>`1`: Use Agora push service only. Drop the push message when the pushing attempt fails.</li><li>`2`: (Default) Use third-party push service only. Drop the push message when the pushing attempt fails.</li><li>`3`: Use Agora push service first. When the pushing attempt fails, use third-party push service instead.</li></ul> | No  |  
+| `pushMessage` | JSON   | The push messages. See [Set push notifications](./agora_chat_restful_config_push_notification) for details. | Yes   | 
 
 ### HTTP response
 
@@ -72,12 +72,12 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data`       | JSON   | 推送结果：<ul><li>同步推送：厂商返回的推送结果；</li><li>异步推送：异步推送的结果。</li></ul>|
-| `id`         | String | 推送的目标用户 ID。             |
-| `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：推送成功；</li><li>`FAIL`：推送失败；</li><li>`ERROR`：推送异常；</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
-| `desc`       | String | 推送结果的相关描述。     | 
+| `data`       | JSON   | The push result:<ul><li>Synchronous push: 厂商返回的推送结果；</li><li>Asynchronous push: 异步推送的结果。</li></ul>|
+| `id`         | String | The targeting user ID.            |
+| `pushStatus` | String | The push status:<ul><li>`SUCCESS`: The push succeeds.</li><li>`FAIL`: The push fails.</li><li>`ERROR`：推送异常；</li><li>`ASYNC_SUCCESS`: The asynchronous push succeeds.</li></ul> |
+| `desc`       | String | The result description.   | 
 
- For other fields and detailed descriptions, see [Common parameters](#param).
+For other fields and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
 
@@ -117,9 +117,9 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 }
 ```
 
-## Send push notifications by tags
+## Send push notifications by labels
 
-Sends push notifications to all users under one tag, or the intersection of users under multiple tags.
+Sends push notifications to all users under one label, or the intersection of users under multiple labels.
 
 ### HTTP request
 
@@ -142,9 +142,10 @@ For the descriptions of path parameters, see [Common parameters](#param).
 
 | Parameter           | Type | Description             | Required | 
 | :-------------- | :----- | :------- | :----------- |
-| `targets`     | List    | 标签名称。可传单个或多个标签名称。<ul><li>若传单个标签名称，消息推送给该标签下的所有用户。</li><li>若传多个标签名称，消息推送给同时存在于这些标签中的用户，即取标签中的用户交集。</li></ul>  | 是     | 
-| `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。</li><li>（默认）`2`：只走厂商通道。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   | 
-| `pushMessage` | JSON    | 推送消息。消息内容详见 [配置推送通知](./agora_chat_restful_config_push_notification)。 | 是     | 
+| `targets`     | List    | The targeting label names. You can either pass one label to send push notifications to all users under the label, or pass multiple labels to send push notifications to the intersection of users under these labels.   | Yes     |
+| `strategy`    | Number | The push strategies.<ul><li>`0`: Use third-party push service first. When the pushing attempt fails, use Agora push service instead.</li><li>`1`: Use Agora push service only. Drop the push message when the pushing attempt fails.</li><li>`2`: (Default) Use third-party push service only. Drop the push message when the pushing attempt fails.</li><li>`3`: Use Agora push service first. When the pushing attempt fails, use third-party push service instead.</li></ul> | No  |  
+| `pushMessage` | JSON   | The push messages. See [Set push notifications](./agora_chat_restful_config_push_notification) for details. | Yes   | 
+
 
 ### HTTP response
 
@@ -154,8 +155,8 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data` | JSON | 推送任务数据。 |
-| `taskId` | Number | 推送任务 ID。 |
+| `data` | JSON | The detailed information of the push task. |
+| `taskId` | Number | The ID of the push task. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
 
