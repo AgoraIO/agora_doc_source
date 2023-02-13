@@ -131,6 +131,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | `roomProperties.hostingScene.videoURL` |String|（非必填）老师的 CDN 流地址（主播放地址）。|
 | `roomProperties.hostingScene.reserveVideoURL` | String|（非必填）老师的 CDN 流地址（备用播放地址）。|
 | `roomProperties.hostingScene.finishType` |Integer|（非必填）课堂结束方式：<li>0:录像播放结束时，自动结束课堂。</li><li>1: 用户点击结束课堂的按钮时，结束录像播放和课堂。</li>|
+| `roomProperties.examinationUrl`| String |（非必填）在线监考场景中的考卷链接。|
 
 #### 请求示例
 
@@ -689,6 +690,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数         | 类型   | 描述       |
 | :----------- | :----- | :--------- |
 | `properties` | Object | 课堂属性。 |
+| `roomProperties.examinationUrl`| String |（非必填）在线监考场景中的考卷链接。|
 | `cause`      | Object | 更新原因。 |
 
 #### 请求示例
@@ -1663,6 +1665,83 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
         "role": "server"
     }
     ```
+		
+		
+## 开启/关闭分组讨论
+
+#### 接口描述
+开启或关闭课堂分组讨论功能。
+
+#### 接口原型
+- 方法：PUT
+- 接入点：/{region}/edu/apps/{appId}/v2/rooms/{roomUUid}/groups/states/{state}
+
+#### 请求参数
+
+**URL 参数**
+
+| 参数       | 类型   | 描述    |
+| :--------- | :----- | :------- |
+| `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
+| `appId`    | String | （必填）Agora App ID。     |
+| `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
+| `state` | Integer | （必填）是否开启分组讨论：<ul><li>`1`: 开启。</li><li>`0`: 关闭。</li></ul> |
+
+
+**请求包体参数**
+
+开启分组讨论时需要在请求包体中传入以下参数；关闭分组讨论时不需要传任何参数。
+
+| 参数              | 类型   | 描述                                                         |
+| :---------------- | :----- | :----------------------------------------------------------- |
+| `groups` | Array | （必填）待创建的分组列表。包含：<ul><li>`groupUuid`: （选填）待创建的分组 ID，String 型。如果不填，系统会自动分配一个 ID。</li><li>`groupName`: （选填）分组名，String 型。</li><li>`users`：（必填）分组内用户列表，Array 型。包含：<ul><li>`userUuid`：（必填）分组内用户的 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~</li></ul></ul> |
+
+
+#### 请求示例
+
+**请求 URL**
+
+```html
+https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/groups/states/1
+```
+
+
+**请求包体**
+
+```json
+{
+    "groups":[
+        {
+            "groupUuid": "group1",
+            "groupName":"Group 01",
+            "users":[{
+                "userUuid": "user1"
+            }]
+        }
+    ]
+}
+```
+
+#### 响应参数
+
+| 参数   | 类型    | 描述                                                        |
+| :----- | :------ | :---------------------------------------------------------- |
+| `code` | Integer | 业务状态码：<ul><li>0: 请求成功。</li><li>非 0: 请求失败。</li></ul> |
+| `msg`  | String  | 详细信息。                                                  |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。                |
+
+#### 响应示例
+
+```json
+{
+    "msg": "Success",
+    "code": 0,
+    "ts": 1672989034831
+}
+```
+
+
+
 
 ## 响应状态码
 

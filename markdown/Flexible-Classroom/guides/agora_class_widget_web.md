@@ -34,7 +34,7 @@
     - 投票器
     - 计时器
 
-内置插件的源代码均位于 [CloudClass-Desktop 仓库](https://github.com/AgoraIO-Community/CloudClass-Desktop)的 `packages/agora-plugin-gallery/src/gallery` 目录下，具体为如下：
+内置插件的源代码均位于 [apaas-widgets-web 仓库](https://github.com/AgoraIO-Community/apaas-widgets-web)的 `src/gallery` 目录下，具体为如下：
 
 | 插件名称       | 源代码文件夹   |
 | :------------- | :----------- |
@@ -300,7 +300,7 @@ onInstall() {
 
 灵动课堂为开发者提供了一个名为 `AgoraEduToolWidget` 抽象类，此类实现了教具类插件通用能力的封装。继承此类可以获得插件的轨迹同步、层级控制能力，以及对 UI 窗口的显示和显示的控制逻辑。
 
-配合 `ControlledModal` 组件，你还可快速实现内置教具插件的外层窗口，减少大量的通用逻辑代码开发，具体实现请参考仓库 `packages/agora-plugin-gallery/src/gallery` 目录下 `answer`、`vote`、`counter` 文件夹，其中提供灵动课堂内置的教具类插件源代码。
+配合 `ControlledModal` 组件，你还可快速实现内置教具插件的外层窗口，减少大量的通用逻辑代码开发，具体实现请参考仓库 `src/gallery` 目录下 `answer`、`vote`、`counter` 文件夹，其中提供灵动课堂内置的教具类插件源代码。
 
 如下是 `AgoraEduToolWidget` 类的定义：
 
@@ -424,7 +424,7 @@ export abstract class AgoraEduToolWidget
 创建一个继承 `AgoraEduToolWidget` 类的 `RollbookWidget` 类：
 
 ```ts
-// packages/agora-plugin-gallery/src/gallery/rollbook/index.tsx
+// src/gallery/rollbook/index.tsx
 import { render, unmountComponentAtNode } from 'react-dom';
 import { App } from './app';
 import { AgoraEduToolWidget } from '../../common/edu-tool-widget';
@@ -583,7 +583,7 @@ export class RollbookWidget extends AgoraEduToolWidget {
 增加一个 App 组件用于在插件窗口中渲染：
 
 ```ts
-// packages/agora-plugin-gallery/src/gallery/rollbook/app.tsx
+// src/gallery/rollbook/app.tsx
 import React, { FC } from "react";
 import { observer } from 'mobx-react';
 import { ControlledModal } from "../../common/edu-tool-modal";

@@ -82,7 +82,7 @@
 
 ### 步骤一：重新集成灵动课堂
 
-根据[集成灵动课堂文档](/cn/agora-class/agora_class_integrate_ios?platform=iOS#change_default_ui)中的步骤将 1.1.5 集成至你的项目中。
+根据[集成灵动课堂文档](/cn/agora-class/agora_class_integrate_ios?platform=iOS)中的步骤将 1.1.5 集成至你的项目中。
 
 ### 步骤二：替换 SDKs/AgoraEduUI 目录下的文件
 
@@ -116,19 +116,19 @@
            guard let widgetInfos = contextPool.widget.getWidgetInfos() else {
                return
            }
-            
+
            for info in widgetInfos {
                switch info.widgetId {
                case "AgoraChatWidget":
                    info.properties = ["contextPool": contextPool]
                    let chat = contextPool.widget.create(with: info)
                    chat.addMessageObserver(self)
-                    
+
                    let hasConversation = (viewType == .oneToOne ? 0 : 1)
                    if let message = ["hasConversation": hasConversation].jsonString() {
                        chat.widgetDidReceiveMessage(message)
                    }
-                    
+
                    self.chat = chat
                default:
                    break
@@ -158,7 +158,7 @@
 <details>
  <summary><font color="#3ab7f8">查看截图</font></summary>
 1.1.5 之前版本的目录结构：<img src="https://web-cdn.agora.io/docs-files/1631956127330" />1.1.5 的目录结构：<img src="https://web-cdn.agora.io/docs-files/1631956146556" />
-</details>   
+</details>
 
 ### 步骤五：修改 `AgoraChatWidget.swift` 文件
 
@@ -183,15 +183,15 @@
 
    ```swift
    private weak var context: AgoraEduMessageContext?
-    
+
    public required override init(widgetId: String,
                                  properties: [AnyHashable: Any]?) {
        super.init(widgetId: widgetId,
                   properties: properties)
-        
+
        initViews()
        initLayout()
-        
+
        if let contextPool = properties?["contextPool"] as? AgoraEduContextPool {
            context = contextPool.chat
            initData()

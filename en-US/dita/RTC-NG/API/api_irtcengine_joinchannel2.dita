@@ -106,9 +106,7 @@
             </ul> </section>
         <section props="flutter">
             <title>Exception</title>
-            <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.<ul>
+            <p>When the method is not called successfully, a <xref keyref="AgoraRtcException" /> exception will be thrown, and you need to catch the exception and handle it. The following are common errors:<ul>
                 <li>-2: The parameter is invalid. For example, the token is invalid, the <parmname>uid</parmname> parameter is not set to an integer, or the value of a member in <xref keyref="ChannelMediaOptions" /> is invalid. You need to pass in a valid parameter and join the channel again.</li>
                 <li>-3: Failes to initialize the <xref keyref="IRtcEngine" /> object. You need to reinitialize the <apiname keyref="IRtcEngine" /> object.</li>
                 <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
@@ -116,7 +114,7 @@
                 <li>-17: The request to join the channel is rejected. The typical cause is that the user is in the channel. Agora recomments that you can use the <xref keyref="onConnectionStateChanged" /> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
                 <li>-102: The channel name is invalid. You need to pass in a valid channelname in <parmname>channelId</parmname> to rejoin the channel.</li>
                 <li>-121: The user ID is invalid. You need to pass in a valid user ID in <parmname>uid</parmname> to rejoin the channel.</li>
-                </ul></li>
-            </ul></section>
+                </ul></p>
+            </section>
     </refbody>
 </reference>
