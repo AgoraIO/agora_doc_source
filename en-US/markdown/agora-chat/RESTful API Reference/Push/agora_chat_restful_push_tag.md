@@ -1,17 +1,6 @@
 # Set push labels
 
-即时通讯服务支持通过设置标签自定义推送用户，实现精准推送。标签用于描述用户的生活习惯、兴趣爱好、行为特征等信息。对用户设置标签后，推送消息时，指定某一推送标签，即可向该标签下的用户发送消息。例如，可以为一些用户打上“时尚弄潮儿”标签后，可定期向该人群推送国内外潮流品牌的相关信息。
-
-你可以通过 RESTful API 进行标签管理。用户与标签是多对多的关系，即一个用户可以有多个标签，一个标签下也可以有多个用户。
-
-// DEEPL
-The instant messaging service supports customizing pushing users by setting tags to achieve accurate pushing. Tags are used to describe users' habits, interests, behavioral characteristics, and other information. After setting tags for users, when pushing messages, you can specify a certain push tag to send messages to users under that tag. For example, you can tag some users as "fashion trendsetters" and send messages about domestic and international trendy brands to them regularly.
-
-You can manage tags through a RESTful API. Users and tags are many-to-many, i.e., a user can have multiple tags and multiple users under a tag.
-
-
-// ChatGPT
-The instant messaging service supports customizing the push users through setting tags, realizing precise push. The tags describe the user's lifestyle habits, interests, behavioral characteristics, and other information. When pushing messages, by specifying a certain push tag, the message can be sent to the users under that tag. For example, if some users are tagged with "fashion trendsetters," related information about domestic and foreign trend brands can be pushed regularly to that group.
+The push service allows you to group targeting users by configuring labels. Each label marks a user group that has similar habits, hobbies, or characteristics. When sending notifications, you can implement a bespoke push by specifying relevant labels, and the messages can then be sent to the users under the labels. For example, you can label a group of users with "fashion trendsetters", and push related information about domestic and foreign trend brands to that user group on a regular basis.
 
 You can manage the tags through RESTful API. The relationship between users and tags is many to many, that is, one user can have multiple tags and one tag can also have multiple users.
 

@@ -60,8 +60,8 @@ For the descriptions of path parameters, see [Common parameters](#param).
 | Parameter           | Type | Description             | Required | 
 | :-------------- | :----- | :------- | :----------- |
 | `targets`     | List    | The targeting user IDs. You can pass one user at most for synchronous push and a maximum of 100 users for asynchronous push.   | Yes     |
-| `async`       | Boolean    | Whether to implement a synchronous or asynchronous push:<ul><li>`true`: (Default) Push asynchronously to a maximum of 100 users.</li><li>`false`: Push synchronously to one user at most.</li></ul> <div class="alert">You can send push notifications to multiple users only if you set <code>async</code> to <code>true</code>.</div>  | No   | 
-| `strategy`    | Number | The push strategies.<ul><li>`0`: Use third-party push service first. When the pushing attempt fails, use Agora push service instead.</li><li>`1`: Use Agora push service only. Drop the push message when the pushing attempt fails.</li><li>`2`: (Default) Use third-party push service only. Drop the push message when the pushing attempt fails.</li><li>`3`: Use Agora push service first. When the pushing attempt fails, use third-party push service instead.</li></ul> | No  |  
+| `async`       | Boolean    | Whether to implement a synchronous or asynchronous push:<ul><li>`true`: (Default) Push asynchronously to a maximum of 100 users.</li><li>`false`: Push synchronously to one user at most.</li></ul> <div class="alert">You can send push notifications to multiple users (set <code>targets</code> to more than one user ID) only if you set <code>async</code> to <code>true</code>.</div>  | No   | 
+| `strategy`    | Number | The push strategies.<ul><li>`0`: Use third-party push service first. When the pushing attempt fails, use Agora push service instead.</li><li>`1`: Use Agora push service only. If the target user is offline, Agora retains the push message for seven days. After seven days, the push message is dropped and the push attempt fails.</li><li>`2`: (Default) Use third-party push service only. If the target user is offline, whether to retain the push message and the retention period of the push message depend on the setting of the third-party service.</li><li>`3`: Use Agora push service first. When the pushing attempt fails, use third-party push service instead.</li></ul> | No  |  
 | `pushMessage` | JSON   | The push messages. See [Set push notifications](./agora_chat_restful_config_push_notification) for details. | Yes   | 
 
 ### HTTP response
@@ -72,9 +72,9 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter      | Type | Description    |
 | :-------- | :----- | :-------- |
-| `data`       | JSON   | The push result:<ul><li>Synchronous push: 厂商返回的推送结果；</li><li>Asynchronous push: 异步推送的结果。</li></ul>|
+| `data`       | JSON   | The push result. |
 | `id`         | String | The targeting user ID.            |
-| `pushStatus` | String | The push status:<ul><li>`SUCCESS`: The push succeeds.</li><li>`FAIL`: The push fails.</li><li>`ERROR`：推送异常；</li><li>`ASYNC_SUCCESS`: The asynchronous push succeeds.</li></ul> |
+| `pushStatus` | String | The push status:<ul><li>`SUCCESS`: The push succeeds.</li><li>`FAIL`: The push fails due to non-server errors. For example, an invalid token is passed.</li><li>`ERROR`: The push fails due to server errors. For example, the request times out.</li><li>`ASYNC_SUCCESS`: The asynchronous push succeeds.</li></ul> |
 | `desc`       | String | The result description.   | 
 
 For other fields and detailed descriptions, see [Common parameters](#param).
@@ -121,6 +121,8 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 
 Sends push notifications to all users under one label, or the intersection of users under multiple labels.
 
+A push task is automatically created per request, and the ID of the push task is returned for data statistics.
+
 ### HTTP request
 
 ```http
@@ -142,8 +144,8 @@ For the descriptions of path parameters, see [Common parameters](#param).
 
 | Parameter           | Type | Description             | Required | 
 | :-------------- | :----- | :------- | :----------- |
-| `targets`     | List    | The targeting label names. You can either pass one label to send push notifications to all users under the label, or pass multiple labels to send push notifications to the intersection of users under these labels.   | Yes     |
-| `strategy`    | Number | The push strategies.<ul><li>`0`: Use third-party push service first. When the pushing attempt fails, use Agora push service instead.</li><li>`1`: Use Agora push service only. Drop the push message when the pushing attempt fails.</li><li>`2`: (Default) Use third-party push service only. Drop the push message when the pushing attempt fails.</li><li>`3`: Use Agora push service first. When the pushing attempt fails, use third-party push service instead.</li></ul> | No  |  
+| `targets`     | List    | The targeting label names. You can either pass one label to send push notifications to all users under the label, or pass a maximum of three labels to send push notifications to the intersection of users under these labels.   | Yes     |
+| `strategy`    | Number | The push strategies.<ul><li>`0`: Use third-party push service first. When the pushing attempt fails, use Agora push service instead.</li><li>`1`: Use Agora push service only. If the target user is offline, Agora retains the push message for seven days. After seven days, the push message is dropped and the push attempt fails.</li><li>`2`: (Default) Use third-party push service only. If the target user is offline, whether to retain the push message and the retention period of the push message depend on the setting of the third-party service.</li><li>`3`: Use Agora push service first. When the pushing attempt fails, use third-party push service instead.</li></ul> | No  |  
 | `pushMessage` | JSON   | The push messages. See [Set push notifications](./agora_chat_restful_config_push_notification) for details. | Yes   | 
 
 
@@ -195,6 +197,77 @@ curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list' \
     "duration": 0
 }
 ```
+
+
+## Send push notifications to all users under the app
+
+Sends push notifications to all users under the app.
+
+A push task is automatically created per request, and the ID of the push task is returned for data statistics.
+### HTTP request
+
+```http
+POST https://{host}/{org_name}/{app_name}/push/task
+```
+
+#### Path parameter
+
+For the descriptions of path parameters, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter           | Type | Description     | Required | 
+| :-------------- | :----- | :------- | :---------- |
+| `Content-Type`  | String | The content type. Set it as `application/json`.  | Yes   | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value.  | Yes    | 
+
+#### Request body
+
+| Parameter           | Type | Description             | Required | 
+| :-------------- | :----- | :------- | :----------- |
+| `strategy`    | Number | The push strategies.<ul><li>`0`: Use third-party push service first. When the pushing attempt fails, use Agora push service instead.</li><li>`1`: Use Agora push service only. If the target user is offline, Agora retains the push message for seven days. After seven days, the push message is dropped and the push attempt fails.</li><li>`2`: (Default) Use third-party push service only. If the target user is offline, whether to retain the push message and the retention period of the push message depend on the setting of the third-party service.</li><li>`3`: Use Agora push service first. When the pushing attempt fails, use third-party push service instead.</li></ul> | No  |  
+| `pushMessage` | JSON   | The push messages. See [Set push notifications](./agora_chat_restful_config_push_notification) for details. | Yes   | 
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
+
+| Parameter      | Type | Description    |
+| :-------- | :----- | :-------- |
+| `data` | Number | The ID of the push task.  |
+
+For other fields and detailed descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#status-codes) for possible reasons.
+
+### Example
+
+#### Request example
+
+```shell
+curl -X POST "http://a1-hsb.agora.com/agora-demo/testy/push/task" -H "Content-Type: application/json" --data-raw "{
+    \"pushMessage\": {
+        \"title\": \"Hello1234\",
+        \"subTitle\": \"Hello\",
+        \"content\": \"Hello\",
+        \"vivo\": {}
+    }
+}"
+```
+
+#### Response example
+
+```json
+{
+    "timestamp": 1618817591755,
+    "data": 968120369184112182,
+    "duration": 1
+}
+```
+
+
 
 ## Status codes
 
