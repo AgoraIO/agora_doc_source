@@ -490,8 +490,8 @@
                 <pd>
                     <p><ph>视频编码码率，单位为 Kbps。</ph><ph props="unity">详见 <xref keyref="BITRATE"/>。</ph></p>
                     <ul props="native flutter">
-                    <li><option keyref="STANDARD_BITRATE"/>: (推荐) 标准码率模式。该模式下，视频的码率是基准码率的两倍。</li>
-                    <li><option keyref="COMPATIBLE_BITRATE"/>: 适配码率模式。该模式下，视频码率与基准码率一致。直播时如果选择该模式，视频帧率可能会低于设置的值。</li>
+                    <li><option keyref="STANDARD_BITRATE"/>: (推荐) 标准码率模式。该模式下，直播场景的视频码率高于通信场景的基准码率。详见 <xref keyref="video-profile"/>。</li>
+                    <li><option keyref="COMPATIBLE_BITRATE"/>: 适配码率模式。该模式下，直播场景的码率与通信场景的码率一致。如果选择该模式，直播场景的帧率可能会低于设置的值。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -513,11 +513,11 @@
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp framework">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <p props="android">本地视图的镜像模式。
-                      <ul id="videomirrormodetype">
-                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /> (0)：默认的镜像模式（SDK 决定镜像模式）。如果你使用前置摄像头，默认启动本地视图镜像模式；如果你启用后置摄像头，默认关闭本地视图镜像模式。</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1)：开启镜像模式。</li>
-                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" /> (2)：关闭镜像模式。</li>
+                    <p props="android">发送编码视频时是否开启镜像模式，只影响远端用户看到的视频画面。
+                      <ul>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /> (0)：SDK 决定镜像模式。默认关闭远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /> (1)：开启远端用户的镜像模式。</li>
+                      <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" /> (2)：关闭远端用户的镜像模式。</li>
                       </ul> </p>
                     <note type="attention">默认关闭镜像模式。</note> </pd>
             </plentry>
