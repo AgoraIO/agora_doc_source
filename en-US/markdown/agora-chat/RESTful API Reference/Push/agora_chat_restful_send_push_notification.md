@@ -4,7 +4,7 @@ Chat RESTful APIs allow you to send push notifications either by users or by lab
  
 ## <a name="param"></a>Common parameters
 
-The following table lists common request and response parameters of the Chat RESTful APIs:
+The following table lists common request and response parameters of the Chat RESTful APIs: 
 
 ### Request parameters
 
