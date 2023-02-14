@@ -9,6 +9,10 @@ v2.8.0 was released on December 12, 2022.
 
 ### New features
 
+#### Flexible Classroom UI builder 
+
+Flexible classroom UI builder is launched to enable you to design and custoimize the UI  of your classroom. 
+
 #### Online proctoring scenario (Web, Electron, iOS)
 
 v2.8.0 provides the Agora Proctor SDK for online exam proctoring scenarios. For details, see the Agora Proctor SDK API reference.
@@ -36,6 +40,7 @@ v2.8.0 adds the following features to the demo:
   - The efficiency of converting course materials
   - The compatibility of the whiteboard toolbar with touchscreen devices."
 - The `agora-edu-core` libraries have been enhanced.
+- The Microsoft Edge brower is supported now.
 
 
 ## v2.1.0
