@@ -641,6 +641,12 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ### Send a chat room message
 
+This RESTful API allows you to send a maximum of 100 messages to 10 chat rooms at most on each call. Assume that you send two messages to 10 chat rooms, the server counts it as 20 messages.
+
+In high-concurrency scenarios, you can set a certain message type or chat room member as high, normal, or priority. In this case, low-priority messages are dropped first to reserve resources for the high-priority ones (e.g. gifts and announcements) when the server is overloaded. This ensures that the high-priority messages can be dealt with first when loads of messages are being sent in high concurrency or high frequency.
+
+Note that this feature can increase the delivery reliability of high-priority messages, but cannot guarantee the deliveries. Even high-priorities messages can be dropped when the server load goes too high.
+
 #### HTTP request
 
 ```http
@@ -666,7 +672,7 @@ The request body is a JSON object, which contains the following parameters:
 | Parameter | Type | Description | Required |
 | --- | --- | --- | --- |
 | `to` | Array | An array of the chat room IDs that receives the message. Within one second, you can send messages to a maximum of 100 chat rooms, and for each request, you can send messages to a maximum of 10 chat rooms. | Yes |
-| `chatroom_msg_level` | String | The chat room message priority: <ul><li>`high`</li><li>(Default) `normal`</li><li>`low`</li></ul> | No       | 
+| `chatroom_msg_level` | String | The chat room message priority: <ul><li>`high`</li><li>(Default) `normal`</li><li>`low`</li></ul> | No       |
 
 The other parameters and descriptions are the same with those of [Sending a one-to-one message method](#request).
 
