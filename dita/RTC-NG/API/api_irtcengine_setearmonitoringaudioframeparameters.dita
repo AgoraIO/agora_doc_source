@@ -35,7 +35,12 @@
     mode: RawAudioFrameOpModeType,
     samplesPerCall: number
   ): number;</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEarMonitoringAudioFrameParameters(
+      {required int sampleRate,
+      required int channel,
+      required RawAudioFrameOpModeType mode,
+      required int samplesPerCall});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>该方法用于设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的耳返音频数据格式。</p>
@@ -74,11 +79,11 @@
                 <pd><apiname keyref="onEarMonitoringAudioFrame"/> 中报告的音频的采样点数，如旁路推流应用中通常为 1024。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
+        <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值。方法未成功调用时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0：方法调用成功。</li>
+            <li props="native unity rn electron">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>
