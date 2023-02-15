@@ -147,14 +147,14 @@ FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
 
 | FCM 推送字段   | FCM 官网字段                                                    |
 | :-------------- | :------------------------ |
-| `condition`             | `condition`                              |
-| `collapseKey`           | `collapse_key`  |
-| `priority`              | `priority` |
-| `timeToLive`            | `time_to_live`  |
-| `dryRun`                | `dry_run`  |
-| `restrictedPackageName` | `restricted_package_name` |
-| `data`                  | `data`                                            |
-| `notification`          | `notification` |
+| `condition`                     | `condition`                              |
+| `collapseKey`                   | `collapse_key`  |
+| `priority`                      | `priority` |
+| `timeToLive`                    | `time_to_live`  |
+| `dryRun`                        | `dry_run`  |
+| `restrictedPackageName`         | `restricted_package_name` |
+| `data`                          | `data`                                            |
+| `notification`                  | `notification` |
 | `notification.title`            | `title`         |
 | `notification.body`             | `body`           |
 | `notification.androidChannelId` | `android_channel_id` |
