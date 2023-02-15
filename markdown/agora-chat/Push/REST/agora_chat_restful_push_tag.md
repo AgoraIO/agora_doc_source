@@ -124,7 +124,6 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}
 
 | 参数            | 类型   | 描述      | 是否必需 | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
 | `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是    | 
 
 ### HTTP 响应
@@ -192,7 +191,6 @@ GET https://{host}/{org_name}/{app_name}/push/label
 
 | 参数            | 类型   | 描述      | 是否必需 | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型：`application/json`    | 是    | 
 | `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
 
 ### HTTP 响应
@@ -265,7 +263,6 @@ DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}
 
 | 参数            | 类型   | 描述   | 是否必需 | 
 | :------------- | :----- | :------- | :--------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
 | `Authorization` | String |`Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
 
 ### HTTP 响应
@@ -375,7 +372,7 @@ curl -L -X POST 'localhost/hx/hxdemo/push/label/post-90s/user' \
 
 ## 查询标签下的指定用户
 
-查询推送标签是否包含指定用户。
+查询推送标签是否存在指定用户。若存在，返回该用户的用户 ID 以及为该用户添加标签的时间；若不存在则不返回这些信息。
 
 ### HTTP 请求
 
@@ -396,7 +393,6 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{member}
 
 | 参数            | 类型   | 描述   | 是否必需 | 
 | :------------- | :----- | :------- | :--------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
 | `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
 
 ### HTTP 响应
@@ -464,7 +460,6 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 
 | 参数            | 类型   | 描述       | 是否必需 | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
 | `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
 
 ### HTTP 响应
