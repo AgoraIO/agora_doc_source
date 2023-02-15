@@ -139,7 +139,7 @@ APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
 | `ext`              | `loc-args`  | 
 | `launchImage`      | `launch-image`  | 
 
-关于这些字段的描述，详见 APNs 官网的[生成远程通知](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)和[向 APNs 发送通知请求](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns)。
+关于这些字段的描述，详见 APNs 官网的[生成远程通知](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)和[向 APNs 发送通知请求](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns)页面。
 
 ### FCM 推送相关字段
 
