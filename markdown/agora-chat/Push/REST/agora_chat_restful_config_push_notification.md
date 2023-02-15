@@ -40,7 +40,7 @@
 | `ext`      | JSON   | 推送自定义扩展信息，为自定义键值对。键值对不能超过 10 个且长度不能超过 1024 个字符。       | iOS & Android  | 否 |
 | `config`   | JSON   | 在通知栏中点击触发的动作以及角标的配置，包含 `clickAction` 和 `badge` 字段。 | iOS & Android  | 否 |
 | `config.clickAction` | JSON   | 在通知栏中点击触发的动作，均为 String 类型：<ul><li>`url`：打开自定义的 URL；</li><li>`action`：打开应用的指定页面；</li><li>`activity`：打开应用包名或 Activity 组件路径。</li></ul> | Android  | 否       |
-| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加；</li><li>`setNum`：表示推送通知到达设备时，角标数字重置。</li></ul> | iOS & Android  | No       |
+| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加；</li><li>`setNum`：表示推送通知到达设备时，角标数字重置。</li></ul> | iOS & Android  | 否       |
 
 
 ## 各厂商推送配置 
