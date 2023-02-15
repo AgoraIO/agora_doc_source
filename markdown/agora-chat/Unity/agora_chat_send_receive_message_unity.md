@@ -5,6 +5,10 @@
 - 位置消息。
 - 透传消息。
 - 自定义消息。
+-
+:::tip
+对于聊天室消息，提供消息分级功能，将消息的优先级划分为高、普通和低三种级别，高优先级的消息会优先送达。你可以在创建消息时对指定聊天室消息类型或指定成员的消息设置为高优先级，确保这些消息优先送达。这种方式确保在聊天室内消息并发量很大或消息发送频率过高时，重要消息能够优先送达，从而提升重要消息的可靠性。 当服务器的负载较高时，会优先丢弃低优先级的消息，将资源留给高优先级的消息。不过，消息分级功能只确保消息优先到达，并不保证必达。服务器负载过高的情况下，即使是高优先级消息依然会被丢弃。
+:::
 
 本文介绍如何使用即时通讯 IM SDK 实现发送和接收这些类型的消息。
 
@@ -41,6 +45,10 @@ Message msg = Message.CreateTextSendMessage(toChatUsername, content);
 //该属性的值为 `Chat`、`Group` 和 `Room`，表明该消息是单聊，群聊或聊天室消息，默认为单聊。
 //若为群聊，设置 `MessageType` 为 `Group`。
 msg.MessageType = MessageType.Group;
+
+//对于聊天室消息，可设置消息优先级。
+msg.MessageType = MessageType.Room;
+msg.SetRoomMessagePriority(RoomMessagePriority.High);
 
 //发送消息。
 //发送消息时可以设置 `CallBack` 的实例，获得消息发送的状态。可以在该回调中更新消息的显示状态。例如消息发送失败后的提示等等。
