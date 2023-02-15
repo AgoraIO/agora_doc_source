@@ -155,22 +155,17 @@ FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
 | `restrictedPackageName` | `restricted_package_name` |
 | `data`                  | `data`                                            |
 | `notification`          | `notification` |
-
-上表中 FCM 推送通知字段 `notification` 中包含的字段与 FCM 官网的字段的映射关系如下表所示：
-
-| FCM 推送通知的字段      | FCM 官网字段                                                    |
-| :----------------- | :----------------------------------------------------------- |
-| `title`            | `title`         |
-| `body`             | `body`           |
-| `androidChannelId` | `android_channel_id` |
-| `sound`            | `sound`          |
-| `tag`              | `tag`     |
-| `color`            | `color`     |
-| `clickAction`      | `click_action` |
-| `titleLocKey`      | `title_loc_key` |
-| `titleLocArgs`     | `title_loc_args`   |
-| `bodyLocKey`       | `body_loc_key`                     |
-| `bodyLocArgs`      | `body_loc_args` |
+| `notification.title`            | `title`         |
+| `notification.body`             | `body`           |
+| `notification.androidChannelId` | `android_channel_id` |
+| `notification.sound`            | `sound`          |
+| `notification.tag`              | `tag`     |
+| `notification.color`            | `color`     |
+| `notification.clickAction`      | `click_action` |
+| `notification.titleLocKey`      | `title_loc_key` |
+| `notification.titleLocArgs`     | `title_loc_args`   |
+| `notification.bodyLocKey`       | `body_loc_key`                     |
+| `notification.bodyLocArgs`      | `body_loc_args` |
 
 关于这些字段的描述，详见 [FCM 官网](https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=zh-cn)。
 
