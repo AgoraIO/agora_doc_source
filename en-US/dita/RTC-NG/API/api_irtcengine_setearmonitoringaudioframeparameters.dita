@@ -35,11 +35,16 @@
     mode: RawAudioFrameOpModeType,
     samplesPerCall: number
   ): number;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEarMonitoringAudioFrameParameters(
+      {required int sampleRate,
+      required int channel,
+      required RawAudioFrameOpModeType mode,
+      required int samplesPerCall});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method is used to set the in-ear monitoring audio data format reported by the <xref keyref="onEarMonitoringAudioFrame" /> callback.</p>
+            <p>This method is used to set the in-ear monitoring audio data format reported by the <xref keyref="onEarMonitoringAudioFrame"/> callback.</p>
             <note type="attention">
             <ul>
             <li>Before calling this method, you need to call <xref keyref="enableInEarMonitoring2"/>, and set <parmname>includeAudioFilters</parmname> to <apiname keyref="EAR_MONITORING_FILTER_BUILT_IN_AUDIO_FILTERS"/> or <apiname keyref="EAR_MONITORING_FILTER_NOISE_SUPPRESSION"/>.</li>
@@ -73,10 +78,11 @@
                 <pd>The number of data samples reported in the <apiname keyref="onEarMonitoringAudioFrame"/> callback, such as 1,024 for the Media Push.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
