@@ -93,7 +93,7 @@
                duration: 60 * 30, // 课程时间，单位为秒。
                recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.3.3/record_page.html',
                courseWareList: [],
-               uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
+               uiMode: 'light', // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 'dark' 即可。
                listener: (evt, args) => {
                },
            }).then(() => {
