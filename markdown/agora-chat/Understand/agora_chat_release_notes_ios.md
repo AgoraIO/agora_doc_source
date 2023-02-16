@@ -1,5 +1,20 @@
 本页面提供即时通讯 IM iOS SDK 的发版说明。
 
+## v1.1.0
+
+v1.1.0 于 2023 年 2 月 28 日发布。
+
+#### 新增特性
+
+- 新增聊天室自定义属性功能。
+- 新增聊天室消息优先级功能。
+- 新增 `IAgoraChatManager#getConversationsFromServerByPage:pageSize:completion` 方法支持分页获取会话列表功能。 
+- 新增 `IAgoraChatManager#removeMessagesFromServerWithTimeStamp` 和 `IAgoraChatManager#removeMessagesFromServerMessageIds` 方法删除服务端的历史消息。
+
+#### 修复
+
+修复一些不安全的代码。
+
 ## v1.0.9 
 
 v1.0.9 于 2022 年 12 月 19 日发布。

@@ -1,5 +1,19 @@
 本页面提供即时通讯 IM Flutter SDK 的发版说明。
 
+## 1.1.0
+
+#### 新增特性
+
+- 依赖的原生平台 `iOS` 和 `Android` 的 SDK 升级为 v1.1.0 版本。
+- 新增实现聊天室自定义属性功能。
+- 新增 `ChatManager#fetchConversationListFromServer` 方法实现从服务器分页获取会话列表。
+- 新增 `ChatMessage#chatroomMessagePriority` 属性实现聊天室消息优先级功能。
+- 新增 `ChatManager#removeMessagesFromServerWithTs` 和 `ChatManager#removeMessagesFromServerWithMsgIds` 方法实现单向删除服务端历史消息。
+
+#### 优化
+
+修改发送消息结果的回调由 `ChatMessage#setMessageStatusCallBack` 修改为 `ChatManager#addMessageEvent`。
+
 ## v1.0.9 
 
 v1.0.9 于 2022 年 12 月 19 日发布。

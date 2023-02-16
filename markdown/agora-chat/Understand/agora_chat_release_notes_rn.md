@@ -1,4 +1,24 @@
 本页面提供即时通讯 IM RN SDK 的发版说明。
+
+## 1.1.0
+
+#### 新增特性
+
+- 依赖的原生平台 `iOS` 和 `Android` 的 SDK 升级为 v1.1.0 版本。
+- 新增实现聊天室自定义属性功能。
+- 新增 `fetchConversationsFromServerWithPage` 方法实现从服务器分页获取会话列表。
+- 新增 `ChatMessage#messagePriority` 方法实现聊天室消息优先级功能。
+- 新增 `removeMessagesFromServerWithTimestamp` 和 `removeMessagesFromServerWithMsgIds` 方法实现单向删除服务端历史消息。
+
+#### 优化
+
+移除测试数据的敏感信息。
+
+#### 修复
+
+- 修复原生平台部分不安全代码。
+- 修复获取会话可能失败的问题。
+- 修复回调方法可能多次进入主线程导致死锁的问题。该问题只可能发生在 iOS 平台。
 ## v1.0.11 
 
 v1.0.11 于 2022 年 12 月 19 日发布。

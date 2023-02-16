@@ -1,5 +1,20 @@
 This page provides release notes for the Agora Chat iOS SDK.
 
+## v1.1.0
+
+v1.1.0 was released on February 28, 2023.
+
+#### New features
+
+1. Adds the function of managing custom chat room attributes.
+2. Adds the chat room message priority function.
+3. Adds the pagination parameters `pageNum` and `pageSize` to the `IAgoraChatManager#getConversationsFromServer` method to allow users to get the conversation list from the server with pagination.
+4. Adds the `IAgoraChatManager#removeMessagesFromServerWithTimeStamp` and `IAgoraChatManager#removeMessagesFromServerMessageIds` methods to allow users to delete messages on the server in a unidirectional way.
+
+#### Issues fixed
+
+Some insecure code.
+
 ##  v1.0.9
 
 v1.0.9 was released on December 19.

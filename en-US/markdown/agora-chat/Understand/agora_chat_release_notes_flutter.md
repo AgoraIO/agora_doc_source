@@ -1,5 +1,19 @@
 This page provides release notes for the Agora Chat Flutter SDK.
 
+## v1.1.0
+
+#### New features
+
+- Upgrades the native platforms `iOS` and `Android` that the Flutter platform depends on to v1.1.0.
+- Adds the function of managing custom chat room attributes.
+- Adds the `ChatManager#fetchConversationListFromServer` method to allow users to get the conversation list from the server with pagination.
+- Adds the `ChatMessage#chatroomMessagePriority` attribute to implement the chat room message priority function.
+- Adds the `ChatManager#removeMessagesFromServerWithTs` and `ChatManager#removeMessagesFromServerWithMsgIds` methods to allow users to delete messages on the server in a unidirectional way.
+
+#### Improvements
+
+Changed the message sending result callback from `ChatMessage#setMessageStatusCallBack` to `ChatManager#addMessageEvent`.
+
 ## v1.0.9
 
 v1.0.9 was released on December 19.
