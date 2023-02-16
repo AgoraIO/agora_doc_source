@@ -42,18 +42,18 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section props="native electron unity" id="return_values">
+        <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
-            <ul props="cpp unity">
-            <li>0: 方法调用成功。</li>
+            <ul>
+            <li props="cpp electron unity">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
 
                 <ul>
                 <li>-12(<codeph>ERR_TOO_OFTEN</codeph>): 调用频率超出限制。</li>
                 </ul></li>
             </ul>
-            <ul props="android ios mac flutter">
+            <ul props="android ios mac">
             <li>方法调用成功: 返回请求 ID。该请求 ID 与 <xref keyref="onUploadLogResult" /> 回调中的 <parmname>requestId</parmname> 一致。你可以通过
   <parmname>requestId</parmname> 将特定的上传和回调对应起来。</li>
             <li>方法调用失败: 返回 <ph keyref="NULL" />。可能是因为调用频率超出限制。</li>
