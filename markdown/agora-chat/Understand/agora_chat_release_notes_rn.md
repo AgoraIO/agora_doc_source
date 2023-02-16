@@ -6,9 +6,9 @@
 
 - 依赖的原生平台 `iOS` 和 `Android` 的 SDK 升级为 v1.1.0 版本。
 - 新增实现聊天室自定义属性功能。
-- 新增 `fetchConversationsFromServerWithPage` 方法实现从服务器分页获取会话列表。
+- 新增 `ChatManager#fetchConversationsFromServerWithPage` 方法实现从服务器分页获取会话列表。
 - 新增 `ChatMessage#messagePriority` 方法实现聊天室消息优先级功能。
-- 新增 `removeMessagesFromServerWithTimestamp` 和 `removeMessagesFromServerWithMsgIds` 方法实现单向删除服务端历史消息。
+- 新增 `ChatManager#removeMessagesFromServerWithTimestamp` 和 `ChatManager#removeMessagesFromServerWithMsgIds` 方法实现单向删除服务端历史消息。
 
 #### 优化
 

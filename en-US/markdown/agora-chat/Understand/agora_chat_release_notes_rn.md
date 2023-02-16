@@ -6,9 +6,9 @@ This page provides release notes for the Agora React Native Chat SDK.
 
 - Upgrades the native platforms `iOS` and `Android` that the React Native platform depends on to v1.1.0.
 - Adds the function of managing custom chat room attributes.
-- Adds the `fetchConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
+- Adds the `ChatManager#fetchConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
 - Adds the `ChatMessage#messagePriority` method to implement the chat room message priority function.
-- Adds the `removeMessagesFromServerWithTimestamp` and `removeMessagesFromServerWithMsgIds` methods to allow users to delete messages on the server in a unidirectional way.
+- Adds the `ChatManager#removeMessagesFromServerWithTimestamp` and `ChatManager#removeMessagesFromServerWithMsgIds` methods to allow users to delete messages on the server in a unidirectional way.
 
 #### Improvements
 
