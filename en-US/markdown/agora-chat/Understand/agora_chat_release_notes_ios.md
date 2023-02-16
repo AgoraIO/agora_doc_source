@@ -6,14 +6,14 @@ v1.1.0 was released on February 28, 2023.
 
 #### New features
 
-1. Adds the function of managing custom chat room attributes.
-2. Adds the chat room message priority function.
+1. Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
+2. Adds the `AgoraChatMessage#priority` attribute to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
 3. Adds the pagination parameters `pageNum` and `pageSize` to the `IAgoraChatManager#getConversationsFromServer` method to allow users to get the conversation list from the server with pagination.
 4. Adds the `IAgoraChatManager#removeMessagesFromServerWithTimeStamp` and `IAgoraChatManager#removeMessagesFromServerMessageIds` methods to allow users to delete messages on the server in a unidirectional way.
 
-#### Issues fixed
+#### improvements
 
-Some insecure code.
+Improved code security.
 
 ##  v1.0.9
 

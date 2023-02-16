@@ -2,6 +2,8 @@ This page provides release notes for the Agora React Native Chat SDK.
 
 ## v1.1.0
 
+v1.1.0 was released on February 28, 2023.
+
 #### New features
 
 - Upgrades the native platforms `iOS` and `Android` that the React Native platform depends on to v1.1.0.
