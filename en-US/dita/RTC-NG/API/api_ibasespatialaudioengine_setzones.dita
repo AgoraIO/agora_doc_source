@@ -22,7 +22,7 @@
             <codeblock props="rn" outputclass="language-typescript">abstract setZones(zones: SpatialAudioZone, zoneCount: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setZones(
       {required SpatialAudioZone zones, required int zoneCount});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -34,7 +34,7 @@
             </dl>
             <p>In virtual interactive scenarios, you can use this method to set the sound insulation area and sound attenuation coefficient. When the sound source (which can be the user or the media player) and the listener belong to the inside and outside of the sound insulation area, they can experience the attenuation effect of sound similar to the real environment when it encounters a building partition.</p>
             <ul>
-            <li>When the sound source and the listener belong to the inside and outside of the sound insulation area, the sound attenuation effect is determined by the sound attenuation coefficient in <xref keyref="SpatialAudioZone"/>.</li>
+            <li>When the sound source and the listener belong to the inside and outside of the sound insulation area, the sound attenuation effect is determined by<xref keyref="SpatialAudioZone"/> the sound attenuation coefficient in .</li>
             <li>If the user or media player is in the same sound insulation area, it is not affected by <apiname keyref="SpatialAudioZone"/>, and the sound attenuation effect is determined by the <parmname>attenuation</parmname> parameter in <apiname keyref="setPlayerAttenuation"/> or <apiname keyref="setRemoteAudioAttenuation"/>. If you do not call <apiname keyref="setPlayerAttenuation"/> or <apiname keyref="setRemoteAudioAttenuation"/>, the default sound attenuation coefficient of the SDK is 0.5, which simulates the attenuation of the sound in the real environment.</li>
             <li>If the sound source and the receiver belong to two sound insulation areas, the receiver cannot hear the sound source.</li>
             </ul>
@@ -51,10 +51,11 @@
                 <pd>The number of sound insulation areas.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
