@@ -25,11 +25,11 @@
     observer: IVideoEncodedFrameObserver
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerVideoEncodedFrameObserver(VideoEncodedFrameObserver observer);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
  </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>If you only want to observe encoded video frames (such as h.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver" /> class through this method.</p>
+            <p>If you only want to observe encoded video frames (such as h.264 format) without decoding and rendering the video, Agora recommends that you implement one <xref keyref="IVideoEncodedFrameObserver"/> class through this method.</p>
             <p id="mix">If you want to obtain the original video data of some remote users (referred to as group A) and the encoded video data of other remote users (referred to as group B), you can refer to the following steps:<ol>
             <li>Call <xref keyref="registerVideoFrameObserver"/> to register the raw video frame observer before joining the channel.</li>
             <li>Call <xref keyref="registerVideoEncodedFrameObserver"/> to register the encoded video frame observer before joining the channel.</li>
@@ -59,8 +59,9 @@
                 <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron rn unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul props="android cpp electron rn unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
