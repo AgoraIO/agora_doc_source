@@ -24,12 +24,12 @@
     option: StreamFallbackOptions
   ): number;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteSubscribeFallbackOption(StreamFallbackOptions option);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
           </section>
           <section id="detailed_desc">
             <title>Details</title>
-               <p>When the network is not ideal, the quality of live audio and video can be degraded. If <parmname>option</parmname> is set as <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" /> or <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />, the SDK automatically switches the video from a high-quality stream to a low-quality stream or disables the video when the downlink network conditions cannot support both audio and video to guarantee the quality of the audio. The SDK monitors the network quality and restores the video stream when the network conditions improve.</p>
-               <p>When the remote video stream falls back to audio-only or when the audio-only stream switches back to the video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly" /> callback.</p>
+               <p>When the network is not ideal, the quality of live audio and video can be degraded. If <parmname>option</parmname> is set as <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/> or <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>, the SDK automatically switches the video from a high-quality stream to a low-quality stream or disables the video when the downlink network conditions cannot support both audio and video to guarantee the quality of the audio. The SDK monitors the network quality and restores the video stream when the network conditions improve.</p>
+               <p>When the remote video stream falls back to audio-only or when the audio-only stream switches back to the video, the SDK triggers the <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> callback.</p>
                <note type="attention">Ensure that you call this method before joining a channel.</note> </section>
           <section id="parameters">
                <title>Parameters</title>
@@ -43,10 +43,11 @@
                          </ul></pd>
                </plentry>
                </parml> </section>
-          <section id="return_values" props="native electron unity rn">
-               <title>Returns</title>
+          <section id="return_values">
+               <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
                <ul>
-               <li>0: Success.</li>
+               <li props="native electron unity rn">0: Success.</li>
                <li>&lt; 0: Failure.</li>
                </ul> </section>
      </refbody>
