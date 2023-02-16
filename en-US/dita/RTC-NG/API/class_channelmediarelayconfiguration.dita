@@ -106,7 +106,7 @@
         _$ChannelMediaRelayConfigurationFromJson(json);
     Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaRelayConfigurationToJson(this);
   }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section props="android">
           <title>Method</title>
@@ -142,11 +142,11 @@
                 <pd props="cpp ios mac framework">
                     <p>The information of the source channel. See <xref keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
                     <li><parmname>channelName</parmname>: The name of the source channel. The default value is <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the name of the current channel.</li>
-                    <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the source channel. The default value is 0, which means the SDK generates a random <codeph>uid</codeph>. You must set it as 0.</li>
                     <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the source channel. This token is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>srcInfo</parmname>.<ul>
                         <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <parmname>token</parmname> generated with the <parmname>channelName</parmname> and <parmname>uid</parmname>, and the <parmname>uid</parmname> must be set as 0.</li>
                         </ul> </li>
+                      <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the source channel. 默认值为 0，请勿修改。</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -156,11 +156,11 @@
                 <pd props="cpp ios mac framework">
                     <p>The information of the destination channel <apiname keyref="ChannelMediaInfo"/>. It contains the following members:<ul>
                     <li><parmname>channelName</parmname>: The name of the destination channel.</li>
-                    <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the destination channel. The value ranges from 0 to (2 <sup>32</sup>-1). To avoid user ID conflicts, this user ID must be different from any other user ID in the destination channel. The default value is 0, which means the SDK generates a random user ID.</li>
                     <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the destination channel. It is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>destInfos</parmname>.<ul>
                         <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <parmname>token</parmname> generated with the <parmname>channelName</parmname> and <parmname>uid</parmname>.</li>
-                        </ul> </li>
+                        </ul> <note type="attention"><p>由于目标频道中任意频道的 token 过期会导致所有跨频道推流停止，因此建议你将目标频道的 token 设置为相同的过期时长。</p></note></li>
+                      <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the destination channel. The value ranges from 0 to (2 <sup>32</sup>-1). To avoid user ID conflicts, this user ID must be different from any other user ID in the destination channel. The default value is 0, which means the SDK generates a random user ID.</li>
                     </ul> </p>
                 </pd>
             </plentry>
