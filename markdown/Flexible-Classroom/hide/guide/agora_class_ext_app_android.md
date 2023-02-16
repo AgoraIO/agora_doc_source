@@ -1,6 +1,6 @@
 ## 概览
 
-扩展应用 ExtApp 是灵动课堂的补充插件。你可以将 ExtApp 理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于 Agora Classroom SDK。你可以通过 ExtApp 自定义插件的 UI，传递自定义数据和监听数据变化，在灵动课堂内嵌入自定义插件，例如倒计时、骰子等。
+扩展应用 ExtApp 是灵动课堂的补充插件。你可以将 ExtApp 理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于声网 Classroom SDK。你可以通过 ExtApp 自定义插件的 UI，传递自定义数据和监听数据变化，在灵动课堂内嵌入自定义插件，例如倒计时、骰子等。
 
 ExtApp 的源码位于 GitHub 上 [CloudClass-Android](https://github.com/AgoraIO-Community/CloudClass-Android) 仓库中 `extapp` 目录下。
 
@@ -124,7 +124,7 @@ fun onExtAppUnloaded()
 
 ### 2. 注册插件
 
-调用 `AgoraEduSDK.registerExtApp` 方法，将该插件注册到 Agora Classroom SDK 中。
+调用 `AgoraEduSDK.registerExtApp` 方法，将该插件注册到声网 Classroom SDK 中。
 
 以下示例代码演示了如何注册一个倒计时插件 CountDownExtApp。
 

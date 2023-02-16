@@ -6,12 +6,12 @@
 
 如上图所示，如需要集成灵动课堂与你的用户系统及排课系统，你需要实现以下业务逻辑：
 
-- 在你的服务端部署 RTM Token 生成器，通过 Agora 的 App ID，App 证书和用户 ID 参数生成 RTM Token。详情请参考[使用 AccessToken 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms)。
+- 在你的服务端部署 RTM Token 生成器，通过声网 的 App ID，App 证书和用户 ID 参数生成 RTM Token。详情请参考[使用 AccessToken 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms)。
 - 设计一个 RESTful API，用于实现以下三个目的：
     - 验证登录 App 的用户是否在用户系统中存在。
     - 如存在该用户，获取该用户的用户信息与排课信息。
     - 获取 RTM Token 生成器为该用户签发的 RTM Token。
-- 客户端获取到用户 ID，课堂 ID 和 RTM Token 后，根据[启动灵动课堂](agora_class_quickstart_web#%E5%90%AF%E5%8A%A8%E7%81%B5%E5%8A%A8%E8%AF%BE%E5%A0%82)调用 [Agora Classroom SDK](agora_class_api_ref_web) 的 launch 方法，传入用户 ID，课堂 ID，RTM Token 以及其他参数，启动灵动课堂。
+- 客户端获取到用户 ID，课堂 ID 和 RTM Token 后，根据[启动灵动课堂](agora_class_quickstart_web#%E5%90%AF%E5%8A%A8%E7%81%B5%E5%8A%A8%E8%AF%BE%E5%A0%82)调用 [声网 Classroom SDK](agora_class_api_ref_web) 的 launch 方法，传入用户 ID，课堂 ID，RTM Token 以及其他参数，启动灵动课堂。
 
 ## 注意事项
 

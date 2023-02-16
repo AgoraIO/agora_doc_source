@@ -9,7 +9,7 @@
 ## 前提条件
 
 -   在声网控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
--   在声网控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
+-   在声网控制台获取 [声网 App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
 -   一个有效的 Apple 开发者账号。
 -   一台 iOS 设备（iPhone 或 iPad）。模拟机可能出现功能缺失或者性能问题，所以推荐使用真机。此外，灵动课堂 iOS 端要求运行在 iOS 11 或以上版本。
 

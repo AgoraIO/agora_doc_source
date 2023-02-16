@@ -1,8 +1,8 @@
-本页提供 Agora Classroom SDK for Android 的 Kotlin API 参考。
+本页提供声网 Classroom SDK for Android 的 Kotlin API 参考。
 
 ## AgoraClassSDK
 
-`AgoraClassSDK` 是 Agora Classroom SDK 的基础接口类，提供灵动课堂教育场景的核心方法。
+`AgoraClassSDK` 是声网 Classroom SDK 的基础接口类，提供灵动课堂教育场景的核心方法。
 
 ### setConfig
 
@@ -94,7 +94,7 @@ SDK 全局配置。用于 [setConfig](#setconfig) 方法。
 
 | 属性    | 描述           |
 | :------ | :------------- |
-| `appId` | Agora App ID。 |
+| `appId` |声网 App ID。 |
 
 
 ### AgoraEduLaunchConfig 
