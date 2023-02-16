@@ -21,17 +21,18 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int StopSecondaryCameraCapture();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract stopSecondaryCameraCapture(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopSecondaryCameraCapture();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p><xref keyref="startSecondaryCameraCapture" />You can call this method to stop capturing video through the second camera after calling the .</p>
             <p props="cpp unity rn flutter">On the iOS platform, if you want to disable multi-camera capture, you need to call <xref keyref="enableMultiCamera"/>after calling this method and set <parmname>enabled</parmname> to <codeph><ph keyref="false"/></codeph>.</p>
         </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul id="ul_zwp_txl_3qb">
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
