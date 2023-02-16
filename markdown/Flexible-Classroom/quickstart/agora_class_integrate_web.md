@@ -108,7 +108,7 @@
             courseWareList: [],
             virtualBackgroundImages: [], // 虚拟背景图片资源列表
             webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC插件部署地址
-            uiMode: FcrMultiThemeMode.light, // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 FcrMultiThemeMode.dark 即可。
+            uiMode: 'light', // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 'dark' 即可。
             listener: (evt, args) => {
             },
         });
