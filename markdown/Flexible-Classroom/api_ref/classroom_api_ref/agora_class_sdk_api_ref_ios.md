@@ -1,8 +1,8 @@
-本页提供 Agora Classroom SDK for iOS 的 Swift API 参考。
+本页提供声网 Classroom SDK（iOS）的 Swift API 参考。
 
 ## AgoraClassroomSDK
 
-`AgoraClassroomSDK` 是 Agora Classroom SDK 的基础接口类，提供灵动课堂教育场景的核心方法。
+`AgoraClassroomSDK` 是声网 Classroom SDK 的基础接口类，提供灵动课堂教育场景的核心方法。
 
 ### version
 
@@ -156,7 +156,7 @@ Classroom SDK 退出回调。
 | `roomUuid`       | 课堂 ID，String 型。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","                                                |
 | `roomType`       | 课堂类型，详见 [AgoraEduRoomType](#agoraeduroomtype)。                                                                                                                                                                                                                                                                                                                       |
 | `token`          | 用于鉴权的 RTM Token，String 型，详见[使用 AccessToken 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm)。                                                                                                                                                                                                                                                                                                                                            |
-| `appId`          | Agora App ID，String 型。                                                                                                                                                                                                                                                                                                                                                    |
+| `appId`          |声网 App ID，String 型。                                                                                                                                                                                                                                                                                                                                                    |
 | `startTime`      | 课堂开始时间，单位为毫秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                             |
 | `duration`       | 课堂持续时间，单位为秒，以第一个进入课堂的用户传入的参数为准。                                                                                                                                                                                                                                                                                                               |
 | `region`         | 区域。建议设置为靠近你的课件或录制文件对象存储服务所在的区域，因为跨区域传输较大的静态资源会造成比较大的延迟。举例来说，如果你的 S3 服务在北美，则建议将 `region` 也设为北美区域。所有灵动课堂客户端必须设置相同的区域，否则无法互通。支持的区域详见 [AgoraEduRegion](#agoraeduregion)。                                                                                     |

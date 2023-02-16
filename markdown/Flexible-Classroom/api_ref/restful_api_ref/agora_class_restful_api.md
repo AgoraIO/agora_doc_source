@@ -39,7 +39,7 @@
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
@@ -108,7 +108,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **请求包体参数**
@@ -194,7 +194,7 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
 | 参数       | 类型    | 描述                                                         |
 | :--------- | :------ | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String  | （必填）Agora App ID。                                       |
+| `appId`    | String  | （必填）声网 App ID。                                       |
 | `roomUUid` | String  | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `state`    | Integer | （必填）课堂状态：<ul><li>`0`: 未开始</li><li>`1`: 开始</li><li>`2`: 结束</li><li>`3`: 拖堂时间结束，房间关闭，用户无法再进入</li></ul> |
 
@@ -244,7 +244,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 | 参数       | 类型    | 描述                                                         |
 | :--------- | :------ | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String  | （必填）Agora App ID。                                       |
+| `appId`    | String  | （必填）声网 App ID。                                       |
 | `roomUUid` | String  | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `state`    | Integer | （必填）录制状态：<li>`0`: 结束</li><li>`1`: 开始</li>       |
 
@@ -255,8 +255,8 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 | 参数              | 类型   | 描述                                                         |
 | :---------------- | :----- | :----------------------------------------------------------- |
 | `mode`            | String | （非必填）录制模式：<li>设为 `web`，则启用[页面录制模式](/cn/Agora%20Platform/webpage_recording)。录制生成 MP4 文件。此外，录制服务会在当前 MP4 文件时长超过 2 小时或大小超过 2 GB 时创建一个新的 MP4 文件。</li><li>不填，则启用[合流录制模式](/cn/Agora%20Platform/composite_recording_mode)且只录制老师的音视频。录制生成 M3U8 和 TS 文件。</li> |
-| `webRecordConfig`| Object | （非必填）当 `mode` 为 `web` 时，你需要通过 `webRecordConfig` 设置页面录制的详细信息，包含以下字段：<ul><li>`url`:（必填）String 类型，待录制页面地址。如你想要录制灵动课堂的某一节课，你需要在 URL 中传入启动课堂相关参数，以便 Agora 云端录制服务以一个“隐身用户”的身份加入指定课堂进行录制。可参考请求示例中 URL 的示例。URL 中需包含以下参数：<ul><li>`userUuid`: Agora 云端录制服务使用的用户 ID。请确保不要和课堂中已有用户的 ID 重复，否则 Agora 云端录制服务将无法加入课堂。</li><li>`roomUuid`: 待录制课堂的课堂 ID。</li><li>`roomType`: 待录制课堂的课堂类型。</li><li>`roleType`: Agora 云端录制服务在待录制课堂内的角色，设为 0（专用于录制的课堂角色）。</li><li>`pretest`: 是否开启课前检测，设为 `false`。</li><li>`rtmToken`: Agora 云端录制服务使用的 RTM Token。</li><li>`language`: 界面语言，可设为 `zh` 或 `en`。</li><li>`appId`: Agora App ID。</li></ul></li><li>`rootUrl`: （必填）String 类型，待录制页面的根地址。实际录制时，教育云服务会根据 `rootUrl` 自动拼接上 `roomUuid`、`roomType` 等参数。如你同时设置了 `url` 和 `rootUrl`， `url` 的优先级高于 `rootUrl`。</li><li>`publishRtmp`: （非必填）是否将页面录制的流推到 CDN：<ul><li>`true`: 推。</li><li>`false`: 不推。</li></ul></li><li>`onhold`: （非必填）Boolean 类型，可设为：<ul><li>`true`: 在启动页面录制任务后立即暂停录制。录制服务会打开并渲染待录制页面，但不生成切片文件。</li><li>`false`: （默认）启动页面录制任务并开始录制。</li></ul></li><li>`videoBitrate`:（非必填）Number 类型，输出视频的码率，单位为 kbps，范围为 [50, 8000]。针对不同的输出视频分辨率，`videoBitrate` 的默认值不同：<ul><li>输出视频分辨率大于或等于 1280 × 720：默认值为 2000。</li><li>输出视频分辨率小于 1280 × 720：默认值为 1500。</li></ul></li><li>`videoFps`:（非必填）Number 类型，输出视频的帧率，单位为 fps，范围为 [5, 60]，默认值为 15。</li><li>`audioProfile`: Number 类型，设置输出音频的采样率、码率、编码模式和声道数。<ul><li>0：（默认）48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps</li><li>1：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps</li><li>2：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps</li></ul></li><li>`videoWidth`: Number 类型，设置输出视频的宽度，单位为 pixel，范围为 [480, 1920]。默认为 1280。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1920 x 1080。</li><li>`videoHeight`: Number 类型，设置输出视频的高度，单位为 pixel，范围为 [480, 1920]。默认为 720。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1920 × 1080。</li><li>`maxRecordingHour`: Number 类型，设置录制的最大时长，单位为小时，范围为 [1,720]。如果你设置了课堂持续时间，会按照课堂持续时间向上取整。假设课堂持续时间是 1800 秒，`maxRecordingHour` 则为 1 小时。如果你没有设置课堂持续时间，`maxRecordingHour` 默认为 2 小时。当录制时长超过 `maxRecordingHour`，录制会自动停止。</li></ul> |
-| `retryTimeout`    | Number | 重试超时时间，单位为秒。最多重试两次。设置 `retryTimeout` 参数后，Agora 建议你参考[课堂录制最佳实践](/cn/agora-class/agora_class_record?platform=RESTful#启动课堂录制)进行操作。 |
+| `webRecordConfig`| Object | （非必填）当 `mode` 为 `web` 时，你需要通过 `webRecordConfig` 设置页面录制的详细信息，包含以下字段：<ul><li>`url`:（必填）String 类型，待录制页面地址。如你想要录制灵动课堂的某一节课，你需要在 URL 中传入启动课堂相关参数，以便声网云端录制服务以一个“隐身用户”的身份加入指定课堂进行录制。可参考请求示例中 URL 的示例。URL 中需包含以下参数：<ul><li>`userUuid`:声网云端录制服务使用的用户 ID。请确保不要和课堂中已有用户的 ID 重复，否则声网云端录制服务将无法加入课堂。</li><li>`roomUuid`: 待录制课堂的课堂 ID。</li><li>`roomType`: 待录制课堂的课堂类型。</li><li>`roleType`:声网云端录制服务在待录制课堂内的角色，设为 0（专用于录制的课堂角色）。</li><li>`pretest`: 是否开启课前检测，设为 `false`。</li><li>`rtmToken`:声网云端录制服务使用的 RTM Token。</li><li>`language`: 界面语言，可设为 `zh` 或 `en`。</li><li>`appId`:声网 App ID。</li></ul></li><li>`rootUrl`: （必填）String 类型，待录制页面的根地址。实际录制时，教育云服务会根据 `rootUrl` 自动拼接上 `roomUuid`、`roomType` 等参数。如你同时设置了 `url` 和 `rootUrl`， `url` 的优先级高于 `rootUrl`。</li><li>`publishRtmp`: （非必填）是否将页面录制的流推到 CDN：<ul><li>`true`: 推。</li><li>`false`: 不推。</li></ul></li><li>`onhold`: （非必填）Boolean 类型，可设为：<ul><li>`true`: 在启动页面录制任务后立即暂停录制。录制服务会打开并渲染待录制页面，但不生成切片文件。</li><li>`false`: （默认）启动页面录制任务并开始录制。</li></ul></li><li>`videoBitrate`:（非必填）Number 类型，输出视频的码率，单位为 kbps，范围为 [50, 8000]。针对不同的输出视频分辨率，`videoBitrate` 的默认值不同：<ul><li>输出视频分辨率大于或等于 1280 × 720：默认值为 2000。</li><li>输出视频分辨率小于 1280 × 720：默认值为 1500。</li></ul></li><li>`videoFps`:（非必填）Number 类型，输出视频的帧率，单位为 fps，范围为 [5, 60]，默认值为 15。</li><li>`audioProfile`: Number 类型，设置输出音频的采样率、码率、编码模式和声道数。<ul><li>0：（默认）48 kHz 采样率，音乐编码，单声道，编码码率约 48 Kbps</li><li>1：48 kHz 采样率，音乐编码，单声道，编码码率约 128 Kbps</li><li>2：48 kHz 采样率，音乐编码，双声道，编码码率约 192 Kbps</li></ul></li><li>`videoWidth`: Number 类型，设置输出视频的宽度，单位为 pixel，范围为 [480, 1920]。默认为 1280。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1920 x 1080。</li><li>`videoHeight`: Number 类型，设置输出视频的高度，单位为 pixel，范围为 [480, 1920]。默认为 720。`videoWidth` 和 `videoHeight` 的乘积需小于等于 1920 × 1080。</li><li>`maxRecordingHour`: Number 类型，设置录制的最大时长，单位为小时，范围为 [1,720]。如果你设置了课堂持续时间，会按照课堂持续时间向上取整。假设课堂持续时间是 1800 秒，`maxRecordingHour` 则为 1 小时。如果你没有设置课堂持续时间，`maxRecordingHour` 默认为 2 小时。当录制时长超过 `maxRecordingHour`，录制会自动停止。</li></ul> |
+| `retryTimeout`    | Number | 重试超时时间，单位为秒。最多重试两次。设置 `retryTimeout` 参数后，声网建议你参考[课堂录制最佳实践](/cn/agora-class/agora_class_record?platform=RESTful#启动课堂录制)进行操作。 |
 
 #### 请求示例
 
@@ -327,7 +327,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **请求包体参数**
@@ -397,7 +397,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **Query 参数**
@@ -427,7 +427,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 | `code` | Integer | 业务状态码：<li>0: 请求成功。</li><li>非 0: 请求失败。</li>  |
 | `msg`  | String  | 详细信息。                                                   |
 | `ts`   | Number  | 当前服务端的 Unix 时间戳（毫秒），UTC 时间。                 |
-| `data` | Object  | 具体数据，包含：<ul><li>`count`: Integer 型，本批数据条数。</li><li>`list`: 由多个 Object 组成的数组。每个 Object 包含以下字段：<ul><li>`appId`: 你的 Agora App ID。 </li><li>`roomUuid`: 课堂 uuid。这是课堂的唯一标识符，也是 Agora RTC SDK 和 Agora RTM SDK 中使用的频道名。 </li><li>`recordId`: 一次录制的的唯一标识符。调用设置录制状态 API 开始录制然后结束录制视为一次录制。</li><li>`startTime`: 录制开始的 UTC 时间戳，单位为毫秒。 </li><li>`endTime`: 录制结束的 UTC 时间戳，单位为毫秒。 </li><li>`resourceId`: Agora 云端录制服务的 `resourceId`。 </li><li>`sid`: Agora 云端录制服务的 `sid`。 </li><li>`recordUid`: Agora 云端录制服务在频道内使用的 UID。 </li><li>`boardAppId`: Agora 互动白板服务的 App Identifier。 </li><li>`boardToken`: Agora 互动白板服务的 SDK Token。</li><li>`boardId`: 白板的唯一标识符。 </li><li>`type`: Integer 型，录制类型：<ul><li>`1`: 单流录制</li><li>`2`: 合流录制</li></ul></li><li>`status`: Integer 型，录制状态：<ul><li>`1`: 录制中</li><li>`2`: 录制已结束</li></ul></li><li>`url`: String 型，合流录制模式下录制文件的访问地址。 </li><li>`recordDetails`: JSONArray 类型。包含以下字段：<ul><li>`url`: String 型，网页录制模式下录制文件的访问地址。</li></ul></li><li>`nextId`: String 型，下一批数据的起始 ID。如为 null，则表示没有下一批数据。如不为 null，则可用此 `nextId` 继续查询，直到查到 null 为止。</li><li>`total`: Integer 型，数据总条数。</li><li>`unready`: Boolean 型，值为 `true` 表示录制失败。如果在开启录制时设置了 `retryTimeout` 参数，由于超时未报告 ready 而被自动停止的录制任务会被添加 `unready` 标记。</li></ul></li></ul> |
+| `data` | Object  | 具体数据，包含：<ul><li>`count`: Integer 型，本批数据条数。</li><li>`list`: 由多个 Object 组成的数组。每个 Object 包含以下字段：<ul><li>`appId`: 你的声网 App ID。 </li><li>`roomUuid`: 课堂 uuid。这是课堂的唯一标识符，也是声网 RTC SDK 和声网 RTM SDK 中使用的频道名。 </li><li>`recordId`: 一次录制的的唯一标识符。调用设置录制状态 API 开始录制然后结束录制视为一次录制。</li><li>`startTime`: 录制开始的 UTC 时间戳，单位为毫秒。 </li><li>`endTime`: 录制结束的 UTC 时间戳，单位为毫秒。 </li><li>`resourceId`:声网云端录制服务的 `resourceId`。 </li><li>`sid`:声网云端录制服务的 `sid`。 </li><li>`recordUid`:声网云端录制服务在频道内使用的 UID。 </li><li>`boardAppId`:声网互动白板服务的 App Identifier。 </li><li>`boardToken`:声网互动白板服务的 SDK Token。</li><li>`boardId`: 白板的唯一标识符。 </li><li>`type`: Integer 型，录制类型：<ul><li>`1`: 单流录制</li><li>`2`: 合流录制</li></ul></li><li>`status`: Integer 型，录制状态：<ul><li>`1`: 录制中</li><li>`2`: 录制已结束</li></ul></li><li>`url`: String 型，合流录制模式下录制文件的访问地址。 </li><li>`recordDetails`: JSONArray 类型。包含以下字段：<ul><li>`url`: String 型，网页录制模式下录制文件的访问地址。</li></ul></li><li>`nextId`: String 型，下一批数据的起始 ID。如为 null，则表示没有下一批数据。如不为 null，则可用此 `nextId` 继续查询，直到查到 null 为止。</li><li>`total`: Integer 型，数据总条数。</li><li>`unready`: Boolean 型，值为 `true` 表示录制失败。如果在开启录制时设置了 `retryTimeout` 参数，由于超时未报告 ready 而被自动停止的录制任务会被添加 `unready` 标记。</li></ul></li></ul> |
 
 #### 响应示例
 
@@ -484,7 +484,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 | 参数       | 类型   | 描述                                                                                                                              |
 | :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                                                                                            |
+| `appId`    | String | （必填）声网 App ID。                                                                                                            |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
@@ -539,7 +539,7 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **Query 参数**
@@ -622,7 +622,7 @@ https://api.agora.io/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cm
 | 参数    | 类型   | 描述                   |
 | :------ | :----- | :--------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId` | String | （必填）Agora App ID。 |
+| `appId` | String | （必填）声网 App ID。 |
 
 #### 请求示例
 
@@ -680,7 +680,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **请求包体参数**
@@ -745,7 +745,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **请求包体参数**
@@ -806,7 +806,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
@@ -871,7 +871,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `userUuid` | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
@@ -931,7 +931,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数         | 类型   | 描述                                                         |
 | :----------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`      | String | （必填）Agora App ID。                                       |
+| `appId`      | String | （必填）声网 App ID。                                       |
 | `roomUUid`   | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `widgetUuid` | String | （必填）Widget uuid。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
@@ -997,7 +997,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数         | 类型   | 描述                                                         |
 | :----------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`      | String | （必填）Agora App ID。                                       |
+| `appId`      | String | （必填）声网 App ID。                                       |
 | `roomUUid`   | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `widgetUuid` | String | （必填）Widget uuid。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
@@ -1045,7 +1045,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数         | 类型   | 描述                                                         |
 | :----------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`      | String | （必填）Agora App ID。                                       |
+| `appId`      | String | （必填）声网 App ID。                                       |
 | `roomUUid`   | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `widgetUuid` | String | （必填）Widget uuid。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
@@ -1105,7 +1105,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数         | 类型   | 描述                                                         |
 | :----------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`      | String | （必填）Agora App ID。                                       |
+| `appId`      | String | （必填）声网 App ID。                                       |
 | `roomUUid`   | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `widgetUuid` | String | （必填）Widget uuid。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `userUuid`   | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
@@ -1164,7 +1164,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数         | 类型   | 描述                                                         |
 | :----------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`      | String | （必填）Agora App ID。                                       |
+| `appId`      | String | （必填）声网 App ID。                                       |
 | `roomUUid`   | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `widgetUuid` | String | （必填）Widget uuid。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `userUuid`   | String | （必填）用户 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
@@ -1223,7 +1223,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **Query 参数**
@@ -1416,7 +1416,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。                                       |
+| `appId`    | String | （必填）声网 App ID。                                       |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 
 **Query 参数**
@@ -1683,7 +1683,7 @@ https://api.agora.io/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数       | 类型   | 描述    |
 | :--------- | :----- | :------- |
 | `region`      | String | （必填）区域。可设为：<ul><li>`cn`: 中国大陆</li><li>`ap`: 亚太</li><li>`eu`: 欧洲</li><li>`na`: 北美</li></ul>                                       |
-| `appId`    | String | （必填）Agora App ID。     |
+| `appId`    | String | （必填）声网 App ID。     |
 | `roomUUid` | String | （必填）课堂 uuid。这是课堂的唯一标识符，也是加入 RTC 和 RTM 的频道名。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~ |
 | `state` | Integer | （必填）是否开启分组讨论：<ul><li>`1`: 开启。</li><li>`0`: 关闭。</li></ul> |
 

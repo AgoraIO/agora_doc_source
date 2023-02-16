@@ -1,8 +1,8 @@
-本页提供 Agora Classroom SDK for Web/Electron 的 TypeScript API 参考。
+本页提供声网 Classroom SDK for Web/Electron 的 TypeScript API 参考。
 
 ## AgoraEduSDK
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，提供教育场景下灵动课堂的核心方法。
+`AgoraEduSDK` 是声网 Classroom SDK 的基础接口类，提供教育场景下灵动课堂的核心方法。
 
 ### config
 
@@ -46,7 +46,7 @@ export type ConfigParams = {
 
 | 属性     | 描述                                                                                                                                                                                                                                                                                                                                                     |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `appId`  | （必填）Agora App ID。                                                                                                                                                                                                                                                                                                                                   |
+| `appId`  | （必填）声网 App ID。                                                                                                                                                                                                                                                                                                                                   |
 | `region` | （选填）区域。建议设置为靠近你的课件或录制文件对象存储服务所在的区域，因为跨区域传输较大的静态资源会造成比较大的延迟。举例来说，如果你的 S3 服务在北美，则建议将 `region` 也设为北美区域。所有灵动课堂客户端必须设置相同的区域，否则无法互通。支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 
 ### LaunchOption
@@ -98,7 +98,7 @@ export type LaunchOption = {
 | `duration`               | （必填）课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。最大值为 86,400 秒，建议根据课堂实际时长设置。                                                                                    |
 | `recordUrl`              | （选填）待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。                                                                                       |
 | `widgets`              | （选填）扩展插件集合，扩展教室能力，详见[自定义插件](/cn/agora-class/agora_class_widget_web)。                |
-| `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。                                       |
+| `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从声网云盘组件中下载至本地。                                       |
 | `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                 |
 | `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。                                                                                 |
 | `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li>                                     |
@@ -405,4 +405,3 @@ export type LanguageEnum = "en" | "zh";
 | :----- | :----- |
 | `"en"` | 英文。 |
 | `"zh"` | 中文。 |
-

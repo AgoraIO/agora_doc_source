@@ -1,6 +1,6 @@
 ## 了解产品
 
-使用灵动课堂前，Agora 建议你先阅读以下文档，以对灵动课堂形成一个初步的了解：
+使用灵动课堂前，声网建议你先阅读以下文档，以对灵动课堂形成一个初步的了解：
 
 - [产品概述](/cn/agora-class/product_agora_class)
 - [产品功能](/cn/agora-class/agora_class_prod_archit)
@@ -10,17 +10,17 @@
 
 ## 体验产品
 
-Agora 提供 Android、iOS、macOS、Windows、Web、H5 端的灵动课堂体验 Demo，点击[链接](/cn/agora-class/downloads?platform=All%20Platforms)前往下载体验。
+声网提供 Android、iOS、macOS、Windows、Web、H5 端的灵动课堂体验 Demo，点击[链接](/cn/agora-class/downloads?platform=All%20Platforms)前往下载体验。
 
 ## 快速入门
 
 ### 开通灵动课堂
 
-参考[文档](/cn/agora-class/agora_class_enable)在 Agora 控制台快速开通灵动课堂服务。
+参考[文档](/cn/agora-class/agora_class_enable)在声网控制台快速开通灵动课堂服务。
 
 ### 跑通 GitHub 项目
 
-Agora 提供不同平台的灵动课堂 GitHub 项目源码，跑通方法请参见以下文档：
+声网提供不同平台的灵动课堂 GitHub 项目源码，跑通方法请参见以下文档：
 
 - [跑通 Android 端](/cn/agora-class/agora_class_quickstart_android?platform=Android)
 - [跑通 iOS 端](/cn/agora-class/agora_class_quickstart_ios?platform=iOS)
@@ -56,7 +56,7 @@ Agora 提供不同平台的灵动课堂 GitHub 项目源码，跑通方法请参
 
 ### 源码
 
-Agora 提供不同平台的 GitHub 项目源码，你可前往 GitHub 查看：
+声网提供不同平台的 GitHub 项目源码，你可前往 GitHub 查看：
 
 <table>
 <thead>
