@@ -48,6 +48,7 @@ msg.MessageType = MessageType.Group;
 
 //对于聊天室消息，可设置消息优先级。
 msg.MessageType = MessageType.Room;
+//聊天室消息的优先级。如果不设置，默认值为`RoomMessagePriority.Normal`，即“普通”优先级。
 msg.SetRoomMessagePriority(RoomMessagePriority.High);
 
 //发送消息。
