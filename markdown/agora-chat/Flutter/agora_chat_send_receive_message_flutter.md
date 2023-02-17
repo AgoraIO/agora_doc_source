@@ -139,7 +139,7 @@ ChatMessage.createVoiceSendMessage(
     fileSize: voiceSize,
     displayName: voiceName,
 );
-// 对于聊天室消息，还可以设置消息优先级。
+// 对于聊天室消息，还可以设置消息优先级，如果不设置，默认值为Normal，即“普通”优先级。
 if (msg.chatType == ChatType.ChatRoom) {
     msg.chatroomMessagePriority = ChatRoomMessagePriority.High;
 }
