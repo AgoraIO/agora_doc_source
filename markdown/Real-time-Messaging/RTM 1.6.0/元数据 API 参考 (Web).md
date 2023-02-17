@@ -9,7 +9,7 @@ RTM 1.6.0 版本为你提供元数据功能，助力您搭建创新、可靠、�
 
 ### createMetadataItem
 
-创建一个 `RtmMetadataItem` 实例。
+创建 `RtmMetadataItem` 实例。
 
 ```javascript
   createMetadataItem(): RtmMetadataItem;
@@ -51,7 +51,7 @@ item2.setValue("male");
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否  | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -130,7 +130,7 @@ try{
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。<div class="alert note">请确保新增的键值唯一。如果指定的键值对已存在用户的元数据中，方法调用失败。</div>   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -169,14 +169,15 @@ try{
   ): Promise<void>;
 ```
 
-> Caution：This operation will always excute regardless of the existing of metadata items //TODO: 这里删除后还能 restore 么？是否需要提示用户谨慎操作？
+> Caution：This operation will always excute regardless of the existing of metadata items
+// TODO: 没太懂这里想强调什么信息
 
 #### 参数
 
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -218,7 +219,7 @@ try{
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。<div class="alert note">该方法仅用于更新已有元数据，请确保指定的键值对已存在本地用户的元数据中，否则方法调用失败。</div>   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 
 #### 使用示例
@@ -261,7 +262,7 @@ try{
 
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？另外想问既然全部清楚为什么要做 options 的设置 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -341,9 +342,7 @@ try{
 
 用户元数据变更回调。
 
-在调用上述方法设置、更新、添加、删除和清除用户元数据时，均会触发。
-
-// TODO: 这个回调是通知本地用户，还是通知订阅方？
+在调用上述方法设置、更新、添加、删除和清除本地用户的元数据时，SDK 均会触发该回调通知远端订阅方。
 
 ```javascript
   UserMetaDataUpdated: (uid: string, data: RtmMetadata) => void;
@@ -386,7 +385,7 @@ UserMetaDataUpdated: (uid: string, data: RtmMetadata) => {
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 频道元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 频道元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 频道元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -430,7 +429,7 @@ try{
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。<div class="alert note">请确保新增的键值唯一。如果指定的键值对已存在频道的元数据中，方法调用失败。</div>   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -472,7 +471,7 @@ try{
 
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？另外想问既然全部清楚为什么要做 options 的设置 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -508,7 +507,7 @@ try{
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。<div class="alert note">该方法仅用于更新已有元数据，请确保指定的键值对已存在频道的元数据中，否则方法调用失败。</div>   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -552,7 +551,7 @@ try{
 | 名称       | 类型     |  是否必须  |      描述          |
 | :--------- | :------- | :-------- |:----------------- |
 | `items`         | Array(`RtmMetadataItem`) | 是 | 元数据的键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。   |
-| `options`     | `RtmMetadataOptions`  | // TODO: 是么？ | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
+| `options`     | `RtmMetadataOptions`  | 否 | 元数据的可选属性，详见 [RtmMetadataOptions](#rtmmetadataoptions)。      |
 
 #### 使用示例
 
@@ -580,13 +579,11 @@ try{
 
 ### getChannelMetadata
 
-获取频道的元数据项。
+获取当前频道的元数据项。
 
 ```javascript
   getChannelMetadata(): Promise<RtmMetadata>;
 ```
-
-// TODO: 这里不需要传参指定哪个channel么？就默认当前加入的频道对吧？
 
 #### 返回值
 
@@ -668,9 +665,9 @@ export declare class RtmMetadataItem {
 | -------- | -------- | -------------- |
 | `setKey(key: string): void` |     方法     |  设置元数据项的键。 <br>**参数**<br>`key`<br>元数据项的键。该字符串不可超过 32 字节。以下为支持的字符集范围：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", " {", "}", "|", "~", ","</li></ul><div class="alert note"><ul><li>请不要将 key 设为""，或字符串 "null"。</li><li>key 不支持 <code>number</code> 类型。建议调用 <code>toString()</code> 方法转化非 string 型 key。</li></ul></div>                        |
 | `getKey(): string`          |     方法     |  获取元数据项的键。                        |
-| `setValue(value: string\| null): void` |  方法     |  设置元数据项的值。 //TODO: 是否有限制？               |
+| `setValue(value: string\| null): void` |  方法     |  设置元数据项的值。该字符串不可超过 16 KB。        |
 | `getValue(): string\| null`            |  方法     |  获取元数据项的值。                |
-| `setRevision(revision: number): void`  |  方法     |  设置元数据项的版本。               |
+| `setRevision(revision: number): void`  |  方法     |  设置元数据项的版本。 // TODO: revision 是否有限制信息？此外是否还有其他限制信息？              |
 | `getRevision(): number`                |  方法     |  获取元数据项的版本。               |
 | `getUpdateTs(): number`                |  方法     |  获取元数据项上次更新时间的时间戳。   |
 | `getAuthorUserId(): string`            |  方法     |  获取对最新元数据项进行更新的用户的 ID。 |
@@ -692,12 +689,12 @@ export interface RtmMetadata {
 | 名称   |  类型      | 描述                   |
 |:-------|:-----------------|:-------------------|
 | `items`     | Array(`RtmMetadataItem`) | 用户的元数据键值对，详见 [RtmMetadataItem](#rtmmetadataitem)。    |
-| `majorRevision` | Number      |  用户的元数据主版本。   //TODO: 想问下这里的major指的是当前版本么？      |
+| `majorRevision` | Number      |  用户的元数据主版本。    |
 
 
 ### RtmMetadataOptions
 
-元数据可选项。
+元数据可选属性。
 
 ```javascript
 export interface RtmMetadataOptions {
@@ -711,11 +708,13 @@ export interface RtmMetadataOptions {
 
 | 名称   |  类型      | 描述                   |
 |:-------|:-----------------|:-------------------|
-| `majorRevision`      | Number |   用户的元数据主版本。when the `majorRevision` you supplied is as same as the one in the storage, this operation will success. //TODO: 这个怎么理解？ |
-| `enableRecordTs`     | Bool   | 是否自动记录元数据项最近一次更新的时间：<ul><li>`true`：是</li><li>`false`：否</li></ul>  //TODO: 默认值是？  |
-| `enableRecordUserId` | Bool   | 是否自动记录元数据项最近一次更新的用户：<ul><li>`true`：是</li><li>`false`：否</li></ul>  //TODO: 默认值是？   |
+| `majorRevision`      | Number |   用户的元数据主版本。when the `majorRevision` you supplied is as same as the one in the storage, this operation will success. //TODO: 看起来是用来做校验的？是否需要展开说明主版本和单个版本对校验的作用？ |
+| `enableRecordTs`     | Bool   | 是否自动记录元数据项最近一次更新的时间：<ul><li>`true`：是</li><li>`false`：(默认值) 否</li></ul>  |
+| `enableRecordUserId` | Bool   | 是否自动记录元数据项最近一次更新的用户：<ul><li>`true`：是</li><li>`false`：(默认值) 否</li></ul>   |
 
 
+
+//TODO: 好像缺一些错误码/状态码的枚举类？
 ### MetaDataOperationError
 
 ### MetaDataSubscriptionError
