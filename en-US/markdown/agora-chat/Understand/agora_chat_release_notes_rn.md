@@ -14,7 +14,10 @@ v1.1.0 was released on February 28, 2023.
 
 #### Improvements
 
-Removed the sensitive information from the test data.
+- Removed the sensitive information from the test data.
+- Renamed the `inviterUser` method in the `ChatGroupManager` class to `inviteUser`.
+- Renamed `GROUP_ADD_USER_WHITE_LIST` in the enumeration type `ChatMultiDeviceEvent` to `GROUP_ADD_USER_ALLOW_LIST`.
+- Renamed `GROUP_REMOVE_USER_WHITE_LIST` in the enumeration type `ChatMultiDeviceEvent`  to `GROUP_REMOVE_USER_ALLOW_LIST`.  
 
 #### Issues fixed
 
