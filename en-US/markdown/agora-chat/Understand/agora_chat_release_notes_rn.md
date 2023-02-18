@@ -1,5 +1,30 @@
 This page provides release notes for the Agora React Native Chat SDK.
 
+## v1.1.0
+
+v1.1.0 was released on February 28, 2023.
+
+#### New features
+
+- Upgrades the native platforms `iOS` and `Android` that the React Native platform depends on to v1.1.0.
+- Adds the function of managing custom chat room attributes.
+- Adds the `ChatManager#fetchConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
+- Adds the `ChatMessage#messagePriority` method to implement the chat room message priority function.
+- Adds the `ChatManager#removeMessagesFromServerWithTimestamp` and `ChatManager#removeMessagesFromServerWithMsgIds` methods to allow users to delete messages on the server in a unidirectional way.
+
+#### Improvements
+
+- Removed the sensitive information from the test data.
+- Renamed the `inviterUser` method in the `ChatGroupManager` class to `inviteUser`.
+- Renamed `GROUP_ADD_USER_WHITE_LIST` in the enumeration type `ChatMultiDeviceEvent` to `GROUP_ADD_USER_ALLOW_LIST`.
+- Renamed `GROUP_REMOVE_USER_WHITE_LIST` in the enumeration type `ChatMultiDeviceEvent`  to `GROUP_REMOVE_USER_ALLOW_LIST`.  
+
+#### Issues fixed
+
+- Some insecure code of native platforms.
+- The issue of failing to retrieve conversations.
+- The potential deadlock issue caused by a callback method that repeatedly enters the main thread for execution. This issue occurs only on the iOS platform.
+
 ## v1.0.11
 
 v1.0.11 was released on December 19.

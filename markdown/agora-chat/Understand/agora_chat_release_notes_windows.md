@@ -1,5 +1,23 @@
 本页面提供即时通讯 IM Windows SDK 的发版说明。
 
+## v1.1.0
+
+#### 新增特性
+
+- 依赖的原生平台 `iOS` 和 `Android` 的 SDK 升级为 v1.1.0 版本。
+- 新增聊天室自定义属性功能实现语聊房的麦位管理和同步等功能。
+- 新增 `ChatManager#GetConversationsFromServerWithPage` 方法实现从服务器分页获取会话列表。
+- 新增 `Message#Priority` 属性实现聊天室消息优先级功能，确保高优先级消息优先处理。
+- 新增 `ChatManager#RemoveMessagesFromServer` 方法实现单向删除服务端历史消息。
+
+#### 优化
+
+调整 `SDKClient#InitWithOptions` 方法，增加返回结果，检查 App Key 格式。
+
+#### 修复
+
+修复登录时的部分 bug。
+
 ## v1.0.9
 
 v1.0.9 于 2023 年 2 月 1 日发布。

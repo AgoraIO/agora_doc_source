@@ -1,5 +1,25 @@
 This page provides release notes for the Agora Chat Web SDK.
 
+## v1.1.0
+
+v1.1.0 was released on February 28, 2023.
+
+#### New features
+
+1. Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
+2. Adds the `priority` attribute to the message creation method `create` to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
+3. Adds the pagination parameters `pageNum` and `pageSize` in the `getConversationlist` method to allow users to get the conversation list from the server with pagination.
+4. Adds the `removeHistoryMessages` method to allow users to delete messages on the server in a unidirectional way.
+5. Adds the `create` event which occurs when a group or a chat room is created.
+
+#### Improvements
+
+Reduced the size of MiniCore.
+
+#### Issues fixed
+
+Type-related issues in code written in TypeScript.
+
 ## v1.0.8
 
 v1.0.8 was released on December 19.

@@ -1,4 +1,27 @@
 本页面提供即时通讯 IM RN SDK 的发版说明。
+
+## 1.1.0
+
+#### 新增特性
+
+- 依赖的原生平台 `iOS` 和 `Android` 的 SDK 升级为 v1.1.0 版本。
+- 新增聊天室自定义属性功能用于实现语聊房的麦位管理和同步等功能。
+- 新增 `ChatManager#fetchConversationsFromServerWithPage` 方法实现从服务器分页获取会话列表。
+- 新增 `ChatMessage#messagePriority` 方法实现聊天室消息优先级功能，确保高优先级消息优先处理。
+- 新增 `ChatManager#removeMessagesFromServerWithTimestamp` 和 `ChatManager#removeMessagesFromServerWithMsgIds` 方法实现单向删除服务端历史消息。
+
+#### 优化
+
+- 移除测试数据的敏感信息。
+- `ChatGroupManager` 类中的方法 `inviterUser` 更名为 `inviteUser`。
+- `ChatMultiDeviceEvent` 枚举类型 `GROUP_ADD_USER_WHITE_LIST` 更名为 `GROUP_ADD_USER_ALLOW_LIST`。
+- `ChatMultiDeviceEvent` 枚举类型 `GROUP_REMOVE_USER_WHITE_LIST` 更名为 `GROUP_REMOVE_USER_ALLOW_LIST`。
+
+#### 修复
+
+- 修复原生平台部分不安全代码。
+- 修复获取会话可能失败的问题。
+- 修复回调方法可能多次进入主线程导致死锁的问题。该问题只可能发生在 iOS 平台。
 ## v1.0.11 
 
 v1.0.11 于 2022 年 12 月 19 日发布。
