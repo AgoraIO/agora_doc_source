@@ -4,9 +4,9 @@
 
 即时通讯 IM Flutter SDK 用 `ChatManager` 从服务器获取历史消息。以下是核心方法：
 
-- `fetchConversationListFromServer` 分页获取服务器保存的会话列表；
+- `fetchConversationListFromServer` 分页获取服务器保存的会话列表。
 - `fetchHistoryMessages` 获取服务器保存的指定会话中的消息。
-- `deleteRemoteMessagesWithTs` / `deleteRemoteMessagesWithIds`: 根据消息时间或消息 ID 单向删除服务端的历史消息；
+- `deleteRemoteMessagesWithTs`/`deleteRemoteMessagesWithIds`: 根据消息时间或消息 ID 单向删除服务端的历史消息；
 - `deleteRemoteConversation` 删除服务端的会话及其历史消息。
 
 ## 前提条件
@@ -33,7 +33,7 @@ try {
 }
 ```
 
-对于还不支持`fetchConversationListFromServer`接口的用户，可以调用 `getConversationsFromServer` 从服务端获取会话列表。默认情况下，用户可拉取 7 天内的 10 个会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [support@agora.io](mailto:support@agora.io)。
+对于不支持 `fetchConversationListFromServer` 接口的用户，可以调用 `getConversationsFromServer` 从服务端获取会话列表。默认情况下，用户可拉取 7 天内的 10 个会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [support@agora.io](mailto:support@agora.io)。
 
 ### 分页获取指定会话的历史消息
 
@@ -61,10 +61,11 @@ try {
 ```
 ### 单向删除服务端的历史消息
 
-你可以调用 `deleteRemoteMessagesWithTs` 和 `deleteRemoteMessagesWithIds` 方法单向删除服务端的历史消息，每次最多可删除 50 条消息。消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。已删除的消息自动从设备本地移除。
+你可以调用 `deleteRemoteMessagesWithTs` 或 `deleteRemoteMessagesWithIds` 方法根据消息时间或消息 ID 单向删除服务端的历史消息，每次最多可删除 50 条消息。消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。已删除的消息自动从设备本地移除。
 
 ```dart
 try {
+  // 根据时间戳删除消息
   await ChatClient.getInstance.chatManager.deleteRemoteMessagesWithTs(
     conversationId: conversationId,
     type: convType,
@@ -73,6 +74,7 @@ try {
 } on ChatError catch (e) {}
 
 try {
+  // 根据消息 ID 删除消息
   await ChatClient.getInstance.chatManager.deleteRemoteMessagesWithIds(
     conversationId: conversationId,
     type: convType,

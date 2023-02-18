@@ -4,8 +4,10 @@
 
 使用即时通讯 IM React Native SDK 可以从服务器获取会话和历史消息。
 
-- 获取在服务器保存的会话列表；
+- 获取在服务器保存的会话列表。
 - 获取服务器保存的指定会话中的消息。
+- 单向删除服务端的历史消息。
+- 删除服务端会话及其历史消息。
 
 ## 前提条件
 
@@ -60,6 +62,70 @@ ChatClient.getInstance()
   })
   .catch((reason) => {
     console.log("load conversions fail.", reason);
+  });
+```
+
+### 单向删除服务端的历史消息
+
+你可以调用 `removeMessagesFromServerWithMsgIds` 或 `removeMessagesFromServerWithTimestamp` 方法单向删除服务端的历史消息，每次最多可删除 50 条消息。消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。
+
+示例代码如下：
+
+```typescript
+// 按消息 ID 删除
+ChatClient.getInstance()
+  .chatManager.removeMessagesFromServerWithMsgIds(convId, convType, msgIds)
+  .then((result) => {
+    console.log("test:success:", result);
+  })
+  .catch((error) => {
+    console.warn("test:error:", error);
+  });
+// 按时间戳删除
+ChatClient.getInstance()
+  .chatManager.removeMessagesFromServerWithTimestamp(
+    convId,
+    convType,
+    timestamp
+  )
+  .then((result) => {
+    console.log("test:success:", result);
+  })
+  .catch((error) => {
+    console.warn("test:error:", error);
+  });
+```
+
+### 删除服务端会话及其历史消息
+
+你可以调用 `removeConversationFromServer` 方法删除服务器端会话及其历史消息。会话删除后，当前用户和其他用户均无法从服务器获取该会话。若该会话的历史消息也删除，所有用户均无法从服务器获取该会话的消息。
+
+示例代码如下：
+
+```typescript
+// convId: 会话 ID。
+// convType：会话类型。
+// isDeleteMessage：删除会话时是否同时删除该会话中的消息。
+ChatClient.getInstance()
+  .chatManager.removeConversationFromServer(convId, convType, isDeleteMessage)
+  .then(() => {
+    console.log("remove conversions success");
+  })
+  .catch((reason) => {
+    console.log("remove conversions fail.", reason);
+  });
+```
+你可以调用 `deleteConversation` 方法删除本地保存的指定会话，示例代码如下：
+```typescript
+// convId: 会话 ID。
+// withMessage：删除会话时是否同时删除该会话中的消息。
+ChatClient.getInstance()
+  .chatManager.deleteConversation(convId, withMessage)
+  .then(() => {
+    console.log("remove conversions success");
+  })
+  .catch((reason) => {
+    console.log("remove conversions fail.", reason);
   });
 ```
 

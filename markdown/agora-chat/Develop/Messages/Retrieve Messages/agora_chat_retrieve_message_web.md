@@ -1,13 +1,15 @@
 即时通讯 IM 提供消息漫游功能，即将用户的所有会话的历史消息保存在消息服务器，用户在任何一个终端设备上都能获取到历史信息，使用户在多个设备切换使用的情况下也能保持一致的会话场景。
 
-本文介绍如何实现用户从消息服务器获取会话和消息。
+本文介绍如何实现用户从消息服务器获取和删除会话和消息。
 
 ## 技术原理
 
-即时通讯 IM SDK 提供 `ChatManager` 类支持从服务器获取会话和历史消息。以下是核心方法：
+即时通讯 IM SDK 支持从服务器获取会话和删除历史消息。以下是核心方法：
 
-- `getConversationlist` 分页获取会话列表以及会话中的最新一条消息；
+- `getConversationlist` 分页获取会话列表以及会话中的最新一条消息。
 - `getHistoryMessages` 按服务器接收消息的时间顺序获取服务器上保存的指定会话中的消息。
+- `removeHistoryMessages` 按照时间或消息 ID 单向删除服务端的历史消息。
+- `deleteConversation` 删除服务器端会话及其对应的消息。
 
 ## 前提条件
 
@@ -55,6 +57,43 @@ WebIM.conn.getHistoryMessages(options).then((res)=>{
 }).catch((e)=>{
     // 获取失败。
 })
+```
+
+### 单向删除服务端的历史消息
+
+你可以调用 `removeHistoryMessages` 方法按照时间或消息 ID 单向删除服务端的历史消息。每次最多可删除 50 条消息。消息删除后，消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。多端多设备登录时，删除成功后会触发 `onMultiDeviceEvent#deleteRoaming` 回调。
+
+示例代码如下：
+
+```javascript
+// 按时间戳删除历史消息
+connection.removeHistoryMessages({targetId: 'userId', chatType: 'singleChat', beforeTimeStamp: Date.now()})
+
+// 按消息 ID 删除历史消息
+connection.removeHistoryMessages({targetId: 'userId', chatType: 'singleChat', messageIds: ['messageId']})
+```
+
+### 删除服务端会话及其历史消息
+
+你可以调用 `deleteConversation` 方法删除服务器端会话和历史消息。会话删除后，当前用户和其他用户均无法从服务器获取该会话。若该会话的历史消息也删除，所有用户均无法从服务器获取该会话的消息。
+
+```javascript
+let options = {
+  // 会话 ID：单聊为对方的用户 ID，群聊为群组 ID。
+  channel: "channel",
+  // 会话类型：（默认） `singleChat`：单聊；`groupChat`：群聊。
+  chatType: "singleChat",
+  // 删除会话时是否同时删除服务端漫游消息。
+  deleteRoam: true,
+};
+WebIM.conn
+  .deleteConversation(options)
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((e) => {
+    // 删除失败。
+  });
 ```
 
 ## 后续步骤

@@ -6,7 +6,7 @@
 - 透传消息。
 - 自定义消息。
 
-终端用户可创建其设备支持的任何语言的消息，然后发送消息。
+针对聊天室消息并发量较大的场景，即时通讯服务提供消息分级功能。你可以通过设置消息优先级，将消息划分为高、普通和低三种级别。你可以在创建消息时，将指定消息类型，或指定成员的所有消息设置为高优先级，确保此类消息优先送达。这种方式可以确保在聊天室内消息并发量较大或消息发送频率过高的情况下，服务器首先丢弃低优先级消息，将资源留给高优先级消息，确保重要消息（如打赏、公告等）优先送达，以此提升重要消息的可靠性。请注意，该功能并不保证高优先级消息必达。在聊天室内消息并发量过大的情况下，为保证用户实时互动的流畅性，即使是高优先级消息仍然会被丢弃。
 
 本文介绍如何使用即时通讯 IM Android SDK 实现发送和接收这些类型的消息。
 
@@ -58,6 +58,16 @@ message.setChatType(ChatType.GroupChat);
  });
  //发送消息。
  ChatClient.getInstance().chatManager().sendMessage(message);
+```
+
+对于聊天室消息，可设置消息优先级。
+
+```java
+ChatMessage message = ChatMessage.createTextSendMessage(content, toChatUsername);
+message.setChatType(ChatMessage.ChatType.ChatRoom);
+// 聊天室消息的优先级。如果不设置，默认值为 `Normal`，即`普通`优先级。
+message.setPriority(ChatMessage.ChatRoomMessagePriority.PriorityHigh);
+sendMessage(message);
 ```
 
 ### 接收文本消息

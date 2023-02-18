@@ -6,8 +6,6 @@ After logging in to Agora Chat, users can send the following types of messages t
 - Extended messages.
 - Custom messages.
 
-For chat room messages, Agora Chat provides three messages priorities: high, normal, and low. High-priority messages will be delivered first. When you create a message, you can assign a high priority for a certain type of messages in a chat room or of the specified member to ensure that these messages are delivered first. This method ensures that when messages are sent concurrently in large quantities or at a high rate, important ones can be delivered first, thereby increasing the delivery reliability of important messages. When the load on the server is high, low-priority messages will be discarded first to reserve resources for high-priority messages. However, the message priority function only ensures that high-priority messages arrive first, but not ensure that they are bound to arrive. Even high-priority messages will still be dropped when the server load is too high.
-
 This page shows how to implement sending and receiving these messages using the Agora Chat SDK.
 
 ## Understand the tech
@@ -58,16 +56,6 @@ message.setChatType(ChatType.GroupChat);
      }
  });
  ChatClient.getInstance().chatManager().sendMessage(message);
-```
-
-You can set the priority of chat room messages. 
-
-```java
-ChatMessage message = ChatMessage.createTextSendMessage(content, toChatUsername);
-message.setChatType(ChatMessage.ChatType.ChatRoom);
-// Set the message priority. The default value is `Normal`, indicating the normal priority.
-message.setPriority(ChatMessage.ChatRoomMessagePriority.PriorityHigh);
-sendMessage(message);
 ```
 
 ### Receive a message

@@ -35,7 +35,7 @@ SDKClient.Instance.ChatManager.GetConversationsFromServerWithPage(pageNum, pageS
 ));
 ```
 
-对于还不支持`GetConversationsFromServerWithPage`接口的用户，可以调用 `GetConversationsFromServer` 从服务端获取会话列表。默认情况下，用户可拉取 7 天内的 10 个会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [support@agora.io](mailto:support@agora.io)。
+对于不支持 `GetConversationsFromServerWithPage` 接口的用户，可以调用 `GetConversationsFromServer` 从服务端获取会话列表。默认情况下，用户可拉取 7 天内的 10 个会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [support@agora.io](mailto:support@agora.io)。
 
 ### 分页获取指定会话的历史消息
 
@@ -58,11 +58,8 @@ SDKClient.Instance.ChatManager.FetchHistoryMessagesFromServer(conversationId, ty
 
 你可以调用 `RemoveMessagesFromServer` 方法单向删除服务端的历史消息，每次最多可删除 50 条消息。消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。已删除的消息自动从设备本地移除。
 
-:::tip
-若使用该功能，需将 SDK 升级至 V1.1.0 或以上版本。
-:::
-
-```csharp
+```C#
+// 按时间戳删除消息
 SDKClient.Instance.ChatManager.RemoveMessagesFromServer(convId, ctype, time, new CallBack(
     onSuccess: () =>
     {
@@ -71,7 +68,7 @@ SDKClient.Instance.ChatManager.RemoveMessagesFromServer(convId, ctype, time, new
     {
     }
 ));
-
+// 按消息 ID 删除消息
 SDKClient.Instance.ChatManager.RemoveMessagesFromServer(convId, ctype, msgList, new CallBack(
     onSuccess: () =>
     {
@@ -86,7 +83,7 @@ SDKClient.Instance.ChatManager.RemoveMessagesFromServer(convId, ctype, msgList, 
 
 你可以调用 `DeleteConversationFromServer` 方法删除服务器端会话和历史消息。会话删除后，当前用户和其他用户均无法从服务器获取该会话。若该会话的历史消息也删除，所有用户均无法从服务器获取该会话的消息。
 
-```csharp
+```C#
 SDKClient.Instance.ChatManager.DeleteConversationFromServer(conversationId, conversationType, isDeleteServerMessages, new CallBack(
     onSuccess: () =>
     {
