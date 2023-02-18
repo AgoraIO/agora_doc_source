@@ -165,7 +165,7 @@ ChatClient.getInstance()
     });
     ```
 
-    - 普通成员邀请人入群，需要调用 `inviterUser` 方法：
+    - 普通成员邀请人入群，需要调用 `inviteUser` 方法：
 
     `EMGroupStyle` 设置为 `PrivateMemberCanInvite` 时，所有群成员均可以邀请人进群。
 
@@ -174,7 +174,7 @@ ChatClient.getInstance()
     // members：受邀用户列表
     // reason：邀请的原因
     ChatClient.getInstance()
-    .groupManager.inviterUser(groupId, members, reason)
+    .groupManager.inviteUser(groupId, members, reason)
     .then(() => {
         console.log("invite members operation success.");
     })

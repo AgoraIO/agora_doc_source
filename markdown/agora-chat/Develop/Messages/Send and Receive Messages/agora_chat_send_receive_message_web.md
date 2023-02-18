@@ -1,10 +1,12 @@
-登录即时通讯 IM 后，用户可以在一对一单聊、群聊、聊天室中发送如下类型的消息：
+登录即时通讯 IM 后，用户可以在一对一单聊、群聊或聊天室中发送如下类型的消息：
 
-- 文字消息，包含超链接和表情；
-- 附件消息，包含图片、语音、视频及文件消息；
-- 位置消息；
-- 透传消息；
+- 文字消息，包含超链接和表情。
+- 附件消息，包含图片、语音、视频及文件消息。
+- 位置消息。
+- 透传消息。
 - 自定义消息。
+
+针对聊天室消息并发量较大的场景，即时通讯服务提供消息分级功能。你可以通过设置消息优先级，将消息划分为高、普通和低三种级别。你可以在创建消息时，将指定消息类型，或指定成员的所有消息设置为高优先级，确保此类消息优先送达。这种方式可以确保在聊天室内消息并发量较大或消息发送频率过高的情况下，服务器首先丢弃低优先级消息，将资源留给高优先级消息，确保重要消息（如打赏、公告等）优先送达，以此提升重要消息的可靠性。请注意，该功能并不保证高优先级消息必达。在聊天室内消息并发量过大的情况下，为保证用户实时互动的流畅性，即使是高优先级消息仍然会被丢弃。
 
 本文介绍如何使用即时通讯 IM Web SDK 实现发送和接收这些类型的消息。
 
@@ -54,6 +56,28 @@ function sendTextMessage() {
     // 创建文本消息。
     let msg = WebIM.message.create(opt);
     // 调用 `send` 方法发送该文本消息。
+    conn.send(msg).then(()=>{
+        console.log("Send message success");
+    }).catch((e)=>{
+        console.log("Send message fail");
+    });
+}
+```
+
+对于聊天室消息，可设置消息优先级。示例代码如下：
+
+```javascript
+// 发送文本消息。
+function sendTextMessage() {
+    let option = {
+        type: "txt",
+        msg: "message content",
+        // 聊天室消息的优先级。如果不设置，默认值为 `normal`，即`普通`优先级。
+        priority: "high"
+        to: "chat room ID",
+        chatType: "chatRoom",
+    };
+    let msg = WebIM.message.create(opt);
     conn.send(msg).then(()=>{
         console.log("Send message success");
     }).catch((e)=>{
