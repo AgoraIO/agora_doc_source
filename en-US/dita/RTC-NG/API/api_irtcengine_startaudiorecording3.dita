@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startaudiorecording3">
     <title><ph keyref="startAudioRecording3" /></title>
-    <shortdesc id="short"><ph id="shortdesc">开始客户端录音并进行录音配置。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts audio recording on the client and sets recording configurations.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,9 +24,9 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>SDK 支持通话过程中在客户端进行录音。 After successfully calling this method, you can record the audio of users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
+            <p>The Agora SDK allows recording during a call. After successfully calling this method, you can record the audio of users in the channel and get an audio recording file. Supported formats of the recording file are as follows:<ul>
             <li>WAV: High-fidelity files with typically larger file sizes.  For example, if the sample rate is 32,000 Hz, the file size for 10-minute recording is approximately 73 MB.</li>
-            <li>AAC: Low-fidelity files with typically smaller file sizes.  For example, if the sample rate is 32,000 Hz and the recording quality is<ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" /> , the file size for 10-minute recording is approximately 2 MB.</li>
+            <li>AAC: Low-fidelity files with typically smaller file sizes.  For example, if the sample rate is 32,000 Hz and the recording quality is <ph keyref="AUDIO_RECORDING_QUALITY_MEDIUM" />, the file size for 10-minute recording is approximately 2 MB.</li>
             </ul></p>
             <p>Once the user leaves the channel, the recording automatically stops.</p>
             <note type="attention">Call this method after joining a channel.</note> </section>
@@ -35,12 +35,12 @@
             <parml>
             <plentry>
                 <pt>config</pt>
-                <pd>Recording configuration. See <xref keyref="AudioRecordingConfiguration" />.</pd>
+                <pd>Recording configurations. See <xref keyref="AudioRecordingConfiguration" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
