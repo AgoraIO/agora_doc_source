@@ -1,4 +1,4 @@
-# 实现视频直播
+# 实现极速直播
 
 声网极速直播让你在 app 里轻松实现音视频直播功能，用户可以实时进行深入交流，创造更多商业机会。
 
@@ -60,7 +60,7 @@
 1. 添加 `agora_rtc_engine` 依赖项，集成声网 Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
 3. 添加 `permission_handler` 依赖项，安装权限处理插件。
 
-```
+```yaml
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -93,7 +93,7 @@ dependencies:
 ```dart
 import 'dart:async';
  
-import 'package:agora_rtc_ng/agora_rtc_ng.dart';
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 ```

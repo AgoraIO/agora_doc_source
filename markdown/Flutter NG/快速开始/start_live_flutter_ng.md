@@ -1,13 +1,35 @@
 # 实现互动直播
 
-~55e346b0-2193-11ec-837a-476ce6215fac~
+声网互动直播让你在 app 里轻松实现音视频直播功能，用户可以实时进行深入交流，创造更多商业机会。
 
-$$ eb245b60-67b6-11ec-9efd-4ba4c822b48e
-{
-  "[": " ",
-  "]": " "
-}
-$$
+本文介绍如何通过最简单的代码来集成声网视频 SDK，在你的 Android app 里实现高质量、低延时的音视频直播功能。
+
+## 技术原理
+
+下图展示在 app 中实现声网互动直播的基本工作流程：
+
+![](https://web-cdn.agora.io/docs-files/1642671754778)
+
+参考以下步骤，在你的 app 中实现互动直播功能：
+
+1. **设置用户角色**
+
+   在互动直播中，用户角色可分为主播和观众。主播可在频道中发流，观众可接收频道中的音视频流。
+
+2. **加入频道**
+
+   调用 `joinChannel` 方法来创建并加入频道。在 App ID 一致的前提下，传入相同频道名的用户会进入同一个频道。
+
+3. **在频道中发布并接收音视频流**
+
+   加入频道后，主播可在频道中发流，并接收其他主播在频道中发布的音视频流。
+
+4. **在频道中接收音视频流**
+
+   观众只能接收主播在频道中发布的音视频流，你可以调用 `setClientRole` 将用户角色从观众切换为主播。
+	 
+   
+~eb245b60-67b6-11ec-9efd-4ba4c822b48e~
 
 ## 获取 App ID 和 Token
 
@@ -38,7 +60,7 @@ $$
 1. 添加 `agora_rtc_engine` 依赖项，集成声网 Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
 2. 添加 `permission_handler` 依赖项，安装权限处理插件。
 
-```
+```yaml
 environment:
   sdk: ">=2.12.0 <3.0.0"
 # 依赖项
@@ -69,7 +91,7 @@ dependencies:
 ```dart
 import 'dart:async';
  
-import 'package:agora_rtc_ng/agora_rtc_ng.dart';
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 ```
