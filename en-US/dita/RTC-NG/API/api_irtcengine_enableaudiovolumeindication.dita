@@ -44,25 +44,25 @@
                 <pt>interval</pt>
                 <pd>Sets the time interval between two consecutive volume indications:<ul>
                     <li>≤ 0: Disables the volume indication.</li>
-                    <li>> 0: 返回音量提示的间隔，单位为毫秒，最小取值为 50。</li>
+                    <li>> 0: Time interval (ms) between two consecutive volume indications. The lowest value is 50.</li>
                     </ul></pd>
             </plentry>
             <plentry id="smooth">
                 <pt>smooth</pt>
-                <pd>The smoothing factor sets the sensitivity of the audio volume indicator. The value ranges between 0 and 10. The recommended value is 3. The greater the value, the more sensitive the indicator.</pd>
+                <pd>The smoothing factor that sets the sensitivity of the audio volume indicator. The value ranges between 0 and 10. The recommended value is 3. The greater the value, the more sensitive the indicator.</pd>
             </plentry>
             <plentry id="vad">
                 <pt>reportVad</pt>
                 <pd>
                     <ul>
-                    <li>: Enable the voice activity detection of the local user. <codeph><ph keyref="true" /></codeph>Once it is enabled,<apiname keyref="onAudioVolumeIndication" /> the <parmname>vad</parmname> parameter of the  callback reports the voice activity status of the local user.</li>
-                    <li>: (Default) Disable the voice activity detection of the local user. <codeph><ph keyref="false" /></codeph>Once it is disabled, the vad parameter of the  callback<apiname keyref="onAudioVolumeIndication" /> does not report the voice activity status of the local user, except for the scenario where the engine automatically detects the voice activity of the local user.<parmname></parmname></li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enables the voice activity detection of the local user. Once it is enabled, the <parmname>vad</parmname> parameter of the <apiname keyref="onAudioVolumeIndication" /> callback reports the voice activity status of the local user.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disables the voice activity detection of the local user. Once it is disabled, the <parmname>vad</parmname> parameter of the <apiname keyref="onAudioVolumeIndication" /> callback does not report the voice activity status of the local user, except for the scenario where the engine automatically detects the voice activity of the local user.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
