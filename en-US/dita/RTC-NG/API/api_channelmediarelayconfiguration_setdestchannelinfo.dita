@@ -33,7 +33,7 @@
             <parml>
             <plentry>
                 <pt>channelName</pt>
-                <pd>The channel name of the target channel.</pd>
+                <pd>The channel name of the destination channel.</pd>
             </plentry>
             <plentry>
                 <pt props="android">destInfo</pt>
@@ -44,7 +44,7 @@
                     <li><parmname>token</parmname>: The <parmname>token</parmname> for joining the destination channel. This token is generated with the <parmname>channelName</parmname> and <parmname>uid</parmname> you set in <parmname>destInfos</parmname>.<ul>
                         <li>If you have not enabled the App Certificate, set this parameter as the default value <codeph><ph keyref="NULL"/></codeph>, which means the SDK applies the App ID.</li>
                         <li>If you have enabled the App Certificate, you must use the <parmname>token</parmname> generated with the <parmname>channelName</parmname> and <parmname>uid</parmname>.</li>
-                        </ul> <note type="attention"><p>由于目标频道中任意频道的 token 过期会导致所有跨频道推流停止，因此建议你将目标频道的 token 设置为相同的过期时长。</p></note></li>
+                        </ul> <note type="attention"><p>If the token of any destination.channel expires, the whole media relay stops; hence Agora recommends that you specify the same expiration time for the tokens of all the destination channels.</p></note></li>
                     <li><parmname>uid</parmname>: The unique user ID to identify the relay stream in the destination channel. The value ranges from 0 to (2 <sup>32</sup>-1). To avoid user ID conflicts, this user ID must be different from any other user ID in the destination channel. The default value is 0, which means the SDK generates a random user ID.</li>
                     </ul> </p>
                 </pd>
