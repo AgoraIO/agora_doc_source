@@ -40,9 +40,9 @@
             <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
-            <li props="cpp unity electron flutter">Applies to the macOS and Windows platforms only.</li>
-            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the<parmname> deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
-            <li>该方法目前仅支持一路声卡采集。</li>
+            <li props="cpp unity electron flutter">This method applies to the macOS and Windows platforms only.</li>
+            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
+            <li>This method only supports using one sound card for audio capturing.</li>
         </ul></note></section>
         <section id="parameters">
             <title>Parameters</title>
@@ -54,8 +54,8 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Sets whether to enable loopback audio capture:<ul id="ul_kgm_wbx_jqb">
-                    <li>: Enable loopback audio capturing.<codeph><ph keyref="true"/></codeph></li>
-                    <li>: (Default) Disable loopback audio capturing.<codeph><ph keyref="false"/></codeph></li>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable loopback audio capturing.</li>
                     </ul></pd>
             </plentry>
             <plentry conkeyref="enableLoopbackRecording/device_name">
@@ -65,7 +65,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_uvd_2cx_jqb">
             <li props="mac cpp unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.</li>
