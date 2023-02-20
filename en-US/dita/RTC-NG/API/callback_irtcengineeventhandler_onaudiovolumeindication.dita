@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudiovolumeindication">
-    <title><ph keyref="onAudioVolumeIndication"/></title>
+    <title><ph keyref="onAudioVolumeIndication" /></title>
     <shortdesc id="short"><ph id="shortdesc">Reports the volume information of users.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onAudioVolumeIndication"/>
+                <indexterm keyref="onAudioVolumeIndication" />
             </keywords>
         </metadata>
     </prolog>
@@ -32,38 +32,38 @@
   speakerNumber: number,
   totalVolume: number
 ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo> speakers,
-      int speakerNumber, int totalVolume)? onAudioVolumeIndication;
-</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, List&lt;AudioVolumeInfo&gt; speakers,
+      int speakerNumber, int totalVolume)? onAudioVolumeIndication;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>By default, this callback is disabled. You can enable it by calling <xref keyref="enableAudioVolumeIndication"/>. Once this callback is enabled and users send streams in the channel, the SDK triggers the <apiname keyref="onAudioVolumeIndication"/> callback according to the time interval set in <apiname keyref="enableAudioVolumeIndication"/>. The SDK triggers two independent <apiname keyref="onAudioVolumeIndication"/> callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volume is the highest.</p>
+            <p>By default, this callback is disabled. You can enable it by<xref keyref="enableAudioVolumeIndication" /> calling . Once this callback is enabled and users send streams in the channel, the SDK triggers the  callback<apiname keyref="enableAudioVolumeIndication" /> at the time interval set in<apiname keyref="onAudioVolumeIndication" /> . The SDK triggers two independent<apiname keyref="onAudioVolumeIndication" />  callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volume is the highest.</p>
             <note type="attention">
-            <p>Once this callback is enabled, if the local user calls the <xref keyref="muteLocalAudioStream"/> method for mute, the SDK continues to report the volume indication of the local user.</p>
-            <p>20 seconds after a remote user whose volume is one of the three highest in the channel stops publishing the audio stream, the callback excludes this user's information; 20 seconds after all remote users stop publishing audio streams, the SDK stops triggering the callback for remote users.</p>
+            <p props="apple">在收到该回调后如需更新 UI 界面，请将确保将执行的线程转至 UI 线程中。</p>
+            <p>Once this callback is enabled, if the local user calls the  method for mute<xref keyref="muteLocalAudioStream" />, the SDK continues to report the volume indication of the local user.</p>
+            <p>20 seconds after a remote user whose volume is one of the three highest stops publishing the audio stream, the callback excludes this user's information; 20 seconds after all remote users stop publishing audio streams, the SDK stops triggering the callback for remote users.</p>
             </note> </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry props="unity electron rn flutter">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd>The connection information. See .<xref keyref="RtcConnection" /></pd>
             </plentry>
             <plentry props="native unity electron rn flutter">
                 <pt>speakers</pt>
-                <pd>The volume information of the users. See <xref keyref="AudioVolumeInfo"/>. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment.</pd>
+                <pd>The volume information of the users, see<xref keyref="AudioVolumeInfo" /> . An empty<parmname> speakers</parmname> array in the callback indicates that no remote user is in the channel or sending a stream at the moment.</pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>speakerNumber</pt>
                 <pd>
                     <p>The total number of users.<ul>
                     <li>In the callback for the local user, if the local user is sending streams, the value of <parmname>speakerNumber</parmname> is 1.</li>
-                    <li>In the callback for remote users, the value range of <parmname>speakerNumber</parmname> is [0,3]. If the number of remote users who send streams is greater than or equal to three, the value of <parmname>speakerNumber</parmname> is 3.</li>
+                    <li>In the callback for remote users, the value range of  <parmname>speakerNumber</parmname> is [0,3]. If the number of remote users who send streams is greater than or equal to three, the value of <parmname>speakerNumber</parmname> is 3.</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -72,7 +72,7 @@
                 <pd>
                     <p>The volume of the speaker. The value ranges between 0 (lowest volume) and 255 (highest volume).<ul>
                     <li>In the callback for the local user, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
-                    <li><ph>In the callback for remote users, <parmname>totalVolume</parmname> is the sum of the volume of the remote users (up to three) whose instantaneous volume are the highest. </ph><ph props="native">If the user calls <xref keyref="startAudioMixing2"/>, <parmname>totalVolume</parmname> is the volume after audio mixing.</ph></li>
+                    <li><ph>In the callback for remote users, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volumes are the highest. </ph><ph props="native">If the user calls<xref keyref="startAudioMixing2" /> , then <parmname>totalVolume</parmname> is the volume after audio mixing.</ph></li>
                     </ul> </p>
                 </pd>
             </plentry>
