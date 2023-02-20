@@ -1,15 +1,17 @@
 # Set push messages
 
-本文主要介绍推送通知的结构和字段，建议按需配置。推送通知包含声网提供的基本推送配置以及各厂商的推送配置，默认情况下，后者优先级较高，会覆盖前者。
+This topic introduces structures and fields of push.
 
-以下为推送通知的结构：
+Chat not only provides basic configurations that are adaptive to all, but also supports advanced configurations varied by service providers. You can choose the service provider and configure the notification fields based on your business requirements.
 
-```
+A push notification example is as follows:
+
+```json
 {  
-  //基本推送配置。
-  "title": "您有一条新消息",
+  // Basic configurations available to all
+  "title": "You have a new message",
   "subTitle": "",
-  "content": "请及时查看",
+  "content": "Check the message",
   "ext": {},
   "config": {
     "clickAction": {
@@ -23,39 +25,45 @@
       }
   },
   
-  //各厂商推送配置
+  // Advanced configurations varied by service providers
   "agora":{},
   "apns": {},
   "fcm": {}
 }
 ```
 
-## <a name="param"></a>基本推送配置 
+## <a name="param"></a>Basic configurations
 
-| 字段   | 类型 | 描述  | 支持平台  | 是否必需 |
+The following table lists basic configuration fields available to all:
+
+| Field   | Type | Description  | Supported platforms  | Required |
 | :--------- | :-----| :--------- | :------- | :--------- |
-| `title`    | String   | 通知栏展示的通知标题，默认为**您有一条新消息**。该字段长度不能超过 32 个字符（一个汉字相当于两个字符）。 | 全部 | 是   |
-| `subTitle` | String   | 通知栏展示的通知副标题。该字段长度不能超过 10 个字符。  | 全部    | 否    |
-| `content`  | String   | 通知栏展示的通知内容。默认为**请及时查看**。该字段长度不能超过 100 个字符（一个汉字相当于两个字符）。  | 全部 | 是  |
-| `ext`      | JSON   | 推送自定义扩展信息，为自定义键值对。键值对不能超过 10 个且长度不能超过 1024 个字符。       | 全部  | 否 |
-| `config`   | JSON   | 在通知栏中点击触发的动作以及角标的配置，包含 `clickAction` 和 `badge` 字段。 | 全部  | 否 |
-| `config.clickAction` | JSON   | 在通知栏中点击触发的动作，均为 String 类型：<ul><li>`url`：打开自定义的 URL；</li><li>`action`：打开应用的指定页面；</li><li>`activity`：打开应用包名或 Activity 组件路径。</li></ul> | iOS & Android  | 否       |
-| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加；</li><li>`setNum`：表示推送通知到达设备时，角标数字重置。</li></ul> | iOS & Android  | No       |
+| `title`    | String   | 通知栏展示的通知标题，默认为**您有一条新消息**。该字段长度不能超过 32 个字符（一个汉字相当于两个字符）。 | Android & iOS | Yes   |
+| `subTitle` | String   | 通知栏展示的通知副标题。该字段长度不能超过 10 个字符。  | iOS    | No    |
+| `content`  | String   | 通知栏展示的通知内容。默认为**请及时查看**。该字段长度不能超过 100 个字符（一个汉字相当于两个字符）。  | Android & iOS  | Yes  |
+| `ext`      | JSON   | 推送自定义扩展信息，为自定义键值对。键值对不能超过 10 个且长度不能超过 1024 个字符。       | Android & iOS   | No |
+| `config`   | JSON   | 在通知栏中点击触发的动作以及角标的配置，包含 `clickAction` 和 `badge` 字段。 | Android & iOS   | No |
+| `config.clickAction` | JSON   | 在通知栏中点击触发的动作，均为 String 类型：<ul><li>`url`：打开自定义的 URL；</li><li>`action`：打开应用的指定页面；</li><li>`activity`：打开应用包名或 Activity 组件路径。</li></ul> | Android  | No       |
+| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加；</li><li>`setNum`：表示推送通知到达设备时，角标数字重置。</li></ul> | Android & iOS   | No       |
 
 
-## 各厂商推送配置 
+## Advanced configurations
 
-| 字段   | 类型 | 描述  | 是否必需 |
+If the basic configuration fields stated above cannot meet your business requirements, Chat supports the following push service providers that allow you to implement advanced configurations:
+
+| Field   | Type | Description  | Required |
 | :--------- | :----------- | :------- | :----------------- |
-| `agora`  | JSON   | 声网推送 | 否       |
-| `apns`     | JSON   | Apple 推送通知服务（APNs） | 否        |
-| `fcm`      | JSON   | 谷歌 Firebase 云消息传递  (FCM) | 否        |
+| `agora`  | JSON   | The Agora push service. |  No     |
+| `apns`     | JSON   | Apple Push Notification service (APNs). | No      |
+| `fcm`      | JSON   | Firebase Cloud Messaging (FCM). | No     |
 
-### 声网推送
+> Advanced configurations overwrite basic ones by default.
+
+### Agora push service
 
 下面为包含大图片的通知的代码示例：
 
-```
+```json
 {
     "title": "通知栏显示的通知标题",
     "content": "通知栏展示的通知内容",
@@ -110,7 +118,7 @@
 | `bigPicture`       | String  | 大图片 URL。该字段仅在 `style` 为 `2` 时需要设置。             | Android     |
 | `id`               | Number    | 通知 ID。默认值为随机数。当 ID 相同时，新通知的内容会覆盖之前的通知。 | iOS & Android |
 
-### APNs 推送相关字段
+### APNs
 
 APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
 
@@ -141,7 +149,7 @@ APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
 
 关于这些字段的描述，详见 APNs 官网的[生成远程通知](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)和[向 APNs 发送通知请求](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns)。
 
-### FCM 推送相关字段
+### FCM
 
 FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
 
@@ -155,21 +163,16 @@ FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
 | `restrictedPackageName` | `restricted_package_name` |
 | `data`                  | `data`                                            |
 | `notification`          | `notification` |
-
-FCM 推送通知的字段与 FCM 官网的字段的映射关系如下表所示：
-
-| FCM 推送通知的字段      | FCM 官网字段                                                    |
-| :----------------- | :----------------------------------------------------------- |
-| `title`            | `title`         |
-| `body`             | `body`           |
-| `androidChannelId` | `android_channel_id` |
-| `sound`            | `sound`          |
-| `tag`              | `tag`     |
-| `color`            | `color`     |
-| `clickAction`      | `click_action` |
-| `titleLocKey`      | `title_loc_key` |
-| `titleLocArgs`     | `title_loc_args`   |
-| `bodyLocKey`       | `body_loc_key`                     |
-| `bodyLocArgs`      | `body_loc_args` |
+| `notification.title`            | `notification.title`         |
+| `notification.body`             | `notification.body`           |
+| `notification.androidChannelId` | `notification.android_channel_id` |
+| `notification.sound`            | `notification.sound`          |
+| `notification.tag`              | `notification.tag`     |
+| `notification.color`            | `notification.color`     |
+| `notification.clickAction`      | `notification.click_action` |
+| `notification.titleLocKey`      | `notification.title_loc_key` |
+| `notification.titleLocArgs`     | `notification.title_loc_args`   |
+| `notification.bodyLocKey`       | `notification.body_loc_key`                     |
+| `notification.bodyLocArgs`      | `notification.body_loc_args` |
 
 关于这些字段的描述，详见 [FCM 官网](https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=zh-cn)。
