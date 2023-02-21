@@ -45,7 +45,7 @@ $$
 1. 添加 `agora_rtc_engine` 依赖项，集成声网 Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
 3. 添加 `permission_handler` 依赖项，安装权限处理插件。
 
-```
+```yaml
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -88,7 +88,7 @@ import 'package:permission_handler/permission_handler.dart';
 输入你获得的 App ID 和临时 Token。
 
 ```dart
-/// 定义 App ID 和 Token
+// 定义 App ID、Token 和 Channel
 const appId = "<-- Insert App Id -->";
 const token = "<-- Insert Token -->";
 const channel = "<-- Insert Channel Name -->";
@@ -134,13 +134,13 @@ class _MyAppState extends State<MyApp> {
   // 初始化应用
   Future<void> initAgora() async {
     // 获取权限
-    await [Permission.microphone, Permission.camera].request();
+    await [Permission.microphone].request();
  
-    //创建 RtcEngine
+    // 创建 RtcEngine
     _engine = await createAgoraRtcEngine();
  
  
-    // 初始化 RtcEngine
+    // 初始化 RtcEngine，设置频道场景为直播场景
     await _engine.initialize(const RtcEngineContext(
       appId: appId,
       channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
@@ -169,11 +169,12 @@ class _MyAppState extends State<MyApp> {
         },
       ),
     );
-    // 加入频道
+    // 加入频道，设置用户角色为主播
     await _engine.joinChannel(
       token: token,
       channelId: channel,
-      info: '',
+      options: const ChannelMediaOptions(
+          clientRoleType: ClientRoleType.clientRoleBroadcaster),
       uid: 0,
     );
   }
@@ -188,7 +189,7 @@ class _MyAppState extends State<MyApp> {
                         title: Text('Agora Voice Call'),
                     ),
                     body: Center(
-                        child: Text('Please chat!'),
+                        child: Text('Have a voice call!'),
                     ),
                 ),
             );
