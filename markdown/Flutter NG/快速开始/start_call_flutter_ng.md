@@ -166,14 +166,14 @@ class _MyAppState extends State<MyApp> {
       ),
     );
     // 开启视频
-    await _engine.setClientRole(ClientRoleType.clientRoleBroadcaster);
     await _engine.enableVideo();
     await _engine.startPreview();
     // 加入频道
     await _engine.joinChannel(
       token: token,
       channelId: channel,
-      info: '',
+      options: const ChannelMediaOptions(
+          clientRoleType: ClientRoleType.clientRoleBroadcaster),
       uid: 0,
     );
   }
