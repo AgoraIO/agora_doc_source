@@ -101,7 +101,7 @@ import 'package:permission_handler/permission_handler.dart';
 输入你获得的 App ID 和临时 Token。
 
 ```dart
-/// 定义 App ID 和 Token
+// 定义 App ID、Token、Channel
 const appId = "<-- Insert App Id -->";
 const token = "<-- Insert Token -->";
 const channel = "<-- Insert Channel Name -->";
@@ -185,14 +185,14 @@ class _MyAppState extends State<MyApp> {
       ),
     );
     // 开启视频
-    await _engine.setClientRole(ClientRoleType.clientRoleBroadcaster);
     await _engine.enableVideo();
     await _engine.startPreview();
     // 加入频道
     await _engine.joinChannel(
       token: token,
       channelId: channel,
-      info: '',
+      options: const ChannelMediaOptions(
+          clientRoleType: ClientRoleType.clientRoleBroadcaster),
       uid: 0,
     );
   }
@@ -267,6 +267,8 @@ class _MyAppState extends State<MyApp> {
     ```bash
     flutter run
     ```
+
+<div class="alert note">首次运行项目时，请授予 app 摄像头和麦克风的使用权限。</div>
 
 ## 测试你的 app
 
