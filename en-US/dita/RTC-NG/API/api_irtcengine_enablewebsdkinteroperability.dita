@@ -20,7 +20,7 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableWebSdkInteroperability(bool enabled);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableWebSdkInteroperability(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableWebSdkInteroperability(bool enabled);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -30,7 +30,7 @@
                 <dd>The SDK automatically enables interoperability with the Web SDK, so you no longer need to call this method.</dd>
             </dlentry>
             </dl>
-            <p>This method enables or disables interoperability with the Agora Web SDK. If the channel has Web SDK users, ensure that you call this method, or the video of the Native user will be a black screen for the Web user.</p>
+            <p>该方法打开或关闭与 Web SDK 的互通。 If the channel has Web SDK users, ensure that you call this method, or the video of the Native user will be a black screen for the Web user.</p>
             <p>This method is only applicable in live streaming scenarios, and interoperability is enabled by default in communication scenarios.</p>
         </section>
         <section id="parameters">
@@ -38,16 +38,19 @@
             <parml>
             <plentry>
                 <pt>enabled</pt>
-                <pd>Whether to enable interoperability with the Agora Web SDK.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable interoperability.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable interoperability.</li>
+                <pd>是否打开与 Web SDK 的互通：
+
+                    <ul>
+                    <li>: Enable interoperability.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: (Default) Disable interoperability.<codeph><ph keyref="false" /></codeph></li>
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
