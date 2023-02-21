@@ -28,34 +28,35 @@
   ): number;</codeblock>
   <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableEchoCancellationExternal(
     {required bool enabled, required int audioSourceDelay});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>After calling this method, you can push external audio frames to the custom audio module for echo cancellation.</p>
-            <note type="attention">You need to call this method after calling <xref keyref="setExternalAudioSink" />, but before joining the channel.</note> </section>
+            <note type="attention">You need to call this method<xref keyref="setExternalAudioSink" /> after calling , but before joining the channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
                 <pd>Set whether to enable custom echo cancellation:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable custom echo cancellation.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable custom echo cancellation.</li>
+                    <li>: Turn on.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: Off.<codeph><ph keyref="false" /></codeph></li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>audioSourceDelay</pt>
                 <pd>Sets the time (in milliseconds) between pushing audio frames and publishing audio frames. The value range is [0, 100].<ul>
-                    <li>To call <xref keyref="pushCaptureAudioFrame1" />, make sure this parameter is set to 0.</li>
-                    <li>To call <xref keyref="pushReverseAudioFrame1" /> or process the audio frame captured by the sound card, please make sure that this parameter is an integer multiple of 10.</li>
+                    <li>To call<xref keyref="pushCaptureAudioFrame1" /> , make sure this parameter is set to 0.</li>
+                    <li>To call<xref keyref="pushReverseAudioFrame1" />  or process the audio frame captured by the sound card, please make sure that this parameter is an integer multiple of 10.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
