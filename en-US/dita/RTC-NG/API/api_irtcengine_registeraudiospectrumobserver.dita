@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudiospectrumobserver">
     <title><ph keyref="registerAudioSpectrumObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers an audio spectrum observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Register an audio spectrum observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,12 +25,12 @@
     observer: IAudioSpectrumObserver
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerAudioSpectrumObserver(AudioSpectrumObserver observer);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>After successfully registering the audio spectrum observer and calling
- <xref keyref="enableAudioSpectrumMonitor" /> to enable the audio spectrum monitoring, the SDK reports the callback that you implement in the <xref keyref="IAudioSpectrumObserver" /> class at the time interval you set.</p>
+  to<xref keyref="enableAudioSpectrumMonitor" /> enable the audio spectrum monitoring, the SDK reports the callback that you implement in the  class at the time interval you<xref keyref="IAudioSpectrumObserver" /> set.</p>
             <note type="attention" id="note_qwk_mjf_3qb">You can call this method either before or after joining a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -39,17 +39,18 @@
                 <pt props="android cpp unity electron rn flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" />.</p>
+                    <p>The audio spectrum observer. See .<xref keyref="IAudioSpectrumObserver" /></p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native rn electron unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_jzc_zjf_3qb" props="native unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
-            <p props="rn electron">One <xref keyref="IAudioSpectrumObserver" /> object.</p>
+            <p props="rn electron">One<xref keyref="IAudioSpectrumObserver"/>  object.</p>
         </section>
     </refbody>
 </reference>
