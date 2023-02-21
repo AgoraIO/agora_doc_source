@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_irtcengine_setdualstreammodeex">
-    <title><ph keyref="setDualStreamModeEx" /></title>
+<reference id="api_irtcengineex_setdualstreammodeex">
+    <title><ph keyref="setDualStreamModeEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets dual-stream mode on the sender side.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDualStreamModeEx" />
+                <indexterm keyref="setDualStreamModeEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -21,7 +21,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int setDualStreamModeEx(SIMULCAST_STREAM_MODE mode,
                                    const SimulcastStreamConfig&amp; streamConfig,
                                    const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract setDualStreamModeEx(
     mode: SimulcastStreamMode,
     streamConfig: SimulcastStreamConfig,
@@ -33,11 +33,11 @@
     streamConfig: SimulcastStreamConfig,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDualStreamModeEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDualStreamModeEx(
       {required SimulcastStreamMode mode,
       required SimulcastStreamConfig streamConfig,
       required RtcConnection connection});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -47,10 +47,10 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p>The SDK enables the low-quality video stream auto mode on the sender by default, which is equivalent to calling this method and setting the <parmname>mode</parmname> to <apiname keyref="AUTO_SIMULCAST_STREAM" />. If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM" />(never sends low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM" />(sends low-quality video streams).</p>
-            <note id="note">The difference and between this method and <xref keyref="enableDualStreamModeEx" /> is as follows:<ul>
-            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="DISABLE_SIMULCAST_STREAM" />, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx" />(<ph keyref="false" />)</codeph>.</li>
-            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="ENABLE_SIMULCAST_STREAM" />, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx" />(<ph keyref="true" />)</codeph>.</li>
+            <p>The SDK enables the low-quality video stream auto mode on the sender by default, which is equivalent to calling this method and setting the <parmname>mode</parmname> to <apiname keyref="AUTO_SIMULCAST_STREAM"/>. If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/>(always never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</p>
+            <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamModeEx"/> is as follows:<ul>
+            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="false"/>)</codeph>.</li>
+            <li>When calling this method and setting <parmname>mode</parmname> to <ph keyref="ENABLE_SIMULCAST_STREAM"/>, it has the same effect as <codeph><apiname keyref="enableDualStreamModeEx"/>(<ph keyref="true"/>)</codeph>.</li>
             <li>Both methods can be called before and after joining a channel. If they are used at the same time, the settings in the method called later shall prevail.</li>
             </ul></note> </section>
         <section id="parameters">
@@ -58,21 +58,22 @@
             <parml>
             <plentry>
                 <pt>mode</pt>
-                <pd>The mode in which the video stream is sent. See <xref keyref="SIMULCAST_STREAM_MODE" />.</pd>
+                <pd>The mode in which the video stream is sent. See .<xref keyref="SIMULCAST_STREAM_MODE"/></pd>
             </plentry>
             <plentry conkeyref="enableDualStreamMode3/streamconfig">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_bpp_x2z_hqb">
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
