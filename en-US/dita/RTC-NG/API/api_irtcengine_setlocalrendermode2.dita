@@ -30,14 +30,14 @@
     {required RenderModeType renderMode,
     VideoMirrorModeType mirrorMode =
         VideoMirrorModeType.videoMirrorModeAuto});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
             <note type="attention">
             <ul>
-            <li props="native electron rn flutter unity">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
+            <li props="native electron rn flutter unity">Ensure that you have<xref keyref="setupLocalVideo" /> called the  method to initialize the local video view before calling this method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -47,7 +47,7 @@
                 <pt props="android cpp unity flutter rn electron">renderMode</pt>
                 <pt props="ios mac">mode</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter rn electron">The local video display mode. See <xref keyref="RENDER_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity flutter rn electron">The local video display mode. See .<xref keyref="RENDER_MODE_TYPE" /></p>
                     <p props="android">The local video display mode.<ul id="rendermodetype">
                     <li><ph keyref="RENDER_MODE_HIDDEN" />(1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
                     <li><ph keyref="RENDER_MODE_FIT" />(2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
@@ -61,17 +61,18 @@
                 <pd>
                     <p props="ios mac cpp unity flutter rn electron">The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention" props="unity">This parameter is only effective when rendering custom videos. If you want to mirror the video view, set the scaleX of the GameObject attached to the video view as <codeph>-1</codeph> or <codeph>+1</codeph>.</note></p>
                     <p props="android">For the local user:<ul id="videomirrormodetype">
-                    <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): (Default) The mirror mode determined by the SDK. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirror mode.</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disable the mirror mode.</li>
+                    <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
+                    <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1)：开启本地视图的镜像模式。</li>
+                    <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2)：关闭本地视图的镜像模式。</li>
                     </ul> </p>
                     <note type="attention">If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</note> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li> &lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
