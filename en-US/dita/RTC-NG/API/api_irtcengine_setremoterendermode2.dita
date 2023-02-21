@@ -33,14 +33,14 @@
     {required int uid,
     required RenderModeType renderMode,
     required VideoMirrorModeType mirrorMode});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>After initializing the video view of a remote user, you can call this method to update its rendering and mirror modes. This method affects only the video view that the local user sees.</p>
             <note type="attention">
             <ul>
-            <li props="native flutter rn electron">Please call this method after initializing the remote view by calling the <xref keyref="setupRemoteVideo" /> method.</li>
+            <li props="native flutter rn electron">Please call this<xref keyref="setupRemoteVideo" /> method after initializing the remote view by calling the  method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the video view of a remote user.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -72,10 +72,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
