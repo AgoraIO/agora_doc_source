@@ -23,13 +23,13 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int PreloadSrc(string src, Int64 startPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract preloadSrc(src: string, startPos: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; preloadSrc({required String src, required int startPos});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>You can call this method to preload a media resource into the playlist. If you need to preload multiple media resources, you can call this method multiple times.</p>
-            <p props="native rn electron">After calling this method, if you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload is successful; If you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload fails.</p>
-            <p>If the preload is successful and you want to play the media resource, call <xref keyref="playPreloadedSrc" />; if you want to clear the playlist, call <xref keyref="stop" />.</p>
+            <p>You can call this method to preload a media resource into the playlist.  If you need to preload multiple media resources, you can call this method multiple times.</p>
+            <p props="native rn electron">After calling this method, if you receive the<xref keyref="onPreloadEvent" />  event in the  callback<apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" />, the preload is successful; If you receive<xref keyref="onPreloadEvent" /> the  event in the  callback<apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" />, the preload fails.</p>
+            <p>If the preload is successful and you want to play the media resource, call<xref keyref="playPreloadedSrc" /> ; if you want to clear the playlist, call <xref keyref="stop" />.</p>
             <note type="note">
             <p>Agora does not support preloading duplicate media resources to the playlist. However, you can preload the media resources that are being played to the playlist again.</p>
             </note> </section>
@@ -45,10 +45,11 @@
                 <pd>The starting position (ms) for playing after the media resource is preloaded to the playlist. When preloading a live stream, set this parameter to 0.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
