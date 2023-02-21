@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pullaudioframe">
-    <title><ph keyref="pullAudioFrame" /></title>
+    <title><ph keyref="pullAudioFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">Pulls the remote audio data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="pullAudioFrame" />
+                <indexterm keyref="pullAudioFrame"/>
             </keywords>
         </metadata>
     </prolog>
@@ -21,28 +21,28 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int PullAudioFrame(AudioFrame frame);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract pullAudioFrame(): AudioFrame;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pullAudioFrame(AudioFrame frame);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>Before calling this method, you need to call <xref keyref="setExternalAudioSink" /> to notify the app to enable and set the external rendering.</p>
+            <p>Before calling this method, you need to call  to<xref keyref="setExternalAudioSink"/> notify the app to enable and set the external rendering.</p>
             <p>After a successful method call, the app pulls the decoded and mixed audio data for playback.</p>
             <note type="attention">
             <ul>
             <li>This method only supports pulling data from custom audio source. If you need to pull the data captured by the SDK, do not call this method.</li>
             <li>Call this method after joining a channel.</li>
-            <li>Once you enable the external audio sink, the app will not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
-            <li>The difference between this method and the <apiname keyref="onPlaybackAudioFrame" /> callback is as follows:<ul>
-                <li>The SDK sends the audio data to the app through the <apiname keyref="onPlaybackAudioFrame" /> callback. Any delay in processing the audio frames may result in audio jitter.</li>
+            <li>Once you enable the external audio sink, the app will not<xref keyref="onPlaybackAudioFrame"/> retrieve any audio data from the  callback.</li>
+            <li>The difference between this method and the<apiname keyref="onPlaybackAudioFrame"/>  callback is as follows:<ul>
+                <li>The SDK<apiname keyref="onPlaybackAudioFrame"/> sends the audio data to the app through the  callback. Any delay in processing the audio frames may result in audio jitter.</li>
                 <li>After a successful method call, the app automatically pulls the audio data from the SDK. After setting the audio data parameters, the SDK adjusts the frame buffer and avoids problems caused by jitter in the external audio playback.</li>
                 </ul></li>
             </ul> </note> </section>
-        <section id="parameters">
+        <section id="parameters" props="native unity flutter">
             <title>Parameters</title>
             <parml>
-            <plentry props="cpp unity">
+            <plentry props="cpp unity flutter">
                 <pt>frame</pt>
-                <pd>Pointers to <xref keyref="AudioFrame" />.</pd>
+                <pd>Pointers to<xref keyref="AudioFrame"/> .</pd>
             </plentry>
             <plentry props="android ios mac">
                 <pt>data</pt>
@@ -50,18 +50,23 @@
             </plentry>
             <plentry props="android ios mac" id="length">
                 <pt>lengthInByte</pt>
-                <pd>The data length (byte). The value of this parameter is related to the audio duration, and the values of the <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters that you set in <apiname keyref="setExternalAudioSink" />. <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × audio duration (ms).</pd>
+                <pd>The data length (byte). The value of this parameter is related to the audio duration,<apiname keyref="setExternalAudioSink"/> and the values of the <codeph>sampleRate</codeph> and <codeph>channels</codeph> parameters that you set in . <codeph>lengthInByte</codeph> = <codeph>sampleRate</codeph>/1000 × 2 × <codeph>channels</codeph> × audio duration (ms).</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul props="android cpp unity">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="ios mac">
-            <li><codeph><ph keyref="true" /></codeph>: Success.</li>
-            <li><codeph><ph keyref="false" /></codeph>: Failure.</li>
+            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Failure.</li>
+            </ul>
+            <ul props="electron rn">
+            <li>The  instance, if the<apiname keyref="AudioFrame" /> method call succeeds.</li>
+            <li>An error code, if the call fails,.</li>
             </ul> </section>
     </refbody>
 </reference>
