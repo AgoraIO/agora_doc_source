@@ -1,6 +1,6 @@
 # 使用 Token 鉴权
 
-鉴权是指在用户访问你的系统前，对其进行身份校验。用户在使用 Agora 服务，如加入音视频通话或登录信令系统时，Agora 使用 Token 对其鉴权。
+鉴权是指在用户访问你的系统前，对其进行身份校验。用户在使用声网服务，如加入音视频通话或登录信令系统时，声网使用 Token 对其鉴权。
 
 本文展示如何为 AccessToken2 在服务端部署一个 Token 生成器，以及如何搭建一个使用 Token 鉴权的客户端。
 
@@ -17,7 +17,7 @@
 
 ## 实现鉴权流程
 
-本节介绍如何使用 Agora 提供的[代码](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey)生成并提供 Token，对用户及其权限进行校验。
+本节介绍如何使用声网提供的[代码](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey)生成并提供 Token，对用户及其权限进行校验。
 
 ### 获取 App ID 及 App 证书
 
@@ -47,7 +47,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 package main
   
 import (
-    rtctokenbuilder "github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/go/src/RtcTokenBuilder"
+    rtctokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtctokenbuilder2"
     "fmt"
     "log"
     "net/http"
@@ -196,7 +196,7 @@ $ go run server.go
 
 ```yaml
 dependencies:
-    # Agora Flutter SDK 依赖项，请使用最新版本的 agora_rtc_engine
+    # 声网 Flutter SDK 依赖项，请使用最新版本的 agora_rtc_engine
     agora_rtc_engine: ^6.0.0
     # 用于 http 请求
     http: ^0.13.5
@@ -258,7 +258,7 @@ class _State extends State<JoinChannelVideoToken> {
  
   bool isJoined = false, switchCamera = true, switchRender = true;
   Set<int> remoteUid = {};
-  static const String appId = '<Your App ID>'; // 填入在 Agora 控制台创建项目时生成的 App ID
+  static const String appId = '<Your App ID>'; // 填入在声网控制台创建项目时生成的 App ID
   static const String channelId = '<Your Channel Name>'; // 填入频道名称
   static const String hostUrl = '<Your Host URL and port>'; // 填入服务器的 URL 和端口
  

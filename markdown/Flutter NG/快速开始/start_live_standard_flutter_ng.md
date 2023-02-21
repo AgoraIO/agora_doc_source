@@ -1,12 +1,12 @@
-# 实现视频直播
+# 实现极速直播
 
-Agora 极速直播让你在 app 里轻松实现音视频直播功能，用户可以实时进行深入交流，创造更多商业机会。
+声网极速直播让你在 app 里轻松实现音视频直播功能，用户可以实时进行深入交流，创造更多商业机会。
 
-本文介绍如何通过最简单的代码来集成 Agora 视频 SDK，在你的 Android app 里实现高质量的音视频直播功能。
+本文介绍如何通过最简单的代码来集成声网视频 SDK，在你的 Android app 里实现高质量的音视频直播功能。
 
 ## 技术原理
 
-下图展示在 app 中实现 Agora 极速直播的基本工作流程：
+下图展示在 app 中实现声网极速直播的基本工作流程：
 
 ![](https://web-cdn.agora.io/docs-files/1642671754778)
 
@@ -33,11 +33,11 @@ Agora 极速直播让你在 app 里轻松实现音视频直播功能，用户可
 
 ## 获取 App ID 和 Token
 
-### 1. 创建 Agora 项目
+### 1. 创建项目
 
 ~4c028930-19e2-11eb-b0e2-eb6c69fefbc6~
 
-### 2. 获取 Agora 项目的 App ID
+### 2. 获取项目的 App ID
 
 ~bbd6ec60-19e2-11eb-b0e2-eb6c69fefbc6~
 
@@ -57,10 +57,10 @@ Agora 极速直播让你在 app 里轻松实现音视频直播功能，用户可
 
 在 `pubspec.yaml` 文件中添加以下依赖项：
 
-1. 添加 `agora_rtc_engine` 依赖项，集成 Agora Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
+1. 添加 `agora_rtc_engine` 依赖项，集成声网 Flutter SDK。关于 `agora_rtc_engine` 的最新版本可以查询 [https://pub.dev/packages/agora_rtc_engine](https://pub.dev/packages/agora_rtc_engine)。
 3. 添加 `permission_handler` 依赖项，安装权限处理插件。
 
-```
+```yaml
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -72,7 +72,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
-  # Agora Flutter SDK 依赖项，请使用最新版本的 agora_rtc_engine
+  # 声网 Flutter SDK 依赖项，请使用最新版本的 agora_rtc_engine
   agora_rtc_engine: ^6.0.0
   #  权限处理插件依赖项
   permission_handler: ^8.3.0
@@ -93,7 +93,7 @@ dependencies:
 ```dart
 import 'dart:async';
  
-import 'package:agora_rtc_ng/agora_rtc_ng.dart';
+import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 ```
@@ -103,7 +103,7 @@ import 'package:permission_handler/permission_handler.dart';
 输入你获得的 App ID 和临时 Token。
 
 ```dart
-/// 定义 App ID 和 Token
+// 定义 App ID、Token 和 Channel
 const appId = "<-- Insert App Id -->";
 const token = "<-- Insert Token -->";
 const channel = "<-- Insert Channel Name -->";
@@ -153,11 +153,10 @@ class _MyAppState extends State<MyApp> {
     // 获取权限
     await [Permission.microphone, Permission.camera].request();
  
-    //创建 RtcEngine
+    // 创建 RtcEngine
     _engine = await createAgoraRtcEngine();
  
- 
-    // 初始化 RtcEngine
+    // 初始化 RtcEngine，设置频道场景为直播场景
     await _engine.initialize(const RtcEngineContext(
       appId: appId,
       channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
@@ -187,14 +186,14 @@ class _MyAppState extends State<MyApp> {
       ),
     );
     // 开启视频
-    await _engine.setClientRole(ClientRoleType.clientRoleBroadcaster);
     await _engine.enableVideo();
     await _engine.startPreview();
-    // 加入频道
+    // 加入频道，设置用户角色为主播
     await _engine.joinChannel(
       token: token,
       channelId: channel,
-      info: '',
+      options: const ChannelMediaOptions(
+          clientRoleType: ClientRoleType.clientRoleBroadcaster),
       uid: 0,
     );
   }
@@ -283,4 +282,4 @@ class _MyAppState extends State<MyApp> {
 
 ### 示例项目
 
-Agora 在 GitHub 上提供了一个开源的互动直播[示例项目](https://github.com/AgoraIO/Agora-Flutter-SDK/tree/main/example)供你参考。
+声网在 GitHub 上提供了一个开源的互动直播[示例项目](https://github.com/AgoraIO/Agora-Flutter-SDK/tree/main/example)供你参考。

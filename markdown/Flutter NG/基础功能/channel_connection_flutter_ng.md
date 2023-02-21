@@ -1,6 +1,6 @@
 # 频道连接状态管理
 
-在实时音视频场景下，app 端与 Agora SD-RTN™ 之间的连接状态会随着客户端加入或离开频道而发生变化，也可能由于网络或鉴权问题而导致连接中断。
+在实时音视频场景下，app 端与声网 SD-RTN™ 之间的连接状态会随着客户端加入或离开频道而发生变化，也可能由于网络或鉴权问题而导致连接中断。
 
 本文介绍各种频道连接状态，状态改变原因和处理方式，帮助你更好地管理用户和排除网络故障。
 
@@ -9,7 +9,7 @@
 
 ### 连接状态
 
-当连接状态发生变化时，Agora 会发送 `onConnectionStateChanged` 回调。 下图展示各种连接状态，以及用户从加入到离开频道的过程中连接状态如何改变：
+当连接状态发生变化时，声网会发送 `onConnectionStateChanged` 回调。 下图展示各种连接状态，以及用户从加入到离开频道的过程中连接状态如何改变：
 
 ![](https://web-cdn.agora.io/docs-files/1634185571858)
 
@@ -76,7 +76,7 @@
 | 连接状态     | 状态说明和排障指导                                           |
 | ------------ | ------------------------------------------------------------ |
 | Disconnected | <ul><li>`LeaveChannel`(5)：用户离开频道。</li><li>`InvalidToken`(8)：使用有效的 token 加入频道。</li></ul> |
-| Connecting   | <ul><li>`Connecting`(0)：app 正在尝试加入 Agora 频道。</li></ul> |
+| Connecting   | <ul><li>`Connecting`(0)：app 正在尝试加入频道。</li></ul> |
 | Connected    | <ul><li>`JoinSuccess`(1)：app 已成功加入频道。</li></ul>    |
 | Reconnecting | <ul><li>`Interrupted`(2)：当网络连接中断时，SDK 自动重新连接频道，连接状态持续变化。 关于自动重连时连接状态如何改变， 详见[断线重连](#reconnection)。</li><li>`Lost`(16)：等待 SDK 成功重新连接服务器。</li><li>`SettingProxyServer`(11)：等待 SDK 成功重新连接服务器。</li><li>`ClientIpAddressChanged`(13)：等待 SDK 成功重新连接服务器。</li><li>`KeepAliveTimeout`(14)：等待 SDK 成功重新连接服务器。</li><li>`RenewToken`(12)：token 已更新，app 正在尝试重新加入频道。</li></ul> |
 | Failed       | <ul><li>`InvalidAppId`(6)：使用有效的 app ID 加入频道。</li><li>`InvalidChannelName`(7)：使用有效的 channel name 加入频道。</li><li>`TokenExpired`(9)：从 app 服务器获取新的 token，然后调用  `joinChannel` 加入频道。</li><li>`BannedByServer`(3)：用户被服务器禁止。<li>`JoinFailed`(4)：SDK 在 20 分钟内持续尝试加入频道失败，停止尝试重连。 调用 `leaveChannel` 离开当前频道，然后调用 `joinChannel` 重新加入频道。</li><li>`RejectedByServer`(10)：发生在以下情况。<ul><li>本地用户已加入频道后，app 调用 `joinChannel`。</li><li>app 调用了 `startEchoTest`，但没有调用 `stopEchoTest` 结束回声测试。</ul></li></li> |

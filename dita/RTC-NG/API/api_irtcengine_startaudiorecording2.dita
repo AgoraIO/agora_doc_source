@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startaudiorecording2">
     <title><ph keyref="startAudioRecording2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始客户端录音。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开始客户端录音并设置录音采样率。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,17 +21,11 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, int sampleRate, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-           <codeblock props="flutter" outputclass="language-dart"/> 
+           <codeblock props="flutter" outputclass="language-dart"/>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <dl outputclass="deprecated">
-            <dlentry>
-                <dt>弃用：</dt>
-                <dd>请改用 <xref keyref="startAudioRecording3"/>。</dd>
-            </dlentry>
-            </dl>
             <p>SDK 支持通话过程中在客户端进行录音。调用该方法后，你可以录制频道内所有用户的音频，并得到一个包含所有用户声音的录音文件。录音文件格式可以为:
 
 

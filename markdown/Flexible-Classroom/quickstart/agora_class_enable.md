@@ -1,20 +1,20 @@
-本文介绍如何在 Agora 控制台开通灵动课堂服务。
+本文介绍如何在声网控制台开通灵动课堂服务。
 
 ## 操作步骤
 
-### 1. 创建 Agora 开发者账号
+### 1. 创建声网开发者账号
 
-前往 <a href="https://sso.agora.io/cn/signup/" target="_blank">Agora 注册页面</a>，按照屏幕提示完成注册。
+前往 <a href="https://sso.agora.io/cn/signup/" target="_blank">声网注册页面</a>，按照屏幕提示完成注册。
 
-### 2. 创建一个 Agora 项目
+### 2. 创建一个声网项目
 
 ~4c028930-19e2-11eb-b0e2-eb6c69fefbc6~
 
 ### 3. 开通灵动课堂服务
 
-按照以下步骤，在 Agora 控制台开通灵动课堂服务：
+按照以下步骤，在声网控制台开通灵动课堂服务：
 
-1. 进入 Agora 控制台的<a href="https://console.agora.io/projects" target="_blank">项目管理</a>页面，选择需要开通灵动课堂服务的项目，点击**编辑**按钮。
+1. 进入声网控制台的<a href="https://console.agora.io/projects" target="_blank">项目管理</a>页面，选择需要开通灵动课堂服务的项目，点击**编辑**按钮。
 
    ![](https://web-cdn.agora.io/docs-files/1641282981459)
 

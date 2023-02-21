@@ -48,9 +48,9 @@
 
 | 参数           | 类型        | 描述                                                         |
 | -------------- | ----------- | ------------------------------------------------------------ |
-| `total`        | Integer     | 进入和退出课堂的用户总数。                                   |
-| `onlineUsers`  | Object 数组 | 进入课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: 老师</li><li>`2`: 学生</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户进入类型：<ul><li>`1`: 正常进入</li><li>`2`: 重连</li></ul></li><li>`updateTime`: Number 型，用户进入课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
-| `offlineUsers` | Object 数组 | 退出课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: 老师</li><li>`2`: 学生</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户退出类型：<ul><li>`1`: 由于客户端原因退出课堂，例如正常离开课堂、应用被强制关闭或由于网络状况不佳而断线。</li><li>`2`: 被踢出课堂。</li></ul></li><li>`updateTime`: Number 型，用户退出课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
+| `total`        | Integer     | 本次事件发生后，在课堂内的总人数。                              |
+| `onlineUsers`  | Object 数组 | 本次事件发生时，新增的进入课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: 老师</li><li>`2`: 学生</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户进入类型：<ul><li>`1`: 正常进入</li><li>`2`: 重连</li></ul></li><li>`updateTime`: Number 型，用户进入课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
+| `offlineUsers` | Object 数组 | 本次事件发生时，新增的退出课堂的用户，包含以下字段：<ul><li>`userName`: String 型，用户名称。</li><li>`userUuid`: String 型，用户 uuid。</li><li>`role`: Integer 型，用户在课堂中的角色：<ul><li>`1`: 老师</li><li>`2`: 学生</li></ul></li><li>`userProperties`: Object 型，用户属性。</li><li>`streamUuid`: String 型，用户流的 uuid，也是加入 RTC 频道时用的 UID。</li><li>`type`: Integer 型，用户退出类型：<ul><li>`1`: 由于客户端原因退出课堂，例如正常离开课堂、应用被强制关闭或由于网络状况不佳而断线。</li><li>`2`: 被踢出课堂。</li></ul></li><li>`updateTime`: Number 型，用户退出课堂时间，Unix 时间戳（毫秒），UTC 时间。</li></ul> |
 
 **示例**
 ```json
@@ -89,8 +89,8 @@
 | 参数         | 类型    | 描述                                                         |
 | ------------ | ------- | ------------------------------------------------------------ |
 | `recordId`   | String  | 一次录制的的唯一标识符。调用设置录制状态 API 开始录制然后结束录制视为一次录制。仅当 `state` 为 `1` 时有此字段。 |
-| `sid`        | String  | Agora 云端录制服务的 `sid`。仅当 `state` 为 `1` 时有此字段。 |
-| `resourceId` | String  | Agora 云端录制服务的 `resourceId`。仅当 `state` 为 `1` 时有此字段。 |
+| `sid`        | String  |声网云端录制服务的 `sid`。仅当 `state` 为 `1` 时有此字段。 |
+| `resourceId` | String  |声网云端录制服务的 `resourceId`。仅当 `state` 为 `1` 时有此字段。 |
 | `state`      | Integer | 当前录制状态：<ul><li>`0`: 录制已结束</li><li>`1`: 录制中</li></ul> |
 | `startTime`  | Number | 录制开始时间，Unix 时间戳（毫秒），UTC 时间。录制开始后此字段有值。 |
 | `streamingUrl`|Object | 经由页面录制后推到 CDN 的流地址。学生可以通过该地址观看教学。  |
@@ -134,38 +134,6 @@
 }
 ```
 
-## 云盘资源变更
-
-`cmd` 为 `1003` 时，该事件提示云盘资源发生变更，`data` 中包含以下字段：
-
-| 参数        | 类型        | 描述                                                         |
-| :---------- | :---------- | :----------------------------------------------------------- |
-| 参数        | 类型        | 描述                                                         |
-| `resources` | Object 数组 | 一个 Object 代表一个资源的变更情况，包含以下字段：<li>`resourceUuid`: String 型，资源 uuid。</li><li>`resourceName`: String 型，资源名称。</li><li>`size`: Number 型，资源大小，单位为字节。</li><li>`url`: String 型，资源的访问地址。</li><li>`taskUuid`: String 型，文件转换任务的 uuid。</li><li>`taskToken`: String 型，文件转换任务使用的 Token。</li><li>`taskProgress`: Object 型，文件转换任务进度。</li> |
-| `operator`  | Object      | 操作人，包含以下字段：<li>`userUuid`: String 型，用户 uuid。</li><li>`userName`: String 型，用户名称。</li><li>`role`: Integer 型，用户角色。</li> |
-| `action`    | Integer     | 资源变更类型：<li>`1`: 资源新增或更新。</li><li>`2`: 资源被删除。</li> |
-
-**示例**：
-
-```json
-{
-     "resources": [{
-            "resourceUuid":"",
-            "resourceName": "1",
-            "size": 1024,
-            "url": "http://xxx.com/ooo",
-            "taskUuid": "",
-            "taskToken": "",
-            "taskProgress": {},
-        } ],
-      "operator":{
-        "role":"1",
-        "userName":"jason",
-        "userUuid":"jason1"
-        },
-       "action": 1
-}
-```
 
 ## 讲台人员变更
 

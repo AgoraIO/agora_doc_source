@@ -75,7 +75,7 @@
                                            roomName: roomName,          // 房间名
                                            roomUuid: roomUuid,          // 房间 ID
                                            roomType: roomType,          // 房间类型: 0 为 一对一，2 为大班课，4 为小班课
-                                           appId: appId,                // Agora App ID
+                                           appId: appId,                //声网 App ID
                                            token: token,                // 测试环境下，你可以使用临时 Token；生产或安全环境下，强烈建议你使用服务器生成的 Token
                                            startTime: nil,              // 课堂开始时间
                                            duration: nil,               // 课堂持续时长
@@ -98,7 +98,7 @@
                                                                               roomName:roomName            // 房间名
                                                                               roomUuid:roomUuid            // 房间 ID
                                                                               roomType:roomType            // 房间类型: 0 为 一对一，2 为大班课，4 为小班课
-                                                                              appId:appId                  // Agora App ID
+                                                                              appId:appId                  //声网 App ID
                                                                               token:token                  // 测试环境下，你可以使用临时 Token；生产或安全环境下，强烈建议你使用服务器生成的 Token
                                                                               startTime:nil                // 课堂开始时间
                                                                               duration:nil                 // 课堂持续时长
@@ -189,7 +189,7 @@
                                                userRole: userRole,           // 用户角色
                                                roomName: roomName,           // 房间名
                                                roomUuid: roomUuid,           // 房间 ID
-                                               appId: appId,                 // Agora App ID
+                                               appId: appId,                 //声网 App ID
                                                token: token,                 // 测试环境下，你可以使用临时 Token；生产或安全环境下，强烈建议你使用服务器生成的 Token
                                                region: region,               // 区域
                                                mediaOptions: mediaOptions,   // 媒体相关配置
@@ -209,7 +209,7 @@
                                                                                       userRole:userRole          // 用户角色
                                                                                       roomName:roomName          // 房间名
                                                                                       roomUuid:roomUuid          // 房间 ID
-                                                                                      appId:appId                // Agora App ID
+                                                                                      appId:appId                //声网 App ID
                                                                                       token:token                // 测试环境下，你可以使用临时 Token；生产或安全环境下，强烈建议你使用服务器生成的 Token
                                                                                       region:region              // 区域
                                                                                       mediaOptions:mediaOptions  // 媒体相关配置

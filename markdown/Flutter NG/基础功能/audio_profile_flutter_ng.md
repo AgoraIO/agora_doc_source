@@ -1,6 +1,6 @@
 # 设置音频编码属性和应用场景
 
-不同的 app 需要设置不同的音频编码属性或应用场景。本文介绍如何使用 Agora RTC SDK 在你的 app 中设置合适的音频编码属性和应用场景。
+不同的 app 需要设置不同的音频编码属性或应用场景。本文介绍如何使用声网 RTC SDK 在你的 app 中设置合适的音频编码属性和应用场景。
 
 
 ## 技术原理
@@ -67,7 +67,7 @@ await rtcEngine.setAudioProfile(AudioProfileType.audioScenarioChorus);
 
 ### 音乐教学
 
-该场景主要要求高音质，支持将扬声器播放的音效传输到远端。Agora 推荐如下设置：
+该场景主要要求高音质，支持将扬声器播放的音效传输到远端。推荐如下设置：
 
 ```dart
 // 在初始化 IRtcEngine 实例时，设置音频应用场景

@@ -54,7 +54,7 @@
    }
    ```
 
-4. 在 HTML 文件中引入 Agora Classroom SDK 并启动灵动课堂：
+4. 在 HTML 文件中引入声网 Classroom SDK 并启动灵动课堂：
 
    ```html
    <!DOCTYPE html>

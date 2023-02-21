@@ -1,10 +1,10 @@
 ## 概览
 
-由于客户对在线课堂场景存在多种多样、定制化的需求，Agora 提供 Widget 帮助用户根据自身的需求开发插件并内嵌至灵动课堂内。
+由于客户对在线课堂场景存在多种多样、定制化的需求，声网提供 Widget 帮助用户根据自身的需求开发插件并内嵌至灵动课堂内。
 
-Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWidget` 自定义实现一个 Widget，然后在 Agora Classroom SDK 内注册该 Widget。Agora Classroom SDK 支持注册多个 Widget。 Widget 与 Widget 之间，以及 Widget 与 UI 层的其他插件都能进行通讯。
+Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWidget` 自定义实现一个 Widget，然后在声网 Classroom SDK 内注册该 Widget。声网 Classroom SDK 支持注册多个 Widget。 Widget 与 Widget 之间，以及 Widget 与 UI 层的其他插件都能进行通讯。
 
-<div class="alert info">Agora 提供了以下基于 Widget 实现的插件：倒计时、投票器和答题器等。你可在 <a href="https://github.com/AgoraIO-Community/apaas-extapp-ios">apaas-extapp-ios</a> 仓库中查看这些插件的源码。</div>
+<div class="alert info">声网提供了以下基于 Widget 实现的插件：倒计时、投票器和答题器等。你可在 <a href="https://github.com/AgoraIO-Community/apaas-extapp-ios">apaas-extapp-ios</a> 仓库中查看这些插件的源码。</div>
 
 ## 操作步骤
 
@@ -86,9 +86,9 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWi
    }
    ```
 
-### 2. 在 Agora Classroom SDK 中注册 Widget
+### 2. 在声网 Classroom SDK 中注册 Widget
 
-在 `AgoraEduLaunchConfig.widgets` 中加入倒计时的 `AgoraWidgetConfig`，在调用 `launch` 时将实现好的插件注册到 Agora Classroom SDK 中：
+在 `AgoraEduLaunchConfig.widgets` 中加入倒计时的 `AgoraWidgetConfig`，在调用 `launch` 时将实现好的插件注册到声网 Classroom SDK 中：
 
 ```swift
    let launchConfig = AgoraEduLaunchConfig(userName: userName,          
