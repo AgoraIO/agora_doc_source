@@ -24,7 +24,7 @@
             <codeblock props="rn" outputclass="language-typescript">abstract startPreview(sourceType?: VideoSourceType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startPreview(
             {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -32,8 +32,8 @@
             <note type="attention">
             <ul>
             <li>The local preview enables the mirror mode by default.</li>
-            <li>After the local video preview is enabled, if you call <xref keyref="leaveChannel" props="native unity" /><xref keyref="leaveChannel2" props="rn electron flutter" /> to exit the channel, the local preview remains until you call <xref keyref="stopPreview2" /> to disable it.</li>
-            <li props="native electron flutter rn">The video source type set in this method needs to be consistent with the video source type of <xref keyref="VideoCanvas" /> you set in <xref keyref="setupLocalVideo" />.</li>
+            <li>After the<xref keyref="leaveChannel" props="native unity" /><xref keyref="leaveChannel2" props="rn electron flutter" /> local video preview is enabled, if you call  to exit the channel, the local preview remains until you call  to disable it<xref keyref="stopPreview2" />.</li>
+            <li props="native electron flutter rn">The video source type set in this method needs to be consistent with<xref keyref="setupLocalVideo" /><xref keyref="VideoCanvas" /> the video source type of  you set in .</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -43,10 +43,11 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
