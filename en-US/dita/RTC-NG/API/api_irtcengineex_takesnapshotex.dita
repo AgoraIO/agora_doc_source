@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_takesnapshotex">
-    <title><ph keyref="takeSnapshotEx" /></title>
+    <title><ph keyref="takeSnapshotEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Takes a snapshot of a video stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="takeSnapshotEx" />
+                <indexterm keyref="takeSnapshotEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract int takeSnapshotEx(RtcConnection connection, int uid, String filePath);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)takeSnapshotEx:(AgoraRtcConnection * _Nonnull)connection uid:(NSInteger)uid filePath:(NSString* _Nonnull)filePath;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int takeSnapshotEx(const RtcConnection&amp; connection, uid_t uid, const char* filePath)  = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshotEx(
     connection: RtcConnection,
     uid: number,
@@ -28,43 +28,44 @@
     uid: number,
     filePath: string
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshotEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshotEx(
       {required RtcConnection connection,
       required int uid,
       required String filePath});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p conkeyref="takeSnapshot/desc1" />
-            <p conkeyref="takeSnapshot/desc2" props="native unity electron flutter" />
-            <p props="rn">The SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
+            <p conkeyref="takeSnapshot/desc1"/>
+            <p conkeyref="takeSnapshot/desc2" props="native unity electron flutter"/>
+            <p props="rn">The SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the  callback to<xref keyref="onSnapshotTaken" /> report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
             <note type="attention">
             <ul>
-            <li>Call this method after the <xref keyref="joinChannelEx" /> method.</li>
-            <li>This method takes a snapshot of the published video stream specified in <xref keyref="ChannelMediaOptions" />.</li>
+            <li>Call this method after the  method<xref keyref="joinChannelEx"/>.</li>
+            <li>This method takes<xref keyref="ChannelMediaOptions"/> a snapshot of the published video stream specified in .</li>
             <li>If the user's video has been preprocessed, for example, watermarked or beautified, the resulting snapshot includes the pre-processing effect.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="takeSnapshot/uid">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             <plentry conkeyref="takeSnapshot/filepath">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
