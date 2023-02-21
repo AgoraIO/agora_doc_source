@@ -29,34 +29,34 @@
       required Uint8List data,
       required int length,
       required RtcConnection connection});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After calling <xref keyref="createDataStreamEx2" />, you can call this method to send data stream messages to all users in the channel.</p>
+            <p>After calling<xref keyref="createDataStreamEx2" /> , you can call this method to send data stream messages to all users in the channel.</p>
             <p id="desc">The SDK has the following restrictions on this method:<ul>
             <li>Up to 30 packets can be sent per second in a channel with each packet having a maximum size of 1 kB.</li>
             <li>Each client can send up to 6 KB of data per second.</li>
             <li>Each user can have up to five data streams simultaneously.</li>
             </ul></p>
-            <p>A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message. 
-A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
+            <p>A successful method call triggers the  callback on<xref keyref="onStreamMessage" /> the remote client, from which the remote user gets the stream message.
+A failed method call triggers the  callback on the remote<xref keyref="onStreamMessageError" /> client.</p>
             <note type="attention">
             <ul>
-            <li>Ensure that you call <apiname keyref="createDataStreamEx2" /> to create a data channel before calling this method.</li>
-            <li>This method applies only to the COMMUNICATION profile or to the hosts in the LIVE_BROADCASTING profile. If an audience in the LIVE_BROADCASTING profile calls this method, the audience may be switched to a host.</li>
+            <li>Ensure that you call  to create a<apiname keyref="createDataStreamEx2" /> data channel before calling this method.</li>
+            <li>This method applies only to the `COMMUNICATION` profile or to the hosts in the `LIVE_BROADCASTING` profile. If an audience in the `LIVE_BROADCASTING` profile calls this method, the audience may be switched to a host.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>streamId</pt>
-                <pd>The data stream ID. You can get the data stream ID by calling <apiname keyref="createDataStreamEx2" />.</pd>
+                <pd>The data stream ID. You can get<apiname keyref="createDataStreamEx2" /> the data stream ID by calling .</pd>
             </plentry>
             <plentry>
                 <pt props="android">message</pt>
                 <pt props="cpp rn unity electron flutter">data</pt>
-                <pd>The data to be sent.</pd>
+                <pd>The message to be sent.</pd>
             </plentry>
             <plentry props="cpp rn unity electron flutter">
                     <pt>length</pt>
@@ -67,10 +67,11 @@ A failed method call triggers the <xref keyref="onStreamMessageError" /> callbac
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
