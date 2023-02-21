@@ -20,7 +20,7 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetEncryptionMode(string encryptionMode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setEncryptionMode(encryptionMode: string): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEncryptionMode(String encryptionMode);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -30,8 +30,8 @@
                 <dd>Use <xref keyref="enableEncryption" /> instead.</dd>
             </dlentry>
             </dl>
-            <p id="desc">The Agora SDK supports built-in encryption, which is set to the AES-128-GCM mode by default. Call this method to use other encryption modes. All users in the same channel must use the same encryption mode and <parmname>secret</parmname>. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.</p>
-            <note type="attention">Before calling this method, please call <xref keyref="setEncryptionSecret" /> to enable the built-in encryption function.</note> </section>
+            <p id="desc">SDK 支持内置加密方案，默认支持 AES-128-GCM。 Call this method to use other encryption modes. All users in the same channel must use the same encryption mode and <parmname>secret</parmname>. Refer to the information related to the AES encryption algorithm on the differences between the encryption modes.</p>
+            <note type="attention">Before calling this method, please call  to enable<xref keyref="setEncryptionSecret" /> the built-in encryption function.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -50,10 +50,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
