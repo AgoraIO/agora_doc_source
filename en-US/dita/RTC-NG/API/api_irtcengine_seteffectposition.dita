@@ -19,8 +19,8 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setEffectPosition(soundId: number, pos: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetEffectPosition(int soundId, int pos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setEffectPosition(soundId: number, pos: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEffectPosition({required int soundId, required int pos});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEffectPosition({required int soundId, required int pos});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -38,10 +38,11 @@
                 <pd>The playback position (ms) of the audio effect file.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
