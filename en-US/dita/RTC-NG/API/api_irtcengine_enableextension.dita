@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableextension">
     <title><ph keyref="enableExtension" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables an extension.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables/Disables extensions.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -37,11 +37,11 @@
     required String extension,
     bool enable = true,
     MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>To call this method, call it immediately after initializing the <xref keyref="IRtcEngine" /> object.</p>
+            <p>To call this method, call it<xref keyref="IRtcEngine" /> immediately after initializing the  object.</p>
             <note>
                 <ul>
             <li>If you want to enable multiple extensions, you need to call this method multiple times.</li>
@@ -63,8 +63,8 @@
                 <pt props="ios mac">enabled</pt>
                 <pd>
                     <p>Whether to enable the extension:<ul id="ul_c3b_d22_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: Enable the extension.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Disable the extension.</li>
+                    <li>: Enable the extension.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: Disable the extension.<codeph><ph keyref="false" /></codeph></li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -76,11 +76,15 @@
                         </ul></note></pd>
                 </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li props="native unity rn electron">0: Success.</li>
+            <li>&lt; 0: Failure.<ul>
+                <li>-3: 该插件动态库没有被加载。 声网推荐你检查该动态库是否存放在预期的位置或该动态库名是否正确。</li>
+                </ul>
+            </li>
             </ul> </section>
     </refbody>
 </reference>
