@@ -20,12 +20,12 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioMixingPosition(int pos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setAudioMixingPosition(pos: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPosition(int pos);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>Call this method to set the playback position of the music file to a different starting position, rather than playing the file from the beginning.</p>
-            <note type="attention">You need to call this method after calling <apiname keyref="startAudioMixing2" /> and receiving the <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</note> </section>
+            <p>Call this method to set the playback position of the music file to a different starting position (the default plays from the beginning).</p>
+            <note type="attention">You need to call this method after calling<apiname keyref="startAudioMixing2" />  and receiving the <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -34,10 +34,11 @@
                 <pd>Integer. The playback position (ms).</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
