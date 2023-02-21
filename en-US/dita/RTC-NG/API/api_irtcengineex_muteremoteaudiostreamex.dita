@@ -33,7 +33,7 @@
       {required int uid,
       required bool mute,
       required RtcConnection connection});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>This method is used to stops or resumes receiving the audio stream of a specified user. You can call this method before or after joining a channel. If a user leaves a channel, the settings in this method become invalid.</section>
@@ -50,8 +50,8 @@
                 <pd>
                     <p>Whether to stop receiving the audio stream of the specified user:</p>
                     <ul id="ul_pv3_2ft_3qb">
-                    <li><codeph><ph keyref="true" /></codeph>: Stop receiving the audio stream of the specified user.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Resume receiving the audio stream of the specified user.</li>
+                    <li>: Stop receiving the audio stream of the specified user.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: (Default) Resume receiving the audio stream of the specified user.<codeph><ph keyref="false" /></codeph></li>
                     </ul> </pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
@@ -59,10 +59,11 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li> &lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
