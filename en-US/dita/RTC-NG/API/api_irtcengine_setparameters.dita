@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setparameters">
-    <title><ph keyref="setParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Provides technical preview functionalities or special customizations by configuring the SDK with JSON options.</ph></shortdesc>
+    <title><ph keyref="setParameters"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Provides the technical preview functionalities or special customizations by configuring the SDK with JSON options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setParameters" />
+                <indexterm keyref="setParameters"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,43 +14,28 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setParameters(String parameters);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setParameters:(NSString * _Nonnull)options NS_SWIFT_NAME(setParameters(_:));</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)setParameters:(NSString * _Nonnull)options;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setParameters(const char* parameters) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">abstract setParameters(parameters: string): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int SetParameters(string key, object value);</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetParameters(string parameters);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setParameters(parameters: string): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setParameters(String parameters);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setParameters(String parameters);</codeblock></p>
         </section>
-        <section id="detailed_desc" props="cpp">
-            <dl outputclass="since">
-            <dlentry props="native">
-                <dt>Since</dt>
-                <dd>v4.1.0</dd>
-            </dlentry>
-            </dl>
-            <p>Contact <xref keyref="ticket-link" /> to get the JSON configuration method.</p>
+        <section id="detailed_desc">
+            <p>Contact support@agora.io for details about JSON options.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp electron rn flutter" id="parameter">parameters</pt>
-                <pt props="apple" id="options">options</pt>
+                <pt props="android cpp electron unity rn flutter">parameters</pt>
+                <pt props="apple">options</pt>
                 <pd>Pointer to the set parameters in a JSON string.</pd>
             </plentry>
-            <plentry props="unity">
-                <pt>key</pt>
-                <pd>The key.</pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>value</pt>
-                <pd>The value.</pd>
-            </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values" props="android apple cpp electron unity rn">
             <title>Returns</title>
-            <ul>
+            <ul id="ul_uns_l2y_hqb">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
