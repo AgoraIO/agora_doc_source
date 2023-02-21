@@ -9,7 +9,6 @@ v1.1.0 于 2023 年 2 月 28 日发布。
 - 新增聊天室自定义属性功能实现语聊房的麦位管理和同步等功能。
 - 新增 `ChatMessage#setPriority(ChatRoomMessagePriority)` 方法实现聊天室消息优先级功能，确保高优先级消息优先处理。
 - 在 `ChatManager#asyncFetchConversationsFromServer` 方法中新增分页参数 `pageNum` 和 `pageSize`，支持分页获取会话列表功能。
-- 新增 `ChatManager#removeMessagesFromServer` 方法单向删除漫游消息。
 
 #### 优化
 

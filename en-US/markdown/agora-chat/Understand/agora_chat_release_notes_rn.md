@@ -10,7 +10,6 @@ v1.1.0 was released on February 28, 2023.
 - Adds the function of managing custom chat room attributes.
 - Adds the `ChatManager#fetchConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
 - Adds the `ChatMessage#messagePriority` method to implement the chat room message priority function.
-- Adds the `ChatManager#removeMessagesFromServerWithTimestamp` and `ChatManager#removeMessagesFromServerWithMsgIds` methods to allow users to delete messages on the server in a unidirectional way.
 
 #### Improvements
 

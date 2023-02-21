@@ -8,7 +8,6 @@
 - 新增聊天室自定义属性功能用于实现语聊房的麦位管理和同步等功能。
 - 新增 `ChatManager#fetchConversationListFromServer` 方法实现从服务器分页获取会话列表。
 - 新增 `ChatMessage#chatroomMessagePriority` 属性实现聊天室消息优先级功能，确保高优先级消息优先处理。
-- 新增 `ChatManager#removeMessagesFromServerWithTs` 和 `ChatManager#removeMessagesFromServerWithMsgIds` 方法实现单向删除服务端历史消息。
 
 #### 优化
 

@@ -10,11 +10,11 @@ v1.1.0 was released on February 28, 2023.
 - Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
 - Adds the `ChatManager#GetConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
 - Adds the `Message#Priority` attribute to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
-- Adds the `ChatManager#RemoveMessagesFromServer` method to allow users to delete messages on the server in a unidirectional way.
 
 #### Improvements
 
-Modified the `SDKClient#InitWithOptionsInitWithOptions` method by adding the return result for the App Key format check.
+- Modified the `SDKClient#InitWithOptionsInitWithOptions` method by adding the return result for the App Key format check.
+- The issue that the read flag for the sent messages is set to `false`. After this issue is fixed, the SDK sets the read flag of a sent message to `true`.
 
 #### Issues fixed
 
