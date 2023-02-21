@@ -20,13 +20,13 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartLastmileProbeTest(LastmileProbeConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startLastmileProbeTest(config: LastmileProbeConfig): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startLastmileProbeTest(LastmileProbeConfig config);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).</p>
             <p>Once this method is enabled, the SDK returns the following callbacks:<ul>
-            <li><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.</li>
+            <li><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds  depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.</li>
             <li><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.</li>
             </ul> </p>
             <p>This method applies to the following scenarios:<ul>
@@ -35,7 +35,7 @@
             </ul> </p>
             <note type="attention">
             <ul>
-            <li>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted.</li>
+            <li>Do not call other methods before receiving the<apiname keyref="onLastmileQuality" />  and<apiname keyref="onLastmileProbeResult" />  callbacks. Otherwise, the callbacks may be interrupted.</li>
             <li>A host should not call this method after joining a channel (when in a call).</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -46,10 +46,11 @@
                 <pd>The configurations of the last-mile network probe test. See <xref keyref="LastmileProbeConfig" />.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
