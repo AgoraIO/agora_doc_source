@@ -213,7 +213,6 @@ class _MyAppState extends State<MyApp> {
         )
       );
   }
- 
   
   // 生成远端视频
   Widget _remoteVideo() {

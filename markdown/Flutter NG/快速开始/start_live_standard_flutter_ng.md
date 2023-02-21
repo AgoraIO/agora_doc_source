@@ -156,7 +156,6 @@ class _MyAppState extends State<MyApp> {
     // 创建 RtcEngine
     _engine = await createAgoraRtcEngine();
  
- 
     // 初始化 RtcEngine，设置频道场景为直播场景
     await _engine.initialize(const RtcEngineContext(
       appId: appId,
