@@ -42,27 +42,27 @@
     required int channel,
     required RawAudioFrameOpModeType mode,
     required int samplesPerCall});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>Sets the data format for the <xref keyref="onPlaybackAudioFrame" /> callback.</p>
+            <p>Sets the<xref keyref="onPlaybackAudioFrame" /> data format for the  callback.</p>
             <note type="attention">
             <ul id="ul_t13_lnz_r4b">
             <li>Ensure that you call this method before joining a channel.</li>
-            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onPlaybackAudioFrame" /> callback according to the sampling interval.</li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline><parmname>Sample</parmname> interval (<parmname>sec</parmname>) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the  callback according to the sampling interval.<apiname keyref="onPlaybackAudioFrame" /></li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>The sample rate returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                <pd><apiname keyref="onPlaybackAudioFrame" />The sample rate returned in the  callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
             </plentry>
             <plentry>
                 <pt>channel</pt>
                 <pd>
-                    <p>The number of channels returned in the <apiname keyref="onPlaybackAudioFrame" /> callback:<ul id="ul_xg2_cnz_r4b">
+                    <p><apiname keyref="onPlaybackAudioFrame" />The number of channels returned in the  callback:<ul id="ul_xg2_cnz_r4b">
                     <li>1: Mono.</li>
                     <li>2: Stereo.</li>
                     </ul></p>
@@ -77,13 +77,14 @@
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd>The number of data samples returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, such as 1024 for the Media Push.</pd>
+                <pd><apiname keyref="onPlaybackAudioFrame" />The number of data samples returned in the  callback, such as 1024 for the media push.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity electron rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
