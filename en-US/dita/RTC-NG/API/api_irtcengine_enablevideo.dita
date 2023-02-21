@@ -20,11 +20,11 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableVideo();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableVideo(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVideo();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. Call <xref keyref="disableVideo" /> to disable the video mode.</p>
+            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode. <xref keyref="disableVideo" />Call  to disable the video mode.</p>
             <p>A successful call of this method triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
@@ -36,10 +36,11 @@
                 <li><xref keyref="muteAllRemoteVideoStreams" />: Whether to subscribe to and play all remote video streams.</li>
                 </ul></li>
             </ul> </note> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
