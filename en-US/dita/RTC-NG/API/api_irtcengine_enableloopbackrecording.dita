@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableloopbackrecording">
-    <title><ph keyref="enableLoopbackRecording" /></title>
+    <title><ph keyref="enableLoopbackRecording"/></title>
     <shortdesc id="short"><ph id="shortdesc">Enables loopback audio capturing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableLoopbackRecording" />
+                <indexterm keyref="enableLoopbackRecording"/>
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableLoopbackRecording:(BOOL)enabled deviceName:(NSString* _Nullable)deviceName NS_SWIFT_NAME(enableLoopbackRecording(_:deviceName:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">  virtual int enableLoopbackRecording(bool enabled, const char* deviceName = NULL) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecording(
@@ -27,7 +27,7 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLoopbackRecording(
     {required bool enabled, String? deviceName});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -44,8 +44,8 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Whether to enable loopback audio capturing.<ul id="ul_qjq_swq_t4b">
-                    <li><codeph><ph keyref="true" /></codeph>: Enable loopback audio capturing.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable loopback audio capturing.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Enable loopback audio capturing.</li>
+                    <li>: (Default) Disable loopback audio capturing.<codeph><ph keyref="false"/></codeph></li>
                     </ul></pd>
             </plentry>
             <plentry id="device_name">
@@ -58,10 +58,11 @@
                     </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
