@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcloudproxy">
     <title> <ph keyref="setCloudProxy" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the Agora cloud proxy service.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置云代理服务。</ph> </shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,19 +20,19 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetCloudProxy(CLOUD_PROXY_TYPE proxyType);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setCloudProxy(proxyType: CloudProxyType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCloudProxy(CloudProxyType proxyType);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>When users' network access is restricted by a firewall, configure the firewall to allow specific IP addresses and ports provided by Agora; then, call this method to enable the cloud proxy and set the cloud proxy type with the <parmname>proxyType</parmname> parameter.</p>
-            <p>After successfully connecting to the cloud proxy, the SDK triggers the <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) callback.</p>
-            <p>To disable the cloud proxy that has been set, call the <codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph>.</p>
-            <p>To change the cloud proxy type that has been set, call the <codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph> first, and then call the <apiname keyref="setCloudProxy" /> to set the <parmname>proxyType</parmname> you want.</p>
+            <p>When users' network access is restricted by a firewall, , configure the firewall to allow specific IP addresses and ports provided by Agora; then, call this method to enable the cloud <parmname>proxy</parmname> and set the cloud proxy type with the proxyType parameter.</p>
+            <p>After successfully connecting to the cloud proxy, the SDK triggers the<xref keyref="onConnectionStateChanged" />  (<ph keyref="CONNECTION_STATE_CONNECTING" />,<ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" /> ) callback.</p>
+            <p>To disable the cloud proxy that has been set, call the<codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph>.</p>
+            <p>To change the cloud proxy type that has been set, call the<codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />) </codeph>first, and then call the<apiname keyref="setCloudProxy" />  to set the proxyType you want.<parmname></parmname></p>
             <note type="attention">
             <ul>
-            <li>Agora recommends that you call this method before joining the channel or after leaving the channel.</li>
-            <li>When a user is behind a firewall and uses the Force UDP cloud proxy, the services for the Media Push and cohosting across channels are not available.</li>
-            <li>When you use the Force TCP cloud proxy, note that an error would occur when calling the <xref keyref="startAudioMixing2" /> method to play online music files in the HTTP protocol. The services for the Media Push and cohosting across channels use the cloud proxy with the TCP protocol.</li>
+            <li>建议你在频道外调用该方法。</li>
+            <li>When a user is behind a firewall and uses the Force UDP cloud proxy, the services for Media Push and cohosting across channels are not available.</li>
+            <li>When you use the Force TCP cloud proxy, note that an<xref keyref="startAudioMixing2" /> error would occur when calling the  method to play online music files in the HTTP protocol. The services for Media Push and cohosting across channels use the cloud proxy with the TCP protocol.</li>
             </ul></note></section>
         <section id="parameters">
             <title>Parameters</title>
@@ -50,10 +50,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li> &lt; 0: Failure.<ul>
                 <li>-2: The parameter is invalid.</li>
                 <li>-7: The SDK is not initialized.</li>
