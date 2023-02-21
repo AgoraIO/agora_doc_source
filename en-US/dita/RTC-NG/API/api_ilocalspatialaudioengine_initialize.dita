@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ilocalspatialaudioengine_initialize">
-    <title><ph keyref="initialize_ILocalSpatialAudioEngine" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Initializes <xref keyref="ILocalSpatialAudioEngine" />.</ph></shortdesc>
+    <title><ph keyref="initialize_ILocalSpatialAudioEngine"/></title>
+    <shortdesc id="short">Initializes .<ph id="shortdesc"><xref keyref="ILocalSpatialAudioEngine"/></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="initialize_ILocalSpatialAudioEngine" />
+                <indexterm keyref="initialize_ILocalSpatialAudioEngine"/>
             </keywords>
         </metadata>
     </prolog>
@@ -19,30 +19,31 @@
             <codeblock props="electron" outputclass="language-typescript">abstract initialize(): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract initialize(): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; initialize();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> initialize();</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <note type="note">
             <ul>
-            <li props="cpp">Call this method after calling <codeph><xref keyref="queryInterface" />(<ph keyref="AGORA_IID_LOCAL_SPATIAL_AUDIO" />)</codeph>. </li>
-            <li props="android">Call this method after calling <xref keyref="create_ILocalSpatialAudioEngine" />.</li>
-            <li>Before calling other methods of the <apiname keyref="ILocalSpatialAudioEngine" /> class, you need to call this method to initialize <apiname keyref="ILocalSpatialAudioEngine" />.</li>
-            <li>The SDK supports creating only one <apiname keyref="ILocalSpatialAudioEngine" /> instance for an app.</li>
+            <li props="cpp">Call this method after calling <codeph><xref keyref="queryInterface"/>(<ph keyref="AGORA_IID_LOCAL_SPATIAL_AUDIO"/>)</codeph>.</li>
+            <li props="android">Call<xref keyref="create_ILocalSpatialAudioEngine"/> this method after calling .</li>
+            <li>Before calling<apiname keyref="ILocalSpatialAudioEngine"/> other methods of the  class, you need to call this method to initialize <apiname keyref="ILocalSpatialAudioEngine"/>.</li>
+            <li>The SDK supports creating only one<apiname keyref="ILocalSpatialAudioEngine"/>  instance for an app.</li>
             </ul> </note> </section>
         <section id="parameters" props="native">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>config</pt>
-                <pd>The configuration of <apiname keyref="ILocalSpatialAudioEngine" />. See <xref keyref="LocalSpatialAudioConfig" /> for details.</pd>
+                <pd><apiname keyref="ILocalSpatialAudioEngine"/>The configuration of . See .<xref keyref="LocalSpatialAudioConfig"/></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
