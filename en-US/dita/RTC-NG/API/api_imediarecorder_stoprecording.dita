@@ -27,11 +27,11 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int StopRecording(RtcConnection connection);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract stopRecording(connection: RtcConnection): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopRecording(RtcConnection connection);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <note type="attention">After calling <xref keyref="startRecording" />, if you want to stop the recording, you must call this method; otherwise, the generated recording files may not be playable.</note> </section>
+            <note type="attention">After calling<xref keyref="startRecording" /> , if you want to stop the recording, you must call this method; otherwise, the generated recording files may not be playable.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -41,12 +41,13 @@
             </plentry>
             </parml>
         </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-7: A method is called before <xref keyref="IRtcEngine" /> is initialized. <ph props="android apple">Ensure that you have called <xref keyref="getMediaRecorder" /> before calling this method.</ph></li>
+                <li>-7: The method is called before <xref keyref="IRtcEngine" /> is initialized. <ph props="android apple">Ensure that you have called  before calling this method<xref keyref="getMediaRecorder" />.</ph></li>
                 </ul></li>
             </ul> </section>
     </refbody>
