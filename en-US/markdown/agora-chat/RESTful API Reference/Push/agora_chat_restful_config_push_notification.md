@@ -1,6 +1,6 @@
 # Set push messages
 
-This topic introduces structures and fields of push.
+This topic introduces the structure and fields of Chat push service.
 
 Chat not only provides basic configurations that are adaptive to all, but also supports advanced configurations varied by service providers. You can choose the service provider and configure the notification fields based on your business requirements.
 
@@ -49,7 +49,7 @@ The following table lists basic configuration fields available to all:
 
 ## Advanced configurations
 
-If the basic configuration fields stated above cannot meet your business requirements, Chat supports the following push service providers that allow you to implement advanced configurations:
+If the basic configuration fields stated above cannot meet your business requirements, Chat allows you to implement advanced configurations provided by the following push services:
 
 | Field   | Type | Description  | Required |
 | :--------- | :----------- | :------- | :----------------- |
@@ -61,13 +61,13 @@ If the basic configuration fields stated above cannot meet your business require
 
 ### Agora push service
 
-下面为包含大图片的通知的代码示例：
+An Agora push notification example is as follows:
 
 ```json
 {
-    "title": "通知栏显示的通知标题",
-    "content": "通知栏展示的通知内容",
-    "subTitle": "通知栏显示的通知副标题",
+    "title": "The title of the notification",
+    "content": "The body text of the notification",
+    "subTitle": "The subtitle of the notification",
     "iconUrl": "https://docs-im.easemob.com/lib/tpl/bootstrap3_ori/images/logo.png",
     "needNotification": true,
     "badge": {
@@ -96,12 +96,12 @@ If the basic configuration fields stated above cannot meet your business require
 
 推送字段说明如下表所示： 
 
-| 字段               | 类型    | 描述                | 支持平台    |
-| :----------------- | :------ | :------------------------ | :---------- |
-| `title`            | String  | 通知栏展示的通知标题。                                             | iOS & Android |
-| `content`          | String  | 通知栏展示的通知内容。                                             | iOS & Android |
-| `subTitle`         | String  | 通知栏展示的通知副标题。                                             | iOS         |
-| `iconUrl`          | String  | 推送图标的 URL。           | iOS & Android |
+| Field              | Type    | Description               | Supported platforms    |
+| :----------------- | :------ | :------------------------ | :--------------------- |
+| `title`            | String  | The title of the notification.        | iOS & Android |
+| `content`          | String  | The body text of the notification.    | iOS & Android |
+| `subTitle`         | String  | The subtitle of the notification that provides additional information.     | iOS           |
+| `iconUrl`          | String  | 推送图标的 URL。                  | iOS & Android |
 | `needNotification` | Boolean | 是否弹出通知：<ul><li>（默认）`true`：通知消息；</li><li>`false`：透传消息。</li></ul> | iOS & Android |
 | `badge`            | JSON  | 推送角标。详见[基本推送配置](#param)中的角标说明。 | iOS & Android |
 | `operation`        | JSON  | 在通知栏中点击触发的动作。 | iOS & Android |
@@ -123,7 +123,7 @@ If the basic configuration fields stated above cannot meet your business require
 APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
 
 | APNs 推送字段               | APNs 官网字段    | 
-| :----------------- | :---------- | 
+| :----------------- | :-------------- | 
 | `invalidationTime` | `apns-expiration`     | 
 | `priority`         | `apns-priority`  | 
 | `pushType`         | `apns-push-type`  | 
@@ -175,4 +175,4 @@ FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
 | `notification.bodyLocKey`       | `notification.body_loc_key`                     |
 | `notification.bodyLocArgs`      | `notification.body_loc_args` |
 
-关于这些字段的描述，详见 [FCM 官网](https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=zh-cn)。
+关于这些字段的描述，详见 [FCM 官网](https://firebase.google.com/docs/cloud-messaging/http-server-ref)。
