@@ -20,11 +20,11 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int GetUserInfoByUid(uint uid, ref UserInfo userInfo);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getUserInfoByUid(uid: number): UserInfo;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;UserInfo&gt; getUserInfoByUid(int uid);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and User Account of the remote user, caches them in a mapping table object, and triggers the <xref keyref="onUserInfoUpdated" /> callback on the local client. After receiving the callback, you can call this method to get the user account of the remote user from the <xref keyref="UserInfo" /> object by passing in the user ID.</p>
+            <p id="getUserInfo_desc">After a remote user joins the channel, the SDK gets the UID and user account of the remote user, caches them in a mapping table object, and triggers the  callback on the local client<xref keyref="onUserInfoUpdated" />. After receiving the callback, you can call this method to get the user account of the remote user from the  object by passing in the user<xref keyref="UserInfo" /> ID.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -35,9 +35,9 @@
             </plentry>
             <plentry props="cpp unity android" id="userInfo">
                 <pt>userInfo</pt>
-                <pd>Input and output parameter. The <xref keyref="UserInfo" /> object that identifies the user information.<ul>
-                    <li>Input: A <apiname keyref="UserInfo" /> object.</li>
-                    <li>Output: A <apiname keyref="UserInfo" /> object that contains the user account and user ID of the user.</li>
+                <pd>Input and output parameter. The  object that identifies the user information<xref keyref="UserInfo" />.<ul>
+                    <li>Input: A<apiname keyref="UserInfo" />  object.</li>
+                    <li>Output: A  object that contains the user account and user ID of the user<apiname keyref="UserInfo" />.</li>
                     </ul> 
                 </pd>
             </plentry>
@@ -56,10 +56,9 @@
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="ios mac rn electron flutter">The <apiname keyref="UserInfo" /> object that identifies the user information.</p>
             <ul props="ios mac flutter electron rn">
-            <li>A pointer to the <xref keyref="UserInfo" /> instance, if the method call succeeds.</li>
-            <li props="ios mac flutter electron rn">If the call fails, returns <ph keyref="NULL" />.</li>
+            <li>A pointer to the  instance, if the method call succeeds<xref keyref="UserInfo" />.</li>
+            <li>If the call fails, returns <ph keyref="NULL" />.</li>
             </ul>
             <ul props="cpp unity android">
             <li>0: Success.</li>
