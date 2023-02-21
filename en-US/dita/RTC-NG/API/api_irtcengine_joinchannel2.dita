@@ -41,7 +41,7 @@
       required String channelId,
       required int uid,
       required ChannelMediaOptions options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -90,10 +90,11 @@
                 <pd>The block of a user joining the specified channel. If you implement both <codeph>joinSuccessBlock</codeph> and <xref keyref="onJoinChannelSuccess" />, joinSuccessBlock takes higher priority than <apiname keyref="onJoinChannelSuccess" />. Agora recommends setting <codeph>joinSuccessBlock</codeph> as <codeph>nil</codeph> to use <apiname keyref="onJoinChannelSuccess" />.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-2: The parameter is invalid. For example, the token is invalid, the <parmname>uid</parmname> parameter is not set to an integer, or the value of a member in <xref keyref="ChannelMediaOptions" /> is invalid. You need to pass in a valid parameter and join the channel again.</li>
                 <li>-3: Failes to initialize the <xref keyref="IRtcEngine" /> object. You need to reinitialize the <apiname keyref="IRtcEngine" /> object.</li>
@@ -104,17 +105,5 @@
                 <li>-121: The user ID is invalid. You need to pass in a valid user ID in <parmname>uid</parmname> to rejoin the channel.</li>
                 </ul></li>
             </ul> </section>
-        <section props="flutter">
-            <title>Exception</title>
-            <p>When the method is not called successfully, a <xref keyref="AgoraRtcException" /> exception will be thrown, and you need to catch the exception and handle it. The following are common errors:<ul>
-                <li>-2: The parameter is invalid. For example, the token is invalid, the <parmname>uid</parmname> parameter is not set to an integer, or the value of a member in <xref keyref="ChannelMediaOptions" /> is invalid. You need to pass in a valid parameter and join the channel again.</li>
-                <li>-3: Failes to initialize the <xref keyref="IRtcEngine" /> object. You need to reinitialize the <apiname keyref="IRtcEngine" /> object.</li>
-                <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
-                <li>-8: The internal state of the <apiname keyref="IRtcEngine" /> object is wrong. The typical cause is that you call this method to join the channel without calling <xref keyref="startEchoTest2" /> to stop the test after calling <xref keyref="stopEchoTest" /> to start a call loop test. You need to call <apiname keyref="stopEchoTest" /> before calling this method.</li>
-                <li>-17: The request to join the channel is rejected. The typical cause is that the user is in the channel. Agora recomments that you can use the <xref keyref="onConnectionStateChanged" /> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
-                <li>-102: The channel name is invalid. You need to pass in a valid channelname in <parmname>channelId</parmname> to rejoin the channel.</li>
-                <li>-121: The user ID is invalid. You need to pass in a valid user ID in <parmname>uid</parmname> to rejoin the channel.</li>
-                </ul></p>
-            </section>
     </refbody>
 </reference>
