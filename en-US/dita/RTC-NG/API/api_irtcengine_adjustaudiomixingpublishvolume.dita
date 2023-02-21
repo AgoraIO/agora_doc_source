@@ -20,26 +20,27 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int AdjustAudioMixingPublishVolume(int volume);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract adjustAudioMixingPublishVolume(volume: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustAudioMixingPublishVolume(int volume);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method adjusts the audio mixing volume on the remote clients.</p>
+            <p>This method adjusts the volume of audio mixing for publishing (sending to other users).</p>
             <note type="attention">
-            <p>Call this method after calling <xref keyref="startAudioMixing2" props="native flutter unity rn electron" /> and receiving the <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</p>
+            <p>Call this method after calling<xref keyref="startAudioMixing2" props="native flutter unity rn electron" />  and receiving the  <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</p>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>volume</pt>
-                <pd>The volume of audio mixing for local playback. The value ranges between 0 and 100 (default). 100 represents the original volume.</pd>
+                <pd>Audio mixing volume. The value ranges between 0 and 100 (default). 100 represents the original volume.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
