@@ -9,7 +9,7 @@ A push notification example is as follows:
 ```json
 {  
   // Basic configurations available to all
-  "title": "You have a new message",
+  "title": "You have a message",
   "subTitle": "",
   "content": "Check the message",
   "ext": {},
@@ -38,26 +38,26 @@ The following table lists basic configuration fields available to all:
 
 | Field   | Type | Description  | Supported platforms  | Required |
 | :--------- | :-----| :--------- | :------- | :--------- |
-| `title`    | String   | 通知栏展示的通知标题，默认为**您有一条新消息**。该字段长度不能超过 32 个字符（一个汉字相当于两个字符）。 | Android & iOS | Yes   |
-| `subTitle` | String   | 通知栏展示的通知副标题。该字段长度不能超过 10 个字符。  | iOS    | No    |
-| `content`  | String   | 通知栏展示的通知内容。默认为**请及时查看**。该字段长度不能超过 100 个字符（一个汉字相当于两个字符）。  | Android & iOS  | Yes  |
+| `title`    | String   | The title of the notification. The value of this field is "You have a message" by default. The length of this field cannot exceed 32 characters. | Android & iOS | Yes   |
+| `subTitle` | String   | The subtitle of the notification that provides additional information. The length of this field cannot exceed 10 characters.  | iOS    | No    |
+| `content`  | String   | The body text of the notification. The value of this field is "Check the message" by default.通知栏展示的通知内容。The length of this field cannot exceed 100 characters.  | Android & iOS  | Yes  |
 | `ext`      | JSON   | 推送自定义扩展信息，为自定义键值对。键值对不能超过 10 个且长度不能超过 1024 个字符。       | Android & iOS   | No |
 | `config`   | JSON   | 在通知栏中点击触发的动作以及角标的配置，包含 `clickAction` 和 `badge` 字段。 | Android & iOS   | No |
 | `config.clickAction` | JSON   | 在通知栏中点击触发的动作，均为 String 类型：<ul><li>`url`：打开自定义的 URL；</li><li>`action`：打开应用的指定页面；</li><li>`activity`：打开应用包名或 Activity 组件路径。</li></ul> | Android  | No       |
-| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加；</li><li>`setNum`：表示推送通知到达设备时，角标数字重置。</li></ul> | Android & iOS   | No       |
+| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加；</li><li>`setNum`：表示推送通知到达设备时，角标数字重置。</li></ul> //TODO: 然后呢？并没说怎么配置啊 0和1分别代表什么 | Android & iOS   | No       |
 
 
 ## Advanced configurations
 
 If the basic configuration fields stated above cannot meet your business requirements, Chat allows you to implement advanced configurations provided by the following push services:
 
-| Field   | Type | Description  | Required |
-| :--------- | :----------- | :------- | :----------------- |
-| `agora`  | JSON   | The Agora push service. |  No     |
+| Field      |  Type  | Description    | Required |
+| :--------- | :----- | :------------- | :--------- |
+| `agora`    | JSON   | The Agora push service. |  No     |
 | `apns`     | JSON   | Apple Push Notification service (APNs). | No      |
 | `fcm`      | JSON   | Firebase Cloud Messaging (FCM). | No     |
 
-> Advanced configurations overwrite basic ones by default.
+> Advanced configurations overwrite the basic ones by default.
 
 ### Agora push service
 
@@ -68,7 +68,7 @@ An Agora push notification example is as follows:
     "title": "The title of the notification",
     "content": "The body text of the notification",
     "subTitle": "The subtitle of the notification",
-    "iconUrl": "https://docs-im.easemob.com/lib/tpl/bootstrap3_ori/images/logo.png",
+    "iconUrl": "https://web-cdn.agora.io/docs-files/1676966850073",
     "needNotification": true,
     "badge": {
         "setNum": 0,
@@ -89,7 +89,7 @@ An Agora push notification example is as follows:
     "vibrate": 0,
     "style": 2,
     "bigTxt": "大文本内容",
-    "bigPicture": "https://docs-im.easemob.com/lib/tpl/bootstrap3_ori/images/logo.png",
+    "bigPicture": "https://web-cdn.agora.io/docs-files/1676966850073",
     "id": 056734579
 }
 ```
@@ -101,11 +101,11 @@ An Agora push notification example is as follows:
 | `title`            | String  | The title of the notification.        | iOS & Android |
 | `content`          | String  | The body text of the notification.    | iOS & Android |
 | `subTitle`         | String  | The subtitle of the notification that provides additional information.     | iOS           |
-| `iconUrl`          | String  | 推送图标的 URL。                  | iOS & Android |
-| `needNotification` | Boolean | 是否弹出通知：<ul><li>（默认）`true`：通知消息；</li><li>`false`：透传消息。</li></ul> | iOS & Android |
-| `badge`            | JSON  | 推送角标。详见[基本推送配置](#param)中的角标说明。 | iOS & Android |
-| `operation`        | JSON  | 在通知栏中点击触发的动作。 | iOS & Android |
-| `operation.type`  | Number   | 在通知栏中点击触发的动作类型。<ul><li>（默认）`0`：启动应用。</li><li>`1`：打开自定义 URL。需设置 `openUrl` 字段为自定义的 URL，若不设置，点击无效果。 </li><li>`2`：打开应用的指定页面。需设置 `openAction` 字段为打开的应用页面的地址，并设置 `openActivity` 为应用包名或 Activity 组件路径。若不设置这两个字段，点击无效果。</li></ul>   | iOS & Android |
+| `iconUrl`          | String  | The URL of the app icon.                  | iOS & Android |
+| `needNotification` | Boolean | Wether a notification pops out:<ul><li>`true`: (Default) Yes.</li><li>`false`: No.</li></ul> | iOS & Android |
+| `badge`            | JSON    | The value of the badge displayed on the app’s icon, which contains the following fields:<ul><li>`addNum`: The new notification adds on the badge number.</li><li>`setNum`: The new notification resets the badge number.</li></ul> | iOS & Android |
+| `operation`        | JSON    | The action triggered by a user click on the notification. | iOS & Android |
+| `operation.type`  | Number   | 在通知栏中点击触发的动作类型。<ul><li>`0`: (Default) Launch the app.</li><li>`1`: Direct to a URL. Set `operation.openUrl` to a custom URL; otherwise, the user click on notifications cannot work as expected.</li><li>`2`: Open a specific page in the app. Set `operation.openAction` to the address of the in-app page, and set `operation.openActivity` to the package name or component path; otherwise, the user click on notifications cannot work as expected.//TODO: 你自己看看示例呢openActivity在哪</li></ul>   | iOS & Android |
 | `channelId`        | String  | 通知渠道 ID，默认为 `chat`。客户端渠道存在则通知。若客户端渠道不存在，则结合 `channelName` 和 `channelLevel` 创建新通道。 | Android  |
 | `channelName`      | String  | 通知渠道名称，默认为 `消息`。只有第一次创建通道时使用。         | Android     |
 | `channelLevel`     | Number | 通知级别，只有第一次创建通道时使用。<ul><li>`0`：最低；</li><li>`3`：默认；</li><li>`4`：高。</li></ul> | Android     |
