@@ -28,20 +28,20 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerMediaMetadataObserver(
       {required MetadataObserver observer, required MetadataType type});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>You need to implement the <xref keyref="IMetadataObserver" /> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
+            <p>You need to implement the<xref keyref="IMetadataObserver" />  class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
  live interactive streaming, such as sending shopping links, digital coupons, and online quizzes.</p>
-            <p props="native unity">A successful call of this method triggers the <xref keyref="getMaxMetadataSize" /> callback.</p>
-            <note type="attention">Call this method before <apiname keyref="joinChannel2" />.</note> </section>
+            <p props="native unity">A successful call of this method triggers the<xref keyref="getMaxMetadataSize" />  callback.</p>
+            <note type="attention">Call<apiname keyref="joinChannel2" /> this method before .</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>observer</pt>
-                <pd>The metadata observer. See <xref keyref="IMetadataObserver" />.</pd>
+                <pd>The metadata observer. See .<xref keyref="IMetadataObserver" /></pd>
             </plentry>
             <plentry id="metadatatype">
                 <pt>type</pt>
@@ -50,10 +50,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native rn unity electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-                <li>0: Success.</li>
+                <li props="native rn unity electron">0: Success.</li>
                 <li>&lt; 0: Failure.</li>
             </ul>
         </section>
