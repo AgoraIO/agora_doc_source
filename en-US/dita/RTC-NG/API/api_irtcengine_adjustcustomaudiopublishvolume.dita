@@ -26,13 +26,13 @@
     sourceId: number,
     volume: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; adjustCustomAudioPublishVolume(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> adjustCustomAudioPublishVolume(
       {required int sourceId, required int volume});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title> 
-            <note type="attention">Ensure you have called the <xref keyref="setExternalAudioSource2" /> method to create an external audio track before calling this method.</note>
+            <note type="attention">Ensure you have called the  method<xref keyref="setExternalAudioSource2" /> to create an external audio track before calling this method.</note>
             <p>If you want to change the volume of the audio to be published, you need to call this method again.</p>
         </section>
         <section id="parameters">
@@ -47,10 +47,11 @@
                     <pd>The volume of the audio source. The value can range from 0 to 100. 0 means mute; 100 means the original volume.</pd>
                 </plentry>
             </parml> </section>
-        <section props="native rn electron unity" id="return_values">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native rn electron unity">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
         </section>
