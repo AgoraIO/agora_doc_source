@@ -32,10 +32,11 @@
   ): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
         List&lt;UserAudioSpectrumInfo> spectrums, int spectrumNumber)?
-    onRemoteAudioSpectrum;</codeblock></p>
+    onRemoteAudioSpectrum;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>After successfully calling <xref keyref="registerAudioSpectrumObserver" /> to implement the <apiname keyref="onRemoteAudioSpectrum" /> callback in the <xref keyref="IAudioSpectrumObserver" /> and calling <xref keyref="enableAudioSpectrumMonitor" /> to enable audio spectrum monitoring, the SDK will trigger the callback as the time interval you set to report the received remote audio data spectrum.</p>
+            <p>After successfully calling  to implement<xref keyref="registerAudioSpectrumObserver" /><xref keyref="IAudioSpectrumObserver" /> the  callback in the<apiname keyref="onRemoteAudioSpectrum" />  and calling  to<xref keyref="enableAudioSpectrumMonitor" /> enable audio spectrum monitoring, the SDK will trigger the callback as the time interval you set to report the received remote audio data spectrum.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -51,11 +52,12 @@
                 <pd>The number of remote users.</pd>
             </plentry>
             </parml> </section>
-        <section props="native rn electron unity" id="return_values">
-            <title>Returns</title>
-            <p>Whether you have received the spectrum data:<ul>
-            <li><codeph><ph keyref="true" /></codeph>: Spectrum data is received.</li>
-            <li><codeph><ph keyref="false" /></codeph>: No spectrum data is received.</li>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="native rn electron unity">Whether you have received the spectrum data:<ul>
+            <li>: Spectrum data is received.<codeph><ph keyref="true" /></codeph></li>
+            <li>: No spectrum data is received.<codeph><ph keyref="false" /></codeph></li>
             </ul></p>
         </section>
     </refbody>
