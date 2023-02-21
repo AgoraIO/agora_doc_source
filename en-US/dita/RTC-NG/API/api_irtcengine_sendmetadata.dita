@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_sendmetadata">
     <title><ph keyref="sendMetaData" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sends media affiliate information.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sends media metadata.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -21,29 +21,30 @@
             <codeblock props="rn" outputclass="language-typescript">abstract sendMetaData(metadata: Metadata, sourceType: VideoSourceType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; sendMetaData(
     {required Metadata metadata, required VideoSourceType sourceType});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p props="native">After the <xref keyref="registerMediaMetadataObserver" /> method is successfully called, the SDK triggers the <xref keyref="onReadyToSendMetadata" /> callback, and you can call this method to send media attachment information.</p>
-            <p>If the media attachment information is successfully sent, the receiver will receive the <xref keyref="onMetadataReceived" /> callback.</p>
+            <p props="native">After a successful method call<xref keyref="registerMediaMetadataObserver" /> of , the SDK triggers the<xref keyref="onReadyToSendMetadata" />  callback, and then you can call this method to send media metadata.</p>
+            <p>If the metadata is sent successfully, the SDK triggers the  callback on the receiver<xref keyref="onMetadataReceived" />.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>metadata</pt>
-                <pd>Media metadata. See <xref keyref="Metadata" />.</pd>
+                <pd>Media metadata See .<xref keyref="Metadata" /></pd>
             </plentry>
-            <plentry props="electron rn" conkeyref="VideoCanvas/sourcetype">
+            <plentry props="electron rn flutter" conkeyref="VideoCanvas/sourcetype">
                 <pt />
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity electron rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
