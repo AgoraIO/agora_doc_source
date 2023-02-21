@@ -27,15 +27,15 @@
     enable: boolean,
     options: ImageTrackOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableVideoImageSource(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> enableVideoImageSource(
       {required bool enable, required ImageTrackOptions options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <note type="attention">Agora recommends that you call this method after joining a channel.</note>
+            <note type="attention">Call this method after joining a channel.</note>
             <p>When publishing video streams, you can call this method to replace the current video feeds with custom images.</p>
-            <p>Once you enable this function, you can select images to replace the video feeds through the <xref keyref="ImageTrackOptions" /> parameter. If you disable this function, the remote users see the video feeds that you publish.</p>
+            <p>Once you enable this function, you can<xref keyref="ImageTrackOptions" /> select images to replace the video feeds through the  parameter. If you disable this function, the remote users see the video feeds that you publish.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -43,8 +43,8 @@
             <plentry>
                 <pt>enable</pt>
                 <pd>Whether to replace the current video feeds with custom images:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Replace the current video feeds with custom images.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not replace the current video feeds with custom images.</li>
+                    <li>: Replace the current video feeds with custom images.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: (Default) Do not replace the current video feeds with custom images.<codeph><ph keyref="false" /></codeph></li>
                 </ul></pd>
             </plentry>
                 <plentry>
@@ -52,10 +52,11 @@
                     <pd>Image configurations. See <xref keyref="ImageTrackOptions" />.</pd>
                 </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li></ul>
         </section>
     </refbody>
