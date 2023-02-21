@@ -29,7 +29,7 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteVoicePosition(
     {required int uid, required double pan, required double gain});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -37,7 +37,7 @@
             <p>When the local user calls this method to set the voice position of a remote user, the voice difference between the left and right channels allows the local user to track the real-time position of the remote user, creating a sense of space. This method applies to massive multiplayer online games, such as Battle Royale games.</p>
             <note type="attention">
             <ul>
-            <li>For this method to work, enable stereo panning for remote users by calling the <xref keyref="enableSoundPositionIndication" /> method before joining a channel.</li>
+            <li>For this method to work, enable stereo panning for<xref keyref="enableSoundPositionIndication" /> remote users by calling the  method before joining a channel.</li>
             <li>For the best voice positioning, Agora recommends using a wired headset.</li>
             <li>Call this method after joining a channel.</li>
             </ul> </note> </section>
@@ -61,10 +61,11 @@
                 <pd>The volume of the remote user. The value ranges from 0.0 to 100.0. The default value is 100.0 (the original volume of the remote user). The smaller the value, the lower the volume.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity electron rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
