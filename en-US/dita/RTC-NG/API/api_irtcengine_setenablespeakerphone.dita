@@ -22,14 +22,13 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setEnableSpeakerphone(bool speakerOn);</codeblock></p> </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <note props="cpp unity flutter">This method is for Android and iOS only.</note>
-            <p>After a successful method call, the SDK triggers the <xref keyref="onAudioRoutingChanged" /> callback.</p>
-            <p>You can call this method before joining a channel, when in a channel, or after leaving a channel. However, Agora recommends calling this method only when you are in a channel to change the audio route temporarily.</p>
+            <p>If the default audio route of the SDK (see Set <xref keyref="guide-audio-route">the Audio Route</xref>) or<xref keyref="setDefaultAudioRouteToSpeakerphone" /> the setting in  cannot meet your requirements, you can call this method to<xref keyref="setEnableSpeakerphone" /> switch the current audio route. After a successful method call, the SDK triggers the  callback<xref keyref="onAudioRoutingChanged" />.</p>
+            <p>This method only sets the audio route in the current channel and does not influence the default audio route. If the user leaves the current channel and joins another channel, the default audio route is used.</p>
             <note type="attention">
             <ul>
-            <li>If you do not have a clear requirement for transient settings, Agora recommends calling <xref keyref="setDefaultAudioRouteToSpeakerphone" />  to set the audio route.</li>
-            <li>Any user behavior or audio-related API call might change the transient setting of <apiname keyref="setEnableSpeakerphone" />. <ph props="native">See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</ph></li>
-            <li props="ios cpp unity rn">Due to system limitations, if the user uses an external audio playback device such as a Bluetooth or wired headset on an iOS device, this method does not take effect.</li>
+            <li props="cpp unity flutter">This method applies to Android and iOS only.</li>
+            <li>Call this method after joining a channel.</li>
+            <li>If the user uses an external audio playback device such as a Bluetooth or wired headset, this method does not take effect, and the SDK plays audio through the external device. When the user uses multiple external devices, the SDK plays audio through the last connected device.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -39,17 +38,18 @@
                 <pt props="ios mac">enableSpeaker</pt>
                 <pt props="cpp unity flutter rn electron">speakerOn</pt>
                 <pd>
-                    <p>Whether to set the speakerphone as the default audio route:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Set the speakerphone as the audio route temporarily.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not set the speakerphone as the audio route.</li>
+                    <p>Sets whether to enable the speakerphone or earpiece:<ul>
+                    <li>: Enable super resolution. <codeph><ph keyref="true" /></codeph>The audio route is the speakerphone.</li>
+                    <li>: Disable super resolution. <codeph><ph keyref="false" /></codeph>The audio route is the earpiece.</li>
                     </ul></p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
