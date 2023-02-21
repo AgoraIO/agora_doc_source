@@ -25,20 +25,20 @@
     frame: ExternalVideoFrame,
     videoTrackId?: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pushVideoFrame(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> pushVideoFrame(
     {required ExternalVideoFrame frame, int videoTrackId = 0});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <dl outputclass="deprecated">
             <dlentry props="android">
                 <dt>Deprecated:</dt>
-                <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame2" /> instead.</dd>
+                <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use  instead<xref keyref="pushVideoFrame2" />.</dd>
             </dlentry>
             </dl>
-            <p id="desc1"><ph props="android ios mac unity">To push the unencoded external raw video frame to the SDK, call <xref keyref="setExternalVideoSource" />, set <parmname>enabled</parmname> as <codeph><ph keyref="true" /></codeph>, and set <parmname>encodedFrame</parmname> as <codeph><ph keyref="false" /></codeph>. </ph>            <ph props="cpp flutter rn electron">To push the unencoded external raw video frame to the SDK, call <xref keyref="createCustomVideoTrack" /> to get the video track ID, set <parmname>customVideoTrackId</parmname> as the video track ID you want to publish in the <xref keyref="ChannelMediaOptions" /> of each channel, and set <parmname>publishCustomVideoTrack</parmname> as <codeph><ph keyref="true" /></codeph>.</ph></p>
-            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2" />. The difference is that the <apiname keyref="pushVideoFrame" /> method does not support video data in texture format.</p>
+            <p id="desc1"><ph props="android ios mac unity"><xref keyref="setExternalVideoSource"/>             To push the unencoded external raw video frame to the SDK, call , set </ph><parmname>enabled</parmname> as , and set<parmname> encodedFrame</parmname> as . <codeph><ph keyref="true"/></codeph><codeph><ph keyref="false"/></codeph><ph props="cpp flutter rn electron">            To <xref keyref="createCustomVideoTrack"/>push the unencoded external raw video frame to <xref keyref="ChannelMediaOptions"/>the SDK, call  to get the video track ID, set<parmname> customVideoTrackId</parmname> as the video track ID you want to publish in the  of each channel</ph>, and set <parmname>publishCustomVideoTrack </parmname>as .<codeph><ph keyref="true"/></codeph></p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that<apiname keyref="pushVideoFrame"/> the  method does not support video data in texture format.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -46,16 +46,17 @@
             <plentry id="frame">
                 <pt>frame</pt>
                 <pd>
-                    <p>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame" />.</p>
+                    <p>The external raw video frame to be pushed. See .<xref keyref="ExternalVideoFrame" /></p>
                 </pd>
             </plentry>
             <plentry id="videotrackid" props="cpp electron unity rn flutter">
                 <pt>videoTrackId</pt>
-                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack" /> method. The default value is 0.</pd>
+                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
             </plentry>    
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul props="cpp unity rn electron">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
