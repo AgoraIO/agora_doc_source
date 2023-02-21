@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_setloopcount">
     <title><ph keyref="setLoopCount" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the loop playback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置循环播放。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,12 +22,12 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLoopCount(int loopCount);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setLoopCount(loopCount: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLoopCount(int loopCount);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>If you want to loop, call this method and set the number of the loops.</p>
-            <p>When the loop finishes, the SDK triggers <xref keyref="onPlayerSourceStateChanged" /> and reports the playback state as <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED" />.</p>
+            <p>When the loop finishes, the SDK triggers<xref keyref="onPlayerSourceStateChanged" />  and reports the playback state as <ph keyref="PLAYER_STATE_PLAYBACK_ALL_LOOPS_COMPLETED" />.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -37,10 +37,11 @@
                 <pd>The number of times the audio effect loops:</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_uns_l2y_hqb">
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
