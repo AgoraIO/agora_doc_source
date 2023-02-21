@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableaudiospectrummonitor">
-    <title><ph keyref="enableAudioSpectrumMonitor" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Turns on audio spectrum monitoring.</ph></shortdesc>
+    <title><ph keyref="enableAudioSpectrumMonitor"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Turn on audio spectrum monitoring.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="enableAudioSpectrumMonitor" />
+                <indexterm keyref="enableAudioSpectrumMonitor"/>
             </keywords>
         </metadata>
     </prolog>
@@ -20,11 +20,11 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioSpectrumMonitor(int intervalInMS = 100);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableAudioSpectrumMonitor(intervalInMS?: number): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioSpectrumMonitor({int intervalInMS = 100});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>If you want to obtain the audio spectrum data of local or remote users, you can register the audio spectrum observer and enable audio spectrum monitoring.</p>
+            <p>If you want to obtain the audio spectrum data of local or remote users, please register the audio spectrum observer and enable audio spectrum monitoring.</p>
             <note type="attention" id="note_xlb_3yd_3qb">
             <p>You can call this method either before or after joining a channel.</p>
             </note> </section>
@@ -34,14 +34,15 @@
             <plentry>
                 <pt>intervalInMS</pt>
                 <pd>
-                    <p>The interval (in milliseconds) at which the SDK triggers the <xref keyref="onLocalAudioSpectrum" /> and <xref keyref="onRemoteAudioSpectrum" /> callbacks. The default value is 100. Do not set this parameter to less than 10 milliseconds, otherwise the calling of this method fails.</p>
+                    <p>The interval (in milliseconds)<xref keyref="onLocalAudioSpectrum"/><xref keyref="onRemoteAudioSpectrum"/> at which the SDK triggers the  and  callbacks. The default value is 100. Do not set this parameter to less than 10 milliseconds, otherwise the  callback will not be triggered.</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_ipv_rxy_hqb">
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.<ul id="ul_ixs_txy_hqb">
                 <li>-2: Invalid parameters.</li>
                 </ul></li>
