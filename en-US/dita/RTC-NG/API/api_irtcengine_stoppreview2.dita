@@ -24,11 +24,11 @@
             <codeblock props="rn" outputclass="language-typescript">abstract stopPreview(sourceType?: VideoSourceType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopPreview(
     {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After calling <xref keyref="startPreview2" /> to start the preview, if you want to close the local video preview, please call this method.</p>
+            <p>After calling<xref keyref="startPreview2" />  to start the preview, if you want to close the local video preview, please call this method.</p>
             <note type="note">Please call this method before joining a channel or after leaving a channel.</note>
             </section>
             <section id="parameters">
@@ -39,10 +39,11 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android cpp unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-                <li>0: Success.</li>
+                <li props="android cpp unity">0: Success.</li>
                 <li>&lt; 0: Failure.</li>
                 </ul>
         </section>
