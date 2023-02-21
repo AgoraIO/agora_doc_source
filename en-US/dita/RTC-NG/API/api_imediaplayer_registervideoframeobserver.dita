@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_registervideoframeobserver">
-    <title><ph keyref="registerVideoFrameObserver_IMediaPlayer" /></title>
+    <title><ph keyref="registerVideoFrameObserver_IMediaPlayer"/></title>
     <shortdesc id="short"><ph id="shortdesc">Registers a video frame observer object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerVideoFrameObserver_IMediaPlayer" />
+                <indexterm keyref="registerVideoFrameObserver_IMediaPlayer"/>
             </keywords>
         </metadata>
     </prolog>
@@ -14,7 +14,7 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int registerVideoFrameObserver(IMediaPlayerVideoFrameObserver videoFrameObserver);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(media::base::IVideoFrameObserver* observer) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(
     observer: IMediaPlayerVideoFrameObserver
@@ -24,26 +24,27 @@
     observer: IMediaPlayerVideoFrameObserver
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(MediaPlayerVideoFrameObserver observer);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>You need to implement the <xref props="cpp" keyref="IVideoFrameObserver" /><xref props="android electron rn flutter" keyref="IMediaPlayerVideoFrameObserver" /> class in this method and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
+            <p>You need to implement the  class in this method<xref props="cpp" keyref="IVideoFrameObserver"/><xref props="android electron rn flutter" keyref="IMediaPlayerVideoFrameObserver" />  and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt props="android">videoFrameObserver</pt>
-                <pt props="cpp electron rn flutter">observer</pt>
-                <pd props="cpp">The video observer, reporting the reception of each video frame. See <xref props="cpp" keyref="IVideoFrameObserver" />.</pd>
-                <pd props="android electron rn flutter">The video observer, reporting the reception of each video frame. See <xref keyref="IMediaPlayerVideoFrameObserver" />.</pd>
+                <pt props="cpp electron rn flutter unity">observer</pt>
+                <pd props="cpp">The video observer, reporting the reception of each video frame. See .<xref props="cpp" keyref="IVideoFrameObserver"/></pd>
+                <pd props="android electron rn flutter unity">The video observer, reporting the reception of each video frame. See .<xref keyref="IMediaPlayerVideoFrameObserver"/></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android cpp electron rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_uns_l2y_hqb">
-            <li>0: Success.</li>
+            <li props="android cpp electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
