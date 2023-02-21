@@ -27,7 +27,7 @@ description:(NSString * _Nullable)description;</codeblock>
     {required String callId,
     required int rating,
     required String description});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -37,7 +37,7 @@ description:(NSString * _Nullable)description;</codeblock>
             <parml>
             <plentry>
                 <pt>callId</pt>
-                <pd>The current call ID. You can get the call ID by calling <xref keyref="getCallId" />.</pd>
+                <pd>The current call ID. You can<xref keyref="getCallId" /> get the call ID by calling .</pd>
             </plentry>
             <plentry>
                 <pt>rating</pt>
@@ -48,13 +48,14 @@ description:(NSString * _Nullable)description;</codeblock>
                 <pd><ph props="native unity">(Optional) </ph><ph>A description of the call. The string length should be less than 800 bytes.</ph></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>).</li>
-                <li>-3 (<codeph>ERR_NOT_READY</codeph>).</li>
+                <li>-3 (<codeph>ERR_NOT_READY</codeph>)。</li>
                 </ul></li>
             </ul> </section>
     </refbody>
