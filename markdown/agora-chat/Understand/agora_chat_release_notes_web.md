@@ -9,8 +9,7 @@ v1.1.0 于 2022 年 2 月 28 日发布。
 - 新增聊天室自定义属性功能实现语聊房的麦位管理和同步等功能。
 - 在创建消息方法 `create` 增加 `priority` 属性实现聊天室消息优先级功能，确保高优先级消息优先处理。
 - 在 `getConversationlist` 方法中新增分页参数 `pageNum` 和 `pageSize`，支持分页方法获取会话列表。
-- 新增 `removeHistoryMessages` 方法单向删除漫游消息。
-- 新增群组和聊天室创建事件 `create`。
+- 新增群组创建事件 `create`。
 
 #### 优化
 
