@@ -19,18 +19,18 @@
             <codeblock props="electron" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int TakeSnapshot(uint uid, string filePath);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract takeSnapshot(uid: number, filePath: string): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; takeSnapshot({required int uid, required String filePath});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> takeSnapshot({required int uid, required String filePath});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p id="desc1">This method takes a snapshot of a video stream from the specified user, generates a JPG image, and saves it to the specified path.</p>
-            <p id="desc2" props="native unity electron flutter">The method is asynchronous, and the SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
-            <p props="rn">The SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the <xref keyref="onSnapshotTaken" /> callback to report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
+            <p id="desc2" props="native unity electron flutter">The method is asynchronous, and the SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the  callback to<xref keyref="onSnapshotTaken" /> report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
+            <p props="rn">The SDK has not taken the snapshot when the method call returns. After a successful method call, the SDK triggers the  callback to<xref keyref="onSnapshotTaken" /> report whether the snapshot is successfully taken, as well as the details for that snapshot.</p>
             <note type="attention">
             <ul>
             <li>Call this method after joining a channel.</li>
-            <li>This method takes a snapshot of the published video stream specified in <xref keyref="ChannelMediaOptions" />.</li>
+            <li>This method takes<xref keyref="ChannelMediaOptions"/> a snapshot of the published video stream specified in .</li>
             <li>If the user's video has been preprocessed, for example, watermarked or beautified, the resulting snapshot includes the pre-processing effect.</li>
             </ul></note> </section>
         <section id="parameters">
@@ -44,18 +44,19 @@
                 <pt>filePath</pt>
                 <pd>
                     <p>The local path (including filename extensions) of the snapshot. For example:<ul>
-                    <li props="cpp unity flutter electron">Windows: <codeph>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\example.jpg</codeph></li>
-                    <li props="cpp ios unity flutter rn">iOS: <codeph>/App Sandbox/Library/Caches/example.jpg</codeph></li>
+                    <li props="cpp unity flutter electron">Windows: <codeph>C:\Users\&lt;user_name>\AppData\Local\Agora\&lt;process_name>\example.jpg</codeph></li>
+                    <li props="cpp ios unity flutter rn">iOS:<codeph> /App Sandbox/Library/Caches/example.jpg</codeph></li>
                     <li props="cpp mac unity flutter electron">macOS: <codeph>～/Library/Logs/example.jpg</codeph></li>
-                    <li props="cpp android unity flutter rn">Android: <codeph>/storage/emulated/0/Android/data/&lt;package name&gt;/files/example.jpg</codeph></li>
+                    <li props="cpp android unity flutter rn">Android:<codeph> /storage/emulated/0/Android/data/&lt;package name>/files/example.jpg</codeph></li>
                     </ul>Ensure that the path you specify exists and is writable.</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity rn electron">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
