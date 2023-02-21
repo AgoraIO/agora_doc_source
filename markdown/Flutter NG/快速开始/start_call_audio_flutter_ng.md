@@ -88,7 +88,7 @@ import 'package:permission_handler/permission_handler.dart';
 输入你获得的 App ID 和临时 Token。
 
 ```dart
-// 定义 App ID、Token、Channel
+// 定义 App ID、Token 和 Channel
 const appId = "<-- Insert App Id -->";
 const token = "<-- Insert Token -->";
 const channel = "<-- Insert Channel Name -->";
@@ -136,11 +136,11 @@ class _MyAppState extends State<MyApp> {
     // 获取权限
     await [Permission.microphone].request();
  
-    //创建 RtcEngine
+    // 创建 RtcEngine
     _engine = await createAgoraRtcEngine();
  
  
-    // 初始化 RtcEngine
+    // 初始化 RtcEngine，设置频道场景为直播场景
     await _engine.initialize(const RtcEngineContext(
       appId: appId,
       channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
@@ -169,7 +169,7 @@ class _MyAppState extends State<MyApp> {
         },
       ),
     );
-    // 加入频道
+    // 加入频道，设置用户角色为主播
     await _engine.joinChannel(
       token: token,
       channelId: channel,
@@ -210,8 +210,6 @@ class _MyAppState extends State<MyApp> {
     ```bash
     flutter run
     ```
-
-<div class="alert note">首次运行项目时，请授予 app 麦克风的使用权限。</div>
 
 ## 测试你的 app
 
