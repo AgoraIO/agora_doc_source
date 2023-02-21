@@ -29,7 +29,7 @@
     cycle: number,
     startPos?: number
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startAudioMixing(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioMixing(
       {required String filePath,
       required bool loopback,
       required int cycle,
@@ -41,10 +41,10 @@
             <p id="audiomixing_detailed">This method mixes the specified local or online audio file with the audio from the microphone, or replaces the microphone's audio with the specified local or remote audio file. A successful method call triggers the <codeph><xref keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback. When the audio mixing file playback finishes, the SDK triggers the <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_STOPPED" />)</codeph> callback on the local client.</p>
             <note type="attention" id="audiomixing_note">
             <ul>
-            <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing2"/> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
+            <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing2" /> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
             <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports 701.</li>
             <li conkeyref="preloadEffect/audioFormats" />
-            <li conkeyref="startAudioMixing/principle" props="android cpp unity"/>
+            <li conkeyref="startAudioMixing/principle" props="android cpp unity" />
             <li props="rn" id="principle">On Android, there are following considerations:<ul>
                 <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
                 <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
@@ -82,8 +82,8 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
@@ -92,7 +92,7 @@
                 <li>-3: The SDK is not ready.<ul>
                     <li>The audio module is disabled.</li>
                     <li>The program is not complete.</li>
-                    <li>The initialization of <xref keyref="IRtcEngine"/> fails. Reinitialize the <apiname keyref="IRtcEngine" />.</li>
+                    <li>The initialization of <xref keyref="IRtcEngine" /> fails. Reinitialize the <apiname keyref="IRtcEngine" />.</li>
                 </ul></li>
                 </ul>
             </li>
