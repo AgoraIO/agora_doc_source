@@ -23,12 +23,12 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int PlayPreloadedSrc(string src);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract playPreloadedSrc(src: string): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; playPreloadedSrc(String src);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After calling the <xref keyref="preloadSrc" /> method to preload the media resource into the playlist, you can call this method to play the preloaded media resource. After calling this method, if you receive the <xref keyref="onPlayerSourceStateChanged" /> callback which reports the <apiname keyref="PLAYER_STATE_PLAYING" /> state, the playback is successful.</p>
-            <p>If you want to change the preloaded media resource to be played, you can call this method again and specify the URL of the new media resource that you want to preload. If you want to replay the media resource, you need to call <xref keyref="preloadSrc" /> to preload the media resource to the playlist again before playing. If you want to clear the playlist, call the <xref keyref="stop" /> method.</p>
+            <p>After calling the<xref keyref="preloadSrc" />  method to preload the media resource into the playlist, you can call this method to play the preloaded media resource. After calling this method, if you receive the  callback which<xref keyref="onPlayerSourceStateChanged" /> reports the  state<apiname keyref="PLAYER_STATE_PLAYING" />, the playback is successful.</p>
+            <p>If you want to change the preloaded media resource to be played, you can call this method again and specify the URL of the new media resource that you want to preload. If you want to replay the media resource, you need to call  to<xref keyref="preloadSrc" /> preload the media resource to the playlist again before playing. If you want to clear the playlist, call the  method<xref keyref="stop" />.</p>
             <note type="note">
             <p>If you call this method when playback is paused, this method does not take effect until playback is resumed.</p>
             </note> </section>
@@ -37,13 +37,14 @@
             <parml>
             <plentry>
                 <pt>src</pt>
-                <pd>The URL of the media resource in the playlist must be consistent with the <parmname>src</parmname> set by the <apiname keyref="preloadSrc" /> method; otherwise, the media resource cannot be played.</pd>
+                <pd>The URL of the media resource in the playlist must be consistent with<apiname keyref="preloadSrc" /> the src set by the  method; otherwise, the media resource cannot be played.<parmname></parmname></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
