@@ -47,7 +47,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 package main
   
 import (
-    rtctokenbuilder "github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/go/src/RtcTokenBuilder"
+    rtctokenbuilder "github.com/AgoraIO/Tools/DynamicKey/AgoraDynamicKey/go/src/rtctokenbuilder2"
     "fmt"
     "log"
     "net/http"
