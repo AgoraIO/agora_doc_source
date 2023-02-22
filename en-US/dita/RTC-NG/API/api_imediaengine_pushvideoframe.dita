@@ -37,8 +37,8 @@
                 <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use  instead<xref keyref="pushVideoFrame2" />.</dd>
             </dlentry>
             </dl>
-            <p id="desc1"><ph props="android ios mac unity"><xref keyref="setExternalVideoSource"/>             To push the unencoded external raw video frame to the SDK, call , set </ph><parmname>enabled</parmname> as , and set<parmname> encodedFrame</parmname> as . <codeph><ph keyref="true"/></codeph><codeph><ph keyref="false"/></codeph><ph props="cpp flutter rn electron">            To <xref keyref="createCustomVideoTrack"/>push the unencoded external raw video frame to <xref keyref="ChannelMediaOptions"/>the SDK, call  to get the video track ID, set<parmname> customVideoTrackId</parmname> as the video track ID you want to publish in the  of each channel</ph>, and set <parmname>publishCustomVideoTrack </parmname>as .<codeph><ph keyref="true"/></codeph></p>
-            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that<apiname keyref="pushVideoFrame"/> the  method does not support video data in texture format.</p>
+            <p id="desc1">             <ph props="android ios mac unity">To push the unencoded external raw video frame to the SDK, call <xref keyref="setExternalVideoSource"/>, set <parmname>enabled</parmname> as <codeph><ph keyref="true"/></codeph>, and set <parmname>encodedFrame</parmname> as <codeph><ph keyref="false"/></codeph>. </ph>            <ph props="cpp flutter rn electron">To push the unencoded external raw video frame to the SDK, call <xref keyref="createCustomVideoTrack"/> to get the video track ID, set <parmname>customVideoTrackId</parmname> as the video track ID you want to publish in the <xref keyref="ChannelMediaOptions"/> of each channel, and set <parmname>publishCustomVideoTrack </parmname>as <codeph><ph keyref="true"/></codeph>.</ph></p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that the <apiname keyref="pushVideoFrame"/> method does not support video data in texture format.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -46,7 +46,7 @@
             <plentry id="frame">
                 <pt>frame</pt>
                 <pd>
-                    <p>The external raw video frame to be pushed. See .<xref keyref="ExternalVideoFrame" /></p>
+                    <p>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame" />.</p>
                 </pd>
             </plentry>
             <plentry id="videotrackid" props="cpp electron unity rn flutter">
