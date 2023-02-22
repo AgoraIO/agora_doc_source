@@ -24,12 +24,12 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method disables video. You can call this method either before or after joining a channel. If you call it before joining a channel, an audio call starts when you join the channel. If you call it after joining a channel, a video call switches to an audio call. Call<xref keyref="enableVideo" />  to enable video.</p>
-            <p>A successful call of this method triggers the<xref keyref="onUserEnableVideo" /> () callback on the remote client.<codeph><ph keyref="false" /></codeph></p>
+            <p>This method can be called before joining a channel or during a call to disable the video module. If it is called before joining a channel,  an audio call starts when you join the channel; if called during a call, a video call switches to an audio call. Call <xref keyref="enableVideo" /> to enable the video module.</p>
+            <p>A successful call of this method triggers the <xref keyref="onUserEnableVideo" /> (<codeph><ph keyref="false" /></codeph>) callback on the remote client.</p>
             <note type="attention">
             <ul>
             <li>This method affects the internal engine and can be called after leaving the channel.</li>
-            <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the video engine modules separately:<ul>
+            <li>This method resets the internal engine and thus might takes some time to take effect. Agora recommends using the following APIs to control the video modules separately:<ul>
                 <li><xref keyref="enableLocalVideo" />: Whether to enable the camera to create the local video stream.</li>
                 <li><xref keyref="muteLocalVideoStream" />: Whether to publish the local video stream.</li>
                 <li><xref keyref="muteRemoteVideoStream" />: Whether to subscribe to and play the remote video stream.</li>
