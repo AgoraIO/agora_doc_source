@@ -84,7 +84,7 @@
 
 ## 实现鉴权流程
 
-本节介绍使用即时通讯 App Token 进行鉴权的完整流程：
+本节介绍使用即时通讯的 App 权限 Token 进行鉴权的完整流程：
 
 ### 搭建 App Server 生成 Token
 
@@ -242,7 +242,7 @@ public class AgoraChatTokenController {
     /**
      *
      * 获取 App 权限 Token
-     * @return app token
+     * @return App 权限 Token
      */
     @GetMapping("/chat/app/token")
     public String getAppToken() {
@@ -256,8 +256,8 @@ public class AgoraChatTokenController {
 
     /**
      * 获取 User 权限 Token
-     * @param chatUserName chat 用户名
-     * @return user token
+     * @param chatUserName 即时通讯的用户名
+     * @return 用户权限 Token
      */
     @GetMapping("/chat/user/{chatUserName}/token")
     public String getChatToken(@PathVariable String chatUserName) {
@@ -290,10 +290,10 @@ public class AgoraChatTokenController {
     }
 
     /**
-     * 根据用户名和密码在 agora chat 服务器上注册一个 user，并获取到此用户的 uuid 用于生成 User 权限 Token
+     * 根据用户名和密码在 Agora 服务器上注册一个用户，并获取到此用户的 UUID 用于生成用户权限 Token
      * 这里密码默认使用 "123"
      *
-     * @param chatUserName 用户名
+     * @param chatUserName 即时通讯的用户名
      * @return uuid
      */
     private String registerChatUser(String chatUserName) {
@@ -329,7 +329,7 @@ public class AgoraChatTokenController {
     }
 
     /**
-     * 根据用户名到 agora chat 服务器上获取此用户，如用户存在则获取此用户的 uuid，用户不存在返回 null
+     * 根据用户名到 Agora 服务器上获取此用户，如用户存在则获取此用户的 uuid，用户不存在返回 null
      *
      * @param chatUserName 用户名
      * @return uuid
@@ -367,22 +367,22 @@ public class AgoraChatTokenController {
     }
 
     /**
-     * 生成 Agora Chat app token
-     * @return Agora Chat app token
+     * 生成即时通讯的 app 权限 token
+     * @return 即时通讯的 app 权限 token
      */
     private String getAgoraAppToken() {
         if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
             throw new IllegalArgumentException("appid or appcert is not empty");
         }
 
-        // 使用 Agora App Id 和 App Cert 生成 Agora app token
+        // 使用 Agora App Id 和 App Cert 生成即时通讯的 app 权限 token
         ChatTokenBuilder2 builder = new ChatTokenBuilder2();
         return builder.buildAppToken(appid, appcert, expire);
     }
 
     /**
-     * 从缓存中获取 Agora Chat App Token
-     * @return Agora Chat App Token
+     * 从缓存中获取即时通讯的 app 权限 token
+     * @return 即时通讯的 app 权限 token
      */
     private String getAgoraChatAppTokenFromCache() {
         try {
