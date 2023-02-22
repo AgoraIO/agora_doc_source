@@ -13,9 +13,11 @@
 
 出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token，而在生产环境中，Token 需由你的 App Server 使用 AgoraTools 生成。
 
+### 生成用户权限 Token
+
 在测试环境中，用户权限 Token 基于用户 ID 生成。若尚未创建用户，需要首先注册即时通讯 IM 用户。
 
-### 注册用户
+#### 注册用户
 
 参考以下步骤注册用户：
 
@@ -43,33 +45,18 @@
 
 ![](./images/quickstart/create_user.png)
 
+#### 生成 Token
 
-### 生成 Token
+在左侧导航栏选择**基本信息 > 应用信息**，在**数据中心**区域的 **Chat User Temp Token** 框中输入用户 ID，点击**生成**生成一个用户权限 Token，可用于调用 SDK 的 API。
 
-为了保证通信安全，Agora 推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+![](./images/token/generate_user_token_ui.png)
 
-要生成用户 token，请执行以下操作：
+### 生成 App 权限 Token
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+在**应用信息**页面的**数据中心**区域，点击 **Chat App Temp Token** 对应的 **生成** 生成一个 App 权限 Token，可用于调用 RESTful API。
 
-![](https://web-cdn.agora.io/docs-files/1670827574193)
+![](./images/token/generate_app_token_ui.png)
 
-![](./images/quickstart/config_project.png)
-
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
-
-![](https://web-cdn.agora.io/docs-files/1670827609516)
-
-![](./images/quickstart/config_chat.png)
-
-3. 在**应用信息**页面的**数据中心**区域，在 **Chat User Temp Token**框中输入用户 ID，点击**生成**生成一个用户权限 Token，可用于调用 SDK 的 API。
- 
-   点击 **Chat App Temp Token** 对应的 **生成** 生成一个 App 权限 Token，可用于调用 RESTful API。
-
-![](https://web-cdn.agora.io/docs-files/1670827712260)
-
-![](./images/quickstart/generate_token.png)
-   
 为了安全考虑，在生产环境中 Token 由你的 App Server 使用 AgoraTools 生成。本文介绍如何从你的 App Server 中获取 Token 实现用户鉴权。
 
 ## 技术原理
@@ -107,9 +94,7 @@
 
 下图为生成即时通讯 IM 的用户权限 Token 的 API 调用时序图：
 
-![](https://web-cdn.agora.io/docs-files/1670990009397)
-
-[generate_user_token.png]
+![](./images/token/generate_user_token.png)
 
 1. 在 `IntelliJ` 中创建一个 Maven 项目，设置项目名称、选择项目储存路径后，点击 **Finish**。
 
@@ -117,7 +102,7 @@
 
    ```xml
    <properties>
-       <java.version>1.8</java.version>
+       <java.version>11</java.version>
        <spring-boot.version>2.4.3</spring-boot.version>
    </properties>
    
@@ -153,6 +138,18 @@
            <artifactId>commons-codec</artifactId>
            <version>1.14</version>
        </dependency>
+       <dependency>
+           <groupId>com.google.guava</groupId>
+           <artifactId>guava</artifactId>
+           <version>30.0-jre</version>
+       </dependency>
+   
+       <!-- agoraTools -->
+       <dependency>
+           <groupId>io.agora</groupId>
+           <artifactId>authentication</artifactId>
+           <version>2.0.0</version>
+       </dependency>
    </dependencies>
    
    <build>
@@ -173,25 +170,7 @@
    </build>
    ```
 
-3. 将 token builders 导入到你的项目中：
-
-   1. 下载 [chat](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/chat) 和 [media](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/media) 文件包。
-
-   2. 在你的项目中 `<Project name>/src/main/java` 路径下，创建 `com.agora.chat.token.io.agora` 文件包。
-
-   3. 将 `chat` 和 `media` 文件包复制到 `com.agora.chat.token.io.agora` 文件包中。此时你的项目结构应如下图所示：
-
-     ![](https://web-cdn.agora.io/docs-files/1670990232831)
-
-     [project_structure.png]
-
-   4. 解决 `chat/ChatTokenBuilder2` 和 `media/AccessToken` 文件中的报错。
-
-      - 在 `ChatTokenBuilder2` 中，将 `package io.agora.chat;` 修改为 `package com.agora.chat.token.io.agora.chat;`，将 `import io.agora.media.AccessToken2;` 修改为 `import com.agora.chat.token.io.agora.media.AccessToken2;`。
-      - 对于 `com.agora.chat.token.io.agora.media` 包中的全部文件，将 `package io.agora.media;` 修改为 `package com.agora.chat.token.io.agora.media;`。
-      - 在 `AccessToken` 中，将 `import static io.agora.media.Utils.crc32;` 修改为 `import static com.agora.chat.token.io.agora.media.Utils.crc32`。
-
-4. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件存储用于生成 Token 的信息。你需要将该文件中的相关值替换你的 Agora 项目的值并设置你的即时通讯 Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
+3. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件存储用于生成 Token 的信息。你需要将该文件中的相关值替换你的 Agora 项目的值并设置你的即时通讯 Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
 
    ```txt
    ## 服务器端口
@@ -210,152 +189,216 @@
 
 关于如何获取 App Key 和获取 RESTful API 请求域名，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。
 
-5. 在 `com.agora.chat.token` 路径下，创建 `AgoraChatTokenController.java` 类，将以下代码复制到该文件中：
+4. 在 `com.agora.chat.token` 路径下，创建 `AgoraChatTokenController.java` 类，将以下代码复制到该文件中：
 
-   ```java
-    package com.agora.chat.token;
-   
-    import com.agora.chat.token.io.agora.chat.ChatTokenBuilder2;
-    import com.agora.chat.token.io.agora.media.AccessToken2;
-    import org.springframework.beans.factory.annotation.Value;
-    import org.springframework.http.*;
-    import org.springframework.util.StringUtils;
-    import org.springframework.web.bind.annotation.CrossOrigin;
-    import org.springframework.web.bind.annotation.GetMapping;
-    import org.springframework.web.bind.annotation.PathVariable;
-    import org.springframework.web.bind.annotation.RestController;
-    import org.springframework.web.client.RestClientException;
-    import org.springframework.web.client.RestTemplate;
-   
-    import java.util.Collections;
-    import java.util.HashMap;
-    import java.util.List;
-    import java.util.Map;
-   
-    @RestController
-    @CrossOrigin
-    public class AgoraChatTokenController {
-   
-        @Value("${appid}")
-        private String appid;
-   
-        @Value("${appcert}")
-        private String appcert;
-   
-        @Value("${expire.second}")
-        private int expire;
-   
-        @Value("${appkey}")
-        private String appkey;
-   
-        @Value("${domain}")
-        private String domain;
-   
-        private final RestTemplate restTemplate = new RestTemplate();  
-        //请求 App 权限 Token
-        @GetMapping("/chat/app/token")
-        public String getAppToken() {
-            if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
-                return "appid or appcert is not empty";
-            }
-   
-            // 生成 App 权限 Token
-            AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
-            AccessToken2.Service serviceChat = new AccessToken2.ServiceChat();
-            serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_APP, expire);
-            accessToken.addService(serviceChat);
-   
-            try {
-                return accessToken.build();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "";
-            }
+```java
+package com.agora.chat.token;
+
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import io.agora.chat.ChatTokenBuilder2;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.PostConstruct;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+@RestController
+@CrossOrigin
+public class AgoraChatTokenController {
+
+    @Value("${appid}")
+    private String appid;
+
+    @Value("${appcert}")
+    private String appcert;
+
+    @Value("${expire.second}")
+    private int expire;
+
+    @Value("${appkey}")
+    private String appkey;
+
+    @Value("${domain}")
+    private String domain;
+
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    private Cache<String, String> agoraChatAppTokenCache;
+
+    @PostConstruct
+    public void init() {
+        agoraChatAppTokenCache = CacheBuilder.newBuilder().maximumSize(1).expireAfterWrite(expire, TimeUnit.SECONDS).build();
+    }
+
+    /**
+     *
+     * 获取 App 权限 Token
+     * @return app token
+     */
+    @GetMapping("/chat/app/token")
+    public String getAppToken() {
+
+        if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
+            return "appid or appcert is not empty";
         }
-   
-        // 获取用户权限 Token
-        @GetMapping("/chat/user/{chatUserName}/token")
-        public String getChatUserToken(@PathVariable String chatUserName) {
-            if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
-                return "appid or appcert is not empty";
-            }
-            if (!StringUtils.hasText(appkey) || !StringUtils.hasText(domain)) {
-                return "appkey or domain is not empty";
-            }
-            if (!appkey.contains("#")) {
-                return "appkey is illegal";
-            }
-            if (!StringUtils.hasText(chatUserName)) {
-                return "chatUserName is not empty";
-            }
-            ChatTokenBuilder2 builder = new ChatTokenBuilder2();
-            String chatUserUuid = getChatUserUuid(chatUserName);
-            if (chatUserUuid == null) {
-                chatUserUuid = registerChatUser(chatUserName);
-            }
-   
-            // 生成用户权限 Token
-            AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
-            AccessToken2.Service serviceChat = new AccessToken2.ServiceChat(chatUserUuid);
-            serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_USER, expire);
-            accessToken.addService(serviceChat);
-   
-            try {
-                return accessToken.build();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return "";
-            }
+
+        return getAgoraAppToken();
+    }
+
+    /**
+     * 获取 User 权限 Token
+     * @param chatUserName chat 用户名
+     * @return user token
+     */
+    @GetMapping("/chat/user/{chatUserName}/token")
+    public String getChatToken(@PathVariable String chatUserName) {
+
+        if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
+            return "appid or appcert is not empty";
         }
-   
-        // 获取用户名对应的 UUID
-        private String getChatUserUuid(String chatUserName) {
-            String orgName = appkey.split("#")[0];
-            String appName = appkey.split("#")[1];
-            String url = "http://" + domain + "/" + orgName + "/" + appName + "/users/" + chatUserName;
-            HttpHeaders headers = new HttpHeaders();
-            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-            headers.setBearerAuth(getAppToken());
-            HttpEntity<Map<String, String>> entity = new HttpEntity<>(null, headers);
-            ResponseEntity<Map> responseEntity = null;
-            try {
-                responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
-            } catch (Exception e) {
-                System.out.println("get chat user error : " + e.getMessage());
-            }
-            if (responseEntity != null) {
-                List<Map<String, Object>> results = (List<Map<String, Object>>) responseEntity.getBody().get("entities");
-                return (String) results.get(0).get("uuid");
-            }
-            return null;
+
+        if (!StringUtils.hasText(appkey) || !StringUtils.hasText(domain)) {
+            return "appkey or domain is not empty";
         }
-   
-        // 创建用户，密码为 "123"，然后获取 UUID。
-        private String registerChatUser(String chatUserName) {
-            String orgName = appkey.split("#")[0];
-            String appName = appkey.split("#")[1];
-            String url = "http://" + domain + "/" + orgName + "/" + appName + "/users";
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-            headers.setBearerAuth(getAppToken());
-            Map<String, String> body = new HashMap<>();
-            body.put("username", chatUserName);
-            body.put("password", "123");
-            HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
-            ResponseEntity<Map> response;
-            try {
-                response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
-            } catch (Exception e) {
-                throw new RestClientException("register chat user error : " + e.getMessage());
-            }
-            List<Map<String, Object>> results = (List<Map<String, Object>>) response.getBody().get("entities");
+
+        if (!appkey.contains("#")) {
+            return "appkey is illegal";
+        }
+
+        if (!StringUtils.hasText(chatUserName)) {
+            return "chatUserName is not empty";
+        }
+
+        ChatTokenBuilder2 builder = new ChatTokenBuilder2();
+
+        String chatUserUuid = getChatUserUuid(chatUserName);
+
+        if (chatUserUuid == null) {
+            chatUserUuid = registerChatUser(chatUserName);
+        }
+
+        return builder.buildUserToken(appid, appcert, chatUserUuid, expire);
+    }
+
+    /**
+     * 根据用户名和密码在 agora chat 服务器上注册一个 user，并获取到此用户的 uuid 用于生成 User 权限 Token
+     * 这里密码默认使用 "123"
+     *
+     * @param chatUserName 用户名
+     * @return uuid
+     */
+    private String registerChatUser(String chatUserName) {
+
+        String orgName = appkey.split("#")[0];
+
+        String appName = appkey.split("#")[1];
+
+        String url = "http://" + domain + "/" + orgName + "/" + appName + "/users";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        headers.setBearerAuth(getAgoraChatAppTokenFromCache());
+
+        Map<String, String> body = new HashMap<>();
+        body.put("username", chatUserName);
+        body.put("password", "123");
+
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
+
+        ResponseEntity<Map> response;
+
+        try {
+            response = restTemplate.exchange(url, HttpMethod.POST, entity, Map.class);
+        } catch (Exception e) {
+            throw new RestClientException("register chat user error : " + e.getMessage());
+        }
+
+        List<Map<String, Object>> results = (List<Map<String, Object>>) response.getBody().get("entities");
+
+        return (String) results.get(0).get("uuid");
+    }
+
+    /**
+     * 根据用户名到 agora chat 服务器上获取此用户，如用户存在则获取此用户的 uuid，用户不存在返回 null
+     *
+     * @param chatUserName 用户名
+     * @return uuid
+     */
+    private String getChatUserUuid(String chatUserName) {
+
+        String orgName = appkey.split("#")[0];
+
+        String appName = appkey.split("#")[1];
+
+        String url = "http://" + domain + "/" + orgName + "/" + appName + "/users/" + chatUserName;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
+        headers.setBearerAuth(getAgoraChatAppTokenFromCache());
+
+        HttpEntity<Map<String, String>> entity = new HttpEntity<>(null, headers);
+
+        ResponseEntity<Map> responseEntity = null;
+
+        try {
+            responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, Map.class);
+        } catch (Exception e) {
+            System.out.println("get chat user error : " + e.getMessage());
+        }
+
+        if (responseEntity != null) {
+
+            List<Map<String, Object>> results = (List<Map<String, Object>>) responseEntity.getBody().get("entities");
+
             return (String) results.get(0).get("uuid");
         }
+
+        return null;
     }
-   ```
-   
-6. 在 `com.agora.chat.token` 路径下，创建 `AgoraChatTokenStarter` 类，将以下代码复制到该文件中：
+
+    /**
+     * 生成 Agora Chat app token
+     * @return Agora Chat app token
+     */
+    private String getAgoraAppToken() {
+        if (!StringUtils.hasText(appid) || !StringUtils.hasText(appcert)) {
+            throw new IllegalArgumentException("appid or appcert is not empty");
+        }
+
+        // 使用 Agora App Id 和 App Cert 生成 Agora app token
+        ChatTokenBuilder2 builder = new ChatTokenBuilder2();
+        return builder.buildAppToken(appid, appcert, expire);
+    }
+
+    /**
+     * 从缓存中获取 Agora Chat App Token
+     * @return Agora Chat App Token
+     */
+    private String getAgoraChatAppTokenFromCache() {
+        try {
+            return agoraChatAppTokenCache.get("agora-chat-app-token", () -> {
+                return getAgoraAppToken();
+            });
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Get Agora Chat app token from cache error");
+        }
+    }
+
+}
+
+```
+
+5. 在 `com.agora.chat.token` 路径下，创建 `AgoraChatTokenStarter` 类，将以下代码复制到该文件中：
 
    ```java
    package com.agora.chat.token;
@@ -371,7 +414,7 @@
    }
    ```
 
-7. 启动 App Server。点击图中绿色三角标识，选择 `Debug "AgoraChatTokenStarter..." `。
+6. 启动 App Server。点击图中绿色三角标识，选择 `Debug "AgoraChatTokenStarter..." `。
 
   ![](https://web-cdn.agora.io/docs-files/1670990071861)
 
@@ -470,6 +513,16 @@ try {
 }
 ```
 
+可以在 pom.xml 中引入 AgoraTools 依赖:
+
+```
+<dependency>
+    <groupId>io.agora</groupId>
+    <artifactId>authentication</artifactId>
+    <version>2.0.0</version>
+</dependency>
+```
+
 为展示鉴权流程，本节介绍如何在你的本地搭建并运行一个 Web 客户端。此客户端仅用于演示，请勿用于生产环境中。
 
 参考以下步骤实现一个 Web 客户端：
@@ -518,7 +571,7 @@ try {
       "author": "",
       "license": "ISC",
       "dependencies": {
-        "agora-chat-sdk": "latest"
+        "agora-chat": "latest"
       },
       "devDependencies": {
         "webpack": "^5.50.0",
