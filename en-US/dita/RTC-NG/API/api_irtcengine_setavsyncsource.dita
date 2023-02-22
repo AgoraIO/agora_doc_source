@@ -24,18 +24,18 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>同一用户可能使用两个设备分别发送音频流和视频流，为保证接收端听到和看到的音频和视频的时间同步性，你可以在视频发送端调用该方法，并传入音频发送端的频道名、用户 ID。 SDK 会以发送的音频流的时间戳为基准进行自动调节发送的视频流，以保证即使在两个发送端的上行网络情况不一致（如分别使用 Wi-Fi 和 4G 网络）的情况下，也能让接收到的音视频具有时间同步性。</p>
-            <note type="attention">Call this method before joining a channel.</note> </section>
+            <p>The same user may use two devices to send audio and video streams respectively. In order to ensure the time synchronization of the audio and video heard and seen by the receiver, you can call this method on the video sender and pass in the user ID and channel name of the audio sender. The SDK automatically adjusts the sent video stream based on the timestamp of the sent audio stream to ensure that even when the uplink network conditions of the two senders are inconsistent (such as using Wi-Fi and 4G networks respectively), the received audio and video are time-synchronized.</p>
+            <note type="attention">Agora recommends that you call this method before joining a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>channelId</pt>
-                <pd>标识音频发送端所在频道的频道名。</pd>
+                <pd>The channel name that identifies the channel where the audio sender is located.</pd>
             </plentry>
             <plentry>
                 <pt>uid</pt>
-                <pd>音频发送端的用户 ID。</pd>
+                <pd>The user ID of the audio sender.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
