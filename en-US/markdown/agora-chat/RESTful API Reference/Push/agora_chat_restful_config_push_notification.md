@@ -105,7 +105,7 @@ An Agora push notification example is as follows:
 | `needNotification` | Boolean | Wether a notification pops out:<ul><li>`true`: (Default) Yes.</li><li>`false`: No.</li></ul> | iOS & Android |
 | `badge`            | JSON    | The value of the badge displayed on the app’s icon, which contains the following fields:<ul><li>`addNum`: The new notification adds on the badge number.</li><li>`setNum`: The new notification resets the badge number.</li></ul> | iOS & Android |
 | `operation`        | JSON    | The action triggered by a user click on the notification. | iOS & Android |
-| `operation.type`  | Number   | 在通知栏中点击触发的动作类型。<ul><li>`0`: (Default) Launch the app.</li><li>`1`: Direct to a URL. Set `operation.openUrl` to a custom URL; otherwise, the user click on notifications cannot work as expected.</li><li>`2`: Open a specific page in the app. Set `operation.openAction` to the address of the in-app page, and set `operation.openActivity` to the package name or component path; otherwise, the user click on notifications cannot work as expected.//TODO: 你自己看看示例呢openActivity在哪</li></ul>   | iOS & Android |
+| `operation.type`  | Number   | The type of the action.<ul><li>`0`: (Default) Launch the app.</li><li>`1`: Direct to a URL. Set `operation.openUrl` to a custom URL; otherwise, the user click on notifications cannot work as expected.</li><li>`2`: Open a specific page in the app. Set `operation.openAction` to the address of the in-app page, and set `operation.openActivity` to the package name or component path; otherwise, the user click on notifications cannot work as expected.//TODO: 你自己看看示例呢openActivity在哪</li></ul>   | iOS & Android |
 | `channelId`        | String  | 通知渠道 ID，默认为 `chat`。客户端渠道存在则通知。若客户端渠道不存在，则结合 `channelName` 和 `channelLevel` 创建新通道。 | Android  |
 | `channelName`      | String  | 通知渠道名称，默认为 `消息`。只有第一次创建通道时使用。         | Android     |
 | `channelLevel`     | Number | 通知级别，只有第一次创建通道时使用。<ul><li>`0`：最低；</li><li>`3`：默认；</li><li>`4`：高。</li></ul> | Android     |
@@ -116,7 +116,7 @@ An Agora push notification example is as follows:
 | `style`            | Number | 通知的展示样式。<ul><li>（默认）`0`：普通样式</li><li> `1`：大文本样式</li><li>`2`：大图片样式</li></ul>| iOS & Android |
 | `bigTxt`           | String  | 大文本内容。该字段仅在 `style` 为 `1` 时需要设置。         | iOS & Android |
 | `bigPicture`       | String  | 大图片 URL。该字段仅在 `style` 为 `2` 时需要设置。             | Android     |
-| `id`               | Number    | 通知 ID。默认值为随机数。当 ID 相同时，新通知的内容会覆盖之前的通知。 | iOS & Android |
+| `id`               | Number   | 通知 ID。默认值为随机数。当 ID 相同时，新通知的内容会覆盖之前的通知。 | iOS & Android |
 
 ### APNs
 
