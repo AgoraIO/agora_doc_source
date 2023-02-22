@@ -53,7 +53,7 @@
 
 ### 生成 App 权限 Token
 
-在**应用信息**页面的**数据中心**区域，点击 **Chat App Temp Token** 对应的 **生成** 生成一个 App 权限 Token，可用于调用 RESTful API。
+在左侧导航栏选择**基本信息 > 应用信息**，点击**数据中心**区域的 **Chat App Temp Token** 对应的 **生成** 生成一个 App 权限 Token，可用于调用 RESTful API。
 
 ![](./images/token/generate_app_token_ui.png)
 
