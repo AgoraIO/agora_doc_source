@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enableechocancellationexternal">
     <title><ph keyref="enableEchoCancellationExternal" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Turns custom echo cancellation on/off.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables the custom echo cancellation.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -33,22 +33,22 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>After calling this method, you can push external audio frames to the custom audio module for echo cancellation.</p>
-            <note type="attention">You need to call this method<xref keyref="setExternalAudioSink" /> after calling , but before joining the channel.</note> </section>
+            <note type="attention">Before calling this method, ensure it is called before joining a channel and <xref keyref="setExternalAudioSink" /> is called.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>enabled</pt>
                 <pd>Set whether to enable custom echo cancellation:<ul>
-                    <li>: Turn on.<codeph><ph keyref="true" /></codeph></li>
-                    <li>: Off.<codeph><ph keyref="false" /></codeph></li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable echo cancellation.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Disable echo cancellation.</li>
                     </ul> </pd>
             </plentry>
             <plentry>
                 <pt>audioSourceDelay</pt>
-                <pd>Sets the time (in milliseconds) between pushing audio frames and publishing audio frames. The value range is [0, 100].<ul>
-                    <li>To call<xref keyref="pushCaptureAudioFrame1" /> , make sure this parameter is set to 0.</li>
-                    <li>To call<xref keyref="pushReverseAudioFrame1" />  or process the audio frame captured by the sound card, please make sure that this parameter is an integer multiple of 10.</li>
+                <pd>Sets the time (in milliseconds) between pushing audio frames and publishing audio frames. The value range is [0, 30].<ul>
+                    <li>To call <xref keyref="pushCaptureAudioFrame1" />, ensure this parameter is set to 0.</li>
+                    <li>To call <xref keyref="pushReverseAudioFrame1" /> or process the audio frame captured by the sound card, ensure that this parameter is an integer multiple of 10.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>
