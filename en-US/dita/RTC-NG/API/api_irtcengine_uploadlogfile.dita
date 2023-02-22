@@ -24,12 +24,12 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>将客户端的所有日志文件上传至声网服务器。 After calling this method successfully, the SDK triggers the  callback to<xref keyref="onUploadLogResult" /> report whether the log file is successfully uploaded to the Agora server.</p>
+            <p>Uploads all SDK log files from the client to the Agora server. After calling this method successfully, the SDK triggers the <xref keyref="onUploadLogResult" /> callback to report whether the log file is successfully uploaded to the Agora server.</p>
             <p props="cpp unity">
             <note type="attention">Do not call this method more than once per minute; otherwise, the SDK reports <codeph>ERR_TOO_OFTEN</codeph>(12).</note>.</p>
             <p props="android ios mac">
             <note type="attention">This method cannot be called more than once per minute; otherwise, the SDK returns <ph keyref="NULL" />.</note></p>
-            <p>For easier debugging, Agora recommends that you bind the uploadLogFile method to the UI element of your app, to instruct the user to<apiname> upload</apiname> a log file when a quality issue occurs.</p>
+            <p>For easier debugging, Agora recommends that you bind the <apiname>uploadLogFile</apiname> method to the UI element of your app, to instruct the user to upload a log file when a quality issue occurs.</p>
         </section>
         <section props="native flutter" id="parameters">
             <title>Parameters</title>
@@ -37,7 +37,7 @@
             <plentry>
                 <pt>requestId</pt>
                 <pd>
-                    <p>The request ID. The request ID is<xref keyref="onUploadLogResult" /> the same as the requestId in the  callback. <parmname></parmname>You can use the <parmname>requestId</parmname> to match a specific upload with a callback.</p>
+                    <p>The request ID. The request ID is the same as the <parmname>requestId</parmname> in the <xref keyref="onUploadLogResult" /> callback. You can use <parmname>requestId</parmname> to match a specific upload with a callback.</p>
                 </pd>
             </plentry>
             </parml> </section>
@@ -51,7 +51,7 @@
                 </ul></li>
             </ul>
             <ul props="android ios mac">
-            <li>The method call succeeds: Return the request ID. The request ID is<xref keyref="onUploadLogResult" /> the same as the requestId in the  callback. <parmname></parmname>You can use
+            <li>The method call succeeds: Return the request ID. The request ID is the same as the <parmname>requestId</parmname> in the <xref keyref="onUploadLogResult" /> callback. You can use
 <parmname>requestId</parmname> to match a specific upload with a callback.</li>
             <li>The method callI fails: Returns <ph keyref="NULL" />. Probably because the method call frequency exceeds the limit.</li>
             </ul> </section>
