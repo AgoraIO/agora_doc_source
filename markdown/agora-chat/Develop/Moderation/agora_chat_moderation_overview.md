@@ -65,8 +65,6 @@
   - **踢出**：用户被踢出群组或聊天室。用户被移除群组后，同时会被移除其在该群组中加入的子区。
   - **禁言**：用户被禁言后，将无法在群组或聊天室中发送消息。若用户在群组中禁言，也无法在该群组下的子区中发送消息。
 
-For example, if a user sends inappropriate contents five times a minute, you can block the user and the blocked user needs to be unblocked by you manually to be able to send contents.
-
 要了解审核的工作原理并确定哪些审核设置适合你的需求，你可以在 Agora 控制台上测试不同的文本字符串和图像。
 
 #### 创建审核规则
@@ -90,7 +88,7 @@ For example, if a user sends inappropriate contents five times a minute, you can
 | 审核开关 | 审核规则的开关状态，打开后规则生效，关闭则规则不生效。 |
 |消息处理策略|<li>审核结果为拒绝时消息处理策略，包括：拦截、替换为 ***、通过；<li>审核服务调用失败时消息处理策略，包括：拦截、通过；<li>消息拦截后客户端是否报错，包括：报错、不报错；<li>审核结果为疑似时消息处理策略，包括：拦截、通过。|
 |审核模型选择|过滤的审核模型选择，可以多选，审核时过滤模型对应的内容。|
-|用户处理策略|开启后，可以设置时间间隔、触发次数和用户自动处理的策略，触发后将对用户进行自动处理，详见 [用户管理章节]()。|
+|用户处理策略|开启后，可以设置时间间隔、触发次数和用户自动处理的策略，触发后将对用户进行自动处理，详见 [用户管理章节](#usermanagement)。|
 
 设置消息处理策略具体如下：
 
@@ -167,7 +165,7 @@ For example, if a user sends inappropriate contents five times a minute, you can
 
 ![历史](https://web-cdn.agora.io/docs-files/1657017751717)
 
-## 用户管理
+## 用户管理<a name="usermanagement"></a>
 
 发现违规行为后，对于违规用户可以进行多种限制操作，包括：用户应用级别的控制、群组成员管理、聊天室成员管理。具体限制如下：
 
