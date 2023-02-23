@@ -42,9 +42,9 @@ The following table lists basic configuration fields available to all:
 | `subTitle` | String   | The subtitle of the notification that provides additional information. The length of this field cannot exceed 10 characters.  | iOS    | No    |
 | `content`  | String   | The body text of the notification. The value of this field is "Check the message" by default.通知栏展示的通知内容。The length of this field cannot exceed 100 characters.  | Android & iOS  | Yes  |
 | `ext`      | JSON   | 推送自定义扩展信息，为自定义键值对。键值对不能超过 10 个且长度不能超过 1024 个字符。       | Android & iOS   | No |
-| `config`   | JSON   | 在通知栏中点击触发的动作以及角标的配置，包含 `clickAction` 和 `badge` 字段。 | Android & iOS   | No |
-| `config.clickAction` | JSON   | 在通知栏中点击触发的动作，均为 String 类型：<ul><li>`url`：打开自定义的 URL；</li><li>`action`：打开应用的指定页面；</li><li>`activity`：打开应用包名或 Activity 组件路径。</li></ul> | Android  | No       |
-| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加；</li><li>`setNum`：表示推送通知到达设备时，角标数字重置。</li></ul> //TODO: 然后呢？并没说怎么配置啊 0和1分别代表什么 | Android & iOS   | No       |
+| `config`   | JSON   | The configuration of click action and badge value in the notifications center. | Android & iOS   | No |
+| `config.clickAction` | JSON   | The action triggered by a user click on the notification, which contains the following fields:<ul><li>`url`: Direct to a URL. Specify a custom URL; otherwise, the user click on notifications cannot work as expected.</li><li>`action`: Open a specific page in the app. Specify the address of an in-app page.</li><li>Open a package or an Activity component. Specify a package name or component path.</li></ul>| Android  | No       |
+| `config.badge`       | JSON    | The value of the badge displayed on the app’s icon, which contains the following fields (Int):<ul><li>`addNum`: The new notification adds on the badge number.</li><li>`setNum`: The new notification resets the badge number.</li></ul> | iOS & Android |
 
 
 ## Advanced configurations
@@ -73,12 +73,12 @@ An Agora push notification example is as follows:
     "badge": {
         "setNum": 0,
         "addNum": 1,
-        "activity": "com.hyphenate.easeim.section.me.activity.AboutHxActivity"
+        "activity": "com.hyphenate.chat.section.me.activity.AboutHxActivity"
     },
     "operation": {
         "type": "2",
         "openUrl": "https://www.baidu.com/",
-        "openAction": "com.hyphenate.easeim.section.me.activity.OfflinePushSettingsActivity"
+        "openAction": "com.hyphenate.chat.section.me.activity.OfflinePushSettingsActivity"
     },
     "channelId": "chat",
     "channelName": "message",
@@ -88,7 +88,7 @@ An Agora push notification example is as follows:
     "sound": 0,
     "vibrate": 0,
     "style": 2,
-    "bigTxt": "大文本内容",
+    "bigTxt": "Big text content",
     "bigPicture": "https://web-cdn.agora.io/docs-files/1676966850073",
     "id": 056734579
 }
@@ -105,24 +105,24 @@ An Agora push notification example is as follows:
 | `needNotification` | Boolean | Wether a notification pops out:<ul><li>`true`: (Default) Yes.</li><li>`false`: No.</li></ul> | iOS & Android |
 | `badge`            | JSON    | The value of the badge displayed on the app’s icon, which contains the following fields:<ul><li>`addNum`: The new notification adds on the badge number.</li><li>`setNum`: The new notification resets the badge number.</li></ul> | iOS & Android |
 | `operation`        | JSON    | The action triggered by a user click on the notification. | iOS & Android |
-| `operation.type`  | Number   | The type of the action.<ul><li>`0`: (Default) Launch the app.</li><li>`1`: Direct to a URL. Set `operation.openUrl` to a custom URL; otherwise, the user click on notifications cannot work as expected.</li><li>`2`: Open a specific page in the app. Set `operation.openAction` to the address of the in-app page, and set `operation.openActivity` to the package name or component path; otherwise, the user click on notifications cannot work as expected.//TODO: 你自己看看示例呢openActivity在哪</li></ul>   | iOS & Android |
-| `channelId`        | String  | 通知渠道 ID，默认为 `chat`。客户端渠道存在则通知。若客户端渠道不存在，则结合 `channelName` 和 `channelLevel` 创建新通道。 | Android  |
-| `channelName`      | String  | 通知渠道名称，默认为 `消息`。只有第一次创建通道时使用。         | Android     |
-| `channelLevel`     | Number | 通知级别，只有第一次创建通道时使用。<ul><li>`0`：最低；</li><li>`3`：默认；</li><li>`4`：高。</li></ul> | Android     |
-| `autoCancel`       | Number | 点击通知后是否自动关闭通知栏。<ul><li>`0`：否</li><li>（默认）`1`：是</li></ul> | Android     |
-| `expiresTime`      | Number    | 通知展示的过期时间，为 Unix 时间戳，单位为毫秒。                   | iOS & Android |
-| `sound`            | Number | 声音提醒。<ul><li>（默认）`0`：无声音</li><li>`1`：声音提醒</li></ul>           | iOS & Android |
-| `vibrate`          | Number | 振动提醒。<ul><li>（默认）`0`：无振动</li><li>`1`：振动提醒</li></ul>             | iOS & Android |
-| `style`            | Number | 通知的展示样式。<ul><li>（默认）`0`：普通样式</li><li> `1`：大文本样式</li><li>`2`：大图片样式</li></ul>| iOS & Android |
-| `bigTxt`           | String  | 大文本内容。该字段仅在 `style` 为 `1` 时需要设置。         | iOS & Android |
-| `bigPicture`       | String  | 大图片 URL。该字段仅在 `style` 为 `2` 时需要设置。             | Android     |
-| `id`               | Number   | 通知 ID。默认值为随机数。当 ID 相同时，新通知的内容会覆盖之前的通知。 | iOS & Android |
+| `operation.type`  | Number   | The type of the action.<ul><li>`0`: (Default) Launch the app.</li><li>`1`: Direct to a URL. Set `operation.openUrl` to a custom URL; otherwise, the user click on notifications cannot work as expected.</li><li>`2`: Open a specific page in the app. Set `operation.openAction` to the address of the in-app page, and set `operation.openActivity` to the package name or component path; otherwise, the user click on notifications cannot work as expected.</li></ul>   | iOS & Android |
+| `channelId`        | String  | The channel ID of the notification. The default value is `chat`. If this parameter is not specified or does not exist, a channel ID is automatically created using `channelName` and `channelLevel`. | Android  |
+| `channelName`      | String  | The name of the channel. The default value is `message`. This parameter is used to generate the channel ID.         | Android     |
+| `channelLevel`     | Number | The level of the channel.<ul><li>`0`: Low.</li><li>`3`: (Default) Medium.</li><li>`4`: High.</li></ul>This parameter is used to generate the channel ID. |  Android     |
+| `autoCancel`       | Number | Whether the notification center is automatically closed after the user click on notifications.<ul><li>`0`: No</li><li>`1`: (Default) Yes</li></ul> |  Android     |
+| `expiresTime`      | Number | The Unix timestamp (ms) when the notification expires and disappears from the notification center.        | iOS & Android |
+| `sound`            | Number | Whether a sound plays when the device receives notifications.<ul><li>`0`: (Default) No</li><li>`1`: Yes</li></ul>           | iOS & Android |
+| `vibrate`          | Number | Whether a vibration occurs when the device receive notifications.<ul><li>`0`: (Default) No</li><li>`1`: Yes</li></ul>             | iOS & Android |
+| `style`            | Number | The style of the notification.<ul><li>`0`: (Default) Normal style.</li><li> `1`: Big test style.</li><li>`2`: Big image style.</li></ul>| iOS & Android |
+| `bigTxt`           | String  | The text content. This field is required when `style` is set to `1`.      | iOS & Android |
+| `bigPicture`       | String  | The image URL. This field is required when `style` is set to `2`.      | Android     |
+| `id`               | Number   | The ID of the notification. A random number assigned by the Chat service. Chat automatically assigns a random number for each notification by default. If you manually specify this parameter to a value same as a previous ID, the previous notification is overwritten by the new one.  | iOS & Android |
 
 ### APNs
 
-APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
+The mapping of field names between Chat and APNs is as follows:
 
-| APNs 推送字段               | APNs 官网字段    | 
+| Chat               | APNs            | 
 | :----------------- | :-------------- | 
 | `invalidationTime` | `apns-expiration`     | 
 | `priority`         | `apns-priority`  | 
@@ -147,32 +147,37 @@ APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
 | `ext`              | `loc-args`  | 
 | `launchImage`      | `launch-image`  | 
 
-关于这些字段的描述，详见 APNs 官网的[生成远程通知](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)和[向 APNs 发送通知请求](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns)。
+
+For descriptions of these fields, see APNs official documentation below:
+
+- [Generating a remote notification](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)
+- [Sending Notification Requests to APNs](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns)
+
 
 ### FCM
 
-FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
+The mapping of field names between Chat and FCM is as follows:
 
-| FCM 推送字段   | FCM 官网字段                                                    |
-| :-------------- | :------------------------ |
-| `condition`             | `condition`                              |
-| `collapseKey`           | `collapse_key`  |
-| `priority`              | `priority` |
-| `timeToLive`            | `time_to_live`  |
-| `dryRun`                | `dry_run`  |
+| Chat                    | FCM                   |
+| :---------------------- | :-------------------- |
+| `condition`             | `condition`           |
+| `collapseKey`           | `collapse_key`        |
+| `priority`              | `priority`            |
+| `timeToLive`            | `time_to_live`        |
+| `dryRun`                | `dry_run`             |
 | `restrictedPackageName` | `restricted_package_name` |
-| `data`                  | `data`                                            |
-| `notification`          | `notification` |
-| `notification.title`            | `notification.title`         |
-| `notification.body`             | `notification.body`           |
+| `data`                  | `data`                    |
+| `notification`          | `notification`            |
+| `notification.title`            | `notification.title`              |
+| `notification.body`             | `notification.body`               |
 | `notification.androidChannelId` | `notification.android_channel_id` |
-| `notification.sound`            | `notification.sound`          |
-| `notification.tag`              | `notification.tag`     |
-| `notification.color`            | `notification.color`     |
-| `notification.clickAction`      | `notification.click_action` |
-| `notification.titleLocKey`      | `notification.title_loc_key` |
-| `notification.titleLocArgs`     | `notification.title_loc_args`   |
-| `notification.bodyLocKey`       | `notification.body_loc_key`                     |
-| `notification.bodyLocArgs`      | `notification.body_loc_args` |
+| `notification.sound`            | `notification.sound`              |
+| `notification.tag`              | `notification.tag`                |
+| `notification.color`            | `notification.color`              |
+| `notification.clickAction`      | `notification.click_action`       |
+| `notification.titleLocKey`      | `notification.title_loc_key`      |
+| `notification.titleLocArgs`     | `notification.title_loc_args`     |
+| `notification.bodyLocKey`       | `notification.body_loc_key`       |
+| `notification.bodyLocArgs`      | `notification.body_loc_args`      |
 
-关于这些字段的描述，详见 [FCM 官网](https://firebase.google.com/docs/cloud-messaging/http-server-ref)。
+For descriptions of these fields, see FCM official documentation: [Firebase Cloud Messaging HTTP protocol](https://firebase.google.com/docs/cloud-messaging/http-server-ref).
