@@ -377,7 +377,7 @@ curl -L -X POST 'localhost/hx/hxdemo/push/label/post-90s/user' \
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{member}
+GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{username}
 ```
 
 #### 路径参数
@@ -385,7 +385,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{member}
 | 参数        | 类型   | 描述       | 是否必需 | 
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 推送标签的名称。 | 是     |
-| `member`    | String | 要查询的用户 ID。 | 是     | 
+| `username`    | String | 要查询的用户 ID。 | 是     | 
 
 其他参数及描述详见 [公共参数](#param)。
 

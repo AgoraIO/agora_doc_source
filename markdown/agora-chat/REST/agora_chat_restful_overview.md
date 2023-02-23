@@ -46,7 +46,9 @@
 | 查询离线消息数量       | GET    | `/{org_name}/{app_name}/users/{owner_username}/offline_msg_count`     | 查询用户有多少条离线消息。 |
 | 查询离线消息的投递状态 | GET    | `/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}` | 查询离线消息的发送状态。   |
 
-### 设置消息离线推送
+### 推送
+
+### IM 离线推送
 
 设置推送消息展示方式、显示昵称、免打扰模式等。
 
@@ -55,6 +57,23 @@
 | 设置推送消息显示昵称 | PUT  | /{org_name}/{app_name}/users/{username} | 设置用户离线推送消息显示的昵称。                                |
 | 设置推送消息展示方式 | PUT  | /{org_name}/{app_name}/users/{username} | 设置用户离线推送消息展示为仅通知还是详情可见。                  |
 | 设置免打扰           | PUT  | /{org_name}/{app_name}/users/{username} | 设置用户离线推送是否开启免打扰模式，以及开启/关闭免打扰的时间。 |
+
+
+### Agora 推送
+
+| RESTful API 接口        | 方法 | 请求         | 描述 |
+| :------------------- | :--- | :------------------- |
+| 创建推送标签 | POST  | /{org_name}/{app_name}/push/label | 为推送的目标用户添加标签，对用户进行分组，实现精细化推送。          |
+| 查询指定的推送标签 | GET  | /{org_name}/{app_name}/push/label/{labelname} | 查询指定的推送标签。          |
+| 分页查询推送标签 | GET  | /{org_name}/{app_name}/push/label | 分页查询推送标签。          |
+| 删除指定的推送标签 | DELETE  | /{org_name}/{app_name}/push/label/{labelname} | 删除指定的推送标签。          |
+| 在推送标签下添加用户 | POST  | /{org_name}/{app_name}/push/label/{labelname}/user | 为用户分配指定的推送标签。          |
+| 查询标签下的指定用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user/{username} | 查询推送标签是否存在指定用户。          |
+| 分页查询指定标签下的用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user | 分页查询指定标签下包含的用户。          |
+| 批量移出指定推送标签下的用户 | DELETE  | /{org_name}/{app_name}/push/label/{labelname}/user | 一次移除指定推送标签下的单个或多个用户。          |
+| 向指定用户发送推送通知 | POST  | /{org_name}/{app_name}/push/single | 向单个或多个用户发送推送通知。           |
+| 对指定标签下的用户发送推送通知 | POST  | /{org_name}/{app_name}/push/list/label | 对指定标签下的用户发送推送通知。若传单个标签，则向单个标签内的所有用户发送推送通知。若传多个标签，则消息推送给同时存在这些标签中的用户，即取标签中的用户交集。         |
+| 对 app 下的所有用户发送推送通知 | POST  | /{org_name}/{app_name}/push/task | 对 app 下的所有用户发送推送通知。          |
 
 ### 发送消息和上传/下载文件
 
@@ -104,6 +123,8 @@
 | 获取一个用户参与的所有群组      | GET    | /{org_name}/{app_name}/users/{username}/joined_chatgroups | 根据用户 ID 称获取此用户加入的全部群组。 |
 | 获取群组详情                    | GET    | /{org_name}/{app_name}/chatgroups/{group_ids}  | 根据群组 ID 获取群组的详情。           |
 | 创建一个群组                    | POST   | /{org_name}/{app_name}/chatgroups              | 创建一个群组。                         |
+| 封禁群组                    | POST   | /{org_name}/{app_name}/chatgroups/{group_id}/disable              | 封禁指定的群组。  |
+| 解禁群组                    | POST   | /{org_name}/{app_name}/chatgroups/{group_id}/enable              | 解禁指定的群组。  |
 | 修改群组信息                    | PUT    | /{org_name}/{app_name}/chatgroups/{group_id}   | 修改群组信息。                         |
 | 删除群组                        | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}   | 删除一个群组。                         |
 
@@ -174,6 +195,11 @@
 | 删除聊天室              | DELETE | /{org_name}/{app_name}/chatrooms/{chatroom_id}              | 删除一个聊天室。                         |
 | 获取聊天室公告          | GET    | /{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement | 获取指定聊天室 ID 的聊天室公告。         |
 | 修改聊天室公告          | PUT    | /{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement | 修改指定聊天室 ID 的聊天室公告。         |
+| 设置聊天室自定义属性     | PUT    | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username} | 指定用户设置特定聊天室的自定义属性。        |
+| 获取聊天室自定义属性          | POST    | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id} | 获取指定聊天室的自定义属性信息。         |
+| 强制设置聊天室自定义属性 | PUT | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}/forced | 用户强制设置指定聊天室的自定义属性信息，即该方法可覆盖其他用户设置的聊天室自定义属性。  |
+| 删除聊天室自定义属性 | DELETE  | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username} | 用户删除其设置的聊天室自定义属性。该方法只能删除当前用户设置的聊天室自定义属性，不能删除其他成员设置的自定义属性。  |
+| 强制删除聊天室自定义属性 | DELETE  | /{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}/forced | 用户强制删除聊天室的自定义属性信息，即该方法除了会删除当前用户设置的聊天室自定义属性，还可以删除其他用户设置的自定义属性。 |
 
 ### 聊天室成员管理
 
