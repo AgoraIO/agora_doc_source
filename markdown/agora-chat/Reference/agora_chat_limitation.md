@@ -156,6 +156,8 @@
 
 ### 消息推送
 
+#### IM 离线推送
+
 | RESTful API 接口        | 方法 | 接口 URL           | 接口最高调用频率（默认值） |
 | :------------------- | :--- | :------------------- |
 | 设置推送消息显示昵称 | PUT  | /{org_name}/{app_name}/users/{username} | 与[用户账号管理接口](#account)一致          |
@@ -167,6 +169,27 @@
 | 创建离线推送模板          | POST  | /{org}/{app}/notification/template | 10 次/秒/App Key  |
 | 查询离线推送模板          | GET  | /{org}/{app}/notification/template/{name} | 10 次/秒/App Key  |
 | 删除离线推送模板          | DELETE  | /{org}/{app}/notification/template/{name} | 10 次/秒/App Key  |
+
+#### Agora 推送
+
+| RESTful API 接口        | 方法 | 接口 URL           | 
+| :------------------- | :--- | :------------------- |
+| 创建推送标签 | POST  | /{org_name}/{app_name}/push/label | 
+| 查询指定的推送标签 | GET  | /{org_name}/{app_name}/push/label/{labelname} |   
+| 分页查询推送标签 | GET  | /{org_name}/{app_name}/push/label |     
+| 删除指定的推送标签 | DELETE  | /{org_name}/{app_name}/push/label/{labelname} |      
+| 在推送标签下添加用户 | POST  | /{org_name}/{app_name}/push/label/{labelname}/user |     
+| 查询标签下的指定用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user/{username} |      
+| 分页查询指定标签下的用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user |       
+| 批量移出指定推送标签下的用户 | DELETE  | /{org_name}/{app_name}/push/label/{labelname}/user |       
+
+以上接口的最高调用频率总和为 100 次/秒/App Key。
+
+| RESTful API 接口        | 方法 | 接口 URL           | 接口最高调用频率（默认值） |
+| :------------------- | :--- | :------------------- |
+| 向指定用户发送推送通知 | POST  | /{org_name}/{app_name}/push/single |  600 次/分钟/App Key         |
+| 对指定标签下的用户发送推送通知 | POST  | /{org_name}/{app_name}/push/list/label | 600 次/分钟/App Key，同时执行的任务不能超过 3 个          |
+| 对 app 下的所有用户发送推送通知 | POST  | /{org_name}/{app_name}/push/task | 5 次/分钟/App Key，同时执行的任务不能超过 3 个          |
 
 ### 用户属性
 
@@ -197,6 +220,8 @@
 | 分页获取一个用户参与的所有群组      | GET    | /{app_name}/users/{username}/joined_chatgroups               | 50 次/秒/App Key           |
 | 获取群组详情                    | GET    | /{org_name}/{app_name}/chatgroups/{group_ids}                | 100 次/秒/App Key          |
 | 创建一个群组                    | POST   | /{org_name}/{app_name}/chatgroups                            | 100 次/秒/App Key          |
+| 封禁群组                    | POST   | /{org_name}/{app_name}/chatgroups/{group_id}/disable              | 100 次/秒/App Key  |
+| 解禁群组                    | POST   | /{org_name}/{app_name}/chatgroups/{group_id}/enable              | 100 次/秒/App Key  |
 | 修改群组信息                    | PUT    | /{org_name}/{app_name}/chatgroups/{group_id}                 | 100 次/秒/App Key          |
 | 删除群组                        | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}                 | 100 次/秒/App Key          |
 | 封禁群组                        | POST | /{org_name}/{app_name}/chatgroups/{group_id}/disable           | 100 次/秒/App Key          |
