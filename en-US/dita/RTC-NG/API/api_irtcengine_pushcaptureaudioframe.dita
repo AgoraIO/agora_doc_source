@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushcaptureaudioframe">
     <title><ph keyref="pushCaptureAudioFrame1" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Pushes external audio frames that </ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Pushes external audio frames. The frames will not be processed by the echo cancellation module of the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,8 +24,8 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>本地用户可以调用 <apiname keyref="pushCaptureAudioFrame1" /> 将本地采集的音频帧推送给远端用户，但该音频帧不会被 SDK 的回声消除模块处理。 为避免本地用户听到自己的回声，远端用户需要先后调用 <xref keyref="pullAudioFrame" /> 和 <xref keyref="pushReverseAudioFrame1" /> 将自己采集的音频帧和接收到的音频帧一起推送到自定义的回声消除模块进行处理。</p>
-            <note type="attention">Call<xref keyref="enableEchoCancellationExternal" /> this method after calling<xref keyref="joinChannel2" /> ().</note> </section>
+            <p>The local user can call <apiname keyref="pushCaptureAudioFrame1" /> to publish local audio streams. Note that the audio streams will not be processed by the echo cancellation module of the SDK. To ensure the local user will not hear an echo, the remote users need to call <xref keyref="pullAudioFrame" /> and <xref keyref="pushReverseAudioFrame1" /> in sequence to send the audio streams captured together with the streams received to the echo cancellation module.</p>
+            <note type="attention">Call this method after calling <xref keyref="enableEchoCancellationExternal" /> and <xref keyref="joinChannel2" />.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
