@@ -6,7 +6,7 @@
 
 - `fetchConversationListFromServer` 分页获取服务器保存的会话列表。
 - `fetchHistoryMessages` 获取服务器保存的指定会话中的消息。
-- `deleteRemoteMessagesWithTs`/`deleteRemoteMessagesWithIds`: 根据消息时间或消息 ID 单向删除服务端的历史消息；
+- `deleteRemoteMessagesBefore`/`deleteRemoteMessagesWithIds`: 根据消息时间或消息 ID 单向删除服务端的历史消息；
 - `deleteRemoteConversation` 删除服务端的会话及其历史消息。
 
 ## 前提条件
@@ -61,12 +61,12 @@ try {
 ```
 ### 单向删除服务端的历史消息
 
-你可以调用 `deleteRemoteMessagesWithTs` 或 `deleteRemoteMessagesWithIds` 方法根据消息时间或消息 ID 单向删除服务端的历史消息，每次最多可删除 50 条消息。消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。已删除的消息自动从设备本地移除。
+你可以调用 `deleteRemoteMessagesBefore` 或 `deleteRemoteMessagesWithIds` 方法根据消息时间或消息 ID 单向删除服务端的历史消息，每次最多可删除 50 条消息。消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。已删除的消息自动从设备本地移除。
 
 ```dart
 try {
   // 根据时间戳删除消息
-  await ChatClient.getInstance.chatManager.deleteRemoteMessagesWithTs(
+  await ChatClient.getInstance.chatManager.deleteRemoteMessagesBefore(
     conversationId: conversationId,
     type: convType,
     timestamp: timestamp,
