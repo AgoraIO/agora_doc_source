@@ -13,12 +13,13 @@ v1.1.0 was released on February 28, 2023.
 
 #### Improvements
 
-- Modified the `SDKClient#InitWithOptionsInitWithOptions` method by adding the return result for the App Key format check.
-- The issue that the read flag for the sent messages is set to `false`. After this issue is fixed, the SDK sets the read flag of a sent message to `true`.
+Modified the `SDKClient#InitWithOptionsInitWithOptions` method by adding the return result for the App Key format check.
 
 #### Issues fixed
 
-Some login bugs.
+- Some login bugs.
+- The issue that the read flag for the sent messages is set to `false`. After this issue is fixed, the SDK sets the read flag of a sent message to `true`.
+- The names of encrypted database files are not properly generated. If you need historical messages upon upgrade to v1.1.0, you are advised to first pull data from the server. 
 
 ## v1.0.9
 
