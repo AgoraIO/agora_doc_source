@@ -40,8 +40,8 @@ The following table lists basic configuration fields available to all:
 | :--------- | :-----| :--------- | :------- | :--------- |
 | `title`    | String   | The title of the notification. The value of this field is "You have a message" by default. The length of this field cannot exceed 32 characters. | Android & iOS | Yes   |
 | `subTitle` | String   | The subtitle of the notification that provides additional information. The length of this field cannot exceed 10 characters.  | iOS    | No    |
-| `content`  | String   | The body text of the notification. The value of this field is "Check the message" by default.通知栏展示的通知内容。The length of this field cannot exceed 100 characters.  | Android & iOS  | Yes  |
-| `ext`      | JSON   | 推送自定义扩展信息，为自定义键值对。键值对不能超过 10 个且长度不能超过 1024 个字符。       | Android & iOS   | No |
+| `content`  | String   | The body text of the notification. The value of this field is "Check the message" by default. The length of this field cannot exceed 100 characters.  | Android & iOS  | Yes  |
+| `ext`      | JSON   | The custom extension of the notification stored in key-value pairs. The number of key-value pairs can be a maximum of 10, and the total length of key-value pairs can be 1024 characters at most.      | Android & iOS   | No |
 | `config`   | JSON   | The configuration of click action and badge value in the notifications center. | Android & iOS   | No |
 | `config.clickAction` | JSON   | The action triggered by a user click on the notification, which contains the following fields:<ul><li>`url`: Direct to a URL. Specify a custom URL; otherwise, the user click on notifications cannot work as expected.</li><li>`action`: Open a specific page in the app. Specify the address of an in-app page.</li><li>Open a package or an Activity component. Specify a package name or component path.</li></ul>| Android  | No       |
 | `config.badge`       | JSON    | The value of the badge displayed on the app’s icon, which contains the following fields (Int):<ul><li>`addNum`: The new notification adds on the badge number.</li><li>`setNum`: The new notification resets the badge number.</li></ul> | iOS & Android |
@@ -94,7 +94,7 @@ An Agora push notification example is as follows:
 }
 ```
 
-推送字段说明如下表所示： 
+The following table lists advanced configuration fields provided by Agora:
 
 | Field              | Type    | Description               | Supported platforms    |
 | :----------------- | :------ | :------------------------ | :--------------------- |
