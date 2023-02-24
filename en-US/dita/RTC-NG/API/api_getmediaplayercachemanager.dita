@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_getmediaplayercachemanager">
     <title><ph keyref="getMediaPlayerCacheManager" /></title>
-    <shortdesc id="short"><ph id="shortdesc"><ph props="apple">Creates one <xref keyref="IMediaPlayerCacheManager" /> instance.</ph><ph props="android cpp electron unity rn flutter">Gets an <xref keyref="IMediaPlayerCacheManager" /> instance.</ph></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"><ph props="apple">Creates one <xref keyref="IMediaPlayerCacheManager" /> instance. </ph><ph props="android cpp electron rn unity flutter">Gets one <xref keyref="IMediaPlayerCacheManager" /> instance.</ph></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,10 +25,11 @@
   return new IMediaPlayerCacheManagerImpl();
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">MediaPlayerCacheManager getMediaPlayerCacheManager()</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
+            <p>When you successfully call this method, the SDK returns a media player cache manager instance. The cache manager is a singleton pattern. Therefore, multiple calls to this method returns the same instance.</p>
             <note type="attention">
             <p>Make sure the <xref keyref="IRtcEngine" /> is initialized before you call this method.</p>
             </note> </section>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablelocalaudio">
     <title><ph keyref="enableLocalAudio" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables/Disables the local audio capture.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables the local audio capture.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,17 +20,17 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableLocalAudio(bool enabled);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableLocalAudio(enabled: boolean): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLocalAudio(bool enabled);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>The audio function is enabled by default. This method disables or re-enables the local audio function to stop or restart local audio capturing.</p>
+            <p>The audio function is enabled by default when users joining a channel. This method disables or re-enables the local audio function to stop or restart local audio capturing.</p>
             <p>This method does not affect receiving or playing the remote audio streams, and <codeph><xref keyref="enableLocalAudio" />(<ph keyref="false" />)</codeph> is applicable to scenarios where the user wants to receive remote audio streams without sending any audio stream to other users in the channel.</p>
-            <p>Once the local audio function is disabled or re-enabled, the SDK triggers the <xref keyref="onLocalAudioStateChanged" /> callback, which reports <apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED" /> (0) or <apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING" /> (1).<note type="attention">
+            <p>Once the local audio function is disabled or re-enabled, the SDK triggers the <xref keyref="onLocalAudioStateChanged" /> callback, which reports <apiname keyref="LOCAL_AUDIO_STREAM_STATE_STOPPED" />(0) or <apiname keyref="LOCAL_AUDIO_STREAM_STATE_RECORDING" />(1).<note type="attention">
             <ul>
-            <li>This method is different from the <xref keyref="muteLocalAudioStream" /> method:<ul>
-                <li><apiname keyref="enableLocalAudio" />: Disables/Re-enables the local audio capturing and processing. If you disable or re-enable local audio capturing using the <apiname keyref="enableLocalAudio" /> method, the local user might hear a pause in the remote audio playback.</li>
-                <li><apiname keyref="muteLocalAudioStream" />: Sends/Stops sending the local audio streams.</li>
+            <li>The difference between this method and <xref keyref="muteLocalAudioStream" /> are as follow:<ul>
+                <li><apiname keyref="enableLocalAudio" />: Disables or re-enables the local audio capturing and processing. If you disable or re-enable local audio capturing using the <apiname keyref="enableLocalAudio" /> method, the local user might hear a pause in the remote audio playback.</li>
+                <li><apiname keyref="muteLocalAudioStream" />: Sends or stops sending the local audio streams.</li>
                 </ul> </li>
             <li>You can call this method either before or after joining a channel. Calling it before joining a channel only sets the device state, and it takes effect immediately after you join the channel.</li>
             </ul></note></p>
@@ -49,10 +49,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
