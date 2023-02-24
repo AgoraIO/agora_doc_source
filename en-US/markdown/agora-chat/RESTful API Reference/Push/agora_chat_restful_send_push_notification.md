@@ -126,7 +126,7 @@ A push task is automatically created per request, and the ID of the push task is
 ### HTTP request
 
 ```http
-POST https://{host}/{org}/{app}/push/list/label
+POST https://{host}/{org_name}/{app_name}/push/list/label
 ```
 
 #### Path parameter
