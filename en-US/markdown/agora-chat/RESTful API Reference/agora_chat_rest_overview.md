@@ -55,17 +55,25 @@ This group of methods enables you to set the push message display mode, display 
 | Setting the display nickname | PUT | `/{org_name}/{app_name}/users/{username}` | Sets the display nickname of the push message. |
 | Setting the display options | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether the push messages are displayed as notifications only or details are visible. |
 | Setting do-not-disturb (DND) | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether to enable DND, and the time to enable and disable DND. |
-| Creating a push label | POST  | `/{org_name}/{app_name}/push/label` | Sets a push label to group targeting users, to implement a bespoke push.      | 100/second |
-| Querying the detailed information of the specified push label. | GET  | `/{org_name}/{app_name}/push/label/{labelname}` | Retrieves the detailed information of the specified push label.       | 100/second |
-| Querying the detailed information of push labels by page | GET  | `/{org_name}/{app_name}/push/label` | Retrieves the detailed information of multiple push labels by page.        | 100/second |
-| Deleting a push label | DELETE  | `/{org_name}/{app_name}/push/label/{labelname}` | Deletes the specified push label. You can delete one push label at each call.    | 100/second |
-| Adding users to a push label | POST  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Adds one or more users to the specified push label. You can add a maximum of 100 users at each call.          | 100/second |
-| Querying the specified user under the specified push label | GET  | `/{org_name}/{app_name}/push/label/{labelname}/user/{member}` | Retrieves the detailed information of the specified user under the specified push label.        | 100/second |
-| Querying the detailed information of users under the specified push label by page | GET  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Retrieves the detailed information of one or more users under the specified push label by page.     | 100/second |
-| Removing users from a push label | DELETE  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Removes one or more users from the specified push label. You can remove a maximum of 100 users at each call.       | 100/second |
 | Sending push notifications to users | POST  | `/{org_name}/{app_name}/push/single` | Sends push notifications to one or more users by specifying user IDs.         | 600/minute|
 | Sending push notifications by labels | POST  | `/{org_name}/{app_name}/push/list/label` | Sends push notifications to all users under one label, or the intersection of users under multiple labels.      | 600/minute, the number of concurrent ongoing task cannot exceed 3   | 
 | Sending push notifications to all users under the app | POST  | `/{org_name}/{app_name}/push/task` | Sends push notifications to all users under the app.         | 5/minute, the number of concurrent ongoing task cannot exceed 3  |
+
+
+#### Push label
+
+The total rate limit of the following methods is 100/second.
+
+| Name | Method | Request | Description |
+| :------------------- | :--- | :-------------------------------------- | :------------------------------------------------------ |
+| Creating a push label | POST  | `/{org_name}/{app_name}/push/label` | Sets a push label to group targeting users, to implement a bespoke push.      |
+| Querying the detailed information of the specified push label. | GET  | `/{org_name}/{app_name}/push/label/{labelname}` | Retrieves the detailed information of the specified push label.       |
+| Querying the detailed information of push labels by page | GET  | `/{org_name}/{app_name}/push/label` | Retrieves the detailed information of multiple push labels by page.        |
+| Deleting a push label | DELETE  | `/{org_name}/{app_name}/push/label/{labelname}` | Deletes the specified push label. You can delete one push label at each call.    |
+| Adding users to a push label | POST  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Adds one or more users to the specified push label. You can add a maximum of 100 users at each call.          |
+| Querying the specified user under the specified push label | GET  | `/{org_name}/{app_name}/push/label/{labelname}/user/{member}` | Retrieves the detailed information of the specified user under the specified push label.       |
+| Querying the detailed information of users under the specified push label by page | GET  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Retrieves the detailed information of one or more users under the specified push label by page.     |
+| Removing users from a push label | DELETE  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Removes one or more users from the specified push label. You can remove a maximum of 100 users at each call.       |
 
 ### Sending messages and uploading/downloading files
 
