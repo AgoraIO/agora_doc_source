@@ -13,13 +13,30 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract int disableAudio();</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (int)disableAudio;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract disableAudio(): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int DisableAudio();</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract disableAudio(): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; disableAudio();</codeblock>
+            <codeblock props="android" outputclass="language-java">public int startRecording(RtcConnection connection, MediaRecorderConfiguration config) {
+    RtcEngineImpl engine = null;
+    if (mEngineReference == null || (engine = mEngineReference.get()) == null) {
+      mEngineReference = null;
+      return -7;
+    }
+    return engine.startRecording(config.storagePath, config.containerFormat, config.streamType,
+        config.maxDurationMs, config.recorderInfoUpdateInterval, connection);
+  }</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRecording:(AgoraRtcConnection * _Nonnull)connection
+               config:(AgoraMediaRecorderConfiguration* _Nonnull)config;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int startRecording(const RtcConnection&amp; connection, const media::MediaRecorderConfiguration&amp; config) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startRecording(
+    connection: RtcConnection,
+    config: MediaRecorderConfiguration
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int StartRecording(RtcConnection connection, MediaRecorderConfiguration config);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract startRecording(
+    connection: RtcConnection,
+    config: MediaRecorderConfiguration
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRecording(
+      {required RtcConnection connection,
+      required MediaRecorderConfiguration config});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
