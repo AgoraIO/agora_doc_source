@@ -429,7 +429,7 @@ In the `_sendMessage` method, add the following to add the creating and sending 
   }
 ```
 
-3. Under the `initState` method, add the `dispose` method to remove the chat event handler, as shown in the following:
+3. Under the `initState` method, add the `dispose` method to remove the message status handler and chat event handler, as shown in the following:
 
 ```dart
   @override
