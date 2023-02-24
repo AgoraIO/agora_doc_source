@@ -73,9 +73,9 @@ POST https://{host}/{org_name}/{app_name}/push/single
 
 | 字段         | 类型   | 描述   |
 | :----------- | :----- | :-------- |
-| `data`       | JSON   | 推送结果：<ul><li>同步推送：对应通道的推送结果；</li><li>异步推送：异步推送的结果，即成功或失败。</li></ul>|
+| `data`       | JSON   | 推送结果。|
 | `id`         | String | 推送的目标用户 ID。             |
-| `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：推送成功；</li><li>`FAIL`：推送失败，即非服务端导致的错误，例如 `bad device token`，表示移动端传给服务端的 device token 错误，对应推送厂商不接受；</li><li>`ERROR`：推送异常，即服务端导致错误，例如连接超时或读写超时。</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
+| `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：同步推送成功；</li><li>`FAIL`：推送失败，即非服务端导致的错误，例如 `bad device token`，表示移动端传给服务端的 device token 错误，对应推送厂商不接受；</li><li>`ERROR`：推送异常，即服务端导致错误，例如连接超时或读写超时。</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
 | `desc`       | String | 推送结果的相关描述。     | 
 
 其他参数及描述详见 [公共参数](#param)。
