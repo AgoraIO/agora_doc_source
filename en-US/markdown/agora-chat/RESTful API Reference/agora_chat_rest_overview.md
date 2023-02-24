@@ -64,6 +64,7 @@ This group of methods enables you to set the push message display mode, display 
 | Querying the detailed information of users under the specified push label by page | GET  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Retrieves the detailed information of one or more users under the specified push label by page.     | 100/second |
 | Removing users from a push label | DELETE  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Removes one or more users from the specified push label. You can remove a maximum of 100 users at each call.       | 100/second |
 | Sending push notifications to users | POST  | `/{org_name}/{app_name}/push/single` | Sends push notifications to one or more users by specifying user IDs.         | 600/minute|
+| Sending push notifications by labels | POST  | `/{org_name}/{app_name}/push/list/label` | Sends push notifications to all users under one label, or the intersection of users under multiple labels.      | 600/minute, the number of concurrent ongoing task cannot exceed 3   | 
 | Sending push notifications to all users under the app | POST  | `/{org_name}/{app_name}/push/task` | Sends push notifications to all users under the app.         | 5/minute, the number of concurrent ongoing task cannot exceed 3  |
 
 ### Sending messages and uploading/downloading files
