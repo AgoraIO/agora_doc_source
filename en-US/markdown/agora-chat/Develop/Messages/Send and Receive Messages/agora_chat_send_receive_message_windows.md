@@ -6,6 +6,8 @@ After logging in to Agora Chat, users can send the following types of messages t
 - Extended messages.
 - Custom messages.
 
+In high-concurrency scenarios, you can set a certain message type or messages from a chat room member as high, normal, or low. In this case, low-priority messages are dropped first to reserve resources for the high-priority ones (e.g. gifts and announcements) when the server is overloaded. This ensures that the high-priority messages can be dealt with first when loads of messages are being sent in high concurrency or high frequency. Note that this feature can increase the delivery reliability of high-priority messages, but cannot guarantee the deliveries. Even high-priorities messages can be dropped when the server load goes too high.
+
 This page shows how to implement sending and receiving these messages using the Agora Chat SDK.
 
 ## Understand the tech
@@ -38,6 +40,9 @@ Message msg = Message.CreateTextSendMessage(toChatUsername, content);
 // Set the message type using the `MessageType` attribute in `Message`.
 // You can set `MessageType` as `Chat`, `Group`, or `Room`, which indicates whether to send the message to a peer user, a chat group, or a chat room.  
 msg.MessageType = MessageType.Group;
+//Set the priority of chat room messages. The default priority is `Normal`, indicating the normal priority.
+msg.MessageType = MessageType.Room;
+msg.SetRoomMessagePriority(RoomMessagePriority.High);
 // Call SendMessage to send the message.
 // When sending the message, you can instantiate a `Callback` object to listen for the result of the message sending. You can also update the message state in this callback, for example, by adding a pop-up box that reminds the message sending fails.
 SDKClient.Instance.ChatManager.SendMessage(ref msg, new CallBack(

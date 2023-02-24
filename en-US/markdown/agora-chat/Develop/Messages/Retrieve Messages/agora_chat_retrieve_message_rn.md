@@ -6,8 +6,10 @@ This page introduces how to use the Agora Chat SDK to retrieve messages from the
 
 The Agora Chat SDK uses `ChatManager` to retrieve historical messages from the server. Followings are the core methods:
 
-- `fetchAllConversations`: Retrieve a list of conversations stored on the server.
-- `fetchHistoryMessages`: Retrieve the historical messages in the specified conversation from the server.
+- `fetchAllConversations`: Retrieves a list of conversations stored on the server.
+- `fetchHistoryMessages`: Retrieves the historical messages in the specified conversation from the server.
+- `removeMessagesFromServerWithTimestamp`/`removeMessagesFromServerWithMsgIds`: Deletes historical messages from the server unidirectionally.
+- `removeConversationFromServer`: Deletes conversations and related messages from the server.
 
 ## Prerequisites
 
@@ -20,22 +22,24 @@ Before proceeding, ensure that you meet the following requirements:
 
 This section shows how to implement retrieving conversations and messages.
 
-### Retrieve a list of conversations from the server
+## Retrieve a list of conversations from the server
 
-Call `fetchAllConversations` to retrieve all the conversations from the server. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `getAllConversations` to retrieve conversations on the local device.
+Call `fetchConversationsFromServerWithPage` to retrieve conversations from the server with pagination. Each retrieved conversation contains one last historical message. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `getAllConversations` to retrieve conversations on the local device.
 
-```typescript
+```java
+// pageNum: The current page number, starting from 1.
+// pageSize: The number of conversations to get per page. The value range is [1,20].
 ChatClient.getInstance()
-  .chatManager.fetchAllConversations()
-  .then(() => {
-    console.log("load conversions success");
+  .chatManager.fetchConversationsFromServerWithPage(pageSize, pageNum)
+  .then((result) => {
+    console.log("test:success:", result);
   })
-  .catch((reason) => {
-    console.log("load conversions fail.", reason);
+  .catch((error) => {
+    console.warn("test:error:", error);
   });
 ```
 
-By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact support@agora.io.
+For users that do not support `fetchConversationsFromServerWithPage`, call `fetchAllConversations` to retrieve the conversations from the server. By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact [support@agora.io](mailto:support@agora.io).
 
 ### Retrieve historical messages of the specified conversation
 
@@ -59,6 +63,53 @@ ChatClient.getInstance()
   })
   .catch((reason) => {
     console.log("load conversions fail.", reason);
+  });
+```
+
+### Delete Historical Messages from the Server Unidirectionally
+
+Call `removeMessagesFromServerWithTimestamp` or `removeMessagesFromServerWithMsgIds` to delete historical messages one way from the server. You can remove a maximum of 50 messages from the server each time. Once the messages are deleted, you can no longer retrieve them from the server. Other chat users can still get the messages from the server.
+
+```typescript
+// Delete messages by message ID
+ChatClient.getInstance()
+  .chatManager.removeMessagesFromServerWithMsgIds(convId, convType, msgIds)
+  .then((result) => {
+    console.log("test:success:", result);
+  })
+  .catch((error) => {
+    console.warn("test:error:", error);
+  });
+// Delete messages by timestamp
+ChatClient.getInstance()
+  .chatManager.removeMessagesFromServerWithTimestamp(
+    convId,
+    convType,
+    timestamp
+  )
+  .then((result) => {
+    console.log("test:success:", result);
+  })
+  .catch((error) => {
+    console.warn("test:error:", error);
+  });
+```
+
+### Delete conversations and related messages from the server
+
+Call `removeConversationFromServer` to delete historical messages one way from the server. You can remove a maximum of 50 messages from the server each time. Once the messages are deleted, you can no longer retrieve them from the server. Other chat users can still get the messages from the server.
+
+```typescript
+// convId: conversation ID
+// convType: conversation type.
+// isDeleteMessage: Whether to delete historical messages from the server with the conversation.
+ChatClient.getInstance()
+  .chatManager.removeConversationFromServer(convId, convType, isDeleteMessage)
+  .then(() => {
+    console.log("remove conversions success");
+  })
+  .catch((reason) => {
+    console.log("remove conversions fail.", reason);
   });
 ```
 
