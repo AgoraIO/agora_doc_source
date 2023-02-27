@@ -74,7 +74,7 @@
 | `/scenes-controller`          | 白板场景控制组件，实现新增或删除白板页。                     |
 | `/screen-share`               | 屏幕共享组件，处理屏幕共享逻辑。                             |
 | `/stream`                     | 音视频流组件，处理各班型音视频渲染。                         |
-| `/stream-windows-container`   | 可拖拽窗口容器组件，处理视频窗口拖拽逻辑。                         |
+| `/stream-window`   | 可拖拽窗口容器组件，处理视频窗口拖拽逻辑。                         |
 | `/toast`                      | Toast 提示组件。                                             |
 | `/toolbar`                    | 工具栏，实现白板老师学生教具相关业务。                       |
 | `/widget`                     | Widget 组件，处理 Widget 渲染加载等逻辑。                    |
@@ -97,7 +97,7 @@
 | :-------------- | :--------------------------- |
 | `/1v1`          | 1 对 1 互动教学场景          |
 | `/big-class`    | 互动直播大班课场景           |
-| `/big-class-h5` | 针对 H5 的互动直播大班课场景 |
+| `/big-class-mobile` | 针对 Web 移动端的互动直播大班课场景 |
 | `/mid-class`    | 在线互动小班课场景           |
 #### 监考场景
 | 文件夹          | 场景组件                     |
@@ -277,7 +277,7 @@ import { ScreenShareContainer } from '@classroom/infra/capabilities/containers/s
 import { WhiteboardToolbar } from '@classroom/infra/capabilities/containers/toolbar';
 import { WidgetContainer } from '@classroom/infra/capabilities/containers/widget';
 import { Chat, Watermark, Whiteboard } from '@classroom/infra/capabilities/containers/widget/slots';
-import { StreamWindowsContainer } from '@classroom/infra/capabilities/containers/stream-windows-container';
+import { StreamWindowsContainer } from '@classroom/infra/capabilities/containers/stream-window';
 import { RemoteControlToolbar } from '@classroom/infra/capabilities/containers/remote-control/toolbar';
 import AgoraDemo from '@classroom/infra/capabilities/containers/agora-demo';
 
@@ -397,7 +397,7 @@ import { RemoteControlContainer } from '../../containers/remote-control';
 import { SceneSwitch } from '../../containers/scene-switch';
 import { ScenesController } from '../../containers/scenes-controller';
 import { ScreenShareContainer } from '../../containers/screen-share';
-import { StreamWindowsContainer } from '../../containers/stream-windows-container';
+import { StreamWindowsContainer } from '../../containers/stream-window';
 import { WhiteboardToolbar } from '../../containers/toolbar';
 import { WidgetContainer } from '../../containers/widget';
 import { Chat, Watermark, Whiteboard } from '../../containers/widget/slots';
@@ -464,7 +464,7 @@ import { RemoteControlContainer } from '../../containers/remote-control';
 import { SceneSwitch } from '../../containers/scene-switch';
 import { ScenesController } from '../../containers/scenes-controller';
 import { ScreenShareContainer } from '../../containers/screen-share';
-import { StreamWindowsContainer } from '../../containers/stream-windows-container';
+import { StreamWindowsContainer } from '../../containers/stream-window';
 import { WhiteboardToolbar } from '../../containers/toolbar';
 import { WidgetContainer } from '../../containers/widget';
 import { Chat, Watermark, Whiteboard } from '../../containers/widget/slots';
@@ -551,22 +551,22 @@ UI Store 位于 `packages/agora-classroom-sdk/src/infra/stores` 目录下，具�
 ```typescript
 import { EduClassroomStore } from 'agora-edu-core';
 import { EduClassroomUIStore } from '../common';
-import { LectureBoardUIStore } from './board-ui';
+import { LectureBoardUIStore } from './board';
 import { LectureRosterUIStore } from './roster';
-import { LectureRoomStreamUIStore } from './stream-ui';
-import { LectrueToolbarUIStore } from './toolbar-ui';
+import { LectureRoomStreamUIStore } from './stream';
+import { LectrueToolbarUIStore } from './toolbar';
 
 export class EduLectureUIStore extends EduClassroomUIStore {
   constructor(store: EduClassroomStore) {
     super(store);
     //重写 Stream UI Store
-    this._streamUIStore = new LectureRoomStreamUIStore(store, this.shareUIStore);
+    this._streamUIStore = new LectureRoomStreamUIStore(store, this.shareUIStore, this._getters);
     //重写 Roster UI Store
-    this._rosterUIStore = new LectureRosterUIStore(store, this.shareUIStore);
+    this._rosterUIStore = new LectureRosterUIStore(store, this.shareUIStore, this._getters);
     //重写 Board UI Store
-    this._boardUIStore = new LectureBoardUIStore(store, this.shareUIStore);
+    this._boardUIStore = new LectureBoardUIStore(store, this.shareUIStore, this._getters);
     //重写 Toolbar UI Store
-    this._toolbarUIStore = new LectrueToolbarUIStore(store, this.shareUIStore);
+    this._toolbarUIStore = new LectrueToolbarUIStore(store, this.shareUIStore, this._getters);
   }
 
   get streamUIStore() {
@@ -581,12 +581,12 @@ export class EduLectureUIStore extends EduClassroomUIStore {
 
 ### 修改老师授权后学生的教具
 
-如果你想在所有场景中修改老师授权后学生的教具，则直接修改 `/common` 下的 `toolbar-ui.ts`。如果你只想修改某个场景中老师授权后学生的教具，可以在对应的场景目录下，新建 `toolbar-ui.ts` 并重写方法。
+如果你想在所有场景中修改老师授权后学生的教具，则直接修改 `/common` 下的 `toolbar/index.ts`。如果你只想修改某个场景中老师授权后学生的教具，可以在对应的场景目录下，新建 `toolbar.ts` 并重写方法。
 
-举例来说，如果你想修改一对一场景的教具，则可修改 `packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar-ui.ts` 文件。
+举例来说，如果你想修改一对一场景的教具，则可修改 `packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar.ts` 文件。
 
 ```typescript
-// packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar-ui.ts
+// packages/agora-classroom-sdk/src/infra/stores/one-on-one/toolbar.ts
 ...
 // 继承基类 Toolbar UI Store
 export class OneToOneToolbarUIStore extends ToolbarUIStore {
@@ -780,10 +780,10 @@ const FixedAspectRatioContainer: React.FC<FixedAspectRatioProps> = observer(
 
 ### 修改白板布局比例
 
-如需调整白板布局，可修改 `packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts` 文件中的代码。灵动课堂会先按照 `packages/agora-classroom-sdk/src/infra/stores/common/share-ui.ts` 中的 `viewportAspectRatio` 计算出整体教室区域的宽高，再计算出白板容器的高度，最后根据白板占白板容器的比例 `heightRatio` 动态设置白板的大小。
+如需调整白板布局，可修改 `packages/agora-classroom-sdk/src/infra/stores/common/board/index.ts` 文件中的代码。灵动课堂会先按照 `packages/agora-classroom-sdk/src/infra/stores/common/share/index.ts` 中的 `viewportAspectRatio` 计算出整体教室区域的宽高，再计算出白板容器的高度，最后根据白板占白板容器的比例 `heightRatio` 动态设置白板的大小。
 
 ```typescript
-// packages/agora-classroom-sdk/src/infra/stores/common/share-ui.ts
+// packages/agora-classroom-sdk/src/infra/stores/common/share/index.ts
 ...
 //设置教室尺寸
 updateClassroomViewportSize() {
@@ -807,7 +807,7 @@ updateClassroomViewportSize() {
   ...
 }
 ...
-// packages/agora-classroom-sdk/src/infra/stores/common/board-ui.ts
+// packages/agora-classroom-sdk/src/infra/stores/common/board/index.ts
 //设置白板比例
 ...
   protected get uiOverrides() {
@@ -836,10 +836,10 @@ updateClassroomViewportSize() {
 ...
 ```
 
-上述改动会应用于所有场景。如果你只想修改一对一场景中的白板高度，则可在 `packages/agora-classroom-sdk/src/infra/stores/one-on-one` 目录下新建 `board-ui.ts` 文件，代码如下：
+上述改动会应用于所有场景。如果你只想修改一对一场景中的白板高度，则可在 `packages/agora-classroom-sdk/src/infra/stores/one-on-one` 目录下新建 `board.ts` 文件，代码如下：
 
 ```typescript
-// packages/agora-classroom-sdk/src/infra/stores/one-on-one/board-ui.ts
+// packages/agora-classroom-sdk/src/infra/stores/one-on-one/board.ts
 import {BoardUIStore} from "../common/board-ui";
 
 export class OneToOneBoardUIStore extends BoardUIStore {
