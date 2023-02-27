@@ -37,7 +37,7 @@
             <li>Each client can send up to 6 KB of data per second.</li>
             <li>Each user can have up to five data streams simultaneously.</li>
             </ul></p>
-            <p>A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message. 
+            <p>A successful method call triggers the <xref keyref="onStreamMessage" /> callback on the remote client, from which the remote user gets the stream message.
 A failed method call triggers the <xref keyref="onStreamMessageError" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
@@ -54,17 +54,18 @@ A failed method call triggers the <xref keyref="onStreamMessageError" /> callbac
             <plentry>
                 <pt props="android">message</pt>
                 <pt props="electron cpp ios mac unity flutter rn">data</pt>
-                <pd>The data to be sent.</pd>
+                <pd>The message to be sent.</pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron">
                 <pt>length</pt>
                 <pd>The length of the data.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity electron rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

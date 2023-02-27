@@ -47,7 +47,7 @@
                 <ul>
                     <li>Call this method after <xref keyref="enterRoom" />.</li>
                     <li>If you call this method under the <apiname keyref="ICloudSpatialAudioEngine" /> class, note the following:<ul>
-                        <li>When you call this method multiple times, Agora recommends a call interval of [120,7000) milliseconds; otherwise, the SDK and the Agora Spatial Audio Server lose synchronization.</li>
+                        <li>When calling this method multiple times, Agora recommends a call interval between [120,7000) milliseconds, otherwise, the SDK and the spatial audio server will lose synchronization.</li>
                         <li>If the distance between the current spatial position and the last position is less than 0.2 meters or the rotation angle in each direction is less than 15 degrees, the SDK does not update the current spatial position.</li>
                         </ul></li>
                 </ul>
@@ -72,10 +72,11 @@
                 <pd>The unit vector of the z axis in the coordinate system. This parameter is an array of length 3, and the three values represent the front, right, and top coordinates in turn.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

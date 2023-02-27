@@ -38,7 +38,7 @@
             <p>Most mobile phones have two audio routes: an earpiece at the top, and a speakerphone at the bottom. The earpiece plays at a lower volume, and the speakerphone at a higher volume. When setting the default audio route, you determine whether audio playback comes through the earpiece or speakerphone when no external audio device is connected.</p>
         </section>
         <section>
-            <p>Depending on the scenario, Agora uses different default audio routes. See the following:<ul id="ul_kq3_tpf_3qb">
+            <p>In different scenarios, the default audio routing of the system is also different. See the following:<ul id="ul_kq3_tpf_3qb">
             <li>Voice call: Earpiece.</li>
             <li>Audio broadcast: Speakerphone.</li>
             <li>Video call: Speakerphone.</li>
@@ -46,7 +46,7 @@
             </ul></p>
             <p>You can call this method to change the default audio route. After a successful method call, the SDK triggers the <xref keyref="onAudioRoutingChanged" /> callback.</p>
             <note>
-            <p><ph>The system audio route changes when an external audio device, such as a headphone or a Bluetooth audio device, is connected. </ph><ph props="native">See Principles for Changing the <xref keyref="guide-audio-route">Audio Route</xref>.</ph></p>
+            <p>The system audio route changes when an external audio device, such as a headphone or a Bluetooth audio device, is connected. See <xref keyref="guide-audio-route">Audio Route</xref> for detailed change principles.</p>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -59,10 +59,11 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: Success.</li>
+            <li props="android ios cpp electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

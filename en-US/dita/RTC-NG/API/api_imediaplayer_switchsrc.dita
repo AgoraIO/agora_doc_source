@@ -27,11 +27,11 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>You can call this method to switch the media resource to be played according to the current network status.  For example:<ul>
+            <p>You can call this method to switch the media resource to be played according to the current network status. For example:<ul>
             <li>When the network is poor, the media resource to be played is switched to a media resource address with a lower bitrate.</li>
             <li>When the network is good, the media resource to be played is switched to a media resource address with a higher bitrate.</li>
             </ul></p>
-            <p>After calling this method, if you receive the <xref keyref="onPlayerEvent" /> event in the <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE" /> callback, the switch is successful; If you receive the <xref keyref="onPlayerEvent" /> event in the <apiname keyref="PLAYER_EVENT_SWITCH_ERROR" /> callback, the switch fails.</p>
+            <p>After calling this method, if you receive the <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch is successful; If you receive the <apiname keyref="PLAYER_EVENT_SWITCH_ERROR" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch fails.</p>
             <p props="cn">If you want to customize CDN routes for playing the media resource, call the <xref keyref="switchAgoraCDNSrc" /> method to switch media resources. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you do not need to customize CDN routes for playing the media resource, call the <xref keyref="switchSrc" /> method to switch media resources.</p>
             <note type="attention">
             <ul>
@@ -59,10 +59,11 @@
         </pd>
       </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
