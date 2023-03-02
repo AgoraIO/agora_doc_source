@@ -276,51 +276,51 @@
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   videoBitrate?: number;
-  
+
   videoFramerate?: number;
-  
+
   lowLatency?: boolean;
-  
+
   videoGop?: number;
-  
+
   videoCodecProfile?: VideoCodecProfileType;
-  
+
   backgroundColor?: number;
-  
+
   videoCodecType?: VideoCodecTypeForStream;
-  
+
   userCount?: number;
-  
+
   transcodingUsers?: TranscodingUser[];
-  
+
   transcodingExtraInfo?: string;
-  
+
   metadata?: string;
-  
+
   watermark?: RtcImage[];
-  
+
   watermarkCount?: number;
-  
+
   backgroundImage?: RtcImage[];
-  
+
   backgroundImageCount?: number;
-  
+
   audioSampleRate?: AudioSampleRateType;
-  
+
   audioBitrate?: number;
-  
+
   audioChannels?: number;
-  
+
   audioCodecProfile?: AudioCodecProfileType;
-  
+
   advancedFeatures?: LiveStreamAdvancedFeature[];
-  
+
   advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="unity" outputclass="language-csharp">public class LiveTranscoding
@@ -409,51 +409,51 @@
         public uint advancedFeatureCount { set; get; }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class LiveTranscoding {
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   videoBitrate?: number;
-  
+
   videoFramerate?: number;
-  
+
   lowLatency?: boolean;
-  
+
   videoGop?: number;
-  
+
   videoCodecProfile?: VideoCodecProfileType;
-  
+
   backgroundColor?: number;
-  
+
   videoCodecType?: VideoCodecTypeForStream;
-  
+
   userCount?: number;
-  
+
   transcodingUsers?: TranscodingUser[];
-  
+
   transcodingExtraInfo?: string;
-  
+
   metadata?: string;
-  
+
   watermark?: RtcImage[];
-  
+
   watermarkCount?: number;
-  
+
   backgroundImage?: RtcImage[];
-  
+
   backgroundImageCount?: number;
-  
+
   audioSampleRate?: AudioSampleRateType;
-  
+
   audioBitrate?: number;
-  
+
   audioChannels?: number;
-  
+
   audioCodecProfile?: AudioCodecProfileType;
-  
+
   advancedFeatures?: LiveStreamAdvancedFeature[];
-  
+
   advancedFeatureCount?: number;
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class LiveTranscoding {
@@ -555,7 +555,7 @@
       _$LiveTranscodingFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
@@ -587,7 +587,7 @@
           <li>如果推视频流，请注意：
 
 
-            
+
             <ul>
             <li>宽的取值范围为 [64,1920]。如果取值低于 64，Agora 服务器会自动调整为 64；如果取值高于 1920，Agora 服务器会自动调整为 1920。</li>
             <li>高的取值范围为 [64,1080]。如果取值低于 64，Agora 服务器会自动调整为 64；如果取值高于 1080，Agora 服务器会自动调整为 1080。</li>
@@ -603,10 +603,10 @@
         </pd>
       </plentry>
       <plentry>
-        <pt>videoFrameRate</pt>
+        <pt>videoFramerate</pt>
         <pd>
-          <p>用于旁路直播的输出视频的帧率。取值范围是 (0,30]，单位为 fps。15 fps 为默认值。</p>
-          <note type="attention">Agora 服务器会将高于 30 fps 的帧率统一调整为 30 fps。</note></pd>
+          <p>用于旁路直播的输出视频的帧率。取值范围是 (0, 60]，单位为 fps。15 fps 为默认值。</p>
+          <note type="attention">声网服务器会将高于 60 fps 的帧率统一调整为 60 fps。</note></pd>
       </plentry>
       <plentry>
         <pt>lowLatency</pt>
@@ -657,7 +657,7 @@
           <p>格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认 0x000000，黑色。</p>
           <p>COLOR_CLASS 为类型统称，具体为：
 
-          
+
           <ul>
           <li>iOS: UIColor</li>
           <li>macOS: NSColor</li>
