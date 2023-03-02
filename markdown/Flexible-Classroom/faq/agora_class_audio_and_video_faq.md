@@ -53,3 +53,15 @@ const args = {
     mode: RecordMode.Web,
     retryTimeout: recordRetryTimeout,
 };
+
+
+3、使用屏幕共享报错，如何开启屏幕录制功能权限?
+屏幕共享开启的时候报如下错误：
+<img src="./images/screen_share_error.png" style="zoom: 33%;" />
+
+
+需要开启系统屏幕录制权限。系统设置-》隐私与安全性-》屏幕录制开启相关的开关
+<img src="./images/screen_share_setting.png" style="zoom: 33%;" />
+
+<img src="./images/screenshare_turn_on.png" style="zoom: 33%;" />
+
