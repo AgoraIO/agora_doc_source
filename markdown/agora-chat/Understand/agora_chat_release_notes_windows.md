@@ -4,7 +4,6 @@
 
 #### 新增特性
 
-- 依赖的原生平台 `iOS` 和 `Android` 的 SDK 升级为 v1.1.0 版本。
 - 新增聊天室自定义属性功能实现语聊房的麦位管理和同步等功能。
 - 新增 `ChatManager#GetConversationsFromServerWithPage` 方法实现从服务器分页获取会话列表。
 - 新增 `Message#Priority` 属性实现聊天室消息优先级功能，确保高优先级消息优先处理。
