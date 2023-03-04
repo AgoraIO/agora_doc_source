@@ -1,6 +1,6 @@
-用户在单聊中发送消息后，可以查看该消息的送达和已读状态，了解接收方是否及时收到并阅读了消息，也可以了解整个会话是否已读。
+单聊会话支持消息送达回执、会话已读回执和消息已读回执，发送方发送消息后可及时了解接收方是否及时收到并阅读了信息，也可以了解整个会话是否已读。
 
-用户在群聊中发送信息后，可以查看该消息的已读状态。
+群聊会话只支持消息已读回执。群主和群管理员在发送消息时，可以设置该消息是否需要已读回执。若使用该功能，请联系[support@agora.io](mailto:support@agora.io) 开通。
 
 本文介绍如何使用即时通讯 IM SDK 在单聊和群聊中实现上述功能。
 
@@ -25,7 +25,7 @@
 - 单聊会话及消息已读回执
   1. 消息发送方将 `ChatOptions.setRequireAck` 设置为`true`，开启已读回执功能。
   2. 消息接收方收到消息后，调用 `ackConversationRead` 或 `ackMessageRead` 发送会话或消息已读回执；
-  3. 消息发送方通过监听 `onConversationRead` 或 `onMessageRead` 回调接收会话或消息已读回执 。
+  3. 消息发送方通过监听 `onConversationRead` 或 `onMessageRead` 回调接收会话或消息已读回执。
 
 - 群聊只支持消息已读回执：
 
@@ -38,7 +38,7 @@
 
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
-- 默认情况下群聊的消息已读回执是关闭的。要使用此功能，请联系 [support@agora.io](mailto:support@agora.io)。
+- 若使用群聊的消息已读回执功能，需联系 [support@agora.io](mailto:support@agora.io) 开通。
 
 ## 实现方法
 
@@ -195,9 +195,11 @@ ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() 
 
 #### 群聊
 
-对于群组消息，消息发送方（目前为群主和群管理员）可设置指定消息是否需要已读回执。确保阅读消息的群成员在阅读群消息后都应发送消息已读回执。
+对于群聊，群主和群管理员发送消息时，可以设置该消息是否需要已读回执。若需要，每个群成员在阅读消息后，SDK 均会发送已读回执，即阅读该消息的群成员数量即为已读回执的数量。
 
-1. 若需要群消息已读回执，群主或群管理员设置 `ChatMessage` 中的方法 `setIsNeedGroupAck()` 为 `true`。
+若要使用该功能，需联系 [support@agora.io](mailto:support@agora.io) 开通。
+
+1. 群主或群管理员发送消息时若需已读回执，需设置 `ChatMessage` 中的方法 `setIsNeedGroupAck()` 为 `true`。
 
 ```java
 ChatMessage message = ChatMessage.createTxtSendMessage(content, to);

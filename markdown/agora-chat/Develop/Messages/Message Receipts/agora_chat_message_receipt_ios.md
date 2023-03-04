@@ -1,8 +1,8 @@
-用户在单聊中发送消息后，可以查看该消息的送达和已读状态，了解接收方是否及时收到并阅读了消息，也可以了解整个会话是否已读。
+单聊会话支持消息送达回执、会话已读回执和消息已读回执，发送方发送消息后可及时了解接收方是否及时收到并阅读了信息，也可以了解整个会话是否已读。
 
-用户在群聊中发送信息后，可以查看该消息的已读状态。
+群聊会话只支持消息已读回执。群主和群管理员在发送消息时，可以设置该消息是否需要已读回执。若使用该功能，请联系[support@agora.io](mailto:support@agora.io) 开通。
 
-本文介绍如何使用即时通讯 IM iOS SDK 的消息已读回执和送达回执在 app 中实现上述功能。
+本文介绍如何使用即时通讯 IM iOS SDK 实现单聊和群聊的上述功能。
 
 ## 技术原理
 
@@ -23,7 +23,7 @@
 
 - 单聊会话及消息已读回执
   1. 消息发送方设置 `AgoraChatOptions.enableRequireReadAck` 为 `YES` 开启已读回执功能。
-  2. 消息接收方收到消息后，调用 `ackConversationRead`或`sendMesageReadAck` 方法发送会话或消息已读回执。
+  2. 消息接收方收到消息后，调用 `ackConversationRead`或`sendMessageReadAck` 方法发送会话或消息已读回执。
   3. 消息发送方通过监听 `onConversationRead` 或 `messageDidRead` 接收会话或消息回执。
 - 群聊只支持消息已读回执：
   1. 消息发送方设置 `isNeedGroupAck` 开启群聊消息已读回执功能；
@@ -35,7 +35,7 @@
 
 - 完成 SDK 初始化，并连接到服务器，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
 - 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
-- 群组的消息已读回执功能默认不开启。如需使用请联系 [support@agora.io](mailto:support@agora.io)。
+- 若使用群聊的消息已读回执功能，需联系 [support@agora.io](mailto:support@agora.io) 开通。
 
 ## 实现方法
 
@@ -152,11 +152,13 @@ options.enableRequireReadAck = YES;
 
 #### 群聊
 
-对于群消息，消息发送方（目前为群主和群管理员）可设置指定消息是否需要已读回执。确保阅读消息的群成员在阅读群消息后都应发送消息已读回执。
+对于群聊，群主和群管理员发送消息时，可以设置该消息是否需要已读回执。若需要，每个群成员在阅读消息后，SDK 均会发送已读回执，即阅读该消息的群成员数量即为已读回执的数量。
+
+若要使用该功能，需联系 [support@agora.io](mailto:support@agora.io) 开通。
 
 按以下步骤实现聊天消息已读回执。
 
-1. 对于聊天群消息，群主和管理员可以设置在发送消息时要求消息已读回执。
+1. 群主或群管理员发送消息时若需已读回执，需设置 `isNeedGroupAck` 为 `true`。
 
    ```Objective-C
     AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:to from:from to:to body:aBody ext:aExt];
