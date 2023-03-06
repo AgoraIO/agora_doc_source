@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdirectcdnstreamingvideoconfiguration">
-    <title><ph keyref="setDirectCdnStreamingVideoConfiguration" /></title>
+    <title><ph keyref="setDirectCdnStreamingVideoConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the video profile of the media streams directly pushed to the CDN by the host.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setDirectCdnStreamingVideoConfiguration" />
+                <indexterm keyref="setDirectCdnStreamingVideoConfiguration"/>
             </keywords>
         </metadata>
     </prolog>
@@ -25,26 +25,26 @@
             <codeblock props="rn" outputclass="language-typescript">abstract setDirectCdnStreamingVideoConfiguration(
     config: VideoEncoderConfiguration
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDirectCdnStreamingVideoConfiguration(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setDirectCdnStreamingVideoConfiguration(
       VideoEncoderConfiguration config);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p><ph>该方法仅对摄像头采集、屏幕共享或自采集的视频有效。 </ph><ph props="native rn">即对在 <xref keyref="DirectCdnStreamingMediaOptions" /> 中设置 <parmname>publishCameraTrack</parmname> 或 <parmname>publishCustomVideoTrack</parmname> 为 <codeph><ph keyref="true" /></codeph> 时所采集的视频有效。</ph></p>
-            <p>如果你设置的视频分辨率超出你的摄像头设备支持的范围，SDK 会根据你的设置进行自适应，取最接近、且长宽比与你设置的分辨率一致的值进行采集、编码、推流。 你可以通过 <xref keyref="onDirectCdnStreamingStats" /> 回调了解推送的视频流的实际分辨率。</p>
+            <p><ph>This method only affects video streams captured by cameras or screens, or from custom video capture sources. </ph><ph props="native rn">That is, when you set <parmname>publishCameraTrack</parmname> or <parmname>publishCustomVideoTrack</parmname> in <xref keyref="DirectCdnStreamingMediaOptions"/> as <codeph><ph keyref="true"/></codeph> to capture videos, you can call this method to set the video profiles.</ph></p>
+            <p>If your local camera does not support the video resolution you set,the SDK automatically adjusts the video resolution to a value that is closest to your settings for capture, encoding or streaming, with the same aspect ratio as the resolution you set. You can get the actual resolution of the video streams through the <xref keyref="onDirectCdnStreamingStats"/> callback.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry conkeyref="setVideoEncoderConfiguration/config">
-                <pt />
-                <pd />
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
                 <li props="native rn unity electron">0: Success.</li>
                 <li>&lt; 0: Failure.</li>
