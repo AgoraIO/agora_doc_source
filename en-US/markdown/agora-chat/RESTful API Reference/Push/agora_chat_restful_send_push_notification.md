@@ -169,14 +169,13 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list' \
+curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
 -H 'Authorization: Bearer YWMtIPBHKsOyEeAAAAAAAAAAAExCXvf5bRGAJBgXNYFJVQ9AQMAAAGAWu67KQBPGgBOV9ghkGKbtt9H9b1' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "targets": [
         "post-90s"
     ],
-    "pushFunc":"LABEL",
     "strategy": 2,
     "pushMessage": {
         "title": "Agora PUSH",
