@@ -67,18 +67,17 @@ ChatClient.getInstance().userInfoManager().updateOwnInfoByAttribute(UserInfoType
    });
 ```
 
-用户属性包括如下字段：
+若[调用 RESTful 的接口设置](./agora_chat_restful_user_attributes#设置用户属性)或[删除用户属性](./agora_chat_restful_user_attributes#删除用户属性)，请求中必须传以下字段各客户端才能获取到。
 
 | 字段        | 类型   | 描述                                                         |
 | :---------- | :----- | :----------------------------------------------------------- |
 | `nickname`  | String | 用户昵称，不能超过 64 个字符。                                 |
-| `avatarUrl` | String | 用户头像 URL 地址，不能超过 256 个字符。                       |
+| `avatarurl` | String | 用户头像 URL 地址，不能超过 256 个字符。                       |
 | `phone`     | String | 用户联系方式，不能超过 32 个字符。                             |
 | `mail`      | String | 用户邮箱，不能超过 64 个字符。                                 |
 | `gender`    | Number | 用户性别：<ul><li> `1`：男；</li><li>`2`：女；</li><li>（默认）`0`：未知；</li><li>设置为其他值无效。</li></ul>|
 | `sign`      | String | 用户签名，不能超过 256 个字符。                                |
 | `birth`     | String | 用户生日，不能超过 64 个字符。                                 |
-| `userId`    | String | 用户 ID。                                                    |
 | `ext`       | String | 扩展字段。                                                   |
 
 ### 获取用户属性
