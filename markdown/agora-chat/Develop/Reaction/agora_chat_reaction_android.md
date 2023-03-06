@@ -119,7 +119,7 @@ ChatClient.getInstance().chatManager().asyncGetReactionList(msgIdList, ChatMessa
 调用 `asyncGetReactionDetail` 可以从服务器获取指定 Reaction 的详情，包括 Reaction 内容，添加或移除 Reaction 的用户数量以及添加或移除 Reaction 的全部用户列表。示例代码如下：
 
 ```java
-ChatClient.getInstance().chatManager().asyncGetReactionDetail(mMsgId, emojiconId, pageCurosr, 30, new ValueCallBack<CursorResult<MessageReaction>>() {
+ChatClient.getInstance().chatManager().asyncGetReactionDetail(mMsgId, emojiconId, pageCursor, 30, new ValueCallBack<CursorResult<MessageReaction>>() {
                     @Override
                     public void onSuccess(CursorResult<MessageReaction> messageReactionCursorResult) {
 

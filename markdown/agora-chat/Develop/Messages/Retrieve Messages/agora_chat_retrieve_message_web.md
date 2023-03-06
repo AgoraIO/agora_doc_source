@@ -42,11 +42,11 @@ connection.getConversationlist({pageNum: 1, pageSize: 20}).then((res) => {})
 var options = {
     // 对方的用户 ID 或者群组 ID 或聊天室 ID。
     targetId:'user1',
-    // （可选）每页期望获取的消息条数。取值范围为 [1,50]，默认值为 20。
+    // （可选）每页期望获取的消息条数。取值范围为 [1,50]，默认值为 `20`。
     pageSize: 20,
     // （可选）查询的起始位置。若该参数设置为 `-1`、`null` 或空字符串，从最新消息开始。
     cursor: -1,
-    // （可选）会话类型：（默认） `singleChat`：单聊；`groupChat`：群聊；`chatRoom`：聊天室聊天。
+    // （可选）会话类型：（默认） `singleChat`：单聊；`groupChat`：群聊。
     chatType:'groupChat',
     // 消息搜索方向：（默认）`up`：按服务器收到消息的时间的逆序获取；`down`：按服务器收到消息的时间的正序获取。
     searchDirection: 'up',

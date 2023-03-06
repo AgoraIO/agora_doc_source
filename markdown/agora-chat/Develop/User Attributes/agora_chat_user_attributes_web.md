@@ -56,7 +56,7 @@ conn.updateUserInfo('nickname', 'Your nickname').then((res) => {
 })
 ```
 
-用户属性包括如下字段：
+若[调用 RESTful 的接口设置](./agora_chat_restful_user_attributes#设置用户属性)或[删除用户属性](./agora_chat_restful_user_attributes#删除用户属性)，请求中必须传以下字段各客户端才能获取到。
 
 | 字段        | 类型   | 描述                                                         |
 | :---------- | :----- | :----------------------------------------------------------- |
