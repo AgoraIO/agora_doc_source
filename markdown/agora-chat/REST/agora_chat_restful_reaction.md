@@ -126,7 +126,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{userId}?msgIdList={N,M}&
 
 | 参数        | 类型   | 描述                                                          | 是否必填 |
 | :---------- | :----- | :------------------------------------------------------------ | :------- |
-| `msgIdList` | Array  | 你要获取其 Reaction 的消息 ID。                               | 是       |
+| `msgIdList` | Array  | 你要获取其 Reaction 的消息 ID，最多可传 20 个消息 ID。                               | 是       |
 | `msgType`   | String | 消息的会话类型：<ul><li>`chat`: 单聊。</li><li>`groupchat`: 群聊。</li></ul>           | 是       |
 | `groupId`   | String | 群组 ID。如果设置 `msgType` 为 `groupchat`，则必须指定群组 ID。 |  否     |
 
