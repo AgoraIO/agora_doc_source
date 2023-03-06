@@ -6,7 +6,7 @@
 
 ## 费用计算
 
-每月结束时，Agora 会统计你的 [Agora 账号](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=AllPlatforms#创建-agora-账号)下即时通讯项目的用量，扣除套餐包内用量额度后，如有额外用量，则将额外用量乘以相应的单价，加上套餐包费用得出本月总费用。计算公式如下：
+每月结束时，Agora 会统计你的 [Agora 账号](https://docs.agora.io/cn/AgoraPlatform/get_appid_token?platform=AllPlatforms#创建声网账号)下即时通讯项目的用量，扣除套餐包内用量额度后，如有额外用量，则将额外用量乘以相应的单价，加上套餐包费用得出本月总费用。计算公式如下：
 
 **费用** = 套餐包费用 + 额外用量 × 套餐包超额单价
 
