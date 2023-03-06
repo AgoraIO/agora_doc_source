@@ -127,7 +127,7 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org}/{app}/push/list/label
+POST https://{host}/{org_name}/{app_name}/push/list/label
 ```
 
 #### 路径参数
@@ -169,14 +169,13 @@ POST https://{host}/{org}/{app}/push/list/label
 #### 请求示例
 
 ```shell
-curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list' \
+curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
 -H 'Authorization: Bearer YWMtIPBHKsOyEeAAAAAAAAAAAExCXvf5bRGAJBgXNYFJVQ9AQMAAAGAWu67KQBPGgBOV9ghkGKbtt9H9b1' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "targets": [
         "post-90s"
     ],
-    "pushFunc":"LABEL",
     "strategy": 2,
     "pushMessage": {
         "title": "Agora PUSH",
