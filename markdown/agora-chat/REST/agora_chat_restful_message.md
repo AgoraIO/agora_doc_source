@@ -948,7 +948,7 @@ curl -X POST -i "https://XXXX/XXXX/XXXX/messages/chatrooms" -H 'Content-Type: ap
 对于附件类型的消息，如图片、语音、视频或其他类型文件，发送消息前需上传文件。图片和视频存在缩略图，文件上传详情如下：
 
 - 图片：可调用文件上传接口上传原图，Agora 服务器会自动为图片生成缩略图。若上传的图片在 10 KB 以内，缩略图与原图等同；若图片超过 10 KB，Agora 服务器会根据你在请求中设置的图片高度和宽度，即 `thumbnail-height` 和 `thumbnail-width` 参数，生成缩略图。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
-- 视频：可调用文件上传接口上传视频文件。Agora 服务器不会自动为视频文件生成缩略图。如果需要缩略图，你需再次调用文件上传接口上传视频缩略图。上传视频文件时，无需传 `thumbnail-height` 和 `thumbnail-width` 参数。上传视频缩略图时，若图片在 10 KB 以内，视频缩略图即为上传的图片。如果图片超过 10 KB，而且设置了这两个参数，视频缩略图的高度和宽度取决于这两个参数的设置。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
+- 视频：Agora 服务器不会自动为视频文件生成缩略图。若需要视频缩略图，需先调用文件上传接口上传缩略图。然后，再次调用文件上传接口上传视频源文件。上传视频文件时，无需传 `thumbnail-height` 和 `thumbnail-width` 参数。上传视频缩略图时，若图片在 10 KB 以内，视频缩略图即为上传的图片。如果图片超过 10 KB，而且设置了这两个参数，视频缩略图的高度和宽度取决于这两个参数的设置。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
 
 同时，为了保证聊天文件的安全，我们的 API 保证了以下几点：
 
@@ -1109,6 +1109,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | `Accept`        | String | 内容类型。请填 `application/octet-stream`，表示下载二进制数据流格式的文件。           | 是   |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。                      | 是                                  |
 | `thumbnail`     | Boolean   | 是否下载缩略图：<ul><li> `true`：是，下载缩略图。</li><li> `false`：否，下载原文件。</li></ul> <div class="alert info">若该参数为空，下载原文件。<div> | 否                                                                      |
+| `share-secret`  | string | 缩略图访问密钥。若上传图片时限制了访问（`restrict-access` 设置为 `true`），下载缩略图时则需要该访问密钥。成功上传图片后，从 [文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
 
 ### HTTP 响应
 
