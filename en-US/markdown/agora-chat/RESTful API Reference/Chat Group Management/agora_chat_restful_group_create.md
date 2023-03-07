@@ -70,7 +70,7 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
 | `groupid` | String | The custom group ID. It cannot exceed 18 digits and cannot start with zero (0). This field is disabled by default. To enable this field, contact [support@agora.io](mailto:support@agora.io).  | No |
 | `groupname` | String | The group name. It cannot exceed 128 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
-| `desc` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
+| `description` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`false`: No</li></ul> | Yes |
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
@@ -101,7 +101,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 ```shell
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
     "groupname": "testgroup",
-    "desc": "test",
+    "description": "test",
     "public": true
     "maxusers": 300,
     "owner": "testuser",
@@ -364,7 +364,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Modifying group information
 
-Modifies the chat group information. You can only modify the `groupname`, `desc`, `maxusers`, `membersonly`, `allowinvites`, and `custom` fields. If you pass in fields that cannot be modified or do not exist in the request, an error is reported.
+Modifies the chat group information. You can only modify the `groupname`, `description`, `maxusers`, `membersonly`, `allowinvites`, `invite_need_confirm`, `public`, and `custom` fields. If you pass in fields that cannot be modified or do not exist in the request, an error is reported.
 
 ### HTTP request
 
