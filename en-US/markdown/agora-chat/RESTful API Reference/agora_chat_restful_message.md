@@ -949,9 +949,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes |
 | `restrict-access` | Bool | Whether to restrict access to this file.<ul><li>`true`: Restrict access to the file. The user needs to provide a file access key (`share-secret)` to download the file. You can obtain the access key from the response body.</li><li>`false`: The access is not restricted. Users can download the file directly.</li></ul> | No |
 
-#### Request body
-
-The request body is in the form-data format and contains the following fields:
+#### Query parameter
 
 | Field | Type | Description | Required |
 | :---- | :----- | :--------------------------------------------------------------------------------------------- | :------- |
@@ -1562,7 +1560,7 @@ curl -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json
 
 This method enables the chat user to delete conversations one way from the server. Once the conversation is deleted, this chat user can longer retrieve the conversation from the server. Other chat users can still get the conversation from the server.
 
-For each App Key, the call frequency limit of this method is 100 per second.
+For each App Key, the call frequency limit of this method is 100 per second and 5 次/分钟/单用户 ID.
 
 ### HTTP request
 
