@@ -78,7 +78,7 @@ The request body is a JSON object, which contains the following fields:
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  | Yes |
 | `password` | String | The user's login password. The length cannot exceed 64 characters. | Yes |
-| `nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. The length cannot exceed 100 characters. The default value is null. <br>This field is used to set the user nickname displayed in the message push, not the user nickname in the user attributes. | Yes |
+| `nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. The length cannot exceed 100 characters. The default value is null. <br>This field is used to set the user nickname displayed in the message push, not the user nickname in the user attributes. | No |
 
 ### HTTP response
 
