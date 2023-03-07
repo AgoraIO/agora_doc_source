@@ -78,12 +78,12 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 | 参数                  | 类型    | 描述       | 是否必填 |
 | :-------------------- | :------ | :----------------------------------------------- | :------- |
 | `groupname`           | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
-| `desc`                | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
+| `description`                | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
 | `public`              | Boolean | 群组是否为公开群。公开群可以被搜索到，用户可以申请加入公开群；私有群无法被搜索到，因此需要群主或群管理员添加，用户才可以加入。<ul><li>`true`：公开群</li><li>`false`：私有群</li></ul> | 是       |
 | `maxusers`            | String  | 群组成员（包含群主）数量最大值。默认值为 200。不同套餐支持的人数上限不同，详情可以参考[套餐包详情](./agora_chat_plan?platform=RESTful)                            | 否       |
 | `allowinvites`        | Boolean | 是否允许群组成员邀请别人加入群组：<ul><li>`true`：允许</li><li>`false`：不允许。只有群主或者群管理员才可以加人</li></ul>                                                         | 否       |
 | `membersonly`         | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                                                                        | 否       |
-| `invite_need_confirm` | Bool    | 邀请用户入群时是否需要被邀用户同意。<ul><li> （默认）`true`：是；</li><li> `false`：否。</li></ul>                                                                                            | 否       |
+| `invite_need_confirm` | Boolean    | 邀请用户入群时是否需要被邀用户同意。<ul><li> （默认）`true`：是；</li><li> `false`：否。</li></ul>                                                                                            | 否       |
 | `owner`               | String  | 该群组的群主。                                                                                                                                                                   | 是       |
 | `members`             | Array   | 群组成员的用户 ID 数组。该数组可包含 1-100 个元素，不包含群主的用户 ID。                                                                                | 否       |
 | `custom`              | String  | 群组扩展信息，例如给群组添加业务相关标记，最大长度为 1,024 字符。                                                                                                                | 否       |
@@ -109,7 +109,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 ```shell
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
     "groupname": "testgroup",
-    "desc": "test",
+    "description": "test",
     "public": true,
     "maxusers": 300,
     "owner": "testuser",
@@ -372,7 +372,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 修改群组信息
 
-修改指定的群组消息。该方法仅支持修改 `groupname`、`description`、`maxusers`、`membersonly`、`allowinvites` 和 `custom` 字段。如果传入其他字段，或传入的字段不存在，则不能修改的字段会抛出异常。
+修改指定的群组消息。该方法仅支持修改 `groupname`、`description`、`maxusers`、`membersonly`、`allowinvites`、`invite_need_confirm`、`public` 和 `custom` 字段。如果传入其他字段，或传入的字段不存在，则不能修改的字段会抛出异常。
 
 ### HTTP 请求
 
@@ -404,8 +404,10 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | `description`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                       | 是       |
 | `maxusers`     | String  | 群组成员（包含群主）数量最大值。默认值为 200，最大值为 2000。不同套餐支持的人数上限不同，详情可以参考计费文档            | 否       |
 | `allowinvites` | Boolean | 是否允许群组成员邀请别人加入群组：<ul><li>`true`：允许</li><li>`false`：不允许。只有群主或者群管理员才可以加人</li></ul> | 否       |
+| `invite_need_confirm` | Boolean   | 否       | 受邀人加入群组前是否需接受入群邀请：<ul><li>`true`：需受邀人确认入群邀请；</li><li>`false`：受邀人直接加入群组，无需确认入群邀请。</li></ul> |
 | `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                | 否       |
-| `custom`       | String  | 群组扩展信息，例如给群组添加业务相关标记，最大长度为 1,024 字符。                                                        | 否       |
+| `custom`       | String  | 群组扩展信息，例如给群组添加业务相关标记，最大长度为 1,024 字符。    | 否       |
+| `public`              | Boolean   | 是       | 是否是公开群。<ul><li>`true`：公开群；</li><li>`false`：私有群。</li></ul>        |
 
 ### HTTP 响应
 
@@ -415,11 +417,14 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 
 | 字段                | 类型 | 说明                                                                                                                          |
 | :------------------ | :--- | :---------------------------------------------------------------------------------------------------------------------------- |
-| `data.description`  | Bool | 群组描述：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
-| `data.maxusers`     | Bool | 群组最大成员数：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>                                               |
-| `data.groupname`    | Bool | 群组名称：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
-| `data.membersonly`  | Bool | 加入群组是否需要群主或者群管理员审批：<ul><li>`true`：是；</li><li>`false`：否。</li></ul>                                     |
-| `data.allowinvites` | Bool | 是否允许群成员邀请别人加入此群<ul><li>`true`：允许群成员邀请人加入此群；</li><li>`false`：只有群主才可以往群里加人。</li></ul> |
+| `data.description`  | Boolean | 群组描述是否修改成功：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
+| `data.maxusers`     | Boolean | 群组最大成员数是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>                                               |
+| `data.groupname`    | Boolean | 群组名称是否修改成功：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
+| `data.membersonly`  | Boolean | “加入群组是否需要群主或者群管理员审批”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
+| `data.public`  | Boolean | “是否是公开群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
+| `data.allowinvites` | Boolean | “是否允许群成员邀请其他用户入群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
+| `data.invite_need_confirm` | Boolean | “受邀人加入群组前是否需接受入群邀请”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
+
 
 其他相应字段说明详见 [公共参数](#pubparam)。
 
@@ -432,13 +437,16 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
 
-curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
-    "groupname": "testgroup1",
-    "description": "test",
-    "maxusers": 300,
+curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/6XXXX7' -d '{
+    "groupname": "test groupname",
+    "description": "updategroupinfo12311",
+    "maxusers": 1500,
     "membersonly": true,
-    "allowinvites": true
-}' 'http://XXXX/XXXX/XXXX/chatgroups/66021836783617'
+    "allowinvites": false,
+    "invite_need_confirm": true,
+    "custom":"abc",
+    "public": true
+}'
 ```
 
 #### 响应示例
@@ -446,20 +454,24 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ```json
 {
     "action": "put",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66021836783617",
-    "entities": [],
+    "application": "XXXXXX",
+    "applicationName": "XXXX",
     "data": {
-      "membersonly": true,
-      "allowinvites": true,
-      "description": true,
-      "maxusers": true,
-      "groupname": true
+        "allowinvites": true,
+        "invite_need_confirm": true,
+        "membersonly": true,
+        "public": true,
+        "custom": true,
+        "description": true,
+        "maxusers": true,
+        "groupname": true
     },
-    "timestamp": 1542363146301,
     "duration": 0,
+    "entities": [],
     "organization": "XXXX",
-    "applicationName": "XXXX"
+    "properties": {},
+    "timestamp": 1666062065529,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/6XXXX7"
 }
 ```
 
