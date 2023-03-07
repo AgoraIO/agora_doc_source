@@ -29,10 +29,13 @@
 | `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`     | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
 | `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。        |
-| `uri`             | String | 请求 URI。                                                        |
-| `entities`        | JSON   | 返回实体信息。                                                    |
-| `timestamp`       | Long   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
-| `duration`        | Number | 从发送 HTTP 请求到响应的时长（毫秒）。                            |
+| `username`        | String | 用户 ID。                                                    |
+| `entities`        | Object | 响应实体。                                                   |
+| `data.nickname`   | String | 用户昵称。                                                   |
+| `data.ext`        | String | 自定义的用户属性扩展字段。                                   |
+| `data.avatarurl`  | String | 用户头像 URL。                                               |
+| `timestamp`       | Long   | Unix 时间戳，单位为毫秒。                                    |
+| `duration`        | Long   | 从发送 HTTP 请求到响应的时长, 单位为毫秒。                   |
 
 ## 认证方式
 
