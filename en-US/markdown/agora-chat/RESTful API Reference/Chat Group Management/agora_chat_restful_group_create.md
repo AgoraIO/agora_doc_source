@@ -70,15 +70,15 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
 | `groupid` | String | The custom group ID. It cannot exceed 18 digits and cannot start with zero (0). This field is disabled by default. To enable this field, contact [support@agora.io](mailto:support@agora.io).  | No |
 | `groupname` | String | The group name. It cannot exceed 128 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
-| `description` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
+| `desc` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`false`: No</li></ul> | Yes |
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
-| `invite_need_confirm` | Boolean    | 邀请用户入群时是否需要被邀用户同意。<ul><li> （默认）`true`：是；</li><li> `false`：否。</li></ul> | No       |
 | `owner` | String | The chat group owner. | Yes |
 | `members` | Array | Regular chat group members. This chat group member array does not contain the group owner. If you want to set this field, you can enter 1 to 100 elements in this array. | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
+
 
 ### HTTP response
 
@@ -101,7 +101,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 ```shell
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
     "groupname": "testgroup",
-    "description": "test",
+    "desc": "test",
     "public": true
     "maxusers": 300,
     "owner": "testuser",
@@ -364,7 +364,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## Modifying group information
 
-Modifies the chat group information. You can only modify the `groupname`, `description`, `maxusers`, `membersonly`, `allowinvites`, `invite_need_confirm`, `public`, and `custom` fields. If you pass in fields that cannot be modified or do not exist in the request, an error is reported.
+Modifies the chat group information. You can only modify the `groupname`, `desc`, `maxusers`, `membersonly`, `allowinvites`, and `custom` fields. If you pass in fields that cannot be modified or do not exist in the request, an error is reported.
 
 ### HTTP request
 
@@ -393,13 +393,11 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
 | `groupname` | String | The group name. It cannot exceed 128 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
-| `description` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
+| `desc` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular chat group membercan invite other users to join the group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the group. </li></ul> | No |
-| `invite_need_confirm` | Boolean | 受邀人加入群组前是否需接受入群邀请：<ul><li>`true`：需受邀人确认入群邀请；</li><li>`false`：受邀人直接加入群组，无需确认入群邀请。</li></ul> |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
-| `public` | Boolean | 是否是公开群：<ul><li>`true`：需受邀人确认入群邀请；</li><li>`false`：受邀人直接加入群组，无需确认入群邀请。</li></ul>| No |
 
 
 ### HTTP response
@@ -410,14 +408,11 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 
 | Parameter | Type | Descriptions |
 | :------------------- | :------ | :----------------------------------------------------------- |
-| `groupname` | Boolean | 群组名称是否修改成功：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul> |
-| `description` | Boolean | 群组描述是否修改成功：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul> |
-| `membersonly` | Boolean | “加入群组是否需要群主或者群管理员审批”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>  |
-| `public` | Boolean | “是否是公开群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>  |
-| `custom` | Boolean | 群组扩展信息是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>| 
-| `allowinvites` | Boolean | “是否允许群成员邀请其他用户入群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败</li></ul> |
-| `maxusers` | Boolean | 群组最大成员数是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
-| `invite_need_confirm` | Boolean | “受邀人加入群组前是否需接受入群邀请”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
+| `groupname` | String | The group name. |
+| `description` | String | The group description. |
+| `membersonly` | Boolean | Whether a user requesting to join the group requires the approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> |
+| `allowinvites` | Boolean | Whether a regular group member can invite other users to join the group.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `maxusers` | Number | The maximum number of chat group members (including the group owner. |
 
 For other fields and descriptions, see [Common parameters](#pubparam).
 
@@ -428,16 +423,13 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 #### Request example
 
 ```shell
-curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/6XXXX7' -d '{
-    "groupname": "test groupname",
-    "description": "updategroupinfo12311",
-    "maxusers": 1500,
+curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
+    "groupname": "testgroup1",
+    "description": "test",
+    "maxusers": 300,
     "membersonly": true,
-    "allowinvites": false,
-    "invite_need_confirm": true,
-    "custom":"abc",
-    "public": true
-}'
+    "allowinvites": true
+}' 'http://XXXX/XXXX/XXXX/chatgroups/66021836783617'
 ```
 
 #### Response example
@@ -445,24 +437,20 @@ curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```json
 {
     "action": "put",
-    "application": "XXXXXX",
-    "applicationName": "XXXX",
-    "data": {
-        "allowinvites": true,
-        "invite_need_confirm": true,
-        "membersonly": true,
-        "public": true,
-        "custom": true,
-        "description": true,
-        "maxusers": true,
-        "groupname": true
-    },
-    "duration": 0,
+    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66021836783617",
     "entities": [],
+    "data": {
+      "membersonly": true,
+      "allowinvites": true,
+      "description": true,
+      "maxusers": true,
+      "groupname": true
+    },
+    "timestamp": 1542363146301,
+    "duration": 0,
     "organization": "XXXX",
-    "properties": {},
-    "timestamp": 1666062065529,
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/6XXXX7"
+    "applicationName": "XXXX"
 }
 ```
 
