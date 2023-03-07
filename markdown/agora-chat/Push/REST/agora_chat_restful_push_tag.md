@@ -34,7 +34,7 @@ Authorization：`Bearer ${YourAppToken}`
 
 ## 创建推送标签
 
-为推送的目标用户添加标签，对用户进行分组，实现精细化推送。当前最多可创建 100 个推送标签。如需提升该上限，请联系[support@agora.io](support@agora.io)。
+为推送的目标用户添加标签，对用户进行分组，实现精细化推送。当前最多可创建 100 个推送标签。如需提升该上限，请联系[support@agora.io](mailto:support@agora.io)。
 
 ### HTTP 请求
 
