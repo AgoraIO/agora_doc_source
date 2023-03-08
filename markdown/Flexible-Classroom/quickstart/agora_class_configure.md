@@ -27,7 +27,7 @@
      - `folder`: 阿里云 OSS 中的资源存放路径，例如 `whiteboard`。
      - `accessKey`: 阿里云 OSS 提供的访问密钥中的 Access Key，用于识别访问者的身份。
      - `secretKey`: 阿里云 OSS 提供的访问密钥中的 Secret Key，用于验证签名的密钥。
-     <div class="alert info">对于如何获取上述信息，请查看<a href="https://www.alibabacloud.com/help/zh/object-storage-service" target="_blank">阿里云官方文档</a>。</div>
+     <div class="alert info">对于如何获取上述信息，请查看<a href="https://www.alibabacloud.com/help/zh/object-storage-service/latest/description#concept-whm-jcq-tdb" target="_blank">阿里云官方文档</a>。</div>
 
    - 如果你使用 Amazon S3，填写以下信息：
      - `region`: Amazon S3 中创建 Bucket 时指定的数据中心所在区域。
@@ -40,6 +40,9 @@
 
 2. 开启文档转网页、文档转图片、截图等白板进阶服务。参考<a href="/cn/whiteboard/enable_whiteboard#开启互动白板配套服务" target="_blank">开启互动白板配套服务</a>。
 
+3、注意事项
+为确保声网可以访问你的云存储空间，你的云存储账号中必须进行以下配置（跳转到下方的注意事项）
+
 ## 配置录制功能
 
 灵动课堂中默认录制行为是：使用<a href="/cn/cloud-recording/cloud_recording_composite_mode?platform=RESTful" target="_blank">合流录制模式</a>且只录制老师的音视频，录制文件会存储在 Agora 的阿里云 OSS 账号中。
@@ -47,6 +50,8 @@
 如需修改上述行为，你可在 Agora 控制台**灵动课堂配置**页面找到云录制模块，分别传入 JSON 对象进行配置：
 
 ![](https://web-cdn.agora.io/docs-files/1641291167789)
+
+注意：录制配置可以选择默认，存储配置必须选择自定义。否则录制无法存储到用户自己的OSS账号中。
 
 ### 录制配置
 
@@ -84,6 +89,8 @@
     ]
 }
 ```
+3、注意事项
+为确保声网可以访问你的云存储空间，你的云存储账号中必须进行以下配置（跳转到下方的注意事项）
 
 ## 配置环信 IM
 
