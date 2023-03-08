@@ -33,11 +33,17 @@
 参照以下步骤启动灵动课堂：
 
 1. 在 Android Studio 中导入 CloudClass-Android 项目。
-
    ![](https://web-cdn.agora.io/docs-files/1648635239823)
 
-2. 在 Android Studio 中编译并运行 CloudClass-Android 项目。运行成功后，你可以在 Android 设备上看到以下画面：
+  如果获取依赖包失败，可以通过 Android Studio Gradle 同步拉取
+![[android_img_sync.png]]
 
+2. 在 Android Studio 中运行 CloudClass-Android 项目。
+
+电脑连接手机，点击 Android Studio 的 Run，运行项目
+![[android_run.png]]
+
+运行成功后，你可以在 Android 设备上看到以下画面：
    ![](https://web-cdn.agora.io/docs-files/1648635613438)
 
 3. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
