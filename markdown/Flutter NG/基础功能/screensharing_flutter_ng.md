@@ -7,7 +7,7 @@
 - 视频会议场景中，屏幕共享可以将讲话者本地的文件、数据、网页、PPT 等画面分享给其他与会人；
 - 在线课堂场景中，屏幕共享可以将老师的课件、笔记、讲课内容等画面展示给学生观看。
 
-本文介绍如何使用 Agora Flutter SDK 6.x 在 Android，iOS，macOS 和 Windows 平台实现屏幕共享。
+本文介绍如何使用声网 Flutter SDK 6.x 在 Android，iOS，macOS 和 Windows 平台实现屏幕共享。
 
 
 ## 前提条件
@@ -17,17 +17,17 @@
 
 ## Android 平台
 
-在 Android 平台实现屏幕共享时，只需要调用 [`startScreenCapture`](./API%20Reference/flutter_ng/API/toc_screen_share.html?platform=Flutter#api_irtcengine_startscreencapture) 开启屏幕共享。你可以参考 Agora 视频 SDK 中的 [screen_sharing.dart](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/screen_sharing/screen_sharing.dart) 文件实现屏幕共享。
+在 Android 平台实现屏幕共享时，只需要调用 [`startScreenCapture`](./API%20Reference/flutter_ng/API/toc_screen_share.html?platform=Flutter#api_irtcengine_startscreencapture) 开启屏幕共享。你可以参考声网视频 SDK 中的 [screen_sharing.dart](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/screen_sharing/screen_sharing.dart) 文件实现屏幕共享。
 
 ## iOS 平台
 
-<div class="alert note"><ul><li>受系统限制，屏幕共享只支持 iOS 12.0 或之后的系统。</li><li>该功能对设备性能要求较高，Agora 推荐你在 iPhone X 及之后机型上使用。</li></ul></div>
+<div class="alert note"><ul><li>受系统限制，屏幕共享只支持 iOS 12.0 或之后的系统。</li><li>该功能对设备性能要求较高，声网推荐你在 iPhone X 及之后机型上使用。</li></ul></div>
 
 ### 技术原理
 
 由于 Apple 不支持在 app 主进程采集屏幕，因此你需要为屏幕共享流单独创建一个 Extension，并在 Extension 中使用 iOS 原生的 ReplayKit 框架实现录制屏幕，然后将屏幕共享流发送给主进程、实现屏幕共享。详见下图：
 
-<img src="https://web-cdn.agora.io/docs-files/1670577226929"/>
+<img src="https://web-cdn.agora.io/docs-files/1675750878809"/>
 
 ### 实现步骤
 #### 1. 打开项目
@@ -65,7 +65,7 @@
 
 修改 `SampleHandler.h` 文件，以修改实现屏幕共享的代码逻辑：
 
-  - 如果你只需使用 Agora 提供的 `AgoraReplayKitExtension.xcframework` 中的功能，选中 `Target` 为刚刚创建的 Extension，在 **Info** 中将 **NSExtension > NSExtensionPrincipalClass** 所对应的 **Value** 从 **SampleHandler** 改为 **AgoraReplayKitHandler**。
+  - 如果你只需使用声网提供的 `AgoraReplayKitExtension.xcframework` 中的功能，选中 `Target` 为刚刚创建的 Extension，在 **Info** 中将 **NSExtension > NSExtensionPrincipalClass** 所对应的 **Value** 从 **SampleHandler** 改为 **AgoraReplayKitHandler**。
 
     ![](https://web-cdn.agora.io/docs-files/1669346575589)
 
@@ -161,14 +161,15 @@
 ## macOS/Windows 平台
 ### 技术原理
 
-Agora 目前在 macOS/Windows 平台上支持以下两种屏幕共享方案：
+声网目前在 macOS/Windows 平台上支持以下两种屏幕共享方案：
 
 - 通过 `displayId` 共享指定屏幕，或指定屏幕的部分区域。
 - 通过 `windowId` 共享指定窗口，或指定窗口的部分区域。
 
 API 的调用时序如下图所示：
 
-![](https://web-cdn.agora.io/docs-files/1669950827142)
+![](https://web-cdn.agora.io/docs-files/1675750920612)
+
 ### 实现步骤
 #### 1. 获取屏幕 ID 或窗口 ID
 
@@ -267,7 +268,7 @@ API 的调用时序如下图所示：
 
 ### 示例项目
 
-Agora 在 [Agora-Flutter-SDK](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK) 中提供屏幕共享的代码示例，你可以参考以下文件实现屏幕共享：
+声网在 [Flutter SDK](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK) 中提供屏幕共享的代码示例，你可以参考以下文件实现屏幕共享：
 
 - [`screen_sharing.dart`](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/screen_sharing/screen_sharing.dart)
 - [`info.plist`](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/ios/ScreenSharing/Info.plist)

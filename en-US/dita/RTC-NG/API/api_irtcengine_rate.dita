@@ -27,9 +27,10 @@ description:(NSString * _Nullable)description;</codeblock>
     {required String callId,
     required int rating,
     required String description});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <note type="attention">Ensure that you call this method after leaving a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -40,17 +41,18 @@ description:(NSString * _Nullable)description;</codeblock>
             </plentry>
             <plentry>
                 <pt>rating</pt>
-                <pd>The rating of the call. The value is between 1 (lowest score) and 5 (highest score). If you set a value out of this range, the SDK returns the -2 (<codeph>ERR_INVALID_ARGUMENT</codeph>) error.</pd>
+                <pd>The rating of the call. The value is between 1 (the lowest score) and 5 (the highest score). If you set a value out of this range, the SDK returns the -2 (<codeph>ERR_INVALID_ARGUMENT</codeph>) error.</pd>
             </plentry>
             <plentry>
                 <pt>description</pt>
                 <pd><ph props="native unity">(Optional) </ph><ph>A description of the call. The string length should be less than 800 bytes.</ph></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>).</li>
                 <li>-3 (<codeph>ERR_NOT_READY</codeph>).</li>

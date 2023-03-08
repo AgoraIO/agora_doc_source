@@ -31,10 +31,11 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioVolumeIndication(
     {required int interval, required int smooth, required bool reportVad});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>该方法允许 SDK 定期向 app 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。启用该方法后，只要频道内有发流用户， SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication" /> 回调。</p>
+            <title>详情</title>
+            <p>该方法允许 SDK 定期向 app 报告本地发流用户和瞬时音量最高的远端用户（最多 3 位）的音量相关信息。启用该方法后，只要频道内有发流用户，SDK 会在加入频道后按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication" /> 回调。</p>
             <note type="attention">该方法在加入频道前后都能调用。</note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -61,10 +62,11 @@
                     </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0：方法调用成功。</li>
+            <li props="native electron unity rn">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>

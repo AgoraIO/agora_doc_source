@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_pushreverseaudioframe">
     <title><ph keyref="pushReverseAudioFrame1" /></title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Pushes an external audio frame, which is processed by a custom echo cancellation module.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,31 +20,35 @@
             <codeblock props="unity" outputclass="language-csharp" />
             <codeblock props="rn" outputclass="language-typescript">abstract pushReverseAudioFrame(frame: AudioFrame): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; pushReverseAudioFrame(AudioFrame frame);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
-        <section id="detailed_desc" />
-            <section id="parameters">
-                <title>Parameters</title>
-                <parml>
-                <plentry props="cpp ios mac" id="frame">
-                    <pt props="cpp">frame</pt>
-                    <pt props="ios mac">audioFrame</pt>
-                    <pd>External audio frames. See <xref keyref="AudioFrame" />.</pd>
-                </plentry>
-                <plentry props="android" id="data">
-                    <pt>data</pt>
-                    <pd>Audio data with the type of <codeph>byte[]</codeph>.</pd>
-                </plentry>
-                <plentry props="android" conkeyref="pullAudioFrame/length">
-                    <pt />
-                    <pd />
-                </plentry>
-                </parml> </section>
-            <section id="return_values">
-                <title>Returns</title>
-                <ul>
-                    <li>0: Success.</li>
-                    <li>&lt; 0: Failure.</li>
-                </ul> </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>To ensure the local user will not hear an echo, after the local user call <xref keyref="pushCaptureAudioFrame1" />, the remote users need to call <xref keyref="pullAudioFrame" /> and <apiname keyref="pushReverseAudioFrame1" /> in sequence to send the audio streams captured, together with the streams received to the echo cancellation module.</p>
+            <note type="attention">Before calling this method, you need to set <parmname>publishCustomAudioTrackAec</parmname> in <xref keyref="ChannelMediaOptions" /> as <codeph><ph keyref="true" /></codeph> and set <parmname>publishCustomAudioTrack</parmname> as <codeph><ph keyref="false" /></codeph>.</note> </section>
+        <section id="parameters">
+            <title>Parameters</title>
+            <parml>
+            <plentry props="cpp ios mac" id="frame">
+                <pt props="cpp">frame</pt>
+                <pt props="ios mac">audioFrame</pt>
+                <pd>The external audio frame. See <xref keyref="AudioFrame" />.</pd>
+            </plentry>
+            <plentry props="android" id="data">
+                <pt>data</pt>
+                <pd>The remote audio data to be pulled. The data type is <codeph>byte[]</codeph>.</pd>
+            </plentry>
+            <plentry props="android" conkeyref="pullAudioFrame/length">
+                <pt />
+                <pd />
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <ul>
+            <li props="native unity rn electron">0: Success.</li>
+            <li>&lt; 0: Failure.</li>
+            </ul> </section>
     </refbody>
 </reference>

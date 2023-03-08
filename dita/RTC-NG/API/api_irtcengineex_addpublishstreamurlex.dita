@@ -30,9 +30,10 @@
       {required String url,
       required bool transcodingEnabled,
       required RtcConnection connection});</codeblock>            
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>调用该方法后，你可以根据 <xref keyref="RtcConnection" /> 选择向 CDN 推送任意一路 RTMP 或 RTMPS 协议的媒体流。SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged" /> 回调，报告增加旁路推流地址的状态。</p>
             <note type="attention" id="note">
             <ul>
@@ -59,9 +60,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功。</li>
+            <li props="native unity rn electron">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
                 <ul>
                 <li>-2: 参数无效，一般是 URL 为空或是长度为 0 的字符串。</li>

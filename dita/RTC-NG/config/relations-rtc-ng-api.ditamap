@@ -1279,7 +1279,6 @@
         </relrow>
         <relrow props="native rn flutter electron">
             <relcell>
-                <topicref keyref="onMediaPlayerVideoFrame"/>
                 <topicref keyref="onScreenCaptureVideoFrame"/>
             </relcell>
             <relcell>
@@ -2260,6 +2259,7 @@
                 <topicref keyref="enableFaceDetection" props="cpp ios android unity rn flutter"/>
                 <topicref keyref="enableInEarMonitoring" props="android ios mac"/>
                 <topicref keyref="enableInEarMonitoring2"/>
+                <topicref keyref="enableInstantMediaRendering"/>
                 <topicref keyref="enableLocalAudio"/>
                 <topicref keyref="enableLocalVideo"/>
                 <topicref keyref="enableLoopbackRecording" props="mac cpp unity electron flutter"/>
@@ -2491,6 +2491,7 @@
                 <topicref keyref="startScreenCaptureByWindowId" props="mac cpp unity flutter electron"/>
                 <topicref keyref="startSecondaryCameraCapture" props="cpp framework"/>
                 <topicref keyref="startSecondaryScreenCapture" props="cpp unity electron flutter"/>
+                <topicref keyref="startMediaRenderingTracing"/>
                 <topicref keyref="stopAllEffects"/>
                 <topicref keyref="stopAudioMixing"/>
                 <topicref keyref="stopAudioRecording"/>
@@ -2581,6 +2582,7 @@
                 <topicref keyref="setVideoEncoderConfigurationEx"/>
                 <topicref keyref="sendStreamMessageEx" props="android cpp framework"/>
                 <topicref keyref="startChannelMediaRelayEx"/>
+                <topicref keyref="startMediaRenderingTracingEx"/>
                 <topicref keyref="startRtmpStreamWithoutTranscodingEx"/>
                 <topicref keyref="startRtmpStreamWithTranscodingEx"/>
                 <topicref keyref="stopChannelMediaRelayEx"/>
@@ -2813,7 +2815,7 @@
                 <topicref keyref="IAudioDeviceManager"/>
             </relcell>
         </relrow>
-        <relrow props="apple android">
+        <relrow props="apple">
             <relcell>
                 <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
                 <topicref keyref="startPlaybackDeviceTest" props="mac"/>
@@ -2824,7 +2826,7 @@
                 <topicref keyref="getDefaultDevice_IAudioDeviceCollection" props="mac"/>
                 <topicref keyref="setDevice_IVideoDeviceCollection" props="mac"/>
                 <topicref keyref="setDeviceVolume" props="mac"/>
-                <topicref keyref="setMediaMetadataDataSource" props="apple"/>
+                <topicref keyref="setMediaMetadataDataSource"/>
                 <topicref keyref="startAudioDeviceLoopbackTest" props="mac"/>
                 <topicref keyref="stateChanged" props="mac"/>
             </relcell>
@@ -3039,7 +3041,7 @@
                 <topicref keyref="getVideoFrameProcessMode" props="native"/>
                 <topicref keyref="onCaptureVideoFrame"/>
                 <topicref keyref="onFrame_IVideoFrameObserver" props="ios mac cpp"/>
-                <topicref keyref="onMediaPlayerVideoFrame" props="native rn flutter electron"/>
+                <topicref keyref="onMediaPlayerVideoFrame" props="hide"/>
                 <topicref keyref="onPreEncodeVideoFrame"/>
                 <topicref keyref="onPreEncodeScreenVideoFrame" props="native rn flutter electron"/>
                 <topicref keyref="onSecondaryPreEncodeScreenVideoFrame" props="cpp rn flutter electron"/>
@@ -3212,6 +3214,14 @@
             </relcell>
             <relcell>
                 <topicref keyref="AgoraVideoSurface"/>
+            </relcell>
+        </relrow>
+        <relrow props="framework">
+            <relcell>
+                <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IMediaPlayerAudioFrameObserver"/>
             </relcell>
         </relrow>
     </reltable>

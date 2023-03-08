@@ -8,19 +8,11 @@
 
 ## 前提条件
 
--   在声网控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
--   在声网控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
--   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以声网推荐使用真机。此外，灵动课堂 Android 端要求运行在 Android 5.0 或以上版本。
+~fcbefc40-5374-11ed-8dae-bf25bf08a626~
 
 ## 准备开发环境
 
-在你的设备上运行灵动课堂依赖于 Git（用于下载源码）、Android Studio、Java Development Kit。
-
-你可参考以下步骤准备开发环境：
-
-1. 点击[链接](https://git-scm.com/downloads)前往下载 Git。
-2. 点击[链接](https://developer.android.com/studio)前往下载 Android Studio。要求 Android Studio 4.1 以上版本，建议使用最新版本。
-3. 点击[链接](https://www.oracle.com/java/technologies/javase-downloads.html)前往下载 Java Development Kit。
+~2c5b8db0-5375-11ed-8dae-bf25bf08a626~
 
 ## 获取源码
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="callback_irtcengineeventhandler_onvideorenderingtracingresult">
+    <title><ph keyref="onVideoRenderingTracingResult"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Video frame rendering event callback.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onVideoRenderingTracingResult"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onVideoRenderingTracingResult(int uid,
+    Constants.MEDIA_RENDER_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine videoRenderingTracingResultOfUid:(NSUInteger)uid currentEvent:(AgoraMediaRenderTraceEvent)currentEvent tracingInfo:(AgoraVideoRenderingTracingInfo * _Nonnull)tracingInfo NS_SWIFT_NAME(rtcEngine(_:videoRenderingTracingResultOfUid:currentEvent:tracingInfo:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp"> virtual void onVideoRenderingTracingResult(uid_t uid, MEDIA_TRACE_EVENT currentEvent, VideoRenderingTracingInfo tracingInfo) {
+  (void)uid;
+  (void)currentEvent;
+  (void)tracingInfo;
+}</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>Since</dt>
+                <dd>v4.1.1</dd>
+            </dlentry>
+            </dl>
+            <p>After calling the <xref keyref="startMediaRenderingTracing"/> method, the SDK triggers this callback to report the events of video frame rendering and the indicators during the rendering process. Developers can optimize the indicators to improve the efficiency of the first video frame rendering.</p>
+        </section>
+        <section id="parameters">
+            <title><ph keyref="callback-section-title"/></title>
+            <parml>
+            <plentry>
+                <pt>uid</pt>
+                <pd>The user ID.</pd>
+            </plentry>
+            <plentry>
+                <pt>currentEvent</pt>
+                <pd>The current video frame rendering event. See <xref keyref="MEDIA_TRACE_EVENT"/>.</pd>
+            </plentry>
+            <plentry>
+                <pt>tracingInfo</pt>
+                <pd>The indicators during the video frame rendering process. Developers need to reduce the value of indicators as much as possible in order to improve the efficiency of the first video frame rendering. See <xref keyref="VideoRenderingTracingInfo"/>.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

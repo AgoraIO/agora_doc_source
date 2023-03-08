@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_setexternalaudiosource2">
     <title><ph keyref="setExternalAudioSource2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the external captured audio parameters and chooses whether to publish the audio to the remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the external audio source parameters.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -51,9 +51,10 @@
     int sourceNumber = 1,
     bool localPlayback = false,
     bool publish = true});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <note type="attention">Call this method before joining a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -69,7 +70,7 @@
             </plentry>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>The sample rate (Hz) of the external audio source, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
+                <pd>The sample rate (Hz) of the external audio which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
             </plentry>
             <plentry>
                 <pt>channels</pt>
@@ -98,10 +99,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_cff_fnf_3qb">
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

@@ -27,9 +27,10 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableLoopbackRecording(
     {required bool enabled, String? deviceName});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
@@ -53,14 +54,15 @@
                 <pd props="electron cpp unity flutter">
                     <ul>
                     <li>macOS: The device name of the virtual sound card. The default value is set to NULL, which means using AgoraALD for loopback audio capturing.</li>
-                    <li>Windows: The device name of the sound card. The default is set to null, which means the SDK uses the sound card of your device for loopback audio capturing.</li>
+                    <li>Windows: The device name of the sound card. The default is set to NULL, which means the SDK uses the sound card of your device for loopback audio capturing.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
