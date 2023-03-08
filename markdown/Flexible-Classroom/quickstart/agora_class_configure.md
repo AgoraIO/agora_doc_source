@@ -22,7 +22,8 @@
 
    - 如果你使用阿里云 OSS，填写以下信息：
      - `region`: 阿里云 OSS 中创建 Bucket 时指定的数据中心所在区域，例如 `oss-cn-shanghai`。
-     - `endpoint`: 阿里云 OSS 的访问域名，例如 `oss-cn-shanghai.aliyuncs.com`。
+     - `endpoint`: 该字段会应用在“获取录制列表”接口返回的录像url里的域名，一般是由 Bucket 名称和访问域名拼成的完整路径。如你的 Bucket 名称为 "agora-recording"，OSS 访问域名为 "oss-cn-shanghai.aliyuncs.com"，则 endpoint 字段设为 "https://agora-recording.oss-cn-shanghai.aliyuncs.com"。
+     如果你的oss配置了cdn加速，也可以直接将endpoint设置为cdn加速域名，最终录像url为"https://agora-adc-artifacts.oss-accelerate.aliyuncs.com/xxxxx.mp4"。
      - `bucket`: 阿里云 OSS 中的 Bucket 名称，例如 `agora-whiteboard`。
      - `folder`: 阿里云 OSS 中的资源存放路径，例如 `whiteboard`。
      - `accessKey`: 阿里云 OSS 提供的访问密钥中的 Access Key，用于识别访问者的身份。
@@ -112,6 +113,8 @@
 
    ![](https://web-cdn.agora.io/docs-files/1631178001176)
    ![](https://web-cdn.agora.io/docs-files/1631178086130)
+
+   请注意，环信控制台的默认应用为“免费社区版”，只能创建100个用户，仅用于体验与集成，若要上生产环境，需联系商务开通旗舰版。
 
 ## 配置 CDN 推拉流功能
 
