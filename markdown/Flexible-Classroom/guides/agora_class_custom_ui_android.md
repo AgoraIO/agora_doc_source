@@ -30,16 +30,10 @@
 
 后续 UI 相关的改动主要在以下两个目录中进行：
 
-- `/AgoraClassSDK`：实现教室页面。
+- `/AgoraClassSDK`：教室页面布局。
 - `/AgoraEduUIKit`：教室使用到的所有 UI 组件。
 
-### 2. 引入 UI 组件库
-
-参考以下步骤引入 UI 组件库：
-
-1. 参考[集成灵动课堂文档](/cn/agora-class/agora_class_integrate_android)将灵动课堂以 Maven 的方式引入到你自己的项目中。
-
-2. 修改 `AgoraEduUIKit` 和 `AgoraClassSDK` 模块的引用方式。你需要在 `build.gradle` 文件中进行如下修改：
+如果灵动课堂以 Maven 的方式引入到你自己的项目中，修改 `AgoraEduUIKit` 和 `AgoraClassSDK` 模块的引用方式。你需要在 `build.gradle` 文件中进行如下修改：
 
    ```kotlin
    dependencies {
@@ -50,12 +44,11 @@
     implementation project(path: ':AgoraClassSDK')
    }
    ```
+   
 
-<div class="alert info"><code>AgoraClassSDK</code> 里引用了 <code>AgoraEduUIKit</code> 模块。</div>
+<div class="alert note">注意：GitHub 源码的版本号要和 maven 引用的版本号保持一致。</div>
 
-<div class="alert note">GitHub 源码的版本号要和 maven 引用的版本号保持一致。</div>
-
-### 3. 修改现有的 UI 组件
+### 2. 修改现有的 UI 组件
 
 所有 UI 组件都位于 `com.agora.edu.component` 目录下，找到对应的组件就可以修改 UI。
 
@@ -77,7 +70,7 @@
 
    ![](https://web-cdn.agora.io/docs-files/1650438826125)
 
-### 4. 新增 UI 组件
+### 3. 新增 UI 组件
 
 所有 UI 组件都必须继承 `AbsAgoraEduComponent`，且调用 `initView(agoraUIProvider: IAgoraUIProvider)` 方法初始化 UI 组件。
 

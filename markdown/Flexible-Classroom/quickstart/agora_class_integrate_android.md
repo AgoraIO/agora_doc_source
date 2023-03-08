@@ -13,21 +13,21 @@
 -   `AgoraEduUIKit`:（可选）教室 UI 实现，并展示了如何根据灵动课堂的 API 和数据回调进行 UI 数据的聚合和更新。此模块在 GitHub 上开源。一般情况下开发者可以基于这个模块开发自己的课堂 UI。
 -   `AgoraClassSDK`:（可选）提供一些常用的方法，如配置 SDK、启动教室、注册 ext app 等功能，同时提供各场景的 Activity 实现。此模块在 GitHub 上开源。开发者可能用到其中的某些功能，建议保留。
 -   `AgoraEduCore`:（必需）灵动课堂的核心模块。自 2.0.0 版起，此模块闭源，开发者使用远程依赖引入。
--   `hyphenate`:（可选）课堂消息聊天功能的 UI 和逻辑，通过环信 IM SDK 实现。如果你自行实现课堂消息聊天功能并改写 `AgoraEduUIkit` 模块中课堂消息聊天功能相关的代码，则无需引入此模块。
 
 ### 模块依赖关系
 
--   `AgoraEduCore` 为必须引入的模块，其它模块均依赖它。
--   `AgoraEduUIKit` 和 `AgoraClassSDK` 均依赖 `AgoraEduCore`，它们之间无依赖关系。
--   `AgoraEduUIKit` 依赖 `hyphenate`。
--   `hyphenate` 依赖 `AgoraEduCore`。
--   `app` 依赖其它所有模块。
+- App
+	- AgoraClassSDK
+	- AgoraEduUIKit
+	- AgoraEduCore
 
-## 通过 Maven 集成灵动课堂
+其中 AgoraEduCore 是最核心功能，AgoraEduUIKit 依赖 AgoraEduCore 模块。
+
+## 通过 Maven 方式集成
 
 如果你使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可参考以下步骤通过 Maven 添加远程依赖集成完整的灵动课堂：
 
-1. 在项目根目录的 `build.gradle` 文件中添加以下库：
+1. 在项目根目录的 `build.gradle` 文件中添加以下代码：
 
     ```
     repositories {
@@ -38,7 +38,7 @@
     }
     ```
 
-2. 在项目根目录的 `build.gradle` 文件中添加以下依赖，引入 `AgoraEduUIKit`、`AgoraClassSDK`、`AgoraEduCore` 和 `hyphenate` 四个模块：
+2. 在项目根目录的 `build.gradle` 文件中添加以下依赖，引入 `AgoraEduUIKit`、`AgoraClassSDK`、`AgoraEduCore` 模块：
 
     ```
     dependencies {
@@ -48,22 +48,21 @@
     }
     ```
 
-    假设你想获取 2.8.0 的版本，可以这样写：
+	比如依赖 2.8.20 的版本：
 
     ```
     dependencies {
-        implementation "io.github.agoraio-community:AgoraEduCore:2.8.0"
-        implementation "io.github.agoraio-community:AgoraEduUIKit:2.8.0"
-        implementation "io.github.agoraio-community:AgoraClassSDK:2.8.0"
+        implementation "io.github.agoraio-community:AgoraEduCore:2.8.20"
+        implementation "io.github.agoraio-community:AgoraEduUIKit:2.8.20"
+        implementation "io.github.agoraio-community:AgoraClassSDK:2.8.20"
      }
     ```
 
-如果版本是2.7.0以下版本，需要添加hyphenate依赖
+	如果是2.7.0以下版本，还需要依赖 hyphenate 模块
 ```
-implementation "io.github.agoraio-community:hyphenate:2.8.0"
+implementation "io.github.agoraio-community:hyphenate:版本号"
 ```
 
-查看当前最新版本，可以查看 github：https://github.com/AgoraIO-Community/CloudClass-Android
 
     <div class="alert info">点击<a href="https://search.maven.org/search?q=io.github.agoraio-community" target="_blank">此处</a>查看灵动课堂最新版本。</div>
 
