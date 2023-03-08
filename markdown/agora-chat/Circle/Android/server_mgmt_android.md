@@ -23,7 +23,7 @@
 
 #### <a name="create"></a>创建社区
 
-可创建社区数量根据套餐版本有所不同。每个用户最多可创建 100 个社区，超过该阈值需要联系 [support@agora.io] 调整。
+可创建社区数量根据套餐版本有所不同。每个用户最多可创建 100 个社区，超过该阈值需要联系 [support@agora.io](mailto:support@agora.io) 调整。
 
 1. 调用 `createServer` 方法创建社区。
 

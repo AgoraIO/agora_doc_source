@@ -27,13 +27,6 @@
 | `uri`                | String  | 请求 URL。                                                   |
 | `path`               | String  | 请求路径，属于请求 URL 的一部分，无需关注。                  |
 | `entities`           | JSON    | 返回实体信息。                                               |
-| `data`               | Array   | 实际请求到的数据。                                           |
-| `entities.uuid`      | String  | 用户的 UUID。系统为该请求中的用户生成唯一内部标识，无需关注。 |
-| `entities.type`      | String  | 对象类型。无需关注。                                         |
-| `entities.created`   | Number  | 注册用户的 Unix 时间戳（毫秒）。                             |
-| `entities.modified`   | Number  | 用户信息的最新修改时间，为 Unix 时间戳（毫秒）。                             |
-| `entities.username`  | String  | 用户 ID。用户登录的唯一账号。                                |
-| `entities.activated` | Boolean | 用户是否为活跃状态：<ul><li>`true`：用户为活跃状态。</li><li>`false`：用户为封禁状态。</li></ul> |
 | `timestamp`          | Long  | 响应的 Unix 时间戳（毫秒）。                                 |
 | `duration`           | Number  | 从发送请求到响应的时长（毫秒）。                             |
 
@@ -121,7 +114,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
         "created": 1542356523769,
         "modified": 1542597334500,
         "username": "user2",
-        "activated": true
+        "activated": true,
+        "nickname": "testuser"
       }
     ],
     "action": "post",
@@ -204,6 +198,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
         "modified": 1542597334500,
         "username": "user2",
         "activated": true,
+        "nickname": "testuser"
       }
     ],
     "action": "delete",
@@ -498,6 +493,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
         "modified": 1542597334500,
         "username": "user2",
         "activated": true,
+        "nickname": "testuser"
       }
     ],
     "action": "delete",
