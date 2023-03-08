@@ -2,11 +2,11 @@ This page provides release notes for the Agora React Native Chat SDK.
 
 ## 1.1.1
 
-v1.1.1 was released on March 8, 2023.
+v1.1.1 was released on March 8, 2023. 
 
 #### Issues fixed
 
-Upon a call to the `ChatGroupManager#fetchJoinedGroupsFromServer` method, the returned extension field is empty for joined public groups.
+Upon a call to the `ChatGroupManager#fetchJoinedGroupsFromServer` method, the returned extension field is empty for the joined public groups.
 
 ## v1.1.0
 
