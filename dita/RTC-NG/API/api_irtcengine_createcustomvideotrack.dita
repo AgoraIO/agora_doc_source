@@ -31,6 +31,7 @@
             <li>调用该方法创建自定义视频轨道并获得视频轨道 ID。根据场景需要，你可以创建多个自定义视频轨道。</li>
             <li>多次调用 <xref keyref="joinChannelEx"/> 加入多个频道，在每个频道的 <xref keyref="ChannelMediaOptions"/> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>，<parmname>publishCameraTrack</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
             <li>调用 <xref keyref="pushVideoFrameEx2" props="android"/><xref keyref="pushVideoFrameEx" props="ios mac"/><xref keyref="pushVideoFrame" props="cpp electron unity rn flutter"/> 将 <parmname>videoTrackId</parmname> 指定为步骤 2 中指定的视频轨道 ID，即可实现在多个频道中发布对应的自定义视频源。</li>
+            <li>如需停止自定义视频采集，调用 <xref keyref="destroyCustomVideoTrack"/> 销毁视频轨道。</li>
             </ol></p>
         </section>
         <section id="return_values">
