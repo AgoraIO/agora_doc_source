@@ -141,3 +141,6 @@
 ## 注意事项
 
 ~4c2dbcc0-d2a7-11ec-8e95-1b7dfd4b7cb0~
+
+如果是阿里云需要开通putObject权限,否则上传课件会报403错误
+![](./images/ali_oss_config.png)
