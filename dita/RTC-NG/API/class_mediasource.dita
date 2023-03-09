@@ -51,19 +51,19 @@
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaSource {
-  
+
   url?: string;
-  
+
   uri?: string;
-  
+
   startPos?: number;
-  
+
   autoPlay?: boolean;
-  
+
   enableCache?: boolean;
-  
+
   isAgoraSource?: boolean;
-  
+
   isLiveSource?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class MediaSource : OptionalJsonParse
@@ -88,19 +88,19 @@
         }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class MediaSource {
-  
+
   url?: string;
-  
+
   uri?: string;
-  
+
   startPos?: number;
-  
+
   autoPlay?: boolean;
-  
+
   enableCache?: boolean;
-  
+
   isAgoraSource?: boolean;
-  
+
   isLiveSource?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class MediaSource {
@@ -130,7 +130,7 @@
 
   @JsonKey(name: 'isAgoraSource')
   final bool? isAgoraSource;
-  
+
   @JsonKey(name: 'isLiveSource')
   final bool? isLiveSource;
 
@@ -169,7 +169,7 @@
                     <li><codeph><ph keyref="false" /></codeph>：关闭自动播放。</li>
                     </ul>
                     <note>
-                    <p>如果你设置关闭自动播放，打开媒体文件后，还需再调用 <xref keyref="play" /> 方法来播放媒体文件。</p>
+                    <p>如果你设置关闭自动播放，打开媒体文件后，请调用 <xref keyref="play" /> 方法来播放媒体文件。</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -182,7 +182,8 @@
                     </ul>
                     <note>
                     <ul>
-                    <li>如需开启实时缓存，请向 <parmname>uri</parmname> 传值，否则播放器会以媒体文件的 <parmname>url</parmname> 作为缓存索引。</li>
+                    <li>目前仅支持缓存点播流。</li>
+                    <li>缓存前，请向 <parmname>uri</parmname> 传值，否则播放器会以媒体文件的 <parmname>url</parmname> 作为缓存索引。</li>
                     <li>开启实时缓存后，播放器会预先缓存当前正在播放的媒体文件的部分数据到本地，当你下次播放该文件时播放器会直接从缓存中加载数据，可节省网络流量。当前缓存的媒体文件的相关统计数据会在媒体文件开始播放后每秒更新一次，详见 <xref keyref="CacheStatistics" />。</li>
                     </ul> </note></pd>
             </plentry>
