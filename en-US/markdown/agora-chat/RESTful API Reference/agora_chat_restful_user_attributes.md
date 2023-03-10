@@ -31,7 +31,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `username`        | String | The unique login account of the user.                    |
 | `entities` | JSON | The response entity. |
 | `nickname`   | String | The nickname of the user.                                                  |
-| `ext`        | String | The custom extension field os the user.                  |
+| `ext`        | String | The custom extension field of the user.                  |
 | `avatarurl`  | String | The avatar URL of the user.                                               |
 | `timestamp` | Number | The Unix timestamp (ms) of the HTTP response. |
 | `duration` | Number | The duration (ms) from when the HTTP request is sent to the time the response is received. |
