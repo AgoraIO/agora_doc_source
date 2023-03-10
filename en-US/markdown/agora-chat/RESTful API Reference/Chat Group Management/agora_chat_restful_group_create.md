@@ -75,7 +75,7 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
-| `invite_need_confirm` | Boolean | Whether the group invitation is required to be confirmed the invitee.<ul><li>`true`: Yes.</li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> |
+| `invite_need_confirm` | Boolean | Whether the group invitation is required to be confirmed by the invitee.<ul><li>`true`: Yes.</li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> |
 | `owner` | String | The chat group owner. | Yes |
 | `members` | Array | Regular chat group members. This chat group member array does not contain the group owner. If you want to set this field, you can enter 1 to 100 elements in this array. | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
