@@ -1,6 +1,6 @@
 群组黑名单是指群组中既看不到也接收不到群组消息的用户列表。即时通讯提供整套的黑名单管理方法，支持查看、添加、移除黑名单等。
 
-本节展示如何调用即时通讯 RESTful API 管理群组黑名单。调用以下方法前，请先参考 [限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -37,7 +37,13 @@
 
 ## 认证方式
 
-~458499a0-7908-11ec-bcb4-b56a01c83d2e~
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 查询群组黑名单
 

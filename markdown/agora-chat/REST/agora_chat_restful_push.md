@@ -2,7 +2,7 @@
 
 本文展示如何调用即时通讯 RESTful API 设置消息推送显示昵称、推送通知方式及免打扰模式。
 
-调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 IM 的 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## 前提条件
 

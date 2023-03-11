@@ -4,7 +4,7 @@
 
 该功能可广泛应用于实时互动 app 中，例如发现某用户频繁向多个聊天室发送违规广告，则可以对该用户开启全局聊天室禁言 15 天；发现某用户发表触犯红线的政治言论，则可以全局永久禁言，用户申诉通过后可以解禁。
 
-开始前请了解 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="param"></a>
 
@@ -37,7 +37,13 @@
 
 ## 认证方式
 
-~e838c3b0-8e43-11ec-814c-17df6c7c3801~
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 设置用户全局禁言
 
@@ -229,7 +235,7 @@ GET https://{host}/{orgName}/{appName}/mutes
 | 参数       | 类型   | 描述                               | 是否必填 |
 | ---------- | ------ | ---------------------------------- | -------- |
 | `pageNum`  | Number | 请求查询的页码。                   | 是       |
-| `pageSize` | Number | 请求查询每页显示的禁言用户的数量。 | 是       |
+| `pageSize` | Number | 请求查询每页显示的禁言用户的数量。取值范围为 [1,50]。 | 是       |
 
 ### HTTP 响应
 

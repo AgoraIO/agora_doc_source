@@ -1,6 +1,6 @@
 聊天群白名单列表是指在群主或管理员使用 [全员禁言](./agora_chat_restful_group_mute?platform=RESTful#muting-all-chat-group-members) 方法将所有群成员禁言后，可以发送群消息的聊天室成员列表。即时通讯提供了一套完整的允许列表管理方法，包括将用户添加到白名单列表中、将其从其中删除，以及查询白名单列表中的成员。
 
-本页面展示了如何使即时通讯 RESTful API 管理群组白名单列表。在调用以下方法之前，请确保了解 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -38,7 +38,13 @@
 
 ## 认证方式
 
-~458499a0-7908-11ec-bcb4-b56a01c83d2e~
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 查询群组白名单
 

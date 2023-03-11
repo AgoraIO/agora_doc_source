@@ -1,6 +1,6 @@
 用户登录即时通讯 IM 后就可以创建群组、修改群组消息以及删除创建的群组。
 
-本文展示如何调用即时通讯 RESTful API 创建、获取、修改并删除群组。调用以下方法前，请先参考 [限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
