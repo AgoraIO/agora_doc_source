@@ -1,5 +1,5 @@
 本文展示如何调用即时通讯 RESTful API 实现全类型的消息，包括文本消息、图片消息、语音消息、视频消息、透传消息和自定义消息的发送与接收、消息附件上传和下载、获取历史消息记录、服务端消息撤回、服务端单向删除会话等。
-调用以下方法前，请先参考 [限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 

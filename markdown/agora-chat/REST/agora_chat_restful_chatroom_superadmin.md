@@ -1,5 +1,6 @@
 在即时通讯应用中，仅聊天室超级管理员具有在客户端创建聊天室的权限。
-本文展示如何调用即时通讯 RESTful API 实现聊天室超级管理员管理，包括添加、删除、查询聊天室超级管理员。调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+
+本文展示如何调用即时通讯 RESTful API 实现聊天室超级管理员管理，包括添加、删除、查询聊天室超级管理员。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 
@@ -7,36 +8,38 @@
 
 ### 请求参数
 
-| 参数          | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
-| :------------ | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
-| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
-| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
-| `username`    | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户 ID 唯一。</ul></div> | 是       |
-| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#a-namegetalla查询所有聊天室基本信息) 的响应 body 中获取。                                                                 | 是       |
+| 参数          | 类型   | 描述     | 是否必填 |
+| :------------ | :----- | :------------------------------------------ | :------- |
+| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。         | 是       |
+| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                      | 是       |
+| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。       | 是       |
+| `username`    | String | 用户 ID。用户的唯一登录账号。| 是       |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#a-namegetalla查询所有聊天室基本信息) 的响应 body 中获取。         | 是       |
 
 ### 响应参数
 
-| 参数              | 类型   | 描述                                                              |
-| :---------------- | :----- | :---------------------------------------------------------------- |
+| 参数              | 类型   | 描述            |
+| :---------------- | :----- | :-------------------------------- |
 | `action`          | String | 请求方式。                                                        |
-| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
+| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`     | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
-| `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
+| `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。        |
 | `uri`             | String | 请求 URL。                                                        |
 | `path`            | String | 请求路径，属于请求 URL 的一部分，无需关注。                       |
 | `entities`        | JSON   | 返回实体信息。                                                    |
 | `data`            | JSON   | 返回数据详情。                                                    |
-| `created`            | String | 用户、群组或聊天室的创建时间，Unix 时间戳，单位为毫秒。      |
-| `username`           | String | 用户 ID。                                                    |
-| `owner`              | String | 聊天室所有者的用户 ID。例如：{“owner”: “13800138001”}。      |
-| `member`             | String | 聊天室成员的用户 ID，包括聊天室管理员和普通成员的用户 ID。例如： {“member”:”xc6xrnbzci”}。        |
 | `timestamp`       | Long   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
 | `duration`        | Number | 从发送 HTTP 请求到响应的时长（毫秒）。                            |
 
 ## 认证方式
 
-~e838c3b0-8e43-11ec-814c-17df6c7c3801~
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 添加聊天室超级管理员
 
@@ -50,15 +53,15 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见 [公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。    | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 #### 请求 body
 
@@ -66,7 +69,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 
 | 字段         | 类型   | 描述                               | 是否必填 |
 | :----------- | :----- | :--------------------------------- | :------- |
-| `superadmin` | String | 待添加为聊天室超级管理员的用户 ID。 | 是       |
+| `superadmin` | String | 待添加为聊天室超级管理员的用户 ID，每次只能添加一个。 | 是       |
 
 ### HTTP 响应
 
@@ -76,8 +79,8 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 
 | 字段       | 类型   | 描述                                                    |
 | :--------- | :----- | :------------------------------------------------------ |
-| `result`   | Bool   | 添加结果：<li>`true`：添加成功。<li>`false`：添加失败。 |
-| `resource` | String | 预留参数，无需关注。                                    |
+| `data.result`   | Boolean   | 是否成功添加聊天室超级管理员：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
+| `data.resource` | String | 预留参数，无需关注。                                    |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -117,7 +120,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 撤销聊天室超级管理员
 
-撤销指定用户的聊天室超级管理员角色，使之成为普通聊天室成员。
+撤销指定用户的聊天室超级管理员角色，使之成为普通聊天室成员，将不能再创建聊天室。
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
@@ -131,14 +134,14 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 | :----------- | :----- | :----------------------------------- | :------- |
 | `superAdmin` | String | 待被撤销的聊天室超级管理员的用户 ID。 | 是       |
 
-其他参数及说明详见 [公共参数](#param)。
+其他参数及描述详见 [公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -148,8 +151,8 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 
 | 字段            | 类型   | 描述                             |
 | :-------------- | :----- | :------------------------------- |
-| `newSuperAdmin` | String | 被撤销的聊天室超级管理员用户 ID。 |
-| `resource`      | String | 预留参数，无需关注。             |
+| `data.newSuperAdmin` | String | 被撤销的聊天室超级管理员用户 ID。 |
+| `data.resource`      | String | 预留参数，无需关注。             |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -191,24 +194,26 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ### HTTP 请求
 
 ```http
-GET https://{host} /{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&pagesize={N}
+GET https://{host}/{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&pagesize={N}
 ```
 
 #### 路径参数
 
+参数及描述详见 [公共参数](#param)。
+
+#### 查询参数
+
 | 参数       | 类型 | 描述                                    | 是否必填 |
 | :--------- | :--- | :-------------------------------------- | :------- |
-| `pagenum`  | Int  | 查询页码。默认值为 1。                  | 否       |
-| `pagesize` | Int  | 每页显示的超级管理员数量。默认值为 10。 | 否       |
-
-其他参数及说明详见 [公共参数](#param)。
+| `pagenum`  | Int  | 查询页码。默认值为 `1`。                  | 否       |
+| `pagesize` | Int  | 每页显示的超级管理员数量。默认值为 `10`。 | 否       |
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -216,12 +221,12 @@ GET https://{host} /{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&page
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
-| 参数       | 类型       | 说明                             |
+| 参数       | 类型       | 描述                           |
 | :--------- | :--------- | :------------------------------- |
 | `pagenum`  | Int        | 当前页码。                       |
 | `pagesize` | Int        | 当前页显示的超级管理员最大数量。 |
 | `data`     | JSON Array | 聊天室超级管理员的用户 ID 数组。   |
-| `count`    | Number     | 返回超级管理员数量。             |
+| `count`    | Number     | 超级聊天室管理员的数量。             |
 
 其他字段及说明详见 [公共参数](#param)。
 

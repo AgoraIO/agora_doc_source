@@ -1,5 +1,6 @@
-本文展示如何调用即时通讯 RESTful API 实现聊天室禁言管理，包括添加、解除、查询聊天室中被禁言的成员。
-调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 实现聊天室禁言管理，包括将用户添加至或移出禁言列表以及获取禁言列表。
+
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 
@@ -7,34 +8,41 @@
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
-| `username` | String | 用户名。用户的唯一登录账号。长度在 64 个字节内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户名唯一。</ul></div> | 是       |
+| 参数       | 类型   | 描述     | 是否必填 |
+| :--------- | :----- | :--------------- | :------- |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。         | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，可从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#查询所有聊天室基本信息) 的响应 body 中获取。   | 是       |
+| `username` | String | 用户 ID。 | 是       |
 
 ### 响应参数
 
 | 参数              | 类型   | 描述                                                              |
 | :---------------- | :----- | :---------------------------------------------------------------- |
 | `action`          | String | 请求方式。                                                        |
-| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
+| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`     | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
-| `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
+| `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。        |
 | `uri`             | String | 请求 URL。                                                        |
 | `entities`        | JSON   | 返回实体信息。                                                    |
 | `data`            | JSON   | 返回数据详情。                                                    |
-| `timestamp`       | Long   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
-| `duration`        | Number | 从发送 HTTP 请求到响应的时长（毫秒）。                            |
+| `timestamp`       | Long   | HTTP 响应的 Unix 时间戳，单位为毫秒。                                 |
+| `duration`        | Number | 从发送 HTTP 请求到响应的时长，单位为毫秒。                            |
 
 ## 认证方式
 
-~e838c3b0-8e43-11ec-814c-17df6c7c3801~
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 禁言聊天室成员
 
-禁言指定的聊天室成员。被禁言后，该成员将无法在聊天室中发送消息。
+禁言单个用户。用户被禁言后，将无法在聊天室中发送消息。
 
 ### HTTP 请求
 
@@ -50,9 +58,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是    |
+| `Accept`   | String |内容类型。请填 `application/json`。 | 是    |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 #### 请求 body
 
@@ -60,8 +68,8 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 | 字段            | 类型   | 描述                                                          | 是否必填 |
 | :-------------- | :----- | :------------------------------------------------------------ | :------- |
-| `mute_duration` | Number   | 禁言时长，从当前时间开始计算。单位毫秒。`-1` 表示永久禁言。 | 是       |
-| `usernames`     | String | 要被禁言的用户 ID。                          | 是       |
+| `mute_duration` | Number   | 禁言时长，从当前时间开始计算。单位为毫秒。`-1` 表示永久禁言。 | 是       |
+| `usernames`     | String | 要被禁言的聊天室成员的用户 ID。                          | 是       |
 
 ### HTTP 响应
 
@@ -71,9 +79,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 | 字段     | 类型   | 描述                                                    |
 | :------- | :----- | :------------------------------------------------------ |
-| `result` | Bool   | 禁言结果：<li>`true：`禁言成功。<li>`false`：禁言失败。 |
-| `expire` | Number | 禁言到期的 Unix 时间戳（毫秒）。                        |
-| `user`   | String | 被禁言的聊天室成员的用户名。                            |
+| `data.result` | Boolean   | 是否成功对聊天室成员禁言：<ul><li>`true：`是；</li><li>`false`：否。</li></ul> |
+| `data.expire` | Number | 禁言到期的 Unix 时间戳，单位为毫秒。                        |
+| `data.user`   | String | 被禁言的聊天室成员的用户 ID。                            |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -124,7 +132,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 解除聊天室禁言成员
 
-解除一个或多个聊天室成员的禁言。解除禁言后，该成员可以正常在聊天室中发送消息。
+解除对一个或多个聊天室成员的禁言。解除禁言后，该成员可以正常在聊天室中发送消息。
 
 ### HTTP 请求
 
@@ -134,18 +142,18 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute/{member
 
 #### 路径参数
 
-| 参数     | 类型   | 描述                                                                                                                                      | 是否必填 |
-| :------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `member` | String | 待被解除禁言的聊天室成员的用户名。<br>如果需要解除多个成员的禁言，则成员用户名之间用逗号（","）隔开。在 URL 中，需要将 "," 转义为 "%2C"。 | 是       |
+| 参数     | 类型   | 描述     | 是否必填 |
+| :------- | :----- | :--------------- | :------- |
+| `member` | String | 待被解除禁言的聊天室成员的用户 ID。<br/>如果需要解除多个成员的禁言，则成员用户 ID 之间用逗号（","）隔开。在 URL 中，需要将逗号 "," 转义为 "%2C"。 | 是       |
 
-其他参数及说明详见 [公共参数](#param)。
+其他参数及描述详见 [公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`   | String | 内容类型。请填 `application/json`。 | 是    |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -155,8 +163,8 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute/{member
 
 | 字段     | 类型   | 描述                                               |
 | :------- | :----- | :------------------------------------------------- |
-| `result` | Bool   | 移除禁言结果：`true`：解除成功;`false`：解除失败。 |
-| `user`   | String | 被解除禁言的聊天室成员的用户名。                   |
+| `data.result` | Boolean   | 是否成功对聊天室成员解除禁言：<ul><li>`true`：是；</li><li>`false`：否。</li></ul> |
+| `data.user`   | String | 被解除禁言的聊天室成员的用户 ID。                   |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -192,9 +200,9 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## 查询聊天室禁言成员
+## 获取禁言列表
 
-查询指定聊天室的所有禁言用户列表。
+获取当前聊天室的禁言用户列表。
 
 ```http
 GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
@@ -204,14 +212,14 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见 [公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -221,8 +229,8 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 
 | 字段     | 类型   | 描述                             |
 | :------- | :----- | :------------------------------- |
-| `expire` | Number | 禁言到期的 Unix 时间戳（毫秒）。 |
-| `user`   | String | 被禁言的聊天室成员的用户名。     |
+| `data.expire` | Number | 禁言到期的 Unix 时间戳，单位为毫秒。 |
+| `data.user`   | String | 被禁言的聊天室成员的用户 ID。     |
 
 其他字段及说明详见 [公共参数](#param)。
 

@@ -1,4 +1,4 @@
-本文展示如何调用即时通讯 RESTful API 实现聊天室管理，包括创建、删除、修改、查询聊天室。调用以下方法前，请先参考[限制条件](https://confluence.agoralab.co/pages/viewpage.action?pageId=857605065)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 实现聊天室管理，包括创建、删除、修改、查询聊天室。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 
@@ -6,12 +6,12 @@
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
-| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户 ID 唯一。</ul></div> | 是       |
+| 参数       | 类型   | 描述      | 是否必填 |
+| :--------- | :----- | :-------------------------------------- | :------- |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                   | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                  | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                            | 是       |
+| `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
 
@@ -29,11 +29,17 @@
 
 ## 认证方式
 
-~e838c3b0-8e43-11ec-814c-17df6c7c3801~
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+
+```http
+Authorization: Bearer ${YourAppToken}
+```
+
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 创建聊天室
 
-创建一个聊天室。
+创建一个聊天室，需设置聊天室名称、聊天室描述、聊天室成员最大人数（包括管理员）、聊天室管理员和普通成员以及聊天室扩展信息。
 
 ### HTTP 请求
 
@@ -43,15 +49,15 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见 [公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Content-Type`  | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
 
 #### 请求 body
 
@@ -62,8 +68,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 | `name`        | String     | 聊天室名称，长度必须在 128 个字符内。    | 是       |
 | `description` | String     | 聊天室描述，长度必须在 512 个字符内。    | 是       |
 | `maxusers`    | Int        | 聊天室成员最大数量（包括聊天室创建者）。 | 否       |
-| `owner`       | String     | 聊天室创建者的用户 ID。                   | 是       |
+| `owner`       | String     | 聊天室创建者的用户 ID。若传该参数，确保至少设置一个数组元素。                   | 是       |
 | `members`     | JSON Array | 聊天室成员，不能设置为空。               | 否       |
+| `custom`  | String | 聊天室自定义属性，例如可以给聊天室添加业务相关的标记，不能超过 1,024 个字符。  | 否  | 
 
 ### HTTP 响应
 
@@ -73,9 +80,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 
 | 字段 | 类型   | 描述                                                            |
 | :--- | :----- | :-------------------------------------------------------------- |
-| `id` | String | 本次创建的聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
+| `data.id` | String | 创建的聊天室的 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及描述详见 [公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -119,7 +126,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见 [公共参数](#param)。
 
 #### 查询参数
 
@@ -134,8 +141,8 @@ GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -145,10 +152,10 @@ GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 
 | 字段                 | 类型   | 描述                                                  |
 | :------------------- | :----- | :---------------------------------------------------- |
-| `id`                 | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
-| `name`               | String | 聊天室名称。                                          |
-| `owner`              | String | 聊天室创建者的用户 ID。                                |
-| `affiliations_count` | Number    | 聊天室成员数量（包含聊天室创建者）。                  |
+| `data.id`                 | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
+| `data.name`               | String | 聊天室名称。                                          |
+| `data.owner`              | String | 聊天室创建者的用户 ID。例如：{“owner”: “user1”}。                                |
+| `data.affiliations_count` | Number    | 聊天室现有成员总数（包含聊天室创建者）。                  |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -196,8 +203,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatrooms
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -205,10 +212,10 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatrooms
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功。响应 body 包含如下字段：
 
-| 字段   | 类型   | 说明                                                              |
+| 字段   | 类型   | 描述                                                             |
 | :----- | :----- | :---------------------------------------------------------------- |
-| `id`   | String | 该用户加入的聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
-| `name` | String | 该用户加入的聊天室名称。                                          |
+| `data.id`   | String | 该用户加入的聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
+| `data.name` | String | 该用户加入的聊天室名称。                                          |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -240,16 +247,15 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ### HTTP 请求
 
-```json
-# 将 <YourAppToken> 替换为你在服务端生成的 app token
+```http
 GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 ```
 
 #### 路径参数
 
 | 参数          | 类型   | 描述                                                                                                                                                                                                                                               | 是否必填 |
-| :------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall) 的响应 body 中获取。<li>查询多个聊天室时，将每个 `chatroom_id` 用 "," 隔开。<li>一次请求最多查询 100 个聊天室。<li>在 URL 中，需要将 "," 转义为 "%2C"。 | 是       |
+| :------------ | :----- | :------------------------------------------------------------------- | :------- |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall) 的响应 body 中获取。<ul><li>查询多个聊天室时，聊天室 ID 之间用逗号 "," 隔开。</li><li>一次请求最多查询 100 个聊天室。</li><li>在 URL 中，需要将逗号 "," 转义为 "%2C"。</li></ul> | 是       |
 
 其他参数及说明详见 [公共参数](#param)。
 
@@ -257,8 +263,8 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -266,20 +272,20 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功。响应 body 包含如下字段：
 
-| 字段                 | 类型       | 描述                                                                                                                                          |
-| :------------------- | :--------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                 | String     | 聊天室 ID。                                                                                                                                   |
-| `name`               | String     | 聊天室名称。                                                                                                                                  |
-| `description`        | String     | 聊天室描述。                                                                                                                                  |
-| `membersonly`        | Bool       | 加入聊天室是否需要聊天室创建者或管理员审批：<li>`true`：是<li>`false`：否                                                                     |
-| `allowinvites`       | Bool       | 是否允许聊天室成员邀请他人加入该聊天室：<li>`true`：允许聊天室成员邀请他人加入该聊天室。<li>`false`：仅聊天室管理员能够邀请他人加入该聊天室。 |
-| `maxusers`           | Int        | 聊天室成员数量上限。                                                                                                                          |
-| `owner`              | String     | 聊天室创建者的用户 ID。                                                                                                                        |
-| `created`            | Number     | 创建聊天室的 Unix 时间戳（毫秒）。                                                                                                            |
-| `custom`             | String     | 聊天室附加信息，创建聊天室时为聊天室添加的自定义信息。                                                                                        |
-| `affiliations_count` | int        | 聊天室成员数量（包含聊天室创建者）。                                                                                                          |
-| `affiliations`       | JSON Array | 聊天室成员数组，包含以下字段：<li>`owner`： 聊天室创建者的用户 ID。<li>`member`：聊天室成员的用户 ID。                                          |
-| `public`             | Bool       | 预留字段，无需关注。                                                                                                                          |
+| 字段                 | 类型       | 描述          |
+| :------------------- | :--------- | :-------------------------- |
+| `data.id`                 | String     | 聊天室 ID。                                                                                                                                   |
+| `data.name`               | String     | 聊天室名称。                                                                                                                                  |
+| `data.description`        | String     | 聊天室描述。                                                                                                                                  |
+| `data.membersonly`        | Bool       | 加入聊天室是否需要聊天室创建者或管理员审批：<ul><li>`true`：是</li><li>`false`：否 </li></ul>                                                                    |
+| `data.allowinvites`       | Bool       | 是否允许聊天室成员邀请他人加入该聊天室：<ul><li>`true`：允许聊天室成员邀请他人加入该聊天室。</li><li>`false`：仅聊天室所有者和管理员能够邀请他人加入该聊天室。</li></ul> |
+| `data.maxusers`           | Int        | 聊天室成员数量上限，创建聊天室时设置。                                                                                                                          |
+| `data.owner`              | String     | 聊天室所有者的用户 ID。例如：{“owner”: “user1”}。                   |
+| `data.created`            | Number     | 创建聊天室时间，Unix 时间戳，单位为毫秒。     |
+| `data.custom`             | String     | 聊天室扩展信息，创建聊天室时为聊天室添加的自定义信息。                                                                                        |
+| `data.affiliations_count` | int        | 聊天室成员数量（包含聊天室创建者）。                                                                                                          |
+| `data.affiliations`       | JSON Array | 聊天室成员数组，包含以下字段：<ul><li>`owner`： 聊天室创建者的用户 ID。</li><li>`member`：聊天室成员的用户 ID。</li></ul>                                          |
+| `data.public`             | Bool       | 预留字段，无需关注。                                                                                                                          |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -354,7 +360,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 修改聊天室信息
 
-修改指定聊天室信息。仅支持修改 `name`、`description`、`maxusers。`
+修改指定聊天室信息。修改指定聊天室的信息。仅支持修改聊天室名称、聊天室描述和聊天室最大成员数。
 
 ### HTTP 请求
 
@@ -368,15 +374,15 @@ PUT https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------ | :------- |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall) 的响应 body 中获取。 | 是       |
 
-其他参数及说明详见 [公共参数](#param)。
+其他参数及描述详见 [公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。    | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 #### 请求 body
 
@@ -396,13 +402,13 @@ PUT https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 字段          | 类型 | 描述                                                                                            |
 | :------------ | :--- | :---------------------------------------------------------------------------------------------- |
-| `groupname`   | Bool | 聊天室名称是否修改成功：<li>`true`：修改成功。<li>`false`：修改失败。                           |
-| `description` | Bool | 聊天室描述是否修改成功：<li>`true`：修改成功。<li>`false`：修改失败。                           |
-| `maxusers`    | Bool | 聊天室成员最大数（包括聊天室创建者）是否修改成功：<li>`true`：修改成功。<li>`false`：修改失败。 |
+| `data.groupname`   | Boolean | 聊天室名称是否修改成功：<li>`true`：是<li>`false`：否                           |
+| `data.description` | Boolean | 聊天室描述是否修改成功：<li>`true`：是<li>`false`：否                         |
+| `data.maxusers`    | Boolean | 聊天室成员最大数（包括聊天室创建者）是否修改成功：<li>`true`：是<li>`false`：否 |
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败，你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
-> 如果在请求 body 中传入除 `name`、`description`、`maxusers` 以外的其他字段，则请求失败并返回错误码 `400`。
+> 如果在请求 body 中传入除 `name`、`description` 和 `maxusers` 以外的其他字段，则请求失败并返回错误码 `400`。
 
 ### 示例
 
@@ -430,7 +436,7 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## 删除聊天室
 
-删除单个聊天室。如果被删除的聊天室不存在，会返回错误。
+删除单个聊天室。如果要删除的聊天室不存在，会返回错误。
 
 ### HTTP 请求
 
@@ -461,8 +467,8 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 字段      | 类型   | 描述                                                              |
 | :-------- | :----- | :---------------------------------------------------------------- |
-| `success` | Bool   | 聊天室是否删除成功：<li> `true`：删除成功。<li> `false`：删除失败。 |
-| `id`      | String | 已被删除的聊天室 ID。                                             |
+| `data.success` | Boolean   | 聊天室是否删除成功：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data.id`      | String | 被删除的聊天室 ID。                                             |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -543,9 +549,9 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 ##### 请求示例
 
 ```shell
-# 将 <YourToken> 替换为你在服务端生成的 Token
+# 将 <YourToken> 替换为你在服务端生成的 App Token
 
-curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement'
+curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement'
 ```
 
 ##### 响应示例
@@ -607,7 +613,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 | 字段          | 类型   | 描述                                          |
 | :------------ | :----- | :-------------------------------------------- |
 | `data.id`     | String | 聊天室 ID。                                   |
-| `data.result` | Bool   | 修改是否成功： <br/> - `true`：是； <br/>  - `false`：否。 |
+| `data.result` | Boolean   | 聊天室公告是否修改成功： <br/> - `true`：是； <br/>  - `false`：否。 |
 
 其他字段及描述详见 [公共参数](#param)。
 
@@ -618,9 +624,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 ##### 请求示例
 
 ```shell
-# 将 <YourToken> 替换为你在服务端生成的 Token
+# 将 <YourToken> 替换为你在服务端生成的 App Token
 
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement' -d '{"announcement" : "聊天室公告…"}'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/announcement' -d '{"announcement" : "聊天室公告…"}'
 ```
 
 ##### 响应示例

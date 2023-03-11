@@ -72,7 +72,7 @@
 | `413`            | `Request Entity Too Large`           | Request Entity Too Large.                                    | 请求包体超过上限：上传文件超过 10 MB。发送消息体积超过 5 KB。 |
 | `415`            | `web_application`                    | Unsupported Media Type.                                      | 不支持该请求包体的类型。请检查以下情况：请求头是否添加 `Content-Type` 或 `Accept`。请求包体是否符合标准的 JSON 格式。请求头中是否有其他非接口需要的参数。 |
 | `429`            | `resource_limited`                   | You have exceeded the limit of the Free edition. Please upgrade to higher edition. | 超过免费版套餐包限制。如已开通其他版本套餐包，请联系 Agora 商务。 |
-| `429`            | `reach_limit`                        | This request has reached api limit.                          | 超过即时通讯 RESTful API 的[调用频率限制](./agora_chat_limitation_android?platform=RESTful#服务端调用频率限制)。如果限制条件无法满足你的实际业务需求，请联系 Agora 技术支持。 |
+| `429`            | `reach_limit`                        | This request has reached api limit.                          | 超过即时通讯 RESTful API 的[调用频率限制](./agora_chat_limitation_android?platform=RESTful#服务端接口调用频率限制)。如果限制条件无法满足你的实际业务需求，请联系 Agora 技术支持。 |
 | `500`            | `no_full_text_index`                 | Entity 'user' with property named 'username' is not full text indexed. You cannot use the ‘contains’ operand on this field. | username 不支持全文索引，不可以对该字段进行 contains 操作。  |
 | `500`            | `unsupported_service_operation`      | Service operation not supported.                             | 请求 URL 不支持该请求方式。                                  |
 | `500`            | `web_application`                    | javax.ws.rs.WebApplicationException                          | 请求 URL 错误。                                              |

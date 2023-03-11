@@ -6,7 +6,7 @@
 
 <div class="alert note">为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。</div>
 
-在调用以下方法之前，请了解 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)中所述。
+调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 
