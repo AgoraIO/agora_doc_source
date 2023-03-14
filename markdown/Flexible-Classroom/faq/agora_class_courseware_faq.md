@@ -38,3 +38,14 @@ https://docs.agora.io/en/interactive-whiteboard/develop/enable-whiteboard#enable
 这个403的报错，是阿里云的限制。阿里云不允许上传。
 需要开通阿里云的putObject权限
 <img src="./images/aliyun_oss_pullobject.png" style="zoom: 33%;" />
+
+5、课件上传大小有什么限制？
+1) 实际转码时长受课件大小、课件尺寸、课件动画多少、课件页数、转码队列等影响。
+2）源文件最好在 50 页以内，超过 100 页可能会出现转换超时。
+3）源文件内包含的图片分辨率越高，转换速度越慢。
+4) 课件要小于100M
+
+6、课件上传不上去的原因有哪些？
+1) 支持的文件格式包含：PPT、PPTX、DOC、DOCX、PDF、MP3、MP4、PNG、JPG、GIF。
+2)  课件名字里面不要有特殊符号，最好只包含中英文及数字；
+3)  使用WPS编辑过的课件可能会出现上传或转码失败，建议另存为PPTX或PDF；
