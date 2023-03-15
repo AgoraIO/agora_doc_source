@@ -1,0 +1,39 @@
+@startuml
+title 独唱 API 时序图
+autonumber
+skinparam monochrome true
+participant "主唱 App" as a
+participant "声网 SDK" as b
+participant "听众 App" as c
+== 加入频道 ==
+a -> b: joinChannelByToken
+c -> b: joinChannelByToken
+== 加载歌曲歌词 ==
+a -> b: loadSong
+c -> b: loadSong
+b -->> a: KTVLoadSongStateOK
+b -->> c: KTVLoadSongStateOK
+== 开始播放歌曲 ==
+a -> b: playSong(KTVSingRoleMainSinger)
+b -->> a: didChangedToState(AgoraMediaPlayerStatePlaying)
+c -> b: playSong(KTVSingRoleAudience)
+b -->> c: didChangedToState(AgoraMediaPlayerStatePlaying)
+note left
+听众不播放歌曲，只是进入播放状态
+end note
+== 停止播放 ==
+a -> b: stopSong
+b -->> a: didChangedToState(AgoraMediaPlayerStateStopped)
+c -> b: stopSong
+b -->> c: didChangedToState(AgoraMediaPlayerStateStopped)
+== 关闭麦克风 ==
+a -> b: adjustRecordingSignalVolume
+== 更新媒体选项 ==
+a -> b: updateChannelMediaOptions
+c -> b: updateChannelMediaOptions
+note left
+主唱和上麦听众发布麦克风，角色为主播
+
+普通听众不发布麦克风，角色为观众
+end note
+@enduml
