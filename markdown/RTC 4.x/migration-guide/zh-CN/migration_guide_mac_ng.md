@@ -235,6 +235,11 @@ v4.0.0 的命名变更会在你编译项目时引入 IDE 的报错提示，你�
 
 主要的 API 及参数名变更如下：
 	
+- `localVideoStateChangedOf:error` 变更为 `localVideoStateChangedOfState:error:sourceType`
+- `localVideoStats` 变更为 `localVideoStats:sourceType`
+- `didVideoPublishStateChange:oldState:newState:elapseSinceLastState` 变更为 `didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState`
+- `firstLocalVideoFramePublishedWithElapsed` 变更为 `firstLocalVideoFramePublishedWithElapsed:sourceType`
+- `videoSizeChangedOfUid:size:rotation` 变更为 `videoSizeChangedOfSourceType:uid:size:rotation`
 - `adjustLoopbackRecordingSignalVolume` 变更为 `adjustLoopbackSignalVolume`。
 - `firstLocalAudioFrame` 变更为 `firstLocalAudioFramePublished`。
 - `AgoraLogConfig` 中的 `fileSize` 成员变更为 `fileSizeInKB`。
