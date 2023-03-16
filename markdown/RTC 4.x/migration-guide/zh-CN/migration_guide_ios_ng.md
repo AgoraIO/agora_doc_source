@@ -238,11 +238,12 @@ v4.0.0 的命名变更会在你编译项目时引入 IDE 的报错提示，你�
 
 主要的 API 及参数名变更如下：
 	
-- `rtcEngine:localVideoStateChange:error:` 变更为 `rtcEngine:localVideoStateChangedOfState:error:sourceType:`
-- `rtcEngine:localVideoStats:` 变更为 `rtcEngine:localVideoStats:sourceType:`
-- `rtcEngine:didVideoPublishStateChange:oldState:newState:elapseSinceLastState:` 变更为 `rtcEngine:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:`
-- `rtcEngine:firstLocalVideoFramePublished:` 变更为 `rtcEngine:firstLocalVideoFramePublishedWithElapsed:sourceType:`
-- `rtcEngine:videoSizeChangedOfUid:size:rotation:` 变更为 `rtcEngine:videoSizeChangedOfSourceType:uid:size:rotation:`
+- `localVideoStateChange` 变更为 `localVideoStateChangedOfState`
+- `localVideoStats` 变更为 `localVideoStatssourceType`
+- `didVideoPublishStateChange:oldState:newState:elapseSinceLastState:` 变更为 `didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:`
+- `firstLocalVideoFramePublished` 变更为 `firstLocalVideoFramePublishedWithElapsed`
+- `videoSizeChangedOfUid` 变更为 `videoSizeChangedOfSourceType`
+- `firstLocalVideoFrameWithSize:elapsed:` 变更为 `firstLocalVideoFrameWithSize:elapsed:sourceType:`
 - `firstLocalAudioFrame` 变更为 `firstLocalAudioFramePublished`。
 - `AgoraLogConfig` 中的 `fileSize` 成员变更为 `fileSizeInKB`。
 - `joinChannelByToken` [2/2] 中的 `options` 参数变更为 `mediaOptions`。
