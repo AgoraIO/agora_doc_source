@@ -240,10 +240,10 @@ v4.0.0 的命名变更会在你编译项目时引入 IDE 的报错提示，你�
 	
 - `localVideoStateChange` 变更为 `localVideoStateChangedOfState`
 - `localVideoStats` 变更为 `localVideoStatssourceType`
-- `didVideoPublishStateChange:oldState:newState:elapseSinceLastState:` 变更为 `didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:`
+- `didVideoPublishStateChange` 中增加了 `sourceType`
 - `firstLocalVideoFramePublished` 变更为 `firstLocalVideoFramePublishedWithElapsed`
 - `videoSizeChangedOfUid` 变更为 `videoSizeChangedOfSourceType`
-- `firstLocalVideoFrameWithSize:elapsed:` 变更为 `firstLocalVideoFrameWithSize:elapsed:sourceType:`
+- `firstLocalVideoFrameWithSize` 中增加了 `sourceType` 参数
 - `firstLocalAudioFrame` 变更为 `firstLocalAudioFramePublished`。
 - `AgoraLogConfig` 中的 `fileSize` 成员变更为 `fileSizeInKB`。
 - `joinChannelByToken` [2/2] 中的 `options` 参数变更为 `mediaOptions`。

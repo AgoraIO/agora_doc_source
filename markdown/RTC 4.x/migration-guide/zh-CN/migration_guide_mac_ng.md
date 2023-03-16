@@ -237,7 +237,7 @@ v4.0.0 的命名变更会在你编译项目时引入 IDE 的报错提示，你�
 	
 - `localVideoStateChange` 变更为 `localVideoStateChangedOfState`
 - `localVideoStats` 变更为 `localVideoStatssourceType`
-- `didVideoPublishStateChange:oldState:newState:elapseSinceLastState:` 变更为 `didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:`
+- `didVideoPublishStateChange` 中增加了 `sourceType`
 - `firstLocalVideoFramePublished` 变更为 `firstLocalVideoFramePublishedWithElapsed`
 - `videoSizeChangedOfUid` 变更为 `videoSizeChangedOfSourceType`
 - `adjustLoopbackRecordingSignalVolume` 变更为 `adjustLoopbackSignalVolume`。
