@@ -230,11 +230,11 @@ The naming changes in v4.0.0 cause error messages in the IDE when you compile yo
 
 The main API and parameter name changes are as follows:
 
-- `localVideoStateChangedOf:error` is changed to `localVideoStateChangedOfState:error:sourceType`
-- `localVideoStats` is changed to `localVideoStats:sourceType`
-- `didVideoPublishStateChange:oldState:newState:elapseSinceLastState` is changed to `didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState`
-- `firstLocalVideoFramePublishedWithElapsed` is changed to `firstLocalVideoFramePublishedWithElapsed:sourceType`
-- `videoSizeChangedOfUid:size:rotation` is changed to `videoSizeChangedOfSourceType:uid:size:rotation`
+- `rtcEngine:localVideoStateChange:error:` is changed to `localVideoStateChangedOfState:error:sourceType:`
+- `rtcEngine:localVideoStats:` is changed to `rtcEngine:localVideoStats:sourceType:`
+- `rtcEngine:didVideoPublishStateChange:oldState:newState:elapseSinceLastState:` is changed to `rtcEngine:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:`
+- `rtcEngine:firstLocalVideoFramePublished:` is changed to `rtcEngine:firstLocalVideoFramePublishedWithElapsed:sourceType:`
+- `rtcEngine:videoSizeChangedOfUid:size:rotation:` is changed to `rtcEngine:videoSizeChangedOfSourceType:uid:size:rotation:`
 - `adjustLoopbackRecordingSignalVolume` is changed to `adjustLoopbackSignalVolume`.
 - `firstLocalAudioFrame` is changed to `firstLocalAudioFramePublished.`
 - The `fileSize` member in `AgoraLogConfig` is renamed to `fileSizeInKB`.
