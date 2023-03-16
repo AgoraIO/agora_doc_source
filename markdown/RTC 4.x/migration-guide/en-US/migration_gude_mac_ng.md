@@ -1,10 +1,10 @@
 Agora SDK v4.0.0 is a new version of the SDK that you can use to embed real-time video and audio into your app. It supports large-scale real-time interactive activities and provides better real-time interactive effects. For details, see [Benefits and features](https://docs.agora.io/en/live-streaming-premium-4.x/product_live_ng?platform=macOS#benefits).
 
-This page introduces the main steps to upgrade the SDK from v3.x (v3.7.0 and earlier) to v4.0.0, as well as the related changes.
+This page introduces the main steps to upgrade the SDK from v3.x (v3.7.0 and earlier) or v2.x to v4.0.0, as well as the related changes.
 
 ## Migration steps
 
-This section introduces the main steps to upgrade the SDK from v3.x to v4.0.0.
+This section introduces the main steps to upgrade the SDK from v3.x or 2.x to v4.0.0.
 
 ### 1. Integrate the SDK
 
@@ -230,8 +230,14 @@ The naming changes in v4.0.0 cause error messages in the IDE when you compile yo
 
 The main API and parameter name changes are as follows:
 
+- `localVideoStateChange` is changed to `localVideoStateChangedOfState`.
+- `localVideoStats` is changed to `localVideoStatssourceType`.
+- `sourceType` is added in `didVideoPublishStateChange`.
+- `firstLocalVideoFramePublished` is changed to `firstLocalVideoFramePublishedWithElapsed`.
+- `videoSizeChangedOfUid` is changed to `videoSizeChangedOfSourceType`.
 - `adjustLoopbackRecordingSignalVolume` is changed to `adjustLoopbackSignalVolume`.
-- `firstLocalAudioFrame` is changed to `firstLocalAudioFramePublished.`
+- `sourceType` is added in `firstLocalVideoFrameWithSize`.
+- `firstLocalAudioFrame` is changed to `firstLocalAudioFramePublished`.
 - The `fileSize` member in `AgoraLogConfig` is renamed to `fileSizeInKB`.
 - The `options` parameter in `joinChannelByToken`[2/2] is changed to `mediaOptions`.
 - The `report_vad` parameter in `enableAudioVolumeIndication` is changed to `reportVad`.
