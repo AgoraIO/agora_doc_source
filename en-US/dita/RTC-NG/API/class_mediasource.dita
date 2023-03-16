@@ -51,19 +51,19 @@
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaSource {
-  
+
   url?: string;
-  
+
   uri?: string;
-  
+
   startPos?: number;
-  
+
   autoPlay?: boolean;
-  
+
   enableCache?: boolean;
-  
+
   isAgoraSource?: boolean;
-  
+
   isLiveSource?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class MediaSource : OptionalJsonParse
@@ -88,19 +88,19 @@
         }
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class MediaSource {
-  
+
   url?: string;
-  
+
   uri?: string;
-  
+
   startPos?: number;
-  
+
   autoPlay?: boolean;
-  
+
   enableCache?: boolean;
-  
+
   isAgoraSource?: boolean;
-  
+
   isLiveSource?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class MediaSource {
@@ -130,7 +130,7 @@
 
   @JsonKey(name: 'isAgoraSource')
   final bool? isAgoraSource;
-  
+
   @JsonKey(name: 'isLiveSource')
   final bool? isLiveSource;
 
@@ -167,7 +167,7 @@
                     <li><codeph><ph keyref="false" /></codeph>: Disables autoplay.</li>
                     </ul>
                     <note>
-                    <p>If autoplay is disabled, you need to call the <xref keyref="play" /> method to play a media file after it is opened.</p>
+                    <p>If autoplay is disabled, you need to call the<xref keyref="play" />  method to play a media file after it is opened.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -178,7 +178,8 @@
                     </ul>
                     <note>
                     <ul>
-                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the <parmname>url</parmname> of the media file.</li>
+                    <li>目前仅支持缓存点播流。</li>
+                    <li>If you need to enable caching, pass in a value to<parmname> uri</parmname>; otherwise, caching is based on the url of the media file.<parmname></parmname></li>
                     <li>If you enable this function, the Media Player caches part of the media file being played on your local device, and you can play the cached media file without internet connection. The statistics about the media file being cached are updated every second after the media file is played. See <xref keyref="CacheStatistics" />.</li>
                     </ul> </note></pd>
             </plentry>

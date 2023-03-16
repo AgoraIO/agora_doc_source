@@ -20,8 +20,12 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetDevice(string deviceIdUTF8);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDevice(String deviceIdUTF8);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>该方法可以更改当前的音频路由，但不会改变系统默认的音频路由。 假设系统默认的音频路由是扬声器 1，你在初始化 RtcEngine 后且加入频道前调用该方法，设置当前的音频路由为扬声器 2，并对扬声器 2 做设备检测。 检测结束后，当你加入频道时 SDK 依然会选择使用系统默认的音频路由，即扬声器 1。</p>
+            </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -31,8 +35,8 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
