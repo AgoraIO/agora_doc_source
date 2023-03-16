@@ -230,7 +230,7 @@ The naming changes in v4.0.0 cause error messages in the IDE when you compile yo
 
 The main API and parameter name changes are as follows:
 
-- `rtcEngine:localVideoStateChange:error:` is changed to `localVideoStateChangedOfState:error:sourceType:`
+- `rtcEngine:localVideoStateChange:error:` is changed to `rtcEngine:localVideoStateChangedOfState:error:sourceType:`
 - `rtcEngine:localVideoStats:` is changed to `rtcEngine:localVideoStats:sourceType:`
 - `rtcEngine:didVideoPublishStateChange:oldState:newState:elapseSinceLastState:` is changed to `rtcEngine:didVideoPublishStateChange:sourceType:oldState:newState:elapseSinceLastState:`
 - `rtcEngine:firstLocalVideoFramePublished:` is changed to `rtcEngine:firstLocalVideoFramePublishedWithElapsed:sourceType:`
