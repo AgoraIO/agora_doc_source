@@ -29,7 +29,7 @@
 - `musicCenter`: 版权音乐内容中心实例。详见 [AgoraMusicContentCenter](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusiccontentcenter)。
 - `player`: 音乐播放器实例。详见 [AgoraMusicPlayerProtocol](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusicplayer)。
 - `dataStreamId`: 数据流（Data Stream）ID。
-- `delegate`: KTVApiDelegate
+- `delegate`: [KTVApiDelegate](#didchangedtostate)。
 
 
 ### release
@@ -159,7 +159,24 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 ## 回调
 
-//TODO
+### didChangedToState
+
+```objective-c
+@protocol KTVApiDelegate <NSObject>
+    - (void)controller:(KTVApi*)controller song:(NSInteger)songCode didChangedToState:(AgoraMediaPlayerState)state local:(BOOL)local;
+@end
+```
+播放器状态改变回调。
+
+#### 参数
+
+- `controller`: KTVApi 实例。
+- `songCode`: 歌曲编号。
+- `state`: 播放器的当前状态。详见 [AgoraMediaPlayerState](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/enum_mediaplayerstate.html?platform=iOS)。
+- `local`: 是否为本地事件：
+    - `YES`: 是本地事件。
+    - `NO`: 不是本地事件。
+
 
 ## Enum
 
