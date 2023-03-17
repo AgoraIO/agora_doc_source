@@ -1,4 +1,4 @@
-用户登录即时通讯 IM 后就可以创建群组、修改群组消息以及删除创建的群组。
+用户登录即时通讯 IM 后可以创建群组、修改群组消息以及删除创建的群组。
 
 调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
@@ -29,9 +29,8 @@
 | `uri`             | String | 请求 URL。                                                               |
 | `path`            | String | 请求路径，属于请求 URL 的一部分，无需关注。                              |
 | `entities`        | JSON   | 返回实体信息。                                                           |
-| `data`            | Array  | 实际请求到的数据。                                                       |
-| `timestamp`       | Number | 响应的 Unix 时间戳（毫秒）。                                             |
-| `duration`        | Number | 从发送请求到响应的时长（毫秒）。                                         |
+| `timestamp`       | Number | 响应的 Unix 时间戳，单位为毫秒。                                            |
+| `duration`        | Number | 从发送请求到响应的时长，单位为毫秒。                                         |
 
 ## 群组角色
 
@@ -53,7 +52,7 @@ Authorization: Bearer ${YourAppToken}
 
 ## 创建群组
 
-创建一个新的群组，并设置群组名称、群组描述、公开群/私有群属性、群成员最大人数（包括群主）、加入公开群是否需要批准、群主、群成员、群组扩展信息。
+创建一个群组，并设置群组名称、群组描述、公开群/私有群属性、群成员最大人数（包括群主）、加入公开群是否需要批准、群主、群成员、群组扩展信息。
 
 ### HTTP 请求
 
@@ -69,8 +68,8 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json` | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json` | 是       |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
 | `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。      | 是       |
 
 #### 请求 body
@@ -80,27 +79,28 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 | `groupname`           | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
 | `description`                | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
 | `public`              | Boolean | 群组是否为公开群。公开群可以被搜索到，用户可以申请加入公开群；私有群无法被搜索到，因此需要群主或群管理员添加，用户才可以加入。<ul><li>`true`：公开群</li><li>`false`：私有群</li></ul> | 是       |
-| `maxusers`            | String  | 群组成员（包含群主）数量最大值。默认值为 200。不同套餐支持的人数上限不同，详情可以参考[套餐包详情](./agora_chat_plan?platform=RESTful)                            | 否       |
-| `allowinvites`        | Boolean | 是否允许群组成员邀请别人加入群组：<ul><li>`true`：允许</li><li>`false`：不允许。只有群主或者群管理员才可以加人</li></ul>                                                         | 否       |
-| `membersonly`         | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                                                                        | 否       |
-| `invite_need_confirm` | Boolean    | 邀请用户入群时是否需要被邀用户同意。<ul><li> （默认）`true`：是；</li><li> `false`：否。</li></ul>                                                                                            | 否       |
-| `owner`               | String  | 该群组的群主。                                                                                                                                                                   | 是       |
-| `members`             | Array   | 群组成员的用户 ID 数组。该数组可包含 1-100 个元素，不包含群主的用户 ID。                                                                                | 否       |
-| `custom`              | String  | 群组扩展信息，例如给群组添加业务相关标记，最大长度为 1,024 字符。                                                                                                                | 否       |
+| `maxusers`            | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[套餐包详情](./agora_chat_plan?platform=RESTful)。                            | 否       |
+| `allowinvites`        | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：群成员可拉人入群。</li><li>`false`：只有群主或者管理员才可以拉人入群。</li></ul>                                                         | 否       |
+| `membersonly`         | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要，用户直接进群。</li></ul>                                                                        | 否       |
+| `invite_need_confirm` | Boolean    | 邀请用户入群时是否需要受邀用户同意。<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li> `false`：不需要。邀请人直接拉用户进群。</li></ul>                                                                                            | 否       |
+| `owner`               | String  | 群主。               | 是       |
+| `members`             | Array   | 群组成员的用户 ID 数组，可包含 1-100 个元素，不涉及群主的用户 ID。                                                                                | 否       |
+| `custom`              | String  | 群组扩展信息，例如可以给群组添加业务相关的标记，不能超过 1,024 个字符。    | 否       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 的 data 字段中包含如下内容：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-| 参数      | 类型   | 说明      |
+| 参数      | 类型   | 描述      |
 | :-------- | :----- | :-------- |
-| `groupid` | String | 群组 ID。 |
+| `data` | JSON | 创建的群组的相关信息。 |
+| `data.groupid` | String | 群组 ID。 |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他字段及说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -141,7 +141,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 封禁指定的群组。例如，群成员经常在群中发送违规消息，可以调用该 API 对该群进行封禁。群组被封禁后，群中任何成员均无法在群组以及该群组下的子区中发送和接收消息，也无法进行群组和子区管理操作。
 
-群组封禁后，可调用[解禁群组](#解禁群组) API 对该群组解禁。
+群组封禁后，可调用[解禁群组](#enablegroup) API 对该群组解禁。
 
 #### HTTP 请求
 
@@ -151,7 +151,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/disable
 
 ##### 路径参数
 
-参数及描述详见 [公共参数](#公共参数)。
+参数及描述详见 [公共参数](#pubparam)。
 
 ##### 请求 header
 
@@ -169,11 +169,12 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/disable
 
 | 字段    | 类型      | 描述 |
 |:------|:--------|:--|
-| data.disabled | Bool | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
+| `data` | JSON | 群组禁用相关信息。 |
+| `data.disabled` | Boolean | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
 
-其他字段及描述详见 [公共参数](#公共参数)。
+其他字段及描述详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](error.html) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 #### 示例
 
@@ -204,7 +205,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 解禁群组
+### 解禁群组<a name="enablegroup"></a>
 
 解除对指定群组的封禁。群组解禁后，群成员可以在该群组以及该群组下的子区中发送和接收消息并进行群组和子区管理相关操作。
 
@@ -216,7 +217,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/enable
 
 ##### 路径参数
 
-参数及描述详见 [公共参数](#公共参数)。
+参数及描述详见 [公共参数](#pubparam)。
 
 ##### 请求 header
 
@@ -234,12 +235,12 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/enable
 
 | 字段       | 类型   | 描述                  |
 | :-------- | :----- |:--------------------|
-| data.disabled | Bool | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
+| `data` | JSON | 群组解禁相关信息。 |
+| `data.disabled` | Boolean | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
 
-其他字段及描述详见 [公共参数](#公共参数)。
+其他字段及描述详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](error.html) 了解可能的原因。
-
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 #### 示例
 
 ##### 请求示例
@@ -271,7 +272,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 获取群组详情
 
-获取指定的一个或多个群组的详情。如果你指定获取多个群组的详情，会返回所有存在群组的详情。如果你指定的群组不存在，会返回 "group id doesn't exist"。
+获取指定的一个或多个群组的详情，最多可获取 100 个群组的详情。如果你指定获取多个群组的详情，会返回所有存在群组的详情。如果你指定的群组不存在，会返回 "group id doesn't exist"。
 
 ### HTTP 详情
 
@@ -283,42 +284,43 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 
 | 参数        | 类型   | 描述                                                                  | 是否必填 |
 | :---------- | :----- | :-------------------------------------------------------------------- | :------- |
-| `group_ids` | String | 想获取详情的群组 ID。如果想获取多个群组的详情，则使用英文的逗号隔开。 | 是       |
+| `group_ids` | String | 要获取详情的群组 ID。最多可传 100 个群组 ID，以逗号分隔。 | 是       |
 
-其他路径参数说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中的 data 字段说明如下：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-| 参数                 | 类型    | 说明                                                                                                                    |
+| 参数                 | 类型    | 描述                                                                                                                   |
 | :------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------- |
-| `id`                 | String  | 群组 ID，是群组的唯一标识。                                                                                             |
-| `name`               | String  | 群组名称。                                                                                                              |
-| `description`        | String  | 群组描述。                                                                                                              |
-| `membersonly`        | Boolean | 用户申请入群是否需要群主或者群管理员审批：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                 |
-| `allowinvites`       | Boolean | 是否允许群组成员邀请别人加入群组：<ul><li>`true`：允许</li><li>`false`：不允许</li></ul>                                |
-| `maxusers`           | Number  | 群组成员（包含群主）数量最大值。                                                                                        |
-| `owner`              | String  | 群主的用户 ID，如 `{"owner":"user1"}`。                                                                          |
-| `created`            | Long    | 群组创建的时间戳。                                                                                                      |
-| `affiliations_count` | Number  | 群成员总人数。                                                                                                          |
-| `disabled`           | Boolean | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
-| `affiliations`       | Array   | 现有群成员列表，包含了群主 owner 和其他群成员 member，如：`[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`。 |
-| `public`             | Boolean | 群组是否为公开群：<ul><li>`true`：是</li><li>`false`：否</li></ul>                                                      |
-| `custom`             | String  | 群组扩展信息。                                                                                                          |
+| `data`               | JSON | 获取的群组详情。                                                                                             |
+| `data.id`                 | String  | 群组 ID，群组唯一标识。                                                                                             |
+| `data.name`               | String  | 群组名称。                                                                                                              |
+| `data.description`        | String  | 群组描述。                                                                                                              |
+| `data.membersonly`        | Boolean | 用户申请入群是否需要群主或者群管理员审批：<ul><li>`true`：需要</li><li>`false`：不需要</li></ul>                 |
+| `data.allowinvites`       | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：允许群成员邀请其他用户加入此群</li><li>`false`：只有群主可以邀请其他用户入群。</li></ul>                                |
+| `data.maxusers`           | Number  | 群组最大成员数（包含群主）。                                                                                        |
+| `data.owner`              | String  | 群主的用户 ID，如 `{"owner":"user1"}`。                                                                          |
+| `data.created`            | Long    | 群组创建的时间戳。                                                                                                      |
+| `data.affiliations_count` | Number  | 群组现有成员总数。                                                                                                          |
+| `data.disabled`           | Boolean | 群组是否为禁用状态：<ul><li>`true`：群组被禁用；</li><li>`false`：群组为启用状态。</li></ul> |
+| `data.affiliations`       | Array   | 现有群成员列表，包含了群主 owner 和其他群成员 member，如：`[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`。 |
+| `data.public`             | Boolean | 群组是否为公开群：<ul><li>`true`：公开群</li><li>`false`：私有群</li></ul>       |
+| `data.custom`             | String  | 群组扩展信息。                                                                                                          |
 
 其他相应参数说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -372,7 +374,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 修改群组信息
 
-修改指定的群组消息。该方法仅支持修改 `groupname`、`description`、`maxusers`、`membersonly`、`allowinvites`、`invite_need_confirm`、`public` 和 `custom` 字段。如果传入其他字段，或传入的字段不存在，则不能修改的字段会抛出异常。
+修改指定的群组消息。该方法仅支持修改 `groupname`、`description`、`maxusers`、`membersonly`、`allowinvites`、`invite_need_confirm`、`public` 和 `custom` 字段。如果传入其他字段，或传入的字段不存在，则对不能修改的字段抛出异常。
 
 ### HTTP 请求
 
@@ -386,28 +388,28 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json` | 是       |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${YourAppToken}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。         | 是       |
 
 #### 请求 body
 
 | 参数           | 类型    | 描述                                                                                                                     | 是否必填 |
 | :------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- | :------- |
-| `groupname`    | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                       | 是       |
-| `description`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                       | 是       |
-| `maxusers`     | String  | 群组成员（包含群主）数量最大值。默认值为 200，最大值为 2000。不同套餐支持的人数上限不同，详情可以参考计费文档            | 否       |
-| `allowinvites` | Boolean | 是否允许群组成员邀请别人加入群组：<ul><li>`true`：允许</li><li>`false`：不允许。只有群主或者群管理员才可以加人</li></ul> | 否       |
-| `invite_need_confirm` | Boolean   | 否       | 受邀人加入群组前是否需接受入群邀请：<ul><li>`true`：需受邀人确认入群邀请；</li><li>`false`：受邀人直接加入群组，无需确认入群邀请。</li></ul> |
-| `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要</li></ul>                | 否       |
-| `custom`       | String  | 群组扩展信息，例如给群组添加业务相关标记，最大长度为 1,024 字符。    | 否       |
-| `public`              | Boolean   | 是       | 是否是公开群。<ul><li>`true`：公开群；</li><li>`false`：私有群。</li></ul>        |
+| `groupname`    | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果有空格，使用 “+” 代替。                                       | 是       |
+| `description`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果有空格，使用 “+” 代替。                                  | 是       |
+| `maxusers`     | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[套餐包详情](./agora_chat_plan?platform=RESTful)。              | 否       |
+| `allowinvites` | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：群成员可拉人入群。</li><li>（默认）`false`：只有群主或者管理员才可以拉人入群。</li></ul> | 否       |
+| `invite_need_confirm` | Boolean   | 邀请用户入群时是否需要受邀用户同意：<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li>`false`：不需要。邀请人直接拉用户进群。</li></ul> | 否       | 
+| `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>（默认）`false`：不需要，用户直接进群。</li></ul>                | 否       |
+| `custom`       | String  | 群组扩展信息，例如给群组添加业务相关标记，不能超过 1,024 个字符。    | 否       |
+| `public`              | Boolean   | 是       | 是否是公开群：<ul><li>`true`：公开群；</li><li>`false`：私有群。</li></ul>        |
 
 ### HTTP 响应
 
@@ -422,13 +424,13 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | `data.groupname`    | Boolean | 群组名称是否修改成功：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
 | `data.membersonly`  | Boolean | “加入群组是否需要群主或者群管理员审批”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
 | `data.public`  | Boolean | “是否是公开群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
+| `data.custom`  | String | 群组扩展信息是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
 | `data.allowinvites` | Boolean | “是否允许群成员邀请其他用户入群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
-| `data.invite_need_confirm` | Boolean | “受邀人加入群组前是否需接受入群邀请”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
-
+| `data.invite_need_confirm` | Boolean | “邀请用户入群时是否需要受邀用户同意”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
 
 其他相应字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -477,7 +479,7 @@ curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 删除群组
 
-删除一个指定的群组。
+删除指定的群组。删除群组时会同时删除群组下所有的子区（Thread）。
 
 ### HTTP 请求
 
@@ -491,27 +493,28 @@ DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是    |
 
 ### HTTP 响应
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中的 `data` 字段说明详见下文：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-| 参数      | 类型    | 描述                                            |
-| :-------- | :------ | :---------------------------------------------- |
-| `success` | Boolean | 是否成功删除群组：true：删除成功false：删除失败 |
-| `groupid` | String  | 删除的群组 ID。                                 |
+| 字段       | 类型    | 描述                                                    |
+| :-------- | :------ | :------------------------------------------------------ |
+| `data` | JSON | 群组删除相关信息。 |
+| `data.success` | Boolean | 群组删除结果: </br> - `true`：删除成功； <br/> - `false`：删除失败。 |
+| `data.groupid` | String  | 删除的群组的 ID。                                         |
 
 其他相应字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -540,7 +543,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## 获取所有群组
+## 获取 App 中的群组
 
 分页获取应用下的群组的信息。
 
@@ -552,53 +555,55 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 
 #### 路径参数
 
-路径参数说明详见 [公共参数](#pubparam)。
+参数及描述详见 [公共参数](#pubparam)。
 
 ##### 查询参数
+
 | 参数     | 类型   | 描述                   | 是否必填 |
 | :------- | :----- | :------------------------ | :------- |
-| `limit`  | Number | 每次期望返回的群组数量。取值范围为 [1,100]，默认值为 `10`。该参数仅在分页获取时为必需。   | 否  |
-| `cursor` | String | 数据查询的起始位置。该参数仅在分页获取时为必需。 |否  |
+| `limit`  | Number | 每次期望返回的群组数量。取值范围为 [1,100]，默认值为 `10`。 | 否  |
+| `cursor` | String | 数据查询的起始位置。 | 否  |
 
-<div class="alert info">若请求中均未设置 `limit` 和 `cursor`，服务器返回群组列表的第一页中前 10 个群组。</div>
+<div class="alert info">若请求中均未设置 `limit` 和 `cursor` 参数，服务器按群组创建时间倒序返回前 10 个群组。</div>
 
 #### 请求 header
 
 | 参数     | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。   | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段说明如下：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-| 参数            | 类型   | 描述                                      |
-| :-------------- | :----- | :---------------------------------------- |
-| `owner`         | String | 群主 ID。如 `{"owner":"user1"}`。         |
-| `groupid`       | String | 群组 ID。                                 |
-| `affiliations`  | Number | 群组现有人数。                            |
-| `type`          | String | 群组类型。                                |
-| `last_modified` | String | 最近一次修改群组信息的时间戳，单位为 ms。 |
-| `groupname`     | String | 群组名称。                                |
-| `count`         | Number | 实际返回的群组数量。                      |
-| `cursor`        | String | 分页页码。                                |
+| 字段             | 类型   | 描述                                                         |
+| :-------------- | :----- | :----------------------------------------------------------- |
+| `data`         | JSON | 获取的群组的相关信息。                         |
+| `data.owner`         | String | 群主的用户 ID。例如：{“owner”: “user1}。                         |
+| `data.groupid`       | String | 群组 ID。                                                    |
+| `data.affiliations`  | Number    | 群组现有成员数。                                             |
+| `data.type`          | String | 群组类型 “group”。                                           |
+| `data.last_modified` | String | 最近一次修改的时间戳，单位为毫秒。                           |
+| `data.groupname`     | String | 群组名称。                                                   |
+| `count`         | Number    | 实际获取的群组数量。                                         |
+| `cursor` | String | 查询游标，指定下次查询的起始位置。 |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他字段及描述详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
 #### 请求示例
 
 ```shell
-// 分页获取第一页上的群组信息
+// 分页获取第一页的群组信息
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups?limit=2'
 
-// 分页获取第二页上的群组信息
+// 分页获取第二页的群组信息
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups?limit=2&cursor=ZGNiMjRmNGY1YjczYjlhYTNkYjk1MDY2YmEyNzFmODQ6aW06Z3JvdXA6ZWFzZW1vYi1kZW1vI3Rlc3RhcHA6Mg'
 ```
 
@@ -651,80 +656,51 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#pubparam)。
+参数及描述详见 [公共参数](#pubparam)。
 
 ##### 查询参数
 
 | 参数       | 类型   | 描述                                                         | 是否必填 | 
 | :--------- | :----- | :------- | :----------------------------------------------------------- |
-| `pagesize` | String | 每页获取的群组数量。取值范围为 [1,1000]，默认值为 1000.           | 否     | 
+| `pagesize` | String | 每页获取的群组数量。取值范围为 [1,100]，默认值为 `10`。          | 否     | 
 | `pagenum`  | String | 当前页码。默认从第 1 页开始获取。                       | 否     | 
+
+:::tip
+若请求中均未设置 `pagesize` 和 `pagenum` 参数，服务器按用户加入群组的时间倒序返回前 500 个群组。
+:::
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。         | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明如下：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数             | 类型   | 描述       |
 | :--------------- | :----- | :--------- |
+| `data`   | JSON | 用户加入的群组的相关信息。  |
 | `data.groupid`   | String | 群组 ID。  |
 | `data.groupname` | String | 群组名称。 |
 
 其他字段说明详见 [公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
 #### 请求示例
 
 ```shell
-# 将 <YourAppToken> 替换为你在服务端生成的 App Token
-
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> '' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups'
-```
-
-分页获取示例：
-
-```json
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups?pagesize=1&pagenum=100'
 ```
 
 #### 响应示例
-
-```json
-{
-    "action": "get",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups",
-    "entities": [],
-    "data": [
-      {
-        "groupid": "66XXXX85",
-        "groupname": "testgroup1"
-      },
-      {
-        "groupid": "66016467025921",
-        "groupname": "testgroup2"
-      },
-    ],
-    "timestamp": 1542359565885,
-    "duration": 1,
-    "organization": "XXXX",
-  "applicationName": "testapp",
-  "count": 2
-}
-```
-
-分页获取响应示例：
 
 ```json
 {

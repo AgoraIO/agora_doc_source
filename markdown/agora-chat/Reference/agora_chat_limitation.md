@@ -123,6 +123,13 @@
 | :------------------- | :----- | :------------------- | :------------------------- |
 | 注册单个用户  | POST | /{org_name}/{app_name}/users | 100 次/秒/App Key          |
 | 批量注册用户  | POST | /{org_name}/{app_name}/users | 100 次/秒/App Key          |
+| 设置推送消息显示昵称 | PUT  | /{org_name}/{app_name}/users/{username} | 
+| 设置推送消息展示方式 | PUT  | /{org_name}/{app_name}/users/{username} | 
+
+以上四个接口的总调用频率（默认值）为 100 次/秒/App Key。
+
+| RESTful API 接口        | 方法   | 接口 URL             | 接口最高调用频率（默认值） |
+| :------------------- | :----- | :------------------- | :------------------------- |
 | 获取 app/用户 token  | POST   | /{org_name}/{app_name}/token       | 300 次/秒/App Key |
 | 获取单个用户         | GET    | /{org_name}/{app_name}/users/{username}                      | 100 次/秒/App Key  |
 | 批量获取用户         | GET    | /{org_name}/{app_name}/users                                 | 100 次/秒/App Key          |
@@ -167,8 +174,6 @@
 
 | RESTful API 接口        | 方法 | 接口 URL           | 接口最高调用频率（默认值） |
 | :------------------- | :--- | :------------------- |
-| 设置推送消息显示昵称 | PUT  | /{org_name}/{app_name}/users/{username} | 与[用户账号管理接口](#account)一致          |
-| 设置推送消息展示方式 | PUT  | /{org_name}/{app_name}/users/{username} | 与[用户账号管理接口](#account)一致          |
 | 设置离线推送         | PUT  | /{org}/{app}/users/{username}/notification/{chattype}/{key} | 100 次/秒/App Key          |
 | 查询离线推送设置     | GET  | /{org}/{app}/users/{username}/notification/{type}/{key} | 100 次/秒/App Key          |
 | 设置推送翻译语言     | PUT  | /{org}/{app}/users/{username}/notification/language | 100 次/秒/App Key          |

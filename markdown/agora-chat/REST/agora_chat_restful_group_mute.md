@@ -1,4 +1,4 @@
-禁言是指防止群组用户在群组中发送消息。即时通讯 IM 提供多个接口进行禁言管理，包括获取、添加、移除等。
+禁言是指禁止群成员在群组中发送消息。即时通讯 IM 提供多个接口实现禁言管理，包括获取禁言列表、将成员添加至或移出禁言列表。
 
 本文展示如何调用即时通讯 RESTful API 管理禁言列表。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
@@ -14,26 +14,25 @@
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户 ID。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
+| `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
 
 | 参数                 | 类型    | 描述                                                         |
 | :------------------- | :------ | :----------------------------------------------------------- |
 | `action`             | String  | 请求方式。                                                   |
-| `organization`       | String  | 组织 ID，等同于 org_name，即时通讯服务分配给每个企业（组织）的唯一标识。 |
+| `organization`       | String  | 组织 ID，即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`        | String  | 系统内为 app 生成的唯一内部标识，无需关注。                  |
-| `applicationName`    | String  | App ID，等同于 app_name，即时通讯服务分配给每个 app 的唯一标识。 |
+| `applicationName`    | String  | App ID，即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。 |
 | `uri`                | String  | 请求 URL。                                                   |
 | `path`               | String  | 请求路径，属于请求 URL 的一部分，无需关注。                  |
 | `entities`           | JSON    | 返回实体信息。                                               |
-| `data`               | Array   | 实际请求到的数据。                                           |
-| `timestamp`          | Long  | 响应的 Unix 时间戳（毫秒）。                                 |
-| `duration`           | Number  | 从发送请求到响应的时长（毫秒）。                             |
+| `timestamp`          | Long  | 响应的 Unix 时间戳，单位为毫秒。                                 |
+| `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer ${YourAppToken}
@@ -41,13 +40,15 @@ Authorization: Bearer ${YourAppToken}
 
 为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
-## 添加禁言
+## 禁言指定群成员
 
-将制定用户添加进禁言列表。用户被禁言后，会无法在群里发送消息。
+对指定群成员禁言，即将用户添加至禁言列表。每次最多可禁言 10 个成员。
+
+群成员被禁言后，将无法在群组中发送消息，也无法在该群组下的子区中发送消息。
 
 ### HTTP 请求
 
-```json
+```http
 POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 ```
 
@@ -57,38 +58,39 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 | :------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 #### 请求 body
 
 | 参数          | 类型  | 描述                      | 是否必填 |
 | :------------ | :---- | :------------------------ | :------- |
-| `mute_duration` | Long  | 禁言时间，单位为毫秒。    | 是       |
-| `usernames`     | Array | 添加进禁言列表的用户 ID。 | 是       |
+| `mute_duration` | Number  | 禁言时间，单位为毫秒。    | 是       |
+| `usernames`     | Array | 要添加到禁言列表的用户 ID 列表。每次最多可传 10 个用户 ID。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数   | 类型    | 描述                                        |
 | :----- | :------ | :------------------------------------------ |
-| `result` | Boolean | 添加禁言列表是否成功：<ul><li>`true`：成功</li><li>`false`：失败</li></ul> |
-| `expire` | Long    | 禁言到期的 Unix 时间戳，单位为 ms。         |
-| `user`   | String  | 被禁言的用户 ID。                           |
+| `data` | JSON | 群成员禁言结果。 |
+| `data.result` | Boolean | 是否成功将禁言群成员：<ul><li>`true`：成功</li><li>`false`：失败</li></ul> |
+| `data.expire` | Number    | 禁言到期的 Unix 时间戳，单位为毫秒。         |
+| `data.user`   | String  | 被禁言的用户 ID。                           |
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -118,14 +120,14 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## 移除禁言
+## 解除成员禁言
 
-将指定用户从禁言列表中移除。移除后，该用户可以在群中正常发送消息。
+将一个或多个群成员解除禁言，即将其移出禁言列表。解除禁言后，群成员可以在群组中正常发送消息，同时也可以在该群组下的子区中发送消息。
 
 ### HTTP 请求
 
 ```shell
-POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute/{member_id}
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute/{member_id}
 ```
 
 #### 路径参数
@@ -133,31 +135,32 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute/{member_id}
 | 参数      | 类型   | 描述                                                         | 是否必需 |
 | :-------- | :----- | :----------------------------------------------------------- | :------- |
 | `group_id`  | String | 群组 ID。                                                    | 是       |
-| `member_id` | String | 群组成员 ID，如果有多个成员，则填入多个成员 ID，中间使用英文逗号隔开。如 {member1}, {member2} | 是       |
+| `member_id` | String | 解除禁言的成员的用户 ID。可传多个成员的用户 ID，使用英文逗号隔开，例如 {member1},{member2}。 | 是       |
 
-其他路径参数说明详见[公共参数](#pub_param)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数   | 类型    | 描述                                    |
 | :----- | :------ | :-------------------------------------- |
-| `result` | Boolean | 移除禁言是否成功：<ul><li>`true`: 成功</li><li>`false`：失败</li></ul> |
-| `user`   | String  | 被移除禁言的用户 ID。                   |
+| `data`   | JSON Array  | 解除禁言结果。                   |
+| `data.result` | Boolean | 是否成功对成员解除禁言：<ul><li>`true`: 成功</li><li>`false`：失败</li></ul> |
+| `data.user`   | String  | 被解除禁言的用户 ID。                   |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -188,11 +191,11 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 获取禁言列表
 
-获取当前群组的禁言用户列表。
+获取当前群组的禁言列表。
 
 ### HTTP 请求
 
-```shell
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 ```
 
@@ -202,30 +205,30 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 | :------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| 参数          | 类型   | 描述                                                         | 是否必需 |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段:
 
 | 参数   | 类型   | 描述                          |
 | :----- | :----- | :---------------------------- |
-| `expire` | Long   | 禁言到期的时间戳，单位为 ms。 |
-| `user`   | String | 被禁言的用户 ID。             |
+| `data` | JSON Array   | 禁言列表信息。 |
+| `data.expire` | Number   | 禁言到期的时间戳，单位为毫秒。 |
+| `data.user`   | String | 被禁言的用户 ID。             |
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -256,4 +259,4 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+有关详细信息，详见 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。

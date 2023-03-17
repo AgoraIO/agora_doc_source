@@ -12,30 +12,28 @@
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul><br>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户 ID。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
+| `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
 
 | 参数                 | 类型    | 描述                                                         |
 | :------------------- | :------ | :----------------------------------------------------------- |
 | `action`             | String  | 请求方式。                                                   |
-| `organization`       | String  | 组织 ID，等同于 org_name，即时通讯服务分配给每个企业（组织）的唯一标识。 |
+| `organization`       | String  | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`        | String  | 系统内为 app 生成的唯一内部标识，无需关注。                  |
-| `applicationName`    | String  | App ID，等同于 app_name，即时通讯服务分配给每个 app 的唯一标识。 |
+| `applicationName`    | String  | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。 |
 | `uri`                | String  | 请求 URL。                                                   |
-| `path`               | String  | 请求路径，属于请求 URL 的一部分，无需关注。                  |
 | `entities`           | JSON    | 返回实体信息。                                               |
-| `data`               | Array   | 实际请求到的数据。                                           |
-| `created`         | Number| 群组创建时间，Unix 时间戳，单位为毫秒。                      |
-| `username`    | String| 用户 ID。                                                     |
-| `groupname`      | String | 群组名。                                                     |
-| `nickname`         | String| 用户昵称。                                                   |
-| `timestamp`          | Long  | 响应的 Unix 时间戳（毫秒）。                                 |
-| `duration`           | Number  | 从发送请求到响应的时长（毫秒）。                             |
+| `created`            | Number | 群组创建时间，Unix 时间戳，单位为毫秒。                      |
+| `username`           | String| 用户 ID。                                                     |
+| `groupname`          | String | 群组名称。                                                     |
+| `nickname`           | String| 用户昵称。                                                   |
+| `timestamp`          | Number  | 响应的 Unix 时间戳，单位为毫秒。                                 |
+| `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer ${YourAppToken}
@@ -49,7 +47,7 @@ Authorization: Bearer ${YourAppToken}
 
 ### HTTP 请求
 
-```shell
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/announcement
 ```
 
@@ -59,29 +57,30 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/announcement
 | :------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
-| 参数          | 类型   | 描述                                                         | 是否必填 |
-| :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| 参数          | 类型   | 描述                   | 是否必填 |
+| :------------ | :----- | :------------------------------ | :------- |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数         | 类型   | 描述         |
 | :----------- | :----- | :----------- |
-| `announcement` | String | 群公告内容。 |
+| `data` | JSON | 获取的群公告。 |
+| `data.announcement` | String | 群公告内容。 |
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -113,7 +112,7 @@ curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## 修改群公告
 
-修改指定群组 ID 的群公告。注意群公告内容数据长度不能超过 512 个字符。
+修改指定群组 ID 的群公告。群公告不能超过 512 个字符。
 
 ### HTTP 请求
 
@@ -133,24 +132,25 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/announcement
 
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数   | 类型    | 描述                                                  |
 | :----- | :------ | :---------------------------------------------------- |
-| `id`     | String  | 群组 ID。                                             |
-| `result` | Boolean | 修改群公告是否成功：<ul><li>`true`: 修改成功</li><li>`false`: 修改失败</li></ul> |
+| `data` | JSON | 群组修改结果。 |
+| `data.id`     | String  | 群组 ID。                                             |
+| `data.result` | Boolean | 修改群公告是否成功：<ul><li>`true`: 修改成功</li><li>`false`: 修改失败</li></ul> |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -181,20 +181,13 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## 获取群共享文件
+## 获取群共享文件<a name="retrieve"></a>
 
-分页获取指定群组 ID 的群共享文件。
-
-成功调用该方法后，你可以从响应中获取 `file_id`，即群共享文件的唯一标识文件 ID。在下载或删除群共享文件时，即可使用该字段指定群共享文件。
-
-该方法默认从第一页开始获取群组共享文件，每页最多可以获取 1,000 条文件。
+分页获取指定群组 ID 的群共享文件。调用该 API 后，你可以根据响应中返回的文件 ID（`file_id`，即群共享文件的唯一标识文件 ID）调用 [下载群组共享文件](#download) 接口下载该文件，或调用 [删除群组共享文件](#delete) 接口删除该文件。
 
 ### HTTP 请求
 
-```shell
-GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files
-
-// 分页获取群共享文件
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagenum=1&pagesize=10
 ```
 
@@ -204,40 +197,41 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagen
 | :------- | :----- | :-------- | :------- |
 | group_id | String | 群组 ID。 | 是       |
 
-参数及说明详见[公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
 | 参数     | 类型   | 描述      | 是否必填 |
 | :------- | :----- | :-------- | :------- |
-| `pagesize` | String   |每页期望返回的共享文件数。取值范围为 [1,1000]，默认为 1000。|否|
-| `pagenum` | Number | 当前页码。默认从第 1 页开始获取。  |否|
+| `pagesize` | String   | 每页期望返回的共享文件数。取值范围为 [1,1000]，默认为 `1000`。| 否 |
+| `pagenum` | Number | 当前页码。默认从第 1 页开始获取。  | 否 |
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 data 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数       | 类型   | 描述                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
-| `file_id`    | String | 群共享文件 ID。如果想要下载或移除该群共享文件，则需要使用该字段。 |
-| `file_name`  | String | 群共享文件名称。                                             |
-| `file_owner` | String | 上传该群共享文件的用户 ID。                                  |
-| `file_size`  | Number | 群共享文件的大小，单位为字节。                               |
-| `created`    | Long   | 上传该群共享文件的时间。                                     |
+| `data` | JSON Array | 获取的群共享文件的信息。 |
+| `data.file_id`    | String | 群共享文件 ID。若要[下载](#download)或[删除](#delete)该群共享文件，需要使用该字段。|
+| `data.file_name`  | String | 群共享文件名称。                                             |
+| `data.file_owner` | String | 上传该群共享文件的用户 ID。                                  |
+| `data.file_size`  | Number | 群共享文件的大小，单位为字节。                               |
+| `data.created`    | Number  | 上传该群共享文件的时间。                                     |
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -294,7 +288,7 @@ curl -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ### HTTP 请求
 
-```shell
+```http
 POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files
 ```
 
@@ -304,36 +298,36 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files
 | :------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见公共参数。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
-| `restrict-access` | Boolean | 是否仅群成员可见                                             | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `restrict-access` | Boolean | 是否仅群成员可见。<ul><li>`true`：是</li><li>`false`：否</li></ul>  | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数      | 类型   | 描述                                                         |
 | :-------- | :----- | :----------------------------------------------------------- |
-| 参数      | 类型   | 描述                                                         |
-| `file_url`  | String | 群共享文件在 Agora Chat 服务器上保存的 URL 地址。            |
-| `group_id`  | String | 群组 ID。                                                    |
-| `file_name` | String | 群共享文件名称。                                             |
-| `created`   | Long   | 上传该群共享文件的时间。                                     |
-| `file_id`   | String | 群共享文件 ID。如果想要下载或移除该群共享文件，则需要使用该字段。 |
-| `file_size` | Number | 群共享文件的大小，单位为字节。                               |
+| `data` | JSON | 上传的群共享文件的相关信息。 |
+| `data.file_url`  | String | 群共享文件在服务器上保存的 URL 地址。            |
+| `data.group_id`  | String | 群组 ID。                                                    |
+| `data.file_name` | String | 群共享文件名称。                                             |
+| `data.created`   | Number  | 上传该群共享文件的时间。                                     |
+| `data.file_id`   | String | 群共享文件 ID。若要[下载](#download)或[删除](#delete)该群共享文件，需使用该字段。 |
+| `data.file_size` | Number | 群共享文件的大小，单位为字节。                               |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -368,9 +362,9 @@ curl -X POST 'http://XXXX/XXXX/XXXX/chatgroups/66021836783617/share_files' -H 'A
 }
 ```
 
-## 下载群共享文件
+## 下载群共享文件<a name="download"></a>
 
-根据指定的群组 ID 和文件 ID 下载群共享文件。你可以通过获取群共享文件方法获取文件 ID（`file_id`）。
+根据指定的群组 ID 和文件 ID 下载群共享文件。你可以调用[获取群共享文件](#retrieve)的方法获取文件 ID（`file_id`）。
 
 ### HTTP 请求
 
@@ -385,34 +379,34 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files/{file
 | `group_id` | String | 群组 ID。 | 是       |
 | `file_id`  | String | 文件 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数      | 类型   | 描述                                                         |
 | :-------- | :----- | :----------------------------------------------------------- |
-| 参数      | 类型   | 描述                                                         |
-| `file_url`  | String | 群共享文件在 Agora Chat 服务器上保存的 URL 地址。            |
-| `group_id`  | String | 群组 ID。                                                    |
-| `file_name` | String | 群共享文件名称。                                             |
-| `created`   | Long   | 上传该群共享文件的时间。                                     |
-| `file_id`   | String | 群共享文件 ID。如果想要下载或移除该群共享文件，则需要使用该字段。 |
-| `file_size` | Number | 群共享文件的大小，单位为字节。                               |
+| `data`      | JSON   | 下载的共享文件的相关信息。     |
+| `data.file_url`  | String | 群共享文件在服务器上保存的 URL 地址。            |
+| `data.group_id`  | String | 群组 ID。                                                    |
+| `data.file_name` | String | 群共享文件名称。                                             |
+| `data.created`   | Number   | 上传该群共享文件的时间。                                     |
+| `data.file_id`   | String | 群共享文件 ID。若要[删除群共享文件](#delete)，需使用该字段。 |
+| `data.file_size` | Number | 群共享文件的大小，单位为字节。                               |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -447,9 +441,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## 删除群共享文件
+## 删除群共享文件<a name="delete"></a>
 
-根据指定的群组 ID 和文件 ID 删除群共享文件。你可以通过获取群共享文件方法获取文件 ID（`file_id`）。
+根据指定的群组 ID 和文件 ID 删除群共享文件，文件 ID 可从 [获取群组共享文件](#retrieve) 接口的响应中获取。
 
 ### HTTP 请求
 
@@ -464,30 +458,31 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files/{f
 | `group_id` | String | 群组 ID。 | 是       |
 | `file_id`  | String | 文件 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数     | 类型    | 描述                                                         |
 | :------- | :------ | :----------------------------------------------------------- |
+| `data`      | JSON   | 删除的群共享文件的相关信息。     |
 | `group_id` | String  | 群组 ID。                                                    |
-| `file_id`  | String  | 群共享文件 ID。如果想要下载或移除该群共享文件，则需要使用该字段。 |
-| `result`   | Boolean | 删除群共享文件的结果：true: 删除成功false：删除失败          |
+| `file_id`  | String  | 删除的群共享文件的 ID。若要[下载群共享文件](#download)，需使用该字段。 |
+| `result`   | Boolean | 是否成功删除群共享文件：<ul><li>`true`: 删除成功；</li><li>`false`：删除失败。</li></ul>         |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -521,4 +516,4 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+有关详细信息，详见 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
