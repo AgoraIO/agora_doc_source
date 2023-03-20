@@ -13,15 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public int startRecording(RtcConnection connection, MediaRecorderConfiguration config) {
-    RtcEngineImpl engine = null;
-    if (mEngineReference == null || (engine = mEngineReference.get()) == null) {
-      mEngineReference = null;
-      return -7;
-    }
-    return engine.startRecording(config.storagePath, config.containerFormat, config.streamType,
-        config.maxDurationMs, config.recorderInfoUpdateInterval, connection);
-  }</codeblock>
+            <codeblock props="android" outputclass="language-java">public int startRecording(RtcConnection connection, MediaRecorderConfiguration config)</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRecording:(AgoraRtcConnection * _Nonnull)connection
                config:(AgoraMediaRecorderConfiguration* _Nonnull)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRecording(const RtcConnection&amp; connection, const media::MediaRecorderConfiguration&amp; config) = 0;</codeblock>
@@ -70,8 +62,8 @@
                     <li>The specified format of the recording file is supported.</li>
                     <li>The maximum recording duration is correctly set.</li>
                     </ul></li>
-                <li>-4:<xref keyref="IRtcEngine" />  does not support the request. The recording is ongoing or the recording stops because an error occurs.</li>
-                <li>-7: The method is called before <xref keyref="IRtcEngine" /> is initialized. <ph props="android apple">Ensure that you have called  before calling this method<xref keyref="getMediaRecorder" />.</ph></li>
+                <li>-4: <xref keyref="IRtcEngine" /> does not support the request. The recording is ongoing or the recording stops because an error occurs.</li>
+                <li>-7: The method is called before <xref keyref="IRtcEngine" /> is initialized. <ph props="android apple">Ensure that you have called <xref keyref="getMediaRecorder" /> before calling this method.</ph></li>
                 </ul></li>
             </ul> </section>
     </refbody>
