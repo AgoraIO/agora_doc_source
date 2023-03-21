@@ -5,7 +5,7 @@
 <a name="pubparam"></a>
 ## 公共参数
 
-以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数。
+下表列明即时通讯 RESTful API 的公共请求参数和响应参数。
 
 ### 请求参数
 
@@ -21,11 +21,10 @@
 | 参数                 | 类型    | 描述                                                         |
 | :------------------- | :------ | :----------------------------------------------------------- |
 | `action`             | String  | 请求方式。                                                   |
-| `organization`       | String  | 组织 ID，即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
-| `application`        | String  | 系统内为 app 生成的唯一内部标识，无需关注。                  |
-| `applicationName`    | String  | App ID，即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。 |
+| `organization`       | String  | 即时通讯服务为每个企业（组织）分配的唯一标识，与请求参数 `org_name` 相同。 |
+| `application`        | String  | 即时通讯服务为 app 生成的唯一内部标识，无需关注。                  |
+| `applicationName`    | String  | 即时通讯服务为每个 app 分配的唯一标识，与请求参数 `app_name` 相同。 |
 | `uri`                | String  | 请求 URL。                                                   |
-| `path`               | String  | 请求路径，属于请求 URL 的一部分，无需关注。                  |
 | `entities`           | JSON    | 返回实体信息。                                               |
 | `timestamp`          | Long  | 响应的 Unix 时间戳，单位为毫秒。                                 |
 | `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
@@ -84,11 +83,11 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 | 参数   | 类型    | 描述                                        |
 | :----- | :------ | :------------------------------------------ |
 | `data` | JSON | 群成员禁言结果。 |
-| `data.result` | Boolean | 是否成功将禁言群成员：<ul><li>`true`：成功</li><li>`false`：失败</li></ul> |
+| `data.result` | Boolean | 是否成功禁言群成员：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 | `data.expire` | Number    | 禁言到期的 Unix 时间戳，单位为毫秒。         |
-| `data.user`   | String  | 被禁言的用户 ID。                           |
+| `data.user`   | String  | 被禁言的群成员的用户 ID。                           |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -120,13 +119,79 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -
 }
 ```
 
+### 禁言全体群成员
+
+对所有群组成员一键禁言，即将群组的所有成员加入禁言列表。设置群组全员禁言后，仅群组白名单中的用户可在群组以及该群组下的子区内发送消息。
+
+#### HTTP 请求
+
+```http
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
+```
+
+##### 路径参数
+
+参数及描述详见 [公共参数](#pubparam)。
+
+##### 请求 header
+
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
+| `Accept`   | String | 是    |内容类型。请填 `application/json`。 |
+|`Authorization`| String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+
+#### HTTP 响应
+
+##### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+| 字段      | 类型    | 描述                                                  |
+| :------- | :------ | :---------------------------------------------------- |
+| `data` | JSON | 全体成员禁言相关信息。 |
+| `data.result` | Boolean | 操作结果：<ul><li>`true`：禁言成功；</li><li>`false`：禁言失败。</li></ul> |
+| `data.expire` | Number   | 禁言到期的时间。该时间为 Unix 时间戳，单位为毫秒。    |
+
+其他参数及描述详见[公共参数](#pubparam)。
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
+#### 示例
+
+##### 请求示例
+
+```shell
+# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatgroups/{groupid}/ban'
+```
+
+##### 响应示例
+
+```json
+{
+  "action": "post",
+  "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
+  "uri": "http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/ban",
+  "entities": [],
+  "data": {
+    "mute": true
+  },
+  "timestamp": 1594628861058,
+  "duration": 1,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
+}
+```
+
 ## 解除成员禁言
 
 将一个或多个群成员解除禁言，即将其移出禁言列表。解除禁言后，群成员可以在群组中正常发送消息，同时也可以在该群组下的子区中发送消息。
 
 ### HTTP 请求
 
-```shell
+```http
 DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute/{member_id}
 ```
 
@@ -186,6 +251,71 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
     "duration": 0,
     "organization": "XXXX",
     "applicationName": "XXXX"
+}
+```
+
+### 解除全员禁言
+
+一键取消对群组全体成员的禁言。解除禁言后，群成员可以在群组和该群组下的子区中正常发送消息。
+
+#### HTTP 请求
+
+```http
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
+```
+
+##### 路径参数
+
+参数及描述详见 [公共参数](#pubparam)。
+
+##### 请求 header
+
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
+| `Accept`   | String | 是    |内容类型。请填 `application/json`。 |
+|`Authorization`| String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+
+#### HTTP 响应
+
+##### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+| 字段      | 类型    | 描述                                                  |
+| :------- | :------ | :---------------------------------------------------- |
+| `data` | JSON | 全员禁言结果。 |
+| `data.mute` | Boolean | 是否处于全员禁言状态。<br/> - `true`：是； <br/> - `false`：否。 |
+
+其他字段及描述详见 [公共参数](#pubparam)。
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
+#### 示例
+
+##### 请求示例
+
+```shell
+# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+
+curl -X DELETE -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/ban'
+```
+
+##### 响应示例
+
+```json
+{
+  "action": "delete",
+  "application": "527cd7e0-XXXX-XXXX-9f59-ef10ecd81ff0",
+  "uri": "http://XXXX/XXXX/XXXX/chatgroups/120824965169153/ban",
+  "entities": [],
+  "data": {
+    "mute": false
+  },
+  "timestamp": 1594628899502,
+  "duration": 1,
+  "organization": "XXXX",
+  "applicationName": "XXXX"
 }
 ```
 
@@ -259,4 +389,4 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，详见 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

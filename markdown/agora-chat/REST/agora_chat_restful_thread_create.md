@@ -1,4 +1,4 @@
-本页面展示了如何通过调用即时通讯 IM RESTful API 来创建、修改、删除和获取子区。
+本文展示如何通过调用即时通讯 IM 的 RESTful API 实现子区管理，包括创建、修改、删除和获取子区。
 
 调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
@@ -6,33 +6,32 @@
 
 ## 公共参数
 
-下表列出了即时通讯 IM RESTful API 的常用请求和响应参数。
+下表列明即时通讯 IM RESTful API 的公共请求参数和响应参数。
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                               | 是否必填 |
-| :--------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯 IM 服务分配的用于访问 RESTful API 的域名。获取域名的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
-| `org_name` | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。如何获取组织名称，请参见[获取项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | Agora 聊天服务分配给每个应用的唯一标识符。获取应用名称的方法请参见[获取项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。           | 是       |
+| 参数       | 类型   | 描述                      | 是否必填 |
+| :--------- | :----- | :---------------------------------------------------------------- | :------- |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 
 ### 响应参数
 
 | 参数              | 类型   | 描述                                                                |
 | :---------------- | :----- | :------------------------------------------------------------------ |
 | `action`          | String | HTTP 请求方法。                                                     |
-| `organization`    | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。这与`org_name`. |
-| `applicationName` | String | Agora 聊天服务分配给每个应用的唯一标识符。这与`app_name`.           |
+| `organization`    | String | 即时通讯服务为每个企业（组织）分配的唯一标识，与请求参数 `org_name` 相同。  |
+| `applicationName` | String | 即时通讯服务为每个 app 分配的唯一标识，与请求参数 `app_name` 相同。        |
 | `data`            | String | 响应的详细信息。                                                    |
-| `duration`        | String | 从发送 HTTP 请求到收到响应的持续时间（毫秒）。                      |
-| `timestamp`       | String | HTTP 响应的 Unix 时间戳 (ms)。                                      |
-| `uri`             | String | 请求 URI，它是请求 URL 的一部分。无需关注。           |
-| `entities`        | String | 请求实体。                                                          |
-| `properties`      | String | 请求属性。                                                          |
+| `duration`        | String | 从发送 HTTP 请求到收到响应的持续时间，单位为毫秒。                     |
+| `timestamp`       | String | HTTP 响应的 Unix 时间戳，单位为毫秒。    |
+| `uri`             | String | 请求 URI，即请求 URL 的一部分。无需关注。           |
+| `properties`      | JSON | 响应属性。                                                          |
 
 ## 认证方式 <a name="auth"></a>
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer ${YourAppToken}
@@ -42,7 +41,7 @@ Authorization: Bearer ${YourAppToken}
 
 ## 创建子区
 
-创建一个子区。
+创建一个子区。单个 app 下的子区总数默认为 10 万，如需调整请联系商务。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
@@ -54,32 +53,35 @@ POST https://{host}/{org_name}/{app_name}/thread
 
 #### 路径参数
 
-路径参数的说明详见 [公共参数](#pubparam)。
+参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Authorization` | String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
 #### 请求 body
 
 | 参数       | 类型   | 描述                                         | 是否必填 |
 | :--------- | :----- | :------------------------------------------- | :------- |
-| `group_id` | String | 子区所属组的 ID。                            | 是       |
-| `name`     | String | 子区的名称。子区名称的最大长度为 64 个字符。 | 是       |
-| `msg_id`   | String | 创建子区所基于的消息的 ID。                  | 是       |
-| `owner`    | String | 子区创建者的用户 ID。                         | 是       |
+| `group_id` | String | 子区所在的群组 ID。                           | 是       |
+| `name`     | String | 子区名称，不能超过 64 个字符。 | 是       |
+| `msg_id`   | String | 子区的父消息 ID，即创建子区所基于的消息 ID。                  | 是       |
+| `owner`    | String | 子区的所有者，即创建子区的群成员的用户 ID。                         | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 data 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
 | 参数        | 类型   | 描述        |
 | :---------- | :----- | :---------- |
-| `thread_id` | String | 子区的 ID。 |
+| `data` | JSON | 创建的子区的详情。 |
+| `data.thread_id` | String | 子区的 ID。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -88,6 +90,8 @@ POST https://{host}/{org_name}/{app_name}/thread
 #### 请求示例
 
 ```shell
+# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+
 curl -X POST http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <YourAppToken>' -d '{
     "group_id": 179800091197441,
     "name": "1",
@@ -116,7 +120,7 @@ curl -X POST http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <Your
 
 修改指定子区的名称。
 
-对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+对于每个 App Key，该方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -130,29 +134,32 @@ PUT https://{host}/{org_name}/{app_name}/thread/{thread_id}
 | :---------- | :----- | :---------- | :------- |
 | `thread_id` | String | 子区的 ID。 | 是       |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Authorization` | String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
 #### 请求 body
 
 | 参数   | 类型   | 描述                                             | 是否必填 |
 | :----- | :----- | :----------------------------------------------- | :------- |
-| `name` | String | 子区的更新名称。子区名称的最大长度为 64 个字符。 | 是       |
+| `name` | String | 要修改的子区的名称。修改后的子区名称不能超过 64 个字符。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 data 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
 | 参数   | 类型   | 描述             |
 | :----- | :----- | :--------------- |
-| `name` | String | 子区更新后的名称。 |
+| `data` | JSON | 子区修改信息。 |
+| `data.name` | String | 修改后的子区名称。 |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -173,7 +180,7 @@ curl -X PUT http://XXXX.com/XXXX/testapp/thread/177916702949377 -H 'Authorizatio
     "duration": 4,
     "data": {
         "name": "test4"
-    }
+    },
     "organization": "XXXX",
     "timestamp": 1650869972109,
     "uri": "http://XXXX.com/XXXX/testy/thread"
@@ -196,23 +203,26 @@ DELETE https://{host}/{org_name}/{app_name}/thread/{thread_id}
 | :---------- | :----- | :---------- | :------- |
 | `thread_id` | String | 子区的 ID。 | 是       |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Authorization` | String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 data 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
 | 参数     | 类型   | 描述                                 |
 | :------- | :----- | :----------------------------------- |
-| `status` | String | 子区是否被删除。`ok`表示子区被删除。 |
+| `data` | JSON | 子区删除结果。 |
+| `data.status` | String | 子区是否被删除。`ok` 表示子区被删除。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -242,7 +252,7 @@ curl -X DELETE http://XXXX.com/XXXX/testapp/thread/177916702949377 -H 'Authoriza
 
 ## 获取应用下的所有子区
 
-分页获取应用程序下的所有子区。
+分页获取应用下的所有子区。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
@@ -254,32 +264,35 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#pubparam)。
+参数及描述详见 [公共参数](#pubparam)。
 
 #### 查询参数
 
-| 参数     | 类型   | 描述                                                                                            | 是否必填 |
-| :------- | :----- | :---------------------------------------------------------------------------------------------- | :------- |
-| `limit`  | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。                                             | 否       |
-| `cursor` | String | 开始获取子区的页面。在第一次查询时传入 `null` 或空字符串。                                        | 否       |
-| `sort`   | String | 列出查询结果的顺序：`asc`：按照子区创建的时间顺序。（默认）`desc`：按照子区创建的时间倒序排列。 | 否       |
+| 参数     | 类型   | 描述                 | 是否必填 |
+| :------- | :----- | :------------------- | :------- |
+| `limit`  | Number | 每次期望返回的子区数量，取值范围为 [1,50]。  | 否       |
+| `cursor` | String | 数据查询的起始位置。       | 否       |
+| `sort`   | String | 获取的子区的排序顺序：<ul><li>`asc`：按照子区创建的时间顺序。</li><li>（默认）`desc`：按照子区创建的时间倒序排列。</li></ul> | 否   |
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Authorization` | String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 entity 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
-| 范围 | 类型   | 描述        |
+| 参数 | 类型   | 描述        |
 | :--- | :----- | :---------- |
-| `id` | String | 子区的 ID。 |
+| `entities` | JSON Array | 获取的子区详情。|
+| `entities.id` | String | 子区 ID。 |
 | `properties.cursor` | String | 查询游标，指定下次查询的起始位置。 |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -312,9 +325,9 @@ curl -X GET http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <YourA
 }
 ```
 
-## 获取用户在应用下加入的所有子区
+## 获取单个用户在应用下加入的所有子区
 
-获取用户在应用下加入的所有子区。
+根据用户 ID 获取用户在应用下加入的所有子区。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
@@ -326,38 +339,40 @@ GET https://{host}/{org_name}/{app_name}/threads/user/{username}?limit={limit}&c
 
 #### 路径参数
 
-参数及说明详见[公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
-| 参数       | 类型   | 描述                                                                                            | 是否必填 |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------- | :------- |
-| `limit`    | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。                                             | 否       |
-| `cursor`   | String | 开始获取子区的页面。在第一次查询时传入 `null` 或空字符串。                                        | 否       |
-| `sort`     | String | 列出查询结果的顺序：<li>`asc`：按照子区创建的时间顺序。<li>（默认）`desc`：按照子区创建的时间倒序排列。 | 否       |
-
+| 参数       | 类型   | 描述            | 是否必填 |
+| :--------- | :----- | :----------------------- | :------- |
+| `limit`    | Number | 每次期望返回的子区数量，取值范围为 [1,50]。          | 否       |
+| `cursor`   | String | 数据查询的起始位置。            | 否       |
+| `sort`     | String | 获取的子区的排序顺序：<ul><li>`asc`：按照子区创建的时间顺序。</li><li>（默认）`desc`：按照子区创建的时间倒序排列。</li></ul> | 否       |
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 描述      | 是否必填 |
+| :-------------- | :----- | :---------------- | :------- |
+|`Authorization`| String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是  | 
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 entity 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
 | 参数      | 类型   | 描述                        |
 | :-------- | :----- | :-------------------------- |
-| `name`    | String | 子区名称。                  |
-| `owner`   | String | 子区创建者。                |
-| `id`      | String | 子区 ID。                   |
-| `msgId`   | String | 创建子区所基于的消息的 ID。 |
-| `groupId` | String | 子区所属的群组的ID。        |
-| `created` | String | 创建子区时的 Unix 时间戳。  |
-| `properties.cursor` | String | 查询游标，指定服务器下次查询的起始位置。 |
+| `entities`  | JSON Array  | 获取的用户加入的子区的详情。      |
+| `entities.name`  | String  |子区名称。      |
+| `entities.owner`  | String |子区创建者的用户 ID。    |
+| `entities.id`    | String  |子区 ID。     |
+| `entities.msgId`  | String |子区的父消息 ID。 |
+| `entities.groupId` | String |子区所属群组 ID。  |
+| `entities.created` | Number |子区创建时间，Unix 时间戳。    |
+| `properties.cursor`  | String  | 查询游标，指定服务器下次查询的起始位置。 |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -397,7 +412,7 @@ curl -X GET http://XXXX.com/XXXX/testapp/threads/user/test4 -H 'Authorization: B
 
 ## 获取用户在群组下加入的所有子区
 
-获取用户在群组下加入的所有子区。
+根据用户 ID 分页获取该用户在指定群组中加入的所有子区。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
@@ -409,41 +424,45 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 
 #### 路径参数
 
-| 参数       | 类型   | 描述                                                                                            | 是否必填 |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------- | :------- |
-| `group_id` | String | 群组的 ID。                                                                                     | 是       |
-| `username` | String | 用户 ID。                                                                            | 是       |
+| 参数       | 类型   | 描述          | 是否必填 |
+| :--------- | :----- | :------------------------------ | :------- |
+| `group_id` | String | 群组的 ID。            | 是       |
+| `username` | String | 用户 ID。           | 是       |
 
-其他参数及说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
-| 参数       | 类型   | 描述                                                                                            | 是否必填 |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------- | :------- |
-| `limit`    | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。                                             | 否       |
-| `cursor`   | String | 开始获取子区的页面。在第一次查询时传入 `null` 或空字符串。                                        | 否       |
-| `sort`     | String | 列出查询结果的顺序：<li>`asc`：按照子区创建的时间顺序。<li>（默认）`desc`：按照子区创建的时间倒序排列。 | 否       |
+| 参数       | 类型   | 描述                      | 是否必填 |
+| :--------- | :----- | :--------------------------- | :------- |
+| `limit`    | String | 每次期望返回的子区数量，取值范围为 [1,50]。       | 否       |
+| `cursor`   | String | 数据查询的起始位置。                                      | 否       |
+| `sort`     | String | 获取的子区的排序顺序：<ul><li>`asc`：按照子区创建的时间顺序。</li><li>（默认）`desc`：按照子区创建的时间倒序排列。</li><li> | 否       |
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+|`Authorization`| String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 entity 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
 | 参数      | 类型   | 描述                        |
 | :-------- | :----- | :-------------------------- |
-| `name`    | String | 子区名称。                  |
-| `owner`   | String | 子区创建者。                |
-| `id`      | String | 子区 ID。                   |
-| `msgId`   | String | 创建子区所基于的消息的 ID。 |
-| `groupId` | String | 子区所属的群组的ID。        |
-| `created` | String | 创建子区时的 Unix 时间戳。  |
+| `entities`   | JSON Array |获取的子区的详情。      |
+| `entities.name`   | String |子区名称。      |
+| `entities.owner`  | String |子区创建者的用户 ID。    |
+| `entities.id`     | String |子区 ID。     |
+| `entities.msgId`   | String |子区的父消息 ID。 |
+| `entities.groupId` | String |子区所属群组 ID。  |
+| `entities.created` | Number  |子区创建时间，Unix 时间戳，单位为毫秒。    |
+| `properties.cursor`  | String  | 查询游标，指定下次查询的起始位置。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -485,4 +504,4 @@ curl -X GET http://XXXX.com/XXXX/testapp/threads/user/test4 -H 'Authorization: B
 
 ## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。

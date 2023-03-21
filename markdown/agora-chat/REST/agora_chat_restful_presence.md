@@ -390,4 +390,4 @@ curl -X GET 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/sub
 
 ## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

@@ -190,4 +190,4 @@ curl -X POST 'http://a1.easemob.com/easemob-demo/easeim/callback/storage/retry' 
 
 ## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
