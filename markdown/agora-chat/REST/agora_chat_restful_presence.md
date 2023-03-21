@@ -1,10 +1,10 @@
 在线状态（Presence）表示用户的当前状态信息。除了即时通讯服务内置的在线和离线状态，你还可以添加自定义在线状态，例如忙碌、马上回来、离开、接听电话、外出就餐等，为实时聊天增添乐趣和多样性。
 
-本页展示了如何使用即时通讯 IM RESTful API 在线状态订阅相关功能。
+本页介绍如何使用即时通讯 IM RESTful API 在线状态订阅相关功能，包括设置用户在线状态信息、批量订阅和获取在线状态、取消订阅以及查询订阅列表。
 
 调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-在 [Agora 控制台](http://console.agora.io/) 中激活在线状态功能。
+使用该功能前，需要在 [Agora 控制台](http://console.agora.io/) 中开通。
 
 <a name="pubparam"></a>
 
@@ -21,14 +21,6 @@
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                            | 是       |
 | `username`      | String | 用户的唯一登录帐户。                                         |        |
 
-### 响应参数
-
-| 参数        | 类型   | 描述                           |
-| :---------- | :----- | :----------------------------- |
-| `data`      | JSON   | 返回的数据。                   |
-| `timestamp` | Long   | HTTP 响应的 Unix 时间戳 (ms)。 |
-| `username`  | String | 用户标识。                     |
-
 ## 认证方式 <a name="auth"></a>
 
 即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
@@ -41,7 +33,7 @@ Authorization: Bearer ${YourAppToken}
 
 ## 设置用户的在线状态
 
-设置用户的在线状态。
+根据用户的唯一 ID 设置在线状态信息
 
 对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 
@@ -55,23 +47,23 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{resource}/{statu
 
 | 参数      | 类型 | 描述                                                         | 是否必填|
 | :--------- | :--- | :----------------------------------------------------------- | :----- |
-| `resource` | String | 分配给每个设备资源的唯一标识符，格式为 `{Device Type}_{Resource ID}`，其中设备类型可以是 `android`、`ios` 或 `web`，后跟 SDK 分配的资源 ID。 | 是 |
-| `status`   | String | 用户定义的在线状态：<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他字符串：自定义状态。</li></ul> | 是 |
+| `resource` | String | 服务器分配给每个设备资源的唯一标识符，格式为 `{device type}_{resource ID}`，其中设备类型 `device type` 可以是 `android`、`ios` 或 `web`，资源 ID `resource ID` 由 SDK 分配。例如，`android_123423453246`。 | 是 |
+| `status`   | String | 用户定义的在线状态：<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他值：自定义在线状态。</li></ul> | 是 |
 
-其他路径参数的说明详见 [公共参数](#pubparam)。
+其他参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。将其设置为`application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${token}` | 是 |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
+| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是 |
 
 #### 请求 body
 
 | 参数 | 类型 | 描述                                               | 是否必填|
 | :---- | :--- | :------------------------------------------------- | :----- |
-| `ext` | String | 在线状态的扩展信息。扩展字段的大小最大为 64 字节。 | 是 |
+| `ext` | String | 在线状态的扩展信息，不能超过 64 字节。 | 是 |
 
 ### HTTP 响应
 
@@ -104,7 +96,7 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/c1/presence/and
 
 ## 订阅多个用户的在线状态
 
-订阅多个用户的在线状态。
+一次可订阅多个用户的在线状态。
 
 对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 
@@ -118,7 +110,7 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
 
 | 参数        | 类型   | 描述        | 是否必填 |
 | :------- | :--- | :--------------------------------------------------------- | :----- |
-| `expiry` | String | 订阅持续时间（以秒为单位）。最大值为 2,592,000，即 30 天。 | 是   |
+| `expiry` | String | 订阅时长，单位为秒，最大值为 `2,592,000`，即 30 天。 | 是   |
 
 其他字段说明详见[公共参数](#pubparam)。
 
@@ -126,14 +118,14 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。将其设置为 `application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${token}` | 是 |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
+| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
 
 #### 请求 body
 
 | 参数       | 类型      | 描述                                                         | 是否必填|
 | :---------- | :-------- | :----------------------------------------------------------- | :----- |
-| `usernames` | JSON | 订阅的用户列表，例如 `[“user1”, “user2”]`。此列表最多可包含 100 个用户 ID。 | 是 |
+| `usernames` | JSON | 被订阅用户的用户 ID 数组，例如 ["user1", "user2"]，最多可传 100 个用户 ID。 | 是 |
 
 ### HTTP 响应
 
@@ -143,12 +135,12 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
 
 | 参数       | 类型      | 描述                                                         |
 | :---------- | :-------- | :----------------------------------------------------------- |
-| `result`    | JSON | 是否成功批量订阅了多个用户的在线状态。若成功，则返回被订阅用户的在线状态信息，失败则返回相应的错误原因。 |
-| `uid`       | String      | 被订阅用户在即时通讯服务器的唯一 ID。                                        |
-| `last_time` | Long      | 被订阅用户的最近在线时间，Unix 时间戳，单位为秒。服务端会在被订阅的用户登录和登出时记录该时间。                              |
-| `expiry`    | Long      | 订阅过期的 Unix 时间戳，单位为秒。                                   |
-| `ext`       | String      | 被订阅用户的在线状态扩展信息。                                         |
-| `status`    | JSON 数组 | 被订阅用户在多端的状态。<ul><li>`0`： 离线。</li><li>`1`： 在线的。</li><li>其他字符串：用户定义的自定义在线状态。</li></ul> |
+| `result`    | JSON Array | 是否成功订阅了多个用户的在线状态。若成功，则返回被订阅用户的在线状态信息，失败则返回相应的错误原因。 |
+| `result.uid`       | String      | 被订阅用户在即时通讯服务器的唯一 ID。                                        |
+| `result.last_time` | Number      | 被订阅用户的最近在线时间，Unix 时间戳，单位为秒。服务端会在被订阅的用户登录和登出时记录该时间。                              |
+| `result.expiry`    | Number     | 订阅过期的 Unix 时间戳，单位为秒。                                   |
+| `result.ext`       | String      | 被订阅用户的在线状态扩展信息。                                         |
+| `result.status`    | JSON Array | 被订阅用户在多端的状态。<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他字符串：用户定义的自定义在线状态。</li></ul> |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -166,7 +158,23 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/10
 #### 响应示例
 
 ```json
-{"result":[{"uid":"","last_time":"1644466063","expiry":"1645500371","ext":"123","status":{"android":"1","android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}},{"uid":"c3","last_time":"1645183991","expiry":"1645500371","ext":"","status":{"android":"0","android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}}]}%
+{
+"result":[
+  {"uid":"",
+  "last_time":"1644466063",
+  "expiry":"1645500371",
+  "ext":"123",
+  "status":{"android":"1","android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}
+    },
+    {"uid":"c3",
+    "last_time":"1645183991",
+    "expiry":"1645500371",
+    "ext":"",
+    "status":{
+        "android":"0",
+        "android_6b5610ac-4e11-4661-82b3-dee17bc7b2cc":"0"}
+    }]
+}
 ```
 
 ## 批量获取在线状态信息
@@ -183,20 +191,20 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 #### 路径参数
 
-路径参数的说明详见 [公共参数](#pubparam)。
+参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。将其设置为`application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${token}` | 是 |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
+| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
 
 #### 请求 body
 
 | 参数       | 类型      | 描述                                                         | 是否必填|
 | :---------- | :-------- | :----------------------------------------------------------- | :----- |
-| `usernames` | JSON 数组 | 需要获取其在线状态的用户列表，例如 `[“user1”, “user2”]`。此列表最多可包含 100 个用户 ID。 | 是 |
+| `usernames` | JSON Array | 需要获取其在线状态的用户列表，例如 `[“user1”, “user2”]`，最多可传 100 个用户 ID。 | 是 |
 
 ### HTTP 响应
 
@@ -206,17 +214,13 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 | 参数    | 类型 | 描述                                                         |
 | :------- | :--- | :----------------------------------------------------------- |
-| `result` | String | 在线状态设置是否成功。`ok` 表示设置成功，失败则返回相应的错误原因。 |
+| `result` | JSON Array | 是否成功获取多个用户的在线状态信息。若成功获取，返回被订阅用户的在线状态信息，失败则返回相应的错误原因。 |
+| `result.uid`       | String     | 用户在即时通讯服务器的唯一 ID。                              |
+| `result.last_time` | Number       | 用户的最近在线时间，Unix 时间戳，单位为秒。                                           |
+| `result.ext`       | String     | 用户的在线状态扩展信息。                 |
+| `result.status`    | JSON | 用户在多个设备上的在线状态。<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他字符串：用户自定义的在线状态。</li></ul>  |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
-
-| 参数       | 类型      | 描述                                                         |
-| :---------- | :-------- | :----------------------------------------------------------- |
-| `result`    | JSON 数组 | 操作是否成功。如果成功，则返回用户的在线状态；否则，您可以根据返回的原因进行故障排除。 |
-| `uid`       | String      | 用户的唯一登录帐户。                                         |
-| `last_time` | Long      | 用户最近在线的 Unix 时间戳。                               |
-| `ext`       | String      | 在线状态的扩展信息。                                         |
-| `status`    | JSON 数组 | 用户在多个设备上的在线状态。<li>`0`： 离线。<li>`1`： 在线的。<li>其他字符串：用户定义的自定义在线状态。 |
 
 ### 示例
 
@@ -245,7 +249,8 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence' \
    "status":{
        "android":"0",
        "android":"0"}
-    }]
+    }
+   ]
  }
 ```
 
@@ -263,20 +268,20 @@ DELETE https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 #### 路径参数
 
-路径参数的说明详见 [公共参数](#pubparam)。
+参数及描述详见 [公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。将其设置为`application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${token}` | 是 |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
+| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
 
 #### 请求 body
 
 | 参数   | 类型      | 描述                                                         | 是否必填|
 | :------ | :-------- | :----------------------------------------------------------- | :----- |
-| `users` | JSON Array | 取消订阅的用户列表，例如 `[“user1”, “user2”]`. 此列表最多可包含 100 个用户 ID。 | 是 |
+| `users` | JSON Array | 要取消订阅在线状态的用户 ID 数组，例如 `[“user1”, “user2”]`，最多可传 100 个用户 ID。 | 是 |
 
 ### HTTP 响应
 
@@ -286,7 +291,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 | 参数    | 类型 | 描述                                                         |
 | :------- | :--- | :----------------------------------------------------------- |
-| `result` | String | 取消订阅是否成功。`ok` 表示取消订阅成功，失败则返回相应的错误原因。 |
+| `result` | String | 是否成功取消订阅用户的在线状态。`ok` 表示成功，失败则返回相应的错误原因。 |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -321,21 +326,21 @@ GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&
 
 #### 路径参数
 
-路径参数的说明详见 [公共参数](#pubparam)。
+参数及描述详见 [公共参数](#pubparam)。
 
 #### 查询参数
 
 | 参数      | 类型 | 描述                                        | 是否必填|
 | :--------- | :--- | :------------------------------------------ | :----- |
-| `pageNum`  | Number | 开始检索订阅的页面。在 `1` 第一次查询时传入。 | 是 |
-| `pageSize` | Number | 每页检索的最大订阅数。范围是 [1, 500]。     | 是 |
+| `pageNum`  | Number | 要查询的页码。该参数的值须大于等于 1。若不传，默认值为 `1`。 | 否 |
+| `pageSize` | Number | 每页显示的订阅用户数量。取值范围为 [1,500]，若不传默认值为 `1`。    | 否 |
 
 #### 请求 header
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。将其设置为`application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${token}` | 是 |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
+| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
 
 ### HTTP 响应
 
@@ -346,10 +351,10 @@ GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&
 | 参数      | 类型 | 描述                                                         |
 | :--------- | :--- | :----------------------------------------------------------- |
 | `result`   | String | 是否成功获取了订阅列表。若操作成功，返回被订阅用户的在线状态信息。若操作失败，返回相应的错误原因。 |
-| `totalnum` | String | 当前订阅的用户总数。                                           |
-| `sublist`  | Object | 订阅列表。列表中的每个对象都包含 `uid` 和 `expiry` 字段。        |
-| `uid`      | String | 用户的唯一登录帐户。                                         |
-| `expiry`   | String | 订阅到期的 Unix 时间戳。                                   |
+| `result.totalnum` | String | 当前订阅的用户总数。                                           |
+| `result.sublist`  | JSON Array | 订阅列表。列表中的每个对象都包含 `uid` 和 `expiry` 字段。        |
+| `result.sublist.uid`      | String | 被订阅用户在即时通讯服务器的唯一 ID。                                 |
+| `result.sublist.expiry`   | String | 订阅到期的 Unix 时间戳。                                   |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
@@ -366,11 +371,23 @@ curl -X GET 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/sub
 #### 响应示例
 
 ```json
-{"result":{"totalnum":"2","sublist":[{"uid":"lxml2","expiry":"1645822322"},{"uid":"lxml1","expiry":"1645822322"}]}}%
+{
+   "result":{
+     "totalnum":"2",
+     "sublist":[
+      {
+        "uid":"lxml2",
+        "expiry":"1645822322"},
+      {
+        "uid":"lxml1",
+        "expiry":"1645822322"}
+      ]
+   }
+}
 ```
 
 <a name="code"></code>
 
 ## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

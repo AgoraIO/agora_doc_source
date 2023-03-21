@@ -19,9 +19,9 @@
 | 参数       | 类型   | 描述          |
 | :------------------- | :----- | :---------------------------------- |
 | `action`             | String | 请求方式。               |
-| `organization`       | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。    |
+| `organization`       | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。  |
 | `application`        | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。                                                                                           |
-| `applicationName`    | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。                                                                                      |
+| `applicationName`    | String | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。  |
 | `uri`                | String | 请求 URL。                                                                                                                                      |
 | `path`               | String | 请求路径，属于请求 URL 的一部分，无需关注。                                                                                                     |
 | `entities`           | JSON   | 返回实体信息。                                                                                                                                  |
@@ -65,7 +65,7 @@ POST https://{host}/{org_name}/{app_name}/users
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。    | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 #### 请求 body
@@ -74,7 +74,7 @@ POST https://{host}/{org_name}/{app_name}/users
 
 | 字段       | 类型   | 描述           | 是否必填 |
 | :--------- | :----- | :----------------------------------- | :------- |
-| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。  | 是       |
+| `username` | String | 用户 ID。长度不可超过 64 个字节，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul><div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户 ID 唯一。</li><li>用户 ID 是公开信息，请勿使用 UUID、邮箱地址、手机号等敏感信息。</li></ul></div>| 是       |
 | `password` | String | 用户的登录密码。长度必须在 64 个字符以内。 | 是       |
 | `nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称，而非用户属性的用户昵称。长度必须在 100 个字符以内。默认为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>中文</li><li>特殊字符</li></ul> | 否       |
 
@@ -135,14 +135,14 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 
 ## 批量注册用户
 
-一个请求内注册多个用户。
+一次注册多个用户。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users
+POST https://{host}/{org_name}/{app_name}/users
 ```
 
 #### 路径参数
@@ -153,18 +153,18 @@ POST https://api.agora.io/{org_name}/{app_name}/users
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。    | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 #### 请求 body
 
-<div class="alert info">单次请求内最多可注册 60 个用户 ID。<div>
+<div class="alert info">单次请求最多可注册 60 个用户 ID。<div>
 
 请求包体为 JSON Object 类型，包含以下字段：
 
 | 字段       | 类型   | 描述                                                                                                                                                  | 是否必填 |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。  | 是       |
+| `username` | String | 用户 ID。用户的唯一登录账号。长度不可超过 64 个字节，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul><div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户 ID 唯一。</li><li>用户 ID 是公开信息，请勿使用 UUID、邮箱地址、手机号等敏感信息。</li></ul></div> | 是       |
 | `password` | String | 用户的登录密码。长度必须在 64 个字符以内。   | 是       |
 | `nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称，而非用户属性的用户昵称。长度必须在 100 个字符以内。默认为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>中文</li><li>特殊字符</li></ul> | 否       |
 
@@ -178,7 +178,7 @@ POST https://api.agora.io/{org_name}/{app_name}/users
 | :------------------ | :--------- | :------------------------------------------------------------------------------------------- |
 | `entities.username` | String | 用户 ID。                                      |
 | `entities.nickname` | String     | 用户昵称。推送消息时显示的昵称。<br/>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。 |
-| `data`              | JSON Array | 返回数据详情。在该接口中，注册失败的用户 ID和失败原因会显示在 `data` 数组中。                 |
+| `data`              | JSON Array | 返回数据详情。在该接口中，注册失败的用户 ID 和失败原因会显示在 `data` 数组中。                 |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -315,7 +315,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 ### HTTP 请求
 
 ```http
-GET https://api.agora.io/{org_name}/{app_name}/users/{username}
+GET https://{host}/{org_name}/{app_name}/users/{username}
 ```
 
 #### 路径参数
@@ -338,7 +338,7 @@ GET https://api.agora.io/{org_name}/{app_name}/users/{username}
 | 字段                                          | 类型   | 描述                                                                                                                                             |
 | :-------------------------------------------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `entities.username`                           | String | 用户 ID。         |
-| `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。                                       |
+| `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br/>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。                                       |
 | `entities.notification_display_style`         | Number    | 消息推送方式：<ul><li>`0`：仅通知。推送标题为“您有一条新消息”，推送内容为“请点击查看”；</li><li>`1`：通知以及消息详情。推送标题为“您有一条新消息”，推送内容为发送人昵称和离线消息的内容。</li><li>若用户未设置该参数，则响应中不返回。</li></ul>                                                         |
 | `entities.notification_no_disturbing`         | Boolean   | 是否开启免打扰。<ul><li>`true`：免打扰开启。若用户未设该参数，则响应中不返回。</li><li>`false`：免打扰关闭。</li></ul>                                      |
 | `entities.notification_no_disturbing_start`   | String | 免打扰的开始时间。例如，“8” 代表每日 8:00 开启免打扰。若用户未设该参数，则响应中不返回。                                                         |
@@ -440,7 +440,7 @@ GET https://{host}/{org_name}/{app_name}/users?limit={N}&{cursor}
 | :-------------------------------------------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `entities.username`                           | String | 用户 ID。       |
 | `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。     |
-| `cursor`                                      | String | 游标，用于分页显示用户列表。<br>第一次发起批量查询用户请求时无需设置 `cursor`，请求成功后，从响应 body 中获取 `cursor`，并在下一次请求的 URL 中传入该 `cursor`，直到响应 body 中不再有 `cursor` 字段，则表示已查询到 app 中所有用户。 |
+| `cursor`                                      | String | 游标，用于分页显示用户列表。<br/>第一次发起批量查询用户请求时无需设置 `cursor`，请求成功后，从响应 body 中获取 `cursor`，并在下一次请求的 URL 中传入该 `cursor`，直到响应 body 中不再有 `cursor` 字段，则表示已查询到 app 中所有用户。 |
 | `entities.notification_display_style`         | Number    | 消息推送方式：<ul><li>`0`：仅通知。推送标题为“您有一条新消息”，推送内容为“请点击查看”；</li><li>`1`：通知以及消息详情。推送标题为“您有一条新消息”，推送内容为发送人昵称和离线消息的内容。</li></ul><br/>若用户未设置该参数，则响应中不会返回。  |
 | `entities.notification_no_disturbing`         | Boolean   | 是否开启免打扰模式。<ul><li>`true`：免打扰开启。若用户未设置改参数，则响应中不返回。</li><li>`false`：代表免打扰关闭。</li></ul>                      |
 | `entities.notification_no_disturbing_start`   | String | 免打扰的开始时间。例如， “8” 代表每日 8:00 开启免打扰。若用户未设该参数，则响应中不返回。                                                                                                                                             |
@@ -458,7 +458,7 @@ GET https://{host}/{org_name}/{app_name}/users?limit={N}&{cursor}
 
 #### 请求示例一
 
-按照注册时间升序，查询 2 个用户的信息列表：
+按照注册时间正序，查询 2 个用户的信息列表：
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
@@ -467,7 +467,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 #### <a name="http1"></a>响应示例一
 
-返回注册时间较早的 2 个 用户的信息列表：
+返回注册时间较早的 2 个用户的信息列表：
 
 ```json
 {
@@ -506,7 +506,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 #### 请求示例二
 
-使用 [响应示例一](#http1) 中的 `cursor`，继续按照注册时间升序查询下一页用户列表，该页面用户数量为 2：
+使用 [响应示例一](#http1) 中的 `cursor`，继续按照注册时间正序序查询下一页用户列表，该页面用户数量为 2：
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
@@ -554,14 +554,14 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 删除单个用户
 
-删除单个用户。如果删除的用户是群组或者聊天室的管理员，该用户管理的群组和聊天室也会相应被删除。
+删除单个用户。如果被删除的用户是群主或者聊天室所有者，系统会同时删除对应的群组和聊天室。请在操作前进行确认。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
 ```http
-DELETE https://api.agora.io/{org_name}/{app_name}/users/{username}
+DELETE https://{host}/{org_name}/{app_name}/users/{username}
 ```
 
 #### 路径参数
@@ -572,7 +572,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users/{username}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。  | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
@@ -627,16 +627,16 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 批量删除用户
 
-删除 app 下指定多个用户。建议一次删除的用户数量不要超过 100。需要注意的是，这里只指定了要删除的用户数量，并未指定要删除的具体用户，你可以在响应中查看删除的用户。
+删除 app 下一定数量的用户。建议一次删除的用户数量不要超过 100。需要注意的是，这里只指定了要删除的用户数量，并未指定要删除的具体用户，你可以在响应中查看删除的用户。
 
-如果删除的多个用户中包含群组或者聊天室的管理员，该用户管理的群组和聊天室也会相应被删除。
+如果删除的多个用户中包含群组或者聊天室的管理员，该用户管理的群组和聊天室也会相应删除。
 
 对于每个 App Key，此方法的调用频率限制为每秒 30 次。
 
 ### HTTP 请求
 
 ```http
-DELETE https://api.agora.io/{org_name}/{app_name}/users
+DELETE https://{host}/{org_name}/{app_name}/users
 ```
 
 #### 路径参数
@@ -647,7 +647,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
+| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
@@ -663,7 +663,7 @@ DELETE https://api.agora.io/{org_name}/{app_name}/users
 
 其他字段及说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -769,14 +769,14 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## 封禁用户
 
-禁用一个用户账户。该用户会立即下线，且无法登录直到解除封禁。
+禁用一个用户账户。该用户会立即下线，且无法登录即时通讯 IM 直到解除封禁。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users/{username}/deactivate
+POST https://{host}/{org_name}/{app_name}/users/{username}/deactivate
 ```
 
 #### 路径参数
@@ -804,6 +804,7 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/deactivate
 | `entities.nickname` | String | 被封禁的用户昵称。 |
 
 其他字段及说明详见 [公共参数](#param)。
+
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
@@ -847,7 +848,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ### HTTP 请求
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users/{username}/activate
+POST https://{host}/{org_name}/{app_name}/users/{username}/activate
 ```
 
 #### 路径参数
@@ -904,7 +905,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ### HTTP 请求
 
 ```http
-POST https://api.agora.io/{org_name}/{app_name}/users/{username}/disconnect
+GET https://{host}/{org_name}/{app_name}/users/{username}/disconnect
 ```
 
 #### 路径参数
@@ -915,7 +916,6 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/disconnect
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。    | 是       |
 | `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
 | `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
@@ -927,10 +927,11 @@ POST https://api.agora.io/{org_name}/{app_name}/users/{username}/disconnect
 
 | 字段          | 类型 | 描述                                              |
 | :------------ | :--- | :------------------------------------------------ |
-| `data`        | JSON | 返回数据详情。                                    |
+| `data`        | JSON | 对用户强制下线的结果。                                    |
 | `data.result` | Boolean | 用户是否已被强制下线：<br/> - `true`：是；<br/> - `false`：否。|
 
 其他字段及说明详见 [公共参数](#param)。
+
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
@@ -962,7 +963,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 获取单个用户在线状态
 
-该方法获取单个用户的在线状态。你可以调用该方法查询指定用户是否在线。
+该方法查看单个用户是在线还是离线状态。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
@@ -1045,7 +1046,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | Bearer ${YourAppToken}              | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。          | 是       |
 
 #### 请求 body
 
@@ -1066,7 +1067,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 
 其他字段说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码汇总表](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1112,7 +1113,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 #### 路径参数
 
 |       参数       | 类型   | 描述                        | 是否必填 |
-| :--------------: | :----- | :-------------------------- | -------- |
+| :-------------- | :----- | :-------------------------- | :-------------- |
 | `owner_username` | String | 要获取离线消息数的用户 ID。 | 是       |
 
 其他参数及说明详见 [公共参数](#param)。
@@ -1122,7 +1123,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
-| `Authorization` | String | Bearer ${YourAppToken}              | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -1136,7 +1137,8 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 其他字段说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
 ### 示例
 
 #### 请求示例
@@ -1176,8 +1178,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 #### 路径参数
 
-|    参数    | 类型   | 描述                          | 是否必填 |
-| :--------: | :----- | :---------------------------- | -------- |
+| 参数    | 类型   | 描述                          | 是否必填 |
+| :--------: | :----- | :---------------------------- | :--------- |
 | `username` | String | 要获取离线消息状态的用户 ID。 | 是       |
 | `msg_id`  | String | 要查看离线消息状态的 ID。     | 是       |
 
@@ -1202,7 +1204,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 其他字段说明详见 [公共参数](#param)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1231,4 +1233,4 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

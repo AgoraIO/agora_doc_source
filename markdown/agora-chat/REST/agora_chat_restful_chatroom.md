@@ -18,7 +18,7 @@
 | 参数              | 类型   | 描述                                                              |
 | :---------------- | :----- | :---------------------------------------------------------------- |
 | `action`          | String | 请求方式。                                                        |
-| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
+| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`     | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
 | `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
 | `uri`             | String | 请求 URL。                                                        |
@@ -285,7 +285,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | `data.custom`             | String     | 聊天室扩展信息，创建聊天室时为聊天室添加的自定义信息。                                                                                        |
 | `data.affiliations_count` | int        | 聊天室成员数量（包含聊天室创建者）。                                                                                                          |
 | `data.affiliations`       | JSON Array | 聊天室成员数组，包含以下字段：<ul><li>`owner`： 聊天室创建者的用户 ID。</li><li>`member`：聊天室成员的用户 ID。</li></ul>                                          |
-| `data.public`             | Bool       | 预留字段，无需关注。                                                                                                                          |
+| `data.public`             | Bool       | 预留字段，无需关注。       |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -360,7 +360,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 修改聊天室信息
 
-修改指定聊天室信息。修改指定聊天室的信息。仅支持修改聊天室名称、聊天室描述和聊天室最大成员数。
+修改指定聊天室信息。仅支持修改聊天室名称、聊天室描述和聊天室最大成员数。
 
 ### HTTP 请求
 
@@ -650,4 +650,4 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

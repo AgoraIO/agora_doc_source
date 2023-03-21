@@ -1,4 +1,4 @@
-管理群组成员是指对一个群组内的成员进行添加、移除等操作。即时通讯提供多个接口实现添加群成员、获取群成员、添加管理员、转让群主等功能。
+即时通讯提供多个接口实现群成员管理，包括添加群成员、获取群成员列表、添加和移除管理员以及转让群主等功能。
 
 本文展示如何调用即时通讯 RESTful API 管理群组成员。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
@@ -9,36 +9,29 @@
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                                                       | 是否必填 |
-| :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                                 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                            | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                                                                   | 是       |
-| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户 ID。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
+| 参数       | 类型   | 描述                | 是否必填 |
+| :--------- | :----- | :--------------------------------- | :------- |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。     | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。       | 是       |
+| `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
 
 | 参数              | 类型   | 描述                                                                     |
 | :---------------- | :----- | :----------------------------------------------------------------------- |
 | `action`          | String | 请求方式。                                                               |
-| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
+| `organization`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`     | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
-| `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
+| `applicationName` | String | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。        |
 | `uri`             | String | 请求 URL。                                                               |
-| `path`            | String | 请求路径，属于请求 URL 的一部分，无需关注。                              |
 | `entities`        | JSON   | 返回实体信息。                                                           |
-| `data`            | Array  | 实际请求到的数据。                                                       |
-| `count`           | Number | 获取到的数组数量。                                                       |
-| `created`         | Number| 群组创建时间，Unix 时间戳，单位为毫秒。                      |
-| `username`    | String| 用户 ID。                                                     |
-| `groupname`      | String | 群组名。                                                     |
-| `nickname`         | String| 用户昵称。                                                   |
-| `timestamp`       | Long   | 响应的 Unix 时间戳（毫秒）。                                             |
+| `timestamp`       | Number   | 响应的 Unix 时间戳（毫秒）。                                             |
 | `duration`        | Number | 从发送请求到响应的时长（毫秒）。                                         |
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer ${YourAppToken}
@@ -52,7 +45,7 @@ Authorization: Bearer ${YourAppToken}
 
 ### HTTP 请求
 
-```shell
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}&pagesize={N}
 ```
 
@@ -62,36 +55,38 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users?pagenum={N}
 | :--------- | :----- | :------------------------------------------------ | :------- |
 | `group_id` | String | 群组 ID。                                         | 是       |
 
-参数及说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
 | 参数       | 类型   | 描述                                              | 是否必填 |
 | :--------- | :----- | :------------------------------------------------ | :------- |
 | `pagenum`  | Number | 当前页码。默认从第 1 页开始获取。          | 否       |
-| `pagesize` | Number | 每页请求的成员数量。取值范围为[1,1000]。默认值为 `1000`。 | 否       |
+| `pagesize` | Number | 每页期望返回的群组成员数量。取值范围为[1,100]，默认值为 `10`。 | 否       |
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。   | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数     | 类型   | 描述                                       |
 | :------- | :----- | :----------------------------------------- |
-| `owner`  | String | 群主的用户 ID，如 `{"owner":"user1"}`。    |
-| `member` | String | 群成员的用户 ID，如 `{"member":"user2"}`。 |
+| `data`  | JSON Array | 获取的群组成员列表。    |
+| `data.owner`  | String | 群主的用户 ID，例如 `{"owner":"user1"}`。    |
+| `data.member` | String | 群成员的用户 ID，例如 `{"member":"user2"}`。 |
+| `count` | Number | 获取的群成员数量。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -137,11 +132,11 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 
 ## 添加单个群组成员
 
-将指定用户添加进群组。如果该指定用户已经是群成员，则该方法会返回错误。
+每次添加一个群成员。若添加的用户已是群成员，则添加失败，返回错误。
 
 ### HTTP 请求
 
-```shell
+```http
 POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{username}
 ```
 
@@ -151,32 +146,33 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{username}
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-#### 请求参数
+#### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json` | 是       |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。        | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数      | 类型    | 描述                                                               |
 | :-------- | :------ | :----------------------------------------------------------------- |
-| `result`  | Boolean | 是否成功添加：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
-| `groupid` | String  | 群组 ID。                                                          |
-| `action`  | String  | 执行操作。                                                         |
-| `user`    | String  | 被添加到群组的用户 ID。                                            |
+| `data`  | JSON | 群成员添加结果。 |
+| `data.result`  | Boolean | 群成员是否成功添加：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data.groupid` | String  | 群组 ID。                                                          |
+| `data.action`  | String  | 执行操作，`add_member` 表示添加群成员。                                                         |
+| `data.user`    | String  | 添加到群组的用户 ID。                                            |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -211,12 +207,12 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 批量添加群组成员
 
-将多个指定用户添加进群组。你一次最多可以添加 60 个用户进群组。如果指定的用户已经是群成员，则会在响应的 body 中返回错误。
+一次为群组添加多个成员，每次最多可以添加 60 位成员。如果所有待添加的用户均已是群成员，则添加失败，返回错误。
 
 ### HTTP 请求
 
-```shell
-POST https://{host}/{org_name}/{app_name}/chatgroups/{chatgroupid}/users
+```http
+POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users
 ```
 
 #### 路径参数
@@ -225,37 +221,38 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{chatgroupid}/users
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json` | 是       |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。   | 是     |
 
 #### 请求 body
 
 | 参数        | 类型  | 描述                      | 是否必填 |
 | :---------- | :---- | :------------------------ | :------- |
-| `usernames` | Array | 待添加到群组中的成员 ID。 | 是       |
+| `usernames` | Array | 要添加为群组成员的用户 ID。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数         | 类型   | 描述                    |
 | :----------- | :----- | :---------------------- |
-| `newmembers` | Array  | 已添加进群组的成员 ID。 |
-| `groupid`    | String | 群组 ID。               |
-| `action`     | String | 执行操作。              |
+| `data` | JSON  | 群成员添加信息。 |
+| `data.newmembers` | Array  | 添加的群组成员的用户 ID。 |
+| `data.groupid`    | String | 群组 ID。               |
+| `data.action`     | String | 执行操作。在该响应中，该字段的值为 `add_member`，表示添加群成员。              |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -296,11 +293,11 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 移除单个群组成员
 
-将指定用户从群组中移除。如果指定用户不在群组内，则该方法会返回错误。
+从群中移除指定成员。如果指定用户不在群组内，则该方法会返回错误。移除后，该成员也会被移除其在该群组中加入的子区。
 
 ### HTTP 请求
 
-```shell
+```http
 DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{username}
 ```
 
@@ -310,31 +307,32 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{usernam
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数      | 类型    | 描述                                                               |
 | :-------- | :------ | :----------------------------------------------------------------- |
-| `result`  | Boolean | 是否成功移除：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
-| `groupid` | String  | 群组 ID。                                                          |
-| `action`  | String  | 执行操作。                                                         |
-| `user`    | String  | 被从群组中移除的用户 ID。                                          |
+| `data`  | JSON | 群成员移除信息。 |
+| `data.result`  | Boolean | 群成员是否成功移除：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
+| `data.groupid` | String  | 群组 ID。                                                          |
+| `data.action`  | String  | 执行操作。在该响应中，该字段的值为 `remove_member`，表示移除群组成员。   |
+| `data.user`    | String  | 被移除的群成员的用户 ID。                                          |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -369,7 +367,9 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 批量移除群组成员
 
-将多名指定用户从群组中移除。你一次最多可以移除 60 名群成员。如果指定的用户不在群组中，则会在响应的 body 中返回错误。
+一次移除多名群成员。一次最多可移除 60 名群成员。移除后，这些成员也会被移除其在该群组中加入的子区。
+
+如果指定的用户不在群组中，则会在响应 body 中返回错误。
 
 ### HTTP 请求
 
@@ -382,34 +382,35 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memeber
 | 参数     | 类型   | 描述                                                           | 是否必填 |
 | :------- | :----- | :------------------------------------------------------------- | :------- |
 | group_id | String | 群组 ID。                                                      | 是       |
-| members  | String | 待移除的群组成员 ID，各 ID 之间用英文逗号分隔。如 user1, user2。建议一次最多移除 60 个群成员，并且 URL 的长度不超过 4 KB。 | 是       |
+| members  | String | 要移除的群成员的用户 ID。一次最多可传入 60 个用户 ID，用英文逗号分隔，例如 `user1,user2`。并且，需确保请求 URL 的长度不超过 4 KB。 | 是 |
 
-其他路径参数说明详见公共参数。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数      | 类型    | 描述                                                               |
 | :-------- | :------ | :----------------------------------------------------------------- |
-| `result`  | Boolean | 操作是否成功：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
-| `groupid` | String  | 群组 ID。                                                          |
-| `reason`  | String  | 操作失败的原因。                                                   |
-| `action`  | String  | 执行操作。                                                         |
-| `user`    | String  | 被从群组中移除的用户 ID。                                          |
+| `data`  | JSON Array | 群成员移除信息。 |
+| `data.result`  | Boolean | 是否成功批量移除群成员：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data.groupid` | String  | 群组 ID。                                                          |
+| `data.reason`  | String  | 操作失败的原因。                                                   |
+| `data.action`  | String  | 执行操作。在该响应中，该字段的值为 `remove_member`，表示移除群组成员。      |
+| `data.user`    | String  | 被移除成员的用户 ID。                                          |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -455,13 +456,13 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## 获取群管理员列表
+## 获取群组管理员列表
 
 获取群组管理员的列表。
 
 ### HTTP 请求
 
-```shell
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 ```
 
@@ -471,14 +472,14 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。    | 是       |
 
 ### HTTP 响应
 
@@ -486,7 +487,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段即返回的群管理员的信息。其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -517,11 +518,11 @@ curl -X GET HTTP://XXXX/XXXX/XXXX/chatgroups/10130212061185/admin -H 'Authorizat
 
 ## 添加群管理员
 
-将一个群成员角色权限提升为群管理员。群管理员有管理黑名单、禁言等权限。最多可以添加 99 个群管理员。
+将一个普通群成员设为为群管理员。群管理员有管理黑名单、禁言等权限。最多可以添加 99 个群管理员。
 
 ### HTTP 请求
 
-```shell
+```http
 POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 ```
 
@@ -531,21 +532,21 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json` | 是       |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是       |
 
 #### 请求 body
 
 | 参数       | 类型   | 描述                          | 是否必须 |
 | :--------- | :----- | :---------------------------- | :------- |
-| `newadmin` | String | 待添加为新群管理员的用户 ID。 | 是       |
+| `newadmin` | String | 要添加的新管理员的用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -555,12 +556,12 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 
 | 字段    | 类型   | 描述                    |
 | :----- | :----- | :---------------------- |
-| `data` | String | 添加的新管理员用户 ID。 |
+| `data` | String | 添加的新管理员的用户 ID。 |
 | `count` | Number   | 添加的新管理员的数量。 |
 
 其他字段及说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -591,11 +592,11 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' '
 
 ## 移除群管理员
 
-将用户角色从群管理员降为群普通成员。
+将用户角色从群管理员降为群普通成员，即将群管理员移出群管理员列表。
 
 ### HTTP 请求
 
-```shell
+```http
 DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 ```
 
@@ -605,29 +606,30 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文：
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数       | 类型    | 描述                                                                           |
 | :--------- | :------ | :----------------------------------------------------------------------------- |
-| `result`   | Boolean | 是否成功将指定用户移除管理员：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
-| `oldadmin` | String  | 被移除的管理员 ID。                                                            |
+| `data`   | JSON | 群管理员移除结果。 |
+| `data.result`   | Boolean | 是否成功将该群管理员移出管理员列表：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data.oldadmin` | String  | 被移除的管理员的用户 ID。           |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码汇总表](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -660,12 +662,12 @@ curl -X DELETE -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1
 
 ## 转让群组
 
-将群主改为同一群组中的其他成员。群主拥有群组的所有权限。
+将群主修改为该群组中的其他成员。群主拥有群组的所有权限。
 
 ### HTTP 请求
 
-```shell
-PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
+```http
+PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 ```
 
 #### 路径参数
@@ -674,35 +676,36 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 | :--------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。填入 `application/json` | 是       |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}`          | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是       |
 
 #### 请求 body
 
 | 参数       | 类型   | 描述             | 是否必须 |
 | :--------- | :----- | :--------------- | :------- |
-| `newowner` | String | 新群主的用户 ID。 | 是       |
+| `data.newowner` | String | 新群主的用户 ID。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数       | 类型    | 描述                                                            |
 | :--------- | :------ | :-------------------------------------------------------------- |
-| `newowner` | Boolean | 是否成功将指定用户设为群主：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data` | JSON | 群组转让结果。 | 
+| `data.newowner` | Boolean | 是否成功将指定用户设为群主：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code) 了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -734,4 +737,4 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

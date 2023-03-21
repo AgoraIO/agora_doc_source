@@ -61,7 +61,7 @@ Authorization: Bearer ${YourAppToken}
 
 ### 发送单聊消息
 
-此方法可向单个用户发送消息。
+此方法向单个用户发送消息。
 
 通过 RESTful API 单个应用每分钟最多可发送 6000 条消息，每次最多可向 600 人发送。例如，一次向 600 人发消息，视为 600 条消息。
 
@@ -79,11 +79,11 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 
 |      参数       | 类型   |                                             描述                                              | 是否必填 |
 | :-------------: | :----- | :-------------------------------------------------------------------------------------------: | :------: |
-| `Content-Type`  | String |                              内容类型。请填 `application/json`。                              |    是    |
-|    `Accept`     | String |                              内容类型。请填 `application/json`。                              |    是    |
+| `Content-Type`  | String | 内容类型。请填 `application/json`。                              |    是    |
+| `Accept`     | String | 内容类型。请填 `application/json`。                              |    是    |
 | `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 |    是    |
 
-#### 通用请求体
+#### 通用请求体<a name="commonbody"></a>
 
 通用请求体为 JSON 对象，是所有消息的外层结构。不同类型的消息只是 `body` 字段内容存在差异。
 
@@ -96,6 +96,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `sync_device` | Boolean   | 消息发送成功后，是否将消息同步到发送方。<ul><li>`true`：是</li><li>（默认）`false`：否</li></ul>        | 否       |
 | `routetype`   | String | 若传入该参数，其值为 `ROUTE_ONLINE`，表示只有接收方在线时，消息才能成功发送；若接收方离线，消息发送失败。若不传入该字段，接收方离线时，消息也能成功发送。                                                                    | 否       |
 | `ext`         | JSON   | 消息支持扩展字段，可添加自定义信息。该字段不能设置为 `null`。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义字段](./agora_chat_push_ios#自定义字段) 和 [Android 推送自定义字段](./agora_chat_push_android#自定义字段)。      | 否       |
+| `msg_timestamp`        | Long   | 否       | 服务器收到该消息的时间戳。若不传该参数，服务器收到消息后会自动生成一个消息接收时间戳。          |
 
 #### <a name="msg"></a>body 字段说明
 
@@ -110,7 +111,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | 字段       | 类型   | 描述                                                                                                                                                      | 是否必填                                                                |
 | :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
 | `filename` | String | 图片名称。     | 是                                                                      |
-| `secret`   | String | 图片访问密钥，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。  如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。             | 否|
+| `secret`   | String | 图片访问密钥，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。             | 否|
 | `size`     | JSON   | 图片尺寸，单位为像素，包含以下字段：<ul><li>`height`：图片高度</li><li>`width`：图片宽度 </li></ul>  | 是               |
 | `url`      | String | 图片 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`<br/>`file_uuid` 为文件 ID，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取。 | 是                                                                      |
 
@@ -420,7 +421,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 | :-------------- | :----- | :---------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                                                           | 是       |
 | `Accept`        | String | 内容类型。请填 `application/json`。                                                           | 是       |
-| `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
+| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
 
 #### 通用请求体
 
@@ -430,7 +431,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 | :--- | :---- | :---------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `to` | Array | 消息接收方群组 ID 数组，每次最多可向 3 个群组发送消息。例如，一次向 3 个群组发消息，表示发送了 3 条消息。 | 是       |
 
-<div class="alert info"><li>群聊消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#通用请求体)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
+<div class="alert info"><li>群聊消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#commonbody)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
 
 #### HTTP 响应
 
@@ -703,7 +704,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 | `to` | Array | 消息接收方聊天室 ID 数组。每次最多可向 10 个聊天室发送消息。 | 是       |
 | `chatroom_msg_level` | String | 聊天室消息优先级：<ul><li>`high`：高</li><li>（默认）`normal`：普通</li><li> `low`：低 </li></ul> | 否  | 
 
-<div class="alert info"><li>聊天室消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#通用请求体)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
+<div class="alert info"><li>聊天室消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#commonbody)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
 
 #### HTTP 响应
 
@@ -971,7 +972,7 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 | :---------------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `Content-Type`    | String | 内容类型。请填 `multipart/form-data`。上传文件会自动填充这个头。                                                                                                                  | 否       |
 | `Authorization`   | String | `Bearer ${YourToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。                                                                                          | 是       |
-| `restrict-access` | Boolean   | 是否限制访问该文件：<ul><li>`true` ：是。用户需要通过响应 body 中获取的文件访问密钥（share-secret）才能下载该文件。</li><li>`false` ：否。表示不限制访问。用户可以直接下载该文件。</li></ul> | 否       |
+| `restrict-access` | Boolean   | 是否限制访问该文件：<ul><li>`true`：是。用户需要通过响应 body 中获取的文件访问密钥（share-secret）才能下载该文件。</li><li>`false`：否。表示不限制访问。用户可以直接下载该文件。</li></ul> | 否       |
 
 #### 请求 body
 
@@ -1703,11 +1704,11 @@ POST https://{host}/{org_name}/{app_name}/messages/users/import
 | :-------------- | :----- | :------------------------------------------ | :------- |
 | `from`          | String | 消息发送方的用户 ID。                                                                                                                                                                                                        | 是       |
 | `target`        | String | 消息接收方的用户 ID。                                                                                                                                                                                                        | 是       |
-| `type`          | String | 消息类型：<li>`txt`：文本消息<li>`img`：图片消息<li>`audio`：语音消息<li>`video`：视频消息<li>`file`：文件消息<li>`loc`：位置消息<li>`cmd`：透传消息<li>`custom`：自定义消息 | 是       |
+| `type`          | String | 消息类型：<ul><li>`txt`：文本消息</li><li>`img`：图片消息</li><li>`audio`：语音消息</li><li>`video`：视频消息</li><li>`file`：文件消息</li><li>`loc`：位置消息</li><li>`cmd`：透传消息</li><li>`custom`：自定义消息</li></ul> | 是       |
 | `body`          | JSON   | 消息内容。                                                                                                                                                                                                                   | 是       |
-| `is_ack_read`   | Boolean   | 是否设置消息为已读。<li>`true`：是；<li>`false`：否。                                                                                                                                                                | 否       |
+| `is_ack_read`   | Boolean   | 是否设置消息为已读。<ul><li>`true`：是；</li><li>`false`：否。</li></ul>                                                                                                                                                                | 否       |
 | `msg_timestamp` | Number  | 要导入的消息的时间戳，单位为毫秒。若不传该参数，环信服务器会将导入的消息的时间戳设置为当前时间。  | 否       |
-| `need_download` | Boolean   | 是否需要下载附件并上传到服务器。<li>`true`：是<li>（默认）`false`：否       | 否       |
+| `need_download` | Boolean   | 是否需要下载附件并上传到服务器。<ul><li>`true`：是</li><li>（默认）`false`：否</li></ul>       | 否       |
 
 与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。
 
@@ -1802,7 +1803,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups/import
 
 | 参数            | 类型   | 描述                                                                                          | 是否必填 |
 | :-------------- | :----- | :-------------------------------------------------------------------------------------------- | :------- |
-| `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
+| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
 
 #### 请求 body
 
@@ -1895,4 +1896,4 @@ curl -X POST -H "Authorization: Bearer <YourAppToken> " "https://XXXX/XXXX/XXXX/
 
 ## <a name="code"></code> 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
