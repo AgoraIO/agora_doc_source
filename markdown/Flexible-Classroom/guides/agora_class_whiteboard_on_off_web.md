@@ -79,10 +79,3 @@ this.boardApi.disable();
 ```typescript
 this.boardApi.enable();
 ```
-
-
-## Android/iOS
-
-通过 `AgoraWidgetContext` 的 `setWidgetActive` 和 `setWidgetInactive` 方法设置 Widget 的状态为活跃或非活跃。Widget 状态会被同步至远端。
-
-通过 `AgoraWidgetContext.addWidgetActiveObserver` 监听指定 Widget 的状态。当该 Widget 状态变化后，SDK 会触发 `onWidgetActive` 或 `onWidgetInactive` 回调提示 Widget 状态变更。
