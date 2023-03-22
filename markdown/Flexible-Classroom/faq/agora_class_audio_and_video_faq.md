@@ -1,18 +1,24 @@
-web端打不开摄像头和麦克风怎么办？
+##1、web端打不开摄像头和麦克风怎么办？
 1、请确认浏览器摄像头的权限是否打开
-（插入几张图片）
+<img src="./images/camera_mic_1.png" style="zoom: 13%;" />
+
+<img src="./images/camera_mic_2.png" style="zoom: 13%;" />
+
+<img src="./images/camera_mic_3.png" style="zoom: 13%;" />
+
 如果权限已经开启了，请采用下面几个步骤刷新一下
 2、清理一下浏览器的缓存
 3、关闭重启一下浏览器
 4、升级一下chrome浏览器的版本
 
 
-2、如何修改课程中视频分辨率？
+##2、如何修改课程中视频分辨率？
 web端的launch接口可以通过修改launchOption.MediaOptions参数来调整分辨率。
 launchOption.MediaOptions.lowStreamCameraEncoderConfiguration 改小流的分辨率
 launchOption.mediaOptions.cameraEncoderConfiguration 改大流的分辨率
 launchOption.mediaOptions.screenShareEncoderConfiguration修改屏幕共享的分辨率
 eg:
+```
     AgoraEduSDK.launch(appRef.current, {
         ...launchOption,
         recordUrl,
@@ -37,6 +43,8 @@ eg:
         listener: (evt: AgoraEduClassroomEvent, type) => {
         ,
     });
+   
+```
 
 修改录制的分辨率：
 get recordArgs() {
@@ -54,7 +62,7 @@ const args = {
 };
 
 
-3、使用屏幕共享报错，如何开启屏幕录制功能权限?
+##3、使用屏幕共享报错，如何开启屏幕录制功能权限?
 屏幕共享开启的时候报如下错误：
 <img src="./images/screen_share_error.png" style="zoom: 33%;" />
 
@@ -65,12 +73,12 @@ const args = {
 <img src="./images/screenshare_turn_on.png" style="zoom: 33%;" />
 
 
-4、直播对网络带宽的要求
+##4、直播对网络带宽的要求
 1)  老师端带宽及速率：10Mbps以上独享宽带，上行速率大于4Mbps
 2)  学生端带宽及速率：最低4Mbps以上独享宽带.
 
 
-5、用户在上课的时候频繁卡顿，听不清楚老师上课内容、进教室的时候白屏、视频窗口黑屏、白板模块加载课件失败等怎么办?
+##5、用户在上课的时候频繁卡顿，听不清楚老师上课内容、进教室的时候白屏、视频窗口黑屏、白板模块加载课件失败等怎么办?
 解决方案：
 1)   重启下路由器，网络重连后刷新试下
 2)   靠近路由器，不要隔墙
@@ -81,7 +89,7 @@ const args = {
 
 
 
-6、学生听不到老师声音怎么办？
+##6、学生听不到老师声音怎么办？
 1)   检查下自己的网络是否正常；
 2)   检查下学生的电脑扬声器/浏览器是否静音（播放音乐试试）；
 3)   检查下老师是否开启了麦克风；
@@ -91,12 +99,12 @@ const args = {
 7）   重启电脑
 
 
-7、上课老师反馈听不到学生声音怎么办？
+##7、上课老师反馈听不到学生声音怎么办？
 1)   查看学生是否上台并打开麦克风；
 2)   老师的扬声器是否选择正确并打开；
 3)   老师退出重进直播间或重启一下设备；
 4)   老师先检测教室内的扬声器设备是否选择正确
 5)   老师检查下系统的扬声器音量是否正常打开（包括音量合成器）
-6）   重启电脑
+6）  重启电脑
 
 
