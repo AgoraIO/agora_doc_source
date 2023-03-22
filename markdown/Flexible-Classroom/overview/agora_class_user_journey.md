@@ -142,4 +142,4 @@
 
 #### 服务端 API
 
-可通过调用 RESTful API 接口实现功能，详见[灵动课堂云服务 RESTful API 文档](/cn/agora-class/agora_class_restful_api?platform=RESTful)。
+可通过调用 RESTful API 接口实现功能，详见[灵动课堂 RESTful API 文档](/cn/agora-class/agora_class_restful_api?platform=RESTful)。

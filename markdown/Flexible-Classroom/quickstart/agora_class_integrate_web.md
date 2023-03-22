@@ -295,7 +295,7 @@
 
 在线考试开始后，考生会在本地通过 `Widget` 创建的 Webview 窗口加载考卷。考卷的链接通过房间属性（`roomProperties`）中的 `examinationUrl` 字段设置。你可以参考如下方式设置考卷链接：
 
-- 在创建考试房间时设置考卷：调用灵动课堂云服务 RESTful API 的[创建房间](/cn/agora-class/agora_class_restful_api?platform=Web#创建房间)接口创建房间，并在请求包体的 `roomProperties` 字段中设置 `examinationUrl` 字段。
+- 在创建考试房间时设置考卷：调用灵动课堂 RESTful API 的[创建房间](/cn/agora-class/agora_class_restful_api?platform=Web#创建房间)接口创建房间，并在请求包体的 `roomProperties` 字段中设置 `examinationUrl` 字段。
 
     ```json
     {
@@ -312,7 +312,7 @@
         }
     }
     ```
-- 创建考试房间后设置考卷：创建房间后，调用灵动课堂云服务 RESTful API 的[更新课堂属性](/cn/agora-class/agora_class_restful_api?platform=Web#更新课堂属性)接口，并在请求包体的 `roomProperties` 字段中设置 `examinationUrl` 字段。
+- 创建考试房间后设置考卷：创建房间后，调用灵动课堂 RESTful API 的[更新课堂属性](/cn/agora-class/agora_class_restful_api?platform=Web#更新课堂属性)接口，并在请求包体的 `roomProperties` 字段中设置 `examinationUrl` 字段。
 
     ```json
     {
