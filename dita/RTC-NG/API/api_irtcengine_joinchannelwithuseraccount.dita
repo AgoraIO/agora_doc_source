@@ -39,16 +39,18 @@
       {required String token,
       required String channelId,
       required String userAccount,
-      ChannelMediaOptions? options});</codeblock></p>
+      ChannelMediaOptions? options});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>该方法允许本地用户使用 User Account 和 Token 加入频道。成功加入频道后，会触发以下回调：
             <ul>
             <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会依次触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
             </ul></p>
             <p>用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-            <note type="attention" id="note">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Agora Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
+            <note type="attention" id="note">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -73,10 +75,11 @@
             </plentry>
             </parml>
         </section>
-        <section props="native unity rn electron" id="return_values">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功。</li>
+            <li props="native unity rn electron">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
                 <ul>
                 <li>2: 参数无效。</li>

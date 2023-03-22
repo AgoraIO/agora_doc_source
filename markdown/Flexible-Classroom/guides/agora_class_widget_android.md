@@ -1,8 +1,8 @@
 ## 概览
 
-由于客户对在线课堂场景存在多种多样、定制化的需求，Agora 提供 Widget 帮助用户根据自身的需求开发插件并内嵌至灵动课堂内。
+由于客户对在线课堂场景存在多种多样、定制化的需求，声网提供 Widget 帮助用户根据自身的需求开发插件并内嵌至灵动课堂内。
 
-Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWidget` 自定义实现一个 Widget，然后在 Agora Classroom SDK 内注册该 Widget。Agora Classroom SDK 支持注册多个 Widget。 Widget 与 Widget 之间，以及 Widget 与 UI 层的其他插件都能进行通讯。
+Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWidget` 自定义实现一个 Widget，然后在声网 Classroom SDK 内注册该 Widget。声网 Classroom SDK 支持注册多个 Widget。 Widget 与 Widget 之间，以及 Widget 与 UI 层的其他插件都能进行通讯。
 
 ## 基本步骤
 
@@ -43,7 +43,7 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWi
 
    <div class="alert info">完整代码可在 <a href="https://github.com/AgoraIO-Community/CloudClass-Android">CloudClass-Android</a> 仓库 <code>/AgoraEduUIKit/src/main/java/com/agora/edu/component/teachaids/networkdisk/FCRCloudDiskWidget.kt</code> 文件中查看。</div>
 
-2. 在 `launchConfig` 中配置插件，将该插件注册到 Agora Classroom SDK 中：
+2. 在 `launchConfig` 中配置插件，将该插件注册到声网 Classroom SDK 中：
 
    ```kotlin
    ...

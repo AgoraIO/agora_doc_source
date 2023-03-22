@@ -23,9 +23,11 @@
             <codeblock props="rn" outputclass="language-typescript">abstract registerVideoFrameObserver(
     observer: IMediaPlayerVideoFrameObserver
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(MediaPlayerVideoFrameObserver observer);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(MediaPlayerVideoFrameObserver observer);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>你需要在该方法中实现一个 <xref props="cpp" keyref="IVideoFrameObserver"/><xref props="android electron rn flutter" keyref="IMediaPlayerVideoFrameObserver" /> 类，并根据场景需要，注册该类的回调。成功注册视频帧观测器后，SDK 会在捕捉到每个视频帧时，触发你所注册的回调。</p>
         </section>
         <section id="parameters">
@@ -33,15 +35,16 @@
             <parml>
             <plentry>
                 <pt props="android">videoFrameObserver</pt>
-                <pt props="cpp electron rn flutter">observer</pt>
+                <pt props="cpp electron rn flutter unity">observer</pt>
                 <pd props="cpp">视频帧观测器，观测每帧视频的接收。详见 <xref props="cpp" keyref="IVideoFrameObserver"/>。</pd>
-                <pd props="android electron rn flutter">视频帧观测器，观测每帧视频的接收。详见 <xref keyref="IMediaPlayerVideoFrameObserver"/>。</pd>
+                <pd props="android electron rn flutter unity">视频帧观测器，观测每帧视频的接收。详见 <xref keyref="IMediaPlayerVideoFrameObserver"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android cpp electron rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul id="ul_uns_l2y_hqb">
-            <li>0: 方法调用成功。</li>
+            <li props="android cpp electron rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>

@@ -27,9 +27,11 @@
     positionYinView: number
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setCameraExposurePosition(
-    {required double positionXinView, required double positionYinView});</codeblock> </p>
+    {required double positionXinView, required double positionYinView});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>该方法需要在相机启动（如通过调用 <xref keyref="startPreview" props="native unity" /> <xref keyref="startPreview2" props="rn electron flutter" /> 或 <xref keyref="joinChannel2" /> 实现）后调用。</p>
             <p>成功调用该方法后，本地会触发 <xref keyref="onCameraExposureAreaChanged" /> 回调。</p>
             <note type="attention" props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</note> </section>
@@ -49,10 +51,11 @@
                 <pd>触摸点相对于视图的横坐标和纵坐标。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功。</li>
+            <li props="native unity rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>

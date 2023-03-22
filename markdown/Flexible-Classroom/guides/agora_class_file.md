@@ -13,14 +13,14 @@
 
 如果你想在课前将课件上传至第三方云存储或者你自己的服务器，然后在灵动课堂内以公共资源显示该课件，可参考以下步骤：
 
-1. 在 Agora 控制台配置灵动课堂中的互动白板功能，用于存储在课堂中上传的资源。详见[配置白板功能文档](./agora_class_configure?platform=RESTful#%E9%85%8D%E7%BD%AE%E7%99%BD%E6%9D%BF%E5%8A%9F%E8%83%BD)。
-2. 在 Agora 控制台开启互动白板文档转换服务并添加存储配置，用于存储转换后的资源。详见[开启互动白板配套服务文档](https://docs.agora.io/cn/whiteboard/file_conversion_overview?platform=Web#%E5%BC%80%E5%90%AF%E6%96%87%E6%A1%A3%E8%BD%AC%E6%8D%A2%E6%9C%8D%E5%8A%A1)。
-3. 在你的 app 服务端调用 [RESTful API](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#发起文档转换（post）) 向 Agora 互动白板服务发起文档转换请求。Agora 互动白板服务会将转换后的文件上传至你在 Agora 控制台中配置的第三方云存储。
-4. 在你的 app 服务端轮询 [RESTful API](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#查询转换任务的进度（get）) 向 Agora 互动白板服务获取转换任务进度。其中，你需要关注返回结果中的 `convertedFileList` 字段，代表已完成转换的课件列表。每个 `convertedFileList` 对象包含以下字段：
+1. 在声网控制台配置灵动课堂中的互动白板功能，用于存储在课堂中上传的资源。详见[配置白板功能文档](./agora_class_configure?platform=RESTful#%E9%85%8D%E7%BD%AE%E7%99%BD%E6%9D%BF%E5%8A%9F%E8%83%BD)。
+2. 在声网控制台开启互动白板文档转换服务并添加存储配置，用于存储转换后的资源。详见[开启互动白板配套服务文档](https://docs.agora.io/cn/whiteboard/file_conversion_overview?platform=Web#%E5%BC%80%E5%90%AF%E6%96%87%E6%A1%A3%E8%BD%AC%E6%8D%A2%E6%9C%8D%E5%8A%A1)。
+3. 在你的 app 服务端调用 [RESTful API](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#发起文档转换（post）) 向声网互动白板服务发起文档转换请求。声网互动白板服务会将转换后的文件上传至你在声网控制台中配置的第三方云存储。
+4. 在你的 app 服务端轮询 [RESTful API](/cn/whiteboard/whiteboard_file_conversion?platform=RESTful#查询转换任务的进度（get）) 向声网互动白板服务获取转换任务进度。其中，你需要关注返回结果中的 `convertedFileList` 字段，代表已完成转换的课件列表。每个 `convertedFileList` 对象包含以下字段：
    - `width`：Number 类型，图片宽度，单位为像素。
    - `height`：Number 类型，图片高度，单位为像素。
    - `conversionFileUrl`：String 类型，转换图片的 URL。
-   - `preview`：String 类型，预览图地址。当发起转换时请求包体中 `preview` 设为 `true` 且 `type` 为 `dynamic` 时，才会返回该字段。
+   - `preview`: String 类型，预览图地址。当发起转换时请求包体中 `preview` 设为 `true` 且 `type` 为 `dynamic` 时，才会返回该字段。
 5. 在你的客户端调用 [launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 时通过 [courseWareList](/cn/agora-class/agora_class_api_ref_web?platform=Web#coursewarelist) 参数传入课件列表，就可以在课堂内看到课件了。
 
     ```typescript

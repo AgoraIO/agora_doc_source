@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_createagorartcengine">
     <title><ph keyref="createAgoraRtcEngine" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates the <apiname keyref="IRtcEngine" /> object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates an <apiname keyref="IRtcEngine" /> object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,22 +19,25 @@
             <codeblock props="electron" outputclass="language-typescript">const createAgoraRtcEngine: () =&gt; IRtcEngineEx</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public static IRtcEngine CreateAgoraRtcEngine()
         {
-            return instance ?? (instance = new RtcEngine());
+            return instance ?? (instance = new RtcEngine(IntPtr.Zero));
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export function createAgoraRtcEngine(): IRtcEngine {
   return instance;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">RtcEngine createAgoraRtcEngine() {
   return impl.RtcEngineImpl.create();
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
-            <p>Currently, the Agora RTC SDK v4.0.0 supports creating only one <apiname keyref="IRtcEngine" /> object for an app.</p>
+            <title>Details</title>
+            <p props="cpp electron rn unity">Currently, the Agora RTC SDK v4.x supports creating only one <apiname keyref="IRtcEngine" /> object for each app.</p>
+            <p props="flutter">Currently, the Agora RTC SDK v6.x supports creating only one <apiname keyref="IRtcEngine" /> object for each app.</p>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <p props="cpp">Pointer to the <apiname keyref="IRtcEngine" /> object.</p>
-            <p props="electron unity rn flutter"><apiname keyref="IRtcEngine" /> object.</p>
+            <p props="electron unity rn flutter">One <apiname keyref="IRtcEngine" /> object.</p>
         </section>
     </refbody>
 </reference>

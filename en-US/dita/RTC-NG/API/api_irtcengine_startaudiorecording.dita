@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startaudiorecording">
     <title><ph keyref="startAudioRecording1" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts the audio recording on the client.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts audio recording on the client.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,15 +20,12 @@
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioRecording(string filePath, AUDIO_RECORDING_QUALITY_TYPE quality);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
-            <codeblock props="flutter" outputclass="language-dart" /> </p>
+           <codeblock props="flutter" outputclass="language-dart" />
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
-            <dl outputclass="deprecated">
-            <dlentry>
-                <dt>Deprecated:</dt>
-                <dd>This method is deprecated as of v2.9.1. It has a fixed recording sample rate of 32 kHz. Use <xref keyref="startAudioRecording3" /> instead.</dd>
-            </dlentry>
-            </dl>
+            <title>Details</title>
+            <note type="attention">The sample rate of recording is 32 kHz by default and cannot be modified.</note>
             <p>The Agora SDK allows recording during a call. This method records the audio of all the users in the channel and generates an audio recording file. Supported formats of the recording file are as follows:<ul>
             <li><codeph>.wav</codeph>: Large file size with high fidelity.</li>
             <li><codeph>.aac</codeph>: Small file size with low fidelity.</li>

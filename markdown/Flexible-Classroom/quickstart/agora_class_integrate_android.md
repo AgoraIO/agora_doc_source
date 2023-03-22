@@ -8,7 +8,7 @@
 
 -   `app`:（可选）包括课堂登录界面、Token 生成等，展示了如何调用灵动课堂 API 进入教室房间。此模块在 GitHub 上开源，仅供参考，一般情况下不建议开发者直接使用。
 
-<div class="alert note"><li>登录界面的某些规范（比如用户名、房间名的长度和字符限制）不适用于所有 app，开发者要根据自己的应用需求自行定义。</li><li>Agora 提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须在参考<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。</li></div>
+<div class="alert note"><li>登录界面的某些规范（比如用户名、房间名的长度和字符限制）不适用于所有 app，开发者要根据自己的应用需求自行定义。</li><li>声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须在参考<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。</li></div>
 
 -   `AgoraEduUIKit`:（可选）教室 UI 实现，并展示了如何根据灵动课堂的 API 和数据回调进行 UI 数据的聚合和更新。此模块在 GitHub 上开源。一般情况下开发者可以基于这个模块开发自己的课堂 UI。
 -   `AgoraClassSDK`:（可选）提供一些常用的方法，如配置 SDK、启动教室、注册 ext app 等功能，同时提供各场景的 Activity 实现。此模块在 GitHub 上开源。开发者可能用到其中的某些功能，建议保留。
@@ -58,6 +58,7 @@
      }
     ```
 
+
 	如果是2.7.0以下版本，还需要依赖 hyphenate 模块
 ```
 implementation "io.github.agoraio-community:hyphenate:版本号"
@@ -73,7 +74,7 @@ implementation "io.github.agoraio-community:hyphenate:版本号"
         val appId = "" // 填入你的 App ID。
         val rtmToken = "" // 填入你的 RTM Token。
         val streamState = AgoraEduStreamState(videoState = 1, audioState = 1)
-    
+
         val config = AgoraEduLaunchConfig(
             "xiaoming", // 用户名。
             "xiaoming2", // 用户 ID。
@@ -92,7 +93,7 @@ implementation "io.github.agoraio-community:hyphenate:版本号"
             null,
             null
         )
-    
+
         config.appId = appId
         config.uiMode = AgoraEduUIMode.LIGHT // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 AgoraEduUIMode.DARK 即可。
         AgoraClassroomSDK.setConfig(AgoraClassSdkConfig(appId))

@@ -20,9 +20,11 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setLogLevel(level: LogLevel): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetLogLevel(LOG_LEVEL level);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setLogLevel(level: LogLevel): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogLevel(LogLevel level);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setLogLevel(LogLevel level);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
@@ -39,10 +41,11 @@
                 <pd>日志级别: <xref keyref="LOG_LEVEL" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul id="ul_uns_l2y_hqb">
-            <li>0: 方法调用成功。</li>
+            <li props="native electron unity rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>

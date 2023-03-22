@@ -1,8 +1,8 @@
-本页提供 Agora Classroom SDK for Web/Electron 的 TypeScript API 参考。
+本页提供声网 Classroom SDK for Web/Electron 的 TypeScript API 参考。
 
 ## AgoraEduSDK
 
-`AgoraEduSDK` 是 Agora Classroom SDK 的基础接口类，包含供 App 调用的主要接口。
+`AgoraEduSDK` 是声网 Classroom SDK 的基础接口类，提供教育场景下灵动课堂的核心方法。
 
 ### config
 
@@ -10,7 +10,7 @@
 static config(params: ConfigParams):void
 ```
 
-配置 SDK。
+配置 Classroom SDK。
 
 | 参数     | 描述                                               |
 | :------- | :------------------------------------------------- |
@@ -46,7 +46,7 @@ export type ConfigParams = {
 
 | 属性     | 描述                                                                                                                                                                                                                                                                                                                                                     |
 | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `appId`  | （必填）Agora App ID。                                                                                                                                                                                                                                                                                                                                   |
+| `appId`  | （必填）声网 App ID。                                                                                                                                                                                                                                                                                                                                   |
 | `region` | （选填）区域。建议设置为靠近你的课件或录制文件对象存储服务所在的区域，因为跨区域传输较大的静态资源会造成比较大的延迟。举例来说，如果你的 S3 服务在北美，则建议将 `region` 也设为北美区域。所有灵动课堂客户端必须设置相同的区域，否则无法互通。支持以下区域：<li>`CN`: （默认）中国大陆</li><li>`AP`: 亚太地区</li><li>`EU`: 欧洲</li><li>`NA`: 北美</li> |
 
 ### LaunchOption
@@ -97,15 +97,16 @@ export type LaunchOption = {
 | `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。                                                                                                                                |
 | `duration`               | （必填）课堂持续时间（秒），以第一个进入课堂的用户传入的参数为准。最大值为 86,400 秒，建议根据课堂实际时长设置。                                                                                    |
 | `recordUrl`              | （选填）待录制 URL 地址，开发者需传入自己部署的网页地址，用于页面录制，例如 `https://cn.bing.com/recordUrl`。                                                                                       |
-| `widgets`              | （选填）扩展插件集合，扩展教室能力，详见[自定义插件](/cn/agora-class/agora_class_widget_web)                |
-| `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从 Agora 云盘组件中下载至本地。                                       |
+| `widgets`              | （选填）扩展插件集合，扩展教室能力，详见[自定义插件](/cn/agora-class/agora_class_widget_web)。                |
+| `courseWareList`         | （选填）教育机构指派的课件配置，客户端无法编辑。详见 [CourseWareList](#coursewarelist)。配置后，SDK 会在启动课堂时将相应的课件从声网云盘组件中下载至本地。                                       |
 | `userFlexProperties`     | （选填）由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                 |
 | `mediaOptions`           | （选填）媒体流相关设置，包含媒体流加密、摄像头视频流编码参数配置和屏幕共享视频流编码参数配置，详见 `MediaOptions`。                                                                                 |
 | `latencyLevel`           | （选填）观众端延时级别：<li>`1`: 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。</li><li>`2`:（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。</li>                                     |
 | `platform`               | （选填）适用平台，可设为 `'PC'` 和 `'H5'`。                                                                                                                                                         |
 | `uiMode` |（选填）课堂界面模式，详见 [FcrMultiThemeMode](#fcrmultithememode)。 |
-| `virtualBackgroundImages` |（选填）视频虚拟背景墙图片链接，资源所在域名应与webrtcExtensionBaseUrl相同，支持PNG，JPG格式。 |
-| `webrtcExtensionBaseUrl` |（选填）WebRTC插件部署地址，默认为：[https://solutions-apaas.agora.io/static](https://solutions-apaas.agora.io/static)，若需在Web端使用虚拟背景墙，AI降噪，美颜等功能需要将WebRTC插件和相应的资源文件部署至灵动课堂SDK相同域名下。运行`yarn build:demo`打包后，会在packages/agora-demo-app/build/extensions目录下生成对应的文件，将extensions目录部署至灵动课堂SDK相同域名下即可。 |
+| `virtualBackgroundImages` |（选填）视频虚拟背景墙图片链接，资源所在域名应与 `webrtcExtensionBaseUrl` 相同。支持 PNG、JPG 格式图片。 |
+| `webrtcExtensionBaseUrl` |（选填）WebRTC 插件部署地址。默认为 `https://solutions-apaas.agora.io/static`。如果你需要在 Web 端使用虚拟背景、AI 降噪、美颜等高级功能，你需要将 WebRTC 插件和相应的资源文件部署到灵动课堂 SDK 所在域名下。具体使用步骤：当你运行 `yarn build:demo` 完成打包后，`packages/agora-demo-app/build/extensions` 目录下会生成对应文件。将 `extensions` 目录部署到灵动课堂 SDK 所在域名下。 |
+
 ### MediaOptions
 
 ```typescript
@@ -129,7 +130,7 @@ export type MediaOptions = {
 | `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。   |
 | `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。                             |
 | `channelProfile`                | 频道配置，详见 [ChannelProfile](#channelprofile)。                             |
-| `web`   | 用于配置浏览器编码格式和频道场景：<ul><li>`codec`: 浏览器编码格式，可以为如下：<ul><li>`"vp8"`: VP8 编码。</li><li>`"h264"`: H.264 编码。</li></li></ul><li>`mode`: 频道场景，可以为如下：<ul><li>`"rtc"`: 通信模式，一般用于一对多或一对一的小班课。</li><li>`"live"`: 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。</li></ul></li></ul>
+| `web`   | 用于配置浏览器编码格式和频道场景：<ul><li>`codec`: 浏览器编码格式，可以为如下：<ul><li>`"vp8"`: VP8 编码。</li><li>`"h264"`: H.264 编码。</li></li></ul><li>`mode`: 频道场景，可以为如下：<ul><li>`"rtc"`: 通信模式，一般用于一对多或一对一的小班课。</li><li>`"live"`: 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。</li></ul></li></ul>|
 
 ### EduVideoEncoderConfiguration
 
@@ -385,11 +386,11 @@ export enum EduRoomServiceTypeEnum {
 }
 ```
 
-大班课使用的服务类型，LivePremium表示使用RTC视频通信。目前大班课仅支持此类型。在 [LaunchOption](#launchoption) 中设置。
+大班课使用的服务类型。在 [LaunchOption](#launchoption) 中设置。
 
 | 参数             | 描述                                                                                             |
 | :--------------- | :----------------------------------------------------------------------------------------------- |
-|`LivePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时，约 400 毫秒。与互动直播大班课逻辑一致。   |
+|`LivePremium`  | 课堂使用 RTC 服务。频道为直播模式，延时为超低延时，约 400 毫秒。目前大班课仅支持此类型。   |
 
 
 ### LanguageEnum
@@ -404,4 +405,3 @@ export type LanguageEnum = "en" | "zh";
 | :----- | :----- |
 | `"en"` | 英文。 |
 | `"zh"` | 中文。 |
-

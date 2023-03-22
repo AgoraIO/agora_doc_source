@@ -23,9 +23,11 @@
             <codeblock props="unity" outputclass="language-csharp">public abstract int StopPreview(VIDEO_SOURCE_TYPE sourceType);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract stopPreview(sourceType?: VideoSourceType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopPreview(
-    {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock> </p>
+    {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>调用 <xref keyref="startPreview2" /> 开启预览后，如果你想关闭本地视频预览，请调用该方法。</p>
             <note type="note">请在加入频道前或离开频道后调用该方法。</note>
             </section>
@@ -37,10 +39,11 @@
                 <pd />
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android cpp unity">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-                <li>0：方法调用成功。</li>
+                <li props="android cpp unity">0：方法调用成功。</li>
                 <li>&lt; 0：方法调用失败。</li>
                 </ul>
         </section>
