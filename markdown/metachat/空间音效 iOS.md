@@ -1,4 +1,4 @@
-本文介绍如何使用空间音效功能以增强元宇宙音频体验。
+本文介绍如何使用空间音效功能以增强元宇宙音频体验。//TODO(replace link)
 
 在元宇宙中，空间音效可以为用户带来更加真实、身临其境的虚拟体验。例如，在一个虚拟的 3D 旅游场景中，空间音效可以让用户宛如身临其境般听到旅游中路人聊天声、海浪声、风声，让用户更沉浸式体验。
 
@@ -34,7 +34,7 @@
 
 #### 1. 创建和初始化空间音效引擎
 
-使用空间音效前，你需要调用 [`create`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/v4.1.1/API/toc_audio_effect.html#api_ilocalspatialaudioengine_create) 和 [`initialize`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_initialize) 创建和初始化空间音效引擎。
+使用空间音效前，你需要调用 [`sharedLocalSpatialAudio`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/v4.1.1/API/toc_audio_effect.html#api_ilocalspatialaudioengine_create) 创建和初始化空间音效引擎。
 
 **注意**：请在加入 RTC 频道前调用。
 
@@ -76,14 +76,22 @@ func metachatScene(_ scene: AgoraMetachatScene, onUserPositionChanged uid: Strin
         // 如果当前用户是本地用户
         // 那么使用 updateSelfPosition 更新本地用户的位置信息
         // 否则使用 updateRemotePosition 更新远端用户的位置信息
-        agoraLocalSpatialAudioKit.updateSelfPosition(posInfo.position as! [NSNumber], axisForward: posInfo.forward as! [NSNumber], axisRight: posInfo.right as! [NSNumber], axisUp: posInfo.up as! [NSNumber])
+        agoraLocalSpatialAudioKit.updateSelfPosition(
+            posInfo.position as! [NSNumber],
+            axisForward: posInfo.forward as! [NSNumber],
+            axisRight: posInfo.right as! [NSNumber],
+            axisUp: posInfo.up as! [NSNumber]
+        )
         DLog("position = \(posInfo.position), forword = \(posInfo.forward), right = \(posInfo.right), up = \(posInfo.up)")
     } else {
         let remotePositionInfo = AgoraRemoteVoicePositionInfo()
         remotePositionInfo.position = posInfo.position as! [NSNumber]
         remotePositionInfo.forward = posInfo.forward as? [NSNumber]
 
-        agoraLocalSpatialAudioKit.updateRemotePosition(UInt(uid) ?? 0, positionInfo: remotePositionInfo)
+        agoraLocalSpatialAudioKit.updateRemotePosition(
+            UInt(uid) ?? 0,
+            positionInfo: remotePositionInfo
+        )
     }
 }
 ```
@@ -95,11 +103,11 @@ func metachatScene(_ scene: AgoraMetachatScene, onUserPositionChanged uid: Strin
 
 **注意**：请在离开 RTC 频道和销毁 RTC 引擎前调用 destroy。
 
-```java
+```swift
 // 销毁空间音效引擎
-if (agoraLocalSpatialAudioKit != nil) {
-    AgoraLocalSpatialAudioKit.destroy();
-    agoraLocalSpatialAudioKit = nil;
+if agoraLocalSpatialAudioKit != nil {
+    AgoraLocalSpatialAudioKit.destroy()
+    agoraLocalSpatialAudioKit = nil
 }
 ```
 
@@ -115,15 +123,17 @@ if (agoraLocalSpatialAudioKit != nil) {
 
 #### 1. 实现媒体播放器
 
-参考[媒体播放器](https://docs.agora.io/cn/live-streaming-premium-4.x/media_player_android_ng?platform=Android)功能指南创建一个 `IMediaPlayer` 对象，然后打开、播放媒体资源。
+参考[媒体播放器](https://docs.agora.io/cn/live-streaming-premium-4.x/media_player_android_ng?platform=Android)功能指南创建一个 `AgoraMediaPlayerProtocol` 对象，然后打开、播放媒体资源。
 
-```java //TODO
-mRtcEngine = RtcEngine.create(config);
-// 创建 IMediaPlayer 对象
-mediaPlayer = engine.createMediaPlayer();
-mediaPlayer.open(url, 0);
-// 请确保在收到 PLAYER_STATE_OPEN_COMPLETED 后再调用 play
-mediaPlayer.play();
+```swift
+// 创建 AgoraRtcEngineKit 对象
+rtcEngine = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+// 创建 AgoraMediaPlayerProtocol 对象
+mediaPlayerKit = rtcEngine.createMediaPlayer(with: self)
+// 打开 URL
+mediaPlayerKit.open(url, startPos: 0)
+// 请确保在收到 AgoraMediaPlayerStateOpenCompleted 后再调用 play
+mediaPlayerKit.play()
 ```
 
 #### 2. 设置播放器空间音效
@@ -146,7 +156,10 @@ func metachatScene(_ scene: AgoraMetachatScene, onRecvMessageFromScene message: 
     positionInfo.forward = forward    // forward 为解析得到的物体朝向
     if let playerId = player?.getMediaPlayerId() {
         // 设置播放器的空间音效
-        agoraLocalSpatialAudioKit?.updatePlayerPositionInfo(Int(playerId), positionInfo: positionInfo)
+        agoraLocalSpatialAudioKit?.updatePlayerPositionInfo(
+            Int(playerId),
+            positionInfo: positionInfo
+        )
     }
 }
 ```
