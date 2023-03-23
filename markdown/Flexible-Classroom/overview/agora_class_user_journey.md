@@ -5,7 +5,7 @@
 - [产品概述](/cn/agora-class/product_agora_class)
 - [产品功能](/cn/agora-class/agora_class_prod_archit)
 - [技术架构](/cn/agora-class/agora_class_tech_archit)
-- [基本概念](/cn/agora-class/agora_class_tech_archit)
+- [基本概念](/cn/agora-class/agora_class_basic_concept)
 - [平台支持](/cn/agora-class/agora_class_platform)
 
 ## 体验产品
