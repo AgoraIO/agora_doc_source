@@ -11,7 +11,7 @@
 
 ## <a name="param"></a>公共参数
 
-以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
+下表列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
 ### 请求参数
 
@@ -20,7 +20,7 @@
 | `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
 | `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
 | `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
-| `username`    | String | 用户 ID。用户的唯一登录账号。长度在 64 个字节内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户 ID 唯一。</ul></div> | 是       |
+| `username`    | String | 用户 ID。用户的唯一登录账号。 | 是       |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，可从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#查询所有聊天室基本信息) 的响应 body 中获取。                                                                 | 是       |
 
 ### 响应参数
@@ -28,19 +28,19 @@
 | 参数                | 类型   | 描述                                                              |
 | :------------------ | :----- | :---------------------------------------------------------------- |
 | `action`            | String | 请求方式。                                                        |
-| `organization`      | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
+| `organization`      | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`       | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
-| `applicationName`   | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
+| `applicationName`   | String | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。        |
 | `uri`               | String | 请求 URL。                                                        |
 | `path`              | String | 请求路径，属于请求 URL 的一部分，无需关注。                       |
 | `entities`          | JSON   | 返回实体信息。                                                    |
 | `data`              | JSON   | 返回数据详情。                                                    |
-| `timestamp`         | Long   | 响应的 Unix 时间戳（毫秒）。                                      |
-| `duration`          | Number | 从发送请求到响应的时长（毫秒）。                                  |
+| `timestamp`         | Long   | 响应的 Unix 时间戳，单位为毫秒。                                      |
+| `duration`          | Number | 从发送请求到响应的时长，单位为毫秒。                                  |
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer ${YourAppToken}
@@ -55,7 +55,7 @@ Authorization: Bearer ${YourAppToken}
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username}
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users/{username}
 ```
 
 #### 路径参数
@@ -120,12 +120,12 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 批量添加聊天室成员
 
-向聊天室添加多位用户。一次性最多可添加 60 位用户。
+向聊天室添加多名用户。一次性最多可添加 60 位用户。
 
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users
 ```
 
 #### 路径参数
@@ -570,7 +570,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 移除聊天室管理员权限
 
-将聊天室成员的角色从聊天室管理员降为普通成员。
+将聊天室成员的角色从聊天室管理员降为普通成员，即将管理员移除聊天室管理员列表。
 
 ### HTTP 请求
 

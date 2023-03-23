@@ -36,7 +36,7 @@ Authorization: Bearer ${YourAppToken}
 
 为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
-## 获取子区成员
+## 获取子区成员列表
 
 获取指定子区中的所有成员。
 
@@ -58,6 +58,8 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 
 #### 查询参数
 
+| 参数        | 类型   | 描述                 | 是否必填 |
+| :---------- | :----- | :--------------------- | :------- |
 | `limit`     | Number | 每次期望返回的子区成员数量，取值范围为 [1,50]。      | 否       |
 | `cursor`    | String | 数据查询的起始位置。 | 否       |
 
@@ -212,9 +214,9 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 
 #### 请求 header
 
-| 参数    | 类型   | 描述      | 是否必填 | 
+| 参数    | 类型   | 描述      | 是否必填 |
 | :-------------- | :----- | :---------------- | :------- |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是    | 
+| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是    |
 
 #### 请求 body
 

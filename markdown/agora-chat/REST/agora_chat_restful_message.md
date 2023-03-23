@@ -58,7 +58,6 @@ Authorization: Bearer ${YourAppToken}
 此外，消息支持扩展属性 `ext`，可添加自定义信息。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义字段](./agora_chat_push_ios#自定义字段) 和 [Android 推送自定义字段](./agora_chat_push_android#自定义字段)。
 
 <div class="alert note">在调用程序中，请求体若超过 5 KB 会导致 413 错误，需要拆成几个更小的请求体重试。同时，请求体和扩展字段的总长度不能超过 3 KB。</div>
-
 ### 发送单聊消息
 
 此方法向单个用户发送消息。
@@ -432,7 +431,6 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 | `to` | Array | 消息接收方群组 ID 数组，每次最多可向 3 个群组发送消息。例如，一次向 3 个群组发消息，表示发送了 3 条消息。 | 是       |
 
 <div class="alert info"><li>群聊消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#commonbody)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
-
 #### HTTP 响应
 
 ##### 响应 body
@@ -702,10 +700,9 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 | 参数 | 类型  | 描述                 | 是否必填 |
 | :--- | :---- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `to` | Array | 消息接收方聊天室 ID 数组。每次最多可向 10 个聊天室发送消息。 | 是       |
-| `chatroom_msg_level` | String | 聊天室消息优先级：<ul><li>`high`：高</li><li>（默认）`normal`：普通</li><li> `low`：低 </li></ul> | 否  | 
+| `chatroom_msg_level` | String | 聊天室消息优先级：<ul><li>`high`：高</li><li>（默认）`normal`：普通</li><li> `low`：低 </li></ul> | 否  |
 
 <div class="alert info"><li>聊天室消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#commonbody)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
-
 #### HTTP 响应
 
 ##### 响应 body
@@ -1036,7 +1033,6 @@ curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer <YourApp
 下载图片、语音、视频或其他类型文件。
 
 <div class="alert note">如果上传文件时设置了文件访问限制（`restrict-access` 设置为 `true`），需要在下载请求头中包含文件上传响应中返回的 `share-secret` 和当前登录用户的 token 才能下载文件。</div>
-
 ### HTTP 请求
 
 ```http
@@ -1076,7 +1072,6 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <You
 ```
 
 <div class="alert note">上述请求示例中，`/Users/test/easemob/image/image.JPG` 为即时通讯 IM 的本地文件路径，使用时请替换为自己的文件路径，否则会请求失败。</div>
-
 #### 响应示例
 
 ```json
@@ -1818,7 +1813,6 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups/import
 | `need_download` | Boolean   | 是否需要下载附件并上传到服务器。<li>`true`：是<li>（默认）`false`：否       | 否       |
 
 <div class="alert info">与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
-
 ### HTTP 响应
 
 #### 响应 body

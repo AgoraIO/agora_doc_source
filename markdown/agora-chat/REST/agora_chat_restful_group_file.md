@@ -12,7 +12,6 @@
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
 
@@ -25,9 +24,6 @@
 | `uri`                | String  | 请求 URL。                                                   |
 | `entities`           | JSON    | 返回实体信息。                                               |
 | `created`            | Number | 群组创建时间，Unix 时间戳，单位为毫秒。                      |
-| `username`           | String| 用户 ID。                                                     |
-| `groupname`          | String | 群组名称。                                                     |
-| `nickname`           | String| 用户昵称。                                                   |
 | `timestamp`          | Number  | 响应的 Unix 时间戳，单位为毫秒。                                 |
 | `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
 

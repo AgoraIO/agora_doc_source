@@ -112,7 +112,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 }
 ```
 
-## 添加单个成员至群组白名单列表
+## 添加单个成员至群组白名单
 
 将指定的单个成员添加至群组白名单。用户添加至群组白名单后，[当群组全员禁言时](./agora_chat_restful_group_allowlist?platform=RESTful#禁言全体群成员) ，群组白名单列表中的成员仍然可以发送群组消息。
 
@@ -146,7 +146,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{use
 
 | 参数    | 类型    | 描述                                              |
 | :-------- | :----- | :----------------------------------------------------------- |
-| `data`  | JSON | 群组白名单中添加成员的相关信息。 | 
+| `data`  | JSON | 群组白名单中添加成员的相关信息。 |
 | `data.result`  | Boolean | 是否成功将指定成员添加到白名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 | `data.reason`  | String   | 成员未能成功添加到群组白名单的原因。                             |
 | `data.groupid` | String  | 群组 ID。                                         |

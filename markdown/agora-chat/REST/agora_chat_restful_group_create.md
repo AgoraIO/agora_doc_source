@@ -406,7 +406,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | `description`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果有空格，使用 “+” 代替。                                  | 是       |
 | `maxusers`     | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[套餐包详情](./agora_chat_plan?platform=RESTful)。              | 否       |
 | `allowinvites` | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：群成员可拉人入群。</li><li>（默认）`false`：只有群主或者管理员才可以拉人入群。</li></ul> | 否       |
-| `invite_need_confirm` | Boolean   | 邀请用户入群时是否需要受邀用户同意：<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li>`false`：不需要。邀请人直接拉用户进群。</li></ul> | 否       | 
+| `invite_need_confirm` | Boolean   | 邀请用户入群时是否需要受邀用户同意：<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li>`false`：不需要。邀请人直接拉用户进群。</li></ul> | 否       |
 | `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>（默认）`false`：不需要，用户直接进群。</li></ul>                | 否       |
 | `custom`       | String  | 群组扩展信息，例如给群组添加业务相关标记，不能超过 1,024 个字符。    | 否       |
 | `public`              | Boolean   | 是       | 是否是公开群：<ul><li>`true`：公开群；</li><li>`false`：私有群。</li></ul>        |
@@ -484,7 +484,7 @@ curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
-DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 ```
 
 #### 路径参数
@@ -565,7 +565,6 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 | `cursor` | String | 数据查询的起始位置。 | 否  |
 
 <div class="alert info">若请求中均未设置 `limit` 和 `cursor` 参数，服务器按群组创建时间倒序返回前 10 个群组。</div>
-
 #### 请求 header
 
 | 参数     | 类型   | 描述                   | 是否必填 |
@@ -651,7 +650,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
-GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
+GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
 ```
 
 #### 路径参数
@@ -660,10 +659,10 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 
 ##### 查询参数
 
-| 参数       | 类型   | 描述                                                         | 是否必填 | 
+| 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :----- | :------- | :----------------------------------------------------------- |
-| `pagesize` | String | 每页获取的群组数量。取值范围为 [1,100]，默认值为 `10`。          | 否     | 
-| `pagenum`  | String | 当前页码。默认从第 1 页开始获取。                       | 否     | 
+| `pagesize` | String | 每页获取的群组数量。取值范围为 [1,100]，默认值为 `10`。          | 否     |
+| `pagenum`  | String | 当前页码。默认从第 1 页开始获取。                       | 否     |
 
 :::tip
 若请求中均未设置 `pagesize` 和 `pagenum` 参数，服务器按用户加入群组的时间倒序返回前 500 个群组。

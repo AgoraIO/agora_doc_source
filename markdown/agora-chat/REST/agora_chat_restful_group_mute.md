@@ -119,21 +119,21 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 禁言全体群成员
+## 禁言全体群成员
 
 对所有群组成员一键禁言，即将群组的所有成员加入禁言列表。设置群组全员禁言后，仅群组白名单中的用户可在群组以及该群组下的子区内发送消息。
 
-#### HTTP 请求
+### HTTP 请求
 
 ```http
 POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 ```
 
-##### 路径参数
+#### 路径参数
 
 参数及描述详见 [公共参数](#pubparam)。
 
-##### 请求 header
+#### 请求 header
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
@@ -141,9 +141,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 | `Accept`   | String | 是    |内容类型。请填 `application/json`。 |
 |`Authorization`| String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
-#### HTTP 响应
+### HTTP 响应
 
-##### 响应 body
+#### 响应 body
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
@@ -157,9 +157,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
-#### 示例
+### 示例
 
-##### 请求示例
+#### 请求示例
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
@@ -167,7 +167,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatgroups/{groupid}/ban'
 ```
 
-##### 响应示例
+#### 响应示例
 
 ```json
 {
@@ -254,21 +254,21 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-### 解除全员禁言
+## 解除全员禁言
 
 一键取消对群组全体成员的禁言。解除禁言后，群成员可以在群组和该群组下的子区中正常发送消息。
 
-#### HTTP 请求
+### HTTP 请求
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 ```
 
-##### 路径参数
+#### 路径参数
 
 参数及描述详见 [公共参数](#pubparam)。
 
-##### 请求 header
+#### 请求 header
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
@@ -276,9 +276,9 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 | `Accept`   | String | 是    |内容类型。请填 `application/json`。 |
 |`Authorization`| String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
-#### HTTP 响应
+### HTTP 响应
 
-##### 响应 body
+#### 响应 body
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
@@ -291,9 +291,9 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
-#### 示例
+### 示例
 
-##### 请求示例
+#### 请求示例
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
@@ -301,7 +301,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 curl -X DELETE -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/ban'
 ```
 
-##### 响应示例
+#### 响应示例
 
 ```json
 {

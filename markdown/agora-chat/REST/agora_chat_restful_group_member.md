@@ -700,7 +700,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 
 | 参数       | 类型    | 描述                                                            |
 | :--------- | :------ | :-------------------------------------------------------------- |
-| `data` | JSON | 群组转让结果。 | 
+| `data` | JSON | 群组转让结果。 |
 | `data.newowner` | Boolean | 是否成功将指定用户设为群主：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 
 其他字段及描述详见[公共参数](#pubparam)。

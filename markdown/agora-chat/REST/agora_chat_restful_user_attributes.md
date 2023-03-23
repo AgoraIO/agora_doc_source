@@ -5,7 +5,6 @@
 例如，在招聘场景下，利用用户属性功能，可以存储性别、邮箱、用户类型（面试者）、职位类型（Web 研发）等。当查看用户信息时，可以直接查询服务器存储的用户属性信息。
 
 <div class="alert note">为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。</div>
-
 调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
@@ -52,7 +51,6 @@ Authorization: Bearer ${YourAppToken}
 用户属性由多个属性名和属性值的键值对组成，每个属性名有且仅有一个对应的属性值。
 
 <div class="alert info">一个用户的属性总长度不得超过 2 KB，一个 app 下所有用户的属性总长度不得超过 10 GB。</div>
-
 ### HTTP 请求
 
 ```http
@@ -135,7 +133,7 @@ curl -X PUT -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorizati
 ### HTTP 请求
 
 ```http
-GET https://{host} /{org_name}/{app_name}/metadata/user/{username}
+GET https://{host}/{org_name}/{app_name}/metadata/user/{username}
 ```
 
 #### 路径参数

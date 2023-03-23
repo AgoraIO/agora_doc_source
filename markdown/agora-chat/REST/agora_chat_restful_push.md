@@ -319,14 +319,14 @@ curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org}/{app}/users/{username}/notification/{type}/{key}
+GET https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 ```
 
 #### 路径参数
 
 | 参数   | 类型 | 描述                                                         | 是否必填 |
 | :----- | :--- | :----------------------------------------------------------- | :----- |
-| `type` | String | 会话类型：<ul><li>`user`: 单聊</li><li> `chatgroup`: 群聊</li></ul>          | 是   |
+| `chattype` | String | 会话类型：<ul><li>`user`: 单聊</li><li> `chatgroup`: 群聊</li></ul>          | 是   |
 | `key`  | String | 会话标识：<ul><li>如果 `type` 设置为 `user`，`key` 为对端用户的用户 ID。</li><li>如果 `type` 设置为 `chatgroup`，`key` 为群组 ID。</li></ul> | 是   |
 
 其他路径参数及描述详见[公共参数](#param)。
@@ -392,7 +392,7 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}'
 ### HTTP 请求
 
 ```http
-PUT https://{host}/{org}/{app}/users/{username}/notification/language
+PUT https://{host}/{org_name}/{app}/users/{username}/notification/language
 ```
 
 #### 路径参数
