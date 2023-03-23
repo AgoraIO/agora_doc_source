@@ -2,6 +2,8 @@
 
 在元宇宙中，空间音效可以为用户带来更加真实、身临其境的虚拟体验。例如，在一个虚拟的 3D 旅游场景中，空间音效可以让用户宛如身临其境般听到旅游中路人聊天声、海浪声、风声，让用户更沉浸式体验。
 
+![](https://web-cdn.agora.io/docs-files/1679566933312)
+
 ## 技术原理
 
 空间音效功能基于声学原理，模拟声音在不同空间环境中的传播、反射、吸收效果。通过在不同位置放置音源和听众，模拟现实中的声音传播效果，使得听众可以听到更真实自然的声音。
@@ -48,7 +50,7 @@ spatialAudioEngine.initialize(config);
 ```
 
 
-#### 2.设置空间音效接收范围
+#### 2.设置空间音效接收范围 //TODO mute true？mute 前面的应该是 rtcEngine？
 
 调用 [`setAudioRecvRange`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html?platform=Android#api_ibasespatialaudioengine_setaudiorecvrange) 设置空间音效接收范围，当远端用户相对本地用户的距离超出这个范围，本地用户就会听不到远端用户的声音。
 
@@ -109,7 +111,7 @@ public void onUserPositionChanged(String uid, MetachatUserPositionInfo posInfo) 
 
 不需要使用空间音效时，调用 [`destroy`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_release) 销毁空间音效引擎。
 
-**注意**：请在离开 RTC 频道和销毁 RTC 引擎前调用 destroy。
+**注意**：请在离开 RTC 频道后和销毁 RTC 引擎前调用 destroy。
 
 ```java
 // 销毁空间音效引擎
@@ -167,27 +169,3 @@ public void onRecvMessageFromScene(byte[] message) {
 ```
 
 
-
-
-
-
-
-
-```
-// 媒体播放器打开媒体文件，并播放，实现流程见官网文档
-......
-
-
-// 处理unity场景回调信息
-func metachatScene(_ scene: AgoraMetachatScene, onRecvMessageFromScene message: Data) {
-    // 解析message，得到物体在场景里面的位置信息（position和forward）。message协议格式由客户unity开发人员和native开发人员协商。
-
-    // 设置播放器的空间音效
-    let positionInfo = AgoraRemoteVoicePositionInfo()
-    positionInfo.position = position  // position为上面message解析得到的，物体三维坐标位置。
-    positionInfo.forward = forward    // forward为解析得到的，物体朝向。
-    if let playerId = player?.getMediaPlayerId() {
-        agoraLocalSpatialAudioKit?.updatePlayerPositionInfo(Int(playerId), positionInfo: positionInfo)
-    }
-}
-```

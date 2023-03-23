@@ -1,15 +1,14 @@
-本文介绍如何使用空间音效功能以增强元宇宙音频体验。//TODO(replace link)
+本文介绍如何使用空间音效功能以增强元宇宙音频体验。//TODO(replace link + android todo)
 
 在元宇宙中，空间音效可以为用户带来更加真实、身临其境的虚拟体验。例如，在一个虚拟的 3D 旅游场景中，空间音效可以让用户宛如身临其境般听到旅游中路人聊天声、海浪声、风声，让用户更沉浸式体验。
+
+![](https://web-cdn.agora.io/docs-files/1679566933312)
 
 ## 技术原理
 
 空间音效功能基于声学原理，模拟声音在不同空间环境中的传播、反射、吸收效果。通过在不同位置放置音源和听众，模拟现实中的声音传播效果，使得听众可以听到更真实自然的声音。
 
-
 结合 `AgoraMetachatSceneEventDelegate` 提供的用户位置信息回调和 `AgoraLocalSpatialAudioKit` 提供的空间音效系列方法，你可以实现带空间音效的元语聊。
-
-
 
 ## 前提条件
 
@@ -101,7 +100,7 @@ func metachatScene(_ scene: AgoraMetachatScene, onUserPositionChanged uid: Strin
 
 不需要使用空间音效时，调用 [`destroy`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_release) 销毁空间音效引擎。
 
-**注意**：请在离开 RTC 频道和销毁 RTC 引擎前调用 destroy。
+**注意**：请在离开 RTC 频道后和销毁 RTC 引擎前调用 destroy。
 
 ```swift
 // 销毁空间音效引擎
@@ -119,7 +118,7 @@ if agoraLocalSpatialAudioKit != nil {
 <pic>
 
 
-由于空间音效是基于人物的位置驱动，因此在进入 Unity 场景后，无论人物是否移动，都需要 Unity 脚本主动向 app 发送一次人物的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
+由于空间音效是基于人物的位置驱动，因此在进入 Unity 场景后，无论人物是否移动，都需要 Unity 脚本主动向 app 发送一次元宇宙中 NPC 或物体的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
 
 #### 1. 实现媒体播放器
 
