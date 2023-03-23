@@ -1,10 +1,10 @@
 ##1、web端打不开摄像头和麦克风怎么办？
 1、请确认浏览器摄像头的权限是否打开
-<img src="./images/camera_mic_1.png" style="zoom: 13%;" />
+<img src="./images/camera_mic_1.png" style="zoom: 23%;" />
 
-<img src="./images/camera_mic_2.png" style="zoom: 13%;" />
+<img src="./images/camera_mic_2.png" style="zoom: 23%;" />
 
-<img src="./images/camera_mic_3.png" style="zoom: 13%;" />
+<img src="./images/camera_mic_3.png" style="zoom: 23%;" />
 
 如果权限已经开启了，请采用下面几个步骤刷新一下
 2、清理一下浏览器的缓存
@@ -79,7 +79,6 @@ const args = {
 
 
 ##5、用户在上课的时候频繁卡顿，听不清楚老师上课内容、进教室的时候白屏、视频窗口黑屏、白板模块加载课件失败等怎么办?
-解决方案：
 1)   重启下路由器，网络重连后刷新试下
 2)   靠近路由器，不要隔墙
 3)   断开其他占网速的程序、设备，比如下载类、在线 播放器类、云盘类软件、电视网络机顶盒等
