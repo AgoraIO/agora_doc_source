@@ -13,45 +13,93 @@
 
 下图展示了灵动课堂的架构。
 
-![](../images/ios_libs_structure.png) // TODO
+![](../images/ios_libs_structure.png)
 
-## 通过 CocoaPods 集成灵动课堂-教育场景
 
-如果你使用灵动课堂-教育场景的默认 UI，无需修改灵动课堂-教育场景的代码，则可参考以下步骤通过 CocoaPods 添加远程依赖集成完整的灵动课堂-教育场景：
+## 集成工具
+下列所介绍的集成方式，均需要使用 CocoaPods 进行集成。
+
+点击[链接](https://guides.cocoapods.org/using/getting-started.html#getting-started)前往下载 CocoaPods。要求 CocoaPods 1.10 或以上版本。
+
+注: 可以在终端输入以下的命令，如果终端能正常打印出版本信息，则表示安装成功：
+
+
+```
+pod --version
+```
+
+例如打印出 1.11.3 版本。
+
+```
+1.11.3
+```
+
+
+## 集成灵动课堂-默认教育场景
+
+如果你使用灵动课堂-默认教育场景，无需修改代码，则可参考以下步骤通过 CocoaPods 添加远程依赖，进行集成：
 
 1. 用 Xcode 打开你的项目，在项目的 `Podfile` 文件中添加以下引用：
 
    ```
    # third libs
-   pod 'Protobuf', '3.17.0'
-   pod 'CocoaLumberjack', '3.6.1'
-   pod 'AliyunOSSiOS', '2.10.8'
-   pod 'Armin', '1.1.0'
-   pod 'SSZipArchive', '2.4.2'
-   pod 'SwifterSwift', '5.2.0'
-   pod 'Masonry', '1.1.0'
-   pod 'SDWebImage', '5.12.0'
-   
-   # agora libs
-   pod 'AgoraRtcEngine_iOS/RtcBasic', '3.6.2'
-   pod 'AgoraMediaPlayer_iOS', '1.3.0'
-   pod 'AgoraRtm_iOS', '1.4.8'
-   pod 'Agora_Chat_iOS', '1.0.6'
-   pod 'Whiteboard', '2.16.39'
-
-   # open source libs
-   pod 'AgoraClassroomSDK_iOS', '2.8.0'
-   pod 'AgoraEduUI', '2.8.0'
-   pod 'AgoraWidgets', '2.8.0'
-   
-   # close source libs
-   pod 'AgoraUIBaseViews', '2.8.0'
-   pod 'AgoraEduCore', '2.8.0'
-   pod 'AgoraWidget', '2.8.0'
+  pod 'CocoaLumberjack',   '3.6.1'
+  pod 'AliyunOSSiOS',      '2.10.8'
+  pod 'SSZipArchive',      '2.4.2'
+  pod 'SwifterSwift',      '5.2.0'
+  pod 'SDWebImage',        '5.12.0'
+  pod 'Protobuf',          '3.17.0'
+  pod 'Masonry',           '1.1.0'
+  pod 'Armin',             '1.1.0'
+  
+  # agora libs
+  pod 'AgoraRtcEngine_iOS/RtcBasic', '3.7.2'
+  pod 'AgoraMediaPlayer_iOS',        '1.3.0'
+  pod 'Agora_Chat_iOS',              '1.0.6'
+  pod 'AgoraRtm_iOS',                '1.4.8'
+  pod 'Whiteboard',                  '2.16.51'
+ 
+  # open source libs
+  pod 'AgoraClassroomSDK_iOS', '2.8.20'
+  pod 'AgoraEduUI',            '2.8.20'
+    
+  pod 'AgoraWidgets',          '2.8.20'
+  
+  # close source libs
+  pod 'AgoraUIBaseViews',      '2.8.0'
+  pod 'AgoraEduCore', 	       '2.8.20'
+  pod 'AgoraWidget',           '2.8.0'
    ```
-2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。安装过程如下图所示：
+2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。安装过程如所示：
 
-   <img src="https://web-cdn.agora.io/docs-files/1650596467294" style="zoom: 50%;" /> // TODO
+   ```
+Analyzing dependencies
+Downloading dependencies
+Installing AgoraClassroomSDK_iOS (2.8.20)
+Installing AgoraEduCore (2.8.20)
+Installing AgoraEduUI (2.8.20)
+Installing AgoraLog (1.0.2)
+Installing AgoraMediaPlayer_iOS (1.3.0)
+Installing AgoraRtcEngine_iOS (3.7.2)
+Installing AgoraRtm_iOS (1.4.8)
+Installing AgoraUIBaseViews (2.8.0)
+Installing AgoraWidget (2.8.0)
+Installing AgoraWidgets (2.8.20)
+Installing Agora_Chat_iOS (1.0.6)
+Installing AliyunOSSiOS (2.10.8)
+Installing Armin (1.1.0)
+Installing CocoaLumberjack (3.6.1)
+Installing Masonry (1.1.0)
+Installing NTLBridge (3.1.5)
+Installing Protobuf (3.17.0)
+Installing SDWebImage (5.12.0)
+Installing SSZipArchive (2.4.2)
+Installing SwifterSwift (5.2.0)
+Installing Whiteboard (2.16.51)
+Installing YYModel (1.0.4)
+Generating Pods project
+Integrating client project
+   ```
 
 3. 通过以下代码导入头文件：
 
@@ -133,43 +181,65 @@
     agora_ui_language = @"zh-Hans"                     /* 设置界面语言，可设为 "zh-Hans" 或 "en"。如果不设置，界面语言跟随系统语言。*/
     ```
 
-## 通过 CocoaPods 集成灵动课堂-监考场景
+## 集成灵动课堂-监考场景
 
-如果你使用灵动课堂-监考场景的默认 UI，无需修改灵动课堂-监考场景的代码，则可参考以下步骤通过 CocoaPods 添加远程依赖集成完整的灵动课堂-监考场景：
+如果你使用灵动课堂-默认监考场景，无需修改代码，则可参考以下步骤通过 CocoaPods 添加远程依赖，进行集成：
 
 1. 用 Xcode 打开你的项目，在项目的 `Podfile` 文件中添加以下引用：
 
    ```
-   # third libs
-   pod 'Protobuf', '3.17.0'
-   pod 'CocoaLumberjack', '3.6.1'
-   pod 'AliyunOSSiOS', '2.10.8'
-   pod 'Armin', '1.1.0'
-   pod 'SSZipArchive', '2.4.2'
-   pod 'SwifterSwift', '5.2.0'
-   pod 'Masonry', '1.1.0'
-   pod 'SDWebImage', '5.12.0'
+  # third libs
+  pod 'CocoaLumberjack',   '3.6.1'
+  pod 'AliyunOSSiOS',      '2.10.8'
+  pod 'SSZipArchive',      '2.4.2'
+  pod 'SwifterSwift',      '5.2.0'
+  pod 'SDWebImage',        '5.12.0'
+  pod 'Protobuf',          '3.17.0'
+  pod 'Masonry',           '1.1.0'
+  pod 'Armin',             '1.1.0'
+  
+  # agora libs
+  pod 'AgoraRtcEngine_iOS/RtcBasic', '3.7.2'
+  pod 'AgoraMediaPlayer_iOS',        '1.3.0'
+  pod 'AgoraRtm_iOS',                '1.4.8'
    
-   # agora libs
-   pod 'AgoraRtcEngine_iOS/RtcBasic', '3.6.2'
-   pod 'AgoraMediaPlayer_iOS', '1.3.0'
-   pod 'AgoraRtm_iOS', '1.4.8'
-   pod 'Agora_Chat_iOS', '1.0.6'
-
-   # open source libs
-   pod 'AgoraProctorSDK', '2.8.0'
-   pod 'AgoraProctorUI', '2.8.0'
-   
-   # close source libs
-   pod 'AgoraUIBaseViews', '2.8.0'
-   pod 'AgoraEduCore', '2.8.0'
-   pod 'AgoraWidget', '2.8.0'
+  # open source libs
+  pod 'AgoraProctorSDK',       '1.0.0'
+  pod 'AgoraProctorUI',        '1.0.0'
+  
+  # close source libs
+  pod 'AgoraUIBaseViews',      '2.8.0'
+  pod 'AgoraEduCore', 	       '2.8.20'
+  pod 'AgoraWidget',           '2.8.0'
    ```
    
-2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。安装过程如下图所示：
+2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。安装过程如所示：
 
-   <img src="https://web-cdn.agora.io/docs-files/1650596467294" style="zoom: 50%;" /> // TODO
-
+  ```
+Analyzing dependencies
+Downloading dependencies
+Installing AgoraProctorSDK (1.0.0)
+Installing AgoraProctorUI (1.0.0)
+Installing AgoraEduCore (2.8.20)
+Installing AgoraLog (1.0.2)
+Installing AgoraMediaPlayer_iOS (1.3.0)
+Installing AgoraRtcEngine_iOS (3.7.2)
+Installing AgoraRtm_iOS (1.4.8)
+Installing AgoraUIBaseViews (2.8.0)
+Installing AgoraWidget (2.8.0)
+Installing AliyunOSSiOS (2.10.8)
+Installing Armin (1.1.0)
+Installing CocoaLumberjack (3.6.1)
+Installing Masonry (1.1.0)
+Installing Protobuf (3.17.0)
+Installing SDWebImage (5.12.0)
+Installing SSZipArchive (2.4.2)
+Installing SwifterSwift (5.2.0)
+Installing YYModel (1.0.4)
+Generating Pods project
+Integrating client project
+  ```
+  
 3. 通过以下代码导入头文件：
 
    ```swift
@@ -204,7 +274,7 @@
    
    
    proctor.launch(success: successBlock,
-                  failure: failureBlock)
+                   failure: failureBlock)
    ```
 
    ```objc
@@ -225,7 +295,7 @@
    												           delegate:self];
 
    [proctor launch:successBlock
-           failure:failureBlock];
+             failure:failureBlock];
    ```
 
    示例代码中需要传入 `token`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
@@ -246,8 +316,91 @@
     agora_ui_mode = AgoraUIModeAgoraLight              /* 设置界面显示模式，可设为 AgoraUIModeAgoraLight 或 AgoraUIModeAgoraDark，默认为 AgoraUIModeAgoraLight。*/
     agora_ui_language = @"zh-Hans"                     /* 设置界面语言，可设为 "zh-Hans" 或 "en"。如果不设置，界面语言跟随系统语言。*/
     ```
-## 集成注意事项
-- 如果你的工程为 OC 工程，需要在 Build Settings 中 Add User-Defined Setting：
-  - Key 设为 SWIFT_VERSION。
-  - Value 设为你指定的 Swift 版本。
+    
+## 集成灵动课堂-自定义教育场景
 
+如需自定义灵动课堂的教育场景，你需要通过 GitHub 下载源码的方式来集成灵动课堂，步骤如下：
+
+1. 运行以下命令将 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 和 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 项目克隆至本地，可以切换你所需要版本的分支（默认为最新版本的分支）：
+
+	```bash
+   	git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git 
+	```
+
+	```bash
+   git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
+	```
+
+2. 通过 `git remote add <shortname> <url>` 命令为 `CloudClass-iOS` 和 `apaas-extapp-ios` 仓库添加远端仓库，指向你的项目仓库，并将所需的分支推向你的仓库。
+3. 在你的项目的 `Podfile` 文件中添加如下依赖，来引用 CloudClass-iOS 仓库中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduUI.podspec` 和 apaas-extapp-ios 项目中的 `AgoraWidgets.podspec` 以及其它依赖的库。
+
+ ```
+   # third libs
+   pod 'CocoaLumberjack',   '3.6.1'
+   pod 'AliyunOSSiOS',      '2.10.8'
+   pod 'SSZipArchive',      '2.4.2'
+   pod 'SwifterSwift',      '5.2.0'
+   pod 'SDWebImage',        '5.12.0'
+   pod 'Protobuf',          '3.17.0'
+   pod 'Masonry',           '1.1.0'
+   pod 'Armin',             '1.1.0'
+     
+   # agora libs
+   pod 'AgoraRtcEngine_iOS/RtcBasic', '3.7.2'
+   pod 'AgoraMediaPlayer_iOS',        '1.3.0'
+   pod 'Agora_Chat_iOS',              '1.0.6'
+   pod 'AgoraRtm_iOS',                '1.4.8'
+   pod 'Whiteboard',                  '2.16.51'
+    
+   # open source libs
+   pod 'AgoraClassroomSDK_iOS',   :path => '../CloudClass-iOS/AgoraClassroomSDK_iOS.podspec'
+   pod 'AgoraEduUI', 			  :path => '../CloudClass-iOS/AgoraEduUI.podspec'
+   pod 'AgoraWidgets', 			  :path => '../apaas-extapp-ios/AgoraWidgets.podspec'
+    
+   # close source libs
+   pod 'AgoraUIBaseViews',      '2.8.0'
+   pod 'AgoraEduCore', 			'2.8.20'
+   pod 'AgoraWidget', 			'2.8.0'
+```
+4. 在终端中进入到工程目录，执行 `pod install` 命令。
+5. 可以先阅读[开源层介绍](XXX)，来了解灵动课堂的开源层设计思路，然后可以修改源代码来自定义场景了。
+
+## 通过 CocoaPods 集成灵动课堂-自定义监考场景
+如需自定义灵动课堂的教育场景，你需要通过 GitHub 下载源码的方式来集成灵动课堂，步骤如下：
+
+1. 运行以下命令将 [proctor-ios](https://github.com/AgoraIO-Community/proctor-ios) 项目克隆至本地，可以切换你所需要版本的分支（默认为最新版本的分支）：
+
+	```bash
+   	git clone https://github.com/AgoraIO-Community/proctor-ios.git
+	```
+
+2. 通过 `git remote add <shortname> <url>` 命令为 `proctor-ios` 仓库添加远端仓库，指向你的项目仓库，并将所需的分支推向你的仓库。
+3. 在你的项目的 `Podfile` 文件中添加如下依赖，来引用 proctor-ios 仓库中的 `AgoraProctorSDK.podspec`、`AgoraProctorUI.podspec` 以及其它依赖的库：
+
+ ```
+   # third libs
+   pod 'CocoaLumberjack',   '3.6.1'
+   pod 'AliyunOSSiOS',      '2.10.8'
+   pod 'SSZipArchive',      '2.4.2'
+   pod 'SwifterSwift',      '5.2.0'
+   pod 'SDWebImage',        '5.12.0'
+   pod 'Protobuf',          '3.17.0'
+   pod 'Masonry',           '1.1.0'
+   pod 'Armin',             '1.1.0'
+     
+   # agora libs
+   pod 'AgoraRtcEngine_iOS/RtcBasic', '3.7.2'
+   pod 'AgoraMediaPlayer_iOS',        '1.3.0'
+   pod 'AgoraRtm_iOS',                '1.4.8'
+    
+   # open source libs
+   pod 'AgoraProctorSDK',   :path => '../proctor-ios/AgoraProctorSDK.podspec'
+   pod 'AgoraProctorUI',    :path => '../proctor-ios/AgoraProctorUI.podspec'
+    
+   # close source libs
+   pod 'AgoraUIBaseViews',      '2.8.0'
+   pod 'AgoraEduCore', 			'2.8.20'
+   pod 'AgoraWidget', 			'2.8.0'
+```
+4. 在终端中进入到工程目录，执行 `pod install` 命令。
+5. 可以先阅读[开源层介绍](XXX)，来了解灵动课堂的开源层设计思路，然后可以修改源代码来自定义场景了。
