@@ -1,4 +1,5 @@
 本文展示如何调用即时通讯 RESTful API 实现聊天室成员管理，包括添加和移除聊天室成员以及设置和移除聊天室管理员相关操作。
+
 调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## 聊天室成员角色说明
@@ -80,7 +81,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users/{usernam
 
 | 字段     | 类型   | 描述                                                    |
 | :------- | :----- | :------------------------------------------------------ |
-| `result` | Boolean   | 是否添加成功：<li>`true：`是。<li>`false`：否。 |
+| `result` | Boolean   | 是否添加成功：<ul><li>`true：`是</li><li>`false`：否</li></ul> |
 | `action` | String | 执行的操作，`add_member` 表示向聊天室添加成员。         |
 | `id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
 | `user`   | String | 成功添加为成员的用户 ID。                                    |

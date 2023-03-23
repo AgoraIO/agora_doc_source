@@ -18,7 +18,7 @@
 
 | 参数              | 类型   | 描述                    |
 | :---------------- | :----- | :------------------------------------- |
-| `timestamp`       | Long   | HTTP 响应的 Unix 时间戳，单位为毫秒。                                 |
+| `timestamp`       | Number   | HTTP 响应的 Unix 时间戳，单位为毫秒。                                 |
 | `duration`        | Number | 从发送 HTTP 请求到响应的时长，单位为毫秒。                  |
 
 ## 认证方式
@@ -57,8 +57,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 
 | 参数          | 类型   | 是否必需 | 描述                                                 |
 | :------------ | :----- | :------- | :--------------------------------------------------- |
-| `metaData`        | JSON | 是     | 聊天室的自定义属性，存储为键值对（key-value）集合，即 Map<String,String>。该集合中最多可包含 10 个键值对，在每个键值对中，key 为属性名称，最多可包含 128 个字符；value 为属性值，不能超过 4086 个字符。每个聊天室最多可有 100 个自定义属性，每个应用的聊天室自定义属性总大小为 10 GB。<br/> key 支持以下字符集：<ul><li>26 个小写英文字母 a-z；</li><li>26 个大写英文字母 A-Z；</li><li>10 个数字 0-9；</li><li>
-“_”, “-”, “.”。</li></ul> |
+| `metaData`        | JSON | 是     | 聊天室的自定义属性，存储为键值对（key-value）集合，即 Map<String,String>。该集合中最多可包含 10 个键值对，在每个键值对中，key 为属性名称，最多可包含 128 个字符；value 为属性值，不能超过 4086 个字符。每个聊天室最多可有 100 个自定义属性，每个应用的聊天室自定义属性总大小为 10 GB。<br/> key 支持以下字符集：<ul><li>26 个小写英文字母 a-z；</li><li>26 个大写英文字母 A-Z；</li><li>10 个数字 0-9；</li><li>“_”, “-”, “.”。</li></ul> |
 | `autoDelete` | String | 否     | 当前成员退出聊天室时是否自动删除该自定义属性。<ul><li>（默认）'DELETE'：是；</li><li> 'NO_DELETE'：否。</li></ul>              |
 
 ### HTTP 响应
@@ -193,7 +192,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 
 #### 请求 body
 
-| 参数          | 类型   | 是否必需 | 说明                                                 |
+| 参数          | 类型   | 是否必需 | 描述                                              |
 | :------------ | :----- | :------- | :--------------------------------------------------- |
 | `keys`        | Array | 否     | 聊天室自定义属性名称列表。每次最多可传 10 个自定义属性名称。              |
 
@@ -325,7 +324,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 
 #### 请求 header
 
-| 参数    | 类型   |是否必需 | 描述      |
+| 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
 | `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
 | `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
@@ -333,7 +332,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 
 #### 请求 body
 
-| 参数          | 类型   | 是否必需 | 说明                                                 |
+| 参数          | 类型   | 是否必需 | 描述                                                |
 | :------------ | :----- | :------- | :--------------------------------------------------- |
 | `keys`        | Array | 否     | 聊天室自定义属性名称列表。该方法每次最多可删除 10 个自定义属性。             |
 
