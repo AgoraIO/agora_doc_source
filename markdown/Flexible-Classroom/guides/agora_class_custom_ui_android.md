@@ -165,3 +165,33 @@ interface IAgoraUIProvider {
        }
    }
    ```
+
+### 4. UI 组件之间通信
+Component 与 Component 之间通信方式：
+- 自定义系统API - Boardcast通信
+- 自定义接口，通过接口传递，实现组件间通信
+- 通过AgoraTransportManager通信
+
+
+通过AgoraTransportManager通信
+
+- 发送
+```
+val event = AgoraTransportEvent(AgoraTransportEventId.EVENT_ID_ALL)  
+event.arg1 = 123     // custom your id  
+event.extra = "data" // your data  
+AgoraTransportManager.notify(event)
+```
+
+- 接收
+```
+// receive message AgoraTransportManager.addListener(AgoraTransportEventId.EVENT_ID_ALL, object : OnAgoraTransportListener {  
+    override fun onTransport(event: AgoraTransportEvent) {  
+        if (event.eventId == AgoraTransportEventId.EVENT_ID_ALL) {  
+            if (event.arg1 == 123) {  
+                val data = event.extra  
+            }
+        }  
+    }  
+})
+```
