@@ -2,6 +2,15 @@
 
 灵动课堂的 UI 组件可分为功能组件、业务组件和场景组件三种。
 
+### 项目集成
+集成灵动课堂到项目中请参考：<a href="/cn/agora-class/agora_class_widget_web_previous?platform=Web">集成灵动课堂</a>
+
+### 交互层架构示意图
+![](_d9f88970-e6f3-4b75-b774-71fd3929594f.png)
+* UI-Kit/Components 为功能组件
+* Containers 为业务组件
+* Scenarios 为场景组件，分别对应到： OneToOneScenario -> 1对1场景，MidClassScenario -> 小班课场景，BigClassScenario -> 大班课场景
+
 ### 功能组件
 
 功能组件是灵动课堂中最基础的 UI 组件，不和业务逻辑绑定。一个功能组件维护一个功能的内部状态和逻辑，例如 `Button`、`Modal`、`Select`、 `Tree` 等。
@@ -50,12 +59,11 @@
 
 业务组件指灵动课堂中和业务逻辑绑定的 UI 组件。业务组件大部分是由多个功能组件组合并注入相关的业务逻辑。业务组件依赖于 UI Store 中注入的 Observable 对象和行为函数来自动更新 UI 和调用 API。以举手上讲台功能为例，此功能对应的业务组件可以根据当前举手数据展示举手的用户列表，并提供按钮供用户点击，业务组件内部会调用 API 发送举手请求。
 
-![](https://web-cdn.agora.io/docs-files/1670308000479)
+![](intro-1.png)
 
 业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂监考场景) 目录下。
 
 下表详细介绍灵动课堂中使用的业务组件：
-
 
 #### 教育场景
 | 文件夹                         | 对应的业务                                                   |
