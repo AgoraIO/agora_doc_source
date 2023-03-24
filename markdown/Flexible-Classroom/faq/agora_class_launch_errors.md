@@ -23,3 +23,6 @@ rtmToken一般推荐客户的后端生成，客户的前端调用后台生成的
 同一个房间UUID被配置为不同的房间类型，从而导致房间类型冲突。建议不要重复使用每个房间的UUID，并且每个房间都应配置一个单独的房间类型。
 
 其他相关错误码请参照：https://docs.agora.io/cn/agora-class/agora_class_restful_api?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81
+
+###3.进入教室报错Error Domain=last launch not finished Code=-1 "(null)" 
+-1是rtmtoken不对，或者rtmtoken跟appid、userid不匹配或者过期了。请检查rtmToken生成的值是否正确。
