@@ -104,6 +104,16 @@ implementation "io.github.agoraio-community:hyphenate:版本号"
     }
     ```
 
+设置暗黑模式：切换暗黑需要重启Activity，为了兼容所有手机，建议直接在Application#onCreate中设置主题
+```
+void setDarkMode() {  
+    boolean isDarkMode = "这里添加是否开启暗黑模式的逻辑"  
+    if (isDarkMode) {  
+        SkinUtils.INSTANCE.setNightMode(true);  
+    }  
+}
+```
+
 4. 为防止代码混淆，在 `/Gradle Scripts/proguard-rules.pro` 文件中添加以下代码：
 
    ```
