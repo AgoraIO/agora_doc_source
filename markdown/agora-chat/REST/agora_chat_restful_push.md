@@ -6,7 +6,7 @@
 
 ## 前提条件
 
-- 了解即时通讯 IM 的 RESTful API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
+- 了解即时通讯 IM 的 RESTful API 调用频率限制，详见 [使用限制](./agora_chat_limitation#服务端接口调用频率限制)；
 - 你已在 [Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
 <div class="alert note">关闭推送高级功能必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
