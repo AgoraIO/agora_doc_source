@@ -27,11 +27,13 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioProfile(
     {required AudioProfileType profile,
-    AudioScenarioType scenario = AudioScenarioType.audioScenarioDefault});</codeblock></p>
+    AudioScenarioType scenario = AudioScenarioType.audioScenarioDefault});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <dl outputclass="deprecated">
-            <dlentry>
+            <dlentry props="native unity">
                 <dt>弃用：</dt>
                 <dd>此方法已废弃，如需设置音频编码属性，请改用 <xref keyref="setAudioProfile2" />；如需设置音频场景，请改用 <xref keyref="setAudioScenario" />。</dd>
             </dlentry>
@@ -50,8 +52,6 @@
                     <p id="profile"><ph>音频编码属性，包含采样率、码率、编码模式和声道数。</ph><ph props="ios mac cpp electron unity flutter rn">详见 <xref keyref="AUDIO_PROFILE_TYPE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="AUDIO_PROFILE_DEFAULT" /> (0)：默认值
-
-
                         <ul conkeyref="AUDIO_PROFILE_TYPE/default-profile">
                         <li />
                         </ul></li>
@@ -78,10 +78,11 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功</li>
+            <li props="native electron unity rn">0: 方法调用成功</li>
             <li> &lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>

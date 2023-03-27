@@ -19,9 +19,11 @@
             <codeblock props="electron" outputclass="language-typescript">abstract startAudioDeviceLoopbackTest(indicationInterval: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int StartAudioDeviceLoopbackTest(int indicationInterval);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startAudioDeviceLoopbackTest(indicationInterval: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioDeviceLoopbackTest(int indicationInterval);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startAudioDeviceLoopbackTest(int indicationInterval);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>该方法测试音频采集和播放设备是否能正常工作。一旦测试开始，音频采集设备会采集本地音频，然后使用音频播放设备播放出来。SDK 会按设置的时间间隔触发两个 <xref keyref="onAudioVolumeIndication" /> 回调，分别报告音频采集设备（<parmname>uid</parmname> = 0）和音频播放设置（<parmname>uid</parmname> = 1）的音量信息。</p>
             <note type="attention">
             <ul>
@@ -36,10 +38,11 @@
                 <pd>SDK 触发 <apiname keyref="onAudioVolumeIndication" /> 回调的时间间隔，单位为毫秒。建议设置到大于 200 毫秒。不得少于 10 毫秒，否则会收不到 <apiname keyref="onAudioVolumeIndication" /> 回调。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功。</li>
+            <li props="native electron unity rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>

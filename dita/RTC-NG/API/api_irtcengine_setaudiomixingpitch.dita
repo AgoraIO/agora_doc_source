@@ -19,9 +19,11 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setAudioMixingPitch(pitch: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetAudioMixingPitch(int pitch);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setAudioMixingPitch(pitch: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPitch(int pitch);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAudioMixingPitch(int pitch);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>本地人声和播放的音乐文件混音时，调用该方法可以仅调节音乐文件的音调。</p>
             <note type="attention">你需要在调用 <apiname keyref="startAudioMixing2" /> 并收到 <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> 回调后调用该方法。</note> </section>
         <section id="parameters">
@@ -32,10 +34,11 @@
                 <pd>按半音音阶调整本地播放的音乐文件的音调，默认值为 0，即不调整音调。取值范围为 [-12,12]，每相邻两个值的音高距离相差半音。取值的绝对值越大，音调升高或降低得越多。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功</li>
+            <li props="native electron unity rn">0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>

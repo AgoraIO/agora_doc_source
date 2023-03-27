@@ -24,9 +24,11 @@
             <codeblock props="rn" outputclass="language-typescript">abstract setDefaultAudioRouteToSpeakerphone(
     defaultToSpeaker: boolean
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setDefaultAudioRouteToSpeakerphone(bool defaultToSpeaker);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <note props="cpp unity flutter">
             <ul>
                 <li>该方法仅适用于 Android 和 iOS 平台。</li>
@@ -36,7 +38,7 @@
             <p>手机设备一般有两个音频路由，一个是位于顶部的听筒，播放声音偏小；一个是位于底部的扬声器，播放声音偏大。设置默认的音频路由，就是在没有外接设备的前提下，设置系统使用听筒还是扬声器播放音频。</p>
         </section>
         <section>
-            <p>不同的 Agora 场景下，系统默认的音频路由也不同。具体如下：
+            <p>不同场景下，系统默认的音频路由也不同。具体如下：
 
 
 
@@ -62,10 +64,11 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="android ios cpp electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul id="ul_ahk_23f_3qb">
-            <li>0: 方法调用成功</li>
+            <li props="android ios cpp electron unity rn">0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>

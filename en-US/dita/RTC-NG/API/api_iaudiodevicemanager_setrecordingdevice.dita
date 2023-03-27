@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_iaudiodevicemanager_setrecordingdevice">
     <title><ph keyref="setRecordingDevice" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio recording device.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio capture device.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,7 +19,12 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setRecordingDevice(deviceId: string): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int SetRecordingDevice(string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setRecordingDevice(deviceId: string): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRecordingDevice(String deviceId);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRecordingDevice(String deviceId);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
+        </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <p>You can call this method to change the audio route currently being used, but this does not change the default audio route. For example, if the default audio route is microphone, you call this method to set the audio route as bluetooth earphones before joinging a channel and then start a device test, the SDK conducts device test on the bluetooth earphones. After the device test is completed and you join a channel, the SDK still uses the microphone for audio capturing.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -27,15 +32,16 @@
             <plentry>
                 <pt>deviceId</pt>
                 <pd>
-                    <p>The ID of the audio recording device. You can get the device ID by calling <xref keyref="enumerateRecordingDevices" />. Plugging or unplugging the audio device does not change the value of <parmname>deviceId</parmname>.</p>
+                    <p>The ID of the audio capture device. You can get the Device ID by calling <xref keyref="enumerateRecordingDevices" />. Connecting or disconnecting the audio device does not change the value of <parmname>deviceId</parmname>.</p>
                     <p props="cpp electron">The maximum length is <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />.</p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

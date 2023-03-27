@@ -22,20 +22,22 @@
     watermarkUrl: string,
     options: WatermarkOptions
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; addVideoWatermark(RtcImage watermark);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; addVideoWatermark(RtcImage watermark);</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>弃用：</dt>
                 <dd>
-                        该方法已废弃，请使用
+                       该方法已废弃，请使用
                         <xref keyref="addVideoWatermark2" /> 作为替代。
                     </dd>
             </dlentry>
             </dl>
             <p>
-                该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的用户，旁路推流观众，甚至采集设备都能看到或采集到该水印图片。如果你仅仅希望在旁路直播推流中添加水印，请参考 <xref keyref="setLiveTranscoding" />中描述的用法。
+               该方法将一张 PNG 图片作为水印添加到本地发布的直播视频流上，同一直播频道中的用户，旁路推流观众，甚至采集设备都能看到或采集到该水印图片。如果你仅仅希望在旁路直播推流中添加水印，请参考 <xref keyref="setLiveTranscoding" />中描述的用法。
             </p>
             <note type="attention">
             <ul>
@@ -53,10 +55,11 @@
                     </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功</li>
+            <li props="native electron unity rn">0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>

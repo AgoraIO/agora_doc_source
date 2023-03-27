@@ -1,6 +1,6 @@
 ## 概览
 
-扩展应用 ExtApp 是灵动课堂的补充插件。你可以将 ExtApp 理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于 Agora Classroom SDK。你可以通过 ExtApp 自定义插件的 UI，传递自定义数据和监听数据变化，在灵动课堂内嵌入自定义插件，例如倒计时、骰子等。
+扩展应用 ExtApp 是灵动课堂的补充插件。你可以将 ExtApp 理解为一个相对独立的 App，有自己的生命周期和数据管理，但是又依赖于声网 Classroom SDK。你可以通过 ExtApp 自定义插件的 UI，传递自定义数据和监听数据变化，在灵动课堂内嵌入自定义插件，例如倒计时、骰子等。
 
 下文介绍通过扩展应用 ExtApp 来在灵动课堂内嵌入自定义插件的基本步骤。
 
@@ -8,7 +8,7 @@
 
 ### 1. 实现插件
 
-首先，你可参考 Agora 提供的 [PluginGallery](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/release/apaas/1.1.0/packages/agora-plugin-gallery)，创建一个独立的 JavaScript 工程项目。
+首先，你可参考声网提供的 [PluginGallery](https://github.com/AgoraIO-Community/CloudClass-Desktop/tree/release/apaas/1.1.0/packages/agora-plugin-gallery)，创建一个独立的 JavaScript 工程项目。
 
 以 PluginGallery 的 countdown 倒计时插件为例，你需要引入相关 Context。
 
@@ -58,7 +58,7 @@ export class AgoraExtAppCountDown implements IAgoraExtApp {
 
 ### 2. 注册插件
 
-在调用 `AgoraEduSDK.launch` 方法时，通过 `extApps` 参数，将该插件注册到 Agora Classroom SDK 中。
+在调用 `AgoraEduSDK.launch` 方法时，通过 `extApps` 参数，将该插件注册到声网 Classroom SDK 中。
 
 以下示例代码演示了如何注册倒计时插件 CountDownExtApp。
 
@@ -78,4 +78,4 @@ AgoraSDK.launch(dom, {
 
 ![](https://web-cdn.agora.io/docs-files/1619755145025)
 
-若你不想通过默认的方式启动插件，你也可以修改 UI Kit 模块的相应文件，在灵动课堂三大场景中为该插件添加一个入口，然后通过 Agora Edu Context 的 useAppPluginContext 获取启动事件，在合适的时机通过 onLaunchAppPlugin 启动插件。
+若你不想通过默认的方式启动插件，你也可以修改 UI Kit 模块的相应文件，在灵动课堂三大场景中为该插件添加一个入口，然后通过 Edu Context 的 useAppPluginContext 获取启动事件，在合适的时机通过 onLaunchAppPlugin 启动插件。

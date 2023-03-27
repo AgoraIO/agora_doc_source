@@ -2,7 +2,7 @@
 
 ### 数据交互流程
 
-在 Agora Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUI** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_kotlin/API/edu_context_api_overview.html) 产生关联。具体逻辑如下：
+在声网 Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUI** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_kotlin/API/edu_context_api_overview.html) 产生关联。具体逻辑如下：
 
 ![](https://web-cdn.agora.io/docs-files/1650273644082)
 
@@ -102,13 +102,13 @@ interface IAgoraUIProvider {
        constructor(context: Context, attr: AttributeSet) : super(context, attr)
        constructor(context: Context, attr: AttributeSet, defStyleAttr: Int) : super(context, attr, defStyleAttr)
     
-       // TODO: 替换成你自己定义的 xml
+       // 替换成你自己定义的 XML
        private var binding: xxxxBinding = xxxBinding.inflate(LayoutInflater.from(context), this, true)
     
        override fun initView(agoraUIProvider: IAgoraUIProvider) {
           super.initView(agoraUIProvider)
-          // TODO: 在这里处理 View      
-          // TODO: agoraUIProvider 提供教室数据能力和 View 需要的数据，你可自行定义
+          // 在这里处理 View      
+          // agoraUIProvider 提供教室数据能力和 View 需要的数据，你可自行定义
        }
       
    }
@@ -165,3 +165,33 @@ interface IAgoraUIProvider {
        }
    }
    ```
+
+### 4. UI 组件之间通信
+Component 与 Component 之间通信方式：
+- 自定义系统API - Boardcast通信
+- 自定义接口，通过接口传递，实现组件间通信
+- 通过AgoraTransportManager通信
+
+
+通过AgoraTransportManager通信
+
+- 发送
+```
+val event = AgoraTransportEvent(AgoraTransportEventId.EVENT_ID_ALL)  
+event.arg1 = 123     // custom your id  
+event.extra = "data" // your data  
+AgoraTransportManager.notify(event)
+```
+
+- 接收
+```
+// receive message AgoraTransportManager.addListener(AgoraTransportEventId.EVENT_ID_ALL, object : OnAgoraTransportListener {  
+    override fun onTransport(event: AgoraTransportEvent) {  
+        if (event.eventId == AgoraTransportEventId.EVENT_ID_ALL) {  
+            if (event.arg1 == 123) {  
+                val data = event.extra  
+            }
+        }  
+    }  
+})
+```

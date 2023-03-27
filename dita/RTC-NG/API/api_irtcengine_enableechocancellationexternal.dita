@@ -27,9 +27,11 @@
     audioSourceDelay: number
   ): number;</codeblock>
   <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableEchoCancellationExternal(
-    {required bool enabled, required int audioSourceDelay});</codeblock> </p>
+    {required bool enabled, required int audioSourceDelay});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>调用该方法后，你可以将外部音频帧推送到自定义音频模块进行回声消除。</p>
             <note type="attention">你需要在调用 <xref keyref="setExternalAudioSink" /> 之后、加入频道之前调用该方法。</note> </section>
         <section id="parameters">
@@ -54,10 +56,11 @@
                     </ul></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0：方法调用成功。</li>
+            <li props="native unity">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>

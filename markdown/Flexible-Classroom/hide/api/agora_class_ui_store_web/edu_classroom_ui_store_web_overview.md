@@ -6,7 +6,7 @@
 -   `interactive` 文件夹：对应在线互动小班课。
 -   `lecture` 文件夹：对应互动直播大班课。
 
-以 1 对 1 互动教学为例，Agora 在 `one-on-one/index.ts` 文件中定义了 `Edu1v1ClassUIStore` 类，继承自 `agora-edu-core` 提供的 `EduClassroomUIStore`，实现了灵动课堂各个班型通用的业务功能。此外，针对 1 对 1 互动教学，Agora 还定义了 `OneToOneStreamUIStore`、`OneToOneToolbarUIStore` 和 `OneToOneBoardUIStore`，分别用于重写流相关功能、工具栏和白板的逻辑。
+以 1 对 1 互动教学为例，声网在 `one-on-one/index.ts` 文件中定义了 `Edu1v1ClassUIStore` 类，继承自 `agora-edu-core` 提供的 `EduClassroomUIStore`，实现了灵动课堂各个班型通用的业务功能。此外，针对 1 对 1 互动教学，声网还定义了 `OneToOneStreamUIStore`、`OneToOneToolbarUIStore` 和 `OneToOneBoardUIStore`，分别用于重写流相关功能、工具栏和白板的逻辑。
 
 `EduClassroomUIStore` 提供了所有的基础能力，包含以下子 UI Store:
 
