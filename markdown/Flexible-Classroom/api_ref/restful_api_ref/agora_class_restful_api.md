@@ -145,11 +145,13 @@
 
 #### 请求示例
 
-**请求包体**
-
 ```json
-{
-    "roomName": "jasoncai61734",
+curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+    "roomName": "test_class",
     "roomType": 4,
     "roomProperties": {
         "schedule": {
@@ -163,7 +165,7 @@
             }
         }
     }
-}
+}'
 ```
 
 #### 响应参数
@@ -201,17 +203,19 @@
 
 需要在 URL 中传入以下参数。
 
-| 参数       | 类型    |  是否必填 | 描述                                                         |
-| :--------- | :------ |  :------ | :----------------------------------------------------------- |
-| `region`      | String | 必填 | 公共参数，详见 [区域](todo://跳转到同文区域位置) 。                                       |
-| `appId`    | String  | 必填 | 公共参数，详见 [其他业务参数](todo://跳转到同文其他业务参数位置)。                                       |
-| `roomUuid` | String  | 必填 | 公共参数，详见 [其他业务参数](todo://跳转到同文其他业务参数位置) |
-| `state`    | Integer | 必填 | 课堂状态：<ul><li>`0`: 未开始</li><li>`1`: 开始</li><li>`2`: 结束</li><li>`3`: 拖堂时间结束，课堂关闭，用户无法再进入</li></ul> |
+| 参数       | 类型    |  是否必填 | 描述                                                                                                  |
+| :--------- | :------ |  :------ |:----------------------------------------------------------------------------------------------------|
+| `region`      | String | 必填 | 公共参数，详见 [区域](todo://跳转到同文区域位置) 。                                                                    |
+| `appId`    | String  | 必填 | 公共参数，详见 [其他业务参数](todo://跳转到同文其他业务参数位置)。                                                             |
+| `roomUuid` | String  | 必填 | 公共参数，详见 [其他业务参数](todo://跳转到同文其他业务参数位置)                                                              |
+| `state`    | Integer | 必填 | 课堂状态：<ul><li>`0`: 未开始</li><li>`1`: 开始</li><li>`2`: 拖堂</li><li>`3`: 关闭，拖堂时间结束，用户无法再进入</li></ul> |
 
 #### 请求示例
 
-```html
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
+```json
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/states/1' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
 ```
 
 #### 响应参数
@@ -270,24 +274,18 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/states/1
 
 #### 请求示例
 
-**请求 URL**
-
-```html
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
-```
-
-**请求包体**
-
 ```json
-{
-    "mode": "web",
-    "webRecordConfig": {
-        "url": "https://webdemo.agora.io/xxxxx/?userUuid={recorder_id}&roomUuid={room_id_to_be_recorded}&roleType=0&roomType=4&pretest=false&rtmToken={recorder_token}&language=en&appId={your_app_id}",
-        "rootUrl": "https://xxx.yyy.zzz",
-        "publishRtmp": "true"
-    },
-    "retryTimeout": 60
-}
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/records/states/1' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "mode": "web",
+  "webRecordConfig": {
+    "rootUrl": "https://xxx.yyy.zzz"
+  },
+  "retryTimeout": 60
+}'
 ```
 
 #### 响应参数
@@ -350,20 +348,16 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 
 #### 请求示例
 
-**请求 URL**
-
-```html
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
-```
-
-**请求包体**
-
 ```json
-{
-    "webRecordConfig": {
-        "onhold": false
-    }
-}
+curl -X PATCH 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/records/states/1' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "webRecordConfig": {
+    "onhold": false
+  }
+}'
 ```
 
 #### 响应参数
@@ -422,18 +416,11 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records/states/1
 
 #### 请求示例
 
-示例一：
-
-```html
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records
+```json
+curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/records' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
 ```
-
-示例二：
-
-```html
-https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
-```
-
 #### 响应参数
 
 | 参数   | 类型    | 描述                                                         |
@@ -502,6 +489,13 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 | `roomUuid` | String | 必填                                      | 公共参数，详见 [其他业务参数](todo://跳转到同文其他业务参数位置)  |
 | `userUuid` | String | 必填                                      | 公共参数，详见 [其他业务参数](todo://跳转到同文其他业务参数位置)  |
 
+#### 请求示例
+
+```json
+curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
+```
 #### 响应参数
 
 | 参数   | 类型    | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -564,21 +558,17 @@ https://api.agora.io/edu/apps/{yourappId}/v2/rooms/test_class/records?nextId=xxx
 
 #### 请求示例
 
-**请求 URL**
-
-```html
-https://api.agora.io/{region}/edu/apps/{your_app_Id}/v2/rooms/test_class/users/123/exit
-```
-
-**请求包体**
-
 ```json
-{
-    "dirty": {
-        "state": 1,
-        "duration": 600
-    }
-}
+curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user/exit' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "dirty": {
+    "state": 1,
+    "duration": 600
+  }
+}'
 ```
 
 #### 响应参数
@@ -636,18 +626,10 @@ https://api.agora.io/{region}/edu/apps/{your_app_Id}/v2/rooms/test_class/users/1
 
 #### 请求示例
 
-**请求 URL**
-
-示例一：
-
-```html
-https://api.agora.io/{region}/edu/apps/{appId}/v2/rooms/test_class/sequences?cmd=1
-```
-
-示例二：
-
-```html
-https://api.agora.io/{region}/edu/apps/{appId}/v2/rooms/test_class/sequences?nextId=50&cmd=1
+```json
+curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/sequences?cmd=20' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
 ```
 
 #### 响应参数
@@ -711,9 +693,12 @@ https://api.agora.io/{region}/edu/apps/{appId}/v2/rooms/test_class/sequences?nex
 
 #### 请求示例
 
-```html
-https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
+```json
+curl -X GET 'https://api.agora.io/{region}/edu/polling/apps/{yourAppId}/v2/rooms/sequences' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
 ```
+
 
 #### 响应参数
 
@@ -779,17 +764,21 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
 
 ```json
-{
-    "properties": {
-        "key1": "value1",
-        "key2": "value2"
-    },
-    "cause": {}
-}
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/properties' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "properties": {
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "cause": {}
+}'
 ```
+
 
 #### 响应参数
 
@@ -843,13 +832,15 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
-
 ```json
-{
-    "properties": ["key1", "key2"],
-    "cause": {}
-}
+curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/properties' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "properties": ["key1", "key2"],
+  "cause": {}
+}'
 ```
 
 #### 响应参数
@@ -905,16 +896,19 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
 
 ```json
-{
-    "properties": {
-        "key1": "value1",
-        "key2": "value2"
-    },
-    "cause": {}
-}
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user/properties' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "properties": {
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "cause": {}
+}'
 ```
 
 #### 响应参数
@@ -970,13 +964,16 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
 
 ```json
-{
-    "properties": ["key1", "key2"],
-    "cause": {}
-}
+curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user/properties' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "properties": ["key1", "key2"],
+  "cause": {}
+}'
 ```
 
 #### 响应参数
@@ -1032,15 +1029,20 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
-
 ```json
-{
-    "extra": {},
-    "cause": {},
-    "state": 1,
-    "ownerUserUuid": "user"
-}
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "state": 1,
+  "ownerUserUuid": "user",
+  "extra": {
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "cause": {}
+}'
 ```
 
 #### 响应参数
@@ -1092,6 +1094,18 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 | 参数    | 类型   | 是否必填 | 描述            |
 | :------ | :----- |:-----|:--------------|
 | `cause` | Object | 非必填   | 本次删除的原因。 |
+
+#### 请求示例
+```json
+curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "cause": {}
+}'
+```
+
 
 #### 响应参数
 
@@ -1145,14 +1159,17 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
-
 ```json
-{
-    "properties": ["key-path1", "key-path2"],
-    "cause": {}
-}
+curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/extra' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "properties": ["key-path1", "key-path2"],
+  "cause": {}
+}'
 ```
+
 
 #### 响应参数
 
@@ -1207,13 +1224,18 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
-
 ```json
-{
-    "properties": {},
-    "cause": {}
-}
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/users/test_user' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "properties": {
+    "key1": "value1",
+    "key2": "value2"
+  },
+  "cause": {}
+}'
 ```
 
 #### 响应参数
@@ -1267,13 +1289,16 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求包体**
 
 ```json
-{
-    "properties": ["key-path1", "key-path2"],
-    "cause": {}
-}
+curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/users/test_user' \
+-H 'Content-Type: application/json;charset=UTF-8' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
+  "properties": ["key1","key2"],
+  "cause": {}
+}'
 ```
 
 #### 响应参数
@@ -1330,18 +1355,11 @@ https://api.agora.io/{region}/edu/polling/apps/{yourappId}/v2/rooms/sequences
 
 #### 请求示例
 
-**请求 URL**
 
-示例一：
-
-```html
-https://api.agora.io/{region}/edu/apps/{appId}/v2/rooms/test_class/widgets/test_widget/sequences?cmd=1
-```
-
-示例二：
-
-```html
-https://api.agora.io/{region}/edu/apps/{appId}/v2/rooms/test_class/widgets/test_widget/sequences?nextId=50&cmd=1
+```json
+curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/sequences' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
 ```
 
 #### 响应参数
@@ -1421,6 +1439,15 @@ https://api.agora.io/{region}/edu/apps/{appId}/v2/rooms/test_class/widgets/test_
 | :------- | :------ |:-----| :----------------------------------------------------------- |
 | `nextId` | String  | 非必填   | 下一批数据的起始 ID。第一次查询可传 null，后续查询传入响应结果里得到的 `nextId`。 |
 | `count`  | Integer | 非必填   | 本批数据条数，默认值为 100。                       |
+
+#### 请求示例
+
+```json
+curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/popupQuiz/sequences' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
+```
+
 
 #### 响应参数
 
@@ -1614,6 +1641,16 @@ https://api.agora.io/{region}/edu/apps/{appId}/v2/rooms/test_class/widgets/test_
 | :------- | :------ |:-----| :----------------------------------------------------------- |
 | `nextId` | String  | 非必填   | 下一批数据的起始 ID。第一次查询可传 null，后续查询传入响应结果里得到的 `nextId`。 |
 | `count`  | Integer | 非必填   | 本批数据条数，默认值为 100。                       |
+
+
+#### 请求示例
+
+```json
+curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/poll/sequences' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
+```
+
 
 #### 响应参数
 
