@@ -8,7 +8,7 @@
 
 ### 前提条件
 
-互动白板功能使用第三方云存储服务储存在课堂中上传的文件。因此，使用互动白板功能前，请确保你已开通第三方云存储服务。声网当前支持<a href="https://www.aliyun.com/product/oss" target="_blank">阿里云 OSS</a> 和 <a href="https://aws.amazon.com/cn/s3/?nc2=h_m1" target="_blank">Amazon S3</a>。
+互动白板功能使用第三方云存储服务储存在课堂中上传的文件。因此，使用互动白板功能前，请确保你已开通第三方云存储服务。声网当前支持<a href="https://www.aliyun.com/product/oss" target="_blank">阿里云 OSS</a> 和 <a href="https://aws.amazon.com/cn/s3/?nc2=h_m1" target="_blank">Amazon S3</a>和<a href="https://support.huaweicloud.com/qs-obs/obs_qs_0003.html" target="_blank">华为云 OSS</a> 和 <a href="https://cloud.tencent.com/document/product/436/44352" target="_blank">腾讯云 OSS</a>。
 
 ### 操作步骤
 
@@ -38,6 +38,9 @@
      - `accessKey`: String 型，Amazon S3 提供的访问密钥中的 Access Key，用于识别访问者的身份。
      - `secretKey`: String 型，Amazon S3 提供的访问密钥中的 Secret Key，用于验证签名的密钥。
      <div class="alert info">对于如何获取上述信息，请查看 <a href="https://docs.aws.amazon.com/general/latest/gr/s3.html" target="_blank">Amazon S3 官方文档</a>。</div>
+
+    - 如果使用华为云或者腾讯云，按照相同的方式，填写相应的厂商对应的字段就可以了。
+
 
 2. 如果你需要在课堂里使用 PPT、DOC、PDF 等格式的课件，你还需要点击**进阶服务**下方的**前往配置**，来为灵动课堂开启并配置文档转网页、文档转图片、截图服务。操作步骤详见<a href="/cn/whiteboard/enable_whiteboard#开启互动白板配套服务" target="_blank">开启互动白板配套服务</a>。
 
