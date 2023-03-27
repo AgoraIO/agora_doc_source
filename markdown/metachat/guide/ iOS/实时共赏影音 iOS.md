@@ -23,28 +23,13 @@
 
 ### 1. 推送视频
 
-调用 enableVideoDisplay 开启元宇宙中的视频显示屏，再通过 pushVideoFrameToDisplay 将你从媒体播放器 onFrame 回调得到的视频帧推送至该视频显示屏。
-
-```java
-// 开启视频显示屏
-// "1" 为指定的 displayID
-metaChatScene.enableVideoDisplay("1", true);
-// 将媒体播放器 onFrame 回调视频帧推送至指定的视频显示屏上
-metaChatScene.pushVideoFrameToDisplay("1", frame);
-```
-
-### 2. 同步视频播放进度
-
-为了同步主播和观众的视频播放进度，主播调用 sendStreamMessage 发布携带播放进度的数据流，观众通过 onStreamMessage 接收数据流，解析出播放进度。
-
-```java
-public abstract int sendStreamMessage(int streamId, byte[] message);
-```
+调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 [`didReceiveVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_video_observer.html?platform=iOS#callback_ivideoframeobserver_onframe) 回调得到的视频帧推送至该视频显示屏。
 
 ```swift
 // 开启视频显示屏
 // "1" 为指定的 displayID
 metachatScene?.enableVideoDisplay("1", enable: true)
+
 // vf 为待推送的视频帧
 let vf = AgoraVideoFrame()
 // 格式为 I420
@@ -52,9 +37,16 @@ vf.format = 1
 vf.strideInPixels = Int32(videoFrame.width)
 vf.height = Int32(videoFrame.height)
 vf.dataBuf = data
+
 // 将视频帧推送至指定的视频显示屏上
 metachatScene?.pushVideoFrame(toDisplay: "1", frame: vf)
+```
 
+### 2. 同步视频播放进度
+
+为了同步主播和观众的视频播放进度，主播调用 [`sendStreamMessage`](https://docs-preprod.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_network.html#api_irtcengine_sendstreammessage) 发布携带播放进度的数据流，观众通过 [`receiveStreamMessageFromUid`](https://docs-preprod.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_stream_management.html#callback_irtcengineeventhandler_onstreammessage) 接收数据流，解析出播放进度。
+
+```swift
 func sendStreamMessage(
     _ streamId: Int,
     data: Data
