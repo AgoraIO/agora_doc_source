@@ -1,12 +1,26 @@
 本页提供灵动课堂的发版说明。
 
-## 2.8.10 版
+## 2.8.21 版
 
-~6954ba00-8d6f-11ed-98c1-83ef730c7692~
+1. 升级targetSdkVersion到33，兼容 Android 13
+2. 新增三件套的层级和动画
+3. 兼容刘海屏
 
-## 2.8.0 版
 
-~2e732490-76cb-11ed-98c1-83ef730c7692~
+
+## 2.8.20 版
+
+灵动课堂 2.0.0 版于 2023 年 3 月 22 日发布。
+
+1. 支持极速直播 
+
+2. 新增拓展屏功能 
+
+3. 云盘课件打开后关闭云盘 
+
+4. 优化日志
+
+   
 
 ## 2.7.x 版
 
@@ -225,7 +239,7 @@ allprojects {
 
 **课件管理**
 
-为提升课堂学习效果，灵动课堂 1.1.0 新增课件模块。老师可通过灵动课堂客户端上传 PPT、DOC、PDF 等格式的文件。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。开发者还可通过灵动课堂 RESTful API 配置并上传文件至云盘，并获取课堂内云盘文件变更事件，详见[灵动课堂 RESTful API](./agora_class_restful_api?platform=Android)。
+为提升课堂学习效果，灵动课堂 1.1.0 新增课件模块。老师可通过灵动课堂客户端上传 PPT、DOC、PDF 等格式的文件。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。开发者还可通过灵动课堂云服务 RESTful API 配置并上传文件至云盘，并获取课堂内云盘文件变更事件，详见[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)。
 
 1.1.0 中，上传至云盘的文件默认储存在 Agora 的阿里云 OSS 账号中。如开发者想要将文件存储至自己的 OSS 账号中，需要更新 Agora 控制台 aPaaS 配置中的白板 JSON 配置对象，详见[灵动课堂前提条件](./agora_class_prep?platform=Android)中在 Agora 控制台配置灵动课堂一节。
 
@@ -233,7 +247,7 @@ allprojects {
 
 **页面录制**
 
-灵动课堂 1.1.0 支持[页面录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)，能够将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。开发者可通过灵动课堂 RESTful API 配置并发起页面录制，详见[灵动课堂 RESTful API](./agora_class_restful_api?platform=Android)。
+灵动课堂 1.1.0 支持[页面录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)，能够将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。开发者可通过灵动课堂云服务 RESTful API 配置并发起页面录制，详见[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)。
 
 **点名上台**
 
@@ -252,7 +266,7 @@ allprojects {
 
 **课堂奖励**
 
-为增强课堂互动，灵动课堂 1.1.0 新增课堂奖励功能，老师可在学生答题后给予学生奖励。开发者可通过灵动课堂 RESTful API 获取奖励变更事件，详见[灵动课堂 RESTful API](./agora_class_restful_api?platform=Android)。
+为增强课堂互动，灵动课堂 1.1.0 新增课堂奖励功能，老师可在学生答题后给予学生奖励。开发者可通过灵动课堂云服务 RESTful API 获取奖励变更事件，详见[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=Android)。
 
 #### 改进
 
