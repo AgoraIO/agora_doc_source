@@ -5,11 +5,6 @@
 ### 项目集成
 集成灵动课堂到项目中请参考：<a href="/cn/agora-class/agora_class_widget_web_previous?platform=Web">集成灵动课堂</a>
 
-### 交互层架构示意图
-![](_d9f88970-e6f3-4b75-b774-71fd3929594f.png)
-* UI-Kit/Components 为功能组件
-* Containers 为业务组件
-* Scenarios 为场景组件，分别对应到： OneToOneScenario -> 1对1场景，MidClassScenario -> 小班课场景，BigClassScenario -> 大班课场景
 
 ### 功能组件
 
