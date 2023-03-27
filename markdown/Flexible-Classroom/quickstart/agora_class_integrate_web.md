@@ -55,21 +55,6 @@
 
 ```
 
--   `agora-demo-app`: 灵动课堂demo app，支持web，h5，electron客户端等平台，集成在线教育SDK、在线监考SDK等能力，提供在线课堂的课前、课中、课后等场景化代码示例
--   `agora-classroom-sdk`: 在线教育场景SDK，包含以下模块：
-    -   `/src/infra/stores`: UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
-    -   `/src/infra/capabilities`:
-        -   `/containers`: UI 业务组件目录。UI 功能组件与 UI Store 结合成为 UI 业务组件。
-        -   `/scenarios`: 场景目录。场景是由多个业务组件组合而成。
--   `agora-proctor-sdk`: 在线监考场景SDK，包含以下模块：
-    -   `/src/infra/stores`: UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
-    -   `/src/infra/capabilities`:
-        -   `/containers`: UI 业务组件目录。UI 功能组件与 UI Store 结合成为 UI 业务组件。
-        -   `/scenarios`: 场景目录。场景是由多个业务组件组合而成。
--   `agora-common-libs`: 通用工具类库，包含ThemeProvider、I18nProvider等全局通用工具。
--   `agora-edu-core`: 提供灵动课堂中教育和监考场景的上行API调用和下行数据结构封装。
--   `agora-rte-sdk`: 提供跨端RTC适配能力以及教室内事件回调与数据结构封装。
--   `agora-plugin-gallery`: 独立插件库，继承`AgoraWidgetBase`类并实现`AgoraWidgetLifecycle`接口，包含互动白板、IM聊天、答题器、投票器、计时器等插件。
 
 
 
