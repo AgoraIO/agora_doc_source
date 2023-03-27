@@ -30,7 +30,7 @@
 | :--------- | :----- | :----------------------------------------------------------- |
 | `callId`    | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `reason`    | Object   | 触发回调的原因。`login` 表示用户登录。                       |
-| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。 |
+| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。 |
 | `os`        | String   | 设备类型，指设备的操作系统，包含 `ios`、`android`、`linux`、`win` 及 `other`。 |
 | `ip`        | String   | 用户登录的 IP 地址。                                         |
 | `host`      | String   | 即时通讯 IM 服务分配的 RESTful API 请求地址域名。          |
@@ -64,14 +64,14 @@
 | ----------- | -------- | ------------------------------------------------------------ |
 | `callId`    | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `reason`    | Object   | 触发回调的原因。`logout` 表示用户登出。                      |
-| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。 |
+| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。。 |
 | `os`        | String   | 设备类型，指设备的操作系统，包含 `ios`、`android`、`linux`、`win` 及 `other`。 |
 | `ip`        | String   | 用户登出的 IP 地址。                                         |
 | `host`      | String   | 即时通讯 IM 服务分配的 RESTful API 请求地址域名。          |
 | `appkey`    | String   | 即时通讯 IM 服务分配给每个 app 的唯一标识。                |
 | `user`      | String   | 登出用户的识别号，格式为 `{appKey}/{OS}_{deviceId}`。 |
 | `version`   | String   | SDK 版本号。                                                 |
-| `timestamp` | Long     | 即时通讯 IM 服务器收到登出请求的 Unix 时间戳，单位为毫秒。   |
+| `timestamp` | Number     | 即时通讯 IM 服务器收到登出请求的 Unix 时间戳，单位为毫秒。   |
 | `status`    | String   | 用户当前状态：<ul><li>`online`：用户在线。</li><li>`offline`：用户离线。</li></ul>                   |
 
 ### 用户因被其他设备踢掉而登出
@@ -97,14 +97,14 @@
 | ----------- | -------- | ------------------------------------------------------------ |
 | `callId`    | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段的值为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `reason`    | Object   | 触发回调的原因。`replaced` 表示用户被其他设备踢掉而登出。 |
-| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。 |
+| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。。 |
 | `os`        | String   | 设备类型，指设备的操作系统，包含 `ios`、`android`、`linux`、`win` 及 `other`。 |
 | `ip`        | String   | 用户登出的 IP 地址。                                         |
 | `host`      | String   | 即时通讯 IM 服务分配的 RESTful API 请求地址域名。          |
 | `appkey`    | String   | 即时通讯 IM 服务分配给每个 app 的唯一标识。                |
 | `user`      | String   | 登出用户的识别号，格式为 `{appKey}/{OS}_{deviceId}`。   |
 | `version`   | String   | SDK 版本号。                                                 |
-| `timestamp` | Long     | 即时通讯 IM 服务器收到登出请求的 Unix 时间戳，单位为毫秒。   |
+| `timestamp` | Number     | 即时通讯 IM 服务器收到登出请求的 Unix 时间戳，单位为毫秒。   |
 | `status`    | String   | 用户当前状态：<ul><li>`online`：用户在线。</li><li>`offline`：用户离线。</li></ul>  |
 
 ## 发送消息事件
@@ -131,17 +131,17 @@
 
 | 参数              | 类型   | 描述                                                         |
 | ----------------- | ------ | ------------------------------------------------------------ |
-| `callId`          | String | 回调 ID，即每条 HTTP 回调的唯一标识。该字段的值为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
+| `callId`          | String | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `eventType`       | String | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器要下发给终端设备的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未下发的消息。</li></ul> |
-| `timestamp`       | Long   | 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为毫秒。  |
+| `timestamp`       | Number  | 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为毫秒。  |
 | `chat_type`       | String | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li><li>`notify`：通知回调包含了子区（Thread）和 Reaction 的回调，需要结合 payload 中的 `type` 字段确定具体类型。</li></ul> |
 | `group_id`        | String | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。 |
 | `from`            | String | 消息的发送方。                                               |
 | `to`              | String | 消息的接收方。                                               |
 | `msg_id`          | String | 该回调事件的消息 ID，与用户发送消息时的 `msg_id` 一致。          |
-| `payload`         | Object | 消息回调事件的详细内容。根据用户在单聊、群聊和聊天室中发送的消息类型，回调事件中的 `payload` 包含的字段不同，具体示例及参数解释详见下文。 |
-| `securityVersion` | String | 预留参数。                                                   |
-| `security`        | String | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。|
+| `payload`         | Object | 消息回调事件的详细内容。根据用户在单聊、群聊和聊天室中发送的消息类型，回调事件中的 `payload` 包含的字段不同，具体示例及参数解释详见下文，也可参见[历史消息记录](./agora_chat_restful_message#历史消息记录的内容)。 |
+| `securityVersion` | String | 预留参数。    |
+| `security`        | String | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。|
 | `appkey`          | String | 即时通讯 IM 服务分配给每个 app 的唯一标识。                |
 | `host`            | String | 即时通讯 IM 分配的 RESTful API 请求地址域名。                      |
 
@@ -352,7 +352,7 @@
 其中，`ext` 为消息的扩展字段，数据类型为 Object；`bodies` 为该回调的主体内容，数据类型为 Object。包含如下字段：
 
 | 字段          | 数据类型 | 描述                                                         |
-| ------------- | -------- | ------------------------------------------------------------ |
+| :----- | :------- | :--------------------------- |
 | `customExts/v2:customExts`  | Array/JSON     | 用户自定义的事件属性。该参数为可选，不需要可以不传。<ul><li>`customExts` 为旧版参数，数组类型，最多可包含 16 个元素。</li><li>`v2:customExts` 为新版参数，Map<String,String> 类型，最多可以包含 16 个元素。推荐使用该新版参数。</li></ul> |
 | `customEvent` | String   | 用户自定义的事件类型，不能超过 32 个字符。         |
 | `type`        | String   | 消息类型。自定义消息为 `custom`。                            |
@@ -385,8 +385,8 @@
 ```
 
 | 字段              | 数据类型 | 描述                                                         |
-| ----------------- | -------- | ------------------------------------------------------------ |
-| `callId`          | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段的值为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
+| :----- | :------- | :--------------------------- |
+| `callId`          | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `eventType`       | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器要下发给终端设备的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
 | `timestamp`       | Number     | 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为毫秒。  |
 | `chat_type`       | String   | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li></ul> |
@@ -397,7 +397,7 @@
 | `msg_id`          | String   | 该撤回事件消息的 ID，与发送消息时的 `msg_id` 一致。              |
 | `payload`         | Object   | 消息回调事件的内容结构体，包含如下字段：<ul><li>`ext`: 消息的扩展字段。对于撤回消息，该字段为空。</li><li>`ack_message_id`: 要撤回的消息 ID，与 `recall_id` 一致。</li><li>`bodies`: 该回调的主体内容。对于撤回消息，该字段为空。</ul> |
 | `securityVersion` | String   | 预留参数。                                                   |
-| `security`        | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。 |
+| `security`        | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。 |
 | `appkey`          | String   | 即时通讯 IM 服务分配给每个 app 的唯一标识。                |
 | `host`            | String   | 即时通讯 IM 分配的 RESTful API 请求地址域名。                      |
 
@@ -425,9 +425,9 @@
 ```
 
 | 字段              | 数据类型 | 描述                                                         |
-| ----------------- | -------- | ------------------------------------------------------------ |
+| :----- | :------- | :--------------------------- |
 | `chat_type`       | String   | 事件类型。`muc` 表示群组或聊天室。                           |
-| `callId`          | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段的值为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
+| `callId`          | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `eventType`       | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器要下发给终端设备的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
 | `timestamp`       | Long     | 即时通讯 IM 服务器接收到该消息的 Unix 时间戳，单位为毫秒。  |
 | `group_id`        | String   | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。 |
@@ -436,7 +436,7 @@
 | `msg_id`          | String   | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。              |
 | `payload`         | Object   | 回调事件的内容结构体。包含如下字段：<ul><li>`muc_id`: 该事件所在的群组或聊天室在服务器的唯一标识，格式为 `{appkey}_{group_ID}@conference.easemob.com`。</li><li>`reason`: (非必需) 当前操作的详细信息。各操作的详细信息详见下文。</li><li>`is_chatroom`: 该事件是否发生在聊天室：若为 `true`，事件发生在聊天室；若为 `false`，该事件发生在群组。</li><li>`operation`: 当前操作。各群组或聊天室的操作详见下文。</li><li>`status`: 当前操作状态，包含 `description` 和 `error_code`，即该操作失败的原因描述和对应的错误码。</li></ul> |
 | `securityVersion` | String   | 预留参数。                                                   |
-| `security`        | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。 |
+| `security`        | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。 |
 | `appkey`          | String   | 即时通讯 IM 服务分配给每个 app 的唯一标识。                |
 | `host`            | String   | 即时通讯 IM 分配的 RESTful API 请求地址域名。                      |
 
@@ -732,41 +732,37 @@
 
 ### 离开群组或聊天室
 
-当用户主动离开聊天室时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户主动离开群时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
-"payload":
-{ 
-    "muc_id": "XXXX#XXXX173560762007553XXXX", 
-    "is_chatroom": false, 
-    "operation": "leave", 
-    "status":
-    { 
-        "description": "", 
-        "error_code": "ok" 
-    }
-}
+"payload": { 
+        "muc_id": "XXXX#XXXX@conference.easemob.com", 
+        "is_chatroom": false, 
+        "operation": "leave", 
+        "status": { 
+            "description": "", 
+            "error_code": "ok" 
+            } 
+        }
 ```
 
 其中 `operation` 为当前操作，即 `leave`。
 
-当用户自愿或非自愿离开群组或聊天室时，即时通讯 IM 服务会向你的应用服务器发送离开的结果。其中 `payload` 示例如下：
+当用户主动离开聊天室时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
-"payload":
-{ 
-    "muc_id": "XXXX#XXXX173560762007553XXXX", 
-    "is_chatroom": false, 
-    "operation": "absence", 
-    "status":
-    { 
-        "description": "", 
-        "error_code": "ok" 
-    }
-}
+"payload": { 
+        "muc_id": "XXXX#XXXX_XXXX@conference.easemob.com", 
+        "is_chatroom": true, 
+        "operation": "leave", 
+        "status": { 
+            "description": "", 
+            "error_code": "ok" 
+            } 
+        }
 ```
 
-其中 `operation` 为当前操作，即 `absence`。
+其中 `operation` 为当前操作，即 `leave`。
 
 ### 转让群主或所有者权限
 
@@ -1108,7 +1104,7 @@
 | `to`        | String   | 好友操作的目标用户。                                       |
 | `msg_id`    | String   | 该消息回调的 ID，与发送消息时的 `msg_id` 一致。              |
 | `payload`   | Object   | 消息回调事件的内容结构体。各回调事件包含的 `payload` 见下文。 |
-| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。 |
+| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。。 |
 | `appkey`    | String   |即时通讯 IM 服务分配给每个 app 的唯一标识。                |
 | `host`      | String   | 即时通讯 IM 分配的 RESTful API 请求地址域名。                      |
 
@@ -1273,7 +1269,7 @@
 | `chat_type` | String   | 事件类型：<ul><li>`read_ack`: 表示消息已读回执。</li><li>`delivery_ack`: 表示消息送达回执。</li></ul> |
 | `callId`    | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段的值为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `reason`    | Object   | 触发回调的原因。`login` 表示用户登录。 |
-| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的发送后回调规则。 |
+| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。。 |
 | `payload`   | Object   | 回调的具体内容，包括如下字段：<ul><li>`ext`：消息的扩展字段</li><li>`ack_message_id`：发送回执的消息 ID</li><li>`bodies`：消息体内容</li></ul> |
 | `host`      | String   | 即时通讯 IM 服务分配的 RESTful API 请求地址域名。          |
 | `appkey`    | String   | 即时通讯 IM 服务分配给每个 app 的唯一标识。                |

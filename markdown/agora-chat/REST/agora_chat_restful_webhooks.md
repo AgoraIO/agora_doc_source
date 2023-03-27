@@ -10,8 +10,7 @@ Authorization: Bearer ${YourAppToken}
 
 为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
-<a name="pubparam"></a>
-## 公共参数
+## 公共参数 <a name="pubparam"></a>
 
 下表列举了即时通讯 RESTful API 的公共请求参数和响应参数。
 
@@ -156,7 +155,7 @@ POST http://{host}/{org_name}/{app_name}/callbacks/storage/retry
 
 | 参数           | 类型   | 描述                                                         |
 | :------------- | :----- | :----------------------------------------------------------- |
-| `data`         | Bool   | 补发是否成功：<ul><li>`success`：成功</li><li>`failure`：失败</li></ul>    |
+| `date`         | Bool   | 补发是否成功：<ul><li>`success`：成功</li><li>`failure`：失败</li></ul>    |
 | `retry`        | Number    | 开发者已经重试补发的次数。考虑到补发也可能失败，服务器会继续存储。最开始是 0。 |
 
 其他详见 [公共参数](#pubparam)。
