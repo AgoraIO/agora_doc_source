@@ -10,18 +10,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalTranscoderConfiguration: NSObject
 @property(copy, nonatomic) NSArray&lt;AgoraTranscodingVideoStream *> *_Nullable videoInputStreams;
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
-@property(assign, nonatomic) BOOL syncWithPrimaryCamera;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct LocalTranscoderConfiguration {
   unsigned int streamCount;
   TranscodingVideoStream* videoInputStreams;
   VideoEncoderConfiguration videoOutputConfiguration;
-  bool syncWithPrimaryCamera;
   LocalTranscoderConfiguration()
     : streamCount(0),
       videoInputStreams(NULL),
-      videoOutputConfiguration(),
-      syncWithPrimaryCamera(true) {}
+      videoOutputConfiguration() {}
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
@@ -93,10 +90,6 @@
             <plentry>
                 <pt>videoOutputConfiguration</pt>
                 <pd>本地合图后，合图视频的编码配置。详见 <xref keyref="VideoEncoderConfiguration" />。</pd>
-            </plentry>
-            <plentry>
-                <pt>syncWithPrimaryCamera</pt>
-                <pd></pd>
             </plentry>
             </parml> </section>
     </refbody>
