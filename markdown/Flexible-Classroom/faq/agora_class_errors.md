@@ -55,6 +55,7 @@ in'/Users/magikarp/workspace/web/teacher-classroom/node_modules/agora-electron-s
     },
     ```
 
+
 ## 在 Linux 环境下运行灵动课堂报错
 
 如果你在 Linux 环境下运行灵动课堂时碰到 `Error:unsupported platform!` 报错，可修改 `agora-classroom-sdk` 文件夹中的`package.json` 文件。
@@ -74,9 +75,11 @@ in'/Users/magikarp/workspace/web/teacher-classroom/node_modules/agora-electron-s
 "agora_electron": {
     "electron_version": "12.0.0",
     "prebuilt": true,
-    "platform":"win32" | "darwin",
+    "platform":"win32" | "darwin", //"darwin"或者"win32"二选一
 },
 ```
+
+
 
 ## 房间内发送消息失败
 
