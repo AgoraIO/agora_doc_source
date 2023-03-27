@@ -1,6 +1,6 @@
 <!-- f38d4cd0-3fce-11ed-8dae-bf25bf08a626 的具体内容如下 -->
 
-1. 运行以下命令克隆仓库到本地：
+1. 打开`terminal`或`cmd`，运行以下命令克隆仓库到本地：
 
     ```bash
     git clone https://github.com/AgoraIO-Community/flexible-classroom-desktop.git

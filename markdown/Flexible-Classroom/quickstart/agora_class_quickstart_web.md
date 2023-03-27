@@ -63,9 +63,17 @@
 1. 运行以下命令安装项目依赖：
 
     ```bash
+    # 安装项目依赖
     yarn
     ```
-
+    如遇安装依赖超时，请切换到淘宝镜像源或其他可用镜像源
+    ```bash
+    # 切换到淘宝镜像
+    yarn config set registry https://registry.npmmirror.com/
+    # 安装依赖
+    yarn
+    ```
+    
 2. 运行以下命令安装依赖包：
 
     ```bash
@@ -90,6 +98,29 @@
 5. 运行以下命令以开发模式启动灵动课堂 Web 端：
 
     ```bash
+    yarn dev
+    ```
+    注：如果使用node 17版本，可能会遇到`ERR_OSSL_EVP_UNSUPPORTED`错误，这是因为node 17版本已切换到OpenSSL 3.0并且和项目中某些依赖中正在使用的加密算法或密钥有冲突，可以尝试以下两种解决方案:
+    1. 添加NODE_OPTION参数`--openssl-legacy-provider`
+    ```bash
+    #找到node配置文件packages/agora-demo-app/package.json
+    #为修改"script"字段下的启动命令,添加NODE_OPTION参数,例如：
+    
+    #原命令
+    "dev": "cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=6144 webpack serve --config ./webpack/webpack.dev.js"
+    #改为
+    "dev": "cross-env NODE_ENV=development NODE_OPTIONS=\"--max_old_space_size=6144 --openssl-legacy-provider\" webpack serve --config ./webpack/webpack.dev.js"
+    #然后启动项目
+    yarn dev
+    ```
+    2. 降级node版本到16
+    ```bash
+    #使用nvm管理node版本
+    #安装nvm
+    yarn global add nvm
+    #使用node 16版本
+    nvm use 16
+    #启动灵动课堂
     yarn dev
     ```
 

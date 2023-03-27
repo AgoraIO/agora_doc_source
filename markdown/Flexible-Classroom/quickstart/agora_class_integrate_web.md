@@ -3,6 +3,57 @@
 ## 技术原理
 
 灵动课堂代码包含以下包：
+```
+├── packages
+│   ├── agora-classroom-sdk  #在线教育场景SDK
+│   │   ├── lib
+│   │   │   └── externals  #存放rtc相关插件如美颜/降噪
+│   │   ├── src
+│   │   │   ├── infra
+│   │   │   │   ├── api  #SDK入口
+│   │   │   │   ├── capabilities  #UI相关目录。
+│   │   │   │   │   ├── containers  #UI 功能组件，与 UI Store 结合成为 UI 业务组件。
+│   │   │   │   │   └── scenarios  #UI 场景。场景是由多个业务组件组合而成。
+│   │   │   │   ├── configs  #默认的颜色/主题配置
+│   │   │   │   ├── stores  #UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
+│   │   │   └── ui-kit  #通用UI组件
+│   ├── agora-demo-app  #灵动课堂demo app，提供在线课堂的课前、课中、课后等场景化代码示例
+│   │   ├── electron  #electron相关代码
+│   │   ├── src
+│   │   │   ├── api  #和后台数据交互接口
+│   │   │   ├── components  #业务组件
+│   │   │   ├── layout  #业务布局
+│   │   │   ├── pages  #页面
+│   │   │   ├── router  #路由
+│   │   │   ├── stores  #公共数据
+│   ├── agora-plugin-gallery  #独立插件库，继承AgoraWidgetBase类并实现AgoraWidgetLifecycle接口，包含互动白板、IM聊天、答题器、投票器、计时器等插件。
+│   │   └── src
+│   │       ├── common  #widget公用逻辑，主要包含承载widget的modal组件
+│   │       ├── components  #widget通用UI组件
+│   │       └── gallery
+│   │           ├── answer  #答题器widget
+│   │           ├── counter  #计时器widget
+│   │           ├── hx-chat  #聊天widget
+│   │           ├── im  #im通用能力的封装，为聊天widget提供统一接口
+│   │           ├── stream-media  #视频流播放器
+│   │           ├── vote  #投票widget
+│   │           ├── watermark  #水印widget
+│   │           ├── webview  #webview widget，包含通用webview和youtube同步播放器
+│   │           └── whiteboard  #白板widget
+│   ├── agora-proctor-sdk  #在线监考场景SDK
+│   │   ├── src
+│   │   │   ├── infra
+│   │   │   │   ├── api  #SDK入口
+│   │   │   │   ├── capabilities
+│   │   │   │   │   ├── components  #通用UI组件
+│   │   │   │   │   ├── containers  #UI 功能组件，与 UI Store 结合成为 UI 业务组件。
+│   │   │   │   │   └── scenarios  #UI 场景。场景是由多个业务组件组合而成。
+│   │   │   │   ├── stores  #UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
+│   ├── agora-common-libs  #通用工具类库，包含ThemeProvider、I18nProvider等全局通用工具。
+│   ├── agora-edu-core  #提供灵动课堂中教育和监考场景的上行API调用和下行数据结构封装
+│   ├── agora-rte-sdk  #提供跨端RTC适配能力以及教室内事件回调与数据结构封装
+
+```
 
 -   `agora-demo-app`: 灵动课堂demo app，支持web，h5，electron客户端等平台，集成在线教育SDK、在线监考SDK等能力，提供在线课堂的课前、课中、课后等场景化代码示例
 -   `agora-classroom-sdk`: 在线教育场景SDK，包含以下模块：
@@ -53,6 +104,14 @@
 
 3. 在项目的 JavaScript 代码中调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
 
+注意事项：
+灵动课堂依赖项`agora-electron-sdk`和`agora-rdc-core`包含原生node模块，不建议被webpack等构建工具二次编译，否则可能出现node模块找不到的错误，建议在项目配置里将这两个库设置为外部依赖，例如添加webpack配置:
+```bash
+  externals: {
+    'agora-electron-sdk': 'commonjs2 agora-electron-sdk',
+    'agora-rdc-core': 'commonjs2 agora-rdc-core',
+  }
+```
 #### 使用 CDN 集成
 
 1. 在项目的 HTML 文件中添加以下代码：
