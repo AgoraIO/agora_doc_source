@@ -20,14 +20,14 @@
             <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>After registering the audio frame observer, the callback occurs every time the player receives an audio frame, reporting the detailed information of the audio frame.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
             <plentry>
                 <pt props="unity">videoFrame</pt>
@@ -39,7 +39,8 @@
             </parml>
         </section>
         <section props="unity" id="return_values">
-            <title>Returns</title>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
                 <p>Reserved for future use.</p>
         </section>
     </refbody>

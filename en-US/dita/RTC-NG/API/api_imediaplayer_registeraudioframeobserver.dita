@@ -24,9 +24,10 @@
     observer: IMediaPlayerAudioFrameObserver
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerAudioFrameObserver(MediaPlayerAudioFrameObserver observer);</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <p>You need to implement the <xref props="cpp" keyref="IAudioFrameObserver" /><xref props="electron unity rn flutter" keyref="IMediaPlayerAudioFrameObserver" /> class in this method and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
         </section>
         <section id="parameters">
@@ -38,11 +39,13 @@
                 <pd props="electron unity rn flutter">The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IMediaPlayerAudioFrameObserver" />.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="cpp electron rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_uns_l2y_hqb">
-            <li>0: Success.</li>
-            <li>&lt; 0: Failure.</li>
-            </ul> </section>
+                <li props="cpp rn unity electron">0: Success.</li>
+                <li>&lt; 0: Failure.</li>
+            </ul>
+        </section>
     </refbody>
 </reference>

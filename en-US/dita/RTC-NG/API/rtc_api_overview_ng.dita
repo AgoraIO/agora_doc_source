@@ -4,6 +4,7 @@
     <title>API Overview</title>
     <shortdesc id="short"><ph id="shortdesc">Agora provides ensured quality of experience (QoE) for worldwide Internet-based voice and video communications through SD-RTN™.</ph></shortdesc>
     <body>
+        <p props="unreal">This page introduces the Unreal C++ API references. If you use Unreal Blueprint SDK, refer to the open source <xref href="https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example" scope="external" format="html">sample project</xref> provided by Agora on github, or contact <xref keyref="mailto-link"/> to get the tutorial video.</p>
         <section id="section_qzm_fj1_jqb">
             <title>Channel management</title>
             <simpletable>
@@ -31,7 +32,7 @@
                 <stentry><xref keyref="setChannelProfile"/></stentry>
                 <stentry><ph conkeyref="setChannelProfile/shortdesc"/></stentry>
             </strow>
-            <strow props="android ios mac cpp framework">
+            <strow props="android ios mac cpp unity">
                 <stentry><xref keyref="joinChannel1"/></stentry>
                 <stentry><ph conkeyref="joinChannel1/shortdesc"/></stentry>
             </strow>
@@ -147,13 +148,21 @@
                 <stentry><xref keyref="disableAudio"/></stentry>
                 <stentry><ph conkeyref="disableAudio/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="native unity">
                 <stentry><xref keyref="setAudioProfile2"/></stentry>
                 <stentry><ph conkeyref="setAudioProfile2/shortdesc"/></stentry>
+            </strow>
+            <strow props="flutter rn electron">
+                <stentry><xref keyref="setAudioProfile"/></stentry>
+                <stentry><ph conkeyref="setAudioProfile/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setAudioScenario"/></stentry>
                 <stentry><ph conkeyref="setAudioScenario/shortdesc"/></stentry>
+            </strow>
+            <strow props="ios cpp unity flutter rn">
+                <stentry><xref keyref="setAudioSessionOperationRestriction"/></stentry>
+                <stentry><ph conkeyref="setAudioSessionOperationRestriction/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="adjustRecordingSignalVolume"/></stentry>
@@ -235,11 +244,11 @@
                 <stentry><xref keyref="stopPreview2"/></stentry>
                 <stentry><ph conkeyref="stopPreview2/shortdesc"/></stentry>
             </strow>
-            <strow props="native electron rn flutter">
+            <strow props="native electron flutter">
                 <stentry><xref keyref="setupLocalVideo"/></stentry>
                 <stentry><ph conkeyref="setupLocalVideo/shortdesc"/></stentry>
             </strow>
-            <strow props="native electron rn flutter">
+            <strow props="native electron flutter">
                 <stentry><xref keyref="setupRemoteVideo"/></stentry>
                 <stentry><ph conkeyref="setupRemoteVideo/shortdesc"/></stentry>
             </strow>
@@ -267,7 +276,24 @@
                 <stentry><xref keyref="muteAllRemoteVideoStreams"/></stentry>
                 <stentry><ph conkeyref="muteAllRemoteVideoStreams/shortdesc"/></stentry>
             </strow>
-            </simpletable> </section>
+            <strow>
+                <stentry><xref keyref="enableInstantMediaRendering"/></stentry>
+                <stentry><ph conkeyref="enableInstantMediaRendering/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="startMediaRenderingTracing"/></stentry>
+                <stentry><ph conkeyref="startMediaRenderingTracing/shortdesc"/></stentry>
+            </strow>
+            </simpletable><simpletable>
+            <sthead>
+                <stentry>Event</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onVideoRenderingTracingResult"/></stentry>
+                <stentry><ph conkeyref="onVideoRenderingTracingResult/shortdesc"/></stentry>
+            </strow>
+            </simpletable></section>
         <section>
             <title>Capture screenshots</title>
             <simpletable>
@@ -310,7 +336,7 @@
                 <stentry><ph conkeyref="onContentInspectResult/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-            <section props="cn">
+        <section props="cn">
             <title>Video screenshot and upload</title>
             <simpletable>
             <sthead>
@@ -420,7 +446,8 @@
             </simpletable> </section>
         <section id="section_vw3_mlb_jqb">
             <title>Media player</title>
-            <note>To see more about the media player method, see <xref href="toc_mediaplayer.dita"/>.</note>
+            <p props="cn">For more methods about the media player, see <xref href="toc_mediaplayer.dita">Built-in Media Player</xref>.</p>
+            <p props="en">For more methods about the media player, see <xref keyref="IMediaPlayer"/>.</p>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -451,7 +478,7 @@
                 <stentry><ph conkeyref="IMediaPlayerSourceObserver/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section props="cn">
+        <section>
             <title>Directly pushing streams to the CDN</title>
             <simpletable>
             <sthead>
@@ -536,6 +563,10 @@
                 <stentry><ph conkeyref="onRemoteVideoStateChanged/shortdesc"/></stentry>
             </strow>
             <strow>
+                <stentry><xref keyref="onFirstRemoteAudioFrame"/></stentry>
+                <stentry><ph conkeyref="onFirstRemoteAudioFrame/shortdesc"/></stentry>
+            </strow>
+            <strow>
                 <stentry><xref keyref="onFirstRemoteVideoFrame"/></stentry>
                 <stentry><ph conkeyref="onFirstRemoteVideoFrame/shortdesc"/></stentry>
             </strow>
@@ -602,8 +633,8 @@
             </simpletable> </section>
         <section props="android ios cpp flutter rn unity" id="audio_preprocessing_and_postprocessing">
             <title>Audio pre-process and post-process</title>
-            <note props="cpp flutter unity rn" type="attention">
-            <p>This method is for Android and iOS only.</p>
+            <note props="cpp flutter unity rn">
+            <p>This group of methods is for Android and iOS only.</p>
             </note> <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -629,9 +660,9 @@
                 <stentry><xref keyref="enableVirtualBackground"/></stentry>
                 <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="rn flutter unity">
                 <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
-                <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/></stentry>
+                <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/><ph props="cpp rn flutter unity">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setColorEnhanceOptions"/></stentry>
@@ -648,7 +679,7 @@
             </simpletable> </section>
         <section props="android ios cpp unity rn flutter">
             <title>Face detection</title>
-            <note props="cpp flutter unity">This method is for Android and iOS only.</note> <simpletable>
+            <note props="cpp flutter unity">This group of methods is for Android and iOS only.</note> <simpletable>
             <sthead>
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
@@ -857,12 +888,10 @@
                 <stentry><ph conkeyref="setEffectPosition/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section props="cn">
-            <title>DRM-protected music</title>
-            <note props="cpp unity flutter" type="attention">
-            <p>This method is for Android and iOS only.</p>
-            </note>
-           <simpletable>
+        <section props="android ios cpp unity flutter rn">
+            <title><ph props="cn">DRM-protected music</ph></title>
+            <p props="cpp unity flutter"><ph props="cn">This group of methods is for Android and iOS only.</ph></p>
+            <simpletable props="cn">
             <sthead>
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
@@ -883,10 +912,12 @@
                 <stentry><xref keyref="open_IMusicPlayer"/></stentry>
                 <stentry><ph conkeyref="open_IMusicPlayer/shortdesc"/></stentry>
             </strow>
-               <strow>
+            <strow>
                 <stentry><xref keyref="registerEventHandler_IMusicContentCenter"/></stentry>
                 <stentry><ph conkeyref="registerEventHandler_IMusicContentCenter/shortdesc"/></stentry>
-            </strow></simpletable><simpletable><sthead>
+            </strow>
+            </simpletable> <simpletable props="cn">
+            <sthead>
                 <stentry>Event</stentry>
                 <stentry>Description</stentry>
             </sthead>
@@ -898,20 +929,19 @@
                 <stentry><xref keyref="onLyricResult"/></stentry>
                 <stentry><ph conkeyref="onLyricResult/shortdesc"/></stentry>
             </strow>
-                <strow>
+            <strow>
                 <stentry><xref keyref="onMusicChartsResult"/></stentry>
                 <stentry><ph conkeyref="onMusicChartsResult/shortdesc"/></stentry>
             </strow>
-                <strow>
+            <strow>
                 <stentry><xref keyref="onMusicCollectionResult"/></stentry>
                 <stentry><ph conkeyref="onMusicCollectionResult/shortdesc"/></stentry>
             </strow>
-            </simpletable>
-        </section>
+            </simpletable> </section>
         <section id="rhythm_player" props="cpp android ios rn unity flutter">
             <title>Virtual metronome</title>
-            <note props="cpp unity flutter" type="attention">
-            <p>This method is for Android and iOS only.</p>
+            <note props="cpp unity flutter">
+            <p>This group of methods is for Android and iOS only.</p>
             </note> <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -929,17 +959,16 @@
                 <stentry><xref keyref="configRhythmPlayer"/></stentry>
                 <stentry><ph conkeyref="configRhythmPlayer/shortdesc"/></stentry>
             </strow>
-            </simpletable>
-            <simpletable>
-                <sthead>
-                    <stentry>Event</stentry>
-                    <stentry>Description</stentry>
-                </sthead>
-                <strow>
-                    <stentry><xref keyref="onRhythmPlayerStateChanged"/></stentry>
-                    <stentry><ph conkeyref="onRhythmPlayerStateChanged/shortdesc"/></stentry>
-                </strow>
-                </simpletable> </section>
+            </simpletable> <simpletable>
+            <sthead>
+                <stentry>Event</stentry>
+                <stentry>Description</stentry>
+            </sthead>
+            <strow>
+                <stentry><xref keyref="onRhythmPlayerStateChanged"/></stentry>
+                <stentry><ph conkeyref="onRhythmPlayerStateChanged/shortdesc"/></stentry>
+            </strow>
+            </simpletable> </section>
         <section>
             <title>Voice changer and reverberation</title>
             <simpletable id="simpletable_sw5_xd1_jqb">
@@ -1008,9 +1037,13 @@
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
             </sthead>
-            <strow>
+            <strow props="flutter rn electron">
                 <stentry><xref keyref="startEchoTest2"/></stentry>
                 <stentry><ph conkeyref="startEchoTest2/shortdesc"/></stentry>
+            </strow>
+            <strow props="native unity">
+                <stentry><xref keyref="startEchoTest3"/></stentry>
+                <stentry><ph conkeyref="startEchoTest3/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="stopEchoTest"/></stentry>
@@ -1195,11 +1228,9 @@
                 <stentry><ph conkeyref="setRemoteVoice3DPosition/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section id="spatial_audio" props="android ios unity">
+        <section id="spatial_audio">
             <title>Spatial audio effect</title>
-            <note type="attention">
-            <p>This feature is in experimental status. To<xref keyref="mailto-link"/> enable it, contact , contact  if needed<xref keyref="ticket-link"/>.</p>
-            </note> <simpletable props="hide">
+            <simpletable props="hide">
             <sthead>
                 <stentry>Cloud server calculation methods</stentry>
                 <stentry>Description</stentry>
@@ -1392,8 +1423,7 @@
                 <stentry><xref keyref="updateLocalTranscoderConfiguration"/></stentry>
                 <stentry><ph conkeyref="updateLocalTranscoderConfiguration/shortdesc"/></stentry>
             </strow>
-            </simpletable>
-        </section>
+            </simpletable> </section>
         <section id="media_stream_relay_across_channels">
             <title>Channel media stream relay</title>
             <simpletable>
@@ -1718,7 +1748,7 @@
                 <stentry><xref keyref="onRenderVideoFrame"/></stentry>
                 <stentry><ph conkeyref="onRenderVideoFrame/shortdesc"/></stentry>
             </strow>
-            <strow props="native flutter electron rn">
+            <strow props="hide">
                 <stentry><xref keyref="onMediaPlayerVideoFrame"/></stentry>
                 <stentry><ph conkeyref="onMediaPlayerVideoFrame/shortdesc"/></stentry>
             </strow>
@@ -1954,7 +1984,7 @@
                 <stentry><xref keyref="setCameraTorchOn"/></stentry>
                 <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow props="cpp unity flutter rn">
+            <strow props="android cpp flutter rn">
                 <stentry><xref keyref="isCameraFaceDetectSupported"/></stentry>
                 <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
@@ -2006,6 +2036,8 @@
             </simpletable> </section>
         <section id="section_gmr_5rz_3qb">
             <title>Multiple channels</title>
+            <p props="cn">For more methods about multi-channel, see <xref href="toc_multi_channel.dita">Multi-channel Management</xref>.</p>
+            <p props="en">For more methods about multi-channel, see <xref keyref="IRtcEngineEx"/>.</p>
             <simpletable id="simpletable_r5g_4sz_3qb">
             <sthead>
                 <stentry>Method</stentry>
@@ -2020,13 +2052,13 @@
                 <stentry><ph conkeyref="joinChannelEx/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="leaveChannelEx"/></stentry>
-                <stentry><ph conkeyref="leaveChannelEx/shortdesc"/></stentry>
+                <stentry><xref keyref="leaveChannelEx2"/></stentry>
+                <stentry><ph conkeyref="leaveChannelEx2/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
         <section id="audio_routing_control" props="android ios cpp unity flutter rn">
             <title>Audio route</title>
-            <p props="cpp flutter">This method is for Android and iOS only.</p>
+            <p props="cpp flutter">This group of methods is for Android and iOS only.</p>
             <simpletable id="simpletable_ns1_shw_jqb">
             <sthead>
                 <stentry>Method</stentry>
@@ -2179,38 +2211,36 @@
             </simpletable> </section>
         <section props="cpp unity flutter electron" id="section_ts1_shw_jqb">
             <title>Video Device Management</title>
-            <note type="attention">
-            </note> <simpletable id="simpletable_us1_shw_jqb">
+            <simpletable id="simpletable_us1_shw_jqb">
             <sthead>
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
             </sthead>
             <strow>
                 <stentry><xref keyref="enumerateVideoDevices"/></stentry>
-                <stentry><ph conkeyref="enumerateVideoDevices/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="enumerateVideoDevices/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setDevice_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="setDevice_IVideoDeviceManager/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="setDevice_IVideoDeviceManager/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getDevice_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
-            <strow props="cpp flutter electron">
+            <strow props="cpp flutter">
                 <stentry><xref keyref="release_IVideoDeviceManager"/></stentry>
-                <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="numberOfCapabilities"/></stentry>
-                <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getCapability"/></stentry>
-                <stentry><ph conkeyref="getCapability/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="getCapability/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
-            </simpletable>
-            <simpletable props="cpp unity electron flutter">
+            </simpletable> <simpletable props="cpp unity electron flutter">
             <sthead>
                 <stentry>Event</stentry>
                 <stentry>Description</stentry>
@@ -2222,7 +2252,7 @@
             </simpletable> </section>
         <section props="cpp" id="section_ws1_shw_jqb">
             <title>Video device collection</title>
-            <note type="attention" props="cpp">
+            <note props="cpp">
             <p>This group of methods is for Windows only.</p>
             </note> <simpletable id="simpletable_xs1_shw_jqb">
             <sthead>
@@ -2247,7 +2277,7 @@
             </strow>
             </simpletable> </section>
         <section props="cpp unity flutter electron" id="section_ys1_shw_jqb">
-            <title>Audio device management</title>
+            <title>Audio Device Management</title>
             <simpletable>
             <sthead>
                 <stentry>Method</stentry>
@@ -2255,11 +2285,11 @@
             </sthead>
             <strow>
                 <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
-                <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="enumerateRecordingDevices"/></stentry>
-                <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="followSystemPlaybackDevice"/></stentry>
@@ -2271,27 +2301,27 @@
             </strow>
             <strow>
                 <stentry><xref keyref="setPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="setLoopbackDevice/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="setLoopbackDevice/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="getLoopbackDevice/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="getLoopbackDevice/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="followSystemLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow props="hide">
                 <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
@@ -2303,19 +2333,19 @@
             </strow>
             <strow>
                 <stentry><xref keyref="setRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="setRecordingDevice/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="setRecordingDevice/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="getRecordingDevice/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="getRecordingDevice/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
-                <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/> (For Windows only)</stentry>
+                <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/> (For Windows and macOS only)</stentry>
             </strow>
             <strow props="hide">
                 <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
@@ -2397,7 +2427,7 @@
             </simpletable> </section>
         <section props="cpp" id="section_at1_shw_jqb">
             <title>Audio device collection</title>
-            <note props="cpp" type="attention">
+            <note props="cpp">
             <p>This group of methods is for Windows only.</p>
             </note> <simpletable id="simpletable_bt1_shw_jqb">
             <sthead>
@@ -2443,8 +2473,8 @@
             </simpletable> </section>
         <section props="cpp mac unity flutter electron" id="miscellaneous_audio_control">
             <title>Miscellaneous audio control</title>
-            <note props="cpp unity flutter electron" type="attention">
-            <p>This method is for Windows and macOS only.</p>
+            <note props="cpp unity flutter electron">
+            <p>This group of methods is for Windows and macOS only.</p>
             </note> <simpletable id="simpletable_ct1_shw_jqb">
             <sthead>
                 <stentry>Method</stentry>
@@ -2474,13 +2504,13 @@
                 <stentry><xref keyref="setLocalAccessPoint"/></stentry>
                 <stentry><ph conkeyref="setLocalAccessPoint/shortdesc"/></stentry>
             </strow>
-            <strow>
-                <stentry><xref keyref="sendCustomReportMessageEx"/></stentry>
-                <stentry><ph conkeyref="sendCustomReportMessageEx/shortdesc"/></stentry>
-            </strow>
             <strow props="unity">
                 <stentry><xref keyref="setEnable"/></stentry>
                 <stentry><ph conkeyref="setEnable/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setParameters"/></stentry>
+                <stentry><ph conkeyref="setParameters/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="getCallId"/></stentry>
@@ -2531,7 +2561,7 @@
                 <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section id="miscellaneous_events">
+        <section id="miscellaneous_events" props="android cpp framework">
             <title>Miscellaneous events</title>
             <simpletable>
             <sthead>

@@ -37,14 +37,15 @@
       required VirtualBackgroundSource backgroundSource,
       required SegmentationProperty segproperty,
       MediaSourceType type = MediaSourceType.primaryCameraSource});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <p>The virtual background function allows you to replace the original background image of the local user or to blur the background. After successfully enabling the virtual background function, all users in the channel can see the customized background.</p>
             <p>Call this method before calling <xref keyref="enableVideo" /> or <xref keyref="startPreview" />.</p>
             <note type="attention">
             <ul>
-            <li>This function requires a high-performance device. Agora recommends that you use this function on devices with the following chips:<ul>
+            <li>This feature requires high performance devices. Agora recommends that you implement it on devices equipped with the following chips:<ul>
                 <li props="android unity cpp rn flutter">Snapdragon 700 series 750G and later</li>
                 <li props="android unity cpp rn flutter">Snapdragon 800 series 835 and later</li>
                 <li props="android unity cpp rn flutter">Dimensity 700 series 720 and later</li>
@@ -59,11 +60,11 @@
                     <li>iPad mini 5th generation and later</li>
                     </ul></li>
                 </ul></li>
-            <li>Agora recommends that you use this function in scenarios that meet the following conditions:<ul>
+            <li>Agora recommends that you use this feature in scenarios that meet the following conditions:<ul>
                 <li>A high-definition camera device is used, and the environment is uniformly lit.</li>
                 <li>There are few objects in the captured video. Portraits are half-length and unobstructed. Ensure that the background is a solid color that is different from the color of the user's clothing.</li>
                 </ul></li>
-            <li>This method relies on the video enhancement dynamic library <codeph><ph keyref="segmentation" /></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+            <li>This method relies on the virtual background dynamic library <codeph><ph keyref="segmentation" /></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -94,10 +95,11 @@
                     </ul></note></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-1: The custom background image does not exist. Check the value of <parmname>source</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>
                 <li>-2: The color format of the custom background image is invalid. Check the value of <parmname>color</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>

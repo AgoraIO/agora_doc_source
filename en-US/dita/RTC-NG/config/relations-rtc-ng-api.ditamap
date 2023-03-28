@@ -164,8 +164,8 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="setupLocalVideo" props="native rn electron flutter"/>
-                <topicref keyref="setupRemoteVideo" props="native rn electron flutter"/>
+                <topicref keyref="setupLocalVideo"/>
+                <topicref keyref="setupRemoteVideo"/>
             </relcell>
             <relcell>
                 <topicref keyref="VideoCanvas"/>
@@ -1601,27 +1601,6 @@
                 <topicref keyref="HEADPHONE_EQUALIZER_PRESET"/>
             </relcell>
         </relrow>
-        <relrow props="cpp electron rn flutter">
-            <relcell props="cn">
-                <topicref keyref="getCount_MusicChartCollection"/>
-                <topicref keyref="get"/>
-            </relcell>
-            <relcell props="cn">
-                <topicref keyref="MusicChartCollection"/>
-            </relcell>
-        </relrow>
-        <relrow props="cpp flutter electron rn">
-            <relcell props="cn">
-                <topicref keyref="MusicCollection"/>
-            </relcell>
-            <relcell props="cn">
-                <topicref keyref="getCount_MusicCollection"/>
-                <topicref keyref="getTotal_MusicCollection"/>
-                <topicref keyref="getPage_MusicCollection"/>
-                <topicref keyref="getPageSize_MusicCollection"/>
-                <topicref keyref="getMusic_MusicCollection"/>
-            </relcell>
-        </relrow>
     </reltable>
     <reltable title="Method-Callback Relations" props="hide">
         <!--Methods and corresponding callbacks.-->
@@ -2314,8 +2293,7 @@
                 <topicref keyref="getExtensionProperty" props="android apple"/>
                 <topicref keyref="getExtensionProperty2"/>
                 <topicref keyref="getMediaPlayerCacheManager" props="android apple"/>
-                <topicref keyref="getMusicContentCenter" props="framework"/>
-                <topicref keyref="getNativeHandle" props="android apple framework"/>
+                <topicref keyref="getNativeHandle" props="android apple unity electron flutter rn"/>
                 <topicref keyref="getNetworkType"/>
                 <topicref keyref="getScreenCaptureSources" props="mac cpp electron unity"/>
                 <topicref keyref="getUserInfoByUid"/>
@@ -2473,8 +2451,8 @@
                 <topicref keyref="setSubscribeAudioBlocklist"/>
                 <topicref keyref="setSubscribeVideoAllowlist"/>
                 <topicref keyref="setSubscribeVideoBlocklist"/>
-                <topicref keyref="setupLocalVideo" props="native rn electron flutter"/>
-                <topicref keyref="setupRemoteVideo" props="native rn electron flutter"/>
+                <topicref keyref="setupLocalVideo"/>
+                <topicref keyref="setupRemoteVideo"/>
                 <topicref keyref="setVideoDenoiserOptions"/>
                 <topicref keyref="setVideoEncoderConfiguration"/>
                 <topicref keyref="setVideoProfile" props="android ios mac"/>
@@ -2504,7 +2482,7 @@
                 <topicref keyref="startRtmpStreamWithoutTranscoding"/>
                 <topicref keyref="startRtmpStreamWithTranscoding"/>
                 <topicref keyref="startScreenCapture" props="native unity rn flutter"/>
-                <topicref keyref="startScreenCaptureByDisplayId" props="mac cpp framework"/>
+                <topicref keyref="startScreenCaptureByDisplayId" props="mac cpp unity flutter electron"/>
                 <topicref keyref="startScreenCaptureByScreenRect" props="cpp unity flutter electron"/>
                 <topicref keyref="startScreenCaptureByWindowId" props="mac cpp unity flutter electron"/>
                 <topicref keyref="startSecondaryCameraCapture" props="cpp framework"/>
@@ -2542,6 +2520,15 @@
                 <topicref keyref="updateScreenCaptureParameters" props="mac android cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion1" props="cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion2" props="hide"/>
+                <topicref keyref="setRemoteVideoSubscriptionOptions"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IRtcEngine"/>
+            </relcell>
+        </relrow>
+        <relrow props="cn">
+            <relcell>
+                <topicref keyref="getMusicContentCenter" props="unity electron rn flutter"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngine"/>
@@ -2594,9 +2581,19 @@
                 <topicref keyref="updateChannelMediaOptionsEx"/>
                 <topicref keyref="updateChannelMediaRelayEx"/>
                 <topicref keyref="updateRtmpTranscodingEx"/>
+                <topicref keyref="setRemoteVideoSubscriptionOptionsEx"/>
+                <topicref keyref="adjustUserPlaybackSignalVolumeEx"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngineEx"/>
+            </relcell>
+        </relrow>
+        <relrow props="cpp">
+            <relcell>
+                <topicref keyref="setParameters_IAgoraParameter"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="IAgoraParameter"/>
             </relcell>
         </relrow>
         <relrow>
@@ -2633,7 +2630,7 @@
                 <topicref keyref="onExtensionStopped" props="cpp framework"/>
                 <topicref keyref="onFacePositionChanged" props="android ios cpp unity rn flutter"/>
                 <topicref keyref="onFirstLocalAudioFramePublished"/>
-                <topicref keyref="onFirstLocalVideoFrame"/>
+                <topicref keyref="onFirstLocalVideoFrame" props="native rn electron flutter"/>
                 <topicref keyref="onFirstLocalVideoFramePublished"/>
                 <topicref keyref="onFirstRemoteAudioFrame"/>
                 <topicref keyref="onFirstRemoteAudioDecoded"/>
@@ -2729,7 +2726,7 @@
                 <topicref keyref="playPreloadedSrc"/>
                 <topicref keyref="preloadSrc"/>
                 <topicref keyref="registerAudioFrameObserver1_IMediaPlayer" props="cpp framework"/>
-                <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" props="cpp unity rn electron"/>
+                <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" props="cpp unity"/>
                 <topicref keyref="registerPlayerSourceObserver" props="android cpp flutter rn electron"/>
                 <topicref keyref="registerVideoFrameObserver_IMediaPlayer" props="android cpp flutter rn electron"/>
                 <topicref keyref="renewAgoraCDNSrcToken" props="cn"/>
@@ -3114,7 +3111,7 @@
         </relrow>
         <relrow>
             <relcell>
-                <topicref keyref="getMediaRecorder" props="android apple framework"/>
+                <topicref keyref="getMediaRecorder" props="android apple unity electron rn flutter"/>
                 <topicref keyref="setMediaRecorderObserver"/>
                 <topicref keyref="startRecording"/>
                 <topicref keyref="stopRecording"/>
@@ -3134,7 +3131,7 @@
                 <topicref keyref="IMediaRecorderObserver"/>
             </relcell>
         </relrow>
-        <relrow props="cpp andriod ios framework">
+        <relrow props="cpp android ios framework">
             <relcell props="cn">
                 <topicref keyref="initialize_IMusicContentCenter"/>
                 <topicref keyref="renewToken_IMusicContentCenter"/>
@@ -3196,12 +3193,12 @@
         </relrow>
         <relrow props="unity">
             <relcell>
-                <topicref keyref="AgoraVideoSurface"/>
-            </relcell>
-            <relcell>
                 <topicref keyref="setEnable"/>
                 <topicref keyref="setForUser"/>
                 <topicref keyref="onTextureSizeModify"/>
+            </relcell>
+            <relcell>
+                <topicref keyref="AgoraVideoSurface"/>
             </relcell>
         </relrow>
     </reltable>

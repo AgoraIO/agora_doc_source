@@ -37,12 +37,12 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_CHANNEL_NAME"/></pt>
-                <pd>7: The connection failed since channel name is not valid. Please rejoin the channel with a valid channel name.</pd>
+                <pd>7: The connection failed since channel name is not valid. Rejoin the channel with a valid channel name.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_INVALID_TOKEN"/></pt>
                 <pd>
-                    <p>8: The connection failed because the token is not valid. Typical reasons include:<ul>
+                    <p>8: The connection failed because the token is not valid. Possible reasons are as follows:<ul>
                     <li>The App Certificate for the project is enabled in Agora Console, but you do not use a token when joining the channel. If you enable the App Certificate, you must use a token to join the channel.</li>
                     <li>The uid specified when calling <apiname keyref="joinChannel2"/> to join the channel is inconsistent with the uid passed in when generating the token.</li>
                     </ul></p>
@@ -55,9 +55,9 @@
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER"/></pt>
                 <pd>
-                    <p>10: The connection is rejected by server. Typical reasons include:<ul>
+                    <p>10: The connection is rejected by server. Possible reasons are as follows:<ul>
                     <li>The user is already in the channel and still calls a method, for example, <apiname keyref="joinChannel2"/>, to join the channel. Stop calling this method to clear this error.</li>
-                    <li>The user tries to join the channel when conducting a pre-call test. The user needs to call the channel after the call test ends.</li>
+                    <li>The user tries to join a channel while a test call is in progress. The user needs to join the channel after the call test ends.</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -79,7 +79,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_REJOIN_SUCCESS"/></pt>
-                <pd>15: The SDK has rejoined the channel successfully.</pd>
+                <pd>15: The user has rejoined the channel successfully.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_LOST"/></pt>
@@ -88,6 +88,18 @@
             <plentry>
                 <pt><ph keyref="CONNECTION_CHANGED_ECHO_TEST"/></pt>
                 <pd>17: The connection state changes due to the echo test.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_CLIENT_IP_ADDRESS_CHANGED_BY_USER"/></pt>
+                <pd>18: The local IP address was changed by the user.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_SAME_UID_LOGIN"/></pt>
+                <pd>19: The user joined the same channel from different devices with the same UID.</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="CONNECTION_CHANGED_TOO_MANY_BROADCASTERS"/></pt>
+                <pd>20: The number of hosts in the channel has reached the upper limit.</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -29,9 +29,10 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> leaveChannelEx(
       {required RtcConnection connection, LeaveChannelOptions? options});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"/></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>离开频道，即挂断或退出通话。</p>
             <p>调用 <xref keyref="joinChannelEx"/> 加入频道后，必须调用本方法结束通话，才能开始下一次通话。</p>
             <p>不管当前是否在通话中，都可以调用该方法。该方法会把会话相关的所有资源释放掉。</p>
@@ -67,10 +68,11 @@
                 <pd/>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功。</li>
+            <li props="native electron unity rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>

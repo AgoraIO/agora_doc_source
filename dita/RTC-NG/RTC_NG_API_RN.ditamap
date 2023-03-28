@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
 <map>
-    <title>Agora React Native API Referencee</title>
+    <title>React Native API Reference</title>
     <topicmeta>
         <navtitle>React Native API Reference</navtitle>
     </topicmeta>
@@ -27,7 +27,7 @@
             <topicref keyref="IAudioFrameObserver" toc="no"/>
             <topicref keyref="IMediaPlayerAudioFrameObserver" toc="no"/>
             <topicref keyref="IAudioFrameObserverBase" toc="no"/>
-            <topicref keyref="IDirectCdnStreamingEventHandler" toc="no" props="cn"/>
+            <topicref keyref="IDirectCdnStreamingEventHandler" toc="no"/>
             <topicref keyref="IAudioSpectrumObserver" toc="no"/>
             <topicref keyref="IMetadataObserver" toc="no"/>
             <topicref keyref="IVideoEncodedFrameObserver" toc="no"/>
@@ -107,7 +107,7 @@
             <topicref keyref="setSubscribeAudioAllowlistEx" toc="no"/>
             <topicref keyref="setSubscribeVideoBlocklistEx" toc="no"/>
             <topicref keyref="setSubscribeVideoAllowlistEx" toc="no"/>
-            <topicref keyref="setupRemoteVideoEx" toc="no"/>
+            <topicref keyref="setupRemoteVideoEx" toc="no" props="hide"/>
             <topicref keyref="setVideoEncoderConfigurationEx" toc="no"/>
             <topicref keyref="startRtmpStreamWithoutTranscodingEx" toc="no"/>
             <topicref keyref="startRtmpStreamWithTranscodingEx" toc="no"/>
@@ -131,7 +131,6 @@
             <topicref keyref="muteRemoteVideoStream" toc="no"/>
             <topicref keyref="pauseAllChannelMediaRelay" toc="no"/>
             <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
-            <topicref keyref="sendStreamMessage" toc="no"/>
             <topicref keyref="setDualStreamMode" toc="no" processing-role="resource-only"/>
             <topicref keyref="setDualStreamMode2" toc="no"/>
             <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
@@ -143,8 +142,10 @@
             <topicref keyref="setSubscribeVideoAllowlist" toc="no"/>
             <topicref keyref="startChannelMediaRelay" toc="no"/>
             <topicref keyref="stopChannelMediaRelay" toc="no"/>
+            <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
             <topicref keyref="onChannelMediaRelayEvent" toc="no"/>
+            <topicref keyref="onChannelMediaRelayStateChanged" toc="no"/>
         </topicref>
         <topicref href="API/toc_audio_process.dita" chunk="to-content">
             <topicref keyref="adjustAudioMixingPlayoutVolume" toc="no"/>
@@ -180,6 +181,7 @@
             <topicref keyref="setAudioProfile" toc="no"/>
             <topicref keyref="setAudioProfile2" toc="no" processing-role="resource-only"/>
             <topicref keyref="setAudioScenario" toc="no"/>
+            <topicref keyref="setAudioSessionOperationRestriction" toc="no"/>
             <topicref keyref="setDefaultAudioRouteToSpeakerphone" toc="no"/>
             <topicref keyref="setEarMonitoringAudioFrameParameters" toc="no"/>
             <topicref keyref="setExternalAudioSink" toc="no"/>
@@ -282,8 +284,8 @@
             <topicref keyref="setLocalVideoMirrorMode" toc="no"/>
             <topicref keyref="setLowlightEnhanceOptions" toc="no"/>
             <topicref keyref="setRemoteRenderMode2" toc="no"/>
-            <topicref keyref="setupLocalVideo" toc="no"/>
-            <topicref keyref="setupRemoteVideo" toc="no"/>
+            <topicref keyref="setupLocalVideo" toc="no" props="hide"/>
+            <topicref keyref="setupRemoteVideo" toc="no" props="hide"/>
             <topicref keyref="setVideoDenoiserOptions" toc="no"/>
             <topicref keyref="setVideoEncoderConfiguration" toc="no"/>
             <topicref keyref="startLocalVideoTranscoder" toc="no"/>
@@ -349,7 +351,6 @@
             <topicref keyref="unregisterVideoEncodedFrameObserver" toc="no"/>
             <topicref keyref="unregisterVideoFrameObserver_IMediaEngine" toc="no"/>
             <topicref keyref="onFrame_IMediaPlayerVideoFrameObserver" toc="no"/>
-            <topicref keyref="onMediaPlayerVideoFrame" toc="no"/>
             <topicref keyref="onPreEncodeScreenVideoFrame" toc="no"/>
             <topicref keyref="onPreEncodeVideoFrame" toc="no"/>
             <topicref keyref="onRenderVideoFrame" toc="no"/>
@@ -434,13 +435,6 @@
         </topicref>
         <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
             <topicref keyref="createMusicPlayer" toc="no"/>
-            <topicref keyref="get" toc="no"/>
-            <topicref keyref="getCount_MusicChartCollection" toc="no"/>
-            <topicref keyref="getCount_MusicCollection" toc="no"/>
-            <topicref keyref="getTotal_MusicCollection" toc="no"/>
-            <topicref keyref="getPage_MusicCollection" toc="no"/>
-            <topicref keyref="getPageSize_MusicCollection" toc="no"/>
-            <topicref keyref="getMusic_MusicCollection" toc="no"/>
             <topicref keyref="getLyric" toc="no"/>
             <topicref keyref="getMusicCharts" toc="no"/>
             <topicref keyref="getMusicCollectionByMusicChartId" toc="no"/>
@@ -470,27 +464,26 @@
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
         </topicref>
         <topicref href="API/toc_streaming.dita" chunk="to-content">
-            <topicref keyref="enableAutoSwitchAgoraCDN" toc="no" props="cn"/>
-            <topicref keyref="getAgoraCDNLineCount" toc="no" props="cn"/>
-            <topicref keyref="getCurrentAgoraCDNIndex" toc="no" props="cn"/>
-            <topicref keyref="onAgoraCDNTokenWillExpire" toc="no" props="cn"/>
-            <topicref keyref="openWithAgoraCDNSrc" toc="no" props="cn"/>
-            <topicref keyref="renewAgoraCDNSrcToken" toc="no" props="cn"/>
-            <topicref keyref="setDirectCdnStreamingAudioConfiguration" toc="no" props="cn"/>
-            <topicref keyref="setDirectCdnStreamingVideoConfiguration" toc="no" props="cn"/>
+            <topicref keyref="enableAutoSwitchAgoraCDN" toc="no" props="hide"/>
+            <topicref keyref="getAgoraCDNLineCount" toc="no" props="hide"/>
+            <topicref keyref="getCurrentAgoraCDNIndex" toc="no" props="hide"/>
+            <topicref keyref="onAgoraCDNTokenWillExpire" toc="no" props="hide"/>
+            <topicref keyref="openWithAgoraCDNSrc" toc="no" props="hide"/>
+            <topicref keyref="renewAgoraCDNSrcToken" toc="no" props="hide"/>
+            <topicref keyref="setDirectCdnStreamingAudioConfiguration" toc="no"/>
+            <topicref keyref="setDirectCdnStreamingVideoConfiguration" toc="no"/>
             <topicref keyref="setLiveTranscoding" toc="no" processing-role="resource-only"/>
-            <topicref keyref="startDirectCdnStreaming" toc="no" props="cn"/>
+            <topicref keyref="startDirectCdnStreaming" toc="no"/>
             <topicref keyref="startRtmpStreamWithoutTranscoding" toc="no"/>
             <topicref keyref="startRtmpStreamWithTranscoding" toc="no"/>
-            <topicref keyref="stopDirectCdnStreaming" toc="no" props="cn"/>
+            <topicref keyref="stopDirectCdnStreaming" toc="no"/>
             <topicref keyref="stopRtmpStream" toc="no"/>
-            <topicref keyref="switchAgoraCDNLineByIndex" toc="no" props="cn"/>
-            <topicref keyref="switchAgoraCDNSrc" toc="no" props="cn"/>
-            <topicref keyref="updateChannelMediaRelay" toc="no"/>
+            <topicref keyref="switchAgoraCDNLineByIndex" toc="no" props="hide"/>
+            <topicref keyref="switchAgoraCDNSrc" toc="no" props="hide"/>
             <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
-            <topicref keyref="onDirectCdnStreamingStateChanged" toc="no" props="cn"/>
-            <topicref keyref="onDirectCdnStreamingStats" toc="no" props="cn"/>
+            <topicref keyref="onDirectCdnStreamingStateChanged" toc="no"/>
+            <topicref keyref="onDirectCdnStreamingStats" toc="no"/>
             <topicref keyref="onRtmpStreamingEvent" toc="no"/>
             <topicref keyref="onRtmpStreamingStateChanged" toc="no"/>
             <topicref keyref="onTranscodingUpdated" toc="no"/>
@@ -509,6 +502,7 @@
         </topicref>
         <topicref href="API/toc_audio_device_management.dita" chunk="to-content">
             <topicref keyref="getAudioDeviceInfo" toc="no"/>
+            <topicref keyref="getAudioDeviceManager" toc="no"/>
             <topicref keyref="isSpeakerphoneEnabled" toc="no"/>
             <topicref keyref="setEnableSpeakerphone" toc="no"/>
             <topicref keyref="onAudioDeviceVolumeChanged" toc="no"/>
@@ -556,6 +550,7 @@
             <topicref keyref="removeAllListeners_IMediaEngine" toc="no"/>
             <topicref keyref="removeListener_IMediaEngine" toc="no"/>
             <topicref keyref="sendCustomReportMessage" toc="no"/>
+            <topicref keyref="sendStreamMessage" toc="no"/>
             <topicref keyref="setAVSyncSource" toc="no" props="cn"/>
             <topicref keyref="setCloudProxy" toc="no"/>
             <topicref keyref="setEncryptionMode" toc="no"/>
@@ -574,7 +569,6 @@
             <topicref keyref="stopEchoTest" toc="no"/>
             <topicref keyref="stopLastmileProbeTest" toc="no"/>
             <topicref keyref="onApiCallExecuted" toc="no"/>
-            <topicref keyref="onChannelMediaRelayStateChanged" toc="no"/>
             <topicref keyref="onConnectionBanned" toc="no"/>
             <topicref keyref="onConnectionInterrupted" toc="no"/>
             <topicref keyref="onConnectionLost" toc="no"/>

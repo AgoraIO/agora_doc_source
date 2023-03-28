@@ -28,9 +28,10 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerMediaMetadataObserver(
       {required MetadataObserver observer, required MetadataType type});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>你需要自行实现 <xref keyref="IMetadataObserver" /> 类并在本方法中指定 metadata 类型。本方法允许你为视频流添加同步的 metadata，用于多样化的直播互动，如发送购物链接、电子优惠券和在线测试。</p>
             <p props="native unity">调用该方法成功后，SDK 会触发 <xref keyref="getMaxMetadataSize" /> 回调。</p>
             <note type="attention">请在 <apiname keyref="joinChannel2" /> 前调用该方法。</note> </section>
@@ -48,10 +49,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native rn unity electron">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-                <li>0：方法调用成功。</li>
+                <li props="native rn unity electron">0：方法调用成功。</li>
                 <li>&lt; 0：方法调用失败。</li>
             </ul>
         </section>

@@ -30,14 +30,15 @@
             <codeblock props="flutter" outputclass="language-dart">void registerAudioEncodedFrameObserver(
       {required AudioEncodedFrameObserverConfig config,
       required AudioEncodedFrameObserver observer});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>
             <note id="note_igp_ygf_3qb" type="attention">
             <ul id="ul_mvp_zgf_3qb">
             <li>请在加入频道后调用该方法。</li>
-            <li>由于该方法和 <xref keyref="startAudioRecording3" /> 都会设置音频内容和音质，Agora 不推荐该方法和 <apiname keyref="startAudioRecording3" /> 一起使用。否则，只有后调用的方法会生效。</li>
+            <li>由于该方法和 <xref keyref="startAudioRecording3" /> 都会设置音频内容和音质，不建议该方法和 <apiname keyref="startAudioRecording3" /> 一起使用。否则，只有后调用的方法会生效。</li>
             </ul> </note> </p>
         </section>
         <section id="parameters">
@@ -55,8 +56,9 @@
                 <pd>编码后音频的观测器。详见 <xref keyref="IAudioEncodedFrameObserver" />。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native rn electron unity">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul id="ul_ahk_23f_3qb" props="native unity">
             <li>0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败</li>

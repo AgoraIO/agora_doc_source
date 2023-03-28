@@ -1,4 +1,4 @@
-Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的可靠性并提高录制文件的质量。
+声网建议参照本页面在灵动课堂中进行录制，以保障录制的可靠性并提高录制文件的质量。
 
 ## 录制基本流程
 
@@ -20,9 +20,9 @@ Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的�
 
 ![](https://web-cdn.agora.io/docs-files/1636452568896)
 
-对于你需要在服务端部署的待录制页面，可基于 [CloudClass-Desktop](https://github.com/AgoraIO-Community/CloudClass-Desktop) 仓库中 `templates/record_page_prod.html` 文件进行修改和调整，然后将修改后的 HTML 文件部署至你自己的 CDN。
+对于你需要在服务端部署的待录制页面，可基于 [flexible-classroom-desktop](https://github.com/AgoraIO-Community/flexible-classroom-desktop) 仓库中 `templates/record_page_prod.html` 文件进行修改和调整，然后将修改后的 HTML 文件部署至你自己的 CDN。
 
-![](https://web-cdn.agora.io/docs-files/1652439400957)
+![](https://web-cdn.agora.io/docs-files/1673578454262)
 
 ## 启动课堂录制
 
@@ -42,7 +42,7 @@ Agora 建议参照本页面在灵动课堂中进行录制，以保障录制的�
     },
     ...
     "retryTimeout": 60
-} 
+}
 ```
 
 设置 `retryTimeout` 后，你需要在录制⻚面调用 [launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法设置 `listener` 参数监听枚举值为 `1` 的事件，`1` 代表⻚面加载完成。监听到该事件后，你需要调用以下接口，告知灵动课堂云服务待录制⻚面已经加载完成。如果灵动课堂云服务没有在 `retryTimeout` 内收到这个请求，则会重试录制。
@@ -101,7 +101,9 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
 同时，客户端的[房间属性](/cn/agora-class/edu_context_api_ref_web_room?platform=Web#roomproperties)中录制状态也会发生变更。你可以基于服务端和客户端这两种方式进行后续业务开发。
 
-## 去除录制文件开头的白屏
+## 进阶设置
+
+**去除录制文件开头的白屏**
 
 由于⻚面录制服务端加载待录制⻚面需要一段时间，但切片会在这之前开始，因此生成的录制文件开头会有一段时间的白屏。如果你想要去除白屏，需进行以下操作：
 
@@ -117,7 +119,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
    }
 ```
 
-2. 调用设置录制状态接口至少 60 秒后，再调用[更新录制设置接口](/cn/agora-class/agora_class_restful_api?platform=RESTful#更新录制设置)，将 `onhold` 参数设置为 `false` 来正式开始录制，进行录制切片。示例包体如下：
+2. 当录制页面调用 `AgoraEduSDK.setRecordReady()` 完成后，即录制页面加载成功后，再调用[更新录制设置接口](/cn/agora-class/agora_class_restful_api?platform=RESTful#更新录制设置)，将 `onhold` 参数设置为 `false` 来正式开始录制，进行录制切片。示例包体如下：
 
    ```json
    {
@@ -127,7 +129,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
    }
 ```
 
-## 提高屏幕共享清晰度
+**提高屏幕共享清晰度**
 
 实际上课中，老师可能会通过屏幕共享来分享课件等内容。如果你对屏幕共享、白板等录制内容的清晰度要求较高，可在调用[设置录制状态接口](/cn/agora-class/agora_class_restful_api?platform=RESTful#设置录制状态)时设置以下参数：
 

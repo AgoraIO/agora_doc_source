@@ -556,7 +556,7 @@
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
 }</codeblock>            
-            <codeblock props="unreal" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
     </section>
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -566,7 +566,7 @@
         <pd>
           <p>The width of the video in pixels. The default value is 360.</p>
           <ul>
-          <li>When pushing video streams to the CDN, the value range of<codeph> width</codeph> is [64,1920].  If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
+          <li>When pushing video streams to the CDN, the value range of <codeph>width</codeph> is [64,1920]. If the value is less than 64, Agora server automatically adjusts it to 64; if the value is greater than 1920, Agora server automatically adjusts it to 1920.</li>
           <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
           </ul> </pd>
       </plentry>
@@ -595,7 +595,7 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
-          <p props="native">Set this parameter according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
+          <p props="native">Set this member according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
         </pd>
       </plentry>
       <plentry>
@@ -610,7 +610,7 @@
           <dl outputclass="deprecated">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>This parameter is deprecated.</dd>
+            <dd>This member is deprecated.</dd>
           </dlentry>
           </dl>
           <p>Latency mode:</p>
@@ -663,7 +663,7 @@
           <dl outputclass="deprecated">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>This parameter is deprecated. Use <xref keyref="setBackgroundColor" /> instead.</dd>
+            <dd>Obsolete and not recommended for use. Use <xref keyref="setBackgroundColor" /> instead.</dd>
           </dlentry>
           </dl>
         </pd>
@@ -677,7 +677,7 @@
           <dl outputclass="deprecated" props="android">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>This parameter is deprecated. Use <xref keyref="getUserCount" /> instead.</dd>
+            <dd>Obsolete and not recommended for use. Use <xref keyref="getUserCount" /> instead.</dd>
           </dlentry>
           </dl>
           <p>The number of users in the Media Push. The value range is [0,17].</p>
@@ -689,7 +689,7 @@
           <dl outputclass="deprecated">
           <dlentry>
             <dt>Deprecated</dt>
-            <dd>This parameter is deprecated.</dd>
+            <dd>Obsolete and not recommended for use.</dd>
           </dlentry>
           </dl>
           <p>The metadata sent to the CDN client.</p>
@@ -711,7 +711,7 @@
       </plentry>
       <plentry props="ios mac">
         <pt>backgroundImageArray</pt>
-        <pd>An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageArray</parmname> to add one or more<parmname> background</parmname> images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
+        <pd>An array of background images on the live video. See <xref keyref="RtcImage" />. You can use <parmname>backgroundImageArray</parmname> to add one or more background images. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
       </plentry>
       <plentry>
         <pt>audioSampleRate</pt>
@@ -762,5 +762,154 @@
         <pd>The number of enabled advanced features. The default value is 0.</pd>
       </plentry>
       </parml> </section>
+    <section props="android apple">
+      <title>Method</title>
+      <parml>
+      <plentry props="android">
+        <pt>addBackgroundImage</pt>
+        <pd>Adds a background image. See <xref keyref="addBackgroundImage" />.</pd>
+      </plentry>
+      <plentry props="android apple">
+        <pt>addUser</pt>
+        <pd>Adds a user for video mixing during the CDN live streaming. See <xref keyref="addUser" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>addWatermark</pt>
+        <pd>Adds a watermark. See <xref keyref="addWatermark" />.</pd>
+      </plentry>
+      <plentry props="android apple">
+        <pt>getAdvancedFeatures</pt>
+        <pd>Gets the status of the advanced features of streaming with transcoding. See <xref keyref="getAdvancedFeatures" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getBackgroundColor</pt>
+        <pd>Gets the background color in hex. See <xref keyref="getBackgroundColor" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getBackgroundImageList</pt>
+        <pd>Gets the list of background images. See <xref keyref="getBackgroundImageList" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getBlue</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>Obsolete and not recommended for use.</dd>
+          </dlentry>
+          </dl>
+         <p>Gets the background color's blue component. See <xref keyref="getBlue" />.</p>
+        </pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getGreen</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>Obsolete and not recommended for use.</dd>
+          </dlentry>
+          </dl>
+         <p>Gets the background color's green component. See <xref keyref="getGreen" />.</p>
+        </pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getRed</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>Obsolete and not recommended for use.</dd>
+          </dlentry>
+          </dl>
+          <p>Gets the background color's red component. See <xref keyref="getRed" />.</p>
+        </pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getUserCount</pt>
+        <pd>Gets the number of users transcoded in the CDN live streaming. See <xref keyref="getUserCount" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getUsers</pt>
+        <pd>Gets the user list in the CDN live streaming. See <xref keyref="getUsers" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>getWatermarkList</pt>
+        <pd>Gets the watermark list. See <xref keyref="getWatermarkList" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>removeBackgroundImage</pt>
+        <pd>Removes a background image from the background image list. See <xref keyref="removeBackgroundImage" />.</pd>
+      </plentry>
+      <plentry props="android apple">
+        <pt>removeUser</pt>
+        <pd>Removes a user from video mixing during the CDN live streaming. See <xref keyref="removeUser" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>removeWatermark</pt>
+        <pd>Removes a watermark from the watermark list. See <xref keyref="removeWatermark" />.</pd>
+      </plentry>
+      <plentry props="android apple">
+        <pt>setAdvancedFeatures</pt>
+        <pd>Sets whether to enable the advanced features of streaming with transcoding. See <xref keyref="setAdvancedFeatures" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>setBackgroundColor [1/2]</pt>
+        <pd>Sets the background color of the CDN live stream in the format of RGB hex. See <xref keyref="setBackgroundColor" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>setBackgroundColor [2/2]</pt>
+        <pd>Sets the background color in RGB format. See <xref keyref="setBackgroundColor2" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>setBlue</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>Obsolete and not recommended for use.</dd>
+          </dlentry>
+          </dl>
+          <p>Sets the background color's blue component. See <xref keyref="setBlue" />.</p>
+        </pd>
+      </plentry>
+      <plentry props="android">
+        <pt>setGreen</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>Obsolete and not recommended for use.</dd>
+          </dlentry>
+          </dl>
+          <p>Sets the background color's green component. See <xref keyref="setGreen" />.</p>
+        </pd>
+      </plentry>
+      <plentry props="android">
+        <pt>setRed</pt>
+        <pd>
+          <dl outputclass="deprecated">
+          <dlentry>
+            <dt>Deprecated</dt>
+            <dd>Obsolete and not recommended for use.</dd>
+          </dlentry>
+          </dl>
+          <p>Sets the background color's red component. See <xref keyref="setRed" />.</p>
+        </pd>
+      </plentry>
+      <plentry props="android">
+        <pt>setUsers [1/2]</pt>
+        <pd>Sets the users in batches in the CDN live streaming. See <xref keyref="setUsers" />.</pd>
+      </plentry>
+      <plentry props="android">
+        <pt>setUsers [2/2]</pt>
+        <pd>Sets the users in batches in the CDN live streaming. See <xref keyref="setUsers2" />.</pd>
+      </plentry>
+        <plentry props="apple">
+          <pt>defaultTranscoding</pt>
+          <pd>Applies the default transcoding settings, see <xref keyref="defaultTranscoding" />.</pd>
+        </plentry>
+      </parml>
+    </section>
   </refbody>
 </reference>

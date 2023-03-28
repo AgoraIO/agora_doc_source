@@ -42,7 +42,7 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(int imageWidth, int imageHeight, Rectangle vecRectangle,
       int vecDistance, int numFaces)? onFacePositionChanged;</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>调用 <codeph><xref keyref="enableFaceDetection" />(<ph keyref="true" />)</codeph> 开启本地人脸检测后，你可以通过该回调实时获取以下人脸检测的信息：
@@ -85,8 +85,8 @@
             </plentry>
             <plentry props="cpp unity flutter rn electron">
                 <pt>vecRectangle</pt>
-                <pd props="cpp unity">
-                    <p>检测到的人脸信息：
+                <pd props="cpp">
+                    <p>是一个长度为 <parmname>numFaces</parmname> 的数组，表示检测到的人脸信息：
 
                     <ul>
                     <li><codeph>x</codeph>：人脸在 view 中的 x 坐标 (px)。以摄像头采集 view 的左上角为原点，x 坐标为人脸左上角相对于原点的横向位移。</li>
@@ -95,11 +95,12 @@
                     <li><codeph>height</codeph>：人脸在 view 中的高度 (px)。</li>
                     </ul> </p>
                 </pd>
-                <pd props="flutter rn electron">检测到的人脸信息。详见 <xref keyref="Rectangle" />。</pd>
+                <pd props="unity flutter rn electron">检测到的人脸信息。详见 <xref keyref="Rectangle" />。</pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron">
                 <pt>vecDistance</pt>
-                <pd>人脸距设备屏幕的距离 (cm)。</pd>
+                <pd props="cpp">是一个长度为 <parmname>numFaces</parmname> 的数组，表示人脸和设备屏幕之间的距离 (cm)。</pd>
+                <pd props="unity flutter rn electron">人脸和设备屏幕之间的距离 (cm)。</pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron">
                 <pt>numFaces</pt>

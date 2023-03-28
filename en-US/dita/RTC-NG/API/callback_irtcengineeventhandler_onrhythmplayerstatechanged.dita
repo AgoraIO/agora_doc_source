@@ -25,7 +25,7 @@
     state: RhythmPlayerStateType,
     errorCode: RhythmPlayerErrorType
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRhythmPlayerStateChanged(RHYTHM_PLAYER_STATE_TYPE state, RHYTHM_PLAYER_ERROR_TYPE errorCode) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onRhythmPlayerStateChanged?(
     state: RhythmPlayerStateType,
     errorCode: RhythmPlayerErrorType
@@ -33,7 +33,7 @@
             <codeblock props="flutter" outputclass="language-dart">final void Function(
           RhythmPlayerStateType state, RhythmPlayerErrorType errorCode)?
       onRhythmPlayerStateChanged;</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>When the state of the virtual metronome changes, the SDK triggers this callback to report the current state of the virtual metronome. This callback indicates the state of the local audio stream and enables you to troubleshoot issues when audio exceptions occur.</p>
@@ -41,13 +41,13 @@
         <section id="parameters">
             <title><ph keyref="callback-section-title"/></title>
             <parml>
-            <plentry props="ios mac cpp electron unity rn flutter">
+            <plentry props="ios mac cpp framework">
                 <pt>state</pt>
                 <pd>For the current virtual metronome status, see <xref keyref="RHYTHM_PLAYER_STATE_TYPE"/>.</pd>
             </plentry>
             <plentry props="android">
                 <pt>state</pt>
-                <pd>The current virtual metronome status.<ul>
+                <pd>The current virtual metronome state.<ul>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_IDLE"/>(810): The virtual metronome is not enabled or is already disabled.</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_OPENING"/>(811): Opening the beat files.</li>
                     <li><ph keyref="RHYTHM_PLAYER_STATE_DECODING"/>(812): Decoding the beat files.</li>
@@ -55,7 +55,7 @@
                     <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/>(814): Failed to start virtual metronome. You can use the reported <parmname>errorCode</parmname> to troubleshoot the cause of the error, or you can try to start the virtual metronome again.</li>
                     </ul></pd>
             </plentry>
-            <plentry props="ios mac cpp electron unity rn flutter">
+            <plentry props="ios mac cpp framework">
                 <pt>errorCode</pt>
                 <pd>For the error codes and error messages related to virtual metronome errors, see <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>.</pd>
             </plentry>

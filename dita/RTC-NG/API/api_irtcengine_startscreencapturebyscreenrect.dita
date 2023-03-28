@@ -34,13 +34,14 @@
     {required Rectangle screenRect,
     required Rectangle regionRect,
     required ScreenCaptureParameters captureParams});</codeblock>
-            <codeblock props="unreal" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <dl outputclass="deprecated">
                 <dlentry>
                     <dt>弃用：</dt>
-                    <dd>该方法已废弃。请改用 <xref keyref="startScreenCaptureByDisplayId" />。如果你需要在设备外接其他显示屏的情况下开启屏幕共享，Agora 强烈建议你使用 <apiname keyref="startScreenCaptureByDisplayId" />。</dd>
+                    <dd>该方法已废弃。请改用 <xref keyref="startScreenCaptureByDisplayId" />。如果你需要在设备外接其他显示屏的情况下开启屏幕共享，强烈建议你使用 <apiname keyref="startScreenCaptureByDisplayId" />。</dd>
                 </dlentry>
                 </dl>
    <p id="desc">共享一个屏幕或该屏幕的部分区域。你需要在该方法中指定想要共享的屏幕区域。</p>
@@ -63,10 +64,11 @@
        </plentry>
    </parml>
         </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功。</li>
+            <li props="native electron unity rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
                 <ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
             </li>
