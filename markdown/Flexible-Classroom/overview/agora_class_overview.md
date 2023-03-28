@@ -58,11 +58,12 @@
 
 ### 桌面端
 
-![](https://web-cdn.agora.io/docs-files/1640784550634)
+<img src="./images/new_demo_pc_page.png" style="zoom: 33%;" />
 
 ### 移动端
 
-![](https://web-cdn.agora.io/docs-files/1640784215154)
+<img src="./images/new_demo_mobile_page.png" style="zoom: 33%;" />
+
 
 ## 计费说明
 
