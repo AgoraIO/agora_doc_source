@@ -181,6 +181,60 @@ curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_c
 }
 ```
 
+### 设置课堂状态
+
+#### 接口描述
+
+设置课堂状态。课堂状态可以设置为以下值：
+<ul><li>`0`: 未开始。</li><li>`1`: 开始。</li><li>`2`: 结束。课堂时间结束，但在拖堂时间内，用户可以加入课堂和在课堂内逗留。</li><li>`3`: 关闭。拖堂时间结束，课堂关闭，所有用户被踢出并无法再进入。</li></ul>
+详见[灵动课堂有哪些课堂状态？](/cn/agora-class/faq/agora_class_state)。
+
+#### 接口原型
+
+-   方法：PUT
+-   接入点：/{region}/edu/apps/{appId}/v2/rooms/{roomUuid}/states/{state}
+
+#### 请求参数
+
+**URL 参数**
+
+需要在 URL 中传入以下参数。
+
+| 参数       | 类型    |  是否必填 | 描述                                                         |
+| :--------- | :------ |  :------ | :----------------------------------------------------------- |
+| `region`      | String | 必填   | 服务区域，为公共参数，详见[区域](#区域)。        |
+| `appId`    | String | 必填   | 声网 App ID，为公共参数，详见[其他业务参数](#其他业务参数)。 |
+| `roomUuid` | String | 必填   | 课堂 uuid，为公共参数，详见[其他业务参数](#其他业务参数)。  |
+| `state` | Integer | 必填 |课堂状态，可以设置为以下值：<ul><li>`0`: 未开始。</li><li>`1`: 开始。</li><li>`2`: 结束。课堂时间结束，但在拖堂时间内，用户可以加入课堂和在课堂内逗留。</li><li>`3`: 关闭。拖堂时间结束，课堂关闭，所有用户被踢出并无法再进入。</li></ul>|
+
+#### 请求示例
+
+```json
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/states/1' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}'
+```
+
+#### 响应参数
+
+| 参数   | 类型    | 描述                                                        |
+| :----- | :------ | :---------------------------------------------------------- |
+| `code` | Integer | 响应状态码，详见[公共响应参数](#公共响应参数)。|
+| `msg`  | String  | 接口响应文字信息，详见[公共响应参数](#公共响应参数)。                                                 |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳，详见[公共响应参数](#公共响应参数)。                |
+
+#### 响应示例
+
+```json
+"status": 200,
+"body":
+{
+    "code": 0,
+    "msg": "Success",
+    "ts": 1610450153520
+}
+```
+
 ### 更新课堂属性
 
 #### 接口描述
@@ -315,60 +369,6 @@ curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test
 }
 ```
 
-### 设置课堂状态
-
-#### 接口描述
-
-设置课堂状态。课堂状态可以设置为以下值：
-<ul><li>`0`: 未开始。</li><li>`1`: 开始。</li><li>`2`: 结束。课堂时间结束，但在拖堂时间内，用户可以加入课堂和在课堂内逗留。</li><li>`3`: 关闭。拖堂时间结束，课堂关闭，所有用户被踢出并无法再进入。</li></ul>
-详见[课堂状态说明](/cn/agora-class/faq/agora_class_state)。详见[课堂状态说明](/cn/agora-class/faq/agora_class_state)。
-
-#### 接口原型
-
--   方法：PUT
--   接入点：/{region}/edu/apps/{appId}/v2/rooms/{roomUuid}/states/{state}
-
-#### 请求参数
-
-**URL 参数**
-
-需要在 URL 中传入以下参数。
-
-| 参数       | 类型    |  是否必填 | 描述                                                         |
-| :--------- | :------ |  :------ | :----------------------------------------------------------- |
-| `region`      | String | 必填   | 服务区域，为公共参数，详见[区域](#区域)。        |
-| `appId`    | String | 必填   | 声网 App ID，为公共参数，详见[其他业务参数](#其他业务参数)。 |
-| `roomUuid` | String | 必填   | 课堂 uuid，为公共参数，详见[其他业务参数](#其他业务参数)。  |
-| `state` | Integer | 必填 |课堂状态，可以设置为以下值：<ul><li>`0`: 未开始。</li><li>`1`: 开始。</li><li>`2`: 结束。课堂时间结束，但在拖堂时间内，用户可以加入课堂和在课堂内逗留。</li><li>`3`: 关闭。拖堂时间结束，课堂关闭，所有用户被踢出并无法再进入。</li></ul>|
-
-#### 请求示例
-
-```json
-curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/states/1' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
-```
-
-#### 响应参数
-
-| 参数   | 类型    | 描述                                                        |
-| :----- | :------ | :---------------------------------------------------------- |
-| `code` | Integer | 响应状态码，详见[公共响应参数](#公共响应参数)。|
-| `msg`  | String  | 接口响应文字信息，详见[公共响应参数](#公共响应参数)。                                                 |
-| `ts`   | Number  | 当前服务端的 Unix 时间戳，详见[公共响应参数](#公共响应参数)。                |
-
-#### 响应示例
-
-```json
-"status": 200,
-"body":
-{
-    "code": 0,
-    "msg": "Success",
-    "ts": 1610450153520
-}
-```
-
 ### 开启/关闭分组讨论
 
 #### 接口描述
@@ -398,20 +398,12 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 | :---------------- | :----- | :----------------------------------------------------------- |
 | `groups` | Array | （必填）待创建的分组列表。包含：<ul><li>`groupUuid`: （选填）待创建的分组 ID，String 型。如果不填，系统会自动分配一个 ID。</li><li>`groupName`: （选填）分组名，String 型。</li><li>`users`：（必填）分组内用户列表，Array 型。包含：<ul><li>`userUuid`：（必填）分组内用户的 uuid。这是用户的唯一标识符，也是登录 RTM 系统时使用的用户 ID。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~</li></ul></ul> |
 
-
 #### 请求示例
-
-**请求 URL**
-
-```html
-https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/groups/states/1
-```
-
-
-**请求包体**
-
 ```json
-{
+curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/states/1' \
+-H 'x-agora-uid: {uid}' \
+-H 'x-agora-uid: {rtmToken}' \
+--data-raw '{
     "groups":[
         {
             "groupUuid": "group1",
@@ -421,8 +413,9 @@ https://api.agora.io/edu/apps/{your_app_Id}/v2/rooms/test_class/groups/states/1
             }]
         }
     ]
-}
+}'
 ```
+
 #### 响应参数
 
 | 参数   | 类型    | 描述                                                        |
