@@ -1,4 +1,4 @@
-本文介绍如何使用空间音效功能以增强元宇宙音频体验。//TODO(api sequence pic)
+本文介绍如何使用空间音效功能以增强元宇宙音频体验。
 
 在元宇宙中，空间音效可以为用户带来更加真实、身临其境的虚拟体验。例如，在一个虚拟的 3D 旅游场景中，空间音效可以让用户宛如身临其境般听到旅游中路人聊天声、海浪声、风声，让用户更沉浸式体验。
 
@@ -29,9 +29,9 @@
 
 ### 用户空间音效
 
-下图介绍实现用户空间音效的 API 时序图：
+下图介绍实现用户空间音效的 API 时序：
 
-<pic>
+![](https://web-cdn.agora.io/docs-files/1679996706613)
 
 
 #### 1. 创建和初始化空间音效引擎
@@ -50,19 +50,20 @@ spatialAudioEngine.initialize(config);
 ```
 
 
-#### 2.设置空间音效接收范围 //TODO mute true？mute 前面的应该是 rtcEngine？
+#### 2.设置空间音效接收范围
 
 调用 [`setAudioRecvRange`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html?platform=Android#api_ibasespatialaudioengine_setaudiorecvrange) 设置空间音效接收范围，当远端用户相对本地用户的距离超出这个范围，本地用户就会听不到远端用户的声音。
+
+当使用空间音效时，请确保在 `RtcEngine` 中将音频流的发布和订阅都设置为 `mute`，即停止发布和订阅音频流。在后续的逻辑中，应由 `ILocalSpatialAudioEngine` 处理是否停止发布和订阅音频流。
 
 ```java
 // 设置空间音效的音频接收范围
 // 如果超过设置的值，那么本地用户听不见远端用户的声音
 spatialAudioEngine.setAudioRecvRange(100);
-// 恢复发布本地音频流
+// ILocalSpatialAudioEngine 设置恢复发布本地音频流
 // 此时需要额外检查本地用户角色不是观众，否则无法发流
 spatialAudioEngine.muteLocalAudioStream(false);
-// 恢复订阅所有远端音频流
-// SDK 默认本地用户订阅所有远端音频流，如果你此前取消订阅，那么此时应恢复订阅
+// ILocalSpatialAudioEngine 设置恢复订阅所有远端音频流
 spatialAudioEngine.muteAllRemoteAudioStreams(false);
 ```
 
@@ -124,9 +125,9 @@ if (spatialAudioEngine != null) {
 
 ### 音乐空间音效
 
-下图介绍实现媒体播放器空间音效的 API 时序图：
+下图介绍实现媒体播放器空间音效的 API 时序：
 
-<pic>
+![](https://web-cdn.agora.io/docs-files/1679996715949)
 
 
 由于空间音效是基于人物的位置驱动，因此在进入 Unity 场景后，无论人物是否移动，都需要 Unity 脚本主动向 app 发送一次人物的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。

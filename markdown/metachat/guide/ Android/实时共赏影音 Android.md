@@ -19,7 +19,9 @@
 
 ## 实现步骤
 
-<pic>
+下图展示 API 调用时序：
+
+![](https://web-cdn.agora.io/docs-files/1679996687853)
 
 ### 1. 推送视频
 

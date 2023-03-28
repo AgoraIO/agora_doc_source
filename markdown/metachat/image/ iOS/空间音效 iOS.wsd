@@ -16,8 +16,10 @@ a -> e: 进入场景
 b --> a: onEnterSceneResult
 critical #mistyrose
 == 设置空间音效接收范围 ==
+a -> c: 加入 RTC 频道
+a -> c: 停止发布和订阅音频流
 a -> d: setAudioRecvRange
-a -> c: 加入 RTC 频道并将自动订阅音频流关闭
+a -> d: 恢复发布和订阅音频流
 == 处理用户位置变化 ==
 a -> e: enableUserPositionNotification
 b --> a: onUserPositionChanged
