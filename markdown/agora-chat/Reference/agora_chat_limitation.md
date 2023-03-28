@@ -311,9 +311,9 @@
 
 | RESTful API 接口        | 方法 | 接口 URL           | 接口最高调用频率（默认值） |
 | :------------------- | :--- | :------------------- |
-| 向指定用户发送推送通知 | POST  | /{org_name}/{app_name}/push/single |  1200 次/分钟/App Key         |
-| 对指定标签下的用户发送推送通知 | POST  | /{org_name}/{app_name}/push/list/label | 1200 次/分钟/App Key，同时执行的任务不能超过 3 个          |
-| 对 app 下的所有用户发送推送通知 | POST  | /{org_name}/{app_name}/push/task | 5 次/分钟/App Key，100 次/天，同时执行的任务不能超过 3 个          |
+| 向指定用户发送推送通知 | POST  | /{org_name}/{app_name}/push/single | 1200 次/分钟/App Key         |
+| 对指定标签下的用户发送推送通知 | POST  | /{org_name}/{app_name}/push/list/label | 1200 次/分钟/App Key        |
+| 对 app 下的所有用户发送推送通知 | POST  | /{org_name}/{app_name}/push/task | 5 次/分钟/App Key，100 次/天       |
 
 ### 用户在线状态管理
 
