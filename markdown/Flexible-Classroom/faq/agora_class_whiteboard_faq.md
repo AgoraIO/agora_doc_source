@@ -49,3 +49,13 @@ https://docs.agora.io/en/interactive-whiteboard/develop/enable-whiteboard#enable
 1) 支持的文件格式包含：PPT、PPTX、DOC、DOCX、PDF、MP3、MP4、PNG、JPG、GIF。
 2)  课件名字里面不要有特殊符号，最好只包含中英文及数字；
 3)  使用WPS编辑过的课件可能会出现上传或转码失败，建议另存为PPTX或PDF；
+
+### 6.whenever the customer is trying to upload an image/ PDF file it shows an error of 403 Forbidden when sending a request:
+<img src="./images/s3_403_error.png" style="zoom: 33%;" />
+
+To ensure that Agora can access files in your third-party cloud storage space, you should enable public access or higher permissions for third-party storage spaces.
+
+https://docs.agora.io/en/flexible-classroom/get-started/enable-flexible-classroom?platform=android
+
+<img src="./images/s3_403_error2.png" style="zoom: 33%;" />
+
