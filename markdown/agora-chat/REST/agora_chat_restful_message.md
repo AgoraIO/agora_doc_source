@@ -34,7 +34,7 @@
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer YourAppToken
@@ -78,9 +78,9 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 
 |      参数       | 类型   |                                             描述                                              | 是否必填 |
 | :-------------: | :----- | :-------------------------------------------------------------------------------------------: | :------: |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                              |    是    |
-| `Accept`     | String | 内容类型。请填 `application/json`。                              |    是    |
-| `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 |    是    |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                              |    是    |
+| `Accept`     | String | 内容类型。填入 `application/json`。                              |    是    |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 |    是    |
 
 #### 通用请求体<a name="commonbody"></a>
 
@@ -95,7 +95,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `sync_device` | Boolean   | 消息发送成功后，是否将消息同步到发送方。<ul><li>`true`：是</li><li>（默认）`false`：否</li></ul>        | 否       |
 | `routetype`   | String | 若传入该参数，其值为 `ROUTE_ONLINE`，表示只有接收方在线时，消息才能成功发送；若接收方离线，消息发送失败。若不传入该字段，接收方离线时，消息也能成功发送。                                                                    | 否       |
 | `ext`         | JSON   | 消息支持扩展字段，可添加自定义信息。该字段不能设置为 `null`。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义字段](./agora_chat_push_ios#自定义字段) 和 [Android 推送自定义字段](./agora_chat_push_android#自定义字段)。      | 否       |
-| `msg_timestamp`        | Long   | 否       | 服务器收到该消息的时间戳。若不传该参数，服务器收到消息后会自动生成一个消息接收时间戳。          |
+| `msg_timestamp`        | Number   | 否       | 服务器收到该消息的时间戳。若不传该参数，服务器收到消息后会自动生成一个消息接收时间戳。          |
 
 #### <a name="msg"></a>body 字段说明
 
@@ -418,9 +418,9 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 
 | 参数            | 类型   | 描述                        | 是否必填 |
 | :-------------- | :----- | :---------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                                                           | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json`。                                                           | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                                                           | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。                                                           | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 通用请求体
 
@@ -689,9 +689,9 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 
 |      参数       | 类型   |                                             描述                                              | 是否必填 |
 | :-------------: | :----- | :-------------------------------------------------------------------------------------------: | :------: |
-| `Content-Type`  | String |                              内容类型。请填 `application/json`。                              |    是    |
-|    `Accept`     | String |                              内容类型。请填 `application/json`。                              |    是    |
-| `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 |    是    |
+| `Content-Type`  | String |                              内容类型。填入 `application/json`。                              |    是    |
+|    `Accept`     | String |                              内容类型。填入 `application/json`。                              |    是    |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 |    是    |
 
 #### 通用请求体
 
@@ -968,7 +968,7 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 | 参数              | 类型   | 描述                                                                                                                                                                              | 是否必填 |
 | :---------------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `Content-Type`    | String | 内容类型。请填 `multipart/form-data`。上传文件会自动填充这个头。                                                                                                                  | 否       |
-| `Authorization`   | String | `Bearer ${YourToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。                                                                                          | 是       |
+| `Authorization`   | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。  | 是       |
 | `restrict-access` | Boolean   | 是否限制访问该文件：<ul><li>`true`：是。用户需要通过响应 body 中获取的文件访问密钥（share-secret）才能下载该文件。</li><li>`false`：否。表示不限制访问。用户可以直接下载该文件。</li></ul> | 否       |
 
 #### 请求 body
@@ -1048,7 +1048,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | 参数            | 类型   | 描述                  | 是否必填 |
 | :-------------- | :----- | :--------------------------------------- | :------- |
 | `Accept`        | string | 内容类型。请填 `application/octet-stream`，表示下载二进制数据流格式的文件。                                                                                              | 是       |
-| `Authorization` | string | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。                                                                            | 是       |
+| `Authorization` | string | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。  | 是       |
 | `share-secret`  | string | 文件访问密钥。若上传文件时限制了访问（`restrict-access` 设置为 `true`），下载该文件时则需要该访问密钥。成功上传文件后，从 [文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
 
 ### HTTP 响应
@@ -1103,7 +1103,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | 参数            | 类型   | 描述                                                                                                                                                                         | 是否必填                                                                |
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/octet-stream`，表示下载二进制数据流格式的文件。           | 是   |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。                      | 是                                  |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。                      | 是                                  |
 | `thumbnail`     | Boolean   | 是否下载缩略图：<ul><li> `true`：是，下载缩略图。</li><li> `false`：否，下载原文件。</li></ul> <div class="alert info">若该参数为空，下载原文件。<div> | 否                                                                      |
 | `share-secret`  | string | 缩略图访问密钥。若上传图片时限制了访问（`restrict-access` 设置为 `true`），下载缩略图时则需要该访问密钥。成功上传图片后，从 [文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
 
@@ -1173,8 +1173,8 @@ GET https://{host}/{org_name}/{app_name}/chatmessages/${time}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | 内容类型，请填 `application/json`。     | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Content-Type`  | String | 内容类型，填入 `application/json`。     | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -1504,8 +1504,8 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 
 | 参数            | 类型   | 描述                                                                                          | 是否必填 |
 | :-------------- | :----- | :-------------------------------------------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。   | 是  |
-| `Accept`   | String | 内容类型。请填 `application/json`。   | 是  |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。   | 是  |
+| `Accept`   | String | 内容类型。填入 `application/json`。   | 是  |
 | `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
 
 #### 请求 body
@@ -1691,7 +1691,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users/import
 
 | 参数            | 类型   | 描述                                                                                          | 是否必填 |
 | :-------------- | :----- | :-------------------------------------------------------------------------------------------- | :------- |
-| `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -1798,7 +1798,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups/import
 
 | 参数            | 类型   | 描述                                                                                          | 是否必填 |
 | :-------------- | :----- | :-------------------------------------------------------------------------------------------- | :------- |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 

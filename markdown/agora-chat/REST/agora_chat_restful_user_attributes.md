@@ -13,7 +13,7 @@
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
+| 参数       | 类型   | 描述      | 是否必填 |
 | :--------- | :----- | :------------------------------------------------ | :------- |
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
@@ -33,8 +33,8 @@
 | `data.nickname`   | String | 用户昵称。                                                   |
 | `data.ext`        | String | 自定义的用户属性扩展字段。                                   |
 | `data.avatarurl`  | String | 用户头像 URL。                                               |
-| `timestamp`       | Long   | Unix 时间戳，单位为毫秒。                                    |
-| `duration`        | Long   | 从发送 HTTP 请求到响应的时长, 单位为毫秒。                   |
+| `timestamp`       | Number   | Unix 时间戳，单位为毫秒。                                    |
+| `duration`        | Number   | 从发送 HTTP 请求到响应的时长, 单位为毫秒。                   |
 
 ## 认证方式
 
@@ -66,7 +66,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/user/{username}
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型，请填 `application/x-www-form-urlencoded`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。   | 是       |
 
 #### 请求 body
 
@@ -144,8 +144,8 @@ GET https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。            | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。            | 是       |
 
 ### HTTP 响应
 
@@ -204,8 +204,8 @@ POST https://{host}/{org_name}/{app_name}/metadata/user/get
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`     | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。     | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -294,7 +294,7 @@ GET https://{host}/{org_name}/{app_name}/metadata/user/capacity
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -346,7 +346,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -356,7 +356,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 | 参数   | 类型 | 描述                                                                                                                        |
 | :----- | :--- | :-------------------------------------------------------------------------------------------------------------------------- |
-| `data` | Boolean | 用户属性是否删除成功：<li>`true`：是。如果指定的用户不存在，或指定用户的用户属性不存在，也视为删除成功。<li>`false`：否。 |
+| `data` | Boolean | 用户属性是否删除成功：<ul><li>`true`：是。如果指定的用户不存在，或指定用户的用户属性不存在，也视为删除成功。</li><li>`false`：否。</li></ul> |
 
 其他字段及说明详见 [公共参数](#param)。
 

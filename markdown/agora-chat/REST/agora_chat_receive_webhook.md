@@ -274,7 +274,7 @@
 | `size`         | Json     | 缩略图图片大小，包含如下字段：<ul><li>`height`: 图片高度</li><li>`width`: 图片宽度</li></ul> |
 | `thumb`        | String   | 视频缩略图的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`，其中 `file_uuid` 为缩略图文件 ID。成功上传视频缩略图文件后，从文件上传的响应 body 中获取。 |
 | `secret`       | String   | 成功上传视频文件后返回的密钥。                               |
-| `file_length`  | Long     | 视频文件大小，单位为字节。                           |
+| `file_length`  | Number     | 视频文件大小，单位为字节。                           |
 | `url`          | String   | 视频文件的 URL 地址，格式为 `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`，其中 `file_uuid` 为视频文件 ID。成功上传视频文件后，从文件上传的响应 body 中获取。 |
 | `type`         | String   | 消息类型。视频消息为 `video`。                               |
 
@@ -429,7 +429,7 @@
 | `chat_type`       | String   | 事件类型。`muc` 表示群组或聊天室。                           |
 | `callId`          | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `eventType`       | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器要下发给终端设备的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp`       | Long     | 即时通讯 IM 服务器接收到该消息的 Unix 时间戳，单位为毫秒。  |
+| `timestamp`       | Number     | 即时通讯 IM 服务器接收到该消息的 Unix 时间戳，单位为毫秒。  |
 | `group_id`        | String   | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。 |
 | `from`            | String   | 消息的发送方。                                               |
 | `to`              | String   | 消息的接收方。                                               |
@@ -1276,5 +1276,5 @@
 | `from`      | String   | 发送回执的用户 ID。                                          |
 | `to`        | String   | 接收回执的用户 ID。                                          |
 | `eventType` | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器要下发给终端设备的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
-| `timestamp` | long     | 即时通讯 IM  IM 服务器收到回执事件的 Unix 时间戳，单位为毫秒。 |
+| `timestamp` | Number     | 即时通讯 IM  IM 服务器收到回执事件的 Unix 时间戳，单位为毫秒。 |
 | `msg_id`    | String   | 该回执的消息 ID。                                            |

@@ -27,7 +27,7 @@
 | `uri`                | String  | 请求 URL。                                                   |
 | `path`               | String  | 请求路径，属于请求 URL 的一部分，无需关注。                  |
 | `entities`           | JSON    | 返回实体信息。                                               |
-| `timestamp`          | Long  | 响应的 Unix 时间戳（毫秒）。                                 |
+| `timestamp`          | Number  | 响应的 Unix 时间戳（毫秒）。                                 |
 | `duration`           | Number  | 从发送请求到响应的时长（毫秒）。                             |
 
 ## 认证方式
@@ -67,7 +67,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                 | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -150,7 +150,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -231,9 +231,9 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是    | 
-| `Accept`  | String | 参数类型。填入 `application/json`。            | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是    | 
+| `Accept`  | String | 内容类型。填入 `application/json`。  | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -301,7 +301,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                  | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -376,7 +376,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 | 参数          | 类型   | 描述                  | 是否必需 |
 | :------------ | :----- | :---------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                  | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -445,7 +445,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                  | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 

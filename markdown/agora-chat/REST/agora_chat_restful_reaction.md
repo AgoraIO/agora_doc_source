@@ -50,7 +50,7 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{username}
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -137,7 +137,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}?msgIdList={N,M
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -154,8 +154,8 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}?msgIdList={N,M
 | `data.reactionList`            | JSON Array | 单个消息的 Reaction 列表。                                   |
 | `data.reactionList.reactionId` | String     | Reaction ID。                                                |
 | `data.reactionList.reaction`   | String     | 表情 ID，与客户端一致。该参数与[创建/追加 Reaction API](#create)的请求参数 `message` 相同。 |
-| `data.reactionList.count`      | Int        | 添加该 Reaction 的用户人数。                                 |
-| `data.reactionList.state`      | Bool       | 当前用户是否添加过该 Reaction：<ul><li>`true`: 是</li><li>`false`：否</li></ul> |
+| `data.reactionList.count`      | Number        | 添加该 Reaction 的用户人数。                                 |
+| `data.reactionList.state`      | Boolean       | 当前用户是否添加过该 Reaction：<ul><li>`true`: 是</li><li>`false`：否</li></ul> |
 | `data.reactionList.userList`   | Array      | 添加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。 |
 
 如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
@@ -227,7 +227,7 @@ DELETE https://{host}/{org_name}/{app_name}/reaction/user/{username}?msgId={msgI
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。  | 是       |
 
 #### 查询参数
 
@@ -296,7 +296,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}/detail?msgId={
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。  | 是       |
 
 ### HTTP 响应
 

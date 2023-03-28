@@ -23,7 +23,7 @@
 
 ## 认证方式 <a name="auth"></a>
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer YourAppToken
@@ -56,8 +56,8 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence/{resource}/{
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -118,8 +118,8 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence/{expiry}
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -197,8 +197,8 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -274,8 +274,8 @@ DELETE https://{host}/{org_name}/{app_name}/users/{username}/presence
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -339,8 +339,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/presence/sublist?pageN
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 ### HTTP 响应
 

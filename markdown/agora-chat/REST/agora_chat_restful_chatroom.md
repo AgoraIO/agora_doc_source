@@ -24,12 +24,12 @@
 | `uri`             | String | 请求 URL。                                                        |
 | `entities`        | JSON   | 返回实体信息。                                                    |
 | `data`            | JSON   | 返回数据详情。                                                    |
-| `timestamp`       | Long   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
+| `timestamp`       | Number   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
 | `duration`        | Number | 从发送 HTTP 请求到响应的时长（毫秒）。                            |
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer YourAppToken
@@ -55,9 +55,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。   | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 #### 请求 body
 
@@ -67,7 +67,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 | :------------ | :--------- | :--------------------------------------- | :------- |
 | `name`        | String     | 聊天室名称，长度必须在 128 个字符内。    | 是       |
 | `description` | String     | 聊天室描述，长度必须在 512 个字符内。    | 是       |
-| `maxusers`    | Int        | 聊天室成员最大数量（包括聊天室创建者）。 | 否       |
+| `maxusers`    | Number        | 聊天室成员最大数量（包括聊天室创建者）。 | 否       |
 | `owner`       | String     | 聊天室创建者的用户 ID。若传该参数，确保至少设置一个数组元素。                   | 是       |
 | `members`     | JSON Array | 聊天室成员，不能设置为空。               | 否       |
 | `custom`  | String | 聊天室自定义属性，例如可以给聊天室添加业务相关的标记，不能超过 1,024 个字符。  | 否  | 
@@ -141,8 +141,8 @@ GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -203,8 +203,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatrooms
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -263,8 +263,8 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。   | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -277,15 +277,15 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | `data.id`                 | String     | 聊天室 ID。                                                                                                                                   |
 | `data.name`               | String     | 聊天室名称。                                                                                                                                  |
 | `data.description`        | String     | 聊天室描述。                                                                                                                                  |
-| `data.membersonly`        | Bool       | 加入聊天室是否需要聊天室创建者或管理员审批：<ul><li>`true`：是</li><li>`false`：否 </li></ul>                                                                    |
-| `data.allowinvites`       | Bool       | 是否允许聊天室成员邀请他人加入该聊天室：<ul><li>`true`：允许聊天室成员邀请他人加入该聊天室。</li><li>`false`：仅聊天室所有者和管理员能够邀请他人加入该聊天室。</li></ul> |
-| `data.maxusers`           | Int        | 聊天室成员数量上限，创建聊天室时设置。                                                                                                                          |
+| `data.membersonly`        | Boolean       | 加入聊天室是否需要聊天室创建者或管理员审批：<ul><li>`true`：是</li><li>`false`：否 </li></ul>                                                                    |
+| `data.allowinvites`       | Boolean       | 是否允许聊天室成员邀请他人加入该聊天室：<ul><li>`true`：允许聊天室成员邀请他人加入该聊天室。</li><li>`false`：仅聊天室所有者和管理员能够邀请他人加入该聊天室。</li></ul> |
+| `data.maxusers`           | Number        | 聊天室成员数量上限，创建聊天室时设置。                                                                                                                          |
 | `data.owner`              | String     | 聊天室所有者的用户 ID。例如：{“owner”: “user1”}。                   |
 | `data.created`            | Number     | 创建聊天室时间，Unix 时间戳，单位为毫秒。     |
 | `data.custom`             | String     | 聊天室扩展信息，创建聊天室时为聊天室添加的自定义信息。                                                                                        |
-| `data.affiliations_count` | int        | 聊天室成员数量（包含聊天室创建者）。                                                                                                          |
+| `data.affiliations_count` | Number       | 聊天室成员数量（包含聊天室创建者）。                                                                                                          |
 | `data.affiliations`       | JSON Array | 聊天室成员数组，包含以下字段：<ul><li>`owner`： 聊天室创建者的用户 ID。</li><li>`member`：聊天室成员的用户 ID。</li></ul>                                          |
-| `data.public`             | Bool       | 预留字段，无需关注。       |
+| `data.public`             | Boolean       | 预留字段，无需关注。       |
 
 其他字段及说明详见 [公共参数](#param)。
 
@@ -380,9 +380,9 @@ PUT https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。    | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -456,8 +456,8 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -524,9 +524,9 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 
 | 参数            | 类型   | 是否必需 | 描述                                                         |
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 是       | 内容类型。请填 `application/json`。                          |
-| `Accept`        | String | 是       | 内容类型。请填 `application/json`。                          |
-| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |
+| `Content-Type`  | String | 是       | 内容类型。填入 `application/json`。                          |
+| `Accept`        | String | 是       | 内容类型。填入 `application/json`。                          |
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 |
 
 #### HTTP 响应
 
@@ -594,9 +594,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 
 | 参数            | 类型   | 是否必需 | 描述                                                         |
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 是       | 内容类型。请填 `application/json`。                          |
-| `Accept`        | String | 是       | 内容类型。请填 `application/json`。                          |
-| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |
+| `Content-Type`  | String | 是       | 内容类型。填入 `application/json`。                          |
+| `Accept`        | String | 是       | 内容类型。填入 `application/json`。                          |
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 |
 
 ##### 请求 body
 

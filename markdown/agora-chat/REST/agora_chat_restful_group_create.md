@@ -42,7 +42,7 @@
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
 Authorization: Bearer YourAppToken
@@ -68,9 +68,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
-| `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。      | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 #### 请求 body
 
@@ -157,9 +157,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/disable
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Content-Type`  | String | 是    | 内容类型。填入 `application/json`。 |
+| `Accept`   | String | 是    | 内容类型。填入 `application/json`。 |
+|`Authorization`| String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 #### HTTP 响应
 
@@ -223,9 +223,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/enable
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Content-Type`  | String | 是    | 内容类型。填入 `application/json`。 |
+| `Accept`   | String | 是    | 内容类型。填入 `application/json`。 |
+|`Authorization`| String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 #### HTTP 响应
 
@@ -292,8 +292,8 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -311,7 +311,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 | `data.allowinvites`       | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：允许群成员邀请其他用户加入此群</li><li>`false`：只有群主可以邀请其他用户入群。</li></ul>                                |
 | `data.maxusers`           | Number  | 群组最大成员数（包含群主）。                                                                                        |
 | `data.owner`              | String  | 群主的用户 ID，如 `{"owner":"user1"}`。                                                                          |
-| `data.created`            | Long    | 群组创建的时间戳。                                                                                                      |
+| `data.created`            | Number    | 群组创建的时间戳。                                                                                                      |
 | `data.affiliations_count` | Number  | 群组现有成员总数。                                                                                                          |
 | `data.disabled`           | Boolean | 群组是否为禁用状态：<ul><li>`true`：群组被禁用；</li><li>`false`：群组为启用状态。</li></ul> |
 | `data.affiliations`       | Array   | 现有群成员列表，包含了群主 owner 和其他群成员 member，如：`[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`。 |
@@ -396,7 +396,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 Bearer ${YourAppToken}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。         | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 Bearer ${YourAppToken}，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。         | 是       |
 
 #### 请求 body
 
@@ -500,7 +500,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是    |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。  | 是    |
 
 ### HTTP 响应
 
@@ -570,7 +570,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 | 参数     | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。   | 是       |
 
 ### HTTP 响应
 
@@ -673,7 +673,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups?page
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。         | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。         | 是       |
 
 ### HTTP 响应
 

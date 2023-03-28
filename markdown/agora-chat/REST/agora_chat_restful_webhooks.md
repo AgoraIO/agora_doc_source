@@ -65,7 +65,7 @@ GET https://{host}/{org_name}/{app_name}/callbacks/storage/info
 
 | 参数            | 类型   | 是否必需 | 描述                                     |
 | :-------------- | :----- | :------- | :--------------------------------------- |
-| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 ### HTTP 响应
 
@@ -138,8 +138,8 @@ POST http://{host}/{org_name}/{app_name}/callbacks/storage/retry
 
 | 参数            | 类型   | 是否必需 | 描述                                                         |
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Content-Type`  | String | 是       | 内容类型，请填 `application/json`。                          |
-| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Content-Type`  | String | 是       | 内容类型，填入 `application/json`。                          |
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 |
 
 #### 请求 body
 
@@ -155,7 +155,7 @@ POST http://{host}/{org_name}/{app_name}/callbacks/storage/retry
 
 | 参数           | 类型   | 描述                                                         |
 | :------------- | :----- | :----------------------------------------------------------- |
-| `date`         | Bool   | 补发是否成功：<ul><li>`success`：成功</li><li>`failure`：失败</li></ul>    |
+| `date`         | Boolean   | 补发是否成功：<ul><li>`success`：成功</li><li>`failure`：失败</li></ul>    |
 | `retry`        | Number    | 开发者已经重试补发的次数。考虑到补发也可能失败，服务器会继续存储。最开始是 0。 |
 
 其他详见 [公共参数](#pubparam)。

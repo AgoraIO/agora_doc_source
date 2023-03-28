@@ -28,7 +28,7 @@
 | `path`            | String | 请求路径，属于请求 URL 的一部分，无需关注。                       |
 | `entities`        | JSON   | 返回实体信息。                                                    |
 | `data`            | JSON   | 返回数据详情。                                                    |
-| `timestamp`       | Long   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
+| `timestamp`       | Number   | HTTP 响应的 Unix 时间戳（毫秒）。                                 |
 | `duration`        | Number | 从发送 HTTP 请求到响应的时长（毫秒）。                            |
 
 ## 认证方式
@@ -59,9 +59,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。    | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -140,8 +140,8 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -205,15 +205,15 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&pages
 
 | 参数       | 类型 | 描述                                    | 是否必填 |
 | :--------- | :--- | :-------------------------------------- | :------- |
-| `pagenum`  | Int  | 查询页码。默认值为 `1`。                  | 否       |
-| `pagesize` | Int  | 每页显示的超级管理员数量。默认值为 `10`。 | 否       |
+| `pagenum`  | Number  | 查询页码。默认值为 `1`。                  | 否       |
+| `pagesize` | Number  | 每页显示的超级管理员数量。默认值为 `10`。 | 否       |
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。    | 是       |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -223,8 +223,8 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&pages
 
 | 参数       | 类型       | 描述                           |
 | :--------- | :--------- | :------------------------------- |
-| `pagenum`  | Int        | 当前页码。                       |
-| `pagesize` | Int        | 当前页显示的超级管理员最大数量。 |
+| `pagenum`  | Number        | 当前页码。                       |
+| `pagesize` | Number        | 当前页显示的超级管理员最大数量。 |
 | `data`     | JSON Array | 聊天室超级管理员的用户 ID 数组。   |
 | `count`    | Number     | 超级聊天室管理员的数量。             |
 
