@@ -45,7 +45,7 @@ implementation "io.github.agoraio-community:hyphenate:版本号"
 2、如果是 GitHub 源码 引用，则直接去除 hyphenate 模块 
 
 
-## 从 1.1.5 升级至 2.0.0
+## 升级到 2.0.0
 
 在 2.0.0 版中，Agora 优化了 Agora Classroom SDK 的内部架构，重新设计了 Agora Edu Context API。
 
