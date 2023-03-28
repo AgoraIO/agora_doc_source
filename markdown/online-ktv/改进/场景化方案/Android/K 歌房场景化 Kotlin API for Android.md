@@ -44,7 +44,7 @@ fun release()
 
 调用该方法可以清空 KTV API 模块内部变量和缓存数据，取消 `ktvApiEventHandler` 的事件监听，取消网络请求等。
 
-### 用法示例
+#### 用法示例
 
 ```kotlin
 // K 歌房 Activity 销毁时调用 ktvApiProtocol 释放，随后释放创建的实例
