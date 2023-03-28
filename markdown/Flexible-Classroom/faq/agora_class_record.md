@@ -1,6 +1,7 @@
 灵动课堂开启录制失败怎么办？
 
-1、请检查自己的录制相关的配置是否配置完成 https://docs.agora.io/cn/agora-class/agora_class_configure?platform=Web#%E9%85%8D%E7%BD%AE%E5%BD%95%E5%88%B6%E5%8A%9F%E8%83%BD
+##1、请检查自己的录制相关的配置是否配置完成
+ 请参考配置链接：https://docs.agora.io/cn/agora-class/agora_class_configure?platform=Web#%E9%85%8D%E7%BD%AE%E5%BD%95%E5%88%B6%E5%8A%9F%E8%83%BD
 配置录制功能
 - 录制配置这个选项可以采用默认
 - 存储配置必须采用自定义，必须自己配置。
