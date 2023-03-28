@@ -40,14 +40,14 @@
    pod 'Whiteboard', '2.16.39'
 
    # agora flexible classroom open source libs
-   pod 'AgoraClassroomSDK_iOS', '2.8.0'
-   pod 'AgoraEduUI', '2.8.0'
-   pod 'AgoraWidgets', '2.8.0'
+   pod 'AgoraClassroomSDK_iOS', '2.8.20'
+   pod 'AgoraEduUI', '2.8.20'
+   pod 'AgoraWidgets', '2.8.20'
 
    # agora flexible classroom close source libs
-   pod 'AgoraUIBaseViews', '2.8.0'
-   pod 'AgoraEduCore', '2.8.0'
-   pod 'AgoraWidget', '2.8.0'
+   pod 'AgoraUIBaseViews', '2.8.20'
+   pod 'AgoraEduCore', '2.8.20'
+   pod 'AgoraWidget', '2.8.20'
    ```
 
 2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。
@@ -156,13 +156,13 @@
    pod 'Agora_Chat_iOS', '1.0.6'
 
    # agora flexible classroom open source libs
-   pod 'AgoraProctorSDK', '2.8.0'
-   pod 'AgoraProctorUI', '2.8.0'
+   pod 'AgoraProctorSDK', '2.8.20'
+   pod 'AgoraProctorUI', '2.8.20'
 
    # agora flexible classroom close source libs
-   pod 'AgoraUIBaseViews', '2.8.0'
-   pod 'AgoraEduCore', '2.8.0'
-   pod 'AgoraWidget', '2.8.0'
+   pod 'AgoraUIBaseViews', '2.8.20'
+   pod 'AgoraEduCore', '2.8.20'
+   pod 'AgoraWidget', '2.8.20'
    ```
 
 2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。
