@@ -63,7 +63,7 @@
        <meta charset="UTF-8" />
        <meta name="viewport" content="width=device-width, initial-scale=1" />
        <!-- 灵动课堂教育场景 -->
-       <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.0.bundle.js"></script>
+       <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.20.bundle.js"></script>
    </head>
 
    <body>
