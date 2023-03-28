@@ -21,7 +21,7 @@ Agora 即时通讯 REST 平台提供多租户架构，以集合（Collection）�
 要调用 Agora 即时通讯 RESTful API，请确保满足以下要求：
 
 - 已在 Agora 控制台[开启和配置即时通讯服务](./enable_agora_chat?platform=RESTful)。
-- 已从服务端获取 app token，详见 [使用 App Token 鉴权](./generate_app_tokens?platform=RESTful)。
+- 已从服务端获取 app token，详见 [使用 App 权限 token 鉴权](./generate_app_tokens?platform=RESTful)。
 
 ## 主要功能
 

@@ -44,7 +44,7 @@
 Authorization：Bearer ${YourAppToken}
 ```
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的开发者进行鉴权。即时通讯 RESTful API 仅支持使用 App Token 的鉴权方式，详见 [使用 app token 鉴权](https://docs.agora.io/en/agora-chat/develop/authentication?platform=android)。
+为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的开发者进行鉴权。即时通讯 RESTful API 仅支持使用 App 权限 token 的鉴权方式，详见 [使用 App 权限 token 鉴权](https://docs.agora.io/en/agora-chat/develop/authentication?platform=android)。
 
 ## 查询环信超级社区用户是否存在
 

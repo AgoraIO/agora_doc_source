@@ -36,7 +36,7 @@
 
 Authorization：`Bearer ${YourAppToken}`
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 app token 鉴权](./agora_chat_token?platform=RESTful)。
+为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 向指定用户发送推送通知
 

@@ -44,7 +44,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 设置用户属性
 
@@ -84,6 +84,19 @@ requestBody = ‘name=ken&employer=easemob&title=developer’
 JSONString = ‘{“name”:“ken”, “employer”:“easemob”, “title”:“developer”}’
 
 这个 JSON String 的总长度不得超过 4 KB。
+
+调用该 RESTful 接口设置用户昵称、头像、联系方式、邮箱、性别、签名、生日和扩展字段时，若要确保在客户端能够获取设置，请求中必须传以下键名，根据实际使用场景确定键值：
+
+| 字段        | 类型   | 描述                                                         |
+| :---------- | :----- | :----------------------------------------------------------- |
+| `nickname`  | String | 用户昵称。长度在 64 个字符内。                                 |
+| `avatarurl` | String | 用户头像 URL 地址。长度在 256 个字符内。                       |
+| `phone`     | String | 用户联系方式。长度在 32 个字符内。                             |
+| `mail`      | String | 用户邮箱。长度在 64 个字符内。                                 |
+| `gender`    | Number | 用户性别：<ul><li>`1`：男；</li><li>`2`：女；</li><li>（默认）`0`：未知；</li><li>设置为其他值无效。</li></ul> |
+| `sign`      | String | 用户签名。长度在 256 个字符内。                                 |
+| `birth`     | String | 用户生日。长度在 64 个字符内。                                 |
+| `ext`       | String | 扩展字段。                                                   |
 
 ### HTTP 响应
 
