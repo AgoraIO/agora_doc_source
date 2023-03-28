@@ -68,7 +68,7 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。| 是       |
 | `Accept`  | String | 内容类型。请填 `application/json`。| 是       |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后面为一个英文空格和获取的 token 值。  | 是       |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为一个英文空格和获取的 token 值。  | 是       |
 
 #### 请求 body
 
@@ -154,7 +154,7 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type`   | String | 内容类型。请填 `application/json`。    | 是  |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后面为一个英文空格和获取的 token 值。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为一个英文空格和获取的 token 值。 | 是   |
 
 #### 请求 body
 
@@ -248,7 +248,7 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是   |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后面跟英文空格和获取的 token。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面跟英文空格和获取的 token。 | 是   |
 
 #### 请求 body
 
@@ -335,7 +335,7 @@ GET https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
 
 ### HTTP 响应
 
@@ -404,7 +404,7 @@ PUT https://{host}/{org_name}/{app}/users/{username}/notification/language
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是   |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
 
 #### 请求 body
 
@@ -479,7 +479,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/notification/language
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是   |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
 
 ### HTTP 响应
 
@@ -544,7 +544,7 @@ POST https://{host}/{org_name}/{app_name}/notification/template
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是   |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
 
 #### 请求 body
 
@@ -634,7 +634,7 @@ GET https://{host}/{org_name}/{app_name}/notification/template/{name}
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type` | String | 内容类型。请填 `application/json`。    | 是 |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
 
 ### HTTP 响应
 
@@ -710,7 +710,7 @@ DELETE https://{host}/{org_name}/{app_name}/notification/template/{name}
 | 参数            | 类型 | 描述                                                         | 是否必填 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
 | `Content-Type` | String | 内容类型。请填 `application/json`。    | 是 |
-| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
+| `Authorization` | String | 用户或管理员的认证 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后跟英文空格和获取的 token。 | 是   |
 
 ### HTTP 响应
 

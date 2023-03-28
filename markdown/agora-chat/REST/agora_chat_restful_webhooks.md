@@ -65,7 +65,7 @@ GET https://{host}/{org_name}/{app_name}/callbacks/storage/info
 
 | 参数            | 类型   | 是否必需 | 描述                                     |
 | :-------------- | :----- | :------- | :--------------------------------------- |
-| `Authorization` | String | 是       | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
 
 ### HTTP 响应
 
@@ -139,7 +139,7 @@ POST http://{host}/{org_name}/{app_name}/callbacks/storage/retry
 | 参数            | 类型   | 是否必需 | 描述                                                         |
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 是       | 内容类型，请填 `application/json`。                          |
-| `Authorization` | String | 是       | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
 
 #### 请求 body
 

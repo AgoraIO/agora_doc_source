@@ -58,7 +58,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是    |
 | `Accept`   | String |内容类型。请填 `application/json`。 | 是    |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 #### 请求 body
 
@@ -151,7 +151,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/ban
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 是       | 内容类型。请填 `application/json`。                          |
 | `Accept`        | String | 是       | 内容类型。请填 `application/json`。                          |
-| `Authorization` | String | 是       | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
 
 ### HTTP 响应
 
@@ -219,7 +219,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute/{member
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept`   | String | 内容类型。请填 `application/json`。 | 是    |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 
@@ -287,7 +287,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/ban
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 是       | 内容类型。请填 `application/json`。                          |
 | `Accept`        | String | 是       | 内容类型。请填 `application/json`。                          |
-| `Authorization` | String | 是       | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
 
 ### HTTP 响应
 
@@ -351,7 +351,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/mute
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 

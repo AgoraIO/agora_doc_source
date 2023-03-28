@@ -1103,7 +1103,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | 参数            | 类型   | 描述                                                                                                                                                                         | 是否必填                                                                |
 | :-------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/octet-stream`，表示下载二进制数据流格式的文件。           | 是   |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。                      | 是                                  |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。                      | 是                                  |
 | `thumbnail`     | Boolean   | 是否下载缩略图：<ul><li> `true`：是，下载缩略图。</li><li> `false`：否，下载原文件。</li></ul> <div class="alert info">若该参数为空，下载原文件。<div> | 否                                                                      |
 | `share-secret`  | string | 缩略图访问密钥。若上传图片时限制了访问（`restrict-access` 设置为 `true`），下载缩略图时则需要该访问密钥。成功上传图片后，从 [文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
 
@@ -1174,7 +1174,7 @@ GET https://{host}/{org_name}/{app_name}/chatmessages/${time}
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | 内容类型，请填 `application/json`。     | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
 
 ### HTTP 响应
 

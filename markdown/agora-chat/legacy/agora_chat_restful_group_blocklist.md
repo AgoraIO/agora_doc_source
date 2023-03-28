@@ -61,7 +61,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | `Content-Type`  | String | 参数类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 ### HTTP 响应
 
@@ -125,7 +125,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{us
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 参数类型。填入 `application/json`                                   | 是       |
 | `Accept`  | String | 参数类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 ### HTTP 响应
 
@@ -199,7 +199,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 参数类型。填入 `application/json`                                   | 是       |
 | `Accept`  | String | 参数类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### 请求 body
 
@@ -291,7 +291,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 参数类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 ### HTTP 响应
 
@@ -364,7 +364,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 参数类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 ### HTTP 响应
 

@@ -68,7 +68,7 @@ POST https://{host}/{org_name}/{app_name}/circle/channel
 | :------------ | :----- | :------- | :--------------------------------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                          | 是       | 
 | `Accept`        | String | 内容类型。请填 `application/json`。                          | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 ##### 请求 body
 
@@ -142,7 +142,7 @@ PUT https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}?serverId={s
 | ------------- | ------ | -------- | ------------------------------------------------------------ |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 ##### 请求 body
 
@@ -221,7 +221,7 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}?serverId={s
 | 参数          | 类型   | 描述                 | 是否必需 |
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -299,7 +299,7 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/public?serverId={server_
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 是       | 内容类型。请填 `application/json`。                           |
-| `Authorization` | String | 是       | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Authorization` | String | 是       | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |
 
 #### HTTP 响应
 
@@ -388,7 +388,7 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/user/joined/list?userId=
 | 参数          | 类型   | 描述          | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 是       | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 是       | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -476,7 +476,7 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/private?serverId={server
 | 参数          | 类型   | 描述                        | 是否必需 | 
 | :------------ | :----- | :------- | :------------------------ |
 | `Accept`        | String | 内容类型。请填 `application/json`。      | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -553,7 +553,7 @@ DELETE https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}?serverId
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -610,7 +610,7 @@ POST https://{host}/{org_name}/{app_name}/circle/reaction
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 ##### 请求 body
 
@@ -675,7 +675,7 @@ GET https://{host}/{org_name}/{app_name}/circle/reaction/user/{user_id}?msgIdLis
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -743,7 +743,7 @@ DELETE https://{host}/{org_name}/{app_name}/circle/reaction/user/{user_id}?messa
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -795,7 +795,7 @@ POST https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/join?userI
 | 参数          | 类型   | 描述                                    | 是否必需 |
 | :------------ | :----- | :------- | :----------------------------------------- |
 | `Accept`        | String |内容类型。请填 `application/json`。                            | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -859,7 +859,7 @@ POST https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/remov
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -909,7 +909,7 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/{user_
 | 参数          | 类型   | 描述                  | 是否必需 | 
 | :------------ | :----- | :------- | :--------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |是       |
 
 #### HTTP 响应
 
@@ -973,7 +973,7 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/users?serve
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -1042,7 +1042,7 @@ GET https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/mute/l
 | 参数          | 类型   | 描述                    | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------- |
 | Accept        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -1105,7 +1105,7 @@ POST https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/mute
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 ##### 请求 body
 
@@ -1169,7 +1169,7 @@ DELETE https://{host}/{org_name}/{app_name}/circle/channel/{channel_id}/user/mut
 | 参数          | 类型   | 描述               | 是否必需 | 
 | :------------ | :----- | :------- | :--------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -1224,7 +1224,7 @@ POST https://{host}/{org_name}/{app_name}/circle/thread
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 ##### 请求 body
 
@@ -1291,7 +1291,7 @@ PUT https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       | 
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 ##### 请求 body
 
@@ -1349,7 +1349,7 @@ GET https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}
 | 参数          | 类型   | 描述               | 是否必需 |
 | :------------ | :----- | :------- | :------------------------ |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -1406,7 +1406,7 @@ DELETE https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -1458,7 +1458,7 @@ POST https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}/user/join?us
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -1509,7 +1509,7 @@ POST https://{host}/{org_name}/{app_name}/circle/thread/{thread_id}/user/remove?
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Content-Type`  | String | 内容类型。请填 `application/json`。                           | 是       |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -1567,7 +1567,7 @@ GET https://{host}/{org_name}/{app_name}/circle/thread/created?userId={user_id}&
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       |
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       |
 
 #### HTTP 响应
 
@@ -1646,7 +1646,7 @@ curl -X GET https://{host}/{org_name}/{app_name}/circle/thread/list?channelId={c
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 
@@ -1725,7 +1725,7 @@ GET https://{host}/{org_name}/{app_name}/circle/thread/joined?userId={user_id}&c
 | 参数          | 类型   | 描述                                                         | 是否必需 | 
 | :------------ | :----- | :------- | :----------------------------------------------------------- |
 | `Accept`        | String | 内容类型。请填 `application/json`。                           | 是       | 
-| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       | 
+| `Authorization` | String | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 | 是       | 
 
 #### HTTP 响应
 

@@ -66,7 +66,7 @@ POST https://{host}/{orgName}/{appName}/mutes
 | 参数          | 类型   | 是否必需 | 描述                                     |
 | ------------- | ------ | -------- | ---------------------------------------- |
 | `Content-Type`  | String | 必需     | `application/json` 内容类型。             |
-| `Authorization` | String | 必需     | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Authorization` | String | 必需     | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |
 
 ### HTTP 响应
 
@@ -137,7 +137,7 @@ GET https://{host}/{orgName}/{appName}/mutes/username
 | 参数          | 类型   | 是否必需 | 描述                                      |
 | ------------- | ------ | -------- | ----------------------------------------- |
 | `Content-Type`  | String | 必需     | `application/json` 内容类型。             |
-| `Authorization` | String | 必需     | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Authorization` | String | 必需     | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |
 
 ### HTTP 响应
 
@@ -206,7 +206,7 @@ GET https://{host}/{orgName}/{appName}/mutes
 | 参数          | 类型   | 是否必需 | 描述                                 |
 | ------------- | ------ | -------- | ------------------------------------ |
 | `Content-Type`  | String | 必需     | `application/json` 内容类型。             |
-| `Authorization` | String | 必需     | 该管理员的鉴权 token，格式为 `Bearer ${token}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 |
+| `Authorization` | String | 必需     | 该管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |
 
 ### 请求 body
 
