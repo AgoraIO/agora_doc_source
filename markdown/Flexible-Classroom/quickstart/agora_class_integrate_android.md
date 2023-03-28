@@ -71,6 +71,7 @@ implementation "io.github.agoraio-community:hyphenate:版本号"
 3. 调用 [AgoraClassroomSDK.launch](/cn/agora-class/agora_class_api_ref_android?platform=Android#launch) 方法启动课堂。示例代码如下：
 
     ```kotlin
+    // 启动教室前，需要动态申请`Manifest.permission.RECORD_AUDIO` 和 `Manifest.permission.CAMERA`权限
     fun startClassRoom() {
         val appId = ""           // 填入你的 App ID
         val rtmToken = ""        // 填入你的 RTM Token
@@ -100,8 +101,8 @@ implementation "io.github.agoraio-community:hyphenate:版本号"
         // 设置大窗视频区域参数（大流）
         config.videoEncoderConfig = EduContextVideoEncoderConfig(
             FcrStreamParameters.HeightStream.width,
-            FcrStreamParameters.HeightStream.height,
-	        FcrStreamParameters.HeightStream.frameRate,
+	        FcrStreamParameters.HeightStream.height,
+            FcrStreamParameters.HeightStream.frameRate,
             FcrStreamParameters.HeightStream.bitRate
         )
     
