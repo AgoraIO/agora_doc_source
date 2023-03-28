@@ -34,7 +34,7 @@ Agora 即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请
 
 `Authorization`：Bearer ${YourAppToken}
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 仅支持使用 app token 的鉴权方式，详见[使用 App Token 鉴权](./generate_app_tokens?platform=RESTful)。
+为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 仅支持使用 App 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./generate_app_tokens?platform=RESTful)。
 
 ## <a name="sendmessage"></a>发送消息
 

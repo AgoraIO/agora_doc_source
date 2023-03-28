@@ -892,7 +892,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 Bearer ${token}，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -954,7 +954,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 Bearer ${token}，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -1028,7 +1028,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。  | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 Bearer ${token}，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -1092,7 +1092,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${token}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 Bearer ${token}，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 

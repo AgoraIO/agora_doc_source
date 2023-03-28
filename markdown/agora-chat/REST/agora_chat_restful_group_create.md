@@ -42,13 +42,13 @@
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
-Authorization: Bearer ${YourAppToken}
+Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 创建群组
 
@@ -68,9 +68,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是       |
-| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
-| `Authorization` | String | `Bearer ${Your App Token}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。      | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 #### 请求 body
 
@@ -157,9 +157,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/disable
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Content-Type`  | String | 是    | 内容类型。填入 `application/json`。 |
+| `Accept`   | String | 是    | 内容类型。填入 `application/json`。 |
+|`Authorization`| String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 #### HTTP 响应
 
@@ -223,9 +223,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/enable
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    | 内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Content-Type`  | String | 是    | 内容类型。填入 `application/json`。 |
+| `Accept`   | String | 是    | 内容类型。填入 `application/json`。 |
+|`Authorization`| String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 #### HTTP 响应
 
@@ -292,8 +292,8 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
-| `Accept`        | String | 内容类型。请填 `application/json`。 | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -311,7 +311,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 | `data.allowinvites`       | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：允许群成员邀请其他用户加入此群</li><li>`false`：只有群主可以邀请其他用户入群。</li></ul>                                |
 | `data.maxusers`           | Number  | 群组最大成员数（包含群主）。                                                                                        |
 | `data.owner`              | String  | 群主的用户 ID，如 `{"owner":"user1"}`。                                                                          |
-| `data.created`            | Long    | 群组创建的时间戳。                                                                                                      |
+| `data.created`            | Number    | 群组创建的时间戳。                                                                                                      |
 | `data.affiliations_count` | Number  | 群组现有成员总数。                                                                                                          |
 | `data.disabled`           | Boolean | 群组是否为禁用状态：<ul><li>`true`：群组被禁用；</li><li>`false`：群组为启用状态。</li></ul> |
 | `data.affiliations`       | Array   | 现有群成员列表，包含了群主 owner 和其他群成员 member，如：`[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`。 |
@@ -396,7 +396,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 Bearer ${YourAppToken}，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。         | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 Bearer ${YourAppToken}，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。         | 是       |
 
 #### 请求 body
 
@@ -406,7 +406,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | `description`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果有空格，使用 “+” 代替。                                  | 是       |
 | `maxusers`     | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[套餐包详情](./agora_chat_plan?platform=RESTful)。              | 否       |
 | `allowinvites` | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：群成员可拉人入群。</li><li>（默认）`false`：只有群主或者管理员才可以拉人入群。</li></ul> | 否       |
-| `invite_need_confirm` | Boolean   | 邀请用户入群时是否需要受邀用户同意：<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li>`false`：不需要。邀请人直接拉用户进群。</li></ul> | 否       | 
+| `invite_need_confirm` | Boolean   | 邀请用户入群时是否需要受邀用户同意：<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li>`false`：不需要。邀请人直接拉用户进群。</li></ul> | 否       |
 | `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>（默认）`false`：不需要，用户直接进群。</li></ul>                | 否       |
 | `custom`       | String  | 群组扩展信息，例如给群组添加业务相关标记，不能超过 1,024 个字符。    | 否       |
 | `public`              | Boolean   | 是       | 是否是公开群：<ul><li>`true`：公开群；</li><li>`false`：私有群。</li></ul>        |
@@ -484,7 +484,7 @@ curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
-DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 ```
 
 #### 路径参数
@@ -500,7 +500,7 @@ DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。  | 是    |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。  | 是    |
 
 ### HTTP 响应
 
@@ -565,13 +565,12 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 | `cursor` | String | 数据查询的起始位置。 | 否  |
 
 <div class="alert info">若请求中均未设置 `limit` 和 `cursor` 参数，服务器按群组创建时间倒序返回前 10 个群组。</div>
-
 #### 请求 header
 
 | 参数     | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。   | 是       |
 
 ### HTTP 响应
 
@@ -651,7 +650,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
-GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
+GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
 ```
 
 #### 路径参数
@@ -660,10 +659,10 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 
 ##### 查询参数
 
-| 参数       | 类型   | 描述                                                         | 是否必填 | 
+| 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :----- | :------- | :----------------------------------------------------------- |
-| `pagesize` | String | 每页获取的群组数量。取值范围为 [1,100]，默认值为 `10`。          | 否     | 
-| `pagenum`  | String | 当前页码。默认从第 1 页开始获取。                       | 否     | 
+| `pagesize` | String | 每页获取的群组数量。取值范围为 [1,100]，默认值为 `10`。          | 否     |
+| `pagenum`  | String | 当前页码。默认从第 1 页开始获取。                       | 否     |
 
 :::tip
 若请求中均未设置 `pagesize` 和 `pagenum` 参数，服务器按用户加入群组的时间倒序返回前 500 个群组。
@@ -674,7 +673,7 @@ GET https://{host}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pag
 | 参数            | 类型   | 描述                              | 是否必填 |
 | :-------------- | :----- | :-------------------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json`。 | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。         | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。         | 是       |
 
 ### HTTP 响应
 

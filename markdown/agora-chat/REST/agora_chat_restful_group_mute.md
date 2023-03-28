@@ -26,7 +26,7 @@
 | `applicationName`    | String  | 即时通讯服务为每个 app 分配的唯一标识，与请求参数 `app_name` 相同。 |
 | `uri`                | String  | 请求 URL。                                                   |
 | `entities`           | JSON    | 返回实体信息。                                               |
-| `timestamp`          | Long  | 响应的 Unix 时间戳，单位为毫秒。                                 |
+| `timestamp`          | Number  | 响应的 Unix 时间戳，单位为毫秒。                                 |
 | `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
 
 ## 认证方式
@@ -34,10 +34,10 @@
 即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
-Authorization: Bearer ${YourAppToken}
+Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 禁言指定群成员
 
@@ -65,7 +65,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -119,31 +119,31 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 禁言全体群成员
+## 禁言全体群成员
 
 对所有群组成员一键禁言，即将群组的所有成员加入禁言列表。设置群组全员禁言后，仅群组白名单中的用户可在群组以及该群组下的子区内发送消息。
 
-#### HTTP 请求
+### HTTP 请求
 
 ```http
 POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 ```
 
-##### 路径参数
+#### 路径参数
 
 参数及描述详见 [公共参数](#pubparam)。
 
-##### 请求 header
+#### 请求 header
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    |内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Content-Type`  | String | 是    | 内容类型。填入 `application/json`。 |
+| `Accept`   | String | 是    |内容类型。填入 `application/json`。 |
+|`Authorization`| String | 是    |App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
-#### HTTP 响应
+### HTTP 响应
 
-##### 响应 body
+#### 响应 body
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
@@ -157,9 +157,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
-#### 示例
+### 示例
 
-##### 请求示例
+#### 请求示例
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
@@ -167,7 +167,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatgroups/{groupid}/ban'
 ```
 
-##### 响应示例
+#### 响应示例
 
 ```json
 {
@@ -209,7 +209,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute/{member_i
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -254,31 +254,31 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-### 解除全员禁言
+## 解除全员禁言
 
 一键取消对群组全体成员的禁言。解除禁言后，群成员可以在群组和该群组下的子区中正常发送消息。
 
-#### HTTP 请求
+### HTTP 请求
 
 ```http
 DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 ```
 
-##### 路径参数
+#### 路径参数
 
 参数及描述详见 [公共参数](#pubparam)。
 
-##### 请求 header
+#### 请求 header
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
-| `Content-Type`  | String | 是    | 内容类型。请填 `application/json`。 |
-| `Accept`   | String | 是    |内容类型。请填 `application/json`。 |
-|`Authorization`| String | 是    |该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。|
+| `Content-Type`  | String | 是    | 内容类型。填入 `application/json`。 |
+| `Accept`   | String | 是    |内容类型。填入 `application/json`。 |
+|`Authorization`| String | 是    |App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
-#### HTTP 响应
+### HTTP 响应
 
-##### 响应 body
+#### 响应 body
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
@@ -291,9 +291,9 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
-#### 示例
+### 示例
 
-##### 请求示例
+#### 请求示例
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
@@ -301,7 +301,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 curl -X DELETE -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/chatgroups/1208XXXX5169153/ban'
 ```
 
-##### 响应示例
+#### 响应示例
 
 ```json
 {
@@ -342,7 +342,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 

@@ -14,8 +14,8 @@
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                                                                                                                                | 是否必填 |
-| :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
+| 参数       | 类型   | 描述          | 是否必填 |
+| :--------- | :----- | :---------------------------------- | :------- |
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                       | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                  | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                            | 是       |
@@ -23,24 +23,24 @@
 
 ## 认证方式 <a name="auth"></a>
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下`Authorization` 字段：
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
-Authorization: Bearer ${YourAppToken}
+Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 设置用户的在线状态
 
-根据用户的唯一 ID 设置在线状态信息
+根据用户的唯一 ID 设置在线状态信息。
 
 对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{resource}/{status}
+POST https://{host}/{org_name}/{app_name}/users/{username}/presence/{resource}/{status}
 ```
 
 #### 路径参数
@@ -56,8 +56,8 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{resource}/{statu
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -103,7 +103,7 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/c1/presence/and
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
+POST https://{host}/{org_name}/{app_name}/users/{username}/presence/{expiry}
 ```
 
 #### 路径参数
@@ -118,8 +118,8 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence/{expiry}
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -179,14 +179,14 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/10
 
 ## 批量获取在线状态信息
 
-你一次可获取多个用户的在线状态信息。
+一次可获取多个用户的在线状态信息。
 
 对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/users/{uid}/presence
+POST https://{host}/{org_name}/{app_name}/users/{username}/presence
 ```
 
 #### 路径参数
@@ -197,8 +197,8 @@ POST https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -263,7 +263,7 @@ curl -X POST 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence' \
 ### HTTP 请求
 
 ```http
-DELETE https://{host}/{org_name}/{app_name}/users/{uid}/presence
+DELETE https://{host}/{org_name}/{app_name}/users/{username}/presence
 ```
 
 #### 路径参数
@@ -274,8 +274,8 @@ DELETE https://{host}/{org_name}/{app_name}/users/{uid}/presence
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 请求 body
 
@@ -321,7 +321,7 @@ curl -X DELETE 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence'
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&pageSize=100
+GET https://{host}/{org_name}/{app_name}/users/{username}/presence/sublist?pageNum=1&pageSize=100
 ```
 
 #### 路径参数
@@ -339,8 +339,8 @@ GET https://{host}/{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&
 
 | 参数           | 类型 | 描述                                                         | 是否必填|
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。                     | 是 |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 App Token 的值。 | 是 |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是 |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 ### HTTP 响应
 

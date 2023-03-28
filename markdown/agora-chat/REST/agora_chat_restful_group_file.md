@@ -12,7 +12,6 @@
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
 
@@ -25,9 +24,6 @@
 | `uri`                | String  | 请求 URL。                                                   |
 | `entities`           | JSON    | 返回实体信息。                                               |
 | `created`            | Number | 群组创建时间，Unix 时间戳，单位为毫秒。                      |
-| `username`           | String| 用户 ID。                                                     |
-| `groupname`          | String | 群组名称。                                                     |
-| `nickname`           | String| 用户昵称。                                                   |
 | `timestamp`          | Number  | 响应的 Unix 时间戳，单位为毫秒。                                 |
 | `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
 
@@ -36,10 +32,10 @@
 即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
-Authorization: Bearer ${YourAppToken}
+Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 获取群公告
 
@@ -65,7 +61,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/announcement
 | :------------ | :----- | :------------------------------ | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -134,7 +130,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/announcement
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -212,7 +208,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagen
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -306,7 +302,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 | `restrict-access` | Boolean | 是否仅群成员可见。<ul><li>`true`：是</li><li>`false`：否</li></ul>  | 是       |
 
 ### HTTP 响应
@@ -386,7 +382,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files/{file
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。| 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -465,7 +461,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files/{f
 | 参数          | 类型   | 描述                                                         | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 `Bearer` 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 

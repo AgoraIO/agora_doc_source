@@ -30,7 +30,7 @@
 
 Authorization：`Bearer ${YourAppToken}`
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 app token 鉴权](./agora_chat_token?platform=RESTful)。
+为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 创建推送标签
 
@@ -50,7 +50,7 @@ POST https://{host}/{org_name}/{app_name}/push/label
 | 参数            | 类型   | 描述      | 是否必需 | 
 | :-------------- | :----- | :------- | :---------- |
 | `Content-Type`  | String | 内容类型：`application/json`   | 是   | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是    | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是    | 
  
 #### 请求 body
 
@@ -124,7 +124,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}
 
 | 参数            | 类型   | 描述      | 是否必需 | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是    | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是    | 
 
 ### HTTP 响应
 
@@ -191,7 +191,7 @@ GET https://{host}/{org_name}/{app_name}/push/label
 
 | 参数            | 类型   | 描述      | 是否必需 | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是     | 
 
 ### HTTP 响应
 
@@ -263,7 +263,7 @@ DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}
 
 | 参数            | 类型   | 描述   | 是否必需 | 
 | :------------- | :----- | :------- | :--------------- |
-| `Authorization` | String |`Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是     | 
 
 ### HTTP 响应
 
@@ -319,7 +319,7 @@ POST https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 | 参数            | 类型   | 描述   | 是否必需 | 
 | :------------- | :----- | :------- | :--------------- |
 | `Content-Type`  | String | 内容类型：`application/json`        | 是     | 
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是     | 
 
 #### 请求 body
 
@@ -393,7 +393,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{username}
 
 | 参数            | 类型   | 描述   | 是否必需 | 
 | :------------- | :----- | :------- | :--------------- |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是     | 
 
 ### HTTP 响应
 
@@ -460,7 +460,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 
 | 参数            | 类型   | 描述       | 是否必需 | 
 | :-------------- | :----- | :------- | :----------------------------------------------------------- |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是     | 
 
 ### HTTP 响应
 
@@ -525,7 +525,7 @@ DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 | 参数            | 类型   | 描述              | 是否必需 | 
 | :-------------- | :----- | :------- | :----------- |
 | `Content-Type`  | String | 内容类型：`application/json`        | 是     |
-| `Authorization` | String | `Bearer ${YourAppToken}` Bearer 是固定字符，后面加英文空格，再加上获取到的 app token 的值。 | 是     | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是     | 
 
 #### 请求 body
 

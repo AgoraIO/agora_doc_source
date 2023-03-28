@@ -5,7 +5,6 @@
 例如，在招聘场景下，利用用户属性功能，可以存储性别、邮箱、用户类型（面试者）、职位类型（Web 研发）等。当查看用户信息时，可以直接查询服务器存储的用户属性信息。
 
 <div class="alert note">为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。</div>
-
 调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
@@ -14,7 +13,7 @@
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
+| 参数       | 类型   | 描述      | 是否必填 |
 | :--------- | :----- | :------------------------------------------------ | :------- |
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
@@ -34,25 +33,24 @@
 | `data.nickname`   | String | 用户昵称。                                                   |
 | `data.ext`        | String | 自定义的用户属性扩展字段。                                   |
 | `data.avatarurl`  | String | 用户头像 URL。                                               |
-| `timestamp`       | Long   | Unix 时间戳，单位为毫秒。                                    |
-| `duration`        | Long   | 从发送 HTTP 请求到响应的时长, 单位为毫秒。                   |
+| `timestamp`       | Number   | Unix 时间戳，单位为毫秒。                                    |
+| `duration`        | Number   | 从发送 HTTP 请求到响应的时长, 单位为毫秒。                   |
 
 ## 认证方式
 
 即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
 ```http
-Authorization: Bearer ${YourAppToken}
+Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App Token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 设置用户属性
 
 用户属性由多个属性名和属性值的键值对组成，每个属性名有且仅有一个对应的属性值。
 
 <div class="alert info">一个用户的属性总长度不得超过 2 KB，一个 app 下所有用户的属性总长度不得超过 10 GB。</div>
-
 ### HTTP 请求
 
 ```http
@@ -68,7 +66,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/user/{username}
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型，请填 `application/x-www-form-urlencoded`。 | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。   | 是       |
 
 #### 请求 body
 
@@ -86,6 +84,19 @@ requestBody = ‘name=ken&employer=easemob&title=developer’
 JSONString = ‘{“name”:“ken”, “employer”:“easemob”, “title”:“developer”}’
 
 这个 JSON String 的总长度不得超过 4 KB。
+
+调用该 RESTful 接口设置用户昵称、头像、联系方式、邮箱、性别、签名、生日和扩展字段时，若要确保在客户端能够获取设置，请求中必须传以下键名，根据实际使用场景确定键值：
+
+| 字段        | 类型   | 描述                                                         |
+| :---------- | :----- | :----------------------------------------------------------- |
+| `nickname`  | String | 用户昵称。长度在 64 个字符内。                                 |
+| `avatarurl` | String | 用户头像 URL 地址。长度在 256 个字符内。                       |
+| `phone`     | String | 用户联系方式。长度在 32 个字符内。                             |
+| `mail`      | String | 用户邮箱。长度在 64 个字符内。                                 |
+| `gender`    | Number | 用户性别：<ul><li>`1`：男；</li><li>`2`：女；</li><li>（默认）`0`：未知；</li><li>设置为其他值无效。</li></ul> |
+| `sign`      | String | 用户签名。长度在 256 个字符内。                                 |
+| `birth`     | String | 用户生日。长度在 64 个字符内。                                 |
+| `ext`       | String | 扩展字段。                                                   |
 
 ### HTTP 响应
 
@@ -135,7 +146,7 @@ curl -X PUT -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorizati
 ### HTTP 请求
 
 ```http
-GET https://{host} /{org_name}/{app_name}/metadata/user/{username}
+GET https://{host}/{org_name}/{app_name}/metadata/user/{username}
 ```
 
 #### 路径参数
@@ -146,8 +157,8 @@ GET https://{host} /{org_name}/{app_name}/metadata/user/{username}
 
 | 参数            | 类型   | 描述                                | 是否必填 |
 | :-------------- | :----- | :---------------------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`。 | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。            | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。            | 是       |
 
 ### HTTP 响应
 
@@ -206,8 +217,8 @@ POST https://{host}/{org_name}/{app_name}/metadata/user/get
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | 内容类型。请填 `application/json`     | 是       |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。     | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -296,7 +307,7 @@ GET https://{host}/{org_name}/{app_name}/metadata/user/capacity
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -348,7 +359,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Authorization` | String | 该用户或管理员的鉴权 token，格式为 `Bearer ${YourAppToken}`，其中 Bearer 是固定字符，后面加英文空格，再加获取到的 token 值。 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -358,7 +369,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 | 参数   | 类型 | 描述                                                                                                                        |
 | :----- | :--- | :-------------------------------------------------------------------------------------------------------------------------- |
-| `data` | Boolean | 用户属性是否删除成功：<li>`true`：是。如果指定的用户不存在，或指定用户的用户属性不存在，也视为删除成功。<li>`false`：否。 |
+| `data` | Boolean | 用户属性是否删除成功：<ul><li>`true`：是。如果指定的用户不存在，或指定用户的用户属性不存在，也视为删除成功。</li><li>`false`：否。</li></ul> |
 
 其他字段及说明详见 [公共参数](#param)。
 
