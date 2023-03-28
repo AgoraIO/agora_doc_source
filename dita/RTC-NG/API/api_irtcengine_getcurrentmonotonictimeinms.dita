@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_getcurrentmonotonictimeinms">
+    <title><ph keyref="getCurrentMonotonicTimeInMs"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取当前的单调时间（毫秒）。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getCurrentMonotonicTimeInMs"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract long getCurrentMonotonicTimeInMs();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int64_t)getCurrentMonotonicTimeInMs NS_SWIFT_NAME(getCurrentMonotonicTimeInMs());</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int64_t getCurrentMonotonicTimeInMs() = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="scenario">
+            <title>适用场景</title>
+            <p>声网建议你在自定义视频采集场景中，按照以下步骤计算视频帧的实际时间戳后，覆盖原始的视频帧时间戳： 
+                <ol>
+                <li>设置视频帧基础时间戳，例如首帧时间戳，并存储在变量 <codeph>custom_capture_time_base</codeph> 中。</li>
+                <li>调用 <apiname keyref="getCurrentMonotonicTimeInMs"/> 获取当前单调时间戳（毫秒），并存储在变量 <codeph>agora_monotonic_time</codeph> 中。</li>
+                <li>计算当前单调时间戳与视频帧基础时间戳之间的偏移量，并存储在变量 <codeph>offset</codeph> 中，即 <codeph>offset</codeph> = <codeph>agora_monotonic_time</codeph> - <codeph>custom_capture_time_base</codeph>;</li>
+                <li>将该偏移量添加到用户的原始视频帧时间戳中，以获取实际视频帧时间戳。</li>
+                </ol></p>
+        </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li>>=0: 方法调用成功，返回当前单调时间戳（毫秒）。</li>
+            <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
