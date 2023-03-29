@@ -95,7 +95,7 @@ https://github.com/AgoraIO/AgoraChat_iOS.git
 
 2. 在 **Choose Package Options** 中，设置你要使用的即时通讯 IM SDK 版本。
 
-## 实现单聊聊天客户端
+## 实现单聊客户端
 
 ### 创建 UI
 
