@@ -186,7 +186,10 @@ curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_c
 #### 接口描述
 
 设置课堂状态。课堂状态可以设置为以下值：
-<ul><li>`0`: 未开始。</li><li>`1`: 开始。</li><li>`2`: 结束。课堂时间结束，但在拖堂时间内，用户可以加入课堂和在课堂内逗留。</li><li>`3`: 关闭。拖堂时间结束，课堂关闭，所有用户被踢出并无法再进入。</li></ul>
+- `0`: 未开始。
+- `1`: 开始。
+- `2`: 结束。课堂时间结束，但在拖堂时间内，用户可以加入课堂和在课堂内逗留。
+- `3`: 关闭。拖堂时间结束，课堂关闭，所有用户被踢出并无法再进入。
 详见[灵动课堂有哪些课堂状态？](/cn/agora-class/faq/agora_class_state)。
 
 #### 接口原型
@@ -902,7 +905,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 | `code` | Integer | 响应状态码，详见[公共响应参数](#公共响应参数)。|
 | `msg`  | String  | 接口响应文字信息，详见[公共响应参数](#公共响应参数)。                                                 |
 | `ts`   | Number  | 当前服务端的 Unix 时间戳，详见[公共响应参数](#公共响应参数)。                |
-| `data` | Object  | 返回数据，为[公共响应参数](#公共响应参数)。包含以下数据：<ul><li>`count`: Integer 型，本批数据条数。</li><li>`list`: 由多个 Object 组成的数组。每个 Object 包含以下字段：<ul><li>`appId`: 你的声网 App ID。 </li><li>`roomUuid`: 课堂 uuid。这是课堂的唯一标识符，也是声网 RTC SDK 和声网 RTM SDK 中使用的频道名。 </li><li>`recordId`: 一次录制行为的唯一标识符。调用设置录制状态 API 开始录制到结束录制视为一次录制行为。</li><li>`startTime`: 录制开始的 UTC 时间戳，单位为毫秒。 </li><li>`endTime`: 录制结束的 UTC 时间戳，单位为毫秒。 </li><li>`resourceId`: 声网云端录制服务的 `resourceId`。 </li><li>`sid`: 声网云端录制服务的 `sid`。 </li><li>`recordUid`: 声网云端录制服务在频道内使用的 UID。 </li><li>`boardAppId`: 声网互动白板服务的 `App Identifier` 的值。 </li><li>`boardToken`: 声网互动白板服务的 SDK Token。</li><li>`boardId`: 白板的唯一标识符。 </li><li>`type`: Integer 型，录制类型：<ul><li>`1`: 单流录制</li><li>`2`: 合流录制</li></ul></li><li>`status`: Integer 型，录制状态：<ul><li>`1`: 录制中</li><li>`2`: 录制已结束</li></ul></li><li>`url`: String 型，合流录制模式下录制文件的访问地址。 </li><li>`recordDetails`: JSONArray 类型。包含以下字段：<ul><li>`url`: String 型，网页录制模式下录制文件的访问地址。</li></ul></li><li>`nextId`: String 型，下一批数据的起始 ID。如为 null，则表示没有下一批数据。如不为 null，则可用此 `nextId` 继续查询，直到查到 null 为止。</li><li>`total`: Integer 型，数据总条数。</li><li>`unready`: Boolean 型，值为 `true` 表示录制失败。如果在开启录制时设置了 `retryTimeout` 参数，由于超时未报告 `ready` 而被自动终止的录制任务会被添加 `unready` 标记。</li></ul></li></ul> |
+| `data` | Object  | 返回数据，为[公共响应参数](#公共响应参数)。包含以下数据：<ul><li>`count`: Integer 型，本批数据条数。</li><li>`list`: 由多个 Object 组成的数组。每个 Object 包含以下字段：<ul><li>`appId`: 你的声网 App ID。 </li><li>`roomUuid`: 课堂 uuid。这是课堂的唯一标识符，也是声网 RTC SDK 和声网 RTM SDK 中使用的频道名。 </li><li>`recordId`: 一次录制行为的唯一标识符。调用设置录制状态 API 开始录制到结束录制视为一次录制行为。</li><li>`startTime`: 录制开始的 UTC 时间戳，单位为毫秒。 </li><li>`endTime`: 录制结束的 UTC 时间戳，单位为毫秒。 </li><li>`resourceId`: 声网云端录制服务的 `resourceId`。 </li><li>`sid`: 声网云端录制服务的 `sid`。 </li><li>`recordUid`: 声网云端录制服务在频道内使用的 UID。 </li><li>`boardAppId`: 声网互动白板服务的 `App Identifier` 的值。 </li><li>`boardToken`: 声网互动白板服务的 SDK Token。</li><li>`boardId`: 白板的唯一标识符。 </li><li>`type`: Integer 型，录制类型：<ul><li>`1`: 单流录制</li><li>`2`: 合流录制</li></ul></li><li>`status`: Integer 型，录制状态：<ul><li>`1`: 录制中</li><li>`2`: 录制已结束</li></ul></li><li>`url`: String 型，合流录制模式下录制文件的访问地址。 </li><li>`recordDetails`: JSONArray 类型。包含以下字段：<ul><li>`url`: String 型，网页录制模式下录制文件的访问地址。</li></ul></li><li>`nextId`: String 型，下一批数据的起始 ID。如为 null，则表示没有下一批数据。如不为 null，则可用此 `nextId` 继续查询，直到查到 null 为止。</li><li>`total`: Integer 型，数据总条数。</li><li>`unready`: Boolean 型，值为 `true` 表示录制失败。如果在开启录制时设置了 `retryTimeout` 参数，由于超时未报告 `ready` 而被自动终止的录制任务会被添加 `unready` 标记。</li></ul></li><li>`webRecordUrlQuery`: String 型，页面录制中的 query 参数。拼接 [`LaunchOption`](agora_class_api_ref_web#launchoption) 参数传入的录制页面的 `recordUrl` 的值和 `webRecordUrlQuery` 的值即可得到录制页面的 URL，可用于本地调试。<div class="alert note">本地访问录制页面时，远端开启录制的用户会被踢出，请确保录制停止后再访问录制页面。</div></li></ul> |
 
 #### 响应示例
 
