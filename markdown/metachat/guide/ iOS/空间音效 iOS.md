@@ -10,19 +10,24 @@
 
 结合 `AgoraMetachatSceneEventDelegate` 提供的用户位置信息回调和 `AgoraLocalSpatialAudioKit` 提供的空间音效系列方法，你可以实现带空间音效的元语聊。
 
+## 示例项目
+
+声网在 GitHub 上提供开源 [Agora-MetaChat](https://github.com/AgoraIO-Community/Agora-MetaChat/tree/dev_sdk2) 示例项目供你参考使用。如果你还需了解 Unity 部分的工程文件和功能指南，请联系 sales@agora.io 获取。
+
+
 ## 前提条件
 
-实现空间音效前，请确保你已实现基础的元语聊功能，如创建、进入 3D 常见，更新用户角色。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_ios?platform=All%20Platforms)。
+实现空间音效前，请确保你已实现基础的元语聊功能，如创建、进入 3D 场景、创建虚拟形象。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_ios?platform=All%20Platforms)。
 
 
 ## 实现步骤
 
-用户听到的声音是接收到的远端音频流，包含如下音频流：
+用户在元宇宙中听到的声音分为两类：
 
-- 远端用户音频流，即人声和环境背景音。
-- 远端媒体播放器音频流，即音乐音效。
+- 远端用户的音频
+- 本地媒体播放器播放的音频
 
-因此，实现空间音效时你需要对两种音频流都进行处理。
+因此，实现空间音效时，你需要按照如下步骤对两种音频都进行处理。
 
 ### 用户空间音效
 
