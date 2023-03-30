@@ -38,7 +38,7 @@
 
 同时，声网还支持发流端自定义设置是否参与音强选流，不参与选流的音频流会直接和被选出的 N 路音频流一同传输至接收端。在大型会议等多人发流的场景下，开启音强选流功能可以帮助减轻接收端的下行带宽压力和系统资源消耗，详见音强选流。
 
-<div class="alert info">该版本新增音强选流功能，如需开启该功能，请联系<a href="https://agora-ticket.agora.io/">技术支持</a>。</div>
+<div class="alert info">该版本新增音强选流功能，如需开启该功能，请联系<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">技术支持</a>。</div>
 
 
 **5. 双流模式**
@@ -409,11 +409,11 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 - 将多路视频流合图后通过一个用户 ID (`uid`) 发布到远端。
 
 
-**2. 超高清分辨率 (Beta)**
+**2. 全高清分辨率**
 
-为提升视频互动体验，SDK 对视频采集、编码、解码、渲染全流程做出了优化，自该版本起支持 4K 分辨率。优化了 FEC (Forward Error Correction) 算法，可根据视频帧包数与帧率进行自适应切换，降低 4K 场景下的视频卡顿率。
-你可以在调用 `setVideoEncoderConfiguration` 时，设置编码分辨率为 4K (3840 × 2160)、帧率为 60 fps。当你的设备不支持 4K 时，SDK 支持自动回退到适合的分辨率和帧率。
-该功能对设备性能和网络带宽有一定要求，在不同的平台上支持的上下行帧率也不同，如需体验该功能，请[提交工单](https://agora-ticket.agora.io/)。
+为提升视频互动体验，SDK 对视频采集、编码、解码、渲染全流程做出了优化，自该版本起支持全高清（FHD）和超高清（UHD）视频分辨率。你可以在调用 `setVideoEncoderConfiguration` 方法时，将 `dimensions` 参数设置为 1920 × 1080 或更高的分辨率。如果你的设备不支持高分辨率，SDK 支持自动回退到适合的分辨率。
+
+<div class="alert info">高分辨率通常需要更高的性能消耗，为避免设备性能不足导致体验下降，声网建议你在性能较好的设备上开启全高清和超高清视频分辨率。</div>
 
 
 **3. 内置媒体播放器**
@@ -440,7 +440,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 
 **6. 空间音效**
 
-<div class="alert note">空间音效功能当前处于实验阶段，请联系 <a href= "mailto:sales@agora.io">sales@agora.io</a> 开通空间音效功能，如果需要技术支持，请<a href="https://agora-ticket.agora.io/">提交工单</a>。</div>
+<div class="alert note">空间音效功能当前处于实验阶段，请联系 <a href= "mailto:sales@agora.io">sales@agora.io</a> 开通空间音效功能，如果需要技术支持，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
 该版本提供本地直角坐标系计算方案实现空间音效：
 
