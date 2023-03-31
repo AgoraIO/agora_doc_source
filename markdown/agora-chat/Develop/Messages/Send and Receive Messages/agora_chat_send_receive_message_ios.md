@@ -272,7 +272,7 @@ NSString *remotePath = body.remotePath;
 NSString *localPath = body.localPath;
 ```
 
-### 发送和接收位置消息
+### 发送位置消息
 
 要发送和接收位置信息，需要集成第三方地图服务。发送位置信息时，从地图服务提供商处获取该位置的经纬度信息；接收到位置信息时，提取接收到的经纬度信息，并在第三方地图上显示位置。
 

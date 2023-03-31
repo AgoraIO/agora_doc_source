@@ -401,7 +401,7 @@ message.setMessageStatusCallback(new CallBack() {
 ChatClient.getInstance().chatManager().downloadAttachment(message);
 ```
 
-### 发送和接收位置消息
+### 发送位置消息
 
 要发送和接收位置信息，你需要集成第三方地图服务，获取该位置的经纬度信息；接收到位置信息时，提取接收到的经纬度信息，并在第三方地图上显示位置。
 
@@ -518,7 +518,7 @@ ChatManager.getInstance().addMessageListener(new MessageListener() {
 });
 ```
 
-### 发送和接收自定义类型消息
+### 发送自定义类型消息
 
 除以上消息类型外，你还可以通过键值对的形式自定义消息类型和消息内容。
 
