@@ -1,8 +1,8 @@
-本文提供在线 K 歌房场景定制化 Objective-C API。
+本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码 [KTVApi.h](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.h) 和 [KTVApi.m](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.m)。
 
 ## 方法
 
-### initWithRtcEngine
+### initWithRtcEngine:channel:musicCenter:player:dataStreamId:delegate:
 
 ```objective-c
 - (id)initWithRtcEngine:(AgoraRtcEngineKit *)engine
@@ -11,7 +11,6 @@
     player:(nonnull id<AgoraMusicPlayerProtocol>)rtcMediaPlayer
     dataStreamId:(NSInteger)streamId
     delegate:(id<KTVApiDelegate>)delegate;
-)
 ```
 
 初始化 KTV API。
@@ -29,32 +28,10 @@
 - `musicCenter`: 版权音乐内容中心实例。详见 [AgoraMusicContentCenter](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusiccontentcenter)。
 - `player`: 音乐播放器实例。详见 [AgoraMusicPlayerProtocol](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusicplayer)。
 - `dataStreamId`: 数据流（Data Stream）ID。
-- `delegate`: [KTVApiDelegate](#didchangedtostate)。
+- `delegate`: [KTVApiDelegate](#controllersongdidchangedtostatelocal)。
 
 
-### release
-
-```objective-c
-fun release()
-```
-
-释放 KTV API 资源。
-
-调用该方法可以清空 KTV API 模块内部变量和缓存数据，取消 `ktvApiEventHandler` 的事件监听，取消网络请求等。
-
-#### 用法示例
-
-```objective-c
-// K 歌房 Activity 销毁时调用 ktvApiProtocol 释放，随后释放创建的实例
-@Override
-protected void onDestroy() {
-    super.onDestroy();
-    ktvApiProtocol.release()
-    // 释放 mRtcEngine、iAgoraMusicContentCenter、mPlayer、streamId
-}
-```
-
-### loadSong
+### loadSong:withConfig:withCallback:
 
 ```objective-c
 - (void)loadSong:(NSInteger)songCode
@@ -73,7 +50,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 - `block`: 歌词加载状态事件。
 
 
-### playSong
+### playSong:
 
 ```objective-c
 - (void)playSong:(NSInteger)songCode
@@ -112,7 +89,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 暂停播放歌曲。
 
-### seek
+### seek:
 
 ```objective-c
 - (void)seek:(time: NSInteger);
@@ -124,7 +101,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 - `time`: 跳转的时间点。单位为毫秒。
 
-### selectTrackMode
+### selectTrackMode:
 
 ```objective-c
 - (void)selectTrackMode:(KTVPlayerTrackMode)mode;
@@ -138,7 +115,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 - `mode`: 音轨的类型。详见 [KTVPlayerTrackMode](#ktvplayertrackmode)。
 
-### setKaraokeView
+### setKaraokeView:
 
 ```objective-c
 @property(nonatomic, weak) KaraokeView* karaokeView;
@@ -159,7 +136,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 ## 回调
 
-### didChangedToState
+### controller:song:didChangedToState:local:
 
 ```objective-c
 @protocol KTVApiDelegate <NSObject>

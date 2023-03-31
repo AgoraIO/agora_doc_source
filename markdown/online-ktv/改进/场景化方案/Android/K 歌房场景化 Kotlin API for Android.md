@@ -1,5 +1,4 @@
-本文提供在线 K 歌房场景定制化 Kotlin API。
-
+本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
 
 ## 方法
 
