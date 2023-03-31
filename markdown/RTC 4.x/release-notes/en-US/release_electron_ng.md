@@ -285,7 +285,7 @@ This release fixed the following issues:
 
 #### New features
 
-**2. Ultra HD resolution (Beta) (Windows, macOS)**
+**2. Ultra HD resolution (Beta)**
 
 In order to improve the interactive video experience, the SDK optimizes the whole process of video capture, encoding, decoding and rendering, and now supports 4K resolution. The improved FEC (Forward Error Correction) algorithm enables adaptive switches according to the frame rate and number of video frame packets, which further reduces the video stuttering rate in 4K scenes.
 
