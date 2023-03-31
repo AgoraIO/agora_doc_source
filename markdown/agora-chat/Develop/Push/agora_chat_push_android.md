@@ -1018,7 +1018,7 @@ public class MyVivoMsgReceiver extends VivoMsgReceiver {
 // 本示例以文本消息为例，图片和文件等消息类型的设置方法相同
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("message content");
-// 设置要发送用户的 agora ID
+// 设置消息接收方：单聊为对端用户的用户 ID；群聊为群组 ID；聊天室聊天为聊天室 ID。
 message.setTo("toChatUsername");
 // 设置自定义推送提示
 JSONObject extObject = new JSONObject();
@@ -1052,7 +1052,7 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 // 本示例以文本消息为例，图片和文件等消息类型的设置方法相同
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("message content");
-// 设置要发送用户的 Agora ID
+// 设置消息接收方：单聊为对端用户的用户 ID；群聊为群组 ID；聊天室聊天为聊天室 ID。
 message.setTo("toChatUsername");
 // 设置自定义推送提示
 JSONObject extObject = new JSONObject();
@@ -1084,21 +1084,45 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 设置强制推送后，用户发送消息时会忽略接收方的免打扰设置，不论是否处于免打扰时间段都会正常向接收方推送消息。
 
 ```java
-// 本示例以文本消息为例，图片和文件等消息类型的设置方法相同
+// 本示例以文本消息为例，图片和文件等消息类型的设置方法相同。
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("test");
-// 设置要发送用户的 Agora ID
+// 设置消息接收方：单聊为对端用户的用户 ID；群聊为群组 ID；聊天室聊天为聊天室 ID。
 message.setTo("toChatUsername");
-// 设置自定义扩展字段
+// 设置自定义扩展字段。
 message.setAttribute("em_force_notification", true);
-// 设置消息回调
+// 设置消息回调。
 message.setMessageStatusCallback(new CallBack() {...});
-// 发送消息
+// 发送消息。
 ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 | 参数                    | 描述                                                        |
 | :---------------------- | :---------------------------------------------------------- |
 | `txtBody`               | 推送消息内容。                                              |
-| `toChatUsername`        | 消息接收方的用户 ID。                                          |
-| `em_force_notification` | 是否为强制推送：<ul><li>`true`：强制推送</li><li>`false`：</li></ul><br/>非强制推送该字段名固定，不可修改。 |
+| `toChatUsername`        | 消息接收方：<ul><li>单聊为对端用户的用户 ID；</li><li>群聊为群组 ID；</li><li>聊天室聊天为聊天室 ID。</li></ul>                                        |
+| `em_force_notification` | 是否为强制推送：<ul><li>`true`：强制推送；</li><li> （默认）`false`：非强制推送。<br/>该字段名固定，不可修改。 |
+
+### 发送静默消息
+
+发送静默消息指用户离线时，即时通讯 IM 服务不会通过第三方厂商的消息推送服务向该用户的设备推送消息通知。因此，用户不会收到消息推送通知。当用户再次上线时，会收到离线期间的所有消息。
+
+```java
+// 本示例以文本消息为例，图片和文件等消息类型的设置方法相同。
+ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
+TextMessageBody txtBody = new TextMessageBody("test");
+// 设置消息接收方：单聊为对端用户的用户 ID；群聊为群组 ID；聊天室聊天为聊天室 ID。
+message.setTo("toChatUsername");
+// 设置自定义扩展字段。
+message.setAttribute("em_ignore_notification", true);
+// 设置消息回调。
+message.setMessageStatusCallback(new CallBack() {...});
+// 发送消息。
+ChatClient.getInstance().chatManager().sendMessage(message);
+```
+
+| 参数                    | 描述                                                        |
+| :---------------------- | :---------------------------------------------------------- |
+| `txtBody`               | 推送消息内容。                                              |
+| `toChatUsername`        | 消息接收方：<ul><li>单聊为对端用户的用户 ID；</li><li>群聊为群组 ID；</li><li>聊天室聊天为聊天室 ID。</li></ul>       |
+| `em_ignore_notification` | 是否发送静默消息：<ul><li>`true`：发送静默消息；</li><li> （默认）`false`：推送该消息。<br/>该字段名固定，不可修改。 |
