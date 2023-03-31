@@ -23,7 +23,7 @@
 
 #### 参数
 
-- `engine`: [AgoraRtcEngineKit](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_irtcengine)
+- `engine`: [AgoraRtcEngineKit](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_irtcengine)。
 - `channel`: 待加入的频道名。
 - `musicCenter`: 版权音乐内容中心实例。详见 [AgoraMusicContentCenter](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusiccontentcenter)。
 - `player`: 音乐播放器实例。详见 [AgoraMusicPlayerProtocol](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusicplayer)。
