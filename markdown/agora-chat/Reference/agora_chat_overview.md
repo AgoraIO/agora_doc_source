@@ -84,11 +84,17 @@
 
 ## 平台支持
 
-即时通讯支持以下平台，且平台间能够互通：
+即时通讯支持 Android、iOS、Web 等平台，而且各平台之间可互通。下表为即时通讯支持的各平台版本：
 
-- Android 5.0+
-- iOS 10.0+
-- Web（Internet Explorer 9+、FireFox 10+、Chrome 54+、Safari 6+、IE 9+、Edge 12+、QQ 浏览器 8.0+、360 浏览器 10.0+、微信 H5、App 内嵌 H5、Opera 58+）
+| 平台     | 支持的版本                                   |
+| ------------ | ------------------------------------------------------------ |
+| Android      | Android 5.0 或以上版本（API 级别 21 或以上）   |
+| iOS          | iOS 10.0 或以上版本                                            |
+| Web          | <li>Internet Explorer 9 或以上 <li>FireFox 10 或以上 <li>Chrome 54 或以上 Safari 6 或以上<li>Edge 12 或以上 <li>Opera 58 或以上<li>iOS Safari 7 或以上<li>Android Browser 4.4 (KitKat) 或以上 |
+| Unity        | Unity 2017 或以上版本                                         |
+| Windows      | Windows 10 或以上版本                                       |
+| React Native | React Native 0.63.4 或以上版本                              |
+| Flutter      | Flutter 2.10                                                 |
 
 ## 云信令与即时通讯的区别
 
