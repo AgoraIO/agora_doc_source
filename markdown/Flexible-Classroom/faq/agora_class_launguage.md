@@ -55,4 +55,6 @@ packages/agora-plugin-gallery/src/gallery/answer/i18n
 
 ## 三、iOS端添加多语言资源文件
 iOS端多语言在Localizable文件下面添加多语言的扩展
-<img src="./images/launguage_8.png" style="zoom: 33%;" />
+<img src="./images/launguage_9.png" style="zoom: 33%;" />
+具体参照这个en.lproj或者zh-Hans.lproj
+例如增加一个语言日语。则复制一个japan.lproj文件夹。在里面复制一份Localizable.strings文件。添加日语相关的翻译即可。
