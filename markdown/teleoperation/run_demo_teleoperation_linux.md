@@ -9,7 +9,7 @@
 
 ## 准备开发环境
 
-确保你的开发设备满足以下要求：
+参考如下要求分别准备硬件环境和软件环境。
 
 ### 硬件环境
 
@@ -29,7 +29,7 @@
 #### 性能要求
 
 - CPU：8 核，1.8 GHz 主频
-- 内存：2 GB 或更高。推荐 4 GB 或更高。
+- 内存：4 GB 或更高
 
 #### 网络要求
 
@@ -125,11 +125,11 @@ export LD_LIBRARY_PATH=./../agora_sdk/
 | `fps` | 摄像头采集的视频帧率 (fps)，默认值为 30。该值需要根据实际的摄像头规格进行调整。 | Integer| 选填 |
 | `width` | 视频宽 (px)，默认值为 640。该值需要根据实际的摄像头规格进行调整。 | Integer| 选填 |
 | `height` | 视频高 (px)，默认值为 480。该值需要根据实际的摄像头规格进行调整。 | Integer| 选填 |
-| `bitrate` | 视频码率 (Mbps)，默认值为 1。该值可根据实际的视频 profile 和网络状况进行调整。  | Integer| 选填 |
-| `device` | 摄像头名称，默认采集 `/dev/video0`。<div class="alert info">你可以通过 <code>ls /dev/video*</code> 命令查看当前设备上所有摄像头的名称。</div>  | String| 选填 |
+| `bitrate` | 视频码率 (Mbps)，默认值为 1。该值可根据实际的视频属性和网络状况进行调整。  | Integer| 选填 |
+| `device` | 摄像头名称，默认采集 `/dev/video0`。你可以通过 `ls /dev/video*` 命令查看当前设备上所有摄像头的名称。  | String| 选填 |
 
 
-运行成功后，你的终端会打印如下 Log 表明设备端正在采集并发送视频数据：
+运行成功后，你的终端会打印如下信息表明设备端正在采集并发送视频数据：
 
 ```bash
 [ APP_LOG_INFO ] Start sending video data ...
@@ -156,9 +156,9 @@ export LD_LIBRARY_PATH=./../agora_sdk/
 | `videoFile` | 接收视频流的存储文件，默认为 `received_video.yuv`。 | String | 选填 |
 | `sampleRate` | 音频帧的采样率 (Hz)，默认值为 16000。 | Integer | 选填 |
 | `numOfChannels` | 音频的声道数，默认值为 1。 | Integer | 选填 |
-| `streamType` | 视频流类型。默认值为 `STREAM_TYPE_HIGH`，使用大流，分辨率和码率较高。	 | String | 选填 |
+| `streamType` | 视频流类型。默认值为 `STREAM_TYPE_HIGH`，使用大流，分辨率和码率较高。如需使用分辨率和码率较低的小流，可以指定 `VIDEO_STREAM_LOW`。	 | String | 选填 |
 
-运行成功后，你的终端会打印如下 Log 表明操控端正在接收设备端发送的音视频流：
+运行成功后，你的终端会打印如下信息表明操控端正在接收设备端发送的音视频流：
 
 ```bash
 [ APP_LOG_INFO ] Subscribe streams from all remote users
@@ -168,7 +168,7 @@ export LD_LIBRARY_PATH=./../agora_sdk/
 
 ## 体验控制信令互通
 
-本章节演示 Linux 设备端和 Linux 操控端之间的控制信令互通。在实际场景中，设备端和操控端会互相收发控制信令。
+在实际场景中，设备端和操控端会互相收发控制信令。本章节演示 Linux 设备端和 Linux 操控端之间的控制信令互通。
 
 ### 发送控制信令
 
@@ -190,7 +190,7 @@ export LD_LIBRARY_PATH=./../agora_sdk/
 | `remoteUserId` | 远端用户的 user ID，仅支持传入内容为数值的字符串。 | String| **必填** |
 | `receive` | 是否订阅远端消息。 | Boolean| 选填 |
 
-运行成功后，你的终端会打印如下 Log 表明正在发送控制信令：
+运行成功后，你的终端会打印如下信息表明正在发送控制信令：
 
 ```bash
 [ APP_LOG_INFO ] join channel 0
@@ -218,7 +218,7 @@ export LD_LIBRARY_PATH=./../agora_sdk/
 | `remoteUserId` | 远端用户的 user ID，即发送端的 `userId`。 | String| **必填** |
 | `answer` | 是否订阅远端消息。 | Boolean| 选填 |
 
-运行成功后，你的终端会打印如下 Log 表明正在接收对端发送的控制信令：
+运行成功后，你的终端会打印如下信息表明正在接收对端发送的控制信令：
 
 ```bash
 [ APP_LOG_INFO ] join channel is 0
