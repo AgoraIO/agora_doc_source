@@ -73,7 +73,11 @@ fun loadSong(
 
 - `songCode`: 歌曲编号。
 - `config`: K 歌配置。详见 [KTVSongConfiguration](#ktvsongconfiguration)。
-- `onLoaded`: 歌词加载状态事件。
+- `onLoaded`: 歌词加载状态事件，包含如下参数：
+    - `songCode`: 歌词编号。
+    - `lyricUrl`: 歌词文件的 URL。
+    - `role`: 当前用户角色，详见 [KTVSingRole](#ktvsingrole)。
+    - `state`: 歌曲加载状态，详见 [KTVLoadSongState](#ktvloadsongstate)。
 
 
 ### playSong
