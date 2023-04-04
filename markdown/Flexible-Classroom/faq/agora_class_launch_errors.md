@@ -1,28 +1,29 @@
 
-##加入课堂相关的报错
-###1、web端加入房间的时候接口报600001-1错误怎么办?登录教室的时候报401错误怎么办？
+## 如何处理加入课堂相关报错？
+
+### Web 端加入房间时报 `600001-1` 错误，或登录教室时服务端报 401 错误怎么办？
+
 <img src="./images/launch_600001_1_error.png" style="zoom: 33%;" />
 
-接口报401错误，一般是launch接口传入的rtmToken错误，或者appId和rtmToken不匹配
-
-https://docs.agora.io/cn/agora-class/agora_class_api_ref_web?platform=Web#launch
-
+ `600001-1` 和 `401` 错误一般是因为 [`launch`](agora_class_api_ref_web?platform=Web#launch) 方法传入的 RTM Token 错误，或者 RTM Token 和 App ID 不匹配。请检查 RTM Token 是否正确，以及保证 App ID 和 RTM Token 匹配。
 
 <img src="./images/launch_rtm_token.png" style="zoom: 33%;" />
 
-rtmToken一般推荐客户的后端生成，客户的前端调用后台生成的rtmToken使用。
-生成器代码用例https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms#token-%E7%94%9F%E6%88%90%E5%99%A8%E4%BB%A3%E7%A0%81
+声网推荐你在后端生成 RTM Token，前端调用生成的 token，详情参考[使用 AccessToken2 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token2_server_rtm)。
 
-临时生成测试的话可以使用这个工具https://webdemo.agora.io/token-builder/
+如果需要临时生成 token 测试，可以使用这个[工具](https://webdemo.agora.io/token-builder/)。
 
-###2.有客户遇到了这个错误"代码30409104详细信息：roomType conflict"。
+### 报错 "代码 30409104 详细信息：roomType conflict" 怎么办？
+
 <img src="./images/launch_error_002.png" style="zoom: 33%;" />
 
-报错原因是：30409104：roomType conflict
-此房间号已经创建了1v1。您不能再使用相同的房间编号创建一个小班。
-同一个房间UUID被配置为不同的房间类型，从而导致房间类型冲突。建议不要重复使用每个房间的UUID，并且每个房间都应配置一个单独的房间类型。
+该错误是因为该房间编号（`roomUuid`）已经创建了一个小班课课堂，同一个房间编号被配置为不同的房间类型，从而导致房间类型冲突。
+声网建议不要使用同一个房间编号创建多个课堂，并且每个房间都应配置一个不同的房间类型。
 
-其他相关错误码请参照：https://docs.agora.io/cn/agora-class/agora_class_restful_api?platform=All%20Platforms#%E5%93%8D%E5%BA%94%E7%8A%B6%E6%80%81%E7%A0%81
+其他相关服务端错误码可参考[响应状态码](agora_class_restful_api#响应状态码)
 
-###3.进入教室报错Error Domain=last launch not finished Code=-1 "(null)" 
--1是rtmtoken不对，或者rtmtoken跟appid、userid不匹配或者过期了。请检查rtmToken生成的值是否正确。
+### 进入教室报错 “Error Domain=last launch not finished Code=-1 "(null)" ” 怎么办？
+
+该错误错误一般是因为 [`launch`](agora_class_api_ref_web?platform=Web#launch) 方法传入的 RTM Token 错误或过期，或者 RTM Token 和 App ID 或 User ID 不匹配。请检查 RTM Token 是否正确和有效，以及保证 RTM Token 和 App ID 以及 User ID 匹配。
+
+

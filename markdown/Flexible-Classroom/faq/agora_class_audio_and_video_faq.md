@@ -1,24 +1,31 @@
-##1、web端打不开摄像头和麦克风怎么办？
-1、请确认浏览器摄像头的权限是否打开
-<img src="./images/camera_mic_1.png" style="zoom: 23%;" />
+## 为什么 Web 端无法打开摄像头或麦克风？
 
-<img src="./images/camera_mic_2.png" style="zoom: 23%;" />
+请确认浏览器摄像头或麦克风的权限是否打开，步骤参考以下截图：
 
-<img src="./images/camera_mic_3.png" style="zoom: 23%;" />
+![](https://web-cdn.agora.io/docs-files/1679997920685)
 
-如果权限已经开启了，请采用下面几个步骤刷新一下
-2、清理一下浏览器的缓存
-3、关闭重启一下浏览器
-4、升级一下chrome浏览器的版本
+![](https://web-cdn.agora.io/docs-files/1679998051320)
+
+![](https://web-cdn.agora.io/docs-files/1679998062617)
+
+如果已经开启权限依然不能打开摄像头或麦克风，请按以下步骤刷新：
+1. 清理浏览器缓存
+2. 重启浏览器
+3. 升级浏览器版本
 
 
-##2、如何修改课程中视频分辨率？
-web端的launch接口可以通过修改launchOption.MediaOptions参数来调整分辨率。
-launchOption.MediaOptions.lowStreamCameraEncoderConfiguration 改小流的分辨率
-launchOption.mediaOptions.cameraEncoderConfiguration 改大流的分辨率
-launchOption.mediaOptions.screenShareEncoderConfiguration修改屏幕共享的分辨率
-eg:
-```
+## 如何调整视频分辨率？
+### 课堂中视频分辨率
+
+Web 端可以通过改变 [`launch`](agora_class_api_ref_web?platform=Web#launch) 方法中的 `launchOption.MediaOptions` 参数来调整课堂中的分辨率：
+
+- `launchOption.MediaOptions.lowStreamCameraEncoderConfiguration` 用于调整小流的分辨率
+- `launchOption.mediaOptions.cameraEncoderConfiguration` 用于调整大流的分辨率
+- `launchOption.mediaOptions.screenShareEncoderConfiguration` 用于调整屏幕共享的分辨率
+
+以下示例代码说明了如何修改大小流的分辨率：
+
+```js
     AgoraEduSDK.launch(appRef.current, {
         ...launchOption,
         recordUrl,
@@ -46,7 +53,11 @@ eg:
    
 ```
 
-修改录制的分辨率：
+### 录制视频分辨率
+
+Web 端可以通过改变 RESTful API [设置录制状态](agora_class_restful_api?platform=RESTful#%E8%AE%BE%E7%BD%AE%E5%BD%95%E5%88%B6%E7%8A%B6%E6%80%81)中的 `webRecordConfig` 参数来调整课堂录制视频的分辨率，参照以下示例代码：
+
+```js
 get recordArgs() {
 const { recordUrl, rteEngineConfig, recordRetryTimeout } = EduClassroomConfig.shared;
 const args = {
@@ -60,50 +71,53 @@ const args = {
     mode: RecordMode.Web,
     retryTimeout: recordRetryTimeout,
 };
+```
+
+## 使用屏幕共享报错时“请先打开屏幕录制权限”?
+
+如果你在开启屏幕共享时遇到如下错误，说明你还未开启系统屏幕录制权限。
+![](https://web-cdn.agora.io/docs-files/1679998107736)
 
 
-##3、使用屏幕共享报错，如何开启屏幕录制功能权限?
-屏幕共享开启的时候报如下错误：
-<img src="./images/screen_share_error.png" style="zoom: 33%;" />
+以 macOS 系统为例，你可以在**系统设置** > **隐私与安全性** > **屏幕录制**开启相应的权限，参考以下截图：
+![](https://web-cdn.agora.io/docs-files/1679998119366)
+
+![](https://web-cdn.agora.io/docs-files/1679998128665)
 
 
-需要开启系统屏幕录制权限。系统设置-》隐私与安全性-》屏幕录制开启相关的开关
-<img src="./images/screen_share_setting.png" style="zoom: 33%;" />
+## 直播是否有网络带宽的要求？
 
-<img src="./images/screenshare_turn_on.png" style="zoom: 33%;" />
-
-
-##4、直播对网络带宽的要求
-1)  老师端带宽及速率：10Mbps以上独享宽带，上行速率大于4Mbps
-2)  学生端带宽及速率：最低4Mbps以上独享宽带.
+- 老师端带宽及速率：10 Mbps以上独享宽带，上行速率大于 4 Mbps。
+- 学生端带宽及速率：最低 4 Mbps 以上独享宽带。
 
 
-##5、用户在上课的时候频繁卡顿，听不清楚老师上课内容、进教室的时候白屏、视频窗口黑屏、白板模块加载课件失败等怎么办?
-1)   重启下路由器，网络重连后刷新试下
-2)   靠近路由器，不要隔墙
-3)   断开其他占网速的程序、设备，比如下载类、在线 播放器类、云盘类软件、电视网络机顶盒等
-4)   切换网络试下，比如切成4G热点网络重进加入房间。
-5)   重启下设备
-6)   关闭VPN或代理
+## 上课时频繁卡顿，听不清音频，出现白屏或黑屏，加载课件失败等怎么办?
+
+如果你出现以上网络问题，可参考以下步骤检查你的网络：
+
+- 重启路由器，重连网络。
+- 设备靠近路由器，不要隔墙。
+- 断开其他占用网速的程序或设备，例如下载程序、在线播放程序、云盘类软件、电视网络机顶盒等。
+- 切换网络，例如从 WiFi 切换成 4G 热点网络重进课堂。
+- 重启设备。
+- 关闭 VPN 或网络代理。
 
 
 
-##6、学生听不到老师声音怎么办？
-1)   检查下自己的网络是否正常；
-2)   检查下学生的电脑扬声器/浏览器是否静音（播放音乐试试）；
-3)   检查下老师是否开启了麦克风；
-4)   学生退出重进直播间或重启一下设备；
-5)   学生先检测教室内的扬声器设备是否选择正确
-6)   学生检查下系统的扬声器音量是否正常打开（包括音量合成器）
-7）   重启电脑
+## 学生听不到老师声音怎么办？
+
+- 检查老师端是否开启麦克风。
+- 检查学生端网络情况。
+- 检查学生端扬声器（包括音量合成器）和浏览器是否静音。
+- 检查学生端课堂中使用的扬声器设备是否选择正确。
+- 学生端退出重进课堂或重启设备。
 
 
-##7、上课老师反馈听不到学生声音怎么办？
-1)   查看学生是否上台并打开麦克风；
-2)   老师的扬声器是否选择正确并打开；
-3)   老师退出重进直播间或重启一下设备；
-4)   老师先检测教室内的扬声器设备是否选择正确
-5)   老师检查下系统的扬声器音量是否正常打开（包括音量合成器）
-6）  重启电脑
+## 老师听不到学生声音怎么办？
+
+- 检查学生是否上台并打开麦克风。
+- 检查老师端扬声器（包括音量合成器）和浏览器是否静音。
+- 检查老师端课堂中使用的扬声器设备是否选择正确。
+- 老师端退出重进课堂或重启设备。
 
 
