@@ -27,7 +27,7 @@
         </section>
         <section id="detailed_desc">
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data captured by the local camera. You can then pre-process the data according to your scenarios.</p>
-            <p props="native unity electron rn">After pre-processing, you can send the processed video data back to the SDK through this callback.</p>
+            <p props="native unity electron rn">完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
             <note type="attention" id="note">
             <ul>
             <li>The video data that this callback gets has not been pre-processed, and is not watermarked, cropped, rotated or beautified.</li>
