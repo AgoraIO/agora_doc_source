@@ -37,8 +37,9 @@
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
         <note conkeyref="playEffect3/note" />
-        <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. For a better user experience, Agora recommends playing no more than three audio effect files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.<note type="note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Audio Formats</xref>.</note></p>
+        <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.<note type="note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Audio Formats</xref>.</note></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -50,8 +51,8 @@
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
-                    <p props="cpp">Agora supports URL addresses, absolute paths, or file paths that start with <codeph>/assets/</codeph>. For example: <codeph><ph keyref="filePath-example" /></codeph>.</p>
-                    <p props="android">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example: <codeph><ph keyref="filePath-example" /></codeph>.</p>
+                    <p props="cpp">Agora supports URL addresses, absolute paths, or file paths that start with <codeph>/assets/</codeph>. For example, <codeph><ph keyref="filePath-example" /></codeph>.</p>
+                    <p props="android">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example, <codeph><ph keyref="filePath-example" /></codeph>.</p>
                     <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
             </plentry>
             <plentry id="loopcount">
@@ -59,7 +60,7 @@
                 <pd>
                     <p>The number of times the audio effect loops.<ul>
                     <li>≥ 0: The number of playback times. For example, 1 means looping one time, which means playing the audio effect two times in total.</li>
-                    <li>-1: Play the audio effect in an infinite loop.</li>
+                    <li>-1: Play the audio file in an infinite loop.</li>
                     </ul></p>
                 </pd>
             </plentry>

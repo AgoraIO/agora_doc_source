@@ -50,9 +50,11 @@
     required int channels,
     int sourceNumber = 1,
     bool localPlayback = false,
-    bool publish = true});</codeblock> </p>
+    bool publish = true});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
+            <title>Details</title>
             <note type="attention">Call this method before joining a channel.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -68,15 +70,15 @@
             </plentry>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>The sample rate (Hz) of the external audio source, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
+                <pd>The sample rate (Hz) of the external audio which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</pd>
             </plentry>
             <plentry>
                 <pt>channels</pt>
-                <pd>The number of channels of the external audio source, which can be set as <codeph>1</codeph> (Mono) or <codeph>2</codeph> (Stereo).</pd>
+                <pd>The number of channels of the external audio source, which can be set as <codeph>1</codeph> (Mono) or <codeph>2 </codeph>(Stereo).</pd>
             </plentry>
             <plentry>
                 <pt>sourceNumber</pt>
-                <pd><ph>The number of external audio sources. The value of this parameter should be larger than 0. </ph><ph props="hide">Multiple audio sources are mixed. </ph><ph>The SDK creates a corresponding number of custom audio tracks based on this parameter value and names the audio tracks starting from 0. In <xref keyref="ChannelMediaOptions" />, you can set <parmname>publishCustomAudioSourceId</parmname> to the ID of the audio track you want to publish.</ph></pd>
+                <pd><ph>The number of external audio sources. The value of this parameter should be larger than 0. </ph><ph props="hide">Multiple audio sources are mixed. </ph><ph>The SDK creates a corresponding number of custom audio tracks based on this parameter value and names the audio tracks starting from 0. In <xref keyref="ChannelMediaOptions" />, you can set <parmname>publishCustomAudioSourceId</parmname> to the audio track ID you want to publish.</ph></pd>
             </plentry>
             <plentry>
                 <pt>localPlayback</pt>
@@ -92,15 +94,16 @@
                 <pd>
                     <p>Whether to publish audio to the remote users:<ul id="ul_agk_dnf_3qb">
                     <li><codeph><ph keyref="true" /></codeph>: (Default) Publish audio to the remote users.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not publish audio to the remote users</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not publish audio to the remote users.</li>
                     </ul></p>
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_cff_fnf_3qb">
-            <li>0: Success.</li>
+            <li props="native electron unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

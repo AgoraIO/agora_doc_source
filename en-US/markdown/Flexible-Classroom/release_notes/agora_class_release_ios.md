@@ -142,7 +142,7 @@ With UIKit, developers customize the user interfaces of classrooms with no need 
 
 **Courseware management**
 
-To increase the effectiveness of online learning, v1.1.0 supports uploading and displaying courseware in classrooms. Teachers can upload files in formats such as PPT, DOC, and PDF when using the Flexible Classroom desktop clients. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. 开发者还可通过灵动课堂云服务 RESTful API 配置并上传文件至云盘，并获取课堂内云盘文件变更事件，详见[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=iOS)。
+To increase the effectiveness of online learning, v1.1.0 supports uploading and displaying courseware in classrooms. Teachers can upload files in formats such as PPT, DOC, and PDF when using the Flexible Classroom desktop clients. Flexible Classroom clients automatically convert files with the suffixes of `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, and `"pdf"` to formats that can be displayed on the whiteboard in classrooms. 开发者还可通过灵动课堂 RESTful API 配置并上传文件至云盘，并获取课堂内云盘文件变更事件，详见[灵动课堂 RESTful API](./agora_class_restful_api?platform=iOS)。
 
 To use the courseware feature, you must configure the third-party storage in Agora Console for storing the courseware. For details, see Configure the aPaaS [service]() in Agora Console.
 
@@ -150,7 +150,7 @@ v1.1.0 also supports courseware pre-downloading. v1.1.0 adds the `configCoursewa
 
 **Page recording**
 
-灵动课堂 v1.1.0 支持[页面录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)，能够将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。 开发者可通过灵动课堂云服务 RESTful API 配置并发起页面录制，详见[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=iOS)。
+灵动课堂 v1.1.0 支持[页面录制](https://docs.agora.io/cn/cloud-recording/cloud_recording_webpage_mode?platform=RESTful)，能够将指定 URL 的页面内容和音频混合录制为一个 MP4 音视频文件，实现音视频内容、白板内容、课件内容同步录制。 开发者可通过灵动课堂 RESTful API 配置并发起页面录制，详见[灵动课堂 RESTful API](./agora_class_restful_api?platform=iOS)。
 
 **Inviting students to speak "on stage"**
 
@@ -169,7 +169,7 @@ v1.1.0 adds the following parameters in to `launch` method of the Agora Classroo
 
 **Classroom rewards**
 
-To promote student motivation, v1.1.0 enables teachers to reward students for good performance during the class with virtual credits. 开发者可通过灵动课堂云服务 RESTful API 获取奖励变更事件，详见[灵动课堂云服务 RESTful API](./agora_class_restful_api?platform=iOS)。
+To promote student motivation, v1.1.0 enables teachers to reward students for good performance during the class with virtual credits. 开发者可通过灵动课堂 RESTful API 获取奖励变更事件，详见[灵动课堂 RESTful API](./agora_class_restful_api?platform=iOS)。
 
 ### Improvements
 

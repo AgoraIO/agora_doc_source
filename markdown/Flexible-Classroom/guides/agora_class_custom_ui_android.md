@@ -1,45 +1,64 @@
-## 教室和 UI 组件介绍
+# 教室和 UI 组件介绍
 
-### 数据交互流程
+## UI - 数据交互流程
 
-在 Agora Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUI** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_kotlin/API/edu_context_api_overview.html) 产生关联。具体逻辑如下：
+在 Agora Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUIKit** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_kotlin/API/edu_context_api_overview.html) 产生关联。具体逻辑如下：
 
 ![](https://web-cdn.agora.io/docs-files/1650273644082)
 
-### 教室和 UI 组件结构介绍
+## UI - 组件结构介绍
 
 教室的类结构示意图如下：
 
 ![](https://web-cdn.agora.io/docs-files/1650362684444)
 
-每种班型的 UI 在对应的 `.xml` 文件中定义，包含多个独立的 UI 组件 (Component)。UI 组件的结构示意图如下：
+UI 组件的结构示意图如下：
 
-![](https://web-cdn.agora.io/docs-files/1650362871036)
+![android-ui](images/android-ui.png)
 
 开发者可自由组合 UI 组件搭建自定义版型，也可以自定义 UI 组件或修改灵动课堂的 UI 组件。
 
-## 自定义 UI
+UI 组件列表：
+
+| 组件（Component）                  | 插件（Widget）                                               | 描述                          |
+| ---------------------------------- | ------------------------------------------------------------ | ----------------------------- |
+| AgoraEduChatComponent              | AgoraEduEaseChatWidget                                       | 教室 - IM                     |
+| AgoraEduHeadComponent              | /                                                            | 教室 - Header                 |
+| AgoraEduSettingComponent           | /                                                            | 教室 - 设置                   |
+| AgoraEduVideoComponent             | /                                                            | 教室 - 视频窗口               |
+| AgoraEduVideoListComponent         | /                                                            | 教室 - 视频列表（台上）       |
+| AgoraEduWhiteBoardComponent        | AgoraWhiteBoardWidget                                        | 教室 - 白板                   |
+| AgoraEduWhiteboardOptionsComponent | /                                                            | 教室 - 白板上一页/下一页工具  |
+| AgoraEduApplianceComponent         | /                                                            | 教室 - 白板教具               |
+| AgoraEduTeachAidContainerComponent | AgoraEduIClickerWidget：答题器<br />AgoraTeachAidCountDownWidget：倒计时<br />AgoraTeachAidVoteWidget：投票器 | 教室 - 答题器、倒计时、投票器 |
+| AgoraEduScreenShareComponent       | /                                                            | 教室 - 屏幕共享               |
+| AgoraEduRosterComponent            | /                                                            | 教室 - 花名册                 |
+| AgoraEduOptionsComponent           | /                                                            | 教室 - 选项按钮               |
+| AgoraEduTeachAidContainerComponent | FCRCloudDiskWidget                                           | 教室 - 网盘                   |
+
+其中插件（Widget）是需要组件（Component）容器来创建显示，组件就是指 View。
+
+## UI - 自定义
 
 本节介绍自定义课堂 UI 的具体步骤。
 
-### 1. 获取灵动课堂源码
+###  1. 下载源码引用
 
 如需修改灵动课堂的默认 UI，你需要通过下载 [GitHub 源码](https://github.com/AgoraIO-Community/CloudClass-Android)的方式集成灵动课堂，步骤如下：
 
 ~c7706c40-3fce-11ed-8dae-bf25bf08a626~
 
-后续 UI 相关的改动主要在以下两个目录中进行：
+可以自定义 UI 的模块，如下：
 
-- `/AgoraClassSDK`：实现教室页面。
+- `/AgoraClassSDK`：教室页面布局。
+
 - `/AgoraEduUIKit`：教室使用到的所有 UI 组件。
 
-### 2. 引入 UI 组件库
+  
 
-参考以下步骤引入 UI 组件库：
+如果之前是以 Maven 的方式引入，需要将Maven引用改成 `AgoraEduUIKit` 和 `AgoraClassSDK` 模块的引用方式。
 
-1. 参考[集成灵动课堂文档](/cn/agora-class/agora_class_integrate_android)将灵动课堂以 Maven 的方式引入到你自己的项目中。
-
-2. 修改 `AgoraEduUIKit` 和 `AgoraClassSDK` 模块的引用方式。你需要在 `build.gradle` 文件中进行如下修改：
+在 `build.gradle` 文件中进行如下修改：
 
    ```kotlin
    dependencies {
@@ -48,38 +67,42 @@
     // implementation "io.github.agoraio-community:AgoraEduUIKit:版本号"
     // implementation "io.github.agoraio-community:AgoraClassSDK:版本号"
     implementation project(path: ':AgoraClassSDK')
+    implementation project(path: ':AgoraEduUIKit')
    }
    ```
 
-<div class="alert info"><code>AgoraClassSDK</code> 里引用了 <code>AgoraEduUIKit</code> 模块。</div>
 
-<div class="alert note">GitHub 源码的版本号要和 maven 引用的版本号保持一致。</div>
+<div class="alert note">注意：GitHub 源码的版本号要和 maven 引用的版本号保持一致。</div>
 
-### 3. 修改现有的 UI 组件
+### 2. 修改 UI 组件
 
-所有 UI 组件都位于 `com.agora.edu.component` 目录下，找到对应的组件就可以修改 UI。
+#### 2.1 UI 组件目录
+
+所有 UI 组件都位于`AgoraEduUIKit`模块的 `com.agora.edu.component` 包目录下，找到对应的组件就可以修改 UI。
 
 <img src="https://web-cdn.agora.io/docs-files/1650365793677" style="zoom:30%;" />
 
-#### 修改示例
+#### 2.2  示例
 
-下文以小班课为例，介绍如何修改顶部导航栏的高度、标题以及背景色。具体步骤如下：
+本示例以小班课为例，介绍如何修改顶部导航栏的高度、标题以及背景色。具体步骤如下：
 
-1. 在 `AgoraClassSDK模块` 的 `io.agora.classroom.ui` 下面找到小班课的 `AgoraClassSmallActivity`。
+1. 打开 `AgoraClassSDK`模块 的 `io.agora.classroom.ui` 包，找到小班课的主页面 `AgoraClassSmallActivity`，`Activity` 与 `.xml` 是通过 `viewbinding` 绑定的。
 
-2. 在 `AgoraClassSmallActivity` 对应的 `activity_agora_class_small.xml` 中找到 `AgoraEduHeadComponent` 组件。`Activity` 与 `.xml` 是通过 `viewbinding` 绑定的。
+2. 打开 `AgoraClassSmallActivity` 的布局文件`activity_agora_class_small.xml` ，通过布局文件找到 `AgoraEduHeadComponent` 组件标签。
 
    ![](https://web-cdn.agora.io/docs-files/1650438722532)
 
-3. 打开 `AgoraEduHeadComponent` 对应的 `agora_edu_head_component.xml`。在这个文件中，你可以直接修改导航栏的高度、标题以及背景色。
+3. 打开 `AgoraEduHeadComponent`组件的 `agora_edu_head_component.xml`。在这个文件中，你可以直接修改导航栏的高度、标题以及背景色。
 
    ![](https://web-cdn.agora.io/docs-files/1650438755866)
 
-   ![](https://web-cdn.agora.io/docs-files/1650438826125)
+   ![image-20230324180224104](images/image-20230324180224104.png)
 
-### 4. 新增 UI 组件
+### 3. 新增 UI 组件
 
-所有 UI 组件都必须继承 `AbsAgoraEduComponent`，且调用 `initView(agoraUIProvider: IAgoraUIProvider)` 方法初始化 UI 组件。
+#### 3.1 UI 组件的基类
+
+如果想要具备`EduCore`的能力，组件都需要继承 `AbsAgoraEduComponent`，并且初始化的时候，需要调用 `initView(agoraUIProvider: IAgoraUIProvider)` 方法初始化 UI 组件。
 
 UI 组件可通过 `IAgoraUIProvider` 接口获取 EduCore 层的数据。
 
@@ -97,9 +120,9 @@ interface IAgoraUIProvider {
 }
 ```
 
-#### 修改示例
+#### 3.2 示例
 
-下文介绍如何为 1 对 1 班型新增一个 `AgoraEduMyComponent` 组件。具体步骤如下：
+本示例为 1 对 1 班型新增一个 `AgoraEduMyComponent` 组件。具体步骤如下：
 
 1. 定义 `AgoraEduMyComponent`：
 
@@ -172,3 +195,40 @@ interface IAgoraUIProvider {
        }
    }
    ```
+
+## UI - 组件之间通信
+
+#### 1.1 组件间通信方式
+
+实现 Component 与 Component 之间通信方式，主要有：
+- 自定义系统 API - Boardcast 通信
+- 自定义接口，通过接口传递，实现组件间通信
+- 通过 AgoraTransportManager 通信
+
+#### 1.2 AgoraTransportManager 通信
+
+
+在灵动课堂，可以通过 AgoraTransportManager 类来实现，UI 组件间通信：
+
+**发送信息**
+
+```
+val event = AgoraTransportEvent(AgoraTransportEventId.EVENT_ID_ALL)  
+event.arg1 = 123     // custom your id  
+event.extra = "data" // your data  
+AgoraTransportManager.notify(event)
+```
+
+**接收信息**
+
+```
+// receive message AgoraTransportManager.addListener(AgoraTransportEventId.EVENT_ID_ALL, object : OnAgoraTransportListener {  
+    override fun onTransport(event: AgoraTransportEvent) {  
+        if (event.eventId == AgoraTransportEventId.EVENT_ID_ALL) {  
+            if (event.arg1 == 123) {  
+                val data = event.extra  
+            }
+        }  
+    }  
+})
+```

@@ -2,15 +2,19 @@
 
 灵动课堂的 UI 组件可分为功能组件、业务组件和场景组件三种。
 
+### 项目集成
+集成灵动课堂到项目中请参考：<a href="/cn/agora-class/agora_class_widget_web_previous?platform=Web">集成灵动课堂</a>
+
+
 ### 功能组件
 
 功能组件是灵动课堂中最基础的 UI 组件，不和业务逻辑绑定。一个功能组件维护一个功能的内部状态和逻辑，例如 `Button`、`Modal`、`Select`、 `Tree` 等。
 
-功能组件位于 `packages/agora-classroom-sdk/ui-kit`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/ui-kit`(灵动课堂 - 监考场景) 目录中，采用 `react`+`ts`+`storybook` 架构。每个功能组件文件夹均包含以下三个文件：
+功能组件位于 `packages/agora-classroom-sdk/src/ui-kit`(灵动课堂教育场景) 和 `packages/agora-proctor-sdk/src/ui-kit`(灵动课堂监考场景) 目录中，采用 React + Typescript+ Storybook 的架构。每个功能组件文件夹均包含以下三个文件：
 
 -   `.tsx`: 实现 UI 组件的功能。
 -   `.css`: 实现 UI 组件的样式。
--   `.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。开发者可通过 `yarn dev:ui-kit ` 或 `npm run dev:ui-kit` 命令启动项目，在 Storybook 中查看各功能组件。
+-   `.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。你可通过 `yarn dev:ui-kit ` 或 `npm run dev:ui-kit` 命令启动项目，在 Storybook 中查看各功能组件。
 
 下表详细介绍灵动课堂中使用的功能组件：
 
@@ -50,12 +54,11 @@
 
 业务组件指灵动课堂中和业务逻辑绑定的 UI 组件。业务组件大部分是由多个功能组件组合并注入相关的业务逻辑。业务组件依赖于 UI Store 中注入的 Observable 对象和行为函数来自动更新 UI 和调用 API。以举手上讲台功能为例，此功能对应的业务组件可以根据当前举手数据展示举手的用户列表，并提供按钮供用户点击，业务组件内部会调用 API 发送举手请求。
 
-![](drawio.png)
+![](intro-1.png)
 
-业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂 - 监考场景) 目录下。
+业务组件位于  `packages/agora-classroom-sdk/src/infra/capabilities/containers`(灵动课堂教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/containers`(灵动课堂监考场景) 目录下。
 
 下表详细介绍灵动课堂中使用的业务组件：
-
 
 #### 教育场景
 | 文件夹                         | 对应的业务                                                   |
@@ -93,7 +96,7 @@
 ### 场景组件
 #### 教育场景
 
-场景组件是由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课和监考四个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/scenarios`(灵动课堂 - 监考场景) 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
+场景组件由多个业务组件组合而成。灵动课堂支持一对一互动教学、在线互动小班课、互动直播大班课和监考四个预设场景。场景组件位于 `packages/agora-classroom-sdk/src/infra/capabilities/scenarios`(灵动课堂教育场景) 和 `packages/agora-proctor-sdk/src/infra/capabilities/scenarios`(灵动课堂监考场景) 目录。如果你想改动某一个场景的布局，找到对应的场景组件修改即可。
 
 | 文件夹          | 场景组件                     |
 | :-------------- | :--------------------------- |
@@ -101,6 +104,7 @@
 | `/big-class`    | 互动直播大班课场景           |
 | `/big-class-mobile` | 针对 Web 移动端的互动直播大班课场景 |
 | `/mid-class`    | 在线互动小班课场景           |
+
 #### 监考场景
 | 文件夹          | 场景组件                     |
 | :-------------- | :--------------------------- |
@@ -115,7 +119,7 @@
 
 ### 新增功能组件
 
-你可参考以下步骤在灵动课堂中新增功能组件，下面以灵动课堂 - 教育场景举例：
+你可参考以下步骤在灵动课堂中新增功能组件，下面以灵动课堂教育场景举例：
 
 1. 在 `packages/agora-classroom-sdk/src/ui-kit/components` 目录下新建文件夹，用于存放你所需要新增的功能组件。请注意，文件夹中需包含以下三个文件：
 
@@ -123,7 +127,7 @@
     - `index.css`: 实现 UI 组件的样式。
     - `index.stories.tsx`: 用于 UI 组件在 Storybook 中的预览和调试。
 
-2. 实现功能组件后，在 `packages/agora-classroom-sdk/src/ui-kit/components/index.ts` 下导出该组件。这样你就可以后续在你自己的项目中导入新写的组件。
+2. 实现功能组件后，在 `packages/agora-classroom-sdk/src/ui-kit/components/index.ts` 下导出该组件，以便后续在你自己的项目中导入新写的组件。
 
 以下示例展示了如何新增一个名为 `agora-demo` 的功能组件：
 
@@ -170,11 +174,11 @@ export const Docs = () => (
 
 ### 修改功能组件
 
-如果你想修改某个功能组件的功能和样式，找到该组件所在的文件夹，修改代码即可。以下提供几个修改示例。
+如果你想修改某个功能组件的功能和样式，找到该组件所在的文件夹并修改代码即可。以下提供几个修改示例。
 
 #### 修改 input 组件占位文字的颜色
 
-你可修改 `packages/agora-classroom-sdk/src/ui-kit/components/input/index.css` 文件来修改 input 组件中占位文字的颜色。
+你可以通过修改 `packages/agora-classroom-sdk/src/ui-kit/components/input/index.css` 文件来修改 Input 组件中占位文字的颜色。
 
 **修改前**
 
@@ -204,7 +208,7 @@ export const Docs = () => (
 
 ### 新增业务组件
 
-如需新增业务组件，你可在 `packages/agora-classroom-sdk/src/infra/capabilities/containers` 下新建agora-demo文件夹，包含以下文件：
+如需新增业务组件，你可以在 `packages/agora-classroom-sdk/src/infra/capabilities/containers` 下新建 `agora-demo` 文件夹，包含以下文件：
 
 -   `index.tsx`: 组合你的功能组件，注入业务逻辑，实现业务功能。
 -   `index.css`: 实现业务组件的样式。
@@ -331,11 +335,11 @@ export const MidClassScenario = () => {
 
 该业务组件在灵动课堂中的效果如下：
 
-![](WX20221128-224347@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308239474)
 
 ### 修改业务组件
 
-如果你想修改某个业务组件的功能和样式，找到该组件所在的文件夹，修改代码即可。以下提供几个修改示例。
+如果你想修改某个业务组件的功能和样式，找到该组件所在的文件夹并修改代码即可。以下提供几个修改示例。
 
 #### 在设备设置弹窗上显示摄像头设备个数
 `packages/agora-classroom-sdk/src/infra/capabilities/containers/pretest/pretest-video.tsx`
@@ -369,15 +373,15 @@ const VideoDeviceList = observer(() => {
 
 **修改前**
 
-![](device-count-before.png)
+![](https://web-cdn.agora.io/docs-files/1670307845321)
 
 **修改后**
 
-![](device-count-after.png)
+![](https://web-cdn.agora.io/docs-files/1670307959016)
 
 ## 自定义场景布局
 
-如果你想修改场景布局，找到该场景所在的文件夹，修改代码即可。
+如果你想修改场景布局，找到该场景所在的文件夹并修改代码即可。
 
 #### 移动视频区域和聊天区域的位置
 
@@ -448,7 +452,7 @@ export const OneToOneScenario = () => {
 
 ```
 
-![](WX20221128-213357@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308259047)
 
 **修改后**
 
@@ -516,7 +520,7 @@ export const OneToOneScenario = () => {
 
 ```
 
-![](WX20221128-213140@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308274433)
 
 #### 添加 logo
 
@@ -609,7 +613,7 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
           category: ToolbarItemCategory.Clicker,
         }),
         ToolbarItem.fromData({
-          // selector use clicker icon
+          // 设置选择器的图标
           value: 'selection',
           label: 'scaffold.selector',
           icon: 'clicker',
@@ -702,7 +706,7 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
         category: ToolbarItemCategory.Selector,
       }),
       ToolbarItem.fromData({
-        // selector use clicker icon
+        // 设置选择器的图标
         value: 'selection',
         label: 'scaffold.selector',
         icon: 'clicker',
@@ -733,9 +737,9 @@ export class OneToOneToolbarUIStore extends ToolbarUIStore {
 
 上述设置能覆盖 `/common` 中的教具，效果如下：
 
-![](WX20221128-214344@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308289675)
 
-![](WX20221128-215107@2x.png)
+![](https://web-cdn.agora.io/docs-files/1670308305757)
 
 ## 更多示例
 

@@ -1,6 +1,6 @@
 # 通话前检测
 
-在对音视频质量要求较高的场景下，需要在通话前进行检测，以确保设备的运转状态良好、设备与 Agora 平台之间的网络状态正常。 此操作能够提前识别并排除潜在的故障，从而改善用户体验。
+在对音视频质量要求较高的场景下，需要在通话前进行检测，以确保设备的运转状态良好、设备与声网平台之间的网络状态正常。 此操作能够提前识别并排除潜在的故障，从而改善用户体验。
 
 本文介绍如何在 app 中实施网络和设备检测。
 
@@ -17,9 +17,9 @@
 - 抖动：接收方收到数据包的延迟变化
 - 错误率：以百分比或分数表示损坏的信息占发送信息总数的比例
 
-进行设备检测可以保证设备获取的音频在经过网络传输后可以正常播放。 首先，Agora 会从设备的麦克风获取音频，然后将其发送到 Agora 平台，并定义一个等待时间（例如：5 秒）。 等待时间过后，Agora 平台将音频发送回设备，并在设备扬声器中播放。 然后，你可以判断音频的质量是否良好。
+进行设备检测可以保证设备获取的音频在经过网络传输后可以正常播放。 首先，声网会从设备的麦克风获取音频，然后将其发送到声网平台，并定义一个等待时间（例如：5 秒）。 等待时间过后，声网平台将音频发送回设备，并在设备扬声器中播放。 然后，你可以判断音频的质量是否良好。
 
-Agora 建议你先进行设备测试，然后进行网络检测。
+声网建议你先进行设备测试，然后进行网络检测。
 
 ### 设备检测
 
@@ -31,14 +31,14 @@ SDK 提供了 `startLastmileProbeTest` 方法，用于在加入频道前检测 l
 
 各 API 的调用时序如下：
 
-![](https://web-cdn.agora.io/docs-files/1569465803488)
+![](https://web-cdn.agora.io/docs-files/1675740215059)
 
 在进行 last mile 检测时，视频 SDK 根据视频配置文件调整实际比特率。
 
 
 ## 前提条件
 
-在进行操作之前，请确保你已经在项目中实现了基本的实时音视频功能。 有关详细信息，请参考[实现视频通话](start_call_flutter_ng)或[实现视频直播](start_live_flutter_ng)。
+在进行操作之前，请确保你已经在项目中实现了基本的实时音视频功能。 有关详细信息，请参考[实现视频通话](./start_call_flutter_ng)或[实现视频直播](./start_live_flutter_ng)。
 
 
 ## 操作步骤
@@ -166,19 +166,19 @@ await _engine.stopLastmileProbeTest();
 
 ### 示例项目
 
-Agora 在 GitHub 上提供了一个开源的[通话前检测](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/PreCallTest)示例项目。 你可以下载体验或查看其中的源代码。
+声网在 GitHub 上提供了一个开源的[通话前检测](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/PreCallTest)示例项目。 你可以下载体验或查看其中的源代码。
 
 ### API 参考
 
-- [`startRecordingDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startrecordingdevicetest)
-- [`stopRecordingDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stoprecordingdevicetest)
-- [`startPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startplaybackdevicetest)
-- [`stopPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stopplaybackdevicetest)
-- [`startAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_startaudiodeviceloopbacktest)
-- [`stopAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/class_iaudiodevicemanager.html#api_iaudiodevicemanager_stopaudiodeviceloopbacktest)
-- [`startEchoTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startechotest2)
-- [`stopEchoTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stopechotest)
-- [`startLastmileProbeTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_startlastmileprobetest)
-- [`stopLastmileProbeTest`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_stoplastmileprobetest)
-- [`onLastmileQuality`](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onlastmilequality)
-- [`onLastmileProbeResult`](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onlastmileproberesult)
+- [`startRecordingDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_startrecordingdevicetest)
+- [`stopRecordingDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_stoprecordingdevicetest)
+- [`startPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_startplaybackdevicetest)
+- [`stopPlaybackDeviceTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_stopplaybackdevicetest)
+- [`startAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_startaudiodeviceloopbacktest)
+- [`stopAudioDeviceLoopbackTest`](./API%20Reference/flutter_ng/API/toc_audio_device_management.html?platform=Flutter#api_iaudiodevicemanager_stopaudiodeviceloopbacktest)
+- [`startEchoTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_startechotest2)
+- [`stopEchoTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_stopechotest)
+- [`startLastmileProbeTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_startlastmileprobetest)
+- [`stopLastmileProbeTest`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#api_irtcengine_stoplastmileprobetest)
+- [`onLastmileQuality`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#callback_irtcengineeventhandler_onlastmilequality)
+- [`onLastmileProbeResult`](./API%20Reference/flutter_ng/API/toc_network.html?platform=Flutter#callback_irtcengineeventhandler_onlastmileproberesult)

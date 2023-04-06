@@ -5,7 +5,7 @@
 
 ## 技术原理
 
-Agora RTC SDK 支持对 SDK 采集和播放的音频音量进行调整，以满足用户实际应用场景。例如，进行双人通话时，需要静音远端用户，可以通过调整播放音量的方法将音量设置为 0。
+声网 RTC SDK 支持对 SDK 采集和播放的音频音量进行调整，以满足用户实际应用场景。例如，进行双人通话时，需要静音远端用户，可以通过调整播放音量的方法将音量设置为 0。
 
 <div class="alert note">如果使用调整信号音量的方法将音量设置过大，在某些设备上可能会出现音频失真。</div>
 
@@ -80,17 +80,17 @@ await _rtcEngine->adjustRecordingSignalVolume(vol);
 
 ### 示例项目
 
-我们在 GitHub 上提供已实现调整采集、播放、耳返音量的开源示例项目 [JoinChannelAudio](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/basic/join_channel_audio/join_channel_audio.dart)。你可以下载体验并参考源代码。
+我们在 GitHub 上提供已实现调整采集、播放、耳返音量的开源示例项目 [join_channel_audio.dart](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/basic/join_channel_audio/join_channel_audio.dart)。你可以下载体验并参考源代码。
 
 实现调整通话音量过程中，你还可以参考如下文档：
 
-- 如需调整混音或音效文件的播放音量，可以参考 [AudioMixing](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/audio_mixing/audio_mixing.dart)。
+- 如需调整混音或音效文件的播放音量，可以参考 [audio_mixing.dart](https://github.com/AgoraIO-Extensions/Agora-Flutter-SDK/blob/main/example/lib/examples/advanced/audio_mixing/audio_mixing.dart)。
 - [如何处理音量太小问题？](https://docs.agora.io/cn/faq/audio_low)
 
 ### API 参考
 
-- [`adjustRecordingSignalVolume`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_adjustrecordingsignalvolume)
-- [`adjustPlaybackSignalVolume`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_adjustplaybacksignalvolume)
-- [`adjustUserPlaybackSignalVolume`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_adjustuserplaybacksignalvolume)
-- [`adjustAudioMixingPlayoutVolume`](./API%20Reference/flutter_ng/API/class_irtcengine.html#api_irtcengine_adjustaudiomixingplayoutvolume)
-- [`onAudioVolumeIndication`](./API%20Reference/flutter_ng/API/class_irtcengineeventhandler.html#callback_irtcengineeventhandler_onaudiovolumeindication)
+- [`adjustRecordingSignalVolume`](./API%20Reference/flutter_ng/API/toc_audio_process.html?platform=Flutter#api_irtcengine_adjustrecordingsignalvolume)
+- [`adjustPlaybackSignalVolume`](./API%20Reference/flutter_ng/API/toc_audio_process.html?platform=Flutter#api_irtcengine_adjustplaybacksignalvolume)
+- [`adjustUserPlaybackSignalVolume`](./API%20Reference/flutter_ng/API/toc_audio_process.html?platform=Flutter#api_irtcengine_adjustuserplaybacksignalvolume)
+- [`adjustAudioMixingPlayoutVolume`](./API%20Reference/flutter_ng/API/toc_audio_process.html?platform=Flutter#api_irtcengine_adjustaudiomixingplayoutvolume)
+- [`onAudioVolumeIndication`](./API%20Reference/flutter_ng/API/toc_audio_process.html?platform=Flutter#callback_irtcengineeventhandler_onaudiovolumeindication)

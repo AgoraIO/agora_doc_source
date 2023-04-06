@@ -21,9 +21,29 @@
                                            samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int setEarMonitoringAudioFrameParameters(int sampleRate, int channel,
                                                    RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
-                                                   int samplesPerCall) = 0;</codeblock></p>
+                                                   int samplesPerCall) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract setEarMonitoringAudioFrameParameters(
+    sampleRate: number,
+    channel: number,
+    mode: RawAudioFrameOpModeType,
+    samplesPerCall: number
+  ): number;</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public abstract int SetEarMonitoringAudioFrameParameters(int sampleRate, int channel, RAW_AUDIO_FRAME_OP_MODE_TYPE mode, int samplesPerCall);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract setEarMonitoringAudioFrameParameters(
+    sampleRate: number,
+    channel: number,
+    mode: RawAudioFrameOpModeType,
+    samplesPerCall: number
+  ): number;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setEarMonitoringAudioFrameParameters(
+      {required int sampleRate,
+      required int channel,
+      required RawAudioFrameOpModeType mode,
+      required int samplesPerCall});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>该方法用于设置 <xref keyref="onEarMonitoringAudioFrame"/> 回调的耳返音频数据格式。</p>
             <note type="attention">
             <ul>
@@ -40,8 +60,8 @@
             <plentry>
                 <pt>channel</pt>
                 <pd>
-                    <p><apiname keyref="onEarMonitoringAudioFrame"/> 中报告音频的声道数，可设置为 1 或 2:                                                                            
-                    
+                    <p><apiname keyref="onEarMonitoringAudioFrame"/> 中报告音频的声道数，可设置为 1 或 2:
+
                     <ul>
                     <li>1: 单声道。</li>
                     <li>2: 双声道。</li>
@@ -51,7 +71,7 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="cpp ios mac">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
+                    <p props="cpp ios mac flutter unity rn electron">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>。</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android"/>
                 </pd>
             </plentry>
@@ -61,9 +81,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0：方法调用成功。</li>
+            <li props="native unity rn electron">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>

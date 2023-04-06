@@ -8,19 +8,11 @@
 
 ## 前提条件
 
--   在声网控制台[开通灵动课堂服务](/cn/agora-class/agora_class_enable?platform=Web)。
--   在声网控制台获取 [Agora App ID](/cn/Agora%20Platform/get_appid_token#获取-app-id) 和 [App 证书](/cn/Agora%20Platform/get_appid_token#获取-app-证书)。
--   一台 Android 设备。模拟机可能出现功能缺失或者性能问题，所以声网推荐使用真机。此外，灵动课堂 Android 端要求运行在 Android 5.0 或以上版本。
+~fcbefc40-5374-11ed-8dae-bf25bf08a626~
 
-## 准备开发环境
+## 开发环境
 
-在你的设备上运行灵动课堂依赖于 Git（用于下载源码）、Android Studio、Java Development Kit。
-
-你可参考以下步骤准备开发环境：
-
-1. 点击[链接](https://git-scm.com/downloads)前往下载 Git。
-2. 点击[链接](https://developer.android.com/studio)前往下载 Android Studio。要求 Android Studio 4.1 以上版本，建议使用最新版本。
-3. 点击[链接](https://www.oracle.com/java/technologies/javase-downloads.html)前往下载 Java Development Kit。
+~2c5b8db0-5375-11ed-8dae-bf25bf08a626~
 
 ## 获取源码
 
@@ -33,16 +25,41 @@
 参照以下步骤启动灵动课堂：
 
 1. 在 Android Studio 中导入 CloudClass-Android 项目。
-
    ![](https://web-cdn.agora.io/docs-files/1648635239823)
 
-2. 在 Android Studio 中编译并运行 CloudClass-Android 项目。运行成功后，你可以在 Android 设备上看到以下画面：
+  如果获取依赖包失败，可以通过 Android Studio Gradle 同步拉取
+![[android_img_sync.png]]
 
-   ![](https://web-cdn.agora.io/docs-files/1648635613438)
+2. 在 Android Studio 中运行 CloudClass-Android 项目。
+
+电脑连接手机，点击 Android Studio 的 Run，运行项目
+![[android_run.png]]
+
+运行成功后，你可以在 Android 设备上看到以下画面：
+![image-20230328113714568](images/image-20230328113714568.png)
 
 3. 输入房间名、用户名，选择一种班型，然后点击**加入**，即可进入灵动课堂，看到以下画面：
 
-   ![](https://web-cdn.agora.io/docs-files/1648635720196)
+   ![image-20230328113902792](images/image-20230328113902792.png)
+
+
+
+## 升级建议
+
+如果通过源码方式集成，并且自己也修改了灵动课堂的源代码，那么后续灵动课堂升级了，如何升级呢？
+
+1、对于需要修改的模块，通过源码引用，不需要修复的模块，通过 Maven 引用，这样可以方便后续版本升级。
+
+2、对于需要修改灵动课堂的源代码，建议将自己的业务封装在自己的类中，再引用到灵动课堂的模块代码，这样后续升级，可以减少代码冲突。
+
+3、如果修改很少的灵动课堂源代码，则可以直接通过【Beyond Compare】工具对比代码合并
+
+4、如果修改很多，假设当初基于灵动课堂的 2.8.0 版本修改的，要升级到灵动课堂 3.0.0 版本，通过 Android Studio 对比代码，你可以这样做：
+
+- 下载灵动课堂源代码【CloudClass-Android】，切换到 release/2.8.0 分支
+- 导入项目【CloudClass-Android】 源码到 Android Studio
+- 在 Android Studio 中，右击【CloudClass-Android】，选择 Git -> Compare with Branch -> release/3.0.0
+- 对比这两个版本修改的差异，合并到自己项目
 
 ## 后续步骤
 

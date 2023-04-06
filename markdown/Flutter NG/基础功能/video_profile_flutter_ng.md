@@ -1,6 +1,6 @@
 # 设置视频编码属性
 
-本文介绍如何调用 Agora 提供的 API 设置视频编码属性。
+本文介绍如何调用声网提供的 API 设置视频编码属性。
 
 
 ## 技术原理
@@ -9,9 +9,9 @@
 
 视频编码属性包含视频分辨率、帧率、码率等影响视频质量的参数设置。 你可以通过设置视频编码属性，控制视频流在不同网络条件下的展示方式。
 
-Agora SDK 提供了 `setVideoEncoderConfiguration` 方法设置视频编码属性。此方法可以在初始化 `RtcEngine` 后的任何阶段（加入频道之前或之后）调用。
+声网 SDK 提供了 `setVideoEncoderConfiguration` 方法设置视频编码属性。此方法可以在初始化 `RtcEngine` 后的任何阶段（加入频道之前或之后）调用。
 
-如果在加入频道后不需要重新设置视频编码属性，Agora 建议在 `enableVideo` 前调用 `setVideoEncoderConfiguration`，以加快首帧出图的时间。
+如果在加入频道后不需要重新设置视频编码属性，声网建议在 `enableVideo` 前调用 `setVideoEncoderConfiguration`，以加快首帧出图的时间。
 
 ### 分辨率、帧率和码率
 
@@ -46,11 +46,11 @@ Agora SDK 提供了 `setVideoEncoderConfiguration` 方法设置视频编码属�
 - 采集端采集视频并输出视频。 即视频和 Status Bar 的相对位置。
 - 播放端渲染接收到的视频图像，并根据接收到的旋转信息，结合自身 Status Bar 的相对位置旋转视频。
 
-为防止视频因旋转出现大头、缩放或剪切的问题，Agora SDK 在 `setVideoEncoderConfiguration` 中提供了 `orientationMode` 参数。 你可以通过这个参数，结合视频场景需要，获取想要的视频渲染效果。
+为防止视频因旋转出现大头、缩放或剪切的问题，声网 SDK 在 `setVideoEncoderConfiguration` 中提供了 `orientationMode` 参数。 你可以通过这个参数，结合视频场景需要，获取想要的视频渲染效果。
 
 `orientationMode` 参数提供了三种模式以适应不同的用户需求：`orientationModeAdaptive`、`orientationModeFixedLandscape` 和 `orientationModeFixedPortrait`。
 
-无论采取哪种模式，Agora SDK 都保证视频和 Status Bar 的相对位置在采集端和播放端始终一致。
+无论采取哪种模式，声网 SDK 都保证视频和 Status Bar 的相对位置在采集端和播放端始终一致。
 
 #### orientationModeAdaptive
 
@@ -70,7 +70,7 @@ Agora SDK 提供了 `setVideoEncoderConfiguration` 方法设置视频编码属�
 
 ### 降级偏好
 
-为保证弱网下用户的视频体验，Agora SDK 还提供了 `degradationPreference` 参数，来设置带宽受限时视频编码的降级偏好。
+为保证弱网下用户的视频体验，声网 SDK 还提供了 `degradationPreference` 参数，来设置带宽受限时视频编码的降级偏好。
 
 ### 镜像模式
 
@@ -78,9 +78,9 @@ Agora SDK 提供了 `setVideoEncoderConfiguration` 方法设置视频编码属�
 
 ### 最低编码码率
 
-如果你对视频质量有特殊的需求，还可以通过 `minBitrate` 参数进行设置。`minBitrate` 为视频最低编码码率 (Kbps)。 Agora SDK 会根据网络条件进行码率自适应。将此参数设置为大于默认值时，会强制视频编码器输出高质量的视频图像，但可能会导致丢包率增高并影响视频播放的流畅度。
+如果你对视频质量有特殊的需求，还可以通过 `minBitrate` 参数进行设置。`minBitrate` 为视频最低编码码率 (Kbps)。 声网 SDK 会根据网络条件进行码率自适应。将此参数设置为大于默认值时，会强制视频编码器输出高质量的视频图像，但可能会导致丢包率增高并影响视频播放的流畅度。
 
-<div class="alert note"><code>minBitrate</code> 的默认值可以满足大多数实时场景的要求。 一般情况下 Agora 建议你不要更改这些默认值。</div>
+<div class="alert note"><code>minBitrate</code> 的默认值可以满足大多数实时场景的要求。 一般情况下声网建议你不要更改这些默认值。</div>
 
 
 ## 前提条件
@@ -115,10 +115,10 @@ await _engine.setVideoEncoderConfiguration(
 
 ### 开发注意事项
 
-- `setVideoEncoderConfiguration` 中的各参数值是在理想网络状态下的最大值。 Agora SDK 会根据实时网络环境和设备，对设置的参数作自适应调整，通常会下调参数。
+- `setVideoEncoderConfiguration` 中的各参数值是在理想网络状态下的最大值。 声网 SDK 会根据实时网络环境和设备，对设置的参数作自适应调整，通常会下调参数。
 - `setVideoEncoderConfiguration` 中的参数设置可能会影响计费。 如果因自适应产生参数下调，计费按用户实际订阅的视频分辨率为准。 详见[实时音视频计费](./billing_rtc_ng)。
 
-Agora SDK 提供了多种分辨率、帧率和码率以供选择。 你也可以根据下表自行定义。
+声网 SDK 提供了多种分辨率、帧率和码率以供选择。 你也可以根据下表自行定义。
 
 <a name="videoprofile"></a>
 

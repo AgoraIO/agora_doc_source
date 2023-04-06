@@ -1,5 +1,51 @@
+# 升级指南
 
-## 从 1.1.5 升级至 2.0.0
+## 升级源代码的建议
+如果通过源码方式集成，并且自己也修改了灵动课堂的源代码，那么后续灵动课堂升级了，如何升级呢？
+
+1、对于需要修改的模块，通过源码引用，不需要修复的模块，通过 Maven 引用，这样可以方便后续版本升级。
+
+2、对于需要修改灵动课堂的源代码，建议将自己的业务封装在自己的类中，再引用到灵动课堂的模块代码，这样后续升级，可以减少代码冲突。
+
+3、如果修改很少的灵动课堂源代码，则可以直接通过【Beyond Compare】工具对比代码合并
+
+3、如果修改很多，假设当初基于灵动课堂的2.8.0版本修改的，要升级到灵动课堂3.0.0版本，通过Android Studio 对比代码，你可以这样做：
+- 下载灵动课堂源代码【CloudClass-Android】，切换到 release/2.8.0 分支
+- 导入项目【CloudClass-Android】 源码到 Android Studio
+-  在 Android Studio 中，右击【CloudClass-Android】，选择 Git -> Compare with Branch -> release/3.0.0
+- 对比这两个版本修改的差异，合并到自己项目
+
+
+## 升级到  2.8.x
+
+1、如果从低版本升级到2.8.0，升级灵动课堂所有SDK，则没有任何问题
+
+2、如果只升级 AgoraEduCore 模块，那么需要注意升级 AgoraEduUIKit 模块的 AgoraRendererUtils 类，从 2.8.0 版本开始，默认不再自动订阅所有的音视频，而是依据接口下发来控制的。
+
+需要合并的代码：https://github.com/AgoraIO-Community/CloudClass-Android/blob/release/2.8.0/AgoraEduUIKit/src/main/java/com/agora/edu/component/helper/AgoraRendererUtils.kt
+
+3、如果是自己定义音视频流，注意要按照自己的业务需求订阅音视频
+```
+// 订阅音频和停止订音频
+eduCore?.eduContextPool()?.mediaContext()?.startPlayAudio(roomUuid, streamUuid)
+eduCore?.eduContextPool()?.mediaContext()?.stopPlayAudio(roomUuid, streamUuid)
+
+// 订阅视频和停止订阅视频
+eduCoe?.eduContextPool()?.mediaContext()?.startRenderVideo(EduContextRenderConfig(mirrorMode = EduContextMirrorMode.DISABLED), viewGroup, streamUuid)
+eduCore?.eduContextPool()?.mediaContext()?.stopRenderVideo(streamUuid)
+```
+
+## 升级到  2.7.x
+
+1、如果是 Maven 引用依赖库，去除 hyphenate 依赖
+```
+implementation "io.github.agoraio-community:hyphenate:版本号"
+```
+
+2、如果是 GitHub 源码 引用，则直接去除 hyphenate 模块 
+
+
+## 升级到 2.0.0
 
 在 2.0.0 版中，Agora 优化了 Agora Classroom SDK 的内部架构，重新设计了 Agora Edu Context API。
 

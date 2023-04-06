@@ -36,12 +36,14 @@
     {required String provider,
     required String extension,
     bool enable = true,
-    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock> </p>
+    MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>该方法需要在加入频道前调用。</p>
+            <title>详情</title>
+            <p>如需调用本方法，请在初始化 <xref keyref="IRtcEngine" /> 对象后立即调用。</p>
             <note>
-            <ul>
+                <ul>
             <li>如果要开启多个插件，需要多次调用该方法。</li>
             <li>不同插件在 SDK 中处理数据的顺序由插件的开通顺序决定。即先开启的插件会先处理数据。</li>
             </ul> </note> </section>
@@ -79,10 +81,15 @@
                 </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>返回值</title>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
+            <li props="native unity rn electron">0: 方法调用成功</li>
+            <li>&lt; 0: 方法调用失败            
+                <ul>
+                <li>-3: 该插件动态库没有被加载。声网推荐你检查该动态库是否存放在预期的位置或该动态库名是否正确。</li>
+                </ul>
+            </li>
             </ul> </section>
     </refbody>
 </reference>

@@ -19,9 +19,11 @@
             <codeblock props="electron" outputclass="language-typescript">abstract enableAudioSpectrumMonitor(intervalInMS?: number): number;</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public abstract int EnableAudioSpectrumMonitor(int intervalInMS = 100);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableAudioSpectrumMonitor(intervalInMS?: number): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioSpectrumMonitor({int intervalInMS = 100});</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; enableAudioSpectrumMonitor({int intervalInMS = 100});</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
+            <title>详情</title>
             <p>如果你想获取本地或远端用户的音频频谱数据，请注册音频频谱观测器并开启音频频谱监测。</p>
             <note type="attention" id="note_xlb_3yd_3qb">
             <p>该方法在加入频道前后均可调用。</p>
@@ -36,10 +38,11 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>返回值</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul id="ul_ipv_rxy_hqb">
-            <li>0: 方法调用成功。</li>
+            <li props="native electron unity rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
                 <ul id="ul_ixs_txy_hqb">
                 <li>-2: 参数设置错误。</li>

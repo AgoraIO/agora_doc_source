@@ -1,8 +1,7 @@
 ## 概览
-
 由于客户对在线课堂场景存在多种多样、定制化的需求，Agora 提供 Widget 帮助用户根据自身的需求开发插件并内嵌至灵动课堂内。 Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWidget` 自定义实现一个 Widget，然后在 Agora Classroom SDK 内注册该 Widget。Agora Classroom SDK 支持注册多个 Widget。在灵动课堂教育场景中，基于 Widget 实现的业务功能包括白板，倒计时，投票器以及答题器等。
 
-<div class="alert info">Agora 提供了以下基于 Widget 实现的插件：倒计时、投票器和答题器等。你可在 <a href="https://github.com/AgoraIO-Community/apaas-extapp-ios">apaas-extapp-ios</a> 仓库中查看这些插件的源码。</div>
+<div class="alert info">声网提供了以下基于 Widget 实现的插件：倒计时、投票器和答题器等。你可在 <a href="https://github.com/AgoraIO-Community/apaas-extapp-ios">apaas-extapp-ios</a> 仓库中查看这些插件的源码。</div>
 
 ## 技术原理
 ![](../images/ios_widget.png)
@@ -108,9 +107,9 @@ AgoraEduWidgetContext 的 `setWidgetInactive` 方法中的 `isRemove` 参数：
     }
    ```
 
-### 2. 在 Agora Classroom SDK 中注册 Widget
+### 2. 在声网 Classroom SDK 中注册 Widget
 
-在 `AgoraEduLaunchConfig.widgets` 中加入倒计时的 `AgoraWidgetConfig`，在调用 `launch` 时将实现好的插件注册到 Agora Classroom SDK 中：
+在 `AgoraEduLaunchConfig.widgets` 中加入倒计时的 `AgoraWidgetConfig`，在调用 `launch` 时将实现好的插件注册到声网 Classroom SDK 中：
 
 ```swift
    let launchConfig = AgoraEduLaunchConfig(userName: userName,          
@@ -271,7 +270,7 @@ AgoraClassroomSDK.launch(launchConfig,
 
 #### updateWidgetRoomProperties
 
-```
+```objc
 - (void)updateWidgetRoomProperties:(NSDictionary<NSString *, id> *)properties
                              cause:(NSDictionary<NSString *, id> * _Nullable)cause
                            success:(AgoraWidgetCompletion _Nullable)success
@@ -291,7 +290,7 @@ AgoraClassroomSDK.launch(launchConfig,
 
 #### deleteWidgetRoomProperties
 
-```
+```objc
 - (void)deleteWidgetRoomProperties:(NSArray<NSString *> *)keyPaths
                              cause:(NSDictionary<NSString *, id> * _Nullable)cause
                            success:(AgoraWidgetCompletion _Nullable)success
@@ -311,14 +310,14 @@ AgoraClassroomSDK.launch(launchConfig,
 
 #### updateWidgetUserProperties
 
-```
+```objc
 - (void)updateWidgetUserProperties:(NSDictionary<NSString *, id> *)properties
                              cause:(NSDictionary<NSString *, id> * _Nullable)cause
                            success:(AgoraWidgetCompletion _Nullable)success
                            failure:(AgoraWidgetErrorCompletion _Nullable)failure
 ```
 
-更新 Widget 的用户属性。更新的房间属性会通过 `onWidgetUpdateUserProperties` 回调传给 Widget。
+更新 Widget 的用户属性。更新的房间属性会通过 `onWidgetUserPropertiesUpdated` 回调传给 Widget。
 
 **参数**
 
@@ -331,7 +330,7 @@ AgoraClassroomSDK.launch(launchConfig,
 
 #### deleteWidgetUserProperties
 
-```
+```objc
 - (void)deleteWidgetUserProperties:(NSArray<NSString *> *)keyPaths
                              cause:(NSDictionary<NSString *, id> * _Nullable)cause
                            success:(AgoraWidgetCompletion _Nullable)success
@@ -351,7 +350,7 @@ AgoraClassroomSDK.launch(launchConfig,
 
 #### sendMessage
 
-```
+```objc
 - (void)sendMessage:(NSString *)message
 ```
 
@@ -365,7 +364,7 @@ AgoraClassroomSDK.launch(launchConfig,
 
 #### onLoad
 
-```
+```objc
 - (void)onLoad
 ```
 
@@ -373,7 +372,7 @@ Widget 加载完成。
 
 #### onMessageReceived
 
-```
+```objc
 - (void)onMessageReceived:(NSString *)message
 ```
 
@@ -389,7 +388,7 @@ Widget 收到消息。
 
 #### onLocalUserInfoUpdated
 
-```
+```objc
 - (void)onLocalUserInfoUpdated:(AgoraWidgetUserInfo *)localUserInfo
 ```
 
@@ -403,7 +402,7 @@ Widget 收到本地用户信息更新。
 
 #### onRoomInfoUpdated
 
-```
+```objc
 - (void)onRoomInfoUpdated:(AgoraWidgetRoomInfo *)roomInfo
 ```
 
@@ -417,7 +416,7 @@ Widget 收到房间信息更新。
 
 #### onWidgetRoomPropertiesUpdated
 
-```
+```objc
 - (void)onWidgetRoomPropertiesUpdated:(NSDictionary<NSString *,id> *)properties
                                 cause:(NSDictionary<NSString *,id> * _Nullable)cause
                              keyPaths:(NSArray<NSString *> *)keyPaths
@@ -430,14 +429,14 @@ Widget 收到房间属性更新。
 
 | 名称         | 类型               | 描述                      |
 | :----------- | :----------------- | :------------------------ |
-| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
 | `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |
 
 #### onWidgetRoomPropertiesDeleted
 
-```
+```objc
 - (void)onWidgetRoomPropertiesDeleted:(NSDictionary<NSString *,id> * _Nullable)properties
                                 cause:(NSDictionary<NSString *,id> * _Nullable)cause
                              keyPaths:(NSArray<NSString *> *)keyPaths
@@ -450,15 +449,15 @@ Widget 收到房间属性删除。
 
 | 名称         | 类型               | 描述                  |
 | :----------- | :----------------- | :-------------------- |
-| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
 | `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |
 
 
 #### onWidgetUserPropertiesUpdated
 
-```
+```objc
 - (void)onWidgetUserPropertiesUpdated:(NSDictionary<NSString *,id> *)properties
                                 cause:(NSDictionary<NSString *,id> * _Nullable)cause
                              keyPaths:(NSArray<NSString *> *)keyPaths
@@ -471,17 +470,18 @@ Widget 收到用户属性更新。
 
 | 名称         | 类型               | 描述                  |
 | :----------- | :----------------- | :-------------------- |
-| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
 | `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |
 
 #### onWidgetUserPropertiesDeleted
 
-```
-void onWidgetUserPropertiesDeleted(Map<String: Any> properties,
-                                   Map<String: Any> cause,
-                                   Array<String> keys)
+```objc
+- (void)onWidgetUserPropertiesDeleted:(NSDictionary<NSString *,id> * _Nullable)properties
+                                cause:(NSDictionary<NSString *,id> * _Nullable)cause
+                             keyPaths:(NSArray<NSString *> *)keyPaths
+                         operatorUser:(AgoraWidgetUserInfo *_Nullable)operatorUser;                                   
 ```
 
 Widget 收到用户属性删除。
@@ -490,7 +490,7 @@ Widget 收到用户属性删除。
 
 | 名称         | 类型               | 描述                  |
 | :----------- | :----------------- | :-------------------- |
-| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `properties`   | `NSDictionary<NSString *,id>` | 最终完整的属性            |
 | `cause`        | `Map<String: Any>` | 原因，可以为空            |
+| `keyPaths`     | `NSArray<NSString *>`    | 发生改变的属性的 key 数组 |
 | `operatorUser` | `AgoraWidgetUserInfo` | 操作者，可以为空            |

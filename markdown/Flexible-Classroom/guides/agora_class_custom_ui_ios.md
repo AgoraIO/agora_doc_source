@@ -5,16 +5,16 @@
 
 | 文件夹         | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
-| `/Scenes`       | 在灵动课堂中提供场景的 `UIScene`，如一对一课堂、小班课等。 |
-| `/Components`  | 灵动课堂使用的 UI 组件 	`UIComponent`，如花名册、状态栏等。 |
-| `/Configs`      | 灵动课堂的 UI 配置，用于设置颜色，字体，图片等 |
+| `/Scenes`       | 灵动课堂班型场景的组件 `UIScene`，适用于一对一课堂、小班课等班型。 |
+| `/Components`  | 灵动课堂的 UI 组件 `UIComponent`，可用于花名册、状态栏等 UI 设计。 |
+| `/Configs`      | 灵动课堂的 UI 配置，用于设置颜色，字体，图片等。 |
 | `/Views` | 灵动课堂使用的 UI 元素，如视频渲染窗口、设置界面等。         |
-| `/Models` | 用于在 `AgoraEduUI` 中的数据模型。 |
+| `/Models` | 用于 `AgoraEduUI` 的数据模型。 |
 
 # 交互层架构
 灵动课堂的交互层和逻辑层是相符分离，交互层的架构与设计模式如下图所示
 
-![](../images/ios_ui_structure.png)
+![](https://web-cdn.agora.io/docs-files/1670308423580)
 
 ## UIScene
 * 业务场景的抽象，例如 FcrOneToOneUIScene
@@ -72,7 +72,7 @@ struct FcrUIColorGroup {
 ## Scenes
 为每个 UIScene、UIComponent、View Obejct 提供具体的配置属性，大部分的属性的值会来自于 Theme 下定义好的通用属性值，例如
 
-```
+```swift
 struct FcrUIComponentStateBar: FcrUIComponentProtocol {
 	```
     var backgroundColor: UIColor = FcrUIColorGroup.systemForegroundColor

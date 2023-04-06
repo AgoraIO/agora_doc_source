@@ -100,30 +100,45 @@ SDK 全局配置。用于 [setConfig](#setconfig) 方法。
 ### AgoraEduLaunchConfig 
 
 ```kotlin
-class AgoraEduLaunchConfig(val userName: String,
-                           val userUuid: String,
-                           val roomName: String,
-                           val roomUuid: String,
-                           val roleType: Int = AgoraEduRoleType.AgoraEduRoleTypeStudent.value,
-                           val roomType: Int,
-                           val rtmToken: String,
-                           val startTime: Long?,
-                           val duration: Long?,
-                           val region: String,
-                           var videoEncoderConfig: EduContextVideoEncoderConfig? = null,
-                           val mediaOptions: AgoraEduMediaOptions?,
-                           val streamState: AgoraEduStreamState?,
-                           val latencyLevel: AgoraEduLatencyLevel? = AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow,
-                           val userProperties: MutableMap<String, String>? = null,
-                           val widgetConfigs: MutableList<AgoraWidgetConfig>? = null) : Parcelable,
-                           val serviceType: AgoraServiceType = AgoraServiceType.LivePremium
-                           var uiMode: AgoraEduUIMode = AgoraEduUIMode.LIGHT
+class AgoraEduLaunchConfig(
+    var userName: String,
+    var userUuid: String,/*userUuid 最后一位数：2表示学生 1表示老师*/
+    var roomName: String,
+    var roomUuid: String,/*roomuuid最后一位数：0:一对一 2:大班课 4:小班课*/
+    var roleType: Int = AgoraEduRoleType.AgoraEduRoleTypeStudent.value,// 1:老师角色 2:学生角色
+    var roomType: Int,//房间类型 0:一对一 2:大班课 4:小班课 @see RoomType.GROUPING_CLASS
+    var rtmToken: String,
+    var startTime: Long?,// 上课开始时间，单位：毫秒
+    var duration: Long? // 上课持续时长，单位：秒
+){
+   /**
+     * 设置区域
+     */
+    var region: String = AgoraEduRegion.cn
+  
+    // appID
+    var appId: String = ""
+      /**
+     * 明亮/暗黑
+     */
+    var uiMode: AgoraEduUIMode = AgoraEduUIMode.LIGHT
+
+    /**
+     * 教室分享链接
+     */
+    var shareUrl: String? = null
+  
+    var latencyLevel: AgoraEduLatencyLevel? = AgoraEduLatencyLevel.AgoraEduLatencyLevelUltraLow
+  
+    //....
+}
 ```
 
 课堂启动配置。用于 [launch](#launch) 方法。
 
 | 属性                 | 描述                                                                                                                                                                                                                                                                                                                                                             |
 | :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `appId` | Agora App ID( 必填)。 |
 | `userName`           | 用户名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                     |
 | `userUuid`           | 用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 <li>0-9<li>空格<li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", "," |
 | `roomName`           | 课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                                                                                                                                                                                     |
@@ -137,10 +152,11 @@ class AgoraEduLaunchConfig(val userName: String,
 | `videoEncoderConfig` | 视频编码参数配置，包含视频宽高、帧率、码率，详见 [EduVideoEncoderConfig](#eduvideoencoderconfig)                                                                                                                                                                                                                                                                 |
 | `mediaOptions`       | 媒体流相关设置，包含媒体流加密，详见 [AgoraEduMediaOptions](#agoraedumediaoptions)。                                                                                                                                                                                                                                                                             |
 | `streamState`        | 用于控制学生上台后是否发音视频流，详见 [AgoraEduStreamState](#agoraedustreamstate)。                                                                                                                                                                                                                                                                             |
-| `latencyLevel`       | 观众端延时级别，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                                             |
+| `latencyLevel`       | 观众端延时级别，互动直播或极速直播，详见 [AgoraEduLatencyLevel](#agoraedulatencylevel)。                                                                                                                                                                                                                                                                               |
 | `userProperties`     | 由开发者自定义的用户属性。详见[如何设置自定义用户属性？](/cn/agora-class/faq/agora_class_custom_properties)                                                                                                                                                                                                                                                      |
 | `serviceType`     | （非必填）职业教育大班课使用的服务类型。详见 [AgoraServiceType](#agoraservicetype)。                                                                                                                                                                                                                                                     |
-| `uiMode`| （非必填）课堂界面模式，详见 [AgoraEduUIMode](#agoraeduuimode)。  |
+| `uiMode`| （非必填）课堂界面模式，明亮/暗黑，详见 [AgoraEduUIMode](#agoraeduuimode)。 |
+| `shareUrl` | （非必填）教室分享链接。 |
 
 
 ### AgoraEduEvent
@@ -167,20 +183,22 @@ public enum AgoraEduEvent {
 
 ```java
 public enum AgoraEduRoleType {
+   AgoraEduRoleTypeTeacher(1),
    AgoraEduRoleTypeStudent(2);
 }
 ```
 
 用户在课堂中的角色。在 [AgoraEduLaunchConfig](#agoraedulaunchconfig) 中设置。
 
-| 属性                      | 描述        |
-| :------------------------ | :---------- |
-| `AgoraEduRoleTypeStudent` | `2`: 学生。 |
+| 属性                      | 描述      |
+| :------------------------ | :-------- |
+| `AgoraEduRoleTypeStudent` | `2`: 学生 |
+| `AgoraEduRoleTypeTeacher` | `1`:老师  |
 
 ### AgoraEduRoomType
 
 ```java
-public enum AgoraEduRoomType {
+public enum AgoraEduRoomType {	
    AgoraEduRoomType1V1(0),
    AgoraEduRoomTypeSmall(4),
    AgoraEduRoomTypeBig(2);
@@ -258,10 +276,10 @@ enum class AgoraEduLatencyLevel(val value: Int) {
 
 观众端延时级别。用于 [AgoraEduLaunchConfig](#agoraedulaunchconfig)。
 
-| 参数                           | 描述                                                       |
-| :----------------------------- | :--------------------------------------------------------- |
-| `AgoraEduLatencyLevelLow`      | 低延时。发流端与观众端的延时为 1500 ms - 2000 ms。         |
-| `AgoraEduLatencyLevelUltraLow` | （默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。 |
+| 参数                           | 描述                                                         |
+| :----------------------------- | :----------------------------------------------------------- |
+| `AgoraEduLatencyLevelLow`      | 极速直播，低延时。发流端与观众端的延时为 1500 ms - 2000 ms。 |
+| `AgoraEduLatencyLevelUltraLow` | 互动直播，（默认）超低延时。发流端与观众端的延时为 400 ms - 800 ms。 |
 
 ### AgoraEduMediaOptions
 
@@ -384,5 +402,4 @@ enum class EduMirrorMode(val value: Int) {
 | `AUTO`     | SDK 默认关闭镜像模式。 |
 | `ENABLED`  | 开启镜像模式。         |
 | `DISABLED` | 关闭镜像模式。         |
-
 
