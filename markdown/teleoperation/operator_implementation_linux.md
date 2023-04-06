@@ -78,35 +78,43 @@ sudo yum groupinstall X11
 
 ### 接收音视频流
 
-接收 YUV 格式或已编码的视频数据，详细步骤请参考[从设备端接收媒体流](https://docs.agora.io/cn/server_gateway/server_gateway_tx_rx_stream?platform=Linux#%E4%BB%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%AA%92%E4%BD%93%E6%B5%81)。
+接收 YUV 格式的原始视频数据或编码后的 H.264 格式视频数据，详细步骤请参考[从设备端接收媒体流](https://docs.agora.io/cn/server_gateway/server_gateway_tx_rx_stream?platform=Linux#%E4%BB%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%8E%A5%E6%94%B6%E5%AA%92%E4%BD%93%E6%B5%81)。
 
 ### 收发控制信令
 
-1、创建并初始化 `RtmClient` 对象，并设置事件监听。
+1. 创建并初始化 `RtmClient` 对象，并设置事件监听。
 
 ```cpp
 auto service = createAndInitAgoraService(false, true, true, true, false, options.appId.c_str());
 auto con = service->createRtcConnection(agora::rtc::RtcConnectionConfiguration());
-auto p = con->getAgoraParameter(); p->setBool("rtc.vos_aut_use_old_sync",false); // 使用新的流订阅模式
-auto rtm_client = agora::rtm::createAgoraRtmClient(); // 创建 RtmClient
+// 使用新的流订阅模式
+auto p = con->getAgoraParameter(); p->setBool("rtc.vos_aut_use_old_sync",false);
+// 创建 RtmClient
+auto rtm_client = agora::rtm::createAgoraRtmClient();
 rtmHandler handle;
-agora::rtm::RtmConfig config; // 配置 RtmClient
-config.eventHandler = &handle; // 设置事件监听程序
+// 配置 RtmClient
+agora::rtm::RtmConfig config;
+// 设置事件监听程序
+config.eventHandler = &handle;
 config.appId = options.appId.c_str();
-config.userId = options.userId.c_str(); // userId 中仅支持传入内容为数值的字符串，例如 "1234567"
-rtm_client->initialize(config); // 初始化 RtmClient
+// userId 中仅支持传入内容为数值的字符串，例如 "1234567"
+config.userId = options.userId.c_str();
+// 初始化 RtmClient
+rtm_client->initialize(config);
 ```
 
-2、创建 Stream Channel 并加入频道。在使用 `StreamChannel` 类中的任何 API 之前，你需要先调用 `createStreamChannel` 创建 Stream Channel。
+2. 创建 Stream Channel 并加入频道。在使用 `StreamChannel` 类中的任何 API 之前，你需要先调用 `createStreamChannel` 创建 Stream Channel。
 
 ```cpp
-auto stream_channel = rtm_client->createStreamChannel(options.channelId.c_str()); // 创建 Stream Channel
+// 创建 Stream Channel
+auto stream_channel = rtm_client->createStreamChannel(options.channelId.c_str());
 agora::rtm::JoinChannelOptions opt;
 opt.token = options.appId.c_str();
-stream_channel->join(opt); // 加入频道
+// 加入频道
+stream_channel->join(opt);
 ```
 
-3、加入频道中的 Topic 并发布消息。成功加入 Topic 后，SDK 会自动将你注册为该 Topic 的消息发布者，你可以在该 Topic 中发送消息。成功发送后，SDK 会把该消息分发给该 Topic 的所有订阅者。
+3. 加入频道中的 Topic 并发布消息。成功加入 Topic 后，SDK 会自动将你注册为该 Topic 的消息发布者，你可以在该 Topic 中发送消息。成功发送后，SDK 会把该消息分发给该 Topic 的所有订阅者。
 
 ```cpp
 agora::rtm::JoinTopicOptions topic_join_opt;
@@ -115,7 +123,7 @@ stream_channel->joinTopic(options.topic.c_str(), topic_join_opt); // 加入 Topi
 stream_channel->publishTopicMessage(options.topic.c_str(), "hellortm", 9);
 ```
 
-4、订阅 Topic 及 Topic 中的消息发送者。
+4. 订阅 Topic 及 Topic 中的消息发送者。
 
 ```cpp
 agora::rtm::TopicOptions topic_opt;
@@ -125,7 +133,7 @@ topic_opt.userCount = 1;
 stream_channel->subscribeTopic(options.topic.c_str(), topic_opt);
 ```
 
-5、通过 `onMessageEvent` 事件通知接收远端用户的消息。
+5. 通过 `onMessageEvent` 事件通知接收远端用户的消息。
 
 ```cpp
 // 继承 IRtmEventHandler 类
@@ -147,7 +155,7 @@ public:
 };
 ```
 
-6、退出并释放资源。
+6. 退出并释放资源。
 
 ```cpp
 stream_channel->leaveTopic(options.topic.c_str()); // 退出 Topic

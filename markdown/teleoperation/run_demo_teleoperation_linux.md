@@ -4,7 +4,7 @@
 
 本文以 Linux 设备端和 Linux 操控端为例，介绍如何快速跑通平行操控示例项目，体验实时互通效果。
 
-<div class="alert note">如需体验其他设备端合操控端的示例项目，请<a href="https://www.shengwang.cn/contact-sales/">联系销售</a>获取，并参照 <code>README.md</code> 的步骤跑通。</div>
+<div class="alert note">如需体验其他设备端和操控端的示例项目，请<a href="https://www.shengwang.cn/contact-sales/">联系销售</a>获取，并参照 <code>README.md</code> 的步骤跑通。</div>
 
 
 ## 准备开发环境
@@ -65,7 +65,7 @@ sudo yum groupinstall X11
 
 ## 编译示例项目
 
-1、解压 SDK 包，其中包含的示例项目如下：
+1. 解压 SDK 包，其中包含的示例项目如下：
 
 ```bash
 ├── agora_sdk   # 声网的 SDK 库文件和头文件
@@ -82,19 +82,19 @@ sudo yum groupinstall X11
         └── sample_send_yuv_pcm        # 发送 YUV 数据
 ```
 
-2、通过终端进入示例项目目录。
+2. 通过终端进入示例项目目录。
 
 ```bash
 cd agora_rtc_sdk/example/
 ```
 
-3、(可选) 如果你对源码进行了更改，则需运行 `build.sh` 脚本将更新后的源码编译成可执行文件。
+3. (可选) 如果你对源码进行了更改，则需运行 `build.sh` 脚本将更新后的源码编译成可执行文件。
 
 ```bash
 ./build.sh
 ```
 
-4、将 SDK 中的库导出到 `LD_LIBRARY_PATH`。
+4. 将 SDK 中的库导出到 `LD_LIBRARY_PATH`。
 
 ```bash
 export LD_LIBRARY_PATH=./../agora_sdk/
@@ -104,7 +104,7 @@ export LD_LIBRARY_PATH=./../agora_sdk/
 
 本章节演示 Linux 设备端和 Linux 操控端之间的音视频流互通。
 
-<div class="alert info">本章节仅演示 YUV 视频数据的采集和收发。如需体验收发 H.264 格式的视频数据，请先运行 <code>./sync-data.sh</code> 命令获取相应的音频和视频文件。</div>
+<div class="alert info">本章节仅演示 YUV 原始视频数据的采集和收发。如需体验收发编码后的 H.264 格式的视频数据，请先运行 <code>./sync-data.sh</code> 命令获取相应的音频和视频文件。</div>
 
 ### 设备端采集并发送音视频流
 
