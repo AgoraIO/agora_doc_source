@@ -24,25 +24,27 @@
 
 参考以下步骤注册用户：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击 **配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)
 
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
 ![](./images/quickstart/config_chat.png)
 
-3. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
+4. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827634437)
 
 ![](./images/quickstart/user_mgmt.png)
 
-4. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
+5. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
 
 ![](https://web-cdn.agora.io/docs-files/1670827653548)
 
@@ -74,7 +76,6 @@
 ![](./images/quickstart/generate_token.png)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
-
 ## 项目设置
 
 参考以下步骤创建环境，将即时通讯 IM 添加到你的应用程序中。
@@ -82,7 +83,6 @@
 1. 若为新项目，在 **Android Studio** 中，创建一个带有 **Empty Activity** 的 **Phone and Tablet** [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
 <div class="alert note">创建项目后，Android Studio 会自动启动 gradle 同步。确保同步成功后再进行后续操作。</div>
-
 2. 使用 Maven Central 将即时通讯 IM SDK 集成到你的项目中。
 
    a.在`/Gradle Scripts/build.gradle(Project: <projectname>)`中，添加以下代码实现 Maven Central 依赖项：
@@ -103,10 +103,9 @@
    ```
 
    <div class="alert note">如果你在 Android 项目中设置 [dependencyResolutionManagement](https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration)，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
-
-   b.在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将即时通讯 IM SDK 集成到你的 Android 项目中：
-
-   ```java
+b.在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将即时通讯 IM SDK 集成到你的 Android 项目中：
+   
+```java
    android {
        defaultConfig {
                // Android 21 或以上系统版本。
@@ -239,6 +238,7 @@
         android:hint="Show log area..."
         android:scrollbars="vertical"
         android:padding="10dp"/>
+   ```
 
 </LinearLayout>
    ```
@@ -442,7 +442,7 @@
         // 发送消息。
         ChatClient.getInstance().chatManager().sendMessage(message);
     }
-    ```
+   ```
 
 7. 要查看日志，在 `sendFirstMessage` 方法中添加以下代码：
 

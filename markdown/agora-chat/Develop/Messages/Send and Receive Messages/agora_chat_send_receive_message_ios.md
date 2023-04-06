@@ -110,35 +110,47 @@ AgoraChatTextMessageBody* textBody = [[AgoraChatTextMessageBody alloc] initWithT
 - (void)messagesDidRecall:(NSArray *)aMessages;
 ```
 
-### 发送和接收附件类型的消息
+### 发送附件类型的消息
 
-语音，图片，视频，和文件消息实际上为附件消息。发送前，需先将附件上传到消息服务器。收到语音时，会自动下载，而图片和视频会自动下载缩略图。文件消息不会自动下载附件，接收方需调用下载附件的 API，具体实现参考下文。
+除文本消息外，SDK 还支持发送附件类型消息，包括语音、图片、视频和文件消息。
 
-#### 发送和接收语音消息
+附件消息的发送和接收过程如下：
 
-发送语音消息时，应用层需要完成语音文件录制的功能，并给出语音文件的 URI 和附件的显示名称。
+1. 创建和发送附件类型消息。SDK 将附件上传到声网服务器。
+2. 接收附件消息。SDK 自动下载语音消息，默认自动下载图片和视频的缩略图。若下载原图、视频和文件，需调用 `downloadAttachment` 方法。
+3. 获取附件的服务器地址和本地路径。 
 
-请参考以下代码示例来创建和发送语音消息：
+此外，发送附件类型消息时，可以在 progress 回调中获取附件上传的进度，以百分比表示，示例代码如下：
+
+```objectivec
+// 发送消息时可以设置 completion 回调，在该回调中更新消息的显示状态。例如消息发送失败后的提示等等。
+[[AgoraChatClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
+        // progress 为附件上传进度块的百分比。
+} completion:^(AgoraChatMessage *message, AgoraChatError *error) {
+    // error 为发送结果，message 为发送的消息。
+}];
+```
+
+#### 发送语音消息
+
+发送和接收语音消息的过程如下：
+
+1. 发送语音消息前，在应用层录制语音文件。
+2. 发送方调用 `initWithLocalPath` 和 `initWithConversationID` 方法传入语音文件的 URI、语音时长和接收方的用户 ID（群聊或聊天室分别为群组 ID 或聊天室 ID）创建语音消息，然后调用 `sendMessage` 方法发送消息。SDK 会将文件上传至声网服务器。
 
 ```objectivec
 // `localPath` 为语音文件本地资源路径，`displayName` 为附件的显示名称。
-AgoraChatVoiceMessageBody *body = [[AgoraChatVoiceMessageBody alloc] initWithLocalPath:localPath
-                                                           displayName:displayName];
-AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
-                                                      from:fromChatUsername
-                                                                           to:toChatUsername
-                                                                       body:body
-                                                       ext:nil];
-message.chatType = AgoraChatTypeChat;
-// 如果是群聊，设置 chatType，默认是单聊。
+AgoraChatVoiceMessageBody *body = [[AgoraChatVoiceMessageBody alloc] initWithLocalPath:localPath displayName:displayName];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
+// 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
-[[AgoraChatClient sharedClient].chatManager sendMessage:message
-                                                                     progress:nil
-                                                                   completion:nil];
-```                                                           
+[[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
+```
 
-接收方收到语音消息后，参考如下示例代码获取语音消息的附件：
+3. 接收方收到语音消息时，自动下载语音文件。
+
+4. 接收方收到 `messagesDidReceive` 回调，调用 `remotePath` 或 `localPath` 方法获取语音文件的服务器地址或本地路径，从而获取语音文件。
 
 ```objectivec
 AgoraChatVoiceMessageBody *voiceBody = (AgoraChatVoiceMessageBody *)message.body;
@@ -148,34 +160,25 @@ NSString *voiceRemotePath = voiceBody.remotePath;
 NSString *voiceLocalPath = voiceBody.localPath;
 ```
 
-#### 发送和接收图片消息
+#### 发送图片消息
 
-默认情况下，SDK 在发送之前会压缩图片文件。要发送原始文件，可以设置 `original` 为 `true`。
+发送和接收图片消息的流程如下：
 
-请参考以下代码示例创建和发送图像消息：
+1. 发送方调用 `initWithData` 和 `initWithConversationID` 方法传入图片的本地资源标志符 URI、设置是否发送原图以及接收方的用户 ID （群聊或聊天室分别为群组 ID 或聊天室 ID）创建图片消息，然后调用 `sendMessage` 方法发送该消息。SDK 会将图片上传至声网服务器，服务器自动生成图片缩略图。
 
 ```objectivec
 // `imageData` 为图片本地资源，`displayName` 为附件的显示名称。
-AgoraChatImageMessageBody *body = [[AgoraChatImageMessageBody alloc] initWithData:imageData
-                                                                  displayName:displayName];
-AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
-                                                      from:fromChatUsername
-                                                                           to:toChatUsername
-                                                                       body:body
-                                                       ext:messageExt];
-message.chatType = AgoraChatTypeChat;
-// 设置消息类型，即设置 `Message` 类的 `MessageType` 属性。
-// 设置该属性的值为 `Chat`、`Group` 和 `Room`，分别代表该消息是单聊、群聊或聊天室消息，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat;
+AgoraChatImageMessageBody *body = [[AgoraChatImageMessageBody alloc] initWithData:imageData displayName:displayName];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
+
+// 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
+message.chatType = AgoraChatTypeGroupChat; 
 // 发送消息。
-[[AgoraChatClient sharedClient].chatManager sendMessage:message
-                                                                     progress:nil
-                                                                   completion:nil];
+[[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
 ```
 
-当收件人收到消息时，参考以下代码示例获取图片消息的缩略图和附件文件：
-
 ```objectivec
+// 发送成功后，获取图片消息缩略图及附件。
 AgoraChatImageMessageBody *body = (AgoraChatImageMessageBody *)message.body;
 // 从服务器端获取图片文件。
 NSString *remotePath = body.remotePath;
@@ -187,37 +190,65 @@ NSString *localPath = body.localPath;
 NSString *thumbnailLocalPath = body.thumbnailLocalPath;
 ```
 
-如果在接收方客户端 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail` 设置为 `YES`，SDK 收到消息后会自动下载缩略图。若该选项设置为 `false`，需要调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载缩略图并从 `messageBody` 的 `thumbnailLocalPath` 中获取缩略图路径。
+2. 接收方收到图片消息，自动下载图片缩略图。
 
-#### 发送和接收视频消息
+SDK 默认自动下载缩略图，即 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail;` 为 `YES`。若设置为手动下载缩略图，即 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail(NO);`，需调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载。
 
-发送视频消息时，应用层需要完成视频文的捕获或者录制。视频消息支持输入视频的首帧作为缩略图，也支持给出视频的时长作为参数，发送给接收方。
+3. 接收方收到 `messagesDidReceive` 回调，调用 `downloadMessageAttachment` 下载原图。
 
-请参考以下代码示例来创建和发送视频消息：
+下载完成后，在回调里调用相应消息 `body` 的 `thumbnailLocalPath` 获取缩略图路径。
+
+
+```objectivec
+AgoraChatImageMessageBody *imageBody = (AgoraChatImageMessageBody *)message.body;
+// 图片文件的本地缩略图资源路径。
+NSString *thumbnailLocalPath = imageBody.thumbnailLocalPath;
+```
+
+
+4. 获取图片消息的附件。
+
+
+```objectivec
+[[AgoraChatClient sharedClient].chatManager downloadMessageAttachment:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
+            if (!error) {
+                AgoraChatImageMessageBody *imageBody = (AgoraChatImageMessageBody *)message.body;
+                NSString *localPath = imageBody.localPath;
+            }
+        }];
+```
+
+
+#### 发送视频消息
+
+发送和接收视频消息的流程如下：
+
+1. 发送视频消息前，在应用层完成视频文件的选取或者录制。
+
+2. 发送方调用 `initWithLocalPath` 方法传入视频文件的本地资源标志符、消息的显示名称和视频时长，构建视频消息体。然后，调用 `initWithConversationID` 方法传入会话 ID 和视频消息体，构建视频消息。最后，调用 `sendMessage` 方法发送消息。SDK 会将视频文件上传至声网消息服务器，自动将视频的首帧作为视频缩略图。
 
 ```objectivec
 // `localPath` 为本地资源路径，`displayName` 为视频的显示名称。
 AgoraChatVideoMessageBody *body = [[AgoraChatVideoMessageBody alloc] initWithLocalPath:localPath displayName:@"displayName"];
 body.duration = duration;// 视频时长。
 
-AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
-                                                      from:fromChatUsername
-                                                                           to:toChatUsername
-                                                                       body:body
-                                                       ext:messageExt];
-message.chatType = AgoraChatTypeChat;
-// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat;
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
+// 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
+message.chatType = AgoraChatTypeGroupChat; 
 // 发送消息。
-[[AgoraChatClient sharedClient].chatManager sendMessage:message
-                                                                     progress:nil
-                                                                   completion:nil];
+[[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
 ```
-默认情况下，当接收方收到消息时，SDK 下载视频消息的缩略图。
 
-若你要手动下载视频缩略图，需将 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail;` 设置为 `NO`，主动调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载缩略图，并从 `messageBody` 的 `thumbnailLocalPath` 获取视频缩略图路径。
+3. 接收方收到视频消息时，自动下载视频缩略图。
+
+SDK 默认自动下载缩略图，即 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail;` 为 `YES`。若设置为手动下载缩略图，即 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail(NO);`，需调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载。
+
+4. 接收方收到 `messagesDidReceive` 回调，可以调用 `downloadMessageAttachment` 方法下载视频原文件。
+
+5. 获取视频缩略图和视频原文件。
 
 ```objectivec
+// 发送成功后，获取视频消息缩略图及附件。
 AgoraChatVideoMessageBody *body = (AgoraChatVideoMessageBody *)message.body;
 // 从服务器端获取视频文件的地址。
 NSString *remotePath = body.remotePath;
@@ -229,46 +260,59 @@ NSString *localPath = body.localPath;
 NSString *thumbnailLocalPath = body.thumbnailLocalPath;
 ```
 
-#### 发送和接收文件消息
+#### 发送文件消息
 
-请参考以下代码示例创建、发送和接收文件消息：
+发送和接收文件消息的流程如下：
+
+1. 发送方调用 `initWithData` 和 `initWithConversationID` 方法传入文件的本地资源标志符和接收方的用户 ID（群聊或聊天室分别为群组 ID 或聊天室 ID）创建文件消息，然后调用 `sendMessage` 方法发送文件消息。SDK 将文件上传至声网服务器。
 
 ```objectivec
 // `fileData` 为本地资源，`fileName` 为附件的显示名称。
-AgoraChatFileMessageBody *body = [[AgoraChatFileMessageBody  initWithData:fileData
-                                                                   displayName:fileName];
-AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
-                                                      from:fromChatUsername
-                                                                         to:toChatUsername
-                                                                       body:body
-                                                       ext:messageExt];
-message.chatType = AgoraChatTypeChat;
-// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
+AgoraChatFileMessageBody *body = [[AgoraChatFileMessageBody alloc] initWithData:fileData displayName:fileName];
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
+// 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
-[[AgoraChatClient sharedClient].chatManager sendMessage:message
-                                                                     progress:nil
-                                                                   completion:nil];
+[[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
 ```
 
-发送文件消息时，可以在 progress 回调中获取附件上传的进度，以百分比表示，示例代码如下：
+2. 接收方收到 `messagesDidReceive` 回调，调用 `downloadMessageAttachment` 方法下载文件。
 
 ```objectivec
-// 发送消息时可以设置 `CallBack` 的实例，获得消息发送的状态。可以在该回调中更新消息的显示状态。例如消息发送失败后的提示等等。
-[[AgoraChatClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
-        // progress 为附件上传进度块的百分比。
-} completion:^(AgoraChatMessage *message, AgoraChatError *error) {
-    // error 表示发送结果，message 表示发送的消息。
-}];
+[[AgoraChatClient sharedClient].chatManager downloadMessageAttachment:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
+            if (!error) {
+                // 附件下载成功
+            }
+        }];
 ```
 
-当接收方收到消息时，参考以下代码示例获取附件文件：
+3. 调用以下方法从服务器或本地获取文件附件：
 
 ```objectivec
 AgoraChatFileMessageBody *body = (AgoraChatFileMessageBody *)message.body;
-// 从服务器端获取附件文件。
+// 从服务器端获取文件路径。
 NSString *remotePath = body.remotePath;
-// 从本地获取附件文件。
+// 从本地获取文件路径。
+NSString *localPath = body.localPath;
+```
+
+#### 下载缩略图及附件
+
+SDK 默认自动下载缩略图，即 `[AgoraChatClient sharedClient].options.isAutoDownloadThumbnail;` 为 `YES`。如果设置为手动下载附件，可修改 `[[AgoraChatClient sharedClient].options setIsAutoDownloadThumbnail:NO];`，需主动调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 下载附件。下载完成后，调用相应消息体的 `thumbnailLocalPath` 获取缩略图路径。
+
+```objectivec
+AgoraChatImageMessageBody *body = (AgoraChatImageMessageBody *)message.body;
+// 从服务器端获取图片缩略图。
+NSString *thumbnailPath = body.thumbnailRemotePath;
+// 从本地获取图片缩略图。
+NSString *thumbnailLocalPath = body.thumbnailLocalPath;
+```
+
+对于原文件来说，语音消息收到后会自动下载语音文件。若下载原图片、视频或文件，调用 `[[AgoraChatClient sharedClient].chatManager downloadMessageThumbnail:message progress:nil completion:nil];` 方法。下载完成后，调用相应消息 body 的 `localPath` 获取附件路径。
+
+```objectivec
+AgoraChatImageMessageBody *body = (AgoraChatImageMessageBody *)message.body;
+// 从本地获取文件。
 NSString *localPath = body.localPath;
 ```
 
@@ -284,9 +328,9 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                            to:toChatUsername
                                                                        body:body
                                                        ext:messageExt];
-// 将会话类型设置单聊，也可设置为群聊或聊天室，默认为单聊。
+// 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
 message.chatType = AgoraChatTypeChat;
-// 将会话类型设置为群聊。
+// 若为群聊，添加以下代码。
 // message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
@@ -309,7 +353,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                        body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
+// 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
@@ -444,7 +488,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                                        body:body
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
-// 将会话类型设置为群聊，也可设置为单聊或聊天室，默认为单聊。
+// 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
 message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
@@ -490,4 +534,4 @@ message.chatType = AgoraChatTypeChat;
 
 - [管理本地消息](./agora_chat_manage_message_ios)
 - [从服务器检索对话和消息](./agora_chat_retrieve_message_ios)
-- [消息回执](./agora_chat_message_receipt_android)
+- [消息回执](./agora_chat_message_receipt_ios)

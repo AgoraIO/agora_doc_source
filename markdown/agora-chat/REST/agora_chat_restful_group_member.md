@@ -374,7 +374,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ### HTTP 请求
 
 ```http
-DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memebers}
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{usernames}
 ```
 
 #### 路径参数
@@ -382,7 +382,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memeber
 | 参数     | 类型   | 描述                                                           | 是否必填 |
 | :------- | :----- | :------------------------------------------------------------- | :------- |
 | group_id | String | 群组 ID。                                                      | 是       |
-| members  | String | 要移除的群成员的用户 ID。一次最多可传入 60 个用户 ID，用英文逗号分隔，例如 `user1,user2`。并且，需确保请求 URL 的长度不超过 4 KB。 | 是 |
+| usernames | String | 要移除的群成员的用户 ID。一次最多可传入 60 个用户 ID，用英文逗号分隔，例如 `user1,user2`。并且，需确保请求 URL 的长度不超过 4 KB。 | 是 |
 
 其他参数及描述详见[公共参数](#pubparam)。
 

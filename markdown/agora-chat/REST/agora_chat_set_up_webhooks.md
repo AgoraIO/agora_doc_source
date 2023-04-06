@@ -65,7 +65,7 @@
 
 4. 在**功能配置** > **消息回调** 页面，单击 **添加回调规则**。
 
-[callback_add_rule.png]
+![](./images/enablechat/callback_add_rule.png)
 
 5. 添加发送前回调规则。在 **发送前回调** 页签中设置下表中的字段，然后单击 **保存**。
 
@@ -101,7 +101,7 @@
 1. 获取下列信息：
    - 回调 ID，即回调请求体中的 `callId` 参数。
    - 分配给回调规则的密钥。你可以在 Agora 控制台的即时通讯 IM 配置页面找到该值。
-    [postdelivery_callback_secret.png]  
+    ![](./images/enablechat/postdelivery_callback_secret.png)
    - 回调时间戳，即回调请求体中的 `timestamp` 参数。
 2. 计算由回调 ID、密钥和回调时间戳拼接的字符串的 [MD5](https://en.wikipedia.org/wiki/MD5) 值。
 3. 检查计算的值是否与请求体中的 `secret` 参数相同。若相同，则表明回调由即时通讯 IM 发送。

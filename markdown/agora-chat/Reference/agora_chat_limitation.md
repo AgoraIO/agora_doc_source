@@ -39,7 +39,7 @@
 | 免费版   | 3                  |
 | 基础版   | 7                  |
 | 进阶版   | 90                 |
-| 企业版   | 180                |
+| 企业版   | 自定义（默认 180 天）                |
 
 ### 消息长度
 
@@ -294,7 +294,7 @@
 | 查询离线推送模板          | GET  | /{org}/{app}/notification/template/{name} | 10 次/秒/App Key  |
 | 删除离线推送模板          | DELETE  | /{org}/{app}/notification/template/{name} | 10 次/秒/App Key  |
 
-#### Agora 推送
+#### 声网即时推送
 
 | RESTful API 接口        | 方法 | 接口 URL           | 
 | :------------------- | :--- | :------------------- |
@@ -315,12 +315,12 @@
 | 对指定标签下的用户发送推送通知 | POST  | /{org_name}/{app_name}/push/list/label | 1200 次/分钟/App Key        |
 | 对 app 下的所有用户发送推送通知 | POST  | /{org_name}/{app_name}/push/task | 5 次/分钟/App Key，100 次/天       |
 
-### 用户在线状态管理
+### 用户在线状态（Presence）管理
 
 | RESTful API 接口        | 方法   | 接口 URL          | 接口最高调用频率（默认值） |
 | :------------- | :----- | :--------------------------------- | :------------------------- |
 | 设置用户在线状态信息 | POST   | /{org_name}/{app_name}/users/{uid}/presence/{resource}/{status} | 50 次/秒/App Key           |
-| 批量订阅在线状态     | POST   | /{org_name}/{app_name}/users/{uid}/presence/{expiry}         | 50 次/秒/App Key           |
+| 批量订阅在线状态     | POST   | /{org_name}/{app_name}/users/{username}/presence/{expiry}         | 50 次/秒/App Key           |
 | 批量获取在线状态信息 | POST   | /{org_name}/{app_name}/users/{uid}/presence                  | 50 次/秒/App Key           |
 | 取消订阅多个用户的在线状态  | DELETE | /{org_name}/{app_name}/users/{uid}/presence                  | 50 次/秒/App Key           |
 | 查询订阅列表         | GET    | /{org_name}/{app_name}/users/{uid}/presence/sublist?pageNum=1&pageSize=100 | 50 次/秒/App Key           |

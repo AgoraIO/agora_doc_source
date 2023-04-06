@@ -23,25 +23,27 @@
 
 参考以下步骤注册用户：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击 **配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)
 
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
 ![](./images/quickstart/config_chat.png)
 
-3. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
+4. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827634437)
 
 ![](./images/quickstart/user_mgmt.png)
 
-4. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
+5. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
 
 ![](https://web-cdn.agora.io/docs-files/1670827653548)
 

@@ -78,7 +78,7 @@ Authorization: Bearer YourAppToken
 | 接口名称    | 方法 | 接口 URL       | 描述 |
 | :-------------- | :--- | :----------------- | :------------------------- |
 | 设置用户全局禁言       | POST | /{org_name}/{app_name}/mutes         | 设置指定用户的单聊、群组或聊天室的全局禁言。         |
-| 查询单个用户 ID 全局禁言        | GET  | /{org_name}/{appName}/mutes/username | 查询单个用户的单聊、群聊和聊天室的全局禁言详情。       |
+| 查询单个用户 ID 全局禁言        | GET  | /{org_name}/{app_name}/mutes/username | 查询单个用户的单聊、群聊和聊天室的全局禁言详情。       |
 | 查询 app 下的所有全局禁言的用户 | GET  | /{org_name}/{app_name}/mutes         | 查询 app 下所有全局禁言的用户及其禁言剩余时间。          |
 
 ### 发送消息和上传/下载文件
@@ -155,7 +155,7 @@ Authorization: Bearer YourAppToken
 | 批量移除群组成员         | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}/users/{usernames}            | 从群组成员列表中批量移除用户。     |
 | 获取群管理员列表         | GET    | /{org_name}/{app_name}/chatgroups/{group_id}/admin                        | 获取群组管理员列表。               |
 | 添加群管理员             | POST   | /{org_name}/{app_name}/chatgroups/{group_id}/admin                        | 添加用户至群组管理员列表。         |
-| 移除群管理员             | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}/admin             | 从群组管理员列表中移除用户。       |
+| 移除群管理员             | DELETE | /{org_name}/{app_name}/chatgroups/{group_id}/admin/{oldadmin}             | 从群组管理员列表中移除用户。       |
 | 转让群组                 | PUT    | /{org_name}/{app_name}/chatgroups/{group_id}                               | 转让群主权限。                     |
 | 查询群组黑名单           | GET    | /{org_name}/{app_name}/chatgroups/{group_id}/blocks/users                 | 查询群组的黑名单列表。             |
 | 添加单个用户至群组黑名单 | POST   | /{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{username}      | 将用户添加至群组的黑名单列表。     |
