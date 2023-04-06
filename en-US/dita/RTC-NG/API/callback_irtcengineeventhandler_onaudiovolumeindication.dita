@@ -40,7 +40,7 @@
             <p>By default, this callback is disabled. You can enable it by calling <xref keyref="enableAudioVolumeIndication" />. Once this callback is enabled and users send streams in the channel, the SDK triggers the <apiname keyref="onAudioVolumeIndication" /> callback according to the time interval set in <apiname keyref="enableAudioVolumeIndication" />. The SDK triggers two independent <apiname keyref="onAudioVolumeIndication" /> callbacks simultaneously, which separately report the volume information of the local user who sends a stream and the remote users (up to three) whose instantaneous volume is the highest.</p>
             <note type="attention">
             <p props="apple">After receiving this callback, if you need to update the UI interface, ensure that the execution thread is switched to the UI thread.</p>
-            <p>Once this callback is enabled, if the local user calls the  method for mute<xref keyref="muteLocalAudioStream" />, the SDK continues to report the volume indication of the local user.</p>
+            <p>Once this callback is enabled, if the local user calls the <xref keyref="muteLocalAudioStream" /> method to mute, the SDK continues to report the volume indication of the local user.</p>
             <p>If a remote user whose volume is one of the three highest in the channel stops publishing the audio stream for 20 seconds, the callback excludes this user's information; if all remote users stop publishing audio streams for 20 seconds, the SDK stops triggering the callback for remote users.</p>
             </note> </section>
         <section id="parameters">
@@ -56,7 +56,7 @@
             </plentry>
             <plentry props="native unity electron rn flutter">
                 <pt>speakers</pt>
-                <pd>The volume information of the users, see <xref keyref="AudioVolumeInfo" />. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or is sending a stream.</pd>
+                <pd>The volume information of the users. See <xref keyref="AudioVolumeInfo" />. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or is sending a stream.</pd>
             </plentry>
             <plentry props="cpp unity electron rn flutter">
                 <pt>speakerNumber</pt>
