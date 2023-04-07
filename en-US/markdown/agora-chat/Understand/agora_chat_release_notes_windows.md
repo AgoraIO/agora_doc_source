@@ -6,9 +6,13 @@ v1.1.0 was released on February 28, 2023.
 
 #### New features
 
-- Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
-- Adds the `ChatManager#GetConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
-- Adds the `Message#Priority` attribute to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
+1. Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
+2. Adds the `ChatManager#GetConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
+3. Adds the `Message#Priority` attribute to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
+4. Adds the support for push notifications on the server side to allow you to send push notifications to all users, individual users specified by IDs, or groups of users by labels. For how to configure and send push notifications, see the following RESTful API documents:
+- Send push notifications (./agora_chat_restful_send_push_notification).
+- Configure push notifications(./agora_chat_restful_config_push_notification).
+- Set push labels(./agora_chat_restful_push_tag).
 
 #### Improvements
 
