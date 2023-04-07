@@ -48,13 +48,13 @@
     }
     ```
 
-    假设你想获取 2.8.0 的版本，可以这样写：
+    假设你想获取 2.8.20 的版本，可以这样写：
 
     ```
     dependencies {
-        implementation "io.github.agoraio-community:AgoraEduCore:2.8.0"
-        implementation "io.github.agoraio-community:AgoraEduUIKit:2.8.0"
-        implementation "io.github.agoraio-community:AgoraClassSDK:2.8.0"
+        implementation "io.github.agoraio-community:AgoraEduCore:2.8.20"
+        implementation "io.github.agoraio-community:AgoraEduUIKit:2.8.20"
+        implementation "io.github.agoraio-community:AgoraClassSDK:2.8.20"
      }
     ```
 

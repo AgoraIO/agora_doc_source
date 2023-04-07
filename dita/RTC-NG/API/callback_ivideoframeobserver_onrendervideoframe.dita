@@ -37,7 +37,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的视频数据，然后根据场景需要，对视频数据进行处理。</p>
+            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取远端发送的渲染前的视频数据，然后根据场景需要，对视频数据进行处理。</p>
             <note type="attention" props="native electron rn flutter">
             <ul>
             <li>如果你获取到的视频数据类型为 RGBA，SDK 不支持对 alpha 通道的值进行处理。</li>
@@ -61,10 +61,9 @@
                 <pd>频道 ID。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
-            <p conkeyref="onCaptureVideoFrame/return" props="native electron unity rn"/>
+        <section id="return_values" props="native electron unity rn">
+            <title>返回值</title>
+            <p conkeyref="onCaptureVideoFrame/return"/>
         </section>
     </refbody>
 </reference>

@@ -40,10 +40,10 @@
 	git checkout release/{VERSION} 
 	```
 	
-	例如要切换到 2.8.0 版本分支，执行以下命令：
+	例如要切换到 2.8.20 版本分支，执行以下命令：
 	
 	```
-	git checkout release/2.8.0
+	git checkout release/2.8.20
 	```
 
    声网建议你切换到最新发版分支。参考下图在 GitHub 仓库中查看最新发版分支：

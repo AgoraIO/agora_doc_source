@@ -27,7 +27,7 @@
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取本地摄像头采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
-            <p props="native unity electron rn">完成前处理后，你可以在该回调中，传入处理后的视频数据将其发送回 SDK。</p>
+            <p props="native unity electron rn">完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
             <note type="attention" id="note">
             <ul>
             <li>此处获取的视频数据未经过前处理，如水印、裁剪、旋转和美颜等。</li>
@@ -39,16 +39,21 @@
             <parml>
             <plentry id="videoframe">
                 <pt>videoFrame</pt>
-                <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。</pd>
+                <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
+                <note>通过该回调获取的视频帧数据格式默认值如下：
+                    <ul>
+                        <li props="android cpp rn unity flutter">Android：texture</li>
+                        <li props="ios cpp rn unity flutter">iOS：cvPixelBuffer</li>
+                        <li props="mac cpp electron unity flutter">macOS：YUV 420</li>
+                        <li props="cpp electron unity flutter">Windows：YUV 420</li></ul></note></pd>
             </plentry>
             <plentry props="unity" id="config">
                 <pt>config</pt>
                 <pd>视频帧设置，详见 <xref keyref="VideoFrameBufferConfig"/>。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+        <section id="return_values" props="native unity electron rn">
+            <title>返回值</title>
             <p id="return">
             <ul>
             <li props="native electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 时：

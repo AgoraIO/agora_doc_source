@@ -38,7 +38,7 @@
 
 同时，声网还支持发流端自定义设置是否参与音强选流，不参与选流的音频流会直接和被选出的 N 路音频流一同传输至接收端。在大型会议等多人发流的场景下，开启音强选流功能可以帮助减轻接收端的下行带宽压力和系统资源消耗，详见音强选流。
 
-<div class="alert info">该版本新增音强选流功能，如需开启该功能，请联系<a href="https://agora-ticket.agora.io/">技术支持</a>。</div>
+<div class="alert info">该版本新增音强选流功能，如需开启该功能，请联系<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">技术支持</a>。</div>
 
 
 **5. 双流模式**
@@ -408,15 +408,21 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 - 将多组视频频流通过不同的用户 ID (`uid`) 发布到远端。
 - 将多路视频流合图后通过一个用户 ID (`uid`) 发布到远端。
 
+**2. 超高清分辨率 (Beta) (Windows, macOS)**
 
-**2. 超高清分辨率 (Beta)**
+为提升视频互动体验，SDK 对视频采集、编码、解码、渲染全流程做出了优化，自该版本起支持 4K 分辨率。优化了 FEC (Forward Error Correction) 算法，可根据视频帧包数与帧率进行自适应切换，降低 4K 场景下的视频卡顿率。你可以在调用 `setVideoEncoderConfiguration` 时，设置编码分辨率为 4K (3840 × 2160)、帧率为 60 fps。当你的设备不支持 4K 时，SDK 支持自动回退到适合的分辨率和帧率。
 
-为提升视频互动体验，SDK 对视频采集、编码、解码、渲染全流程做出了优化，自该版本起支持 4K 分辨率。优化了 FEC (Forward Error Correction) 算法，可根据视频帧包数与帧率进行自适应切换，降低 4K 场景下的视频卡顿率。
-你可以在调用 `setVideoEncoderConfiguration` 时，设置编码分辨率为 4K (3840 × 2160)、帧率为 60 fps。当你的设备不支持 4K 时，SDK 支持自动回退到适合的分辨率和帧率。
-该功能对设备性能和网络带宽有一定要求，在不同的平台上支持的上下行帧率也不同，如需体验该功能，请[提交工单](https://agora-ticket.agora.io/)。
+<div class="alert info"><ul><li>该功能对设备性能和网络带宽有一定要求，在不同的平台上支持的上下行帧率也不同，如需体验该功能，请联系<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">技术支持</a>。</li><li>高分辨率可能会影响集合分辨率从而导致费用变更。详见<a href="./billing_rtc_ng">计费说明</a>。</li></ul></div>
 
 
-**3. 内置媒体播放器**
+**3. 全高清和超高清分辨率 (Android, iOS)**
+
+为提升视频互动体验，SDK 对视频采集、编码、解码、渲染全流程做出了优化，自该版本起支持全高清 (FHD) 和超高清 (UHD) 视频分辨率。你可以在调用 `setVideoEncoderConfiguration` 方法时，将 `dimensions` 参数设置为 1920 × 1080 或更高的分辨率。如果你的设备不支持高分辨率，SDK 支持自动回退到适合的分辨率。
+
+<div class="alert info"><ul><li>超高清分辨率 (4K，60 fps) 目前为 Beta 功能，且对设备性能和网络带宽有一定要求，如需体验该功能，请联系<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">技术支持</a>。</li><li>高分辨率通常需要更高的性能消耗，为避免设备性能不足导致体验下降，声网建议你在性能较好的设备上开启全高清和超高清视频分辨率。</li><li>高分辨率可能会影响集合分辨率从而导致费用变更。详见<a href="./billing_rtc_ng">计费说明</a>。</li></ul></div>
+
+
+**4. 内置媒体播放器**
 
 为减少 SDK 包体积、集成时间，以及简化 API 的调用步骤，该版本支持内置媒体播放器。调用 `createMediaPlayer` 创建媒体播放器后，你可以通过 `MediaPlayer` 类的一系列方法体验内置媒体播放器的各类功能：
 
@@ -427,20 +433,20 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 - 实时缓存媒体资源文件，该功能开启后，播放器会预先缓存当前正在播放的媒体文件的部分数据到本地，可提高播放流畅度，帮助节省网络流量。
 
 
-**4. 新版 AI 降噪**
+**5. 新版 AI 降噪**
 
 自该版本起，SDK 支持新版 AI 降噪 (相对于 agora_rtc_engine: ^5.x 中的基础 AI 降噪) 功能。相比原版 AI 降噪，新版 AI 降噪具有更好的人声保真度、更干净的噪声抑制，并新增了去混响 (Dereverberation) 能力。
 如果你希望体验新版 AI 降噪，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 
-**5. 超高音质**
+**6. 超高音质**
 
 为还原音频的细节、提升音频的清晰度，该版本新增 `ultraHighQualityVoice`。在语聊、歌唱等以人声为主的场景中，你可以调用 `setVoiceBeautifierPreset` 并使用该枚举体验超高音质。
 
 
-**6. 空间音效**
+**7. 空间音效**
 
-<div class="alert note">空间音效功能当前处于实验阶段，请联系 <a href= "mailto:sales@agora.io">sales@agora.io</a> 开通空间音效功能，如果需要技术支持，请<a href="https://agora-ticket.agora.io/">提交工单</a>。</div>
+<div class="alert note">空间音效功能当前处于实验阶段，请联系 <a href= "mailto:sales@agora.io">sales@agora.io</a> 开通空间音效功能，如果需要技术支持，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
 该版本提供本地直角坐标系计算方案实现空间音效：
 
@@ -451,7 +457,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 ![](https://web-cdn.agora.io/docs-files/1663038287220)
 
 
-**7. 实时合唱**
+**8. 实时合唱**
 
 该版本为实时合唱赋予了如下能力：
 
@@ -462,7 +468,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 该版本新增 `audioScenarioChorus` 枚举来设置极低延时。使用该枚举后，在网络条件良好的情况下，用户可以体验到极低延时的实时合唱。
 
 
-**8. 增强的频道管理**
+**9. 增强的频道管理**
 
 为满足各类业务场景对频道管理的需求，该版本在 `ChannelMediaOptions` 类中新增了如下功能：
 
@@ -474,7 +480,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 在调用 `joinChannel` 或 `joinChannelEx` 时设置 `ChannelMediaOptions`，明确媒体流发布和订阅行为，例如，是否发布摄像头采集或者屏幕共享的视频流，是否要主动订阅远端用户的音视频流。加入频道后，调用 `updateChannelMediaOptions` 随时更新 `ChannelMediaOptions` 中的设置，例如，切换发布的音视频源。
 
 
-**9. 屏幕共享**
+**10. 屏幕共享**
 
 该版本优化了开启屏幕共享的逻辑，你可以根据实际场景选择不同的方式开启屏幕共享。
 
@@ -489,7 +495,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 - 在加入频道后调用 `startScreenCapture`，然后调用 `updateChannelMediaOptions` 设置 `publishScreenCaptureVideo` 为 `true`，即可开始屏幕共享。
 
 
-**10. 设置音视频流订阅黑/白名单**
+**11. 设置音视频流订阅黑/白名单**
 
 该版本新增音视频流订阅黑/白名单功能，支持灵活订阅频道内发流用户的音视频流。你可以通过以下 API 来将指定用户的用户 ID 加入到相应的音视频黑白名单中，从而实现订阅/不订阅指定用户的音频或视频流。在多频道场景下，你可以通 `RtcEngineEx` 类下的同名方法来实现该功能。
 
@@ -501,22 +507,22 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 如果某个用户同时在音频或视频订阅的黑、白名单中，只有黑名单会生效。
 
 
-**11. 设置音频场景**
+**12. 设置音频场景**
 
 为方便用户灵活修改音频场景，该版本新增 `setAudioScenario` 方法，支持你根据业务需求设置音频场景。例如，如果你在频道内想将音频场景从自动场景 (`AudioScenarioDefault`) 切换为高音质场景 (`AudioScenarioGameStreaming`) ，你可以调用该方法。
 
 
-**12. 设置本地代理**
+**13. 设置本地代理**
 
 该本版新增 `setLocalAccessPoint` 方法，用于在成功部署声网混合云、私有化平台后，指定 Local Access Point 来设置本地代理。你可以联系 [sales@agora.io](mailto:sales@agora.io) 了解和部署声网混合云或声网私有化平台。
 
 
-**13. 垫片推流**
+**14. 垫片推流**
 
 该版本新增垫片推流功能，支持你在发流时使用本地 png 格式的图片来替代当前发布的视频流画面进行推流。你可以通过 `enableVideoImageSource` 来开启该功能，并通过 `options` 参数自定义垫片图片；在你关闭垫片功能之后，远端用户看到的依旧是当前你发布的视频流画面。
 
 
-**14. 本地合图**
+**15. 本地合图**
 
 该版本新增本地合图功能，可支持在本地将多路视频流合并为一路视频流。常见场景如下：
 
@@ -525,7 +531,7 @@ v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分�
 你可以调用 `startLocalVideoTranscoder` 方法开启本地合图、调用 `stopLocalVideoTranscoder` 方法停止本地合图；在开启本地合图后，可以调用 `updateLocalTranscoderConfiguration` 进行本地合图的配置更新。
 
 
-**15. 视频设备管理**
+**16. 视频设备管理**
 
 视频采集设备可能支持多种视频格式，每一种格式都支持不同的视频帧宽度、视频帧高度、帧率组合。
 

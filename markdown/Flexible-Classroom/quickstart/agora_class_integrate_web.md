@@ -52,7 +52,7 @@
 1. 在项目的 HTML 文件中添加以下代码：
 
     ```html
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.0.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.21.bundle.js"></script>
     ```
 
 2. 在项目的 JavaScript 代码中调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
@@ -67,7 +67,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.0.bundle.js"></script>
+    <script src="https://download.agora.io/edu-apaas/release/edu_sdk@2.8.21.bundle.js"></script>
 </head>
 
 <body>
@@ -97,7 +97,7 @@
             rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
             language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。
             duration: 60 * 30, // 课程时间，单位为秒。
-            recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.0/record_page.html',
+            recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.21/record_page.html',
             courseWareList: [],
             virtualBackgroundImages: [], // 虚拟背景图片资源列表。
             webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC 插件部署地址。
