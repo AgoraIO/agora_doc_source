@@ -23,25 +23,27 @@
 
 参考以下步骤注册用户：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击 **配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)
 
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
 ![](./images/quickstart/config_chat.png)
 
-3. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
+4. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827634437)
 
 ![](./images/quickstart/user_mgmt.png)
 
-4. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
+5. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
 
 ![](https://web-cdn.agora.io/docs-files/1670827653548)
 
@@ -49,9 +51,9 @@
 
 ### 生成 Token
 
-为了保证通信安全，Agora 推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
 
-出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
+出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
 1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
 
@@ -65,7 +67,7 @@
 
 ![](./images/quickstart/config_chat.png)
 
-3. 在**应用信息**页面的**Data Center**区域，在 **Chat User Temp Token** 框中输入用户 ID，点击 **Generate** 生成一个具有用户权限的 Token。
+3. 在**应用信息**页面的 **Data Center** 区域，在 **Chat User Temp Token** 框中输入用户 ID，点击 **Generate** 生成一个具有用户权限的 Token。
 
 ![](https://web-cdn.agora.io/docs-files/1670827712260)
 
@@ -95,7 +97,7 @@ https://github.com/AgoraIO/AgoraChat_iOS.git
 
 2. 在 **Choose Package Options** 中，设置你要使用的即时通讯 IM SDK 版本。
 
-## 实现单聊聊天客户端
+## 实现单聊客户端
 
 ### 创建 UI
 

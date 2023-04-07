@@ -374,7 +374,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ### HTTP 请求
 
 ```http
-DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memebers}
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{usernames}
 ```
 
 #### 路径参数
@@ -382,7 +382,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/users/{memeber
 | 参数     | 类型   | 描述                                                           | 是否必填 |
 | :------- | :----- | :------------------------------------------------------------- | :------- |
 | group_id | String | 群组 ID。                                                      | 是       |
-| members  | String | 要移除的群成员的用户 ID。一次最多可传入 60 个用户 ID，用英文逗号分隔，例如 `user1,user2`。并且，需确保请求 URL 的长度不超过 4 KB。 | 是 |
+| usernames | String | 要移除的群成员的用户 ID。一次最多可传入 60 个用户 ID，用英文逗号分隔，例如 `user1,user2`。并且，需确保请求 URL 的长度不超过 4 KB。 | 是 |
 
 其他参数及描述详见[公共参数](#pubparam)。
 
@@ -556,8 +556,9 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/admin
 
 | 字段    | 类型   | 描述                    |
 | :----- | :----- | :---------------------- |
-| `data` | String | 添加的新管理员的用户 ID。 |
-| `count` | Number   | 添加的新管理员的数量。 |
+| `data` | JSON | 群管理员添加结果。 |
+| `data.result` | String | 群管理员是否添加成功。 |
+| `data.newadmin` | String   | 添加的管理员的用户 ID。 |
 
 其他字段及说明详见[公共参数](#pubparam)。
 
@@ -577,16 +578,19 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' '
 
 ```json
 {
-    "action": "get",
+    "action": "post",
     "application": "527cd7e0-XXXX-XXXX-9f59-ef10ecd81ff0",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/10130212061185/admin",
-    "entities": [],
-    "data": ["user1"],
-    "timestamp": 1489073361210,
+    "applicationName": "demo",
+    "data": {
+        "result": "success",
+        "newadmin": "man"
+    },
     "duration": 0,
+    "entities": [],
     "organization": "XXXX",
-    "applicationName": "XXXX",
-    "count": 1
+    "properties": {},
+    "timestamp": 1680074570600,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/10130212061185/admin"
 }
 ```
 

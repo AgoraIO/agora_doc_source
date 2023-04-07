@@ -2,7 +2,7 @@
 
 即时通讯将各地人们连接在一起，实现实时通信。利用即时通讯 IM SDK，你可以在任何地方的任何设备上的任何应用中嵌入实时通讯。
 
-本文介绍如何通过示例代码集成 Agora 即时通讯 SDK，在你的 Android app 中实现发送和接收单聊文本消息。
+本文介绍如何通过示例代码集成即时通讯 SDK，在你的 Android app 中实现发送和接收单聊文本消息。
 
 ## 技术原理
 
@@ -15,7 +15,7 @@
 - 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
 - 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 Agora [项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Windows 或 macOS 计算机，需满足以下要求：
-  - Agora 即时通讯 SDK 支持的浏览器
+  - 即时通讯 SDK 支持的浏览器
     - Internet Explorer 9 以上版本
     - FireFox 10 以上版本
     - Chrome 54 以上版本
@@ -31,25 +31,27 @@
 
 参考以下步骤注册用户：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击 **配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)
 
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
 ![](./images/quickstart/config_chat.png)
 
-3. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
+4. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827634437)
 
 ![](./images/quickstart/user_mgmt.png)
 
-4. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
+5. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
 
 ![](https://web-cdn.agora.io/docs-files/1670827653548)
 
@@ -57,7 +59,7 @@
 
 ### 生成 Token
 
-为了保证通信安全，Agora 推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
 
 出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
@@ -327,7 +329,7 @@ $ npm run dev
 
 ## 后续步骤
 
-出于演示目的，Agora 即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录 Agora 即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 ## 参考
 
@@ -335,7 +337,7 @@ $ npm run dev
 
 1. 在 SDK 文件夹中，将 `libs/Agora-chat.js` 保存到你的项目目录。
 
-2. 在你的项目目录中打开 HTML 文件，添加以下代码查看 JS 文件。
+2. 在你的项目目录中打开 HTML 文件，添加以下代码查看 JavaScript 文件。
 
 ```javascript
 <script src="path to the JS file"></script>
