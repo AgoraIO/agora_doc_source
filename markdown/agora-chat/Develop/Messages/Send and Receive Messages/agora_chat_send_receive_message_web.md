@@ -186,7 +186,7 @@ conn.addEventHandler('MESSAGES',{
 
 语音、图片、视频和文件消息本质上是附件消息。发送和接收附件消息的流程如下：
 
-1. 创建和发送附件类型消息。SDK 将附件上传到 Agora 服务器，获取消息的基本信息以及服务器上附件文件的路径。
+1. 创建和发送附件类型消息。SDK 将附件上传到声网服务器，获取消息的基本信息以及服务器上附件文件的路径。
 
    对于图片消息来说，服务器会自动生成图片的缩略图；而对于视频消息来说，服务器不会自动生成视频缩略图。
 
@@ -273,7 +273,7 @@ function sendPrivateImg() {
           // 设置图片文件长度，单位为字节。
           file_length: file.data.size,
       },
-      // 设置消息接收方的用户 ID。
+      // 设置消息接收方。
       to: "username",
       // 设置会话类型。
       chatType: "singleChat",
@@ -351,7 +351,7 @@ function sendPrivateVideo() {
       // 设置消息类型。
       type: 'video',
       file: file,
-      // 设置消息接收方的用户 ID。消息接收方：单聊为对方用户 ID，群聊和聊天室分别为群组 ID 和聊天室 ID。
+      // 设置消息接收方：单聊为对方用户 ID，群聊和聊天室分别为群组 ID 和聊天室 ID。
       to: "username",
       // 设置会话类型。
       chatType: "singleChat",
@@ -478,7 +478,7 @@ function sendCMDMessage(){
     type: 'cmd',
     // 设置会话类型。
     chatType: 'singleChat',
-    // 设置消息接收方的用户 ID。
+    // 设置消息接收方。
     to: 'username',
     // 设置自定义动作。对于透传消息，该字段必填。
     action : 'action',
@@ -589,7 +589,7 @@ function sendCustomMsg() {
   let option = {
       // 设置消息类型。
       type: "custom",
-      // 设置消息接收方的用户 ID。
+      // 设置消息接收方。
       to: "username",
       // 设置会话类型。
       chatType: "singleChat",
