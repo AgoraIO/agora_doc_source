@@ -1,8 +1,7 @@
-# 即时通讯 IM 快速入门
 
 即时通讯将各地人们连接在一起，实现实时通信。利用即时通讯 IM SDK，你可以在任何地方的任何设备上的任何应用中嵌入实时通讯。
 
-本文介绍如何通过示例代码集成 Agora 即时通讯 SDK，在你的微信小程序 app 中实现发送和接收单聊文本消息。
+本文介绍如何通过示例代码集成即时通讯 SDK，在你的微信小程序 app 中实现发送和接收单聊文本消息。
 
 ## 技术原理
 
@@ -13,7 +12,7 @@
 开始前，请确保你的开发环境满足以下条件：
 
 - 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
-- 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 Agora [项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
+- 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 [Agora 项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Windows 或 Mac OS 计算机，需满足以下要求：
   - 已安装小程序开发者工具。
   - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](./AgoraPlatform/firewall)以正常使用 Agora 服务。
@@ -53,9 +52,9 @@
 
 ### 生成 Token
 
-为了保证通信安全，Agora 推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
 
-出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
+出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
 1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
 
@@ -311,7 +310,7 @@ Page({
 
 ## 后续步骤
 
-出于演示目的，Agora 即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录 Agora 即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录 即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 ## 参考
 

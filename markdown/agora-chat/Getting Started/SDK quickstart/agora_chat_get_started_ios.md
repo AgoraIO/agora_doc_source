@@ -51,9 +51,9 @@
 
 ### 生成 Token
 
-为了保证通信安全，Agora 推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
 
-出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
+出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
 1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
 
@@ -67,7 +67,7 @@
 
 ![](./images/quickstart/config_chat.png)
 
-3. 在**应用信息**页面的**Data Center**区域，在 **Chat User Temp Token** 框中输入用户 ID，点击 **Generate** 生成一个具有用户权限的 Token。
+3. 在**应用信息**页面的 **Data Center** 区域，在 **Chat User Temp Token** 框中输入用户 ID，点击 **Generate** 生成一个具有用户权限的 Token。
 
 ![](https://web-cdn.agora.io/docs-files/1670827712260)
 

@@ -53,9 +53,9 @@
 
 ### 生成 Token
 
-为了保证通信安全，Agora 推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
 
-出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
+出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
 1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
 
@@ -76,6 +76,7 @@
 ![](./images/quickstart/generate_token.png)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
+
 ## 项目设置
 
 参考以下步骤创建环境，将即时通讯 IM 添加到你的应用程序中。
@@ -83,6 +84,7 @@
 1. 若为新项目，在 **Android Studio** 中，创建一个带有 **Empty Activity** 的 **Phone and Tablet** [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
 <div class="alert note">创建项目后，Android Studio 会自动启动 gradle 同步。确保同步成功后再进行后续操作。</div>
+
 2. 使用 Maven Central 将即时通讯 IM SDK 集成到你的项目中。
 
    a.在`/Gradle Scripts/build.gradle(Project: <projectname>)`中，添加以下代码实现 Maven Central 依赖项：
@@ -103,7 +105,8 @@
    ```
 
    <div class="alert note">如果你在 Android 项目中设置 [dependencyResolutionManagement](https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration)，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
-b.在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将即时通讯 IM SDK 集成到你的 Android 项目中：
+
+b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将即时通讯 IM SDK 集成到你的 Android 项目中：
    
 ```java
    android {
@@ -503,14 +506,14 @@ b. 利用接收方的账号在另一台 Android 设备或模拟器上运行该 a
 
 ## 参考
 
-除了使用 mavenCentral 将即时通讯 IM SDK 集成到你项目中外，你还可以手动下载 [即时通讯 IM Android SDK](https://download.agora.io/sdk/release/Agora_Chat_SDK_for_Android_v1.0.0.zip)。
+除了使用 Maven Central 将即时通讯 IM SDK 集成到你项目中外，你还可以手动下载 [即时通讯 IM Android SDK](https://download.agora.io/sdk/release/Agora_Chat_SDK_for_Android_v1.0.0.zip)。
 
 1. 下载最新版本的即时通讯 IM Android SDK，并从下载的 SDK 包中解压文件。
 
 2. 将下载的 SDK 的 **libs** 文件夹中的以下文件或子文件夹复制到你的项目的对应目录中。
 
-   | 文件或子文件夹                                      | 你的项目路径                          |
-   | :-------------------------------------------------- | :------------------------------------ |
+   | 文件或子文件夹        | 你的项目路径       |
+   | :--------------------------- | :-------------------- |
    | `agorachat_X.Y.Z.jar`                                  | `~/app/libs/`                         |
    | `/arm64-v8a/libagora-chat-sdk.so` 和 `libsqlite.so`   | `~/app/src/main/jniLibs/arm64-v8a/`   |
    | `/armeabi-v7a/libagora-chat-sdk.so` 和 `libsqlite.so` | `~/app/src/main/jniLibs/armeabi-v7a/` |
