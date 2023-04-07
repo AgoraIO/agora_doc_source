@@ -9,6 +9,7 @@ v1.1.0 was released on February 28, 2023.
 1. Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
 2. Adds the `ChatMessage#setPriority(ChatRoomMessagePriority)` method to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
 3. Adds the pagination parameters `pageNum` and `pageSize` to the `ChatManager#asyncFetchConversationsFromServer` method to allow users to get the conversation list from the server with pagination.
+4. Adds the [Agora push feature](./agora_chat_restful_send_push_notification) on the server side to allow you to send instant push messages to users, regardless of whether users are online or offline.
 
 #### improvements
 
