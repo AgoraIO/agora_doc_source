@@ -109,18 +109,19 @@
     VIDEO_SOURCE_TYPE sourceType;
     int mediaPlayerId;
     Rectangle cropArea;
+    bool enableAlphaMask;
 
   VideoCanvas()
     : view(NULL), uid(0), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
-      setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
+      setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
   
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uid_t u)
     : view(v), uid(u), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
   
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, user_id_t)
     : view(v), uid(0), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
@@ -301,7 +302,7 @@
             <plentry props="mac">
                 <pt>enableAlphaMask</pt>
                 <pd>
-                <p>（可选）接收端是否开启 Alpha 遮罩渲染：                                       
+                <p>该属性仅适用于 macOS。（可选）接收端是否开启 Alpha 遮罩渲染：                                       
                   <ul>
                     <li><codeph><ph keyref="true"/></codeph>：接收端开启 Alpha 遮罩渲染。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）接收端关闭 Alpha 遮罩渲染。</li>
