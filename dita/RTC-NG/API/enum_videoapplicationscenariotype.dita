@@ -6,23 +6,49 @@
     <refbody>
         <section id="detailed_desc">
             <dl outputclass="since">
-                <dlentry props="native">
-                    <dt>自从</dt>
-                    <dd>v4.2.0</dd>
-                </dlentry>
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
             </dl>
         </section>
         <section id="parameters">
             <title>枚举值</title>
             <parml>
-                <plentry>
-                    <pt><ph keyref="APPLICATION_SCENARIO_GENERAL"/></pt>
-                    <pd>0: 默认场景。不开启任何设置。</pd>
-                </plentry>
-                <plentry>
-                    <pt><ph keyref="APPLICATION_SCENARIO_MEETING"/></pt>
-                    <pd>1：会议场景。</pd>
-                </plentry>
-            </parml>
-        </section></refbody>
+            <plentry>
+                <pt><ph keyref="APPLICATION_SCENARIO_GENERAL"/></pt>
+                <pd>0: 默认场景。不开启任何设置。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="APPLICATION_SCENARIO_MEETING"/></pt>
+                <pd>1：会议场景。
+                        <p>设置为会议场景后，SDK 会启用以下策略：</p>
+                        <p>
+                        <ol id="ol_wc5_fmc_cxb">
+                            <li>自动使用多项抗弱网技术，提升大小流的抗弱网能力，确保多路流订阅时接收端的流畅性；</li>
+                            <li>实时监测接收端大小流的订阅人数，根据接收端的订阅人数自适应发送大小流，节省上行带宽和消耗。行为如下：<ul>
+                                <li><p>动态修改大流的码率和帧率</p>
+                                <p>无人订阅大流时，会自动降低大流的码率和帧率，以节省上行带宽；</p>
+                                <p>有人订阅大流时，大流会重置为用户最近一次调用 <codeph>setVideoEncoderConfiguration</codeph> 时的 <codeph>VideoEncoderConfiguration</codeph> 配置；如果用户此前没有进行设置，则使用如下默认值： 
+                                <ul>
+                                <li>分辨率 (pixel)：PC 端 1280 × 720、移动端 960 × 540</li>
+                                <li>帧率 (fps)：15</li>
+                                <li>码率 (Kbps)：PC 端 1600、移动端 1100</li>
+                                </ul></p></li>
+                                <li><p>动态开启和关闭小流
+                                        <note id="note_jvz_pnc_cxb">如果用户已调用 <codeph>setDualStreamMode</codeph> 或 <codeph>enableDualStreamMode 将小流设置为</codeph>始终不发送 (<codeph>DISABLE_SIMULCAST_STREAM</codeph>)，会议场景对小流的动态开关不生效。</note></p>
+                                <p>无人订阅小流时，自动关闭小流，以节省上行带宽；</p>
+                                <p>有人订阅小流时，开启小流并重置为用户最近一次调用 <codeph>setDualStreamMode[2/2]</codeph> 或 <codeph>enableDualStreamMode[3/3]</codeph> 时的 <codeph>SimulcastStreamConfig</codeph> 配置；如果用户此前没有进行设置，则使用如下默认值：
+                                <ul>
+                                <li>分辨率 (pixel)：480 × 270</li>
+                                <li>帧率 (fps)：15</li>
+                                <li>码率 (Kbps)：500</li>
+                                </ul></p></li></ul>
+                            </li>
+                        </ol>
+                        </p>
+                    </pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
 </reference>
