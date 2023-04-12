@@ -260,7 +260,7 @@
 @property (nonatomic, assign) int64_t renderTimeMs;
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
-@property (nonatomic, assign) uint8_t* _Nullable alphaBuffer;
+
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct VideoFrame {
   VideoFrame():
@@ -645,7 +645,7 @@
           <pt>sampleAspectRatio</pt>
           <pd>单个像素的宽高比，即每个像素宽度与高度的比值。</pd>
         </plentry>
-        <plentry>
+        <plentry props="hide">
           <pt>alphaBuffer</pt>
           <pd>
             <p>表示人像分割算法的输出数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
