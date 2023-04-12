@@ -1,43 +1,43 @@
 ## 概览
-由于客户对在线课堂场景存在多种多样、定制化的需求，Agora 提供 Widget 帮助用户根据自身的需求开发插件并内嵌至灵动课堂内。 Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWidget` 自定义实现一个 Widget，然后在 Agora Classroom SDK 内注册该 Widget。Agora Classroom SDK 支持注册多个 Widget。在灵动课堂教育场景中，基于 Widget 实现的业务功能包括白板，倒计时，投票器以及答题器等。
+灵动课堂提供 Widget 帮助用户根据自身的需求开发插件并内嵌至课堂内。Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWidget` 自定义实现一个 Widget，在 Classroom SDK 内注册该 Widget，然后在教室使用该 widget。Classroom SDK 支持注册多个 Widget。
 
-<div class="alert info">声网提供了以下基于 Widget 实现的插件：倒计时、投票器和答题器等。你可在 <a href="https://github.com/AgoraIO-Community/apaas-extapp-ios">apaas-extapp-ios</a> 仓库中查看这些插件的源码。</div>
+在灵动课堂教育场景中，基于 Widget 实现的业务功能包括白板，倒计时，投票器以及答题器等。
+
+<div class="alert info">声网提供了预定义的基于 Widget 实现的插件，包括倒计时、投票器和答题器等。你可在 <a href="https://github.com/AgoraIO-Community/apaas-extapp-ios">apaas-extapp-ios</a> 仓库中查看这些插件的源码。</div>
 
 ## 技术原理
-![](../images/ios_widget.png)
+![](https://web-cdn.agora.io/docs-files/1681117887041)
 
-* 灵动课堂以一个 WidgetId 作为唯一标识符，在服务端分配独立的数据空间，在客户端提供沙盒式的环境。
-* 基于 AgoraBaseWidget 的子类与 AgoraEduWidgetContext 提供的 API 与回调，可以灵活实现各种业务功能。
-* 灵动课堂不关心 Widget 的具体业务功能，在 Widget 外部，通过通用的 API 与回调进行通讯。
+* 灵动课堂以 Widget ID 作为 widget 的唯一标识符，在服务端分配独立的数据空间。
+* 基于 `AgoraBaseWidget` 的子类与 `AgoraEduWidgetContext` 提供的 API 与回调，可以灵活实现各种业务功能。
+* 灵动课堂不会涉及 Widget 的具体业务功能，在 Widget 外部通过通用的 API 与回调进行通讯。
 
 ## 功能介绍
-### 房间信息与用户信息
-* 每个继承于 AgoraBaseWidget 的子类，当通过 AgoraEduWidgetContext.create 来创建对象后，可通过属性 `info` 来获取到当前的信息。
 
-* Widget 对象创建后的信息变化，可以通过 `onWidgetRoomPropertiesUpdated`，`onWidgetRoomPropertiesDeleted`，`onWidgetUserPropertiesUpdated`，`onWidgetUserPropertiesDeleted` 进行监听
+### 房间属性与用户属性
+* 每个继承于 `AgoraBaseWidget` 的子类，当通过 `AgoraEduWidgetContext.create` 来创建对象后，可通过属性 `info` 来获取到当前的房间信息和用户信息。
+* 可以通过 `updateWidgetRoomProperties`，`deleteWidgetRoomProperties`，`updateWidgetUserProperties`，`deleteWidgetUserProperties` 来增加或删除自定义属性，从而实现业务逻辑。
+* Widget 对象创建后自定义的属性变化，可以通过 `onWidgetRoomPropertiesUpdated`，`onWidgetRoomPropertiesDeleted`，`onWidgetUserPropertiesUpdated`，`onWidgetUserPropertiesDeleted` 进行监听。
 
-* 可以通过 `updateWidgetRoomProperties`，`deleteWidgetRoomProperties`，`updateWidgetUserProperties`，`deleteWidgetUserProperties` 来增加或删除自定义属性，从而实现业务逻辑
 
 ### 消息发送与接收
-* Widget 对象向外发送消息: 调用 Widget 的 `sendMessage` 方法，然后可以通过 AgoraEduWidgetContext 的 `addWidgetMessageObserver` 注册某个对象成为消息的观察者，来监听发出的消息
+* Widget 向外发送消息: 调用 Widget 的 `sendMessage` 方法发送消息。同时可以通过 `AgoraEduWidgetContext` 的 `addWidgetMessageObserver` 注册某个对象成为消息的观察者，来监听发出的消息。
 
-* 向 Widget 对象发送消息: 调用 AgoraEduWidgetContext 的 `sendMessageToWidget:message` 方法，然后在 Widget 的 `onMessageReceived` 可以接收到外部发送进来的消息
+* 向 Widget 发送消息: 调用 `AgoraEduWidgetContext` 的 `sendMessageToWidget:message` 方法。
+
+* Widget 接收消息：`onMessageReceived` 回调可以接收到外部发送进来的消息。
 
 ### 活跃状态
-* Widget 中定义了 **Activity** 的状态，开发者可以通过 AgoraEduWidgetContext 的 `setWidgetActive` 与 `setWidgetInactive` 来进行状态切换，以及通过 AgoraEduWidgetContext 的 `addWidgetActivityObserver` 来注册监听
+Widget 中定义了 widget 的状态（`Activity`），开发者可以通过 `AgoraEduWidgetContext` 的 `setWidgetActive` 与 `setWidgetInactive` 来进行状态切换，以及通过 `AgoraEduWidgetContext` 的 `addWidgetActivityObserver` 来注册监听。
 
-* **Activity** 仅仅是一个状态，开发者可以通过这个状态来控制 Widget 的行为，例如 Widget 对象销毁或者隐藏 Widget 对象的 View 
+开发者可以通过 `Activity` 来控制 Widget 的行为，例如当状态为非活跃时销毁 Widget 对象或者隐藏 Widget 对象的视图。
 
-备注:
-
-AgoraEduWidgetContext 的 `setWidgetActive` 方法中的 `ownerUuid` 参数：
-	当调用该方法将一个 userUuid 作为传入 `ownerUuid` 的时候，会将该 Widget 与该 UserUuid 绑定，当该用户离开房间时，会触发绑定的 WidgetId 的 `onWidgetInactive` 回调
+- 当调用 `setWidgetActive` 方法将一个 `userUuid` 作为 `ownerUuid` 的时候，会将该 Widget 与该 `UserUuid` 绑定，当该用户离开房间时，会触发绑定的 `WidgetId` 的 `onWidgetInactive` 回调。
 	
-AgoraEduWidgetContext 的 `setWidgetInactive` 方法中的 `isRemove` 参数：
-	当该参数传入为 true 时，会将 Widget 存在服务端的 roomProperties 数据溢出 
+- 当调用 `setWidgetInactive` 方法将 `true` 传入 `isRemove` 参数时，会将 Widget 存在服务端的 `roomProperties` 数据删除。
 
 ### 位置与尺寸同步
-* Widget 可以进行位置与尺寸的同步，开发者可以通过 AgoraEduWidgetContext 的 `updateWidgetSyncFrame` 来更新 Widget 的位置与尺寸，以及通过 AgoraEduWidgetContext 的 `addObserverForWidgetSyncFrame` 来注册监听
+如果本地 widget 的位置与尺寸发生变化，开发者可以通过 `AgoraEduWidgetContext` 的 `updateWidgetSyncFrame` 来更新远端 Widget 的位置与尺寸，以及通过 `AgoraEduWidgetContext` 的 `addObserverForWidgetSyncFrame` 来注册监听。
 
 ## 实现步骤
 
@@ -45,13 +45,11 @@ AgoraEduWidgetContext 的 `setWidgetInactive` 方法中的 `isRemove` 参数：
 
 <div class="alert info">可在 <a href="https://github.com/AgoraIO-Community/apaas-extapp-ios">apaas-extapp-ios</a> 仓库中 <code>/AgoraWidgets/CountdownTimer</code> 文件夹查看倒计时插件的完整代码。</div>
 
-
-
 ### 1. 实现 Widget
 
 参考以下步骤实现自定义 Widget:
 
-1. 在 AgoraCountdownTimerWidget 中引入 `AgoraWidget` 库：
+1. 在 `AgoraCountdownTimerWidget` 中引入 `AgoraWidget` 库：
 
    ```swift
    import AgoraWidget
@@ -62,14 +60,14 @@ AgoraEduWidgetContext 的 `setWidgetInactive` 方法中的 `isRemove` 参数：
    ```swift
    public override func onLoad() {
         super.onLoad()
-        initViews()
+        initViews() 
         initConstraints()
         updateData()
         updateViewFrame()
    }
    ```
 
-3. 监听 `onWidgetRoomPropertiesUpdated` 与 `onMessageReceived` 方法，进行数据更新：
+3. 监听 `onWidgetRoomPropertiesUpdated` 与 `onMessageReceived` 回调，进行数据更新：
 
    ```swift
     public override func onWidgetRoomPropertiesUpdated(_ properties: [String : Any],
@@ -92,7 +90,7 @@ AgoraEduWidgetContext 的 `setWidgetInactive` 方法中的 `isRemove` 参数：
     }
    ```
 
-4. 如果需要改动 Widget 尺寸，则通过 `sendMessage` 向外发出一条消息，由外部监听消息的父容器来更新 Widget 的尺寸：
+4. 如果需要改动 Widget 尺寸，可以通过 `sendMessage` 向外发出一条消息，由外部监听消息的父容器来更新 Widget 的尺寸：
 
    ```swift
    func updateViewFrame() {
@@ -109,7 +107,7 @@ AgoraEduWidgetContext 的 `setWidgetInactive` 方法中的 `isRemove` 参数：
 
 ### 2. 在声网 Classroom SDK 中注册 Widget
 
-在 `AgoraEduLaunchConfig.widgets` 中加入倒计时的 `AgoraWidgetConfig`，在调用 `launch` 时将实现好的插件注册到声网 Classroom SDK 中：
+在 `AgoraEduLaunchConfig.widgets` 中加入倒计时插件的配置 `AgoraWidgetConfig`，通过调用 `launch` 时将实现好的插件注册到声网 Classroom SDK 中。参考以下示例代码：
 
 ```swift
    let launchConfig = AgoraEduLaunchConfig(userName: userName,          
@@ -139,46 +137,47 @@ AgoraClassroomSDK.launch(launchConfig,
 ### 3. 在教室中使用 Widget
 ![](../images/ios_widget_component.png)
 
-在灵动课堂的交互层设计中， Widget 会被对应的 UIComponent 进行管理，这样可以隐藏与 Widget 较为复杂的通讯方式，以及在架构上与其它的 UIComponent 保持一致。 
+在灵动课堂的交互层设计中，Widget 由对应的 UIComponent 管理，这样可以隐藏 component 与 widget 之间较为复杂的通讯方式，以及在架构上与其它的 UIComponent 保持一致。
 
 
 参考以下步骤实现在教室中使用倒计时插件的相关逻辑：
 
-1. 通过 `AgoraEduContext.widget` 的 `addWidgetActivityObserver` 方法将` AgoraClassToolsUIComponent` 添加为 widget activity 的观察者，监听 activity 的回调：
+1. 通过 `AgoraEduContext.widget` 的 `addWidgetActivityObserver` 方法将 `AgoraClassToolsUIComponent` 添加为 widget activity 的观察者，监听 activity 的回调：
 
    ```swift
-   override func viewDidLoad() {
-       super.viewDidLoad()
-       contextPool.room.registerRoomEventHandler(self)
-       contextPool.widget.add(self)
-   }
+       // 调用 addWidgetActivityObserver 方法
+
+       widgetController.add(self) 
    ```
 
-2. 监听 activity 的回调：
+2. 通过 `AgoraWidgetActivityObserver` 监听 activity 的回调，并相应创建或销毁 widget：
 
    ```swift
    extension AgoraClassToolsViewController: AgoraWidgetActivityObserver {
        // 收到 onWidgetActive 回调时，创建 Widget
+
        func onWidgetActive(_ widgetId: String) {
            createWidget(widgetId)
        }
         
-       // 收到 `onWidgetInactive` 回调时，销毁 Widget
+       // 收到 onWidgetInactive 回调时，销毁 Widget
        func onWidgetInactive(_ widgetId: String) {
            releaseWidget(widgetId)
        }
    }
    ```
 
-3. 创建 AgoraCountdownTimer 的 Widget 对象并实现 Widget 在本地客户端的通讯：
+3. 创建 `AgoraCountdownTimer` 的 Widget 对象并实现 Widget 在本地客户端的通讯：
 
    ```swift
    // 调用 createWidget 方法创建 AgoraCountdownTimer 的 Widget 对象
+
    func createWidget(_ widgetId: String) {
        let widgetController = contextPool.widget
         
        guard widgetIdList.contains(widgetId),
              // 调用 getWidgetConfig 获取 AgoraCountdownTimer 的 AgoraWidgetConfig
+
              let config = widgetController.getWidgetConfig(widgetId) else {
            return
        }
@@ -187,10 +186,12 @@ AgoraClassroomSDK.launch(launchConfig,
            return
        }
         
-       // 通过 AgoraWidgetContext 的 addObserverForWidgetSyncFrame 将 AgoraClassToolsViewController 添加为 Widget syncFrame 的观察者，监听 syncFrame 的回调
+       // 通过 AgoraWidgetContext 的 addObserverForWidgetSyncFrame 将 AgoraClassToolsViewController 添加为 Widget syncFrame 的观察者，监听位置和尺寸变化的回调
+
        widgetController.addObserver(forWidgetSyncFrame: self,
                                     widgetId: widgetId)
-       // 通过 AgoraWidgetContext 的  addWidgetMessageObserver 将 AgoraClassToolsViewController 添加为 widget message 的观察者，监听 message 的回调
+       // 通过 AgoraWidgetContext 的  addWidgetMessageObserver 将 AgoraClassToolsViewController 添加为 widget message 的观察者，监听消息的回调
+
        widgetController.add(self,
                             widgetId: widgetId)
         
@@ -218,6 +219,7 @@ AgoraClassroomSDK.launch(launchConfig,
         
        if let string = tsDic.jsonString() {
            // 调用 sendMessage 方法，将当前时间戳发给 Widget 
+
            contextPool.widget.sendMessage(toWidget: widgetId,
                                           message: string)
        }
@@ -228,7 +230,8 @@ AgoraClassroomSDK.launch(launchConfig,
 
    ```swift
    extension AgoraClassToolsViewController: AgoraWidgetSyncFrameObserver {
-       // 当 syncFrame 更新时，更新 Widget 的位置与尺寸
+       // 当收到 syncFrame 回调时，AgoraClassToolsViewController 作为父容器更新 Widget 的位置与尺寸
+
        func onWidgetSyncFrameUpdated(_ syncFrame: CGRect,
                                      widgetId: String,
                                      operatorUser: AgoraWidgetUserInfo?) {
@@ -244,6 +247,7 @@ AgoraClassroomSDK.launch(launchConfig,
    ```swift
    extension AgoraClassToolsViewController: AgoraWidgetMessageObserver {
        // 当收到 message 回调时，AgoraClassToolsViewController 作为父容器来更新 Widget 的尺寸
+
        func onMessageReceived(_ message: String,
                               widgetId: String) {
            if let size = parseSizeMessage(widgetId: widgetId,

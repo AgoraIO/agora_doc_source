@@ -1,6 +1,6 @@
 灵动课堂目前支持中文、英文和西班牙语。如果你需要添加更多语言，只需要在指定目录找到语言相关的 key 值，进行修改即可。
 
-### Web 端多语言配置
+## Web 端多语言配置
 
 Web 端源码中，主 SDK （Classroom SDK 和 Proctor SDK） 和插件（包括答题器、倒计时、投票器、环信 IM 模块）有各自单独的多语言文件。具体修改方法如下:
 
@@ -37,18 +37,14 @@ Web 端源码中，主 SDK （Classroom SDK 和 Proctor SDK） 和插件（包�
 - `/AgoraEduUIKit/src/main/res`
   ![](https://web-cdn.agora.io/docs-files/1680084729669)
 
-- `/hyphenate/src/main/res`
-  ![](https://web-cdn.agora.io/docs-files/1680084737265)
-
   例如：你想要添加日语，那么你需要在以上目录下增加一个 `value-jp` 文件夹，内有一个 `index.js` 文件。
 
 ## iOS 端多语言配置
 
-你需要在 `AgoraEducation/Supporting Files` 目录下增加对应的语言的文件夹和文件，内容可参考英语（`en.lproj` 文件夹）或中文（`zh-Hans.lproj` 文件夹）。
-![](https://web-cdn.agora.io/docs-files/1680580583215)
-
-例如：你想要添加日语，那么你需要在 `AgoraEducation/Supporting Files` 目录下增加一个 `jp.lproj` 文件夹，内涵含一个 `InfoPlist.strings` 文件和 `Localizable.strings` 文件。你可以复制 `en.lproj` 文件夹并把文件夹名和里面的文件都改成日语对应的内容。
-<div class="alert info"><code>文件夹名只要具有唯一性且容易对应到该语言即可，但后缀必须为 <code>.lproj</code>。</code></div>
+1. 在 `others ` 文件夹下，复制一个原有的语言文件夹（例如 `en.Iproj`），重命名为新语言对应的名称（例如 `jp.Iproj`）。
+   <div class="alert info"><code>文件夹名只要具有唯一性且容易对应到该语言即可，但后缀必须为 <code>.lproj</code>。</code></div>
+2. 把文件夹内的 `Localizable.strings` 文件里的 `value` 都替换为新增语言对应的值。
+3. 在进入房间前，将 `AgoraUIBaseViews` 里的全局变量 `agora_ui_language` 的指设置为新增语言对应的文件夹名，再进入房间即可生效。
 
 
 

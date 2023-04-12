@@ -5,66 +5,64 @@
 灵动课堂代码包含以下包：
 ```
 ├── packages
-│   ├── agora-classroom-sdk  #在线教育场景SDK
+│   ├── agora-classroom-sdk  # 在线教育场景 SDK
 │   │   ├── lib
-│   │   │   └── externals  #存放rtc相关插件如美颜/降噪
+│   │   │   └── externals  # 存放 RTC 相关插件如美颜/降噪
 │   │   ├── src
 │   │   │   ├── infra
-│   │   │   │   ├── api  #SDK入口
-│   │   │   │   ├── capabilities  #UI相关目录。
-│   │   │   │   │   ├── containers  #UI 功能组件，与 UI Store 结合成为 UI 业务组件。
-│   │   │   │   │   └── scenarios  #UI 场景。场景是由多个业务组件组合而成。
-│   │   │   │   ├── configs  #默认的颜色/主题配置
-│   │   │   │   ├── stores  #UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
-│   │   │   └── ui-kit  #通用UI组件
-│   ├── agora-demo-app  #灵动课堂demo app，提供在线课堂的课前、课中、课后等场景化代码示例
-│   │   ├── electron  #electron相关代码
+│   │   │   │   ├── api  # SDK 入口
+│   │   │   │   ├── capabilities  # UI 相关目录。
+│   │   │   │   │   ├── containers  # UI 功能组件，与 UI Store 结合成为 UI 业务组件。
+│   │   │   │   │   └── scenarios  # UI 场景。场景是由多个业务组件组合而成。
+│   │   │   │   ├── configs  # 默认的颜色和主题配置
+│   │   │   │   ├── stores  # UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
+│   │   │   └── ui-kit  # 通用 UI 组件
+│   ├── agora-demo-app  # 灵动课堂demo app，提供在线课堂的课前、课中、课后等场景化代码示例
+│   │   ├── electron  # electron 相关代码
 │   │   ├── src
-│   │   │   ├── api  #和后台数据交互接口
-│   │   │   ├── components  #业务组件
-│   │   │   ├── layout  #业务布局
-│   │   │   ├── pages  #页面
-│   │   │   ├── router  #路由
-│   │   │   ├── stores  #公共数据
-│   ├── agora-plugin-gallery  #独立插件库，继承AgoraWidgetBase类并实现AgoraWidgetLifecycle接口，包含互动白板、IM聊天、答题器、投票器、计时器等插件。
+│   │   │   ├── api  # 和后台数据交互接口
+│   │   │   ├── components  # 业务组件
+│   │   │   ├── layout  # 业务布局
+│   │   │   ├── pages  # 页面
+│   │   │   ├── router  # 路由
+│   │   │   ├── stores  # 公共数据
+│   ├── agora-plugin-gallery  # 独立插件库，继承 AgoraWidgetBase 类并实现 AgoraWidgetLifecycle 接口，包含互动白板、IM 聊天、答题器、投票器、计时器等插件。
 │   │   └── src
-│   │       ├── common  #widget公用逻辑，主要包含承载widget的modal组件
-│   │       ├── components  #widget通用UI组件
+│   │       ├── common  # widget 公用逻辑，主要包含承载 widget 的 modal 组件
+│   │       ├── components  # widget 通用 UI 组件
 │   │       └── gallery
-│   │           ├── answer  #答题器widget
-│   │           ├── counter  #计时器widget
-│   │           ├── hx-chat  #聊天widget
-│   │           ├── im  #im通用能力的封装，为聊天widget提供统一接口
-│   │           ├── stream-media  #视频流播放器
-│   │           ├── vote  #投票widget
-│   │           ├── watermark  #水印widget
-│   │           ├── webview  #webview widget，包含通用webview和youtube同步播放器
-│   │           └── whiteboard  #白板widget
-│   ├── agora-proctor-sdk  #在线监考场景SDK
+│   │           ├── answer  # 答题器 widget
+│   │           ├── counter  # 计时器 widget
+│   │           ├── hx-chat  # 聊天 widget
+│   │           ├── im  # im通用能力的封装，为聊天 widget 提供统一接口
+│   │           ├── stream-media  # 视频流播放器
+│   │           ├── vote  # 投票 widget
+│   │           ├── watermark  # 水印 widget
+│   │           ├── webview  # webview widget，包含通用 webview 和 Youtube 同步播放器
+│   │           └── whiteboard  # 白板 widget
+│   ├── agora-proctor-sdk  # 在线监考场景 SDK
 │   │   ├── src
 │   │   │   ├── infra
-│   │   │   │   ├── api  #SDK入口
+│   │   │   │   ├── api  # SDK 入口
 │   │   │   │   ├── capabilities
-│   │   │   │   │   ├── components  #通用UI组件
-│   │   │   │   │   ├── containers  #UI 功能组件，与 UI Store 结合成为 UI 业务组件。
-│   │   │   │   │   └── scenarios  #UI 场景。场景是由多个业务组件组合而成。
-│   │   │   │   ├── stores  #UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
-│   ├── agora-common-libs  #通用工具类库，包含ThemeProvider、I18nProvider等全局通用工具。
-│   ├── agora-edu-core  #提供灵动课堂中教育和监考场景的上行API调用和下行数据结构封装
-│   ├── agora-rte-sdk  #提供跨端RTC适配能力以及教室内事件回调与数据结构封装
+│   │   │   │   │   ├── components  # 通用 UI 组件
+│   │   │   │   │   ├── containers  # UI 功能组件，与 UI Store 结合成为 UI 业务组件。
+│   │   │   │   │   └── scenarios  # UI 场景。场景是由多个业务组件组合而成。
+│   │   │   │   ├── stores  # UI Store 目录。UI Store 负责为 UI 组件提供业务逻辑封装。
+│   ├── agora-common-libs  # 通用工具类库，包含 ThemeProvider、I18nProvider等 全局通用工具。
+│   ├── agora-edu-core  # 提供灵动课堂中教育和监考场景的上行 API 调用和下行数据结构封装
+│   ├── agora-rte-sdk  # 提供跨端 RTC 适配能力以及教室内事件回调与数据结构封装
 
 ```
 
 
 
-## 集成灵动课堂教育场景
+## 集成教育场景下灵动课堂
 
-灵动课堂 Web 端支持多种集成方式。根据是否需要修改课堂 UI，你可选择不同的集成方式：
+灵动课堂 Web 端支持多种集成方式。根据是否需要自定义课堂 UI，你可选择不同的集成方式：
 
 - 如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 或 CDN 集成。
 - 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/flexible-classroom-desktop)集成。
-
-<a name="default_ui"></a>
 
 ### 使用默认 UI 的方式集成
 
@@ -72,7 +70,7 @@
 
 #### 使用 npm 集成
 
-1. 运行安装命令：
+1. 在终端运行以下安装命令：
 
     ```
     npm install agora-classroom-sdk
@@ -86,13 +84,13 @@
 
 3. 在项目的 JavaScript 代码中调用 [AgoraEduSDK.config](/cn/agora-class/agora_class_api_ref_web?platform=Web#config) 和 [AgoraEduSDK.launch](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法启动课堂。
 
-注意事项：
-灵动课堂依赖项`agora-electron-sdk`和`agora-rdc-core`包含原生node模块，不建议被webpack等构建工具二次编译，否则可能出现node模块找不到的错误，建议在项目配置里将这两个库设置为外部依赖，例如添加webpack配置:
+<div class="alert note">灵动课堂依赖项 <code>agora-electron-sdk</code> 和 <code>agora-rdc-core</code> 包含原生 Node.js 模块，不建议使用 webpack 等构建工具二次编译，否则可能出现 Node.js 模块找不到的错误。建议在项目配置里将这两个库设置为外部依赖，例如添加 webpack 配置，参考以下示例：</div>
+
 ```bash
-  externals: {
-    'agora-electron-sdk': 'commonjs2 agora-electron-sdk',
-    'agora-rdc-core': 'commonjs2 agora-rdc-core',
-  }
+externals: {
+'agora-electron-sdk': 'commonjs2 agora-electron-sdk',
+'agora-rdc-core': 'commonjs2 agora-rdc-core',
+}
 ```
 #### 使用 CDN 集成
 
@@ -147,7 +145,7 @@
             recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.0/record_page.html',
             courseWareList: [],
             virtualBackgroundImages: [], // 虚拟背景图片资源列表
-            webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC插件部署地址
+            webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC 插件部署地址
             uiMode: 'light', // 设置课堂界面为明亮模式。如需界面为暗黑模式，设为 'dark' 即可。
             listener: (evt, args) => {
             },
@@ -159,11 +157,9 @@
 ```
 
 示例代码中需要传入 `rtmToken`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
+<div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
 其他参数取值详见 [LaunchOption 说明](/cn/agora-class/agora_class_api_ref_web?platform=Web#launchoption)。
-
-
-<a name="change_default_ui"></a>
 
 ### 使用自定义 UI 的方式集成
 
@@ -203,15 +199,12 @@
 
 
 
-## 集成灵动课堂监考场景
+## 集成监考场景下灵动课堂
 
 灵动课堂 Web 端支持多种集成方式。根据是否需要修改课堂 UI，你可选择不同的集成方式：
 
 - 如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 或 CDN 集成。
 - 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/flexible-classroom-desktop)集成。
-
-
-<a name="default_ui_proctor"></a>
 
 ### 使用默认 UI 的方式集成
 
@@ -298,9 +291,8 @@
 示例代码中 `userUuid` 的填写方式：在线监考时，学生需要使用主、副设备接入考试。比如，主设备为 Web 端，用于采集学生视频，并分享学生答题时的屏幕画面；副设备为 Android 或 iOS 设备，用于拍摄学生答题的身姿。监考老师通过三种视角的视频观察学生答题，防止作弊。你需要在不同设备上以 `${用户id}-${设备类型（main/sub）}` 的规则填写 `userUuid`。比如，对学生小明，在 Web 端集成代码 `AgoraProctorSDK.launch` 方法的 `userUuid` 参数中传入 `'xiaoming-main'`，在 Android 或 iOS 端对应的 `userUuid` 参数中传入 `'xiaoming-sub'`。灵动课堂会将 `xiaoming-main` 和 `xiaoming-sub` 识别为用户小明的主、副设备，然后合并主、副设备的视频画面，最终将合并后的视频画面渲染在老师的监考视频窗口中。
 
 示例代码中 `rtmToken` 的填写方式：你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
+<div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
-
-<a name="change_default_ui_proctor"></a>
 
 ### 使用自定义 UI 的方式集成
 
