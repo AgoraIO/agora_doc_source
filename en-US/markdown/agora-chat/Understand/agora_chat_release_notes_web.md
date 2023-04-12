@@ -10,6 +10,10 @@ v1.1.0 was released on February 28, 2023.
 2. Adds the `priority` attribute to the message creation method `create` to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
 3. Adds the pagination parameters `pageNum` and `pageSize` in the `getConversationlist` method to allow users to get the conversation list from the server with pagination.
 5. Adds the group creation event `create` which occurs on other devices of the group owner after group creation.
+6. Adds the support for push notifications on the server side to allow you to send push notifications to all users, individual users specified by IDs, or groups of users by labels. For how to configure and send push notifications, see the following RESTful API documents:
+- Send push notifications (./agora_chat_restful_send_push_notification).
+- Configure push notifications(./agora_chat_restful_config_push_notification).
+- Set push labels(./agora_chat_restful_push_tag).
 
 #### Improvements
 

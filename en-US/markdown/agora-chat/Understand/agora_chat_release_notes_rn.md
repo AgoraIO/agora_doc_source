@@ -14,10 +14,14 @@ v1.1.0 was released on February 28, 2023.
 
 #### New features
 
-- Upgrades the native platforms `iOS` and `Android` that the React Native platform depends on to v1.1.0.
-- Adds the function of managing custom chat room attributes.
-- Adds the `ChatManager#fetchConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
-- Adds the `ChatMessage#messagePriority` method to implement the chat room message priority function.
+1. Upgrades the native platforms `iOS` and `Android` that the React Native platform depends on to v1.1.0.
+2. Adds the function of managing custom chat room attributes.
+3. Adds the `ChatManager#fetchConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
+4. Adds the `ChatMessage#messagePriority` method to implement the chat room message priority function.
+5. Adds the support for push notifications on the server side to allow you to send push notifications to all users, individual users specified by IDs, or groups of users by labels. For how to configure and send push notifications, see the following RESTful API documents:
+- Send push notifications (./agora_chat_restful_send_push_notification).
+- Configure push notifications(./agora_chat_restful_config_push_notification).
+- Set push labels(./agora_chat_restful_push_tag).
 
 #### Improvements
 
