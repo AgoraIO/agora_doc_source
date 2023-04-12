@@ -1,17 +1,17 @@
 # 使用 Token 鉴权
 
-鉴权指对用户身份进行校验的过程。当你使用 Agora 服务时，例如加入音视频通话、登录即时通讯系统，Agora 会使用 Token 对用户身份及权限进行验证。
+鉴权指对用户身份进行校验的过程。当你使用声网服务时，例如加入音视频通话、登录即时通讯系统，声网会使用 Token 对用户身份及权限进行验证。
 
-为了保证即时通讯连接的安全性，Agora 提供以下两种场景的 Token 用于用户鉴权。
+为了保证即时通讯连接的安全性，声网提供以下两种场景的 Token 用于用户鉴权。
 
-| 应用场景         | Token 权限 | Token 构成                                                   | Token 最长有效期           |
-| ---------------- | ---------- | ------------------------------------------------------------ | -------------------------- |
+| 应用场景   | Token 权限 | Token 构成           | Token 最长有效期       |
+| :------------ | :----- | :----------------------------------------- | :------- |
 | RESTful API 调用 | App 权限   | <ul><li>你的即时通讯 IM 项目的 App ID。</li><li>你的即时通讯 IM 项目的 App 证书。</li><li>你设置的即时通讯 Token 的有效期。</li></ul> | 24 小时（以 UTC 时区为准） |
 | SDK API 调用     | 用户权限   | <ul><li>你的即时通讯 IM 项目的 App ID。</li><li>你的即时通讯 IM 项目的 App 证书。</li><li> 你的即时通讯 IM 项目的 Token 有效期。</li><li>待鉴权用户的 UUID。</li></ul><div class="alert info">UUID 是通过[用户注册 RESTful API](./agora_chat_restful_registration#注册单个用户) 为每个用户所生成的唯一内部标识。</a>.</div> |  24 小时（以 UTC 时区为准）                          |
 
 ## 体验 Token 生成
 
-出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token，而在生产环境中，Token 需由你的 App Server 使用 AgoraTools 生成。
+出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token，而在生产环境中，Token 需由你的 App Server 使用 AgoraTools 生成。
 
 ### 生成用户权限 Token
 
@@ -21,13 +21,13 @@
 
 参考以下步骤注册用户：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)
 
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+2. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
@@ -55,7 +55,7 @@
 
 在左侧导航栏选择**基本信息 > 应用信息**，点击**数据中心**区域的 **Chat App Temp Token** 对应的 **生成** 生成一个 App 权限 Token，可用于调用 RESTful API。
 
-![](./images/token/generate_app_token_ui.png)
+![](https://web-cdn.agora.io/docs-files/1681094132023)
 
 为了安全考虑，在生产环境中 Token 由你的 App Server 使用 AgoraTools 生成。本文介绍如何从你的 App Server 中获取 Token 实现用户鉴权。
 
@@ -75,12 +75,12 @@
 
 ## 前提条件
 
-- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-账号)。
-- 拥有 [App 证书](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)和已开通即时通讯的 [Agora 项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建-agora-项目)。详见[开启和配置即时通讯服务](./enable_agora_chat)。
-- 你的 Agora 项目的 App ID、OrgName、AppName，详见[开启和配置即时通讯服务](./enable_agora_chat)。
+- 有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
+- 拥有 [App 证书](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-App-证书)和已开通即时通讯的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。详见[开启和配置即时通讯服务](./enable_agora_chat)。
+- 你的声网项目的 App ID、OrgName 和 AppName，详见[开启和配置即时通讯服务](./enable_agora_chat)。
 - [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
 
-如果你的网络环境部署了防火墙，为允许你在有网络访问限制的环境中使用即时通讯服务，Agora 提供防火墙白名单方案。如需使用请[提交工单](https://agora-ticket.agora.io/)，我们的技术服务会提供目标域名及对应的端口。
+如果你的网络环境部署了防火墙，为允许你在有网络访问限制的环境中使用即时通讯服务，声网提供防火墙白名单方案。如需使用请[提交工单](https://agora-ticket.agora.io/)，我们的技术服务会提供目标域名及对应的端口。
 
 ## 实现鉴权流程
 

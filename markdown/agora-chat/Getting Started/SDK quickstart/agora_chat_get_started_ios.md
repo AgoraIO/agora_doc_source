@@ -12,8 +12,8 @@
 
 开始前，请确保你的开发环境满足以下条件：
 
-- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
-- 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 Agora [项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
+- 有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
+- 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Xcode。本文以 Xcode 13.0 为例进行介绍。
 - 一台运行 iOS 10 或以上版本的设备。
 
@@ -23,55 +23,41 @@
 
 参考以下步骤注册用户：
 
-1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
 
-2. 选择需要开通即时通讯服务的项目，点击 **配置**。
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
-![](./images/quickstart/config_project.png)
-
-3. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
-
-![](./images/quickstart/config_chat.png)
 
 4. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827634437)
 
-![](./images/quickstart/user_mgmt.png)
-
 5. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
 
 ![](https://web-cdn.agora.io/docs-files/1670827653548)
 
-![](./images/quickstart/create_user.png)
-
 ### 生成 Token
 
-为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 Token 对登录即时通讯 IM 的用户进行认证。
 
 出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
-
-![](./images/quickstart/config_project.png)
 
 2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
-![](./images/quickstart/config_chat.png)
+3. 在**应用信息**页面的**数据中心**区域，在 **Chat User Temp Token** 框中输入用户 ID，点击**生成**生成一个具有用户权限的 Token。
 
-3. 在**应用信息**页面的 **Data Center** 区域，在 **Chat User Temp Token** 框中输入用户 ID，点击 **Generate** 生成一个具有用户权限的 Token。
-
-![](https://web-cdn.agora.io/docs-files/1670827712260)
-
-![](./images/quickstart/generate_token.png)
+![](https://web-cdn.agora.io/docs-files/1681094132023)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
 
@@ -89,7 +75,7 @@
 
 ### 集成即时通讯 IM SDK
 
-1. 选择 **File** > **Swift Packages** > **Add Package Dependencies...**，粘贴以下 URL
+1. 选择 **File** > **Swift Packages** > **Add Package Dependencies...**，粘贴以下 URL：
 
 ```text
 https://github.com/AgoraIO/AgoraChat_iOS.git
@@ -109,7 +95,7 @@ https://github.com/AgoraIO/AgoraChat_iOS.git
 
 ```swift
 class ViewController: UIViewController {
-    // 定义 UI 视图
+    // 定义 UI 视图。
     var userIdField, tokenField, remoteUserIdField, textField: UITextField!
     var loginButton, logoutButton, sendButton: UIButton!
     var logView: UITextView!
@@ -152,7 +138,7 @@ class ViewController: UIViewController {
         self.view.addSubview(sendButton)
         logView = createLogView()
         self.view.addSubview(logView)
-        // 将 <#Input Your UserId#> 和 <#Input Your Token#> 替换为你自己的用户 ID 和在 Agora Console 上生成的 Token。
+        // 将 <#Input Your UserId#> 和 <#Input Your Token#> 替换为你自己的用户 ID 和在声网控制台上生成的 Token。
         self.userIdField.text = <#Input Your UserId#>
         self.tokenField.text = <#Input Your Token#>
     }
@@ -329,7 +315,7 @@ extension ViewController: AgoraChatManagerDelegate  {
 
 ## 后续步骤
 
-出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 Token。在生产环境中，最好自行部署 Token 服务器，使用自己的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 生成 Token，并在客户端获取 Token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 Token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 
 ## 集成 SDK 的其他方式

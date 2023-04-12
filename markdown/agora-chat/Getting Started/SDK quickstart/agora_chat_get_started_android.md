@@ -12,8 +12,8 @@
 
 开始前，请确保你的开发环境满足以下条件：
 
-- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
-- 拥有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 Agora [项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
+- 有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
+- 具有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Android 模拟器或 Android 设备。
 - Android Studio 3.6 或以上版本。
 - Java 开发工具包（JDK）。适用版本请参考 [Android 用户指南](https://developer.android.com/studio/write/java8-support)。
@@ -24,15 +24,15 @@
 
 参考以下步骤注册用户：
 
-1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
 
-2. 选择需要开通即时通讯服务的项目，点击 **配置**。
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)
 
-3. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
@@ -53,11 +53,11 @@
 
 ### 生成 Token
 
-为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 Token 对登录即时通讯 IM 的用户进行认证。
 
 出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
@@ -69,9 +69,9 @@
 
 ![](./images/quickstart/config_chat.png)
 
-3. 在**应用信息**页面的**Data Center**区域，在 **Chat User Temp Token** 框中输入用户 ID，点击 **Generate** 生成一个具有用户权限的 Token。
+3. 在**应用信息**页面的**数据中心**区域，在 **Chat User Temp Token** 框中输入用户 ID，点击**生成**生成一个具有用户权限的 Token。
 
-![](https://web-cdn.agora.io/docs-files/1670827712260)
+![](https://web-cdn.agora.io/docs-files/1681094132023)
 
 ![](./images/quickstart/generate_token.png)
 
@@ -83,7 +83,7 @@
 
 1. 若为新项目，在 **Android Studio** 中，创建一个带有 **Empty Activity** 的 **Phone and Tablet** [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
-<div class="alert note">创建项目后，Android Studio 会自动启动 gradle 同步。确保同步成功后再进行后续操作。</div>
+ <div class="alert note">如果你在 Android 项目中设置 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
 
 2. 使用 Maven Central 将即时通讯 IM SDK 集成到你的项目中。
 
@@ -124,8 +124,9 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
        implementation 'io.agora.rtc:chat-sdk:X.Y.Z'
    }
    ```
-    <div class="alert note"><li>minSdkVersion 必须为 21 或以上版本才能成功构建。<li>如需最新 SDK 版本，请前往 <a href="https://search.maven.org/search?q=a:chat-sdk">Sonatype</a>。</div>
-   
+
+   <div class="alert note">minSdkVersion 必须为 21 或以上版本才能成功构建。如需最新 SDK 版本，请前往 <a href="https://search.maven.org/search?q=a:chat-sdk">Sonatype</a>。</div>
+
 3. 添加网络和设备访问权限。
 
    在 `/app/Manifests/AndroidManifest.xml` 中，在 `</application>` 后面添加以下权限：
@@ -244,7 +245,6 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
    ```
 
 </LinearLayout>
-   ```
 
 ### 实现消息的发送和接收
 
@@ -502,7 +502,7 @@ b. 利用接收方的账号在另一台 Android 设备或模拟器上运行该 a
 
 ## 后续操作
 
-出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 Token。在生产环境中，最好自行部署 Token 服务器，使用自己的 [App Key](./enable_agora_chat#获取即时通讯项目信息)  生成 Token，并在客户端获取 Token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 Token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 ## 参考
 

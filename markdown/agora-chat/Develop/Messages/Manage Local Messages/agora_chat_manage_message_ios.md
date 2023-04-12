@@ -1,6 +1,6 @@
-本文介绍即时通讯 IM iOS SDK 如何管理本地消息数据。
+除了发送和接收消息外，即时通讯 IM SDK 还支持以会话为单位对本地的消息数据进行管理，如获取与管理未读消息、删除历史消息、搜索历史消息等。其中，会话是一个单聊、群聊或者聊天室所有消息的集合。用户需在会话中发送消息或查看历史消息，还可进行清空历史消息等操作。
 
-除了发送和接收消息外，即时通讯 IM SDK 还支持以会话为单位对本地的消息数据进行管理，如获取与管理未读消息、删除聊天记录、搜索历史消息等。其中，会话是一个单聊、群聊或者聊天室所有消息的集合。用户需在会话中发送消息或查看历史消息，还可进行清空聊天记录等操作。
+本页介绍如何使用即时通讯 IM SDK 实现这些功能。
 
 ## 技术原理
 
@@ -39,7 +39,7 @@ NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConve
 ```objective-c
 // 获取指定会话 ID 的会话。
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
-//SDK 初始化时，为每个会话加载 1 条聊天记录。如需更多消息，请到数据库中获取。该方法获取 `startMsgId` 之前的 `count` 条消息，SDK 会将这些消息自动存入此会话，app 无需添加到会话中。
+//SDK 初始化时，为每个会话加载 1 条历史消息。如需更多消息，请到数据库中获取。该方法获取 `startMsgId` 之前的 `count` 条消息，SDK 会将这些消息自动存入此会话，app 无需添加到会话中。
 NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesStartFromId:startMsgId count:count searchDirection:MessageSearchDirectionUp];
 ```
 
@@ -80,12 +80,12 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 
 ### 删除会话话和历史消息
 
-SDK 提供两个接口，分别可以删除本地会话和聊天记录或者删除当前用户在服务器端的会话和聊天记录。
+SDK 提供两个接口，分别可以删除本地会话和历史消息或者删除当前用户在服务器端的会话和历史消息。
 
-- 删除本地会话和聊天记录示例代码如下：
+- 删除本地会话和历史消息示例代码如下：
 
 ```objective-c
-// 删除指定会话，如果需要保留聊天记录，`isDeleteMessages` 参数传 `NO`。
+// 删除指定会话，如果需要保留历史消息，`isDeleteMessages` 参数传 `NO`。
 [[AgoraChatClient sharedClient].chatManager deleteConversation:conversationId isDeleteMessages:YES completion:nil];
 // 删除一组会话。
 NSArray *conversations = @{@"conversationID1",@"conversationID2"};
@@ -93,15 +93,15 @@ NSArray *conversations = @{@"conversationID1",@"conversationID2"};
 ```
 
 ```objective-c
-// 删除当前会话中指定的一条聊天记录。
+// 删除当前会话中指定的一条历史消息。
 AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation deleteMessageWithId:.messageId error:nil];
 ```
 
-- 删除服务器端会话和聊天记录，示例代码如下：
+- 删除服务器端会话和历史消息，示例代码如下：
 
 ```objective-c
-// 删除指定会话，如果需要保留聊天记录，`isDeleteServerMessages` 参数传 `NO`。
+// 删除指定会话，如果需要保留历史消息，`isDeleteServerMessages` 参数传 `NO`。
 [[AgoraChatClient sharedClient].chatManager deleteServerConversation:@"conversationId1" conversationType:AgoraConversationTypeChat isDeleteServerMessages:YES completion:^(NSString *aConversationId, AgoraChatError *aError) {
                 // 删除回调
 }];

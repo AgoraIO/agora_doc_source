@@ -7,11 +7,10 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 v1.0.3 及以上版本即时通讯 IM SDK 初始化，详见 [快速开始](./agora_chat_get_started_web)。
-- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
-- 默认情况下不启用翻译。要使用此功能，你需要订阅 **进阶版** 或 **企业版** [套餐包](./agora_chat_plan) 并在 [Agora 控制台](https://console.agora.io/) 中启用它。
-- 该功能由 Microsoft Azure Translation API 启用，因此请确保你了解该功能支持的 [翻译语言支持](https://docs.microsoft.com/en-us/azure) 。
-
+- 完成 V1.0.3 及以上版本即时通讯 IM SDK 初始化，详见[快速开始](./agora_chat_get_started_web)。
+- 了解即时通讯 IM API 的调用频率限制，详见[限制条件](./agora_chat_limitation)。
+- 默认情况下不启用翻译。要使用该功能，你需要订阅**进阶版**或**企业版**[套餐包](./agora_chat_plan)并在[声网控制台](https://console.agora.io/)中启用该功能。
+- 由于此功能由 Microsoft Azure 翻译 API 提供，开始前请确保你了解该功能支持的目标语言。详见[翻译语言支持](https://docs.microsoft.com/en-us/azure)。
 ## 技术原理
 
 SDK 支持你通过调用 API 在项目中实现如下功能：

@@ -110,7 +110,7 @@ AgoraChatTextMessageBody* textBody = [[AgoraChatTextMessageBody alloc] initWithT
 - (void)messagesDidRecall:(NSArray *)aMessages;
 ```
 
-### 发送附件类型的消息
+### 发送和接收附件类型的消息
 
 除文本消息外，SDK 还支持发送附件类型消息，包括语音、图片、视频和文件消息。
 
@@ -131,7 +131,7 @@ AgoraChatTextMessageBody* textBody = [[AgoraChatTextMessageBody alloc] initWithT
 }];
 ```
 
-#### 发送语音消息
+#### 发送和接收语音消息
 
 发送和接收语音消息的过程如下：
 
@@ -160,7 +160,7 @@ NSString *voiceRemotePath = voiceBody.remotePath;
 NSString *voiceLocalPath = voiceBody.localPath;
 ```
 
-#### 发送图片消息
+#### 发送和接收图片消息
 
 发送和接收图片消息的流程如下：
 
@@ -205,7 +205,6 @@ AgoraChatImageMessageBody *imageBody = (AgoraChatImageMessageBody *)message.body
 NSString *thumbnailLocalPath = imageBody.thumbnailLocalPath;
 ```
 
-
 4. 获取图片消息的附件。
 
 
@@ -218,8 +217,7 @@ NSString *thumbnailLocalPath = imageBody.thumbnailLocalPath;
         }];
 ```
 
-
-#### 发送视频消息
+#### 发送和接收视频消息
 
 发送和接收视频消息的流程如下：
 
@@ -260,7 +258,7 @@ NSString *localPath = body.localPath;
 NSString *thumbnailLocalPath = body.thumbnailLocalPath;
 ```
 
-#### 发送文件消息
+#### 发送和接收文件消息
 
 发送和接收文件消息的流程如下：
 

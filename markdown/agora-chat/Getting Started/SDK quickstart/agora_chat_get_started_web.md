@@ -2,7 +2,7 @@
 
 即时通讯将各地人们连接在一起，实现实时通信。利用即时通讯 IM SDK，你可以在任何地方的任何设备上的任何应用中嵌入实时通讯。
 
-本文介绍如何通过示例代码集成即时通讯 SDK，在你的 Android app 中实现发送和接收单聊文本消息。
+本文介绍如何通过示例代码集成即时通讯 SDK，在你的 Web app 中实现发送和接收单聊文本消息。
 
 ## 技术原理
 
@@ -12,18 +12,17 @@
 
 开始前，请确保你的开发环境满足以下条件：
 
-- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
-- 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 Agora [项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
+- 有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
+- 具备[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Windows 或 macOS 计算机，需满足以下要求：
   - 即时通讯 SDK 支持的浏览器
     - Internet Explorer 9 以上版本
     - FireFox 10 以上版本
     - Chrome 54 以上版本
     - Safari 6 以上版本
-  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](./AgoraPlatform/firewall)以正常使用 Agora 服务。
+  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/video-call-4.x/firewall?platform=Web)以正常使用 Agora 服务。
   - 已安装 Xcode（仅适用于 macOS）
-
-- [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)。
 
 ## 生成 Token
 
@@ -37,49 +36,35 @@
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
-![](./images/quickstart/config_project.png)
-
-3. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
-
-![](./images/quickstart/config_chat.png)
 
 4. 在左侧导航栏，选择**运营管理** > **用户**，点击**创建IM用户**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827634437)
 
-![](./images/quickstart/user_mgmt.png)
-
 5. 在**创建IM用户**对话框中，填写用户信息并点击保存，创建用户。
 
 ![](https://web-cdn.agora.io/docs-files/1670827653548)
 
-![](./images/quickstart/create_user.png)
-
 ### 生成 Token
 
-为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+为了保证通信安全，声网推荐使用 Token 对登录即时通讯 IM 的用户进行认证。
 
-出于测试目的，Agora 控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
+出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
 
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
-![](./images/quickstart/config_project.png)
-
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+2. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
-![](./images/quickstart/config_chat.png)
+3. 在**应用信息**页面的**数据中心**区域，在 **Chat User Temp Token** 框中输入用户 ID，点击**生成**生成一个具有用户权限的 Token。
 
-3. 在**应用信息**页面的**Data Center**区域，在 **Chat User Temp Token** 框中输入用户 ID，点击 **Generate** 生成一个具有用户权限的 Token。
-
-![](https://web-cdn.agora.io/docs-files/1670827712260)
-
-![](./images/quickstart/generate_token.png)
+![](https://web-cdn.agora.io/docs-files/1681094132023)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
 
@@ -95,9 +80,9 @@
 现在，该项目目录的结构如下：
 
 ```text
-1agora_quickstart2
-├─ index.html3
-├─ main.js4
+agora_quickstart
+├─ index.html
+├─ main.js
 └─ package.json
 ```
 
@@ -312,7 +297,7 @@ $ npm run dev
 按以下步骤验证你刚刚通过即时通讯 IM 在你的 Web app 中集成的发送和接收单聊消息的实现：
 
 1. 登录即时通讯 IM。
-   在 **user id** 框中输入发送方的用户 ID（`Leo`），在 **token** 框中输入 agora token，点击 **Login** 登录 app。
+   在 **user id** 框中输入发送方的用户 ID（`Leo`），在 **token** 框中输入 Agora Token，点击 **Login** 登录 app。
 
 2. 发送消息。
    在 **single chat id** 框中填写发送方的用户 ID（`Roy`），在 **message content** 框中输入消息（"Hi, how are you doing?"），点击 **Send** 发送消息。
@@ -329,7 +314,7 @@ $ npm run dev
 
 ## 后续步骤
 
-出于演示目的，即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 Token。在生产环境中，最好自行部署 Token 服务器，使用自己的 [App Key](./enable_agora_chat#获取即时通讯项目信息)  生成 Token，并在客户端获取 Token 登录即时通讯服务。要了解如何实现服务器按需生成和提供 Token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 ## 参考
 

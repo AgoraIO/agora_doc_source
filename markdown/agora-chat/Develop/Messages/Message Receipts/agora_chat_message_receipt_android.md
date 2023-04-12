@@ -1,6 +1,6 @@
 单聊会话支持消息送达回执、会话已读回执和消息已读回执，发送方发送消息后可及时了解接收方是否及时收到并阅读了信息，也可以了解整个会话是否已读。
 
-群聊会话只支持消息已读回执。群主和群管理员在发送消息时，可以设置该消息是否需要已读回执。若使用该功能，请联系[support@agora.io](mailto:support@agora.io) 开通。
+群聊会话只支持消息已读回执。群主和群管理员在发送消息时，可以设置该消息是否需要已读回执。若使用该功能，请联系 [support@agora.io](mailto:support@agora.io) 开通。
 
 本文介绍如何使用即时通讯 IM SDK 在单聊和群聊中实现消息回执功能。
 
@@ -37,7 +37,7 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
+- 了解即时通讯 IM API 的调用频率限制，详见[限制条件](./agora_chat_limitation)。
 - 若使用群聊的消息已读回执功能，需联系 [support@agora.io](mailto:support@agora.io) 开通。
 
 ## 实现方法
@@ -90,7 +90,7 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ChatOptions.setRequireAck = true;
 ```
 
-##### 会话已读回执
+**会话已读回执**
 
 参考以下步骤在单聊中实现会话已读回执。
 
@@ -125,7 +125,7 @@ ChatClient.getInstance().chatManager().addConversationListener(new ConversationL
 
 <div class="alert info">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
 
-##### 消息已读回执
+**消息已读回执**
 
 要实现消息已读回执，请执行以下步骤：
 
