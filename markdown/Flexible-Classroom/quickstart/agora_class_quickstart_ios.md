@@ -11,16 +11,16 @@
 你可参考以下步骤准备开发环境：
 
 1. 打开 App Store，下载并安装 Xcode。要求 Xcode 13.0 或以上版本。
-2. 点击[链接](https://guides.cocoapods.org/using/getting-started.html#getting-started)前往下载 CocoaPods。要求 CocoaPods 1.10 或以上版本。
+2. 点击[链接](https://guides.cocoapods.org/using/getting-started.html#getting-started)前往下载 CocoaPods。版本需要为 1.10 或更高版本。
 
-注: 可以在终端输入以下的命令，如果终端能正常打印出版本信息，则表示安装成功：
+安装后，可以在终端输入以下命令，如果终端能正常打印出版本信息，则表示安装成功：
 
 
 ```
 pod --version
 ```
 
-例如打印出 1.11.3 版本。
+例如，你安装了 1.11.3 版本，则终端会打印如下信息：
 
 ```
 1.11.3
@@ -60,50 +60,49 @@ pod --version
 
 2. 运行以下命令安装依赖包：
 
-    ```bash
-    pod install
-    ```
+   ```bash
+   pod install
+   ```
+   以 release/2.8.20 分支为例，安装依赖过程中会打印如下信息：
 
-    以 release/2.8.20 分支为例，如果执行成功则显示下列信息：
+   ```
+   Analyzing dependencies
+   Downloading dependencies
+   Installing AgoraClassroomSDK_iOS (2.8.20)
+   Installing AgoraEduCore (2.8.20)
+   Installing AgoraEduUI (2.8.20)
+   Installing AgoraLog (1.0.2)
+   Installing AgoraMediaPlayer_iOS (1.3.0)
+   Installing AgoraProctorSDK (1.0.0)
+   Installing AgoraProctorUI (1.0.0)
+   Installing AgoraRtcEngine_iOS (3.7.2)
+   Installing AgoraRtm_iOS (1.4.8)
+   Installing AgoraUIBaseViews (2.8.0)
+   Installing AgoraWidget (2.8.0)
+   Installing AgoraWidgets (2.8.20)
+   Installing Agora_Chat_iOS (1.0.6)
+   Installing AliyunOSSiOS (2.10.8)
+   Installing Armin (1.1.0)
+   Installing CocoaLumberjack (3.6.1)
+   Installing Masonry (1.1.0)
+   Installing NTLBridge (3.1.5)
+   Installing Protobuf (3.17.0)
+   Installing SDWebImage (5.12.0)
+   Installing SSZipArchive (2.4.2)
+   Installing SwifterSwift (5.2.0)
+   Installing Whiteboard (2.16.51)
+   Installing YYModel (1.0.4)
+   Generating Pods project
+   Integrating client project
+   ```
 
-    ```
-Analyzing dependencies
-Downloading dependencies
-Installing AgoraClassroomSDK_iOS (2.8.20)
-Installing AgoraEduCore (2.8.20)
-Installing AgoraEduUI (2.8.20)
-Installing AgoraLog (1.0.2)
-Installing AgoraMediaPlayer_iOS (1.3.0)
-Installing AgoraProctorSDK (1.0.0)
-Installing AgoraProctorUI (1.0.0)
-Installing AgoraRtcEngine_iOS (3.7.2)
-Installing AgoraRtm_iOS (1.4.8)
-Installing AgoraUIBaseViews (2.8.0)
-Installing AgoraWidget (2.8.0)
-Installing AgoraWidgets (2.8.20)
-Installing Agora_Chat_iOS (1.0.6)
-Installing AliyunOSSiOS (2.10.8)
-Installing Armin (1.1.0)
-Installing CocoaLumberjack (3.6.1)
-Installing Masonry (1.1.0)
-Installing NTLBridge (3.1.5)
-Installing Protobuf (3.17.0)
-Installing SDWebImage (5.12.0)
-Installing SSZipArchive (2.4.2)
-Installing SwifterSwift (5.2.0)
-Installing Whiteboard (2.16.51)
-Installing YYModel (1.0.4)
-Generating Pods project
-Integrating client project
-    ```
-
-3. 成功安装依赖包后，在“访达”窗口中打开 flexible-classroom-ios/App 文件夹，双击 `AgoraEducation.xcworkspace` 在 Xcode 中打开项目：
+3. 成功安装依赖包后，打开 `flexible-classroom-ios/App` 文件夹，双击 `AgoraEducation.xcworkspace` 在 Xcode 中打开项目：
 
    ![](https://web-cdn.agora.io/docs-files/1648725644218)
 
    ![](https://web-cdn.agora.io/docs-files/1648725725804)
 
-4. 在项目 TARGETS 下的 Signing & Capabilities，配置你的 Apple 开发者账号和 [Bundle Identifier](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids)：
+4. 在项目 **TARGETS** 下的 **Signing & Capabilities**，配置你的 Apple 开发者账号和 [Bundle Identifier](https://developer.apple.com/documentation/appstoreconnectapi/bundle_ids)：
 
    ![](https://web-cdn.agora.io/docs-files/1648725848162)
 

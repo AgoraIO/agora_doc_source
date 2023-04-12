@@ -31,7 +31,9 @@
     # 安装项目依赖
     yarn
     ```
-    如遇安装依赖超时，请切换到淘宝镜像源或其他可用镜像源
+
+    如遇安装依赖超时，请切换到淘宝镜像源或其他可用镜像源。
+
     ```bash
     # 切换到淘宝镜像
     yarn config set registry https://registry.npmmirror.com/
@@ -65,29 +67,34 @@
     ```bash
     yarn dev
     ```
-    注：如果使用node 17版本，可能会遇到`ERR_OSSL_EVP_UNSUPPORTED`错误，这是因为node 17版本已切换到OpenSSL 3.0并且和项目中某些依赖中正在使用的加密算法或密钥有冲突，可以尝试以下两种解决方案:
-    1. 添加NODE_OPTION参数`--openssl-legacy-provider`
-    ```bash
-    #找到node配置文件packages/agora-demo-app/package.json
-    #为修改"script"字段下的启动命令,添加NODE_OPTION参数,例如：
-    
-    #原命令
-    "dev": "cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=6144 webpack serve --config ./webpack/webpack.dev.js"
-    #改为
-    "dev": "cross-env NODE_ENV=development NODE_OPTIONS=\"--max_old_space_size=6144 --openssl-legacy-provider\" webpack serve --config ./webpack/webpack.dev.js"
-    #然后启动项目
-    yarn dev
-    ```
-    2. 降级node版本到16
-    ```bash
-    #使用nvm管理node版本
-    #安装nvm
-    yarn global add nvm
-    #使用node 16版本
-    nvm use 16
-    #启动灵动课堂
-    yarn dev
-    ```
+
+    如果使用 Node.js 17 版本，可能会遇到 `ERR_OSSL_EVP_UNSUPPORTED` 错误，这是因为 Node.js 17 版本已切换到 OpenSSL 3.0 并且和项目中某些依赖中正在使用的加密算法或密钥有冲突，可以尝试以下两种解决方案:
+
+    - 添加 `NODE_OPTION` 参数 `--openssl-legacy-provider`
+
+      ```bash
+      # 找到 Node.js 配置文件 packages/agora-demo-app/package.json
+      # 为修改 script 字段下的启动命令，添加 NODE_OPTION 参数，例如：
+      
+      # 原命令
+      "dev": "cross-env NODE_ENV=development NODE_OPTIONS=--max_old_space_size=6144 webpack serve --config ./webpack/webpack.dev.js"
+      # 改为
+      "dev": "cross-env NODE_ENV=development NODE_OPTIONS=\"--max_old_space_size=6144 --openssl-legacy-provider\" webpack serve --config ./webpack/webpack.dev.js"
+      # 然后启动项目
+      yarn dev
+      ```
+
+    - 使用 nvm 将 Node.js 版本降级到 16
+
+      ```bash
+      # 使用 nvm 管理 Node.js 版本
+      # 安装 nvm
+      yarn global add nvm
+      # 使用 Node.js 16 版本
+      nvm use 16
+      # 启动灵动课堂
+      yarn dev
+      ```
 
 6. 打开浏览器，输入地址 `http://localhost:3000`，即可看到灵动课堂的 Demo 首页。点击**加入房间**或**创建房间**开始体验灵动课堂。
 
