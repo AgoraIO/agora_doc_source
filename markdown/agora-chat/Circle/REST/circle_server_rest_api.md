@@ -106,7 +106,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 创建一个社区并设置社区名称、社区图标的 URL、社区描述和社区扩展信息。
 
-默认每个用户最多可以创建 100 个社区。如需调整该阈值，请联系 [support@agora.io](mailto:support@agora.io)。
+默认每个用户最多可以创建 100 个社区。如需调整该阈值，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 #### HTTP 请求
 
@@ -901,7 +901,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ### 将用户加入社区
 
-将单个用户加入社区。默认每个用户最多加入 100 个社区。如需调整该阈值，请联系 [support@agora.io](mailto:support@agora.io)。
+将单个用户加入社区。默认每个用户最多加入 100 个社区。如需调整该阈值，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 #### HTTP 请求
 

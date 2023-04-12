@@ -91,7 +91,7 @@ AgoraChatTextMessageBody* textBody = [[AgoraChatTextMessageBody alloc] initWithT
 
 ### 撤回消息
 
-消息撤回功能指用户可以撤回一定时间内自己发送出去的消息，消息撤回时限默认 2 分钟。如需调整时间限制，请联系 [support@agora.io](mailto:support@agora.io)。
+消息撤回功能指用户可以撤回一定时间内自己发送出去的消息，消息撤回时限默认 2 分钟。如需调整时间限制，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ```objectivec
 [[AgoraChatClient sharedClient].chatManager recallMessageWithMessageId:@"messageId" completion:^(AgoraChatError *aError) {

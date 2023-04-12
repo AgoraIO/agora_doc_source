@@ -20,7 +20,7 @@
 
 ### 从服务器获取会话
 
-默认情况下用户可拉取 7 天内的 10 个最新会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [support@agora.io](mailto:support@agora.io)。
+默认情况下用户可拉取 7 天内的 10 个最新会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 你可以调用 `fetchAllConversations` 方法从服务器获取所有会话，示例代码如下：
 

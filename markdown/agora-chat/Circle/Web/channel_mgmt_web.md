@@ -27,7 +27,7 @@
 
 1. 社区所有者可以调用 `createChannel` 方法在社区中创建公开或私密频道。创建者多设备登录时，其他设备会同时收到 `onMultiDeviceEvent` 回调，事件为 `channelCreate`。
 
-每个社区默认最多可创建 100 个频道，超过该阈值需要联系 [support@agora.io](mailto:support@agora.io) 调整。
+每个社区默认最多可创建 100 个频道，超过该阈值需要联系 [sales@agora.io](mailto:sales@agora.io) 调整。
 
 示例代码如下：
 

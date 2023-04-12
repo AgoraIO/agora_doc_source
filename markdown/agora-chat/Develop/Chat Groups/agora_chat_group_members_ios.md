@@ -15,8 +15,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
+- 了解群组和群成员的数量限制，详见[套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -63,7 +63,7 @@ do {
 
 2. 调用 `joinPublicGroup` 或 `requestToJoinPublicGroup` 方法传入群组 ID，申请加入对应群组。
 
-   1. 调用 `joinPublicGroup` 方法加入无需群主或管理员审批的公开群，即 `AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicOpenJoin` 。申请人不会收到任何回调，其他群成员会收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
+   a. 调用 `joinPublicGroup` 方法加入无需群主或管理员审批的公开群，即 `AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicOpenJoin` 。申请人不会收到任何回调，其他群成员会收到 `AgoraChatGroupManagerDelegate#userDidJoinGroup` 回调。
 
    示例代码如下：
 
@@ -72,7 +72,7 @@ do {
     }];
    ```
 
-   2. 调用 `requestToJoinPublicGroup` 方法加入需要群主或管理员审批的公共群组，即`AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicJoinNeedApproval`。示例代码如下：
+   b. 调用 `requestToJoinPublicGroup` 方法加入需要群主或管理员审批的公共群组，即`AgoraChatGroupStyle` 为 `AgoraChatGroupStylePublicJoinNeedApproval`。示例代码如下：
 
     ```objective-c
     // 异步方法
@@ -107,7 +107,7 @@ do {
 
 #### 邀请用户入群
 
-邀请用户入群的方式详见 [邀请用户入群的配置](./agora_chat_group_ios#创建群组)。
+邀请用户入群的方式详见[邀请用户入群的配置](./agora_chat_group_ios#创建群组)。
 
 邀请用户入群流程如下：
 
@@ -129,7 +129,7 @@ do {
 
    ```objective-c
    [[AgoraChatClient sharedClient].groupManager acceptInvitationFromGroup:@"groupId" inviter:@"userId" completion:^(AgoraChatGroup *aGroup, AgoraChatError *aError) {
-   };
+   }];
    ```
 
    - 受邀人拒绝入群组，需要调用 `declineInvitationFromGroup` 方法。
@@ -355,4 +355,4 @@ do {
 
 ### 监听群组事件
 
-详见 [监听群组事件](./agora_chat_group_ios#监听群组事件)。
+详见[监听群组事件](./agora_chat_group_ios#监听群组事件)。

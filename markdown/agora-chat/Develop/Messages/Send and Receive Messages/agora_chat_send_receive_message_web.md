@@ -150,7 +150,7 @@ conn.addEventHandler("eventName",{
 
 ### 撤回消息
 
-用户发送消息 2 分钟以内可以撤回消息。如需调整时间限制，请联系 [support@agora.io](mailto:support@agora.io)。
+用户发送消息 2 分钟以内可以撤回消息。如需调整时间限制，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ```javascript
 /**

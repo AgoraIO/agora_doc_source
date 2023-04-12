@@ -107,8 +107,8 @@ API 请求包体过大，导致服务器无法处理。
 
 | HTTP 状态码 | 错误类型             | 错误提示             | 可能的原因                                                   |
 | :--------------- | :---------------- | :-------------------------- | :--------------------------------- |
-| `429`            | `resource_limited`                   | “You have exceeded the limit of the Free edition. Please upgrade to higher edition.”  | 超过免费版套餐包限制。如需开通其他版本套餐包，需联系 [support@agora.io](mailto:support@agora.io)。 |
-| `429`            | `reach_limit`                        | “This request has reached api limit”                          | 超过即时通讯 RESTful API 的[调用频率限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)。如果限制条件无法满足你的实际业务需求，需联系请联系 [support@agora.io](mailto:support@agora.io)。 |
+| `429`            | `resource_limited`                   | “You have exceeded the limit of the Free edition. Please upgrade to higher edition.”  | 超过免费版套餐包限制。如需开通其他版本套餐包，需联系 [sales@agora.io](mailto:sales@agora.io)。 |
+| `429`            | `reach_limit`                        | “This request has reached api limit”                          | 超过即时通讯 RESTful API 的[调用频率限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)。如果限制条件无法满足你的实际业务需求，需联系请联系 [sales@agora.io](mailto:sales@agora.io)。 |
 
 ## 5xx - 服务器错误
 

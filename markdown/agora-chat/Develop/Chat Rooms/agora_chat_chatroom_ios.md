@@ -2,7 +2,7 @@
 
 本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理聊天室，并实现聊天室的相关功能。
 
-聊天室消息相关内容详见 [消息管理](./agora_chat_message_overview)。
+聊天室消息相关内容详见[消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -18,8 +18,8 @@
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
 - 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
-- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan)。
-- 仅超级管理员才能创建聊天室。确保你已调用[添加超级管理员的 RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
+- 了解不同版本的聊天室相关数量限制，详见[套餐包详情](./agora_chat_plan)。
+- 仅超级管理员才能创建聊天室。确保你已调用 [RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
 
 ## 实现方法
 
@@ -33,7 +33,7 @@
 
 ```objective-c
 AgoraChatError *error = nil;
-AgoraChatroom *retChatroom = [[AgoraChatClient sharedClient].roomManager createChatroomWithSubject:@"aSubject" description:@"aDescription" invitees:@[@"user1",@[user2]]message:@"aMessage" maxMembersCount:aMaxMembersCount error:&error];
+AgoraChatroom *retChatroom = [[AgoraChatClient sharedClient].roomManager createChatroomWithSubject:@"aSubject" description:@"aDescription" invitees:@[@"user1",@"user2"]message:@"aMessage" maxMembersCount:aMaxMembersCount error:&error];
 ```
 
 ### 解散聊天室

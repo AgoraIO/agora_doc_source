@@ -39,7 +39,7 @@
 
 - 完成 SDK 初始化，详见 [React Native 快速开始](./agora_chat_get_started_rn)。
 - 了解 [使用限制](./agora_chat_limitation)。
-- 在群组中实现消息已读回执功能默认不开启。如需使用请联系 [support@agora.io](mailto:support@agora.io)。
+- 在群组中实现消息已读回执功能默认不开启。如需使用请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ## 实现方法
 

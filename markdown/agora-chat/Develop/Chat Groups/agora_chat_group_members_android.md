@@ -15,8 +15,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解不同定价方案支持的即时通讯 IM API 的 [使用限制](./agora_chat_limitation)。
-- 了解不同套餐包支持的群组和群组成员的数量，详见 [套餐包详情](./agora_chat_plan)。
+- 了解不同定价方案支持的即时通讯 IM API 的[使用限制](./agora_chat_limitation)。
+- 了解不同套餐包支持的群组和群组成员的数量，详见[套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -52,9 +52,9 @@ List<GroupInfo> groupsList = List<GroupInfo> returnGroups = result.getData();
 String cursor = result.getCursor();
 ```
 
-1. 调用 `joinGroup` 或 `applyJoinToGroup` 方法传入群组 ID，申请加入对应群组。
+2. 调用 `joinGroup` 或 `applyJoinToGroup` 方法传入群组 ID，申请加入对应群组。
 
-   1. 调用 `joinGroup` 方法加入无需群主或管理员审批的公共群组，即 `GroupStyle` 设置为 `GroupStylePublicOpenJoin`。申请人不会收到任何回调，其他群成员会收到 `GroupChangeListener#onMemberJoined` 回调。
+   a. 调用 `joinGroup` 方法加入无需群主或管理员审批的公共群组，即 `GroupStyle` 设置为 `GroupStylePublicOpenJoin`。申请人不会收到任何回调，其他群成员会收到 `GroupChangeListener#onMemberJoined` 回调。
 
    示例代码如下：
 
@@ -62,7 +62,7 @@ String cursor = result.getCursor();
    ChatClient.getInstance().groupManager().joinGroup(groupId);
    ```
 
-   2. 调用 `applyJoinToGroup` 方法加入需要群主或管理员审批的公共群组，即 `GroupStyle` 设置为 `GroupStylePublicJoinNeedApproval`。示例代码如下：
+   b. 调用 `applyJoinToGroup` 方法加入需要群主或管理员审批的公共群组，即 `GroupStyle` 设置为 `GroupStylePublicJoinNeedApproval`。示例代码如下：
 
    ```java
    ChatClient.getInstance().groupManager().applyJoinToGroup(groupId, "your reason");
@@ -90,7 +90,7 @@ String cursor = result.getCursor();
 
 #### 邀请用户入群
 
-邀请用户入群的方式详见 [邀请用户入群的配置](./agora_chat_group_android#创建群组)。
+邀请用户入群的方式详见[邀请用户入群的配置](./agora_chat_group_android#创建群组)。
 
 邀请用户入群流程如下：
 
@@ -123,6 +123,7 @@ String cursor = result.getCursor();
    ```java
    ChatClient.getInstance().groupManager().declineInvitation(groupId, inviter, "your reason");
    ```
+   
 ### 退出群组
 
 #### 群成员主动退出群组
@@ -285,4 +286,4 @@ public void unmuteAllMembers(final String groupId, final ValueCallBack<Group> ca
 
 ### 监听群组事件
 
-详见 [监听群组事件](./agora_chat_group_android#监听群组事件)。
+详见[监听群组事件](./agora_chat_group_android#监听群组事件)。

@@ -2,7 +2,7 @@
 
 本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理聊天室，并实现聊天室的相关功能。
 
-聊天室消息相关内容详见 [消息管理](./agora_chat_message_overview)。
+聊天室消息相关内容详见[消息管理](./agora_chat_message_overview)。
 
 ## 技术原理
 
@@ -17,9 +17,9 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解 [使用限制](./agora_chat_limitation)。
-- 了解即时通讯 IM 聊天室不同版本的数量限制，详见 [套餐包](./agora_chat_plan)。
-- 仅超级管理员才能创建聊天室。确保你已调用[super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 聊天室不同版本的数量限制，详见[套餐包](./agora_chat_plan)。
+- 仅超级管理员才能创建聊天室。确保你已调用 [RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#添加超级管理员) 添加了应用超级管理员。
 
 ## 实现方法
 
@@ -27,7 +27,7 @@
 
 ### 创建聊天室
 
-仅 [应用超级管理员](./agora_chat_restful_chatroom_superadmin) 可以创建聊天室并设置聊天室名称、描述、最大成员数等聊天室属性。创建聊天室后，超级管理员自动成为聊天室所有者。
+仅[应用超级管理员](./agora_chat_restful_chatroom_superadmin) 可以创建聊天室并设置聊天室名称、描述、最大成员数等聊天室属性。创建聊天室后，超级管理员自动成为聊天室所有者。
 
 ```javascript
 let options = {
