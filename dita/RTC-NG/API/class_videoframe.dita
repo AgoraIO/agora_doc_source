@@ -168,13 +168,12 @@
   private SourceType sourceType;
   private float sampleAspectRatio;
   private VideoFrameMetaInfo metaInfo = new VideoFrameMetaInfo();
-  private byte[] alphaBuffer;
   public VideoFrame(Buffer buffer, int rotation, long timestampNs) {
     this(buffer, rotation, timestampNs, null, null, 1.0f, SourceType.kUnspecified.ordinal());
   }
   @CalledByNative
   public VideoFrame(Buffer buffer, int rotation, long timestampNs, ColorSpace colorSpace,
-      byte[] alphaBuffer, float sampleAspectRatio, int sourceType) {
+      float sampleAspectRatio, int sourceType) {
     if (buffer == null) {
       throw new IllegalArgumentException("buffer not allowed to be null");
     }
@@ -185,7 +184,6 @@
     this.rotation = rotation;
     this.timestampNs = timestampNs;
     this.colorSpace = colorSpace;
-    this.alphaBuffer = alphaBuffer;
     this.sampleAspectRatio = sampleAspectRatio;
     this.sourceType = SourceType.values()[sourceType];
   }
@@ -233,9 +231,6 @@
   public ColorSpace getColorSpace() {
     return colorSpace;
   }
-  public byte[] getAlphaBuffer() {
-    return alphaBuffer;
-  }
   @Override
   public void retain() {
     buffer.retain();
@@ -280,7 +275,6 @@
   metadata_size(0),
   sharedContext(0),
   textureId(0),
-  alphaBuffer(NULL),
   pixelBuffer(NULL){
     memset(matrix, 0, sizeof(matrix));
   }
@@ -301,7 +295,6 @@
   void* sharedContext;
   int textureId;
   float matrix[16];
-  uint8_t* alphaBuffer;
   void* pixelBuffer;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
