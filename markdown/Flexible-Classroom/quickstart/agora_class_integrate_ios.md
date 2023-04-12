@@ -360,7 +360,7 @@ Integrating client project
    pod 'AgoraWidget', 			'2.8.0'
 ```
 4. 在终端中进入到工程目录，执行 `pod install` 命令。
-5. 可以先阅读[开源层介绍](XXX)，来了解灵动课堂的开源层设计思路，然后可以修改源代码来自定义场景了。
+5. 可以先阅读[开源层介绍](agora_class_custom_ui_ios.md)，来了解灵动课堂的开源层设计思路，然后可以修改源代码来自定义场景了。
 
 ## 集成灵动课堂-自定义监考场景
 如需自定义灵动课堂的教育场景，你需要通过 GitHub 下载源码的方式来集成灵动课堂，步骤如下：
@@ -400,7 +400,7 @@ Integrating client project
    pod 'AgoraWidget', 			'2.8.0'
 ```
 4. 在终端中进入到工程目录，执行 `pod install` 命令。
-5. 可以先阅读[开源层介绍](XXX)，来了解灵动课堂的开源层设计思路，然后可以修改源代码来自定义场景了。
+5. 可以先阅读[开源层介绍](agora_class_custom_ui_ios.md)，来了解灵动课堂的开源层设计思路，然后可以修改源代码来自定义场景了。
 
 ## 注意事项
 * 集成后在你项目中的 info.plist 文件里增加 `Privacy - Camera Usage Description`、 `Privacy - Microphone Usage Description`、 `Privacy - Photo Library Additions Usage Description`、 `Privacy - Photo Library Usage Description`，以获取在运行灵动课堂时所必要的权限
