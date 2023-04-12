@@ -364,7 +364,7 @@ pod --version
 
 4. 在终端中进入到工程目录，执行 `pod install` 命令。
 
-安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
+安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios.md) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
 
 ## 集成监考场景灵动课堂并自定义
 
@@ -405,7 +405,8 @@ pod --version
    pod 'AgoraWidget', 			'2.8.0'
    ```
 4. 在终端中进入到工程目录，执行 `pod install` 命令。
-安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
+
+安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios.md) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
 
 ## 注意事项
 集成后在你的项目中的 `info.plist` 文件里增加 `Privacy - Camera Usage Description`、 `Privacy - Microphone Usage Description`、 `Privacy - Photo Library Additions Usage Description`、 `Privacy - Photo Library Usage Description`，以获取在运行灵动课堂时所必要的权限。
