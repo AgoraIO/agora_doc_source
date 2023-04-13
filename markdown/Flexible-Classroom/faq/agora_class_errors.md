@@ -95,7 +95,7 @@ Error running install script for optional dependency: "/root/flexible-classroom-
 
  `600001-1` 和 `401` 错误一般是因为 [`launch`](agora_class_api_ref_web?platform=Web#launch) 方法传入的 RTM Token 错误，或者 RTM Token 和 App ID 不匹配。请检查 RTM Token 是否正确，以及保证 App ID 和 RTM Token 匹配。
 
-声网推荐你在后端生成 RTM Token，前端调用生成的 token，详情参考[使用 AccessToken2 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token2_server_rtm)。
+声网推荐你在后端生成 RTM Token，前端调用生成的 token，详情参考[使用 AccessToken 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_upgrade_rtm)。
 
 如果需要临时生成 token 测试，可以使用这个[工具](https://webdemo.agora.io/token-builder/)。
 

@@ -22,8 +22,7 @@
 
    - 如果你使用阿里云 OSS，填写以下信息：
      - `region`: 阿里云 OSS 中创建 Bucket 时指定的数据中心所在区域，例如 `oss-cn-shanghai`。
-     - `endpoint`: 一般是由 Bucket 名称和访问域名拼成的完整路径。例如，你的 Bucket 名称为 "agora-recording"，OSS 访问域名为 "oss-cn-shanghai.aliyuncs.com"，则 `endpoint` 字段需要设为 "https://agora-recording.oss-cn-shanghai.aliyuncs.com"。该字段会应用在[查询录制列表]（agora_class_restful_api#%E6%9F%A5%E8%AF%A2%E5%BD%95%E5%88%B6%E5%88%97%E8%A1%A8）接口返回的 `webRecordUrlQuery` 字段里的域名。
-     如果你的 OSS 配置了 CDN 加速，也可以直接将 `endpoint` 设置为CDN 加速域名，最终录制页面的 URL 为 ·https://agora-adc-artifacts.oss-accelerate.aliyuncs.com/xxxxx.mp4·。//TODO 确认下是不是这个字段
+     - `endpoint`: 一般是由 Bucket 名称和访问域名拼成的完整路径。例如，你的 Bucket 名称为 "agora-recording"，OSS 访问域名为 "oss-cn-shanghai.aliyuncs.com"，则 `endpoint` 字段需要设为 "https://agora-recording.oss-cn-shanghai.aliyuncs.com"。该字段会应用在[查询录制列表]（agora_class_restful_api#%E6%9F%A5%E8%AF%A2%E5%BD%95%E5%88%B6%E5%88%97%E8%A1%A8）接口返回的 `url` 字段里的地址的域名。如果你的 OSS 配置了 CDN 加速，也可以直接将 `endpoint` 设置为 CDN 加速域名，最终录制页面的 URL 为 `https://agora-adc-artifacts`.oss-accelerate.aliyuncs.com/xxxxx.mp4。
      - `bucket`: 阿里云 OSS 中的 Bucket 名称，例如 `agora-whiteboard`。
      - `folder`: 阿里云 OSS 中的资源存放路径，例如 `whiteboard`。
      - `accessKey`: 阿里云 OSS 提供的访问密钥中的 Access Key，用于识别访问者的身份。
@@ -115,7 +114,7 @@
    ![](https://web-cdn.agora.io/docs-files/1631178086130)
 
 
-   请注意，环信控制台的默认应用为“免费社区版”，只能创建100个用户，仅用于体验与集成，若要上生产环境，需联系商务开通旗舰版。//TODO 联系环信的商务？好像不太方便写在声网的文档
+   <div class="alert info">环信控制台中，应用的服务类型默认为“免费社区版”，只能创建 100 个用户，仅用于体验与集成目的。若有生产环境需求，需联系 <a href="mailto:sales@agora.io">sales@agora.io</a> 开通企业版。</div>
 
 
 

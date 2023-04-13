@@ -7,7 +7,7 @@
 
 所有请求都发送给域名：api.agora.io。
 
-为保障 REST 服务的高可用，避免因区域网络故障造成的服务不可用，声网提供切换域名的方案，详情请参考[切换域名](/cn/Real-time-Messaging/rtm_integration_bp?platform=RESTful#切换域名)
+为保障 REST 服务的高可用，避免因区域网络故障造成的服务不可用，声网提供切换域名的方案，详情请参考[切换域名](/cn/Real-time-Messaging/rtm_integration_bp?platform=RESTful#切换域名)。
 
 ### 数据格式
 
@@ -20,7 +20,7 @@
 -   服务端生成的 RTM Token。
 -   生成 RTM Token 时使用的 uid。
 
-具体生成 RTM Token 的方法请参考[生成 RTM Token](/cn/Real-time-Messaging/token_server_rtm) 文档。
+具体生成 RTM Token 的方法请参考[生成 RTM Token](/cn/Real-time-Messaging/token_upgrade_rtm) 文档。
 
 ### 区域
 
@@ -127,7 +127,7 @@
 | `roomProperties.schedule`                    | Object  | 非必填       | 课程计划，包含开始时间，持续时长，拖堂时长等属性。     |
 | `roomProperties.schedule.startTime`          | Integer | 非必填 | 课堂开始时间戳，单位为毫秒。该字段不可更新。 |
 | `roomProperties.schedule.duration`           | Integer | 非必填 | 课堂持续时长，单位为秒。如果你设置了课堂持续时长和拖堂时长，当开启录制时，会按照二者之和向上取整设置最长录制时间 `maxRecordingHour` 参数。详见[设置录制状态](#设置录制状态)的 `maxRecordingHour` 参数说明。  |
-| `roomProperties.schedule.closeDelay`         | Integer | 非必填 | 拖堂时长，单位为秒。当课堂持续时长结束后，课程会进入“关闭”状态（`state`= 2，即拖堂状态），此时用户仍可以正常进入和逗留在教室。当拖堂时间结束时，课堂会关闭，并踢出所有用户。 |
+| `roomProperties.schedule.closeDelay`         | Integer | 非必填 | 拖堂时长，单位为秒。当课堂持续时长结束后，课程会进入“结束”状态（`state`= 2），此时用户仍可以正常进入和逗留在教室。当拖堂时间结束时，课堂会进入“关闭”状态（`state`= 3），并踢出所有用户。 |
 | `roomProperties.processes`                   | Object  | 非必填   | 申请邀请流程，包含举手等功能。     |
 | `roomProperties.processes.handsUp`           | Object  | 非必填    | 上台设置，包含上台人数上限等。   |
 | `roomProperties.processes.handsUp.maxAccept` | Integer |  非必填   | 上台人数上限。            |
@@ -644,7 +644,7 @@ curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test
 
 | 参数    | 类型   | 是否必填  | 描述                                                                                                                                                                                                             |
 | :------ | :----- | :----- |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `dirty` | Object | 非必填   | 用户踢人标记，包含以下字段：<ul><li>`state`: Integer 型，踢人状态：<ul><li>`1`: 被踢，无法进入课堂。</li><li> `0`: 未被踢，可以进入课堂。</li></ul><li>`duration`: Number 型，临时踢人持续时间，单位为秒，从被踢出时开始计时。当被踢持续时长结束后，用户自动恢复为未被踢状态。若不传该参数，则用户被永久踢出。</li></ul> |
+| `dirty` | Object | 非必填   | 用户踢人标记，包含以下字段：<ul><li>`state`: Integer 型，踢人状态：<ul><li>`1`: 被踢，无法进入课堂。</li><li> `0`: 未被踢，可以进入课堂。</li></ul><li>`duration`: Number 型，临时踢人持续时间，单位为秒。该字段仅在 `state` 为 `1` 时生效。从被踢出时开始计时，过了 `duration` 设置的时长后，用户自动恢复为未被踢状态。若不传该参数，则用户被永久踢出。</li></ul> |
 
 #### 请求示例
 

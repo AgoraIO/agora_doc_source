@@ -13,10 +13,10 @@
 
 下图展示了灵动课堂的架构。
 
-![](../images/ios_libs_structure.png)
+![](https://web-cdn.agora.io/docs-files/1681291532244)
 
 
-## 安装 CocoaPods
+## 前提条件
 
 下列所介绍的集成方式均需要通过 [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 进行集成，版本需要为 1.10 或更高版本。
 
@@ -70,7 +70,7 @@ pod --version
    pod 'AgoraWidget',           '2.8.0'
    ```
 
-2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。安装过程如所示：//TODO 这随着版本更新也会不一样吧，是不是不用给出这个过程
+2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。以 2.8.20 为例，安装过程中会打印如下信息：
 
    ```
    Analyzing dependencies
@@ -163,7 +163,7 @@ pod --version
    ```
 
    示例代码中需要传入 `token`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 Token，如何获取测试用途的临时 Token，如何从服务器生成 Token。
-   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
+   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
 5. （可选）自定义教育场景的灵动课堂界面的显示模式（明亮/暗黑）和语言（中文/英文）。
 
@@ -214,7 +214,7 @@ pod --version
    pod 'AgoraWidget',           '2.8.0'
    ```
    
-2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。安装过程如所示：//TODO 同上
+2. 在终端中进入到工程目录，执行 `pod install` 命令安装依赖包。以 2.8.20 为例，安装过程中会打印如下信息：
 
   ```
    Analyzing dependencies
@@ -297,7 +297,7 @@ pod --version
    ```
 
    示例代码中需要传入 `token`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 Token，如何获取测试用途的临时 Token，如何从服务器生成 Token。
-   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
+   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
 5. （可选）自定义监考场景的灵动课堂界面的显示模式（明亮/暗黑）和语言（中文/英文）。
 
@@ -364,7 +364,7 @@ pod --version
 
 4. 在终端中进入到工程目录，执行 `pod install` 命令。
 
-安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios.md) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
+安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
 
 ## 集成监考场景灵动课堂并自定义
 
@@ -406,7 +406,7 @@ pod --version
    ```
 4. 在终端中进入到工程目录，执行 `pod install` 命令。
 
-安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios.md) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
+安装完成后，参照[自定义课堂 UI](agora_class_custom_ui_ios) 了解灵动课堂的开源层设计思路，就可以修改源代码来自定义场景了。
 
 ## 注意事项
 集成后在你的项目中的 `info.plist` 文件里增加 `Privacy - Camera Usage Description`、 `Privacy - Microphone Usage Description`、 `Privacy - Photo Library Additions Usage Description`、 `Privacy - Photo Library Usage Description`，以获取在运行灵动课堂时所必要的权限。

@@ -9,7 +9,7 @@
 
 <img src="./images/launch_rtm_token.png" style="zoom: 33%;" />
 
-声网推荐你在后端生成 RTM Token，前端调用生成的 token，详情参考[使用 AccessToken2 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token2_server_rtm)。
+声网推荐你在后端生成 RTM Token，前端调用生成的 token，详情参考[使用 AccessToken2 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_upgrade_rtm)。
 
 如果需要临时生成 token 测试，可以使用这个[工具](https://webdemo.agora.io/token-builder/)。
 
