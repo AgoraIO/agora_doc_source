@@ -1,4 +1,4 @@
-群组是支持多人沟通的即时通讯系统。本文指导你如何使用即时通讯 IM Web SDK 在实时互动 app 中实现群组属性相关功能。
+群组是支持多人沟通的即时通讯系统。本文指导你如何使用即时通讯 IM SDK 在实时互动 app 中实现群组属性相关功能。
 
 ## 技术原理
 
@@ -13,7 +13,7 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解[使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -127,4 +127,4 @@ conn.getGroupSharedFilelist(option).then(res => console.log(res))
 
 ### 监听群组事件
 
-详见 [监听群组事件](./agora_chat_group_web#监听群组事件)。
+详见[监听群组事件](./agora_chat_group_web#监听群组事件)。

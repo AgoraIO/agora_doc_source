@@ -24,7 +24,7 @@
 
 你可以调用 `getConversationlist` 方法从服务端分页获取会话列表，每个会话包含最新一条历史消息。
 
-<div class="alert note">登录用户的 ID 大小写混用会导致拉取会话列表时提示会话列表为空，因此避免大小写混用。</div>
+<div class="alert note"><ul><li> 建议在 app 安装时或本地没有会话时调用该方法，否则调用 `getAllConversations` 方法即可。</li><li>获取的会话列表中不包含最新一条消息通过 RESTful 接口发送的会话。若需获取该类会话，需要联系商务开通将通过 RESTful 接口发送的消息写入会话列表的功能。</li></ul></div>
 
 ```java
 // pageNum：当前页面，从 1 开始。
@@ -32,7 +32,7 @@
 connection.getConversationlist({pageNum: 1, pageSize: 20}).then((res) => {})
 ```
 
-对于使用 `getConversationlist` 方法未实现分页获取会话的用户，SDK 默认可拉取 7 天内的 10 个会话，每个会话包含最新一条历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
+对于使用 `getConversationlist` 方法未实现分页获取会话的用户，SDK 默认可拉取 7 天内的 10 个会话，每个会话包含最新一条历史消息。如需调整时间限制或会话数量，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ### 从服务器获取指定会话的历史消息
 

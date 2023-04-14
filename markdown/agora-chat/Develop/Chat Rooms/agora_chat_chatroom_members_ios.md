@@ -16,8 +16,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
-- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
+- 了解不同版本的聊天室相关数量限制，详见[套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -54,7 +54,7 @@ AgoraChatError *error = nil;
 ```objective-c
 // 退出聊天室。
 AgoraChatError *error = nil;
-[AgoraChatClient sharedClient].roomManager leaveChatroom:@"aChatroomId" error:&error];
+[[AgoraChatClient sharedClient].roomManager leaveChatroom:@"aChatroomId" error:&error];
 ```
 
 退出聊天室时，SDK 默认删除该聊天室所有本地消息。若要保留本地数据，可在 SDK 初始化时将 `isDeleteMessagesWhenExitChatRoom` 设置为 `NO`。
@@ -283,4 +283,4 @@ AgoraChatError *error = nil;
 
 ### 监听聊天室事件
 
-有关详细信息，请参阅 [监听聊天室事件](./agora_chat_chatroom_ios#监听聊天室事件)。
+有关详细信息，请参阅[监听聊天室事件](./agora_chat_chatroom_ios#监听聊天室事件)。

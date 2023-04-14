@@ -32,8 +32,8 @@
 使用在线状态功能前，请确保满足以下条件：
 
 - 完成即时通讯 IM SDK初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解 [使用限制](./agora_chat_limitation)。
-- 在 [Agora 控制台](https://console.agora.io/) 中激活在线状态功能。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
+- 在[声网控制台](https://console.agora.io/)中激活在线状态功能。
 
 ## 实现方法
 
@@ -52,7 +52,7 @@
 }];
 ```
 
-<div class="alert info"><li>订阅时长最长为 30 天，过期需重新订阅。如果未过期的情况下重复订阅，新设置的有效期会覆盖之前的有效期。<li>每次调用接口最多只能订阅 100 个账号，若数量较大需多次调用。每个用户 ID 订阅的用户数不超过 3000。如果超过 3000，后续订阅也会成功，但默认会将订阅剩余时长较短的替代。<div>
+<div class="alert info"><li>订阅时长最长为 30 天，过期需重新订阅。如果未过期的情况下重复订阅，新设置的有效期会覆盖之前的有效期。<li>每次调用接口最多只能订阅 100 个账号，若数量较大需多次调用。每个用户 ID 订阅的用户数不超过 3000。如果超过 3000，后续订阅也会成功，但默认会将订阅剩余时长较短的替代。</div>
 
 ### 发布自定义在线状态
 
@@ -97,7 +97,7 @@
 为方便用户管理订阅关系，SDK 提供 `fetchSubscribedMembersWithPageNum` 方法，可使用户分页查询自己订阅的用户列表，示例代码如下：
 
 ```objective-c
-[[AgoraChatClient sharedClient] presenceManager] fetchSubscribedMembersWithPageNum:0 pageSize:50 Completion:^(NSArray<NSString*>* members,AgoraChatError*error){
+[[[AgoraChatClient sharedClient] presenceManager] fetchSubscribedMembersWithPageNum:0 pageSize:50 Completion:^(NSArray<NSString*>* members,AgoraChatError*error){
 }];
 ```
 
@@ -106,6 +106,6 @@
 如果不关注用户的在线状态变更，你可以调用 `fetchPresenceStatus` 方法获取用户当前的在线状态，而无需订阅状态。示例代码如下：
 
 ```objective-c
-[[AgoraChatClient sharedClient] presenceManager] fetchPresenceStatus:@[@"Alice",@"Tom"] completion:^(NSArray<AgoraChatPresence*>* presences,AgoraChatError*error){
+[[[AgoraChatClient sharedClient] presenceManager] fetchPresenceStatus:@[@"Alice",@"Tom"] completion:^(NSArray<AgoraChatPresence*>* presences,AgoraChatError*error){
 }];
 ```

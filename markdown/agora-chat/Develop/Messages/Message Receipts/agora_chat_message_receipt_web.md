@@ -1,8 +1,8 @@
 单聊会话支持消息送达回执、会话已读回执和消息已读回执，发送方发送消息后可及时了解接收方是否及时收到并阅读了信息，也可以了解整个会话是否已读。
 
-群聊会话只支持消息已读回执。群主和群管理员在发送消息时，可以设置该消息是否需要已读回执。若使用该功能，请联系[support@agora.io](mailto:support@agora.io) 开通。
+群聊会话只支持消息已读回执。群主和群管理员在发送消息时，可以设置该消息是否需要已读回执。若使用该功能，请联系 [sales@agora.io](mailto:sales@agora.io) 开通。
 
-本文介绍如何使用即时通讯 IM iOS SDK 实现单聊和群聊的消息回执功能。
+本文介绍如何使用即时通讯 IM SDK 实现单聊和群聊的消息回执功能。
 
 ## 技术原理
 
@@ -30,9 +30,9 @@
 
 开始前，请确保满足以下要求：
 
-- 集成即时通讯 IM Web SDK，初始化 SDK，并实现了注册账号和登录功能。详情请参见 [Web 快速开始](./agora_chat_get_started_web)。
+- 集成即时通讯 IM Web SDK，初始化 SDK，并实现了注册账号和登录功能。详见 [Web 快速开始](./agora_chat_get_started_web)。
 - 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
-- 若使用群聊的消息已读回执功能，需联系 [support@agora.io](mailto:support@agora.io) 开通。
+- 若使用群聊的消息已读回执功能，需联系 [sales@agora.io](mailto:sales@agora.io) 开通。
 
 ## 实现方法
 
@@ -69,7 +69,7 @@ conn.addEventHandler('customEvent', {
 - 聊天页面未打开时，若有未读消息，进入聊天页面，发送会话已读回执；
 - 聊天页面打开时，若收到消息，发送消息已读回执。
 
-##### 会话已读回执
+**会话已读回执**
 
 参考以下步骤在单聊中实现会话已读回执。
 
@@ -97,7 +97,7 @@ conn.addEventHandler('customEvent', {
 
 <div class="alert info">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 0，同时其他设备会收到 `onChannelMessage` 回调。</div>
 
-##### 消息已读回执
+**消息已读回执**
 
 参考如下步骤在单聊中实现消息已读回执。
 
@@ -141,7 +141,7 @@ conn.addEventHandler('customEvent', {
 
 对于群聊，群主和群管理员发送消息时，可以设置该消息是否需要已读回执。若需要，每个群成员在阅读消息后，SDK 均会发送已读回执，即阅读该消息的群成员数量即为已读回执的数量。
 
-若要使用该功能，需联系 [support@agora.io](mailto:support@agora.io) 开通。
+若要使用该功能，需联系 [sales@agora.io](mailto:sales@agora.io) 开通。
 
 1. 群主或群管理员发送消息时若需已读回执，需设置 `allowGroupAck` 设置为 `true`：
 

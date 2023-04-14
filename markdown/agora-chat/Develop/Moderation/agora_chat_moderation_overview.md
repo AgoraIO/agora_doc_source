@@ -267,7 +267,7 @@ App 级别和单聊的用户管理如下：
 
 2. 搜索指定的聊天室 ID，在聊天室列表中点击**操作**一栏中的**更多**，可以删除聊天室。
 
-   ![](./images/moderation/moderation_group_mgmt.png)
+   ![](./images/moderation/moderation_room_mgmt.png)
 
 3.在聊天室列表中点击聊天室 ID，进入该聊天室的实时审核页面。在该页面中，可以对聊天室的信息、聊天室成员和聊天室中的消息进行实时管理。
 

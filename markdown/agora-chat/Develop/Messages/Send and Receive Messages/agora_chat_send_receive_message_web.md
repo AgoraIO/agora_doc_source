@@ -12,7 +12,7 @@
 
 ## 技术原理
 
-即时通讯 IM Web SDK 可以实现消息的发送、接收与撤回。
+即时通讯 IM SDK 可以实现消息的发送、接收与撤回。
 
 发送和接收消息：
 
@@ -150,7 +150,7 @@ conn.addEventHandler("eventName",{
 
 ### 撤回消息
 
-用户发送消息 2 分钟以内可以撤回消息。如需调整时间限制，请联系 [support@agora.io](mailto:support@agora.io)。
+用户发送消息 2 分钟以内可以撤回消息。如需调整时间限制，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ```javascript
 /**

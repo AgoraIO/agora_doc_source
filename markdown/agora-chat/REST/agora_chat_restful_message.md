@@ -1488,7 +1488,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 服务端消息撤回
 
-应用管理员可撤回发送的消息。默认可撤回发出 2 分钟内的消息，如需调整请联系 [support@agora.io](mailto:support@agora.io)。
+应用管理员可撤回发送的消息。默认可撤回发出 2 分钟内的消息，如需调整请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ### HTTP 请求
 

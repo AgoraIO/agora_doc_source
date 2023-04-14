@@ -46,7 +46,7 @@
   | 国内数据中心 | 国内 1 区、国内 VIP 区。 |
   | 海外数据中心 | 新加坡 1 区、美东 1 区和德国 1 区。           |
 
-  <div class="alert note"> 国内的账号可以开通国内数据中心服务，若需开通海外数据中心服务请联系 [support@agora.io](mailto:support@agora.io)。<br/>升级套餐包后，数据中心不变。 </div>
+  <div class="alert note"> 国内的账号可以开通国内数据中心服务，若需开通海外数据中心服务请联系 [sales@agora.io](mailto:sales@agora.io)。<br/>升级套餐包后，数据中心不变。 </div>
 
 - **访问域名**：即时通讯服务分配的 WebSocket 和 RESTful API 请求地址域名。
 

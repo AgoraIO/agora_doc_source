@@ -90,7 +90,7 @@ SDKClient.Instance.ChatManager.RemoveChatManagerDelegate(adelegate);
 
 ### 撤回消息
 
-消息发送后 2 分钟之内，消息的发送方可以撤回该消息。如果需要调整可撤回时限，可以联系商务 [support@agora.io](mailto:support@agora.io)。
+消息发送后 2 分钟之内，消息的发送方可以撤回该消息。如果需要调整可撤回时限，可以联系商务 [sales@agora.io](mailto:sales@agora.io)。
 
 ```C#
 SDKClient.Instance.ChatManager.RecallMessage("Message ID", new CallBack(

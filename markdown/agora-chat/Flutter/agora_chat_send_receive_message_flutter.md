@@ -289,7 +289,7 @@ String? localPath = fileBody.localPath;
 
 ### 撤回消息
 
-消息发送后 2 分钟以内，消息的发送方可以撤回该消息。如需调整时间限制，请联系 [support@agora.io](mailto:support@agora.io)。
+消息发送后 2 分钟以内，消息的发送方可以撤回该消息。如需调整时间限制，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ```dart
 try {

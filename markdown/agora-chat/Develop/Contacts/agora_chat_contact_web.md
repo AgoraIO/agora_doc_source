@@ -5,7 +5,7 @@
 
 ## 技术原理
 
-即时通讯 IM Web SDK 提供以下用户关系管理功能：
+即时通讯 IM SDK 提供以下用户关系管理功能：
 
 - `addContact` 请求添加好友；
 - `acceptContactInvite`/`declineContactInvite` 接受/拒绝好友请求；
@@ -21,7 +21,7 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 

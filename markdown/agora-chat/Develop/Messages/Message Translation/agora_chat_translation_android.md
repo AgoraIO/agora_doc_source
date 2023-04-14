@@ -7,14 +7,14 @@
 
 开始前，请确保满足以下条件：
 
-- 项目集成了 v1.0.3 及以上版本的即时通讯 IM SDK，并实现了基本的 [实时聊天功能](./agora_chat_get_started_android)。
-- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
-- 默认情况下不启用翻译。要使用此功能，需要在 [控制台](./agora_chat_plan)[Agora Console](https://console.agora.io/) 中订阅 **进阶版** 或 **企业版** 套餐并开启翻译服务。
-- 由于此功能由 Microsoft Azure 翻译 API 提供，开始前请确保你了解该功能支持的目标语言。详见 [翻译语言支持](https://docs.microsoft.com/en-us/azure) 。
+- 项目集成了 V1.0.3 及以上版本的即时通讯 IM SDK，并实现了基本的实时聊天功能，详见 [Android 快速开始](./agora_chat_get_started_android)。
+- 了解即时通讯 IM API 的调用频率限制，详见[限制条件](./agora_chat_limitation)。
+- 默认情况下不启用翻译。要使用该功能，你需要订阅**进阶版**或**企业版**[套餐包](./agora_chat_plan)并在[声网控制台](https://console.agora.io/)中启用该功能。
+- 由于此功能由 Microsoft Azure 翻译 API 提供，开始前请确保你了解该功能支持的目标语言。详见[翻译语言支持](https://docs.microsoft.com/en-us/azure)。
 
 ## 技术原理
 
-Chat SDK 提供以下方法来实现翻译功能：
+即时通讯 IM Android SDK 提供以下方法来实现翻译功能：
 
 - `fetchSupportLanguages`：获取支持的翻译语言。
 - `translateMessage`：翻译收到的文本消息。
@@ -73,4 +73,4 @@ List<TranslationInfo> infoList = body.getTranslations();
 
 ### 设置和获取推送的目标语言
 
-设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见 [离线推送](./agora_chat_push_android)。
+设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见[离线推送](./agora_chat_push_android)。

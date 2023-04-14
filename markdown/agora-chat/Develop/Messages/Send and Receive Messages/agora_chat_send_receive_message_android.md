@@ -38,9 +38,9 @@
 使用 `ChatMessage` 类创建文本消息并发送消息。
 
 ```java
- // 创建一条文本消息，content 为消息文字内容，`toChatUsername` 为对方用户名或群 ID。
-ChatMessage message = ChatMessage.createTxtSendMessage(content, toChatUsername);
- // 设置聊天类型为群聊。你也可以设置为单聊 Chat 或聊天室 ChatRoom。
+ // 创建一条文本消息，`content` 为消息文字内容，`conversationId` 为会话 ID，在单聊时为对端用户 ID、群聊时为群组 ID，聊天室时为聊天室 ID。
+ChatMessage message = ChatMessage.createTxtSendMessage(content, conversationId);
+ // 设置聊天类型为群聊。默认为单聊 `Chat`，也可以设置为聊天室 `ChatRoom`。
 message.setChatType(ChatType.GroupChat);
  // 发送消息。
  ChatClient.getInstance().chatManager().sendMessage(message);
@@ -91,7 +91,7 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 
 ### 撤回消息
 
-消息发送后 2 分钟之内，消息的发送方可以撤回该消息。如果需要调整可撤回时限，请联系 [support@agora.io](mailto:support@agora.io)。
+消息发送后 2 分钟之内，消息的发送方可以撤回该消息。如果需要调整可撤回时限，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ```java
 try {

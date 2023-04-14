@@ -1,4 +1,4 @@
-消息回调本文主要介绍在调用即时通讯 Web API 过程中，SDK 返回的错误码和错误信息。
+消息回调本文主要介绍在调用即时通讯 API 过程中，SDK 返回的错误码和错误信息。
 
 你可以在 `listen` 方法中通过 `options` 参数注册 `onError` 回调，然后通过该回调返回的参数，或其他 API 调用失败回调中返回的参数判断出错的原因。示例代码如下：
 
@@ -9,13 +9,13 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 - 调用方法失败时的返回值。
 - 通过 `onError` 回调报告错误码。
 
-你可以根据如下错误码及错误信息了解出错的可能原因，并采取响应措施。对于未给出解决方法的错误码，Agora 推荐你[提交工单](https://agora-ticket.agora.io/)，我们的技术服务会根据你在实际场景中遇到的问题进行排查。
+你可以根据如下错误码及错误信息了解出错的可能原因，并采取响应措施。对于未给出解决方法的错误码，声网推荐你[提交工单](https://agora-ticket.agora.io/)，我们的技术服务会根据你在实际场景中遇到的问题进行排查。
 
 | 错误码 | 错误信息        | 描述和可能原因                          |
 | :----- | :------------------- | :----------------- |
-| 0      | REQUEST_SUCCESS                                | 提示操作成功，没有错误。                                     |
-| -1     | REQUEST_TIMEOUT                             | 请求服务超时。                                        |
-| -2     | REQUEST_UNKNOWN                                | 默认未区分类型的错误。                                     |
+| 0      | REQUEST_SUCCESS                                | 操作成功，没有错误。                                     |
+| -1     | REQUEST_TIMEOUT        | 请求服务超时。                                        |
+| -2     | REQUEST_UNKNOWN               | 默认未区分类型的错误。         |
 | -3     | REQUEST_PARAMETER_ERROR               | 参数错误。                                     |
 | -4     | REQUEST_ABORT               | 取消请求。                                     |
 | 1      | WEBIM_CONNCTION_OPEN_ERROR                    | 登录失败：获取 token 接口请求失败。                          |
@@ -29,7 +29,7 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 | 32     | WEBIM_CONNCTION_CLIENT_OFFLINE                 | 当前用户未登录。                                             |
 | 39     | WEBIM_CONNECTION_CLOSED                        | 退出或未登录：未登录或掉线后发送消息。                       |
 | 40     | WEBIM_CONNECTION_ERROR                         | 用户鉴权失败。                  |
-| 50     | MAX_LIMIT                         | 达到上限，如：Reaction 数量已达到限制；翻译用量达到上限。                  |
+| 50     | MAX_LIMIT                         | 达到上限，如：Reaction 数量已达到限制或翻译用量达到上限。                  |
 | 51     | MESSAGE_NOT_FOUND                         | 没查到消息，如：没有查询到要举报的消息。                 |
 | 52     | NO_PERMISSION                          | 用户对当前操作没有权限。                 |
 | 53     | OPERATION_UNSUPPORTED                         | 不支持的操作。                 |
@@ -52,9 +52,9 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 | 505    | SERVICE_NOT_ENABLED                            | 服务未开启：要使用的某些功能未开通。                         |
 | 506    | SERVICE_NOT_ALLOW_MESSAGING                    | 用户未在白名单中：群组或聊天室开启全员禁言时，若用户未在白名单中发送消息时提示该错误。 |
 | 507    | SERVICE_NOT_ALLOW_MESSAGING_MUTE               | 当前用户被禁言：在群组或者聊天室中被禁言后发消息报此错误。           |
-| 508    | MESSAGE_MODERATION_BLOCKED                     | 消息被 Moderation 服务拦截。                                 |
+| 508    | MESSAGE_MODERATION_BLOCKED                     | 消息被 Moderation 服务拦截。   |
 | 510    | MESSAGE_WEBSOCKET_DISCONNECTED | 网络断开连接导致消息发送失败。 |
-| 601    | GROUP_ALREADY_JOINED                           | 已在群组内：当前用户已在该群组中。                           |
+| 601    | GROUP_ALREADY_JOINED                           | 已在群组内：当前用户已在该群组中。     |
 | 602    | GROUP_NOT_JOINED                               | 不在群组内：用户发送群消息时未加入该群组。                   |
 | 603    | PERMISSION_DENIED                              | 用户无权限：例如如果用户被封禁，发送消息时会提示该错误。     |
 | 604    | WEBIM_LOAD_MSG_ERROR                           | 消息回调函数内部错误：在接收消息的回调及后续处理的函数中有错误。 |

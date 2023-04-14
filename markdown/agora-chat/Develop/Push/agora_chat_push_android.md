@@ -22,15 +22,15 @@
 8. Agora 即时通讯服务器将将消息发送给第三方推送服务器。
 9. 第三方推送服务器将消息发送给用户 B。
 
-<div class="alert info"><p>开发者通过 Agora 控制台配置 App 的推送证书，需填写证书名称及推送密钥等信息。该步骤须在登录即时通讯 IM SDK 成功后进行。</p><p>证书名称是 Agora 即时通讯服务器用于判断目标设备使用哪种推送通道的唯一条件，因此必须确保与 Android 终端设备上传的证书名称一致。</p></div>
+<div class="alert info"><p>开发者通过声网控制台配置 App 的推送证书，需填写证书名称及推送密钥等信息。该步骤须在登录即时通讯 IM SDK 成功后进行。</p><p>证书名称是 Agora 即时通讯服务器用于判断目标设备使用哪种推送通道的唯一条件，因此必须确保与 Android 终端设备上传的证书名称一致。</p></div>
 
 ## 前提条件
 
-- 已开启即时通讯 IM ，详见 [开启和配置即时通讯服务](./enable_agora_chat)。
-- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)。
-- 你已在 [Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
+- 已开启即时通讯 IM ，详见[开启和配置即时通讯服务](./enable_agora_chat)。
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)。
+- 你已在[声网控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
-<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
+<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:sales@agora.io">sales@agora.io</a>，因为该操作会删除所有相关配置。</div>
 
 各厂商推送服务的使用条件如下：
 
@@ -48,7 +48,7 @@ SDK 内部会按照这个顺序检测设备的推送支持情况。
 <div class="alert info">
 如果你的 App 有海外使用场景，建议开启 FCM 推送；由于各推送使用条件不同，建议尽可能同时支持各家推送。</div>
 
-此外，使用消息推送前，需要你在对应的手机厂商推送服务上注册项目，并将设备的推送证书上传到 Agora 云控制台。
+此外，使用消息推送前，需要你在对应的手机厂商推送服务上注册项目，并将设备的推送证书上传到声网控制台。
 
 ## 项目配置  
 
@@ -73,7 +73,28 @@ SDK 内部会按照这个顺序检测设备的推送支持情况。
 
 #### 2. 上传推送证书
 
-注册完成后，在 [Agora 控制台](https://console.agora.io/)上传推送证书，选择你的应用 > **即时推送** > **配置证书** > **添加推送证书** > **谷歌**，然后输入 Firebase 项目设置里的 `Server ID` 和 `Server Key`。
+a. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
+
+b. 选择需要开通即时通讯服务的项目，点击**配置**。
+   ![](https://web-cdn.agora.io/docs-files/1670827574193)
+
+c. 在**服务配置**页面，点击**即时通讯**中的**配置**。
+
+   ![](https://web-cdn.agora.io/docs-files/1670827609516)
+
+d. 选择**功能配置** > **推送证书**。在**证书管理**页面，点击**添加推送证书**，在弹出的对话框中选择
+**谷歌**，将**证书名称**设置为 FCM 的发送者 ID，**推送秘钥**设置为 FCM 的服务器密钥。即时通讯 IM 支持 FCM 的旧版证书和 v1 版证书。
+
+   ![](images/push/fcm_add_certif)
+
+- 若**证书类型**选择**旧版**，你需要将**证书名称** 设置为 FCM 的发送者 ID，**推送秘钥**设置为 FCM 的服务器密钥。你需在 [Firebase 控制台](https://console.firebase.google.com/?hl=zh-cn)的**项目设置 > 云消息传递**页面中，在 **Cloud Messaging API（旧版）** 区域中获取发送者 ID 和服务器密钥，如下图所示。配置完毕，设置**铃声**、**推送优先级设置**和**推送消息类型**参数。
+
+   ![](images/push/fcm_old_version)
+
+- 若**证书类型**选择 **V1**，你需要上传证书文件（.json 文件）并将**证书名称** 设置为 FCM 的发送者 ID。你需要在[Firebase 控制台](https://console.firebase.google.com/?hl=zh-cn)的**项目设置** > **服务账号**页面，点击**生成新的私钥**，下载推送证书文件（.json），然后在**项目设置** > **云消息传递** 页面中，在 **Firebase Cloud Messaging API（V1）** 区域中获取 发送者 ID。配置完毕，设置**铃声**、**推送优先级设置** 和 **推送消息类型** 参数。
+
+  ![](images/push/fcm_v1)
+
 
 #### 3. 集成 FCM 推送
 
@@ -198,20 +219,17 @@ SDK 内部会按照这个顺序检测设备的推送支持情况。
 
 #### 1. 在华为开发者后台创建应用并开启推送
 
-在 [华为开发者后台](https://developer.huawei.com/)创建 Android 应用，开启消息推送服务，并获取 App ID 和 Secret Key。参考文档详见 [华为推送服务](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-config-agc-0000001050170137#section19884105518498)。
+在[华为开发者后台](https://developer.huawei.com/)创建 Android 应用，开启消息推送服务，并获取 App ID 和 Secret Key。参考文档详见[华为推送服务](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-config-agc-0000001050170137#section19884105518498)。
 
-#### 2. 将推送证书等信息上传 Agora 控制台
+#### 2. 将推送证书等信息上传声网控制台
 
-1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
 
 2. 选择需要开通即时通讯服务的项目，点击**配置**。
-   ![](https://web-cdn.agora.io/docs-files/1642565777918)
 
-3. 找到**实时互动拓展能力**模块的**即时通讯 IM**，点击**配置**。
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
-   ![](https://web-cdn.agora.io/docs-files/1642565827058)
-
-4. 在消息推送模块，点击**添加推送证书**。在弹窗中选择**华为**，并配置如下字段：
+4. 选择**功能配置** > **推送证书**。在**证书管理**页面，点击**添加推送证书**，在弹出的对话框中选择**华为**，并配置如下字段：
 
     - 证书名称：消息推送证书名称。填写创建 Android 应用时获取的 app ID。
     - 证书密钥：消息推送证书密钥。填写创建 Android 应用时获取的 Secret Key。
@@ -270,21 +288,17 @@ ChatClient.getInstance().init(this, options);
 
 #### 1. 在小米开发者平台开启消息推送服务
 
-在 [小米开放平台](https://dev.mi.com/platform)创建 Android 应用，开启消息推送服务，并获取 app ID 和 Secret Key。详见 [推送服务接入指南](https://dev.mi.com/console/doc/detail?pId=68)。
+在[小米开放平台](https://dev.mi.com/platform)创建 Android 应用，开启消息推送服务，并获取 app ID 和 Secret Key。详见[推送服务接入指南](https://dev.mi.com/console/doc/detail?pId=68)。
 
-#### 2. 将消息推送证书等信息上传到 Agora 控制台
+#### 2. 将消息推送证书等信息上传到声网控制台
 
- 1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
+ 1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
 
  2. 选择需要开通即时通讯服务的项目，点击**配置**。
 
-   ![](https://web-cdn.agora.io/docs-files/1642565777918)
+ 3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
- 3. 找到**实时互动拓展能力**模块的**即时通讯 IM**，点击**配置**。
-
-   ![](https://web-cdn.agora.io/docs-files/1642565827058)
-
- 4. 在消息推送模块，点击**添加推送证书**。在弹窗中选择**小米**，并配置如下字段：
+ 4. 选择**功能配置** > **推送证书**。在**证书管理**页面，点击**添加推送证书**，在弹出的对话框中选择**小米**，并配置如下字段：
 
     - 证书名称：消息推送证书名称。填写创建 Android 应用时获取的 app ID。
     - 证书密钥：消息推送证书密钥。填写创建 Android 应用时获取的 Secret Key。
@@ -294,7 +308,7 @@ ChatClient.getInstance().init(this, options);
 
  1. 下载[小米推送 SDK](https://admin.xmpush.xiaomi.com/zh_CN/mipush/downpage)并集成到你的项目。
 
- 2. 按照以下步骤配置 `AndroidManifest.xml`。详见 [官方文档](https://dev.mi.com/console/doc/detail?pId=41#_0_0)。
+ 2. 按照以下步骤配置 `AndroidManifest.xml`。详见[官方文档](https://dev.mi.com/console/doc/detail?pId=41#_0_0)。
 
  - 添加如下权限：
 
@@ -394,11 +408,20 @@ ChatClient.getInstance().init(this, options);
 
 #### 1. 在 OPPO 开发者后台创建应用
 
-在 OPPO 开发者后台创建应用，开启 push 服务，并上传对应的证书指纹。详见 OPPO 官方介绍：[ OPPO 推送服务集成](https://open.oppomobile.com/new/developmentDoc/info?id=10195)
+在 OPPO 开发者后台创建应用，开启 push 服务，并上传对应的证书指纹。详见 OPPO 官方介绍：[OPPO 推送服务集成](https://open.oppomobile.com/new/developmentDoc/info?id=10195)。
 
 #### 2. 上传推送证书
 
-注册完成后，需要在环信即时通讯云控制台上传推送证书，选择你的应用 —> **即时推送** —> **配置证书** —> **添加推送证书** —> **OPPO**，然后输入你在 [OPPO 开发者后台](https://open.oppomobile.com/service/oms?service_id=1000004&app_type=app&app_id=30004346)创建的应用的 `appkey` 和 `mastersecret` 以及程序的 `包名`，MasterSecret 需要到 [OPPO 推送平台](https://open.oppomobile.com/) > **配置管理** > **应用配置** 页面查看。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
+
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
+
+4. 选择**功能配置** > **推送证书**。在**证书管理**页面，点击**添加推送证书**，在弹出的对话框中选择**OPPO**。
+5. 设置对话框中的参数名称。
+
+对于**证书名称**和**应用包名**，分别填入 [OPPO 开发者后台](https://open.oppomobile.com/service/oms?service_id=1000004&app_type=app&app_id=30004346)创建的应用的 `appkey` 和程序的`包名`。对于**推送秘钥**，在 [OPPO 推送平台](https://open.oppomobile.com/) > **配置管理** > **应用配置** 页面查看 `mastersecret`。 
 
 #### 3. 集成 OPPO 推送
 
@@ -408,7 +431,7 @@ ChatClient.getInstance().init(this, options);
 
 2. 配置 `AndroidManifest.xml`。
 
-  <div class="alert info">OPPO 推送在 2.1.0 适配了 Android Q，在 Android Q上接收 OPPO 推送需要升级环信 SDK 到 3.7.1 以及之后的版本，并使用 OPPO 推送 2.1.0 的包。从 1.0.3 版本开始，升级 OPPO 推送版本到 3.0.0<div>
+  <div class="alert info">OPPO 推送在 2.1.0 适配了 Android Q，在 Android Q上接收 OPPO 推送需要升级环信 SDK 到 3.7.1 以及之后的版本，并使用 OPPO 推送 2.1.0 的包。从 1.0.3 版本开始，升级 OPPO 推送版本到 3.0.0</div>
 
  - 推送服务需要的权限列表：
 
@@ -467,17 +490,23 @@ HeytapPushManager.init(context, true);
 
 #### 1. 在 VIVO 开发者后台创建应用
 
-在 VIVO 开发者后台创建应用，开启推送服务，并上传对应的证书指纹。详见 VIVO 官方介绍：[ VIVO 推送服务集成](https://dev.vivo.com.cn/documentCenter/doc/281)。
+在 VIVO 开发者后台创建应用，开启推送服务，并上传对应的证书指纹。详见 VIVO 官方介绍： [VIVO 推送服务集成](https://dev.vivo.com.cn/documentCenter/doc/281)。
 
 #### 2. 上传推送证书
 
-注册完成后，需要在环信即时通讯云控制台上传推送证书，选择你的应用 —> **即时推送** —> **配置证书** —> **添加推送证书** —> **VIVO**，然后输入你在 [VIVO 开发者后台](https://vpush.vivo.com.cn/#/appdetail)创建的应用的 `APP ID`，`APP KEY` 和 `APP SECRET` 以及程序的 `包名`。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
+
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
+
+4. 选择**功能配置** > **推送证书**。在**证书管理**页面，点击**添加推送证书**。在弹出的对话框中选择 **VIVO**，然后输入你在 [VIVO 开发者后台](https://vpush.vivo.com.cn/#/appdetail)创建的应用的 `APP ID`，`APP KEY` 和 `APP SECRET` 以及程序的 `包名`。
 
 #### 3. VIVO 推送集成
 
 1. 配置 VIVO 推送 jar 包： 去 VIVO 推送官网下载推送 SDK 包，把 jar 包放到 libs 目录下并 sync 。也可以直接使用环信 Android IM Demo 中集成的 VIVO 推送的 jar 包。
 
-2. 配置 `AndroidManifest.xml` 。
+2. 配置 `AndroidManifest.xml`。
 
  - 推送服务需要的 service 和 receiver，并且需要配置 VIVO 的 app_id 和 app_key：
 
@@ -531,7 +560,7 @@ HeytapPushManager.init(context, true);
 
 4. VIVO 设备安装应用后默认没有打开允许通知权限，测试前需首先在设置中打开该应用的允许通知权限。
 
-[VIVO 推送官方文档](https://dev.vivo.com.cn/documentCenter/doc/363)
+详情请参见 [VIVO 推送官方文档](https://dev.vivo.com.cn/documentCenter/doc/363)。
 
 ### 魅族推送集成
 
@@ -541,7 +570,13 @@ HeytapPushManager.init(context, true);
 
 #### 2. 上传推送证书
 
-注册完成后，需要在 Agora 控制台上传推送证书，选择你的应用 —> **即时推送** —> **配置证书** —> **添加推送证书** —> **魅族**，然后输入你在[ flyme 推送平台](http://push.meizu.com/#/config/app?appId=8843&_k=dnrz9k)创建的应用的 `APP ID` 和 `APP SECRET` 以及程序的 `包名`。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏的**项目管理**。
+
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
+
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
+
+4. 选择**功能配置** > **推送证书**。在**证书管理**页面，点击**添加推送证书**，在弹出的对话框中选**魅族**，然后输入你在 [flyme 推送平台](http://push.meizu.com/#/config/app?appId=8843&_k=dnrz9k)创建的应用的 `APP ID` 和 `APP SECRET` 以及程序的 `包名`。
 
 #### 3. 集成魅族推送
 
@@ -636,7 +671,7 @@ ChatClient.getInstance().init(this, options);
 </tr>
 <tr>
 <td width="184">
-<p>`ALL`</p>
+<p>ALL</p>
 </td>
 <td width="420">
 <p>接收所有离线消息的推送通知。</p>
@@ -648,7 +683,7 @@ ChatClient.getInstance().init(this, options);
 </tr>
 <tr>
 <td width="184">
-<p>`MENTION_ONLY`</p>
+<p>MENTION_ONLY</p>
 </td>
 <td width="420">
 <p>仅接收提及消息的推送通知。</p>
@@ -657,7 +692,7 @@ ChatClient.getInstance().init(this, options);
 </tr>
 <tr>
 <td width="184">
-<p>`NONE`</p>
+<p>NONE</p>
 </td>
 <td width="420">
 <p>不接收离线消息的推送通知。</p>
@@ -852,7 +887,7 @@ ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new Valu
 
 即时通讯 IM 支持自定义推送通知模板。使用前，你可以参考以下步骤为用户创建和提供推送模板：
 
-1. 登录 Agora 控制台，点击左侧导航栏中的**项目管理**。
+1. 登录声网控制台，点击左侧导航栏中的**项目管理**。
 
 2. 在**项目管理** 页面，找到开启即时通讯 IM 的项目，点击**配置**。
 
@@ -869,7 +904,7 @@ ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new Valu
 ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("message content");
 message.setTo("6006");
-// 将在 Agora 控制台上创建的推送模板设置为默认推送模板。
+// 将在声网控制台上创建的推送模板设置为默认推送模板。
                     JSONObject pushObject = new JSONObject();
                     JSONArray titleArgs = new JSONArray();
                     JSONArray contentArgs = new JSONArray();

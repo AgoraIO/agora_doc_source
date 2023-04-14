@@ -23,7 +23,7 @@
 
 #### <a name="create"></a>创建社区
 
-可创建社区数量根据套餐版本有所不同。每个用户最多可创建 100 个社区，超过该阈值需要联系 [support@agora.io](mailto:support@agora.io) 调整。
+可创建社区数量根据套餐版本有所不同。每个用户最多可创建 100 个社区，超过该阈值需要联系 [sales@agora.io](mailto:sales@agora.io) 调整。
 
 1. 调用 `createServer` 方法创建社区。
 
@@ -163,7 +163,7 @@ AgoraChatClient.shared().circleManager.fetchServerMembers(serverId, limit: 20, c
 
 #### 加入社区
 
-每个用户最多加入 100 个社区，超过该阈值需要联系 [support@agora.io](mailto:support@agora.io) 调整。用户可以通过以下两种方式加入社区：
+每个用户最多加入 100 个社区，超过该阈值需要联系 [sales@agora.io](mailto:sales@agora.io) 调整。用户可以通过以下两种方式加入社区：
 
 1. 搜索社区名称和标签（同时支持 REST 通过社区 ID 搜索），主动申请加入社区。
 

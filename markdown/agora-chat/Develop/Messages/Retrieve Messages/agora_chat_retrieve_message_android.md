@@ -43,7 +43,7 @@ ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(pageNum
 });
 ```
 
-对于使用 `asyncFetchConversationsFromServer` 方法未实现分页获取会话的用户，SDK 默认可拉取 7 天内的 10 个会话，每个会话包含最新一条历史消息。如需调整时间限制或会话数量，请联系 [support@agora.io](mailto:support@agora.io)。
+对于使用 `asyncFetchConversationsFromServer` 方法未实现分页获取会话的用户，SDK 默认可拉取 7 天内的 10 个会话，每个会话包含最新一条历史消息。如需调整时间限制或会话数量，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ### 从服务器获取指定会话的历史消息
 

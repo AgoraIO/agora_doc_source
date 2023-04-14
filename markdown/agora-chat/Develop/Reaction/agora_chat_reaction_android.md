@@ -22,10 +22,10 @@ SDK 提供 API 实现如下功能：
 
 开始前，请确保满足以下条件：
 
-- 集成 v1.0.3 及以上即时通讯 IM SDK 版本，并实现了 [基本的实时聊天功能](./agora_chat_get_started_android)。
-- 了解 [使用限制](./agora_chat_limitation)。
+- 集成 V1.0.3 及以上即时通讯 IM SDK 版本，并实现了[基本的实时聊天功能](./agora_chat_get_started_android)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
 
-所有版本的 [套餐包](./agora_chat_plan) 都支持 Reaction 功能，因此在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯 IM 会默认开启 Reaction 功能。
+所有版本的[套餐包](./agora_chat_plan) 都支持 Reaction 功能，因此在[声网控制台](https://console.agora.io/)中启用即时通讯 IM 会默认开启 Reaction 功能。
 
 ## 实现方法
 

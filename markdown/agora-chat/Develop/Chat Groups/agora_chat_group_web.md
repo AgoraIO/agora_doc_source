@@ -1,8 +1,8 @@
-群组是支持多人沟通的即时通讯系统。本文介绍如何使用即时通讯 IM Web SDK 在实时互动 app 中创建和管理群组，并实现群组相关功能。
+群组是支持多人沟通的即时通讯系统。本文介绍如何使用即时通讯 IM SDK 在实时互动 app 中创建和管理群组，并实现群组相关功能。
 
 ## 技术原理
 
-即时通讯 IM Web SDK 支持你通过调用 API 在项目中实现以下群组管理功能：
+即时通讯 IM SDK 支持你通过调用 API 在项目中实现以下群组管理功能：
 
 - 创建、解散群组
 - 获取群组详情信息
@@ -15,8 +15,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解 [使用限制](./agora_chat_limitation)。
-- 了解群组和群成员数量限制，详见 [套餐包](./agora_chat_plan)。
+- 了解[使用限制](./agora_chat_limitation)。
+- 了解群组和群成员数量限制，详见[套餐包](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -33,10 +33,10 @@
 | `groupname`  | String             | 群组名称。              |
 | `desc`  | String | 群组描述。           |
 | `members`    | Array         | 群成员的用户 ID 组成的数组。 |
-| `public`  | Boolean             | 是否为公开群：<br/> - `true`：是；<br/> - `false`：否。该群组为私有群。    |
-| `approval`  | Boolean | 入群申请是否需群主或管理员审批：<br/> - `true`：需要；<br/> - `false`：不需要。<br/>由于私有群不支持用户申请入群，只能通过邀请方式进群，因此该参数仅对公开群有效，即 `public` 设置为 `true` 时，对私有群无效。  |
-| `allowinvites`    | Boolean         | 是否允许普通群成员邀请人入群：<br/> - `true`：允许；<br/> - `false`：不允许。只有群主和管理员才可以向群组添加用户。<br/>该参数仅对私有群有效，即 `public` 设置为 `false` 时， 因为公开群（`public` 为 `true`) 仅支持群主和群管理员邀请人入群，不支持普通群成员邀请人入群。 |
-| `inviteNeedConfirm`  | Boolean             | 邀请加群时是否需要受邀用户确认：<br/> - `true`：受邀用户需同意才会加入群组；<br/> - `false`：受邀用户直接加入群组，无需确认。             |
+| `public`  | Boolean             | 是否为公开群：<ul><li>`true`：是；</li><li>`false`：否。该群组为私有群。</li></ul> |
+| `approval`  | Boolean | 入群申请是否需群主或管理员审批：<ul><li>`true`：需要；</li><li>`false`：不需要。</li></ul><br/>由于私有群不支持用户申请入群，只能通过邀请方式进群，因此该参数仅对公开群有效，即 `public` 设置为 `true` 时，对私有群无效。  |
+| `allowinvites`    | Boolean         | 是否允许普通群成员邀请人入群：<ul><li>`true`：允许；</li><li>`false`：不允许。只有群主和管理员才可以向群组添加用户。</li></ul><br/>该参数仅对私有群有效，即 `public` 设置为 `false` 时， 因为公开群（`public` 为 `true`）仅支持群主和群管理员邀请人入群，不支持普通群成员邀请人入群。 |
+| `inviteNeedConfirm`  | Boolean             | 邀请加群时是否需要受邀用户确认：<ul><li>`true`：受邀用户需同意才会加入群组；</li><li>`false`：受邀用户直接加入群组，无需确认。</li></ul> |
 | `maxusers`  | Number             | 群组最大成员数。          |
 | `ext`   | String | 群组详情扩展信息。                   |
 

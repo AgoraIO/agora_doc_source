@@ -1,6 +1,4 @@
-聊天室支持多个用户之间的实时消息传递。
-
-本页介绍如何使用即时通讯 IM SDK 管理应用中的聊天室成员。
+聊天室是支持多人沟通的即时通讯系统。本文介绍如何使用即时通讯 IM Android SDK 在实时互动 app 中管理聊天室成员，并实现聊天室的相关功能。
 
 ## 技术原理
 
@@ -18,8 +16,8 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解 [使用限制](./agora_chat_limitation)。
-- 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
+- 了解聊天室的数量限制，详见[套餐包详情](./agora_chat_plan)。
 
 ## 实现方法
 
@@ -263,7 +261,7 @@ ChatClient.getInstance().chatroomManager().fetchChatRoomBlackList(chatRoomId, ne
 
 将聊天室成员添加到禁言列表后，该成员将无法再发送聊天室消息，即使添加到聊天室白名单列表后也无法发送。
 
-#### **将成员添加至聊天室禁言列表**
+#### 将成员添加至聊天室禁言列表
 
 仅聊天室所有者和管理员可以调用 `muteChatRoomMembers` 方法将指定成员添加至聊天室禁言列表，除操作者外的其他成员收到 `ChatRoomChangeListener#onMuteListAdded` 回调。
 
@@ -339,4 +337,4 @@ ChatClient.getInstance().chatroomManager().unmuteAllMembers(chatRoomId, new Valu
 
 ### 监听聊天室事件
 
-详见 [监听聊天室事件](./agora_chat_chatroom_android#监听聊天室事件)。
+详见[监听聊天室事件](./agora_chat_chatroom_android#监听聊天室事件)。

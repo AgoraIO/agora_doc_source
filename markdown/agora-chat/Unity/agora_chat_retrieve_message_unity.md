@@ -35,7 +35,7 @@ SDKClient.Instance.ChatManager.GetConversationsFromServerWithPage(pageNum, pageS
 ));
 ```
 
-对于不支持 `GetConversationsFromServerWithPage` 接口的用户，可以调用 `GetConversationsFromServer` 从服务端获取会话列表。默认情况下，用户可拉取 7 天内的 10 个会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [support@agora.io](mailto:support@agora.io)。
+对于不支持 `GetConversationsFromServerWithPage` 接口的用户，可以调用 `GetConversationsFromServer` 从服务端获取会话列表。默认情况下，用户可拉取 7 天内的 10 个会话（每个会话包含最新一条历史消息），如需调整会话数量或时间限制请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ### 分页获取指定会话的历史消息
 

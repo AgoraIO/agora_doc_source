@@ -11,6 +11,8 @@
 
 消息收发流程如下图所示：
 
+![](https://web-cdn.agora.io/docs-files/1681365338435)
+
 ![img](./agora_doc_source/markdown/agora-chat/images/quickstart/quick_start_workflow.png)
 
 1. 客户端从应用服务器获取 token。
@@ -22,9 +24,9 @@
 开始前，请确保满足以下条件：
 
 - 完成即时通讯 IM SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解即时通讯 IM API 的 [使用限制](./agora_chat_limitation)中所述。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
 
-所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认开启子区功能。
+所有版本的[套餐包](./agora_chat_plan)都支持子区功能。在[声网控制台](https://console.agora.io/)中启用即时通讯服务后默认开启子区功能。
 
 ## 实现方法
 
@@ -99,8 +101,8 @@ conn.addEventHandler('MESSAGES',{
 })
 ```
 
-关于撤回消息的逻辑，详见 [撤回消息](./agora_chat_send_receive_message_web#撤回消息)。
+关于撤回消息的逻辑，详见[撤回消息](./agora_chat_send_receive_message_web#撤回消息)。
 
 ### 从服务器获取子区消息
 
-关于如何从服务器获取子区消息，详见 [从服务器获取历史消息](./agora_chat_retrieve_message_web#从服务器获取指定会话的历史消息)。
+关于如何从服务器获取子区消息，详见[从服务器获取历史消息](./agora_chat_retrieve_message_web#从服务器获取指定会话的历史消息)。

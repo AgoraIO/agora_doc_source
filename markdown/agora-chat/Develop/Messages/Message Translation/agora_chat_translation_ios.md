@@ -9,14 +9,14 @@ SDK 在支持按需翻译和自动翻译：
 
 开始前，请确保满足以下条件：
 
-- 完成 v1.0.3 及以上版本即时通讯 IM SDK 的集成，并实现了基本的实时聊天功能，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
-- 默认情况下不启用翻译。要使用此功能，你需要订阅 **进阶版** 或 **企业版** [定价计划](./agora_chat_plan) 并在 [Agora 控制台](https://console.agora.io/) 中启用该功能。
-- 由于此功能由 Microsoft Azure 翻译 API 启用，因此请了解 [翻译语言支持](https://docs.microsoft.com/en-us/azure) 中所述的受支持的目标语言。
+- 完成 V1.0.3 及以上版本即时通讯 IM SDK 的集成，并实现了基本的实时聊天功能，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
+- 了解即时通讯 IM API 的调用频率限制，详见[限制条件](./agora_chat_limitation)。
+- 默认情况下不启用翻译。要使用该功能，你需要订阅**进阶版**或**企业版**[套餐包](./agora_chat_plan)并在[声网控制台](https://console.agora.io/)中启用该功能。
+- 由于此功能由 Microsoft Azure 翻译 API 提供，开始前请确保你了解该功能支持的目标语言。详见[翻译语言支持](https://docs.microsoft.com/en-us/azure)。
 
 ## 技术原理
 
-iOS SDK 支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM iOS SDK 支持你通过调用 API 在项目中实现如下功能：
 
 - `fetchSupportedLanguages`：获取支持的翻译语言；
 - `translateMessage`：翻译收到的文本消息；
@@ -79,4 +79,4 @@ SDK 发送原始消息和翻译后的消息。收件人收到消息后，请参�
 
 ### 设置和获取推送的目标语言
 
-设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见 [离线推送](./agora_chat_push_android)。
+设置推送的目标语言，设置之后收到的离线推送就会是目标语言，如果目标语言在消息里不存在，就以原文推送，详见[离线推送](./agora_chat_push_ios)。

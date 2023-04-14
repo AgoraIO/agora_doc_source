@@ -35,7 +35,7 @@
 
 - 完成 SDK 初始化，详见 [快速开始](./agora_chat_get_started_unity)。
 - 了解 [使用限制](./agora_chat_limitation)。
-- 默认情况下不启用群组的消息已读回执。要使用此功能，请联系 [support@agora.io](mailto:support@agora.io)。
+- 默认情况下不启用群组的消息已读回执。要使用此功能，请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 ## 实现方法
 

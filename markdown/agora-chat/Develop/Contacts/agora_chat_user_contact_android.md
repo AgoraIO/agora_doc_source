@@ -21,7 +21,7 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，并实现了注册账号和登录功能。详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解[使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM [使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -96,7 +96,7 @@ ChatClient.getInstance().contactManager().deleteContact(username);
 
 要获取联系人列表，你可以调用 `getAllContactsFromServer` 方法从服务器获取联系人列表。之后，你还可以调用 `getContactsFromLocal` 方法从本地数据库中获取联系人列表。
 
-<div class="alert info"> 需要从服务器获取好友列表之后，才能从本地数据库获取到好友列表。<div>
+<div class="alert info"> 需要从服务器获取好友列表之后，才能从本地数据库获取到好友列表。</div>
 
 ```java
 // 从服务器获取联系人列表。
