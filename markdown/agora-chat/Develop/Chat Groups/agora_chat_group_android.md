@@ -2,7 +2,7 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 提供了 `Group`，`GroupManager` 和 `GroupChangeListener` 类用于群组管理，可以实现以下功能：
+即时通讯 IM SDK 提供了 `Group`、`GroupManager` 和 `GroupChangeListener` 类用于群组管理，可以实现以下功能：
 
 - 创建、解散群组
 - 获取群组详情
@@ -16,8 +16,8 @@
 开始前，请确保满足以下条件：
 
 - 完成即时通讯 IM SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解[使用限制](./agora_chat_limitation)。
-- 了解群组和群成员的数量限制，详见[套餐包详情](./agora_chat_plan)。
+- 了解即时通讯 IM [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 版本对应的群组和群成员的数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 
 ## 实现方法
 

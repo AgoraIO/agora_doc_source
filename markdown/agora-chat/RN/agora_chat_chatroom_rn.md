@@ -24,7 +24,7 @@
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_rn?platform=rn)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=rn)。
-- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=rn)。
+- 了解套餐包的聊天室相关数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 - 只有应用超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了应用超级管理员。
 
 ## 实现方法

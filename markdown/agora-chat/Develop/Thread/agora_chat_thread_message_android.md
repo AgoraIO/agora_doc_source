@@ -26,9 +26,9 @@
 
 - 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
 
-- 在[声网控制台](http://console.agora.io/) 中启用子区功能。
+- 在[声网控制台](http://console.agora.io/)中启用子区功能。
 
-所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在[声网控制台](https://console.agora.io/) 中启用即时通讯服务后默认开启子区功能。  
+每个版本的[套餐包](./agora_chat_pricing#管理套餐包)都支持子区功能。在[声网控制台](https://console.agora.io/)中启用即时通讯服务后默认开启子区功能。  
 
 ## 实现方法
 

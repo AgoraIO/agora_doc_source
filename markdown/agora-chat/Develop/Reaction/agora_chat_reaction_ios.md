@@ -25,7 +25,7 @@ SDK 支持你通过调用 API 在项目中实现如下功能：
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
 
-所有类型的[套餐包](./agora_chat_plan) 都支持 Reaction 功能，因此在[声网控制台](https://console.agora.io/)中启用即时通讯 IM 会默认开启 Reaction 功能。
+每个版本的[套餐包](./agora_chat_pricing#管理套餐包)都支持 Reaction 功能，因此在[声网控制台](https://console.agora.io/)中启用即时通讯 IM 会默认开启 Reaction 功能。
 
 ## 实现方法
 

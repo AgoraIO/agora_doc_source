@@ -1,6 +1,6 @@
 用户登录即时通讯 IM 后可以创建群组、修改群组消息以及删除创建的群组。
 
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -79,7 +79,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 | `groupname`           | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
 | `description`                | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果群组名称有空格，则使用 “+” 代替。                                                                                               | 是       |
 | `public`              | Boolean | 群组是否为公开群。公开群可以被搜索到，用户可以申请加入公开群；私有群无法被搜索到，因此需要群主或群管理员添加，用户才可以加入。<ul><li>`true`：公开群</li><li>`false`：私有群</li></ul> | 是       |
-| `maxusers`            | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[套餐包详情](./agora_chat_plan?platform=RESTful)。                            | 否       |
+| `maxusers`            | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。                            | 否       |
 | `allowinvites`        | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：群成员可拉人入群。</li><li>`false`：只有群主或者管理员才可以拉人入群。</li></ul>                                                         | 否       |
 | `membersonly`         | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要，用户直接进群。</li></ul>                                                                        | 否       |
 | `invite_need_confirm` | Boolean    | 邀请用户入群时是否需要受邀用户同意。<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li> `false`：不需要。邀请人直接拉用户进群。</li></ul>                                                                                            | 否       |
@@ -404,7 +404,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | :------------- | :------ | :----------------------------------------------------------------------------------------------------------------------- | :------- |
 | `groupname`    | String  | 群组名称，最大长度为 128 个字符。不支持 “/”。如果有空格，使用 “+” 代替。                                       | 是       |
 | `description`         | String  | 群组描述，最大长度为 512 个字符。不支持 “/”。如果有空格，使用 “+” 代替。                                  | 是       |
-| `maxusers`     | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[套餐包详情](./agora_chat_plan?platform=RESTful)。              | 否       |
+| `maxusers`     | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。  | 否       |
 | `allowinvites` | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：群成员可拉人入群。</li><li>（默认）`false`：只有群主或者管理员才可以拉人入群。</li></ul> | 否       |
 | `invite_need_confirm` | Boolean   | 邀请用户入群时是否需要受邀用户同意：<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li>`false`：不需要。邀请人直接拉用户进群。</li></ul> | 否       |
 | `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>（默认）`false`：不需要，用户直接进群。</li></ul>                | 否       |

@@ -1153,7 +1153,8 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <You
 
 - 单次请求获取从指定起始时间开始一小时内的全部历史消息记录。
 - 查询历史消息记录时存在一定延时，无法实时获取。
-- 对于不同的套餐版本，历史消息记录的默认存储时间不同。详见 [套餐包详情](./agora_chat_plan?platform=RESTful)。
+- 对于不同的套餐版本，历史消息记录的默认存储时间不同。详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
+
 
 ### HTTP 请求
 

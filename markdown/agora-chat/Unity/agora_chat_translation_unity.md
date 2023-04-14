@@ -10,7 +10,7 @@
 - 完成 `1.0.5 或以上版本` SDK 初始化，详见 [快速开始](./agora_chat_get_started_unity)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 该功能由 Microsoft Azure Translation API 提供，因此开始前请了解 [翻译语言支持](https://docs.microsoft.com/en-us/azure)。
-- 默认情况下不启用翻译。要使用此功能，请订阅 **专业版** 或 **企业版** [定价计划](./agora_chat_plan) 并在 [Agora Console](https://console.agora.io/) 中启用翻译服务。
+- 默认情况下不启用翻译。要使用此功能，请订阅 **专业版** 或 **企业版** [套餐包](./agora_chat_pricing#管理套餐包) 并在[声网控制台](https://console.agora.io/) 中启用翻译服务。
 
 如果使用此功能，会产生附加费用。详细信息，请参阅 [定价](./agora_chat_pricing)。
 

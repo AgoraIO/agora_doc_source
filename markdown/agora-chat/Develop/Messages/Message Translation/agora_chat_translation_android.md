@@ -9,7 +9,7 @@
 
 - 项目集成了 V1.0.3 及以上版本的即时通讯 IM SDK，并实现了基本的实时聊天功能，详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解即时通讯 IM API 的调用频率限制，详见[限制条件](./agora_chat_limitation)。
-- 默认情况下不启用翻译。要使用该功能，你需要订阅**进阶版**或**企业版**[套餐包](./agora_chat_plan)并在[声网控制台](https://console.agora.io/)中启用该功能。
+- 默认情况下不启用翻译。要使用该功能，你需要订阅**进阶版**或**企业版**[套餐包](./agora_chat_pricing#管理套餐包)并在[声网控制台](https://console.agora.io/)中启用该功能。
 - 由于此功能由 Microsoft Azure 翻译 API 提供，开始前请确保你了解该功能支持的目标语言。详见[翻译语言支持](https://docs.microsoft.com/en-us/azure)。
 
 ## 技术原理
