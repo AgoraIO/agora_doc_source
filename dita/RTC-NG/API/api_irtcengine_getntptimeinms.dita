@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="api_irtcengine_getntptimeinms">
-    <title><ph keyref="getNtpTimeInMs"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取当前 NTP (Network Time Protocol) 时间。</ph></shortdesc>
+<reference id="api_irtcengine_getntpwalltimeinms">
+    <title><ph keyref="getNtpWallTimeInMs"/></title>
+    <shortdesc id="short"><ph id="shortdesc">获取当前的 NTP (网络时间协议) 时间。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -13,9 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public abstract long getNtpTimeInMs();</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)getNtpTimeInMs;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual long getNtpTimeInMs() = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">public abstract long getNtpWallTimeInMs();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (uint64_t)getNtpWallTimeInMs;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual uint64_t getNtpWallTimeInMs() = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
@@ -31,11 +31,11 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>你可以调用该方法获取当前网络时间，以实现合唱同步、歌词进度同步等功能。</p>
+            <p>你可以调用该方法获取当前的 NTP 时间，以实现合唱同步、歌词进度同步等功能。</p>
         </section>
         <section id="return_values">
             <title>返回值</title>
-            <p>当前的 NTP 时间 (毫秒)。</p>
+            <p>当前 NTP 时间的 Unix 时间戳 (毫秒)。</p>
         </section>
     </refbody>
 </reference>
