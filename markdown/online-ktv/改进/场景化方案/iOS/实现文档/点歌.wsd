@@ -7,10 +7,10 @@ participant "声网 SDK" as b
 == 初始化 KTV API 模块==
 a -> b: initWithRtcEngine
 == 获取歌曲列表（方式一：用关键词）==
-a -> b: loadSearchDataWithKeyWord
+a -> b: searchMusicWithKeyWord
 b -->> a: onMusicCollectionResult
 == 获取歌曲列表（方式二：用音乐榜单）==
-a -> b: loadDataWithIndex
+a -> b: getMusicCollectionWithMusicChartId
 b -->> a: onMusicChartsResult
 == 加载歌曲 ==
 a -> b: loadSong
