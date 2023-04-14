@@ -11,6 +11,8 @@
 
 消息收发流程如下图所示：
 
+![](https://web-cdn.agora.io/docs-files/1681365338435)
+
 ![img](./agora_doc_source/markdown/agora-chat/images/quickstart/quick_start_workflow.png)
 
 1. 客户端从应用服务器获取 token。
@@ -22,9 +24,9 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
 
-所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在 [Agora 控制台](https://console.agora.io/) 中启用即时通讯服务后默认开启子区功能。
+所有版本的[套餐包](./agora_chat_plan) 都支持子区功能。在[声网控制台](https://console.agora.io/)中启用即时通讯服务后默认开启子区功能。
 
 ## 实现方法
 
@@ -55,7 +57,7 @@ message.isChatThreadMessage = self.isChatThread;
 }];
 ```
 
-关于发送消息的逻辑，详见 [发送消息](./agora_chat_send_receive_message_ios#发送文本消息)。
+关于发送消息的逻辑，详见[发送消息](./agora_chat_send_receive_message_ios#发送文本消息)。
 
 ### 接收子区消息
 
@@ -73,7 +75,7 @@ message.isChatThreadMessage = self.isChatThread;
 [[AgoraChatClient sharedClient].chatManager removeDelegate:self];
 ```
 
-关于接收消息的具体逻辑，详见 [接收消息](./agora_chat_send_receive_message_ios#接收文本消息)。
+关于接收消息的具体逻辑，详见[接收消息](./agora_chat_send_receive_message_ios#接收文本消息)。
 
 ### 撤回子区消息
 
@@ -84,7 +86,7 @@ message.isChatThreadMessage = self.isChatThread;
 {}
 ```
 
-关于撤回消息的逻辑，详见 [撤回消息](./agora_chat_send_receive_message_ios#撤回消息)。
+关于撤回消息的逻辑，详见[撤回消息](./agora_chat_send_receive_message_ios#撤回消息)。
 
 ### 获取子区消息
 
@@ -94,7 +96,7 @@ message.isChatThreadMessage = self.isChatThread;
 
 ### 从服务器获取子区消息 (消息漫游)
 
-关于如何从服务器获取子区消息，详见 [从服务器获取历史消息](./agora_chat_retrieve_message_ios#从服务器获取指定会话的历史消息)。
+关于如何从服务器获取子区消息，详见[从服务器获取历史消息](./agora_chat_retrieve_message_ios#从服务器获取指定会话的历史消息)。
 
 #### 从内存和本地数据库中获取子区消息
 

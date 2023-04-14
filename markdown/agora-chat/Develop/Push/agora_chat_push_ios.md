@@ -22,16 +22,16 @@
 8. Agora 即时通讯服务器将将消息发送给第三方推送服务器。
 9. 第三方推送服务器将消息发送给用户 B。
 
-<div class="alert info"><p>开发者通过 Agora 控制台配置 App 的推送证书，需填写证书名称及推送密钥等信息。该步骤须在登录即时通讯 IM SDK 成功后进行。</p><p>证书名称是 Agora 即时通讯服务器用于判断目标设备使用哪种推送通道的唯一条件，因此必须确保与 iOS 终端设备上传的证书名称一致。</p></div>
+<div class="alert info"><p>开发者通过声网控制台配置 App 的推送证书，需填写证书名称及推送密钥等信息。该步骤须在登录即时通讯 IM SDK 成功后进行。</p><p>证书名称是 Agora 即时通讯服务器用于判断目标设备使用哪种推送通道的唯一条件，因此必须确保与 iOS 终端设备上传的证书名称一致。</p></div>
 
 
 ## 前提条件
 
 - 已开启即时通讯 IM，详见[开启和配置即时通讯服务](./enable_agora_chat)；
-- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见 [使用限制](./agora_chat_limitation)；
-- 你已在[Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)；
+- 你已在[声网控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
-<div class="alert note">关闭推送高级功能必须联系<a href="mailto:support@agora.io">support@agora.io</a> ，因为该操作会删除所有相关配置。</div>
+<div class="alert note">关闭推送高级功能必须联系<a href="mailto:sales@agora.io">sales@agora.io</a> ，因为该操作会删除所有相关配置。</div>
 
 ## 集成 APNs
 
@@ -81,18 +81,18 @@
 
 ### 2.上传推送证书到控制台
 
-按照以下步骤，在 Agora 控制台上传消息推送证书等信息：
+按照以下步骤，在声网控制台上传消息推送证书等信息：
 
-1. 登录 [Agora 控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
+
 2. 选择需要开通即时通讯服务的项目，点击**配置**。
-![](https://web-cdn.agora.io/docs-files/1642564654253)
+   ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
-3. 找到**实时互动拓展能力**模块的**即时通讯IM**，点击**配置**。
-![](https://web-cdn.agora.io/docs-files/1642564694699)
+3. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
-4. 在消息推送模块，点击添加推送证书。
-![](https://web-cdn.agora.io/docs-files/1642564728101)
-在弹窗中选择**苹果**，并配置如下字段，完成后点击**保存**：
+   ![](https://web-cdn.agora.io/docs-files/1670827609516)
+
+4. 选择**功能配置** > **推送证书**。在**证书管理**页面，点击**添加推送证书**，在弹出的对话框中选择**苹果**，并配置如下字段，完成后点击**保存**：
    - 证书类型：消息推送证书类型，目前支持 p8 和 p12。
    - 证书名称：消息推送证书名称。填写在[创建推送证书](#certificate)中创建的消息推送证书名称。
    - 证书密钥：消息推送证书密钥。填写在[创建推送证书](#certificate)中导出消息推送证书文件时设置的证书密钥。
@@ -161,7 +161,7 @@ Device Token 注册后，iOS 系统会通过以下方式将 Device Token 回调�
 </tr>
 <tr>
 <td width="184">
-<p>`All`</p>
+<p>All</p>
 </td>
 <td width="420">
 <p>接收所有离线消息的推送通知。</p>
@@ -173,7 +173,7 @@ Device Token 注册后，iOS 系统会通过以下方式将 Device Token 回调�
 </tr>
 <tr>
 <td width="184">
-<p>`MentionOnly`</p>
+<p>MentionOnly</p>
 </td>
 <td width="420">
 <p>仅接收提及某些用户的消息的推送通知。</p>
@@ -182,7 +182,7 @@ Device Token 注册后，iOS 系统会通过以下方式将 Device Token 回调�
 </tr>
 <tr>
 <td width="184">
-<p>`NONE`</p>
+<p>NONE</p>
 </td>
 <td width="420">
 <p>不接收离线消息的推送通知。</p>
@@ -388,9 +388,9 @@ NSArray *conversations = @[conversation1,conversation2];
 
 即时通讯 IM 支持自定义推送通知模板。使用前，你可以参考以下步骤为用户创建和提供推送模板：
 
-1. 登录 Agora 控制台，点击左侧导航栏中的**项目管理**。
+1. 登录声网控制台，点击左侧导航栏中的**项目管理**。
 
-2. 在**项目管理** 页面，找到开启即时通讯 IM 的项目，点击**配置**。
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
 
 3. 在**服务配置**页面，点击 **即时通讯IM** 框的**配置**。
 
@@ -404,7 +404,7 @@ NSArray *conversations = @[conversation1,conversation2];
 // 下面以文本消息为例，其他类型的消息设置方法相同。
 AgoraChatTextMessageBody *body = [[AgoraChatTextMessageBody alloc]initWithText:@"test"];
 AgoraChatMessage *message = [[AgoraChatMessage alloc]initWithConversationID:@"conversationId" from:@"currentUsername" to:@"conversationId" body:body ext:nil];
-       // 将在 Agora 控制台上创建的推送模板设置为默认推送模板。
+       // 将在声网控制台上创建的推送模板设置为默认推送模板。
        NSDictionary *pushObject = @{
            @"name":@"templateName",// // 设置推送模板名称。
            @"title_args":@[@"titleValue1"],// 设置模板名称变量。

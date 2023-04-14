@@ -32,8 +32,8 @@
 使用在线状态功能前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android)。
-- 了解 [使用限制](./agora_chat_limitation)。
-- 在 [Agora 控制台](https://console.agora.io/) 中启用在线状态功能。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
+- 在[声网控制台](https://console.agora.io/)中启用在线状态功能。
 
 ## 实现方法
 
@@ -60,7 +60,7 @@ ChatClient.getInstance().presenceManager().subscribePresences(contactsFromServer
                 });
 ```
 
-<div class="alert info"><li>订阅时长最长为 30 天，过期需重新订阅。如果未过期的情况下重复订阅，新设置的有效期会覆盖之前的有效期。<li>每次调用接口最多只能订阅 100 个账号，若数量较大需多次调用。每个用户 ID 订阅的用户数不超过 3000。如果超过 3000，后续订阅也会成功，但默认会将订阅剩余时长较短的替代。<div>
+<div class="alert info"><li>订阅时长最长为 30 天，过期需重新订阅。如果未过期的情况下重复订阅，新设置的有效期会覆盖之前的有效期。<li>每次调用接口最多只能订阅 100 个账号，若数量较大需多次调用。每个用户 ID 订阅的用户数不超过 3000。如果超过 3000，后续订阅也会成功，但默认会将订阅剩余时长较短的替代。</div>
 
 ### 发布自定义在线状态
 

@@ -2,7 +2,7 @@
 
 群聊会话只支持消息已读回执。群主和群管理员在发送消息时，可以设置该消息是否需要已读回执。若使用该功能，请联系 [sales@agora.io](mailto:sales@agora.io) 开通。
 
-本文介绍如何使用即时通讯 IM iOS SDK 实现单聊和群聊的消息回执功能。
+本文介绍如何使用即时通讯 IM SDK 实现单聊和群聊的消息回执功能。
 
 ## 技术原理
 
@@ -30,7 +30,7 @@
 
 开始前，请确保满足以下要求：
 
-- 集成即时通讯 IM Web SDK，初始化 SDK，并实现了注册账号和登录功能。详情请参见 [Web 快速开始](./agora_chat_get_started_web)。
+- 集成即时通讯 IM Web SDK，初始化 SDK，并实现了注册账号和登录功能。详见 [Web 快速开始](./agora_chat_get_started_web)。
 - 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
 - 若使用群聊的消息已读回执功能，需联系 [sales@agora.io](mailto:sales@agora.io) 开通。
 
