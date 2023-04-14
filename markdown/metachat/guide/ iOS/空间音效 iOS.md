@@ -1,6 +1,6 @@
 本文介绍如何使用空间音效功能以增强元宇宙音频体验。
 
-在元宇宙中，空间音效可以为用户带来更加真实、身临其境的虚拟体验。例如，在一个虚拟的 3D 旅游场景中，空间音效可以让用户宛如身临其境般听到旅游中路人聊天声、海浪声、风声，让用户更沉浸式体验。
+在元宇宙中，空间音效可以为用户带来更加真实的虚拟体验。例如，在一个虚拟的 3D 旅游场景中，空间音效可以让用户宛如身临其境般听到旅游中路人聊天声、海浪声、风声，让用户更沉浸式体验。
 
 ![](https://web-cdn.agora.io/docs-files/1679566933312)
 
@@ -54,7 +54,7 @@ agoraLocalSpatialAudioKit = AgoraLocalSpatialAudioKit.sharedLocalSpatialAudio(wi
 
 调用 [`setAudioRecvRange`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ibasespatialaudioengine_setaudiorecvrange) 设置空间音效接收范围，当远端用户相对本地用户的距离超出这个范围，本地用户就会听不到远端用户的声音。
 
-当使用空间音效时，请确保在 `AgoraRtcEngineKit` 中将音频流的发布和订阅都设置为 `mute`，即停止发布和订阅音频流。在后续的逻辑中，应由 `AgoraLocalSpatialAudioKit` 处理是否停止发布和订阅音频流。
+当使用空间音效时，请确保在 `AgoraRtcEngineKit` 中停止发布和订阅音频流。在后续的逻辑中，应由 `AgoraLocalSpatialAudioKit` 处理是否停止发布和订阅音频流。
 
 ```swift
 // 设置空间音效的音频接收范围

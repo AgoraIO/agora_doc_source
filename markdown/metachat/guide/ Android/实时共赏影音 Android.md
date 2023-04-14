@@ -1,6 +1,6 @@
-本文介绍如何在元宇宙中实现多用户共同观看电影、聆听音乐和 K 歌。
+本文介绍如何实现实时共赏影音功能。
 
-用户可以在虚拟环境中与异地好友体验共享观影、听歌、唱歌的乐趣。不同用户看到视频、听到音乐几乎是同时的，用户间的互动也是几乎没有延迟。虚拟环境可以设置为电影院等娱乐场所，用户可以随时暂停视频，与其他用户进行实时交流互动，从而更好地享受在线互动的乐趣。实时共赏影音功能可以增加元语聊场景的多样性，为在线互动提供更真实的体验。
+实时共赏影音功能指多用户在虚拟环境中共同观看电影、聆听音乐和 K 歌。不同用户看到视频、听到音乐几乎是同时的，用户间的互动也几乎没有延迟。虚拟环境可以设置为电影院等娱乐场所，用户可以随时暂停视频，与其他用户进行实时交流互动，从而更好地体验观影、听歌、唱歌的乐趣。实时共赏影音功能可以增加元语聊场景的多样性，为在线互动提供更真实的体验。
 
 
 ![](https://web-cdn.agora.io/docs-files/1679563308898)
@@ -31,7 +31,7 @@
 
 ### 1. 推送视频
 
-调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metachat/metachat_api_android?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metachat/metachat_api_android?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 onFrame 回调得到的视频帧推送至该视频显示屏。
+调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metachat/metachat_api_android?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metachat/metachat_api_android?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 `onFrame` 回调得到的视频帧推送至该视频显示屏。
 
 ```java
 // 开启视频显示屏

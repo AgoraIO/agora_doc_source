@@ -42,7 +42,7 @@ metaChatScene.sendMessageToScene(msg.getBytes());
 
 ### 2. 同步装扮
 
-更换人物装扮后，如果用户进入其他场景并需要让其他用户看到新形象，则需要同步更换的装扮信息。你可以通过 `ILocalUserAvatar` 的 [`setDressInfo`](https://docs.agora.io/cn/metachat/metachat_api_android?platform=All%20Platforms#setdressinfo) 方法让 SDK 将更新后的形象同步给场景中的其他用户。
+更换人物装扮后，如果用户需进入其他场景并让其他用户看到新形象，则需要同步更换的装扮信息。你可以通过 `ILocalUserAvatar` 的 [`setDressInfo`](https://docs.agora.io/cn/metachat/metachat_api_android?platform=All%20Platforms#setdressinfo) 方法让 SDK 将更新后的形象同步给场景中的其他用户。
 
 
 ```java
