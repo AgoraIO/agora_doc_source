@@ -1,4 +1,4 @@
-本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
+本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
 
 ## 方法
 
@@ -74,7 +74,7 @@ fun loadSong(
 - `songCode`: 歌曲编号。
 - `config`: K 歌配置。详见 [KTVSongConfiguration](#ktvsongconfiguration)。
 - `onLoaded`: 歌词加载状态事件，包含如下参数：
-    - `songCode`: 歌词编号。
+    - `songCode`: 歌曲编号。
     - `lyricUrl`: 歌词文件的 URL。
     - `role`: 当前用户角色，详见 [KTVSingRole](#ktvsingrole)。
     - `state`: 歌曲加载状态，详见 [KTVLoadSongState](#ktvloadsongstate)。
@@ -88,7 +88,7 @@ fun playSong(songCode: Long)
 
 播放歌曲。
 
-建议在调用 `loadSong` 函数成功回调 `KTVLoadSongState.KTVLoadSongStateOK` 后再调用 `playSong`。
+建议在调用 `loadSong` 函数并收到 `onLoaded` 回调的 `KTVLoadSongState.KTVLoadSongStateOK` 状态后再调用 `playSong`。
 
 #### 参数
 
@@ -137,7 +137,7 @@ fun seek(time: Long)
 fun selectTrackMode(mode: KTVPlayerTrackMode)
 ```
 
-选择歌曲的音轨。
+选择播放的音轨。
 
 歌曲的音轨包含原唱和伴奏。调用该方法可以选择播放的音轨。
 

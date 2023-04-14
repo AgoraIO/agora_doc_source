@@ -1,4 +1,4 @@
-本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码 [KTVApi.h](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.h) 和 [KTVApi.m](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.m)。
+本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApi.h](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.h) 和 [KTVApi.m](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.m)。
 
 ## 方法
 
@@ -13,13 +13,13 @@
     delegate:(id<KTVApiDelegate>)delegate;
 ```
 
-初始化 KTV API。
+初始化 KTVApi 模块。
 
 调用该方法可以初始化 KTV API 模块内部变量和缓存数据，并注册相应的回调监听。
 
 #### 注意事项
 
-调用其他 KTV API 之前，你需要先调用本方法初始化。
+调用其他 KTV API 之前，你需要先调用本方法完成初始化。
 
 #### 参数
 
@@ -29,6 +29,10 @@
 - `player`: 音乐播放器实例。详见 [AgoraMusicPlayerProtocol](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusicplayer)。
 - `dataStreamId`: 数据流（Data Stream）ID。
 - `delegate`: [KTVApiDelegate](#controllersongdidchangedtostatelocal)。
+
+#### 返回值
+
+KTVApi 实例。
 
 
 ### loadSong:withConfig:withCallback:
@@ -41,14 +45,14 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 加载歌曲。
 
-传入歌曲编号和 K 歌配置，调用 `loadSong` 加载歌曲。加载结果会异步地通过 `onLoaded` 回调通知你。
+传入歌曲编号和 K 歌配置，调用 `loadSong` 加载歌曲。加载结果会异步地通过 `block` 回调通知你。
 
 #### 参数
 
 - `songCode`: 歌曲编号。
 - `config`: K 歌配置。详见 [KTVSongConfiguration](#ktvsongconfiguration)。
 - `block`: 歌词加载状态事件，包含如下参数：
-    - `songCode`: 歌词编号。
+    - `songCode`: 歌曲编号。
     - `lyricUrl`: 歌词文件的 URL。
     - `role`: 当前用户角色，详见 [KTVSingRole](#ktvsingrole)。
     - `state`: 歌曲加载状态，详见 [KTVLoadSongState](#ktvloadsongstate)。
@@ -62,7 +66,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 播放歌曲。
 
-建议在调用 `loadSong` 函数成功回调 `KTVLoadSongStateOK` 状态后再调用 `playSong`。
+建议在调用 `loadSong` 函数并收到 `block` 回调的 `KTVLoadSongStateOK` 状态后再调用 `playSong`。
 
 #### 参数
 
@@ -103,7 +107,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 #### 参数
 
-- `time`: 跳转的时间点。单位为毫秒。
+- `time`: 跳转的时间点。单位为毫秒。取值不得超过歌曲总时长。
 
 ### selectTrackMode:
 
@@ -111,7 +115,7 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 - (void)selectTrackMode:(KTVPlayerTrackMode)mode;
 ```
 
-选择歌曲的音轨。
+选择播放的音轨。
 
 歌曲的音轨包含原唱和伴奏。调用该方法可以选择播放的音轨。
 
