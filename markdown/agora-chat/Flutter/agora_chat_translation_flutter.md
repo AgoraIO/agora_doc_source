@@ -10,7 +10,7 @@
 - 完成 `1.0.5 或以上版本` SDK 初始化，详见 [快速开始](./agora_chat_get_started_flutter)。
 - 了解 [使用限制](./agora_chat_limitation)。
 - 由于此功能由 Microsoft Azure 翻译 API 启用，因此请确保了解 [语言支持](https://docs.microsoft.com/en-us/azure)中所述的受支持的目标语言。
-- 默认情况下不启用翻译。使用此功能，需要订阅 **专业版** 或 **企业版** [定价计划](./agora_chat_plan) 并在 [Agora Console](https://console.agora.io/) 中启用它。
+- 默认情况下不启用翻译。使用此功能，需要订阅 **专业版** 或 **企业版** [套餐包](./agora_chat_pricing#管理套餐包) 并在 [Agora Console](https://console.agora.io/) 中启用它。
 
 如果使用此功能，则会产生附加费用。有关详细信息，请参阅 [定价](./agora_chat_pricing)。
 

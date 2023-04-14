@@ -9,7 +9,7 @@
 | 1      | `AgoraChatErrorGeneral`       | 一般性错误（没有明确归类的错误）：SDK 尚未正确初始化，或请求服务器时未识别出具体原因的错误。你可以尝试重新初始化 SDK。 |
 | 2      | `AgoraChatErrorNetworkUnavailable`   | 网络错误：网络连接中断导致 SDK 与服务器的连接断开。                    |
 | 3      | `AgoraChatErrorDatabaseOperationFailed`     | 数据库操作失败：打开本地数据库失败。请联系 Agora 技术支持。                  |
-| 4      | `AgoraChatErrorExceedServiceLimit`          | 超过服务限制：超过即时通讯服务的数量限制，例如：注册用户总数或用户好友人数等超过[套餐包限制](./agora_chat_plan#用户相关)。 |
+| 4      | `AgoraChatErrorExceedServiceLimit`          | 超过服务限制：超过即时通讯服务的数量限制，例如：注册用户总数或用户好友人数等超过[套餐包限制](./agora_chat_pricing#用户)。 |
 | 100    | `AgoraChatErrorInvalidAppkey`               | 无效的 App Key：App Key 不正确，请更换有效的 App Key 并重新登录。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。 |
 | 101    | `AgoraChatErrorInvalidUsername`             | 用户 ID 为空或不正确，请更换有效的用户名。 |
 | 102    | `AgoraChatErrorInvalidPassword`             | 用户密码不正确：登录时提供的密码为空或不正确。请更换正确的密码并重新登录。   |
