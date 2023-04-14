@@ -35,17 +35,17 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>基于 PC 端可能有多个屏幕的场景，调用该方法可以通过指定视频源同时开启多路屏幕共享流，用于本地合图或多频道发布。</p>
+            <p>该方法和 <xref keyref="startScreenCapture"/> 的区别在于，基于 PC 端可能有多个屏幕的场景，调用该方法可以通过指定视频源同时开启多路屏幕共享流，用于本地合图或多频道发布。</p>
             <note type="attention"><ul>
-            <li props="cpp unity flutter">该方法适用于 macOS 和 Windows 平台。</li>
-            <li>如果调用该方法开启屏幕共享，声网建议你使用 <xref keyref="stopScreenCapture2"/> 停止屏幕共享。</li></ul></note>
+            <li props="mac cpp unity flutter electron">该方法适用于 macOS 和 Windows 平台。</li>
+            <li props="mac cpp unity">如果调用该方法开启屏幕共享，声网建议你使用 <xref keyref="stopScreenCapture2"/> 停止屏幕共享，不要与 <xref keyref="stopScreenCapture"/> 混用。</li></ul></note>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
+                <pd><p>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</p><note><ul props="mac cpp flutter unity electron"><li>Windows 平台最多支持指定 4 个屏幕作为视频源。</li><li>macOS 平台当前仅在指定第一个屏幕 <xref keyref="VIDEO_SOURCE_SCREEN"/> 时生效。</li></ul></note></pd>
             </plentry>
             <plentry>
                 <pt>config</pt>
