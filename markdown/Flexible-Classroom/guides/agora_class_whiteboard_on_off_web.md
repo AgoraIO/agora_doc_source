@@ -1,8 +1,8 @@
-灵活课堂中的白板模块是基于 `AgoraWidget` 实现的。你可以通过将 widget 状态设置为活跃（active）或非活跃（inactive）来在教室中打开或关闭白板模块。
+灵动课堂中的白板模块是基于 `AgoraWidget` 实现的。你可以通过将 widget 状态设置为活跃（active）或非活跃（inactive）来在教室中打开或关闭白板模块。
 
-禁用白板模块后，铅笔、文本框、形状和橡皮擦等绘图工具将不再可用，用户也不能在白板上显示课件，上传或删除课程文件。弹出式测验、倒计时和屏幕共享等其他不依赖白板的功能不会受到影响。
+关闭白板模块后，铅笔、文本框、形状和橡皮擦等绘图工具将不再可用，用户也不能在白板上显示课件，上传或删除课程文件。弹出式测验、倒计时和屏幕共享等其他不依赖白板的功能不会受到影响。
 
-## 启用和禁用白板
+## 开启和关闭白板
 
 白板界面打包在 `packages/agora-classroom-sdk/src/infra/stores/common/base.ts` 文件中，白板相关的接口在 `packages/agora-classroom-sdk/src/infra/protocol/board.ts` 文件中。
 
@@ -12,16 +12,16 @@
  }
 ```
 
-实现启用或禁用白板的过程中，你需要监控教师客户端引起的白板状态变化，并相应地调整 UI。 
+实现开启或关闭白板的过程中，你需要监控教师客户端引起的白板状态变化，并相应地调整 UI。 
 
-调用白板相关接口 `boardApi.enable()` 和 `boardApi.disable()` 以启用和禁用白板。 
+调用白板相关接口 `boardApi.enable()` 和 `boardApi.disable()` 以开启和关闭白板。 
 
 ```typescript
 ...
-// 启用白板
+// 开启白板
 this.boardApi.enable();
 ...
-// 禁用白板
+// 关闭白板
 this.boardApi.disable();
 ...
 ```
@@ -84,7 +84,7 @@ enable() {
 }
 ```
 
-连接并启用白板。
+连接并开启白板。
 
 #### disable
 

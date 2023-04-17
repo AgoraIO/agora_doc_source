@@ -60,11 +60,11 @@
 
 ### 桌面端
 
-![](https://web-cdn.agora.io/docs-files/1640784550634)
+![](https://web-cdn.agora.io/docs-files/1681440834178)
 
 ### 移动端
 
-![](https://web-cdn.agora.io/docs-files/1640784215154)
+![](https://web-cdn.agora.io/docs-files/1681440843757)
 
 
 ## 计费说明

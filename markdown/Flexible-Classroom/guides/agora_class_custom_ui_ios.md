@@ -2,6 +2,8 @@ Classroom SDK（AgoraEduUI）和 Proctor SDK（AgoraProctorUI）原理相同，�
 
 在声网 Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUI** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_swift/API/edu_context_api_overview.html) 产生关联。
 
+如果你需要自定义课堂 UI，需要下载并修改灵动课堂源码。具体步骤参照[集成教育场景下灵动课堂并自定义](agora_class_integrate_ios#%E9%9B%86%E6%88%90%E6%95%99%E8%82%B2%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%81%B5%E5%8A%A8%E8%AF%BE%E5%A0%82%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89)和[集成监考场景下灵动课堂并自定义](agora_class_integrate_ios#%E9%9B%86%E6%88%90%E7%9B%91%E8%80%83%E5%9C%BA%E6%99%AF%E7%81%B5%E5%8A%A8%E8%AF%BE%E5%A0%82%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89)。
+
 
 # 文件夹介绍
 `AgoraEduUI` 的源码位于 `CloudClass-iOS` 仓库 `/SDKs/AgoraEduUI/Classes` 目录下，核心结构介绍如下：
