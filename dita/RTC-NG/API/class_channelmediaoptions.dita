@@ -54,7 +54,7 @@
 @property(assign, nonatomic) BOOL publishEncodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
-@property(assign, nonatomic) BOOL publishTrancodedVideoTrack;
+@property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
 @property(assign, nonatomic) BOOL autoSubscribeAudio;
 @property(assign, nonatomic) BOOL autoSubscribeVideo;
 @property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
@@ -96,7 +96,7 @@
   Optional&lt;bool&gt; publishEncodedVideoTrack;
   Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
   Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
-  Optional&lt;bool&gt; publishTrancodedVideoTrack;
+  Optional&lt;bool&gt; publishTranscodedVideoTrack;
   Optional&lt;bool&gt; autoSubscribeAudio;
   Optional&lt;bool&gt; autoSubscribeVideo;
   Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
@@ -150,7 +150,7 @@
 
   publishMediaPlayerVideoTrack?: boolean;
 
-  publishTrancodedVideoTrack?: boolean;
+  publishTranscodedVideoTrack?: boolean;
 
   autoSubscribeAudio?: boolean;
 
@@ -201,7 +201,7 @@
           public Optional&lt;bool&gt; publishEncodedVideoTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishMediaPlayerVideoTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishTrancodedVideoTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishTranscodedVideoTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; autoSubscribeAudio = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; autoSubscribeVideo = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; enableAudioRecordingOrPlayout = new Optional&lt;bool&gt;();
@@ -251,7 +251,7 @@
 
   publishMediaPlayerVideoTrack?: boolean;
 
-  publishTrancodedVideoTrack?: boolean;
+  publishTranscodedVideoTrack?: boolean;
 
   autoSubscribeAudio?: boolean;
 
@@ -303,7 +303,7 @@
       this.publishEncodedVideoTrack,
       this.publishMediaPlayerAudioTrack,
       this.publishMediaPlayerVideoTrack,
-      this.publishTrancodedVideoTrack,
+      this.publishTranscodedVideoTrack,
       this.autoSubscribeAudio,
       this.autoSubscribeVideo,
       this.enableAudioRecordingOrPlayout,
@@ -369,8 +369,8 @@
   @JsonKey(name: 'publishMediaPlayerVideoTrack')
   final bool? publishMediaPlayerVideoTrack;
 
-  @JsonKey(name: 'publishTrancodedVideoTrack')
-  final bool? publishTrancodedVideoTrack;
+  @JsonKey(name: 'publishTranscodedVideoTrack')
+  final bool? publishTranscodedVideoTrack;
 
   @JsonKey(name: 'autoSubscribeAudio')
   final bool? autoSubscribeAudio;
@@ -506,12 +506,14 @@
                 </pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron">
-                <pt>publishTrancodedVideoTrack</pt>
+                <pt>publishTranscodedVideoTrack</pt>
                 <pd>设置是否发布本地的转码视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布本地的转码视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：（默认）不发布本地的转码视频。</li>
-                    </ul></pd>
+                    </ul>
+                    <p><note type="note" props="native">自 v4.2.0 起，该参数名称由 <parmname>publishTrancodedVideoTrack</parmname> 更正为 <parmname>publishTranscodedVideoTrack</parmname>。</note></p>
+                </pd>
             </plentry>
             <plentry>
                 <pt>publishCustomAudioTrack</pt>

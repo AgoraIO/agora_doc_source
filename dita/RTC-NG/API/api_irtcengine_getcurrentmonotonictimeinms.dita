@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getcurrentmonotonictimeinms">
     <title><ph keyref="getCurrentMonotonicTimeInMs"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取当前的单调时间（毫秒）。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取当前的系统时间（<xref href="https://fuchsia.dev/fuchsia-src/concepts/kernel/time/monotonic" scope="external" format="html">Monotonic Time</xref>）。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,24 +30,14 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-        </section>
-        <section id="scenario">
-            <title>适用场景</title>
-            <p>声网建议你在自定义视频采集场景中，按照以下步骤计算视频帧的实际时间戳后，覆盖原始的视频帧时间戳： 
-                <ol>
-                <li>设置视频帧基础时间戳，例如首帧时间戳，并存储在变量 <codeph>custom_capture_time_base</codeph> 中。</li>
-                <li>调用 <apiname keyref="getCurrentMonotonicTimeInMs"/> 获取当前单调时间戳（毫秒），并存储在变量 <codeph>agora_monotonic_time</codeph> 中。</li>
-                <li>计算当前单调时间戳与视频帧基础时间戳之间的偏移量，并存储在变量 <codeph>offset</codeph> 中，即 <codeph>offset</codeph> = <codeph>agora_monotonic_time</codeph> - <codeph>custom_capture_time_base</codeph>;</li>
-                <li>将该偏移量添加到用户的原始视频帧时间戳中，以获取实际视频帧时间戳。</li>
-                </ol></p>
+            <p>在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取当前系统时间后，传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳。</p>
         </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>、
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>            
+            <title><ph keyref="return-section-title"/></title>                     
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li props="native electron unity rn">>=0: 方法调用成功，返回当前单调时间戳（毫秒）。</li>
+            <li props="native electron unity rn">>=0: 方法调用成功，返回当前系统时间（毫秒）。</li>
             <li>&lt; 0: 方法调用失败。</li>
-            </ul>
-        </section>
+            </ul> </section>
     </refbody>
 </reference>
