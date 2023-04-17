@@ -11,8 +11,8 @@
 
 开始前，请确保你的开发环境满足以下条件：
 
-- 有效的 [Agora 账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
-- 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的 [Agora 项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
+- 有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
+- 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Windows 或 Mac OS 计算机，需满足以下要求：
   - 已安装小程序开发者工具。
   - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](./AgoraPlatform/firewall)以正常使用 Agora 服务。
@@ -20,13 +20,19 @@
 
 ## 生成 Token
 
+为了保证通信安全，声网推荐使用 Token 对登录即时通讯 IM 的用户进行认证。
+
+出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token，而在生产环境中，Token 需由你的 App Server 生成。
+
+在测试环境中，用户权限 Token 基于用户 ID 生成。若尚未创建用户，需要首先注册即时通讯 IM 用户。
+
 ### 注册用户
 
 参考以下步骤注册用户：
 
-1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
+1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏**项目管理**。
 
-2. 选择需要开通即时通讯服务的项目，点击 **配置**。
+2. 选择需要开通即时通讯服务的项目，点击**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
@@ -52,17 +58,15 @@
 
 ### 生成 Token
 
-为了保证通信安全，声网推荐使用 token 对登录即时通讯 IM 的用户进行认证。
+参考以下步骤生成用户 Token：
 
-出于测试目的，声网控制台支持为即时通讯 IM 生成临时 Token。要生成用户令牌，请执行以下操作：
-
-1. 在**项目管理**页面，点击你要使用的项目的**操作**一栏中的**配置**按钮。
+1. 在**项目管理**页面，点击你要使用的项目的**操作**栏中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)
 
-2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
+2. 在**服务配置**页面，点击**即时通讯**中的**配置**。
 
 ![](https://web-cdn.agora.io/docs-files/1670827609516)
 
@@ -75,6 +79,46 @@
 ![](./images/quickstart/generate_token.png)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
+
+## 配置服务器域名
+
+微信小程序在生产环境下若未配置合法域名，则无法正常访问。因此，需将服务器域名添加到微信小程序后台管理系统的服务器域名白名单里面。本节介绍如何配置合法域名。
+
+1. 打开 [微信公众平台官网](https://mp.weixin.qq.com/)，登录微信小程序账号，进入微信小程序管理主界面。
+
+2. 在小程序主界面的左侧导航栏中，选择**</>开发** > **开发管理**，然后点击**开发管理**页面中的**开发设置**页签。
+
+3. 点击**服务器域名**区域中的**开始配置** 按钮。首次配置服务器域名，该区域会出现这个按钮。
+
+![img](@static/images/applet/applet_config_domain.png)   
+
+4. 打开微信扫码进行身份认证。身份认证通过后，进入**配置服务器域名** 页面。
+
+![](https://web-cdn.agora.io/docs-files/1681718638569)
+
+![img](@static/images/applet/applet_wechat_auth.png)
+
+6. 配置服务器合法域名，点击**保存并提交**。     
+
+![](https://web-cdn.agora.io/docs-files/1681718647459)
+
+![img](@static/images/applet/applet_fill_domain.png)
+
+在 **request合法域名**、**uploadFile合法域名**和 **downlaodFile合法域名**文本框中填入如下合法域名：
+- https://a1.chat.agora.io
+- https://a1-vip6.chat.agora.io
+- https://a41.chat.agora.io
+- https://a61.chat.agora.io
+- https://a71.chat.agora.io
+
+在 **socket合法域名**文本框中填入如下合法域名：
+- wss://im-api-wechat.chat.agora.io
+- wss://im-api-wechat-vip6.chat.agora.io
+- wss://im-api-wechat-41.chat.agora.io
+- wss://im-api-wechat-61.chat.agora.io
+- wss://im-api-wechat-71.chat.agora.io   
+
+配置后，若需修改服务器域名，仍在**配置服务器域名**页面进行设置。
 
 ## 项目设置
 
@@ -310,7 +354,7 @@ Page({
 
 ## 后续步骤
 
-出于演示目的，即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录 即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 ## 参考
 
