@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_getcurrentmonotonictimeinms">
     <title><ph keyref="getCurrentMonotonicTimeInMs"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取当前的系统时间（<xref href="https://fuchsia.dev/fuchsia-src/concepts/kernel/time/monotonic" scope="external" format="html">Monotonic Time</xref>）。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取 SDK 当前的 Monotonic Time。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,13 +30,14 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取当前系统时间后，将该值传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳参数。</p>
+            <p>Monotonic Time 是指一个单调递增的时间序列，它的值会随着时间的推移而增加。单位为毫秒。</p>
+            <p>在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取 SDK 当前的 Monotonic Time 后，将该值传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳参数。</p>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>                     
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li props="native electron unity rn">≥0: 方法调用成功，返回当前系统时间（毫秒）。</li>
+            <li props="native electron unity rn">≥0: 方法调用成功，返回 SDK 当前的 Monotonic Time（毫秒）。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>
