@@ -46,31 +46,27 @@
                 <apiname keyref="APPLICATION_SCENARIO_GENERAL"/>
                 <p>0: (默认) 通用场景。</p>
                 <apiname keyref="APPLICATION_SCENARIO_MEETING"/>
-                <p>1: 会议场景。设置为会议场景后，SDK 会启用以下策略：</p>
-                    <p>
+                <p id="meeting">1: 会议场景。设置为会议场景后，SDK 会启用以下策：
                     <ol>
                         <li>针对会议场景对小流码率要求较高的情况，自动启用多项抗弱网技术，提升小流的抗弱网能力，确保多路流订阅时接收端的流畅性；</li>
-                        <li>实时监测接收端大小流的订阅人数，根据接收端的订阅人数自适应发送大小流，节省上行带宽和消耗。行为如下：<ul>
-                            <li><p>动态修改大流的码率和帧率</p>
-                            <p>无人订阅大流时，会自动降低大流的码率和帧率；</p>
-                            <p>有人订阅大流时，大流会重置为用户最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 时的 <xref keyref="VideoEncoderConfiguration"/> 配置；如果用户此前没有进行设置，则使用如下值： 
-                            <ul>
-                            <li>分辨率 (pixel)：PC 端 1280 × 720、移动端 960 × 540</li>
-                            <li>帧率 (fps)：15</li>
-                            <li>码率 (Kbps)：PC 端 1600、移动端 1000</li>
-                            </ul></p></li>
-                            <li><p>动态开启和关闭小流</p>
-                            <note type="note">如果用户已调用 <xref keyref="setDualStreamMode2"/> 将小流设置为始终不发送 (<apiname keyref="DISABLE_SIMULCAST_STREAM"/>)，会议场景对小流的动态开关不生效。</note>
-                            <p>无人订阅小流时，自动关闭小流；</p>
-                            <p>有人订阅小流时，开启小流并重置为用户最近一次调用 <apiname keyref="setDualStreamMode2"/> 时的 <xref keyref="SimulcastStreamConfig"/> 配置；如果用户此前没有进行设置，则使用如下值：
-                            <ul>
-                            <li>分辨率 (pixel)：480 × 272</li>
-                            <li>帧率 (fps)：15</li>
-                            <li>码率 (Kbps)：500</li>
-                            </ul></p></li></ul>
+                        <li>实时监测接收端大流的订阅人数，根据订阅人数动态修改大流的码率和帧率：<ul>
+                            <li>无人订阅大流时，会自动降低大流的码率和帧率，节省上行带宽和消耗；</li>
+                            <li>有人订阅大流时，大流会重置为用户最近一次调用 <xref keyref="setVideoEncoderConfiguration"/> 时的 <xref keyref="VideoEncoderConfiguration"/> 配置；如果用户此前没有进行设置，则使用如下值： 
+                            <ul><li>分辨率 (pixel)：PC 端 1280 × 720、移动端 960 × 540</li>
+                                <li>帧率 (fps)：15</li>
+                                <li>码率 (Kbps)：PC 端 1600、移动端 1000</li></ul>
                         </li>
-                    </ol>
-                    </p>
+                        <li>实时监测接收端小流的订阅人数，根据订阅人数动态开启和关闭小流：
+                            <note type="note">如果用户已调用 <xref keyref="setDualStreamMode2"/> 将小流设置为始终不发送 (<apiname keyref="DISABLE_SIMULCAST_STREAM"/>)，会议场景对小流的动态开关不生效。</note>
+                            <ul>
+                            <li>无人订阅小流时，自动关闭小流，节省上行带宽和消耗；</li>
+                            <li>有人订阅小流时，开启小流并重置为用户最近一次调用 <apiname keyref="setDualStreamMode2"/> 时的 <xref keyref="SimulcastStreamConfig"/> 配置；如果用户此前没有进行设置，则使用如下值：
+                            <ul><li>分辨率 (pixel)：480 × 272</li>
+                                <li>帧率 (fps)：15</li>
+                                <li>码率 (Kbps)：500</li></ul></li>
+                            </ul>
+                        </li>
+                    </ol></p>
                 </pd>
             </plentry>
             </parml>
