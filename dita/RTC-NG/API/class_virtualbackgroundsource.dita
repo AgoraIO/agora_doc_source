@@ -116,15 +116,15 @@
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
-                <pt props="android ios mac flutter electron rn">backgroundSourceType</pt>
-                <pt props="unity cpp">background_source_type</pt>
+                <pt props="android ios mac flutter">backgroundSourceType</pt>
+                <pt props="unity cpp electron rn">background_source_type</pt>
                 <pd><ph>自定义的背景图类型。</ph><ph props="ios mac cpp unity flutter electron rn">详见 <xref keyref="BACKGROUND_SOURCE_TYPE" />。</ph>
                     <ul props="android">
-                    <li><ph keyref="BACKGROUND_NONE" />(0)：仅开启背景分割，不替换背景。主要用于人像画中画模式。</li>
+                    <li><ph keyref="BACKGROUND_NONE" />(0)：将背景处理为 Alpha 信息，不进行替换，仅分割人像和背景。</li>
                     <li><ph keyref="BACKGROUND_COLOR" />(1)：（默认）背景图为纯色。</li>
                     <li><ph keyref="BACKGROUND_IMG" />(2)：背景图为 PNG、JPG 格式的图片。</li>
-                    <li><ph keyref="BACKGROUND_BLUR" />(3)：将虚化处理后的背景作为背景图。</li>
-                    <li><ph keyref="BACKGROUND_VIDEO" />(4)：背景图为 MP4、AVI、MKV、FLV 等格式的本地视频。需集成 full SDK 包（包含 FFmpeg 插件的 SDK）才能支持该枚举值。</li>
+                    <li><ph keyref="BACKGROUND_BLUR" />(3)：背景图为虚化处理后的背景。</li>
+                    <li><ph keyref="BACKGROUND_VIDEO" />(4)：背景图为 MP4、AVI、MKV、FLV 等格式的本地视频。</li>
                     </ul></pd>
             </plentry>
             <plentry>
@@ -144,7 +144,7 @@
             <plentry>
                 <pt props="ios mac android flutter">blurDegree</pt>
                 <pt props="cpp unity electron rn">blur_degree</pt>
-                <pd><ph>自定义背景图的模糊程度。</ph><ph props="ios mac cpp unity">详见 <xref keyref="BACKGROUND_BLUR_DEGREE" />。</ph>
+                <pd><ph>自定义背景图的模糊程度。</ph><ph props="ios mac cpp unity electron rn">详见 <xref keyref="BACKGROUND_BLUR_DEGREE" />。</ph>
                     <ul props="android">
                     <li><ph keyref="BLUR_DEGREE_LOW" />(1)：自定义背景图的虚化程度为低。用户差不多能看清背景。</li>
                     <li><ph keyref="BLUR_DEGREE_MEDIUM" />(2)：自定义背景图的虚化程度为中。用户较难看清背景。</li>
