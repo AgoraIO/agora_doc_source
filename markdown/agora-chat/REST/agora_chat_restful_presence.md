@@ -2,9 +2,9 @@
 
 本页介绍如何使用即时通讯 IM RESTful API 在线状态订阅相关功能，包括设置用户在线状态信息、批量订阅和获取在线状态、取消订阅以及查询订阅列表。
 
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-使用该功能前，需要在 [Agora 控制台](http://console.agora.io/) 中开通。
+使用该功能前，需要在[声网控制台](http://console.agora.io/) 中开通。
 
 <a name="pubparam"></a>
 
@@ -16,9 +16,9 @@
 
 | 参数       | 类型   | 描述          | 是否必填 |
 | :--------- | :----- | :---------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                       | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                  | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                            | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                       | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                  | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                            | 是       |
 | `username`      | String | 用户的唯一登录帐户。                                         |        |
 
 ## 认证方式 <a name="auth"></a>
@@ -50,7 +50,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence/{resource}/{
 | `resource` | String | 服务器分配给每个设备资源的唯一标识符，格式为 `{device type}_{resource ID}`，其中设备类型 `device type` 可以是 `android`、`ios` 或 `web`，资源 ID `resource ID` 由 SDK 分配。例如，`android_123423453246`。 | 是 |
 | `status`   | String | 用户定义的在线状态：<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他值：自定义在线状态。</li></ul> | 是 |
 
-其他参数及描述详见 [公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -75,7 +75,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence/{resource}/{
 | :------- | :--- | :----------------------------------------------------------- |
 | `result` | String | 在线状态设置是否成功。`ok` 表示在线状态设置成功；否则，您可以根据返回的原因进行故障排除。 |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -142,7 +142,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence/{expiry}
 | `result.ext`       | String      | 被订阅用户的在线状态扩展信息。                                         |
 | `result.status`    | JSON Array | 被订阅用户在多端的状态。<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他字符串：用户定义的自定义在线状态。</li></ul> |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -191,7 +191,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -220,7 +220,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/presence
 | `result.ext`       | String     | 用户的在线状态扩展信息。                 |
 | `result.status`    | JSON | 用户在多个设备上的在线状态。<ul><li>`0`： 离线。</li><li>`1`： 在线。</li><li>其他字符串：用户自定义的在线状态。</li></ul>  |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -268,7 +268,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{username}/presence
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -293,7 +293,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{username}/presence
 | :------- | :--- | :----------------------------------------------------------- |
 | `result` | String | 是否成功取消订阅用户的在线状态。`ok` 表示成功，失败则返回相应的错误原因。 |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -326,7 +326,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/presence/sublist?pageN
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
@@ -356,7 +356,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/presence/sublist?pageN
 | `result.sublist.uid`      | String | 被订阅用户在即时通讯服务器的唯一 ID。                                 |
 | `result.sublist.expiry`   | String | 订阅到期的 Unix 时间戳。                                   |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -390,4 +390,4 @@ curl -X GET 'a1-test.agora.com:8089/5101220107132865/test/users/wzy/presence/sub
 
 ## 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。 
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。 

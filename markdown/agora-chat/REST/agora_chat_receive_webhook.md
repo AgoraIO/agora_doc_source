@@ -64,7 +64,7 @@
 | ----------- | -------- | ------------------------------------------------------------ |
 | `callId`    | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
 | `reason`    | Object   | 触发回调的原因。`logout` 表示用户登出。                      |
-| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。。 |
+| `security`  | String   | 消息回调请求中的签名，用于确认该回调是否来自即时通讯 IM 服务器。该签名使用 MD5 算法对 `{callId}+{secret}+{timestamp}` 进行加密，其中 `secret` 详见 Agora 控制台的[发送后回调规则](./agora_chat_set_up_webhooks#配置回调规则)。|
 | `os`        | String   | 设备类型，指设备的操作系统，包含 `ios`、`android`、`linux`、`win` 及 `other`。 |
 | `ip`        | String   | 用户登出的 IP 地址。                                         |
 | `host`      | String   | 即时通讯 IM 服务分配的 RESTful API 请求地址域名。          |

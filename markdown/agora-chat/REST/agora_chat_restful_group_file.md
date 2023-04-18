@@ -1,4 +1,4 @@
-本文展示如何调用即时通讯 RESTful API 管理群公告与群文件。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 管理群公告与群文件。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -9,9 +9,9 @@
 
 | 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :----- | :----------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 
 ### 响应参数
 
@@ -179,7 +179,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 获取群共享文件<a name="retrieve"></a>
 
-分页获取指定群组 ID 的群共享文件。调用该 API 后，你可以根据响应中返回的文件 ID（`file_id`，即群共享文件的唯一标识文件 ID）调用 [下载群组共享文件](#download) 接口下载该文件，或调用 [删除群组共享文件](#delete) 接口删除该文件。
+分页获取指定群组 ID 的群共享文件。调用该 API 后，你可以根据响应中返回的文件 ID（`file_id`，即群共享文件的唯一标识文件 ID）调用[下载群组共享文件](#download) 接口下载该文件，或调用[删除群组共享文件](#delete) 接口删除该文件。
 
 ### HTTP 请求
 
@@ -227,7 +227,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagen
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -323,7 +323,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files
 
 其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -402,7 +402,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files/{file
 
 其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -439,7 +439,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 删除群共享文件<a name="delete"></a>
 
-根据指定的群组 ID 和文件 ID 删除群共享文件，文件 ID 可从 [获取群组共享文件](#retrieve) 接口的响应中获取。
+根据指定的群组 ID 和文件 ID 删除群共享文件，文件 ID 可从[获取群组共享文件](#retrieve) 接口的响应中获取。
 
 ### HTTP 请求
 
@@ -478,7 +478,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files/{f
 
 其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -512,4 +512,4 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## <a name="code"></code> 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

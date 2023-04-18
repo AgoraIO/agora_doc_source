@@ -112,7 +112,7 @@
 
 1. 获取下列信息：
    - 回调 ID，即回调请求体中的 `callId` 参数。
-   - 分配给回调规则的密钥。你可以在 Agora 控制台的即时通讯 IM 配置页面找到该值。
+   - 分配给回调规则的密钥。你可以在声网控制台的即时通讯 IM 配置页面找到该值。
 
    ![](https://web-cdn.agora.io/docs-files/1681712251803)
     ![](./images/callback/postdelivery_callback_secret.png)

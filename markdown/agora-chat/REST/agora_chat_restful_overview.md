@@ -2,7 +2,7 @@
 
 ## RESTful 平台架构
 
-即时通讯 REST 平台提供多租户架构，以集合（Collection）的形式管理资源，一个集合包含如下子集：
+即时通讯 REST 平台提供多租户架构，以集合的形式管理资源，一个集合包含如下子集：
 
 - 数据库（database）
 - 组织（orgs）
@@ -20,7 +20,7 @@
 
 要调用即时通讯 RESTful API，请确保满足以下要求：
 
-- 已在 Agora 控制台[开启和配置即时通讯服务](./enable_agora_chat?platform=RESTful)。
+- 已在声网控制台[开启和配置即时通讯服务](./enable_agora_chat?platform=RESTful)。
 - 已从服务端获取应用权限 token，详见 [使用 Token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 请求结构
@@ -33,7 +33,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ### 服务器地址
 
@@ -242,9 +242,9 @@ IM 离线推送包括设置推送消息展示方式、显示昵称、免打扰�
 | 查询离线推送模板         | GET  | /{org_name}/{app_name}/notification/template/{name} | 查询离线推送消息使用的模板。 |
 | 删除推送模板         | DELETE  | /{org_name}/{app_name}/notification/template/{name} | 删除推送通知的指定模板。 |
 
-### Agora 推送
+### 即时推送
 
-Agora 推送包括推送标签管理和发送推送通知。
+即时推送包括推送标签管理和发送推送通知。
 
 | 接口名称        | 方法 | 请求         | 描述 |
 | :------------------- | :--- | :------------------- |:-------------------------------------------------------------- |

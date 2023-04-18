@@ -5,7 +5,8 @@
 例如，在招聘场景下，利用用户属性功能，可以存储性别、邮箱、用户类型（面试者）、职位类型（Web 研发）等。当查看用户信息时，可以直接查询服务器存储的用户属性信息。
 
 <div class="alert note">为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。</div>
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 
@@ -15,9 +16,9 @@
 
 | 参数       | 类型   | 描述      | 是否必填 |
 | :--------- | :----- | :------------------------------------------------ | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                               | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                               | 是       |
 | `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"_", "-", "."<div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户 ID唯一。</li></ul></div> | 是       |
 
 ### 响应参数
@@ -59,7 +60,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -108,9 +109,9 @@ JSONString = ‘{“name”:“ken”, “employer”:“easemob”, “title”
 | :----- | :--- | :----------------------------------------------------- |
 | `data` | JSON | 返回数据详情。包含你在本次请求中设置的用户属性键值对。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -151,7 +152,7 @@ GET https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -170,9 +171,9 @@ GET https://{host}/{org_name}/{app_name}/metadata/user/{username}
 | :----- | :--- | :---------------------------------------- |
 | `data` | JSON | 返回数据详情。包含该用户所有用户属性键值对。<br/>如果 `data` 为空，请确认用户 ID 是否存在或该用户是否有用户属性。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -211,7 +212,7 @@ POST https://{host}/{org_name}/{app_name}/metadata/user/get
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -239,9 +240,9 @@ POST https://{host}/{org_name}/{app_name}/metadata/user/get
 | :----- | :--- | :----------------------------------------------------------- |
 | `data` | JSON | 返回数据详情。包含该用户所有用户属性键值对。<br/>如果 `data` 为空，请确认用户 ID 是否存在或用户是否有用户属性。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -301,7 +302,7 @@ GET https://{host}/{org_name}/{app_name}/metadata/user/capacity
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -319,9 +320,9 @@ GET https://{host}/{org_name}/{app_name}/metadata/user/capacity
 | :----- | :----- | :--------------------------------- |
 | `data` | Number | app 下用户属性总长度，单位为字节。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -353,7 +354,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/user/{username}
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -371,9 +372,9 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/user/{username}
 | :----- | :--- | :-------------------------------------------------------------------------------------------------------------------------- |
 | `data` | Boolean | 用户属性是否删除成功：<ul><li>`true`：是。如果指定的用户不存在，或指定用户的用户属性不存在，也视为删除成功。</li><li>`false`：否。</li></ul> |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 

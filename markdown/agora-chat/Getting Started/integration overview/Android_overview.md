@@ -1,12 +1,12 @@
 # SDK 集成概述
 
-介绍 Android 集成相关内容。
+本页介绍 Android 集成相关内容。
 
 ## 集成环境
 
 开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 App Key 的声网项目。
 
-详见 [开发环境要求](./agora_chat_get_started_android#前提条件)。
+详见[开发环境要求](./agora_chat_get_started_android#前提条件)。
 
 ## 添加权限
 
@@ -84,6 +84,7 @@ ChatClient.getInstance().login(mAccount, mPassword, new CallBack() {
 **用户 ID + token** 是更加安全的登录方式。用户权限 token 可从你的 app server 获取。
 
 <div class="alert note">使用 token 登录时需要处理 token 过期的问题，比如每次登录时更新 token 等机制。</div>
+
 ```java
 ChatClient.getInstance().loginWithToken(mAccount, mToken, new CallBack() {
     // 登录成功回调

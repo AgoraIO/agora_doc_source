@@ -2,8 +2,8 @@
 
 消息推送分为异步推送和同步推送：
 
-- 同步推送：Agora 服务端接收到推送请求后立即请求厂商推送服务器，等待返回响应并将推送结果传递给请求发起端。
-- 异步推送：Agora 服务端接收到推送请求后写入异步队列，并将异步队列写入结果传递给请求发起端。
+- 同步推送：声网服务端接收到推送请求后立即请求厂商推送服务器，等待返回响应并将推送结果传递给请求发起端。
+- 异步推送：声网服务端接收到推送请求后写入异步队列，并将异步队列写入结果传递给请求发起端。
 
 利用 RESTful 接口可通过以下方式使用即时推送服务：
 - 对单个或多个用户发送推送通知；
@@ -36,7 +36,7 @@
 
 Authorization：`Bearer ${YourAppToken}`
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
+为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 向指定用户发送推送通知
 
@@ -50,7 +50,7 @@ POST https://{host}/{org_name}/{app_name}/push/single
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -81,7 +81,7 @@ POST https://{host}/{org_name}/{app_name}/push/single
 | `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：同步推送成功；</li><li>`FAIL`：推送失败，即非服务端导致的错误，例如 `bad device token`，表示移动端传给服务端的 device token 错误，对应推送厂商不接受；</li><li>`ERROR`：推送异常，即服务端导致错误，例如连接超时或读写超时。</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
 | `desc`       | String | 推送结果的相关描述。     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -135,7 +135,7 @@ POST https://{host}/{org_name}/{app_name}/push/list/label
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -150,7 +150,7 @@ POST https://{host}/{org_name}/{app_name}/push/list/label
 | :------------ | :------- | :------ | :---------------- |
 | `targets`     | List    | 标签名称。可传单个或多个标签名称。<ul><li>若传单个标签名称，消息推送给该标签下的所有用户。</li><li>若传多个标签名称，消息推送给同时存在于这些标签中的用户，即取标签中的用户交集。最多可传 3 个标签。</li></ul>  | 是     | 
 | `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。该情况下，若用户在线，则直接推送；若用户离线，消息会保留一段时间（视版本而定），超过该期限则丢弃消息。</li><li>（默认）`2`：只走厂商通道。若用户离线，是否保留推送消息以及保留时间视厂商而定。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   | 
-| `pushMessage` | JSON    | 推送消息。消息内容详见 [配置推送通知](./agora_chat_restful_config_push_notification)。 | 是     | 
+| `pushMessage` | JSON    | 推送消息。消息内容详见[配置推送通知](./agora_chat_restful_config_push_notification)。 | 是     | 
 
 ### HTTP 响应
 
@@ -163,7 +163,7 @@ POST https://{host}/{org_name}/{app_name}/push/list/label
 | `data` | JSON | 推送任务数据。 |
 | `taskId` | Number | 推送任务 ID。 |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -214,7 +214,7 @@ POST https://{host}/{org_name}/{app_name}/push/task
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -240,7 +240,7 @@ POST https://{host}/{org_name}/{app_name}/push/task
 | :----- | :--- | :-------------------------------------------------------- |
 | `data` | Number | 推送任务 ID，用于服务端对推送任务进行数据统计。 |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 

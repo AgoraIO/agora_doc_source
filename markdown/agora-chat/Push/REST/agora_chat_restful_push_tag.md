@@ -30,7 +30,7 @@
 
 Authorization：`Bearer ${YourAppToken}`
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
+为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 创建推送标签
 
@@ -43,7 +43,7 @@ POST https://{host}/{org_name}/{app_name}/push/label
 ```
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -118,7 +118,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 要查询的推送标签的名称。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -178,7 +178,7 @@ GET https://{host}/{org_name}/{app_name}/push/label
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 查询参数
 
@@ -257,7 +257,7 @@ DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 要删除的推送标签的名称。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header 
 
@@ -312,7 +312,7 @@ POST https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 推送标签的名称。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -387,7 +387,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{username}
 | `labelname` | String | 推送标签的名称。 | 是     |
 | `username`    | String | 要查询的用户 ID。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -447,7 +447,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 推送标签的名称。 | 是     |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 查询参数
 

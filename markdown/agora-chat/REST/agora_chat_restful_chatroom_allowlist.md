@@ -10,9 +10,9 @@
 
 | 参数          | 类型   | 描述        | 是否必填 |
 | :------------ | :----- | :------------------------------- | :------- |
-| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
-| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
-| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。     | 是       |
+| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
+| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
+| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。     | 是       |
 | `username`    | String | 用户 ID。用户的唯一登录账号。 | 是       |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，可从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#查询所有聊天室基本信息) 的响应 body 中获取。                                                                 | 是       |
 
@@ -53,7 +53,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -72,7 +72,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users
 | :----- | :---- | :------------------------ |
 | `data` | Array | 聊天室白名单中的用户 ID。 |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -125,7 +125,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users/{u
 | :------------ | :----- | :------------------------------- | :------- |
 | `username`        | String | 要添加至聊天室白名单中的用户 ID。    | 是       |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -148,7 +148,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users/{u
 | `data.action`     | String | 执行操作。在该响应中，该字段的值为 `add_user_whitelist`，表示将用户添加至聊天室白名单中。 |
 | `data.user`       | String | 添加至聊天室白名单的成员的用户 ID。                                              |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -195,7 +195,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -226,7 +226,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users
 | `data.action`     | String | 执行的操作。在该响应中，该字段的值为 `add_user_whitelist`，表示添加用户至聊天室白名单。 |
 | `data.user`       | String | 添加至聊天室白名单中的用户 ID。                              |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -285,7 +285,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users/
 | :------------ | :----- | :------------------------------- | :------- |
 | `username`        | String | 要移出聊天室白名单的用户 ID。    | 是       |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -308,7 +308,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users/
 | `data.action`     | String | 执行的操作。在该响应中，该字段的值为 `remove_user_whitelist`，表示将用户移出聊天室白名单。 |
 | `data.user`       | String | 移出聊天室白名单的成员的用户 ID。              |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -353,5 +353,5 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## <a name="code"></code> 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
  

@@ -1,6 +1,6 @@
 本文展示如何通过调用即时通讯 IM 的 RESTful API 实现子区管理，包括创建、修改、删除和获取子区。
 
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -12,9 +12,9 @@
 
 | 参数       | 类型   | 描述                      | 是否必填 |
 | :--------- | :----- | :---------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 
 ### 响应参数
 
@@ -53,7 +53,7 @@ POST https://{host}/{org_name}/{app_name}/thread
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -83,7 +83,7 @@ POST https://{host}/{org_name}/{app_name}/thread
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -159,9 +159,9 @@ PUT https://{host}/{org_name}/{app_name}/thread/{thread_id}
 | `data` | JSON | 子区修改信息。 |
 | `data.name` | String | 修改后的子区名称。 |
 
-其他参数及描述详见 [公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -203,7 +203,7 @@ DELETE https://{host}/{org_name}/{app_name}/thread/{thread_id}
 | :---------- | :----- | :---------- | :------- |
 | `thread_id` | String | 子区的 ID。 | 是       |
 
-其他参数及描述详见 [公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -264,7 +264,7 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
@@ -292,9 +292,9 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 | `entities.id` | String | 子区 ID。 |
 | `properties.cursor` | String | 查询游标，指定下次查询的起始位置。 |
 
-其他参数及描述详见 [公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -372,9 +372,9 @@ GET https://{host}/{org_name}/{app_name}/threads/user/{username}?limit={limit}&c
 | `entities.created` | Number |子区创建时间，Unix 时间戳。    |
 | `properties.cursor`  | String  | 查询游标，指定服务器下次查询的起始位置。 |
 
-其他参数及描述详见 [公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -464,7 +464,7 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 

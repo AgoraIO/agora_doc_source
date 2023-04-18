@@ -1,6 +1,6 @@
 禁言是指禁止群成员在群组中发送消息。即时通讯 IM 提供多个接口实现禁言管理，包括获取禁言列表、将成员添加至或移出禁言列表。
 
-本文展示如何调用即时通讯 RESTful API 管理禁言列表。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 管理禁言列表。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -11,9 +11,9 @@
 
 | 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :----- | :----------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
@@ -131,7 +131,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -266,7 +266,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -287,7 +287,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 | `data` | JSON | 全员禁言结果。 |
 | `data.mute` | Boolean | 是否处于全员禁言状态。<br/> - `true`：是； <br/> - `false`：否。 |
 
-其他字段及描述详见 [公共参数](#pubparam)。
+其他字段及描述详见[公共参数](#pubparam)。
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -389,4 +389,4 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 
 ## <a name="code"></code> 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

@@ -1,6 +1,6 @@
-群组白名单列表指在群主或管理员使用 [群组全员禁言](./agora_chat_restful_group_mute?platform=RESTful#禁言全体群成员) 方法将所有群成员禁言后，仍可发送群消息的群成员列表。即时通讯 IM 提供多个接口实现群组白名单管理，包括查看群组白名单中的用户以及将用户添加至或移除白名单等。
+群组白名单列表指在群主或管理员使用[群组全员禁言](./agora_chat_restful_group_mute?platform=RESTful#禁言全体群成员) 方法将所有群成员禁言后，仍可发送群消息的群成员列表。即时通讯 IM 提供多个接口实现群组白名单管理，包括查看群组白名单中的用户以及将用户添加至或移除白名单等。
 
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -12,9 +12,9 @@
 
 | 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :--- | :----------------------------------------------------------- | :----- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
@@ -363,4 +363,4 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## <a name="code"></code> 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

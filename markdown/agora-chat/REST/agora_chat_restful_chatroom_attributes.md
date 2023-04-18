@@ -1,4 +1,4 @@
-本文介绍如何调用即时通讯 RESTful API 实现聊天室自定义属性（KV）管理，包括设置、删除和获取聊天室自定义属性。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文介绍如何调用即时通讯 RESTful API 实现聊天室自定义属性（KV）管理，包括设置、删除和获取聊天室自定义属性。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## <a name="param"></a>公共参数
 
@@ -8,9 +8,9 @@
 
 | 参数       | 类型   | 描述    | 是否必填 |
 | :--------- | :----- | :---------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。    | 是    |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。    | 是    |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
 | `chatroom_id`   | String | 聊天室 ID。        | 是                                             |
 | `username` | String | 用户 ID。 | 是       |
 
@@ -43,7 +43,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -72,7 +72,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 | `data.successKeys`   | Array | 设置成功的聊天室属性名称列表。 |
 | `data.errorKeys` | Object | 设置失败的聊天室自定义属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -114,7 +114,7 @@ POST https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -140,7 +140,7 @@ POST https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}
 | :------------ | :------ | :----------------------------------------------------------- |
 | `data`   | Object | 聊天室自定义属性，为键值对格式，key 为属性名称，value 为属性值。 |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -180,7 +180,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -208,7 +208,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 | `data.successKeys`   | Array | 成功删除的聊天室属性名称列表。 |
 | `data.errorKeys` | Object | 删除失败的聊天室自定义属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -246,7 +246,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -276,7 +276,7 @@ PUT https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{u
 | `data.successKeys`   | Array | 设置成功的聊天室属性名称列表。 |
 | `data.errorKeys` | Object | 设置失败的聊天室属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -320,7 +320,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -348,7 +348,7 @@ DELETE https://{host}/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user
 | `data.successKeys`   | Array | 成功删除的聊天室属性名称列表。 |
 | `data.errorKeys` | Object | 删除失败的聊天室属性。这里返回键值对，key 为属性名称，value 为失败原因。 |
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -376,4 +376,4 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 
 ## <a name="code"></code> 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
