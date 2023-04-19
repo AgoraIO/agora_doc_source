@@ -300,7 +300,7 @@ curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s' \
 
 ## 在推送标签下添加用户 
 
-为用户分配指定的推送标签。
+为用户分配指定的推送标签。单个标签最多可包含 200,000 个用户，每次最多可添加 100 个用户。若需提升上限，可联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。</div>
 
 ### HTTP 请求
 
