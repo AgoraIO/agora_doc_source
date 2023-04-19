@@ -35,9 +35,12 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>该方法和 <xref keyref="startScreenCapture"/> 的区别在于，基于 PC 端可能有多个屏幕的场景，调用该方法可以通过指定 <codeph>sourceType</codeph> 同时开启多路屏幕采集，用于本地合图或多频道发布。</p>
+            <p>该方法和 <xref keyref="startScreenCapture"/> 均可以开启屏幕采集，区别如下：<ul>
+                <li><apiname keyref="startScreenCapture"/> 仅适用于移动端。</li>
+                <li><apiname keyref="startScreenCapture2"/> 仅适用于桌面端。你可以调用该方法并指定多个视频源 (<parmname>sourceType</parmname>)，以开启多路屏幕共享流，用于本地合图或者多频道发布。</li>
+            </p>
             <note type="attention" props="mac cpp flutter unity electron"><ul>
-            <li>该方法适用于 macOS 和 Windows 平台。</li>
+            <li>该方法仅适用于 macOS 和 Windows 平台。</li>
             <li props="mac cpp unity">如果调用该方法开始屏幕采集，声网建议你使用 <xref keyref="stopScreenCapture2"/> 停止采集，不要与 <xref keyref="stopScreenCapture"/> 混用。</li></ul></note>
         </section>
         <section id="parameters">
