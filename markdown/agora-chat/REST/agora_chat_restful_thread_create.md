@@ -11,25 +11,25 @@
 ### 请求参数
 
 | 参数       | 类型   | 描述                      | 是否必填 |
-| :--------- | :----- | :---------------------------------------------------------------- | :------- |
+| :--------- | :----- | :------------------------ | :------- |
 | `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 
 ### 响应参数
 
-| 参数              | 类型   | 描述                                                                |
-| :---------------- | :----- | :------------------------------------------------------------------ |
+| 参数              | 类型   | 描述             |
+| :---------------- | :----- | :---------------------- |
 | `action`          | String | HTTP 请求方法。                                                     |
 | `organization`    | String | 即时通讯服务为每个企业（组织）分配的唯一标识，与请求参数 `org_name` 相同。  |
 | `applicationName` | String | 即时通讯服务为每个 app 分配的唯一标识，与请求参数 `app_name` 相同。        |
 | `data`            | String | 响应的详细信息。                                                    |
 | `duration`        | String | 从发送 HTTP 请求到收到响应的持续时间，单位为毫秒。                     |
-| `timestamp`       | String | HTTP 响应的 Unix 时间戳，单位为毫秒。    |
+| `timestamp`       | String | HTTP 响应的 UNIX 时间戳，单位为毫秒。    |
 | `uri`             | String | 请求 URI，即请求 URL 的一部分。无需关注。           |
 | `properties`      | JSON | 响应属性。                                                          |
 
-## 认证方式 <a name="auth"></a>
+## 认证方式
 
 即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
@@ -37,13 +37,13 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 创建子区
 
 创建一个子区。单个 app 下的子区总数默认为 10 万，如需调整请联系商务。
 
-对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+对于每个 App Key，该方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -140,7 +140,7 @@ PUT https://{host}/{org_name}/{app_name}/thread/{thread_id}
 
 | 参数    | 类型   | 是否必需 | 描述      |
 | :-------------- | :----- | :---------------- | :------- |
-| `Authorization` | String | 是    |App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
+| `Authorization` | String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 #### 请求 body
 
@@ -161,7 +161,7 @@ PUT https://{host}/{org_name}/{app_name}/thread/{thread_id}
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -224,7 +224,7 @@ DELETE https://{host}/{org_name}/{app_name}/thread/{thread_id}
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -254,7 +254,7 @@ curl -X DELETE http://XXXX.com/XXXX/testapp/thread/177916702949377 -H 'Authoriza
 
 分页获取应用下的所有子区。
 
-对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+对于每个 App Key，该方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -294,7 +294,7 @@ GET https://{host}/{org_name}/{app_name}/thread?limit={limit}&cursor={cursor}&so
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -329,7 +329,7 @@ curl -X GET http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <YourA
 
 根据用户 ID 获取用户在应用下加入的所有子区。
 
-对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+对于每个 App Key，该方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -369,12 +369,12 @@ GET https://{host}/{org_name}/{app_name}/threads/user/{username}?limit={limit}&c
 | `entities.id`    | String  |子区 ID。     |
 | `entities.msgId`  | String |子区的父消息 ID。 |
 | `entities.groupId` | String |子区所属群组 ID。  |
-| `entities.created` | Number |子区创建时间，Unix 时间戳。    |
+| `entities.created` | Number |子区创建时间，UNIX 时间戳。    |
 | `properties.cursor`  | String  | 查询游标，指定服务器下次查询的起始位置。 |
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -414,7 +414,7 @@ curl -X GET http://XXXX.com/XXXX/testapp/threads/user/test4 -H 'Authorization: B
 
 根据用户 ID 分页获取该用户在指定群组中加入的所有子区。
 
-对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+对于每个 App Key，该方法的调用频率限制为每秒 100 次。
 
 ### HTTP 请求
 
@@ -459,12 +459,12 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 | `entities.id`     | String |子区 ID。     |
 | `entities.msgId`   | String |子区的父消息 ID。 |
 | `entities.groupId` | String |子区所属群组 ID。  |
-| `entities.created` | Number  |子区创建时间，Unix 时间戳，单位为毫秒。    |
+| `entities.created` | Number  |子区创建时间，UNIX 时间戳，单位为毫秒。    |
 | `properties.cursor`  | String  | 查询游标，指定下次查询的起始位置。 |
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -499,8 +499,6 @@ curl -X GET http://XXXX.com/XXXX/testapp/threads/user/test4 -H 'Authorization: B
     "uri": "http://XXXX.com/XXXX/testy/threads/user/test4"
 }
 ```
-
-<a name="code"></code>
 
 ## 状态码
 

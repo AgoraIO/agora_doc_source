@@ -6,7 +6,9 @@
 
 本文档主要介绍如何调用即时推送 RESTful API 实现创建及管理推送标签。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 ### 请求参数
 
@@ -30,7 +32,7 @@
 
 Authorization：`Bearer ${YourAppToken}`
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
+为提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 创建推送标签
 

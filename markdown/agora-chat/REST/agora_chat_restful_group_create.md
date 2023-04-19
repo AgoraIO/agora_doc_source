@@ -81,7 +81,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups
 | `public`              | Boolean | 群组是否为公开群。公开群可以被搜索到，用户可以申请加入公开群；私有群无法被搜索到，因此需要群主或群管理员添加，用户才可以加入。<ul><li>`true`：公开群</li><li>`false`：私有群</li></ul> | 是       |
 | `maxusers`            | String  | 群组最大成员数（包含群主）。默认值为 200。不同套餐支持的人数上限不同，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。                            | 否       |
 | `allowinvites`        | Boolean | 是否允许群组成员邀请用户加入群组：<ul><li>`true`：群成员可拉人入群。</li><li>`false`：只有群主或者管理员才可以拉人入群。</li></ul>                                                         | 否       |
-| `membersonly`         | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>`false`：(默认) 不需要，用户直接进群。</li></ul>                                                                        | 否       |
+| `membersonly`         | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>（默认）`false`：不需要，用户直接进群。</li></ul>                                                                        | 否       |
 | `invite_need_confirm` | Boolean    | 邀请用户入群时是否需要受邀用户同意。<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li> `false`：不需要。邀请人直接拉用户进群。</li></ul>                                                                                            | 否       |
 | `owner`               | String  | 群主。               | 是       |
 | `members`             | Array   | 群组成员的用户 ID 数组，可包含 1-100 个元素，不涉及群主的用户 ID。                                                                                | 否       |
@@ -170,7 +170,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/disable
 | 字段    | 类型      | 描述 |
 |:------|:--------|:--|
 | `data` | JSON | 群组禁用相关信息。 |
-| `data.disabled` | Boolean | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
+| `data.disabled` | Boolean | 群组是否为禁用状态：<ul><li>`true`：群组被禁用；</li><li>`false`：群组为启用状态。</li></ul> |
 
 其他字段及描述详见[公共参数](#pubparam)。
 
@@ -205,7 +205,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-### 解禁群组<a name="enablegroup"></a>
+<a name="enablegroup"></a>
+
+### 解禁群组
 
 解除对指定群组的封禁。群组解禁后，群成员可以在该群组以及该群组下的子区中发送和接收消息并进行群组和子区管理相关操作。
 
@@ -236,7 +238,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/enable
 | 字段       | 类型   | 描述                  |
 | :-------- | :----- |:--------------------|
 | `data` | JSON | 群组解禁相关信息。 |
-| `data.disabled` | Boolean | 群组是否为禁用状态：<br/> - `true`：群组被禁用；<br/> - `false`：群组为启用状态。 |
+| `data.disabled` | Boolean | 群组是否为禁用状态：<ul><li>`true`：群组被禁用；</li><li>`false`：群组为启用状态。</li></ul> |
 
 其他字段及描述详见[公共参数](#pubparam)。
 
@@ -276,7 +278,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ### HTTP 详情
 
-```shell
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_ids}
 ```
 
@@ -378,7 +380,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ### HTTP 请求
 
-```shell
+```http
 PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 ```
 
@@ -409,7 +411,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | `invite_need_confirm` | Boolean   | 邀请用户入群时是否需要受邀用户同意：<ul><li>（默认）`true`：需要。受邀用户同意后才能加入群组；</li><li>`false`：不需要。邀请人直接拉用户进群。</li></ul> | 否       |
 | `membersonly`  | Boolean | 用户加入公开群是否需要群主或者群管理员批准：<ul><li>`true`：需要</li><li>（默认）`false`：不需要，用户直接进群。</li></ul>                | 否       |
 | `custom`       | String  | 群组扩展信息，例如给群组添加业务相关标记，不能超过 1,024 个字符。    | 否       |
-| `public`              | Boolean   | 是       | 是否是公开群：<ul><li>`true`：公开群；</li><li>`false`：私有群。</li></ul>        |
+| `public`              | Boolean   | 是否是公开群：<ul><li>`true`：公开群</li><li>`false`：私有群</li></ul>       | 是       |
 
 ### HTTP 响应
 
@@ -509,7 +511,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | 字段       | 类型    | 描述                                                    |
 | :-------- | :------ | :------------------------------------------------------ |
 | `data` | JSON | 群组删除相关信息。 |
-| `data.success` | Boolean | 群组删除结果: </br> - `true`：删除成功； <br/> - `false`：删除失败。 |
+| `data.success` | Boolean | 群组删除结果: <ul><li>`true`：删除成功；</li><li>`false`：删除失败。</li></ul> |
 | `data.groupid` | String  | 删除的群组的 ID。                                         |
 
 其他相应字段说明详见[公共参数](#pubparam)。
@@ -565,6 +567,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 | `cursor` | String | 数据查询的起始位置。 | 否  |
 
 <div class="alert info">若请求中均未设置 `limit` 和 `cursor` 参数，服务器按群组创建时间倒序返回前 10 个群组。</div>
+
 #### 请求 header
 
 | 参数     | 类型   | 描述                   | 是否必填 |
@@ -599,10 +602,10 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 #### 请求示例
 
 ```shell
-// 分页获取第一页的群组信息
+# 分页获取第一页的群组信息
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups?limit=2'
 
-// 分页获取第二页的群组信息
+# 分页获取第二页的群组信息
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups?limit=2&cursor=ZGNiMjRmNGY1YjczYjlhYTNkYjk1MDY2YmEyNzFmODQ6aW06Z3JvdXA6ZWFzZW1vYi1kZW1vI3Rlc3RhcHA6Mg'
 ```
 
@@ -664,9 +667,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups?page
 | `pagesize` | String | 每页获取的群组数量。取值范围为 [1,100]，默认值为 `10`。          | 否     |
 | `pagenum`  | String | 当前页码。默认从第 1 页开始获取。                       | 否     |
 
-:::tip
-若请求中均未设置 `pagesize` 和 `pagenum` 参数，服务器按用户加入群组的时间倒序返回前 500 个群组。
-:::
+<div class="alert note">若请求中均未设置 pagesize 和 pagenum 参数，服务器按用户加入群组的时间倒序返回前 500 个群组。</div>
 
 #### 请求 header
 
@@ -731,6 +732,6 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

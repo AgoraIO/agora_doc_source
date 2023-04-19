@@ -88,7 +88,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 
 其他字段即说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](error.html) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -171,7 +171,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 
 其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](error.html) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -277,7 +277,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 添加用户至黑名单
 
-将指定用户添加到黑名单。添加后，黑名单中的用户无法给该用户发消息。每个用户的黑名单人数上限为 500。
+将指定用户添加到黑名单。添加后，黑名单中的用户无法给该用户发消息。每个用户的黑名单人数上限为 500，每次最多可添加 50 个黑名单用户。
 
 对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 
@@ -289,11 +289,11 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 #### 路径参数
 
-| 参数             | 类型   | 是否必需 | 描述                                                         |
-| :--------------- | :----- | :------- | :----------------------------------------------------------- |
-| `owner_username` | String | 是    | 当前的用户 ID。                                                 |
+| 参数             | 类型   | 是否必需 | 描述         |
+| :--------------- | :----- | :------- | :----------------- |
+| `owner_username` | String | 是    | 当前的用户 ID。     |
 
-本方法的其他路径参数及描述详见[公共参数](#pubparam)。
+其他路径参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -309,7 +309,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 字段      | 类型       | 描述                                              | 是否必填 |
 | :-------- | :--------- | :------------------------------------------------ | :------- |
-| `usernames` | Array | 待加入到黑名单中的用户 ID，如 ["user1", "user2"]。 | 是       |
+| `usernames` | Array | 待加入到黑名单中的用户 ID，如 ["user1", "user2"]。每次最多可添传 50 个用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -466,7 +466,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 
 其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -502,7 +502,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-<a name="code"></a>
 ## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

@@ -1,8 +1,10 @@
-本文展示如何调用即时通讯 RESTful API 实现用户体系建立和管理。包括用户注册、获取、修改、删除、封禁、解禁、强制下线等。
+本文展示如何调用即时通讯 RESTful API 实现用户体系建立和管理，包括用户注册、获取、修改、删除、封禁、解禁、强制下线等。
 
 调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
@@ -46,11 +48,13 @@ Authorization: Bearer YourAppToken
 
 为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
+<a name="single"></a>
+
 ## 注册单个用户
 
 注册一个用户。
 
-对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+对于每个 App Key，该接口与[批量注册用户](#batch)、[设置离线推送时显示的昵称](./agora_chat_restful_push#设置离线推送时显示的昵称)和[设置推送消息展示方式](./agora_chat_restful_push#设置推送消息展示方式)三个接口的总调用频率的默认值为 100 次/秒/App Key。
 
 ### HTTP 请求
 
@@ -134,11 +138,13 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
 }
 ```
 
+<a name="batch"></a>
+
 ## 批量注册用户
 
 一次注册多个用户。
 
-对于每个 App Key，此方法的调用频率限制为每秒 100 次。
+对于每个 App Key，该接口与[注册单个用户](#single)、[设置离线推送时显示的昵称](./agora_chat_restful_push#设置离线推送时显示的昵称)和[设置推送消息展示方式](./agora_chat_restful_push#设置推送消息展示方式)三个接口的总调用频率的默认值为 100 次/秒/App Key。
 
 ### HTTP 请求
 
@@ -159,12 +165,12 @@ POST https://{host}/{org_name}/{app_name}/users
 
 #### 请求 body
 
-<div class="alert info">单次请求最多可注册 60 个用户 ID。<div>
+<div class="alert info">单次请求最多可注册 60 个用户 ID。</div>
 
 请求包体为 JSON Object 类型，包含以下字段：
 
-| 字段       | 类型   | 描述                                                                                                                                                  | 是否必填 |
-| :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
+| 字段       | 类型   | 描述     | 是否必填 |
+| :--------- | :----- | :----------------- | :------- |
 | `username` | String | 用户 ID。用户的唯一登录账号。长度不可超过 64 个字节，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul><div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户 ID 唯一。</li><li>用户 ID 是公开信息，请勿使用 UUID、邮箱地址、手机号等敏感信息。</li></ul></div> | 是       |
 | `password` | String | 用户的登录密码。长度必须在 64 个字符以内。   | 是       |
 | `nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称，而非用户属性的用户昵称。长度必须在 100 个字符以内。默认为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>中文</li><li>特殊字符</li></ul> | 否       |
@@ -183,7 +189,7 @@ POST https://{host}/{org_name}/{app_name}/users
 
 其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -342,12 +348,12 @@ GET https://{host}/{org_name}/{app_name}/users/{username}
 | `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。<br/>该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。                                       |
 | `entities.notification_display_style`         | Number    | 消息推送方式：<ul><li>`0`：仅通知。推送标题为“您有一条新消息”，推送内容为“请点击查看”；</li><li>`1`：通知以及消息详情。推送标题为“您有一条新消息”，推送内容为发送人昵称和离线消息的内容。</li><li>若用户未设置该参数，则响应中不返回。</li></ul>                                                         |
 | `entities.notification_no_disturbing`         | Boolean   | 是否开启免打扰。<ul><li>`true`：免打扰开启。若用户未设该参数，则响应中不返回。</li><li>`false`：免打扰关闭。</li></ul>                                      |
-| `entities.notification_no_disturbing_start`   | String | 免打扰的开始时间。例如，“8” 代表每日 8:00 开启免打扰。若用户未设该参数，则响应中不返回。                                                         |
-| `entities.notification_no_disturbing_end`     | String | 免打扰的结束时间。例如，“18” 代表每日 18:00 关闭免打扰。若用户未设该参数，则响应中不返回。                                                       |
+| `entities.notification_no_disturbing_start`   | String | 免打扰的开始时间。例如，`8` 代表每日 8:00 开启免打扰。若用户未设该参数，则响应中不返回。                                                         |
+| `entities.notification_no_disturbing_end`     | String | 免打扰的结束时间。例如，`18` 代表每日 18:00 关闭免打扰。若用户未设该参数，则响应中不返回。                                                       |
 | `entities.notification_ignore_63112447328257` | Boolean   | 是否屏蔽了群组消息的离线推送的设置。参数中的数字表示群组 ID。 <ul><li>`true`：已屏蔽。</li><li>`false`：未屏蔽。若用户未设该参数，则响应中不返回。</li></ul> |
-| `entities.notifier_name`                      | String | 客户端推送证书名称。若用户未设置推送证书名称，则响应中不返回。                                                                                   |
-| `entities.device_token`                       | String | 推送 token。若用户没有推送 token，则响应中不返回。                                                                                               |
-| `count`                                       | Number | 返回用户数量。                                                                                                                                   |
+| `entities.notifier_name`                      | String | 客户端推送证书名称。若用户未设置推送证书名称，则响应中不返回。       |
+| `entities.device_token`                       | String | 推送 token。若用户没有推送 token，则响应中不返回。   |
+| `count`                                       | Number | 返回用户数量。     |
 
 其他字段及说明详见[公共参数](#param)。
 
@@ -437,8 +443,8 @@ GET https://{host}/{org_name}/{app_name}/users?limit={N}&{cursor}
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
-| 参数                                          | 类型   | 描述                                                                                                                                                                                                                                  |
-| :-------------------------------------------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 参数                 | 类型   | 描述           |
+| :-------------- | :----- | :------------------------ |
 | `entities.username`                           | String | 用户 ID。       |
 | `entities.nickname`                           | String | 推送消息时，在消息推送通知栏内显示的用户昵称。该字段为消息推送显示的用户昵称，而非用户属性的用户昵称。     |
 | `cursor`                                      | String | 游标，用于分页显示用户列表。<br/>第一次发起批量查询用户请求时无需设置 `cursor`，请求成功后，从响应 body 中获取 `cursor`，并在下一次请求的 URL 中传入该 `cursor`，直到响应 body 中不再有 `cursor` 字段，则表示已查询到 app 中所有用户。 |
@@ -466,7 +472,9 @@ GET https://{host}/{org_name}/{app_name}/users?limit={N}&{cursor}
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users?limit=2'
 ```
 
-#### <a name="http1"></a>响应示例一
+<a name="http1"></a>
+
+#### 响应示例一
 
 返回注册时间较早的 2 个用户的信息列表：
 
@@ -742,12 +750,12 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}/password
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
 | 参数          | 类型   | 描述                  |
-| :------------ | :----- | :------- | :-------------------- |
+| :------------ | :----- | :------- | 
 | `action` | String | 执行的操作。在该响应中，该参数的值为 `set user password`，表示设置用户密码。 |
 
 其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -806,7 +814,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/deactivate
 
 其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -876,7 +884,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/activate
 
 其他字段及说明详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -929,7 +937,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/disconnect
 | 字段          | 类型 | 描述                                              |
 | :------------ | :--- | :------------------------------------------------ |
 | `data`        | JSON | 对用户强制下线的结果。                                    |
-| `data.result` | Boolean | 用户是否已被强制下线：<br/> - `true`：是；<br/> - `false`：否。|
+| `data.result` | Boolean | 用户是否已被强制下线：<ul><li>`true`：是</li><li>`false`：否</li></ul>|
 
 其他字段及说明详见[公共参数](#param)。
 
@@ -991,8 +999,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 
 如果返回的 HTTP 状态码是 `200`，则表示请求成功。响应包体中包含如下字段：
 
-| 参数       | 类型   | 说明                                                                                                                                               |
-| :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 参数       | 类型   | 说明     |
+| :--------- | :----- | :--------------------------- |
 | `data` | JSON| 用户的在线状态数据。格式为："用户 ID": "当前在线状态"，例如，user1 的在线和离线状态分别为 "user1": "online" 和 "user1": "offline"。 |
 
 其他字段说明详见[公共参数](#param)。
@@ -1180,7 +1188,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 #### 路径参数
 
 | 参数    | 类型   | 描述                          | 是否必填 |
-| :--------: | :----- | :---------------------------- | :--------- |
+| :-------- | :----- | :---------------------------- | :--------- |
 | `username` | String | 要获取离线消息状态的用户 ID。 | 是       |
 | `msg_id`  | String | 要查看离线消息状态的 ID。     | 是       |
 

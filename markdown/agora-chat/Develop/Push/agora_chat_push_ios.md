@@ -587,7 +587,7 @@ message.chatType = AgoraChatTypeChat;
 
 ### 发送静默消息
 
-发送静默消息指用户离线时，环信即时通讯 IM 服务不会通过第三方厂商的消息推送服务向该用户的设备推送消息通知。因此，用户不会收到消息推送通知。当用户再次上线时，会收到离线期间的所有消息。
+发送静默消息指用户离线时，即时通讯 IM 服务不会通过第三方厂商的消息推送服务向该用户的设备推送消息通知。因此，用户不会收到消息推送通知。当用户再次上线时，会收到离线期间的所有消息。
 
 ```swift
 TextMessageBody *body = [[TextMessageBody alloc] initWithText:@"test"];

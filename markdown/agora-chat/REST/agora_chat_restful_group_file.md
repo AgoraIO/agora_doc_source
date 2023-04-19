@@ -1,6 +1,7 @@
 本文展示如何调用即时通讯 RESTful API 管理群公告与群文件。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
+
 ## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数。
@@ -35,7 +36,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 获取群公告
 
@@ -177,9 +178,11 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## 获取群共享文件<a name="retrieve"></a>
+<a name="retrieve"></a>
 
-分页获取指定群组 ID 的群共享文件。调用该 API 后，你可以根据响应中返回的文件 ID（`file_id`，即群共享文件的唯一标识文件 ID）调用[下载群组共享文件](#download) 接口下载该文件，或调用[删除群组共享文件](#delete) 接口删除该文件。
+## 获取群共享文件
+
+分页获取指定群组 ID 的群共享文件。调用该 API 后，你可以根据响应中返回的文件 ID（`file_id`，即群共享文件的唯一标识文件 ID）调用[下载群组共享文件](#download)接口下载该文件，或调用[删除群组共享文件](#delete)接口删除该文件。
 
 ### HTTP 请求
 
@@ -358,7 +361,9 @@ curl -X POST 'http://XXXX/XXXX/XXXX/chatgroups/66021836783617/share_files' -H 'A
 }
 ```
 
-## 下载群共享文件<a name="download"></a>
+<a name="download"></a>
+
+## 下载群共享文件
 
 根据指定的群组 ID 和文件 ID 下载群共享文件。你可以调用[获取群共享文件](#retrieve)的方法获取文件 ID（`file_id`）。
 
@@ -437,7 +442,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 }
 ```
 
-## 删除群共享文件<a name="delete"></a>
+<a name="delete"></a>
+
+## 删除群共享文件
 
 根据指定的群组 ID 和文件 ID 删除群共享文件，文件 ID 可从[获取群组共享文件](#retrieve) 接口的响应中获取。
 
@@ -510,6 +517,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

@@ -3,6 +3,7 @@
 调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
+
 ## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数。
@@ -36,7 +37,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 查询群组黑名单
 
@@ -58,8 +59,8 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 
 #### 请求 header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| 参数          | 类型   | 描述                    | 是否必需 |
+| :------------ | :----- | :--------------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
@@ -439,6 +440,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

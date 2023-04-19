@@ -1,7 +1,9 @@
 本文展示如何调用即时通讯 RESTful API 实现全类型的消息，包括文本消息、图片消息、语音消息、视频消息、透传消息和自定义消息的发送与接收、消息附件上传和下载、获取历史消息记录、服务端消息撤回、服务端单向删除会话等。
 调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
@@ -40,9 +42,11 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
-## <a name="sendmessage"></a>发送消息
+<a name="sendmessage"></a>
+
+## 发送消息
 
 在服务端实现用户到用户，用户到群组或用户到聊天室的消息发送与接收。消息类型包括文本、图片、语音、视频、透传以及自定义消息。
 
@@ -83,7 +87,9 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `Accept`     | String | 内容类型。填入 `application/json`。                              | 是    |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是    |
 
-#### 通用请求体<a name="commonbody"></a>
+<a name="commonbody"></a>
+
+#### 通用请求体
 
 通用请求体为 JSON 对象，是所有消息的外层结构。不同类型的消息只是 `body` 字段内容存在差异。
 
@@ -98,7 +104,9 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | `ext`         | JSON   | 消息支持扩展字段，可添加自定义信息。该字段不能设置为 `null`。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义字段](./agora_chat_push_ios#自定义字段) 和 [Android 推送自定义字段](./agora_chat_push_android#自定义字段)。      | 否       |
 | `msg_timestamp`        | Number   | 服务器收到该消息的时间戳。若不传该参数，服务器收到消息后会自动生成一个消息接收时间戳。       | 否          |
 
-#### <a name="msg"></a>body 字段说明
+<a name="msg"></a>
+
+#### body 字段说明
 
 ##### 文本消息
 
@@ -946,12 +954,14 @@ curl -X POST -i "https://XXXX/XXXX/XXXX/messages/chatrooms" -H 'Content-Type: ap
 }
 ```
 
-## <a name="upload"></a>文件上传
+<a name="upload"></a>
+
+## 文件上传
 
 对于附件类型的消息，如图片、语音、视频或其他类型文件，发送消息前需上传文件。图片和视频存在缩略图，文件上传详情如下：
 
-- 图片：可调用文件上传接口上传原图，Agora 服务器会自动为图片生成缩略图。若上传的图片在 10 KB 以内，缩略图与原图等同；若图片超过 10 KB，Agora 服务器会根据你在请求中设置的图片高度和宽度，即 `thumbnail-height` 和 `thumbnail-width` 参数，生成缩略图。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
-- 视频：Agora 服务器不会自动为视频文件生成缩略图。若需要视频缩略图，需先调用文件上传接口上传缩略图。然后，再次调用文件上传接口上传视频源文件。上传视频文件时，无需传 `thumbnail-height` 和 `thumbnail-width` 参数。上传视频缩略图时，若图片在 10 KB 以内，视频缩略图即为上传的图片。如果图片超过 10 KB，而且设置了这两个参数，视频缩略图的高度和宽度取决于这两个参数的设置。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
+- 图片：可调用文件上传接口上传原图，声网服务器会自动为图片生成缩略图。若上传的图片在 10 KB 以内，缩略图与原图等同；若图片超过 10 KB，声网服务器会根据你在请求中设置的图片高度和宽度，即 `thumbnail-height` 和 `thumbnail-width` 参数，生成缩略图。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
+- 视频：声网服务器不会自动为视频文件生成缩略图。若需要视频缩略图，需先调用文件上传接口上传缩略图。然后，再次调用文件上传接口上传视频源文件。上传视频文件时，无需传 `thumbnail-height` 和 `thumbnail-width` 参数。上传视频缩略图时，若图片在 10 KB 以内，视频缩略图即为上传的图片。如果图片超过 10 KB，而且设置了这两个参数，视频缩略图的高度和宽度取决于这两个参数的设置。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
 
 同时，为了保证聊天文件的安全，我们的 API 保证了以下几点：
 
@@ -1033,7 +1043,9 @@ curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer <YourApp
 }
 ```
 
-## <a name="download"></a>文件下载
+<a name="download"></a>
+
+## 文件下载
 
 下载图片、语音、视频或其他类型文件。
 
@@ -1076,7 +1088,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <YourAppToken>' -H 'share-secret: f0Vr-uyyEeiHpHmsu53XXXXXXXXZYgyLkdfsZ4xo2Z0cSBnB' 'http://XXXX/XXXX/XXXX/chatfiles/7f456bf0-XXXX-XXXX-b630-777db304f26c'-o /Users/test/easemob/image/image.JPG
 ```
 
-<div class="alert note">上述请求示例中，`/Users/test/easemob/image/image.JPG` 为即时通讯 IM 的本地文件路径，使用时请替换为自己的文件路径，否则会请求失败。</div>
+<div class="alert note">上述请求示例中，"/Users/test/easemob/image/image.JPG" 为即时通讯 IM 的本地文件路径，使用时请替换为自己的文件路径，否则会请求失败。</div>
 
 #### 响应示例
 
@@ -1117,7 +1129,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功。参数及描述详见[公共参数](#公共参数)。参数及描述详见[公共参数](#param)。
+如果返回的 HTTP 状态码为 200，表示请求成功。参数及描述详见[公共参数](#公共参数)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -1195,7 +1207,7 @@ GET https://{host}/{org_name}/{app_name}/chatmessages/${time}
 
 其他字段及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1523,7 +1535,7 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 | `to`        | String | 要撤回消息的接收方。<ul><li>单聊为接收方用户 ID；</li><li>群聊为群组 ID；</li><li>聊天室聊天为聊天室 ID。</li><li>若不传入该参数，请求失败。</li></ul>       | 是       |
 | `chat_type` | String | 要撤回消息的会话类型：<ul><li>`chat`：单聊</li><li>`groupchat`：群聊 </li><li>`chatroom`：聊天室 </li></ul>  | 是       |
 | `from`      | String | 消息撤回方的用户 ID。若不传该参数，默认为 `admin`。      | 否       |
-| `force`     | Boolean   | 是否为强制撤回：<ul><li>`true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](./agora_chat_limitation#消息存储时长)；</li><li>`false`：否，不支持撤回超过服务器存储时间的消息。</li></ul> | 是       |
+| `force`     | Boolean   | 是否为强制撤回：<ul><li>`true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](./agora_chat_limitation#消息存储时长)。</li><li>`false`：否，不支持撤回超过服务器存储时间的消息。</li></ul> | 是       |
 
 ### HTTP 响应
 
@@ -1724,7 +1736,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users/import
 | :------- | :----- | :---------------------- |
 | `msg_id` | String | 导入消息返回的消息 ID。 |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -1895,6 +1907,6 @@ curl -X POST -H "Authorization: Bearer <YourAppToken> " "https://XXXX/XXXX/XXXX/
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

@@ -1,6 +1,8 @@
 本文介绍如何调用即时通讯 RESTful API 实现聊天室自定义属性（KV）管理，包括设置、删除和获取聊天室自定义属性。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
@@ -374,6 +376,6 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

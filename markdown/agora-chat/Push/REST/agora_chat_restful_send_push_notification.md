@@ -12,7 +12,9 @@
 
 每次调用这三个接口，服务端均会创建一个推送任务，生成推送任务 ID，用于推送任务的数据统计。
  
-## <a name="param"></a>公共参数
+ <a name="param"></a>
+
+## 公共参数
 
 ### 请求参数
 
@@ -26,7 +28,7 @@
 ### 响应参数
 
 | 参数       | 类型       | 描述                |
-| :---------------- | :----------------------------------- | :----------------------------------- |
+| :---------------- | :------------------- | :----------- |
 | `timestamp`    | Number    | 响应的 Unix 时间戳，单位为毫秒。         |
 | `duration`     | Number   | 从发送请求到响应的时长，单位为毫秒。         |
 
@@ -36,7 +38,7 @@
 
 Authorization：`Bearer ${YourAppToken}`
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
+为提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 向指定用户发送推送通知
 
@@ -78,7 +80,7 @@ POST https://{host}/{org_name}/{app_name}/push/single
 | :----------- | :----- | :-------- |
 | `data`       | JSON   | 推送结果。|
 | `id`         | String | 推送的目标用户 ID。             |
-| `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：同步推送成功；</li><li>`FAIL`：推送失败，即非服务端导致的错误，例如 `bad device token`，表示移动端传给服务端的 device token 错误，对应推送厂商不接受；</li><li>`ERROR`：推送异常，即服务端导致错误，例如连接超时或读写超时。</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
+| `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：同步推送成功。</li><li>`FAIL`：推送失败，即非服务端导致的错误，例如 `bad device token`，表示移动端传给服务端的 device token 错误，对应推送厂商不接受。</li><li>`ERROR`：推送异常，即服务端导致错误，例如连接超时或读写超时。</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
 | `desc`       | String | 推送结果的相关描述。     | 
 
 其他参数及描述详见[公共参数](#param)。
@@ -125,7 +127,7 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 
 若传单个标签，则向单个标签内的所有用户发送推送通知。若传多个标签，则消息推送给同时存在这些标签中的用户，即取标签中的用户交集。
 
-最多同时执行的 3 个推送任务。
+最多同时执行 3 个推送任务。
 
 ### HTTP 请求
 
@@ -204,7 +206,7 @@ curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
 
 对 app 下的所有用户发送推送通知。
 
-最多同时执行的 3 个推送任务。
+最多同时执行 3 个推送任务。
 
 ### HTTP 请求
 

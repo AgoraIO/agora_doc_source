@@ -39,23 +39,24 @@
 ```javascript
 // 在子区内发送文本消息
 function sendTextMessage() {
-    let option = {
-        chatType: 'groupChat',     // 会话类型，设置为群聊。
-        type: 'txt',               // 消息类型。
-        to: chatThreadId,          // 消息接收方（子区 ID)。
-        msg: 'message content'     // 消息内容。
-        isChatThread:true,   // 子区消息标记。
-    }
-    let msg = WebIM.message.create(option);
-    connection.send(msg).then(() => {
-        console.log('send private text Success');
-    }).catch((e) => {
-        console.log("Send private text error");
-    })
+  let option = {
+    chatType: 'groupChat',     // 会话类型，设置为群聊。
+    type: 'txt',               // 消息类型。
+    to: chatThreadId,          // 消息接收方（子区 ID)。
+    msg: 'message content'     // 消息内容。
+    isChatThread:true,   // 子区消息标记。
+  }
+  let msg = WebIM.message.create(option);
+  connection.send(msg).then(() => {
+    console.log('send private text Success');
+  }).catch((e) => {
+    console.log("Send private text error");
+  })
 };
 ```
 
 关于发送消息的逻辑，详见[发送消息](./agora_chat_send_receive_message_web#发送文本消息)。
+
 ### 接收子区消息
 
 子区有新消息时，子区所属群组的所有成员收到 `onChatThreadChange`回调，事件为 `update`。子区成员也可以通过监听 `onTextMessage` 回调接收子区消息，如以下代码示例所示：
@@ -64,11 +65,11 @@ function sendTextMessage() {
 // 监听收到的文本消息
 connection.addEventHandler('THREADMESSAGE',{
   onTextMessage:(message) =>{
-            if(message.chatThread && JSON.stringify(message.chatThread)!=='{}'){
-        console.log(message)
-        // 接收到子区消息，添加处理逻辑。
-      }
-    },
+    if(message.chatThread && JSON.stringify(message.chatThread)!=='{}'){
+      console.log(message)
+      // 接收到子区消息，添加处理逻辑。
+    }
+  },
 });
 ```
 
@@ -95,8 +96,8 @@ connection.recallMessage(option).then((res) => {
 // 监听要撤回的消息：
 conn.addEventHandler('MESSAGES',{
    onRecallMessage: => (msg) {
-       // 接收到子区消息被撤回，添加处理逻辑。
-       console.log('撤回成功'，msg)
+    // 接收到子区消息被撤回，添加处理逻辑。
+    console.log('撤回成功'，msg)
    },
 })
 ```

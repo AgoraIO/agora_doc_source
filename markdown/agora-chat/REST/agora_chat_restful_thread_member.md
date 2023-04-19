@@ -26,7 +26,7 @@
 | `uri`             | String | 请求 URI，即请求 URL 的一部分。无需关注。                        |
 | `properties`      | JSON | 响应属性。                                                          |
 
-## 认证方式 <a name="auth"></a>
+## 认证方式
 
 即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 中填入如下 `Authorization` 字段：
 
@@ -270,8 +270,6 @@ curl -X DELETE http://XXXX.com/XXXX/testapp/thread/177916702949377/users -H 'Aut
     "uri": "http://XXXX.com/XXXX/testy/thread/179786360094768/users"
 }
 ```
-
-<a name="code"></code>
 
 ## 状态码
 

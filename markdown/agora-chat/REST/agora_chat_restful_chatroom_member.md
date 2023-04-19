@@ -10,24 +10,26 @@
 | 聊天室管理员 | 由聊天室创建者授权，协助聊天室管理，具有管理权限。 | 管理员可以管理聊天室内的普通成员。 最多支持添加 99 个管理员。                  |
 | 聊天室所有者 | 聊天室的创建者，具有聊天室最高权限。               | 聊天室所有者可以指定聊天室管理员、解散聊天室、修改聊天室信息、管理聊天室成员。 |
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 下表列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
 ### 请求参数
 
-| 参数          | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
-| :------------ | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
-| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
-| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
+| 参数          | 类型   | 描述           | 是否必填 |
+| :------------ | :----- | :------------------- | :------- |
+| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
+| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
+| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
 | `username`    | String | 用户 ID。用户的唯一登录账号。 | 是       |
-| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，可从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#查询所有聊天室基本信息) 的响应 body 中获取。                                                                 | 是       |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，可从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#查询所有聊天室基本信息)的响应 body 中获取。       | 是       |
 
 ### 响应参数
 
-| 参数                | 类型   | 描述                                                              |
-| :------------------ | :----- | :---------------------------------------------------------------- |
+| 参数                | 类型   | 描述       |
+| :------------------ | :----- | :--------------------- |
 | `action`            | String | 请求方式。                                                        |
 | `organization`      | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`       | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
@@ -47,7 +49,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 添加单个聊天室成员
 
@@ -81,7 +83,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users/{usernam
 
 | 字段     | 类型   | 描述                                                    |
 | :------- | :----- | :------------------------------------------------------ |
-| `result` | Boolean   | 是否添加成功：<ul><li>`true：`是</li><li>`false`：否</li></ul> |
+| `result` | Boolean   | 是否添加成功：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 | `action` | String | 执行的操作，`add_member` 表示向聊天室添加成员。         |
 | `id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
 | `user`   | String | 成功添加为成员的用户 ID。                                    |
@@ -638,6 +640,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

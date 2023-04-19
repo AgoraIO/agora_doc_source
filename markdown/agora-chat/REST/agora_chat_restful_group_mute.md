@@ -3,6 +3,7 @@
 本文展示如何调用即时通讯 RESTful API 管理禁言列表。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
+
 ## 公共参数
 
 下表列明即时通讯 RESTful API 的公共请求参数和响应参数。
@@ -37,7 +38,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 禁言指定群成员
 
@@ -61,8 +62,8 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 
 #### 请求 header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| 参数          | 类型   | 描述        | 是否必需 |
+| :------------ | :----- | :-------------- | :------- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
@@ -283,7 +284,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/ban
 如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
 
 | 字段      | 类型    | 描述                                                  |
-| :------- | :------ | :---------------------------------------------------- |
+| :------- | :------ | :------------------------ |
 | `data` | JSON | 全员禁言结果。 |
 | `data.mute` | Boolean | 是否处于全员禁言状态。<br/> - `true`：是； <br/> - `false`：否。 |
 
@@ -339,8 +340,8 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/mute
 
 #### 请求 header
 
-| 参数          | 类型   | 描述                                                         | 是否必需 |
-| :------------ | :----- | :----------------------------------------------------------- | :------- |
+| 参数          | 类型   | 描述     | 是否必需 |
+| :------------ | :----- | :------------- | :------- |
 | `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
@@ -387,6 +388,6 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

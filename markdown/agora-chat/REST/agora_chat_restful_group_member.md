@@ -3,6 +3,7 @@
 本文展示如何调用即时通讯 RESTful API 管理群组成员。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
+
 ## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数。
@@ -739,6 +740,6 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
 详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

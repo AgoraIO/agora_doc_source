@@ -8,7 +8,9 @@
 
 调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
@@ -52,6 +54,7 @@ Authorization: Bearer YourAppToken
 用户属性由多个属性名和属性值的键值对组成，每个属性名有且仅有一个对应的属性值。
 
 <div class="alert info">一个用户的属性总长度不得超过 2 KB，一个 app 下所有用户的属性总长度不得超过 10 GB。</div>
+
 ### HTTP 请求
 
 ```http
