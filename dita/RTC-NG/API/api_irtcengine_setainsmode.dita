@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setainsmode">
     <title><ph keyref="setAINSMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">设置是否开启 AI 降噪功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置是否开启 AI 降噪功能并设置降噪模式。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,13 +30,12 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>你可以调用开方法来开启 AI 降噪功能。该功能可以在保证语音质量的前提下，智能化检测并降低周围环境中多种稳态与非稳态噪声，使人声更加清晰。你还可以设置不同的降噪模式来适应你的业务场景。</p>
-            <p>稳态噪声指在任何时间点上都具有相同频率的噪声，常见的稳态噪声有：
+            <p>你可以调用开方法来开启 AI 降噪功能。该功能可以在保证语音质量的前提下，智能化检测并降低周围环境中多种稳态与非稳态噪声，使人声更加清晰。
+稳态噪声指在任何时间点上都具有相同频率的噪声，常见的稳态噪声有：
             <ul><li>电视机噪声</li>
             <li>空调噪声</li>
-            <li>交通工具噪声</li>
-            <li>工厂机器噪声等</li></ul></p>
-            <p>非稳态噪声是指随时间而快速变化的噪声，常见的非稳态噪声有：
+            <li>工厂机器噪声等</li></ul>
+非稳态噪声是指随时间而快速变化的噪声，常见的非稳态噪声有：
             <ul><li>雷声</li>
             <li>爆炸声</li>
             <li>破裂声等</li></ul></p>
@@ -51,7 +50,7 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>是否开启 AI 降噪功能：
-                
+
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：<ph>开启 AI 降噪功能。</ph></li>
                     <li><codeph><ph keyref="false"/></codeph>：<ph>（默认）关闭 AI 降噪功能。</ph> </li>
@@ -63,8 +62,8 @@
                     <p props="cpp apple framework">降噪模式，详见 <xref keyref="AUDIO_AINS_MODE"/>。</p>
                     <p props="android">降噪模式：
                     <ul>
-                    <li>0：（默认）弱降噪模式。如果你对降噪无特殊要求，可选择该模式。</li>
-                    <li>1：强降噪模式；适用于对噪声抑制性能要求较高的场景，如户外直播。该模式可以更大程度地减少噪声，但同时可能会对语音造成一定损伤。</li>
+                    <li>0：（默认）弱降噪模式。如果你希望实现对噪声抑制和延时都较为均衡的降噪效果，可选择该模式。</li>
+                    <li>1：强降噪模式；适用于对噪声抑制性能要求较高的场景，如户外直播。该模式可以更大程度地减少噪声，但同时可能会造成语音损伤。</li>
                     <li>2：低延时强降噪模式。该模式的降噪延时比弱降噪和强降噪模式大约低一半，适用于对降噪及低延时要求较高的场景，如实时合唱。</li>
                     </ul> </p>
                 </pd>
