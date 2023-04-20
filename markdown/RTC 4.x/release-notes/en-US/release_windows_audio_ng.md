@@ -10,7 +10,8 @@
 
  #### Issues fixed
 
- This release fixed the issue that playing audio files with a sample rate of 48 kHz failed.
+- This release fixed the issue that playing audio files with a sample rate of 48 kHz failed.
+- At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
 
  #### API changes
 

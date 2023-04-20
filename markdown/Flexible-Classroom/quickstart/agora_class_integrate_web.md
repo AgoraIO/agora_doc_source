@@ -145,7 +145,7 @@ externals: {
             rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
             language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。
             duration: 60 * 30, // 课程时间，单位为秒。
-            recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.0/record_page.html',
+            recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.21/record_page.html',
             courseWareList: [],
             virtualBackgroundImages: [], // 虚拟背景图片资源列表
             webrtcExtensionBaseUrl: 'https://solutions-apaas.agora.io/static', // WebRTC 插件部署地址

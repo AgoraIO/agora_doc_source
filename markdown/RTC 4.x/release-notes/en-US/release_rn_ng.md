@@ -227,3 +227,18 @@ This release fixed the following issues:
 
 - `onApiCallExecuted`: Use the callbacks triggered by specific methods instead.
 - `RelayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
+
+
+## v4.0.0
+
+v4.0.0 was released on September 15, 2022.
+
+#### New features
+
+**3. Full HD and Ultra HD resolution**
+
+In order to improve the interactive video experience, the SDK optimizes the whole process of video capturing, encoding, decoding and rendering. Starting from this version, it supports Full HD (FHD) and Ultra HD (UHD) video resolutions. You can set the `dimensions` parameter to 1920 × 1080 or higher resolution when calling the `setVideoEncoderConfiguration` method. If your device does not support high resolutions, the SDK will automatically fall back to an appropriate resolution.
+
+<div class="alert info"><li>The UHD resolution (4K, 60 fps) is currently in beta and requires certain device performance and network bandwidth. If you want to experience this feature, contact <a href="mailto:support@agora.io">technical support</a>.
+<li>High resolution typically means higher performance consumption. To avoid a decrease in experience due to insufficient device performance, Agora recommends that you enable FHD and UHD video resolutions on devices with better performance.
+<li>The increase in the default resolution affects the aggregate resolution and thus the billing rate. See <a href="./billing_rtc_ng">Pricing</a>.</div>

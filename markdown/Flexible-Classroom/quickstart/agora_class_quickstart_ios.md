@@ -42,10 +42,10 @@ pod --version
 	git checkout release/{VERSION} 
 	```
 	
-	例如要切换到 2.8.0 版本分支，执行以下命令：
+	例如要切换到 2.8.20 版本分支，执行以下命令：
 	
 	```
-	git checkout release/2.8.0
+	git checkout release/2.8.20
 	```
 
 ## 启动灵动课堂

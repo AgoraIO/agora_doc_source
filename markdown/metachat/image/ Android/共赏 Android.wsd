@@ -1,0 +1,46 @@
+@startuml
+autonumber
+participant "App" as a #LightGrey
+participant "RtcEngine" as e #White
+participant "IMediaPlayer" as d #White
+participant "IMetachatScene" as f
+participant "IMediaPlayerObserver" as b #White
+participant "IMediaPlayerVideoFrameObserver" as c #White
+a -> f: 完成一系列准备工作并进入场景
+== 开启视频显示屏 ==
+a -> f: enableVideoDisplay
+== 完成播放的准备工作 ==
+a -> d: createMediaPlayer
+a -> d: open
+a -> e: joinChannel
+note right
+publishMicrophoneTrack(true)
+publishMediaPlayerAudioTrack(true)
+publishMediaPlayerId 中传入 MediaPlayer 的 ID
+end note
+== 创建数据流 ==
+a -> e: createDataStream
+note right
+数据流用于在多端同步播放进度等信息
+end note
+== 开始播放 ==
+a -> d: play
+== 同步播放进度 ==
+b --> a: onPositionChanged
+a -> e: sendStreamMessage
+note right
+将媒体文件 URL 和播放进度同步给远端
+end note
+== 获取并推送视频至显示屏 ==
+c --> a: onFrame
+a -> f: pushVideoFrameToDisplay
+== 停止播放 ==
+a -> d: stop
+a -> e: sendStreamMessage
+note right
+停止播放时将发送的媒体文件 URL 设为空
+end note
+== 离开 RTC 频道和 MetachatScene ==
+a -> e: leaveChannel
+a -> f: leaveScene
+@enduml

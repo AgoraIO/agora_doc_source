@@ -178,7 +178,7 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWi
    }
    ```
    
-   <div class="alert info">完整代码可在 <a href="https://github.com/AgoraIO-Community/CloudClass-Android">CloudClass-Android</a> 仓库 <code>/AgoraEduUIKit/src/main/java/com/agora/edu/component/teachaids/component/AgoraEduTeachAidContainerComponent.kt</code> 文件中查看。</div>
+   <div class="alert info">完整代码可在 <a href="https://github.com/AgoraIO-Community/CloudClass-Android">CloudClass-Android</a> 仓库 <a href="https://github.com/AgoraIO-Community/CloudClass-Android/blob/release/2.8.20/AgoraEduUIKit/src/main/java/com/agora/edu/component/teachaids/component/AgoraEduTeachAidContainerComponent.kt"><code>AgoraEduTeachAidContainerComponent.kt</code></a> 文件中查看。</div>
 
 ## API 参考
 
