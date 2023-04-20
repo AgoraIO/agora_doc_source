@@ -43,7 +43,7 @@
 
 SDK 内部会按照这个顺序检测设备的推送支持情况。
 
-如果未设置第三方推送或者不满足使用第三方推送的条件，即时通讯 IM SDK 会通过一些保活手段尽可能的保持与环信服务器的长连接，以确保消息及时送达。
+如果未设置第三方推送或者不满足使用第三方推送的条件，即时通讯 IM SDK 会通过一些保活手段尽可能的保持与声网服务器的长连接，以确保消息及时送达。
 
 <div class="alert info">
 如果你的 App 有海外使用场景，建议开启 FCM 推送；由于各推送使用条件不同，建议尽可能同时支持各家推送。</div>
@@ -427,11 +427,11 @@ ChatClient.getInstance().init(this, options);
 
 1. 配置 OPPO 推送 jar 包。
 
-在 OPPO 推送官网下载推送 SDK 包，将 jar 包放到 libs 目录下并 sync。也可以直接使用环信 Android IM Demo 中集成的 OPPO 推送的 jar 包。
+在 OPPO 推送官网下载推送 SDK 包，将 jar 包放到 libs 目录下并同步。也可以直接使用声网 Android IM Demo 中集成的 OPPO 推送的 jar 包。
 
 2. 配置 `AndroidManifest.xml`。
 
-  <div class="alert info">OPPO 推送在 2.1.0 适配了 Android Q，在 Android Q上接收 OPPO 推送需要升级环信 SDK 到 3.7.1 以及之后的版本，并使用 OPPO 推送 2.1.0 的包。从 1.0.3 版本开始，升级 OPPO 推送版本到 3.0.0</div>
+  <div class="alert info">OPPO 推送在 2.1.0 适配了 Android Q，在 Android Q 上接收 OPPO 推送需要使用 OPPO 推送 2.1.0 的包。从 1.0.3 版本开始，升级 OPPO 推送版本到 3.0.0。</div>
 
  - 推送服务需要的权限列表：
 
@@ -486,7 +486,7 @@ HeytapPushManager.init(context, true);
 
 ### VIVO 推送集成
 
-环信即时通讯 IM SDK 中已经集成了 VIVO 推送（基于 `vivo_push_v2.3.1.jar`）相关逻辑，你还需要完成以下步骤：
+即时通讯 IM SDK 中已经集成了 VIVO 推送（基于 `vivo_push_v2.3.1.jar`）相关逻辑，你还需要完成以下步骤：
 
 #### 1. 在 VIVO 开发者后台创建应用
 
@@ -504,7 +504,7 @@ HeytapPushManager.init(context, true);
 
 #### 3. VIVO 推送集成
 
-1. 配置 VIVO 推送 jar 包： 去 VIVO 推送官网下载推送 SDK 包，把 jar 包放到 libs 目录下并 sync 。也可以直接使用环信 Android IM Demo 中集成的 VIVO 推送的 jar 包。
+1. 配置 VIVO 推送 jar 包： 在 VIVO 推送官网下载推送 SDK 包，将 jar 包放到 libs 目录下并同步。也可以直接使用即时通讯 IM 的 Android Demo 中集成的 VIVO 推送的 jar 包。
 
 2. 配置 `AndroidManifest.xml`。
 
@@ -708,7 +708,7 @@ ChatClient.getInstance().init(this, options);
 
 **免打扰模式**
 
-你可以在 app 级别指定免打扰时间段和免打扰时长，环信 IM 在这两个时间段内不发送离线推送通知。若既设置了免打扰时间段，又设置了免打扰时长，免打扰模式的生效时间为这两个时间段的累加。
+你可以在 app 级别指定免打扰时间段和免打扰时长，即时通讯 IM 在这两个时间段内不发送离线推送通知。若既设置了免打扰时间段，又设置了免打扰时长，免打扰模式的生效时间为这两个时间段的累加。
 
 免打扰时间参数的说明如下表所示：
 

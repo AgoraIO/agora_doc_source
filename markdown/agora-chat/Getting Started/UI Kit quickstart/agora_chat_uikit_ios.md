@@ -10,9 +10,10 @@
 
 ## 前提条件
 
-- Xcode，推荐最新版本；
-- 运行 iOS 11.0 及以上版本的设备或模拟器；
+- Xcode，推荐最新版本。
+- 运行 iOS 11.0 及以上版本的设备或模拟器。
 - 有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7);
+- [开启了即时通讯 IM 服务](./enable_agora_chat)。
 - 安装 CocoaPods 工具。详见 [CocoaPods 安装指南](https://guides.cocoapods.org/using/getting-started.html#getting-started)。
 
 ## 项目设置

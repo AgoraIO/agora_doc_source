@@ -25,7 +25,7 @@
 
 ![](./images/quickstart/config_chat.png)
 
-   如果你未订阅套餐包，你会看到弹窗提示订阅套餐包，点击 **订阅** 进入套餐包订阅页面。关于如何订阅套餐包，详见 [订阅即时通讯套餐包](./agora_chat_pricing?platform=All%20Platforms#订阅套餐包)。
+   如果你未订阅套餐包，你会看到弹窗提示订阅套餐包，点击 **订阅** 进入套餐包订阅页面。关于如何订阅套餐包，详见[订阅即时通讯套餐包](./agora_chat_pricing?platform=All%20Platforms#订阅套餐包)。
 
 4. 仔细阅读弹窗提示，根据你的应用服务器所在区域选择即时通讯服务的数据中心，点击 **启用**。成功开启即时通讯服务后，**启用** 按钮会切换为**配置** 按钮，用于配置即时通讯。
 
@@ -58,7 +58,7 @@
 
 ## 添加消息推送证书
  
-发送消息推送前，需要配置各平台的推送证书。当前支持平台：苹果、谷歌 FCM、华为、小米、OPPO、魅族和 VIVO。详见 [设置消息推送](./agora_chat_push_android?platform=Android)。 
+发送消息推送前，需要配置各平台的推送证书。当前支持平台：苹果、谷歌 FCM、华为、小米、OPPO、魅族和 VIVO。详见[设置消息推送](./agora_chat_push_android?platform=Android)。 
 
 开通即时通讯服务后，按照以下步骤添加消息推送证书：
 
@@ -66,15 +66,15 @@
 2. 在**服务配置**页面，点击**即时通讯**中的**配置**链接。
 3. 选择**功能配置** > **推送证书**，点击 **添加推送证书**。
 
-![](./images/enablechat/push_cert_add.png)
+![](./images/push/push_cert_add.png)
 
 4. 在弹出的**添加推送证书**对话框内填写各平台消息推送所需的证书名称、推送密钥等信息，然后点击 **保存**。
 
 ## 添加消息回调地址
 
-即时通讯提供消息回调服务，配置回调后，你的应用服务器会收到所选类型的消息和事件。详见 [设置 HTTP 回调](./agora_chat_set_up_webhooks)。
+即时通讯提供消息回调服务，配置回调后，你的应用服务器会收到所选类型的消息和事件。详见[设置 HTTP 回调](./agora_chat_set_up_webhooks)。
 
-1. 登录[声网控制台](https://console.agora.io/)，在[项目管理](https://console.agora.io/projects) 页面找到你的项目，然后点击**配置**按钮。
+1. 登录[声网控制台](https://console.agora.io/)，在项目管理页面找到你的项目，然后点击**配置**按钮。
 
 2. 在**服务配置**页面找到 **即时通讯 IM**，点击 **配置**。
 
@@ -82,8 +82,10 @@
 
 4. 在**功能配置** > **消息回调** 页面，单击 **添加回调规则**。
 
+![](https://web-cdn.agora.io/docs-files/1681712126525)
+
    ![](./images/callback/callback_add_rule.png)
 
 5. 在回调配置对话框中，填写回调相关配置信息，点击**保存**，完成回调配置。关于回调配置，详见[配置回调规则](./agora_chat_set_up_webhooks#配置回调规则)。
 
-![](./images/enablechat/callback_add_predeliveryrule.png)
+![](./images/callback/callback_add_predeliveryrule.png)

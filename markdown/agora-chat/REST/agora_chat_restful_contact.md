@@ -1,6 +1,6 @@
 用户关系管理是指添加好友、移除好友以及将用户添加至或移出黑名单。
 
-本文展示如何调用即时通讯 RESTful API 管理好友。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 管理好友。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 ## 公共参数
@@ -11,9 +11,9 @@
 
 | 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :----- | :----------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
 | `username` | String | 用户 ID。 | 是       |
 
 ### 响应参数
@@ -42,7 +42,7 @@ Authorization: Bearer YourAppToken
 
 ## 添加好友
 
-将同一个 App Key 下的用户添加为好友。不同套餐版本支持的用户好友数不同，其中免费版支持的最多好友数为 100。详情请参考 [限制条件](./agora_chat_limitation)。
+将同一个 App Key 下的用户添加为好友。不同套餐版本支持的用户好友数不同，其中免费版支持的最多好友数为 100。详情请参考[限制条件](./agora_chat_limitation)。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
@@ -88,7 +88,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 
 其他字段即说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [响应状态码](error.html) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -171,7 +171,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 
 其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [响应状态码](error.html) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -225,7 +225,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 | :------------- | :----- | :----------------- | :------- |
 | `owner_username` | String | 好友列表所有者的用户 ID。 | 是       |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他字段说明详见[公共参数](#pubparam)。
 
 #### 请求 Header
 
@@ -246,9 +246,9 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 | `data`  | Array  | 获取的好友列表，例如 "user1", "user2"。 |
 | `count` | Number | 好友数量。           |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -277,7 +277,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 添加用户至黑名单
 
-将指定用户添加到黑名单。添加后，黑名单中的用户无法给该用户发消息。每个用户的黑名单人数上限为 500。
+将指定用户添加到黑名单。添加后，黑名单中的用户无法给该用户发消息。每个用户的黑名单人数上限为 500，每次最多可添加 50 个黑名单用户。
 
 对于每个 App Key，此方法的调用频率限制为每秒 50 次。
 
@@ -289,11 +289,11 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 #### 路径参数
 
-| 参数             | 类型   | 是否必需 | 描述                                                         |
-| :--------------- | :----- | :------- | :----------------------------------------------------------- |
-| `owner_username` | String | 是    | 当前的用户 ID。                                                 |
+| 参数             | 类型   | 是否必需 | 描述         |
+| :--------------- | :----- | :------- | :----------------- |
+| `owner_username` | String | 是    | 当前的用户 ID。     |
 
-本方法的其他路径参数及描述详见 [公共参数](#pubparam)。
+其他路径参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -309,7 +309,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 字段      | 类型       | 描述                                              | 是否必填 |
 | :-------- | :--------- | :------------------------------------------------ | :------- |
-| `usernames` | Array | 待加入到黑名单中的用户 ID，如 ["user1", "user2"]。 | 是       |
+| `usernames` | Array | 待加入到黑名单中的用户 ID，如 ["user1", "user2"]。每次最多可添传 50 个用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -321,9 +321,9 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 | :--- | :---- | :----------------------------- |
 | `data` | Array | 添加到黑名单列表的用户 ID 列表。 |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -386,12 +386,12 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | 参数 | 类型  | 描述                       |
 | :--- | :---- | :------------------------- |
-| `data` | Array | 获取的黑名单列表，例如 ["user1", "user2"]。 |
+| `data` | Array | 获取的黑名单列表，例如["user1", "user2"]。 |
 | `count`    | Number | 黑名单上用户的数量。                       |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -438,7 +438,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 | `owner_username` | String | 当前用户的用户 ID。| 是 |
 | `blocked_username` | String | 要移出黑名单的用户 ID。 | 是       |
 
-其他路径参数及描述详见 [公共参数](#pubparam)。
+其他路径参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -466,7 +466,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 
 其他字段及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考 [状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -502,7 +502,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-<a name="code"></a>
 ## 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

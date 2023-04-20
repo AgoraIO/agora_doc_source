@@ -7,7 +7,7 @@
 
 ## 前提条件
 
-- 完成 SDK 初始化，详见 [Android 快速开始](./agora_chat_get_started_android?platform=Android)。
+- 完成 SDK 初始化，完成 SDK 初始化，详见 [Android](./agora_chat_get_started_android)、[iOS](./agora_chat_get_started_ios)、[Web](./agora_chat_get_started_web) 或[小程序](./agora_chat_get_started_applet)的快速开始。。
 - 开通即时通讯 IM 服务的进阶版或企业版。
 
 ### 开通审核服务
@@ -137,7 +137,7 @@
 
    ![关键字_zh](https://web-cdn.agora.io/docs-files/1656313419195)
 
-2.在名单管理页面中可以进行名单的增删和消息处理策略的设置。可以用 *** 替换这个词，或者干脆不发送这个词。
+2.在名单管理页面中可以增加和删除名单以及设置含有相应名单的消息的处理策略，包括用 *** 替换该词或拒绝下发消息。
 
 ### 消息内容审核 - 域名过滤
 

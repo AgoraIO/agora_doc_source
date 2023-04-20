@@ -6,7 +6,9 @@
 
 本文档主要介绍如何调用即时推送 RESTful API 实现创建及管理推送标签。调用以下方法前，请先参考[限制条件](./agora_chat_limitation)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 ### 请求参数
 
@@ -30,7 +32,7 @@
 
 Authorization：`Bearer ${YourAppToken}`
 
-为提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见 [使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
+为提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
 ## 创建推送标签
 
@@ -43,7 +45,7 @@ POST https://{host}/{org_name}/{app_name}/push/label
 ```
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -118,7 +120,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 要查询的推送标签的名称。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -178,7 +180,7 @@ GET https://{host}/{org_name}/{app_name}/push/label
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 查询参数
 
@@ -257,7 +259,7 @@ DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 要删除的推送标签的名称。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header 
 
@@ -298,7 +300,7 @@ curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s' \
 
 ## 在推送标签下添加用户 
 
-为用户分配指定的推送标签。
+为用户分配指定的推送标签。单个标签最多可包含 200,000 个用户，每次最多可添加 100 个用户。若需提升上限，可联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。</div>
 
 ### HTTP 请求
 
@@ -312,7 +314,7 @@ POST https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 推送标签的名称。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -387,7 +389,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{username}
 | `labelname` | String | 推送标签的名称。 | 是     |
 | `username`    | String | 要查询的用户 ID。 | 是     | 
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -447,7 +449,7 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 | :---------- | :------- | :----- | :------------- |
 | `labelname` | String | 推送标签的名称。 | 是     |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 查询参数
 

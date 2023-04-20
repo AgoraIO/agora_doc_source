@@ -3,7 +3,7 @@
 
 ## 前提条件
 
-开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 App Key 的声网项目。详见 [开发环境要求](./agora_chat_get_started_web#前提条件)。
+开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 App Key 的声网项目。详见[开发环境要求](./agora_chat_get_started_web#前提条件)。
 
 ## 导入 SDK
 

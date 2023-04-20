@@ -1,8 +1,10 @@
 在即时通讯应用中，仅聊天室超级管理员具有在客户端创建聊天室的权限。
 
-本文展示如何调用即时通讯 RESTful API 实现聊天室超级管理员管理，包括添加、删除、查询聊天室超级管理员。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 实现聊天室超级管理员管理，包括添加、删除、查询聊天室超级管理员。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
@@ -14,7 +16,7 @@
 | `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                      | 是       |
 | `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。       | 是       |
 | `username`    | String | 用户 ID。用户的唯一登录账号。| 是       |
-| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#a-namegetalla查询所有聊天室基本信息) 的响应 body 中获取。         | 是       |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#a-namegetalla查询所有聊天室基本信息)的响应 body 中获取。         | 是       |
 
 ### 响应参数
 
@@ -39,7 +41,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 添加聊天室超级管理员
 
@@ -53,7 +55,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -82,7 +84,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/super_admin
 | `data.result`   | Boolean   | 是否成功添加聊天室超级管理员：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
 | `data.resource` | String | 预留参数，无需关注。                                    |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -134,7 +136,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 | :----------- | :----- | :----------------------------------- | :------- |
 | `superAdmin` | String | 待被撤销的聊天室超级管理员的用户 ID。 | 是       |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -154,7 +156,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/super_admin/{superAdmin}
 | `data.newSuperAdmin` | String | 被撤销的聊天室超级管理员用户 ID。 |
 | `data.resource`      | String | 预留参数，无需关注。             |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -189,7 +191,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 分页查询聊天室超级管理员
 
-查询指定页码的聊天室超级管理员列表。
+分页查询聊天室超级管理员列表。
 
 ### HTTP 请求
 
@@ -199,7 +201,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&pages
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 查询参数
 
@@ -223,12 +225,10 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/super_admin?pagenum={N}&pages
 
 | 参数       | 类型       | 描述                           |
 | :--------- | :--------- | :------------------------------- |
-| `pagenum`  | Number        | 当前页码。                       |
-| `pagesize` | Number        | 当前页显示的超级管理员最大数量。 |
 | `data`     | JSON Array | 聊天室超级管理员的用户 ID 数组。   |
 | `count`    | Number     | 超级聊天室管理员的数量。             |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -245,24 +245,25 @@ curl -X GET http://XXXX/XXXX/XXXX/chatrooms/super_admin?pagenum=2&pagesize=2 -H 
 #### 响应示例
 
 ```json
-{
+ {
     "action": "get",
-    "application": "9fa492a0-XXXX-XXXX-b1b9-a76b05da6904",
-    "params": {
-        "pagesize": ["2"],
-        "pagenum": ["2"]
-    },
-    "uri": "http://XXXX/XXXX/XXXX/chatrooms/super_admin",
-    "entities": [],
-    "data": ["hxtest1", "hxtest11", "hxtest10"],
-    "timestamp": 1596187292391,
-    "duration": 0,
-    "organization": "XXXX",
+    "application": "2a8f5b13-XXXX-XXXX-958a-838fd47f1223",
     "applicationName": "XXXX",
-    "count": 3
+    "count": 3,
+    "data": [
+        "yifan4",
+        "yifan3",
+        "yifan2"
+    ],
+    "duration": 0,
+    "entities": [],
+    "organization": "XXXX",
+    "properties": {},
+    "timestamp": 1681698118068,
+    "uri": "http://a1-hsb.easemob.com/easemob-demo/chatdemoui/chatrooms/super_admin"
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

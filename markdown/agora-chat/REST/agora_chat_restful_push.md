@@ -2,15 +2,18 @@
 
 本文展示如何调用即时通讯 RESTful API 设置消息推送显示昵称、推送通知方式及免打扰模式。
 
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## 前提条件
 
-- 了解即时通讯 IM 的 RESTful API 调用频率限制，详见 [使用限制](./agora_chat_limitation#服务端接口调用频率限制)；
-- 你已在 [Agora 控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
+- 了解即时通讯 IM 的 RESTful API 调用频率限制，详见[使用限制](./agora_chat_limitation#服务端接口调用频率限制)。
+- 你已在[声网控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
 
-<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
-## <a name="param"></a>公共参数
+<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:sales@agora.io">sales@agora.io</a>，因为该操作会删除所有相关配置。</div>
+
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 IM 的 RESTful API 的公共请求参数、响应参数及描述：
 
@@ -18,9 +21,9 @@
 
 | 参数       | 类型   | 描述         | 是否必填 |
 | :--------- | :----- | :--------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                         | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                    | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                           | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                         | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                    | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                           | 是       |
 | `username` | String | 用户 ID，即用户的唯一登录账号。 | 是       |
 
 ### 响应参数
@@ -46,11 +49,13 @@ Authorization: Bearer YourAppToken
 
 为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
-## **设置离线推送时显示的昵称**
+<a name="nick"></a>
+
+## 设置离线推送时显示的昵称
 
 设置消息推送时显示的用户昵称。
 
-对于每个 App Key，此方法的调用频率限制与[用户账号管理接口](./agora_chat_restful_registration?platform=RESTful)一致。
+对于每个 App Key，该接口与[注册单个用户](./agora_chat_restful_registration?platform=RESTful#注册单个用户)、[批量注册用户](./agora_chat_restful_registration?platform=RESTful#批量注册用户)和[设置推送消息展示方式](#display)三个接口的总调用频率的默认值为 100 次/秒/App Key。
 
 ### HTTP 请求
 
@@ -133,11 +138,13 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 }
 ```
 
-## 设置离线推送通知的展示方式
+<a name="display"></a>
+
+## 设置离线推送通知的展示方式 
 
 设置离线推送通知在客户端的展示方式，设置即时生效。服务端据此向用户推送离线消息。 
 
-对于每个 App Key，此方法的调用频率限制与[用户账号管理接口](./agora_chat_restful_registration?platform=RESTful)一致。
+对于每个 App Key，该接口与[注册单个用户](./agora_chat_restful_registration#注册单个用户)、[批量注册用户](./agora_chat_restful_registration#批量注册用户)和[设置离线推送时显示的昵称](#nick)三个接口的总调用频率的默认值为 100 次/秒/App Key。
 
 ### HTTP 请求
 
@@ -151,15 +158,15 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 
 #### 请求 header
 
-| 参数            | 类型 | 描述                                                         | 是否必填 |
-| :-------------- | :--- | :----------------------------------------------------------- | :----- |
+| 参数            | 类型 | 描述       | 是否必填 |
+| :-------------- | :--- | :------------- | :----- |
 | `Content-Type`   | String | 内容类型。填入 `application/json`。    | 是  |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是   |
 
 #### 请求 body
 
-| 参数                         | 类型 | 描述                                                         | 是否必填 |
-| :--------------------------- | :--- | :----------------------------------------------------------- | :----- |
+| 参数                         | 类型 | 描述       | 是否必填 |
+| :--------------------------- | :--- | :-------- | :----- |
 | `notification_display_style` | Number | 离线推送通知的展示方式：<ul><li>（默认）`0`：推送标题为“你有一条新消息”，推送内容为“请点击查看”。</li><li>`1`：推送标题为“你有一条新消息”，推送内容为发送人昵称和离线消息的内容。</li></ul> | 是   |
 
 ### HTTP 响应
@@ -168,8 +175,8 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 
 如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 包含以下字段：
 
-| 参数                         | 类型 | 描述                                                         |
-| :--------------------------- | :--- | :----------------------------------------------------------- |
+| 参数                         | 类型 | 描述          |
+| :--------------------------- | :--- | :---------- |
 | `entities`           | JSON   | 用户的离线推送通知的展示方式以及相关信息。         |
 | `entities.uuid`      | String | 用户的 UUID。系统为该请求中的 app 或用户生成的唯一内部标识，用于生成用户权限 token。              |
 | `entities.type`      | String | 用户类型，即 `user`。     |
@@ -476,8 +483,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/notification/language
 
 #### 请求 header
 
-| 参数            | 类型 | 描述                                                         | 是否必填 |
-| :-------------- | :--- | :----------------------------------------------------------- | :----- |
+| 参数            | 类型 | 描述       | 是否必填 |
+| :-------------- | :--- | :---------------- | :----- |
 | `Content-Type`  | String | 内容类型。填入 `application/json`。                     | 是   |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是   |
 

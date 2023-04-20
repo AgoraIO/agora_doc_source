@@ -6,7 +6,7 @@
 
 开始前，请注册有效的 Agora 账号并创建开启了即时通讯 IM 服务的 App Key 的 Agora 项目。
 
-详见 [开发环境要求](./agora_chat_get_started_ios#前提条件)。
+详见[开发环境要求](./agora_chat_get_started_ios#前提条件)。
 
 ## SDK 初始化
 

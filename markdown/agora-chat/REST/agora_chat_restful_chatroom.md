@@ -1,6 +1,10 @@
-本文展示如何调用即时通讯 RESTful API 实现聊天室管理，包括创建、删除、修改、查询聊天室。调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 实现聊天室管理，包括创建、删除、修改、查询聊天室。
 
-## <a name="param"></a>公共参数
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
@@ -35,7 +39,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 创建聊天室
 
@@ -49,7 +53,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -82,7 +86,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms
 | :--- | :----- | :-------------------------------------------------------------- |
 | `data.id` | String | 创建的聊天室的 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -114,7 +118,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## <a name="getall"></a>查询所有聊天室基本信息
+<a name="getall"></a>
+
+## 查询所有聊天室基本信息
 
 分页获取 app 下所有聊天室的信息。
 
@@ -126,16 +132,16 @@ GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 查询参数
 
 | 参数     | 类型   | 描述                   | 是否必填 |
 | :------- | :----- | :------------------------ | :------- |
 | `limit`  | Number | 每次期望获取的聊天室数量。取值范围为 [1,100]，默认值为 `10`。该参数仅在分页获取时为必需。   | 否  |
-| `cursor` | String | 否   | 数据查询的起始位置。该参数仅在分页获取时为必需。 | 否  |
+| `cursor` | String | 数据查询的起始位置。该参数仅在分页获取时为必需。 | 否  |
 
-<div class="alert info"> 若请求中均未设置 `limit` 和 `cursor`，服务器返回聊天室列表的第一页中前 10 个聊天室。<div>
+<div class="alert info"> 若请求中均未设置 limit 和 cursor，服务器返回聊天室列表的第一页中前 10 个聊天室。</div>
 
 #### 请求 header
 
@@ -157,7 +163,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}
 | `data.owner`              | String | 聊天室创建者的用户 ID。例如：{“owner”: “user1”}。                                |
 | `data.affiliations_count` | Number    | 聊天室现有成员总数（包含聊天室创建者）。                  |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -176,12 +182,44 @@ curl --location --request GET 'http://XXXX/XXXX/XXXX/chatrooms?limit=10' \
 
 ```json
 {
-    "data": {
-        "id": "66211860774913",
-        "name": "test",
-        "owner": "user1",
-        "affiliations_count": 2
-    }
+    "action": "get",
+    "application": "2a8f5b13-XXXX-XXXX-958a-838fd47f1223",
+    "applicationName": "chatdemoui",
+    "count": 3,
+    "data": [
+        {
+            "affiliations_count": 1,
+            "disabled": false,
+            "id": "212126099636225",
+            "name": "testchatroom1",
+            "owner": "yifan1"
+        },
+        {
+            "affiliations_count": 1,
+            "disabled": false,
+            "id": "212126098587649",
+            "name": "testchatroom2",
+            "owner": "yifan1"
+        },
+        {
+            "affiliations_count": 1,
+            "disabled": false,
+            "id": "212126095441921",
+            "name": "testchatroom3",
+            "owner": "yifan1"
+        }
+    ],
+    "duration": 1,
+    "entities": [],
+    "organization": "XXXX",
+    "params": {
+        "limit": [
+            "5"
+        ]
+    },
+    "properties": {},
+    "timestamp": 1681697615739,
+    "uri": "http://a1-hsb.easemob.com/easemob-demo/chatdemoui/chatrooms"
 }
 ```
 
@@ -197,7 +235,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatrooms
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -217,7 +255,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatrooms
 | `data.id`   | String | 该用户加入的聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 | `data.name` | String | 该用户加入的聊天室名称。                                          |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -255,9 +293,9 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 参数          | 类型   | 描述                                                                                                                                                                                                                                               | 是否必填 |
 | :------------ | :----- | :------------------------------------------------------------------- | :------- |
-| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall) 的响应 body 中获取。<ul><li>查询多个聊天室时，聊天室 ID 之间用逗号 "," 隔开。</li><li>一次请求最多查询 100 个聊天室。</li><li>在 URL 中，需要将逗号 "," 转义为 "%2C"。</li></ul> | 是       |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。<ul><li>查询多个聊天室时，聊天室 ID 之间用逗号 "," 隔开。</li><li>一次请求最多查询 100 个聊天室。</li><li>在 URL 中，需要将逗号 "," 转义为 "%2C"。</li></ul> | 是       |
 
-其他参数及说明详见 [公共参数](#param)。
+其他参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -287,7 +325,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | `data.affiliations`       | JSON Array | 聊天室成员数组，包含以下字段：<ul><li>`owner`： 聊天室创建者的用户 ID。</li><li>`member`：聊天室成员的用户 ID。</li></ul>                                          |
 | `data.public`             | Boolean       | 预留字段，无需关注。       |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -372,9 +410,9 @@ PUT https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 
 | 参数          | 类型   | 描述                                                                                                          | 是否必填 |
 | :------------ | :----- | :------------------------------------------------------------------------------------------------------------ | :------- |
-| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall) 的响应 body 中获取。 | 是       |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。 | 是       |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -450,7 +488,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | :------------ | :----- | :----------------------------------------------------------------------------------------------------------- | :------- |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。 | 是       |
 
-其他参数及说明详见 [公共参数](#param)。
+其他参数及说明详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -470,7 +508,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 | `data.success` | Boolean   | 聊天室是否删除成功：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 | `data.id`      | String | 被删除的聊天室 ID。                                             |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -518,7 +556,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 | :-------------- | :----- | :--------------------- | :------- |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。 | 是       |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 ##### 请求 header
 
@@ -540,9 +578,9 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 | :------------------ | :----- | :--------------- |
 | `data.announcement` | String | 聊天室公告内容。 |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](http://docs-im-beta.easemob.com/document/server-side/error.html) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](http://docs-im-beta.easemob.com/document/server-side/error.html)了解可能的原因。
 
 #### 示例
 
@@ -588,7 +626,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 | :-------------- | :----- | :--------------------- | :------- |
 | `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](#getall)的响应 body 中获取。 | 是       |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 ##### 请求 header
 
@@ -613,11 +651,11 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/announcement
 | 字段          | 类型   | 描述                                          |
 | :------------ | :----- | :-------------------------------------------- |
 | `data.id`     | String | 聊天室 ID。                                   |
-| `data.result` | Boolean   | 聊天室公告是否修改成功： <br/> - `true`：是； <br/>  - `false`：否。 |
+| `data.result` | Boolean   | 聊天室公告是否修改成功：<ul><li>`true`：是</li><li>`false`：否</li></ul>|
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](http://docs-im-beta.easemob.com/document/server-side/error.html) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](http://docs-im-beta.easemob.com/document/server-side/error.html)了解可能的原因。
 
 #### 示例
 
@@ -648,6 +686,6 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

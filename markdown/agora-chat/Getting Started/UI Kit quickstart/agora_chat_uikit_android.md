@@ -16,6 +16,7 @@
 - Android Studio 3.2 或以上版本。
 - Java 开发工具包 (JDK)。适用版本请参考 [Android 用户指南](https://developer.android.com/studio/write/java8-support)。
 - 有效的 [声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA-agora-%E8%B4%A6%E5%8F%B7)。
+- [开启了即时通讯 IM 服务](./enable_agora_chat)。
 
 ## 项目设置
 

@@ -2,7 +2,7 @@
 
 本页介绍如何使用即时通讯 IM RESTful API 实现 Reaction 功能。
 
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -14,12 +14,12 @@
 
 | 参数       | 类型   | 描述          | 是否必填 |
 | :--------- | :----- | :---------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。    | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。     | 是  |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。    | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。     | 是  |
 | `username`      | String | 用户 ID，用户唯一登录帐户。           | 是  |
 
-## 认证方式 <a name="auth"></a>
+## 认证方式
 
 即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
 
@@ -27,7 +27,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 <a name="create"></a>
 
@@ -43,7 +43,7 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{username}
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -78,9 +78,9 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{username}
 | `data.createAt`     | Number | Reaction 的创建时间。                                        |
 | `data.updateAt`     | Number | Reaction 的修改时间。                                        |
 
-其他参数及描述详见 [公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -123,12 +123,12 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}?msgIdList={N,M
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
-| 参数        | 类型   | 描述                                                          | 是否必填 |
-| :---------- | :----- | :------------------------------------------------------------ | :------- |
+| 参数        | 类型   | 描述         | 是否必填 |
+| :---------- | :----- | :------------------------- | :------- |
 | `msgIdList` | Array  | 要获取 Reaction 的消息 ID，最多可传 20 个消息 ID。                               | 是       |
 | `msgType`   | String | 消息的会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群聊</li></ul>           | 是       |
 | `groupId`   | String | 群组 ID。如果 `msgType` 设置为 `groupchat`，即拉取群中的 Reaction，必须指定群组 ID。 |  否     |
@@ -158,7 +158,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}?msgIdList={N,M
 | `data.reactionList.state`      | Boolean       | 当前用户是否添加过该 Reaction：<ul><li>`true`: 是</li><li>`false`：否</li></ul> |
 | `data.reactionList.userList`   | Array      | 添加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。 |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -180,7 +180,7 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/{{userId}}?msgIdList=msgId1&
             "reactionList": [
                 {
                     "reactionId": "944330310986837168",
-                    "reaction": message123456,
+                    "reaction": "message123456",
                     "count": 0,
                     "state": false,
                     "userList": [
@@ -196,7 +196,7 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/{{userId}}?msgIdList=msgId1&
             "reactionList": [
                 {
                     "reactionId": "945272584050659838",
-                    "reaction": message123456,
+                    "reaction": "message123456",
                     "count": 0,
                     "state": false,
                     "userList": [
@@ -221,7 +221,7 @@ DELETE https://{host}/{org_name}/{app_name}/reaction/user/{username}?msgId={msgI
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
@@ -249,7 +249,7 @@ DELETE https://{host}/{org_name}/{app_name}/reaction/user/{username}?msgId={msgI
 
 其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -280,7 +280,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}/detail?msgId={
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#pubparam)。
+参数及描述详见[公共参数](#pubparam)。
 
 #### 查询参数
 
@@ -316,7 +316,7 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}/detail?msgId={
 | `data.userList`     | Array  | 添加 Reaction 的用户 ID 列表。只返回最早操作 Reaction 的三个用户的 ID。 |
 | `data.cursor`       | String | 查询游标，指定下次查询的起始位置。                           |
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
@@ -349,8 +349,6 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/wz/detail?msgId=997627787730
 }
 ```
 
-<a name="code"></code>
-
 ## 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

@@ -3,7 +3,7 @@
 
 ## 前提条件
 
-开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 App Key 的声网项目。详见 [开发环境要求](./agora_chat_get_started_web#前提条件)。
+开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 App Key 的声网项目。详见[开发环境要求](./agora_chat_get_started_web#前提条件)。
 
 ## 导入 SDK
 
@@ -45,8 +45,8 @@ const conn = new AC.connection({
 | `deviceId`            | String | 否       | 设备 ID，为默认随机值。       |
 | `useOwnUploadFun`     | Boolean   | 否       | 是否支持通过自己的路径将图片、文件上传到自己的服务器。<ul><li>`true`：支持，需要指定路径；</li><li>（默认）`false`：关闭，通过消息服务器上传下载文件。</li></ul> |
 | `autoReconnectNumMax` | Number   | 否       | 最大重连次数。  |
-| `apiUrl`              | String | 是       | 指定的 REST 服务器。在未开启 DNS 的情况下使用，一般适用于开发者要实现数据隔离、特别注重数据安全的场景。如有需求，请联系[声网商务](mailto:support@agora.io)获取指定的服务器地址。   |
-| `url`                 | String | 是       | 指定的消息服务器。在未开启 DNS 的情况下使用，一般适用于开发者要实现数据隔离、特别注重数据安全的场景。如有需求，请联系[声网商务](mailto:support@agora.io)获取指定的服务器地址。     |
+| `apiUrl`              | String | 是       | 指定的 REST 服务器。在未开启 DNS 的情况下使用，一般适用于开发者要实现数据隔离、特别注重数据安全的场景。如有需求，请联系 [sales@agora.io](mailto:sales@agora.io) 获取指定的服务器地址。   |
+| `url`                 | String | 是       | 指定的消息服务器。在未开启 DNS 的情况下使用，一般适用于开发者要实现数据隔离、特别注重数据安全的场景。如有需求，请联系 [sales@agora.io](mailto:sales@agora.io) 获取指定的服务器地址。     |
 
 ## 注册用户
 

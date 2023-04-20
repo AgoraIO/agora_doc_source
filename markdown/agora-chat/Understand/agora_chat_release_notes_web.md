@@ -10,6 +10,10 @@ v1.1.0 于 2022 年 2 月 28 日发布。
 - 在创建消息方法 `create` 增加 `priority` 属性实现聊天室消息优先级功能，确保高优先级消息优先处理。
 - 在 `getConversationlist` 方法中新增分页参数 `pageNum` 和 `pageSize`，支持分页方法获取会话列表。
 - 新增群组创建事件 `create`。群组创建后，群主的其他设备会收到该事件。
+- 服务端支持即时推送，允许用户通过调用接口对单个或多个用户发送推送通知、对指定标签下的用户发送推送通知以及对 app 下的所有用户发送推送通知。关于如何配置和发送推送通知，详见以下 RESTful API 文档：
+  - [设置推送标签](./agora_chat_restful_push_tag)
+  - [发送推送通知](./agora_chat_restful_send_push_notification)
+  - [配置推送通知](./agora_chat_restful_config_push_notification)
 
 #### 优化
 

@@ -1,7 +1,9 @@
 本文展示如何调用即时通讯 RESTful API 实现全类型的消息，包括文本消息、图片消息、语音消息、视频消息、透传消息和自定义消息的发送与接收、消息附件上传和下载、获取历史消息记录、服务端消息撤回、服务端单向删除会话等。
-调用本文中的 API 前，请先参考 [使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
+
+## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
@@ -9,9 +11,9 @@
 
 | 参数       | 类型   | 描述                                                                                                                                                                     | 是否必填 |
 | :--------- | :----- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
 | `username` | String | 用户 ID。        | 是       |
 
 ### 响应参数
@@ -40,9 +42,11 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
-## <a name="sendmessage"></a>发送消息
+<a name="sendmessage"></a>
+
+## 发送消息
 
 在服务端实现用户到用户，用户到群组或用户到聊天室的消息发送与接收。消息类型包括文本、图片、语音、视频、透传以及自定义消息。
 
@@ -50,7 +54,7 @@ Authorization: Bearer YourAppToken
 
 - 文本、透传、自定义消息：调用发送消息方法，在请求 body 中传入消息内容。
 - 图片、语音、视频、文件消息：
-    1. 调用 [文件上传](#upload)方法上传图片、语音、视频或其他类型文件，并从响应 body 中获取文件 `uuid`。
+    1. 调用[文件上传](#upload)方法上传图片、语音、视频或其他类型文件，并从响应 body 中获取文件 `uuid`。
     2. 调用发送消息方法，在请求 body 中传入该 `uuid`。
 
 调用服务端接口发送消息时，可选的 `from` 字段用于指定发送方。
@@ -58,6 +62,7 @@ Authorization: Bearer YourAppToken
 此外，消息支持扩展属性 `ext`，可添加自定义信息。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义字段](./agora_chat_push_ios#自定义字段) 和 [Android 推送自定义字段](./agora_chat_push_android#自定义字段)。
 
 <div class="alert note">在调用程序中，请求体若超过 5 KB 会导致 413 错误，需要拆成几个更小的请求体重试。同时，请求体和扩展字段的总长度不能超过 3 KB。</div>
+
 ### 发送单聊消息
 
 此方法向单个用户发送消息。
@@ -72,32 +77,36 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 
 ##### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 ##### 请求 header
 
-|      参数       | 类型   |                                             描述                                              | 是否必填 |
-| :-------------: | :----- | :-------------------------------------------------------------------------------------------: | :------: |
-| `Content-Type`  | String | 内容类型。填入 `application/json`。                              |    是    |
-| `Accept`     | String | 内容类型。填入 `application/json`。                              |    是    |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 |    是    |
+| 参数       | 类型   | 描述     | 是否必填 |
+| :------------- | :----- | :-------------- | :------ |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                              | 是  |
+| `Accept`     | String | 内容类型。填入 `application/json`。                              | 是    |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是    |
 
-#### 通用请求体<a name="commonbody"></a>
+<a name="commonbody"></a>
+
+#### 通用请求体
 
 通用请求体为 JSON 对象，是所有消息的外层结构。不同类型的消息只是 `body` 字段内容存在差异。
 
-| 参数          | 类型   | 描述                                                                                                                                                                                                                         | 是否必填 |
-| :------------ | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `from`        | String | 消息发送方的用户 ID。若不传入该字段，服务器默认设置为管理员，即 “admin”；若传入字段但值为空字符串 (“”)，请求失败。                                                                                                           | 否       |
+| 参数    | 类型   | 描述    | 是否必填 |
+| :------------ | :----- | :------------- | :------- |
+| `from`        | String | 消息发送方的用户 ID。若不传入该字段，服务器默认设置为管理员，即 “admin”；若传入字段但值为空字符串 (“”)，请求失败。   | 否       |
 | `to`          | List   | 消息接收方的用户 ID 数组。消息接收方的用户 ID 数组。每次最多可向 600 个用户发送消息。       | 是       |
 | `type`        | String | 消息类型：<ul><li>`txt`：文本消息</li><li>`img`：图片消息</li><li>`audio`：语音消息</li><li>`video`：视频消息</li><li>`file`：文件消息</li><li>`loc`：位置消息</li><li>`cmd`：透传消息</li><li>`custom`：自定义消息</li></ul> | 是       |
 | `body`        | JSON   | 消息内容。对于不同消息类型 ，body 包含的字段不同，详见[body 字段说明](#msg)。   | 是       |
 | `sync_device` | Boolean   | 消息发送成功后，是否将消息同步到发送方。<ul><li>`true`：是</li><li>（默认）`false`：否</li></ul>        | 否       |
 | `routetype`   | String | 若传入该参数，其值为 `ROUTE_ONLINE`，表示只有接收方在线时，消息才能成功发送；若接收方离线，消息发送失败。若不传入该字段，接收方离线时，消息也能成功发送。                                                                    | 否       |
 | `ext`         | JSON   | 消息支持扩展字段，可添加自定义信息。该字段不能设置为 `null`。同时，推送通知也支持自定义扩展字段，详见 [APNs 自定义字段](./agora_chat_push_ios#自定义字段) 和 [Android 推送自定义字段](./agora_chat_push_android#自定义字段)。      | 否       |
-| `msg_timestamp`        | Number   | 否       | 服务器收到该消息的时间戳。若不传该参数，服务器收到消息后会自动生成一个消息接收时间戳。          |
+| `msg_timestamp`        | Number   | 服务器收到该消息的时间戳。若不传该参数，服务器收到消息后会自动生成一个消息接收时间戳。       | 否          |
 
-#### <a name="msg"></a>body 字段说明
+<a name="msg"></a>
+
+#### body 字段说明
 
 ##### 文本消息
 
@@ -107,8 +116,8 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 
 ##### 图片消息
 
-| 字段       | 类型   | 描述                                                                                                                                                      | 是否必填                                                                |
-| :--------- | :----- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------- |
+| 字段       | 类型   | 描述      | 是否必填        |
+| :--------- | :----- | :------------------------ | :----------- |
 | `filename` | String | 图片名称。     | 是                                                                      |
 | `secret`   | String | 图片访问密钥，成功上传图片文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。如果文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。             | 否|
 | `size`     | JSON   | 图片尺寸，单位为像素，包含以下字段：<ul><li>`height`：图片高度</li><li>`width`：图片宽度 </li></ul>  | 是               |
@@ -125,8 +134,8 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 
 ##### 视频消息
 
-| 字段           | 类型   | 描述                                                                                                                                                                         | 是否必填                                                                      |
-| :------------- | :----- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------- |
+| 字段           | 类型   | 描述        | 是否必填                                                                      |
+| :------------- | :----- | :------------------------------ | :----------- |
 | `thumb`        | String | 视频缩略图 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`<br/>`file_uuid` 为视频缩略图唯一标识，成功上传缩略图文件后，从[文件上传](#upload)的响应 body 中获取。 | 否                                                                            |
 | `length`       | Number | 视频时长。单位为秒。           | 是            |
 | `secret`       | String | 视频文件访问密钥，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。               | 否 |
@@ -139,8 +148,9 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | 参数       | 类型   | 描述                                                                                                                                                    | 是否必需                                                                    |
 | :--------- | :----- | :--------------------------------- | :------------- |
 | `filename` | String | 文件名称。     | 是                                                                          |
-| `secret`   | String | 文件访问密钥，成功上传文件后，从 [文件上传](#upload)的响应 body 中获取的 `share-secret`。如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。     | 否 |
+| `secret`   | String | 文件访问密钥，成功上传文件后，从[文件上传](#upload)的响应 body 中获取的 `share-secret`。如果视频文件上传时设置了文件访问限制（`restrict-access`），则该字段为必填。     | 否 |
 | `url`      | String | 文件 URL 地址：`https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`<br/>`file_uuid` 为文件 ID，成功上传视频文件后，从[文件上传](#upload)的响应 body 中获取。 | 是    |
+
 ##### 位置消息
 
 | 字段   | 类型   | 描述                       | 是否必填 |
@@ -172,9 +182,9 @@ POST https://{host}/{org_name}/{app_name}/messages/users
 | :----- | :--- | :---------------- |
 | `data` | JSON | 返回数据详情。该字段的值为包含接收方用户 ID 和 发送的消息的 ID 的键值对。<br/>例如 "user2": "1029457500870543736"，表示向 user2 发送了消息 ID 为 1029457500870543736 的消息。 |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 #### 示例
 
@@ -412,7 +422,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -426,11 +436,12 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 
 通用请求体为 JSON 对象，是所有消息的外层结构。
 
-| 参数 | 类型  | 描述                                                                                                                                      | 是否必填 |
-| :--- | :---- | :---------------------------------------------------------------------------------------------------------------------------------------- | :------- |
+| 参数 | 类型  | 描述       | 是否必填 |
+| :--- | :---- | :------------------------ | :------- |
 | `to` | Array | 消息接收方群组 ID 数组，每次最多可向 3 个群组发送消息。例如，一次向 3 个群组发消息，表示发送了 3 条消息。 | 是       |
 
-<div class="alert info"><li>群聊消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#commonbody)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
+<div class="alert info"><li>群聊消息的通用请求体中的其他参数与单聊消息类似，详见[单聊消息通用请求体](#commonbody)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
+
 #### HTTP 响应
 
 ##### 响应 body
@@ -441,9 +452,9 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups
 | :----- | :--- | :----------------------------------------- |
 | `data` | JSON | 返回数据详情。该字段的值为包含群组 ID 和 发送的消息的 ID 的键值对。<br/>例如 "184524748161025": "1029544257947437432"，表示在 ID 为 184524748161025 的群组中发送了消息 ID 为 1029544257947437432 的消息。 |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 #### 示例
 
@@ -683,26 +694,28 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
-|      参数       | 类型   |                                             描述                                              | 是否必填 |
-| :-------------: | :----- | :-------------------------------------------------------------------------------------------: | :------: |
-| `Content-Type`  | String |                              内容类型。填入 `application/json`。                              |    是    |
-|    `Accept`     | String |                              内容类型。填入 `application/json`。                              |    是    |
-| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 |    是    |
+| 参数       | 类型   | 描述    | 是否必填 |
+| :------------- | :----- | :------------------------ | :------ |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。            | 是  |
+| `Accept`     | String | 内容类型。填入 `application/json`。                              | 是  |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是 |
 
 #### 通用请求体
 
 通用请求体为 JSON 对象，是所有消息的外层结构。不同类型的消息只是 `body` 字段内容存在差异。
 
 | 参数 | 类型  | 描述                 | 是否必填 |
-| :--- | :---- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
+| :--- | :---- | :--------------- | :------- |
 | `to` | Array | 消息接收方聊天室 ID 数组。每次最多可向 10 个聊天室发送消息。 | 是       |
 | `chatroom_msg_level` | String | 聊天室消息优先级：<ul><li>`high`：高</li><li>（默认）`normal`：普通</li><li> `low`：低 </li></ul> | 否  |
 
-<div class="alert info"><li>聊天室消息的通用请求体中的其他参数与单聊消息类似，详见 [单聊消息通用请求体](#commonbody)。<li>与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
+> 聊天室消息的通用请求体中的其他参数与单聊消息类似，详见[单聊消息通用请求体](#commonbody)。
+> 与单聊消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。
+
 #### HTTP 响应
 
 ##### 响应 body
@@ -715,7 +728,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatrooms
 
 其他参数及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 #### 示例
 
@@ -941,12 +954,14 @@ curl -X POST -i "https://XXXX/XXXX/XXXX/messages/chatrooms" -H 'Content-Type: ap
 }
 ```
 
-## <a name="upload"></a>文件上传
+<a name="upload"></a>
+
+## 文件上传
 
 对于附件类型的消息，如图片、语音、视频或其他类型文件，发送消息前需上传文件。图片和视频存在缩略图，文件上传详情如下：
 
-- 图片：可调用文件上传接口上传原图，Agora 服务器会自动为图片生成缩略图。若上传的图片在 10 KB 以内，缩略图与原图等同；若图片超过 10 KB，Agora 服务器会根据你在请求中设置的图片高度和宽度，即 `thumbnail-height` 和 `thumbnail-width` 参数，生成缩略图。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
-- 视频：Agora 服务器不会自动为视频文件生成缩略图。若需要视频缩略图，需先调用文件上传接口上传缩略图。然后，再次调用文件上传接口上传视频源文件。上传视频文件时，无需传 `thumbnail-height` 和 `thumbnail-width` 参数。上传视频缩略图时，若图片在 10 KB 以内，视频缩略图即为上传的图片。如果图片超过 10 KB，而且设置了这两个参数，视频缩略图的高度和宽度取决于这两个参数的设置。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
+- 图片：可调用文件上传接口上传原图，声网服务器会自动为图片生成缩略图。若上传的图片在 10 KB 以内，缩略图与原图等同；若图片超过 10 KB，声网服务器会根据你在请求中设置的图片高度和宽度，即 `thumbnail-height` 和 `thumbnail-width` 参数，生成缩略图。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
+- 视频：声网服务器不会自动为视频文件生成缩略图。若需要视频缩略图，需先调用文件上传接口上传缩略图。然后，再次调用文件上传接口上传视频源文件。上传视频文件时，无需传 `thumbnail-height` 和 `thumbnail-width` 参数。上传视频缩略图时，若图片在 10 KB 以内，视频缩略图即为上传的图片。如果图片超过 10 KB，而且设置了这两个参数，视频缩略图的高度和宽度取决于这两个参数的设置。若这两个参数未传，则图片的高度和宽度均默认为 170 像素。
 
 同时，为了保证聊天文件的安全，我们的 API 保证了以下几点：
 
@@ -961,7 +976,7 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -989,13 +1004,13 @@ POST https://{host}/{org_name}/{app_name}/chatfiles
 
 | 字段                    | 类型   | 描述            |
 | :---------------------- | :----- | :----------------------------------- |
-| `entities.uuid`         | String | 文件 ID，即时通讯服务分配给该文件的唯一标识符。<br/>你需要自行保存该 `uuid`，以便 [发送文件消息](#sendmessage)时使用。 |
+| `entities.uuid`         | String | 文件 ID，即时通讯服务分配给该文件的唯一标识符。<br/>你需要自行保存该 `uuid`，以便[发送文件消息](#sendmessage)时使用。 |
 | `entities.type`         | String | 文件类型，为固定值 `chatfile`。                             |
 | `entities.share-secret` | String | 文件访问密钥。你需要自行保存 `share-secret`，以便[下载文件](#download)时使用。                                    |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1028,7 +1043,9 @@ curl -X POST https://XXXX/XXXX/XXXX/chatfiles -H 'Authorization: Bearer <YourApp
 }
 ```
 
-## <a name="download"></a>文件下载
+<a name="download"></a>
+
+## 文件下载
 
 下载图片、语音、视频或其他类型文件。
 
@@ -1041,7 +1058,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -1049,7 +1066,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | :-------------- | :----- | :--------------------------------------- | :------- |
 | `Accept`        | string | 内容类型。请填 `application/octet-stream`，表示下载二进制数据流格式的文件。                                                                                              | 是       |
 | `Authorization` | string | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。  | 是       |
-| `share-secret`  | string | 文件访问密钥。若上传文件时限制了访问（`restrict-access` 设置为 `true`），下载该文件时则需要该访问密钥。成功上传文件后，从 [文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
+| `share-secret`  | string | 文件访问密钥。若上传文件时限制了访问（`restrict-access` 设置为 `true`），下载该文件时则需要该访问密钥。成功上传文件后，从[文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
 
 ### HTTP 响应
 
@@ -1057,7 +1074,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 
 如果返回的 HTTP 状态码为 `200`，表示请求成功。参数及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1071,7 +1088,8 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <YourAppToken>' -H 'share-secret: f0Vr-uyyEeiHpHmsu53XXXXXXXXZYgyLkdfsZ4xo2Z0cSBnB' 'http://XXXX/XXXX/XXXX/chatfiles/7f456bf0-XXXX-XXXX-b630-777db304f26c'-o /Users/test/easemob/image/image.JPG
 ```
 
-<div class="alert note">上述请求示例中，`/Users/test/easemob/image/image.JPG` 为即时通讯 IM 的本地文件路径，使用时请替换为自己的文件路径，否则会请求失败。</div>
+<div class="alert note">上述请求示例中，"/Users/test/easemob/image/image.JPG" 为即时通讯 IM 的本地文件路径，使用时请替换为自己的文件路径，否则会请求失败。</div>
+
 #### 响应示例
 
 ```json
@@ -1096,7 +1114,7 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | :---------- | :----- | :------- | :------------------------------ |
 | `file_uuid` | String | 是       | 服务器为缩略图文件生成的 UUID。 |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -1105,15 +1123,15 @@ GET https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}
 | `Accept`        | String | 内容类型。请填 `application/octet-stream`，表示下载二进制数据流格式的文件。           | 是   |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。                      | 是                                  |
 | `thumbnail`     | Boolean   | 是否下载缩略图：<ul><li> `true`：是，下载缩略图。</li><li> `false`：否，下载原文件。</li></ul> <div class="alert info">若该参数为空，下载原文件。<div> | 否                                                                      |
-| `share-secret`  | string | 缩略图访问密钥。若上传图片时限制了访问（`restrict-access` 设置为 `true`），下载缩略图时则需要该访问密钥。成功上传图片后，从 [文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
+| `share-secret`  | string | 缩略图访问密钥。若上传图片时限制了访问（`restrict-access` 设置为 `true`），下载缩略图时则需要该访问密钥。成功上传图片后，从[文件上传](#upload) 的响应 body 中获取该密钥。 | 否       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功。参数及描述详见 [公共参数](#公共参数)。参数及描述详见[公共参数](#param)。
+如果返回的 HTTP 状态码为 200，表示请求成功。参数及描述详见[公共参数](#公共参数)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1135,7 +1153,7 @@ curl -X GET -H 'Accept: application/octet-stream' -H 'Authorization: Bearer <You
 }
 ```
 
-**返回值 401，未授权 [无 token、token 错误、token 过期]**
+**返回值 401，未授权[无 token、token 错误、token 过期]**
 
 ```json
 {
@@ -1168,7 +1186,7 @@ GET https://{host}/{org_name}/{app_name}/chatmessages/${time}
 | :----- | :----- | :--------------------------------------------------- | :------- |
 | `time` | String | 历史消息记录查询的起始时间。UTC 时间，使用 ISO8601 标准，格式为 `yyyyMMddHH`。<br/>例如 `time` 为` 2018112717`，则表示查询 2018 年 11 月 27 日 17 时至 2018 年 11 月 27 日 18 时期间的历史消息。 | 是       |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -1187,9 +1205,9 @@ GET https://{host}/{org_name}/{app_name}/chatmessages/${time}
 | :--------- | :----- | :-------------------------- |
 | `data.url` | String | 历史消息记录的下载地址。<br/>`url` 由历史消息记录的存储地址、到期 Unix 时间戳（`Expires`，单位为秒）、第三方云存储访问密钥（`OSSAccessKeyId`）、第三方云存储验证签名（`Signature`）组成。<br/>URL 仅在 `Expires` 前内有效，一旦过期需调用该方法重新获取 URL。 |
 
-其他字段及描述详见 [公共参数](#param)。
+其他字段及描述详见[公共参数](#param)。
 
-如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -1499,7 +1517,7 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -1513,11 +1531,11 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 
 | 参数        | 类型   | 描述                                                                                                                                                                                                                      | 是否必填 |
 | :---------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `msg_id`    | String | 要撤回消息的消息 ID。                                                                                                                                                                                                     | 是       |
-| `to`        | String | 要撤回消息的接收方。<ul><li>单聊为接收方用户 ID；</li><li>群聊为群组 ID；</li><li>聊天室聊天为聊天室 ID。</li><li>若不传入该参数，请求失败。</li></ul>                                                                                     | 是       |
-| `chat_type` | String | 要撤回消息的会话类型：<ul><li>`chat`：单聊</li><li>`groupchat`：群聊 </li><li>`chatroom`：聊天室 </li></ul>。                                                                                                                       | 是       |
-| `from`      | String | 消息撤回方的用户 ID。若不传该参数，默认为 `admin`。                                                                                                                                                                       | 否       |
-| `force`     | Boolean   | 是否为强制撤回：<ul><li>`true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](./agora_chat_limitation#消息存储时长)；</li><li>`false`：否，不支持撤回超过服务器存储时间的消息。</li></ul> | 是       |
+| `msg_id`    | String | 要撤回消息的消息 ID。      | 是       |
+| `to`        | String | 要撤回消息的接收方。<ul><li>单聊为接收方用户 ID；</li><li>群聊为群组 ID；</li><li>聊天室聊天为聊天室 ID。</li><li>若不传入该参数，请求失败。</li></ul>       | 是       |
+| `chat_type` | String | 要撤回消息的会话类型：<ul><li>`chat`：单聊</li><li>`groupchat`：群聊 </li><li>`chatroom`：聊天室 </li></ul>  | 是       |
+| `from`      | String | 消息撤回方的用户 ID。若不传该参数，默认为 `admin`。      | 否       |
+| `force`     | Boolean   | 是否为强制撤回：<ul><li>`true`：是，支持撤回超过服务器存储时间的消息。具体见[服务器消息保存时长](./agora_chat_limitation#消息存储时长)。</li><li>`false`：否，不支持撤回超过服务器存储时间的消息。</li></ul> | 是       |
 
 ### HTTP 响应
 
@@ -1527,11 +1545,11 @@ POST https://{host}/{org_name}/{app_name}/messages/msg_recall
 
 | 参数       | 类型   | 描述                                                                                              |
 | :--------- | :----- | :------------------------------------------------------------------------------------------------ |
-| `msg_id`   | String | 需要撤回的消息 ID。                                                                               |
-| `recalled` | String | 消息撤回结果，成功是 `yes`。                                                                      |
-| `from`     | String | 消息撤回方。                                                                                      |
-| `to`       | String | 撤回消息的送达方。<ul><li>单聊为送达方用户 ID；</li><li>群聊为群组 ID。<ul><li>                            |
-| `chattype` | String | 撤回消息的会话类型：<ul><li>`chat`：单聊</li><li>`groupchat`：群聊</li><li>`chatroom`：聊天室<ul><li>  |
+| `msg_id`   | String | 需要撤回的消息 ID。       |
+| `recalled` | String | 消息撤回结果，成功是 `yes`。      |
+| `from`     | String | 消息撤回方。           |
+| `to`       | String | 撤回消息的送达方：<ul><li>单聊为送达方用户 ID；</li><li>群聊为群组 ID。</li></ul>  |
+| `chattype` | String | 撤回消息的会话类型：<ul><li>`chat`：单聊</li><li>`groupchat`：群聊</li><li>`chatroom`：聊天室</li></ul>  |
 
 其他参数及描述详见[公共参数](#param)。
 
@@ -1581,10 +1599,10 @@ curl -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json
 
 `recalled`：消撤回失败的可能原因包含以下几种情况：
 
-- ”can’t find msg to”：未找到撤回消息的接收⽅；
-- ”exceed recall time limit”：消息撤回超时；
-- ”not_found msg”：消息过期或已被撤回；
-- ”internal error”：后端服务出现异常。
+- "can’t find msg to"：未找到撤回消息的接收⽅；
+- "exceed recall time limit"：消息撤回超时；
+- "not_found msg"：消息过期或已被撤回；
+- "internal error"：后端服务出现异常。
 
 ```json
 {
@@ -1627,9 +1645,9 @@ DELETE https://{host}/{org_name}/{app_name}/users/{username}/user_channel
 
 | 参数          | 类型   | 描述                                                               | 是否必填 |
 | :------------ | :----- | :----------------------------------------------------------------- | :------- |
-| `channel`     | String | 要删除的会话 ID。该参数的值取决于会话类型 `type` 的值:<br/> - `type` 为 `chat`，即单聊时，会话 ID 为对端用户 ID；<br/> - `type` 为 `groupchat`，即群聊时，会话 ID 为群组 ID。                                                  | 是       |
-| `type`        | String | 会话类型。<ul><li>`chat`：单聊</li><li>`groupchat`：群聊<ul><li> | 是       |
-| `delete_roam` | Boolean   | 是否删除服务端消息。<ul><li>`true`：是。若删除了该会话的服务端消息，则用户无法从服务器拉取该会话的漫游消息。</li><li>`false`：否。用户仍可以从服务器拉取该会话的漫游消息。<ul><li>      | 是       |
+| `channel`     | String | 要删除的会话 ID。该参数的值取决于会话类型 `type` 的值:<ul><li>`type` 为 `chat`，即单聊时，会话 ID 为对端用户 ID；</li><li>`type` 为 `groupchat`，即群聊时，会话 ID 为群组 ID。</li></ul>  | 是  |
+| `type`        | String | 会话类型。<ul><li>`chat`：单聊</li><li>`groupchat`：群聊</li></ul> | 是       |
+| `delete_roam` | Boolean   | 是否删除服务端消息。<ul><li>`true`：是。若删除了该会话的服务端消息，则用户无法从服务器拉取该会话的漫游消息。</li><li>`false`：否。用户仍可以从服务器拉取该会话的漫游消息。</li></ul>  | 是       |
 
 ### HTTP 响应
 
@@ -1686,7 +1704,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users/import
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -1718,7 +1736,7 @@ POST https://{host}/{org_name}/{app_name}/messages/users/import
 | :------- | :----- | :---------------------- |
 | `msg_id` | String | 导入消息返回的消息 ID。 |
 
-其他参数及描述详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -1793,7 +1811,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups/import
 
 #### 路径参数
 
-参数及描述详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
@@ -1813,7 +1831,7 @@ POST https://{host}/{org_name}/{app_name}/messages/chatgroups/import
 | `msg_timestamp` | Number  | 要导入的消息的时间戳，单位为毫秒。若不传该参数，服务器会将导入的消息的时间戳设置为当前时间。  | 否       |
 | `need_download` | Boolean   | 是否需要下载附件并上传到服务器。<li>`true`：是<li>（默认）`false`：否       | 否       |
 
-<div class="alert info">与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。</div>
+>与发送消息类似，不同类型的消息只是 `body` 字段内容存在差异。详见 [body 字段说明](#msg)。
 ### HTTP 响应
 
 #### 响应 body
@@ -1889,6 +1907,6 @@ curl -X POST -H "Authorization: Bearer <YourAppToken> " "https://XXXX/XXXX/XXXX/
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
-详见  [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。
