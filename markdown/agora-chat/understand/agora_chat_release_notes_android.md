@@ -9,6 +9,10 @@ v1.1.0 于 2023 年 2 月 28 日发布。
 - 新增聊天室自定义属性功能实现语聊房的麦位管理和同步等功能。
 - 新增 `ChatMessage#setPriority(ChatRoomMessagePriority)` 方法实现聊天室消息优先级功能，确保高优先级消息优先处理。
 - 在 `ChatManager#asyncFetchConversationsFromServer` 方法中新增分页参数 `pageNum` 和 `pageSize`，支持分页获取会话列表功能。
+- 服务端支持即时推送，允许用户通过调用接口对单个或多个用户发送推送通知、对指定标签下的用户发送推送通知以及对 app 下的所有用户发送推送通知。关于如何配置和发送推送通知，详见以下 RESTful API 文档：
+  - [设置推送标签](./agora_chat_restful_push_tag)
+  - [发送推送通知](./agora_chat_restful_send_push_notification)
+  - [配置推送通知](./agora_chat_restful_config_push_notification)
 
 #### 优化
 
