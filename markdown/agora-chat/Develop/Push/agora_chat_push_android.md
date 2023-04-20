@@ -427,11 +427,11 @@ ChatClient.getInstance().init(this, options);
 
 1. 配置 OPPO 推送 jar 包。
 
-在 OPPO 推送官网下载推送 SDK 包，将 jar 包放到 libs 目录下并 sync。也可以直接使用声网 Android IM Demo 中集成的 OPPO 推送的 jar 包。
+在 OPPO 推送官网下载推送 SDK 包，将 jar 包放到 libs 目录下并同步。也可以直接使用声网 Android IM Demo 中集成的 OPPO 推送的 jar 包。
 
 2. 配置 `AndroidManifest.xml`。
 
-  <div class="alert info">OPPO 推送在 2.1.0 适配了 Android Q，在 Android Q 上接收 OPPO 推送需要使用 OPPO 推送 2.1.0 的包。从 1.0.3 版本开始，升级 OPPO 推送版本到 3.0.0</div>
+  <div class="alert info">OPPO 推送在 2.1.0 适配了 Android Q，在 Android Q 上接收 OPPO 推送需要使用 OPPO 推送 2.1.0 的包。从 1.0.3 版本开始，升级 OPPO 推送版本到 3.0.0。</div>
 
  - 推送服务需要的权限列表：
 
