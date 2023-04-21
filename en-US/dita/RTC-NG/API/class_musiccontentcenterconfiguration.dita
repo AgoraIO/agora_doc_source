@@ -7,44 +7,19 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class MusicContentCenterConfiguration {
+
   public String appId;
   public String token;
   public long mccUid;
+  public int maxCacheSize;
   public IMusicContentCenterEventHandler eventHandler;
 
   public MusicContentCenterConfiguration() {
     this.appId = null;
     this.token = null;
     this.mccUid = 0;
+    this.maxCacheSize = 10;
     eventHandler = null;
-  }
-
-  public MusicContentCenterConfiguration(
-      String appid, String token, long mccUid, IMusicContentCenterEventHandler eventHandler) {
-    this.appId = appid;
-    this.token = token;
-    this.mccUid = mccUid;
-    this.eventHandler = eventHandler;
-  }
-
-  @CalledByNative
-  public String getAppId() {
-    return this.appId;
-  }
-
-  @CalledByNative
-  public String getToken() {
-    return this.token;
-  }
-
-  @CalledByNative
-  public long getMccUid() {
-    return this.mccUid;
-  }
-
-  @CalledByNative
-  public IMusicContentCenterEventHandler getEventHandler() {
-    return eventHandler;
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMusicContentCenterConfig : NSObject
@@ -52,15 +27,18 @@
 @property (nonatomic, copy) NSString *appId;
 @property (nonatomic, copy) NSString *token;
 @property (nonatomic, assign) NSInteger mccUid;
+@property (nonatomic, assign) NSUInteger maxCacheSize;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
     const char *appId;
     const char *token;
     int64_t mccUid;
+    int32_t maxCacheSize;
+
     IMusicContentCenterEventHandler* eventHandler;
-    MusicContentCenterConfiguration():appId(nullptr),token(nullptr),eventHandler(nullptr),mccUid(0){}
-    MusicContentCenterConfiguration(const char*appid,const char* token,int64_t id,IMusicContentCenterEventHandler* handler):
-        appId(appid),token(token),mccUid(id),eventHandler(handler){}
+    MusicContentCenterConfiguration():appId(nullptr),token(nullptr),eventHandler(nullptr),mccUid(0),maxCacheSize(10){}
+    MusicContentCenterConfiguration(const char*appid,const char* token,int64_t id,IMusicContentCenterEventHandler* handler,int32_t maxSize = 10):
+        appId(appid),token(token),mccUid(id),eventHandler(handler),maxCacheSize(maxSize){}
 };</codeblock>
             <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">export class MusicContentCenterConfiguration {
