@@ -13,11 +13,11 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onRecorderInfoUpdated(RecorderInfo info);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder informationDidUpdated:(AgoraMediaRecorderInfo* _Nonnull)info;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onRecorderInfoUpdated(const RecorderInfo&amp; info){};</codeblock>
+            <codeblock props="android" outputclass="language-java">void onRecorderInfoUpdated(String channelId, int uid, RecorderInfo info);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder informationDidUpdated:(NSString * _Nonnull)channelId uid:(NSUInteger)uid info:(AgoraMediaRecorderInfo* _Nonnull)info;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onRecorderInfoUpdated(const char* channelId, rtc::uid_t uid, const RecorderInfo&amp; info) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRecorderInfoUpdated?(info: RecorderInfo): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecorderInfoUpdated(RecorderInfo info) {}</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecorderInfoUpdated(string channelId, uint uid, RecorderInfo info) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRecorderInfoUpdated?(info: RecorderInfo): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RecorderInfo info)? onRecorderInfoUpdated;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -28,7 +28,15 @@
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
             <parml>
-            <plentry>
+            <plentry conkeyref="onRecorderStateChanged/id">
+                <pt></pt>
+                <pd></pd>
+            </plentry>
+                <plentry conkeyref="onRecorderStateChanged/uid">
+                    <pt></pt>
+                    <pd></pd>
+                </plentry>
+                <plentry>
                 <pt>info</pt>
                 <pd>录制文件信息。详见 <xref keyref="RecorderInfo" />。</pd>
             </plentry>

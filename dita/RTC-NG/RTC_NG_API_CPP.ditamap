@@ -29,6 +29,7 @@
             <topicref keyref="IMediaPlayerCacheManager" toc="no"/>
             <topicref keyref="IMediaPlayerCustomDataProvider" toc="no"/>
             <topicref keyref="IMediaPlayerSourceObserver" toc="no"/>
+            <topicref keyref="IAudioPcmFrameSink" toc="no"/>
             <topicref keyref="IAudioFrameObserver" toc="no"/>
             <topicref keyref="IAudioFrameObserverBase" toc="no"/>
             <topicref keyref="IDirectCdnStreamingEventHandler" toc="no"/>
@@ -200,6 +201,7 @@
             <topicref keyref="setAudioProfile2" toc="no"/>
             <topicref keyref="setAudioScenario" toc="no"/>
             <topicref keyref="setAudioSessionOperationRestriction" toc="no"/>
+            <topicref keyref="setAINSMode" toc="no"/>
             <topicref keyref="setDefaultAudioRouteToSpeakerphone" toc="no"/>
             <topicref keyref="setEarMonitoringAudioFrameParameters" toc="no"/>
             <topicref keyref="setExternalAudioSink" toc="no"/>
@@ -216,6 +218,7 @@
             <topicref keyref="stopRhythmPlayer" toc="no"/>
             <topicref keyref="onActiveSpeaker" toc="no"/>
             <topicref keyref="onAudioMixingFinished" toc="no"/>
+            <topicref keyref="onAudioMixingPositionChanged" toc="no"/>
             <topicref keyref="onAudioMixingStateChanged" toc="no"/>
             <topicref keyref="onAudioPublishStateChanged" toc="no"/>
             <topicref keyref="onAudioQuality" toc="no"/>
@@ -262,6 +265,7 @@
             <topicref keyref="setHeadphoneEQParameters" toc="no"/>
             <topicref keyref="setHeadphoneEQPreset" toc="no"/>
             <topicref keyref="setLocalVoiceEqualization" toc="no"/>
+            <topicref keyref="setLocalVoiceFormant" toc="no"/>
             <topicref keyref="setLocalVoicePitch" toc="no"/>
             <topicref keyref="setLocalVoiceReverb" toc="no"/>
             <topicref keyref="setMaxAudioRecvCount" toc="no"/>
@@ -353,7 +357,7 @@
             <topicref keyref="getPlaybackAudioParams" toc="no"/>
             <topicref keyref="getRecordAudioParams" toc="no"/>
             <topicref keyref="onEarMonitoringAudioFrame" toc="no"/>
-            <topicref keyref="onFrame_IAudioFrameObserver" toc="no"/>
+            <topicref keyref="onFrame_IAudioPcmFrameSink" toc="no"/>
             <topicref keyref="onLocalAudioSpectrum" toc="no"/>
             <topicref keyref="onMixedAudioEncodedFrame" toc="no"/>
             <topicref keyref="onMixedAudioFrame" toc="no"/>
@@ -465,6 +469,7 @@
         </topicref>
         <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
             <topicref keyref="createMusicPlayer" toc="no"/>
+            <topicref keyref="getCaches" toc="no"/>
             <topicref keyref="getLyric" toc="no"/>
             <topicref keyref="getMusicCharts" toc="no"/>
             <topicref keyref="getMusicCollectionByMusicChartId" toc="no"/>
@@ -473,6 +478,7 @@
             <topicref keyref="isPreloaded" toc="no"/>
             <topicref keyref="registerEventHandler_IMusicContentCenter" toc="no"/>
             <topicref keyref="release_IMusicContentCenter" toc="no"/>
+            <topicref keyref="removeCache" toc="no"/>
             <topicref keyref="renewToken_IMusicContentCenter" toc="no"/>
             <topicref keyref="searchMusic" toc="no"/>
             <topicref keyref="open_IMusicPlayer" toc="no"/>
@@ -530,7 +536,9 @@
             <topicref keyref="onTranscodingUpdated" toc="no"/>
         </topicref>
         <topicref href="API/toc_local_recording.dita" chunk="to-content">
-            <topicref keyref="releaseRecorder" toc="no"/>
+            <topicref keyref="createLocalMediaRecorder" toc="no"/>
+            <topicref keyref="createRemoteMediaRecorder" toc="no"/>
+            <topicref keyref="destroyMediaRecorder" toc="no"/>
             <topicref keyref="setMediaRecorderObserver" toc="no"/>
             <topicref keyref="startRecording" toc="no"/>
             <topicref keyref="stopRecording" toc="no"/>

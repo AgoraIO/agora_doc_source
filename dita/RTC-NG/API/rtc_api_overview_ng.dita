@@ -595,18 +595,20 @@
                 <stentry><ph conkeyref="onRemoteVideoStats/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section props="android ios cpp flutter rn unity" id="audio_preprocessing_and_postprocessing">
+        <section id="audio_preprocessing_and_postprocessing">
             <title>音频前后处理</title>
-            <note props="cpp flutter unity rn">
-            <p>本组方法仅适用于 Android 和 iOS。</p>
-            </note> <simpletable>
+            <simpletable>
             <sthead>
                 <stentry>方法</stentry>
                 <stentry>描述</stentry>
             </sthead>
-            <strow>
+            <strow props="android ios cpp flutter rn unity">
                 <stentry><xref keyref="setAdvancedAudioOptions"/></stentry>
-                <stentry><ph conkeyref="setAdvancedAudioOptions/shortdesc"/></stentry>
+                <stentry><ph conkeyref="setAdvancedAudioOptions/shortdesc"/><ph props="cpp flutter unity rn">（仅适用 Android 和 iOS）</ph></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setAINSMode"/></stentry>
+                <stentry><ph conkeyref="setAINSMode/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
         <section id="video_preprocessing_and_postprocessing">
@@ -770,6 +772,10 @@
             <strow>
                 <stentry><xref keyref="onAudioMixingStateChanged"/></stentry>
                 <stentry><ph conkeyref="onAudioMixingStateChanged/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onAudioMixingPositionChanged"/></stentry>
+                <stentry><ph conkeyref="onAudioMixingPositionChanged/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
         <section id="audio_effect_playback">
@@ -971,6 +977,10 @@
             <strow>
                 <stentry><xref keyref="setVoiceConversionPreset"/></stentry>
                 <stentry><ph conkeyref="setVoiceConversionPreset/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setLocalVoiceFormant"/></stentry>
+                <stentry><ph conkeyref="setLocalVoiceFormant/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
         <section id="stream_fallback" props="hide">
@@ -1893,10 +1903,6 @@
             <strow props="ios mac">
                 <stentry><xref keyref="enableMainQueueDispatch_IMediaRecorder"/></stentry>
                 <stentry><ph conkeyref="enableMainQueueDispatch_IMediaRecorder/shortdesc"/></stentry>
-            </strow>
-            <strow props="native flutter electron rn">
-                <stentry><xref keyref="releaseRecorder"/></stentry>
-                <stentry><ph conkeyref="releaseRecorder/shortdesc"/></stentry>
             </strow>
             </simpletable> <simpletable>
             <sthead>

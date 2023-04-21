@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
-<reference id="callback_iaudioframeobserver_onframe">
-    <title><ph keyref="onFrame_IAudioFrameObserver"/></title>
+<reference id="callback_iaudiopcmframesink_onframe">
+    <title><ph keyref="onFrame_IAudioPcmFrameSink"/></title>
     <shortdesc id="short"><ph id="shortdesc">已获取音频帧回调。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onFrame_IAudioFrameObserver"/>
+                <indexterm keyref="onFrame_IAudioPcmFrameSink"/>
             </keywords>
         </metadata>
     </prolog>
@@ -16,15 +16,15 @@
             <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame frame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
     didReceiveAudioFrame:(CMSampleBufferRef _Nonnull)audioFrame;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(AudioPcmFrame* frame) = 0;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(agora::media::base::AudioPcmFrame* frame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame)
         {
             return true;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript"/>
-           <codeblock props="flutter" outputclass="language-dart"/> 
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <p>注册音频数据观测器后，每次接收到一帧音频帧时，都会触发该回调，报告音频帧信息。</p>
