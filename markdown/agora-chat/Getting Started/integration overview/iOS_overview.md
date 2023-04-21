@@ -66,7 +66,7 @@ AgoraChatOptions *options = [AgoraChatOptions optionsWithAppkey:@"<#appkey#>"];
 
 ```objectivec
 // 异步方法 
-[AgoraChatClient.sharedClient loginWithUsername:@"username" token:@"token" completion:^(NSString * _Nonnull aUsername, AgoraChatError * _Nullable aError) {
+[AgoraChatClient.sharedClient loginWithUsername:@"username" agoraToken:@"token" completion:^(NSString * _Nonnull aUsername, AgoraChatError * _Nullable aError) {
         
 }];
 ```

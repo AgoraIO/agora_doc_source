@@ -86,7 +86,7 @@ ChatClient.getInstance().login(mAccount, mPassword, new CallBack() {
 <div class="alert note">使用 token 登录时需要处理 token 过期的问题，比如每次登录时更新 token 等机制。</div>
 
 ```java
-ChatClient.getInstance().loginWithToken(mAccount, mToken, new CallBack() {
+ChatClient.getInstance().loginWithAgoraToken(mAccount, mToken, new CallBack() {
     // 登录成功回调
     @Override
     public void onSuccess() {
