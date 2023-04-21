@@ -28,7 +28,11 @@ The following table lists common request and response parameters of the Agora Ch
 | `application` | String | A unique internal ID assigned to each app by the Agora Chat service. You can safely ignore this parameter. |
 | `applicationName` | String | The unique identifier assigned to each app by the Agora Chat service. This is the same as `app_name`. |
 | `uri` | String | The request URI. |
-| `entities ` | JSON | The response entity. |
+| `username`        | String | The unique login account of the user.                    |
+| `entities` | JSON | The response entity. |
+| `nickname`   | String | The nickname of the user.                                                  |
+| `ext`        | String | The custom extension field of the user.                  |
+| `avatarurl`  | String | The avatar URL of the user.                                               |
 | `timestamp` | Number | The Unix timestamp (ms) of the HTTP response. |
 | `duration` | Number | The duration (ms) from when the HTTP request is sent to the time the response is received. |
 

@@ -1562,7 +1562,7 @@ curl -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json
 
 This method enables the chat user to delete conversations one way from the server. Once the conversation is deleted, this chat user can longer retrieve the conversation from the server. Other chat users can still get the conversation from the server.
 
-For each App Key, the call frequency limit of this method is 100 per second.
+For each App Key, the call frequency limit of this method is 100 per second and 5 per second for each user ID.
 
 ### HTTP request
 

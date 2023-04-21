@@ -75,10 +75,10 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
+| `invite_need_confirm` | Boolean | Whether the group invitation is required to be confirmed by the invitee.<ul><li>`true`: Yes.</li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> |
 | `owner` | String | The chat group owner. | Yes |
 | `members` | Array | Regular chat group members. This chat group member array does not contain the group owner. If you want to set this field, you can enter 1 to 100 elements in this array. | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
-
 
 ### HTTP response
 
@@ -393,11 +393,13 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 | Parameter | Type | Description | Required |
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
 | `groupname` | String | The group name. It cannot exceed 128 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
-| `desc` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
+| `description` | String | The group description. It cannot exceed 512 characters. The group name cannot contain "/" or spaces. You can use "+" to represent the space. | Yes |
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200 and the maximum value is 2000.  The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
-| `allowinvites` | Boolean | Whether a regular chat group membercan invite other users to join the group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the group. </li></ul> | No |
+| `allowinvites` | Boolean | Whether a regular chat group member can invite other users to join the group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the group. </li></ul> | No |
+| `invite_need_confirm` | Boolean | Whether the group invitation is required to be confirmed by the invitee.<ul><li>`true`: Yes.</li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
+| `public` | Boolean | Whether the chat group is public:<ul><li>`true`: A public group. The join request to the chat group is automatically approved.</li><li>`false`: A private group. The join request to the chat group is required to be confirmed by the chat group owner or chat group admins.</li></ul>| No |
 
 
 ### HTTP response
@@ -408,11 +410,14 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 
 | Parameter | Type | Descriptions |
 | :------------------- | :------ | :----------------------------------------------------------- |
-| `groupname` | String | The group name. |
-| `description` | String | The group description. |
-| `membersonly` | Boolean | Whether a user requesting to join the group requires the approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> |
-| `allowinvites` | Boolean | Whether a regular group member can invite other users to join the group.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
-| `maxusers` | Number | The maximum number of chat group members (including the group owner. |
+| `groupname` | Boolean | Whether the group name is successfully modified:<ul><li>`true`: Yes.</li><li> `false`: No.</li></ul> |
+| `description` | Boolean | Whether the group description is successfully modified:<ul><li>`true`: Yes.</li><li> `false`: No.</li></ul> |
+| `membersonly` | Boolean | Whether this field is successfully modified:<ul><li>`true`: Yes</li><li>`false`: No</li></ul>  |
+| `public` | Boolean | Whether the public state of the chat group is successfully modified:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul>  |
+| `custom` | Boolean | Whether the extension information of the chat group is successfully modified:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul>|
+| `allowinvites` | Boolean | Whether this field is successfully modified:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `maxusers` | Boolean | Whether the maximum number of chat group members is successfully modified:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
+| `invite_need_confirm` | Boolean | Whether this field is successfully modified:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 
 For other fields and descriptions, see [Common parameters](#pubparam).
 
@@ -423,13 +428,16 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 #### Request example
 
 ```shell
-curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
-    "groupname": "testgroup1",
-    "description": "test",
-    "maxusers": 300,
+curl -X PUT -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatgroups/6XXXX7' -d '{
+    "groupname": "test groupname",
+    "description": "updategroupinfo12311",
+    "maxusers": 1500,
     "membersonly": true,
-    "allowinvites": true
-}' 'http://XXXX/XXXX/XXXX/chatgroups/66021836783617'
+    "allowinvites": false,
+    "invite_need_confirm": true,
+    "custom":"abc",
+    "public": true
+}'
 ```
 
 #### Response example
@@ -437,20 +445,24 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ```json
 {
     "action": "put",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66021836783617",
-    "entities": [],
+    "application": "XXXXXX",
+    "applicationName": "XXXX",
     "data": {
-      "membersonly": true,
-      "allowinvites": true,
-      "description": true,
-      "maxusers": true,
-      "groupname": true
+        "allowinvites": true,
+        "invite_need_confirm": true,
+        "membersonly": true,
+        "public": true,
+        "custom": true,
+        "description": true,
+        "maxusers": true,
+        "groupname": true
     },
-    "timestamp": 1542363146301,
     "duration": 0,
+    "entities": [],
     "organization": "XXXX",
-    "applicationName": "XXXX"
+    "properties": {},
+    "timestamp": 1666062065529,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/6XXXX7"
 }
 ```
 
