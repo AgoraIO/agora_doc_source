@@ -798,7 +798,7 @@
 
 ## 后续操作
 
-出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 Token。在生产环境中，最好自行部署 Token 服务器，使用自己的 [App Key](./enable_agora_chat#获取即时通讯项目信息)  生成 Token，并在客户端获取 Token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 Token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 Token。在生产环境中，最好自行部署 Token 服务器，使用自己的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 生成 Token，并在客户端获取 Token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 Token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 ## 参考
 

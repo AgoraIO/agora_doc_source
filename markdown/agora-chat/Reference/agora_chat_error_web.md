@@ -1,6 +1,6 @@
 消息回调本文主要介绍在调用即时通讯 API 过程中，SDK 返回的错误码和错误信息。
 
-你可以在 `listen` 方法中通过 `options` 参数注册 `onError` 回调，然后通过该回调返回的参数，或其他 API 调用失败回调中返回的参数判断出错的原因。示例代码如下：
+你可以在 `addEventHandler` 方法中通过 `options` 参数注册 `onError` 回调，然后通过该回调返回的参数，或其他 API 调用失败回调中返回的参数判断出错的原因。示例代码如下：
 
 error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` 为回调返回的参数，`statusCode` 为 SDK 定义的错误信息。
 
@@ -19,11 +19,11 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 | -3     | REQUEST_PARAMETER_ERROR               | 参数错误。                                     |
 | -4     | REQUEST_ABORT               | 取消请求。                                     |
 | 1      | WEBIM_CONNCTION_OPEN_ERROR                    | 登录失败：获取 token 接口请求失败。                          |
-| 2      | WEBIM_CONNCTION_AUTH_ERROR                     | 鉴权失败：调用 API 时校验 App Key 失败，App Key 不合法。     |
+| 2      | WEBIM_CONNCTION_AUTH_ERROR                     | 鉴权失败：调用 API 时校验 App Key 失败，App Key 不合法。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。     |
 | 12     | WEBIM_CONNCTION_GETROSTER_ERROR                | 获取 Chat token 失败：通过 Agora token 置换 Chat token 失败。 |
 | 16     | WEBIM_CONNCTION_DISCONNECTED                   | WebSocket 断开连接：由于断网等原因 WebSocket 已经断开。      |
 | 17     | WEBIM_CONNCTION_AJAX_ERROR                     | 默认未区分类型的错误。 |
-| 27     | WEBIM_CONNCTION_APPKEY_NOT_ASSIGN_ERROR        | 未设置 App Key：设置的 App Key 错误，登录时会报此错误。      |
+| 27     | WEBIM_CONNCTION_APPKEY_NOT_ASSIGN_ERROR        | 未设置 App Key：设置的 App Key 错误，登录时会报此错误。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。      |
 | 28     | WEBIM_CONNCTION_TOKEN_NOT_ASSIGN_ERROR         | 未传 token：调用 API 时没有携带 token，一般没登录时调用 API 会提示这个错误。 |
 | 31     | WEBIM_CONNCTION_CALLBACK_INNER_ERROR           | 消息发送成功的回调函数内部错误：在接收消息的回调及后续处理的函数中有错误。 |
 | 32     | WEBIM_CONNCTION_CLIENT_OFFLINE                 | 当前用户未登录。                                             |
@@ -61,7 +61,7 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 | 605    | GROUP_NOT_EXIST                                | 群组不存在：发送消息时群组 ID 不正确。                       |
 | 606    | GROUP_MEMBERS_FULL                             | 群组人数达到上限。                                           |
 | 607    | GROUP_NOT_EXIST                                | 设置的群组最大人数超过限制：创建群组，群成员数量超出了群组设置的最大数量。 |
-| 700    | REST_PARAMS_STATUS                             | 没有 token 或 App Key。                                      |
+| 700    | REST_PARAMS_STATUS                             | 没有 token 或 App Key。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。                                      |
 | 702    | CHATROOM_NOT_JOINED                             | 被操作的人员不在聊天室。                               |
 | 704    | CHATROOM_MEMBERS_FULL                          | 聊天室已满：聊天室已经达到人数上限。                         |
 | 705    | CHATROOM_NOT_EXIST                             | 聊天室不存在：尝试对不存在的聊天室进行操作时提示该错误。     |

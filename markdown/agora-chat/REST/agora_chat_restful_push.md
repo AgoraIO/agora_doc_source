@@ -216,13 +216,12 @@ curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2
       "modified" : 1534407146060,   
       "username" : "user1",    
       "activated" : true,      
-      "notification_display_style" : 1,    
-      "nickname" : "testuser",    
+      "notification_display_style" : 1,      
       "notifier_name" : "2882303761517426801"  
       } ],  
 "timestamp" : 1534407146058,  
 "duration" : 3,  
-"organization" : "1112171214115068",  
+"organization" : "agora-demo",  
 "applicationName" : "testapp"
 }
 ```
@@ -246,7 +245,7 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 | `chattype` | String | 会话类型：<ul><li>`user`: 单聊</li><li>`chatgroup`: 群聊。</li></ul>     | 是   |
 | `key`  | String | 会话标识：<ul><li>如果 `type` 设置为 `user`，`key` 为对端用户的用户 ID；</li><li>如果 `type` 设置为 `chatgroup`，`key` 则为群组 ID。</li></ul> | 是   |
 
-<div class="alert note"> 若在应用级别设置推送通知，你可以设置 `type` 为 `user` 和 `key` 当前用户的用户 ID。<div>
+<div class="alert note"> 若在应用级别设置推送通知，你可以设置 `type` 为 `user` 和 `key` 当前用户的用户 ID。</div>
 
 其他路径参数及描述详见[公共参数](#param)。
 

@@ -4,7 +4,7 @@
 
 ## 集成环境
 
-开始前，请注册有效的 Agora 账号并创建开启了即时通讯 IM 服务的 App Key 的 Agora 项目。
+开始前，请注册有效的声网账号并创建开启了即时通讯 IM 的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的声网项目。
 
 详见[开发环境要求](./agora_chat_get_started_ios#前提条件)。
 
@@ -60,9 +60,10 @@ AgoraChatOptions *options = [AgoraChatOptions optionsWithAppkey:@"<#appkey#>"];
 }];
 ```
 
-**用户 ID + token** 是更加安全的登录方式。用户权限 token 可从你的 app server 获取。
+**用户 ID + token** 是更加安全的登录方式。用户权限 token 可从你的 app server 获取，详见[实现 Token 鉴权](./agora_chat_token)。
 
 <div class="alert note">使用 token 登录时需要处理 token 过期的问题，比如每次登录时更新 token 等机制。</div>
+
 ```objectivec
 // 异步方法 
 [AgoraChatClient.sharedClient loginWithUsername:@"username" token:@"token" completion:^(NSString * _Nonnull aUsername, AgoraChatError * _Nullable aError) {

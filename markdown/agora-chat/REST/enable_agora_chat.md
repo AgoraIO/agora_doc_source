@@ -15,6 +15,7 @@
 1. 登录[声网控制台](https://console.agora.io/)，点击左侧导航栏 **项目管理**。
 
 2. 选择需要开通即时通讯服务的项目，点击 **配置**。
+
 ![](https://web-cdn.agora.io/docs-files/1670827574193)
 
 ![](./images/quickstart/config_project.png)

@@ -214,9 +214,9 @@ Page({
     // 将 <Your app key> 替换为你的 App Key。
     const appKey = "<Your app key>";
     // IM websocket 服务地址。
-    const url = "wss://im-api-wechat.easemob.com/websocket";
+    const url = "wss://im-api-wechat.chat.agora.io";
     // IM rest 服务地址。
-    const apiUrl = "https://a1.easemob.com";
+    const apiUrl = "https://a1.chat.agora.io";
     // 初始化 Web 客户端。
     const conn = (this.client = new AC.connection({
       appKey: appKey,
@@ -324,7 +324,7 @@ Page({
 
 ## 测试你的 app
 
-运行时需要在小程序后台配置好上面用到的 URL，开发时也可以在小程序开发者工具的 **详情** > **本地设置** 中勾选**不校验合法域名**。
+运行时需要在小程序后台配置上述 URL，开发时也可以在小程序开发者工具的 **详情** > **本地设置** 中勾选**不校验合法域名**。
 
 运行小程序后，显示如下页面：
 

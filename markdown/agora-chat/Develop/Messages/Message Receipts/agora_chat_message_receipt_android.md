@@ -87,7 +87,7 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 
 ```java
 // 设置是否需要消息已读回执，设为 `true`。
-ChatOptions.setRequireAck = true;
+chatOptions.setRequireAck(true);
 ```
 
 **会话已读回执**
