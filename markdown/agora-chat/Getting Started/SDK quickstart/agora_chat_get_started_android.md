@@ -139,7 +139,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
    <uses-permission android:name="android.permission.INTERNET" />
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-   <!—- 对于 Android 12，需添加下行代码申请闹铃定时权限 -—> 
+   <!—- 对于 Android 12，需添加下行代码申请闹铃定时权限。对于即时通讯 IM 1.0.9 及以上版本，该权限为可选。-—> 
    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
    ```
 
@@ -480,7 +480,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
 参考以下步骤验证你刚刚使用即时通讯 IM 服务集成到 app 中的单聊功能：
 
 1. 登录即时通讯 IM。<br/>
-   a. 在 `MainActivity` 文件中，将 `USERNAME`、`TOKEN` 和 `APP_KEY` 占位符替换为发送方（`Som`）的用户 ID、Agora Token 和 App Key。
+   a. 在 `MainActivity` 文件中，将 `USERNAME`、`TOKEN` 和 `APP_KEY` 占位符替换为发送方（`Som`）的用户 ID、Agora Token 和 [App Key](./enable_agora_chat#获取即时通讯项目信息)。
    b. 在 Android Studio 中，选择要运行项目的设备，然后单击 **Run 'app'**。
    c. 在您的模拟器或物理设备上，单击 **SIGN IN** 使用发送方的帐户登录。
    ![](https://web-cdn.agora.io/docs-files/1670828329040)
@@ -497,7 +497,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
    单击 **SIGN OUT** 登出即时通讯服务。
 
 4. 接收消息。<br/>
-a. 登出即时通讯 IM 后，在 `MainActivity` 文件中，将 `USERNAME`、`TOKEN` 和 `APP_KEY` 占位符替换为发送方（`Neil`）的用户 ID、Agora Token 和 App Key。
+a. 登出即时通讯 IM 后，在 `MainActivity` 文件中，将 `USERNAME`、`TOKEN` 和 `APP_KEY` 占位符替换为发送方（`Neil`）的用户 ID、Agora Token 和 [App Key](./enable_agora_chat#获取即时通讯项目信息)。
 b. 利用接收方的账号在另一台 Android 设备或模拟器上运行该 app，接收步骤 2 中发送的 "How are you doing?" 消息。
 
 ![](https://web-cdn.agora.io/docs-files/1670828405472)
@@ -506,7 +506,7 @@ b. 利用接收方的账号在另一台 Android 设备或模拟器上运行该 a
 
 ## 后续操作
 
-出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 Token。在生产环境中，最好自行部署 Token 服务器，使用自己的 [App Key](./enable_agora_chat#获取即时通讯项目信息)  生成 Token，并在客户端获取 Token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 Token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
+出于演示目的，即时通讯 IM 提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 Token。在生产环境中，最好自行部署 Token 服务器，使用自己的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 生成 Token，并在客户端获取 Token 登录即时通讯 IM。要了解如何实现服务器按需生成和提供 Token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
 
 ## 参考
 

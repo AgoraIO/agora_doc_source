@@ -3,7 +3,7 @@
 
 ## 前提条件
 
-开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 App Key 的声网项目。详见[开发环境要求](./agora_chat_get_started_web#前提条件)。
+开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的声网项目。详见[开发环境要求](./agora_chat_get_started_web#前提条件)。
 
 ## 导入 SDK
 
@@ -28,8 +28,8 @@ import AC, { AgoraChat } from "agora-chat";
 ```javascript
 const conn = new AC.connection({
   appKey: "your appKey",
-  url: "wss://im-api-wechat.easemob.com/websocket",
-  apiUrl: "https://a1.easemob.com",
+  url: "wss://im-api-wechat.chat.agora.io",
+  apiUrl: "https://a1.chat.agora.io",
 });
 ```
 
@@ -106,7 +106,7 @@ conn
   });
 ```
 
-**用户 ID + token** 是更加安全的登录方式。token 用户权限 token 可从你的 app server 获取。
+**用户 ID + token** 是更加安全的登录方式。用户权限 token 可从你的 app server 获取，详见[实现 Token 鉴权](./agora_chat_token)。
 
 <div class="alert note">使用 token 登录时需要处理 token 过期的问题，比如每次登录时更新 token 等机制。</div>
 

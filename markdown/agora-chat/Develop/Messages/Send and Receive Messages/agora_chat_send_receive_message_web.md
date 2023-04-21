@@ -156,7 +156,7 @@ conn.addEventHandler("eventName",{
 /**
  * @param {Object} option.mid - 要撤回消息的 ID。
  * @param {Object} option.to - 消息接收方。
- * @param {Object} option.type - 会话类型：chat (单聊)、groupchat (群聊)和 chatroom (聊天室)。
+ * @param {Object} option.type - 会话类型：单聊、群聊和聊天室分别为 `singleChat`、`groupChat` 和 `chatRoom`。
  */
 let option = {
     mid: 'msgId',

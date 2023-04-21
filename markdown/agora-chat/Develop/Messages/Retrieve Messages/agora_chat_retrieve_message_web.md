@@ -16,7 +16,7 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [Web 快速开始](./agora_chat_get_started_web)。
-- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
+- 了解即时通讯 IM API 的调用频率限制，详见[限制条件](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -24,7 +24,7 @@
 
 你可以调用 `getConversationlist` 方法从服务端分页获取会话列表，每个会话包含最新一条历史消息。
 
-<div class="alert note"><ul><li> 建议在 app 安装时或本地没有会话时调用该方法，否则调用 `getAllConversations` 方法即可。</li><li>获取的会话列表中不包含最新一条消息通过 RESTful 接口发送的会话。若需获取该类会话，需要联系商务开通将通过 RESTful 接口发送的消息写入会话列表的功能。</li></ul></div>
+<div class="alert note">获取的会话列表中不包含最新一条消息通过 RESTful 接口发送的会话。若需获取该类会话，需要联系 [sales@agora.io](mailto:sales@agora.io) 开通将通过 RESTful 接口发送的消息写入会话列表的功能。</div>
 
 ```java
 // pageNum：当前页面，从 1 开始。
@@ -36,7 +36,7 @@ connection.getConversationlist({pageNum: 1, pageSize: 20}).then((res) => {})
 
 ### 从服务器获取指定会话的历史消息
 
-你可以调用 `getHistoryMessages` 方法从服务器获取指定会话的消息（消息漫游）。你可以指定消息查询方向，即明确按服务器接收消息的时间顺序或时间倒序获取消息。为确保数据可靠，我们建议你每次获取少于 50 条消息，可多次获取。拉取后默认 SDK 会自动将消息更新到本地数据库。
+你可以调用 `getHistoryMessages` 方法从服务器获取指定会话的消息（消息漫游）。你可以指定消息查询方向，即明确按服务器接收消息的时间顺序或时间倒序获取消息。为确保数据可靠，我们建议你每次获取少于 50 条消息，可多次获取。
 
 ```javascript
 var options = {

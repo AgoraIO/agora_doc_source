@@ -4,7 +4,7 @@
 
 ## 集成环境
 
-开始前，请注册有效的声网账号并创建开启了即时通讯 IM 服务的 App Key 的声网项目。
+开始前，请注册有效的声网账号并创建开启了即时通讯 IM 的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的声网项目。
 
 详见[开发环境要求](./agora_chat_get_started_android#前提条件)。
 
@@ -81,7 +81,7 @@ ChatClient.getInstance().login(mAccount, mPassword, new CallBack() {
 });
 ```
 
-**用户 ID + token** 是更加安全的登录方式。用户权限 token 可从你的 app server 获取。
+**用户 ID + token** 是更加安全的登录方式。用户权限 token 可从你的 app server 获取，详见[实现 Token 鉴权](./agora_chat_token)。
 
 <div class="alert note">使用 token 登录时需要处理 token 过期的问题，比如每次登录时更新 token 等机制。</div>
 
@@ -109,13 +109,15 @@ ChatClient.getInstance().loginWithToken(mAccount, mToken, new CallBack() {
 同步方法：
 
 ```java
-ChatClient.getInstance().logout(true);
+// unbindToken 表示是否解除账号与设备绑定。若解除绑定，用户登出账号后设备将不再收到消息推送。
+ChatClient.getInstance().logout(unbindToken);
 ```
 
 异步方法：
 
 ```java
-ChatClient.getInstance().logout(true, new CallBack() {
+// unbindToken 表示是否解除账号与设备绑定。若解除绑定，用户登出账号后设备将不再收到消息推送。
+ChatClient.getInstance().logout(unbindToken, new CallBack() {
 
     @Override
     public void onSuccess() {
@@ -199,4 +201,4 @@ ChatClient.getInstance().setDebugMode(true);
 adb pull /sdcard/android/data/{应用包名}/{App Key}/core_log/easemob.log
 ```
 
-获取本地日志，需要将 `{应用包名}` 替换为应用的包名，例如 `io.agora.chatuidemo`；`{App Key}` 需要替换为应用设置的即时通讯服务的 App Key。
+获取本地日志，需要将 `{应用包名}` 替换为应用的包名，例如 `io.agora.chatuidemo`；`{App Key}` 需要替换为应用设置的即时通讯服务的 [App Key](./enable_agora_chat#获取即时通讯项目信息)。

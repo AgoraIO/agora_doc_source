@@ -185,7 +185,7 @@ import { EaseChat } from "agora-chat-uikit";
 
 | 属性                   | 类型                  | 是否必填 | 描述                                                         |
 | :--------------------- | :-------------------- | :----- | :----------------------------------------------------------- |
-| `appkey`               | String                 | 是  | 即时通讯 IM 分配给每个 app 的唯一标识，生成规则为 `$(OrgName)#{AppName}`。                               |
+| `appkey`               | String                 | 是  | 即时通讯 IM 分配给每个 app 的唯一标识，生成规则为 `$(OrgName)#{AppName}`。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息) 。|
 | `username`             | String                 | 是  | 用户标识。                                                   |
 | `agoraToken`           | String                  | 是  | Agora Token.                                             |
 | `to`                   | String                  | 是  | 消息接收方。单聊时为对方用户 ID，群聊时为群组 ID。 |

@@ -187,7 +187,7 @@
    domain=
    ```
 
-关于如何获取 App Key 和获取 RESTful API 请求域名，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。
+关于如何获取 App Key 和 RESTful API 请求域名，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。
 
 4. 在 `com.agora.chat.token` 路径下，创建 `AgoraChatTokenController.java` 类，将以下代码复制到该文件中：
 
@@ -607,7 +607,7 @@ try {
 
 6. 实现 App 逻辑。
 
-   复制以下代码到 `index.js` 文件中，将 `<Your App Key>` 替换为你的 App Key。
+   复制以下代码到 `index.js` 文件中，将 `<Your App Key>` 替换为你的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 。
 
    在下列示例代码中可以看到，就客户端而言，用户权限 Token 和以下代码逻辑有关：
 
