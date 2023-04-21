@@ -1171,7 +1171,7 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="setRemoteRenderModeEx2" href="../API/api_irtcengineex_setremoterendermodeex2.dita">
+            <keydef keys="setRemoteRenderModeEx" href="../API/api_irtcengineex_setremoterendermodeex.dita">
                 <topicmeta>
                     <keywords>
                         <keyword>setRemoteRenderModeEx</keyword>
@@ -2528,6 +2528,29 @@
                 </topicmeta>
             </keydef>
         </topichead>
+        <topichead navtitle="本地合图">
+            <keydef keys="startLocalVideoTranscoder" href="../API/api_irtcengine_startlocalvideotranscoder.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>startLocalVideoTranscoder</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="stopLocalVideoTranscoder" href="../API/api_irtcengine_stoplocalvideotranscoder.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>stopLocalVideoTranscoder</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="updateLocalTranscoderConfiguration" href="../API/api_irtcengine_updatelocaltranscoderconfiguration.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>updateLocalTranscoderConfiguration</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="媒体附属信息">
             <keydef keys="registerMediaMetadataObserver" href="../API/api_irtcengine_registermediametadataobserver.dita">
                 <topicmeta>
@@ -3331,6 +3354,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="LocalTranscoderConfiguration" href="../API/class_localtranscoderconfiguration.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>AgoraLocalTranscoderConfiguration</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="onLocalVideoStats" href="../API/callback_irtcengineeventhandler_onlocalvideostats.dita">
                 <topicmeta>
                     <keywords>
@@ -3867,6 +3897,15 @@
                 </topicmeta>
             </keydef>
         </topichead>
+        <topichead navtitle="本地合图事件">
+            <keydef keys="onLocalVideoTranscoderError" href="../API/callback_irtcengineeventhandler_onlocalvideotranscodererror.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>didLocalVideoTranscoderErrorWithStream</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+        </topichead>
         <topichead navtitle="其他事件">
             <keydef keys="onApiCallExecuted" href="../API/callback_irtcengineeventhandler_onapicallexecuted.dita">
                 <topicmeta>
@@ -4339,6 +4378,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraLiveTranscodingUser</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="TranscodingVideoStream" href="../API/class_transcodingvideostream.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraTranscodingVideoStream</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -9736,6 +9782,34 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="VIDEO_SOURCE_CAMERA_THIRD">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoSourceTypeCameraThird</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_SOURCE_CAMERA_FOURTH">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoSourceTypeCameraFourth</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_SOURCE_SCREEN_THIRD">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoSourceTypeScreenThird</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_SOURCE_SCREEN_FOURTH">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoSourceTypeScreenFourth</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="VIDEO_SOURCE_UNKNOWN">
             <topicmeta>
                 <keywords>
@@ -9789,6 +9863,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraVideoCodecTypeH264</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_CODEC_H265">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoCodecTypeH265</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -10629,6 +10710,62 @@
             <topicmeta>
                 <keywords>
                     <keyword>AgoraVideoViewSetupRemove</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_TRANSCODER_ERROR" href="../API/enum_videotranscodererror.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderError</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VT_ERR_OK">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderErrorOK</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VT_ERR_VIDEO_SOURCE_NOT_READY">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderErrorVideoSourceNotReady</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VT_ERR_INVALID_VIDEO_SOURCE_TYPE">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderErrorInvalidVideoSourceType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VT_ERR_INVALID_IMAGE_PATH">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderErrorInvalidImagePath</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VT_ERR_UNSUPPORT_IMAGE_FORMAT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderErrorUnsupportImageFormat</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VT_ERR_INVALID_LAYOUT">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderErrorInvalidLayout</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VT_ERR_INTERNAL">
+            <topicmeta>
+                <keywords>
+                    <keyword>AgoraVideoTranscoderErrorInternal</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
