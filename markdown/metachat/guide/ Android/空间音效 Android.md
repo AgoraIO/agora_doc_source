@@ -134,8 +134,7 @@ if (spatialAudioEngine != null) {
 
 ![](https://web-cdn.agora.io/docs-files/1679996715949)
 
-
-由于空间音效是基于人物的位置驱动，因此在进入 Unity 场景后，无论人物是否移动，都需要 Unity 脚本主动向 app 发送一次人物的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
+由于空间音效是基于 NPC 或物体的位置驱动，因此在进入 Unity 场景后，无论 NPC 或物体是否移动，都需要 Unity 脚本主动向 app 发送一次 NPC 或物体的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
 
 #### 1. 实现媒体播放器
 
@@ -146,7 +145,7 @@ mRtcEngine = RtcEngine.create(config);
 // 创建 IMediaPlayer 对象
 mediaPlayer = engine.createMediaPlayer();
 mediaPlayer.open(url, 0);
-// 请确保在收到 PLAYER_STATE_OPEN_COMPLETED 后再调用 play
+// 请确保在收到 onPlayerStateChanged 回调报告 PLAYER_STATE_OPEN_COMPLETED 后再调用 play
 mediaPlayer.play();
 ```
 

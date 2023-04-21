@@ -123,7 +123,7 @@ if agoraLocalSpatialAudioKit != nil {
 
 ![](https://web-cdn.agora.io/docs-files/1679996803493)
 
-由于空间音效是基于人物的位置驱动，因此在进入 Unity 场景后，无论人物是否移动，都需要 Unity 脚本主动向 app 发送一次元宇宙中 NPC 或物体的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
+由于空间音效是基于 NPC 或物体的位置驱动，因此在进入 Unity 场景后，无论 NPC 或物体是否移动，都需要 Unity 脚本主动向 app 发送一次 NPC 或物体的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
 
 #### 1. 实现媒体播放器
 
@@ -136,7 +136,7 @@ rtcEngine = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
 mediaPlayerKit = rtcEngine.createMediaPlayer(with: self)
 // 打开 URL
 mediaPlayerKit.open(url, startPos: 0)
-// 请确保在收到 AgoraMediaPlayerStateOpenCompleted 后再调用 play
+// 请确保在收到 didChangedToState 回调报告 AgoraMediaPlayerStateOpenCompleted 后再调用 play
 mediaPlayerKit.play()
 ```
 

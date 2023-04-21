@@ -30,7 +30,7 @@
 
 ### 1. 推送视频
 
-调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 [`didReceiveVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_video_observer.html?platform=iOS#callback_ivideoframeobserver_onframe) 回调得到的视频帧推送至该视频显示屏。
+调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 [`didReceiveVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_video_observer.html?platform=iOS#callback_ivideoframeobserver_onframe) 回调得到的视频帧赋值给 `AgoraVideoFrame` 并推送其至该视频显示屏。
 
 ```swift
 // 开启视频显示屏
