@@ -25,7 +25,7 @@
 - `deleteReaction` 删除消息的 Reaction；
 - `getReactionList` 获取消息的 Reaction 列表；
 - `getReactionDetail` 获取 Reaction 详情；
-- `fetchHistoryMessages` 获取漫游消息中的 Reaction。
+- `getHistoryMessages` 获取漫游消息中的 Reaction。
 
 ## 前提条件
 
@@ -105,12 +105,12 @@ conn
 
 ### 获取漫游消息中的 Reaction
 
-调用 `fetchHistoryMessages` 可以获取漫游消息，如果一条消息已添加 Reaction，消息体中会包含 Reaction 概览。
+调用 `getHistoryMessages` 可以获取漫游消息，如果一条消息已添加 Reaction，消息体中会包含 Reaction 概览。
 
 示例代码如下：
 
 ```javascript
-conn.fetchHistoryMessages({ queue: "user", count: 20 }).then((messages) => {
+conn.getHistoryMessages({ targetId:'targetId',chatType:'groupChat', pageSize: 20 }).then((messages) => {
   console.log(messages);
 });
 ```
