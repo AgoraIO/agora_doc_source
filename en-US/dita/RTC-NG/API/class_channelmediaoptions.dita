@@ -26,8 +26,6 @@
   public Integer audienceLatencyLevel;
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
-  public Integer audioDelayMs;
-  public Integer mediaPlayerAudioDelayMs;
   public String token;
   public Boolean enableBuiltInMediaEncryption;
   public Integer publishCustomAudioSourceId;
@@ -63,7 +61,6 @@
 @property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
 @property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
 @property(assign, nonatomic) AgoraChannelProfile channelProfile;
-@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
 @property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
 
@@ -105,8 +102,6 @@
   Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
   Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
   Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
-  Optional&lt;int&gt; audioDelayMs;
-  Optional&lt;int&gt; mediaPlayerAudioDelayMs;
   Optional&lt;const char*&gt; token;
   Optional&lt;bool&gt; enableBuiltInMediaEncryption;
   Optional&lt;bool&gt; publishRhythmPlayerTrack;
@@ -168,10 +163,6 @@
 
   channelProfile?: ChannelProfileType;
 
-  audioDelayMs?: number;
-
-  mediaPlayerAudioDelayMs?: number;
-
   token?: string;
 
   enableBuiltInMediaEncryption?: boolean;
@@ -210,8 +201,6 @@
           public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt;();
           public Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
           public Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE&gt;();
-          public Optional&lt;int&gt; audioDelayMs = new Optional&lt;int&gt;();
-          public Optional&lt;int&gt; mediaPlayerAudioDelayMs = new Optional&lt;int&gt;();
           public Optional&lt;string&gt; token = new Optional&lt;string&gt;();
           public Optional&lt;bool&gt; publishRhythmPlayerTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; isInteractiveAudience = new Optional&lt;bool&gt;();
@@ -269,10 +258,6 @@
 
   channelProfile?: ChannelProfileType;
 
-  audioDelayMs?: number;
-
-  mediaPlayerAudioDelayMs?: number;
-
   token?: string;
 
   enableBuiltInMediaEncryption?: boolean;
@@ -312,8 +297,6 @@
       this.audienceLatencyLevel,
       this.defaultVideoStreamType,
       this.channelProfile,
-      this.audioDelayMs,
-      this.mediaPlayerAudioDelayMs,
       this.token,
       this.enableBuiltInMediaEncryption,
       this.publishRhythmPlayerTrack,
@@ -395,12 +378,6 @@
 
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
-
-  @JsonKey(name: 'audioDelayMs')
-  final int? audioDelayMs;
-
-  @JsonKey(name: 'mediaPlayerAudioDelayMs')
-  final int? mediaPlayerAudioDelayMs;
 
   @JsonKey(name: 'token')
   final String? token;
