@@ -14,21 +14,20 @@
 
 按照以下步骤，在声网控制台开通灵动课堂服务：
 
-1. 进入声网控制台的<a href="https://console.agora.io/projects" target="_blank">项目管理</a>页面，选择需要开通灵动课堂服务的项目，点击**编辑**按钮。
+1. 进入声网控制台的<a href="https://console.agora.io/projects" target="_blank">项目管理</a>页面，选择需要开通灵动课堂服务的项目，点击**配置**按钮。
 
-   ![](https://web-cdn.agora.io/docs-files/1641282981459)
+2. 在**服务配置**标签页下，找到**灵动课堂**，点击**启用**。
 
-2. 在**拓展能力**下，找到**灵动课堂**，点击**启用**。
+   ![](https://web-cdn.agora.io/docs-files/1681207342129)
 
-   ![](https://web-cdn.agora.io/docs-files/1641283154171)
+3. 阅读弹窗提示后点击**启用**。
 
-3. 仔细阅读弹窗提示，点击**启用**。
+4. 成功开通灵动课堂服务后，状态会变为"配置"，开启按钮会切换为配置按钮，如下图所示。
 
-   ![](https://web-cdn.agora.io/docs-files/1641283263841)
+   ![](https://web-cdn.agora.io/docs-files/1681207368697)
 
-4. 成功开通灵动课堂服务后，状态会变为"已启用"，开启按钮会切换为配置按钮，如下图所示。
 
-   ![](https://web-cdn.agora.io/docs-files/1641283823693)
+<div class="alert note">如果要在灵动课堂中使用互动白板、实时录制和实时消息功能，必须对配置白板、实时消息、实时录制相关模块的存储和权限进行配置，否则无法使用。</div>
 
 ## 后续步骤
 

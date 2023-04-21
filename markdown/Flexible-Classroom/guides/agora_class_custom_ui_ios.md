@@ -1,16 +1,12 @@
-## 教室与 UI 组件介绍
+Classroom SDK（AgoraEduUI）和 Proctor SDK（AgoraProctorUI）原理相同，本文以 Classroom SDK 为例。
 
-### 数据交互流程
+在声网 Classroom SDK 中，灵动课堂的 UI 层代码和核心业务逻辑相隔离，独立成 **AgoraEduUI** 和 **AgoraEduCore** 两个库，两者通过 [Agora Edu Context](/cn/agora-class/API%20Reference/edu_context_swift/API/edu_context_api_overview.html) 产生关联。
 
-灵动课堂的 UI 层和核心业务逻辑层相互分离，分为 **UI**（`AgoraEduUI`） 和 **Core**（`AgoraEduCore`） 两个独立的库。以灵动课堂教育场景的设备开关功能为例，该功能使用户通过一个按钮改变设备状态。为实现该功能，你需要在 `AgoraEduUI` 中调用 `AgoraEduMediaContext` 类的 `openLocalDevice` 方法，并监听 `AgoraEduMediaHandler` 抛出的设备状态改变相关事件。
+如果你需要自定义课堂 UI，需要下载并修改灵动课堂源码。具体步骤参照[集成教育场景下灵动课堂并自定义](agora_class_integrate_ios#%E9%9B%86%E6%88%90%E6%95%99%E8%82%B2%E5%9C%BA%E6%99%AF%E4%B8%8B%E7%81%B5%E5%8A%A8%E8%AF%BE%E5%A0%82%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89)和[集成监考场景下灵动课堂并自定义](agora_class_integrate_ios#%E9%9B%86%E6%88%90%E7%9B%91%E8%80%83%E5%9C%BA%E6%99%AF%E7%81%B5%E5%8A%A8%E8%AF%BE%E5%A0%82%E5%B9%B6%E8%87%AA%E5%AE%9A%E4%B9%89)。
 
-数据流转示意图如下：
 
-![](https://web-cdn.agora.io/docs-files/1650273644082)
-
-### 教室和 UI 组件结构说明
-
-`AgoraEduUI` 包含灵动课堂的 UI 组件代码。`AgoraEduUI` 的源码位于 GitHub 仓库中 `CloudClass-iOS/SDKs/AgoraEduUI/Classes` 目录下，核心项目结构介绍如下：
+# 文件夹介绍
+`AgoraEduUI` 的源码位于 `CloudClass-iOS` 仓库 `/SDKs/AgoraEduUI/Classes` 目录下，核心结构介绍如下：
 
 | 文件夹         | 描述                                                         |
 | :------------- | :----------------------------------------------------------- |
@@ -20,259 +16,110 @@
 | `/Views` | 灵动课堂使用的 UI 元素，如视频渲染窗口、设置界面等。         |
 | `/Models` | 用于 `AgoraEduUI` 的数据模型。 |
 
-### 类型说明
-
--   `UIScene`
-
-    -   一个 `UIScene` 对应一种班型场景，类型为 `UIViewController`。
-    -   `UIScene` 管理多个 `UIComponent`，负责 `UIComponent` 之间的通讯。
-    -   `UIScene` 持有一个 `contextPool` 对象，用于使用 `AgoraEduCore` 层的能力。
-
--   `UIComponent`
-    -   一个 `UIComponent` 对应一个 UI 组件，类型为 `UIViewController`。
-    -   `UIComponent` 的 view 是 `UIScene.contentView` 的 subView，用于该功能的占位。
-    -   `UIComponent` 位于 `AgoraEduUI` 库的 `/Components` 文件夹下，分为以下两种：
-        -   `FlatComponents`: 平铺类型的 UI 组件。
-        -   `SuspendComponents`: 弹窗类型的 UI 组件。
-        
-
-### UI 结构示意图
+# 交互层架构
+灵动课堂的交互层和逻辑层是相互分离，交互层的架构与设计模式如下图所示
 
 ![](https://web-cdn.agora.io/docs-files/1670308423580)
 
-## 自定义课堂 UI
+## UIScene
+* 业务场景的抽象，例如一对一课堂场景对应 `FcrOneToOneUIScene`
+* 管理所有的 UIComponent
 
-本节以灵动课堂教育场景为例，介绍自定义课堂 UI 的具体步骤。
+## UIComponent
+* 业务功能的抽象，例如一对一教学课堂中的视频列表窗口对应 `FcrOneToOneTachedWindowUIComponent`
+* 管理 view object 与 logic object
+![](https://web-cdn.agora.io/docs-files/1680863775387)
 
-### 1. 获取灵动课堂源码
+## View Object
+* 视图对象，负责视图数据的显示与响应用户交互，例如 `FcrWindowRenderView`
 
-如需修改灵动课堂的默认 UI，你需要通过下载 GitHub 源码的方式集成灵动课堂，步骤如下：
+## Logic Object
+* 逻辑对象，提供功能 API 给 UIComponent 调用，例如媒体模块中的打开本地设备对应 `AgoraEduMediaContext.openLocalDevice`
 
-1. 运行以下命令将 [CloudClass-iOS](https://github.com/AgoraIO-Community/CloudClass-iOS) 和 [apaas-extapp-ios](https://github.com/AgoraIO-Community/apaas-extapp-ios) 项目克隆至本地，并切换至最新发版分支。
+## Logic Data
+* 由 Logic Object 输出的逻辑数据，例如媒体流数据对应 `AgoraEduContextStreamInfo`
 
-   ```bash
-   git clone https://github.com/AgoraIO-Community/CloudClass-iOS.git 
-   ```
+## View Data
+* 由 Logic Data 转换而来，为视图展示所需要的数据，例如媒体流窗口数据对应  `FcrStreamWindowViewData`
 
-   ```bash
-   git clone https://github.com/AgoraIO-Community/apaas-extapp-ios.git
-   ```
+# UIConfig
+UI 配置，用于设置颜色、字体、图片等。源文件位于 `SDKs/AgoraEduUI/Classes/Configs` 下，分为两个文件夹 Scenes 与 Theme。
 
-2. 通过 `git remote add <shortname> <url>` 命令为 **CloudClass-iOS** 和 **apaas-extapp-ios** 仓库添加远端仓库，指向你的项目仓库。
+## Theme 文件夹
 
-3. 基于最新的发版分支创建一个你自己的分支，推向你的项目仓库。
+提供与主题相关的设置，例如明亮模式与暗黑模式，前景色，字体样式等。
 
-4. 在你的项目的 `Podfile` 文件中添加如下代码引用 `CloudClass-iOS` 项目中的 `AgoraClassroomSDK_iOS.podspec`、`AgoraEduUI.podspec` 和 `apaas-extapp-ios` 项目中的 `AgoraWidgets.podspec` 以及其它依赖的库。
+| Theme              | 说明                   |
+| :-------------     | :-------------        |
+| `FcrUIMode`        | 明亮模式和暗夜模式。       | 
+| `FcrUIColorGroup ` | 灵动课堂所使用的通用颜色。  | 
+| `FcrUIFontGroup `  | 灵动课堂所使用的通用字体。  |
+| `FcrUIFrameGroup ` | 灵动课堂所使用的通用尺寸。  |
 
-   ```
-   # third libs
-   pod 'Protobuf', '3.17.0'
-   pod 'CocoaLumberjack', '3.6.1'
-   pod 'AliyunOSSiOS', '2.10.8'
-   pod 'Armin', '1.1.0'
-   pod 'SSZipArchive', '2.4.2'
-   pod 'SwifterSwift', '5.2.0'
-   pod 'Masonry', '1.1.0'
-   pod 'SDWebImage', '5.12.0'
-   
-   # agora libs
-   pod 'AgoraRtcEngine_iOS/RtcBasic', '3.6.2'
-   pod 'AgoraMediaPlayer_iOS', '1.3.0'
-   pod 'AgoraRtm_iOS', '1.4.8'
-   pod 'Agora_Chat_iOS', '1.0.6'
-   pod 'Whiteboard', '2.16.39'
-    
-   # open source libs
-   pod 'AgoraClassroomSDK_iOS', :path => '../CloudClass-iOS/AgoraClassroomSDK_iOS.podspec'
-   pod 'AgoraEduUI', :path => '../CloudClass-iOS/AgoraEduUI.podspec'
-   pod 'AgoraWidgets', :path => '../apaas-extapp-ios/AgoraWidgets.podspec'
-    
-   # close source libs
-   pod 'AgoraUIBaseViews', '2.8.0'
-   pod 'AgoraEduCore', '2.8.0'
-   pod 'AgoraWidget', '2.8.0'
-   ```
 
-### 2. 修改现有的 UI 组件
+例如，你想要修改明亮模式下的系统背景色，可参考以下代码：
 
-#### 示例一：修改导航栏的颜色与布局
+```swift
+struct FcrUIColorGroup {
+	...
+	static var systemBackgroundColor: UIColor {
+        switch UIMode {
+        // 明亮模式下的系统背景色设置为绿色
+        case .agoraLight: return .green
+        case .agoraDark:  return UIColor(hex: 0x262626)!
+        }
+    }
+	...
+}
+```
 
-你可通过以下三种方式修改导航栏的颜色：
+效果如下图所示：
+![](https://web-cdn.agora.io/docs-files/1680863801830)
 
-- 方式一：直接修改 `RoomStateUIComponent` 中的代码。
 
-- 方式二：修改 `UIConfigs` 中的 `FcrUIComponentStateBar` 的 `backgroundColor` 变量。
+## Scenes 文件夹
 
-以下为方式二的示例代码：
-
-**修改前**
+提供每个 UIScene、UIComponent、View Object 具体的配置属性，大部分属性的值会来自 Theme 下定义好的通用属性值。例如，`FcrUIComponents.swift` 文件中配置状态栏对应的 UI Component 的背景颜色：
 
 ```swift
 struct FcrUIComponentStateBar: FcrUIComponentProtocol {
-    var visible: Bool = true
-    var enable: Bool = true
-    // 导航栏的颜色为 systemForegroundColor。
+	...
     var backgroundColor: UIColor = FcrUIColorGroup.systemForegroundColor
-    
-    /**Scene Builder Set**/
-    var networkState = FcrUIItemStateBarNetworkState()
-    var roomName = FcrUIItemStateBarRoomName()
-    var scheduleTime = FcrUIItemStateBarScheduleTime()
-    /**iOS**/
-    let sepLine = FcrUIItemSepLine()
-    
-    let borderWidth = FcrUIFrameGroup.borderWidth
-    let borderColor = FcrUIColorGroup.systemDividerColor
+	...    
 }
 ```
 
-![](https://web-cdn.agora.io/docs-files/1651751702539)
 
-**修改后**
+
+| 配置文件          | 交互层级          | 例子 |
+| :-------------   | :-------------  |:------------- |
+| `FcrLectureUIConfig.swift`，`FcrOneToOneUIConfig.swift`，`FcrSmallUIConfig.swift`       | UIScene      | `FcrOneToOneConfig.swift` 对应 `FcrOneToOneScene` |
+| `FcrUIComponents.swift`   | UIComponent   | `FcrUIComponentStateBar` 对应 `FcrRoomStateUIComponent`  |
+| `FcrUIItems.swift`         | View Object   | `FcrUIItemStateBarNetworkState` 对应 `AgoraRoomStateBar.netStateView` |
+
+
+例如，你想要修改状态栏的背景颜色为蓝色，可参考以下代码：
 
 ```swift
 struct FcrUIComponentStateBar: FcrUIComponentProtocol {
-    var visible: Bool = true
-    var enable: Bool = true
-    // 导航栏的颜色为 systemTeal。
-    var backgroundColor: UIColor = .systemTeal
-    
-    /**Scene Builder Set**/
-    var networkState = FcrUIItemStateBarNetworkState()
-    var roomName = FcrUIItemStateBarRoomName()
-    var scheduleTime = FcrUIItemStateBarScheduleTime()
-    /**iOS**/
-    let sepLine = FcrUIItemSepLine()
-    
-    let borderWidth = FcrUIFrameGroup.borderWidth
-    let borderColor = FcrUIColorGroup.systemDividerColor
+	...
+    var backgroundColor: UIColor = .blue
+	...   
 }
 ```
 
-![](https://web-cdn.agora.io/docs-files/1651751774540)
+![](https://web-cdn.agora.io/docs-files/1680863821711)
 
-#### 示例二：修改花名册图片资源
+# 资源文件
+灵动课堂所使用的图片、动图、UI 文字等资源文件都位于 `SDKs/AgoraEduUI/Assets/` 下
 
-花名册 UI 组件的代码主要位于以下两个文件中：
+| 文件夹              | 说明                        |
+| :-------------     | :-------------             |
+| `images.xcassets`  | 存放所有的 PNG 文件               | 
+| `others `          | 非 PNG 文件，包括动图、文案等  | 
 
-- CloudClass-iOS/SDKs/AgoraEduUI/Classes/Components/SuspendComponents/FcrRosterUIController.swift
-- CloudClass-iOS/SDKs/AgoraEduUI/Classes/Views/UserList/AgoraUserListItemCell.swift
+## 增加新语言
 
-花名册 UI 组件应用于学生端小班课、教师端小班课、教师端大班课教室中。教师端可以操作花名册，学生端不可操作。学生信息列表中包含学生姓名、上下台、白板授权、摄像头、麦克风、奖励六栏，如下图所示：
-
-![](https://web-cdn.agora.io/docs-files/1651752243091)
-
-其中：
-
-- 上下台和白板授权仅有 **true** 和 **false** 两种状态。
-- 摄像头和麦克风有**未上台+不可操作**、**已上台+设备关闭**、**已上台+设备开启+发流权限关闭**、**已上台+设备开启+发流权限开启**四种状态。
-
-花名册的数据源如下：
-
-- 学生总人数的变化和上台人数变化由 `AgoraEduUserHandler` 中的回调报告。
-- 麦克风状态和摄像头状态由 `AgoraEduStreamHandler` 中的回调报告。
-- 白板授权状态由 ID 为 `netlessBoard` 的 Widget 消息报告。
-
-以摄像头状态为例，数据流转过程如下：
-
-1. 当流状态发生变化，会触发 `AgoraEduStreamHandler` 的 `onStreamUpdated` 回调，然后通过 `updateModel` 方法更新数据源。
-2. 数据源更新完成后，调用 `tableView.reloadData()` 刷新 tableView 的每个 Cell。
-3. 在 `AgoraUserListItemCell` 的 `updateState` 方法中刷新图标。
-
-因此，如果我们想更新学生端小班课中花名册的摄像头图标，可参考以下步骤：
-
-1. 将新的摄像头图标 **new_camera_on** 和 **new_camera_off** 放置于 `AgoraEduUI/AgoraEduUI/Assets/images.xcassets/NameRoll` 文件夹中：
-
-   ![](https://web-cdn.agora.io/docs-files/1651755311560)
-
-2. 更新 `AgoraUserListItemCell.swift` 文件中的代码。
-
-**修改前**
-
-```swift
-// 颜色设置
-let onColor = UIColor(hex: 0x0073FF)
-let offColor = UIColor(hex: 0xF04C36)
-let disabledColor = UIColor(hex: 0xE2E2EE)
-  
-// state
-case .camera:
-    if !model.stageState.isOn {
-        // 未上台
-        let image = UIImage.agedu_named("ic_nameroll_camera_on")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = disabledColor
-    } else if !model.cameraState.deviceOn {
-        // 已上台，设备关闭
-        let image = UIImage.agedu_named("ic_nameroll_camera_off")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = disabledColor
-    } else if !model.cameraState.streamOn {
-        // 已上台，设备开启，发流权限关闭
-        let image = UIImage.agedu_named("ic_nameroll_camera_off")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = offColor
-    } else {
-        // 已上台，设备开启，发流权限开启
-        let image = UIImage.agedu_named("ic_nameroll_camera_on")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = onColor
-    }
-    cameraButton.isUserInteractionEnabled = model.cameraState.isEnable
-```
-
-**修改后**
-
-```swift
-case .camera:
-    if !model.stageState.isOn {
-        // 未上台
-        let image = UIImage.agedu_named("new_camera_on")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = disabledColor
-    } else if !model.cameraState.deviceOn {
-        // 已上台，设备关闭
-        let image = UIImage.agedu_named("new_camera_off")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = disabledColor
-    } else if !model.cameraState.streamOn {
-        // 已上台，设备开启，发流权限关闭
-        let image = UIImage.agedu_named("new_camera_off")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = offColor
-    } else {
-        // 已上台，设备开启，发流权限开启
-        let image = UIImage.agedu_named("new_camera_on")
-        if let i = image?.withRenderingMode(.alwaysTemplate) {
-            cameraButton.setImageForAllStates(i)
-        }
-        cameraButton.tintColor = onColor
-    }
-    cameraButton.isUserInteractionEnabled = model.cameraState.isEnable
-```
-
-![](https://web-cdn.agora.io/docs-files/1651756155692)
-
-![](https://web-cdn.agora.io/docs-files/1651756204269)
-
-### 3. 新增 UI 组件
-
-新增 UI 组件的基本步骤如下：
-
-1. 在 `CloudClass-iOS/SDKs/AgoraEduUI/Classes/Components` 文件夹中新增一个 `UIComponent` 类。
-2. 在 `UIScene` 中创建该 `UIComponent` 对象并添加视图。
-
+1. 在 `others ` 文件夹下，复制一个原有的语言文件夹（例如 `en.Iproj`），重命名为新语言对应的名称（例如 `jp.Iproj`）。
+2. 把文件夹内的 `Localizable.strings` 文件里的 `value` 都替换为新增语言对应的值。
+3. 在进入房间前，将 `AgoraUIBaseViews` 里的全局变量 `agora_ui_language` 的指设置为新增语言对应的文件夹名，再进入房间即可生效。
