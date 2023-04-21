@@ -121,7 +121,7 @@ if agoraLocalSpatialAudioKit != nil {
 
 下图介绍实现媒体播放器空间音效的 API 时序：
 
-![](https://web-cdn.agora.io/docs-files/1679996803493)
+![](https://web-cdn.agora.io/docs-files/1682064675611)
 
 由于空间音效是基于 NPC 或物体的位置驱动，因此在进入 Unity 场景后，无论 NPC 或物体是否移动，都需要 Unity 脚本主动向 app 发送一次 NPC 或物体的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
 

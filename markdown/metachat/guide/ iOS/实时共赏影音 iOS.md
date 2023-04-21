@@ -26,7 +26,7 @@
 
 下图展示 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1679996745637)
+![](https://web-cdn.agora.io/docs-files/1682064521515)
 
 ### 1. 推送视频
 
