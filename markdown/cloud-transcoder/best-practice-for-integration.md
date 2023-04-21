@@ -1,6 +1,4 @@
 本文介绍使用云端转码服务的最佳实践，包含保障高可用、检查服务状态并及时排查问题、避免服务频繁退出。通过采用这些措施，可以更好保障服务的可靠性和稳定性，从而为你提供更好的业务支持。
-
-[TOC]
 ## 保障 REST 服务高可用
 
 为保障 REST 服务的高可用，避免因区域网络故障造成的服务不可用，声网提供故障迁移、多路备份、切换域名的方案。
@@ -22,12 +20,11 @@
     - 主播音视频状态变化回调: [`onRemoteAudioStateChanged`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#callback_irtcengineeventhandler_onremoteaudiostatechanged)/[`onRemoteVideoStateChanged`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#callback_irtcengineeventhandler_onremotevideostatechanged)
 
 
-
 ### 切换域名
 
 ~45f50180-d902-11ed-8efe-b91caddc8ecb~
 
-## 获取服务状态
+## 检查服务状态
 
 你可以通过云端转码 RESTful API 来获取转码服务状态。相比于云端转码 RESTful API，[消息通知服务](https://docs.agora.io/cn/cloud-transcoding/ncs_transcoding?platform=All%20Platforms)更适合作为辅助手段。
 
@@ -50,13 +47,14 @@
 <li>国内 PCW 限制为 100，其他地区 PCW 限制为 30。如需提升 PCW 限制，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">联系技术支持</a>。</li>
 </div>
 
-### 检查转码服务是否已经成功启动
+### 检查转码服务是否成功启动
 
 建议你通过如下步骤检查转码服务是否已成功启动：
 
 #### 1. 检查 Create 请求是否成功
 
-如果 `Create` 请求返回 HTTP 状态码为 `200`，则请求成功。如果 `Create` 请求返回 HTTP 状态码非 `200`，则需要根据状态码采取相应措施：
+如果 `Create` 请求响应的 HTTP 状态码为 `200`，则请求成功。如果 `Create` 请求响应的 HTTP 状态码非 `200`，则需要根据状态码采取相应措施：
+
 -   如果返回的 HTTP 状态码为 `201`，则表示转码任务已成功启动并在进行中。
 -   如果返回的 HTTP 状态码为 `206`，则表示请求超时，建议使用退避策略，如第一次等待 3 秒后重试、第二次等待 6 秒后重试、第三次等待 9 秒后重试，以免超过 QPS 限制导致失败。如果三次重试均失败，建议更换 UID 再次调用 `Acquire`， 获得一个新的 `tokenName`，并用该 `tokenName` 再次调用 `Create` 方法。
 -   如果返回的 HTTP 状态码为 `40x`，则表示请求参数错误，需要进行排查。
@@ -67,17 +65,16 @@
 
 `Create` 请求成功后，你会获得 `taskId`。获得 `taskId` 之后的 5 秒后，使用退避策略调用 `Query` 方法，退避间隔建议小于 `Create` 请求中的 `idleTimeout` (最长空闲频道时间)。如果 `Query` 请求成功，且 `serverResponse` 中的 `status` 参数值为 `4` 或 `5`，则表示 cloud transcoder 已成功启动。如果在获得 `taskId` 之后的 90 秒后 `status` 仍非 `4` 或 `5`， 则可以认为 cloud transcoder 在创建后未成功启动，超时退出。
 
-<div class="alert note">考虑到频道内用户 UID 不能冲突，因此建议你为 cloud transcoder 准备一个备用 UID，以便在重新发起新的转码任务时使用。主用 UID 和备用 UID 可以交替使用。</div>
+<div class="alert note">频道内用户 UID 不能冲突，因此建议你为 cloud transcoder 准备一个备用 UID，以便在重新发起新的转码任务时使用。主用 UID 和备用 UID 可以交替使用。</div>
 
-### 转码任务的状态监控
+### 监控转码任务状态
 
-你可以通过周期性调用 `Query` 方法来确认转码服务正在进行中且状态正常。相比于 `Query`，消息通知服务更适合作为辅助手段。详见[消息通知服务和 query 方法的对比](https://docs.agora.io/cn/faq/ncs_vs_query)。
-
+你可以通过周期性调用 `Query` 方法和消息通知服务监控转码任务的状态。相比于 `Query`，消息通知服务更适合作为辅助手段。详见[消息通知服务和 query 方法的对比](https://docs.agora.io/cn/faq/ncs_vs_query)。
 
 <a name = "monitor"></a>
-#### 周期性频道查询
+#### 周期性查询状态
 
-如果你对状态查询的可靠性要求较高，声网强烈建议你使用 `Query` 方法周期性查询频道内的转码状态，例如每隔 2 分钟调用一次 `Query`，并根据返回的 HTTP 状态码采取相应措施。
+你可以通过周期性调用 `Query` 方法来确认转码服务正在进行中且状态正常。如果你对状态查询的可靠性要求较高，声网强烈建议你使用 `Query` 方法周期性查询频道内的转码状态，例如每隔 2 分钟调用一次 `Query`，并根据返回的 HTTP 状态码采取相应措施。
 
 -   如果返回的 HTTP 状态码一直为 `40x`，则表示请求参数错误，需要进行排查。
 -   如果返回的 HTTP 状态码为 `404`，且已经确认请求参数无误，则表示 cloud transcoder 并未成功启动、或启动后中途退出。建议采用退避策略多次调用 `Query` （例如间隔 5 秒、10 秒、15 秒）进行确认。
