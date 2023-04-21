@@ -43,7 +43,7 @@ conn.createChatThread({parentId: 'parentId',name: 'threadName',messageId: 'messa
 // 监听子区创建回调
 conn.addEventHandler('THREAD',{
   onChatThreadChange:(threadMsg) =>{
-			console.log(threadMsg)
+      console.log(threadMsg)
 	},
 });
 ```
@@ -64,7 +64,7 @@ conn.destroyChatThread({chatThreadId: 'chatThreadId'})
 // 监听子区解散回调
 conn.addEventHandler('THREAD',{
   onChatThreadChange:(threadMsg) =>{
-			console.log(threadMsg)
+		console.log(threadMsg)
 	},
 });
 ```
@@ -134,7 +134,7 @@ conn.changeChatThreadName({chatThreadId: 'chatThreadId',name: 'name'})
 // 监听子区更新
 conn.addEventHandler('THREAD',{
   onChatThreadChange:(threadMsg) =>{
-			console.log(threadMsg)
+		console.log(threadMsg)
 	},
 });
 ```
