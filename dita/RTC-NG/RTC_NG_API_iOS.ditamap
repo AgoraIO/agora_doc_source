@@ -23,6 +23,7 @@
             <topicref keyref="IAudioEncodedFrameObserver" toc="no"/>
             <topicref keyref="IMediaPlayerCacheManager" toc="no"/>
             <topicref keyref="IMediaPlayerSourceObserver" toc="no"/>
+            <topicref keyref="IAudioPcmFrameSink" toc="no"/>
             <topicref keyref="IAudioFrameObserver" toc="no"/>
             <topicref keyref="IAudioPcmFrameSink" toc="no"/>
             <topicref keyref="IDirectCdnStreamingEventHandler" toc="no"/>
@@ -113,6 +114,7 @@
             <topicref keyref="setSubscribeVideoAllowlistEx" toc="no"/>
             <topicref keyref="setupRemoteVideoEx" toc="no"/>
             <topicref keyref="setVideoEncoderConfigurationEx" toc="no"/>
+            <topicref keyref="startOrUpdateChannelMediaRelayEx" toc="no"/>
             <topicref keyref="startRtmpStreamWithoutTranscodingEx" toc="no"/>
             <topicref keyref="startRtmpStreamWithTranscodingEx" toc="no"/>
             <topicref keyref="stopRtmpStreamEx" toc="no"/>
@@ -152,6 +154,7 @@
             <topicref keyref="setSubscribeVideoBlocklist" toc="no"/>
             <topicref keyref="setSubscribeVideoAllowlist" toc="no"/>
             <topicref keyref="startChannelMediaRelay" toc="no"/>
+            <topicref keyref="startOrUpdateChannelMediaRelay" toc="no"/>
             <topicref keyref="stopChannelMediaRelay" toc="no"/>
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="onAudioSubscribeStateChanged" toc="no"/>
@@ -196,6 +199,7 @@
             <topicref keyref="resumeAudioMixing" toc="no"/>
             <topicref keyref="selectAudioTrack" toc="no"/>
             <topicref keyref="setAdvancedAudioOptions" toc="no"/>
+            <topicref keyref="setAINSMode" toc="no"/>
             <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
             <topicref keyref="setAudioMixingPitch" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
@@ -218,6 +222,7 @@
             <topicref keyref="stopAudioRecording" toc="no"/>
             <topicref keyref="stopRhythmPlayer" toc="no"/>
             <topicref keyref="onActiveSpeaker" toc="no"/>
+            <topicref keyref="onAudioMixingPositionChanged" toc="no"/>
             <topicref keyref="onAudioMixingFinished" toc="no"/>
             <topicref keyref="onAudioMixingStateChanged" toc="no"/>
             <topicref keyref="onAudioPublishStateChanged" toc="no"/>
@@ -268,6 +273,7 @@
             <topicref keyref="setEffectsVolume" toc="no"/>
             <topicref keyref="setHeadphoneEQParameters" toc="no"/>
             <topicref keyref="setHeadphoneEQPreset" toc="no"/>
+            <topicref keyref="setLocalVoiceFormant" toc="no"/>
             <topicref keyref="setLocalVoiceEqualization" toc="no"/>
             <topicref keyref="setLocalVoicePitch" toc="no"/>
             <topicref keyref="setLocalVoiceReverb" toc="no"/>
@@ -301,7 +307,9 @@
             <topicref keyref="enableVideo" toc="no"/>
             <topicref keyref="enableVideoImageSource" toc="no"/>
             <topicref keyref="enableVirtualBackground" toc="no"/>
+            <topicref keyref="getCurrentMonotonicTimeInMs" toc="no"/>
             <topicref keyref="pushVideoFrame" toc="no"/>
+            <topicref keyref="queryCodecCapability" toc="no"/>
             <topicref keyref="setBeautyEffectOptions" toc="no"/>
             <topicref keyref="setColorEnhanceOptions" toc="no"/>
             <topicref keyref="setLocalRenderMode1" toc="no"/>
@@ -314,11 +322,14 @@
             <topicref keyref="setupRemoteVideo" toc="no"/>
             <topicref keyref="setVideoDenoiserOptions" toc="no"/>
             <topicref keyref="setVideoEncoderConfiguration" toc="no"/>
+            <topicref keyref="setVideoScenario" toc="no"/>
             <topicref keyref="setVideoQualityParameters" toc="no"/>
             <topicref keyref="startLocalVideoTranscoder" toc="no"/>
             <topicref keyref="startPreview" toc="no"/>
+            <topicref keyref="startCameraCapture" toc="no"/>
             <topicref keyref="stopLocalVideoTranscoder" toc="no"/>
             <topicref keyref="stopPreview" toc="no"/>
+            <topicref keyref="stopCameraCapture" toc="no"/>
             <topicref keyref="takeSnapshot" toc="no"/>
             <topicref keyref="onVideoPublishStateChanged" toc="no"/>
             <topicref keyref="onContentInspectResult" toc="no" props="hide"/>
@@ -327,6 +338,7 @@
             <topicref keyref="onFirstLocalVideoFramePublished" toc="no"/>
             <topicref keyref="onFirstRemoteVideoDecoded" toc="no"/>
             <topicref keyref="onFirstRemoteVideoFrame" toc="no"/>
+            <topicref keyref="onLocalVideoTranscoderError" toc="no"/>
             <topicref keyref="onLocalVideoStateChanged" toc="no"/>
             <topicref keyref="onLocalVideoStats" toc="no"/>
             <topicref keyref="onRemoteVideoStats" toc="no"/>
@@ -452,6 +464,7 @@
         </topicref>
         <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
             <topicref keyref="initialize_IMusicContentCenter" toc="no"/>
+            <topicref keyref="getCaches" toc="no"/>
             <topicref keyref="destroy_IMusicContentCenter" toc="no"/>
             <topicref keyref="registerEventHandler_IMusicContentCenter" toc="no"/>
             <topicref keyref="createMusicPlayer" toc="no"/>
@@ -462,6 +475,7 @@
             <topicref keyref="preload" toc="no"/>
             <topicref keyref="isPreloaded" toc="no"/>
             <topicref keyref="renewToken_IMusicContentCenter" toc="no"/>
+            <topicref keyref="removeCache" toc="no"/>
             <topicref keyref="searchMusic" toc="no"/>
             <topicref keyref="open_IMusicPlayer" toc="no"/>
             <topicref keyref="onPreLoadEvent_IMusicContentCenterEventHandler" toc="no"/>
@@ -533,8 +547,6 @@
             <topicref keyref="setCameraFocusPositionInPreview" toc="no"/>
             <topicref keyref="setCameraTorchOn" toc="no"/>
             <topicref keyref="setCameraZoomFactor" toc="no"/>
-            <topicref keyref="startSecondaryCameraCapture" toc="no"/>
-            <topicref keyref="stopSecondaryCameraCapture" toc="no"/>
             <topicref keyref="switchCamera" toc="no"/>
             <topicref keyref="onCameraExposureAreaChanged" toc="no"/>
             <topicref keyref="onCameraFocusAreaChanged" toc="no"/>
@@ -558,6 +570,7 @@
             <topicref keyref="enableWebSdkInteroperability" toc="no"/>
             <topicref keyref="getCallId" toc="no"/>
             <topicref keyref="getErrorDescription" toc="no"/>
+            <topicref keyref="getNtpWallTimeInMs" toc="no"/>
             <topicref keyref="getUserInfoByUid" toc="no"/>
             <topicref keyref="getUserInfoByUserAccount" toc="no"/>
             <topicref keyref="getVersion" toc="no"/>
