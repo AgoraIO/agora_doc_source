@@ -80,7 +80,6 @@
 ![](./images/quickstart/generate_token.png)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
-
 ## 项目设置
 
 参考以下步骤创建环境，将即时通讯 IM 添加到你的应用程序中。
@@ -88,7 +87,6 @@
 1. 若为新项目，在 **Android Studio** 中，创建一个带有 **Empty Activity** 的 **Phone and Tablet** [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
  <div class="alert note">如果你在 Android 项目中设置 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
-
 2. 使用 Maven Central 将即时通讯 IM SDK 集成到你的项目中。
 
    a.在`/Gradle Scripts/build.gradle(Project: <projectname>)`中，添加以下代码实现 Maven Central 依赖项：
@@ -111,7 +109,7 @@
    <div class="alert note">如果你在 Android 项目中设置 [dependencyResolutionManagement](https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration)，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
 
 b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将即时通讯 IM SDK 集成到你的 Android 项目中：
-   
+
 ```java
    android {
        defaultConfig {
@@ -127,17 +125,19 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
        ...
        implementation 'io.agora.rtc:chat-sdk:X.Y.Z'
    }
-   ```
+```
 
    <div class="alert note">minSdkVersion 必须为 21 或以上版本才能成功构建。如需最新 SDK 版本，请前往 <a href="https://search.maven.org/search?q=a:chat-sdk">Sonatype</a>。</div>
-
 3. 添加网络和设备访问权限。
 
    在 `/app/Manifests/AndroidManifest.xml` 中，在 `</application>` 后面添加以下权限：
 
    ```xml
+   <!-- 访问网络权限 -->
    <uses-permission android:name="android.permission.INTERNET" />
+   <!-- 获取运营商信息，用于获取网络状态 -->
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+   <!-- 允许程序在手机屏幕关闭后后台进程仍然运行 -->
    <uses-permission android:name="android.permission.WAKE_LOCK"/>
    <!—- 对于 Android 12，需添加下行代码申请闹铃定时权限。对于即时通讯 IM 1.0.9 及以上版本，该权限为可选。-—> 
    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -304,7 +304,13 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
    }
    ```
 
-3. 初始化视图和应用程序。<br/>在 `app/java/io.agora.agorachatquickstart/MainActivity` 中，在 `onCreate` 方法后添加如下代码：
+3. 初始化视图和应用程序。<br/>
+
+   初始化是使用 SDK 的必要步骤，需在执行所有接口方法调用前完成。如果进行多次初始化操作，只有第一次初始化以及相关的参数生效。
+
+   <div class="alert note">需要在主进程中进行初始化。</div>
+
+   在 `app/java/io.agora.agorachatquickstart/MainActivity` 中，在 `onCreate` 方法后添加如下代码：
 
    ```java
     // 初始化视图。
@@ -353,12 +359,12 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
             public void onConnected() {
                  showLog("onConnected",false);
             }
-
+   
             @Override
             public void onDisconnected(int error) {
                  showLog("onDisconnected: "+error,false);
             }
-
+   
             @Override
             public void onLogout(int errorCode) {
                  showLog("User needs to log out: "+errorCode, false);
@@ -385,7 +391,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
    public void signInWithToken(View view) {
         loginToAgora();
    }
-
+   
    private void loginToAgora() {
         if(TextUtils.isEmpty(USERNAME) || TextUtils.isEmpty(TOKEN)) {
              showLog("Username or token is empty!", true);
@@ -396,14 +402,14 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
              public void onSuccess() {
                  showLog("Sign in success!", true);
             }
-
+   
             @Override
             public void onError(int code, String error) {
                 showLog(error, true);
             }
         });
     }
-
+   
     // 登出。
     public void signOut(View view) {
         if(ChatClient.getInstance().isLoggedInBefore()) {
@@ -412,7 +418,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
                 public void onSuccess() {
                     showLog("Sign out success!", true);
                 }
-
+   
                 @Override
                 public void onError(int code, String error) {
                      showLog(error, true);
@@ -439,13 +445,13 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
              public void onSuccess() {
                  showLog("Send message success!", true);
             }
-
+   
             @Override
             public void onError(int code, String error) {
                  showLog(error, true);
             }
         });
-
+   
         // 发送消息。
         ChatClient.getInstance().chatManager().sendMessage(message);
     }

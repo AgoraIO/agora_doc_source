@@ -20,7 +20,7 @@
     - FireFox 10 以上版本
     - Chrome 54 以上版本
     - Safari 6 以上版本
-  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/video-call-4.x/firewall?platform=Web)以正常使用 Agora 服务。
+  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docs.agora.io/cn/video-call-4.x/firewall?platform=Web)以正常使用声网服务。
   - 已安装 Xcode（仅适用于 macOS）
 - [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm/)。
 
@@ -67,7 +67,6 @@
 ![](https://web-cdn.agora.io/docs-files/1681094132023)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
-
 ## 项目设置
 
 在本节中，我们准备了将即时通讯 IM 集成到你的 app 中所需的开发环境。
@@ -106,7 +105,7 @@ agora_quickstart
          "vite": "^3.0.7"
      }
  }
- ```
+```
 
 ## 实现发送和接收单聊消息
 
@@ -117,7 +116,6 @@ agora_quickstart
 将以下代码复制到 `index.html` 文件中实现客户端用户界面。
 
 <script type="module" src="/main.js"></script> 用于访问 main.js 文件。
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -181,9 +179,10 @@ import AC, { AgoraChat } from 'agora-chat'
 ```javascript
 // 将 <Your app key> 替换为你的 App Key。
 const appKey = "<Your app key>";
-// 初始化 Web 客户端
+// 初始化 Web 客户端。
 const conn = new AC.connection({
 	appKey: appKey,
+    delivery: false //设置是否开启送达回执: 默认为 false，表示关闭，true 表示开启。
 });
 // 添加事件处理器
 conn.addEventHandler("connection&message", {
@@ -305,7 +304,7 @@ $ npm run dev
    ![img](https://web-cdn.agora.io/docs-files/1664531288522)
 
 3. 登出即时通讯 IM。
-  点击 **Logout** 登出 app。
+    点击 **Logout** 登出 app。
 
 4. 接收消息。
    在新窗口中打开同一页面，利用接收方的用户 ID（`Roy`）登录，接收 **Leo** 发送的消息（"Hi, how are you doing?"）。
@@ -330,6 +329,6 @@ $ npm run dev
 
 - 关于即时通讯 IM 的安装指南，详见[示例代码](https://github.com/AgoraIO/Agora-Chat-API-Examples/blob/main/Chat-Web/src/index.js)。
 - 安装 [demo app](https://webdemo.chat.agora.io/#/login)。
- 
+
 
 

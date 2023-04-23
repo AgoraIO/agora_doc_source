@@ -63,7 +63,6 @@
 ![](https://web-cdn.agora.io/docs-files/1681094132023)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
-
 ## 项目设置
 
 在本节中，我们准备了将即时通讯 IM 集成到你的 app 中所需的开发环境。
@@ -78,7 +77,7 @@
 
 ### 集成即时通讯 IM SDK
 
-1. 选择 **File** > **Swift Packages** > **Add Package Dependencies...**，粘贴以下 URL：
+1. 选择 **File** > **Swift Packages** > **Add Package Dependencies...**，填入一下 URL：
 
 ```text
 https://github.com/AgoraIO/AgoraChat_iOS.git
@@ -195,18 +194,18 @@ class ViewController: UIViewController {
     ...
     func initChatSDK() {
         // 将 <#Agora App Key#> 替换为自己的 App Key。
-        // 初始化即时通讯 IM SDK。
+        // 初始化即时通讯 IM SDK。如果进行多次初始化操作，只有第一次初始化以及相关的参数生效。
         let options = AgoraChatOptions(appkey: "<#Agora App Key#>")
         options.isAutoLogin = false // 关闭自动登录。
         options.enableConsoleLog = true
         AgoraChatClient.shared.initializeSDK(with: options)
-        // 添加 chat 代理用于接收消息。
+        // 添加代理用于接收消息。
         AgoraChatClient.shared.chatManager?.add(self, delegateQueue: nil)
     }
 
     override func viewDidLoad() {
         ...
-        // 调用 chat 初始化方法。
+        // 调用初始化方法。
         initChatSDK()
     }
 }
@@ -232,7 +231,7 @@ extension ViewController {
         }
     }
 
-    // 登出。
+    // 登出即时通讯 IM。
     @objc func logoutAction() {
         AgoraChatClient.shared.logout(false) { err in
             if err == nil {
@@ -292,7 +291,6 @@ extension ViewController: AgoraChatManagerDelegate  {
 
 
 <div class="alert note">你可以通过在以下界面中设置所需字段或修改 <a href="#sign-in"><code>ViewController.swift</code></a> 文件中的字段登录 app。</div>
-
 参考以下步骤对你通过即时通讯 IM 在 app 中集成的单聊功能：
 
 1. 登录即时通讯 IM。
