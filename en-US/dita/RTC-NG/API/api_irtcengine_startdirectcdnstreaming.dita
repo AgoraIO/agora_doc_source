@@ -32,7 +32,7 @@
     {required DirectCdnStreamingEventHandler eventHandler,
     required String publishUrl,
     required DirectCdnStreamingMediaOptions options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p></section>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>Aogra does not support pushing media streams to one URL repeatedly.</p>
@@ -43,9 +43,11 @@
                 <li props="android cpp electron rn flutter unity"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true" /></codeph> and call the <xref props="android" keyref="pushAudioFrame2" /><xref props="cpp unity rn flutter electron" keyref="pushAudioFrame" /> method</li>
                 <li props="ios mac"><parmname>publishCustomAudioTrack</parmname> is set as <codeph><ph keyref="true" /></codeph> and call the <xref keyref="pushExternalAudioFrameSampleBuffer1" /> or <xref keyref="pushAudioFrame2" /> method</li>
                 <li><parmname>publishCustomVideoTrack</parmname> is set as <codeph><ph keyref="true" /></codeph> and call the <xref keyref="pushVideoFrame" /> method</li>
-                <li><parmname>publishCameraTrack</parmname> is set as <codeph><ph keyref="false" /></codeph> (the default value)</li>
-                <li><parmname>publishMicrophoneTrack</parmname> is set as <codeph><ph keyref="false" /></codeph> (the default value)</li>
-            </ul>       
+                <li><parmname>publishCameraTrack</parmname> is set as  (the default value)<codeph><ph keyref="false" /></codeph></li>
+                <li><parmname>publishMicrophoneTrack</parmname> is set as  (the default value)<codeph><ph keyref="false" /></codeph></li>
+            </ul>
+            <p>自 v4.2.0 起，SDK 支持推送纯音频流。 你可以在 <xref keyref="DirectCdnStreamingMediaOptions"/> 中将 <parmname>publishCustomAudioTrack</parmname> 或者 <parmname>publishMicrophoneTrack</parmname> 设为 <codeph><ph keyref="true"/></codeph>，并调用 <xref keyref="pushAudioFrame"/> 即可推送纯音频流。
+            <note>在向 CDN 直接推流时，SDK 目前仅支持推送一路音频流及视频流，或一路纯音频流。</note></p>
         </section>
         <section id="parameters"><title>Parameters</title>
             <parml>
@@ -64,8 +66,8 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native unity electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
