@@ -22,7 +22,7 @@ AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开
 - Gradle 4.6 或以上版本；
 - targetSdkVersion 30；
 - minSdkVersion 21；
-- 集成了 Chat SDK 的即时通讯 IM 项目，实现了基本的实时聊天功能，包括用户的登录和注销、消息的发送和接收。
+- 创建了集成了即时通讯 IM 的声网项目，实现了基本的实时聊天功能，包括用户的登录和注销、消息的发送和接收。
 
 ## 项目设置
 
@@ -232,7 +232,7 @@ addCallkitListener();
 
 用户应先通过传入的参数在自己的 App Server 中查询声网 UID 对应的即时通讯 IM 用户 ID：
 
-- 若查询成功，则将即时通讯 IM 用户 ID 封装成 {@link EaseUserAccount} 对象，并通过 `onRemoteUserJoinChannel` 中的 `callback` 参数将其返回给应用。对于 `callback` 参数，在 `EaseCallGetUserAccountCallback` 中实现 `onUserAccount`。
+- 若查询成功，则将即时通讯 IM 用户 ID 封装成 `EaseUserAccount` 对象，并通过 `onRemoteUserJoinChannel` 中的 `callback` 参数将其返回给应用。对于 `callback` 参数，在 `EaseCallGetUserAccountCallback` 中实现 `onUserAccount`。
 
 - 若查询失败，则调用 `EaseCallGetUserAccountCallback` 类中的 `onSetUserAccountError` 回调，传递错误码和错误描述。
 

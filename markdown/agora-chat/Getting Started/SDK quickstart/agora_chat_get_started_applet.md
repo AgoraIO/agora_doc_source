@@ -141,13 +141,7 @@ agora_quickstart
 
 2. 在你的项目中集成即时通讯 IM SDK。
 
-// 使用 npm
-
-```js
-import AC from "agora-chat/miniProgram/Agora-chat";
-```
-
-// 或者将 SDK 文件放入项目中
+[下载 SDK](https://download.agora.io/sdk/release/Agora-chat.js)，将 SDK 文件放入项目中。
 
 ```js
 import AC from "./Agora-chat";
@@ -161,6 +155,7 @@ import AC from "./Agora-chat";
 
 将以下代码复制到 `index.wxml` 文件中实现客户端用户界面。
 
+```html
 <view>
   <view>Agora Chat Examples</view>
   <view>
@@ -187,6 +182,7 @@ import AC from "./Agora-chat";
     </view>
   </view>
 </view>
+```
 
 ### 实现发送与接收消息
 
@@ -196,7 +192,7 @@ import AC from "./Agora-chat";
 
 ```javascript
 // Javascript
-import AC from "agora-chat/miniProgram/Agora-chat";
+import AC from "./Agora-chat";
 ```
 
 2. 利用即时通讯 IM SDK 中提供的核心方法实现发送和接收单聊消息。复制以下代码，添加到 `index.js` 文件中的导入功能的后面。
@@ -327,7 +323,7 @@ Page({
 
 运行小程序后，显示如下页面：
 
-![img](https://web-cdn.agora.io/docs-files/1664531249247)
+![img](\markdown\agora-chat\images\quickstart\applet_test.png)
 
 按以下步骤验证你通过即时通讯 IM 在你的 Web app 中集成的发送和接收单聊消息的实现：
 
@@ -339,7 +335,6 @@ Page({
 
    在 **peer user id** 框中填写发送方的用户 ID（`Roy`），在 **message content** 框中输入消息（"Hi, how are you doing?"），点击 **Send** 发送消息。
 
-   ![img](https://web-cdn.agora.io/docs-files/1664531288522)
 
 3. 登出即时通讯 IM。
 
@@ -349,23 +344,7 @@ Page({
 
   利用接收方的用户 ID（`Roy`）登录，接收 **Leo** 发送的消息（"Hi, how are you doing?"）。
 
-   ![img](https://web-cdn.agora.io/docs-files/1664531311192)
 
 ## 后续步骤
 
 出于演示目的，即时通讯服务提供一个 App Server，可使你利用本文中提供的 App Key 快速获得 token。在生产环境中，最好自行部署 token 服务器，使用自己的 [App Key](./enable_agora_chat) 生成 token，并在客户端获取 token 登录即时通讯服务。要了解如何实现服务器按需生成和提供 token，请参阅[生成用户权限 Token](./agora_chat_token#生成用户权限-Token)。
-
-## 参考
-
-除了使用 npm 将即时通讯 IM SDK 集成到你项目中外，你还可以手动下载[即时通讯 IM Web SDK](https://www.npmjs.com/package/agora-chat)：
-
-1. 在 SDK 文件夹中，将 `miniProgram/Agora-chat.js` 保存到你的项目目录。
-
-2. 在你的项目目录中打开 JavaScript 文件，添加以下代码查看 JavaScript 文件。
-
-```javascript
-import AC from "./Agora-chat";
-```
-
-- 关于即时通讯 IM 的安装指南，详见[示例代码](https://github.com/AgoraIO/Agora-Chat-API-Examples/blob/main/Chat-Web/src/index.js)。
-- 安装 [demo app](https://docs.agora.io/en/agora-chat/reference/downloads)。
