@@ -77,7 +77,7 @@
 
 ### 集成即时通讯 IM SDK
 
-1. 选择 **File** > **Swift Packages** > **Add Package Dependencies...**，填入一下 URL：
+1. 选择 **File** > **Swift Packages** > **Add Package Dependencies...**，填入以下 URL：
 
 ```text
 https://github.com/AgoraIO/AgoraChat_iOS.git

@@ -174,6 +174,8 @@ SDK 会写入日志文件到本地。日志文件路径如下：沙箱Library/Ap
 - 打开 Xcode，连接设备，选择 **Xcode** > **Window** > **Devices and Simulators**。
 - 进入 **Devices** 选项卡，在左侧选择目标设备，例如 AgoraChat，点击设置图标，然后选择 **Download Container**。
 
+![](https://web-cdn.agora.io/docs-files/1681722865152)
+
 ![img](./agora_doc_source/markdown/agora-chat/images/integrationoverview/overview_fetchlogfile_ios.png)
 
 日志文件 `easemob.log` 文件在下载包的 AppData/Library/Application Support/HyphenateSDK/easemobLog 目录下。

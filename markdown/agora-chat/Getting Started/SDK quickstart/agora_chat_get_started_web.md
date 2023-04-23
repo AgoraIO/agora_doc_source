@@ -177,9 +177,9 @@ import AC, { AgoraChat } from 'agora-chat'
 2. 利用即时通讯 IM SDK 中提供的核心方法实现发送和接收单聊消息。复制以下代码，添加到 `main.js` 文件中的导入功能的后面。
 
 ```javascript
-// 将 <Your app key> 替换为你的 App Key。
+// 将 <Your app key> 替换为你的 App Key
 const appKey = "<Your app key>";
-// 初始化 Web 客户端。
+// 初始化 Web 客户端
 const conn = new AC.connection({
 	appKey: appKey,
     delivery: false //设置是否开启送达回执: 默认为 false，表示关闭，true 表示开启。

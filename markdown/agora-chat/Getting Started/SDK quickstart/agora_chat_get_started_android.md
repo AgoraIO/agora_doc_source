@@ -139,7 +139,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
    <!-- 允许程序在手机屏幕关闭后后台进程仍然运行 -->
    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-   <!—- 对于 Android 12，需添加下行代码申请闹铃定时权限。对于即时通讯 IM 1.0.9 及以上版本，该权限为可选。-—> 
+   <!-- 对于 Android 12，需添加下行代码申请闹铃定时权限。对于即时通讯 IM 1.0.9 及以上版本，该权限为可选。--> 
    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
    ```
 
