@@ -42,12 +42,14 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
-            <p><ph>设备支持的最高帧率。</ph><ph props="cpp ios">详见 <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>。</ph>
-                <ul props="android">
-                <li><ph keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY_15_FPS"/>(0)：最高支持 15 fps。</li>
-                <li><ph keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY_30_FPS"/>(1)：最高支持 30 fps。</li>
-                <li><ph keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY_60_FPS"/>(2)：最高支持 60 fps。</li>
-                </ul></p>
+            <ul props="apple"><li>方法调用成功时，返回设备支持的最高帧率。详见 <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>。</li>
+                <li>方法调用失败时，返回 <xref keyref="NULL"/>。</li></ul>
+                <ul props="cpp android">
+                    <li><ph>方法调用成功时，返回设备支持的最高帧率。</ph><ph props="cpp">详见 <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>。</ph><ul  props="android">
+                    <li>0：最高支持 15 fps。</li>
+                    <li>1：最高支持 30 fps。</li>
+                    <li>2：最高支持 60 fps。</li></ul></li>
+                    <li>&lt;0：方法调用失败。</li></ul>
         </section>
     </refbody>
 </reference>
