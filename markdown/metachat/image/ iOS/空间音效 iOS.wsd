@@ -1,0 +1,39 @@
+@startuml
+autonumber
+participant "App" as a #LightGrey
+participant "AgoraRtcEngineKit" as c #White
+participant "AgoraLocalSpatialAudioKit" as d #White
+participant "AgoraMetachatScene" as e
+participant "AgoraMetachatSceneEventDelegate" as b
+== 初始化引擎 ==
+a -> c: 创建和初始化 RTC 引擎
+a -> d: 创建和初始化空间音效引擎
+== 创建 MetachatScene 并注册事件监听 ==
+a -> b: 创建 MetachatScene 事件监听器
+a -> e: 创建 MetachatScene 并注册 MetachatScene 事件监听器
+== 进入 MetachatScene  ==
+a -> e: 进入场景
+b --> a: onEnterSceneResult
+critical #mistyrose
+== 设置空间音效接收范围 ==
+a -> c: 加入 RTC 频道
+a -> c: 停止发布和订阅音频流
+a -> d: setAudioRecvRange
+a -> d: 恢复发布和订阅音频流
+== 处理用户位置变化 ==
+a -> e: enableUserPositionNotification
+b --> a: onUserPositionChanged
+a -> d: updateSelfPosition/updateRemotePosition
+note right
+本地用户调用 updateSelfPostion
+远端用户调用 updateRemotePosition
+end note
+end
+== 离开 MetachatScene ==
+a -> e: 离开场景
+b --> a: onLeaveSceneResult
+== 销毁空间音频引擎 ==
+a -> c: 离开 RTC 频道
+a -> d: 销毁空间音效引擎
+a -> c: 销毁 RTC 引擎
+@enduml

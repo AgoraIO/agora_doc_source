@@ -71,7 +71,20 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWi
 
    <div class="alert info">完整代码可在 <a href="https://github.com/AgoraIO-Community/CloudClass-Android">CloudClass-Android</a> 仓库 <code>/app/src/main/java/io/agora/education/MainActivity.kt</code> 文件中查看。</div>
 
-3. 实例化并初始化 widget：
+3. 将该插件注册到 `AgoraCLassroomSDK.kt` 中的 `getWidgetConfigList` 方法里：
+
+   ```kotlin
+    private fun getWidgetConfigList(appIdExtraInfo: MutableMap<String, Any>): MutableList<AgoraWidgetConfig> {
+        val widgetConfigs = mutableListOf<AgoraWidgetConfig>()
+        widgetConfigs.add(AgoraWidgetConfig(AgoraEduEaseChatWidget::class.java, AgoraWidgetDefaultId.Chat.id, extraInfo = appIdExtraInfo))
+        ...
+        // 在这里添加你自定义的插件
+        widgetConfigs.add(AgoraWidgetConfig(FCRCloudDiskWidget::class.java, AgoraWidgetDefaultId.AgoraCloudDisk.id))
+        return widgetConfigs
+    }
+   ```
+
+4. 实例化并初始化 widget：
 
    ```kotlin
    ...
@@ -123,7 +136,7 @@ Widget 是包含界面与功能的独立插件。开发者可基于 `AgoraBaseWi
                AgoraLog?.i("$tag->successfully created '$widgetId' container")
                widgetContainer?.let { group ->
                    AgoraLog?.w("$tag->initialize '$widgetId'")
-                   // 初始化 Widge
+                   // 初始化 Widget
                    widget.init(group)
                }
            }

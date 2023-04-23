@@ -1,0 +1,23 @@
+@startuml
+autonumber
+participant "App" as a #LightGrey
+participant "AgoraMetachatScene" as b #White
+participant "AgoraMetachatLocalUserAvatar" as e #White
+participant "Unity 场景" as c
+== 进入换装或捏脸场景 ==
+a -> b: 进入换装或捏脸场景
+== 发送自定义消息给 Unity 场景 ==
+a -> b: sendMessageToScene
+b -> c: 发送装扮或脸部特征消息
+== 设置换装或捏脸 ==
+c -> c: 接收消息并更换装扮或脸部特性
+== 离开换装或捏脸场景 ==
+a -> b: 离开场景
+== 进入其他场景 ==
+a -> b: 进入其他场景
+== 向其他用户同步装扮或脸部特征 ==
+a -> b: getLocalUserAvatar
+a -> e: setDressInfo/setFaceInfo
+a -> e: applyInfo
+e -> c: 展示用户 Avatar
+c -> c: 展示更新后的装扮/脸部特征

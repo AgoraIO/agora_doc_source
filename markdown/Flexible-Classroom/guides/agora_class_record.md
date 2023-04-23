@@ -14,7 +14,7 @@
 
 4. 灵动课堂服务端开始录制课堂内容。
 
-如果你希望实现自动开始录制，可以在服务端监听[课堂开始事件](/cn/agora-class/agora_class_restful_api?platform=RESTful#获取课堂事件)，然后调用[设置录制状态](/cn/agora-class/agora_class_restful_api?platform=RESTful#设置录制状态)接口开启录制。
+如果你希望实现自动开始录制，可以在服务端监听[课堂开始事件](/cn/agora-class/agora_class_restful_api?platform=RESTful#查询所有课堂事件)，然后调用[设置录制状态](/cn/agora-class/agora_class_restful_api?platform=RESTful#设置录制状态)接口开启录制。
 
 如果你想要自己实现课堂录制，可参考下图。图中标为紫色的步骤为你需要进行的操作。
 
@@ -23,6 +23,7 @@
 对于你需要在服务端部署的待录制页面，可基于 [flexible-classroom-desktop](https://github.com/AgoraIO-Community/flexible-classroom-desktop) 仓库中 `templates/record_page_prod.html` 文件进行修改和调整，然后将修改后的 HTML 文件部署至你自己的 CDN。
 
 ![](https://web-cdn.agora.io/docs-files/1673578454262)
+
 
 ## 启动课堂录制
 
@@ -91,7 +92,7 @@ AgoraEduSDK.launch(document.querySelector(`#${this.elem.id}`), {
 
 ## 获取录制状态
 
-启动录制后，灵动课堂云服务会产生[录制状态变更](/cn/agora-class/agora_class_restful_api_event?platform=RESTful#录制状态变更)的事件。你可以通过[查询指定事件](/cn/agora-class/agora_class_restful_api?platform=Web#查询指定事件)或[获取课堂事件](/cn/agora-class/agora_class_restful_api?platform=Web#获取课堂事件)来获取录制状态。你需要关注录制状态变更事件中的 `reason` 字段：
+启动录制后，灵动课堂云服务会产生[录制状态变更](/cn/agora-class/agora_class_restful_api_event?platform=RESTful#录制状态变更)的事件。你可以通过[查询指定类型事件](/cn/agora-class/agora_class_restful_api?platform=Web#查询指定类型事件)或[查询所有课堂事件](/cn/agora-class/agora_class_restful_api?platform=Web#查询所有课堂事件)来获取录制状态。你需要关注录制状态变更事件中的 `reason` 字段：
 
 - `1`: 正常开始录制。
 - `2`: 正常停止录制。
