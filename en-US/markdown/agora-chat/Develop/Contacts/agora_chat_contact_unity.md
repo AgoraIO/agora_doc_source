@@ -35,7 +35,7 @@ Use this section to understand how to send a contact invitation, listen for cont
 Call `AddContact` to add the specified user as a contact:
 
 ```C#
-SDKClient.Instance.ContactManager.AddContact(username, reason, handle: new CallBack(
+SDKClient.Instance.ContactManager.AddContact(username, reason, callback: new CallBack(
   onSuccess: () =>
   {
   },
@@ -86,7 +86,7 @@ After receiving `OnContactInvited`, call `AcceptInvitation` or `DeclineInvitatio
 
 ```C#
 // Accept the contact invitation. Once you accept the invitation, the sender receives the OnFriendRequestAccepted callback.
-SDKClient.Instance.ContactManager.AcceptInvitation(username, handle: new CallBack(
+SDKClient.Instance.ContactManager.AcceptInvitation(username, callback: new CallBack(
    onSuccess: () =>
    {        
    },
@@ -95,7 +95,7 @@ SDKClient.Instance.ContactManager.AcceptInvitation(username, handle: new CallBac
    }
 ));
 // Decline the contact invitation. Once you decline the invitation, the sender receives the OnFriendRequestDeclined callback.
-SDKClient.Instance.ContactManager.DeclineInvitation(username, handle: new CallBack(
+SDKClient.Instance.ContactManager.DeclineInvitation(username, callback: new CallBack(
   onSuccess: () =>
   {
   },
@@ -110,7 +110,7 @@ SDKClient.Instance.ContactManager.DeclineInvitation(username, handle: new CallBa
 Call `DeleteContact` to delete the specified contact. The deleted user receives the `OnContactDeleted` callback.
 
 ```C#
-SDKClient.Instance.ContactManager.DeleteContact(username, handle: new CallBack(
+SDKClient.Instance.ContactManager.DeleteContact(username, callback: new CallBack(
   onSuccess: () =>
   {
   },
@@ -149,7 +149,7 @@ You can add a specified user to your block list. Once you do that, you can still
 Call `AddUserToBlockList` to add the specified user to the block list.
 
 ```C#
-SDKClient.Instance.ContactManager.AddUserToBlockList(username, handle: new CallBack(
+SDKClient.Instance.ContactManager.AddUserToBlockList(username, callback: new CallBack(
   onSuccess: () =>
   {
   },
@@ -164,7 +164,7 @@ SDKClient.Instance.ContactManager.AddUserToBlockList(username, handle: new CallB
 To remove the specified user from the block list, call `RemoveUserFromBlockList`.
 
 ```C#
-SDKClient.Instance.ContactManager.RemoveUserFromBlockList(username, handle: new CallBack(
+SDKClient.Instance.ContactManager.RemoveUserFromBlockList(username, callback: new CallBack(
   onSuccess: () =>
   {
   },

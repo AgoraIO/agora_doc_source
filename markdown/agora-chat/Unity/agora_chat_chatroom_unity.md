@@ -22,7 +22,7 @@
 
 - 完成 SDK 初始化，详见 [快速开始](./agora_chat_get_started_unity)。
 - 了解 [使用限制](./agora_chat_limitation)。
-- 了解聊天室和聊天室成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 了解套餐包的聊天室和聊天室成员相关数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 - 只有应用超级管理员才有创建聊天室的权限。确保已调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin#添加超级管理员) 添加了应用超级管理员。
 
 ## 实现方法
@@ -177,16 +177,19 @@ public interface IRoomManagerDelegate
     void OnRemovedFromRoom(string roomId, string roomName, string participant);
     // 禁言指定成员。被禁言的成员会收到该事件。
     void OnMuteListAddedFromRoom(string roomId, List<string> mutes, long expireTime);
-    // 解除对指定成员的禁言。被解除禁言的成员会收到该事件
+    // 解除对指定成员的禁言。被解除禁言的成员会收到该事件。
     void OnMuteListRemovedFromRoom(string roomId, List<string> mutes);
     // 设置管理员。被添加的管理员会收到该事件。
     void OnAdminAddedFromRoom(string roomId, string admin);
     // 移除管理员。被移除的管理员会收到该事件。
     void OnAdminRemovedFromRoom(string roomId, string admin);
-    // 转让聊天室。聊天室全体成员会收到该事件。
+    // 转让聊天室。聊天室所有成员会收到该事件。
     void OnOwnerChangedFromRoom(string roomId, string newOwner, string oldOwner);
     // 更新聊天室公告。聊天室的所有成员会收到该事件。
-
     void OnAnnouncementChangedFromRoom(string roomId, string announcement);
+    // 聊天室自定义属性有更新。聊天室所有成员会收到该事件。
+    void OnChatroomAttributesChanged(string roomId, Dictionary<string, string> kv, string from);
+    // 聊天室自定义属性被移除。聊天室所有成员会收到该事件。
+    void OnChatroomAttributesRemoved(string roomId, List<string> keys, string from);
     }
 ```

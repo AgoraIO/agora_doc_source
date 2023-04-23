@@ -79,14 +79,12 @@ For more information about receiving a message, see [Receive Messages](./agora_c
 
 ### Recall a thread message
 
-Send a thread message is similar to send a message in a chat group. The difference lies in the `isChatThread` field.
-
 Once a message is recalled in a thread, all chat group members receive the `onChatThreadChange` callback triggered by the `update` event. Thread members can also listen for the `onRecallMessage` callback, as shown in the following code sample:
 
 ```javascript
 let option = {
   mid: 'msgId',           // The ID of the message to be recalled.
-  to: 'userID',           // The username of the message receiver.
+  to: 'chatThreadId',           // The username of the message receiver.
   chatType: 'groupChat'   // Sets `chatType` to `groupChat` as a thread belongs to a chat group.
   isChatThread: true      // Sets `isChatThread` to `true` to mark this message as a thread message.
 };

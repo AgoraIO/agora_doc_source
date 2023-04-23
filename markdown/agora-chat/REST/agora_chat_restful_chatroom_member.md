@@ -1,5 +1,6 @@
-本文展示如何调用即时通讯 RESTful API 实现聊天室成员管理，包括添加、删除、查询聊天室成员或管理员。
-调用以下方法前，请先参考[限制条件](./agora_chat_limitation?platform=RESTful#服务端调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
+本文展示如何调用即时通讯 RESTful API 实现聊天室成员管理，包括添加和移除聊天室成员以及设置和移除聊天室管理员相关操作。
+
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 ## 聊天室成员角色说明
 
@@ -7,42 +8,48 @@
 | :----------- | :------------------------------------------------- | :----------------------------------------------------------------------------- |
 | 普通成员     | 不具备管理权限的聊天室成员。                       | 普通成员可以修改自己的聊天室资料。                                             |
 | 聊天室管理员 | 由聊天室创建者授权，协助聊天室管理，具有管理权限。 | 管理员可以管理聊天室内的普通成员。 最多支持添加 99 个管理员。                  |
-| 聊天室所有者 | 聊天室的创建者，具有聊天室最高权限。               | 聊天室所有者可以指定聊天室管理员、解散聊天室、更改聊天室信息、管理聊天室成员。 |
+| 聊天室所有者 | 聊天室的创建者，具有聊天室最高权限。               | 聊天室所有者可以指定聊天室管理员、解散聊天室、修改聊天室信息、管理聊天室成员。 |
 
-## <a name="param"></a>公共参数
+<a name="param"></a>
 
-以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数：
+## 公共参数
+
+下表列举了即时通讯 RESTful API 的公共请求参数和响应参数：
 
 ### 请求参数
 
-| 参数          | 类型   | 描述                                                                                                                                                                                                                                                        | 是否必填 |
-| :------------ | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                              | 是       |
-| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                         | 是       |
-| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。                                                                                                                | 是       |
-| `username`    | String | 用户 ID。用户的唯一登录账号。长度在 64 个字节内，不可设置为空。支持以下字符集：<li>26 个小写英文字母 a-z<li>26 个大写英文字母 A-Z<li>10 个数字 0-9<li>"\_", "-", "."<div class="alert note"><ul><li>不区分大小写。<li>同一个 app 下，用户 ID 唯一。</ul></div> | 是       |
-| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#查询所有聊天室基本信息) 的响应 body 中获取。                                                                 | 是       |
+| 参数          | 类型   | 描述           | 是否必填 |
+| :------------ | :----- | :------------------- | :------- |
+| `host`        | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。        | 是       |
+| `org_name`    | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
+| `app_name`    | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
+| `username`    | String | 用户 ID。用户的唯一登录账号。 | 是       |
+| `chatroom_id` | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符，可从[查询所有聊天室基本信息](./agora_chat_restful_chatroom%20?platform=RESTful#查询所有聊天室基本信息)的响应 body 中获取。       | 是       |
 
 ### 响应参数
 
-| 参数                | 类型   | 描述                                                              |
-| :------------------ | :----- | :---------------------------------------------------------------- |
+| 参数                | 类型   | 描述       |
+| :------------------ | :----- | :--------------------- |
 | `action`            | String | 请求方式。                                                        |
-| `organization`      | String | 即时通讯服务分配给每个企业（组织）的唯一标识。等同于 `org_name`。 |
+| `organization`      | String | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`       | String | 即时通讯服务分配给每个 app 的唯一内部标识，无需关注。             |
-| `applicationName`   | String | 即时通讯服务分配给每个 app 的唯一标识。等同于 `app_name`。        |
+| `applicationName`   | String | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。        |
 | `uri`               | String | 请求 URL。                                                        |
 | `path`              | String | 请求路径，属于请求 URL 的一部分，无需关注。                       |
 | `entities`          | JSON   | 返回实体信息。                                                    |
-| `entities.created`  | Number | 注册用户的 Unix 时间戳（毫秒）。                                  |
-| `entities.username` | String | 用户 ID。用户登录的唯一账号。                                     |
 | `data`              | JSON   | 返回数据详情。                                                    |
-| `timestamp`         | Long   | 响应的 Unix 时间戳（毫秒）。                                      |
-| `duration`          | Number | 从发送请求到响应的时长（毫秒）。                                  |
+| `timestamp`         | Number   | 响应的 Unix 时间戳，单位为毫秒。                                      |
+| `duration`          | Number | 从发送请求到响应的时长，单位为毫秒。                                  |
 
 ## 认证方式
 
-~e838c3b0-8e43-11ec-814c-17df6c7c3801~
+即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
+
+```http
+Authorization: Bearer YourAppToken
+```
+
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 添加单个聊天室成员
 
@@ -51,12 +58,12 @@
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username}
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users/{username}
 ```
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 > 如果待添加的用户在 app 中不存在或已经在聊天室中，则请求失败并返回错误码 `400`。
 
@@ -64,9 +71,9 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。   | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。  | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -76,10 +83,10 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username
 
 | 字段     | 类型   | 描述                                                    |
 | :------- | :----- | :------------------------------------------------------ |
-| `result` | Bool   | 添加结果：<li>`true：`添加成功。<li>`false`：添加失败。 |
+| `result` | Boolean   | 是否添加成功：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
 | `action` | String | 执行的操作，`add_member` 表示向聊天室添加成员。         |
 | `id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
-| `user`   | String | 已添加成员的用户 ID。                                    |
+| `user`   | String | 成功添加为成员的用户 ID。                                    |
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -116,27 +123,25 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## 批量添加聊天室成员
 
-向聊天室添加多个成员。
+向聊天室添加多名用户。一次性最多可添加 60 位用户。
 
 ### HTTP 请求
 
 ```http
-POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users
+POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users
 ```
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
-
-<div class="alert note">一次请求最多添加 60 个用户。</div>
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Content-Type`  | String | `application/json`     | 是       |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。    | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 #### 请求 body
 
@@ -154,11 +159,11 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users
 
 | 字段         | 类型       | 描述                                                  |
 | :----------- | :--------- | :---------------------------------------------------- |
-| `newmembers` | JSON Array | 已添加成员的用户 ID 数组。                              |
+| `data.newmembers` | JSON Array | 已添加成员的用户 ID 数组。                              |
 | `action`     | String     | 执行的操作，`add_member` 表示向聊天室添加成员。       |
 | `id`         | String     | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -180,19 +185,22 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ```json
 {
-    "action": "post",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatrooms/XXXX/users",
-    "entities": [],
-    "data": {
-        "newmembers": ["user1", "user2"],
-        "action": "add_member",
-        "id": "XXXX"
-    },
-    "timestamp": 1542554537237,
-    "duration": 9,
-    "organization": "XXXX",
-    "applicationName": "XXXX"
+  "action": "post",
+  "application": "8beXXXX02",
+  "uri": "http://XXXX/XXXX/XXXX/chatrooms/66XXXX33/users",
+  "entities": [],
+  "data": {
+    "newmembers": [
+      "user1",
+      "user2"
+    ],
+    "action": "add_member",
+    "id": "66XXXX33"
+  },
+  "timestamp": 1542554537237,
+  "duration": 9,
+  "organization": "XXXX",
+  "applicationName": "testapp"
 }
 ```
 
@@ -208,21 +216,20 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users?pagenum={
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 查询参数
 
 | 参数       | 类型 | 描述                                                         | 是否必填 |
 | :--------- | :--- | :----------------------------------------------------------- | :------- |
-| `pagenum`  | Int  | 查询页码。默认值为 1。                                       | 否       |
-| `pagesize` | Int  | 每页显示的聊天室成员数量。默认值为 1000。取值范围 [0,1000]。 | 否       |
+| `pagenum`  | Number  | 查询页码。默认值为 1。                                       | 否       |
+| `pagesize` | Number  | 每页显示的聊天室成员数量。默认值为 1000。取值范围为 [0,1000]。 | 否       |
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -232,9 +239,9 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users?pagenum={
 
 | 字段     | 类型   | 描述                 |
 | :------- | :----- | :------------------- |
-| `member` | String | 聊天室成员的用户 ID。 |
+| `data.member` | String | 聊天室成员的用户 ID。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -245,7 +252,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users?pagenum={
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
 
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/chatrooms/XXXX/users?pagenum=2&pagesize=2'
+curl -X GET http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/users?pagenum=2&pagesize=2 -H 'Authorization: Bearer <YourAppToken> '
 ```
 
 #### 响应示例
@@ -278,24 +285,24 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 删除单个聊天室成员
 
-删除单个聊天室成员。
+删除单个聊天室成员。如果被移除用户不在聊天室中或聊天室不存在，将返回错误。
 
 ### HTTP 请求
 
 ```http
-DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{username}
+DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users/{username}
 ```
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。  | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -305,12 +312,12 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users/{userna
 
 | 字段     | 类型   | 描述                                                    |
 | :------- | :----- | :------------------------------------------------------ |
-| `result` | Bool   | 删除结果：<li>`true`：删除成功。<li>`false`：删除失败。 |
-| `action` | String | 执行的操作，`remove_member` 表示删除聊天室成员。        |
-| `user`   | String | 已删除成员的用户 ID。                                    |
-| `id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
+| `data.result` | Boolean   | 是否成功移出聊天室成员：<li>`true`：是。<li>`false`：否。 |
+| `data.action` | String | 执行的操作，`remove_member` 表示删除聊天室成员。        |
+| `data.user`   | String | 已删除成员的用户 ID。                                    |
+| `data.id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -345,12 +352,12 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 批量删除聊天室成员
 
-删除聊天室多个成员。
+从聊天室移除多个成员，单次请求最多可移除 100 个成员。如果被移除用户不在聊天室中或聊天室不存在，将返回错误。
 
 ### HTTP 请求
 
 ```http
-DELETE https://{host} /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usernames}
+DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users/{usernames}
 ```
 
 ### HTTP 请求
@@ -361,14 +368,14 @@ DELETE https://{host} /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usern
 | :---------- | :----- | :----------------------------------------------------------------------------------------------------- | :------- |
 | `usernames` | String | 一个或多个用户 ID，用户 ID 之间用 "," 分隔。在 URL 中，"," 需要转义为 "%2C"。一次最多传入 100 个 用户 ID。 | 是       |
 
-其他参数及说明详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。| 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -378,13 +385,13 @@ DELETE https://{host} /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usern
 
 | 字段     | 类型   | 描述                                                    |
 | :------- | :----- | :------------------------------------------------------ |
-| `result` | Bool   | 删除结果：<li>`true`：删除成功。<li>`false`：删除失败。 |
-| `action` | String | 执行的操作，`remove_member` 表示删除聊天室成员。        |
-| `reason` | String | 删除失败原因。                                          |
-| `user`   | String | 已删除成员的用户 ID 列表。                                |
-| `id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
+| `data.result` | Boolean   | 是否成功批量移除聊天室成员：<li>`true`：是。<li>`false`：否。 |
+| `data.action` | String | 执行的操作，`remove_member` 表示删除聊天室成员。        |
+| `data.reason` | String | 删除失败原因。                                          |
+| `data.user`   | String | 已删除成员的用户 ID 列表。                                |
+| `data.id`     | String | 聊天室 ID，即时通讯服务分配给每个聊天室的唯一标识符。   |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -428,7 +435,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 添加单个聊天室管理员
 
-将一个聊天室普通成员作为聊天室管理员。
+将一个聊天室普通成员设置为聊天室管理员。
 
 ### HTTP 请求
 
@@ -438,15 +445,15 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Content-Type`  | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。    | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 #### 请求 body
 
@@ -454,7 +461,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 
 | 字段       | 类型   | 描述                   | 是否必填 |
 | :--------- | :----- | :--------------------- | :------- |
-| `newadmin` | String | 待添加管理员的用户 ID。 | 是       |
+| `newadmin` | String | 待添加为聊天室管理员的成员用户 ID。 | 是       |
 
 ### HTTP 响应
 
@@ -464,10 +471,11 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 
 | 字段       | 类型   | 描述                                            |
 | :--------- | :----- | :---------------------------------------------- |
-| `result`   | Bool   | 添加是否成功：<ul><li>`true`：是。</li><li>`false`：否。</li></ul>  |
-| `newadmin` | String | 已添加管理员的用户 ID。                          |
+| `data.result`   | Boolean   | 是否成功添加聊天室管理员：<ul><li>`true`：是</li><li>`false`：否</li></ul>  |
+| `data.newadmin` | String | 添加为聊天室管理员的成员用户 ID。                        |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
+
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
@@ -501,9 +509,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## 查询聊天室管理员
+## 获取聊天室管理员列表
 
-查询聊天室管理员。
+获取聊天室管理员列表。
 
 ### HTTP 请求
 
@@ -513,14 +521,14 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 
 #### 路径参数
 
-参数及说明详见 [公共参数](#param)。
+参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
-| `Accept`        | String | `application/json`     | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Accept`        | String | 内容类型。填入 `application/json`。  | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
@@ -532,7 +540,7 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin
 | :----- | :--------- | :----------------------- |
 | `data` | JSON Array | 聊天室管理员用户 ID 数组。 |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -565,7 +573,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 
 ## 移除聊天室管理员权限
 
-移除指定用户的聊天室管理员权限，使之成为普通聊天室成员。
+将聊天室成员的角色从聊天室管理员降为普通成员，即将管理员移除聊天室管理员列表。
 
 ### HTTP 请求
 
@@ -577,16 +585,16 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin/{oldad
 
 | 参数       | 类型   | 描述                           | 是否必填 |
 | :--------- | :----- | :----------------------------- | :------- |
-| `oldadmin` | String | 待被移除聊天室管理员权限的用户 ID。 | 是       |
+| `oldadmin` | String | 待移除聊天室管理员权限的用户 ID。 | 是       |
 
-其他参数及说明详见 [公共参数](#param)。
+其他参数及描述详见[公共参数](#param)。
 
 #### 请求 header
 
 | 参数            | 类型   | 描述                   | 是否必填 |
 | :-------------- | :----- | :--------------------- | :------- |
 | `Accept`        | String | 内容类型。填入 `application/json` | 是       |
-| `Authorization` | String | Bearer ${YourAppToken} | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 ### HTTP 响应
 
@@ -596,10 +604,10 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/admin/{oldad
 
 | 字段       | 类型    | 描述                                            |
 | :--------- | :------ | :---------------------------------------------- |
-| `result`   | Boolean | 操作是否成功：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
-| `oldadmin` | String  | 被移除聊天室管理员权限的用户 ID。                    |
+| `data.result`   | Boolean | 是否成功撤销聊天室管理员的管理权限：<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
+| `data.oldadmin` | String  | 被移除聊天室管理员权限的用户 ID。                    |
 
-其他字段及说明详见 [公共参数](#param)。
+其他字段及说明详见[公共参数](#param)。
 
 如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
@@ -632,6 +640,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

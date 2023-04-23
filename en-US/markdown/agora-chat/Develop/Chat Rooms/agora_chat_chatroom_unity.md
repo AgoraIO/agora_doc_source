@@ -36,7 +36,7 @@ Only the [app super admin](./agora_chat_restful_chatroom_superadmin) can call `C
 The following code sample shows how to create a chat room:
 
 ```c#
-SDKClient.Instance.RoomManager.CreateRoom(subject, description, welcomeMsg, maxUserCount, members,handle: new ValueCallBack<Room>(
+SDKClient.Instance.RoomManager.CreateRoom(subject, description, welcomeMsg, maxUserCount, members,callback: new ValueCallBack<Room>(
   onSuccess: (room) => {
   },
   onError:(code, desc) => {
@@ -71,7 +71,7 @@ The following code sample shows how to join a chat room:
 
 ```c#
 // Retrieve the list of chat rooms from the server
-SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(handle: new ValueCallBack<PageResult<Room>>(
+SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(callback: new ValueCallBack<PageResult<Room>>(
             // `result` is of PageResult<Room> type
             onSuccess: (result) => {
             },
@@ -135,7 +135,7 @@ Users can call `FetchPublicRoomsFromServer` to get the chat room list from the s
 
 ```c#
 // You can set the value of `pageSize` to a maximum of 1000.
-SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(pageNum, pageSize, handle: new ValueCallBack<PageResult<Room>>(
+SDKClient.Instance.RoomManager.FetchPublicRoomsFromServer(pageNum, pageSize, callback: new ValueCallBack<PageResult<Room>>(
   // `rooms` is of PageResult<Room> type.
   onSuccess: (rooms) => {
   },
@@ -271,5 +271,32 @@ public interface IRoomManagerDelegate
          * @param from          The user ID of the operator
          */
         void OnChatroomAttributesRemoved(string roomId, List<string> keys, string from);
+	 /**
+         * Occurs when the chat room member(s) is/are added to the allow list.
+	 *
+	 * @param roomId The chat room ID.
+	 * @param members  The member(s) added to the allow list.
+	 */
+	void OnAddAllowListMembersFromChatroom(string roomId, List<string> members);
+         /**
+	 * Occurs when the chat room member(s) is/are removed from the allow list.
+	 *
+	 * @param roomId The chat room ID.
+	 * @param members  The member(s) removed from the allow list.
+	 */
+	void OnRemoveAllowListMembersFromChatroom(string roomId, List<string> members);
+         /**
+	 * Occurs when all members in the chat room are muted or unmuted.
+	 *
+	 * @param roomId The chat room ID.
+	 * @param isAllMuted    Whether all chat room members are muted.
+	 */
+	void OnAllMemberMuteChangedFromChatroom(string roomId, bool isAllMuted);
+         /**
+	 * Occurs when the chat room specifications are changed.
+	 *
+	 * @param room The chat room instance.
+	*/
+        void OnSpecificationChangedFromRoom(Room room);
     }
 ```

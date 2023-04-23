@@ -1,0 +1,273 @@
+# 发送推送通知
+
+消息推送分为异步推送和同步推送：
+
+- 同步推送：声网服务端接收到推送请求后立即请求厂商推送服务器，等待返回响应并将推送结果传递给请求发起端。
+- 异步推送：声网服务端接收到推送请求后写入异步队列，并将异步队列写入结果传递给请求发起端。
+
+利用 RESTful 接口可通过以下方式使用即时推送服务：
+- 对单个或多个用户发送推送通知；
+- 对指定标签下的用户发送推送通知；
+- 对 app 下的所有用户发送推送通知。
+
+每次调用这三个接口，服务端均会创建一个推送任务，生成推送任务 ID，用于推送任务的数据统计。
+ 
+ <a name="param"></a>
+
+## 公共参数
+
+### 请求参数
+
+| 参数       | 类型   | 描述                    | 是否必需 | 
+| :--------- | :----- | :------------- | :------- | 
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。 | 是     | 
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。| 是     | 
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。| 是    | 
+| `username` | String | 用户 ID。          | 是     |
+
+### 响应参数
+
+| 参数       | 类型       | 描述                |
+| :---------------- | :------------------- | :----------- |
+| `timestamp`    | Number    | 响应的 Unix 时间戳，单位为毫秒。         |
+| `duration`     | Number   | 从发送请求到响应的时长，单位为毫秒。         |
+
+## 认证方式
+
+即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入如下 Authorization 字段：
+
+Authorization：`Bearer ${YourAppToken}`
+
+为提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
+
+## 向指定用户发送推送通知
+
+向单个或多个用户发送推送通知。
+
+### HTTP 请求
+
+```http
+POST https://{host}/{org_name}/{app_name}/push/single
+```
+
+#### 路径参数
+
+参数及描述详见[公共参数](#param)。
+
+#### 请求 header
+
+| 参数            | 类型   | 描述      | 是否必需 | 
+| :-------------- | :----- | :------- | :---------- |
+| `Content-Type`  | String | 内容类型：`application/json`   | 是   | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是    | 
+
+#### 请求 body
+
+| 字段          | 类型    | 描述                       | 是否必需 |
+| :------------ | :------- | :------ | :------------------ |
+| `targets`     | List    | 推送的目标用户 ID。最多可传 100 个用户 ID。   | 是     |
+| `async`       | Boolean    | 是否异步推送：<ul><li>（默认）`true`：异步推送，每次最多可推送给 100 个用户。</li><li>`false`：同步推送，每次只能推送给 1 个用户。若在 `targets` 中传了多个用户 ID，服务端在响应中显示错误，提示同步推送只能传一个用户 ID。</li></ul> | 否   | 
+| `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。该情况下，若用户在线，则直接推送；若用户离线，消息会保留一段时间（视版本而定），超过该期限则丢弃消息。</li><li>（默认）`2`：只走厂商通道。若用户离线，是否保留推送消息以及保留时间视厂商而定。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   |  
+| `pushMessage` | JSON   | 推送消息。消息内容详见[配置推送通知](./agora_chat_restful_config_push_notification)。| 是     | 
+
+### HTTP 响应
+
+#### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段： 
+
+| 字段         | 类型   | 描述   |
+| :----------- | :----- | :-------- |
+| `data`       | JSON   | 推送结果。|
+| `id`         | String | 推送的目标用户 ID。             |
+| `pushStatus` | String | 推送状态：<ul><li>`SUCCESS`：同步推送成功。</li><li>`FAIL`：推送失败，即非服务端导致的错误，例如 `bad device token`，表示移动端传给服务端的 device token 错误，对应推送厂商不接受。</li><li>`ERROR`：推送异常，即服务端导致错误，例如连接超时或读写超时。</li><li>`ASYNC_SUCCESS`：异步推送成功。</li></ul> |
+| `desc`       | String | 推送结果的相关描述。     | 
+
+其他参数及描述详见[公共参数](#param)。
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
+### 示例
+
+#### 请求示例
+
+```shell
+curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorization: Bearer YWMtOzQVjJ3mEeuJQv1qXhB5QAAAAAAAAAAAAAAAAAAAAAFDtjwasNNKD6W3CET2O3RNAQMAAAF41YIKUABPGgDuIZeu5IMVC_M9G5JlTjUsZeYVSg5o8BwshLgWveZxjA" -H "Content-Type: application/json" --data-raw "{
+    \"targets\": [
+        \"test2\"
+    ],
+    \"pushMessage\": {
+        \"title\": \"Hello\",
+        \"subTitle\": \"Hello\",
+        \"content\": \"Hello\",
+        \"vivo\": {
+ 
+        }
+    }
+}"
+```
+
+#### 响应示例
+
+```json
+{
+    "timestamp": 1619506344007,
+    "data": [
+        {
+            "id": "test2",
+            "pushStatus": "ASYNC_SUCCESS",
+            "desc": "async success."
+        }
+    ],
+    "duration": 14
+}
+```
+
+## 对指定标签下的用户发送推送通知
+
+若传单个标签，则向单个标签内的所有用户发送推送通知。若传多个标签，则消息推送给同时存在这些标签中的用户，即取标签中的用户交集。
+
+最多同时执行 3 个推送任务。
+
+### HTTP 请求
+
+```http
+POST https://{host}/{org_name}/{app_name}/push/list/label
+```
+
+#### 路径参数
+
+参数及说明详见[公共参数](#param)。
+
+#### 请求 header
+
+| 参数            | 类型   | 描述      | 是否必需 | 
+| :-------------- | :----- | :------- | :---------- |
+| `Content-Type`  | String | 内容类型：`application/json`   | 是   | 
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是    | 
+
+#### 请求 body
+
+| 字段          | 类型    | 描述     | 是否必需 | 
+| :------------ | :------- | :------ | :---------------- |
+| `targets`     | List    | 标签名称。可传单个或多个标签名称。<ul><li>若传单个标签名称，消息推送给该标签下的所有用户。</li><li>若传多个标签名称，消息推送给同时存在于这些标签中的用户，即取标签中的用户交集。最多可传 3 个标签。</li></ul>  | 是     | 
+| `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。该情况下，若用户在线，则直接推送；若用户离线，消息会保留一段时间（视版本而定），超过该期限则丢弃消息。</li><li>（默认）`2`：只走厂商通道。若用户离线，是否保留推送消息以及保留时间视厂商而定。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   | 
+| `pushMessage` | JSON    | 推送消息。消息内容详见[配置推送通知](./agora_chat_restful_config_push_notification)。 | 是     | 
+
+### HTTP 响应
+
+#### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+| 字段  | 类型 | 描述      |
+| :----- | :-----| :---------------------- |
+| `data` | JSON | 推送任务数据。 |
+| `taskId` | Number | 推送任务 ID。 |
+
+其他参数及描述详见[公共参数](#param)。
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
+### 示例
+
+#### 请求示例
+
+```shell
+curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
+-H 'Authorization: Bearer YWMtIPBHKsOyEeAAAAAAAAAAAExCXvf5bRGAJBgXNYFJVQ9AQMAAAGAWu67KQBPGgBOV9ghkGKbtt9H9b1' \
+-H 'Content-Type: application/json' \
+--data-raw '{
+    "targets": [
+        "post-90s"
+    ],
+    "strategy": 2,
+    "pushMessage": {
+        "title": "Agora PUSH",
+        "content": "Welcome to Agora Push Service",
+        "sub_title": "Agora"
+    }
+}'
+```
+
+#### 响应示例
+
+```json
+{
+    "timestamp": 1650859482843,
+    "data": {
+        "taskId": 968120369184112182
+    },
+    "duration": 0
+}
+```
+
+## 对 app 下的所有用户发送推送通知
+
+对 app 下的所有用户发送推送通知。
+
+最多同时执行 3 个推送任务。
+
+### HTTP 请求
+
+```http
+POST https://{host}/{org_name}/{app_name}/push/task
+```
+
+#### 路径参数
+
+参数及描述详见[公共参数](#param)。
+
+#### 请求 header
+
+| 参数            | 类型   | 描述                                                         | 是否必需 |
+| :-------------- | :----- | :----------------------------------------------------------- | :------- |
+| `Content-Type`  | String | 内容类型：`application/json`。                                 | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
+
+#### 请求 body
+
+| 字段          | 类型    | 描述                           | 是否必需 | 
+| :------------ | :------- | :------ | :----------------------------------------------------------- |
+| `strategy`    | Number | 推送策略：<ul><li>`0`：厂商通道优先，失败时走声网通道。</li><li>`1`：只走声网通道。该情况下，若用户在线，则直接推送；若用户离线，消息会保留一段时间（视版本而定），超过该期限则丢弃消息。</li><li>（默认）`2`：只走厂商通道。若用户离线，是否保留推送消息以及保留时间视厂商而定。若推送失败，直接丢弃推送消息。</li><li>`3`：声网通道优先，失败时走厂商通道。</li></ul> | 否   |
+| `pushMessage` | JSON    | 推送通知详情。        | 是     | 
+
+### HTTP 响应
+
+#### 响应 body
+
+如果返回的 HTTP 状态码为 `200`，表示请求成功，响应包体中包含以下字段：
+
+| 参数   | 类型 | 描述                                                     |
+| :----- | :--- | :-------------------------------------------------------- |
+| `data` | Number | 推送任务 ID，用于服务端对推送任务进行数据统计。 |
+
+其他参数及描述详见[公共参数](#param)。
+
+如果返回的 HTTP 状态码非 `200`，表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+
+### 示例
+
+#### 请求示例
+
+```shell
+curl -X POST "http://localhost:8099/easemob-demo/testy/push/task" -H "Content-Type: application/json" --data-raw "{
+    \"pushMessage\": {
+        \"title\": \"Hello1234\",
+        \"subTitle\": \"Hello\",
+        \"content\": \"Hello\",
+        \"vivo\": {}
+    }
+}"
+```
+
+##### 响应示例
+
+```json
+{
+    "timestamp": 1618817591755,
+    "data": 833726937301309957,
+    "duration": 1
+}
+```
+

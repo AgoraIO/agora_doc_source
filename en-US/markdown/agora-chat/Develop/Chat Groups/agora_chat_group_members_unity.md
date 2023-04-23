@@ -157,7 +157,7 @@ Only the chat group owner and admins can call `GetGroupBlockListFromServer` to r
 The following code sample shows how to retrieve the chat group block list:
 
 ```c#
-SDKClient.Instance.GroupManager.GetGroupBlockListFromServer(groupId, pageNum, pageSize, handle: new ValueCallBack<List<string>>(
+SDKClient.Instance.GroupManager.GetGroupBlockListFromServer(groupId, pageNum, pageSize, callback: new ValueCallBack<List<string>>(
   onSuccess: (list) =>
   {
   },
@@ -207,11 +207,11 @@ SDKClient.Instance.GroupManager.UnMuteGroupMembers(groupId, members, new CallBac
 
 Only the chat group owner and admins can call `GetGroupMuteListFromServer` to retrieve the chat group mute list from the server.
 
-The following code sample shows how to retrieve the chat group mute list:
+The following code sample shows how to retrieve the chat group mute dictionary:
 
 ```c#
-SDKClient.Instance.GroupManager.GetGroupMuteListFromServer(groupId, handle: new ValueCallBack<List<string>>(
-  onSuccess: (list) => {
+SDKClient.Instance.GroupManager.GetGroupMuteListFromServer(groupId, callback: new ValueCallBack<Dictionary<string, long>>(
+  onSuccess: (dict) => {
   },
   onError: (code, desc) =>
   {
@@ -310,7 +310,7 @@ Only the chat group owner and admins can call `GetGroupWhiteListFromServer` to r
 The following code sample shows how to retrieve the chat group allow list:
 
 ```c#
-SDKClient.Instance.GroupManager.GetGroupWhiteListFromServer(currentGroupId, handle: new ValueCallBack<List<string>>(
+SDKClient.Instance.GroupManager.GetGroupWhiteListFromServer(currentGroupId, callback: new ValueCallBack<List<string>>(
   onSuccess: (list) => {
   },
   onError: (code, desc) =>

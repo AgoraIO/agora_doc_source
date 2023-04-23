@@ -74,9 +74,16 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the usernames in the group block list.
+If the returned HTTP status code is 200, the request succeeds, and the data field in the response body contains the following parameters:
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+| Parameter | Type | Description |
+| :----- | :---- | :------------------ |
+| `data` | Array | The user IDs in the chat group block list. |
+| `count` | Number | The number of users in the chat group block list. |
+
+For other fields and descriptions, see [Public parameters](#param).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -147,9 +154,9 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `action` | String | The request method. |
 | `user` | String | The usernames added to the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -230,9 +237,9 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `action` | String | The request method. |
 | `user` | String | The usernames added to the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -314,9 +321,9 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `action` | String | The request method. |
 | `user` | String | The usernames removed from the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -388,9 +395,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `action` | String | The request method. |
 | `user` | String | The usernames removed from the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 

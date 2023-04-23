@@ -55,10 +55,15 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
 | `thread_id` | String | The ID of the thread. | Yes |
+
+For the descriptions of the other path parameters, see [Common Parameters](#request).
+
+
+#### Query parameter
+
 | `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
 | `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
 
-For the descriptions of the other path parameters, see [Common Parameters](#request).
 
 #### Request header
 
@@ -73,6 +78,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 | Parameter      | Type           | Description |
 | :------- |:-------------|:-------------|
 | `affiliations` | List | The usernames of the members in the thread. | 
+| `properties.cursor` | String | The cursor that indicates the starting position of the next query. |
 
 For other fields and descriptions, see [Common parameters](#response).
 
@@ -140,9 +146,15 @@ For the descriptions of the request headers, see [Authorization](#auth).
 
 #### Response body
 
-If the returned HTTP status code is `200`, the request succeeds; otherwise, the request fails, and you can refer to [Status codes](#Status-codes) for possible causes.
+If the returned HTTP status code is `200`, the request succeeds, and the `data` field in the response body contains the following parameter:
+
+| Parameter      | Type           | Description |
+| :------- |:-------------|:-------------|
+| `status` | String | Whether the users are successfully added to the thread. `ok` indicates that the addition succeeds; otherwise, you can troubleshoot according to the returned reasons. | 
 
 For other fields and descriptions, see [Common parameters](#response).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#Status-codes) for possible causes.
 
 ### Example
 
@@ -212,7 +224,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the data fi
 | Parameter      | Type           | Description |
 | :------- |:-------------|:-------------|
 | `result` | Bool | Whether the specified thread member is removed from the thread:<li>`true`: Yes.<li>`false`: No.| 
-| `user` | List | The usernames of the members in the thread. | 
+| `user` | List | The username of the removed member in the thread. | 
 
 For other fields and descriptions, see [Common parameters](#response).
 

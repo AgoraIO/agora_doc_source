@@ -3,7 +3,7 @@
 为保证 Agora Chat 连接的安全性，Agora 提供两种类型的 Token 进行鉴权：
 
 - User token：针对拥有 app 用户级别权限的用户进行鉴权。例如，当用户登录集成了 Agora Chat SDK 的 app 时，需通过 User Token 进行鉴权。
-- App token：针对拥有 app 管理员级别权限的用户进行鉴权。管理员级别权限为最高权限，可以对整个 app 进行管理，例如创建或删除用户。详见[使用 App Token 鉴权](https://docs-preprod.agora.io/cn/agora-chat/generate_app_tokens?platform=All%20Platforms)。 
+- App token：针对拥有 app 管理员级别权限的用户进行鉴权。管理员级别权限为最高权限，可以对整个 app 进行管理，例如创建或删除用户。详见[使用 App 权限 token 鉴权](https://docs-preprod.agora.io/cn/agora-chat/generate_app_tokens?platform=All%20Platforms)。 
 
 本文介绍如何搭建一个 Agora Chat User Token 服务器以及一个 Agora Chat app。客户端向 Token 服务器请求 Token，用获取到的 Token 登录 Agora Chat app。
 

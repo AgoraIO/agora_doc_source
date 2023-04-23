@@ -24,7 +24,7 @@
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_rn?platform=rn)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=rn)。
-- 了解不同版本的聊天室相关数量限制，详见 [套餐包详情](./agora_chat_plan?platform=rn)。
+- 了解套餐包的聊天室相关数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 - 只有应用超级管理员才有创建聊天室的权限。确保你已通过调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin?platform=RESTful#adding-a-chat-room-super-admin) 添加了应用超级管理员。
 
 ## 实现方法
@@ -92,7 +92,7 @@ ChatClient.getInstance()
 
 ### 获取聊天室详情
 
-聊天室所有成员均可调用 `fetchChatRoomInfoFromServer` 获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
+聊天室所有成员均可调用 `fetchChatRoomInfoFromServer` 从服务器获取聊天室的详情，包括聊天室 ID、聊天室名称，聊天室描述、聊天室公告、管理员列表、最大成员数、聊天室所有者、是否全员禁言以及聊天室权限类型。成员列表、黑名单列表、禁言列表需单独调用接口获取。
 
 示例代码如下：
 
@@ -107,7 +107,7 @@ ChatClient.getInstance()
   });
 ```
 
-也可以从本地获取聊天室信息。
+此外，你也可以从本地获取聊天室信息。
 
 示例代码如下：
 
@@ -174,7 +174,7 @@ ChatClient.getInstance()
 示例代码如下：
 
 ```typescript
-// 实现监听器以及定义监听器对象
+// 实现监听器以及定义监听器对象。
 const roomListener: ChatRoomEventListener = new (class
   implements ChatRoomEventListener
 {
@@ -281,6 +281,36 @@ const roomListener: ChatRoomEventListener = new (class
       `onAllChatRoomMemberMuteStateChanged:`,
       params.roomId,
       params.isAllMuted ? "true" : "false"
+    );
+  }
+  // 聊天室详情变更。聊天室所有成员会收到该事件。
+  onSpecificationChanged?(room: ChatRoom): void {
+    console.log(`onSpecificationChanged:`, room);
+  }
+  // 聊天室自定义属性（key-value）有更新。聊天室所有成员会收到该事件。
+  onAttributesUpdated?(params: {
+    roomId: string;
+    attributes: Map<string, string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesUpdated:`,
+      params.roomId,
+      params.attributes,
+      params.from
+    );
+  }
+  // 聊天室自定义属性（key-value）被删除。聊天室所有成员会收到该事件。
+  onAttributesRemoved?(params: {
+    roomId: string;
+    removedKeys: Array<string>;
+    from: string;
+  }): void {
+    console.log(
+      `onAttributesRemoved:`,
+      params.roomId,
+      params.removedKeys,
+      params.from
     );
   }
 })(this);

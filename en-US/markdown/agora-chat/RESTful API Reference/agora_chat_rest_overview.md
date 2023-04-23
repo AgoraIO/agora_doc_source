@@ -46,7 +46,7 @@ This group of methods enables you to implement user system management, including
 | Querying the number of offline messages | GET | `/{org_name}/{app_name}/users/{owner_username}/offline_msg_count` | Queries the number of offline messages a user has. |
 | Querying the delivery state of an offline message | GET | `/{org_name}/{app_name}/users/{username}/offline_msg_status/{msg_id}` | Queries the delivery state of an offline message. |
 
-### Message push
+### Push
 
 This group of methods enables you to set the push message display mode, display nickname, and do-not-disturb mode.
 
@@ -55,6 +55,25 @@ This group of methods enables you to set the push message display mode, display 
 | Setting the display nickname | PUT | `/{org_name}/{app_name}/users/{username}` | Sets the display nickname of the push message. |
 | Setting the display options | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether the push messages are displayed as notifications only or details are visible. |
 | Setting do-not-disturb (DND) | PUT | `/{org_name}/{app_name}/users/{username}` | Sets whether to enable DND, and the time to enable and disable DND. |
+| Sending push notifications to users | POST  | `/{org_name}/{app_name}/push/single` | Sends push notifications to one or more users by specifying user IDs.         | 600/minute|
+| Sending push notifications by labels | POST  | `/{org_name}/{app_name}/push/list/label` | Sends push notifications to all users under one label, or the intersection of users under multiple labels.      | 600/minute, the number of concurrent ongoing task cannot exceed 3   | 
+| Sending push notifications to all users under the app | POST  | `/{org_name}/{app_name}/push/task` | Sends push notifications to all users under the app.         | 5/minute, the number of concurrent ongoing task cannot exceed 3  |
+
+
+#### Push label
+
+The total rate limit of the following methods is 100/second.
+
+| Name | Method | Request | Description |
+| :------------------- | :--- | :-------------------------------------- | :------------------------------------------------------ |
+| Creating a push label | POST  | `/{org_name}/{app_name}/push/label` | Sets a push label to group targeting users, to implement a bespoke push.      |
+| Querying the detailed information of the specified push label. | GET  | `/{org_name}/{app_name}/push/label/{labelname}` | Retrieves the detailed information of the specified push label.       |
+| Querying the detailed information of push labels by page | GET  | `/{org_name}/{app_name}/push/label` | Retrieves the detailed information of multiple push labels by page.        |
+| Deleting a push label | DELETE  | `/{org_name}/{app_name}/push/label/{labelname}` | Deletes the specified push label. You can delete one push label at each call.    |
+| Adding users to a push label | POST  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Adds one or more users to the specified push label. You can add a maximum of 100 users at each call.          |
+| Querying the specified user under the specified push label | GET  | `/{org_name}/{app_name}/push/label/{labelname}/user/{member}` | Retrieves the detailed information of the specified user under the specified push label.       |
+| Querying the detailed information of users under the specified push label by page | GET  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Retrieves the detailed information of one or more users under the specified push label by page.     |
+| Removing users from a push label | DELETE  | `/{org_name}/{app_name}/push/label/{labelname}/user` | Removes one or more users from the specified push label. You can remove a maximum of 100 users at each call.       |
 
 ### Sending messages and uploading/downloading files
 
@@ -62,9 +81,9 @@ This group of methods enables you to send text, image, voice, video, pass-throug
 
 | Name | Method | Request | Description |
 | :--------------- | :--- | :------------------------------------------ | :----------------------------------------------------------- |
-| Sending a message | POST | `/{org_name}/{app_name}/messages` | App admins use this method to send messages to users or groups, and support sending text, image, voice, video, pass-through, extension, and file messages. |
+| Sending a message | POST | `/{org_name}/{app_name}/messages` | App admins use this method to send messages to users, chat groups, and chat rooms. This method supports sending text, image, voice, video, pass-through, extension, and file messages. |
 | Uploading files | POST | `/{org_name}/{app_name}/chatfiles` | Uploads voice and image files. |
-| Downloading files | POST | `/{org_name}/{app_name}/chatfiles/{uuid}` | Downloads voice and image files. |
+| Downloading files | POST | `/{org_name}/{app_name}/chatfiles/{file_uuid}` | Downloads voice and image files. |
 | Retrieving historical messages | GET | `/{org_name}/{app_name}/chatmessages/${time}` | Retrieves chat historical messages |
 | Retrieving the conversation list | GET | `/{org_name}/{app_name}/user/{username}/user_channels` | Retrieves a list of conversations of the specified user.|
 | Recalling a message | POST | `{org_name}/{app_name}/messages/recall` | Recalls a message two minutes after it is sent. |
@@ -101,10 +120,12 @@ This group of methods enables you to create, retrieve, modify, and delete chat g
 
 | Name | Method | Request | Description |
 | :------------------------------ | :----- | :--------------------------------------------- | :------------------------------------- |
-| Retrieving all chat groups in the app (Pagination) | GET | `/{org_name}/{app_name}/chatgroups` | Retrieves the information of all the groups in the app. |
-| Retrieving all the chat groups the user joins | GET | `/{app_name}/users/{username}/joined_chatgroups` | Retrieves all the groups the user joins by specifying the user name. |
+| Retrieving all chat groups in the app by page | GET | `/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}   ` | Retrieves the information of all the groups in the app by page. |
+| Retrieving all the chat groups the user joins | GET | `/{org_name}/{app_name}/users/{username}/joined_chatgroups` | Retrieves all the groups the user joins by specifying the user name. |
 | Retrieving chat group details | GET | `/{org_name}/{app_name}/chatgroups/{group_ids}` | Retrieves the information of the group details by specifying the group ID. |
 | Creating a chat group | POST | `/{org_name}/{app_name}/chatgroups` | Creates a chat group. |
+| Banning a chat group     | POST   | `/{org_name}/{app_name}/chatgroups/{group_id}/disable`              | Bans the specified chat group. Groups are typically banned when too many users or messages violate community guidelines.  | 100/second |
+| Unbanning a chat group      | POST   | `/{org_name}/{app_name}/chatgroups/{group_id}/enable`              | Lifts a ban on the specified chat group.  | 100/second |
 | Modifying chat group information | PUT | `/{org_name}/{app_name}/chatgroups/{group_id}` | Modifies the group information. |
 | Deleting a chat group | DELETE | `/{org_name}/{app_name}/chatgroups/{group_id}` | Deletes a chat group. |
 
@@ -130,12 +151,17 @@ This group of methods enables you to create, retrieve, modify, and delete chat r
 
 | Name | Method | Request | Description |
 | :---------------------- | :----- | :------------------------------------------------------- | :--------------------------------------- |
-| Retrieving all chat rooms | GET | `/{org_name}/{app_name}/chatrooms` | Retrieves the information of all the chat rooms in the app. |
+| Retrieving all chat rooms by page | GET | `/{org_name}/{app_name}/chatrooms?limit={N}&cursor={cursor}` | Retrieves the information of all the chat rooms in the app by page. |
 | Retrieving chat rooms a user joins | GET | `/{org_name}/{app_name}/users/{username}/joined_chatrooms` | Retrieves the chat rooms that a user joins by specifying the username. |
 | Retrieving chat room details | GET | `/{org_name}/{app_name}/chatrooms/{chatroom_id}` | Retrieves the details of the chat room by specifying the chat room ID. |
 | Creating a chat room | POST | `/{org_name}/{app_name}/chatrooms` | Creates a new chat room. |
 | Modifying chat room information | PUT | `/{org_name}/{app_name}/chatrooms/{chatroom_id}` | Modifies the chat room information. |
 | Deleting a chat room | DELETE | `/{org_name}/{app_name}/chatrooms/{chatroom_id}` | Deletes a chat room. |
+| Setting custom attributes    | PUT    | `/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}` | Adds new custom chat room attributes or modifies existing ones set by the current user.      | 100/second |
+| Retrieving custom attributes        | POST    | `/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}` | Retrieves the specified custom attributes of a chat room.       | 100/second |
+| Forcibly setting custom attributes | PUT | `/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}/forced` | In addition to adding new custom attributes or modifying the existing ones set by the current user, this method can also be used to overwrite the custom attributes set by others.  | 100/second |
+| Removing custom attributes | DELETE  | `/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}` | Removes custom attributes set by the current user. This method is only used to remove the key-value pairs set by the current user.  | 100/second |
+| Forcibly removing custom attributes | DELETE  | `/{org_name}/{app_name}/metadata/chatroom/{chatroom_id}/user/{username}/forced` | In addition to removing the custom attributes set by the current user, this method can also be used to remove custom attributes set by others. | 100/second |
 
 ### Chat room member management
 

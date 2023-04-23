@@ -1,5 +1,68 @@
 This page provides release notes for the Agora React Native Chat SDK.
 
+## 1.1.1
+
+v1.1.1 was released on March 8, 2023. 
+
+#### Issues fixed
+
+Upon a call to the `ChatGroupManager#fetchJoinedGroupsFromServer` method, the returned extension field is empty for the joined public groups.
+
+## v1.1.0
+
+v1.1.0 was released on February 28, 2023.
+
+#### New features
+
+1. Upgrades the native platforms `iOS` and `Android` that the React Native platform depends on to v1.1.0.
+2. Adds the function of managing custom chat room attributes.
+3. Adds the `ChatManager#fetchConversationsFromServerWithPage` method to allow users to get the conversation list from the server with pagination.
+4. Adds the `ChatMessage#messagePriority` method to implement the chat room message priority function.
+5. Adds the support for push notifications on the server side to allow you to send push notifications to all users, individual users specified by IDs, or groups of users by labels. For how to configure and send push notifications, see the following RESTful API documents:
+- Send push notifications (./agora_chat_restful_send_push_notification).
+- Configure push notifications(./agora_chat_restful_config_push_notification).
+- Set push labels(./agora_chat_restful_push_tag).
+
+#### Improvements
+
+- Removed the sensitive information from the test data.
+- Renamed the `inviterUser` method in the `ChatGroupManager` class to `inviteUser`.
+- Renamed `GROUP_ADD_USER_WHITE_LIST` in the enumeration type `ChatMultiDeviceEvent` to `GROUP_ADD_USER_ALLOW_LIST`.
+- Renamed `GROUP_REMOVE_USER_WHITE_LIST` in the enumeration type `ChatMultiDeviceEvent`  to `GROUP_REMOVE_USER_ALLOW_LIST`.  
+
+#### Issues fixed
+
+- Some insecure code of native platforms.
+- The issue of failing to retrieve conversations.
+- The potential deadlock issue caused by a callback method that repeatedly enters the main thread for execution. This issue occurs only on the iOS platform.
+
+## v1.0.11
+
+v1.0.11 was released on December 19.
+
+#### Issues fixed
+
+- Some alerts on Android 12.
+- The inconsistency of messages in the memory and the database due to a call to the `updateMessage` method in rare scenarios.
+- Crashes in rare scenarios.
+
+## v1.0.10
+
+v1.0.10 was released on November 22, 2022. 
+
+#### New features
+
+Adds two events to the `ChatGroupEventListener` class:
+- `onDetailChanged`: Occurs when group details change.
+- `onStateChanged`: Occurs when the group is enabled or disabled.
+
+#### Issues fixed
+
+- The overlimit issue during JSON conversion on the Android platform.
+- Failures in getting a large number of messages from the server in few scenarios.
+- The issue of incorrect data statistics.
+- Crashes caused by log printing in rare scenarios.
+
 ## v1.0.7
 
 v1.0.7 was released on September 7, 2022.

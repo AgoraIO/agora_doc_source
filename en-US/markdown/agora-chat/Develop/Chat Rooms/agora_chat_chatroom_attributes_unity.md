@@ -20,7 +20,6 @@ Before proceeding, ensure that you meet the following requirements:
 - You understand the call frequency limit of the Agora Chat APIs supported by different pricing plans as described in [Limitations](./agora-chat/agora_chat_limitation).
 - You understand the number of chat rooms supported by different pricing plans as described in [Pricing Plan Details](./agora-chat/agora_chat_plan).
 
-
 ## Implementation
 
 This section introduces how to call the APIs provided by the Agora Chat SDK to implement the features listed above.
@@ -42,7 +41,6 @@ SDKClient.Instance.RoomManager.FetchRoomInfoFromServer(roomId, new ValueCallBack
 ```
 
 #### Change chat room subject or description
-
 Only the chat room owner and admin can set and update the chat room subject and description.
 
 ```c#
@@ -147,6 +145,5 @@ SDKClient.Instance.RoomManager.RemoveAttributes(roomId, keys, forced, new CallBa
 ));
 ```
 
-### Listen for chat room events
-
 For details, see [Chat Room Events](./agora_chat_chatroom_unity#listen-for-chat-room-events).
+

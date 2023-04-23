@@ -90,6 +90,12 @@ When a chatroom ([createChatRoom](https://hyphenateinc.github.io/android_referen
 - Chatroom name: 128 characters or less
 - Chatroom description: 512 characters or less
 
+Each chat room can have up to 100 custom attributes, and the total size of chat room custom attributes of each app cannot exceed 10 GB. The custom chat room attributes are of a key-value pair structure. A single key cannot exceed 128 characters and a room attribute value cannot exceed 4096 characters. Attribute keys support the following character sets: 
+- 26 lowercase English letters a-z; 
+- 26 uppercase English letters A-Z; 
+- 10 numbers 0 -9; 
+- "_", "-", ".".
+
 ## Call limit of server-side
 
 For each App Key, the call frequency limit of all methods is 500 per second. This total limit applies to all pricing plans; however, the call frequency limit of each method varies. For details about each method, see [Chat RESTful API Reference](./agora_chat_restful_overview).
