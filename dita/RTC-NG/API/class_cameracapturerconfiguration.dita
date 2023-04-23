@@ -112,11 +112,13 @@
 #if TARGET_OS_IOS
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
 #endif
-#elif TARGET_OS_MAC
-@property (copy, nonatomic) NSString * _Nullable deviceId;
+
 @property(assign, nonatomic) CGSize dimensions;
+
 @property(assign, nonatomic) int frameRate;
+
 @property(assign, nonatomic) BOOL followEncodeDimensionRatio;
+
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
   #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
@@ -220,12 +222,10 @@
         <pt props="android">captureFormat</pt>
         <pd>视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
       </plentry>
-      <plentry props="cpp apple unity electron flutter">
+      <plentry props="cpp unity electron flutter">
         <pt>deviceId</pt>
         <pd>
-          <note type="attention" props="cpp unity electron flutter">该参数仅适用于 Windows 平台。</note>
-          <note type="attention" props="apple">该参数仅适用于 macOS 平台。</note>
-          <ph>摄像头的 ID。</ph><ph props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
+          <note type="attention" props="cpp unity electron flutter">该参数仅适用于 Windows 平台。</note><ph>摄像头的 ID。</ph><ph props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>

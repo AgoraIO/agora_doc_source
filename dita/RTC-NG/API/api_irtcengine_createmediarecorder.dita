@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_createmediarecorder">
+    <title><ph keyref="createMediaRecorder"/></title>
+    <shortdesc id="short"><ph id="shortdesc">创建音视频录制对象。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="createMediaRecorder"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract AgoraMediaRecorder createMediaRecorder(RecorderStreamInfo info);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraMediaRecorder * _Nullable)createMediaRecorder:(AgoraRecorderStreamInfo * _Nonnull)info NS_SWIFT_NAME(createMediaRecorder(withInfo:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual agora_refptr&lt;IMediaRecorder> createMediaRecorder(const RecorderStreamInfo&amp; info) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
+            </dl>
+            <p>在开始音视频流录制前，你需要调用该方法创建一个音视频录制对象。SDK 支持录制本地或远端用户的多个音视频流，你可以多次调用该方法创建录制对象，并通过 <parmname>info</parmname> 参数指定需要录制的频道名称和发流的用户 ID。</p>
+            <p>成功创建后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 注册录制对象的观测器来监听录制的相关回调，然后再调用 <xref keyref="startRecording"/> 开始录制。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>info</pt>
+                <pd>需要录制的音视频流相关信息，详见 <xref keyref="RecorderStreamInfo"/>。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title>返回值</title>
+            <ul>
+            <li props="cpp apple rn electron unity flutter">方法调用成功：返回一个 <xref keyref="IMediaRecorder"/> 对象。</li>
+            <li props="android">方法调用成功：返回一个 <xref keyref="IMediaRecorder"/> 实例。</li>
+            <li>方法调用失败：返回空指针。</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>

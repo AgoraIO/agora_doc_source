@@ -13,7 +13,6 @@
   public IAgoraEventHandler mEventHandler;
   public int mChannelProfile;
   public int mAudioScenario;
-  public boolean mAutoRegisterAgoraExtensions;
   public List&lt;String&gt; mExtensionList;
   public IMediaExtensionObserver mExtensionObserver;
   public LogConfig mLogConfig;
@@ -49,8 +48,6 @@
     mExtensionList = new ArrayList&lt;&gt;();
     mExtensionObserver = null;
     mLogConfig = new LogConfig();
-    mDomainLimit = false;
-    mAutoRegisterAgoraExtensions = true;
   }
 
   public void addExtension(String providerName) {
@@ -99,8 +96,6 @@
 @property (assign, nonatomic) AgoraAudioScenario audioScenario;
 @property (assign, nonatomic) AgoraAreaCodeType areaCode;
 @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
-@property (assign, nonatomic) BOOL domainLimit;
-@property (assign, nonatomic) BOOL autoRegisterAgoraExtensions;
 @property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
 @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
 @end</codeblock>
@@ -113,7 +108,6 @@
   unsigned int areaCode;
   commons::LogConfig logConfig;
   bool domainLimit;
-  bool autoRegisterAgoraExtensions;
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
@@ -121,8 +115,7 @@
         license(NULL),
         audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
-        logConfig(), domainLimit(false), 
-        autoRegisterAgoraExtensions(true) {}
+        logConfig(), domainLimit(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
   
@@ -295,8 +288,7 @@
                 <pd><xref keyref="AgoraMediaFilterExtensionDelegate"/> 实例。</pd>
             </plentry>
             <plentry>
-                <pt props="android">mDomainLimit</pt>
-                <pt props="cpp ios mac">domainLimit</pt>                
+                <pt>domainLimit</pt>
                 <pd>
                     <p>是否开启域名限制：
                     <ul>
@@ -305,17 +297,6 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry>
-              <pt props="android">mAutoRegisterAgoraExtensions</pt>
-              <pt props="cpp ios mac">autoRegisterAgoraExtensions</pt>
-              <pd>
-                  <p>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
-                  <ul>
-                  <li><codeph><ph keyref="true"/></codeph>：（默认）初始化 <apiname keyref="IRtcEngine"/> 时自动注册声网插件。</li>
-                  <li><codeph><ph keyref="false"/></codeph>：初始化 <apiname keyref="IRtcEngine"/> 时不注册声网插件。你需要调用 <xref keyref="enableExtension"/> 来注册声网插件。</li>
-                  </ul></p>
-              </pd>
-          </plentry>            
             </parml> </section>
             <section props="android">
               <title>方法</title>

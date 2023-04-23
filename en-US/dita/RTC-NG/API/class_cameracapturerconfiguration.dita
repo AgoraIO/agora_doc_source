@@ -112,11 +112,13 @@
 #if TARGET_OS_IOS
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
 #endif
-#elif TARGET_OS_MAC
-@property (copy, nonatomic) NSString * _Nullable deviceId;
+
 @property(assign, nonatomic) CGSize dimensions;
+
 @property(assign, nonatomic) int frameRate;
+
 @property(assign, nonatomic) BOOL followEncodeDimensionRatio;
+
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
   #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
