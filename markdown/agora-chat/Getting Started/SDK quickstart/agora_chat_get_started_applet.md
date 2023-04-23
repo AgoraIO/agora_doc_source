@@ -186,18 +186,10 @@ import AC from "./Agora-chat";
 
 ### 实现发送与接收消息
 
-参考以下步骤实现发送和接收单聊消息：
-
-1. 导入即时通讯 IM SDK。将以下代码复制到 `index.js` 文件：
+参考以下代码实现发送和接收单聊消息。复制以下代码，添加到 `index.js` 文件中的导入功能的后面。
 
 ```javascript
-// Javascript
 import AC from "./Agora-chat";
-```
-
-2. 利用即时通讯 IM SDK 中提供的核心方法实现发送和接收单聊消息。复制以下代码，添加到 `index.js` 文件中的导入功能的后面。
-
-```javascript
 Page({
   data: {
     userId: "",
