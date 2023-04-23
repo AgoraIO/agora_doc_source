@@ -35,13 +35,17 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>该方法和 <xref keyref="startScreenCapture"/> 均可以开启屏幕采集，区别如下：<ul>
-                <li><apiname keyref="startScreenCapture"/> 仅适用于移动端。</li>
-                <li>该方法仅适用于桌面端。你可以调用该方法并指定多个视频源 (<parmname>sourceType</parmname>)，以开启多路屏幕共享流，用于本地合图或者多频道发布。</li></ul>
+            <p>
+                <ph props="mac electron">该方法和 <xref keyref="startScreenCaptureByDisplayId"/> 和 <xref keyref="startScreenCaptureByWindowId"/> 均可以开启屏幕采集，区别如下：</ph>
+                <ph props="cpp unity flutter">该方法和 <xref keyref="startScreenCapture"/>、<xref keyref="startScreenCaptureByDisplayId"/> 和 <xref keyref="startScreenCaptureByWindowId"/> 均可以开启屏幕采集，区别如下：</ph>
+                <ul>
+                    <li props="cpp unity flutter"><apiname keyref="startScreenCapture"/> 仅适用于移动端，该方法仅适用于桌面端。</li>
+                    <li><apiname keyref="startScreenCaptureByDisplayId"/> 和 <apiname keyref="startScreenCaptureByWindowId"/> 仅支持采集单个屏幕或窗口；调用该方法可以通过 <parmname>sourceType</parmname> 指定多个视频源，以采集多路屏幕共享流，用于本地合图或者多频道发布。</li>
+                </ul>
             </p>
-            <note type="attention" props="mac cpp flutter unity electron"><ul>
-            <li>该方法仅适用于 macOS 和 Windows 平台。</li>
-            <li props="mac cpp unity">如果调用该方法开始屏幕采集，声网建议你使用 <xref keyref="stopScreenCapture2"/> 停止采集，不要与 <xref keyref="stopScreenCapture"/> 混用。</li></ul></note>
+            <note type="attention"><ul>
+            <li props="cpp unity flutter">该方法仅适用于 macOS 和 Windows 平台。</li>
+            <li>如果调用该方法开始屏幕采集，声网建议你使用 <xref keyref="stopScreenCapture2"/> 停止采集，不要与 <xref keyref="stopScreenCapture"/> 混用。</li></ul></note>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -52,7 +56,7 @@
                     <p>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</p>
                     <note><ul>
                     <li props="cpp flutter unity electron">Windows 平台最多支持 4 路屏幕采集的视频流。</li>
-                    <li props="cpp mac flutter unity electron">macOS 平台最多支持 1 路屏幕采集的视频流，当前仅支持将该参数设置为 <apiname keyref="VIDEO_SOURCE_SCREEN"/>。</li></ul></note>
+                    <li props="cpp mac flutter unity electron">macOS 平台最多支持 1 路屏幕采集的视频流，当前仅支持将该参数设置为 <codeph><apiname keyref="VIDEO_SOURCE_SCREEN"/>(2)</codeph>。</li></ul></note>
                 </pd>
             </plentry>
             <plentry>
