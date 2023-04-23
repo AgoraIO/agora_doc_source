@@ -26,7 +26,12 @@
   //各厂商推送配置
   "agora":{},
   "apns": {},
-  "fcm": {}
+  "fcm": {},
+  "xiaomi": {},
+  "vivo": {},
+  "oppo": {},
+  "meizu": {},
+  "huawei": {},
 }
 ```
 
@@ -42,8 +47,7 @@
 | `ext`      | JSON   | 推送自定义扩展信息，为自定义键值对。键值对不能超过 10 个且长度不能超过 1024 个字符。       | iOS & Android  | 否 |
 | `config`   | JSON   | 在通知栏中点击触发的动作以及角标的配置，包含 `clickAction` 和 `badge` 字段。 | iOS & Android  | 否 |
 | `config.clickAction` | JSON   | 在通知栏中点击触发的动作，均为 String 类型：<ul><li>`url`：打开自定义的 URL；</li><li>`action`：打开应用的指定页面；</li><li>`activity`：打开应用包名或 Activity 组件路径。</li></ul><br/> 若不传该字段，默认打开应用的首页。| Android  | 否       |
-| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加的值；</li><li>`setNum`：表示推送通知到达设备时，角标数字显示的值。</li></ul> | iOS & Android  | 否       |
-
+| `config.badge`       | JSON   | 推送角标，包含以下两个字段，均为整型：<ul><li>`addNum`：表示推送通知到达设备时，角标数字累加的值；</li><li>`setNum`：表示推送通知到达设备时，角标数字显示的值。</li><li>activity：字符串类型，入口类（华为角标需要配置）。</li></ul> | iOS & Android  | 否       |
 
 ## 各厂商推送配置 
 
@@ -62,7 +66,7 @@
     "title": "通知栏显示的通知标题",
     "content": "通知栏展示的通知内容",
     "subTitle": "通知栏显示的通知副标题",
-    "iconUrl": "https://docs-im.easemob.com/lib/tpl/bootstrap3_ori/images/logo.png",
+    "iconUrl": "https://web-cdn.agora.io/doc-center/image/agora-logo.png",
     "needNotification": true,
     "badge": {
         "setNum": 0,
@@ -83,7 +87,7 @@
     "vibrate": 0,
     "style": 2,
     "bigTxt": "大文本内容",
-    "bigPicture": "https://docs-im.easemob.com/lib/tpl/bootstrap3_ori/images/logo.png",
+    "bigPicture": "https://web-cdn.agora.io/doc-center/image/agora-image.png",
     "id": 056734579
 }
 ```
@@ -112,7 +116,7 @@
 | `bigPicture`       | String  | 大图片 URL。该字段仅在 `style` 为 `2` 时需要设置。             | Android     |
 | `id`               | Number    | 通知 ID。默认值为随机数。当 ID 相同时，新通知的内容会覆盖之前的通知。 | iOS & Android |
 
-### APNs 推送相关字段
+### APNs 推送
 
 APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
 
@@ -141,9 +145,9 @@ APNs 推送相关字段与 APNs 官网的字段的映射关系如下表所示：
 | `ext`              | `loc-args`  | 
 | `launchImage`      | `launch-image`  | 
 
-关于这些字段的描述，详见 APNs 官网的[生成远程通知](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)和[向 APNs 发送通知请求](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns)页面。
+关于以上字段的描述，详见 APNs 官网的[生成远程通知](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification)和[向 APNs 发送通知请求](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns)页面。
 
-### FCM 推送相关字段
+### FCM 推送
 
 FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
 
@@ -169,5 +173,260 @@ FCM 相关字段与 FCM 官网的字段的映射关系如下表所示：
 | `notification.bodyLocKey`       | `body_loc_key`                     |
 | `notification.bodyLocArgs`      | `body_loc_args` |
 
-关于这些字段的描述，详见 [FCM 官网](https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=zh-cn)。
+关于以上字段的描述，详见 [FCM 官网](https://firebase.google.com/docs/cloud-messaging/http-server-ref?hl=zh-cn)。
 
+### 小米推送
+
+
+小米推送相关字段与小米推送官网的字段的映射关系如下表所示：
+
+| 小米推送字段                     | 小米推送官网字段                   |
+| :----------------------- | :----------------------------------------------------------- |
+| `title`                  |    `title`  |
+| `description`            |    `description`  |
+| `restrictedPackageNames` |    `restricted_package_name`   |
+| `passThrough`            |    `pass_through`   |
+| `payload`                |    `payload`   |
+| `notifyType`             |    `notify_type`    |
+| `timeToLive`             |    `time_to_live`    |
+| `timeToSend`             |    `time_to_send`   |
+| `notifyId`               |    `notify_id`     |
+| `sound`                  |    `extra.sound_uri`      |
+| `ticker`                 |    `extra.ticker`   |
+| `notifyForeground`       |    `extra.notify_foreground`  |
+| `notifyEffect`           |    `extra.notify_effect`  |
+| `intentUri`              |    `extra.intent_uri` |
+| `webUri`                 |    `extra.web_uri`|
+| `flowControl`            |    `extra.flow_control`  |
+| `jobkey`                 |    `extra.jobkey` |
+| `callbackUrl`            |    `extra.calllback`  |
+| `callbackParam`          |    `extra.callback.param` |
+| `callbackType`           |    `extra.callback.type` |
+| `locale`                 |    `extra.locale` |
+| `localeNotIn`            |    `extra.locale_not_in`  |
+| `model`                  |    `extra.model`  |
+| `modelNotIn`             |    `extra.model_not_in`|
+| `appVersion`             |    `extra.app_version` |
+| `appVersionNotIn`        |    `extra.app_version_not_in`|
+| `connpt`                 |    `extra.connpt` |
+| `onlySendOnce`           |    `extra.only_send_once`  |
+| `channelId`              |    `extra.channel_id`|
+
+关于以上字段的描述，详见[小米推送官网](https://dev.mi.com/console/doc/detail?pId=1163#_0)。
+
+### vivo 推送说明
+
+
+vivo 推送相关字段与 vivo 推送官网的字段的映射关系如下表所示：
+
+| vivo 推送字段              | vivo 推送官网字段        |
+| :---------------- | :------------------------- |
+| `title`           |    `title`    |
+| `content`         |    `content`    |
+| `notifyType`      |    `notifyTyp`    |
+| `timeToLive`      |    `timeToLive`                               |
+| `skipType`        |    `skipType`     |
+| `skipContent`     |    `skipContent`    |
+| `networkType`     |    `networkType`    |
+| `classification`  |    `classification`    |
+| `clientCustomMap` |    `clientCustomMap`    |
+| `requestId`       |    `requestId`   |
+| `pushMode`        |    `pushMode`    |
+| `extra`           |    `extra`     |
+
+vivo 推送回调相关字段与 vivo 推送官网的字段的映射关系如下表所示：
+
+| vivo 推送字段              | vivo 推送官网字段        |
+| :---------------- | :------------------------- |
+| `callback`        |    `extra.callback`    |
+| `callbackParam`   |    `extra.callback.param`    |
+
+关于以上字段的描述，详见 [vivo 推送官网](https://dev.vivo.com.cn/documentCenter/doc/362#w2-98542835)。
+
+### OPPO 推送说明
+
+
+OPPO 推送相关字段与 OPPO 推送官网的字段的映射关系如下表所示：
+
+| OPPO 推送字段        | OPPO 推送官网字段       |
+| :-------------------- | :----------------------------------------------------------- |
+| `title`               |     `title`     |
+| `subTitle`            |     `sub_title`                         |
+| `content`             |     `content`      |
+| `channelId`           |     `channel_id`         |
+| `appMessageId`        |     `app_message_id`         |
+| `style`               |     `style`       |
+| `clickActionType`     |     `click_action_type`       |
+| `clickActionActivity` |     `click_action_activity`       |
+| `clickActionUrl`      |     `click_action_url`      |
+| `actionParameters`    |     `action_parameters`      |
+| `offLine`             |     `off_line`      |
+| `offLineTtl`          |     `off_line_ttl`        |
+| `timeZone`            |     `time_zone`     |
+| `callBackUrl`         |     `call_back_url`     |
+| `callBackParameter`   |     `call_back_parameter`      |
+| `showTtl`             |     `show_ttl`      |
+| `notifyId`            |     `notify_id`      |
+
+
+关于以上字段的描述，详见 [OPPO 推送官网](https://open.oppomobile.com/new/developmentDoc/info?id=11236)。
+
+### 魅族推送
+
+
+魅族推送相关字段与魅族推送官网的字段的映射关系如下表所示：
+
+| 字段                  | 描述                                                     |
+| :-------------------- | :----------------------------------------------------------- |
+| `title`               |   `title`  |
+| `content`             |   `content`  |
+| `noticeExpandType`    |   `noticeExpandType`    |
+| `noticeExpandContent` |   `noticeExpandContent`       |
+| `clickType`           |   `clickType`     |
+| `url`                 |   `url`     |
+| `parameters`          |   `parameters`    |
+| `activity`            |   `activity`     |
+| `customAttribute`     |   `customAttribute`     |
+| `isOffLine`           |   `offLine`    |
+| `validTime`           |   `validTime`     |
+| `isSuspend`           |   `suspend`     |
+| `isClearNoticeBar`    |   `clearNoticeBar`      |
+| `isFixDisplay`        |   `fixDisplay`      |
+| `fixStartDisplayDate` |   `fixStartDisplayTime`       |
+| `fixEndDisplayDate`   |   `fixEndDisplayTime`       |
+| `vibrate`             |   `vibrate`       |
+| `lights`              |   `lights`      |
+| `sound`               |   `sound`     |
+| `notifyKey`           |   `notifyKey`    |
+| `callback`            |   `callback`          |
+| `callbackParam`       |   `callback.param`            |
+| `callbackType`        |   `callback.type`            |
+
+关于以上字段的描述，详见[魅族推送官网](https://open-res.flyme.cn/fileserver/upload/file/201803/be1f71eac562497f92b42c750196a062.pdf)。
+
+### 华为推送说明
+
+华为推送相关字段与华为推送官网的字段的映射关系如下表所示：
+
+#### 请求 body
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :------------- | :----------------------------------------------------------- |
+| `validateOnly` |   `validate_only`   |
+| `message`      |   `message`   |
+| `review`       |   `review`   |
+
+#### 推送消息结构体
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :------------- | :----------------------------------------------------------- |
+| `data`         |    `data`             |
+| `notification` |    `notification`     |
+| `android`      |    `android`        |
+
+##### 通知栏消息内容
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :------ | :------------------------------------- |
+| `title` |   `title`              |
+| `body`  |   `body`              |
+| `image` |   `image`  |
+
+##### 安卓消息推送控制参数
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :------------------ | :----------------------------------------------------------- |
+| `collapseKey`       |    `collapse_key`      |
+| `urgency`           |    `urgency`                              |
+| `category`          |    `category`        |
+| `ttl`               |    `ttl`                   |
+| `biTag`             |    `bi_tag`                 |
+| `fastAppTargetType` |    `fast_app_target`     |
+| `data`              |    `data`     |
+| `notification`      |    `notification`       |
+
+##### 安卓通知栏消息结构体
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :------------------ | :----------------------------------------------------------- |
+| `title`             | `title`                                                     |
+| `body`              | `body`                                                  |
+| `icon`              | `icon`                                        |
+| `color`             | `color`                                             |
+| `sound`             | `sound`                                     |
+| `defaultSound`      | `default_sound`                  |
+| `tag`               | `tag`                      |
+| `clickAction`       | `click_action`       |
+| `bodyLocKey`        | `body_loc_key`           |
+| `bodyLocArgs`       | `body_loc_args`                                                     |
+| `titleLocKey`       | `title_loc_key`                                             |
+| `titleLocArgs`      | `title_loc_args`                                                     |
+| `multiLangKey`      | `multi_lang_key`          |
+| `channelId`         | `channel_id`                              |
+| `notifySummary`     | `notify_summary`                               |
+| `image`             | `image`                                    |
+| `style`             | `style`                            |
+| `bigTitle`          | `big_title`                                |
+| `bigBody`           | `big_body`                          |
+| `autoClear`         | `auto_clear`          |
+| `notifyId`          | `notify_id`               |
+| `group`             | `group`                                |
+| `badge`             | `badge`                            |
+| `when`              | `when`                             |
+| `importance`        | `importance`                       |
+| `useDefaultVibrate` | `use_default_vibrate`               |
+| `useDefaultLight`   | `use_default_light`              |
+| `vibrateConfig`     | `vibrate_config`               |
+| `visibility`        | `visibility`                        |
+| `lightSettings`     | `light_settings`              |
+| `foregroundShow`    | `foreground_show`           |
+| `inboxContent`      | `inbox_content`               |
+| `buttons`           | `buttons`                          |
+
+##### 通知栏消息动作按钮
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :----------- | :----------------------------------------------------------- |
+| `name`       |      `name`                 |
+| `actionType` |      `action_type`               |
+| `intentType` |      `intent_type`               |
+| `intent`     |      `intent`               |
+| `data`       |      `data`               |
+
+##### 自定义消息点击行为
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :------- | :----------------------------------------------------------- |
+| `type`   |      `type`      |
+| `intent` |      `intent`      |
+| `url`    |      `url`            |
+| `action` |      `action`                |
+
+
+##### 自定义角标
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :----------- | :----------------------------------------------------------- |
+| `addNum`     |    `add_num`     |
+| `badgeClass` |    `class`      |
+| `setNum`     |    `set_num`              |
+
+
+##### 自定义呼吸灯模式
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :----------------- | :----------------------------------------------------------- |
+| `color`            |  `color`   |
+| `lightOnDuration`  |  `light_on_duration`          |
+| `lightOffDuration` |  `light_off_duration`          |
+
+##### 呼吸灯颜色
+
+| 华为推送字段           | 华为推送官网字段                                               |
+| :------ | :------------------------------------------------------ |
+| `alpha` |   `alpha`  |
+| `red`   |   `red`    |
+| `green` |   `green`  |
+| `blue`  |   `blue`   |
+
+关于以上字段的描述，详见[华为推送官网](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/https-send-api-0000001050986197#section13271045101216)。
