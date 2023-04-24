@@ -39,21 +39,21 @@ Authorization: Bearer YourAppToken
 
 为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
-### 查询群组黑名单
+## 查询群组黑名单
 
 查询一个群组黑名单中的用户列表。黑名单中的用户无法查看该群组的信息，也无法收到该群组的消息。
 
-#### HTTP 请求
+### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users?pageSize={N}&cursor={cursor}
+GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users?pageSize={N}&cursor={cursor} 
 ```
 
-##### 路径参数
+#### 路径参数
 
 参数及描述详见[公共参数](#pubparam)。
 
-##### 查询参数
+#### 查询参数
 
 | 参数     | 类型   | 是否必需 | 描述                                  |
 | :------- | :----- | :------- | :-------------------------- |
@@ -62,16 +62,16 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users?page
 
  <div class="alert info">如果 `pageSize` 和 `cursor` 参数均不传，获取最新加入群组黑名单的 500 个用户。若只传 `pageSize` 而不传 `cursor`，服务器返回第一页黑名单用户列表，即最新加入黑名单的用户，最多不超过 50 个。</div>
 
-##### 请求 header
+#### 请求 header
 
 | 参数            | 类型   | 是否必需 | 描述     |
 | :-------------- | :----- | :------- | :--------------- |
 | `Accept`        | String | 是       | 内容类型。请填 `application/json`。   |
 | `Authorization` | String | 是       | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app token。 |
 
-#### HTTP 响应
+### HTTP 响应
 
-##### 响应 body
+#### 响应 body
 
 如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
@@ -85,9 +85,9 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users?page
 
 如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
-#### 示例
+### 示例
 
-##### 请求示例
+#### 请求示例
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
@@ -95,7 +95,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users?page
 curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'https://XXXX/XXXX/XXXX/chatgroups/66XXXX85/blocks/users?pageSize=2'
 ```
 
-##### 响应示例
+#### 响应示例
 
 ```json
 {
