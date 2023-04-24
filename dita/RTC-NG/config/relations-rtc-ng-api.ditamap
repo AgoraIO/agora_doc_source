@@ -2238,6 +2238,7 @@
                 <topicref keyref="createDataStream1" props="native unity"/>
                 <topicref keyref="createDataStream2"/>
                 <topicref keyref="createMediaPlayer"/>
+                <topicref keyref="createMediaRecorder"/>
                 <topicref keyref="CreateRendererView" props="android"/>
                 <topicref keyref="CreateTextureView" props="android"/>
                 <topicref keyref="delegate" props="apple"/>
@@ -2286,7 +2287,6 @@
                 <topicref keyref="getCallId"/>
                 <topicref keyref="getCameraMaxZoomFactor" props="android ios cpp unity rn flutter"/>
                 <topicref keyref="getConnectionState"/>
-                <topicref keyref="getCurrentMonotonicTimeInMs"/>
                 <topicref keyref="getDeviceInfo" props="mac"/>
                 <topicref keyref="getDeviceVolume" props="mac"/>
                 <topicref keyref="getEffectCurrentPosition"/>
@@ -2299,7 +2299,6 @@
                 <topicref keyref="getMediaPlayerCacheManager" props="android apple"/>
                 <topicref keyref="getNativeHandle" props="android apple unity electron flutter rn"/>
                 <topicref keyref="getNetworkType"/>
-                <topicref keyref="getNtpWallTimeInMs"/>
                 <topicref keyref="getScreenCaptureSources" props="mac cpp electron unity"/>
                 <topicref keyref="getUserInfoByUid"/>
                 <topicref keyref="getUserInfoByUserAccount"/>
@@ -2355,8 +2354,6 @@
                 <topicref keyref="pushVideoFrame" props="unity"/>
                 <topicref keyref="pushVideoFrame2" props="android"/>
                 <topicref keyref="queryInterface" props="cpp flutter"/>
-                <topicref keyref="queryCodecCapability"/>
-                <topicref keyref="queryScreenCaptureCapability" props="android cpp ios flutter rn unity"/>
                 <topicref keyref="rate"/>
                 <topicref keyref="registerAudioEncodedFrameObserver"/>
                 <topicref keyref="registerAudioFrameObserver" props="android apple"/>
@@ -2455,7 +2452,6 @@
                 <topicref keyref="setRemoteSubscribeFallbackOption" props="hide"/>
                 <topicref keyref="setRemoteUserSpatialAudioParams"/>
                 <topicref keyref="setRemoteVideoStreamType"/>
-                <topicref keyref="setRemoteVideoSubscriptionOptions"/>
                 <topicref keyref="setRemoteVoice3DPosition" props="hide"/>
                 <topicref keyref="setRemoteVoicePosition"/>
                 <topicref keyref="setScreenCaptureContentHint" props="cpp framework"/>
@@ -2470,7 +2466,6 @@
                 <topicref keyref="setVideoEncoderConfiguration"/>
                 <topicref keyref="setVideoProfile" props="android ios mac"/>
                 <topicref keyref="setVideoProfile2" props="apple"/>
-                <topicref keyref="setVideoScenario"/>
                 <topicref keyref="setVideoQualityParameters" props="hide"/>
                 <topicref keyref="setVoiceBeautifierParameters"/>
                 <topicref keyref="setVoiceBeautifierPreset"/>
@@ -2487,19 +2482,20 @@
                 <topicref keyref="startEchoTest2"/>
                 <topicref keyref="startEchoTest3" props="native unity"/>
                 <topicref keyref="startLastmileProbeTest"/>
-                <topicref keyref="startLocalVideoTranscoder"/>
-                <topicref keyref="startOrUpdateChannelMediaRelay"/>
+                <topicref keyref="startLocalVideoTranscoder" props="cpp framework"/>
                 <topicref keyref="startPreview" props="android cpp apple unity"/>
                 <topicref keyref="startPreview2" props="android cpp framework"/>
-                <topicref keyref="startCameraCapture"/>
+                <topicref keyref="startPrimaryCameraCapture" props="cpp framework"/>
+                <topicref keyref="startPrimaryScreenCapture" props="cpp unity electron flutter"/>
                 <topicref keyref="startRhythmPlayer" props="android ios cpp flutter rn unity"/>
                 <topicref keyref="startRtmpStreamWithoutTranscoding"/>
                 <topicref keyref="startRtmpStreamWithTranscoding"/>
                 <topicref keyref="startScreenCapture" props="native unity rn flutter"/>
-                <topicref keyref="startScreenCapture2" props="cpp mac unity flutter electron"/>
                 <topicref keyref="startScreenCaptureByDisplayId" props="mac cpp unity flutter electron"/>
                 <topicref keyref="startScreenCaptureByScreenRect" props="cpp unity flutter electron"/>
                 <topicref keyref="startScreenCaptureByWindowId" props="mac cpp unity flutter electron"/>
+                <topicref keyref="startSecondaryCameraCapture" props="cpp framework"/>
+                <topicref keyref="startSecondaryScreenCapture" props="cpp unity electron flutter"/>
                 <topicref keyref="startMediaRenderingTracing"/>
                 <topicref keyref="stopAllEffects"/>
                 <topicref keyref="stopAudioMixing"/>
@@ -2512,11 +2508,13 @@
                 <topicref keyref="stopLocalVideoTranscoder" props="cpp framework"/>
                 <topicref keyref="stopPreview" props="android apple cpp unity"/>
                 <topicref keyref="stopPreview2" props="android cpp framework"/>
-                <topicref keyref="stopCameraCapture"/>
+                <topicref keyref="stopPrimaryCameraCapture" props="cpp framework"/>
+                <topicref keyref="stopPrimaryScreenCapture" props="cpp unity electron flutter"/>
                 <topicref keyref="stopRhythmPlayer" props="android ios cpp unity rn flutter"/>
                 <topicref keyref="stopRtmpStream"/>
                 <topicref keyref="stopScreenCapture"/>
-                <topicref keyref="stopScreenCapture2" props="cpp mac flutter unity electron"/>
+                <topicref keyref="stopSecondaryCameraCapture" props="ios cpp unity rn flutter"/>
+                <topicref keyref="stopSecondaryScreenCapture" props="cpp unity electron flutter"/>
                 <topicref keyref="switchCamera" props="android ios cpp flutter unity rn"/>
                 <topicref keyref="takeSnapshot"/>
                 <topicref keyref="unloadAllEffects" props="cpp framework"/>
@@ -2529,12 +2527,13 @@
                 <topicref keyref="updateChannelMediaOptions"/>
                 <topicref keyref="updateChannelMediaRelay"/>
                 <topicref keyref="updateDirectCdnStreamingMediaOptions" props="hide"/>
-                <topicref keyref="updateLocalTranscoderConfiguration"/>
+                <topicref keyref="updateLocalTranscoderConfiguration" props="cpp framework"/>
                 <topicref keyref="updateRtmpTranscoding"/>
                 <topicref keyref="updateScreenCapture" props="ios cpp unity rn flutter"/>
                 <topicref keyref="updateScreenCaptureParameters" props="mac android cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion1" props="cpp framework"/>
                 <topicref keyref="updateScreenCaptureRegion2" props="hide"/>
+                <topicref keyref="setRemoteVideoSubscriptionOptions"/>
             </relcell>
             <relcell>
                 <topicref keyref="IRtcEngine"/>
@@ -2576,7 +2575,7 @@
                 <topicref keyref="resumeAllChannelMediaRelayEx"/>
                 <topicref keyref="sendCustomReportMessageEx"/>
                 <topicref keyref="setDualStreamModeEx"/>
-                <topicref keyref="setRemoteRenderModeEx" props="cpp android ios mac unity"/>
+                <topicref keyref="setRemoteRenderModeEx2" props="cpp android ios mac unity"/>
                 <topicref keyref="setRemoteVoice3DPositionEx" props="hide"/>
                 <topicref keyref="setRemoteVideoStreamTypeEx"/>
                 <topicref keyref="setRemoteVoicePositionEx"/>
@@ -2589,7 +2588,6 @@
                 <topicref keyref="sendStreamMessageEx" props="android cpp framework"/>
                 <topicref keyref="startChannelMediaRelayEx"/>
                 <topicref keyref="startMediaRenderingTracingEx"/>
-                <topicref keyref="startOrUpdateChannelMediaRelayEx"/>
                 <topicref keyref="startRtmpStreamWithoutTranscodingEx"/>
                 <topicref keyref="startRtmpStreamWithTranscodingEx"/>
                 <topicref keyref="stopChannelMediaRelayEx"/>
@@ -2664,7 +2662,6 @@
                 <topicref keyref="onLocalUserRegistered"/>
                 <topicref keyref="onLocalVideoStateChanged"/>
                 <topicref keyref="onLocalVideoStats"/>
-                <topicref keyref="onLocalVideoTranscoderError"/>
                 <topicref keyref="onMediaEngineLoadSuccess" props="android ios mac"/>
                 <topicref keyref="onMediaEngineStartCallSuccess" props="android ios mac"/>
                 <topicref keyref="onMicrophoneEnabled" props="hide"/>
@@ -3051,6 +3048,10 @@
                 <topicref keyref="onFrame_IVideoFrameObserver" props="ios mac cpp"/>
                 <topicref keyref="onMediaPlayerVideoFrame" props="hide"/>
                 <topicref keyref="onPreEncodeVideoFrame"/>
+                <topicref keyref="onPreEncodeScreenVideoFrame" props="native rn flutter electron"/>
+                <topicref keyref="onSecondaryPreEncodeScreenVideoFrame" props="cpp rn flutter electron"/>
+                <topicref keyref="onSecondaryPreEncodeCameraVideoFrame" props="cpp rn flutter electron"/>
+                <topicref keyref="onScreenCaptureVideoFrame" props="native rn flutter electron"/>
                 <topicref keyref="onRenderVideoFrame"/>
             </relcell>
             <relcell>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startscreencapture">
     <title><ph keyref="startScreenCapture"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始屏幕采集。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开始屏幕共享。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -37,7 +37,7 @@
             <p props="ios">屏幕共享 Extension 进程状态发生改变时，SDK 会相应地触发 <xref keyref="onLocalVideoStateChanged"/> 回调，当 <parmname>sourceType</parmname> 的类型为 <apiname keyref="VIDEO_SOURCE_SCREEN"/> 时,<parmname>state</parmname> 参数表示屏幕共享的状态。</p>
             <note type="attention">
             <ul>
-            <li props="cpp rn unity flutter">该方法仅适用于 Android 和 iOS 平台。</li>
+            <li props="cpp rn unity flutter">该方法适用于 Android 和 iOS 平台。</li>
             <li props="cpp rn unity flutter ios">在 iOS 平台上，屏幕共享仅适用于 iOS 12.0 及以上。</li>
             <li props="cpp ios unity rn flutter">屏幕共享流的计费以 <apiname keyref="ScreenVideoParameters"/> 中的 <parmname>dimensions</parmname> 值为准：当你未传值时，以 1280 × 720 计费；当你传值时，以你传入的值计费。详细的计费规则请参考<xref keyref="guide-bill"/>。</li>
             <li props="cpp ios unity rn flutter">在 iOS 平台上，如果你使用音频自采集而非 SDK 采集音频，为避免应用退后台后屏幕共享停止，建议你对应用添加保活处理逻辑。</li>

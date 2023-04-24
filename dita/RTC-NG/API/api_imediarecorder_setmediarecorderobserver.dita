@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_setmediarecorderobserver">
-    <title><ph keyref="setMediaRecorderObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">注册 <xref keyref="IMediaRecorderObserver" /> 对象。</ph></shortdesc>
+    <title><ph keyref="setMediaRecorderObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">注册 <xref keyref="IMediaRecorderObserver"/> 观测器。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setMediaRecorderObserver" />
+                <indexterm keyref="setMediaRecorderObserver"/>
             </keywords>
         </metadata>
     </prolog>
@@ -28,15 +28,16 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setMediaRecorderObserver(
       {required RtcConnection connection,
       required MediaRecorderObserver callback});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
             <p>该方法用于设置音视频录制的回调，以便在录制过程中向 app 通知音视频流的录制状态和信息。</p>
-            <p>调用该方法前请确保：<ul>
-                <li>已初始化 <xref keyref="IRtcEngine" /> 对象。</li>
-                <li>已创建音视频录制对象。</li>
-                </ul></p>
+            <p>调用该方法前请确保：
+            <ul>
+            <li>已创建并初始化 <xref keyref="IRtcEngine"/> 对象。</li>
+            <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
+            </ul></p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -44,7 +45,7 @@
             <plentry>
                 <pt props="cpp android framework">callback</pt>
                 <pt props="apple">delegate</pt>
-                <pd>音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver" />。</pd>
+                <pd>音视频流录制回调，详见 <xref keyref="IMediaRecorderObserver"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">

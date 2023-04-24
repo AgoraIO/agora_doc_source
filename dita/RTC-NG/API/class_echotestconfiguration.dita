@@ -12,23 +12,15 @@
   public boolean enableVideo = true;
   public String token = null;
   public String channelId = null;
-  public int intervalInSeconds = 2;
- 
+
   @CalledByNative
-  public EchoTestConfiguration(SurfaceView view, boolean enableAudio, boolean enableVideo,
-      String token, String channelId, int intervalInSeconds) {
+  public EchoTestConfiguration(
+      SurfaceView view, boolean enableAudio, boolean enableVideo, String token, String channelId) {
     this.view = view;
     this.enableAudio = enableAudio;
     this.enableVideo = enableVideo;
     this.token = token;
     this.channelId = channelId;
-    this.intervalInSeconds = intervalInSeconds;
-  }
-
-  @CalledByNative
-  public EchoTestConfiguration(
-      SurfaceView view, boolean enableAudio, boolean enableVideo, String token, String channelId) {
-    this(view, enableAudio, enableVideo, token, channelId, 10);
   }
 
   @CalledByNative
@@ -40,29 +32,26 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
 @property(assign, nonatomic) BOOL enableVideo NS_SWIFT_NAME(enableVideo);
 @property(copy, nonatomic) NSString* _Nullable token NS_SWIFT_NAME(token);
 @property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
-@property(assign, nonatomic) NSInteger intervalInSeconds NS_SWIFT_NAME(intervalInSeconds);
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">
-struct EchoTestConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">struct EchoTestConfiguration {
   view_t view;
   bool enableAudio;
   bool enableVideo;
   const char* token;
   const char* channelId;
-  int intervalInSeconds;
 
-  EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c, const int is)
-   : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c), intervalInSeconds(is) {}
+  EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c)
+   : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
 
   EchoTestConfiguration()
-   : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR), intervalInSeconds(2) {}
+   : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
 
@@ -175,10 +164,6 @@ struct EchoTestConfiguration {
             <plentry>
                 <pt>channelId</pt>
                 <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
-            </plentry>
-            <plentry>
-                <pt >intervalInSeconds</pt>
-                <pd>设置返回音频或视频通话回路测试结果的时间间隔，取值范围为 [2,10]，单位为秒，默认为 2 秒。</pd>
             </plentry>
             </parml> </section>
     </refbody>

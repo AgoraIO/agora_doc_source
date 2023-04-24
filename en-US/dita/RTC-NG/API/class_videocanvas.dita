@@ -79,7 +79,7 @@
     this.setupMode = setupMode;
   }
 }</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(strong, nonatomic) VIEW_CLASS *_Nullable view;
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) AgoraVideoRenderMode renderMode;
@@ -88,17 +88,6 @@
 @property(nonatomic, assign) AgoraVideoSourceType sourceType;
 @property(nonatomic, assign) int mediaPlayerId;
 @property(assign, nonatomic) CGRect cropArea;
-@end</codeblock>
-            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
-@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
-@property(nonatomic, assign) AgoraVideoSourceType sourceType;
-@property(nonatomic, assign) int mediaPlayerId;
-@property(assign, nonatomic) CGRect cropArea;
-@property(assign, nonatomic) BOOL enableAlphaMask;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
@@ -109,19 +98,18 @@
     VIDEO_SOURCE_TYPE sourceType;
     int mediaPlayerId;
     Rectangle cropArea;
-    bool enableAlphaMask;
 
   VideoCanvas()
     : view(NULL), uid(0), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
-      setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
+      setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
   
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uid_t u)
     : view(v), uid(u), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
   
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, user_id_t)
     : view(v), uid(0), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any

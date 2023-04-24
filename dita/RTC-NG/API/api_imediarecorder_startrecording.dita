@@ -34,17 +34,25 @@
             <title>详情</title>
             <p>该方法用于开启音视频流录制。声网 SDK 支持同时录制本地及远端用户的音视频流。</p>
             <p>在开始录制前请确保：
-            <ul><li>已通过 <xref keyref="createLocalMediaRecorder"/> 或 <xref keyref="createRemoteMediaRecorder"/> 创建本地或远端音视频录制对象；</li>
-            <li>已调用 <xref keyref="setMediaRecorderObserver"/> 注册录制对象观测器来监听录制的相关回调。</li></ul></p>
-            <p>录制内容：
-                <ul>
-                    <li>麦克风采集的、编码为 AAC 格式的音频。</li>
-                    <li>摄像头采集的、编码为 H.264 或 H.265 格式的视频。</li></ul>
-                <ph>只有当检测到可录制的音视频流时，才能成功生成录制文件；当没有可录制的音视频或录制中的音视频流中断超过 5 秒后，SDK 会停止录制，并触发 <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> 回调。</ph></p>
+
+            <ul>
+            <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
+            <li>已调用 <xref keyref="setMediaRecorderObserver"/> 注册录制对象观测器来监听录制的相关回调。</li>
+            <li>已加入频道。</li>
+            </ul></p>
+            <p>该方法支持录制如下数据：
+
+            <ul>
+            <li>麦克风采集的、AAC 编码格式的音频。</li>
+            <li>摄像头采集的、H.264 或 H.265 编码格式的视频。</li>
+            </ul></p>
             <p>开启音视频流录制后，当视频分辨率在录制过程中发生变化时，SDK 会停止录制；当音频采样率和声道数发生变化时，SDK 会持续录制并生成单个 MP4 录制文件。</p>
-            <note type="attention"><ul><li>该方法需要在加入频道后调用。</li>
-            <li>如果你需要录制的是本地的音视频流，请在开始录制前确保本地用户的角色设为主播，即（<codeph>BROADCASTER</codeph>）。</li>
-            <li>如果你需要录制的是远端用户的音视频流，请在开始录制前确保已经订阅了该用户的音视频流。</li></ul></note> </section>
+            <p><p>仅当检测到可录制的音视频流时，才能成功生成录制文件；如果没有可录制的音视频流，或在录制过程中的音视频流中断超过 5 秒后，SDK 会停止录制，并触发 <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> 回调。</p></p>
+            <note type="attention">
+            <ul>
+            <li>如果你需要录制的是本地的音视频流，请在开始录制前确保本地用户的角色设为主播。</li>
+            <li>如果你需要录制的是远端用户的音视频流，请在开始录制前确保已经订阅了该用户的音视频流。</li>
+            </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -59,8 +67,10 @@
             <ul>
             <li props="native unity rn electron">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
+
                 <ul>
                 <li>-2: 参数无效。请确保：
+
                     <ul>
                     <li>指定的录制文件保存路径正确且可写。</li>
                     <li>指定的录制文件格式正确。</li>

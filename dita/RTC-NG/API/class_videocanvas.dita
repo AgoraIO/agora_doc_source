@@ -79,7 +79,7 @@
     this.setupMode = setupMode;
   }
 }</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(strong, nonatomic) VIEW_CLASS *_Nullable view;
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) AgoraVideoRenderMode renderMode;
@@ -88,17 +88,6 @@
 @property(nonatomic, assign) AgoraVideoSourceType sourceType;
 @property(nonatomic, assign) int mediaPlayerId;
 @property(assign, nonatomic) CGRect cropArea;
-@end</codeblock>
-            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
-@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
-@property(nonatomic, assign) AgoraVideoSourceType sourceType;
-@property(nonatomic, assign) int mediaPlayerId;
-@property(assign, nonatomic) CGRect cropArea;
-@property(assign, nonatomic) BOOL enableAlphaMask;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
     view_t view;
@@ -109,19 +98,18 @@
     VIDEO_SOURCE_TYPE sourceType;
     int mediaPlayerId;
     Rectangle cropArea;
-    bool enableAlphaMask;
 
   VideoCanvas()
     : view(NULL), uid(0), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
-      setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
+      setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
   
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uid_t u)
     : view(v), uid(u), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
   
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, user_id_t)
     : view(v), uid(0), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
-      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
+      sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoCanvas {
   view?: any
@@ -299,20 +287,6 @@
                 <pt>cropArea</pt>
                 <pd>（可选）视频帧的展示区域，详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
             </plentry>
-            <plentry props="cpp mac unity electron flutter">
-                <pt>enableAlphaMask</pt>
-                <pd>
-                <p>（可选）接收端是否开启 alpha 遮罩渲染：                                       
-                  <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：接收端开启 alpha 遮罩渲染。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：（默认）接收端关闭 alpha 遮罩渲染。</li>
-                  </ul>
-                </p>
-                <note type="attention"><ul><li>该属性仅适用于 macOS 平台。</li><li>仅当发送端开启 alpha 传输功能时，接收端才能渲染 alpha 通道的信息。</li><li>如需开启 alpha 传输功能，请<xref keyref="ticket-link"/>。</li></ul></note>
-                <note type="note">alpha 遮罩渲染可以创建具有透明效果的图像，还可以提取视频中的人像。与其他方法结合使用时，可以实现人像画中画、添加水印等效果。</note>                
-                </pd>
-            </plentry>
-
             </parml> </section>
     </refbody>
 </reference>

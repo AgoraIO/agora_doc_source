@@ -25,7 +25,8 @@
         <section id="detailed_desc">
             <title>详情</title>
             <p>开始跨频道转发媒体流后，如果你需要暂停向所有频道转发媒体流，可以调用该方法；暂停后，如果要恢复跨频道媒体流转发，可以调用 <xref keyref="resumeAllChannelMediaRelay" /> 方法。</p>
-            <note type="attention">该方法需要在调用 <xref keyref="startOrUpdateChannelMediaRelay"/> 开始跨频道媒体流转发后调用。</note> </section>
+            <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayEvent" /> 回调，并在回调中报告是否成功暂停媒体流转发。</p>
+            <note type="attention">该方法需要在 <xref keyref="startChannelMediaRelay" /> 后调用。</note> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>

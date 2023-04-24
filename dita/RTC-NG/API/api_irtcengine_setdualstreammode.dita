@@ -30,13 +30,11 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">SDK 默认在发送端开启小流 auto 模式（不主动发送小流），接收端主播可以调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请，发送端收到申请后自动切换为小流模式。<ul>
-                <li>如果你想修改此行为，可以调用该方法并修改 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/>（始终不发送小流）或 <apiname keyref="ENABLE_SIMULCAST_STREAM"/>（始终发送小流）。</li>
-                <li>如果你在进行修改后又想恢复该默认行为，可重新调用该方法，并将 <parmname>mode</parmname> 设置为 <apiname keyref="AUTO_SIMULCAST_STREAM"/>。</li></ul></p>
+            <p id="desc">SDK 默认在发送端开启小流 auto 模式，效果等同于调用该方法并将 <parmname>mode</parmname> 设置为 <apiname keyref="AUTO_SIMULCAST_STREAM"/>。如果你想修改此行为，可以调用该方法并修改 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/>（始终不发送小流）或 <apiname keyref="ENABLE_SIMULCAST_STREAM"/>（始终发送小流）。</p>
             <note id="note">该方法和 <xref keyref="enableDualStreamMode"/> 的区别与联系如下：
                 <ul>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
-                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="false"/>)</codeph> 的效果相同。</li>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <ph keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟 <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="true"/>)</codeph> 的效果相同。</li>
                 <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
                 </ul></note>
         </section>

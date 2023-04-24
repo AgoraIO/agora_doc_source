@@ -26,6 +26,8 @@
   public Integer audienceLatencyLevel;
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
+  public Integer audioDelayMs;
+  public Integer mediaPlayerAudioDelayMs;
   public String token;
   public Boolean enableBuiltInMediaEncryption;
   public Integer publishCustomAudioSourceId;
@@ -52,7 +54,7 @@
 @property(assign, nonatomic) BOOL publishEncodedVideoTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerAudioTrack;
 @property(assign, nonatomic) BOOL publishMediaPlayerVideoTrack;
-@property(assign, nonatomic) BOOL publishTranscodedVideoTrack;
+@property(assign, nonatomic) BOOL publishTrancodedVideoTrack;
 @property(assign, nonatomic) BOOL autoSubscribeAudio;
 @property(assign, nonatomic) BOOL autoSubscribeVideo;
 @property(assign, nonatomic) BOOL enableAudioRecordingOrPlayout;
@@ -61,6 +63,7 @@
 @property(assign, nonatomic) AgoraAudienceLatencyLevelType audienceLatencyLevel;
 @property(assign, nonatomic) AgoraVideoStreamType defaultVideoStreamType;
 @property(assign, nonatomic) AgoraChannelProfile channelProfile;
+@property(assign, nonatomic) NSInteger mediaPlayerAudioDelayMs;
 @property(copy, nonatomic) NSString * _Nullable token;
 @property(assign, nonatomic) BOOL enableBuiltInMediaEncryption;
 
@@ -93,7 +96,7 @@
   Optional&lt;bool&gt; publishEncodedVideoTrack;
   Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
   Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
-  Optional&lt;bool&gt; publishTranscodedVideoTrack;
+  Optional&lt;bool&gt; publishTrancodedVideoTrack;
   Optional&lt;bool&gt; autoSubscribeAudio;
   Optional&lt;bool&gt; autoSubscribeVideo;
   Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
@@ -102,6 +105,8 @@
   Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
   Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
   Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+  Optional&lt;int&gt; audioDelayMs;
+  Optional&lt;int&gt; mediaPlayerAudioDelayMs;
   Optional&lt;const char*&gt; token;
   Optional&lt;bool&gt; enableBuiltInMediaEncryption;
   Optional&lt;bool&gt; publishRhythmPlayerTrack;
@@ -145,7 +150,7 @@
 
   publishMediaPlayerVideoTrack?: boolean;
 
-  publishTranscodedVideoTrack?: boolean;
+  publishTrancodedVideoTrack?: boolean;
 
   autoSubscribeAudio?: boolean;
 
@@ -162,6 +167,10 @@
   defaultVideoStreamType?: VideoStreamType;
 
   channelProfile?: ChannelProfileType;
+
+  audioDelayMs?: number;
+
+  mediaPlayerAudioDelayMs?: number;
 
   token?: string;
 
@@ -192,7 +201,7 @@
           public Optional&lt;bool&gt; publishEncodedVideoTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; publishMediaPlayerVideoTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishTranscodedVideoTrack = new Optional&lt;bool&gt;();
+          public Optional&lt;bool&gt; publishTrancodedVideoTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; autoSubscribeAudio = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; autoSubscribeVideo = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; enableAudioRecordingOrPlayout = new Optional&lt;bool&gt;();
@@ -201,6 +210,8 @@
           public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt;();
           public Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
           public Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE&gt;();
+          public Optional&lt;int&gt; audioDelayMs = new Optional&lt;int&gt;();
+          public Optional&lt;int&gt; mediaPlayerAudioDelayMs = new Optional&lt;int&gt;();
           public Optional&lt;string&gt; token = new Optional&lt;string&gt;();
           public Optional&lt;bool&gt; publishRhythmPlayerTrack = new Optional&lt;bool&gt;();
           public Optional&lt;bool&gt; isInteractiveAudience = new Optional&lt;bool&gt;();
@@ -240,7 +251,7 @@
 
   publishMediaPlayerVideoTrack?: boolean;
 
-  publishTranscodedVideoTrack?: boolean;
+  publishTrancodedVideoTrack?: boolean;
 
   autoSubscribeAudio?: boolean;
 
@@ -257,6 +268,10 @@
   defaultVideoStreamType?: VideoStreamType;
 
   channelProfile?: ChannelProfileType;
+
+  audioDelayMs?: number;
+
+  mediaPlayerAudioDelayMs?: number;
 
   token?: string;
 
@@ -288,7 +303,7 @@
       this.publishEncodedVideoTrack,
       this.publishMediaPlayerAudioTrack,
       this.publishMediaPlayerVideoTrack,
-      this.publishTranscodedVideoTrack,
+      this.publishTrancodedVideoTrack,
       this.autoSubscribeAudio,
       this.autoSubscribeVideo,
       this.enableAudioRecordingOrPlayout,
@@ -297,6 +312,8 @@
       this.audienceLatencyLevel,
       this.defaultVideoStreamType,
       this.channelProfile,
+      this.audioDelayMs,
+      this.mediaPlayerAudioDelayMs,
       this.token,
       this.enableBuiltInMediaEncryption,
       this.publishRhythmPlayerTrack,
@@ -352,8 +369,8 @@
   @JsonKey(name: 'publishMediaPlayerVideoTrack')
   final bool? publishMediaPlayerVideoTrack;
 
-  @JsonKey(name: 'publishTranscodedVideoTrack')
-  final bool? publishTranscodedVideoTrack;
+  @JsonKey(name: 'publishTrancodedVideoTrack')
+  final bool? publishTrancodedVideoTrack;
 
   @JsonKey(name: 'autoSubscribeAudio')
   final bool? autoSubscribeAudio;
@@ -378,6 +395,12 @@
 
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
+  @JsonKey(name: 'audioDelayMs')
+  final int? audioDelayMs;
+
+  @JsonKey(name: 'mediaPlayerAudioDelayMs')
+  final int? mediaPlayerAudioDelayMs;
 
   @JsonKey(name: 'token')
   final String? token;

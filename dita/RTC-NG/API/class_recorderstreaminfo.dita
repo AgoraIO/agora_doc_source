@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_recorderstreaminfo">
+    <title><ph keyref="RecorderStreamInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">需录制的音视频流的相关信息。</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public class RecorderStreamInfo {
+  public String channelId;
+  public int uid;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRecorderStreamInfo: NSObject
+
+@property (nonatomic, copy) NSString *_Nonnull channelId;
+@property (nonatomic, nonatomic) NSUInteger uid;
+
+@end</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">struct RecorderStreamInfo {
+    const char* channelId;
+    uid_t uid;
+    RecorderStreamInfo() : channelId(NULL), uid(0) {}
+};</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.0</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>channelId</pt>
+                <pd>需录制的频道名称。</pd>
+            </plentry>
+             <plentry>
+                 <pt>uid</pt>
+                 <pd>需录制的用户 ID。</pd>
+             </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
