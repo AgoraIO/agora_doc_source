@@ -94,7 +94,9 @@
 | 启用状态           |  是     | 是否启用回调规则：<ul><li>**启用**：启用后回调规则立即生效；</li><li>**未启用**：回调规则为关闭状态，不生效。</li></ul>                   |
 | 回调地址           |  是     | 用于接收发送后回调的应用服务器的 URL，不能超过 512 字符。支持 HTTP 和 HTTPS 地址。                   |
 
-<div class="alert info">发送前和发送后回调的注意事项如下：<ul><li>默认情况下，发送前和发送后回调规则总计最多能添加四个。若要添加更多规则，需[提交工单](https://agora-ticket.agora.io)。</li><li>规则配置仅支持消息事件。若要接收其他事件的通知，需[提交工单](https://agora-ticket.agora.io)。</li><li>如果你同时设置了发送前和发送后回调，若发送前回调触发后消息被拦截，则不会触发发送后回调。</li></ul></div>
+<div class="alert info">发送前和发送后回调的注意事项如下：<ul><li>默认情况下，发送前和发送后回调规则总计最多能添加四个。若要添加更多规则，需[联系技术支持](https:/
+/docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)。</li><li>规则配置仅支持消息事件。若要接收其他事件的通知，需[联系技术支持](https:/
+/docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)。</li><li>如果你同时设置了发送前和发送后回调，若发送前回调触发后消息被拦截，则不会触发发送后回调。</li></ul></div>
 
 ## HTTP 请求和响应
 

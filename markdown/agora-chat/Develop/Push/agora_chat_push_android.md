@@ -28,9 +28,6 @@
 
 - 已开启即时通讯 IM ，详见[开启和配置即时通讯服务](./enable_agora_chat)。
 - 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)。
-- 你已在[声网控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
-
-<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:sales@agora.io">sales@agora.io</a>，因为该操作会删除所有相关配置。</div>
 
 各厂商推送服务的使用条件如下：
 
@@ -895,7 +892,7 @@ ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new Valu
 
 4. 在左侧导航栏，选择**功能配置 > 推送模板**并单击**添加推送模板**，在弹出的对话框中配置字段，如下图所示。
 
-   ![image](../doc_cn_easemob/images/push_android/push_android_template_mgmt.png)
+   ![image](\agora_doc_source\markdown\agora-chat\images\push\push_add_template.png)
 
 5. 创建推送模板后，用户可以在发送消息时选择使用此模板，代码示例如下所示。
 
@@ -1160,4 +1157,4 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 | :---------------------- | :---------------------------------------------------------- |
 | `txtBody`               | 推送消息内容。                                              |
 | `toChatUsername`        | 消息接收方：<ul><li>单聊为对端用户的用户 ID；</li><li>群聊为群组 ID；</li><li>聊天室聊天为聊天室 ID。</li></ul>       |
-| `em_ignore_notification` | 是否发送静默消息：<ul><li>`true`：发送静默消息；</li><li> （默认）`false`：推送该消息。<br/>该字段名固定，不可修改。 |
+| `em_ignore_notification` | 是否发送静默消息：<ul><li>`true`：发送静默消息；</li><li>（默认）`false`：推送该消息。<br/>该字段名固定，不可修改。 |

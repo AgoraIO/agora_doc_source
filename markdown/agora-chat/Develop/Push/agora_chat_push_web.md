@@ -18,10 +18,7 @@
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，并连接到服务器，详见[快速开始](./agora_chat_get_started_web)；
-- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)；
-- 你已在[声网控制台](https://console.agora.io/)中激活了推送高级功能。激活了高级功能后，你可以设置推送通知模式和免打扰模式。
-
-<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:sales@agora.io">sales@agora.io</a>，因为该操作会删除所有相关配置。</div>
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
