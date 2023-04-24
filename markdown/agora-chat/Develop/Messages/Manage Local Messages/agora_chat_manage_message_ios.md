@@ -38,7 +38,7 @@ NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConve
 
 ```objective-c
 // 获取指定会话 ID 的会话。
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 //SDK 初始化时，为每个会话加载 1 条历史消息。如需更多消息，请到数据库中获取。该方法获取 `startMsgId` 之前的 `count` 条消息，SDK 会将这些消息自动存入此会话，app 无需添加到会话中。
 NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesStartFromId:startMsgId count:count searchDirection:MessageSearchDirectionUp];
 ```
@@ -49,7 +49,7 @@ NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesStartFromId:st
 
 ```objective-c
 // 获取指定会话 ID 的会话。
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // 获取未读消息数。
 NSInteger unreadCount = conversation.unreadMessagesCount;
 ```
@@ -61,7 +61,7 @@ NSInteger unreadCount = conversation.unreadMessagesCount;
 ```objectivec
 NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConversations];
 NSInteger unreadCount = 0;
-for (AgoraConversation *conversation in conversations) {
+for (AgoraChatConversation *conversation in conversations) {
   unreadCount += conversation.unreadMessagesCount;
 }
 ```
@@ -71,7 +71,7 @@ for (AgoraConversation *conversation in conversations) {
 请参考以下代码示例，将指定的消息标记为已读：
 
 ```objectivec
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // 将指定会话的消息未读数清零。
 [conversation markAllMessagesAsRead:nil];
 // 将一条消息置为已读。
@@ -94,7 +94,7 @@ NSArray *conversations = @{@"conversationID1",@"conversationID2"};
 
 ```objective-c
 // 删除当前会话中指定的一条历史消息。
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation deleteMessageWithId:.messageId error:nil];
 ```
 
@@ -102,7 +102,7 @@ AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager ge
 
 ```objective-c
 // 删除指定会话，如果需要保留历史消息，`isDeleteServerMessages` 参数传 `NO`。
-[[AgoraChatClient sharedClient].chatManager deleteServerConversation:@"conversationId1" conversationType:AgoraConversationTypeChat isDeleteServerMessages:YES completion:^(NSString *aConversationId, AgoraChatError *aError) {
+[[AgoraChatClient sharedClient].chatManager deleteServerConversation:@"conversationId1" conversationType:AgoraChatConversationTypeChat isDeleteServerMessages:YES completion:^(NSString *aConversationId, AgoraChatError *aError) {
                 // 删除回调
 }];
 ```
@@ -130,7 +130,7 @@ NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesWithKeyword:ke
 
 ```objective-c
 // 将消息插入到指定会话中。
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation insertMessage:message error:nil];
 ```
 
