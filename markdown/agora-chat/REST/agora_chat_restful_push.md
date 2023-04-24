@@ -6,10 +6,7 @@
 
 ## 前提条件
 
-- 了解即时通讯 IM 的 RESTful API 调用频率限制，详见[使用限制](./agora_chat_limitation#服务端接口调用频率限制)。
-- 你已在[声网控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
-
-<div class="alert note">关闭推送高级功能必须联系 <a href="mailto:sales@agora.io">sales@agora.io</a>，因为该操作会删除所有相关配置。</div>
+了解即时通讯 IM 的 RESTful API 调用频率限制，详见[使用限制](./agora_chat_limitation#服务端接口调用频率限制)。
 
 <a name="param"></a>
 
@@ -110,7 +107,7 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 
 ```json
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' -d '{    "nickname": "testuser"   }' 'http://a1.agora.com/agora-demo/testapp/users/user1'
+curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{    "nickname": "testuser"   }' 'http://XXXX/XXXX/XXXX/users/user1'
 ```
 
 #### 响应示例
@@ -118,12 +115,12 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ```json
 {  
   "action": "put",  
-  "application": "8be024f0-e978-11e8-b697-5d598d5f8402",  
+  "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",  
   "path": "/users",  
-  "uri": "https://a1.agora.com/agora-demo/testapp/users",  
+  "uri": "https://XXXX/XXXX/XXXX/users",  
   "entities": [    
     {      
-      "uuid": "4759aa70-eba5-11e8-925f-6fa0510823ba",      
+      "uuid": "4759aa70-XXXX-XXXX-925f-6fa0510823ba",      
       "type": "user",      
       "created": 1542595573399,      
       "modified": 1542596083687,      
@@ -197,7 +194,7 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 #### 请求示例
 
 ```bash
-curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2xNh8GhUCdKViBFDSEF2E" -i  https://a1.agora.com/agora-demo/testapp/users/a -d '{"notification_display_style": "1"}'
+curl -X PUT -H "Authorization: Bearer <YourAppToken>" -i  https://XXXX/XXXX/XXXX/users/a -d '{"notification_display_style": "1"}'
 ```
 
 #### 响应示例
@@ -205,12 +202,12 @@ curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2
 ```json
 {  
   "action" : "put",  
-  "application" : "17d59e50-0aee-11e8-8092-0dc80c0f5e99",  
+  "application" : "17d59e50-XXXX-XXXX-8092-0dc80c0f5e99",  
   "path" : "/users",  
-  "uri" : "https://a1.agora.com/agora-demo/testapp/users",  
+  "uri" : "https://XXXX/XXXX/XXXX/users",  
   "entities" : [ 
     {    
-      "uuid" : "3b8c9890-7b9a-11e8-9d88-f50bf55cafad",    
+      "uuid" : "4759aa70-XXXX-XXXX-925f-6fa0510823ba",    
       "type" : "user",    
       "created" : 1530276298905,    
       "modified" : 1534407146060,   
@@ -245,7 +242,7 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 | `chattype` | String | 会话类型：<ul><li>`user`: 单聊</li><li>`chatgroup`: 群聊。</li></ul>     | 是   |
 | `key`  | String | 会话标识：<ul><li>如果 `type` 设置为 `user`，`key` 为对端用户的用户 ID；</li><li>如果 `type` 设置为 `chatgroup`，`key` 则为群组 ID。</li></ul> | 是   |
 
-<div class="alert note"> 若在应用级别设置推送通知，你可以设置 `type` 为 `user` 和 `key` 当前用户的用户 ID。</div>
+<div class="alert note"> 若在应用级别设置推送通知，你可以设置 type 为 user 和 key 设置为当前用户的用户 ID。</div>
 
 其他路径参数及描述详见[公共参数](#param)。
 
@@ -286,8 +283,8 @@ PUT https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 #### 请求示例
 
 ```bash
-curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{key}' \
--H 'Authorization: Bearer {token}' \
+curl -L -X PUT 'http://XXXX/XXXX/XXXX/users/{username}/notification/user/{key}' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "type":"NONE",
@@ -301,10 +298,10 @@ curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/user/hxtest",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/user/hxtest",
     "timestamp": 1647503749918,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "put",
     "data": {
         "type": "NONE",
@@ -312,7 +309,7 @@ curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{
         "ignoreInterval": "21:30-08:00"
     },
     "duration": 20,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -325,7 +322,7 @@ curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
+GET https://{host}/{org_name}/{app_name}/users/{username}/notification/{chattype}/{key}
 ```
 
 #### 路径参数
@@ -365,8 +362,8 @@ GET https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 #### 请求示例
 
 ```bash
-curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}' \
--H 'Authorization: Bearer <token>' 
+curl -L -X GET 'https://XXXX/XXXX/XXXX/users/{username}/notification/chatgroup/{key}' \
+-H 'Authorization: Bearer <YourAppToken>' 
 ```
 
 #### 响应示例
@@ -374,10 +371,10 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}'
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/chatgroup/12312312321",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/chatgroup/12312312321",
     "timestamp": 1647503749918,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "get",
     "data": {
         "type": "NONE",
@@ -385,7 +382,7 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}'
         "ignoreInterval": "21:30-08:00"
     },
     "duration": 20,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -398,7 +395,7 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}'
 ### HTTP 请求
 
 ```http
-PUT https://{host}/{org_name}/{app}/users/{username}/notification/language
+PUT https://{host}/{org_name}/{app_name}/users/{username}/notification/language
 ```
 
 #### 路径参数
@@ -438,8 +435,8 @@ PUT https://{host}/{org_name}/{app}/users/{username}/notification/language
 #### 请求示例
 
 ```bash
-curl -L -X PUT '{url}/{org}/{app}/users/{username}/notification/language' \
--H 'Authorization: Bearer {token}' \
+curl -L -X PUT 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "translationLanguage":"EU"
@@ -451,16 +448,16 @@ curl -L -X PUT '{url}/{org}/{app}/users/{username}/notification/language' \
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/language",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/language",
     "timestamp": 1648089630244,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "put",
     "data": {
         "language": "EU"
     },
     "duration": 66,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -507,8 +504,8 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/notification/language
 #### 请求示例
 
 ```bash
-curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/language' \
--H 'Authorization: Bearer {token}'
+curl -L -X GET 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### 响应示例
@@ -516,16 +513,16 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/language' \
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/language",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/language",
     "timestamp": 1648089630244,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "put",
     "data": {
         "language": "EU"
     },
     "duration": 66,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -584,8 +581,8 @@ POST https://{host}/{org_name}/{app_name}/notification/template
 #### 请求示例
 
 ```bash
-curl -X POST '{url}/{org}/{app}/notification/template' \
--H 'Authorization: Bearer {token}' \
+curl -X POST 'https://XXXX/XXXX/XXXX/notification/template' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "name": "test7",
@@ -598,10 +595,10 @@ curl -X POST '{url}/{org}/{app}/notification/template' \
 
 ```json
 {
-    "uri": "https://localhost/hx/hxdemo/notification/template",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template",
     "timestamp": 1646989584108,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "post",
     "data": {
         "name": "test7",
@@ -611,7 +608,7 @@ curl -X POST '{url}/{org}/{app}/notification/template' \
         "content_pattern": "Test,{0}"
     },
     "duration": 26,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -666,18 +663,18 @@ GET https://{host}/{org_name}/{app_name}/notification/template/{name}
 #### 请求示例
 
 ```bash
-curl -X GET '{url}/{org}/{app}/notification/template/{name}' \
--H 'Authorization: Bearer {token}'  
+curl -X GET 'https://XXXX/XXXX/XXXX/notification/template/{name}' \
+-H 'Authorization: Bearer <YourAppToken>'  
 ```
 
 #### 响应示例
 
 ```json
 {
-    "uri": "https://localhost/hx/hxdemo/notification/template/test7",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template/test7",
     "timestamp": 1646989686393,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "get",
     "data": {
         "name": "test7",
@@ -687,7 +684,7 @@ curl -X GET '{url}/{org}/{app}/notification/template/{name}' \
         "content_pattern": "Test,{0}"
     },
     "duration": 11,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -742,18 +739,18 @@ DELETE https://{host}/{org_name}/{app_name}/notification/template/{name}
 #### 请求示例
 
 ```bash
-curl -X DELETE '{url}/{org}/{app}/notification/template' \
--H 'Authorization: Bearer {token}' 
+curl -X DELETE 'https://XXXX/XXXX/XXXX/notification/template' \
+-H 'Authorization: Bearer <YourAppToken>' 
 ```
 
 #### 响应示例
 
 ```json
 {
-    "uri": "https://localhost/hx/hxdemo/notification/template",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template",
     "timestamp": 1646989686393,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "delete",
     "data": {
         "name": "test7",
@@ -763,7 +760,7 @@ curl -X DELETE '{url}/{org}/{app}/notification/template' \
         "content_pattern": "Test,{0}"
     },
     "duration": 11,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 

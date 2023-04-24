@@ -9,8 +9,6 @@
 - 对单个或多个用户发送推送通知；
 - 对指定标签下的用户发送推送通知；
 - 对 app 下的所有用户发送推送通知。
-
-每次调用这三个接口，服务端均会创建一个推送任务，生成推送任务 ID，用于推送任务的数据统计。
  
  <a name="param"></a>
 
@@ -36,7 +34,7 @@
 
 即时通讯 RESTful API 要求 Bearer HTTP 认证。每次发送 HTTP 请求时，都必须在请求头部填入如下 Authorization 字段：
 
-Authorization：`Bearer ${YourAppToken}`
+`Authorization：Bearer ${YourAppToken}`
 
 为提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯 RESTful API 推荐使用 app 权限 token 的鉴权方式，详见[使用 App 权限 token 鉴权](./agora_chat_token?platform=RESTful)。
 
@@ -92,15 +90,15 @@ POST https://{host}/{org_name}/{app_name}/push/single
 #### 请求示例
 
 ```shell
-curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorization: Bearer YWMtOzQVjJ3mEeuJQv1qXhB5QAAAAAAAAAAAAAAAAAAAAAFDtjwasNNKD6W3CET2O3RNAQMAAAF41YIKUABPGgDuIZeu5IMVC_M9G5JlTjUsZeYVSg5o8BwshLgWveZxjA" -H "Content-Type: application/json" --data-raw "{
-    \"targets\": [
-        \"test2\"
+curl -X POST "http://XXXX/XXXX/XXXX/push/single" -H "Authorization: Bearer <YourAppToken>" -H "Content-Type: application/json" --data-raw "{
+    "targets": [
+        "test2"
     ],
-    \"pushMessage\": {
-        \"title\": \"Hello\",
-        \"subTitle\": \"Hello\",
-        \"content\": \"Hello\",
-        \"vivo\": {
+    "pushMessage": {
+        "title": "Hello",
+        "subTitle": "Hello",
+        "content": "Hello",
+        "vivo": {
  
         }
     }
@@ -127,7 +125,7 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 
 若传单个标签，则向单个标签内的所有用户发送推送通知。若传多个标签，则消息推送给同时存在这些标签中的用户，即取标签中的用户交集。
 
-最多同时执行 3 个推送任务。
+每次调用该接口，服务端均会创建一个推送任务，生成推送任务 ID，用于推送任务的数据统计。最多同时执行 3 个推送任务。
 
 ### HTTP 请求
 
@@ -174,8 +172,8 @@ POST https://{host}/{org_name}/{app_name}/push/list/label
 #### 请求示例
 
 ```shell
-curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
--H 'Authorization: Bearer YWMtIPBHKsOyEeAAAAAAAAAAAExCXvf5bRGAJBgXNYFJVQ9AQMAAAGAWu67KQBPGgBOV9ghkGKbtt9H9b1' \
+curl -L -X POST 'http://XXXX/XXXX/XXXX/push/list/label' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "targets": [
@@ -206,7 +204,7 @@ curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
 
 对 app 下的所有用户发送推送通知。
 
-最多同时执行 3 个推送任务。
+每次调用该接口，服务端均会创建一个推送任务，生成推送任务 ID，用于推送任务的数据统计。最多同时执行 3 个推送任务。
 
 ### HTTP 请求
 
@@ -220,7 +218,7 @@ POST https://{host}/{org_name}/{app_name}/push/task
 
 #### 请求 header
 
-| 参数            | 类型   | 描述                                                         | 是否必需 |
+| 参数            | 类型   | 描述                                           | 是否必需 |
 | :-------------- | :----- | :----------------------------------------------------------- | :------- |
 | `Content-Type`  | String | 内容类型：`application/json`。                                 | 是       |
 | `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
@@ -251,12 +249,12 @@ POST https://{host}/{org_name}/{app_name}/push/task
 #### 请求示例
 
 ```shell
-curl -X POST "http://localhost:8099/easemob-demo/testy/push/task" -H "Content-Type: application/json" --data-raw "{
-    \"pushMessage\": {
-        \"title\": \"Hello1234\",
-        \"subTitle\": \"Hello\",
-        \"content\": \"Hello\",
-        \"vivo\": {}
+curl -X POST "http://XXXX/XXXX/XXXX/push/task" -H "Content-Type: application/json" --data-raw "{
+    "pushMessage": {
+        "title": "Hello1234",
+        "subTitle": "Hello",
+        "content": "Hello",
+        "vivo": {}
     }
 }"
 ```

@@ -81,8 +81,8 @@ POST https://{host}/{org_name}/{app_name}/push/label
 #### 请求示例
 
 ```shell
-curl -L -X POST 'localhost/hx/hxdemo/push/label' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A' \
+curl -L -X POST 'http://XXXX/XXXX/XXXX/push/label' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "name":"post-90s",
@@ -149,8 +149,8 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}
 #### 请求示例
  
 ```shell
-curl -L -X GET 'localhost/hx/hxdemo/push/label/90' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X GET 'http://XXXX/XXXX/XXXX/push/label/90' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### 响应示例
@@ -216,8 +216,8 @@ GET https://{host}/{org_name}/{app_name}/push/label
 #### 请求示例
 
 ```
-curl -L -X GET 'localhost/hx/hxdemo/push/label' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X GET 'http://XXXX/XXXX/XXXX/push/label' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 ### 响应示例
@@ -284,8 +284,8 @@ DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}
 #### 请求示例
 
 ```shell
-curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X DELETE 'http://XXXX/XXXX/XXXX/push/label/post-90s' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### 响应示例
@@ -348,8 +348,8 @@ POST https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 #### 请求示例
 
 ```
-curl -L -X POST 'localhost/hx/hxdemo/push/label/post-90s/user' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A' \
+curl -L -X POST 'http://XXXX/XXXX/XXXX/push/label/post-90s/user' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "usernames":["hx1","hx2"]
@@ -416,8 +416,8 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user/{username}
 #### 请求示例
 
 ```shell
-curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user/hx1' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X GET 'http://XXXX/XXXX/XXXX/push/label/post-90s/user/hx1' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### 响应示例
@@ -484,8 +484,8 @@ GET https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 #### 请求示例
 
 ```shell
-curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user?limit=1' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X GET 'http://XXXX/XXXX/XXXX/push/label/post-90s/user?limit=1' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### 响应示例
@@ -554,8 +554,8 @@ DELETE https://{host}/{org_name}/{app_name}/push/label/{labelname}/user
 #### 请求示例
 
 ```shell
-curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s/user' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A' \
+curl -L -X DELETE 'http://XXXX/XXXX/XXXX/push/label/post-90s/user' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "usernames":["hx1","hx2"]
