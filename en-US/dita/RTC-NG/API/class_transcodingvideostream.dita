@@ -6,7 +6,31 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java" />
+            <codeblock props="android" outputclass="language-java">public static class TranscodingVideoStream {
+  public Constants.VideoSourceType sourceType;
+  public int remoteUserUid;
+  public String imageUrl;
+  public int mediaPlayerId;
+  public int x;
+  public int y;
+  public int width;
+  public int height;
+  public int zOrder;
+  public double alpha;
+  public boolean mirror;
+  public TranscodingVideoStream() {
+    this.sourceType = Constants.VideoSourceType.VIDEO_SOURCE_CAMERA_PRIMARY;
+    this.remoteUserUid = 0;
+    this.imageUrl = null;
+    this.x = 0;
+    this.y = 0;
+    this.width = 0;
+    this.height = 0;
+    this.zOrder = 0;
+    this.alpha = 1.0;
+    this.mirror = false;
+  }
+};</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
 @property (assign, nonatomic) AgoraVideoSourceType sourceType;
 @property (assign, nonatomic) NSUInteger remoteUserUid;
