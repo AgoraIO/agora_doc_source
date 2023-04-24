@@ -13,7 +13,7 @@
 开始前，请确保你的开发环境满足以下条件：
 
 - 有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网账号)。
-- 具有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
+- 创建了[开启即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Android 模拟器或 Android 设备。
 - Android Studio 3.6 或以上版本。
 - Java 开发工具包（JDK）。适用版本请参考 [Android 用户指南](https://developer.android.com/studio/write/java8-support)。
@@ -80,6 +80,7 @@
 ![](./images/quickstart/generate_token.png)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
+
 ## 项目设置
 
 参考以下步骤创建环境，将即时通讯 IM 添加到你的应用程序中。
@@ -89,7 +90,7 @@
  <div class="alert note">如果你在 Android 项目中设置 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
 2. 使用 Maven Central 将即时通讯 IM SDK 集成到你的项目中。
 
-   a.在`/Gradle Scripts/build.gradle(Project: <projectname>)`中，添加以下代码实现 Maven Central 依赖项：
+   a.在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 中，添加以下代码实现 Maven Central 依赖项：
 
    ```java
    buildscript {
@@ -106,7 +107,7 @@
    }
    ```
 
-   <div class="alert note">如果你在 Android 项目中设置 [dependencyResolutionManagement](https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration)，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
+   <div class="alert note">如果你在 Android 项目中设置 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
 
 b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以下代码将即时通讯 IM SDK 集成到你的 Android 项目中：
 
@@ -278,29 +279,18 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
 2. 定义全局变量。<br/>在 `app/java/io.agora.agorachatquickstart/MainActivity` 中，在 `AppCompatActivity {` 后面添加以下代码之前，需确保删除默认创建的 `onCreate` 函数。
 
    ```java
-   private final String TAG = getClass().getSimpleName();
-   private static final String NEW_LOGIN = "NEW_LOGIN";
-   private static final String RENEW_TOKEN = "RENEW_TOKEN";
-   private static final String ACCOUNT_REMOVED = "account_removed";
-   private static final String ACCOUNT_CONFLICT = "conflict";
-   private static final String ACCOUNT_FORBIDDEN = "user_forbidden";
-   private static final String ACCOUNT_KICKED_BY_CHANGE_PASSWORD = "kicked_by_change_password";
-   private static final String ACCOUNT_KICKED_BY_OTHER_DEVICE = "kicked_by_another_device";
-   private static final String LOGIN_URL = "https://a41.chat.agora.io/app/chat/user/login";
-   private static final String REGISTER_URL = "https://a41.chat.agora.io/app/chat/user/register";
-   private EditText et_username;
-   private TextView tv_log;
-   private EditText et_to_chat_name;
-   
+   // 将 <Your username>、<Your token> 和 <Your AppKey> 替换为你自己的 App Key、user ID 和用户 token。
+   private static final String USERNAME = "<Your username>";
+   private static final String TOKEN = "<Your token>";
+   private static final String APP_KEY = "<Your AppKey>";
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_main);
-       // 添加初始化方法，监听消息和连接事件。
        initView();
        initSDK();
-       addMessageListener();
-       addConnectionListener();
+       initListener();
    }
    ```
 

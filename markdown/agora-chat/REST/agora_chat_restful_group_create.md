@@ -697,7 +697,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups?page
 #### 请求示例
 
 ```shell
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups?pagesize=1&pagenum=100'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups?pagesize=100&pagenum=1'
 ```
 
 #### 响应示例
@@ -718,10 +718,10 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
     "organization":"XXXX",
     "params":{
         "pagesize":[
-            "1"
+            "100"
         ],
         "pagenum":[
-            "100"
+            "1"
         ]
     },
     "properties":{

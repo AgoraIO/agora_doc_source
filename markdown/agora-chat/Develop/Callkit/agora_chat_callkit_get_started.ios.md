@@ -18,7 +18,7 @@ AgoraChatCallKit 是一套基于声网的实时通讯和信令服务开发的开
 开始前，请确保你的开发环境中满足如下条件：
 - Xcode 9.0 或以上版本；
 - 一台运行 iOS 10.0 或以上版本的设备；
-- 创建即时通讯 IM 项目集成了 Chat SDK 并实现了基本实时通讯功能的，包含用户登录登出和发送和接收消息等。
+- 集成了即时通讯 IM 的声网项目并实现了基本实时通讯功能的，包含用户登录登出和发送和接收消息等。
 
 ## 项目设置
 
@@ -251,6 +251,9 @@ config.enableIosCallKit = YES;
       }
   }
 ```
+
+用户收到 `callDidJoinChannel:uid` 或 `remoteUserDidJoinChannel:uid:username:` 回调时，需在 App Server 中查找即时通讯用户 ID 与 声网 UID 之间的映射关系。若找到即时通讯用户 ID，需构建即时通讯用户 ID 与 声网 UID 的数据字典，通过 `setUsers:channelName:` 设置到应用中。
+
 ### 通话结束
 
 在一对一音视频通话中，若其中一方挂断，双方的通话会自动结束，而多人音视频通话中需要主动挂断才能结束通话。通话结束后，会触发 `callDidEnd` 回调：
