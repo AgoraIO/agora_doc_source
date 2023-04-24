@@ -892,7 +892,7 @@ ChatClient.getInstance().pushManager().getPreferredNotificationLanguage(new Valu
 
 4. 在左侧导航栏，选择**功能配置 > 推送模板**并单击**添加推送模板**，在弹出的对话框中配置字段，如下图所示。
 
-   ![image](../doc_cn_easemob/images/push_android/push_android_template_mgmt.png)
+   ![image](\agora_doc_source\markdown\agora-chat\images\push\push_add_template.png)
 
 5. 创建推送模板后，用户可以在发送消息时选择使用此模板，代码示例如下所示。
 

@@ -175,7 +175,10 @@
 
 ![](./images/moderation/moderation_history.png)
 
-## 用户管理<a name="usermanagement"></a>
+
+<a name="usermanagement"></a>
+
+## 用户管理
 
 发现违规行为后，对于违规用户可以进行多种限制操作，包括 app 级别和单聊的用户管理、群组成员管理和聊天室成员管理。
 

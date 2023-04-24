@@ -31,7 +31,9 @@
 
 ## 集成 APNs
 
-### 1. 创建推送证书<a name="certificate"></a>
+<a name="certificate"></a>
+
+### 1. 创建推送证书
 
 参考以下步骤开启 APNs 推送服务：
 
@@ -579,7 +581,7 @@ message.chatType = AgoraChatTypeChat;
 | `ConversationID`        | 消息所属的会话 ID。                         |
 | `from`                  | 消息发送方的用户 ID。                          |
 | `to`                    | 消息接收方的用户 ID。                          |
-| `em_force_notification` | 是否为强制推送：<ul><li>`YES`：强制推送</li><li> （默认）`NO`：非强制推送。<br/>该字段名固定，不可修改。|
+| `em_force_notification` | 是否为强制推送：<ul><li>`YES`：强制推送</li><li> （默认）`NO`：非强制推送。</li></ul><br/>该字段名固定，不可修改。|
 
 ### 发送静默消息
 
