@@ -2,22 +2,30 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_backgroundsourcetype">
     <title><ph keyref="BACKGROUND_SOURCE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The type of the custom background image.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The custom background image.</ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>Enumerator</title>
             <parml>
+            <plentry>
+                <pt><ph keyref="BACKGROUND_NONE"/></pt>
+                <pd>0: 将背景处理为 alpha 信息，不作替换，仅分割人像和背景。 设置后，你可以调用 <xref keyref="startLocalVideoTranscoder"/>，实现人像画中画的效果。</pd>
+            </plentry>
             <plentry>
                 <pt><ph keyref="BACKGROUND_COLOR"/></pt>
                 <pd>1: (Default) The background image is a solid color.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="BACKGROUND_IMG"/></pt>
-                <pd>The background image is a file in PNG or JPG format.</pd>
+                <pd>(2): The background image is a file in PNG or JPG format.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="BACKGROUND_BLUR"/></pt>
-                <pd>The background image is the blurred background.</pd>
+                <pd>3: 背景为虚化处理后的背景。</pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="BACKGROUND_VIDEO"/></pt>
+                <pd>4: 背景为 MP4、AVI、MKV、FLV 等格式的本地视频。 需集成 full SDK 包（包含 FFmpeg 插件的 SDK）才能支持该枚举值。</pd>
             </plentry>
             </parml> </section>
     </refbody>

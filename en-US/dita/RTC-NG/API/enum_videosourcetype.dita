@@ -2,34 +2,34 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="enum_videosourcetype">
     <title><ph keyref="VIDEO_SOURCE_TYPE"/></title>
-    <shortdesc id="short"><ph id="shortdesc">The capture type of the custom video source.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The type of the video source </ph></shortdesc>
     <refbody>
         <section id="parameters">
             <title>Enumerator</title>
             <parml>
-            <plentry props="android cpp unity flutter">
+            <plentry props="android cpp unity rn electron flutter">
                 <pt> <ph keyref="VIDEO_SOURCE_CAMERA_PRIMARY"/></pt>
-                <pd>(Default) The primary camera.</pd>
+                <pd>0：（默认）视频源为第一个摄像头。</pd>
             </plentry>
             <plentry props="ios mac cpp unity rn electron flutter">
                 <pt><ph keyref="VIDEO_SOURCE_CAMERA"/></pt>
-                <pd>The camera.</pd>
+                <pd>0：（默认）视频源为第一个摄像头。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_SOURCE_CAMERA_SECONDARY"/></pt>
-                <pd>The secondary camera.</pd>
+                <pd>1：视频源为第二个摄像头。</pd>
             </plentry>
             <plentry props="android cpp unity rn electron flutter">
                 <pt><ph keyref="VIDEO_SOURCE_SCREEN_PRIMARY"/></pt>
-                <pd>The primary screen.</pd>
+                <pd>2：视频源为第一个屏幕。</pd>
             </plentry>
             <plentry props="ios mac cpp unity rn electron flutter">
                 <pt><ph keyref="VIDEO_SOURCE_SCREEN"/></pt>
-                <pd>The screen.</pd>
+                <pd>2：视频源为第一个屏幕。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_SOURCE_SCREEN_SECONDARY"/></pt>
-                <pd>The secondary screen.</pd>
+                <pd>3：视频源为第二个屏幕。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_SOURCE_CUSTOM"/></pt>
@@ -37,7 +37,7 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_SOURCE_MEDIA_PLAYER"/></pt>
-                <pd>The video source from the media player.</pd>
+                <pd>5：视频源为媒体播放器。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_SOURCE_RTC_IMAGE_PNG"/></pt>
@@ -57,17 +57,29 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_SOURCE_TRANSCODED"/></pt>
-                <pd>A transcoded video source.</pd>
+                <pd>10：转码后的视频源。</pd>
+            </plentry>
+            <plentry props="cpp mac">
+                <pt><ph keyref="VIDEO_SOURCE_CAMERA_THIRD"/></pt>
+                <pd>11：<ph props="cpp">（仅适用于 Windows 和 macOS）</ph>视频源为第三个摄像头。</pd>
+            </plentry>
+            <plentry props="cpp mac">
+                <pt><ph keyref="VIDEO_SOURCE_CAMERA_FOURTH"/></pt>
+                <pd>12：<ph props="cpp">（仅适用于 Windows 和 macOS）</ph>视频源为第四个摄像头。</pd>
+            </plentry>
+            <plentry props="cpp mac">
+                <pt><ph keyref="VIDEO_SOURCE_SCREEN_THIRD"/></pt>
+                <pd>13：<ph props="cpp">（仅适用于 Windows 和 macOS）</ph>视频源为第三个屏幕。</pd>
+            </plentry>
+            <plentry props="cpp mac">
+                <pt><ph keyref="VIDEO_SOURCE_SCREEN_FOURTH"/></pt>
+                <pd>14：<ph props="cpp">（仅适用于 Windows 和 macOS）</ph>视频源为第四个屏幕。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_SOURCE_UNKNOWN"/></pt>
-                <pd>An unknown video source.</pd>
+                <pd>100：未知的视频源。</pd>
             </plentry>
             </parml>
-            <note type="attention" props="cpp unity electron flutter">
-            <ul id="ul_qb2_j14_3qb">
-            <li><apiname keyref="VIDEO_SOURCE_CAMERA_PRIMARY"/> and <apiname keyref="VIDEO_SOURCE_CAMERA"/> are the same video source.</li>
-            <li><apiname keyref="VIDEO_SOURCE_SCREEN_PRIMARY"/> and <apiname keyref="VIDEO_SOURCE_SCREEN"/> are the same video source.</li>
-            </ul> </note> </section>
+           </section>
     </refbody>
 </reference>

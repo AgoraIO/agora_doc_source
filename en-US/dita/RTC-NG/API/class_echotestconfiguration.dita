@@ -12,15 +12,23 @@
   public boolean enableVideo = true;
   public String token = null;
   public String channelId = null;
-
+  public int intervalInSeconds = 2;
+ 
   @CalledByNative
-  public EchoTestConfiguration(
-      SurfaceView view, boolean enableAudio, boolean enableVideo, String token, String channelId) {
+  public EchoTestConfiguration(SurfaceView view, boolean enableAudio, boolean enableVideo,
+      String token, String channelId, int intervalInSeconds) {
     this.view = view;
     this.enableAudio = enableAudio;
     this.enableVideo = enableVideo;
     this.token = token;
     this.channelId = channelId;
+    this.intervalInSeconds = intervalInSeconds;
+  }
+
+  @CalledByNative
+  public EchoTestConfiguration(
+      SurfaceView view, boolean enableAudio, boolean enableVideo, String token, String channelId) {
+    this(view, enableAudio, enableVideo, token, channelId, 10);
   }
 
   @CalledByNative
@@ -32,26 +40,29 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
 @property(assign, nonatomic) BOOL enableVideo NS_SWIFT_NAME(enableVideo);
 @property(copy, nonatomic) NSString* _Nullable token NS_SWIFT_NAME(token);
 @property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
+@property(assign, nonatomic) NSInteger intervalInSeconds NS_SWIFT_NAME(intervalInSeconds);
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct EchoTestConfiguration {
+            <codeblock props="cpp" outputclass="language-cpp">
+struct EchoTestConfiguration {
   view_t view;
   bool enableAudio;
   bool enableVideo;
   const char* token;
   const char* channelId;
+  int intervalInSeconds;
 
-  EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c)
-   : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c) {}
+  EchoTestConfiguration(view_t v, bool ea, bool ev, const char* t, const char* c, const int is)
+   : view(v), enableAudio(ea), enableVideo(ev), token(t), channelId(c), intervalInSeconds(is) {}
 
   EchoTestConfiguration()
-   : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR) {}
+   : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR), intervalInSeconds(2) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
 
@@ -126,19 +137,19 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
   @JsonKey(name: 'channelId')
   final String? channelId;
 
-  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$EchoTestConfigurationFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$EchoTestConfigurationToJson(this);
+  Map&lt;String, dynamic> toJson() => _$EchoTestConfigurationToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>view</pt>
-                <pd>The view used to render the local user's video. This parameter is only applicable to scenarios testing video devices, that is, when <ph>enableVideo</ph> is <ph keyref="true" />.</pd>
+                <pd>The view used to render the local user's video. This parameter is only applicable to scenarios testing video devices, that is, when <parmname>enableVideo</parmname> is <ph keyref="true"/>.</pd>
             </plentry>
             <plentry>
                 <pt>enableAudio</pt>
@@ -155,12 +166,16 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt>token.</pt>
-                <pd>The token used to secure the audio and video call loop test. If you do not enable App Certificate in Agora Console, you do not need to pass a value in this parameter; if you have enabled App Certificate in Agora Console, you must pass a token in this parameter; the <codeph>uid</codeph> used when you generate the token must be 0xFFFFFFFF, and the channel name used must be the channel name that identifies each audio and video call loop tested. For server-side token generation, see<xref keyref="guide-token"> Authenticate Your Users with Tokens</xref>.</pd>
+                <pt>token</pt>
+                <pd>The token used to secure the audio and video call loop test. If you do not enable App Certificate in Agora Console, you do not need to pass a value in this parameter; if you have enabled App Certificate in Agora Console, you must pass a token in this parameter; the uid used when you generate the token must be 0xFFFFFFFF, and the channel name used must be the channel name that identifies each audio and video call loop tested. <codeph></codeph>服务端生成 Token 的方式请参考<xref keyref="guide-token"/>。</pd>
             </plentry>
             <plentry>
                 <pt>channelId</pt>
                 <pd>The channel name that identifies each audio and video call loop. To ensure proper loop test functionality, the channel name passed in to identify each loop test cannot be the same when users of the same project (App ID) perform audio and video call loop tests on different devices.</pd>
+            </plentry>
+            <plentry>
+                <pt >intervalInSeconds</pt>
+                <pd>The time interval (s) between when you speak and when the recording plays back. The value range is [2, 10], and the default value is 10.</pd>
             </plentry>
             </parml> </section>
     </refbody>
