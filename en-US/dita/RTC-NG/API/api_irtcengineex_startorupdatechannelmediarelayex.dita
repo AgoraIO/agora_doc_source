@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_startorupdatechannelmediarelayex">
     <title><ph keyref="startOrUpdateChannelMediaRelayEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">开始或更新跨频道媒体流转发。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts relaying media streams across channels or updates the channels for media stream relay.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,11 +38,10 @@
                 <dt>Since</dt>
                 <dd>v4.2.0</dd>
             </dlentry></dl>
-            <p>首次成功调用该方法将开始跨频道转发媒体流。 如需将流转发到多个目标频道，或退出当前的转发频道，可以再次调用该方法添加或移除转发的目标频道。</p>
-            <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayStateChanged"/> 回调，报告当前的跨频道媒体流转发状态。 常见状态如下：         
-            <ul>
-            <li>If the<apiname keyref="onChannelMediaRelayStateChanged"/>  callback returns<apiname keyref="RELAY_STATE_RUNNING"/>  (2) and<apiname keyref="RELAY_OK"/>  (0), and the  callback returns  (4), it means that the SDK starts relaying media streams between the source channel and the target channel.</li>
-            <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns<apiname keyref="RELAY_STATE_FAILURE"/> (3), an exception occurs during the media stream relay.</li>
+            <p>The first successful call to this method starts relaying media streams from the source channel to the destination channels. To relay the media stream to other channels, or exit one of the current media relays, you can call this method again to update the destination channels.</p>
+            <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayStateChanged"/> callback, and this callback returns the state of the media stream relay. Common states are as follows:<ul>
+            <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_RUNNING"/> (2) and <apiname keyref="RELAY_OK"/> (0), it means that the SDK starts relaying media streams between the source channel and the destination channel.</li>
+            <li>If the <apiname keyref="onChannelMediaRelayStateChanged"/> callback returns <apiname keyref="RELAY_STATE_FAILURE"/> (3), an exception occurs during the media stream relay.</li>
             </ul> </p>
             <note type="attention">
             <ul>
@@ -58,7 +57,7 @@
                 <pt props="android">channelMediaRelayConfiguration</pt>
                 <pt props="ios mac">config</pt>
                 <pt props="cpp framework">configuration</pt>
-                <pd>The configuration of the media stream relay. See .<xref keyref="ChannelMediaRelayConfiguration"/></pd>
+                <pd>The configuration of the media stream relay. See <xref keyref="ChannelMediaRelayConfiguration"/>.</pd>
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
                 <pt/>

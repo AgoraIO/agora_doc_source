@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopscreencapture2">
     <title><ph keyref="stopScreenCapture2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">停止屏幕采集。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops screen capture.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,18 +30,18 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>调用 <xref keyref="startScreenCapture2"/> 开始一路或多路屏幕采集后，你可以通过调用该方法并设置 <parmname>sourceType</parmname> 停止指定屏幕采集。</p>
+            <p>After calling <xref keyref="startScreenCapture2"/> to capture video from one or more screens, you can call this mothod and set the <parmname>sourceType</parmname> to stop the capture from the specified screens.</p>
             <note type="attention"><ul>
             <li props="cpp flutter unity">This method applies to the macOS and Windows platforms only.</li>
-            <li props="cpp flutter unity">如果你调用 <xref keyref="startScreenCapture"/>、<xref keyref="startScreenCaptureByWindowId"/> 和 <xref keyref="startScreenCaptureByDisplayId"/> 开始屏幕采集，声网建议你使用 <xref keyref="stopScreenCapture"/> 停止采集，不要与该方法混用。</li>
-            <li props="mac electron">如果你调用 <xref keyref="startScreenCaptureByWindowId"/> 和 <xref keyref="startScreenCaptureByDisplayId"/> 开始屏幕采集，声网建议你使用 <xref keyref="stopScreenCapture"/> 停止采集，不要与该方法混用。</li></ul></note>
+            <li props="cpp flutter unity">If you call <xref keyref="startScreenCapture"/>, <xref keyref="startScreenCaptureByWindowId"/>, or <xref keyref="startScreenCaptureByDisplayId"/> to start screen capure, Agora recommends that you call <xref keyref="stopScreenCapture"/> to stop the capture and do not use this one.</li>
+            <li props="mac electron">If you call <xref keyref="startScreenCaptureByWindowId"/> or <xref keyref="startScreenCaptureByDisplayId"/> to start screen capture, Agora recommends that you call <xref keyref="stopScreenCapture"/> to stop the capture and do not use this one.</li></ul></note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                <pd>The type of the video source, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry></parml>
         </section>
         <section id="return_values">

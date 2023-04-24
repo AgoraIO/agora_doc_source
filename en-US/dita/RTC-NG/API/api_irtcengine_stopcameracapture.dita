@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_stopcameracapture">
     <title><ph keyref="stopCameraCapture" /></title>
-    <shortdesc id="short"><ph id="shortdesc">停止通过摄像头采集视频。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"> Stops camera capture.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,16 +30,16 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>调用 <xref keyref="startCameraCapture" /> 开启一路或多路摄像头采集的视频流后，你可以调用该方法，通过设置 <parmname>sourceType</parmname> 停止一路或多路摄像头的视频采集。</p>
+            <p>After calling <xref keyref="startCameraCapture" /> to start capturing video through one or more cameras, you can call this method and set the <parmname>sourceType</parmname> parameter to stop capturing from the specified cameras.</p>
             <note props="ios cpp unity rn flutter">On the iOS platform, if you want to disable multi-camera capture, you need to call <xref keyref="enableMultiCamera"/>after calling this method and set <parmname>enabled</parmname> to <codeph><ph keyref="false"/></codeph>.</note>
-            <note type="attention">如果你正在使用本地合图功能，调用该方法停止通过第一个摄像头采集视频，会造成本地合图中断。</note>
+            <note type="attention">If you are using the local video mixing function, calling this method can cause the local video mixing to be interrupted.</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                <pd>The type of the video source, see <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             </parml>
         </section>
