@@ -8,7 +8,7 @@
 
 以下是核心方法：
 
-- `loadAllConversations`：加载本地存储的会话列表;
+- `getAllConversations`：加载本地存储的会话列表;
 - `deleteConversation`： 删除本地存储的会话；
 - `Conversation.getUnreadMsgCount`：获取指定会话的未读消息数；
 - `getUnreadMessageCount`：获取所有未读消息数；
@@ -145,7 +145,7 @@ Conversation conversation = ChatClient.getInstance().chatManager().getConversati
 // 插入指定消息
 conversation.insertMessage(message);
 // 或者，直接插入消息。
-ChatClient.getInstance().chatManager().saveMessage(message);
+// ChatClient.getInstance().chatManager().saveMessage(message);
 ```
 
 ### 更新消息到 SDK 本地数据库
