@@ -24,14 +24,10 @@
 
 <div class="alert info"><p>开发者通过声网控制台配置 App 的推送证书，需填写证书名称及推送密钥等信息。该步骤须在登录即时通讯 IM SDK 成功后进行。</p><p>证书名称是 Agora 即时通讯服务器用于判断目标设备使用哪种推送通道的唯一条件，因此必须确保与 iOS 终端设备上传的证书名称一致。</p></div>
 
-
 ## 前提条件
 
 - 已开启即时通讯 IM，详见[开启和配置即时通讯服务](./enable_agora_chat)；
-- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)；
-- 你已在[声网控制台](https://console.agora.io/)中激活推送高级功能。高级功能激活后，你可以设置推送通知方式、免打扰模式和自定义推送模板。
-
-<div class="alert note">关闭推送高级功能必须联系<a href="mailto:sales@agora.io">sales@agora.io</a> ，因为该操作会删除所有相关配置。</div>
+- 了解即时通讯 IM 套餐包中的 API 调用频率限制，详见[使用限制](./agora_chat_limitation)。
 
 ## 集成 APNs
 
