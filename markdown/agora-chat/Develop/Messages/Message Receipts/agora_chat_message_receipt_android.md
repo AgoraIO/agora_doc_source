@@ -51,7 +51,10 @@
 1. 在发送消息之前，消息发送方将 `ChatOptions` 中的 `setRequireDeliveryAck` 设置为 `true`。
 
 ```java
-Chatoptions.setRequireDeliveryAck(true);
+ChatOptions chatOptions = new ChatOptions();
+chatOptions.setRequireDeliveryAck(true);
+...
+ChatClient.getInstance().init(mContext, chatOptions);
 ```
 
 2. 接收方收到消息后，SDK 会通过 `onMessageDelivered` 在消息发送方的客户端上自动触发回调，通知消息发送方消息已送达接收方。
@@ -68,6 +71,9 @@ MessageListener msgListener = new MessageListener() {
     public void onMessageDelivered(List<ChatMessage> message) {
     }
 };
+// 注册消息监听。
+ChatClient.getInstance().chatManager().addMessageListener(msgListener);
+
 // 记得在不需要的时候移除 listener，如在 activity 的 onDestroy() 时。
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
@@ -114,13 +120,13 @@ try {
 ```java
 // 消息发送方调用 `addConversationListener` 监听会话已读回执。
 ChatClient.getInstance().chatManager().addConversationListener(new ConversationListener() {
-            ...
-            @Override
-            // 会话中所有消息已读。
-            public void onConversationRead(String from, String to) {
+    ...
+    @Override
+    // 会话中所有消息已读。
+    public void onConversationRead(String from, String to) {
         // 添加刷新页面通知等逻辑。
-            }
-        });
+    }
+});
 ```
 
 <div class="alert info">同一用户 ID 登录多设备的情况下，用户在一台设备上发送会话已读回执，服务器会将会话的未读消息数置为 `0`，同时其他设备会收到 `OnConversationRead` 回调。</div>
@@ -139,41 +145,42 @@ try {
   e.printStackTrace();
  }
 ```
+该方法为异步方法，需要捕捉异常。
 
 2. 当有新消息到达时，发送消息已读回执并为不同的消息类型添加适当的处理逻辑。
 
 ```java
 ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() {
-  ......
+    ......
 
-  @Override
-  // 指定消息已送达。
-  public void onMessageReceived(List<ChatMessage> messages) {
-   ......
-  // 发送消息已读回执。
-  sendReadAck(message);
-  ......
-  }
-   ......
+    @Override
+    // 指定消息已送达。
+    public void onMessageReceived(List<ChatMessage> messages) {
+        ......
+        // 发送消息已读回执。
+        sendReadAck(message);
+        ......
+    }
+    ......
  });
-  // 发送消息已读回执。
- public void sendReadAck(ChatMessage message) {
-  // 单聊
-  if(message.direct() == ChatMessage.Direct.RECEIVE
-      undefined message.getChatType() == ChatMessage.ChatType.Chat) {
-      ChatMessage.Type type = message.getType();
-    // 视频，语音及文件需要点击后再发送，可以根据需求进行调整。
-      if(type == ChatMessage.Type.VIDEO || type == ChatMessage.Type.VOICE || type == ChatMessage.Type.FILE) {
-          return;
-      }
-      try {
-      // 调用 `ackMessageRead` 方法发送已读回执。
-      ChatClient.getInstance().chatManager().ackMessageRead(message.getFrom(), message.getMsgId());
-      } catch (ChatException e) {
-           e.printStackTrace();
-      }
-  }
- }
+// 发送消息已读回执。
+public void sendReadAck(ChatMessage message) {
+    // 单聊
+    if(message.direct() == ChatMessage.Direct.RECEIVE
+        undefined message.getChatType() == ChatMessage.ChatType.Chat) {
+        ChatMessage.Type type = message.getType();
+        // 视频，语音及文件需要点击后再发送，可以根据需求进行调整。
+        if(type == ChatMessage.Type.VIDEO || type == ChatMessage.Type.VOICE || type == ChatMessage.Type.FILE) {
+            return;
+        }
+        try {
+            // 调用 `ackMessageRead` 方法发送已读回执。
+            ChatClient.getInstance().chatManager().ackMessageRead(message.getFrom(), message.getMsgId());
+        } catch (ChatException e) {
+            e.printStackTrace();
+        }
+    }
+}
 ```
 
 3. 消息发送方监听消息已读回调。
@@ -183,14 +190,14 @@ ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() 
 ```java
 // 添加消息监听。
 ChatClient.getInstance().chatManager().addMessageListener(new MessageListener() {
- ......
- @Override
- // 指定消息已读。
- public void onMessageRead(List<ChatMessage> messages) {
- // 添加刷新消息等逻辑。
-  }
-  ......
- });
+    ......
+    @Override
+    // 指定消息已读。
+    public void onMessageRead(List<ChatMessage> messages) {
+        // 添加刷新消息等逻辑。
+    }
+    ......
+});
 ```
 
 #### 群聊
@@ -255,5 +262,15 @@ void onGroupMessageRead(List<GroupReadAck> groupReadAcks) {
 
 ```java
 // 从服务器获取群组消息回执详情。
-public void asyncFetchGroupReadAcks(final String msgId, final int pageSize,final String startAckId, final ValueCallBack<CursorResult<GroupReadAck>> callBack) {}
+ChatClient.getInstance().chatManager().asyncFetchGroupReadAcks(msgId, pageSize, startAckId, new ValueCallBack<CursorResult<GroupReadAck>>() {
+    @Override
+    public void onSuccess(CursorResult<GroupReadAck> value) {
+        // 获取成功
+    }
+
+    @Override
+    public void onError(int error, String errorMsg) {
+        // 获取失败
+    }
+});
 ```

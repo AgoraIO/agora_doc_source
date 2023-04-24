@@ -4,7 +4,7 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 通过 `ChatManager` 类管理用户设备上存储的消息会话数据。SDK 内部使用 SQLCipher 保存本地消息，方便消息处理。
+即时通讯 IM SDK 通过 `ChatManager` 类管理用户设备上存储的消息会话数据。SDK 内部使用 [SQLCipher](https://www.zetetic.net/sqlcipher/) 保存本地消息，方便消息处理。
 
 以下是核心方法：
 
@@ -12,7 +12,7 @@
 - `deleteConversation`： 删除本地存储的会话；
 - `Conversation.getUnreadMsgCount`：获取指定会话的未读消息数；
 - `getUnreadMessageCount`：获取所有未读消息数；
-- `deleteConversation`：从服务器删除指定会话和历史消息。
+- `deleteConversationFromServer`：从服务器删除指定会话和历史消息。
 - `searchMsgFromDB`：从本地数据库中搜索历史消息。
 - `Conversation.insertMessages`：在指定会话中插入消息。
 
@@ -42,7 +42,8 @@ Map<String, Conversation> conversations = ChatClient.getInstance().chatManager()
 参考如下代码，从本地数据库中获取指定会话中的消息：
 
 ```java
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+// `conversationId` 为会话 ID，在单聊时为对端用户 ID、群聊时为群组 ID，聊天室时为聊天室 ID。
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 // 获取指定会话中的所有消息
 List<ChatMessage> messages = conversation.getAllMessages();
 // SDK 初始化时，为每个会话加载 1 条聊天记录。如需更多消息，请到数据库中获取。该方法获取 `startMsgId` 之前的 `pagesize` 条消息，SDK 会将这些消息自动存入此会话，app 无需添加到会话中。
@@ -54,7 +55,8 @@ List<ChatMessage> messages = conversation.loadMoreMsgFromDB(startMsgId, pagesize
 参考如下代码，获取指定会话的未读消息数量：
 
 ```java
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+// `conversationId` 为会话 ID，在单聊时为对端用户 ID、群聊时为群组 ID，聊天室时为聊天室 ID。
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.getUnreadMsgCount();
 ```
 
@@ -71,7 +73,8 @@ ChatClient.getInstance().chatManager().getUnreadMessageCount();
 参考如下代码，清零指定的会话或所有会话的未读消息：
 
 ```java
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+// `conversationId` 为会话 ID，在单聊时为对端用户 ID、群聊时为群组 ID，聊天室时为聊天室 ID。
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 // 指定会话消息未读数清零。
 conversation.markAllMessagesAsRead();
 // 将一条消息置为已读。
@@ -89,10 +92,10 @@ SDK 提供两个接口，分别可以删除本地会话和聊天记录或者删�
 要同时在本地设备上删除会话和消息，请调用 `deleteConversation` 和 `removeMessage`：
 
 ```java
-// 删除与指定用户的会话。
-ChatClient.getInstance().chatManager().deleteConversation(username, true);
+// `conversationId` 为会话 ID，在单聊时为对端用户 ID、群聊时为群组 ID，聊天室时为聊天室 ID；`deleteMessages` 为是否删除会话的本地消息，删除传 `true`。
+ChatClient.getInstance().chatManager().deleteConversation(conversationId, deleteMessages);
 // 删除当前会话的指定历史消息。
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.removeMessage(deleteMsg.msgId);
 ```
 
@@ -138,9 +141,11 @@ ChatClient.getInstance().chatManager().importMessages(msgs);
 
 ```java
 // 将消息插入到指定会话中。
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
+// 插入指定消息
 conversation.insertMessage(message);
-// 直接插入消息。
+
+// 或者，直接插入消息。
 ChatClient.getInstance().chatManager().saveMessage(message);
 ```
 

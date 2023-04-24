@@ -51,16 +51,16 @@ ChatClient.getInstance().chatManager().asyncFetchConversationsFromServer(pageNum
 
 ```java
 ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(conversationId, conversationType, pageSize, startMsgId, new ValueCallBack<CursorResult<ChatMessage>>() {
-            @Override
-            public void onSuccess(CursorResult<ChatMessage> value) {
+    @Override
+    public void onSuccess(CursorResult<ChatMessage> value) {
 
-            }
+    }
 
-            @Override
-            public void onError(int error, String errorMsg) {
+    @Override
+    public void onError(int error, String errorMsg) {
 
-            }
-        });
+    }
+});
 ```
 
 ### 单向删除服务端的历史消息
@@ -84,7 +84,6 @@ conversation.removeMessagesFromServer(beforeTimeStamp, new CallBack() {
 conversation.removeMessagesFromServer(msgIdList, new CallBack() {
     @Override
     public void onSuccess() {
-        
     }
     @Override
     public void onError(int code, String error) {

@@ -42,14 +42,11 @@
 ChatMessage message = ChatMessage.createTxtSendMessage(content, conversationId);
  // 设置聊天类型为群聊。默认为单聊 `Chat`，也可以设置为聊天室 `ChatRoom`。
 message.setChatType(ChatType.GroupChat);
- // 发送消息。
- ChatClient.getInstance().chatManager().sendMessage(message);
 // 发送消息时可以设置 `CallBack` 的实例来获得消息发送的状态。可以在该回调中更新消息的显示状态，例如消息发送失败后的提示等。
  message.setMessageStatusCallback(new CallBack() {
      @Override
      public void onSuccess() {
          showToast("发送消息成功");
-          dialog.dismiss();
      }
      @Override
      public void onError(int code, String error) {
@@ -63,7 +60,7 @@ message.setChatType(ChatType.GroupChat);
 对于聊天室消息，可设置消息优先级。
 
 ```java
-ChatMessage message = ChatMessage.createTextSendMessage(content, toChatUsername);
+ChatMessage message = ChatMessage.createTextSendMessage(content, conversationId);
 message.setChatType(ChatMessage.ChatType.ChatRoom);
 // 聊天室消息的优先级。如果不设置，默认值为 `Normal`，即`普通`优先级。
 message.setPriority(ChatMessage.ChatRoomMessagePriority.PriorityHigh);
@@ -77,15 +74,17 @@ sendMessage(message);
 收到消息时，收件人会收到 `onMessagesReceived` 回调。每个回调包含一条或多条消息。你可以遍历消息列表，在该回调中解析和显示这些消息。
 
 ```java
-ChatClient.getInstance().chatManager().addMessageListener(msgListener);
 MessageListener msgListener = new MessageListener() {
 
-// 收到消息时，遍历消息列表，解析和显示消息。
-@Override
-public void onMessageReceived(List<ChatMessage> messages) {
+    // 收到消息时，遍历消息列表，解析和显示消息。
+    @Override
+    public void onMessageReceived(List<ChatMessage> messages) {
 
-}
+    }
 };
+// 注册监听
+ChatClient.getInstance().chatManager().addMessageListener(msgListener);
+// 移除监听
 ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 ```
 
@@ -95,6 +94,7 @@ ChatClient.getInstance().chatManager().removeMessageListener(msgListener);
 
 ```java
 try {
+    // 同步方法，需要放到线程中执行；或者调用异步方法 asyncRecallMessage 。
     ChatClient.getInstance().chatManager().recallMessage(message);
     EMLog.d("TAG", "Recalling message succeeds");
 } catch (ChatException e) {
@@ -118,14 +118,14 @@ void onMessageRecalled(List<ChatMessage> messages);
 
 附件消息的发送和接收过程如下：
 
-1. 创建和发送附件类型消息。SDK 将附件上传到环信服务器。
-2. 接收附件消息。SDK 自动下载语音消息，默认自动下载图片和视频的缩略图。若下载原图、视频和文件，需调用 `downloadAttachment` 方法。
+1. 发送方创建和发送附件类型消息。SDK 将附件上传到环信服务器。
+2. 接收方接收附件消息。SDK 自动下载语音消息，默认自动下载图片和视频的缩略图。若下载原图、视频和文件，需调用 `downloadAttachment` 方法。
 3. 获取附件的服务器地址和本地路径。
 
 此外，发送附件类型消息时，可以在 `onProgress` 回调中获取附件上传的进度，以百分比表示，示例代码如下：
 
 ```java
-// 发送消息时可以设置 `EMCallBack` 的实例，获得消息发送的状态。可以在该回调中更新消息的显示状态。例如，消息发送失败后的提示等等。
+// 发送消息时可以设置 `CallBack` 的实例，获得消息发送的状态。可以在该回调中更新消息的显示状态。例如，消息发送失败后的提示等等。
 message.setMessageStatusCallback(new CallBack() {
     @Override
     public void onSuccess() {
@@ -156,7 +156,7 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 
 ```java
 // `voiceUri` 为语音文件的本地资源标志符，`duration` 为语音时长（单位为秒）。
-ChatMessage message = ChatMessage.createVoiceSendMessage(voiceUri, duration, toChatUsername);
+ChatMessage message = ChatMessage.createVoiceSendMessage(voiceUri, duration, conversationId);
 // 设置会话类型，即`EMMessage` 类的 `ChatType` 属性，包含 `Chat`、`GroupChat` 和 `ChatRoom`，表示单聊、群聊或聊天室，默认为单聊。
 message.setChatType(ChatMessage.ChatType.GroupChat);
 // 发送消息
@@ -182,7 +182,7 @@ Uri voiceLocalUri = voiceBody.getLocalUri();
 1. 发送方调用 `createImageSendMessage` 方法传入图片的本地资源标志符 URI、设置是否发送原图以及接收方的用户 ID （群聊或聊天室分别为群组 ID 或聊天室 ID）创建图片消息，然后调用 `sendMessage` 方法发送该消息。SDK 会将图片上传至环信服务器，服务器自动生成图片缩略图。
 ```java
 // `imageUri` 为图片本地资源标志符，`false` 为不发送原图（默认超过 100 KB 的图片会压缩后发给对方），若需要发送原图传 `true`，即设置 `original` 参数为 `true`。
-ChatMessage message = ChatMessage.createImageSendMessage(imageUri, false, toChatUsername);
+ChatMessage message = ChatMessage.createImageSendMessage(imageUri, false, conversationId);
 // 会话类型，包含 `Chat`、`GroupChat` 和 `ChatRoom`，表示单聊、群聊或聊天室，默认为单聊。
 if (chatType == CHATTYPE_GROUP)
     message.setChatType(ChatType.GroupChat);
@@ -249,7 +249,7 @@ Uri thumbnailLocalUri = imgBody.thumbnailLocalUri();
 ```java
 // 在应用层获取视频首帧
 String thumbPath = getThumbPath(videoUri);
-ChatMessage message = ChatMessage.createVideoSendMessage(videoUri, thumbPath, videoLength, toChatUsername);
+ChatMessage message = ChatMessage.createVideoSendMessage(videoUri, thumbPath, videoLength, conversationId);
 // 会话类型，包含 `Chat`、`GroupChat` 和 `ChatRoom`，表示单聊、群聊或聊天室，默认为单聊。
 if (chatType == CHATTYPE_GROUP)
     message.setChatType(ChatType.GroupChat);
@@ -307,7 +307,7 @@ Uri localThumbUri = ((VideoMessageBody) body).thumbnailLocalUri();
 
 ```java
 // `fileLocalUri` 为本地资源标志符。
-ChatMessage message = ChatMessage.createFileSendMessage(fileLocalUri, toChatUsername);
+ChatMessage message = ChatMessage.createFileSendMessage(fileLocalUri, conversationId);
 // 如果是群聊，设置 `ChatType` 为 `GroupChat`，该参数默认是单聊（`Chat`）。
 if (chatType == CHATTYPE_GROUP)    
     message.setChatType(ChatType.GroupChat);
@@ -407,9 +407,12 @@ ChatClient.getInstance().chatManager().downloadAttachment(message);
 
 ```java
 // 设置经度、维度和具体位置描述。
-ChatMessage message = ChatMessage.createLocationSendMessage(latitude, longitude, locationAddress, toChatUsername);
+ChatMessage message = ChatMessage.createLocationSendMessage(latitude, longitude, locationAddress, conversationId);
 // 设置聊天类型为群聊。你也可以设置为单聊 `Chat` 或聊天室 `ChatRoom`。该参数默认是单聊（`Chat`）。
-if (chatType == CHATTYPE_GROUP)    message.setChatType(ChatType.GroupChat);ChatClient.getInstance().chatManager().sendMessage(message);
+if (chatType == CHATTYPE_GROUP)    
+    message.setChatType(ChatType.GroupChat);
+// 发送消息
+ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 ### 发送和接收透传消息
@@ -423,12 +426,13 @@ if (chatType == CHATTYPE_GROUP)    message.setChatType(ChatType.GroupChat);ChatC
 ```java
 ChatMessage cmdMsg = ChatMessage.createSendMessage(ChatMessage.Type.CMD);
 // 设置聊天类型为单聊、群聊或聊天室。
-cmdMsg.setChatType(ChatType.GroupChat)String action="action1";
+cmdMsg.setChatType(ChatType.GroupChat);
+String action="action1";
 // 可自定义 action。
 CmdMessageBody cmdBody = new CmdMessageBody(action);
-String toUsername = "test1";
-// 设置透传消息的接收方的用户 ID。
-cmdMsg.setTo(toUsername);cmdMsg.addBody(cmdBody); 
+// 设置透传消息的接收方的用户 ID（群聊或聊天室分别为群组 ID 或聊天室 ID）。
+cmdMsg.setTo(conversationId);
+cmdMsg.addBody(cmdBody); 
 ChatClient.getInstance().chatManager().sendMessage(cmdMsg);
 ```
 
@@ -471,22 +475,25 @@ MessageListener msgListener = new MessageListener()
 
 ```java
 //发送表示正在输入的透传消息
-EditText.addTextChangedListener(new TextWatcher() {
+mEditText.addTextChangedListener(new TextWatcher() {
 	@Override
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-    sendCmdMessage(ACTION_TYPING_BEGIN);
+        sendCmdMessage(ACTION_TYPING_BEGIN);
+    }
 
 });	
 	
 public void sendCmdMessage(String action) {
-        ChatMessage beginMsg = ChatMessage.createSendMessage(ChatMessage.Type.CMD);
-        CmdMessageBody body = new CmdMessageBody(action);
-        // 将该透传消息只发送给在线用户
-        body.deliverOnlineOnly(true);
-        beginMsg.addBody(body);
-        beginMsg.setTo(toChatUsername);
-        ChatClient.getInstance().chatManager().sendMessage(beginMsg);
-    }
+    ChatMessage beginMsg = ChatMessage.createSendMessage(ChatMessage.Type.CMD);
+    CmdMessageBody body = new CmdMessageBody(action);
+    // 将该透传消息只发送给在线用户
+    body.deliverOnlineOnly(true);
+    beginMsg.addBody(body);
+    // 设置透传消息的接收方的用户 ID（群聊或聊天室分别为群组 ID 或聊天室 ID）。
+    beginMsg.setTo(conversationId);
+    // 发送消息
+    ChatClient.getInstance().chatManager().sendMessage(beginMsg);
+}
 ```
 
 以下示例代码展示如何接收和解析输入状态的透传消息。
@@ -499,12 +506,12 @@ ChatManager.getInstance().addMessageListener(new MessageListener() {
 		for (final ChatMessage msg : messages) {
             final CmdMessageBody body = (CmdMessageBody) msg.getBody();
             EMLog.i(TAG, "Receive cmd message: " + body.action() + " - " + body.isDeliverOnlineOnly());
-            EaseThreadManager.getInstance().runOnMainThread(() -> {
+            runOnUiThread(() -> {
                 if(TextUtils.equals(msg.getFrom(), conversationId)) {
-                     if (TextUtils.equals(action, EaseChatLayout.ACTION_TYPING_BEGIN)) {
+                     if (TextUtils.equals(action, ACTION_TYPING_BEGIN)) {
                             binding.subTitle.setText(getString(R.string.alert_during_typing));
                             binding.subTitle.setVisibility(View.VISIBLE);
-                        } else if (TextUtils.equals(action, EaseChatLayout.ACTION_TYPING_END)) {
+                        } else if (TextUtils.equals(action, ACTION_TYPING_END)) {
                             setDefaultTitle();
                         }
                     if(typingHandler != null) {
@@ -532,8 +539,8 @@ CustomMessageBody customBody = new CustomMessageBody(event);
 // `params` 类型为 `Map<String, String>`。
 customBody.setParams(params);
 customMessage.addBody(customBody);
-// 设置消息接收方用户名、群组 ID 或聊天室 ID。
-customMessage.setTo(to);
+// 设置消息接收方的用户 ID（群聊或聊天室分别为群组 ID 或聊天室 ID）。
+customMessage.setTo(conversationId);
 // 设置聊天类型为群聊。你也可以设置为单聊 `Chat` 或聊天室 `ChatRoom`。
 customMessage.setChatType(chatType);
 ChatClient.getInstance().chatManager().sendMessage(customMessage);
@@ -544,12 +551,14 @@ ChatClient.getInstance().chatManager().sendMessage(customMessage);
 如果上面列出的消息类型不满足需求时，可以使用消息扩展来为消息添加属性。这可以应用于更复杂的消息传递场景。
 
 ```java
-ChatMessage message = ChatMessage.createTxtSendMessage(content, toChatUsername);
+ChatMessage message = ChatMessage.createTxtSendMessage(content, conversationId);
 // 添加自定义扩展属性。
 message.setAttribute("attribute1", "value");
 message.setAttribute("attribute2", true);
-// 接收消息时获取扩展属性。
+// 发送消息
 ChatClient.getInstance().chatManager().sendMessage(message);
+
+// 接收消息时获取扩展属性。
 // 获取自定义属性，第 2 个参数为没有此定义的属性时返回的默认值。
 String attribute1 = message.getStringAttribute("attribute1",null);
 boolean attribute2 = message.getBooleanAttribute("attribute2", false);
