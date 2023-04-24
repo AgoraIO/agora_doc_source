@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createmediarecorder">
     <title><ph keyref="createMediaRecorder"/></title>
-    <shortdesc id="short"><ph id="shortdesc">创建音视频录制对象。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates a recording object for audio and video recording.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,15 +30,15 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>在开始音视频流录制前，你需要调用该方法创建一个音视频录制对象。 SDK 支持录制本地或远端用户的多个音视频流，你可以多次调用该方法创建录制对象，并通过 <parmname>info</parmname> 参数指定需要录制的频道名称和发流的用户 ID。</p>
-            <p>成功创建后，你需要调用 <xref keyref="setMediaRecorderObserver"/> 注册录制对象的观测器来监听录制的相关回调，然后再调用 <xref keyref="startRecording"/> 开始录制。</p>
+            <p>Before you start recording, you need to call this method to create a recording object. Agora SDKs support recording the audio and video streams of both local and remote users. You can call this method as needed to create muitiple recording objects and specify the streams that you want to record through the <parmname>info</parmname> parameter.</p>
+            <p>After successfully creating a recording object, you need to call <xref keyref="setMediaRecorderObserver"/> to register a recording observer to listen for recording callbacks, and then call <xref keyref="startRecording"/> to start recording.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>info</pt>
-                <pd>需要录制的音视频流相关信息，详见 <xref keyref="RecorderStreamInfo"/>。</pd>
+                <pd>The information about the media streams you want to record. See <xref keyref="RecorderStreamInfo"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
