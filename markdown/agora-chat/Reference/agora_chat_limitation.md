@@ -285,7 +285,7 @@
 #### IM 离线推送
 
 | RESTful API 接口        | 方法 | 接口 URL           | 接口最高调用频率（默认值） |
-| :------------------- | :--- | :------------------- |
+| :------------------- | :--- | :------------------- | :------------------------- |
 | 设置离线推送         | PUT  | /{org}/{app}/users/{username}/notification/{chattype}/{key} | 100 次/秒/App Key          |
 | 查询离线推送设置     | GET  | /{org}/{app}/users/{username}/notification/{type}/{key} | 100 次/秒/App Key          |
 | 设置推送翻译语言     | PUT  | /{org}/{app}/users/{username}/notification/language | 100 次/秒/App Key          |
