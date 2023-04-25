@@ -29,17 +29,17 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After calling this method, you can merge multiple video streams into one video stream locally. 例如：将摄像头采集的视频流、屏幕共享流、媒体播放器中的视频流、远端视频流、视频文件、图片等合并为一路视频流，然后将已合图的视频流发布到频道中。</p>
+            <p>After calling this method, you can merge multiple video streams into one video stream locally. For example, you can merge the video streams captured by the camera, screen sharing, media player, remote video, video files, images, etc. into one video stream, and then publish the mixed video stream to the channel.</p>
                 <note>
                 <ul>
-                    <li>本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</li>
-                    <li>如果你需要对本地采集的视频流进行合图，SDK 支持如下采集组合：<ul>
-                        <li props="cpp">在 Windows 平台上，最多支持 4 路摄像头采集的视频流 + 4 路屏幕共享流合图。</li>
-                        <li props="cpp mac">在 macOS 平台上，最多支持 4 路摄像头采集的视频流 + 1 路屏幕共享流合图。</li>
-                        <li props="cpp">在 Android 和 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
-                        <li props="android">在 Android 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li>
-                        <li props="ios">在 iOS 平台上，最多支持 2 路摄像头采集的视频流（需要设备本身支持双摄或支持外接摄像头）+ 1 路屏幕共享合图。</li></ul></li>
-                    <li>如果你需要对本地采集的视频流进行合图，需要在 <xref keyref="startCameraCapture"/> 或 <xref props="cpp mac unity flutter electron unreal" keyref="startScreenCapture2"/><xref props="ios android rn" keyref="startScreenCapture"/> 之后调用该方法。</li> 
+                    <li>Local video mixing requires more CPU resources. Therefore, Agora recommends enabling this function on devices with higher performance.</li>
+                    <li>If you need to mix locally captured video streams, the SDK supports the following capture combinations:<ul>
+                        <li props="cpp">On the Windows platform, it supports up to 4 video streams captured by cameras + 4 screen sharing streams.</li>
+                        <li props="cpp mac">On the macOS platform, it supports up to 4 video streams captured by cameras + 1 screen sharing stream.</li>
+                        <li props="cpp">On Android and iOS platforms, it supports video streams captured by up to 2 cameras (the device itself needs to support dual cameras or supports external cameras) + 1 screen sharing stream.</li>
+                        <li props="android">On the Android platform, it supports up to 2 video streams captured by cameras (the device itself needs to support dual cameras or support external cameras) + 1 screen sharing stream.</li>
+                        <li props="ios">On the iOS platform, it supports up to 2 video streams captured by cameras (the device itself needs to support dual cameras or support external cameras) + 1 screen sharing stream.</li></ul></li>
+                    <li>If you need to mix the locally collected video streams, you need to call this method after <xref keyref="startCameraCapture"/> or <xref props="cpp mac unity flutter electron unreal" keyref="startScreenCapture2"/><xref props="ios android rn" keyref="startScreenCapture"/>.</li> 
                     <li>如果你要将合图后的视频流发布到频道中，需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishTranscodedVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li></ul>
                 </note>
         </section>
