@@ -33,10 +33,10 @@
 
 - 群组类型（`AgoraChatGroupStyle`）可以设置为如下值：
 
-  - `GroupStylePrivateOnlyOwnerInvite`——私有群，只有群主和管理员可以邀请人进群；
-  - `GroupStylePrivateMemberCanInvite`——私有群，所有群成员均可以邀请人进群；
-  - `GroupStylePublicJoinNeedApproval`——公开群，申请人通过群主和群管理同意后才能进群；
-  - `GroupStylePublicOpenJoin`——公开群，任何人都可以进群，无需群主和群管理同意。
+  - `AgoraChatGroupStylePrivateOnlyOwnerInvite`——私有群，只有群主和管理员可以邀请人进群；
+  - `AgoraChatGroupStylePrivateMemberCanInvite`——私有群，所有群成员均可以邀请人进群；
+  - `AgoraChatGroupStylePublicJoinNeedApproval`——公开群，申请人通过群主和群管理同意后才能进群；
+  - `AgoraChatGroupStylePublicOpenJoin`——公开群，任何人都可以进群，无需群主和群管理同意。
 
 - 邀请进群是否需要对方同意（`AgoraChatGroupOptions#IsInviteNeedConfirm`）
 

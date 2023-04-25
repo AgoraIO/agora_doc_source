@@ -3,6 +3,7 @@
 本文展示如何调用即时通讯 RESTful API 管理好友。调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
+
 ## 公共参数
 
 以下表格列举了即时通讯 RESTful API 的公共请求参数和响应参数。
@@ -38,7 +39,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 ## 添加好友
 
@@ -95,7 +96,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 #### 请求示例
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/contacts/users/user2'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/contacts/users/XXXX'
 ```
 
 #### 响应示例
@@ -103,7 +104,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/contacts",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
     "timestamp": 1542598913819,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
@@ -113,7 +114,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
         "type": "user",
         "created": 1542356523769,
         "modified": 1542597334500,
-        "username": "user2",
+        "username": "XXXX",
         "activated": true,
         "nickname": "testuser"
       }
@@ -140,7 +141,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 
 | 参数            | 类型   | 描述                 | 是否必填 |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username`  | String | 本地用户的用户 ID。   | 是       |
+| `owner_username`  | String | 当前用户的用户 ID。   | 是       |
 | `friend_username` | String | 被移除好友的用户 ID。 | 是       |
 
 其他路径参数及描述详见[公共参数](#pubparam)。
@@ -178,7 +179,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 #### 请求示例
 
 ```shell
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/contacts/users/user2'
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/contacts/users/XXXX'
 ```
 
 #### 响应示例
@@ -186,7 +187,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/contacts",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
     "timestamp": 1542599266616,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
@@ -196,7 +197,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
         "type": "user",
         "created": 1542356523769,
         "modified": 1542597334500,
-        "username": "user2",
+        "username": "XXXX",
         "activated": true,
         "nickname": "testuser"
       }
@@ -255,7 +256,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 #### 请求示例
 
 ```shell
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/contacts/users'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/contacts/users'
 ```
 
 #### 响应示例
@@ -330,7 +331,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 #### 请求示例
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{     "usernames": [       "user2"     ]   }' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{ "usernames": [ "user2" ] }' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users'
 ```
 
 #### 响应示例
@@ -344,7 +345,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
     "entities": [],
     "action": "post",
     "data": [
-      "user2"
+      "XXXX"
     ],
     "duration": 110,
     "applicationName": "XXXX"
@@ -398,14 +399,14 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 #### 请求示例
 
 ```shell
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/blocks/users'
 ```
 
 #### 响应示例
 
 ```json
 {
-    "uri": "http://XXXX/XXXX/XXXX/users/user1/blocks/users",
+    "uri": "http://XXXX/XXXX/XXXX/users/XXXX/blocks/users",
     "timestamp": 1542599978751,
     "entities": [],
     "count": 1,
@@ -473,7 +474,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 #### 请求示例
 
 ```shell
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users/user2'
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/blocks/users/XXXX'
 ```
 
 #### 响应示例
@@ -481,7 +482,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/blocks",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/blocks",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/blocks",
     "timestamp": 1542600712985,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
@@ -491,7 +492,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
         "type": "user",
         "created": 1542356523769,
         "modified": 1542597334500,
-        "username": "user2",
+        "username": "XXXX",
         "activated": true,
         "nickname": "testuser"
       }

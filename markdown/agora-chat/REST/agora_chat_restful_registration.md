@@ -46,7 +46,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 <a name="single"></a>
 
@@ -106,9 +106,9 @@ POST https://{host}/{org_name}/{app_name}/users
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
 curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourAppToken>' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
-      "username": "user1",
-      "password": "123",
-      "nickname": "testuser"
+      "username": "XXXX",
+      "password": "XXXX",
+      "nickname": "XXXX"
     }'
 ```
 
@@ -126,7 +126,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
             "type": "user",
             "created": 1542795196504,
             "modified": 1542795196504,
-            "username": "user1",
+            "username": "XXXX",
             "activated": true,
             "nickname": "testuser"
         }
@@ -201,14 +201,14 @@ POST https://{host}/{org_name}/{app_name}/users
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
 curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourAppToken>' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
-        "username":"user1",
-        "password":"123",
-        "nickname":"testuser1"
+        "username":"XXXX",
+        "password":"XXXX",
+        "nickname":"XXXX"
     },
     {
-        "username":"user2",
-        "password":"456",
-        "nickname":"testuser2"
+        "username":"XXXX",
+        "password":"XXXX",
+        "nickname":"XXXX"
     }'
 ```
 
@@ -226,7 +226,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
             "type": "user",
             "created": 1541587920710,
             "modified": 1541587920710,
-            "username": "user1",
+            "username": "XXXX",
             "activated": true,
             "nickname": "testuser1"
         },
@@ -235,7 +235,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourA
             "type": "user",
             "created": 1541587920712,
             "modified": 1541587920712,
-            "username": "user2",
+            "username": "XXXX",
             "activated": true,
             "nickname": "testuser2"
         }
@@ -416,7 +416,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ### HTTP 请求
 
 ```http
-GET https://{host}/{org_name}/{app_name}/users?limit={N}&{cursor}
+GET https://{host}/{org_name}/{app_name}/users?limit={N}&cursor={cursor}
 ```
 
 #### 路径参数
@@ -605,7 +605,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{username}
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1'
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX'
 ```
 
 #### 响应示例
@@ -822,7 +822,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/deactivate
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/deactivate'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/deactivate'
 ```
 
 #### 响应示例
@@ -892,7 +892,7 @@ POST https://{host}/{org_name}/{app_name}/users/{username}/activate
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/activate'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/activate'
 ```
 
 #### 响应示例
@@ -1013,7 +1013,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/status
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/status'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/status'
 ```
 
 #### 响应示例
@@ -1021,10 +1021,10 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```json
 {
   "action": "get",
-  "uri": "http://XXXX/XXXX/XXXX/users/user1/status",
+  "uri": "http://XXXX/XXXX/XXXX/users/XXXX/status",
   "entities": [],
   "data": {
-    "user1": "offline"
+    "XXXX": "offline"
   },
   "timestamp": 1542601284531,
   "duration": 4,
@@ -1084,7 +1084,7 @@ POST https://{host}{org_name}/{app_name}/users/batch/status
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["user1","user2"]}'
+curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type: application/json' -d '{"usernames":["XXXX","XXXX"]}'
 ```
 
 #### 响应示例
@@ -1096,10 +1096,10 @@ curl -X POST http://XXXX/XXXX/XXXX/users/batch/status -H 'Authorization: Bearer 
   "action": "get batch user status",
   "data": [
     {
-      "user1": "offline"
+      "XXXX": "offline"
       },
     {
-      "user2": "offline"
+      "XXXX": "offline"
       }
     ],
   "timestamp": 1552280231926,
@@ -1154,7 +1154,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/offline_msg_coun
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_count'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/offline_msg_count'
 ```
 
 #### 响应示例
@@ -1165,7 +1165,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
   "uri": "http://XXXX/XXX/XXXX/users/XXX/offline_msg_count",
   "entities": [],
   "data": {
-    "user1": 0
+    "XXXX": 0
   },
   "timestamp": 1542601518137,
   "duration": 3,
@@ -1221,7 +1221,7 @@ GET https://{host}/{org_name}/{app_name}/users/{username}/offline_msg_status/{ms
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'http://XXXX/XXXX/XXXX/users/XXXX/offline_msg_status/XXXX'
 ```
 
 #### 响应示例
@@ -1229,10 +1229,10 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```json
 {
   "action": "get",
-  "uri": "http://XXXX/XXXX/XXXX/users/user1/offline_msg_status/123",
+  "uri": "http://XXXX/XXXX/XXXX/users/XXXX/offline_msg_status/XXXX",
   "entities": [],
   "data": {
-    "123": "delivered"
+    "XXXX": "delivered"
   },
   "timestamp": 1542601830084,
   "duration": 5,

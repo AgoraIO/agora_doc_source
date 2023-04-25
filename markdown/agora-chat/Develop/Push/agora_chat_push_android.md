@@ -629,7 +629,7 @@ HeytapPushManager.init(context, true);
              />
          <action android:name="com.meizu.c2dm.intent.RECEIVE" />
          <category android:name="${applicationId}"></category>
-     <	/intent-filter>
+     </intent-filter>
  </receiver>
  <!-- MEIZU 推送配置 end -->
 ```
@@ -902,25 +902,25 @@ ChatMessage message = ChatMessage.createSendMessage(ChatMessage.Type.TXT);
 TextMessageBody txtBody = new TextMessageBody("message content");
 message.setTo("6006");
 // 将在声网控制台上创建的推送模板设置为默认推送模板。
-                    JSONObject pushObject = new JSONObject();
-                    JSONArray titleArgs = new JSONArray();
-                    JSONArray contentArgs = new JSONArray();
-                    try {
-                        // 设置推送模板名称。
-                        pushObject.put("name", "test7");
-                        // 设置填写模板标题的 value 数组。
-                        titleArgs.put("value1");
-                        //...
-                        pushObject.put("title_args", titleArgs);
-                        // 设置填写模板内容的 value 数组。
-                        contentArgs.put("value1");
-                        //...
-                        pushObject.put("content_args", contentArgs);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    // 将推送模板添加到消息中。
-                    message.setAttribute("em_push_template", pushObject);
+JSONObject pushObject = new JSONObject();
+JSONArray titleArgs = new JSONArray();
+JSONArray contentArgs = new JSONArray();
+try {
+        // 设置推送模板名称。
+        pushObject.put("name", "test7");
+        // 设置填写模板标题的 value 数组。
+        titleArgs.put("value1");
+        //...
+        pushObject.put("title_args", titleArgs);
+        // 设置填写模板内容的 value 数组。
+        contentArgs.put("value1");
+        //...
+        pushObject.put("content_args", contentArgs);
+} catch (JSONException e) {
+        e.printStackTrace();
+}
+// 将推送模板添加到消息中。
+message.setAttribute("em_push_template", pushObject);
 // 设置消息状态回调。
 message.setMessageStatusCallback(new CallBack() {...});
 // 发送消息。
