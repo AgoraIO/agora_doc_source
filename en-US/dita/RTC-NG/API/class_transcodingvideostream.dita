@@ -6,7 +6,31 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java"/>
+            <codeblock props="android" outputclass="language-java">public static class TranscodingVideoStream {
+  public Constants.VideoSourceType sourceType;
+  public int remoteUserUid;
+  public String imageUrl;
+  public int mediaPlayerId;
+  public int x;
+  public int y;
+  public int width;
+  public int height;
+  public int zOrder;
+  public double alpha;
+  public boolean mirror;
+  public TranscodingVideoStream() {
+    this.sourceType = Constants.VideoSourceType.VIDEO_SOURCE_CAMERA_PRIMARY;
+    this.remoteUserUid = 0;
+    this.imageUrl = null;
+    this.x = 0;
+    this.y = 0;
+    this.width = 0;
+    this.height = 0;
+    this.zOrder = 0;
+    this.alpha = 1.0;
+    this.mirror = false;
+  }
+};</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraTranscodingVideoStream: NSObject
 @property (assign, nonatomic) AgoraVideoSourceType sourceType;
 @property (assign, nonatomic) NSUInteger remoteUserUid;
@@ -185,13 +209,11 @@ class LocalTranscoderConfiguration {
 }</codeblock> </p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>
-                    <p>The video source type for local transcoder. See .<xref keyref="VIDEO_SOURCE_TYPE"/></p>
-                </pd>
+                <pd>The video source type for local transcoder. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry>
                 <pt>mediaPlayerId</pt>
@@ -200,48 +222,30 @@ class LocalTranscoderConfiguration {
             <plentry>
                 <pt>remoteUserUid</pt>
                 <pd>
-                    <p>The user ID of the remote user.<note id="note_m2h_lxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing<apiname keyref="VIDEO_SOURCE_REMOTE" /> onthe local client is .</note></p>
-                </pd>
-            </plentry>
-            <plentry props="ios mac">
-                <pt>connectionId</pt>
-                <pd>
-                    <p>The connection ID corresponding to the remote user.<note id="note_m5b_qxn_3qb" type="attention">
-                    <ul id="ul_llv_qxn_3qb">
-                    <li>Use this parameter only when the source type of the video for the video mixing<apiname keyref="VIDEO_SOURCE_REMOTE" /> onthe local client is .</li>
-                    <li>If joining only one channel, set this parameter to the default value.</li>
-                    </ul> </note></p>
-                </pd>
+                    <p>The user ID of the remote user.</p>
+                    <note id="note_m2h_lxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing<apiname keyref="VIDEO_SOURCE_REMOTE" /> onthe local client is .</note></pd>
             </plentry>
             <plentry>
                 <pt>imageUrl</pt>
                 <pd>
-                    <p>The URL of the image.<note props="ios mac cpp" id="note_rm5_xxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing on the local client is <codeph props="cpp">RTC_IMAGEimage</codeph>.<codeph props="ios mac"></codeph></note></p>
+                    <p>The URL of the image.<note type="attention">Use this parameter only when the source type of the video for the video mixing onthe local client is .</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp android unity electron rn flutter">
                 <pt>x</pt>
-                <pd>
-                    <p>The relative lateral displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</p>
-                </pd>
+                <pd>The relative lateral displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp android unity electron rn flutter">
                 <pt>y</pt>
-                <pd>
-                    <p>The relative longitudinal displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</p>
-                </pd>
+                <pd>The relative longitudinal displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp android unity electron rn flutter">
                 <pt>width</pt>
-                <pd>
-                    <p>The width (px) of the captured video on the canvas.</p>
-                </pd>
+                <pd>The width (px) of the captured video on the canvas.</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter">
+            <plentry props="cpp android unity electron rn flutter">
                 <pt>height</pt>
-                <pd>
-                    <p>The height (px) of the captured video on the canvas.</p>
-                </pd>
+                <pd>The height (px) of the captured video on the canvas.</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>rect</pt>
@@ -256,17 +260,15 @@ class LocalTranscoderConfiguration {
             </plentry>
             <plentry>
                 <pt>alpha</pt>
-                <pd>
-                    <p>The transparency of the captured video. The value range is [0.0, 1.0]. 0.0 indicates that the captured video is completely transparent, and 1.0 indicates that it is opaque.</p>
-                </pd>
+                <pd>The transparency of the captured video. The value range is [0.0, 1.0]. 0.0 indicates that the captured video is completely transparent, and 1.0 indicates that it is opaque.</pd>
             </plentry>
-            <plentry props="cpp mac unity electron rn flutter">
+            <plentry>
                 <pt>mirror</pt>
                 <pd>Whether to mirror the video for the video mixing on the local client.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Mirror the captured video.</li>
-                    <li>: (Default) Do not mirror the captured video.<codeph><ph keyref="false" /></codeph></li>
+                    <li><codeph><ph keyref="true" /></codeph>: 将参与本地合图的视频进行镜像。</li>
+                    <li><codeph><ph keyref="false" /></codeph>: （默认值）不将参与本地合图的视频进行镜像。</li>
                     </ul>
-                    <note type="attention">The paramter only works for videos with the source type <codeph props="cpp unity flutter">CAMERACamera</codeph>.<codeph props="ios mac"></codeph></note></pd>
+                    <note type="attention">该参数仅对视频源类型为摄像头的视频生效。</note></pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -35,6 +35,7 @@
             <p>该方法用于开启音视频流录制。 声网 SDK 支持同时录制本地及远端用户的音视频流。</p>
             <p>在开始录制前请确保：
 
+            
             <ul>
             <li>已通过 <xref keyref="createMediaRecorder"/> 创建音视频录制对象。</li>
             <li>已调用 <xref keyref="setMediaRecorderObserver"/> 注册录制对象观测器来监听录制的相关回调。</li>
@@ -42,12 +43,14 @@
             </ul></p>
             <p>该方法支持录制如下数据：
 
+            
             <ul>
             <li>麦克风采集的、AAC 编码格式的音频。</li>
             <li>摄像头采集的、H.264 或 H.265 编码格式的视频。</li>
             </ul></p>
             <p>Once the recording is started, if the video resolution is changed, the SDK stops the recording; if the sampling rate and audio channel changes, the SDK continues recording and generates audio files respectively.</p>
-            <p><p>The SDK can generate a recording file only when it detects audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops the recording and triggers the <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> callback.</p></p>
+            <p>The SDK can generate a recording file only when it detects audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops the recording and triggers the <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> callback.</p>
+            
             <note type="attention">
             <ul>
             <li>如果你需要录制的是本地的音视频流，请在开始录制前确保本地用户的角色设为主播。</li>
