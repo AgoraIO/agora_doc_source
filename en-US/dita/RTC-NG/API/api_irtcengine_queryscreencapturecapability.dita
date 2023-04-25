@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_queryscreencapturecapability">
     <title><ph keyref="queryScreenCaptureCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询设备在屏幕共享时支持的最高帧率。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Queries the highest frame rate supported by the device during screen sharing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -37,15 +37,15 @@
         <section id="scenario">
             <title>Applicable scenarios</title>
             <p props="cpp">This method is for Android and iOS only.</p>
-            <p>在屏幕共享场景下，如果你想启用高帧率（如 60 fps）、但不确定设备是否支持时，可以先调用该方法查询设备支持的最高帧率。 如果设备不支持高帧率，你可以在开启屏幕共享时适当调低屏幕共享流的帧率，以确保共享场景的效果符合预期。</p>
+            <p>If you want to enable high frame rates (such as 60 fps) in a screen sharing scenario, but you're unsure if the device supports it, you can call this method to query the maximum frame rate that the device supports. If the device does not support high frame rate, you can reduce the frame rate of the screen sharing stream appropriately when sharing the screen to ensure that the sharing effect meets your expectation.</p>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
-            <ul props="apple"><li>方法调用成功时，返回设备支持的最高帧率。 See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</li>
+            <ul props="apple"><li>The highest frame rate supported by the device, if the method is called successfully. See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</li>
                 <li>If the call fails, returns <xref keyref="NULL"/>.</li></ul>
                 <ul props="cpp android">
-                    <li><ph>方法调用成功时，返回设备支持的最高帧率。 </ph><ph props="cpp">See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</ph><ul  props="android">
+                    <li><ph>The highest frame rate supported by the device, if the method is called successfully. </ph><ph props="cpp">See <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>.</ph><ul  props="android">
                     <li>0：最高支持 15 fps。</li>
                     <li>1：最高支持 30 fps。</li>
                     <li>2：最高支持 60 fps。</li></ul></li>
