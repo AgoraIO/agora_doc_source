@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_setremoterendermodeex">
     <title><ph keyref="setRemoteRenderModeEx" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置远端视图显示模式。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the video display mode of a specified remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,8 +28,7 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After initializing the video view of a remote user, you can call this method to update its rendering and mirror modes. 该方法只影响本地用户看到的视频画面。
-            <note id="note_dpq_mtr_mqb" type="attention">
+            <p>After initializing the video view of a remote user, you can call this method to update its rendering and mirror modes. This method affects only the video view that the local user sees. <note id="note_dpq_mtr_mqb" type="attention">
             <ul id="ul_ft3_ntr_mqb">
             <li props="native flutter electron rn">Please call this method after initializing the remote view by calling the <xref keyref="setupRemoteVideo" /> method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the video view of a remote user.</li>
@@ -45,9 +44,8 @@
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity">远端视图显示模式，详见 <xref keyref="RENDER_MODE_TYPE" />。</p>
-                    <p props="android">远端视图显示模式：
-                    <ul conkeyref="setLocalRenderMode2/rendermodetype">
+                    <p props="ios mac cpp unity">The video display mode of the remote user. For details, see <xref keyref="RENDER_MODE_TYPE" />.</p>
+                    <p props="android">The video display mode of the remote user:<ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li />
                     </ul> </p>
                 </pd>
@@ -56,8 +54,7 @@
                 <pt>mirrorMode</pt>
                 <pd>
                     <p props="ios mac cpp unity">The mirror mode of the remote user view. For details, see <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
-                    <p props="android">远端用户视图的镜像模式：
-                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                    <p props="android">The mirror mode of the remote user view:<ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li />
                     </ul> </p>
                 </pd>
