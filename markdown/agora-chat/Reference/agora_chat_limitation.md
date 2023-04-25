@@ -296,21 +296,16 @@
 
 #### 声网即时推送
 
-| RESTful API 接口        | 方法 | 接口 URL           | 
-| :------------------- | :--- | :------------------- |
-| 创建推送标签 | POST  | /{org_name}/{app_name}/push/label | 
-| 查询指定的推送标签 | GET  | /{org_name}/{app_name}/push/label/{labelname} |   
-| 分页查询推送标签 | GET  | /{org_name}/{app_name}/push/label |     
-| 删除指定的推送标签 | DELETE  | /{org_name}/{app_name}/push/label/{labelname} |      
-| 在推送标签下添加用户 | POST  | /{org_name}/{app_name}/push/label/{labelname}/user |     
-| 查询标签下的指定用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user/{username} |      
-| 分页查询指定标签下的用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user |       
-| 批量移出指定推送标签下的用户 | DELETE  | /{org_name}/{app_name}/push/label/{labelname}/user |       
-
-以上接口的最高调用频率总和为 100 次/秒/App Key。
-
-| RESTful API 接口        | 方法 | 接口 URL           | 接口最高调用频率（默认值） |
-| :------------------- | :--- | :------------------- |
+| RESTful API 接口        | 方法   | 接口 URL          | 接口最高调用频率（默认值） |
+| :------------- | :----- | :--------------------------------- | :------------------------- |
+| 创建推送标签 | POST  | /{org_name}/{app_name}/push/label |  100 次/秒/App Key          |
+| 查询指定的推送标签 | GET  | /{org_name}/{app_name}/push/label/{labelname} | 100 次/秒/App Key          |
+| 分页查询推送标签 | GET  | /{org_name}/{app_name}/push/label |  100 次/秒/App Key          |    
+| 删除指定的推送标签 | DELETE  | /{org_name}/{app_name}/push/label/{labelname} |  100 次/秒/App Key          |     
+| 在推送标签下添加用户 | POST  | /{org_name}/{app_name}/push/label/{labelname}/user |     100 次/秒/App Key          | 
+| 查询标签下的指定用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user/{username} | 100 次/秒/App Key          |    
+| 分页查询指定标签下的用户 | GET  | /{org_name}/{app_name}/push/label/{labelname}/user |  100 次/秒/App Key          |      
+| 批量移出指定推送标签下的用户 | DELETE  | /{org_name}/{app_name}/push/label/{labelname}/user |  100 次/秒/App Key          |      
 | 向指定用户发送推送通知 | POST  | /{org_name}/{app_name}/push/single | 1200 次/分钟/App Key         |
 | 对指定标签下的用户发送推送通知 | POST  | /{org_name}/{app_name}/push/list/label | 1200 次/分钟/App Key        |
 | 对 app 下的所有用户发送推送通知 | POST  | /{org_name}/{app_name}/push/task | 5 次/分钟/App Key，100 次/天       |
