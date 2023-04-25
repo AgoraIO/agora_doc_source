@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onlocalvideotranscodererror">
     <title><ph keyref="onLocalVideoTranscoderError"/></title>
-    <shortdesc id="short"><ph id="shortdesc">本地合图发生错误回调。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when there's an error during the local video mixing.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -35,21 +35,20 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>当你调用 <xref keyref="startLocalVideoTranscoder"/> 或 <xref keyref="updateLocalTranscoderConfiguration"/> 失败时，SDK 会触发该回调，报告合图失败的原因。</p>
+            <p>When you fail to call <xref keyref="startLocalVideoTranscoder"/> or <xref keyref="updateLocalTranscoderConfiguration"/>, the SDK triggers this callback to report the reason.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>stream</pt>
-                <pd>合图失败的视频流。 See <xref keyref="TranscodingVideoStream"/>.</pd>
+                <pd>The video streams that cannot be mixed during video mixing. See <xref keyref="TranscodingVideoStream"/>.</pd>
             </plentry>
                 <plentry>
                     <pt props="android cpp">error</pt>
                     <pt props="apple">errorCode</pt>
-                    <pd>本地合图出错原因。 See .<ph props="apple cpp"><xref keyref="VIDEO_TRANSCODER_ERROR"/></ph></pd>
-                    <pd props="android">本地合图出错原因：
-                        <ul>
+                    <pd>The reason for local video mixing error. <ph props="apple cpp">See <xref keyref="VIDEO_TRANSCODER_ERROR"/>.</ph></pd>
+                    <pd props="android">The reason for local video mixing error.<ul>
                             <li>1：指定的视频源未开始进行视频采集，你需要为其创建视频轨道并开始视频采集。</li>
                             <li>2：视频源类型无效，你需要重新指定支持的视频源类型。</li>
                             <li>3：图片路径无效，你需要重新指定正确的图片路径。</li>

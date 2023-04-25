@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_transcodingvideostream">
     <title><ph keyref="TranscodingVideoStream"/></title>
-    <shortdesc id="short"><ph id="shortdesc"> The video stream for local transcoder.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc"> The video streams for local video mixing.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -213,27 +213,27 @@ class LocalTranscoderConfiguration {
             <parml>
             <plentry>
                 <pt>sourceType</pt>
-                <pd>The video source type for local transcoder. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                <pd>The video source type for local video mixing. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry>
                 <pt>mediaPlayerId</pt>
-                <pd>（可选）媒体播放器 ID。 当你将 <parmname>sourceType</parmname> 设置为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，需要设置该参数。</pd>
+                <pd>(Optional) Media player ID. Use parameter only when you set <parmname>sourceType</parmname> to <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
             </plentry>
             <plentry>
                 <pt>remoteUserUid</pt>
                 <pd>
                     <p>The user ID of the remote user.</p>
-                    <note id="note_m2h_lxn_3qb" type="attention">Use this parameter only when the source type of the video for the video mixing<apiname keyref="VIDEO_SOURCE_REMOTE" /> onthe local client is .</note></pd>
+                    <note id="note_m2h_lxn_3qb" type="attention">Use this parameter only when the source type is <apiname keyref="VIDEO_SOURCE_REMOTE" /> for local video mixing.</note></pd>
             </plentry>
             <plentry>
                 <pt>imageUrl</pt>
                 <pd>
-                    <p>The URL of the image.<note type="attention">Use this parameter only when the source type of the video for the video mixing onthe local client is .</note></p>
+                    <p>The URL of the image.<note type="attention">Use this parameter only when the source type is the image for local video mixing.</note></p>
                 </pd>
             </plentry>
             <plentry props="cpp android unity electron rn flutter">
                 <pt>x</pt>
-                <pd>The relative lateral displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</pd>
+                <pd>The relative lateral displacement of the top left corner of the video for local video mixing to the origin (the top left corner of the canvas).</pd>
             </plentry>
             <plentry props="cpp android unity electron rn flutter">
                 <pt>y</pt>
@@ -241,34 +241,34 @@ class LocalTranscoderConfiguration {
             </plentry>
             <plentry props="cpp android unity electron rn flutter">
                 <pt>width</pt>
-                <pd>The width (px) of the captured video on the canvas.</pd>
+                <pd>The width (px) of the video for local video mixing on the canvas.</pd>
             </plentry>
             <plentry props="cpp android unity electron rn flutter">
                 <pt>height</pt>
-                <pd>The height (px) of the captured video on the canvas.</pd>
+                <pd>The height (px) of the video for local video mixing on the canvas.</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>rect</pt>
-                <pd>The relative position and size of the captured video to the origin (the top left corner of the canvas). The data type is CGRect.</pd>
+                <pd>The relative position and size of the video for local video mixing to the origin (the top left corner of the canvas). The data type is CGRect.</pd>
             </plentry>
             <plentry>
                 <pt>zOrder</pt>
-                <pd>The layer of the captured video on the canvas. The value range is [0, 100].<ul>
+                <pd>The number of the layer to which the video for the local video mixing belongs. The value range is [0, 100].<ul>
                     <li>0: (Default) The layer is at the bottom.</li>
                     <li>100: The layer is at the top.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>alpha</pt>
-                <pd>The transparency of the captured video. The value range is [0.0, 1.0]. 0.0 indicates that the captured video is completely transparent, and 1.0 indicates that it is opaque.</pd>
+                <pd>The transparency of the video for local video mixing. The value range is [0.0, 1.0]. 0.0 indicates that the video is completely transparent, and 1.0 indicates that it is opaque.</pd>
             </plentry>
             <plentry>
                 <pt>mirror</pt>
-                <pd>Whether to mirror the video for the video mixing on the local client.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: 将参与本地合图的视频进行镜像。</li>
-                    <li><codeph><ph keyref="false" /></codeph>: （默认值）不将参与本地合图的视频进行镜像。</li>
+                <pd>Whether to mirror the video for the local video mixing.<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: Mirror the video for the local video mixing.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not mirror the video for the local video mixing.</li>
                     </ul>
-                    <note type="attention">该参数仅对视频源类型为摄像头的视频生效。</note></pd>
+                    <note type="attention">This parameter only takes effect on video source types that are cameras.</note></pd>
             </plentry>
             </parml> </section>
     </refbody>
