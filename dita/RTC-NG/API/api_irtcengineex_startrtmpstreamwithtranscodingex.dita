@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_startrtmpstreamwithtranscodingex">
-    <title><ph keyref="startRtmpStreamWithTranscodingEx"/></title>
+    <title><ph keyref="startRtmpStreamWithTranscodingEx" /></title>
     <shortdesc id="short"><ph id="shortdesc">开始旁路推流并设置转码属性。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="startRtmpStreamWithTranscodingEx"/>
+                <indexterm keyref="startRtmpStreamWithTranscodingEx" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,7 +19,7 @@
                             transcoding:(AgoraLiveTranscoding* _Nullable)transcoding
                              connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(startRtmpStreamWithTranscodingEx(_:transcoding:connection:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRtmpStreamWithTranscodingEx(const char* url, const LiveTranscoding&amp; transcoding, const RtcConnection&amp; connection) = 0;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">abstract startRtmpStreamWithTranscodingEx(
     url: string,
     transcoding: LiveTranscoding,
@@ -31,7 +31,7 @@
     transcoding: LiveTranscoding,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRtmpStreamWithTranscodingEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; startRtmpStreamWithTranscodingEx(
       {required String url,
       required LiveTranscoding transcoding,
       required RtcConnection connection});</codeblock> </p>
@@ -46,33 +46,33 @@
             </dl>
             <p>声网推荐你使用更加完善的服务端推流功能，详见<xref keyref="cdn-streaming-restful">实现服务端旁路推流</xref>。</p>
             <p>调用该方法，你可以向指定的旁路推流地址推送直播音视频流并设置转码属性。该方法每次只能向一个地址推送媒体流，如果你需要向多个地址转码推流，则需多次调用该方法。</p>
-            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged"/> 回调，报告推流的状态。</p>
+            <p>调用该方法后，SDK 会在本地触发 <xref keyref="onRtmpStreamingStateChanged" /> 回调，报告推流的状态。</p>
             <note type="attention" id="note">
             <ul>
             <li>请确保已开通旁路推流服务。<ph props="cn">详见<xref keyref="guide-cdn-streaming">旁路推流</xref>中的前提条件。</ph></li>
             <li>请在加入频道后调用该方法。</li>
             <li>只有直播场景下的主播才能调用该方法。</li>
-            <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <xref keyref="stopRtmpStreamEx"/>，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
+            <li>调用该方法推流失败后，如果你想要重新推流，那么请你务必先调用 <xref keyref="stopRtmpStreamEx" />，再调用该方法重推，否则 SDK 会返回与上次推流失败时一样的错误码。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry conkeyref="startRtmpStreamWithTranscoding/url">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="startRtmpStreamWithTranscoding/transcoding">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry conkeyref="joinChannelEx/connection">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException" /> 异常，你需要捕获异常并进行处理。</p>
             <ul>
             <li props="native unity electron rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。                
