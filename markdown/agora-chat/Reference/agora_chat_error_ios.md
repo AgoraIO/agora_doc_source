@@ -10,6 +10,7 @@
 | 2      | `AgoraChatErrorNetworkUnavailable`   | 网络错误：网络连接中断导致 SDK 与服务器的连接断开。                    |
 | 3      | `AgoraChatErrorDatabaseOperationFailed`     | 数据库操作失败：打开本地数据库失败。请联系 Agora 技术支持。                  |
 | 4      | `AgoraChatErrorExceedServiceLimit`          | 超过服务限制：超过即时通讯服务的数量限制，例如：注册用户总数或用户好友人数等超过[套餐包限制](./agora_chat_pricing#用户)。 |
+| 8      | `AgoraChatAppActiveNumbersReachLimitation`  | 应用程序的日活跃用户数量（DAU）或月活跃用户数量（MAU）达到上限。                                 |
 | 100    | `AgoraChatErrorInvalidAppkey`               | 无效的 App Key：App Key 不正确，请更换有效的 App Key 并重新登录。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。 |
 | 101    | `AgoraChatErrorInvalidUsername`             | 用户 ID 为空或不正确，请更换有效的用户名。 |
 | 102    | `AgoraChatErrorInvalidPassword`             | 用户密码不正确：登录时提供的密码为空或不正确。请更换正确的密码并重新登录。   |
@@ -52,6 +53,8 @@
 | 506    | `AgoraChatErrorMessageExpired`              | 消息已过期：发送群组回执时超过时间限制 (默认 3 天) 。                    |
 | 507    | `AgoraChatErrorMessageIllegalWhiteList`     | 用户未在白名单中：当群组或聊天室开启全员禁言，未在禁言白名单中的用户发送消息。   |
 | 508    | `AgoraChatErrorMessageExternalLogicBlocked` | 消息执行发送前回调导致被拦截：发送的消息被用户定义的发送前回调规则拦截，请确认发送前回调规则。 |
+| 509    | `AgoraChatErrorMessageCurrentLimiting`    | 单个用户 ID 发送群聊消息超出频率限制。                       |
+| 510    | `AgoraChatErrorMessageSizeLimit`    | 发送消息时消息体大小超过上限。 |
 | 600    | `AgoraChatErrorGroupInvalidId`              | 群组 ID 异常：调用群组相关方法，传入的群组 ID 为空。                       |
 | 601    | `AgoraChatErrorGroupAlreadyJoined`          | 已在该群组中：已在群组中的用户尝试加入该群组。                             |
 | 602    | `AgoraChatErrorGroupNotJoined`              | 未加入该群组：尝试在未加入的群组中发送消息，或进行其他群组操作。           |
