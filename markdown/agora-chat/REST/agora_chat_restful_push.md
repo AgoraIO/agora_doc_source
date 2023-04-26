@@ -44,7 +44,7 @@
 Authorization: Bearer YourAppToken
 ```
 
-为了提高项目的安全性，Agora 使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
 
 <a name="nick"></a>
 
@@ -78,7 +78,7 @@ PUT https://{host}/{org_name}/{app_name}/users/{username}
 
 | 字段       | 类型   | 描述                                           | 是否必填 |
 | :--------- | :----- | :--------------------------------------------- | :------- |
-| `nickname` | String | 推送通知中显示的昵称。昵称的长度不能超过 100 个字符，支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>中文</li><li>特殊字符</li></ul><div class="alert note">该昵称可与用户配置文件中的昵称不同，但 Agora 建议你使用相同的昵称。因此，修改其中一个昵称时，也需调用相应方法对另一个进行更新，确保设置一致。更新用户信息中的昵称的方法，详见[设置用户属性](./agora_chat_restful_user_attributes?platform=RESTful#设置用户属性)。</div> | 是       |
+| `nickname` | String | 推送通知中显示的昵称。昵称的长度不能超过 100 个字符，支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>中文</li><li>特殊字符</li></ul><div class="alert note">该昵称可与用户配置文件中的昵称不同，但声网建议你使用相同的昵称。因此，修改其中一个昵称时，也需调用相应方法对另一个进行更新，确保设置一致。更新用户信息中的昵称的方法，详见[设置用户属性](./agora_chat_restful_user_attributes?platform=RESTful#设置用户属性)。</div> | 是       |
 
 ### HTTP 响应
 

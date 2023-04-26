@@ -10,7 +10,7 @@
 
 - 完成 SDK 初始化，并连接到服务器，详见 [Web 快速开始](./agora_chat_get_started_web)。
 - 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
-- 已在 Agora 控制台开启举报功能，详见[内容审核概述](./agora_chat_moderation_overview)。
+- 已在声网控制台开启举报功能，详见[内容审核概述](./agora_chat_moderation_overview)。
 
 ## 实现方法
 

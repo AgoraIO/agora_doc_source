@@ -15,7 +15,7 @@
 - 带有[开启了即时通讯 IM 服务](./enable_agora_chat)的 [App Key](./enable_agora_chat#获取即时通讯项目信息) 的[声网项目](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#创建声网项目)。
 - Windows 或 Mac OS 计算机，需满足以下要求：
   - 已安装小程序开发者工具。
-  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](./AgoraPlatform/firewall)以正常使用 Agora 服务。
+  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](./AgoraPlatform/firewall)以正常使用声网服务。
 - [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
 
 ## 生成 Token
@@ -79,6 +79,7 @@
 ![](./images/quickstart/generate_token.png)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
+
 ## 配置服务器域名
 
 微信小程序在生产环境下若未配置合法域名，则无法正常访问。因此，需将服务器域名添加到微信小程序后台管理系统的服务器域名白名单里面。本节介绍如何配置合法域名。
@@ -321,7 +322,7 @@ Page({
 
 1. 登录即时通讯 IM。
 
-   在 **user id** 框中输入发送方的用户 ID（`Leo`），在 **token** 框中输入 agora token，点击 **Login** 登录 app。
+   在 **user id** 框中输入发送方的用户 ID（`Leo`），在 **token** 框中输入声网 token，点击 **Login** 登录 app。
 
 2. 发送消息。
 

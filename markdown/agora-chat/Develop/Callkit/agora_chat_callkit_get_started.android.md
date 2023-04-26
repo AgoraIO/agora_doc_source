@@ -383,7 +383,7 @@ EaseCallKitConfig callKitConfig = new EaseCallKitConfig();
 
 3. AgoraChatCallKit 获得 RTC token 和 UID，加入对应的频道。
 
-Token 是利用 Agora 提供的 Token 生成器在你自己的 App Server 上生成。关于如何在服务器生成 Token 以及在客户端获取及更新 Token，详见[使用 User Token 鉴权](https://docs.agora.io/cn/Video/token_server?platform=Android)。
+Token 是利用声网提供的 Token 生成器在你自己的 App Server 上生成。关于如何在服务器生成 Token 以及在客户端获取及更新 Token，详见[使用 User Token 鉴权](https://docs.agora.io/cn/Video/token_server?platform=Android)。
 
 下面是 `onGenerateRTCToken` 回调的示例代码：
 
@@ -453,9 +453,9 @@ AgoraChatCallKit 提供的 API 列表如下：
 
 ### 示例项目
 
-为方便快速体验，我们在 GitHub 上提供了一个开源的 [即时通讯 IM](https://github.com/AgoraIO-Usecase/AgoraChat-android) 示例项目，你可以下载体验或查看源代码。
+为方便快速体验，我们在 GitHub 上提供了一个开源的[即时通讯 IM](https://github.com/AgoraIO-Usecase/AgoraChat-android) 示例项目，你可以下载体验或查看源代码。
 
-示例项目使用即时通讯 IM 的用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用 Agora RTC SDK 的方法发起通话，也可以使用整型 UID 加入频道。
+示例项目使用即时通讯 IM 的用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用声网 RTC SDK 的方法发起通话，也可以使用整型 UID 加入频道。
 
 
 

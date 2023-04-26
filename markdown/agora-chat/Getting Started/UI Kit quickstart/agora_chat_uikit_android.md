@@ -802,4 +802,4 @@
 
 ## 参考
 
-Agora 提供了功能完善的 [即时通讯 IM Android UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-android) Demo 作为实现参考。
+声网提供了功能完善的 [即时通讯 IM Android UIKit](https://github.com/AgoraIO-Usecase/AgoraChat-UIKit-android) Demo 作为实现参考。

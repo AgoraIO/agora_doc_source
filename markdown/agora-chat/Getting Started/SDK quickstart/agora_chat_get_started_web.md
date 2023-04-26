@@ -296,7 +296,7 @@ $ npm run dev
 按以下步骤验证你刚刚通过即时通讯 IM 在你的 Web app 中集成的发送和接收单聊消息的实现：
 
 1. 登录即时通讯 IM。
-   在 **user id** 框中输入发送方的用户 ID（`Leo`），在 **token** 框中输入 Agora Token，点击 **Login** 登录 app。
+   在 **user id** 框中输入发送方的用户 ID（`Leo`），在 **token** 框中输入声网 Token，点击 **Login** 登录 app。
 
 2. 发送消息。
    在 **single chat id** 框中填写发送方的用户 ID（`Roy`），在 **message content** 框中输入消息（"Hi, how are you doing?"），点击 **Send** 发送消息。

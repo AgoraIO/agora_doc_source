@@ -306,7 +306,7 @@ function sendPrivateImg() {
 
 #### 发送 URL 图片消息
 
-你也可以将图片上传到自己的服务器，而不是 Agora 服务器，然后调用 `sendPrivateUrlImg` 方法传入图片的 URL 发送图片消息。
+你也可以将图片上传到自己的服务器，而不是声网服务器，然后调用 `sendPrivateUrlImg` 方法传入图片的 URL 发送图片消息。
 
 发送 URL 图片消息之前，确保在 SDK 初始化时将 `Connection` 类中的 `useOwnUploadFun` 参数设置为 `true`。
 
