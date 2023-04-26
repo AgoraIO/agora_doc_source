@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_musiccontentcenterconfiguration">
-    <title><ph keyref="MusicContentCenterConfiguration"/></title>
+    <title><ph keyref="MusicContentCenterConfiguration" /></title>
     <shortdesc id="short"><ph id="shortdesc">音乐内容中心的设置。</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -40,7 +40,7 @@
     MusicContentCenterConfiguration(const char*appid,const char* token,int64_t id,IMusicContentCenterEventHandler* handler,int32_t maxSize = 10):
         appId(appid),token(token),mccUid(id),eventHandler(handler),maxCacheSize(maxSize){}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
+            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">export class MusicContentCenterConfiguration {
   appId?: string;
   token?: string;
@@ -83,14 +83,13 @@
   @JsonKey(name: 'mccUid')
   final int? mccUid;
 
-  factory MusicContentCenterConfiguration.fromJson(Map&lt;String, dynamic> json) =>
+  factory MusicContentCenterConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$MusicContentCenterConfigurationFromJson(json);
 
-  Map&lt;String, dynamic> toJson() =>
+  Map&lt;String, dynamic&gt; toJson() =&gt;
       _$MusicContentCenterConfigurationToJson(this);
 }</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"></codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -101,11 +100,11 @@
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry props="apple">
                 <pt>rtcEngine</pt>
-                <pd><apiname keyref="IRtcEngine"/> 实例。</pd>
+                <pd><apiname keyref="IRtcEngine" /> 实例。</pd>
             </plentry>
             <plentry>
                 <pt>appId</pt>
@@ -113,7 +112,7 @@
             </plentry>
             <plentry>
                 <pt>token</pt>
-                <pd>使用音乐内容中心时，用于鉴权的 Token。当你的 Token 即将过期时，你可以调用 <xref keyref="renewToken_IMusicContentCenter"/> 来传入新的 Token。</pd>
+                <pd>使用音乐内容中心时，用于鉴权的 Token。当你的 Token 即将过期时，你可以调用 <xref keyref="renewToken_IMusicContentCenter" /> 来传入新的 Token。</pd>
             </plentry>
             <plentry>
                 <pt>mccUid</pt>
@@ -121,7 +120,7 @@
             </plentry>
             <plentry props="android cpp">
                 <pt>eventHandler</pt>
-                <pd>待接收的事件回调，详见 <xref keyref="IMusicContentCenterEventHandler"/>。</pd>
+                <pd>待接收的事件回调，详见 <xref keyref="IMusicContentCenterEventHandler" />。</pd>
             </plentry>
              <plentry>
                  <pt>maxCacheSize</pt>
