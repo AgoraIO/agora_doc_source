@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_oncapturevideoframe">
-    <title><ph keyref="onCaptureVideoFrame"/></title>
+    <title><ph keyref="onCaptureVideoFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">获取本地摄像头采集到的视频数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onCaptureVideoFrame"/>
+                <indexterm keyref="onCaptureVideoFrame" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,10 +21,8 @@
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onCaptureVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onCaptureVideoFrame;</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"></codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="rn" outputclass="language-typescript">  onCaptureVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onCaptureVideoFrame;</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取本地摄像头采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
@@ -44,40 +42,33 @@
                 </plentry>
             <plentry id="videoframe">
                 <pt>videoFrame</pt>
-                <pd>视频帧数据。详见 <xref keyref="VideoFrame"/>。
-                <note>通过该回调获取的视频帧数据格式默认值如下：
-                    <ul>
-                        <li props="android cpp rn unity flutter">Android：texture</li>
-                        <li props="ios cpp rn unity flutter">iOS：cvPixelBuffer</li>
-                        <li props="mac cpp electron unity flutter">macOS：YUV 420</li>
-                        <li props="cpp electron unity flutter">Windows：YUV 420</li></ul></note></pd>
+                <pd><ph>视频帧数据。</ph><ph props="ios mac cpp electron unity rn flutter">详见 <xref keyref="VideoFrame" />。</ph><ph props="android">详见 <codeph>VideoFrame</codeph>。</ph></pd>
             </plentry>
             <plentry props="unity" id="config">
                 <pt>config</pt>
-                <pd>视频帧设置，详见 <xref keyref="VideoFrameBufferConfig"/>。</pd>
+                <pd>视频帧设置，详见 <xref keyref="VideoFrameBufferConfig" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unity electron rn">
             <title>返回值</title>
             <p id="return">
             <ul>
-            <li props="native electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY"/> 时：
-                
+            <li props="native electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_ONLY" /> 时：
                 <ul>
-                <li><codeph><ph keyref="true"/></codeph>：无实际含义。</li>
-                <li><codeph><ph keyref="false"/></codeph>：无实际含义。</li>
+                <li><codeph><ph keyref="true" /></codeph>：SDK 忽略该返回值。</li>
+                <li><codeph><ph keyref="false" /></codeph>：SDK 忽略该返回值。</li>
                 </ul></li>
-            <li props="native electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_WRITE"/> 时：
-                
+            <li props="native electron rn">当视频处理模式为 <apiname keyref="PROCESS_MODE_READ_WRITE" /> 时：
                 <ul>
-                <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
-                <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
-                </ul></li>
+                <li><codeph><ph keyref="true" /></codeph>：设置 SDK 接收视频帧。</li>
+                <li><codeph><ph keyref="false" /></codeph>：设置 SDK 丢弃视频帧。</li>
+                </ul></li>                              
             </ul>
-            <ul props="unity">
-            <li><codeph><ph keyref="true"/></codeph>：设置 SDK 接收视频帧。</li>
-            <li><codeph><ph keyref="false"/></codeph>：设置 SDK 丢弃视频帧。</li>
-            </ul> </p>
+                <ul props="unity">
+                <li><codeph><ph keyref="true" /></codeph>：设置 SDK 接收视频帧。</li>
+                <li><codeph><ph keyref="false" /></codeph>：设置 SDK 丢弃视频帧。</li>
+                </ul>            
+            </p>
         </section>
     </refbody>
 </reference>
