@@ -79,17 +79,7 @@
     this.setupMode = setupMode;
   }
 }</codeblock>
-            <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
-@property(strong, nonatomic) VIEW_CLASS *_Nullable view;
-@property(assign, nonatomic) NSUInteger uid;
-@property(assign, nonatomic) AgoraVideoRenderMode renderMode;
-@property(assign, nonatomic) AgoraVideoMirrorMode mirrorMode;
-@property(assign, nonatomic) AgoraVideoViewSetupMode setupMode;
-@property(nonatomic, assign) AgoraVideoSourceType sourceType;
-@property(nonatomic, assign) int mediaPlayerId;
-@property(assign, nonatomic) CGRect cropArea;
-@end</codeblock>
-            <codeblock props="mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcVideoCanvas : NSObject
 @property(strong, nonatomic) VIEW_CLASS *_Nullable view;
 @property(assign, nonatomic) NSUInteger uid;
 @property(assign, nonatomic) AgoraVideoRenderMode renderMode;
@@ -298,7 +288,7 @@
                 <pt>cropArea</pt>
                 <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
             </plentry>
-            <plentry props="cpp mac unity electron flutter">
+            <plentry props="cpp ios mac unity electron flutter">
                 <pt>enableAlphaMask</pt>
                 <pd>
                 <p>(Optional) Whether the receiver enables alpha mask rendering:<ul>
