@@ -24,13 +24,12 @@
     option: StreamFallbackOptions
   ): number;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteSubscribeFallbackOption(StreamFallbackOptions option);</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"></codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
           </section>
           <section id="detailed_desc">
             <title>详情</title>
-               <p>当网络不理想时，直播音视频的质量都会下降。你可以调用该方法并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW"/> 或 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/>，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关断视频流，从而保证音频质量。同时 SDK 会持续监控网络质量，并在网络质量改善时恢复音视频流。</p>
-               <p>当远端订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly"/> 回调。</p>
+               <p>当网络不理想时，直播音视频的质量都会下降。你可以调用该方法并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_VIDEO_STREAM_LOW" /> 或 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY" />，SDK 会在下行弱网且音视频质量严重受影响时，将视频流切换为小流或关断视频流，从而保证音频质量。同时 SDK 会持续监控网络质量，并在网络质量改善时恢复音视频流。</p>
+               <p>当远端订阅流回退为音频流或由音频流恢复为音视频流时，SDK 会触发 <xref keyref="onRemoteSubscribeFallbackToAudioOnly" /> 回调。</p>
                <note type="attention">该方法需要在加入频道前调用。</note> </section>
           <section id="parameters">
                <title>参数</title>
@@ -46,8 +45,8 @@
                </plentry>
                </parml> </section>
           <section id="return_values">
-               <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+               <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException" /> 异常，你需要捕获异常并进行处理。</p>
                <ul>
                <li props="native electron unity rn">0: 方法调用成功</li>
                <li>&lt; 0: 方法调用失败</li>
