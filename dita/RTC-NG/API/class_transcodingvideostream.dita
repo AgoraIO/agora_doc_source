@@ -152,11 +152,13 @@
   
   mirror?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class TranscodingVideoStream {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class TranscodingVideoStream {
   const TranscodingVideoStream(
       {this.sourceType,
       this.remoteUserUid,
       this.imageUrl,
+      this.mediaPlayerId,
       this.x,
       this.y,
       this.width,
@@ -166,46 +168,42 @@
       this.mirror});
 
   @JsonKey(name: 'sourceType')
-  final MediaSourceType? sourceType;
+  final VideoSourceType? sourceType;
+
   @JsonKey(name: 'remoteUserUid')
   final int? remoteUserUid;
+
   @JsonKey(name: 'imageUrl')
   final String? imageUrl;
+
+  @JsonKey(name: 'mediaPlayerId')
+  final int? mediaPlayerId;
+
   @JsonKey(name: 'x')
   final int? x;
+
   @JsonKey(name: 'y')
   final int? y;
+
   @JsonKey(name: 'width')
   final int? width;
+
   @JsonKey(name: 'height')
   final int? height;
+
   @JsonKey(name: 'zOrder')
   final int? zOrder;
+
   @JsonKey(name: 'alpha')
   final double? alpha;
+
   @JsonKey(name: 'mirror')
   final bool? mirror;
-  factory TranscodingVideoStream.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  factory TranscodingVideoStream.fromJson(Map&lt;String, dynamic> json) =>
       _$TranscodingVideoStreamFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$TranscodingVideoStreamToJson(this);
-}
 
-@JsonSerializable(explicitToJson: true)
-class LocalTranscoderConfiguration {
-  const LocalTranscoderConfiguration(
-      {this.streamCount,
-      this.videoInputStreams,
-      this.videoOutputConfiguration});
-
-  @JsonKey(name: 'streamCount')
-  final int? streamCount;
-  @JsonKey(name: 'VideoInputStreams')
-  final List&lt;TranscodingVideoStream&gt;? videoInputStreams;
-  @JsonKey(name: 'videoOutputConfiguration')
-  final VideoEncoderConfiguration? videoOutputConfiguration;
-  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
-      _$LocalTranscoderConfigurationFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalTranscoderConfigurationToJson(this);
+  Map&lt;String, dynamic> toJson() => _$TranscodingVideoStreamToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">
