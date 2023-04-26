@@ -9,8 +9,7 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 - 调用方法失败时的返回值。
 - 通过 `onError` 回调报告错误码。
 
-你可以根据如下错误码及错误信息了解出错的可能原因，并采取响应措施。对于未给出解决方法的错误码，声网推荐你[联系技术支持](https:/
-/docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)，我们的技术服务会根据你在实际场景中遇到的问题进行排查。
+你可以根据如下错误码及错误信息了解出错的可能原因，并采取响应措施。对于未给出解决方法的错误码，声网推荐你[联系技术支持](https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)，我们的技术服务会根据你在实际场景中遇到的问题进行排查。
 
 | 错误码 | 错误信息        | 描述和可能原因                          |
 | :----- | :------------------- | :----------------- |

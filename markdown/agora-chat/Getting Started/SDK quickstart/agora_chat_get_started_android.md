@@ -478,7 +478,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
 1. 登录即时通讯 IM。<br/>
    a. 在 `MainActivity` 文件中，将 `USERNAME`、`TOKEN` 和 `APP_KEY` 占位符替换为发送方（`Som`）的用户 ID、声网 Token 和 [App Key](./enable_agora_chat#获取即时通讯项目信息)。
    b. 在 Android Studio 中，选择要运行项目的设备，然后单击 **Run 'app'**。
-   c. 在您的模拟器或物理设备上，单击 **SIGN IN** 使用发送方的帐户登录。
+   c. 在你的模拟器或物理设备上，单击 **SIGN IN** 使用发送方的帐户登录。
    ![](https://web-cdn.agora.io/docs-files/1670828329040)
    ![](./images/quickstart/android_login.png)
 
