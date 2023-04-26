@@ -270,7 +270,8 @@
 
   isAudioFilterable?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ChannelMediaOptions {
   const ChannelMediaOptions(
       {this.publishCameraTrack,
       this.publishSecondaryCameraTrack,
@@ -280,10 +281,7 @@
       this.publishScreenTrack,
       this.publishSecondaryScreenTrack,
       this.publishCustomAudioTrack,
-      this.publishCustomAudioSourceId,
-      this.publishCustomAudioTrackEnableAec,
-      this.publishDirectCustomAudioTrack,
-      this.publishCustomAudioTrackAec,
+      this.publishCustomAudioTrackId,
       this.publishCustomVideoTrack,
       this.publishEncodedVideoTrack,
       this.publishMediaPlayerAudioTrack,
@@ -297,6 +295,8 @@
       this.audienceLatencyLevel,
       this.defaultVideoStreamType,
       this.channelProfile,
+      this.audioDelayMs,
+      this.mediaPlayerAudioDelayMs,
       this.token,
       this.enableBuiltInMediaEncryption,
       this.publishRhythmPlayerTrack,
@@ -328,17 +328,8 @@
   @JsonKey(name: 'publishCustomAudioTrack')
   final bool? publishCustomAudioTrack;
 
-  @JsonKey(name: 'publishCustomAudioSourceId')
-  final int? publishCustomAudioSourceId;
-
-  @JsonKey(name: 'publishCustomAudioTrackEnableAec')
-  final bool? publishCustomAudioTrackEnableAec;
-
-  @JsonKey(name: 'publishDirectCustomAudioTrack')
-  final bool? publishDirectCustomAudioTrack;
-
-  @JsonKey(name: 'publishCustomAudioTrackAec')
-  final bool? publishCustomAudioTrackAec;
+  @JsonKey(name: 'publishCustomAudioTrackId')
+  final int? publishCustomAudioTrackId;
 
   @JsonKey(name: 'publishCustomVideoTrack')
   final bool? publishCustomVideoTrack;
@@ -378,6 +369,12 @@
 
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
+  @JsonKey(name: 'audioDelayMs')
+  final int? audioDelayMs;
+
+  @JsonKey(name: 'mediaPlayerAudioDelayMs')
+  final int? mediaPlayerAudioDelayMs;
 
   @JsonKey(name: 'token')
   final String? token;
