@@ -435,7 +435,8 @@
   matrix?: number[];
   
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class VideoFrame {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoFrame {
   const VideoFrame(
       {this.type,
       this.width,
@@ -453,6 +454,8 @@
       this.metadataSize,
       this.textureId,
       this.matrix,
+      this.alphaBuffer,
+      this.pixelBuffer});
 
   @JsonKey(name: 'type')
   final VideoPixelFormat? type;
@@ -501,6 +504,12 @@
 
   @JsonKey(name: 'matrix')
   final List&lt;double&gt;? matrix;
+
+  @JsonKey(name: 'alphaBuffer', ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: 'pixelBuffer', ignore: true)
+  final Uint8List? pixelBuffer;
 
   factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoFrameFromJson(json);
