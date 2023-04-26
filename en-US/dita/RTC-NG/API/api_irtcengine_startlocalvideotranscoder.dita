@@ -49,8 +49,7 @@
         <p>The following is a typical use case for implementing portrait Picture in Picture scenario:<ol>
                 <li>Call <xref keyref="enableVirtualBackground"/>, and set the custom background image to <apiname keyref="BACKGROUND_NONE"/>, that is, separate the portrait and the background in the video captured by the camera.</li>
                 <li>Call <xref props="cpp mac unity flutter electron unreal" keyref="startScreenCapture2"/><xref props="ios android rn" keyref="startScreenCapture"/> to start capturing the screen sharing video stream.</li>
-                <li>调用该方法，并将采集人像的视频源设置为参与本地合图的视频源之一，即可在合图后的视频中实现人像画中画。
-                    <note>在进行合图配置时，需确保采集人像的摄像头视频流在合图中的图层编号大于屏幕共享流的图层编号，否则人像会被屏幕共享覆盖、无法显示在最终合图的视频流中。</note></li>
+                <li>Call this method and set the video source for capturing portraits as one of the video sources participating in the local video mixing, and the portrait picture-invideo mixing can be added in the mixed image video.<note>When configuring the local video mixing, it is necessary to ensure that the layer number of the video stream capturing the portrait is greater than the layer number of the screen sharing stream. Otherwise, the portrait will be covered by the screen sharing and will not be displayed in the final mixed video stream.</note></li>
                 </ol></p>
         </section>
         <section id="parameters">
@@ -60,7 +59,7 @@
                 <pt>config</pt>
                 <pd>Configuration of the local video mixing, see <xref keyref="LocalTranscoderConfiguration" />.<note type="attention"><ul>
                 <li>The maximum resolution of each video stream participating in the local video mixing is 4096 × 2160. If this limit is exceeded, video mixing does not take effect.</li>
-                <li>合图后的视频流最大分辨率为 4096 × 2160。</li></ul></note></pd>
+                <li>The maximum resolution of the mixed video stream is 4096 × 2160.</li></ul></note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
