@@ -354,7 +354,7 @@
 | 字段          | 数据类型 | 描述                                                         |
 | :----- | :------- | :--------------------------- |
 | `customExts/v2:customExts`  | Array/JSON     | 用户自定义的事件属性。该参数为可选，不需要可以不传。<ul><li>`customExts` 为旧版参数，数组类型，最多可包含 16 个元素。</li><li>`v2:customExts` 为新版参数，Map<String,String> 类型，最多可以包含 16 个元素。推荐使用该新版参数。</li></ul> |
-| `customEvent` | String   | 用户自定义的事件类型，不能超过 32 个字符。         |
+| `customEvent` | String   | 用户自定义的事件类型。该字段的值必须满足正则表达式，[a-zA-Z0-9-_/.]{1,32}，不能超过 32 个字符。         |
 | `type`        | String   | 消息类型。自定义消息为 `custom`。                            |
 | `from`        | String   | 表示消息发送者。若无此字段，服务器会默认设置为 “from”:“admin”；若有该字段但值为空串 (“”)，请求失败。 |
 
@@ -387,7 +387,7 @@
 | 字段              | 数据类型 | 描述                                                         |
 | :----- | :------- | :--------------------------- |
 | `callId`          | String   | 回调 ID，即每条 HTTP 回调的唯一标识。该字段值的格式为 `{appKey}_{uuid}`，其中 `uuid` 为随机生成。 |
-| `eventType`       | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器要下发给终端设备的消息。</li><li>`chat_offline`: 离线消息，即因用户离线消息服务器未成功下发的消息。</li></ul> |
+| `eventType`       | String   | 消息类型：<ul><li>`chat`: 上行消息，即消息服务器要下发给终端设备的消息。</li><li>`chat_offline`: 离线消息，即因用户离线导致消息服务器未能成功下发。</li></ul> |
 | `timestamp`       | Number     | 即时通讯 IM 服务器接收到此消息的 Unix 时间戳，单位为毫秒。  |
 | `chat_type`       | String   | 会话类型：<ul><li>`chat`: 单聊</li><li>`groupchat`: 群组和聊天室</li></ul> |
 | `group_id`        | String   | 消息回调所发生的群组或聊天室的 ID。当 `chat_type` 为 `groupchat` 时，才会有该参数。 |
