@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_startrecording">
     <title><ph keyref="startRecording"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts recording the local audio and video.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts recording audio and video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,29 +32,23 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>该方法用于开启音视频流录制。 声网 SDK 支持同时录制本地及远端用户的音视频流。</p>
-            <p>在开始录制前请确保：
-
-            
-            <ul>
+            <p>You can call this method to enable the recording function. Agora supports recording the media streams of local and remote users at the same time.</p>
+            <p>Before you call this method, ensure the following:<ul>
             <li>The recording object is created through <xref keyref="createMediaRecorder"/>.</li>
-            <li>已调用 <xref keyref="setMediaRecorderObserver"/> 注册录制对象观测器来监听录制的相关回调。</li>
-            <li>Joins a channel.</li>
+            <li>The recording observer is created through <xref keyref="setMediaRecorderObserver"/>.</li>
+            <li>You have joined the channel which the remote user that you want to record is in.</li>
             </ul></p>
-            <p>该方法支持录制如下数据：
-
-            
-            <ul>
-            <li>麦克风采集的、AAC 编码格式的音频。</li>
-            <li>摄像头采集的、H.264 或 H.265 编码格式的视频。</li>
+            <p>Supported formats of recording are listed as below:<ul>
+            <li>AAC-encoded audio captured by the microphone.</li>
+            <li>Video captured by a camera and encoded in H.264 or H.265.</li>
             </ul></p>
             <p>Once the recording is started, if the video resolution is changed, the SDK stops the recording; if the sampling rate and audio channel changes, the SDK continues recording and generates audio files respectively.</p>
             <p>The SDK can generate a recording file only when it detects audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops the recording and triggers the <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> callback.</p>
             
             <note type="attention">
             <ul>
-            <li>如果你需要录制的是本地的音视频流，请在开始录制前确保本地用户的角色设为主播。</li>
-            <li>如果你需要录制的是远端用户的音视频流，请在开始录制前确保已经订阅了该用户的音视频流。</li>
+            <li>If you want to record the media streams of the local user, ensure the role of the local user is set as broadcaster.</li>
+            <li>If you want to record the media streams of a remote user, ensure you have subscribed to the user's media streams before starting the recording.</li>
             </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
