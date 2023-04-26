@@ -40,12 +40,12 @@
                         <li props="android">On the Android platform, it supports up to 2 video streams captured by cameras (the device itself needs to support dual cameras or support external cameras) + 1 screen sharing stream.</li>
                         <li props="ios">On the iOS platform, it supports up to 2 video streams captured by cameras (the device itself needs to support dual cameras or support external cameras) + 1 screen sharing stream.</li></ul></li>
                     <li>If you need to mix the locally collected video streams, you need to call this method after <xref keyref="startCameraCapture"/> or <xref props="cpp mac unity flutter electron unreal" keyref="startScreenCapture2"/><xref props="ios android rn" keyref="startScreenCapture"/>.</li> 
-                    <li>如果你要将合图后的视频流发布到频道中，需要在调用 <xref keyref="joinChannel2"/> 或 <xref keyref="updateChannelMediaOptions"/> 时，将 <xref keyref="ChannelMediaOptions"/> 中的 <parmname>publishTranscodedVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li></ul>
+                    <li>If you want to publish the mixed video stream to the channel, you need to set <parmname>publishTranscodedVideoTrack</parmname> in <xref keyref="ChannelMediaOptions"/> to <codeph><ph keyref="true"/></codeph> when calling <xref keyref="joinChannel2"/> or <xref keyref="updateChannelMediaOptions"/>.</li></ul>
                 </note>
         </section>
         <section id="scenario">
         <title>Applicable scenarios</title>
-        <p>你可以在远程会议、直播、在线教育等场景下开启本地合图功能，可以让用户更加方便地查看和管理多个视频画面，同时支持人像画中画等功能。</p>
+        <p>You can enable the local video mixing function in scenarios such as remote conferences, live streaming, and online education, which allows users to view and manage multiple videos more conveniently, and supports portrait picture-in-picture and other functions.</p>
         <p>以下是一个实现人像画中画的典型场景：
                 <ol>
                 <li>调用 <xref keyref="enableVirtualBackground"/>，并将自定义背景图设置为 <apiname keyref="BACKGROUND_NONE"/>，即：在摄像头采集的视频中将人像和背景分割。</li>
