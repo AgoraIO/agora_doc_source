@@ -6,7 +6,7 @@ on:
 
     # pull_request:
     #    branches:
-            # - 'release/rtc-ng/3.7.203-unity'
+    # - 'release/rtc-ng/3.7.203-unity'
     #        - 'release/rtc-ng/4.0.0-framework'
     push:
         branches:
@@ -28,18 +28,20 @@ jobs:
                   cd xml2json
                   python -m pip install --upgrade pip
                   pip install coverage
-                  if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+                  if [ -f requirements.txt ]; then 
+                    pip install -r requirements.txt
+                  fi
             - name: fetch proto
               run: |
                   cd xml2json
-                #  echo "----------------------------Starting for Unity------------------------------------------------"
-                #  python extract_proto_and_sync_to_dita_unity.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
-                #  echo "----------------------------Starting for Flutter----------------------------------------------"
-                #  python extract_proto_and_sync_to_dita_flutter.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
-                #  echo "----------------------------Starting for RN---------------------------------------------------"
-                #  python extract_proto_and_sync_to_dita_react_native.py --code_location ./code_to_check/rn_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-rn.ditamap --decomment_code_location ./code_to_check/decommented
-                #  echo "----------------------------Starting for Electron---------------------------------------------"
-                #  python extract_proto_and_sync_to_dita_electron.py --code_location ./code_to_check/electron_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-electron.ditamap --decomment_code_location ./code_to_check/decommented
+                  #  echo "----------------------------Starting for Unity------------------------------------------------"
+                  #  python extract_proto_and_sync_to_dita_unity.py --code_location ./code_to_check/unity_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
+                  #  echo "----------------------------Starting for Flutter----------------------------------------------"
+                  #  python extract_proto_and_sync_to_dita_flutter.py --code_location ./code_to_check/flutter-ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-flutter.ditamap --decomment_code_location ./code_to_check/decommented
+                  #  echo "----------------------------Starting for RN---------------------------------------------------"
+                  #  python extract_proto_and_sync_to_dita_react_native.py --code_location ./code_to_check/rn_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-rn.ditamap --decomment_code_location ./code_to_check/decommented
+                  #  echo "----------------------------Starting for Electron---------------------------------------------"
+                  #  python extract_proto_and_sync_to_dita_electron.py --code_location ./code_to_check/electron_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-electron.ditamap --decomment_code_location ./code_to_check/decommented
                   echo "----------------------------Starting for Csharp------------------------------------------------"
                   python extract_proto_and_sync_to_dita_cs.py --code_location ./code_to_check/csharp_ng --dita_location ../dita/RTC-NG/API --dita_map_location ../dita/RTC-NG/config/keys-rtc-ng-api-unity.ditamap --decomment_code_location ./code_to_check/decommented
             - name: Create Pull Request
