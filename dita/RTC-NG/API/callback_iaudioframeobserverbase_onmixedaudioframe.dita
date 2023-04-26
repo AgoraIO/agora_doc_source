@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onmixedaudioframe">
-    <title><ph keyref="onMixedAudioFrame"/></title>
+    <title><ph keyref="onMixedAudioFrame" /></title>
     <shortdesc id="short"><ph id="shortdesc">获取采集和播放音频混音后的数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onMixedAudioFrame"/>
+                <indexterm keyref="onMixedAudioFrame" />
             </keywords>
         </metadata>
     </prolog>
@@ -26,16 +26,16 @@
             <codeblock props="rn" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
       onMixedAudioFrame;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"/></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <p props="native unity">为保证采集和播放混音后的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置音频的数据格式：                    
                 
             <ul>
-            <li>方法一：调用 <xref keyref="setMixedAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
-            <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getMixedAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
+            <li>方法一：调用 <xref keyref="setMixedAudioFrameParameters" /> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver" /> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame" /> 回调。</li>
+            <li>方法二：调用 <xref keyref="registerAudioFrameObserver" /> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition" /> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getMixedAudioParams" /> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame" /> 回调。</li>
             </ul> </p>
-            <p props="flutter rn electron">为保证采集和播放混音后的音频数据格式符合预期，你可以在如下方法设置音频的数据格式：调用 <xref keyref="setMixedAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</p>
+            <p props="flutter rn electron">为保证采集和播放混音后的音频数据格式符合预期，你可以在如下方法设置音频的数据格式：调用 <xref keyref="setMixedAudioFrameParameters" /> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver" /> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame" /> 回调。</p>
             <note type="note" id="attention" props="native unity flutter">
             <ul>
             <li props="native unity">方法一的优先级高于方法二，如果使用方法一设置音频数据格式，方法二设置无效。</li>
@@ -48,7 +48,7 @@
                 <pt props="cpp electron rn flutter">audioFrame</pt>
                 <pt props="unity">audio_frame</pt>
                 <pt props="ios mac">frame</pt>
-                <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
+                <pd>音频原始数据。详见 <xref keyref="AudioFrame" />。</pd>
             </plentry>
             <plentry props="ios mac cpp unity rn electron flutter" id="id">
                 <pt>channelId</pt>
