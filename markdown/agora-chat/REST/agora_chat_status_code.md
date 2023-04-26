@@ -75,7 +75,8 @@ HTTP 状态码 4xx 表示因客户端错误导致请求失败，即请求出错�
 | `404`            | `service_resource_not_found`         | “Service resource not found.”                                   | URL 指定的资源不存在。例如，用户相关接口提示用户不存在，群组相关接口提示群组不存在，聊天室相关接口提示聊天室不存在。 |
 | `404`              | `service_resource_not_found`         | “Service resource not found”                                 | 获取的 username 不存在，若用户列表存在该 username，则是因为存在脏数据，可以传入 uuid 删除用户，再使用该 username 重新注册用户。 |
 | `404`              | `service_resource_not_found`         | “Service resource not found”                                 | 要删除的 username 不存在，若用户列表存在该 username，可以传入 uuid 删除用户。 |
-| `404`            | `storage_object_not_found`           | “Failed to find chat message history download url for appkey: XXXX, time: 2018020912.”  | 对应的查询时间没有历史消息，如确定该时间段内有历史消息，请提交工单反馈 Agora 技术支持团队确认。 |
+| `404`            | `storage_object_not_found`           | “Failed to find chat message history download url for appkey: XXXX, time: 2018020912.”  | 对应的查询时间没有历史消息，如确定该时间段内有历史消息，请[联系技术支持](https:/
+/docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)。 |
 
 ### 405 请求方式错误
 
@@ -112,7 +113,8 @@ API 请求包体过大，导致服务器无法处理。
 
 ## 5xx - 服务器错误
 
-服务器错误，即服务器在尝试处理请求时发生内部错误。对于此类错误，建议尝试重新调用。对于系统级别错误或重试后仍然请求失败的情况，可及时[提交工单](https://agora-ticket.agora.io/)联系 Agora 技术支持并提供系统日志。
+服务器错误，即服务器在尝试处理请求时发生内部错误。对于此类错误，建议尝试重新调用。对于系统级别错误或重试后仍然请求失败的情况，可[联系技术支持](https:/
+/docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)并提供系统日志。
 
 ### 500 内部服务器错误
 

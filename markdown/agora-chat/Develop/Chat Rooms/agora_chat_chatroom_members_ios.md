@@ -265,7 +265,6 @@ AgoraChatError *error = nil;
 示例代码如下：
 
 ```objective-c
-ChatClient.getInstance().chatroomManager().muteAllMembers(chatRoomId, new ValueCallBack<ChatRoom>() {
 AgoraChatError *error = nil;
 [AgoraChatClient.sharedClient.roomManager muteAllMembersFromChatroom:@"chatRoomId" error:&error];
 ```

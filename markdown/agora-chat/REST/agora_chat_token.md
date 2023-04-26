@@ -170,18 +170,18 @@
    </build>
    ```
 
-3. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件存储用于生成 Token 的信息。你需要将该文件中的相关值替换你的 Agora 项目的值并设置你的即时通讯 Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
+3. 在 `<Project name>/src/main/resource` 路径下创建 `application.properties` 配置文件存储用于生成 Token 的信息。你需要将该文件中的相关值替换你的声网项目的值并设置你的即时通讯 Token 的有效期，例如将 `expire.second` 设为 `6000`，即 Token 的有效期为 6000 秒。
 
    ```txt
    ## 服务器端口
    server.port=8090
-   ## 填入你的 Agora 项目的 App ID
+   ## 填入你的声网项目的 App ID
    appid=
-   ## 填入你的 Agora 项目的 App 证书
+   ## 填入你的声网项目的 App 证书
    appcert=
    ## 设置 Token 的有效期，单位为秒，最长时间为 24 小时
    expire.second=
-   ## 填入你的 Agora 项目的 App Key
+   ## 填入你的声网项目的 App Key
    appkey=
    ## 填入即时通讯 IM 的 REST API 域名
    domain=
@@ -290,10 +290,10 @@ public class AgoraChatTokenController {
     }
 
     /**
-     * 根据用户名和密码在 Agora 服务器上注册一个用户，并获取到此用户的 UUID 用于生成用户权限 Token
+     * 根据用户名和密码在声网服务器上注册一个用户，并获取到此用户的 UUID 用于生成用户权限 Token
      * 这里密码默认使用 "123"
      *
-     * @param chatUserName 即时通讯的用户名
+     * @param chatUserName 即时通讯 IM 的用户名
      * @return uuid
      */
     private String registerChatUser(String chatUserName) {
@@ -329,9 +329,9 @@ public class AgoraChatTokenController {
     }
 
     /**
-     * 根据用户名到 Agora 服务器上获取此用户，如用户存在则获取此用户的 uuid，用户不存在返回 null
+     * 根据用户名到声网服务器上获取此用户，如用户存在则获取此用户的 uuid，用户不存在返回 null
      *
-     * @param chatUserName 用户名
+     * @param chatUserName 即时通讯 IM 的用户名
      * @return uuid
      */
     private String getChatUserUuid(String chatUserName) {
@@ -375,7 +375,7 @@ public class AgoraChatTokenController {
             throw new IllegalArgumentException("appid or appcert is not empty");
         }
 
-        // 使用 Agora App Id 和 App Cert 生成即时通讯的 app 权限 token
+        // 使用声网的 App Id 和 App Cert 生成即时通讯的 app 权限 token
         ChatTokenBuilder2 builder = new ChatTokenBuilder2();
         return builder.buildAppToken(appid, appcert, expire);
     }
@@ -427,7 +427,7 @@ public class AgoraChatTokenController {
 在 App Server 中生成 App 权限 Token 的核心代码如下：
 
 ```java
-// 生成 App 权限 token，参数 appid 和 appcert 分别为 Agora 项目的 App ID 和 App 证书，expire 为 Token 有效期。
+// 生成 App 权限 token，参数 appid 和 appcert 分别为声网项目的 App ID 和 App 证书，expire 为 Token 有效期。
 AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
 AccessToken2.Service serviceChat = new AccessToken2.ServiceChat();
 serviceChat.addPrivilegeChat(AccessToken2.PrivilegeChat.PRIVILEGE_CHAT_APP, expire);
@@ -498,7 +498,7 @@ try {
 在 App Server 中生成用户权限 Token 的核心代码：
 
 ```java
-// 生成 App 权限 Token，参数 appid 和 appcert 分别为 Agora 项目的 App ID 和 App 证书，expire 为 token 的有效期，chatUserUuid 为即时通讯 IM 用户的 UUID
+// 生成 App 权限 Token，参数 appid 和 appcert 分别为声网项目的 App ID 和 App 证书，expire 为 token 的有效期，chatUserUuid 为即时通讯 IM 用户的 UUID
 AccessToken2 accessToken = new AccessToken2(appid, appcert, expire);
 AccessToken2.Service serviceChat = new AccessToken2.ServiceChat(chatUserUuid);
 
@@ -766,4 +766,4 @@ Token 即将过期或已经过期后，即时通讯 IM SDK 会分别触发 `onTo
 
 ### Token 和 RTC 产品
 
-如果你在使用即时通讯 IM 的同时也正在使用 [Agora RTC SDK](https://docs.agora.io/cn/Agora%20Platform/term_agora_rtc_sdk)，即时通讯 IM 建议你升级到 [Access Token 2](./access_token_2)。
+如果你在使用即时通讯 IM 的同时也正在使用[声网 RTC SDK](https://docs.agora.io/cn/Agora%20Platform/term_agora_rtc_sdk)，即时通讯 IM 建议你升级到 [Access Token 2](./access_token_2)。

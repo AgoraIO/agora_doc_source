@@ -348,7 +348,7 @@ config.enableRTCTokenValidate = YES;
 | startInviteUsers:groupId:callType:ext:completion:  | 邀请用户加入多人通话。 |
 | getAgoraChatCallConfig | 获取 AgoraChatCallKit 的相关配置。 |
 | setRTCToken:channelName:uid: | 设置 RTC Token。 |
-| setUsers:channelName: | 设置即时通讯 IM 的用户 ID 和 Agora 用户 ID（UID）的映射关系。 |  
+| setUsers:channelName: | 设置即时通讯 IM 的用户 ID 和声网用户 ID（UID）的映射关系。 |  
 
 下表列出了回调模块 `AgoraChatCallDelegate` 中的核心方法：
 
@@ -366,7 +366,7 @@ config.enableRTCTokenValidate = YES;
 
 声网在 GitHub 上提供了一个开源的 [AgoraChat-ios](https://github.com/AgoraIO-Usecase/AgoraChat-ios/blob/main/README_CN.md) 示例项目。您可以下载示例进行试用或查看源代码。
 
-示例项目使用即时通讯 IM 的 用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用 Agora RTC SDK 中的方法发起通话，也可以使用整型的 UID 加入频道。
+示例项目使用即时通讯 IM 的 用户 ID 加入频道，可以在通话视图中显示用户 ID。如果使用声网 RTC SDK 中的方法发起通话，也可以使用整型的 UID 加入频道。
 
 ### 手动导入 `AgoraChatCallKit` <a name="import"></a>
 
