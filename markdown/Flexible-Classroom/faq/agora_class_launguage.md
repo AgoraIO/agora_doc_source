@@ -1,58 +1,50 @@
-## 灵动课堂多语言
-动课堂目前支持中文、英文、西班牙语，也支持用户自己配置多语言的环境，添加自己需要的多语言种类。
+灵动课堂目前支持中文、英文和西班牙语。如果你需要添加更多语言，只需要在指定目录找到语言相关的 key 值，进行修改即可。
 
-灵动课堂中对语音相关的key值进行了归类和梳理。统一放到相应的目录下，用户只要到指定目录下将自己的语音文件按照想通过格式和方式配置就可以了。
+## Web 端多语言配置
 
-目前灵动课堂中的多语言配置分三个端处理：web、iOS、Android。
+Web 端源码中，主 SDK （Classroom SDK 和 Proctor SDK） 和插件（包括答题器、倒计时、投票器、环信 IM 模块）有各自单独的多语言文件。具体修改方法如下:
 
-###一、配置web端多语言
-web源码语音文件的设计是主SDK的多语言资源文件和插件的多语言文件分开的。主sdk、答题器、倒计时、投票器、环信IM有单独的多语言资源文件。具体修改方法如下:
+- 主 SDK：
+  
+  1. 在 `packages/agora-classroom-sdk/src/infra/translate` 目录下增加对应的 TypeScript 格式的语言文件（文件名只需要保证唯一性即可）文件内容可参考英语的语言文件，如下图所示：
+  ![](https://web-cdn.agora.io/docs-files/1680084679972)
 
-####1、主SDK多语言
-主SDK中的多语言文件资源增加到这个目录下：
+  2. 在 `packages/agora-classroom-sdk/src/infra/api/index.tsx` 文件中增加一行对应的 `addResourceBundle();` 代码，位置如下图所示：
+  ![](https://web-cdn.agora.io/docs-files/1680084689520)
 
-packages/agora-classroom-sdk/src/infra/translate
-
-在这个目录下增加您的语言资源文件
-<img src="./images/launguage_1.png" style="zoom: 33%;" />
+  例如：你想要添加日语，那么你需要在 `packages/agora-classroom-sdk/src/infra/translate` 目录下增加一个 `jpn.ts` 文件，并在 `packages/agora-classroom-sdk/src/infra/api/index.tsx` 文件中合适的位置增加一行 `addResourceBundle('jp', jp);`。
+  <div class="alert info"><code>addResourceBundle()</code> 中所填的参数只要具有唯一性且容易对应到该语言即可。</div>
 
 
-例如jpn.ts
+- 插件：
 
-在packages/agora-classroom-sdk/src/infra/api/index.tsx目录下addResourceBundle中增加上面添加的日语类型
-<img src="./images/launguage_2.png" style="zoom: 33%;" />
+  1. 在 `packages/agora-plugin-gallery/src/gallery/answer/i18n` 目录下增加对应的文件夹（文件夹名只需要保证唯一性即可），在该文件夹内增加一个 TypeScript 格式的语言文件 `index.ts`，文件内容可参考英语（`en` 文件夹）或中文（`zh` 文件夹）的语言文件。以下为英语语言文件的内容：
+  ![](https://web-cdn.agora.io/docs-files/1680084701486)
 
-2.答题器、定时器、投票器配置多语言
-在答题器、定时器、投票器、环信IM中添加自己的语言如下：
+  2. 在 `packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts` 文件中增加一行 `import` 声明和一行对应的 `addResourceBundle();` 代码，位置如下图所示：
+  ![](https://web-cdn.agora.io/docs-files/1680084710288)
 
-插件对应的多语言资源文件目录如下:
+  例如：你想要添加日语，那么你需要在 `packages/agora-plugin-gallery/src/gallery/answer/i18n` 目录下增加一个 `jp` 文件夹，内有一个 `index.ts` 文件，并在 `packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts` 文件中合适的位置增加一行 `import jp from './jp';` 声明和一行 `addResourceBundle(jp", jp);` 代码。
+  <div class="alert info"><code>addResourceBundle()</code> 中所填的参数只要具有唯一性且容易对应到该语言即可。 </div>
 
-packages/agora-plugin-gallery/src/gallery/answer/i18n
+## Android 端多语言配置
 
-如图：
-<img src="./images/launguage_3.png" style="zoom: 33%;" />
+你需要在以下 3 个目录下增加对应的语言的文件夹（文件夹名只需要保证唯一性即可），在该文件夹内增加一个对应语言的 `string.xml` 文件，内容可参考英语（`value` 文件夹）或中文（`value-zh` 文件夹）的语言文件。
 
-在这个目录下添加自己的资源文件
+- `/AgoraClassSDK/src/main/res`
+  ![](https://web-cdn.agora.io/docs-files/1680084721653)
 
-然后在packages/agora-plugin-gallery/src/gallery/answer/i18n/config.ts下config中配置自己添加的语言文件。
-<img src="./images/launguage_4.png" style="zoom: 33%;" />
+- `/AgoraEduUIKit/src/main/res`
+  ![](https://web-cdn.agora.io/docs-files/1680084729669)
 
-例如：addResourceBundle('zh',zh);
+  例如：你想要添加日语，那么你需要在以上目录下增加一个 `value-jp` 文件夹，内有一个 `strings.xml` 文件。
 
-## 二、安卓端多语言配置
-安卓端多语言分三个目录
+## iOS 端多语言配置
 
-/AgoraClassSDK/src/main/res
-<img src="./images/launguage_5.png" style="zoom: 33%;" />
+1. 在 `others ` 文件夹下，复制一个原有的语言文件夹（例如 `en.Iproj`），重命名为新语言对应的名称（例如 `jp.Iproj`）。
+   <div class="alert info">文件夹名只要具有唯一性且容易对应到该语言即可，但后缀必须为 <code>.lproj</code>。</div>
+2. 把文件夹内的 `Localizable.strings` 文件里的 `value` 都替换为新增语言对应的值。
+3. 在进入房间前，将 `AgoraUIBaseViews` 里的全局变量 `agora_ui_language` 的指设置为新增语言对应的文件夹名，再进入房间即可生效。
 
-/AgoraEduUIKit/src/main/res
-<img src="./images/launguage_6.png" style="zoom: 33%;" />
 
-/hyphenate/src/main/res
-<img src="./images/launguage_7.png" style="zoom: 33%;" />
 
-三个文件夹中增加自己的语言文件就可以了。
-
-## 三、iOS端添加多语言资源文件
-iOS端多语言在Localizable文件下面添加多语言的扩展
-<img src="./images/launguage_8.png" style="zoom: 33%;" />

@@ -8,7 +8,7 @@
 
 ### 前提条件
 
-互动白板功能使用第三方云存储服务储存在课堂中上传的文件。因此，使用互动白板功能前，请确保你已开通第三方云存储服务。声网当前支持<a href="https://www.aliyun.com/product/oss" target="_blank">阿里云 OSS</a> 和 <a href="https://aws.amazon.com/cn/s3/?nc2=h_m1" target="_blank">Amazon S3</a>和<a href="https://support.huaweicloud.com/qs-obs/obs_qs_0003.html" target="_blank">华为云 OSS</a> 和 <a href="https://cloud.tencent.com/document/product/436/44352" target="_blank">腾讯云 OSS</a>。
+互动白板功能使用第三方云存储服务储存在课堂中上传的文件。因此，使用互动白板功能前，请确保你已开通第三方云存储服务。声网当前支持<a href="https://www.aliyun.com/product/oss" target="_blank">阿里云 OSS</a>、<a href="https://aws.amazon.com/cn/s3/?nc2=h_m1" target="_blank">Amazon S3</a>、<a href="https://support.huaweicloud.com/qs-obs/obs_qs_0003.html" target="_blank">华为云 OSS</a> 和<a href="https://cloud.tencent.com/document/product/436/44352" target="_blank">腾讯云 OSS</a>。
 
 ### 操作步骤
 
@@ -22,8 +22,7 @@
 
    - 如果你使用阿里云 OSS，填写以下信息：
      - `region`: 阿里云 OSS 中创建 Bucket 时指定的数据中心所在区域，例如 `oss-cn-shanghai`。
-     - `endpoint`: 该字段会应用在“获取录制列表”接口返回的录像url里的域名，一般是由 Bucket 名称和访问域名拼成的完整路径。如你的 Bucket 名称为 "agora-recording"，OSS 访问域名为 "oss-cn-shanghai.aliyuncs.com"，则 endpoint 字段设为 "https://agora-recording.oss-cn-shanghai.aliyuncs.com"。
-     如果你的oss配置了cdn加速，也可以直接将endpoint设置为cdn加速域名，最终录像url为"https://agora-adc-artifacts.oss-accelerate.aliyuncs.com/xxxxx.mp4"。
+     - `endpoint`: 一般是由 Bucket 名称和访问域名拼成的完整路径。例如，你的 Bucket 名称为 "agora-recording"，OSS 访问域名为 "oss-cn-shanghai.aliyuncs.com"，则 `endpoint` 字段需要设为 "https://agora-recording.oss-cn-shanghai.aliyuncs.com"。该字段会应用在[查询录制列表]（agora_class_restful_api#%E6%9F%A5%E8%AF%A2%E5%BD%95%E5%88%B6%E5%88%97%E8%A1%A8）接口返回的 `url` 字段里的地址的域名。如果你的 OSS 配置了 CDN 加速，也可以直接将 `endpoint` 设置为 CDN 加速域名，最终录制页面的 URL 为 `https://agora-adc-artifacts`.oss-accelerate.aliyuncs.com/xxxxx.mp4。
      - `bucket`: 阿里云 OSS 中的 Bucket 名称，例如 `agora-whiteboard`。
      - `folder`: 阿里云 OSS 中的资源存放路径，例如 `whiteboard`。
      - `accessKey`: 阿里云 OSS 提供的访问密钥中的 Access Key，用于识别访问者的身份。
@@ -39,13 +38,12 @@
      - `secretKey`: String 型，Amazon S3 提供的访问密钥中的 Secret Key，用于验证签名的密钥。
      <div class="alert info">对于如何获取上述信息，请查看 <a href="https://docs.aws.amazon.com/general/latest/gr/s3.html" target="_blank">Amazon S3 官方文档</a>。</div>
 
-    - 如果使用华为云或者腾讯云，按照相同的方式，填写相应的厂商对应的字段就可以了。
+    - 如果使用华为云 OSS 或者腾讯云 OSS，参考以上信息填写相应的字段即可。
 
 
 2. 如果你需要在课堂里使用 PPT、DOC、PDF 等格式的课件，你还需要点击**进阶服务**下方的**前往配置**，来为灵动课堂开启并配置文档转网页、文档转图片、截图服务。操作步骤详见<a href="/cn/whiteboard/enable_whiteboard#开启互动白板配套服务" target="_blank">开启互动白板配套服务</a>。
 
-3、注意事项
-为确保声网可以访问你的云存储空间，你的云存储账号中必须进行以下配置（跳转到下方的注意事项）
+3. 为确保声网可以访问你的云存储空间，你的云存储账号中必须进行相关配置，详见[注意事项](agora_class_configure#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9)。
 
 ## 配置录制功能
 
@@ -55,7 +53,7 @@
 
 ![](https://web-cdn.agora.io/docs-files/1641291167789)
 
-注意：录制配置可以选择默认，存储配置必须选择自定义。否则录制无法存储到用户自己的OSS账号中。
+<div class="alert note">录制配置可以选择<b>默认</b>，存储配置必须选择<b>自定义</b>，否则录制无法存储到你的 OSS 账号中。</div>
 
 ### 录制配置
 
@@ -93,8 +91,6 @@
     ]
 }
 ```
-3、注意事项
-为确保声网可以访问你的云存储空间，你的云存储账号中必须进行以下配置（参照下方的注意事项）
 
 ## 配置环信 IM
 
@@ -118,28 +114,7 @@
    ![](https://web-cdn.agora.io/docs-files/1631178086130)
 
 
-   请注意，环信控制台的默认应用为“免费社区版”，只能创建100个用户，仅用于体验与集成，若要上生产环境，需联系商务开通旗舰版。
-
-## 配置 CDN 推拉流功能
-
-灵动课堂支持 CDN 推拉流功能，即，支持将老师的流（音视频流、白板、或混合了音视频和白板的流）推到一路 CDN 地址，支持学生拉取 CDN 流观看教学。
-
-当你使用职业教育大班课且服务类型为 `CDN`、`fusion`、`mixStreamCDN` 时，你才需要开通 CDN 推拉流服务。请[联系技术支持](https://agora-ticket.agora.io/)配置 CDN 地址，并进行以下操作：
-
-1. 登录[控制台](https://console.agora.io/)，在**项目管理**页面，选择需要开通输入旁路推流服务的项目，点击**配置**。
-
-    ![](https://web-cdn.agora.io/docs-files/1642509377813)
-
-2. 在**编辑项目**页面的**实时互动拓展能力**模块找到**旁路推流**，点击**启用**。
-
-	![](https://web-cdn.agora.io/docs-files/1654767912798)
-
-
-3. 启用**客户端 SDK API** 和 **服务端 RESTful API**。启用后不能关闭。
-
-	![](https://web-cdn.agora.io/docs-files/1661224375437)
-
-4. 仔细阅读弹窗提示，点击**保存**。成功开启旁路推流服务后，**启用**按钮会切换为**配置**按钮，用于配置旁路推流。
+   <div class="alert info">环信控制台中，应用的服务类型默认为“免费社区版”，只能创建 100 个用户，仅用于体验与集成目的。若有生产环境需求，需联系 <a href="mailto:sales@agora.io">sales@agora.io</a> 开通企业版。</div>
 
 
 
@@ -147,5 +122,6 @@
 
 ~4c2dbcc0-d2a7-11ec-8e95-1b7dfd4b7cb0~
 
-如果是阿里云需要开通putObject权限,否则上传课件会报403错误
-![](./images/ali_oss_config.png)
+如果使用阿里云 OSS，需要在你的阿里云存储账号中增加 **oss:PutObject** 授权操作，否则上传课件会报 403 错误。设置参考以下截图。更多信息详见[阿里云文档 Bucket Policy](https://help.aliyun.com/document_detail/430203.html)。
+![](https://web-cdn.agora.io/docs-files/1680084220648)
+

@@ -279,3 +279,17 @@ This release fixed the following issues:
 
 - `onApiCallExecuted`: Use the callbacks triggered by specific methods instead.
 - `RelayEventPacketUpdateDestChannelRefused (8)` in `ChannelMediaRelayEvent`
+
+
+## v4.0.0
+
+#### New features
+
+**2. Ultra HD resolution (Beta)**
+
+In order to improve the interactive video experience, the SDK optimizes the whole process of video capture, encoding, decoding and rendering, and now supports 4K resolution. The improved FEC (Forward Error Correction) algorithm enables adaptive switches according to the frame rate and number of video frame packets, which further reduces the video stuttering rate in 4K scenes.
+
+Additionally, you can set the encoding resolution to 4K (3840 × 2160) and the frame rate to 60 fps when calling `setVideoEncoderConfiguration`. The SDK supports automatic fallback to the appropriate resolution and frame rate if your device does not support 4K.
+
+<div class="alert info"><li>This feature has certain requirements with regards to device performance and network bandwidth, and the supported upstream and downstream frame rates vary on different platforms. To experience this feature, contact [support@agora.io](mailto:support@agora.io).
+<li>The increase in the default resolution affects the aggregate resolution and thus the billing rate. See <a href="./billing_rtc_ng">Pricing</a>.</div>

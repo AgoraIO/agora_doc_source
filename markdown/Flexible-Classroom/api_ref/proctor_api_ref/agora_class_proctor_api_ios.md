@@ -128,7 +128,7 @@
 | `roomName`       | 课堂名。用于课堂内显示，长度在 64 字节以内。    |
 | `roomUuid`       | 课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。以下为支持的字符集范围（共 89 个字符）:<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字</li><li>0-9</li><li>空格</li><li>"!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "\_", " {", "}", "\|", "~", ","</li></ul>  |
 | `appId`          |声网 App ID。|
-| `token`          | 用于鉴权的 Token。 详见[使用 RTM Token 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_server_rtm?platform=All%20Platforms)。  |
+| `token`          | 用于鉴权的 Token。 详见[使用 RTM Token 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms)。  |
 | `region`         | 区域，默认值为 `CN`，即中国大陆。建议设置为靠近你的课件或录制文件对象存储服务所在的区域，因为跨区域传输较大的静态资源会造成比较大的延迟。举例来说，如果你的 S3 服务在北美，则建议将 `region` 也设为北美区域。所有灵动课堂客户端必须设置相同的区域，否则无法互通。支持的区域详见 [AgoraProctorRegion](#agoraproctorregion)。    |
 | `mediaOptions`   | （选填）媒体流相关设置，包含媒体流加密，详见 [AgoraProctorMediaOptions](#agoraproctormediaoptions)。     |
 | `userProperties` | （选填）由开发者自定义的用户属性，会传入 [`AgoraEduUserContext`](./API%20Reference/edu_context_swift/API/edu_context_api_overview.html#api-title__user_context) 的 `userProperties`，详见[如何设置自定义用户属性](faq/agora_class_custom_properties)。  |

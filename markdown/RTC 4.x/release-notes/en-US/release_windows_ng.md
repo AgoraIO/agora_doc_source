@@ -44,6 +44,7 @@
  - When joining a channel and accessing an external camera, calling `setDevice` to specify the video capture device as the external camera did not take effect. 
  - When trying to outline the shared window and put it on top, the shared window did not stay on top of other windows. 
  - When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed. 
+ - At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
 
  #### API changes
 
@@ -60,3 +61,16 @@
 
  - `enableRemoteSuperResolution`
  - Deleted `superResolutionType` in `RemoteVideoStats`
+
+## v4.0.0
+
+#### New features
+
+**2. Ultra HD resolution (Beta)**
+
+In order to improve the interactive video experience, the SDK optimizes the whole process of video capture, encoding, decoding and rendering, and now supports 4K resolution. The improved FEC (Forward Error Correction) algorithm enables adaptive switches according to the frame rate and number of video frame packets, which further reduces the video stuttering rate in 4K scenes.
+
+Additionally, you can set the encoding resolution to 4K (3840 × 2160) and the frame rate to 60 fps when calling `setVideoEncoderConfiguration`. The SDK supports automatic fallback to the appropriate resolution and frame rate if your device does not support 4K.
+
+<div class="alert info"><li>This feature has certain requirements with regards to device performance and network bandwidth, and the supported upstream and downstream frame rates vary on different platforms. To experience this feature, contact [support@agora.io](mailto:support@agora.io).
+<li>The increase in the default resolution affects the aggregate resolution and thus the billing rate. See <a href="./billing_rtc_ng">Pricing</a>.</div>

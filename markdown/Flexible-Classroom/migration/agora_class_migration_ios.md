@@ -1,6 +1,6 @@
 ## 从 1.1.5 升级至 2.0.0
 
-在 2.0.0 版中，Agora 优化了 Agora Classroom SDK 的内部架构，重新设计了 Agora Edu Context API。
+在 2.0.0 版中，声网优化了 Classroom SDK 的内部架构，重新设计了 Agora Edu Context API。
 
 本节列出 2.0.0 与 1.1.5 在 Edu Context API 上的主要变动。
 

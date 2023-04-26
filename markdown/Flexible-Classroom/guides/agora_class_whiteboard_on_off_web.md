@@ -1,81 +1,98 @@
-灵动课堂中的白板模块是基于 AgoraWidget 实现的。如果你想在房间内开启或关闭白板功能，可通过设置 Widget 的状态（活跃或非活跃）实现。
+灵动课堂中的白板模块是基于 `AgoraWidget` 实现的。你可以通过将 widget 状态设置为活跃（active）或非活跃（inactive）来在教室中打开或关闭白板模块。
 
-## Desktop
+关闭白板模块后，铅笔、文本框、形状和橡皮擦等绘图工具将不再可用，用户也不能在白板上显示课件，上传或删除课程文件。弹出式测验、倒计时和屏幕共享等其他不依赖白板的功能不会受到影响。
 
-我们在2.8中封装了启用和禁用白板的功能，通过调用这些API，用户可以控制是否显示白板。
+## 开启和关闭白板
 
-
-
-实现白板模块开关逻辑如下：
-
-1、我们把白板界面打包在这个目录下：packages/agora-classroom-sdk/src/infra/stores/common/base.ts文件夹：
+白板界面打包在 `packages/agora-classroom-sdk/src/infra/stores/common/base.ts` 文件中，白板相关的接口在 `packages/agora-classroom-sdk/src/infra/protocol/board.ts` 文件中。
 
 ```typescript
-/**
-  * Board releated APIs
-  */
  get boardApi() {
    return EduUIStoreBase._boardApi;
  }
 ```
 
-2、白板相关的接口在这个文件中
-包/agora-classroom-sdk/src/infra/protocol/board.ts:
+实现开启或关闭白板的过程中，你需要监控教师客户端引起的白板状态变化，并相应地调整 UI。 
 
-
-![](./board_code.png)
+调用白板相关接口 `boardApi.enable()` 和 `boardApi.disable()` 以开启和关闭白板。 
 
 ```typescript
-/**
- * whether the board is connected to server
- */
+...
+// 开启白板
+this.boardApi.enable();
+...
+// 关闭白板
+this.boardApi.disable();
+...
+```
+
+## API 参考
+
+#### connected
+
+```typescript
 @computed
 get connected() {
   return this.connState === BoardConnectionState.Connected;
 }
- 
-/**
- * whether the board is mounted in client
- */
+```
+
+查询白板是否连接到服务器。
+
+**返回值**
+
+- `true`：已连接。
+- `false`：未连接。
+
+#### mounted
+
+```typescript
 @computed
 get mounted() {
   return this.mountState === BoardMountState.Mounted;
 }
- 
-/**
- * whether the current user is granted to operate on the board
- */
+```
+
+查询白板是否已挂载。
+
+**返回值**
+
+- `true`：已挂载。
+- `false`：未挂载。
+
+#### granted
+
+```typescript
 @computed
 get granted() {
   return this.hasPrivilege();
 }
+```
+
+查询用户是否有操作白板权限。
+
+**返回值**
+
+- `true`：有权限。
+- `false`：无权限。
  
-/**
- * connect and show the board
- */
+ #### enable
+
+ ```typescript
 enable() {
   this._sendBoardCommandMessage(AgoraExtensionRoomEvent.ToggleBoard, true);
 }
- 
-/**
- * disconnect and hide the board
- */
+```
+
+连接并开启白板。
+
+#### disable
+
+```typescript
 disable() {
   this._sendBoardCommandMessage(AgoraExtensionRoomEvent.ToggleBoard, false);
 }
 ```
 
+断开连接并关闭白板。
 
-3、所以如果你想隐藏白板
-
-调用这个 api：
-
-```typescript
-this.boardApi.disable();
-```
-
-如果你想启用白板
-调用这个 api：
-```typescript
-this.boardApi.enable();
-```
