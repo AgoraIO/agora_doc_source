@@ -36,7 +36,43 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoRenderingTracingInfo {
+  const VideoRenderingTracingInfo(
+      {this.elapsedTime,
+      this.start2JoinChannel,
+      this.join2JoinSuccess,
+      this.joinSuccess2RemoteJoined,
+      this.remoteJoined2SetView,
+      this.remoteJoined2UnmuteVideo,
+      this.remoteJoined2PacketReceived});
+
+  @JsonKey(name: 'elapsedTime')
+  final int? elapsedTime;
+
+  @JsonKey(name: 'start2JoinChannel')
+  final int? start2JoinChannel;
+
+  @JsonKey(name: 'join2JoinSuccess')
+  final int? join2JoinSuccess;
+
+  @JsonKey(name: 'joinSuccess2RemoteJoined')
+  final int? joinSuccess2RemoteJoined;
+
+  @JsonKey(name: 'remoteJoined2SetView')
+  final int? remoteJoined2SetView;
+
+  @JsonKey(name: 'remoteJoined2UnmuteVideo')
+  final int? remoteJoined2UnmuteVideo;
+
+  @JsonKey(name: 'remoteJoined2PacketReceived')
+  final int? remoteJoined2PacketReceived;
+
+  factory VideoRenderingTracingInfo.fromJson(Map&lt;String, dynamic> json) =>
+      _$VideoRenderingTracingInfoFromJson(json);
+
+  Map&lt;String, dynamic> toJson() => _$VideoRenderingTracingInfoToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
