@@ -405,7 +405,7 @@ ChatClient.getInstance().init(this, options);
 
 #### 1. 在 OPPO 开发者后台创建应用
 
-在 OPPO 开发者后台创建应用，开启 push 服务，并上传对应的证书指纹。详见 OPPO 官方介绍：[OPPO 推送服务集成](https://open.oppomobile.com/new/developmentDoc/info?id=10195)。
+在 OPPO 开发者后台创建应用，开启推送服务，并上传对应的证书指纹。详见 OPPO 官方介绍：[OPPO 推送服务集成](https://open.oppomobile.com/new/developmentDoc/info?id=10195)。
 
 #### 2. 上传推送证书
 

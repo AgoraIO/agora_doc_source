@@ -209,9 +209,9 @@ GET https://{host}/{org_name}/{app_name}/callbacks/storage/info
 | `application`        | String  | 系统内为 app 生成的唯一内部标识，无需关注。                  |
 | `action`             | String  | 请求方式。                                                   |
 | `data`            | JSON Array  | 响应数据内容。  |
-| `data.date`       | String | 本次可以发送的补发的一个 10 分钟 date key，key 为 10 分钟的起始时间。 |
+| `data.date`       | String | 本次可以补发的一个 10 分钟的 data key，key 为 10 分钟的起始时间。 |
 | `data.size`       | Number    | 本时段消息数量。                                             |
-| `data.retry`      | Number    | 开发者已经重试补发的次数。考虑到补发也可能失败，服务器会继续存储。最开始是 0。 |
+| `data.retry`      | Number    | 开发者已经重试补发的次数。考虑到补发也可能失败，服务器会继续存储。未尝试补发时，该字段的值为 `0`。 |
 | `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
 | `applicationName`    | String  | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。 |
 
@@ -301,9 +301,9 @@ POST http://{host}/{org_name}/{app_name}/callbacks/storage/retry
 | `organization`       | String  | 即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`        | String  | 系统内为 app 生成的唯一内部标识，无需关注。                  |
 | `action`             | String  | 请求方式。                                                   |
-| `data`         | Boolean   | 补发是否成功：<ul><li>`success`：成功</li><li>`failure`：失败</li></ul>    |
+| `data`         | String    | 补发是否成功：<ul><li>`success`：成功</li><li>`failure`：失败</li></ul>    |
 | `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
-| `retry`        | Number    | 开发者已经重试补发的次数。考虑到补发也可能失败，服务器会继续存储。最开始是 0。 |
+| `retry`        | Number    | 开发者已经重试补发的次数。考虑到补发也可能失败，服务器会继续存储。未尝试补发时，该字段的值为 `0`。 |
 | `applicationName`    | String  | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。 |
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
