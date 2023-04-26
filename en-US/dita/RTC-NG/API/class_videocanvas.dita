@@ -183,7 +183,8 @@
   mediaPlayerId?: number;
   cropArea?: Rectangle;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class VideoCanvas {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoCanvas {
   const VideoCanvas(
       {this.view,
       this.uid,
@@ -192,7 +193,8 @@
       this.setupMode,
       this.sourceType,
       this.mediaPlayerId,
-      this.cropArea});
+      this.cropArea,
+      this.enableAlphaMask});
 
   @JsonKey(name: 'view')
   final int? view;
@@ -217,6 +219,9 @@
 
   @JsonKey(name: 'cropArea')
   final Rectangle? cropArea;
+
+  @JsonKey(name: 'enableAlphaMask')
+  final bool? enableAlphaMask;
 
   factory VideoCanvas.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoCanvasFromJson(json);
