@@ -13,6 +13,7 @@
 | 1      | `GENERAL_ERROR`          | 默认未区分类型的错误：提示 SDK 内部未正确初始化，或者请求服务器时未识别出具体原因的错误。 |
 | 2      | `NETWORK_ERROR`          | 网络错误：无网络服务时会回调此错误，表示 SDK 与服务器的连接已断开。 |
 | 4      | `EXCEED_SERVICE_LIMIT`       | 超过服务限制：超过服务版本的数量限制，比如创建的用户 ID 数量超过购买服务的限制时提示该错误。 |
+| 8      | `APP_ACTIVE_NUMBER_REACH_LIMITATION`       | 应用程序的日活跃用户数量（DAU）或月活跃用户数量（MAU）达到上限。 |
 | 100    | `INVALID_APP_KEY`         | App Key 不合法：用户的 App Key 格式不正确。          |
 | 101    | `INVALID_USER_NAME`        | 用户 ID 不正确：一般是用户 ID 为空时提示该错误，比如使用邀请好友 API 时 username 参数为空字符。 |
 | 102    | `INVALID_PASSWORD`         | 用户密码不正确：登录时提供的密码为空或不正确。        |
@@ -61,6 +62,8 @@
 | 506    | `MESSAGE_EXPIRED`         | 消息已过期：发送群组回执时如果已经超过时间限制 (默认 3 天) 会提示该错误。 |
 | 507    | `MESSAGE_ILLEGAL_WHITELIST`    | 用户未在白名单中：如果群组或聊天室开启全员禁言，且用户未在白名单中发送消息时提示该错误。 |
 | 508    | `MESSAGE_EXTERNAL_LOGIC_BLOCKED`  | 消息执行发送前回调，发送的消息被用户自己的服务器定义的规则拦截掉时提示该错误。 |
+| 509    |      MESSAGE_CURRENT_LIMITING      |              单个用户 ID 发送群聊消息超出频率限制。              |
+| 510    |      MESSAGE_SIZE_LIMIT      | 发送消息时消息体大小超过上限。|
 | 600    | `GROUP_INVALID_ID`         | 群组 ID 异常：使用群组相关 API，提供的群组 ID 为空时提示该错误。 |
 | 601    | `GROUP_ALREADY_JOINED`       | 已在该群组中：调用加入群组的 API 时如果已经在该群组中则提示该错误。 |
 | 602    | `GROUP_NOT_JOINED`         | 未加入该群组：尝试在未加入的群组中发送消息或进行群组操作时提示该错误。 |
