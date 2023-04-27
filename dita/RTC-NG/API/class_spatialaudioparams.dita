@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudioparams">
-  <title><ph keyref="SpatialAudioParams"/></title>
+  <title><ph keyref="SpatialAudioParams" /></title>
   <shortdesc id="short"><ph id="shortdesc">空间音效参数。</ph></shortdesc>
   <refbody>
     <section id="prototype">
@@ -59,14 +59,14 @@
 @property(assign, nonatomic) BOOL enable_doppler;
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioParams {
-  Optional&lt;double> speaker_azimuth;
-  Optional&lt;double> speaker_elevation;
-  Optional&lt;double> speaker_distance;
-  Optional&lt;int> speaker_orientation;
-  Optional&lt;bool> enable_blur;
-  Optional&lt;bool> enable_air_absorb;
-  Optional&lt;double> speaker_attenuation;
-  Optional&lt;bool> enable_doppler;
+  Optional&lt;double&gt; speaker_azimuth;
+  Optional&lt;double&gt; speaker_elevation;
+  Optional&lt;double&gt; speaker_distance;
+  Optional&lt;int&gt; speaker_orientation;
+  Optional&lt;bool&gt; enable_blur;
+  Optional&lt;bool&gt; enable_air_absorb;
+  Optional&lt;double&gt; speaker_attenuation;
+  Optional&lt;bool&gt; enable_doppler;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
   
@@ -94,8 +94,8 @@
         public Optional&lt;int&gt; speaker_orientation = new Optional&lt;int&gt;();
         public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
-        public Optional&lt;double> speaker_attenuation = new Optional&lt;double>();
-        public Optional&lt;bool> enable_doppler = new Optional&lt;bool>();
+        public Optional&lt;double&gt; speaker_attenuation = new Optional&lt;double&gt;();
+        public Optional&lt;bool&gt; enable_doppler = new Optional&lt;bool&gt;();
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
   
@@ -150,15 +150,15 @@
   @JsonKey(name: 'enable_doppler')
   final bool? enableDoppler;
 
-  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic> json) =>
+  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$SpatialAudioParamsFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$SpatialAudioParamsToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioParamsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="reserve" outputclass="language-cpp" /></p>
     </section>
     <section id="parameters">
-      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+      <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
       <plentry>
         <pt>speaker_azimuth</pt>
@@ -200,8 +200,8 @@
         <pd>是否开启声音模糊处理：
           
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: 开启模糊处理。</li>
-          <li><codeph><ph keyref="false"/></codeph>: （默认）关闭模糊处理。</li>
+          <li><codeph><ph keyref="true" /></codeph>: 开启模糊处理。</li>
+          <li><codeph><ph keyref="false" /></codeph>: （默认）关闭模糊处理。</li>
           </ul></pd>
       </plentry>
       <plentry>
@@ -209,8 +209,8 @@
         <pd>是否开启空气衰减，即模拟声音在空气中传播的音色衰减效果：在一定的传输距离下，高频声音衰减速度快、低频声音衰减速度慢。
           
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: （默认）开启空气衰减。需确认 <parmname>speaker_attenuation</parmname> 的值不为 <codeph>0</codeph>，否则该设置不生效。</li>
-          <li><codeph><ph keyref="false"/></codeph>: 关闭空气衰减。</li>
+          <li><codeph><ph keyref="true" /></codeph>: （默认）开启空气衰减。需确认 <parmname>speaker_attenuation</parmname> 的值不为 <codeph>0</codeph>，否则该设置不生效。</li>
+          <li><codeph><ph keyref="false" /></codeph>: 关闭空气衰减。</li>
           </ul></pd>
       </plentry>
       <plentry>
@@ -229,13 +229,13 @@
         <pd>是否开启多普勒音效：当声源与接收声源者之间产生相对位移时，接收方听到的音调会发生变化。
             
           <ul>
-          <li><codeph><ph keyref="true"/></codeph>: 开启多普勒音效。</li>
-          <li><codeph><ph keyref="false"/></codeph>: （默认）关闭多普勒音效。</li>
+          <li><codeph><ph keyref="true" /></codeph>: 开启多普勒音效。</li>
+          <li><codeph><ph keyref="false" /></codeph>: （默认）关闭多普勒音效。</li>
           </ul>
           <note type="caution">
           <ul>
           <li>该参数适用于声源高速运动的场景（例如：赛车游戏），在普通音视频互动场景（语聊、连麦、在线 KTV）中不建议开启。</li>
-          <li>开启该参数时，建议设定一个规律的周期（比如 30 ms），然后调用 <xref keyref="updatePlayerPositionInfo"/>、<xref keyref="updateSelfPosition"/> 和 <xref keyref="updateRemotePosition"/> 方法持续更新声源和接收方的相对距离。以下因素会导致多普勒效应达不到预期或者声音出现抖动：更新距离的周期过长，更新周期不规律，网络丢包或延迟导致距离信息丢失。</li>
+          <li>开启该参数时，建议设定一个规律的周期（比如 30 ms），然后调用 <xref keyref="updatePlayerPositionInfo" />、<xref keyref="updateSelfPosition" /> 和 <xref keyref="updateRemotePosition" /> 方法持续更新声源和接收方的相对距离。以下因素会导致多普勒效应达不到预期或者声音出现抖动：更新距离的周期过长，更新周期不规律，网络丢包或延迟导致距离信息丢失。</li>
           </ul> </note></pd>
       </plentry>
       </parml> </section>
