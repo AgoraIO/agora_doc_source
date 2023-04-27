@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">#if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
     virtual int queryScreenCaptureCapability() = 0;
 #endif</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract queryScreenCaptureCapability(): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"></codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int QueryScreenCaptureCapability();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract queryScreenCaptureCapability(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int> queryScreenCaptureCapability();</codeblock> </p>
@@ -35,7 +35,7 @@
         </section>
         <section id="scenario">
             <title>适用场景</title>
-            <p props="cpp">该方法仅适用于 Android 和 iOS。</p>
+            <p props="cpp unity flutter">该方法仅适用于 Android 和 iOS。</p>
             <p>在屏幕共享场景下，如果你想启用高帧率（如 60 fps）、但不确定设备是否支持时，可以先调用该方法查询设备支持的最高帧率。如果设备不支持高帧率，你可以在开启屏幕共享时适当调低屏幕共享流的帧率，以确保共享场景的效果符合预期。</p>
         </section>
         <section id="return_values">
@@ -43,8 +43,9 @@
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul props="apple"><li>方法调用成功时，返回设备支持的最高帧率。详见 <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>。</li>
                 <li>方法调用失败时，返回 <xref keyref="NULL"/>。</li></ul>
-                <ul props="cpp android">
-                    <li><ph>方法调用成功时，返回设备支持的最高帧率。</ph><ph props="cpp">详见 <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>。</ph><ul  props="android">
+                <ul props="cpp android unity rn flutter">
+                    <li><ph>方法调用成功时，返回设备支持的最高帧率。</ph><ph props="cpp unity rn flutter">详见 <xref keyref="SCREEN_CAPTURE_FRAMERATE_CAPABILITY"/>。</ph>
+                    <ul  props="android">
                     <li>0：最高支持 15 fps。</li>
                     <li>1：最高支持 30 fps。</li>
                     <li>2：最高支持 60 fps。</li></ul></li>
