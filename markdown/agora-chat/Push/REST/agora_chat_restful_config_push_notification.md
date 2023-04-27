@@ -56,6 +56,11 @@
 | `agora`  | JSON   | 声网推送 | 否       |
 | `apns`     | JSON   | Apple 推送通知服务（APNs） | 否        |
 | `fcm`      | JSON   | 谷歌 Firebase 云消息传递  (FCM) | 否        |
+| `xiaomi`      | JSON   | 小米推送 | 否        |
+| `vivo`      | JSON   | vivo 推送 | 否        |
+| `oppo`      | JSON   | OPPO 推送 | 否        |
+| `meizu`      | JSON   | 魅族推送 | 否        |
+| `huawei`      | JSON   | 华为推送 | 否        |
 
 ### 声网推送
 
