@@ -28,42 +28,28 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
-  
+
   streamCount?: number;
-  
+
   VideoInputStreams?: TranscodingVideoStream[];
-  
+
   videoOutputConfiguration?: VideoEncoderConfiguration;
 
   syncWithPrimaryCamera?: boolean;
 }</codeblock>
             <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration
     {
-        public LocalTranscoderConfiguration()
-        {
-            streamCount = 0;
-            VideoInputStreams = null;
-            videoOutputConfiguration = new VideoEncoderConfiguration();
-        }
-
-        public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
-                                            VideoEncoderConfiguration videoOutputConfiguration)
-        {
-            this.streamCount = streamCount;
-            this.VideoInputStreams = VideoInputStreams;
-            this.videoOutputConfiguration = videoOutputConfiguration;
-        }
-
-        public uint streamCount { set; get; }
-        public TranscodingVideoStream[] VideoInputStreams { set; get; }
-        public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
+        public uint streamCount;
+        public TranscodingVideoStream[] videoInputStreams;
+        public VideoEncoderConfiguration videoOutputConfiguration;
+        public bool syncWithPrimaryCamera;
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalTranscoderConfiguration {
-  
+
   streamCount?: number;
-  
+
   VideoInputStreams?: TranscodingVideoStream[];
-  
+
   videoOutputConfiguration?: VideoEncoderConfiguration;
 
   syncWithPrimaryCamera?: boolean;

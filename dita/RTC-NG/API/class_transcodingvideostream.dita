@@ -66,94 +66,66 @@
       mirror(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingVideoStream {
-  
+
   sourceType?: MediaSourceType;
-  
+
   remoteUserUid?: number;
-  
+
   imageUrl?: string;
 
   mediaPlayerId?: number;
-  
+
   x?: number;
-  
+
   y?: number;
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   zOrder?: number;
-  
+
   alpha?: number;
-  
+
   mirror?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class TranscodingVideoStream
+            <codeblock props="unity" outputclass="language-csharp">
+    public class TranscodingVideoStream
     {
-        public TranscodingVideoStream()
-        {
-            this.sourceType = MEDIA_SOURCE_TYPE.PRIMARY_CAMERA_SOURCE;
-            remoteUserUid = 0;
-            imageUrl = null;
-            x = 0;
-            y = 0;
-            width = 0;
-            height = 0;
-            zOrder = 0;
-            alpha = 1.0;
-            mirror = false;
-        }
-
-        public TranscodingVideoStream(MEDIA_SOURCE_TYPE sourceType, uint remoteUserUid,
-            string imageUrl, int x, int y, int width, int height, int zOrder, double alpha,
-            bool mirror)
-        {
-            this.sourceType = sourceType;
-            this.remoteUserUid = remoteUserUid;
-            this.imageUrl = imageUrl;
-            this.x = x;
-            this.y = y;
-            this.width = width;
-            this.height = height;
-            this.zOrder = zOrder;
-            this.alpha = alpha;
-            this.mirror = mirror;
-        }
-
-        public MEDIA_SOURCE_TYPE sourceType { set; get; }
-        public uint remoteUserUid { set; get; }
-        public string imageUrl { set; get; }
-        public int x { set; get; }
-        public int y { set; get; }
-        public int width { set; get; }
-        public int height { set; get; }
-        public int zOrder { set; get; }
-        public double alpha { set; get; }
-        public bool mirror { set; get; }
-    }</codeblock>
+        public VIDEO_SOURCE_TYPE sourceType;
+        public uint remoteUserUid;
+        public string imageUrl;
+        public int mediaPlayerId;
+        public int x;
+        public int y;
+        public int width;
+        public int height;
+        public int zOrder;
+        public double alpha;
+        public bool mirror;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class TranscodingVideoStream {
-  
+
   sourceType?: MediaSourceType;
-  
+
   remoteUserUid?: number;
-  
+
   imageUrl?: string;
 
   mediaPlayerId?: number;
-  
+
   x?: number;
-  
+
   y?: number;
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   zOrder?: number;
-  
+
   alpha?: number;
-  
+
   mirror?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
