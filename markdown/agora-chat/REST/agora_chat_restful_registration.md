@@ -40,13 +40,7 @@
 
 ## 认证方式
 
-即时通讯服务 RESTful API 要求 HTTP 身份验证。每次发送 HTTP 请求时，必须在请求 header 填入如下 `Authorization` 字段：
-
-```http
-Authorization: Bearer YourAppToken
-```
-
-为了提高项目的安全性，声网使用 Token（动态密钥）对即将登录即时通讯系统的用户进行鉴权。即时通讯服务 RESTful API 仅支持使用 app 权限 token 对用户进行身份验证。详见[使用 App 权限 token 进行身份验证](./agora_chat_token?platform=RESTful)。
+~458499a0-7908-11ec-bcb4-b56a01c83d2e~
 
 <a name="single"></a>
 
