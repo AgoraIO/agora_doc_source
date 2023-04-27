@@ -104,11 +104,11 @@
   VideoCanvas()
     : view(NULL), uid(0), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
       setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
-  
+
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uid_t u)
     : view(v), uid(u), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
       sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
-  
+
   VideoCanvas(view_t v, media::base::RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, user_id_t)
     : view(v), uid(0), renderMode(m), mirrorMode(mt), setupMode(VIDEO_VIEW_SETUP_REPLACE),
       sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
@@ -122,47 +122,21 @@
   sourceType?: VideoSourceType
   mediaPlayerId?: number;
   cropArea?: Rectangle;
+  enableAlphaMask?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class VideoCanvas
+            <codeblock props="unity cs" outputclass="language-csharp">public class VideoCanvas
     {
-        public VideoCanvas()
-        {
-            view = 0;
-            uid = 0;
-            renderMode = RENDER_MODE_TYPE.RENDER_MODE_HIDDEN;
 
-            mirrorMode = VIDEO_MIRROR_MODE_TYPE.VIDEO_MIRROR_MODE_AUTO;
-            setupMode = VIDEO_VIEW_SETUP_MODE.VIDEO_VIEW_SETUP_REPLACE;
-            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
-            mediaPlayerId = -(int)ERROR_CODE_TYPE.ERR_NOT_READY;
-            cropArea = new Rectangle();
-
-        }
-
-        public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, uint u)
-        {
-            this.view = v;
-            this.renderMode = m;
-            this.mirrorMode = mt;
-            this.uid = u;
-            setupMode = VIDEO_VIEW_SETUP_MODE.VIDEO_VIEW_SETUP_REPLACE;
-            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
-            mediaPlayerId = -(int)ERROR_CODE_TYPE.ERR_NOT_READY;
-            cropArea = new Rectangle();
-        }
-
-        public VideoCanvas(view_t v, RENDER_MODE_TYPE m, VIDEO_MIRROR_MODE_TYPE mt, string u)
-        {
-            this.view = v;
-            this.renderMode = m;
-            this.mirrorMode = mt;
-            this.uid = 0;
-            setupMode = VIDEO_VIEW_SETUP_MODE.VIDEO_VIEW_SETUP_REPLACE;
-            sourceType = VIDEO_SOURCE_TYPE.VIDEO_SOURCE_CAMERA_PRIMARY;
-            mediaPlayerId = -(int)ERROR_CODE_TYPE.ERR_NOT_READY;
-            cropArea = new Rectangle();
-        }
-      }</codeblock>
+        public view_t view;
+        public uint uid;
+        public RENDER_MODE_TYPE renderMode;
+        public VIDEO_MIRROR_MODE_TYPE mirrorMode;
+        public VIDEO_VIEW_SETUP_MODE setupMode;
+        public VIDEO_SOURCE_TYPE sourceType;
+        public int mediaPlayerId;
+        public Rectangle cropArea;
+        public bool enableAlphaMask;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoCanvas {
   view?: any
   uid?: number;
@@ -172,8 +146,10 @@
   sourceType?: VideoSourceType
   mediaPlayerId?: number;
   cropArea?: Rectangle;
+  enableAlphaMask?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class VideoCanvas {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoCanvas {
   const VideoCanvas(
       {this.view,
       this.uid,
@@ -182,7 +158,8 @@
       this.setupMode,
       this.sourceType,
       this.mediaPlayerId,
-      this.cropArea});
+      this.cropArea,
+      this.enableAlphaMask});
 
   @JsonKey(name: 'view')
   final int? view;
@@ -208,11 +185,14 @@
   @JsonKey(name: 'cropArea')
   final Rectangle? cropArea;
 
+  @JsonKey(name: 'enableAlphaMask')
+  final bool? enableAlphaMask;
+
   factory VideoCanvas.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoCanvasFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoCanvasToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc"> </section>
@@ -283,7 +263,7 @@
           <plentry props="cpp framework">
                 <pt>cropArea</pt>
                 <pd>(Optional) Display area of the video frame, see <xref keyref="Rectangle"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
-             </plentry>   
+             </plentry>
              <plentry props="apple">
                 <pt>cropArea</pt>
                 <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
@@ -297,7 +277,7 @@
                   </ul>
                 </p>
                 <note type="attention"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
-                <note type="note">Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</note>                
+                <note type="note">Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</note>
                 </pd>
             </plentry>
 
