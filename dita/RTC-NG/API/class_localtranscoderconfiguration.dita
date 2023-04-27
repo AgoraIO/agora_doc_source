@@ -28,57 +28,56 @@
 };
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
-  
+
   streamCount?: number;
-  
+
   VideoInputStreams?: TranscodingVideoStream[];
-  
+
   videoOutputConfiguration?: VideoEncoderConfiguration;
+
+  syncWithPrimaryCamera?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class LocalTranscoderConfiguration
+            <codeblock props="unity cs" outputclass="language-csharp">public class LocalTranscoderConfiguration
     {
-        public LocalTranscoderConfiguration()
-        {
-            streamCount = 0;
-            VideoInputStreams = null;
-            videoOutputConfiguration = new VideoEncoderConfiguration();
-        }
-
-        public LocalTranscoderConfiguration(uint streamCount, TranscodingVideoStream[] VideoInputStreams,
-                                            VideoEncoderConfiguration videoOutputConfiguration)
-        {
-            this.streamCount = streamCount;
-            this.VideoInputStreams = VideoInputStreams;
-            this.videoOutputConfiguration = videoOutputConfiguration;
-        }
-
-        public uint streamCount { set; get; }
-        public TranscodingVideoStream[] VideoInputStreams { set; get; }
-        public VideoEncoderConfiguration videoOutputConfiguration { set; get; }
+        public uint streamCount;
+        public TranscodingVideoStream[] videoInputStreams;
+        public VideoEncoderConfiguration videoOutputConfiguration;
+        public bool syncWithPrimaryCamera;
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class LocalTranscoderConfiguration {
-  
+
   streamCount?: number;
-  
+
   VideoInputStreams?: TranscodingVideoStream[];
-  
+
   videoOutputConfiguration?: VideoEncoderConfiguration;
+
+  syncWithPrimaryCamera?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class LocalTranscoderConfiguration {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class LocalTranscoderConfiguration {
   const LocalTranscoderConfiguration(
       {this.streamCount,
       this.videoInputStreams,
-      this.videoOutputConfiguration});
+      this.videoOutputConfiguration,
+      this.syncWithPrimaryCamera});
 
   @JsonKey(name: 'streamCount')
   final int? streamCount;
-  @JsonKey(name: 'VideoInputStreams')
-  final List&lt;TranscodingVideoStream&gt;? videoInputStreams;
+
+  @JsonKey(name: 'videoInputStreams')
+  final List&lt;TranscodingVideoStream>? videoInputStreams;
+
   @JsonKey(name: 'videoOutputConfiguration')
   final VideoEncoderConfiguration? videoOutputConfiguration;
-  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'syncWithPrimaryCamera')
+  final bool? syncWithPrimaryCamera;
+
+  factory LocalTranscoderConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$LocalTranscoderConfigurationFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalTranscoderConfigurationToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$LocalTranscoderConfigurationToJson(this);
 }</codeblock> </p>
         </section>
         <section id="parameters">

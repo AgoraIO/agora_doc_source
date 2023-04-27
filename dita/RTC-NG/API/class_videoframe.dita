@@ -298,66 +298,44 @@
   void* pixelBuffer;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
-  
-  type?: VideoPixelFormat;
-  
-  width?: number;
-  
-  height?: number;
-  
-  yStride?: number;
-  
-  uStride?: number;
-  
-  vStride?: number;
-  
-  yBuffer?: Uint8Array;
-  
-  uBuffer?: Uint8Array;
-  
-  vBuffer?: Uint8Array;
-  
-  rotation?: number;
-  
-  renderTimeMs?: number;
-  
-  avsync_type?: number;
-  
-  metadata_buffer?: Uint8Array;
-  
-  metadata_size?: number;
-  
-  textureId?: number;
-  
-  matrix?: number[];
-  
-}</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class VideoFrame
-    {
-        public VideoFrame()
-        {
-            type = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_DEFAULT;
-            width = 0;
-            height = 0;
-            yStride = 0;
-            uStride = 0;
-            vStride = 0;
-            yBuffer = new byte[0];
-            uBuffer = new byte[0];
-            vBuffer = new byte[0];
-            yBufferPtr = IntPtr.Zero;
-            uBufferPtr = IntPtr.Zero;
-            vBufferPtr = IntPtr.Zero;
-            rotation = 0;
-            renderTimeMs = 0;
-            avsync_type = 0;
-            metadata_buffer = IntPtr.Zero;
-            metadata_size = 0;
-            sharedContext = IntPtr.Zero;
-            textureId = 0;
-            matrix = new float[16];
-        }
 
+  type?: VideoPixelFormat;
+
+  width?: number;
+
+  height?: number;
+
+  yStride?: number;
+
+  uStride?: number;
+
+  vStride?: number;
+
+  yBuffer?: Uint8Array;
+
+  uBuffer?: Uint8Array;
+
+  vBuffer?: Uint8Array;
+
+  rotation?: number;
+
+  renderTimeMs?: number;
+
+  avsync_type?: number;
+
+  metadata_buffer?: Uint8Array;
+
+  metadata_size?: number;
+
+  textureId?: number;
+
+  matrix?: number[];
+
+  alphaBuffer?: Uint8Array;
+
+}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public class VideoFrame
+    {
         public VIDEO_PIXEL_FORMAT type;
 
         public int width;
@@ -398,44 +376,49 @@
 
         public float[] matrix;
 
+        public byte[] alphaBuffer;
+
 
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
-  
+
   type?: VideoPixelFormat;
-  
+
   width?: number;
-  
+
   height?: number;
-  
+
   yStride?: number;
-  
+
   uStride?: number;
-  
+
   vStride?: number;
-  
+
   yBuffer?: Uint8Array;
-  
+
   uBuffer?: Uint8Array;
-  
+
   vBuffer?: Uint8Array;
-  
+
   rotation?: number;
-  
+
   renderTimeMs?: number;
-  
+
   avsync_type?: number;
-  
+
   metadata_buffer?: Uint8Array;
-  
+
   metadata_size?: number;
-  
+
   textureId?: number;
-  
+
   matrix?: number[];
-  
+
+  alphaBuffer?: Uint8Array;
+
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class VideoFrame {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class VideoFrame {
   const VideoFrame(
       {this.type,
       this.width,
@@ -453,6 +436,8 @@
       this.metadataSize,
       this.textureId,
       this.matrix,
+      this.alphaBuffer,
+      this.pixelBuffer});
 
   @JsonKey(name: 'type')
   final VideoPixelFormat? type;
@@ -502,11 +487,17 @@
   @JsonKey(name: 'matrix')
   final List&lt;double>? matrix;
 
+  @JsonKey(name: 'alphaBuffer', ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: 'pixelBuffer', ignore: true)
+  final Uint8List? pixelBuffer;
+
   factory VideoFrame.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoFrameFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$VideoFrameToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
@@ -642,7 +633,7 @@
           <pt>alphaBuffer</pt>
           <pd>
             <p>表示人像分割算法输出的 alpha 通道数据，跟视频帧的尺寸一致。每个像素点的取值范围为 [0,255]，其中 0 表示背景；255 代表前景（人像）。</p>
-            <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。 
+            <p>在用户自定义视频渲染场景下，该参数可帮助实现将视频背景自渲染为各种效果，例如：透明、纯色、图片、视频等。
               <note>该参数需要<xref keyref="ticket-link"/>开通。</note></p>
           </pd>
         </plentry>
