@@ -18,7 +18,7 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual int64_t getCurrentMonotonicTimeInMs() = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract getCurrentMonotonicTimeInMs(): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="unity" outputclass="language-csharp">public abstract long GetCurrentMonotonicTimeInMs();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getCurrentMonotonicTimeInMs(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int> getCurrentMonotonicTimeInMs();</codeblock> </p>
         </section>
@@ -34,7 +34,7 @@
             <p>在自定义视频采集、自定义音频采集场景中，为确保音视频同步，声网建议你调用该方法获取 SDK 当前的 Monotonic Time 后，将该值传入采集的视频帧（<xref keyref="VideoFrame"/>）、音频帧（<xref keyref="AudioFrame"/>）的时间戳参数。</p>
         </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>                     
+            <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
             <li props="native electron unity rn">≥0: 方法调用成功，返回 SDK 当前的 Monotonic Time（毫秒）。</li>
