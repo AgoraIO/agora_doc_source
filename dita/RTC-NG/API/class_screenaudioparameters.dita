@@ -44,6 +44,58 @@
     int captureSignalVolume = 100;
 };
 </codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public class ScreenAudioParameters
+    {
+                                                public int sampleRate;
+                                                public int channels;
+                                                public int captureSignalVolume;
+        public ScreenAudioParameters()
+        {
+            sampleRate = 16000;
+            channels = 2;
+            captureSignalVolume = 100;
+        }
+    };
+                        public class ScreenCaptureParameters2
+    {
+                                                public bool captureAudio;
+                                                public ScreenAudioParameters audioParams;
+                                                public bool captureVideo;
+                                                public ScreenVideoParameters videoParams;
+        public ScreenCaptureParameters2()
+        {
+            captureAudio = false;
+            audioParams = new ScreenAudioParameters();
+            captureAudio = true;
+            videoParams = new ScreenVideoParameters();
+        }
+    };
+    
+    public enum MEDIA_TRACE_EVENT
+    {
+        
+        MEDIA_TRACE_EVENT_VIDEO_RENDERED = 0,
+        
+        MEDIA_TRACE_EVENT_VIDEO_DECODED = 1,
+    };
+    
+    public class VideoRenderingTracingInfo
+    {
+        
+        public int elapsedTime;
+        
+        public int start2JoinChannel;
+        
+        public int join2JoinSuccess;
+        
+        public int joinSuccess2RemoteJoined;
+        
+        public int remoteJoined2SetView;
+        
+        public int remoteJoined2UnmuteVideo;
+        
+        public int remoteJoined2PacketReceived;
+    }</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenAudioParameters {
   
   sampleRate?: number;
@@ -86,12 +138,12 @@
   @JsonKey(name: 'captureSignalVolume')
   final int? captureSignalVolume;
 
-  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic> json) =>
+  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ScreenAudioParametersFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ScreenAudioParametersToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenAudioParametersToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <p>仅适用于 <parmname>captureAudio</parmname> 为 <codeph><ph keyref="true" /></codeph> 的场景。</p>

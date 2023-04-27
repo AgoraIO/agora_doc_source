@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_setplayerattenuation">
-    <title><ph keyref="setPlayerAttenuation"/></title>
+    <title><ph keyref="setPlayerAttenuation" /></title>
     <shortdesc id="short"><ph id="shortdesc">设置媒体播放器的声音衰减属性。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setPlayerAttenuation"/>
+                <indexterm keyref="setPlayerAttenuation" />
             </keywords>
         </metadata>
     </prolog>
@@ -27,11 +27,11 @@
     attenuation: number,
     forceSet: boolean
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setPlayerAttenuation(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setPlayerAttenuation(
       {required int playerId,
       required double attenuation,
       required bool forceSet});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
@@ -46,8 +46,8 @@
             <title>参数</title>
             <parml>
             <plentry conkeyref="updatePlayerPositionInfo/mpkid">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
             <plentry>
                 <pt>attenuation</pt>
@@ -65,11 +65,11 @@
                 <pd>是否强制设定媒体播放器的声音衰减效果：
 
                     <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，此时 <xref keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 中设置的隔声区域衰减系数对媒体播放器不生效。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，分为以下两种情况。
+                    <li><codeph><ph keyref="true" /></codeph>：强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，此时 <xref keyref="SpatialAudioZone" /> 中的 <parmname>audioAttenuation</parmname> 中设置的隔声区域衰减系数对媒体播放器不生效。</li>
+                    <li><codeph><ph keyref="false" /></codeph>：不强制使用 <parmname>attenuation</parmname> 设置媒体播放器的声音衰减效果，分为以下两种情况。
 
                         <ul id="forceset-false">
-                        <li>如果音源和听声者分属于隔声区域内部和外部，则声音衰减效果由 <apiname keyref="SpatialAudioZone"/> 中的 <parmname>audioAttenuation</parmname> 决定。 </li>
+                        <li>如果音源和听声者分属于隔声区域内部和外部，则声音衰减效果由 <apiname keyref="SpatialAudioZone" /> 中的 <parmname>audioAttenuation</parmname> 决定。 </li>
                         <li>如果音源和听声者在同一个隔声区域内或同在隔声区域外，则声音衰减效果由该方法中的 <parmname>attenuation</parmname> 决定。</li>
                         </ul></li>
                     </ul></pd>

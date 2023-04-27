@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imusiccontentcentereventhandler_onpreloadevent">
-    <title><ph keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></title>
+    <title><ph keyref="onPreLoadEvent_IMusicContentCenterEventHandler" /></title>
     <shortdesc id="short"><ph id="shortdesc">报告预加载音乐资源的事件。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/>
+                <indexterm keyref="onPreLoadEvent_IMusicContentCenterEventHandler" />
             </keywords>
         </metadata>
     </prolog>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onPreLoadEvent(long songCode, int percent, String lyricUrl, int status, int errorCode);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl status:(AgoraMusicContentCenterPreloadStatus)status errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, const char* lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode error_code) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">void onPreLoadEvent(long songCode, int percent, int status, String msg, String lyricUrl);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent status:(AgoraMusicContentCenterPreloadStatus)status msg:(NSString *)msg lyricUrl:(NSString *)lyricUrl;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, PreloadStatusCode status, const char* msg, const char* lyricUrl = nullptr) = 0;</codeblock>
+            <codeblock props="cs" outputclass="language-csharp">public abstract void OnPreLoadEvent(Int64 songCode, int percent,string lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode error_code);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onPreLoadEvent?(
     songCode: number,
     percent: number,
@@ -31,13 +32,9 @@
     status: PreloadStatusCode,
     errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(
-      int songCode,
-      int percent,
-      String lyricUrl,
-      PreloadStatusCode status,
-      MusicContentCenterStatusCode errorCode)? onPreLoadEvent;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"/></p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int songCode, int percent, PreloadStatusCode status,
+      String msg, String lyricUrl)? onPreLoadEvent;</codeblock>
+            <codeblock props="unreal" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -46,7 +43,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>当你调用 <xref keyref="preload"/> 方法预加载音乐资源后，SDK 会触发该回调。</p>
+            <p>当你调用 <xref keyref="preload" /> 方法预加载音乐资源后，SDK 会触发该回调。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -66,7 +63,7 @@
             <plentry id="status">
                 <pt>status</pt>
                 <pd>
-                    <p props="apple cpp framework">当前音乐资源的加载状态。详见 <xref keyref="PreloadStatusCode"/>。</p>
+                    <p props="apple cpp framework">当前音乐资源的加载状态。详见 <xref keyref="PreloadStatusCode" />。</p>
                     <p props="android">当前音乐资源的加载状态：
 
                     <ul>
