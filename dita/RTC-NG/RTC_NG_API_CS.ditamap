@@ -106,9 +106,11 @@
             <topicref keyref="setSubscribeAudioAllowlistEx" toc="no"/>
             <topicref keyref="setSubscribeVideoBlocklistEx" toc="no"/>
             <topicref keyref="setSubscribeVideoAllowlistEx" toc="no"/>
+            <topicref keyref="setRemoteRenderModeEx" toc="no"/>
             <topicref keyref="setupRemoteVideoEx" toc="no" props="hide"/>
             <topicref keyref="setVideoEncoderConfigurationEx" toc="no"/>
             <topicref keyref="startChannelMediaRelayEx" toc="no"/>
+            <topicref keyref="startOrUpdateChannelMediaRelayEx" toc="no"/>
             <topicref keyref="startRtmpStreamWithoutTranscodingEx" toc="no"/>
             <topicref keyref="startRtmpStreamWithTranscodingEx" toc="no"/>
             <topicref keyref="stopChannelMediaRelayEx" toc="no"/>
@@ -140,6 +142,7 @@
             <topicref keyref="setSubscribeAudioAllowlist" toc="no"/>
             <topicref keyref="setSubscribeVideoBlocklist" toc="no"/>
             <topicref keyref="setSubscribeVideoAllowlist" toc="no"/>
+            <topicref keyref="startOrUpdateChannelMediaRelay" toc="no"/>
             <topicref keyref="startChannelMediaRelay" toc="no"/>
             <topicref keyref="stopChannelMediaRelay" toc="no"/>
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
@@ -164,7 +167,7 @@
             <topicref keyref="enableAudioSpectrumMonitor" toc="no"/>
             <topicref keyref="enableAudioVolumeIndication" toc="no"/>
             <topicref keyref="enableEchoCancellationExternal" toc="no" props="hide"/>
-            <topicref keyref="enableInEarMonitoring2" toc="no"/>
+            <topicref keyref="enableInEarMonitoring2" toc="no" processing-role="resource-only"/>
             <topicref keyref="enableLocalAudio" toc="no"/>
             <topicref keyref="enableLoopbackRecording" toc="no"/>
             <topicref keyref="getAudioMixingCurrentPosition" toc="no"/>
@@ -178,34 +181,36 @@
             <topicref keyref="pushAudioFrame" toc="no"/>
             <topicref keyref="resumeAudioMixing" toc="no"/>
             <topicref keyref="selectAudioTrack" toc="no"/>
-            <topicref keyref="setAdvancedAudioOptions" toc="no"/>
+            <topicref keyref="setAdvancedAudioOptions" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setAINSMode" toc="no"/>
             <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
             <topicref keyref="setAudioMixingPitch" toc="no"/>
             <topicref keyref="setAudioMixingPosition" toc="no"/>
             <topicref keyref="setAudioProfile" toc="no"/>
             <topicref keyref="setAudioProfile2" toc="no"/>
             <topicref keyref="setAudioScenario" toc="no"/>
-            <topicref keyref="setAudioSessionOperationRestriction" toc="no"/>
-            <topicref keyref="setDefaultAudioRouteToSpeakerphone" toc="no"/>
+            <topicref keyref="setAudioSessionOperationRestriction" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setDefaultAudioRouteToSpeakerphone" toc="no" processing-role="resource-only"/>
             <topicref keyref="setEarMonitoringAudioFrameParameters" toc="no"/>
             <topicref keyref="setExternalAudioSink" toc="no"/>
             <topicref keyref="setExternalAudioSource2" toc="no"/>
-            <topicref keyref="setInEarMonitoringVolume" toc="no"/>
+            <topicref keyref="setInEarMonitoringVolume" toc="no" processing-role="resource-only"/>
             <topicref keyref="startAudioMixing" toc="no"/>
             <topicref keyref="startAudioMixing2" toc="no"/>
             <topicref keyref="startAudioRecording1" toc="no"/>
             <topicref keyref="startAudioRecording2" toc="no"/>
             <topicref keyref="startAudioRecording3" toc="no"/>
-            <topicref keyref="startRhythmPlayer" toc="no"/>
+            <topicref keyref="startRhythmPlayer" toc="no" processing-role="resource-only"/>
             <topicref keyref="stopAudioMixing" toc="no"/>
             <topicref keyref="stopAudioRecording" toc="no"/>
-            <topicref keyref="stopRhythmPlayer" toc="no"/>
+            <topicref keyref="stopRhythmPlayer" toc="no" processing-role="resource-only"/>
             <topicref keyref="onActiveSpeaker" toc="no"/>
             <topicref keyref="onAudioMixingFinished" toc="no"/>
             <topicref keyref="onAudioMixingStateChanged" toc="no"/>
+            <topicref keyref="onAudioMixingPositionChanged" toc="no"/>
             <topicref keyref="onAudioPublishStateChanged" toc="no"/>
             <topicref keyref="onAudioQuality" toc="no"/>
-            <topicref keyref="onAudioRoutingChanged" toc="no"/>
+            <topicref keyref="onAudioRoutingChanged" toc="no" processing-role="resource-only"/>
             <topicref keyref="onAudioVolumeIndication" toc="no"/>
             <topicref keyref="onFirstLocalAudioFramePublished" toc="no"/>
             <topicref keyref="onFirstRemoteAudioDecoded" toc="no"/>
@@ -215,7 +220,7 @@
             <topicref keyref="onRemoteAudioStateChanged" toc="no"/>
             <topicref keyref="onRemoteAudioStats" toc="no"/>
             <topicref keyref="onRemoteAudioTransportStats" toc="no"/>
-            <topicref keyref="onRhythmPlayerStateChanged" toc="no"/>
+            <topicref keyref="onRhythmPlayerStateChanged" toc="no" processing-role="resource-only"/>
             <topicref keyref="onUserMuteAudio" toc="no"/>
         </topicref>
         <topicref href="API/toc_audio_effect.dita" chunk="to-content">
@@ -250,6 +255,7 @@
             <topicref keyref="setHeadphoneEQParameters" toc="no"/>
             <topicref keyref="setHeadphoneEQPreset" toc="no"/>
             <topicref keyref="setLocalVoiceEqualization" toc="no"/>
+            <topicref keyref="setLocalVoiceFormant" toc="no"/>
             <topicref keyref="setLocalVoicePitch" toc="no"/>
             <topicref keyref="setLocalVoiceReverb" toc="no"/>
             <topicref keyref="setMaxAudioRecvCount" toc="no"/>
@@ -279,16 +285,18 @@
             <topicref keyref="destroyCustomVideoTrack" toc="no"/>
             <topicref keyref="disableVideo" toc="no"/>
             <topicref keyref="enableContentInspect" toc="no"/>
-            <topicref keyref="enableFaceDetection" toc="no"/>
+            <topicref keyref="enableFaceDetection" toc="no" processing-role="resource-only"/>
             <topicref keyref="enableLocalVideo" toc="no"/>
-            <topicref keyref="enableMultiCamera" toc="no"/>
-            <topicref keyref="enableRemoteSuperResolution" toc="no"/>
+            <topicref keyref="enableMultiCamera" toc="no" processing-role="resource-only"/>
+            <topicref keyref="enableRemoteSuperResolution" toc="no" processing-role="resource-only"/>
             <topicref keyref="enableVideo" toc="no"/>
             <topicref keyref="enableVideoImageSource" toc="no"/>
             <topicref keyref="enableVirtualBackground" toc="no"/>
+            <topicref keyref="getCurrentMonotonicTimeInMs" toc="no"/>
             <topicref keyref="pushEncodedVideoImage" toc="no" props="hide"/>
             <topicref keyref="pushVideoFrame" toc="no"/>
-            <topicref keyref="setBeautyEffectOptions" toc="no"/>
+            <topicref keyref="queryCodecCapability" toc="no"/>
+            <topicref keyref="setBeautyEffectOptions" toc="no" processing-role="resource-only"/>
             <topicref keyref="setColorEnhanceOptions" toc="no"/>
             <topicref keyref="setEnable" toc="no"/>
             <topicref keyref="setForUser" toc="no"/>
@@ -300,24 +308,24 @@
             <topicref keyref="setupRemoteVideo" toc="no"/>
             <topicref keyref="setRemoteRenderMode2" toc="no"/>
             <topicref keyref="setVideoDenoiserOptions" toc="no"/>
+            <topicref keyref="setVideoScenario" toc="no"/>
             <topicref keyref="setVideoEncoderConfiguration" toc="no"/>
+            <topicref keyref="startCameraCapture" toc="no"/>
             <topicref keyref="startLocalVideoTranscoder" toc="no"/>
             <topicref keyref="startPreview" toc="no"/>
             <topicref keyref="startPreview2" toc="no"/>
-            <topicref keyref="startPrimaryCameraCapture" toc="no"/>
-            <topicref keyref="startSecondaryCameraCapture" toc="no"/>
+            <topicref keyref="stopCameraCapture" toc="no"/>
             <topicref keyref="stopLocalVideoTranscoder" toc="no"/>
             <topicref keyref="stopPreview" toc="no"/>
             <topicref keyref="stopPreview2" toc="no"/>
-            <topicref keyref="stopPrimaryCameraCapture" toc="no"/>
-            <topicref keyref="stopSecondaryCameraCapture" toc="no"/>
             <topicref keyref="takeSnapshot" toc="no"/>
             <topicref keyref="onContentInspectResult" toc="no" props="hide"/>
-            <topicref keyref="onFacePositionChanged" toc="no"/>
+            <topicref keyref="onFacePositionChanged" toc="no" processing-role="resource-only"/>
             <topicref keyref="onFirstLocalVideoFrame" toc="no" props="hide"/>
             <topicref keyref="onFirstLocalVideoFramePublished" toc="no"/>
             <topicref keyref="onFirstRemoteVideoDecoded" toc="no"/>
             <topicref keyref="onFirstRemoteVideoFrame" toc="no"/>
+            <topicref keyref="onLocalVideoTranscoderError" toc="no"/>
             <topicref keyref="onLocalVideoStateChanged" toc="no"/>
             <topicref keyref="onLocalVideoStats" toc="no"/>
             <topicref keyref="onRemoteVideoStateChanged" toc="no"/>
@@ -343,7 +351,7 @@
             <topicref keyref="unregisterAudioEncodedFrameObserver" toc="no"/>
             <topicref keyref="unregisterAudioFrameObserver" toc="no"/>
             <topicref keyref="onEarMonitoringAudioFrame" toc="no"/>
-            <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver" toc="no"/>
+            <topicref keyref="onFrame_IAudioPcmFrameSink" toc="no"/>
             <topicref keyref="onLocalAudioSpectrum" toc="no"/>
             <topicref keyref="onMixedAudioEncodedFrame" toc="no"/>
             <topicref keyref="onMixedAudioFrame" toc="no"/>
@@ -473,16 +481,12 @@
             <topicref keyref="getScreenCaptureSources" toc="no"/>
             <topicref keyref="setScreenCaptureContentHint" toc="no"/>
             <topicref keyref="setScreenCaptureScenario" toc="no"/>
-            <topicref keyref="startPrimaryScreenCapture" toc="no"/>
-            <topicref keyref="startScreenCapture" toc="no"/>
+            <topicref keyref="startScreenCapture" toc="no" processing-role="resource-only"/>
             <topicref keyref="startScreenCaptureByDisplayId" toc="no"/>
             <topicref keyref="startScreenCaptureByScreenRect" toc="no"/>
             <topicref keyref="startScreenCaptureByWindowId" toc="no"/>
-            <topicref keyref="startSecondaryScreenCapture" toc="no"/>
-            <topicref keyref="stopPrimaryScreenCapture" toc="no"/>
             <topicref keyref="stopScreenCapture" toc="no"/>
-            <topicref keyref="stopSecondaryScreenCapture" toc="no"/>
-            <topicref keyref="updateScreenCapture" toc="no"/>
+            <topicref keyref="updateScreenCapture" toc="no" processing-role="resource-only"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
             <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
         </topicref>
@@ -527,7 +531,7 @@
             <topicref keyref="followSystemLoopbackDevice" toc="no"/>
             <topicref keyref="followSystemPlaybackDevice" toc="no"/>
             <topicref keyref="followSystemRecordingDevice" toc="no"/>
-            <topicref keyref="getAudioDeviceInfo" toc="no"/>
+            <topicref keyref="getAudioDeviceInfo" toc="no" processing-role="resource-only"/>
             <topicref keyref="getAudioDeviceManager" toc="no"/>
             <topicref keyref="getLoopbackDevice" toc="no"/>
             <topicref keyref="getPlaybackDevice" toc="no"/>
@@ -540,8 +544,8 @@
             <topicref keyref="getRecordingDeviceInfo" toc="no"/>
             <topicref keyref="getRecordingDeviceMute" toc="no" props="hide"/>
             <topicref keyref="getRecordingDeviceVolume" toc="no" props="hide"/>
-            <topicref keyref="isSpeakerphoneEnabled" toc="no"/>
-            <topicref keyref="setEnableSpeakerphone" toc="no"/>
+            <topicref keyref="isSpeakerphoneEnabled" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setEnableSpeakerphone" toc="no" processing-role="resource-only"/>
             <topicref keyref="setLoopbackDevice" toc="no"/>
             <topicref keyref="setPlaybackDevice" toc="no"/>
             <topicref keyref="setPlaybackDeviceMute" toc="no" props="hide"/>
@@ -560,33 +564,33 @@
         </topicref>
         <topicref href="API/toc_video_device_management.dita" chunk="to-content">
             <topicref keyref="enumerateVideoDevices" toc="no"/>
-            <topicref keyref="getCameraMaxZoomFactor" toc="no"/>
+            <topicref keyref="getCameraMaxZoomFactor" toc="no" processing-role="resource-only"/>
             <topicref keyref="getCapability" toc="no"/>
             <topicref keyref="getDevice_IVideoDeviceManager" toc="no"/>
             <topicref keyref="getVideoDeviceManager" toc="no"/>
-            <topicref keyref="isCameraAutoExposureFaceModeSupported" toc="no"/>
-            <topicref keyref="isCameraAutoFocusFaceModeSupported" toc="no"/>
-            <topicref keyref="isCameraExposurePositionSupported" toc="no"/>
-            <topicref keyref="isCameraFaceDetectSupported" toc="no"/>
-            <topicref keyref="isCameraFocusSupported" toc="no"/>
-            <topicref keyref="isCameraTorchSupported" toc="no"/>
-            <topicref keyref="isCameraZoomSupported" toc="no"/>
+            <topicref keyref="isCameraAutoExposureFaceModeSupported" toc="no" processing-role="resource-only"/>
+            <topicref keyref="isCameraAutoFocusFaceModeSupported" toc="no" processing-role="resource-only"/>
+            <topicref keyref="isCameraExposurePositionSupported" toc="no" processing-role="resource-only"/>
+            <topicref keyref="isCameraFaceDetectSupported" toc="no" processing-role="resource-only"/>
+            <topicref keyref="isCameraFocusSupported" toc="no" processing-role="resource-only"/>
+            <topicref keyref="isCameraTorchSupported" toc="no" processing-role="resource-only"/>
+            <topicref keyref="isCameraZoomSupported" toc="no" processing-role="resource-only"/>
             <topicref keyref="numberOfCapabilities" toc="no"/>
-            <topicref keyref="setCameraAutoExposureFaceModeEnabled" toc="no"/>
-            <topicref keyref="setCameraAutoFocusFaceModeEnabled" toc="no"/>
-            <topicref keyref="setCameraCapturerConfiguration" toc="no"/>
-            <topicref keyref="setCameraDeviceOrientation" toc="no"/>
-            <topicref keyref="setCameraExposurePosition" toc="no"/>
-            <topicref keyref="setCameraFocusPositionInPreview" toc="no"/>
-            <topicref keyref="setCameraTorchOn" toc="no"/>
-            <topicref keyref="setCameraZoomFactor" toc="no"/>
+            <topicref keyref="setCameraAutoExposureFaceModeEnabled" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setCameraAutoFocusFaceModeEnabled" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setCameraCapturerConfiguration" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setCameraDeviceOrientation" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setCameraExposurePosition" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setCameraFocusPositionInPreview" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setCameraTorchOn" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setCameraZoomFactor" toc="no" processing-role="resource-only"/>
             <topicref keyref="setDevice_IVideoDeviceManager" toc="no"/>
             <topicref keyref="startDeviceTest" toc="no" props="hide"/>
             <topicref keyref="stopDeviceTest" toc="no" props="hide"/>
-            <topicref keyref="switchCamera" toc="no"/>
-            <topicref keyref="onCameraExposureAreaChanged" toc="no"/>
-            <topicref keyref="onCameraFocusAreaChanged" toc="no"/>
-            <topicref keyref="onCameraReady" toc="no"/>
+            <topicref keyref="switchCamera" toc="no" processing-role="resource-only"/>
+            <topicref keyref="onCameraExposureAreaChanged" toc="no" processing-role="resource-only"/>
+            <topicref keyref="onCameraFocusAreaChanged" toc="no" processing-role="resource-only"/>
+            <topicref keyref="onCameraReady" toc="no" processing-role="resource-only"/>
         </topicref>
         <topicref href="API/toc_network.dita" chunk="to-content">
             <topicref keyref="complain" toc="no"/>
