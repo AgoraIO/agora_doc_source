@@ -29,31 +29,34 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p props="cpp">调用该方法前，你需要预先分配一定大小的内存空间用来存储缓存音乐资源的信息。</p>
+            <p props="cpp electron unity rn">调用该方法前，你需要预先分配一定大小的内存空间用来存储缓存音乐资源的信息。</p>
             <p>当你不再需要使用已缓存的音乐资源时，你需要及时释放内存以防止内存泄漏。</p>
         </section>
-        <section id="parameters" props="cpp">
+        <section id="parameters" props="cpp framework">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry props="cpp electron unity rn">
                 <pt>cacheInfo</pt>
-                <pd>输出参数；指向用于存储已缓存音乐资源的内存缓冲区的指针。</pd>
+                <pd>输出参数，指向用于存储已缓存音乐资源的内存缓冲区的指针。</pd>
             </plentry>
-             <plentry>
+             <plentry props="cpp framework">
                  <pt>cacheInfoSize</pt>
-                 <pd>输入和输出参数。<ul><li>输入值：<parmname>cacheInfo</parmname> 数组的长度，即你所分配的 <xref keyref="MusicCacheInfo"/> 结构体的数量。</li>
-                 <li>输出值：方法执行完毕后输出的 <apiname keyref="MusicCacheInfo"/> 结构体的数量。</li></ul></pd>
+                 <pd><p props="cpp electron unity rn">输入和输出参数。<ul><li>输入值：<parmname>cacheInfo</parmname> 数组的长度，即你所分配的 <xref keyref="MusicCacheInfo"/> 结构体的数量。</li>
+                 <li>输出值：方法执行完毕后输出的 <apiname keyref="MusicCacheInfo"/> 结构体的数量。</li></ul></p>
+                 <p props="flutter">输入参数，指定要获取的缓存音乐资源列表的长度。</p></pd>
              </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <ul props="cpp">
+            <ul props="cpp electron unity rn">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。</li>
             </ul>
-            <ul props="android ios">
-                <li>方法调用成功时，返回包含 <xref keyref="MusicCacheInfo"/> 对象的数组。</li>
-                <li>方法调用失败时，返回 <ph keyref="NULL"/>。</li>
+            <ul props="android ios flutter">
+                <li props="android ios">方法调用成功时，返回包含 <xref keyref="MusicCacheInfo"/> 对象的数组。</li>
+                <li props="flutter">方法调用成功时，返回 <xref keyref="MusicChartInfo"/> 对象的列表。</li>
+                <li props="android ios">方法调用失败时，返回 <ph keyref="NULL"/>。</li>
+                <li props="flutter">方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</li>
             </ul>
         </section>
     </refbody>
