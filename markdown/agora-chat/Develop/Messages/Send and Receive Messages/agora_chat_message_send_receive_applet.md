@@ -45,12 +45,11 @@ function sendTextMessage() {
   // 创建文本消息。
   let msg = WebIM.message.create(option);
   // 调用 `send` 方法发送该文本消息。
-  WebIM.conn
-     conn.send(msg).then((res)=>{
-        console.log("Send message success",res);
-    }).catch((e)=>{
-        console.log("Send message fail",e);
-    });
+  conn.send(msg).then((res)=>{
+     console.log("Send message success",res);
+  }).catch((e)=>{
+      console.log("Send message fail",e);
+  });
 }
 ```
 
