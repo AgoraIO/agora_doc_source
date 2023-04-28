@@ -732,7 +732,7 @@
 
 ### 离开群组或聊天室
 
-当用户主动离开群时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当成员主动离开群组或聊天室时，即时通讯 IM 服务就离开动作向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload": { 
@@ -748,13 +748,14 @@
 
 其中 `operation` 为当前操作，即 `leave`。
 
-当用户主动离开聊天室时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+当用户主动离开群组或聊天室或被移出时，即时通讯 IM 服务会向你的应用服务器发送离开结果。其中 `payload` 示例如下：
 
 ```json
 "payload": { 
         "muc_id": "XXXX#XXXX_XXXX@conference.easemob.com", 
         "is_chatroom": true, 
-        "operation": "leave", 
+        // "absence" 是离开群组或聊天室的结果。
+        "operation": "absence", 
         "status": { 
             "description": "", 
             "error_code": "ok" 
@@ -941,15 +942,15 @@
 "payload":
 { 
     "muc_id": "XXXX#XXXX173560762007553XXXX", 
-    "reason": "{
-        \"data\":{
-            \"file_id\":\"79ddf840-8e2f-11ec-bec3-ad40868b03f9\",
-            \"file_name\":\"a.csv\",
-            \"file_owner\":\"@ppAdmin\",
-            \"file_size\":6787,
-            \"created\":1644909510085
-            }
-    }",
+    "reason": {
+            "data": {
+                "file_id": "79ddf840-8e2f-11ec-bec3-ad40868b03f9",
+                "file_name": "a.csv",
+                "file_owner": "@ppAdmin",
+                "file_size": 6787,
+                "created": 1644909510085
+                }
+            },
     "is_chatroom": false, 
     "operation": "upload_file", 
     "status":

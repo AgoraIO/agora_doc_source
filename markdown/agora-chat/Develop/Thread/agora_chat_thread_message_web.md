@@ -48,9 +48,9 @@ function sendTextMessage() {
   }
   let msg = WebIM.message.create(option);
   connection.send(msg).then(() => {
-    console.log('send private text Success');
+    console.log('send text message success');
   }).catch((e) => {
-    console.log("Send private text error");
+    console.log("send text message error");
   })
 };
 ```
