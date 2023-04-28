@@ -460,11 +460,13 @@ const sendLocMsg = () => {
       };
       let msg = WebIM.message.create(option);
       conn.send(msg).then((res)=>{
-        console.log("Send message success"，res);
-    }).catch((e)=>{
-        console.log("Send message fail"，e);
-    });
-};
+        console.log("Send message success", res);
+      }).catch((e)=>{
+        console.log("Send message fail", e);
+      });
+    })
+  }
+}
 ```
 
 ### 发送透传消息
