@@ -43,15 +43,13 @@ function sendTextMessage() {
     chatType: "singleChat",
   };
   // 创建文本消息。
-  let msg = WebIM.message.create(opt);
+  let msg = WebIM.message.create(option);
   // 调用 `send` 方法发送该文本消息。
   WebIM.conn
-    .send(msg)
-    .then(() => {
-      console.log("Send message success");
-    })
-    .catch((e) => {
-      console.log("Send message fail");
+     conn.send(msg).then((res)=>{
+        console.log("Send message success",res);
+    }).catch((e)=>{
+        console.log("Send message fail",e);
     });
 }
 ```
@@ -526,7 +524,11 @@ const sendLocMsg = () => {
     lng: 116, // 经度
   };
   let msg = WebIM.message.create(option);
-  conn.send(msg);
+  conn.send(msg).then((res)=>{
+        console.log("Send message success"，res);
+    }).catch((e)=>{
+        console.log("Send message fail"，e);
+    });
 };
 ```
 
@@ -627,7 +629,7 @@ const sendBeginTyping = function () {
 ```typescript
 // 设置状态监听器
 let timer;
-connection.addEventHandler("message", {
+conn.addEventHandler("message", {
   onCmdMessage: (msg) => {
     console.log("onCmdMessage", msg);
     if (msg.action === "TypingBegin") {
