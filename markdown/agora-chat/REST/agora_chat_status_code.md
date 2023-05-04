@@ -46,10 +46,10 @@ HTTP 状态码 4xx 表示因客户端错误导致请求失败，即请求出错�
 
 | HTTP 状态码 | 错误类型             | 错误提示             | 可能的原因                                                   |
 | :--------------- | :---------------- | :-------------------------- | :--------------------------------- |
-| `401`              | unauthorized                       | “registration is not open, please contact the app admin”     | 返回 401 是未授权，error_description 的描述为 App Key 使用了授权注册，需要 header 加上管理员 token，才有权限注册用户；若加上 token 返回 401，则 token 可能失效，建议重取重试。 |
-| `401`            | `unauthorized`                       | “Unable to authenticate due to expired access token”         | 发送请求时使用的 Token 过期或未传入 Token。                  |
-| `401`            | `auth_bad_access_token`              | “Unable to authenticate due to corrupt access token”          | 发送请求时使用的 Token 格式错误。                            |
-| `401`            | `auth_bad_access_token`              | “Unable to authenticate”                                      | 无效 Token。Token 的格式正确，但不是由接收请求的服务器生成的，导致服务器无法识别该 Token。 |
+| `401`              | unauthorized      | “registration is not open, please contact the app admin”     | 调用[注册单个用户](./agora_chat_restful_regiration#注册单个用户)和[批量注册用户](./agora_chat_restful_regiration#注册单个用户)的接口时，未传入的 App 权限 Token 或传入了错误的 App 权限 Token，例如 Token 已过期或格式不正确。 |
+| `401`            | `unauthorized`                       | “Unable to authenticate due to expired access token”         | 调用 RESTful 接口发送请求时使用的 App 权限 Token 过期或未传入 Token。<br/>该错误码针对除[注册单个用户](./agora_chat_restful_regiration#注册单个用户)和[批量注册用户](./agora_chat_restful_regiration#注册单个用户)之外的 RESTful 接口有效。  |
+| `401`            | `auth_bad_access_token`              | “Unable to authenticate due to corrupt access token”          | 调用 RESTful 接口发送请求时使用的 App 权限 Token 格式错误。<br/>该错误码针对除[注册单个用户](./agora_chat_restful_regiration#注册单个用户)和[批量注册用户](./agora_chat_restful_regiration#注册单个用户)之外的 RESTful 接口有效。   |
+| `401`            | `auth_bad_access_token`              | “Unable to authenticate”                                      | 调用 RESTful 接口发送请求时使用的 App 权限 Token 无效。App 权限 Token 的格式正确，但不是由接收请求的服务器生成的，导致服务器无法识别该 Token。<br/>该错误码针对除[注册单个用户](./agora_chat_restful_regiration#注册单个用户)和[批量注册用户](./agora_chat_restful_regiration#注册单个用户)之外的 RESTful 接口有效。 |
 
 ### 403 禁止操作
 
@@ -62,7 +62,7 @@ HTTP 状态码 4xx 表示因客户端错误导致请求失败，即请求出错�
 | `403`            | `forbidden_op`                       | “user: username doesn't exist in group: 40659491815425”       | 转让群组时，被转让的用户不是群组内成员。                     |
 | `403`            | `forbidden_op`                       | “new owner and old owner are the same.”                         | 转让群组时，被转让的用户已经是群主。                         |
 | `403`            | `forbidden_op`                       | “forbidden operation on group owner!”                           | 当前操作禁止对群主使用，如将群主加入黑名单。                 |
-| `403`            | `forbidden_op`                       | “can not join this group, reason：user %s has joined too many groups/chatroom!”  | 加入群组或聊天室时，群组或聊天室人数已达到上限。             |
+| `403`            | `forbidden_op`                       | “can not join this group, reason：user %s has joined too many groups/chatroom!”  | 用户加入的群组或聊天室数超过了限制。             |
 | `403`            | `forbidden_op`                       | “this appKey has create too many groups/chatrooms!”             | 该 App 下的群组或聊天室数量已达到上限。不同套餐包支持的群组或聊天室数量上限详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。 |
 
 ### 404 资源未找到

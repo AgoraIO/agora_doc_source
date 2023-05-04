@@ -591,26 +591,6 @@
 
 其中 `operation` 为当前操作，即 `invite_decline`。
 
-### 将用户踢出群聊或聊天室
-
-当用户将其他成员踢出群组或聊天室时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
-
-```json
-"payload":
-{ 
-    "muc_id": "XXXX#XXXX173549292683265XXXX", 
-    "is_chatroom": false, 
-    "operation": "kick", 
-    "status":
-    { 
-        "description": "", 
-        "error_code": "ok" 
-    } 
-}
-```
-
-其中 `operation` 为当前操作，即 `kick`。
-
 ### 添加成员至黑名单
 
 当用户将其他成员添加至群组或聊天室黑名单时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
@@ -712,7 +692,7 @@
 
 ### 加入群组或聊天室
 
-当用户加入群组或聊天室时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+若新用户加入了群组或聊天室时，即时通讯 IM 服务会向你的应用服务器发送用户加入了群组或聊天室的通知。其中 `payload` 示例如下：
 
 ```json
 "payload":
@@ -732,7 +712,7 @@
 
 ### 离开群组或聊天室
 
-当用户主动离开群时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+- 当成员主动离开群组或聊天室时，即时通讯 IM 服务就离开动作向你的应用服务器发送回调事件。其中 `payload` 示例如下：
 
 ```json
 "payload": { 
@@ -748,13 +728,31 @@
 
 其中 `operation` 为当前操作，即 `leave`。
 
-当用户主动离开聊天室时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+- 当用户将其他成员踢出群组或聊天室时，即时通讯 IM 服务会向你的应用服务器发送回调事件。其中 `payload` 示例如下：
+
+```json
+"payload":
+{ 
+    "muc_id": "XXXX#XXXX173549292683265XXXX", 
+    "is_chatroom": false, 
+    "operation": "kick", 
+    "status":
+    { 
+        "description": "", 
+        "error_code": "ok" 
+    } 
+}
+```
+
+其中 `operation` 为当前操作，即 `kick`。
+
+当用户主动离开群组或聊天室或被移出时，即时通讯 IM 服务会向你的应用服务器发送用户离开的通知。其中 `payload` 示例如下：
 
 ```json
 "payload": { 
         "muc_id": "XXXX#XXXX_XXXX@conference.easemob.com", 
         "is_chatroom": true, 
-        "operation": "leave", 
+        "operation": "absence", 
         "status": { 
             "description": "", 
             "error_code": "ok" 
@@ -762,7 +760,7 @@
         }
 ```
 
-其中 `operation` 为当前操作，即 `leave`。
+其中 `operation` 为用户主动离开群组或聊天室或被移出的结果，即 `absence`。
 
 ### 转让群主或所有者权限
 
@@ -941,15 +939,15 @@
 "payload":
 { 
     "muc_id": "XXXX#XXXX173560762007553XXXX", 
-    "reason": "{
-        \"data\":{
-            \"file_id\":\"79ddf840-8e2f-11ec-bec3-ad40868b03f9\",
-            \"file_name\":\"a.csv\",
-            \"file_owner\":\"@ppAdmin\",
-            \"file_size\":6787,
-            \"created\":1644909510085
-            }
-    }",
+    "reason": {
+            "data": {
+                "file_id": "79ddf840-8e2f-11ec-bec3-ad40868b03f9",
+                "file_name": "a.csv",
+                "file_owner": "@ppAdmin",
+                "file_size": 6787,
+                "created": 1644909510085
+                }
+            },
     "is_chatroom": false, 
     "operation": "upload_file", 
     "status":

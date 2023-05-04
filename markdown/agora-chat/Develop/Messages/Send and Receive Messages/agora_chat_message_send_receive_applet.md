@@ -43,16 +43,13 @@ function sendTextMessage() {
     chatType: "singleChat",
   };
   // 创建文本消息。
-  let msg = WebIM.message.create(opt);
+  let msg = WebIM.message.create(option);
   // 调用 `send` 方法发送该文本消息。
-  WebIM.conn
-    .send(msg)
-    .then(() => {
-      console.log("Send message success");
-    })
-    .catch((e) => {
-      console.log("Send message fail");
-    });
+  conn.send(msg).then((res)=>{
+     console.log("Send message success",res);
+  }).catch((e)=>{
+      console.log("Send message fail",e);
+  });
 }
 ```
 
@@ -422,92 +419,72 @@ function sendPrivateVideo(){
 参考以下代码示例创建、发送和接收文件消息：
 
 ```javascript
-function sendFile() {
-  const me = this;
-  wx.chooseImage({
-    count: 1,
-    sizeType: ["original", "compressed"],
-    sourceType: ["album"],
-    success(res) {
-      me.sendPrivateFile(res);
-    },
-  });
-}
+// 发送文件消息。
+function sendFileMessage() {
+      const me = this;
+      // 微信小程序仅支持从客户端会话选择文件。
+      wx.chooseMessageFile({
+        // 可选择的最大文件数。
+        count: 1,
+        success(res) {
+          const domain = wx.WebIM.conn.apiUrl + "/";
+          const [orgName, appName] = WebIM.config.appkey.split("#");
+          const token = WebIM.conn.context.accessToken;
+          const tempFiles = res.tempFiles[0];
+          const fileName = tempFiles.name;
+          const fileSize = tempFiles.size;
+          const filePath = tempFiles.path;
+          const index = fileName.lastIndexOf(".");
+          const filetype = (~index && fileName.slice(index + 1)) || "";
 
-function sendPrivateFile(res) {
-  var me = this;
-  var tempFilePaths = res.tempFilePaths;
-  var token = WebIM.conn.context.accessToken;
-  wx.getImageInfo({
-    src: res.tempFilePaths[0],
-    success(res) {
-      var allowType = {
-        jpg: true,
-        gif: true,
-        png: true,
-        bmp: true,
-      };
-      var str = WebIM.config.appkey.split("#");
-      var width = res.width;
-      var height = res.height;
-      var index = res.path.lastIndexOf(".");
-      var filetype = (~index && res.path.slice(index + 1)) || "";
-      var domain = wx.WebIM.conn.apiUrl + "/";
-      if (filetype.toLowerCase() in allowType) {
-        wx.uploadFile({
-          url: domain + str[0] + "/" + str[1] + "/chatfiles",
-          filePath: tempFilePaths[0],
-          name: "file",
-          header: {
-            "Content-Type": "multipart/form-data",
-            Authorization: "Bearer " + token,
-          },
-          success(res) {
-            if (res.statusCode === 400) {
-              // 图片上传阿里云检验不合法
-              var errData = JSON.parse(res.data);
-              if (errData.error === "content improper") {
-                wx.showToast({
-                  title: "图片不合法",
-                });
-                return false;
-              }
-            }
-            var data = res.data;
-            var dataObj = JSON.parse(data);
-            var option = {
-              // 消息类型。
-              type: "file",
-              // 消息接收方：单聊为对方用户 ID，群聊和聊天室分别为群组 ID 和聊天室 ID。
-              chatType: "singleChat",
-              to: "username",
-              body: {
-                //文件 URL。
-                url: dataObj.uri + "/" + dataObj.entities[0].uuid,
-                //文件类型。
+          // 上传文件到服务器。
+          wx.uploadFile({
+            url: domain + orgName + "/" + appName + "/chatfiles",
+            filePath: filePath,
+            name: "file",
+            header: {
+              "Content-Type": "multipart/form-data",
+              Authorization: "Bearer " + token
+            },
+            success(res) {
+              // 获取返回数据。
+              let data = res.data;
+              let dataObj = JSON.parse(data);
+              let option = {
+                // 消息类型。
                 type: "file",
-                //文件名称。
-                filename: "filename",
-              },
-            };
-            let msg = WebIM.message.create(option);
-            // 调用 `send` 方法发送该文件消息。
-            WebIM.conn
-              .send(msg)
-              .then((res) => {
-                // 文件消息成功发送。
-                console.log("Success");
-              })
-              .catch((e) => {
-                // 文件消息发送失败。
-                console.log("Fail");
-              });
-          },
-        });
-      }
-    },
-  });
-}
+                // 单聊、群聊和聊天室分别为 `singleChat`、`groupChat` 和 `chatRoom`。
+                chatType: "singleChat",
+                // 消息接收方：单聊为对方用户 ID，群聊和聊天室分别为群组 ID 和聊天室 ID。
+                to: "userId",
+                body: {
+                  // 文件 URL。
+                  url: dataObj.uri + "/" + dataObj.entities[0].uuid,
+                  // 文件类型。
+                  type: filetype,
+                  // 文件名称。
+                  filename: fileName,
+                  // 文件大小。
+                  file_length: fileSize
+                }
+              };
+              
+              // 创建消息。
+              const msg = WebIM.message.create(option);
+              // 发送消息。
+              WebIM.conn
+                .send(msg)
+                .then((res) => {
+                  console.log(res, "send file message success");
+                })
+                .catch((e) => {
+                  console.log(e, "send file message error");
+                });
+            }
+          });
+        }
+      });
+    }
 ```
 
 ### 发送位置消息
@@ -526,7 +503,11 @@ const sendLocMsg = () => {
     lng: 116, // 经度
   };
   let msg = WebIM.message.create(option);
-  conn.send(msg);
+  conn.send(msg).then((res)=>{
+        console.log("Send message success"，res);
+    }).catch((e)=>{
+        console.log("Send message fail"，e);
+    });
 };
 ```
 
@@ -627,7 +608,7 @@ const sendBeginTyping = function () {
 ```typescript
 // 设置状态监听器
 let timer;
-connection.addEventHandler("message", {
+conn.addEventHandler("message", {
   onCmdMessage: (msg) => {
     console.log("onCmdMessage", msg);
     if (msg.action === "TypingBegin") {

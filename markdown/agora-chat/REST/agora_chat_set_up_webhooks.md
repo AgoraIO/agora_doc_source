@@ -297,7 +297,6 @@ POST http://{host}/{org_name}/{app_name}/callbacks/storage/retry
 | `action`             | String  | 请求方式。                                                   |
 | `data`         | String    | 补发是否成功：<ul><li>`success`：成功</li><li>`failure`：失败</li></ul>    |
 | `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
-| `retry`        | Number    | 开发者已经重试补发的次数。考虑到补发也可能失败，服务器会继续存储。未尝试补发时，该字段的值为 `0`。 |
 | `applicationName`    | String  | 即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。 |
 
 如果返回的 HTTP 状态码不是 `200`，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
@@ -308,7 +307,7 @@ POST http://{host}/{org_name}/{app_name}/callbacks/storage/retry
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
-curl -X POST 'http://a1.easemob.com/easemob-demo/easeim/callback/storage/retry' \
+curl -X POST 'http://XXXX/XXXX/XXXX/callback/storage/retry' \
 -H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
@@ -323,14 +322,14 @@ curl -X POST 'http://a1.easemob.com/easemob-demo/easeim/callback/storage/retry' 
 ```json
 {
     "path": "/callbacks",
-    "uri": "http://a1.easemob.com/easemob-demo/easeim/callbacks",
+    "uri": "http://XXXX/XXXX/XXXX/callbacks",
     "timestamp": 1631194031721,
-    "organization": "easemob-demo",
-    "application": "8dfb1641-b6d8-450b-bbe9-d8d45a3be39f",
+    "organization": "XXXX",
+    "application": "8dfb1641-XXXX-XXXX-bbe9-d8d45a3be39f",
     "action": "post",
     "data": "success",
     "duration": 225,
-    "applicationName": "easeim"
+    "applicationName": "XXXX"
 }
 ```
 

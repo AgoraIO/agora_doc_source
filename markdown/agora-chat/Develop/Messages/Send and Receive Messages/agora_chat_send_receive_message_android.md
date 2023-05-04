@@ -39,22 +39,22 @@
 
 ```java
  // 创建一条文本消息，`content` 为消息文字内容，`conversationId` 为会话 ID，在单聊时为对端用户 ID、群聊时为群组 ID，聊天室时为聊天室 ID。
-ChatMessage message = ChatMessage.createTxtSendMessage(content, conversationId);
- // 设置聊天类型为群聊。默认为单聊 `Chat`，也可以设置为聊天室 `ChatRoom`。
-message.setChatType(ChatType.GroupChat);
-// 发送消息时可以设置 `CallBack` 的实例来获得消息发送的状态。可以在该回调中更新消息的显示状态，例如消息发送失败后的提示等。
- message.setMessageStatusCallback(new CallBack() {
-     @Override
-     public void onSuccess() {
-         showToast("发送消息成功");
-     }
-     @Override
-     public void onError(int code, String error) {
-         showToast("发送消息失败");
-     }
- });
- //发送消息。
- ChatClient.getInstance().chatManager().sendMessage(message);
+        ChatMessage message = ChatMessage.createTextSendMessage(content, conversationId);
+        // 设置聊天类型为群聊。默认为单聊 `Chat`，也可以设置为聊天室 `ChatRoom`。
+        message.setChatType(ChatMessage.ChatType.GroupChat);
+        // 发送消息时可以设置 `CallBack` 的实例来获得消息发送的状态。可以在该回调中更新消息的显示状态，例如消息发送失败后的提示等。
+        message.setMessageStatusCallback(new CallBack() {
+            @Override
+            public void onSuccess() {
+                //showToast("发送消息成功");
+            }
+            @Override
+            public void onError(int code, String error) {
+                //showToast("发送消息失败");
+            }
+        });
+        //发送消息。
+        ChatClient.getInstance().chatManager().sendMessage(message);
 ```
 
 对于聊天室消息，可设置消息优先级。
