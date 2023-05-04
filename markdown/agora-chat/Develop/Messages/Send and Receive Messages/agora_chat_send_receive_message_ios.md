@@ -45,7 +45,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                       body:textMessageBody
                                                        ext:messageExt];
  // 构造消息时需设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。例如，设置消息类型为单聊消息即设置 `ChatType` 为 `EMChatTypeChat`。
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
  // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                progress:nil
@@ -107,7 +107,7 @@ AgoraChatTextMessageBody* textBody = [[AgoraChatTextMessageBody alloc] initWithT
 
 ```objectivec
 // 收到的消息撤回时触发的回调。
-- (void)messagesDidRecall:(NSArray *)aMessages;
+- (void)messagesInfoDidRecall:(NSArray<EMRecallMessageInfo *> * _Nonnull)aRecallMessagesInfo;
 ```
 
 ### 发送和接收附件类型的消息
@@ -143,7 +143,7 @@ AgoraChatTextMessageBody* textBody = [[AgoraChatTextMessageBody alloc] initWithT
 AgoraChatVoiceMessageBody *body = [[AgoraChatVoiceMessageBody alloc] initWithLocalPath:localPath displayName:displayName];
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
 // 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
 ```
@@ -172,7 +172,7 @@ AgoraChatImageMessageBody *body = [[AgoraChatImageMessageBody alloc] initWithDat
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
 
 // 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat; 
+// message.chatType = AgoraChatTypeGroupChat; 
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
 ```
@@ -232,7 +232,7 @@ body.duration = duration;// 视频时长。
 
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
 // 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat; 
+// message.chatType = AgoraChatTypeGroupChat; 
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
 ```
@@ -269,7 +269,7 @@ NSString *thumbnailLocalPath = body.thumbnailLocalPath;
 AgoraChatFileMessageBody *body = [[AgoraChatFileMessageBody alloc] initWithData:fileData displayName:fileName];
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername from:fromChatUsername to:toChatUsername body:body ext:messageExt];
 // 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:nil];
 ```
@@ -352,7 +352,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                                      progress:nil
@@ -487,7 +487,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // 设置 `AgoraChatMessage` 类的 `ChatType` 属性。该属性的值为 `AgoraChatTypeChat`、`AgoraChatTypeGroupChat` 和 `AgoraChatTypeChatRoom`，表明该消息是单聊、群聊或聊天室消息，默认为单聊。
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                  progress:nil
