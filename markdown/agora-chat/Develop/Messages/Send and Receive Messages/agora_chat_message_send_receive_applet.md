@@ -416,13 +416,15 @@ function sendPrivateVideo(){
 
 #### 发送文件消息
 
+发送文件消息前，应先选择文件。微信小程序仅支持从客户端会话选择文件。
+
 参考以下代码示例创建、发送和接收文件消息：
 
 ```javascript
 // 发送文件消息。
 function sendFileMessage() {
       const me = this;
-      // 微信小程序仅支持从客户端会话选择文件。
+      // 从客户端会话选择文件。
       wx.chooseMessageFile({
         // 可选择的最大文件数。
         count: 1,
