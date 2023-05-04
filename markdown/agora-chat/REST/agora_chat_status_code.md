@@ -62,7 +62,7 @@ HTTP 状态码 4xx 表示因客户端错误导致请求失败，即请求出错�
 | `403`            | `forbidden_op`                       | “user: username doesn't exist in group: 40659491815425”       | 转让群组时，被转让的用户不是群组内成员。                     |
 | `403`            | `forbidden_op`                       | “new owner and old owner are the same.”                         | 转让群组时，被转让的用户已经是群主。                         |
 | `403`            | `forbidden_op`                       | “forbidden operation on group owner!”                           | 当前操作禁止对群主使用，如将群主加入黑名单。                 |
-| `403`            | `forbidden_op`                       | “can not join this group, reason：user %s has joined too many groups/chatroom!”  | 加入群组或聊天室时，群组或聊天室人数已达到上限。             |
+| `403`            | `forbidden_op`                       | “can not join this group, reason：user %s has joined too many groups/chatroom!”  | 用户加入的群组或聊天室数超过了限制。             |
 | `403`            | `forbidden_op`                       | “this appKey has create too many groups/chatrooms!”             | 该 App 下的群组或聊天室数量已达到上限。不同套餐包支持的群组或聊天室数量上限详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。 |
 
 ### 404 资源未找到
