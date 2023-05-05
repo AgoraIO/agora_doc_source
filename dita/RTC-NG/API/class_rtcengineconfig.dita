@@ -139,6 +139,10 @@
   threadPriority?: ThreadPriorityType;
   
   useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
     {
@@ -183,6 +187,10 @@
   threadPriority?: ThreadPriorityType;
   
   useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
   const RtcEngineContext(
@@ -296,7 +304,7 @@
             </plentry>
             <plentry>
                 <pt props="android">mDomainLimit</pt>
-                <pt props="cpp ios mac">domainLimit</pt>                
+                <pt props="cpp ios mac electron rn">domainLimit</pt>                
                 <pd>
                     <p>是否开启域名限制：
                     <ul>
@@ -307,7 +315,7 @@
             </plentry>
             <plentry>
               <pt props="android">mAutoRegisterAgoraExtensions</pt>
-              <pt props="cpp ios mac">autoRegisterAgoraExtensions</pt>
+              <pt props="cpp ios mac electron rn">autoRegisterAgoraExtensions</pt>
               <pd>
                   <p>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
                   <ul>
