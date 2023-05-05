@@ -34,7 +34,7 @@
     height: number,
     elapsed: number
   ): void;</codeblock>
-               <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(RtcConnection connection, int width, int height, int elapsed) {}</codeblock>
+               <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed) { }</codeblock>
                <codeblock props="rn" outputclass="language-typescript">  onFirstLocalVideoFrame?(
     connection: RtcConnection,
     width: number,
@@ -64,9 +64,13 @@
                     <pt>size</pt>
                     <pd>本地渲染视频的尺寸。</pd>
                </plentry>
-               <plentry props="unity electron rn flutter">
+               <plentry props="electron rn flutter">
                     <pt>connection</pt>
                     <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
+               </plentry>
+               <plentry props="cpp unity">
+               <pt>source</pt>
+               <pd>视频源类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
                </plentry>
                <plentry props="android cpp unity electron rn flutter">
                     <pt>width</pt>
