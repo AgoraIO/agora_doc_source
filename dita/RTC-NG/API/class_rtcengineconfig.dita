@@ -118,7 +118,6 @@
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        license(NULL),
         audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
         logConfig(), domainLimit(false), 
@@ -186,12 +185,10 @@ class RtcEngineContext {
   const RtcEngineContext(
       {this.appId,
       this.channelProfile,
-      this.license,
       this.audioScenario,
       this.areaCode,
       this.logConfig,
       this.threadPriority,
-      this.useExternalEglContext,
       this.domainLimit,
       this.autoRegisterAgoraExtensions});
 
@@ -200,9 +197,6 @@ class RtcEngineContext {
 
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
-
-  @JsonKey(name: 'license')
-  final String? license;
 
   @JsonKey(name: 'audioScenario')
   final AudioScenarioType? audioScenario;
@@ -215,9 +209,6 @@ class RtcEngineContext {
 
   @JsonKey(name: 'threadPriority')
   final ThreadPriorityType? threadPriority;
-
-  @JsonKey(name: 'useExternalEglContext')
-  final bool? useExternalEglContext;
 
   @JsonKey(name: 'domainLimit')
   final bool? domainLimit;
