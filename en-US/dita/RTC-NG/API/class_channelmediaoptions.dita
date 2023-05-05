@@ -175,39 +175,37 @@
 
   isAudioFilterable?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
-      {
-          public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishSecondaryCameraTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishMicrophoneTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishScreenCaptureVideo = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishScreenCaptureAudio = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishScreenTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishSecondaryScreenTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;int&gt; publishCustomAudioSourceId = new Optional&lt;int&gt;();
-          public Optional&lt;bool&gt; publishCustomAudioTrackEnableAec = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishDirectCustomAudioTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishEncodedVideoTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishMediaPlayerVideoTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; publishTranscodedVideoTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; autoSubscribeAudio = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; autoSubscribeVideo = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; enableAudioRecordingOrPlayout = new Optional&lt;bool&gt;();
-          public Optional&lt;int&gt; publishMediaPlayerId = new Optional&lt;int&gt;();
-          public Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType = new Optional&lt;CLIENT_ROLE_TYPE&gt;();
-          public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt;();
-          public Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
-          public Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE&gt;();
-          public Optional&lt;string&gt; token = new Optional&lt;string&gt;();
-          public Optional&lt;bool&gt; publishRhythmPlayerTrack = new Optional&lt;bool&gt;();
-          public Optional&lt;bool&gt; isInteractiveAudience = new Optional&lt;bool&gt;();
-          public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
-          public Optional&lt;bool&gt; isAudioFilterable = new Optional&lt;bool&gt;();
+            <codeblock props="unity cs" outputclass="language-csharp">public class ChannelMediaOptions : OptionalJsonParse
+    {
+        public Optional&lt;bool&gt; publishCameraTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishSecondaryCameraTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMicrophoneTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishScreenCaptureVideo = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishScreenCaptureAudio = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishScreenTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishSecondaryScreenTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishCustomAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;int&gt; publishCustomAudioTrackId = new Optional&lt;int&gt;();
+        public Optional&lt;bool&gt; publishCustomVideoTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishEncodedVideoTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMediaPlayerAudioTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishMediaPlayerVideoTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; publishTranscodedVideoTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; autoSubscribeAudio = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; autoSubscribeVideo = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; enableAudioRecordingOrPlayout = new Optional&lt;bool&gt;();
+        public Optional&lt;int&gt; publishMediaPlayerId = new Optional&lt;int&gt;();
+        public Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType = new Optional&lt;CLIENT_ROLE_TYPE&gt;();
+        public Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel = new Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt;();
+        public Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
+        public Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile = new Optional&lt;CHANNEL_PROFILE_TYPE&gt;();
+        public Optional&lt;string&gt; token = new Optional&lt;string&gt;();
+        public Optional&lt;bool&gt; publishRhythmPlayerTrack = new Optional&lt;bool&gt;();
+        public Optional&lt;bool&gt; isInteractiveAudience = new Optional&lt;bool&gt;();
+        public Optional&lt;video_track_id_t&gt; customVideoTrackId = new Optional&lt;video_track_id_t&gt;();
+        public Optional&lt;bool&gt; isAudioFilterable = new Optional&lt;bool&gt;();
 
-       }</codeblock>
+   }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ChannelMediaOptions {
 
   publishCameraTrack?: boolean;
@@ -270,7 +268,8 @@
 
   isAudioFilterable?: boolean;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class ChannelMediaOptions {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ChannelMediaOptions {
   const ChannelMediaOptions(
       {this.publishCameraTrack,
       this.publishSecondaryCameraTrack,
@@ -280,10 +279,7 @@
       this.publishScreenTrack,
       this.publishSecondaryScreenTrack,
       this.publishCustomAudioTrack,
-      this.publishCustomAudioSourceId,
-      this.publishCustomAudioTrackEnableAec,
-      this.publishDirectCustomAudioTrack,
-      this.publishCustomAudioTrackAec,
+      this.publishCustomAudioTrackId,
       this.publishCustomVideoTrack,
       this.publishEncodedVideoTrack,
       this.publishMediaPlayerAudioTrack,
@@ -297,6 +293,8 @@
       this.audienceLatencyLevel,
       this.defaultVideoStreamType,
       this.channelProfile,
+      this.audioDelayMs,
+      this.mediaPlayerAudioDelayMs,
       this.token,
       this.enableBuiltInMediaEncryption,
       this.publishRhythmPlayerTrack,
@@ -328,17 +326,8 @@
   @JsonKey(name: 'publishCustomAudioTrack')
   final bool? publishCustomAudioTrack;
 
-  @JsonKey(name: 'publishCustomAudioSourceId')
-  final int? publishCustomAudioSourceId;
-
-  @JsonKey(name: 'publishCustomAudioTrackEnableAec')
-  final bool? publishCustomAudioTrackEnableAec;
-
-  @JsonKey(name: 'publishDirectCustomAudioTrack')
-  final bool? publishDirectCustomAudioTrack;
-
-  @JsonKey(name: 'publishCustomAudioTrackAec')
-  final bool? publishCustomAudioTrackAec;
+  @JsonKey(name: 'publishCustomAudioTrackId')
+  final int? publishCustomAudioTrackId;
 
   @JsonKey(name: 'publishCustomVideoTrack')
   final bool? publishCustomVideoTrack;
@@ -379,6 +368,12 @@
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
 
+  @JsonKey(name: 'audioDelayMs')
+  final int? audioDelayMs;
+
+  @JsonKey(name: 'mediaPlayerAudioDelayMs')
+  final int? mediaPlayerAudioDelayMs;
+
   @JsonKey(name: 'token')
   final String? token;
 
@@ -401,7 +396,7 @@
       _$ChannelMediaOptionsFromJson(json);
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ChannelMediaOptionsToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishAudioTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios">publishScreenCaptureVideo</parmname><parmname props="mac cpp framework">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph>.</section>
