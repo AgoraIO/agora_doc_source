@@ -17,6 +17,9 @@
 举报违规消息的示例代码如下：
 
 ```objective-c
+// msgId：要举报的消息 ID。
+// tag：非法消息的标签。你需要自行填写标签，例如`涉政`或`广告`。该字段对应声网控制台的消息举报记录页面的`词条标记`字段。
+// reason：举报原因。你需要自行填写举报原因。该字段对应声网控制台的消息举报记录页面的`举报原因`字段。
 [AgoraChatClient.sharedClient.chatManager reportMessageWithId:msgId
                                                        tag:tag
                                                     reason:reason
