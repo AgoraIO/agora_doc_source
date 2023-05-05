@@ -18,7 +18,7 @@
 
 ```javascript
 connection.reportMessage({
-    reportType: '广告'; // 非法消息的标签。你需要自行填写标签，例如`涉政`或`广告`。该字段对应声网控制台的消息举报记录页面的`词条标记`字段。
+    reportType: '广告'; // 违规消息的标签。你需要自行填写标签，例如`涉政`或`广告`。该字段对应声网控制台的消息举报记录页面的`词条标记`字段。
     reportReason: 'report reason'; // 举报原因。你需要自行填写举报原因。该字段对应声网控制台的消息举报记录页面的`举报原因`字段。
     messageId: 'ID of the reported message'; // 要举报的消息 ID。
 })
