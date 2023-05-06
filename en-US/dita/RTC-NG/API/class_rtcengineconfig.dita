@@ -118,7 +118,6 @@
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        license(NULL),
         audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
         logConfig(), domainLimit(false), 
@@ -137,8 +136,7 @@
   logConfig?: LogConfig;
   
   threadPriority?: ThreadPriorityType;
-  
-  useExternalEglContext?: boolean;
+
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
     {
@@ -152,7 +150,6 @@
             audioScenario = AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT;
             areaCode = AREA_CODE.AREA_CODE_GLOB;
             logConfig = new LogConfig();
-            useExternalEglContext = false;
         }
 
         public RtcEngineContext(string appId, UInt64 context,
@@ -181,38 +178,47 @@
   logConfig?: LogConfig;
   
   threadPriority?: ThreadPriorityType;
-  
-  useExternalEglContext?: boolean;
+
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RtcEngineContext {
   const RtcEngineContext(
       {this.appId,
-      this.enableAudioDevice,
       this.channelProfile,
       this.audioScenario,
       this.areaCode,
       this.logConfig,
       this.threadPriority,
-      this.useExternalEglContext});
+      this.domainLimit,
+      this.autoRegisterAgoraExtensions});
 
   @JsonKey(name: 'appId')
   final String? appId;
-  @JsonKey(name: 'enableAudioDevice')
-  final bool? enableAudioDevice;
+
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
   @JsonKey(name: 'audioScenario')
   final AudioScenarioType? audioScenario;
+
   @JsonKey(name: 'areaCode')
   final int? areaCode;
+
   @JsonKey(name: 'logConfig')
   final LogConfig? logConfig;
+
   @JsonKey(name: 'threadPriority')
   final ThreadPriorityType? threadPriority;
-  @JsonKey(name: 'useExternalEglContext')
-  final bool? useExternalEglContext;
+
+  @JsonKey(name: 'domainLimit')
+  final bool? domainLimit;
+
+  @JsonKey(name: 'autoRegisterAgoraExtensions')
+  final bool? autoRegisterAgoraExtensions;
+
   factory RtcEngineContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$RtcEngineContextFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcEngineContextToJson(this);
 }</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp" /></p>
