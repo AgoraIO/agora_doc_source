@@ -32,12 +32,12 @@
             <plentry>
                 <pt props="android cpp electron rn flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
-                <pt props="unity">audioFrameObserver</pt>
+                <pt props="unity cs">audioFrameObserver</pt>
                 <pd>
-                    <p><ph>接口对象实例。详见 <xref keyref="IAudioFrameObserver"/>。</ph><ph props="android mac ios unity cpp">如果传入 <ph keyref="NULL"/>，则表示取消注册。</ph><ph>建议在收到 <xref keyref="onLeaveChannel"/> 后调用，来释放音频观测器对象。</ph></p>
+                    <p><ph>接口对象实例。详见 <xref keyref="IAudioFrameObserver"/>。</ph><ph props="android mac ios unity cpp cs">如果传入 <ph keyref="NULL"/>，则表示取消注册。</ph><ph>建议在收到 <xref keyref="onLeaveChannel"/> 后调用，来释放音频观测器对象。</ph></p>
                 </pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity cs">
                 <pt>mode</pt>
                 <pd>音频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
             </plentry>
@@ -45,7 +45,7 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
-            <ul props="android cpp rn unity electron">
+            <ul props="android cpp rn unity electron cs">
                 <li>0：方法调用成功。</li>
                 <li>&lt; 0：方法调用失败。</li>
             </ul>
