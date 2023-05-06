@@ -399,7 +399,7 @@ class ChannelMediaOptions {
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">SDK 支持在同一时间、同一 <xref keyref="RtcConnection"/> 中发布多路音频流、一路视频流。例如，<parmname>publishMicrophoneTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph keyref="true"/></codeph>； <parmname>publishCameraTrack</parmname>、<parmname props="android ios cpp flutter unity rn cs">publishScreenCaptureVideo</parmname><parmname props="mac cpp flutter unity electron cs">publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph keyref="true"/></codeph>。
+        <section id="detailed_desc">SDK 支持在同一时间、同一 <xref keyref="RtcConnection"/> 中发布多路音频流、一路视频流。例如，<parmname>publishMicrophoneTrack</parmname>、<parmname>publishCustomAudioTrack</parmname> 和 <parmname>publishMediaPlayerAudioTrack</parmname> 可以同时为 <codeph><ph keyref="true"/></codeph>； <parmname>publishCameraTrack</parmname>、<parmname props="android ios cpp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp flutter unity electron">publishScreenTrack</parmname>、<parmname>publishCustomVideoTrack</parmname> 或 <parmname>publishEncodedVideoTrack</parmname> 之中同一时间只能有一个为 <codeph><ph keyref="true"/></codeph>。
             <note type="attention" id="note">建议你根据业务场景自行设置成员参数值，否则 SDK 会自动对成员参数进行赋值。</note>
         </section>
         <section id="parameters">
@@ -413,7 +413,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="mac cpp unity flutter rn electron cs">
+            <plentry props="mac cpp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
@@ -435,7 +435,7 @@ class ChannelMediaOptions {
                     <note type="note">自 v6.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter rn electron cs">
+            <plentry props="cpp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
@@ -455,7 +455,7 @@ class ChannelMediaOptions {
                     <p><note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter rn electron cs">
+            <plentry props="cpp unity flutter rn electron">
                 <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
@@ -489,7 +489,7 @@ class ChannelMediaOptions {
                     <p><note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unity flutter rn electron cs">
+            <plentry props="mac cpp unity cs flutter rn electron">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>设置是否发布第二个屏幕采集的视频：
 
@@ -499,7 +499,7 @@ class ChannelMediaOptions {
                     </ul>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter rn electron cs">
+            <plentry props="cpp unity cs flutter rn electron">
                 <pt>publishTranscodedVideoTrack</pt>
                 <pd>设置是否发布本地的转码视频：
                     <ul>
@@ -525,7 +525,7 @@ class ChannelMediaOptions {
                     <p>如果你已在 <xref keyref="setExternalAudioSource2"/> 中设置了 <parmname>sourceNumber</parmname> 大于 1，SDK 会创建对应数量的自采集音频轨道，并从 0 开始为每一个音频轨道分配一个 ID。</p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter rn electron cs">
+            <plentry props="cpp unity cs flutter rn electron">
                 <pt>publishCustomAudioTrackEnableAec</pt>
                 <pd>设置发布自定义采集的音频时是否启用 AEC：
 

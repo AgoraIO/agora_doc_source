@@ -67,7 +67,7 @@
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingVideoStream {
 
-  sourceType?: MediaSourceType;
+  sourceType?: VideoSourceType;
 
   remoteUserUid?: number;
 
@@ -106,7 +106,7 @@
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class TranscodingVideoStream {
 
-  sourceType?: MediaSourceType;
+  sourceType?: VideoSourceType;
 
   remoteUserUid?: number;
 
@@ -190,14 +190,10 @@ class TranscodingVideoStream {
                 <pd>参与本地合图的视频源类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
             <plentry>
-                <pt>mediaPlayerId</pt>
-                <pd>（可选）媒体播放器 ID。当你将 <parmname>sourceType</parmname> 设置为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，需要设置该参数。</pd>
-            </plentry>
-            <plentry>
                 <pt>remoteUserUid</pt>
                 <pd>
                     <p>远端用户 ID。</p>
-                    <note id="note_m2h_lxn_3qb" type="attention">请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE" /> 时，使用该参数。</note></pd>
+                    <note type="attention">请仅在参与本地合图的视频源类型为 <apiname keyref="VIDEO_SOURCE_REMOTE" /> 时，使用该参数。</note></pd>
             </plentry>
             <plentry>
                 <pt>imageUrl</pt>
@@ -206,19 +202,23 @@ class TranscodingVideoStream {
                     <note type="attention">请仅在参与本地合图的视频源类型为图片时，使用该参数。</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter cs">
+            <plentry>
+                <pt>mediaPlayerId</pt>
+                <pd>（可选）媒体播放器 ID。当你将 <parmname>sourceType</parmname> 设置为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，需要设置该参数。</pd>
+            </plentry>
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>x</pt>
                 <pd>参与本地合图的视频的左上角相对于合图画布左上角（原点）的横向位移。</pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter cs">
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>y</pt>
                 <pd>参与本地合图的视频的左上角相对于合图画布左上角（原点）的纵向位移。</pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter cs">
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>width</pt>
                 <pd>参与本地合图的视频的宽度 (px)。</pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter cs">
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>height</pt>
                 <pd>参与本地合图的视频的高度 (px)。</pd>
             </plentry>

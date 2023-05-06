@@ -118,7 +118,6 @@
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        license(NULL),
         audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
         logConfig(), domainLimit(false), 
@@ -137,8 +136,7 @@
   logConfig?: LogConfig;
   
   threadPriority?: ThreadPriorityType;
-  
-  useExternalEglContext?: boolean;
+
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
     {
@@ -152,7 +150,6 @@
             audioScenario = AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT;
             areaCode = AREA_CODE.AREA_CODE_GLOB;
             logConfig = new LogConfig();
-            useExternalEglContext = false;
         }
 
         public RtcEngineContext(string appId, UInt64 context,
@@ -181,52 +178,61 @@
   logConfig?: LogConfig;
   
   threadPriority?: ThreadPriorityType;
-  
-  useExternalEglContext?: boolean;
+
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RtcEngineContext {
   const RtcEngineContext(
       {this.appId,
-      this.enableAudioDevice,
       this.channelProfile,
       this.audioScenario,
       this.areaCode,
       this.logConfig,
       this.threadPriority,
-      this.useExternalEglContext});
+      this.domainLimit,
+      this.autoRegisterAgoraExtensions});
 
   @JsonKey(name: 'appId')
   final String? appId;
-  @JsonKey(name: 'enableAudioDevice')
-  final bool? enableAudioDevice;
+
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
   @JsonKey(name: 'audioScenario')
   final AudioScenarioType? audioScenario;
+
   @JsonKey(name: 'areaCode')
   final int? areaCode;
+
   @JsonKey(name: 'logConfig')
   final LogConfig? logConfig;
+
   @JsonKey(name: 'threadPriority')
   final ThreadPriorityType? threadPriority;
-  @JsonKey(name: 'useExternalEglContext')
-  final bool? useExternalEglContext;
-  factory RtcEngineContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'domainLimit')
+  final bool? domainLimit;
+
+  @JsonKey(name: 'autoRegisterAgoraExtensions')
+  final bool? autoRegisterAgoraExtensions;
+
+  factory RtcEngineContext.fromJson(Map&lt;String, dynamic> json) =>
       _$RtcEngineContextFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcEngineContextToJson(this);
+
+  Map&lt;String, dynamic> toJson() => _$RtcEngineContextToJson(this);
 }</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="cpp android unity cs">
-                <pt props="cpp unity cs">eventHandler</pt>
+            <plentry props="cpp android unity">
+                <pt props="cpp unity">eventHandler</pt>
                 <pt props="android">mEventHandler</pt>
                 <pd id="eventhandler"><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter cs">appId</pt>
+                <pt props="cpp ios mac unity electron rn flutter">appId</pt>
                 <pt props="android">mAppId</pt>
                 <pd id="appid">声网为 app 开发者签发的 App ID。 使用同一个 App ID 的 app 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建。</pd>
             </plentry>
@@ -235,8 +241,8 @@
                 <pt props="android">mContext</pt>
                 <pd id="context">
                     <ul props="cpp unity cs">
-                    <li>在 Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
-                    <li props="cpp unity">在 Android 平台上，context 是安卓活动上下文。</li>
+                    <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
+                    <li props="cpp unity">Android 平台上，context 是安卓活动上下文。</li>
                     </ul>
                     <p props="android">安卓活动上下文。</p>
                 </pd>
@@ -256,23 +262,23 @@
                     </ul></note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter cs">channelProfile</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">channelProfile</pt>
                 <pt props="android">mChannelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter cs">audioScenario</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">audioScenario</pt>
                 <pt props="android">mAudioScenario</pt>
                 <pd conkeyref="setAudioProfile/scenario-ng"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter cs">areaCode</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
                 <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
                 <pd>指定访问区域后，集成了 SDK 的 app 会连接指定区域内的声网服务器。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter cs">logConfig</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">logConfig</pt>
                 <pt props="android">mLogConfig</pt>
                 <pd>
                     <p>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
@@ -296,7 +302,7 @@
             </plentry>
             <plentry>
                 <pt props="android">mDomainLimit</pt>
-                <pt props="cpp ios mac">domainLimit</pt>                
+                <pt props="cpp ios mac electron unity cs rn flutter">domainLimit</pt>                
                 <pd>
                     <p>是否开启域名限制：
                     <ul>
@@ -307,7 +313,7 @@
             </plentry>
             <plentry>
               <pt props="android">mAutoRegisterAgoraExtensions</pt>
-              <pt props="cpp ios mac">autoRegisterAgoraExtensions</pt>
+              <pt props="cpp ios mac electron unity cs rn flutter">autoRegisterAgoraExtensions</pt>
               <pd>
                   <p>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
                   <ul>

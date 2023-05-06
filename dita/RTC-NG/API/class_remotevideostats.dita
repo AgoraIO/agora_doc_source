@@ -23,7 +23,6 @@
     public int avSyncTimeMs;
     public long totalActiveTime;
     public long publishDuration;
-    public int superResolutionType;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
@@ -43,7 +42,6 @@
 @property(assign, nonatomic) NSUInteger totalActiveTime;
 @property(assign, nonatomic) NSInteger publishDuration;
 @property(assign, nonatomic) NSInteger avSyncTimeMs;
-@property(assign, nonatomic) NSInteger superResolutionType;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct RemoteVideoStats {
   uid_t uid;
@@ -62,7 +60,6 @@
   int avSyncTimeMs;
   int totalActiveTime;
   int publishDuration;
-  int superResolutionType;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
 
@@ -97,8 +94,6 @@
   totalActiveTime?: number;
 
   publishDuration?: number;
-
-  superResolutionType?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RemoteVideoStats
     {
@@ -153,7 +148,6 @@
 
   publishDuration?: number;
 
-  superResolutionType?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class RemoteVideoStats {
@@ -295,7 +289,7 @@ class RemoteVideoStats {
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity rn electron flutter cs">详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</ph>
+                <pd><ph>视频流类型，大流或小流。</ph><ph props="ios mac cpp unity cs rn electron flutter">详见 <xref keyref="VIDEO_STREAM_TYPE"/>。</ph>
                     <p props="android">
                     <ul>
                     <li><ph keyref="VIDEO_STREAM_HIGH"/> (0)：视频大流，即高分辨率高码率的视频流。</li>
@@ -323,15 +317,6 @@ class RemoteVideoStats {
                 <pd>
                     <p>远端视频流的累计发布时长（毫秒）。</p>
                 </pd>
-            </plentry>
-            <plentry props="unity rn flutter cs">
-                <pt>superResolutionType</pt>
-                <pd>超分辨率的开启状态：
-
-                    <ul>
-                    <li>&gt;0：超分辨率已开启。</li>
-                    <li>=0：超分辨率未开启。</li>
-                    </ul> </pd>
             </plentry>
             <plentry>
                 <pt>avSyncTimeMs</pt>
