@@ -21,16 +21,15 @@
   DeviceInfo() : isLowLatencyAudioSupported(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DeviceInfo {
-  
+
   isLowLatencyAudioSupported?: boolean;
 }</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public class DeviceInfo
+            <codeblock props="unity cs" outputclass="language-csharp">public class DeviceInfoMobile
     {
-        public string deviceName;
-        public string deviceId;
+        public bool isLowLatencyAudioSupported;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class DeviceInfo {
-  
+
   isLowLatencyAudioSupported?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class DeviceInfo {
@@ -41,31 +40,21 @@
   factory DeviceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$DeviceInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$DeviceInfoToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <note type="attention" props="cpp unity rn flutter">该类仅适用于 Android 平台。</note> </section>
+            <note type="attention" props="cpp unity cs rn flutter">该类仅适用于 Android 平台。</note> </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-            <plentry props="native rn flutter">
+            <plentry props="native unity cs rn flutter">
                 <pt>isLowLatencyAudioSupported</pt>
                 <pd>是否支持极低延时音频采集和播放：
-
-
                     <ul>
                     <li><codeph><ph keyref="true" /></codeph>: 支持</li>
                     <li><codeph><ph keyref="false" /></codeph>: 不支持</li>
                     </ul></pd>
-            </plentry>
-            <plentry props="unity cs">
-                <pt>deviceName</pt>
-                <pd>设备名称。</pd>
-            </plentry>
-            <plentry props="unity cs">
-                <pt>deviceId</pt>
-                <pd>设备 ID。</pd>
             </plentry>
             </parml> </section>
     </refbody>

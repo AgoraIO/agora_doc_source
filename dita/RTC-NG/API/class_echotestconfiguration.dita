@@ -13,7 +13,7 @@
   public String token = null;
   public String channelId = null;
   public int intervalInSeconds = 2;
- 
+
   @CalledByNative
   public EchoTestConfiguration(SurfaceView view, boolean enableAudio, boolean enableVideo,
       String token, String channelId, int intervalInSeconds) {
@@ -40,7 +40,7 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
@@ -78,29 +78,12 @@ struct EchoTestConfiguration {
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class EchoTestConfiguration
     {
-        public view_t view { set; get; }
-        public bool enableAudio { set; get; }
-        public bool enableVideo { set; get; }
-        public string token { set; get; }
-        public string channelId { set; get; }
-
-        public EchoTestConfiguration(view_t v, bool ea, bool ev, string t, string c)
-        {
-            view = v;
-            enableAudio = ea;
-            enableVideo = ev;
-            token = t;
-            channelId = c;
-        }
-
-        public EchoTestConfiguration()
-        {
-            view = 0;
-            enableAudio = true;
-            enableVideo = true;
-            token = "";
-            channelId = "";
-        }
+        public view_t view;
+        public bool enableAudio;
+        public bool enableVideo;
+        public string token;
+        public string channelId;
+        public int intervalInSeconds;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
 
@@ -177,7 +160,7 @@ struct EchoTestConfiguration {
                 <pd>标识每个音视频通话回路测试的频道名。为保证回路测试功能正常，同一个项目（App ID） 的各终端用户在不同设备上做音视频通话回路测试时，传入的标识每个回路测试的频道名不能相同。</pd>
             </plentry>
             <plentry>
-                <pt >intervalInSeconds</pt>
+                <pt>intervalInSeconds</pt>
                 <pd>设置返回音频或视频通话回路测试结果的时间间隔，取值范围为 [2,10]，单位为秒，默认为 2 秒。</pd>
             </plentry>
             </parml> </section>

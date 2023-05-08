@@ -1219,24 +1219,6 @@
                 <topicref keyref="LocalTranscoderConfiguration"/>
             </relcell>
         </relrow>
-        <relrow props="cpp">
-            <relcell>
-                <topicref keyref="startPrimaryCameraCapture"/>
-                <topicref keyref="startSecondaryCameraCapture"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="CameraCapturerConfiguration"/>
-            </relcell>
-        </relrow>
-        <relrow props="cpp">
-            <relcell>
-                <topicref keyref="startPrimaryScreenCapture"/>
-                <topicref keyref="startSecondaryScreenCapture"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="ScreenCaptureConfiguration"/>
-            </relcell>
-        </relrow>
         <relrow props="cpp ios android unity rn flutter">
             <relcell>
                 <topicref keyref="startScreenCapture"/>
@@ -1275,14 +1257,6 @@
             </relcell>
             <relcell>
                 <topicref keyref="VIDEO_FRAME_PROCESS_MODE"/>
-            </relcell>
-        </relrow>
-        <relrow props="native rn flutter electron">
-            <relcell>
-                <topicref keyref="onScreenCaptureVideoFrame"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="VideoFrame"/>
             </relcell>
         </relrow>
         <relrow props="android ios">
@@ -2552,6 +2526,7 @@
             <relcell>
                 <topicref keyref="addVideoWatermarkEx"/>
                 <topicref keyref="clearVideoWatermarkEx"/>
+                <topicref keyref="createAgoraRtcEngineEx" props="unity flutter"/>
                 <topicref keyref="createDataStreamEx1" props="android cpp unity"/>
                 <topicref keyref="createDataStreamEx2" props="android cpp framework"/>
                 <topicref keyref="enableAudioVolumeIndicationEx"/>
@@ -2950,7 +2925,6 @@
         <relrow>
             <relcell>
                 <topicref keyref="onPlaybackAudioFrameBeforeMixing"/>
-                <topicref keyref="onPlaybackAudioFrameBeforeMixing2" props="unity"/>
             </relcell>
             <relcell>
                 <topicref keyref="IAudioFrameObserver"/>
@@ -2962,7 +2936,8 @@
                 <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver" props="framework"/>
             </relcell>
             <relcell>
-                <topicref keyref="IMediaPlayerAudioFrameObserver"/>
+                <topicref keyref="IMediaPlayerAudioFrameObserver" props="android"/>
+                <topicref keyref="IAudioPcmFrameSink" props="framework"/>
             </relcell>
         </relrow>
         <relrow props="cpp apple">
@@ -3220,14 +3195,6 @@
             </relcell>
             <relcell>
                 <topicref keyref="AgoraVideoSurface"/>
-            </relcell>
-        </relrow>
-        <relrow props="framework">
-            <relcell>
-                <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="IMediaPlayerAudioFrameObserver"/>
             </relcell>
         </relrow>
     </reltable>

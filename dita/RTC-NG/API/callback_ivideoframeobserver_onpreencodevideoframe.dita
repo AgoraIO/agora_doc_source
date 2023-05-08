@@ -17,10 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPreEncodeVideoFrame:(AgoraOutputVideoFrame * _Nonnull)videoFrame sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onPreEncodeVideoFrame(agora::rtc::VIDEO_SOURCE_TYPE sourceType, VideoFrame&amp; videoFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPreEncodeVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnPreEncodeVideoFrame(VideoFrame videoFrame, VideoFrameBufferConfig config)
-        {
-            return true;
-        }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnPreEncodeVideoFrame(VIDEO_SOURCE_TYPE sourceType, VideoFrame videoFrame)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onPreEncodeVideoFrame?(videoFrame: VideoFrame): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoFrame videoFrame)? onPreEncodeVideoFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -42,10 +39,10 @@
                     <pt/>
                     <pd/>
                 </plentry>
-            <plentry props="unity cs" conkeyref="onCaptureVideoFrame/config">
-                <pt/>
-                <pd/>
-            </plentry>
+                <plentry conkeyref="onCaptureVideoFrame/videoframe">
+                    <pt/>
+                    <pd/>
+                </plentry>
             </parml> </section>
         <section id="return_values" props="native electron unity rn cs">
             <title>返回值</title>
