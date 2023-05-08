@@ -18,12 +18,12 @@
        didReceiveAudioFrame:(AgoraAudioFrame* _Nonnull)audioFrame NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceiveAudioFrame:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onFrame(agora::media::base::AudioPcmFrame* frame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame)
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame frame)
         {
             return true;
         }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -33,10 +33,9 @@
             <title><ph keyref="callback-section-title"/></title>
             <parml>
             <plentry props="android cpp unity apple cs electron rn">
-                <pt props="android cpp electron rn">frame</pt>
-                <pt props="unity cs">videoFrame</pt>
+                <pt props="android cpp electron unity cs rn">frame</pt>
                 <pt props="apple">audioFrame</pt>
-                <pd><ph>音频帧信息。</ph><ph props="android apple">详见 <ph keyref="AudioFrame"/>。</ph><ph props="cpp unity cs electron rn">详见 <ph keyref="AudioPcmFrame"/>。</ph></pd>
+                <pd><ph>音频帧信息。</ph><ph props="android apple">详见 <ph keyref="AudioFrame"/>。</ph><ph props="cpp unity cs">详见 <ph keyref="AudioPcmFrame"/>。</ph></pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>playerKit</pt>
