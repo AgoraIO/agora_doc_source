@@ -2707,6 +2707,7 @@
                 <topicref keyref="getMute"/>
                 <topicref keyref="getPlayoutVolume"/>
                 <topicref keyref="getPlayPosition"/>
+                <topicref keyref="getPlaySrc"/>
                 <topicref keyref="getPublishSignalVolume"/>
                 <topicref keyref="getState"/>
                 <topicref keyref="getStreamCount"/>
@@ -2930,22 +2931,13 @@
                 <topicref keyref="IAudioFrameObserver"/>
             </relcell>
         </relrow>
-        <relrow props="android framework">
-            <relcell>
-                <topicref keyref="onFrame_IAudioPcmFrameSink" props="android electron rn"/>
-                <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver" props="unity cs flutter"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="IMediaPlayerAudioFrameObserver" props="android"/>
-                <topicref keyref="IAudioPcmFrameSink" props="framework"/>
-            </relcell>
-        </relrow>
-        <relrow props="cpp apple">
+        <relrow>
             <relcell>
                 <topicref keyref="onFrame_IAudioPcmFrameSink"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioPcmFrameSink"/>
+                <topicref keyref="IMediaPlayerAudioFrameObserver" props="android"/>
+                <topicref keyref="IAudioPcmFrameSink" props="cpp apple framework"/>
             </relcell>
         </relrow>
         <relrow props="ios mac cpp framework">
