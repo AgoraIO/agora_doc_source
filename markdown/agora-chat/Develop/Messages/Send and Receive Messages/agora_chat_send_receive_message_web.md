@@ -119,9 +119,9 @@ conn.addEventHandler("eventName",{
     onPresence: function (message) {},
     // 当前用户收到好友邀请。
     onContactInvited: function (msg){},
-    // 联系人被删除。
+    // 好友被删除。
     onContactDeleted: function (msg){},
-    // 新增联系人。
+    // 新增好友。
     onContactAdded: function (msg){},
     // 当前用户发送的好友请求被拒绝。
     onContactRefuse: function (msg){},
@@ -643,10 +643,3 @@ function sendTextMessage() {
     });
 }
 ```
-
-## 后续步骤
-
-实现消息发送和接收后，可以参考以下文档为应用添加更多消息功能：
-
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_web)
-- [消息回执](./agora_chat_message_receipt_web)

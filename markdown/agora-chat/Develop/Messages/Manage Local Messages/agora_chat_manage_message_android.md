@@ -160,10 +160,3 @@ ChatClient.getInstance().chatManager().updateMessage(message);
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.updateMessage(message);
 ```
-
-## 后续步骤
-
-实现消息管理后，您可以参考以下文档为应用添加更多消息功能：
-
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_android)
-- [消息回执](./agora_chat_message_receipt_android)

@@ -525,11 +525,3 @@ message.chatType = AgoraChatTypeChat;
   }
 }
 ```
-
-## 后续步骤
-
-实现消息发送和接收后，可以参考以下文档为您的应用添加更多消息功能：
-
-- [管理本地消息](./agora_chat_manage_message_ios)
-- [从服务器检索对话和消息](./agora_chat_retrieve_message_ios)
-- [消息回执](./agora_chat_message_receipt_ios)

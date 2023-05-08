@@ -174,7 +174,7 @@ addCallkitListener();
 
 #### 多人音视频通话
 
-调用 `startInviteMultipleCall` 方法发起多人通话。将通话类型设置为音频通话或视频通话。你可以设置要邀请的群组或联系人列表中的用户。参考 `ConferenceInviteActivity` 示例项目中的实现。
+调用 `startInviteMultipleCall` 方法发起多人通话。将通话类型设置为音频通话或视频通话。你可以设置要邀请的群组或好友列表中的用户。参考 `ConferenceInviteActivity` 示例项目中的实现。
 
 ```java
 /**

@@ -145,10 +145,3 @@ AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManage
      }
 }];
 ```
-
-## 后续步骤
-
-实现消息管理后，你可以参考以下文档为应用添加更多消息功能：
-
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_ios)
-- [消息回执](./agora_chat_message_receipt_ios)

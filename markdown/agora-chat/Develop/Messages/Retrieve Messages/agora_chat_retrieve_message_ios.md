@@ -74,9 +74,3 @@ AgoraChatConversation* conversation = [AgoraChatClient.sharedClient.chatManager 
         
     }];
 ```
-
-## 后续步骤
-
-实现从服务器获取消息后，您可以参考以下文档为您的应用添加更多消息功能：
-
-- [消息回执](./agora_chat_message_receipt_ios)

@@ -7,14 +7,12 @@
 
 即时通讯 IM SDK 提供以下用户关系管理功能：
 
-- `addContact` 请求添加好友；
-- `acceptContactInvite`/`declineContactInvite` 接受/拒绝好友请求；
-- `deleteContact` 删除好友；
-- `getContacts` 查询好友列表；
-- `addEventHandler` 添加好友状态监听；
-- `addUsersToBlocklist` 添加用户到黑名单；
-- `getBlocklist` 获取黑名单；
-- `removeUserFromBlocklist` 将用户移出黑名单。
+- 添加、删除好友；
+- 查询好友列表；
+- 添加好友状态监听；
+- 添加用户到黑名单；
+- 获取黑名单；
+- 将用户移出黑名单。
 
 ## 前提条件
 
@@ -25,7 +23,7 @@
 
 ## 实现方法
 
-### 管理联系人列表
+### 管理好友列表
 
 #### 添加好友
 
@@ -42,9 +40,9 @@
 conn.addEventHandler("contactEvent", {
   // 当前用户收到好友请求。用户 B 向用户 A 发送好友请求，用户 A 收到该事件。
   onContactInvited: function (msg) {},
-  // 当前用户被其他用户从联系人列表上移除。用户 B 将用户 A 从联系人列表上删除，用户 A 收到该事件。
+  // 当前用户被其他用户从好友列表上移除。用户 B 将用户 A 从好友列表上删除，用户 A 收到该事件。
   onContactDeleted: function (msg) {},
-  // 当前用户新增了联系人。 用户 B 向用户 A 发送好友请求，用户 A 同意该请求，用户 A 收到该事件，而用户 B 收到 `onContactAgreed` 事件。
+  // 当前用户新增了好友。 用户 B 向用户 A 发送好友请求，用户 A 同意该请求，用户 A 收到该事件，而用户 B 收到 `onContactAgreed` 事件。
   onContactAdded: function (msg) {},
   // 当前用户发送的好友请求被拒绝。 用户 A 向用户 B 发送好友请求，用户 B 收到好友请求后，拒绝加好友，则用户 A 收到该事件。
   onContactRefuse: function (msg) {},
@@ -79,7 +77,7 @@ conn.declineContactInvite("userId");
 
 #### 删除好友
 
-删除联系人时会同时删除对方联系人列表中的该用户，建议执行双重确认，以免发生误删操作。删除操作不需要对方同意或者拒绝。
+删除好友时会同时删除对方好友列表中的该用户，建议执行双重确认，以免发生误删操作。删除操作不需要对方同意或者拒绝。
 
 你可以调用 `deleteContact` 方法删除好友，示例代码如下：
 

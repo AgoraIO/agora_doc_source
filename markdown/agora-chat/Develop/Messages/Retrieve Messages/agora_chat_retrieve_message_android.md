@@ -108,9 +108,3 @@ ChatClient.getInstance().chatManager().deleteConversationFromServer(conversation
     }
 });
 ```
-
-## 后续步骤
-
-你可以参考以下文档为应用添加更多消息功能：
-
-- [消息回执](./agora_chat_message_receipt_android)
