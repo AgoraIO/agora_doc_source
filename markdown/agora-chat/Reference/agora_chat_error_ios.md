@@ -23,7 +23,7 @@
 | 205    | `AgoraChatErrorUserIllegalArgument`         | 用户参数不正确：比如创建用户 ID 时不符合格式要求，或者更新用户属性时用户参数为空等。 |
 | 206    | `AgoraChatErrorUserLoginOnAnotherDevice`    | 用户在其他设备登录：如果用户未开启多设备登录，当在其他设备登录时，会被强制从当前登录的设备下线，且收到该错误码。 |
 | 207    | `AgoraChatErrorUserRemoved`                 | 用户已经被注销：如果登录用户 ID 被管理员从管理后台删除则会收到此错误。       |
-| 208    | `AgoraChatErrorUserRegisterFailed`          | 用户注册失败：调用服务端注册方法时，传入参数为空或不合法，请确认后重新调用方法。详见[注册用户 RESTful API](./agora_chat_restful_reg?platform=RESTful#注册单个用户)。 |
+| 208    | `AgoraChatErrorUserRegisterFailed`          | 用户注册失败：调用服务端注册方法时，传入参数为空或不合法，请确认后重新调用方法。详见[注册用户 RESTful API](./agora_chat_restful_registration#注册单个用户)。 |
 | 209    | `AgoraChatErrorUpdateApnsConfigsFailed`     | 更新推送配置错误：用户更新推送配置信息错误，如更新推送显示昵称、更新免打扰模式等。请重新调用方法。 |
 | 210    | `AgoraChatErrorUserPermissionDenied`        | 用户无权限 ：例如，如果用户被封禁，发送消息时会提示该错误。 |
 | 214    | `AgoraChatErrorUserLoginTooManyDevices`     | 用户登录设备数超过限制：该错误在多设备自动登录场景中且打开不踢掉其他设备上的登录的开关时超过登录设备数量的限制才会出现。例如，用户最多可同时登录 4 台设备， A（实现了自动登录）、B、C 和 D。手动登录设备 E 后，用户再次自动登录设备 A 时登录失败且提示该错误。如对登录设备数量有更高需求，请联系 [sales@agora.io](mailto:sales@agora.io)。 |

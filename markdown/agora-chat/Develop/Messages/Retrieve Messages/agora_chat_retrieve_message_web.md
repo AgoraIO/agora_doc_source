@@ -20,11 +20,11 @@
 
 ## 实现方法
 
-## 从服务器分页获取会话列表
+### 从服务器分页获取会话列表
 
 你可以调用 `getConversationlist` 方法从服务端分页获取会话列表，每个会话包含最新一条历史消息。
 
-<div class="alert note">获取的会话列表中不包含最新一条消息通过 RESTful 接口发送的会话。若需获取该类会话，需要联系 [sales@agora.io](mailto:sales@agora.io) 开通将通过 RESTful 接口发送的消息写入会话列表的功能。</div>
+<div class="alert note">获取的会话列表中不包含最新一条消息通过 RESTful 接口发送的会话。若需获取该类会话，需要联系 <a href="mailto:sales@agora.io">sales@agora.io</a> 开通将通过 RESTful 接口发送的消息写入会话列表的功能。</div>
 
 ```java
 // pageNum：当前页面，从 1 开始。

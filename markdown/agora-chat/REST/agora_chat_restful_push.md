@@ -614,7 +614,7 @@ curl -X POST 'https://XXXX/XXXX/XXXX/notification/template' \
 
 ### HTTP 请求
 
-```
+```http
 GET https://{host}/{org_name}/{app_name}/notification/template/{name}
 ```
 

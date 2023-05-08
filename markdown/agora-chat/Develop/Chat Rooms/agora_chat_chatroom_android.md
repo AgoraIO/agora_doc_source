@@ -88,13 +88,7 @@ public interface ChatRoomChangeListener {
     // 有成员主动退出聊天室。聊天室的所有成员（除退出成员外）会收到该事件。
     void onMemberExited(final String roomId, final String roomName, final String participant);
 
-    /**
-     * 有成员被踢出聊天室。被踢出聊天室的成员会收到该事件。
-     *
-     * @param reason        用户被移出聊天室的原因：
-     *                        - xxx BE_KICKED：该用户被聊天室管理员移出；
-     *                        - xxxBE_LICKED)FOR_OFFLINE：该用户由于当前设备断网被服务器移出聊天室。
-     */
+    // 有成员被踢出聊天室。被踢出聊天室的成员会收到该事件。
     void onRemovedFromChatRoom(final int reason, final String roomId, final String roomName, final String participant);
 
     // 有成员被加入禁言列表。聊天室所有者、管理员和被禁言的成员会收到该事件。

@@ -4,7 +4,7 @@
 
 例如，在招聘场景下，利用用户属性功能，可以存储性别、邮箱、用户类型（面试者）、职位类型（Web 研发）等。当查看用户信息时，可以直接查询服务器存储的用户属性信息。
 
-<div class="alert note">为保证用户信息安全，环信即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。</div>
+<div class="alert note">为保证用户信息安全，即时通讯 IM 仅支持用户本人或 app 管理员设置用户属性。</div>
 
 调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 

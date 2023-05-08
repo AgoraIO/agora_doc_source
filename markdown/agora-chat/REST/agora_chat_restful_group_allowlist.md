@@ -93,7 +93,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
     "entities": [],
     "data": [
         "username1",
-        "username1",
+        "username2",
         "username3",
         "username4",
         "username5"
