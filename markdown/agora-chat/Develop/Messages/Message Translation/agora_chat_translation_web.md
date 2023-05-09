@@ -13,11 +13,11 @@
 - 由于此功能由 Microsoft Azure 翻译 API 提供，开始前请确保你了解该功能支持的目标语言。详见[翻译语言支持](https://docs.microsoft.com/en-us/azure)。
 ## 技术原理
 
-SDK 支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM SDK 支持你通过调用 API 实现如下翻译功能：
 
-- `getSupportedLanguages`：获取支持的翻译语言；
-- `translateMessage`：翻译收到的文本消息；
-- `msgConfig` 中的 `languages`：设置发送消息前自动翻译。当收件人收到消息时，它包含原始语言和目标语言的消息。
+- 获取支持的翻译语言；
+- 翻译收到的文本消息；
+- 设置发送消息前自动翻译。当收件人收到消息时，它包含原始语言和目标语言的消息。
 
 ## 实现方法
 

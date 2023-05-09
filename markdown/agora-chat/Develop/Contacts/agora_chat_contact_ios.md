@@ -5,14 +5,14 @@
 
 ## 技术原理
 
-即时通讯 IM iOS SDK 可以实现好友的添加移除，黑名单的添加移除等功能，主要调用方法如下：
+即时通讯 IM iOS SDK 可以实现好友的添加移除，黑名单的添加移除等功能：
 
-- `addContact` 申请添加好友。
-- `deleteContact` 删除好友。
-- `getContactsFromServerWithCompletion` 从服务器获取好友列表。
-- `addUserToBlackList` 添加黑名单。
-- `removeUserFromBlackList` 删除黑名单。
-- `getBlackListFromServerWithCompletion` 从服务器获取黑名单列表。
+- 申请添加好友；
+- 删除好友；
+- 从服务器获取好友列表；
+- 添加黑名单；
+- 删除黑名单；
+- 从服务器获取黑名单列表。
 
 ## 前提条件
 
@@ -23,15 +23,15 @@
 
 ## 实现方法
 
-本节介绍如何利用即时通讯 IM SDK 提供的方法管理联系人。
+本节介绍如何利用即时通讯 IM SDK 提供的方法管理好友。
 
-### 管理联系人列表
+### 管理好友列表
 
-本节介绍如何发送好友请求、处理好友请求、监听联系人事件等。
+本节介绍如何发送好友请求、处理好友请求、监听好友事件等。
 
 #### 发送好友请求
 
-调用 `addContact` 方法添加指定用户为联系人：
+调用 `addContact` 方法添加指定用户为好友：
 
 ```objective-c
 [[AgoraChatClient sharedClient].contactManager addContact:@"aUsername" message:@"Message" completion:^(NSString *aUsername, AgoraChatError *aError) {
@@ -97,11 +97,11 @@
 { }
 ```
 
-### 删除联系人
+### 删除好友
 
-调用 `deleteContact` 删除指定联系人。
+调用 `deleteContact` 删除指定好友。
 
-删除联系人时会同时删除对方联系人列表中的该用户，建议执行双重确认，以免发生误删操作。删除操作不需要对方同意或者拒绝。
+删除好友时会同时删除对方好友列表中的该用户，建议执行双重确认，以免发生误删操作。删除操作不需要对方同意或者拒绝。
 
 示例代码如下：
 
@@ -116,17 +116,17 @@
 }];
 ```
 
-一方删除联系人，双方都会收到 `friendshipDidRemoveByUser` 回调，示例代码如下：
+一方删除好友，双方都会收到 `friendshipDidRemoveByUser` 回调，示例代码如下：
 
 ```objective-c
-// 联系人已被删除。
+// 好友已被删除。
 - (void)friendshipDidRemoveByUser:(NSString *)aUsername
 { }
 ```
 
 ### 获取好友列表
 
-要获取联系人列表，可以调用 `getContactsFromServerWithCompletion` 方法从服务器获取。之后，还可以调用 `getContacts` 方法从本地数据库中检索联系人。
+要获取好友列表，可以调用 `getContactsFromServerWithCompletion` 方法从服务器获取。之后，还可以调用 `getContacts` 方法从本地数据库中检索好友。
 
 <div class="alert info"> 需要从服务器获取好友列表之后，才能从本地数据库获取到好友列表。<div>
 
@@ -151,7 +151,7 @@ NSArray *userlist = [[AgoraChatClient sharedClient].contactManager getContacts];
 
 调用 `addUserToBlackList` 方法将指定用户添加到黑名单列表。你仍然可以向黑名单用户发送聊天消息，但无法接收来自他们的消息。
 
-用户可以将任何其他聊天用户添加到他们的黑名单列表中，无论该用户是否是联系人。添加到黑名单列表的联系人保留在联系人列表中。
+用户可以将任何其他聊天用户添加到他们的黑名单列表中，无论该用户是否是好友。添加到黑名单列表的好友保留在好友列表中。
 
 ```objective-c
 [[AgoraChatClient sharedClient].contactManager addUserToBlackList:@"aUsername" completion:^(NSString *aUsername, AgoraChatError *aError) {

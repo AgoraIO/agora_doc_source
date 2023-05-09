@@ -20,7 +20,7 @@
 
 下图展示了发送前回调的工作流程。
 
-![发送前回调工作流程](https://web-cdn.agora.io/docs-files/1642478214940)
+![](./images/callback_presending.png)
 
 如图所示，发送前回调的工作流程如下：
 
@@ -35,7 +35,7 @@
 
 下图展示了发送后回调的工作流程。
 
-![发送后回调工作流程](https://web-cdn.agora.io/docs-files/1642478242440)
+![](./images/callback_postsending.png)
 
 如图所示，发送后回调的工作流程如下：
 
@@ -51,7 +51,7 @@
 - 了解 API 调用频率限制，详见[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)。
 - 已订阅即时通讯 IM 进阶版或企业版套餐包，详见[管理套餐包](./agora_chat_pricing#管理套餐包)，并且在[声网控制台](https://console.agora.io/)开通 HTTP 回调功能。
 
-<div class="alert note">若关闭 HTTP 回调功能，必须联系 <a href="mailto:support@agora.io">support@agora.io</a>，因为该操作会删除所有相关配置。</div>
+<div class="alert note">若关闭 HTTP 回调功能，必须联系 <a href="mailto:sales@agora.io">sales@agora.io</a>，因为该操作会删除所有相关配置。</div>
 
 ## 配置回调规则
 
@@ -94,9 +94,7 @@
 | 启用状态           |  是     | 是否启用回调规则：<ul><li>**启用**：启用后回调规则立即生效；</li><li>**未启用**：回调规则为关闭状态，不生效。</li></ul>                   |
 | 回调地址           |  是     | 用于接收发送后回调的应用服务器的 URL，不能超过 512 字符。支持 HTTP 和 HTTPS 地址。                   |
 
-<div class="alert info">发送前和发送后回调的注意事项如下：<ul><li>默认情况下，发送前和发送后回调规则总计最多能添加四个。若要添加更多规则，需[联系技术支持](https:/
-/docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)。</li><li>规则配置仅支持消息事件。若要接收其他事件的通知，需[联系技术支持](https:/
-/docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)。</li><li>如果你同时设置了发送前和发送后回调，若发送前回调触发后消息被拦截，则不会触发发送后回调。</li></ul></div>
+<div class="alert info">发送前和发送后回调的注意事项如下：<ul><li>默认情况下，发送前和发送后回调规则总计最多能添加四个。若要添加更多规则，需<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">联系技术支持</a>。</li><li>规则配置仅支持消息事件。若要接收其他事件的通知，需<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">联系技术支持</a>。</li><li>如果你同时设置了发送前和发送后回调，若发送前回调触发后消息被拦截，则不会触发发送后回调。</li></ul></div>
 
 ## HTTP 请求和响应
 
@@ -217,7 +215,7 @@ GET https://{host}/{org_name}/{app_name}/callbacks/storage/info
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 App Token
-curl -X GET 'http://a1.easemob.com/easemob-demo/easeim/callbacks/storage/info' \
+curl -X GET 'http://XXXX/XXXX/XXXX/callbacks/storage/info' \
 -H 'Authorization: Bearer <YourAppToken>'
 ```
 
@@ -226,10 +224,10 @@ curl -X GET 'http://a1.easemob.com/easemob-demo/easeim/callbacks/storage/info' \
 ```json
 {
     "path": "/callbacks",
-    "uri": "http://a1.easemob.com/easemob-demo/easeim/callbacks",
+    "uri": "http://XXXX/XXXX/XXXX/callbacks",
     "timestamp": 1631193031254,
-    "organization": "easemob-demo",
-    "application": "8dfb1641-b6d8-450b-bbe9-d8d45a3be39f",
+    "organization": "XXXX",
+    "application": "8dfb1641-XXXX-XXXX-bbe9-d8d45a3be39f",
     "action": "post",
     "data": [
         {
@@ -244,7 +242,7 @@ curl -X GET 'http://a1.easemob.com/easemob-demo/easeim/callbacks/storage/info' \
         }
     ],
     "duration": 153,
-    "applicationName": "easeim"
+    "applicationName": "XXXX"
 }
 ```
 

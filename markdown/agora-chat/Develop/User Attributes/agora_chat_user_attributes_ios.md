@@ -7,17 +7,17 @@
 
 ## 技术原理
 
-环信即时通讯 IM iOS SDK 提供 `userInfoManager` 类，支持获取、设置及修改用户属性信息，其中包含如下方法：
+环信即时通讯 IM iOS SDK 提供 `userInfoManager` 类实现以下功能：
 
-- `updateOwnUserInfo` 设置和修改当前用户自己的属性信息；
-- `fetchUserInfoById` 获取指定用户的所有用户属性信息。
+- 设置和修改当前用户自己的属性信息；
+- 获取指定用户的所有用户属性信息。
 
 ## 前提条件
 
 开始前，请确保满足以下条件：
 
 - 完成 SDK 初始化，详见 [iOS 快速开始](./agora_chat_get_started_ios)。
-- 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -92,7 +92,7 @@ NSArray<NSNumber *> *userInfoTypes = @[@(AgoraChatUserInfoTypeAvatarURL),@(Agora
 
 ## 更多功能
 
-本节介绍你可以使用用户属性和联系人管理在应用程序中实现的额外功能。
+本节介绍你可以使用用户属性和好友管理在应用程序中实现的额外功能。
 
 ### 管理用户头像
 

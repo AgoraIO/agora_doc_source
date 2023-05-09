@@ -18,8 +18,8 @@
 
 ```java
 // msgid：要举报的消息 ID。
-// label：违规消息的标签。你需要自行填写标签，例如`涉政`或`广告`。该字段对应声网控制台的消息举报记录页面的`词条标记`字段。
-// reason：举报原因。你需要自行填写举报原因。该字段对应声网控制台的消息举报记录页面的`举报原因`字段。
+// label：违规消息的标签。你需要填写自定义标签，例如`涉政`或`广告`。
+// reason：举报原因。你需要自行填写举报原因。
 AgoraChatClient.getInstance().chatManager().asyncReportMessage(msgid, label, reason, new EMCallBack() {
         @Override
         public void onSuccess() {

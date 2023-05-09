@@ -103,7 +103,7 @@ conn.fetchUserInfoById(['user1', 'user2'], ['nickname', 'avatarurl']).then((res)
 
 ## 更多功能
 
-本节介绍可以使用用户属性和联系人管理在应用程序中实现的额外功能。
+本节介绍可以使用用户属性和好友管理在应用程序中实现的额外功能。
 
 ### 管理用户头像
 

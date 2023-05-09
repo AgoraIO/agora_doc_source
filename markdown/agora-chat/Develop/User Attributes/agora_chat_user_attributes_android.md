@@ -7,12 +7,12 @@
 
 ## 技术原理
 
-SDK 提供 `UserInfoManager` 类，支持获取、设置和修改用户属性信息，其中包含如下方法：
+SDK 提供 `UserInfoManager` 类实现以下功能：
 
-- `updateOwnInfo` 设置和修改当前用户自己的属性信息；
-- `updateOwnInfoByAttribute` 设置和修改用户信息中的某个属性；
-- `fetchUserInfoByUserId` 获取指定用户的所有用户属性信息；
-- `fetchUserInfoByAttribute` 获取指定用户 ID 的指定用户属性。
+- 设置和修改当前用户自己的属性信息；
+- 设置和修改用户信息中的某个属性；
+- 获取指定用户的所有用户属性信息；
+- 获取指定用户 ID 的指定用户属性。
 
 ## 前提条件
 
@@ -107,7 +107,7 @@ ChatClient.getInstance().userInfoManager().fetchUserInfoByAttribute(userId, user
 
 ## 后续步骤
 
-本节介绍你可以使用用户属性和联系人管理在应用程序中实现的额外功能。
+本节介绍你可以使用用户属性和好友管理在应用程序中实现的额外功能。
 
 ### 管理用户头像
 

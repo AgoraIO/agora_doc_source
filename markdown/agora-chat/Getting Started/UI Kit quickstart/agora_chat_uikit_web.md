@@ -191,7 +191,7 @@ import { EaseChat } from "agora-chat-uikit";
 | `to`                   | String                  | 是  | 消息接收方。单聊时为对方用户 ID，群聊时为群组 ID。 |
 | `showByselfAvatar`     | Bool                  | 否    | 是否显示当前用户的头像。<li>`true`： 是。<li>（默认）`false`：否。     |
 | `easeInputMenu`        | String                 | 否    | 输入菜单模式。<li>（默认）`all`: 完整模式。<li>`noAudio`：无音频。<li>`noEmoji`：无表情符号。<li>`noAudioAndEmoji`: 没有视频和表情符号。<li>`onlyText`: 仅文本。 |
-| `menuList`             | Array                 | 否    | 输入框右侧栏菜单扩展。 (默认) `menuList`: `[ {name:'发送图片', value:'img'},{name:'发送文件', value:'file'}]` |
+| `menuList`             | Array                 | 否    | 输入框右侧栏菜单扩展。(默认) `menuList`: `[ {name:'发送图片', value:'img'},{name:'发送文件', value:'file'}]`。 |
 | `handleMenuItem`       | function({item, key}) | 否     | 在输入框中点击菜单栏。 |
 | `successLoginCallback` | function(res)          | 否    | 成功登录的回调事件。                                         |
 | `failCallback`         | function(err)         | 否    | 方法调用失败的回调。                 |

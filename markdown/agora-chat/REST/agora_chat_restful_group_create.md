@@ -420,7 +420,7 @@ PUT https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 | `data.groupname`    | Boolean | 群组名称是否修改成功：<ul><li>`true`：修改成功；</li><li> `false`：修改失败。</li></ul>                                                    |
 | `data.membersonly`  | Boolean | “加入群组是否需要群主或者群管理员审批”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
 | `data.public`  | Boolean | “是否是公开群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
-| `data.custom`  | String | 群组扩展信息是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
+| `data.custom`  | Boolean | 群组扩展信息是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul>   |
 | `data.allowinvites` | Boolean | “是否允许群成员邀请其他用户入群”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
 | `data.invite_need_confirm` | Boolean | “邀请用户入群时是否需要受邀用户同意”是否修改成功：<ul><li>`true`：修改成功；</li><li>`false`：修改失败。</li></ul> |
 
@@ -560,7 +560,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups?limit={N}&cursor={cursor}
 | `limit`  | Number | 每次期望返回的群组数量。取值范围为 [1,100]，默认值为 `10`。 | 否  |
 | `cursor` | String | 数据查询的起始位置。 | 否  |
 
-<div class="alert info">若请求中均未设置 `limit` 和 `cursor` 参数，服务器按群组创建时间倒序返回前 10 个群组。</div>
+<div class="alert info">若请求中均未设置 limit 和 cursor 参数，服务器按群组创建时间倒序返回前 10 个群组。</div>
 
 #### 请求 header
 

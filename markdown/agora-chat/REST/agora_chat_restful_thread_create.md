@@ -35,7 +35,7 @@
 
 ## 创建子区
 
-创建一个子区。单个 app 下的子区总数默认为 10 万，如需调整请联系商务。
+创建一个子区。单个 app 下的子区总数默认为 10 万，如需调整请联系 [sales@agora.io](mailto:sales@agora.io)。
 
 对于每个 App Key，该方法的调用频率限制为每秒 100 次。
 
@@ -431,7 +431,7 @@ GET https://{host}/{org_name}/{app_name}/threads/chatgroups/{group_id}/user/{use
 | :--------- | :----- | :--------------------------- | :------- |
 | `limit`    | String | 每次期望返回的子区数量，取值范围为 [1,50]。       | 否       |
 | `cursor`   | String | 数据查询的起始位置。                                      | 否       |
-| `sort`     | String | 获取的子区的排序顺序：<ul><li>`asc`：按照子区创建的时间顺序。</li><li>（默认）`desc`：按照子区创建的时间倒序排列。</li><li> | 否       |
+| `sort`     | String | 获取的子区的排序顺序：<ul><li>`asc`：按照子区创建的时间顺序。</li><li>（默认）`desc`：按照子区创建的时间倒序排列。</li></ul> | 否       |
 
 #### 请求 header
 

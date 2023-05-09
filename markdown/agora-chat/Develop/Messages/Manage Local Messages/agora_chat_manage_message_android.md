@@ -6,15 +6,15 @@
 
 即时通讯 IM SDK 通过 `ChatManager` 类管理用户设备上存储的消息会话数据。SDK 内部使用 [SQLCipher](https://www.zetetic.net/sqlcipher/) 保存本地消息，方便消息处理。
 
-以下是核心方法：
+以下是主要功能：
 
-- `getAllConversations`：加载本地存储的会话列表;
-- `deleteConversation`： 删除本地存储的会话；
-- `Conversation.getUnreadMsgCount`：获取指定会话的未读消息数；
-- `getUnreadMessageCount`：获取所有未读消息数；
-- `deleteConversationFromServer`：从服务器删除指定会话和历史消息。
-- `searchMsgFromDB`：从本地数据库中搜索历史消息。
-- `Conversation.insertMessages`：在指定会话中插入消息。
+- 加载本地存储的会话列表;
+- 删除本地存储的会话；
+- 获取指定会话的未读消息数；
+- 获取所有未读消息数；
+- 从服务器删除指定会话和历史消息。
+- 从本地数据库中搜索历史消息。
+- 在指定会话中插入消息。
 
 ## 前提条件
 
@@ -160,10 +160,3 @@ ChatClient.getInstance().chatManager().updateMessage(message);
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.updateMessage(message);
 ```
-
-## 后续步骤
-
-实现消息管理后，您可以参考以下文档为应用添加更多消息功能：
-
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_android)
-- [消息回执](./agora_chat_message_receipt_android)

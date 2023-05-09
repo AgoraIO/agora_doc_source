@@ -63,13 +63,13 @@
 
 1. 使用 App 权限的 Token 鉴权的流程，如下图所示：
 
-![](https://web-cdn.agora.io/docs-files/1670989932332)
+![](https://web-cdn.agora.io/docs-files/1683353354701)
 
 [app_token_auth.png]
 
 2. 使用用户权限 Token 鉴权的流程，如下图所示：
 
-![](https://web-cdn.agora.io/docs-files/1670990925271)
+![](https://web-cdn.agora.io/docs-files/1683353376076)
 
 [user_token_auth.png]
 
@@ -80,7 +80,7 @@
 - 你的声网项目的 App ID、OrgName 和 AppName，详见[开启和配置即时通讯服务](./enable_agora_chat)。
 - [Node.js 和 npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)。
 
-如果你的网络环境部署了防火墙，为允许你在有网络访问限制的环境中使用即时通讯服务，声网提供防火墙白名单方案。如需使用请[提交工单](https://agora-ticket.agora.io/)，我们的技术服务会提供目标域名及对应的端口。
+如果你的网络环境部署了防火墙，为允许你在有网络访问限制的环境中使用即时通讯服务，声网提供防火墙白名单方案。如需使用请[联系技术支持](https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)，我们的技术服务会提供目标域名及对应的端口。
 
 ## 实现鉴权流程
 
@@ -207,7 +207,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
+import java.annotation.PostConstruct;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 

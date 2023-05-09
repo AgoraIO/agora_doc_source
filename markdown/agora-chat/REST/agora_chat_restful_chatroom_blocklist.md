@@ -135,7 +135,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/blocks/users/{
 | 字段              | 类型   | 描述                                                         |
 | :---------------- | :----- | :----------------------------------------------------------- |
 | `data`     | JSON   | 将用户添加至聊天室黑名单的结果。 |
-| `data.result`     | Boolean   | 是否成功将用户添加至聊天室黑名单：<ul><li>`true`：是</li><li>`false`：否<ul><li> |
+| `data.result`     | Boolean   | 是否成功将用户添加至聊天室黑名单：<ul><li>`true`：是</li><li>`false`：否</li></ul>|
 | `data.action`     | String | 执行的操作。在该响应中，该字段的值为 `add_blocks`，表示向聊天室黑名单中添加用户。 |
 | `data.user`       | String | 添加至聊天室白名单的用户 ID。      |
 | `data.chatroomid` | String | 聊天室 ID。              |
@@ -301,7 +301,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/blocks/users
 | 字段              | 类型   | 描述                                                         |
 | :---------------- | :----- | :----------------------------------------------------------- |
 | `data`     | JSON   | 将该用户移出聊天室黑名单的结果。 |
-| `data.result`     | Boolean   | 是否成功将该用户移出聊天室黑名单：<ul><li>`true`：是</li><li>`false`：否<ul><li>|
+| `data.result`     | Boolean   | 是否成功将该用户移出聊天室黑名单：<ul><li>`true`：是</li><li>`false`：否</li></ul>|
 | `data.chatroomid` | String | 聊天室 ID。                                                  |
 | `data.action`     | String | 执行的操作。在该响应中，该字段的值为 `remove_blocks`，表示将用户移出聊天室黑名单。 |
 | `data.user`       | String | 被移除的用户 ID。                                            |

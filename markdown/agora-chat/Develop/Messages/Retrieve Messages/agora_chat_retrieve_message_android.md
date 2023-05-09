@@ -4,12 +4,12 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 通过 `ChatManager` 类从服务器获取历史消息。以下是核心方法：
+即时通讯 IM SDK 通过 `ChatManager` 类获取和删除服务器获取历史消息，提供以下功能：
 
-- `asyncFetchConversationsFromServer` 分页获取会话列表以及会话中的最新一条消息；
-- `asyncFetchHistoryMessage` 按服务器接收消息的时间顺序获取服务器上保存的指定会话中的消息；
-- `removeMessagesFromServer` 单向删除服务端的历史消息；
-- `deleteConversationFromServer` 删除服务器端会话和历史消息。
+- 分页获取会话列表以及会话中的最新一条消息；
+- 按服务器接收消息的时间顺序获取服务器上保存的指定会话中的消息；
+- 单向删除服务端的历史消息；
+- 删除服务器端会话和历史消息。
 
 ## 前提条件
 
@@ -108,9 +108,3 @@ ChatClient.getInstance().chatManager().deleteConversationFromServer(conversation
     }
 });
 ```
-
-## 后续步骤
-
-你可以参考以下文档为应用添加更多消息功能：
-
-- [消息回执](./agora_chat_message_receipt_android)

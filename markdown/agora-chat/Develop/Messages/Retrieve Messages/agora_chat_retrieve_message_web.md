@@ -4,12 +4,12 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 支持从服务器获取会话和删除历史消息。以下是核心方法：
+即时通讯 IM SDK 支持你通过调用方法获取和删除服务器获取历史消息，提供以下功能：
 
-- `getConversationlist` 分页获取会话列表以及会话中的最新一条消息。
-- `getHistoryMessages` 按服务器接收消息的时间顺序获取服务器上保存的指定会话中的消息。
-- `removeHistoryMessages` 按照时间或消息 ID 单向删除服务端的历史消息。
-- `deleteConversation` 删除服务器端会话及其对应的消息。
+- 分页获取会话列表以及会话中的最新一条消息；
+- 按服务器接收消息的时间顺序获取服务器上保存的指定会话中的消息；
+- 按照时间或消息 ID 单向删除服务端的历史消息；
+- 删除服务器端会话及其对应的消息。
 
 ## 前提条件
 
@@ -20,11 +20,11 @@
 
 ## 实现方法
 
-## 从服务器分页获取会话列表
+### 从服务器分页获取会话列表
 
 你可以调用 `getConversationlist` 方法从服务端分页获取会话列表，每个会话包含最新一条历史消息。
 
-<div class="alert note">获取的会话列表中不包含最新一条消息通过 RESTful 接口发送的会话。若需获取该类会话，需要联系 [sales@agora.io](mailto:sales@agora.io) 开通将通过 RESTful 接口发送的消息写入会话列表的功能。</div>
+<div class="alert note">获取的会话列表中不包含最新一条消息通过 RESTful 接口发送的会话。若需获取该类会话，需要联系 <a href="mailto:sales@agora.io">sales@agora.io</a> 开通将通过 RESTful 接口发送的消息写入会话列表的功能。</div>
 
 ```java
 // pageNum：当前页面，从 1 开始。
@@ -95,9 +95,3 @@ WebIM.conn
     // 删除失败。
   });
 ```
-
-## 后续步骤
-
-实现从服务器获取会话和历史消息后，可以参考以下文档为应用添加更多消息功能：
-
-- [消息回执](./agora_chat_message_receipt_web)

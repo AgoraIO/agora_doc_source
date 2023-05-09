@@ -65,7 +65,7 @@
 
 1. [在声网控制台](https://console.agora.io/)开启 Token 认证。
 
-2. 在后端服务中[部署 Token 服务器](./agora_chat_token)。
+2. 在后端服务中[部署 Token 服务器](./agora_chat_token#搭建-app-server-生成-token)。
 
 3. 保护 Token 服务器,仅允许应用的后端服务器连接至 Token 服务器。
 

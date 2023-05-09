@@ -66,7 +66,7 @@ POST https://{host}/{org_name}/{app_name}/reaction/user/{username}
 | `data`              | JSON    | 添加的 Reaction 的详情。                                     |
 | `data.id`           | String  | Reaction ID。                                                |
 | `data.msgId`        | String  | 添加 Reaction 的消息 ID。                                    |
-| `data.msgType`      | String  | 消息的会话类型：<ul><li>`chat`：单聊</li><li>`groupchat`：群聊<ul><li> |
+| `data.msgType`      | String  | 消息的会话类型：<ul><li>`chat`：单聊</li><li>`groupchat`：群聊</li></ul> |
 | `data.groupId`      | String  | 群组 ID。该参数在单聊时为 null。                             |
 | `data.reaction`     | String  | 表情 ID，与客户端一致，与[创建/追加 Reaction API](#create)的请求参数 `message` 相同。 |
 | `data.createAt`     | Number | Reaction 的创建时间。                                        |
@@ -285,7 +285,8 @@ GET https://{host}/{org_name}/{app_name}/reaction/user/{username}/detail?msgId={
 | `limit`   | Number | 每页显示的 Reaction 条数。取值范围为 [1,50]，默认值为 `50`。| 否       |
 | `cursor`  | String | 查询游标，指定数据查询的起始位置。                  | 否      |
 
-<div class="alert note">分页获取时，服务器按 Reaction 添加时间的正序返回。若 `limit` 和 `cursor` 均不传值，服务器返回最早添加的 50 个 Reaction。</div>
+<div class="alert note">分页获取时，服务器按 Reaction 添加时间的正序返回。若 limit 和 cursor 均不传值，服务器返回最早添加的 50 个 Reaction。</div>
+
 #### 请求 header
 
 | 参数            | 类型   | 描述                                | 是否必填 |

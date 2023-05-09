@@ -87,7 +87,8 @@
 
 1. 若为新项目，在 **Android Studio** 中，创建一个带有 **Empty Activity** 的 **Phone and Tablet** [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
- <div class="alert note">如果你在 Android 项目中设置 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，则添加 Maven Central 依赖项的方式可能会有所不同。</div>
+ <div class="alert note">创建项目后，<b>Android Studio</b> 会自动启动 gradle 同步。确保同步成功后再进行后续操作。</div>
+
 2. 使用 Maven Central 将即时通讯 IM SDK 集成到你的项目中。
 
    a.在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 中，添加以下代码实现 Maven Central 依赖项：
@@ -520,4 +521,4 @@ b. 利用接收方的账号在另一台 Android 设备或模拟器上运行该 a
    | `/x86/libagora-chat-sdk.so` 和 `libsqlite.so`         | `~/app/src/main/jniLibs/x86/`         |
    | `/x86_64/libagora-chat-sdk.so` 和 `libsqlite.so`      | `~/app/src/main/jniLibs/x86_64/`      |
 
-   <div class="alert note">XYZ 指是你下载的即时通讯 IM SDK 的版本号。</div>
+   <div class="alert note">XYZ 是你下载的即时通讯 IM SDK 的版本号。</div>

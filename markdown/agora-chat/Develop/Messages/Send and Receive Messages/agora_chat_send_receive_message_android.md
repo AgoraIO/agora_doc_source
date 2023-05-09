@@ -27,7 +27,7 @@
 
 - 集成了 SDK，完成了 SDK 初始化，并且实现了账号注册和登录的功能。详见 [Android 快速开始](./agora_chat_get_started_android)。
 - 了解消息相关限制，详见[消息概述](./agora_chat_message_overview)。
-- 了解即时通讯 IM API 的调用频率限制，详见 [限制条件](./agora_chat_limitation)。
+- 了解即时通讯 IM API 的调用频率限制，详见[限制条件](./agora_chat_limitation)。
 
 ## 实现方法
 
@@ -558,11 +558,3 @@ ChatClient.getInstance().chatManager().sendMessage(message);
 String attribute1 = message.getStringAttribute("attribute1",null);
 boolean attribute2 = message.getBooleanAttribute("attribute2", false);
 ```
-
-## 后续步骤
-
-实现消息发送和接收后，您可以参考以下文档为您的应用添加更多消息功能：
-
-- [管理本地消息](./agora_chat_manage_message_android)
-- [从服务器获取会话和消息](./agora_chat_retrieve_message_android)
-- [消息回执](./agora_chat_message_receipt_android)

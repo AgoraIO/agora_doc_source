@@ -108,9 +108,9 @@ WebIM.conn.addEventHandler("eventName", {
   onPresence: function (message) {},
   // 当前用户收到好友邀请。
   onContactInvited: function (msg) {},
-  // 联系人被删除。
+  // 好友被删除。
   onContactDeleted: function (msg) {},
-  // 新增联系人。
+  // 新增好友。
   onContactAdded: function (msg) {},
   // 当前用户发送的好友请求被拒绝。
   onContactRefuse: function (msg) {},

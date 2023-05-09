@@ -54,7 +54,7 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users?page
 | `pageSize`  | Number    | 否       | 每次期望返回的黑名单用户的数量。取值范围为 [1,50]。该参数仅在分页获取时为必需。 |
 | `cursor` | String | 否       | 数据查询的起始位置。该参数仅在分页获取时为必需。     |
 
- <div class="alert info">如果 `pageSize` 和 `cursor` 参数均不传，获取最新加入群组黑名单的 500 个用户。若只传 `pageSize` 而不传 `cursor`，服务器返回第一页黑名单用户列表，即最新加入黑名单的用户，最多不超过 50 个。</div>
+ <div class="alert info">如果 pageSize 和 cursor 参数均不传，获取最新加入群组黑名单的 500 个用户。若只传 pageSize 而不传 cursor，服务器返回第一页黑名单用户列表，即最新加入黑名单的用户，最多不超过 50 个。</div>
 
 #### 请求 header
 

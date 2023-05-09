@@ -4,12 +4,12 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 通过 `IAgoraChatManager` 类从服务器获取历史消息。以下是核心方法：
+即时通讯 IM SDK 通过 `IAgoraChatManager` 类获取和删除服务器获取历史消息，提供以下功能：
 
-- `getConversationsFromServerByPage` 分页获取会话列表以及会话中的最新一条消息；
-- `asyncFetchHistoryMessagesFromServer` 获取服务器保存的指定会话中的消息；
-- `removeMessagesFromServerWithTimeStamp`/`removeMessagesFromServerMessageIds` 单向删除服务端的历史消息；
-- `deleteServerConversation` 删除服务器端会话和历史消息。
+- 分页获取会话列表以及会话中的最新一条消息；
+- 获取服务器保存的指定会话中的消息；
+- 单向删除服务端的历史消息；
+- 删除服务器端会话和历史消息。
 
 ## 前提条件
 
@@ -74,9 +74,3 @@ AgoraChatConversation* conversation = [AgoraChatClient.sharedClient.chatManager 
         
     }];
 ```
-
-## 后续步骤
-
-实现从服务器获取消息后，您可以参考以下文档为您的应用添加更多消息功能：
-
-- [消息回执](./agora_chat_message_receipt_ios)
