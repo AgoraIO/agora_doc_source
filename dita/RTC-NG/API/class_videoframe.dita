@@ -331,8 +331,6 @@
 
   matrix?: number[];
 
-  alphaBuffer?: Uint8Array;
-
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoFrame
     {
@@ -375,10 +373,6 @@
         public int textureId;
 
         public float[] matrix;
-
-        public byte[] alphaBuffer;
-
-
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
 
@@ -414,8 +408,6 @@
 
   matrix?: number[];
 
-  alphaBuffer?: Uint8Array;
-
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class VideoFrame {
@@ -436,7 +428,6 @@ class VideoFrame {
       this.metadataSize,
       this.textureId,
       this.matrix,
-      this.alphaBuffer,
       this.pixelBuffer});
 
   @JsonKey(name: 'type')
@@ -487,9 +478,6 @@ class VideoFrame {
   @JsonKey(name: 'matrix')
   final List&lt;double>? matrix;
 
-  @JsonKey(name: 'alphaBuffer', ignore: true)
-  final Uint8List? alphaBuffer;
-
   @JsonKey(name: 'pixelBuffer', ignore: true)
   final Uint8List? pixelBuffer;
 
@@ -506,40 +494,40 @@ class VideoFrame {
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>type</pt>
-          <pd props="cpp unity electron rn flutter">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
+          <pd props="cpp unity electron rn flutter cs">像素格式。详见 <xref keyref="VIDEO_PIXEL_FORMAT"/>。</pd>
           <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format"/>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>width</pt>
           <pd>视频像素宽度。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>height</pt>
           <pd>视频像素高度。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>yStride</pt>
           <pd>对 YUV 数据，表示 Y 缓冲区的行跨度；对 RGBA 数据，表示总的数据长度。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>uStride</pt>
           <pd>对 YUV 数据，表示 U 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>vStride</pt>
           <pd>对 YUV 数据，表示 V 缓冲区的行跨度；对 RGBA 数据，值为 0。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>yBuffer</pt>
           <pd>对 YUV 数据，表示 Y 缓冲区的指针；对 RGBA 数据，表示数据缓冲区。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>uBuffer</pt>
           <pd>对 YUV 数据，表示 U 缓冲区的指针；对 RGBA 数据，值为空。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>vBuffer</pt>
           <pd>对 YUV 数据，表示 V 缓冲区的指针；对 RGBA 数据，值为空。</pd>
         </plentry>
@@ -573,7 +561,7 @@ class VideoFrame {
           <pt>rotation</pt>
           <pd>在渲染视频前设置该帧的顺时针旋转角度，目前支持 0 度、90 度、180 度，和 270 度。</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>renderTimeMs</pt>
           <pd>视频帧被渲染时的 Unix 时间戳（毫秒）。该时间戳可用于指导渲染视频帧。该参数为必填。</pd>
         </plentry>
@@ -581,30 +569,30 @@ class VideoFrame {
           <pt>timestampNs</pt>
           <pd>视频帧的时间戳（纳秒）。</pd>
         </plentry>
-        <plentry props="apple cpp electron rn unity flutter">
-          <pt props="apple cpp unity rn electron">avsync_type</pt>
+        <plentry props="apple cpp electron rn unity flutter cs">
+          <pt props="apple cpp unity rn electron cs">avsync_type</pt>
           <pt props="flutter">avsyncType</pt>
           <pd>保留参数。</pd>
         </plentry>
-        <plentry props="cpp electron rn unity flutter">
-          <pt props="cpp electron unity rn">metadata_buffer</pt>
+        <plentry props="cpp electron rn unity flutter cs">
+          <pt props="cpp electron unity rn cs">metadata_buffer</pt>
           <pt props="flutter">metadataBuffer</pt>
           <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的数据缓冲区，默认值为 <codeph>NULL</codeph>。</pd>
         </plentry>
-        <plentry props="cpp electron rn unity flutter">
-          <pt props="cpp electron unity rn">metadata_size</pt>
+        <plentry props="cpp electron rn unity flutter cs">
+          <pt props="cpp electron unity rn cs">metadata_size</pt>
           <pt props="flutter">metadataSize</pt>
           <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
         </plentry>
-        <plentry props="cpp unity">
+        <plentry props="cpp unity cs">
           <pt>sharedContext</pt>
           <pd>该参数仅适用于 Texture 格式的视频数据。EGL Context。</pd>
         </plentry>
-        <plentry props="cpp electron unity rn flutter">
+        <plentry props="cpp electron unity rn flutter cs">
           <pt>textureId</pt>
           <pd>该参数仅适用于 Texture 格式的视频数据。Texture ID。</pd>
         </plentry>
-        <plentry props="cpp electron unity rn flutter">
+        <plentry props="cpp electron unity rn flutter cs">
           <pt>matrix</pt>
           <pd>该参数仅适用于 Texture 格式的视频数据。为一个输入的 4x4 变换矩阵，典型值为一个单位矩阵。</pd>
         </plentry>

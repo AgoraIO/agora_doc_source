@@ -75,6 +75,8 @@ struct EchoTestConfiguration {
   token?: string;
 
   channelId?: string;
+
+  intervalInSeconds?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class EchoTestConfiguration
     {
@@ -96,14 +98,18 @@ struct EchoTestConfiguration {
   token?: string;
 
   channelId?: string;
+
+  intervalInSeconds?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class EchoTestConfiguration {
   const EchoTestConfiguration(
       {this.view,
       this.enableAudio,
       this.enableVideo,
       this.token,
-      this.channelId});
+      this.channelId,
+      this.intervalInSeconds});
 
   @JsonKey(name: 'view')
   final int? view;
@@ -119,6 +125,9 @@ struct EchoTestConfiguration {
 
   @JsonKey(name: 'channelId')
   final String? channelId;
+
+  @JsonKey(name: 'intervalInSeconds')
+  final int? intervalInSeconds;
 
   factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$EchoTestConfigurationFromJson(json);

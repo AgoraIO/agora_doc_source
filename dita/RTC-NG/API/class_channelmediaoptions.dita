@@ -8,30 +8,33 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class ChannelMediaOptions {
   public Boolean publishCameraTrack;
+  public Boolean publishSecondaryCameraTrack;
+  public Boolean publishMicrophoneTrack;
   public Boolean publishScreenCaptureVideo;
   public Boolean publishScreenCaptureAudio;
   public Boolean publishCustomAudioTrack;
-  public Boolean publishDirectCustomAudioTrack;
+  public Integer publishCustomAudioTrackId;
   public Boolean publishCustomVideoTrack;
   public Boolean publishEncodedVideoTrack;
   public Boolean publishMediaPlayerAudioTrack;
   public Boolean publishMediaPlayerVideoTrack;
-  public Boolean publishRhythmPlayerTrack;
-  public Integer publishMediaPlayerId;
-  public Boolean publishMicrophoneTrack;
+  public Boolean publishTranscodedVideoTrack;
   public Boolean autoSubscribeAudio;
   public Boolean autoSubscribeVideo;
   public Boolean enableAudioRecordingOrPlayout;
+  public Integer publishMediaPlayerId;
   public Integer clientRoleType;
   public Integer audienceLatencyLevel;
   public Integer defaultVideoStreamType;
   public Integer channelProfile;
+  public Integer mediaPlayerAudioDelayMs;
   public String token;
   public Boolean enableBuiltInMediaEncryption;
-  public Integer publishCustomAudioSourceId;
+  public Boolean publishRhythmPlayerTrack;
+  public Boolean isInteractiveAudience;
   public Integer customVideoTrackId;
   public Boolean isAudioFilterable;
-  public Boolean isInteractiveAudience;</codeblock>
+            }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcChannelMediaOptions : NSObject
 @property(assign, nonatomic) BOOL publishCameraTrack;
 @property(assign, nonatomic) BOOL publishSecondaryCameraTrack;
@@ -44,9 +47,7 @@
 @property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
 #endif
 @property(assign, nonatomic) BOOL publishCustomAudioTrack;
-@property(assign, nonatomic) NSInteger publishCustomAudioSourceId;
-@property(assign, nonatomic) BOOL publishCustomAudioTrackEnableAec;
-@property(assign, nonatomic) BOOL  publishDirectCustomAudioTrack;
+@property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
 
 @property(assign, nonatomic) BOOL publishCustomVideoTrack;
 @property(assign, nonatomic) BOOL publishEncodedVideoTrack;
@@ -86,9 +87,7 @@
   #endif
 
   Optional&lt;bool&gt; publishCustomAudioTrack;
-  Optional&lt;int&gt; publishCustomAudioSourceId;
-  Optional&lt;bool&gt; publishCustomAudioTrackEnableAec;
-  Optional&lt;bool&gt; publishDirectCustomAudioTrack;
+  Optional&lt;int&gt; publishCustomAudioTrackId;
   Optional&lt;bool&gt; publishCustomVideoTrack;
   Optional&lt;bool&gt; publishEncodedVideoTrack;
   Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
@@ -131,11 +130,7 @@
 
   publishCustomAudioTrack?: boolean;
 
-  publishCustomAudioSourceId?: number;
-
-  publishCustomAudioTrackEnableAec?: boolean;
-
-  publishDirectCustomAudioTrack?: boolean;
+  publishCustomAudioTrackId?: number;
 
   publishCustomVideoTrack?: boolean;
 
@@ -224,11 +219,7 @@
 
   publishCustomAudioTrack?: boolean;
 
-  publishCustomAudioSourceId?: number;
-
-  publishCustomAudioTrackEnableAec?: boolean;
-
-  publishDirectCustomAudioTrack?: boolean;
+  publishCustomAudioTrackId?: number;
 
   publishCustomVideoTrack?: boolean;
 
@@ -293,7 +284,6 @@ class ChannelMediaOptions {
       this.audienceLatencyLevel,
       this.defaultVideoStreamType,
       this.channelProfile,
-      this.audioDelayMs,
       this.mediaPlayerAudioDelayMs,
       this.token,
       this.enableBuiltInMediaEncryption,
@@ -368,9 +358,6 @@ class ChannelMediaOptions {
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
 
-  @JsonKey(name: 'audioDelayMs')
-  final int? audioDelayMs;
-
   @JsonKey(name: 'mediaPlayerAudioDelayMs')
   final int? mediaPlayerAudioDelayMs;
 
@@ -413,7 +400,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="mac cpp unity flutter rn electron">
+            <plentry props="mac cpp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
@@ -435,7 +422,7 @@ class ChannelMediaOptions {
                     <note type="note">自 v6.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter rn electron">
+            <plentry props="cpp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
@@ -489,7 +476,7 @@ class ChannelMediaOptions {
                     <p><note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unity flutter rn electron">
+            <plentry props="mac cpp unity cs flutter rn electron">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>设置是否发布第二个屏幕采集的视频：
 
@@ -499,7 +486,7 @@ class ChannelMediaOptions {
                     </ul>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter rn electron">
+            <plentry props="cpp unity cs flutter rn electron">
                 <pt>publishTranscodedVideoTrack</pt>
                 <pd>设置是否发布本地的转码视频：
                     <ul>
@@ -592,7 +579,7 @@ class ChannelMediaOptions {
                 <pt>publishMediaPlayerId</pt>
                 <pd>待发布的媒体播放器的 ID。默认值为 0。</pd>
             </plentry>
-            <plentry props="native unity">
+            <plentry props="native unity cs">
                 <pt>clientRoleType</pt>
                 <pd conkeyref="setClientRole1/clientrole"/>
             </plentry>

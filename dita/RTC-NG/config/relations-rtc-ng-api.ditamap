@@ -1012,7 +1012,7 @@
                 <topicref keyref="IMusicContentCenterEventHandler"/>
             </relcell>
         </relrow>
-        <relrow props="cpp framework">
+        <relrow props="cpp unity cs flutter">
             <relcell>
                 <topicref keyref="registerAudioFrameObserver1_IMediaPlayer"/>
             </relcell>
@@ -1657,7 +1657,7 @@
                 <topicref keyref="onTokenWillExpire"/>
             </relcell>
         </relrow>
-        <relrow props="framework">
+        <relrow props="unity cs flutter">
             <relcell>
                 <topicref keyref="registerAudioFrameObserver1_IMediaPlayer"/>
             </relcell>
@@ -2407,8 +2407,8 @@
                 <topicref keyref="setInEarMonitoringVolume"/>
                 <topicref keyref="setLocalAccessPoint" props="cn"/>
                 <topicref keyref="setLocalRenderMode1" props="native unity"/>
-                <topicref keyref="setLocalRenderMode2" props="native flutter rn unity unreal"/>
-                <topicref keyref="setLocalVideoMirrorMode" props="native flutter rn unity unreal"/>
+                <topicref keyref="setLocalRenderMode2"/>
+                <topicref keyref="setLocalVideoMirrorMode"/>
                 <topicref keyref="setLocalVoiceEqualization"/>
                 <topicref keyref="setLocalVoiceFormant"/>
                 <topicref keyref="setLocalVoicePitch"/>
@@ -2425,7 +2425,7 @@
                 <topicref keyref="setRecordingAudioFrameParameters"/>
                 <topicref keyref="setRemoteDefaultVideoStreamType"/>
                 <topicref keyref="setRemoteRenderMode1" props="android ios mac"/>
-                <topicref keyref="setRemoteRenderMode2" props="native unity rn flutter unreal"/>
+                <topicref keyref="setRemoteRenderMode2"/>
                 <topicref keyref="setRemoteSubscribeFallbackOption" props="hide"/>
                 <topicref keyref="setRemoteUserSpatialAudioParams"/>
                 <topicref keyref="setRemoteVideoStreamType"/>
@@ -2551,7 +2551,7 @@
                 <topicref keyref="resumeAllChannelMediaRelayEx"/>
                 <topicref keyref="sendCustomReportMessageEx"/>
                 <topicref keyref="setDualStreamModeEx"/>
-                <topicref keyref="setRemoteRenderModeEx" props="cpp android ios mac unity"/>
+                <topicref keyref="setRemoteRenderModeEx" props="cpp android ios mac unity rn electron"/>
                 <topicref keyref="setRemoteVoice3DPositionEx" props="hide"/>
                 <topicref keyref="setRemoteVideoStreamTypeEx"/>
                 <topicref keyref="setRemoteVoicePositionEx"/>
@@ -2592,7 +2592,6 @@
         <relrow>
             <relcell>
                 <topicref keyref="onActiveSpeaker"/>
-                <topicref keyref="onApiCallExecuted"/>
                 <topicref keyref="onAudioDeviceStateChanged" props="cpp electron unity flutter"/>
                 <topicref keyref="onAudioDeviceVolumeChanged" props="cpp framework"/>
                 <topicref keyref="onAudioEffectFinished"/>
@@ -2708,6 +2707,7 @@
                 <topicref keyref="getMute"/>
                 <topicref keyref="getPlayoutVolume"/>
                 <topicref keyref="getPlayPosition"/>
+                <topicref keyref="getPlaySrc_IMediaPlayer"/>
                 <topicref keyref="getPublishSignalVolume"/>
                 <topicref keyref="getState"/>
                 <topicref keyref="getStreamCount"/>
@@ -2723,8 +2723,8 @@
                 <topicref keyref="play"/>
                 <topicref keyref="playPreloadedSrc"/>
                 <topicref keyref="preloadSrc"/>
-                <topicref keyref="registerAudioFrameObserver1_IMediaPlayer" props="cpp framework"/>
-                <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" props="cpp unity"/>
+                <topicref keyref="registerAudioFrameObserver1_IMediaPlayer" props="cpp unity flutter"/>
+                <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" props="cpp unity electron rn"/>
                 <topicref keyref="registerPlayerSourceObserver" props="android cpp flutter rn electron"/>
                 <topicref keyref="registerVideoFrameObserver_IMediaPlayer" props="android cpp flutter rn electron"/>
                 <topicref keyref="renewAgoraCDNSrcToken" props="hide"/>
@@ -2736,7 +2736,7 @@
                 <topicref keyref="setLoopCount"/>
                 <topicref keyref="setPlaybackSpeed"/>
                 <topicref keyref="setPlayerOption"/>
-                <topicref keyref="setRenderMode" props="native unity rn flutter unreal"/>
+                <topicref keyref="setRenderMode"/>
                 <topicref keyref="setSpatialAudioParams"/>
                 <topicref keyref="setView"/>
                 <topicref keyref="stop"/>
@@ -2931,22 +2931,13 @@
                 <topicref keyref="IAudioFrameObserver"/>
             </relcell>
         </relrow>
-        <relrow props="android framework">
-            <relcell>
-                <topicref keyref="onFrame_IAudioPcmFrameSink" props="android"/>
-                <topicref keyref="onFrame_IMediaPlayerAudioFrameObserver" props="framework"/>
-            </relcell>
-            <relcell>
-                <topicref keyref="IMediaPlayerAudioFrameObserver" props="android"/>
-                <topicref keyref="IAudioPcmFrameSink" props="framework"/>
-            </relcell>
-        </relrow>
-        <relrow props="cpp apple">
+        <relrow>
             <relcell>
                 <topicref keyref="onFrame_IAudioPcmFrameSink"/>
             </relcell>
             <relcell>
-                <topicref keyref="IAudioPcmFrameSink"/>
+                <topicref keyref="IMediaPlayerAudioFrameObserver" props="android electron rn"/>
+                <topicref keyref="IAudioPcmFrameSink" props="cpp apple unity cs flutter"/>
             </relcell>
         </relrow>
         <relrow props="ios mac cpp framework">
