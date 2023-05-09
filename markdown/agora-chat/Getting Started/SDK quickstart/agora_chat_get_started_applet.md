@@ -142,7 +142,7 @@ agora_quickstart
 
 2. 在你的项目中集成即时通讯 IM SDK。
 
-[下载 SDK](https://download.agora.io/sdk/release/Agora-chat.js)，将 SDK 文件放入项目中。
+[下载 SDK](https://download.agora.io/sdk/release/miniProgram.zip)，将 SDK 文件放入项目中。
 
 ```js
 import AC from "./Agora-chat";

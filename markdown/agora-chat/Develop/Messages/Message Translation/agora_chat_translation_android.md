@@ -14,11 +14,11 @@
 
 ## 技术原理
 
-即时通讯 IM Android SDK 提供以下方法来实现翻译功能：
+即时通讯 IM Android SDK 支持你通过调用 API 实现如下翻译功能：
 
-- `fetchSupportLanguages`：获取支持的翻译语言。
-- `translateMessage`：翻译收到的文本消息。
-- `MessageBody.setTargetLanguages`：发送方发送消息之前调用该方法设置目标语言实现自动翻译，接收方会收到消息原文和译文。
+- 获取支持的翻译语言。
+- 翻译收到的文本消息。
+- 发送方发送消息之前调用该方法设置目标语言实现自动翻译，接收方会收到消息原文和译文。
 
 ## 实现方法
 

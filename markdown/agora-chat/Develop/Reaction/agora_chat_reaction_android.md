@@ -10,13 +10,13 @@
 
 ## 技术原理
 
-SDK 提供 API 实现如下功能：
+即时通讯 IM SDK 支持你通过调用方法实现如下功能：
 
-- `asyncAddReaction` 在消息上添加 Reaction；
-- `asyncRemoveReaction` 删除消息的 Reaction；
-- `asyncGetReactionList` 获取消息的 Reaction 列表；
-- `asyncGetReactionDetail` 获取指定 Reaction 的详情；
-- `ChatMessage.getMessageReaction`：从本地数据库中的 `ChatMessage` 对象中获取 Reaction 列表。
+- 在消息上添加 Reaction；
+- 删除消息的 Reaction；
+- 获取消息的 Reaction 列表；
+- 获取指定 Reaction 的详情；
+- 从本地数据库中的 `ChatMessage` 对象中获取 Reaction 列表。
 
 ## 前提条件
 

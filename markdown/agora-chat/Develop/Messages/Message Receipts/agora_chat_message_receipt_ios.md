@@ -6,13 +6,13 @@
 
 ## 技术原理
 
-使用即时通讯 IM iOS SDK 可以实现消息的送达回执与已读回执。核心方法如下：
+使用即时通讯 IM iOS SDK 可以实现消息的送达回执与已读回执，主要功能如下：
 
-- `AgoraChatOptions.enableRequireReadAck`：开启消息已读回执。
-- `AgoraChatOptions.enableDeliveryAck`：开启消息送达回执。
-- `ackConversationRead` 发出指定会话的已读回执；
-- `sendMessageReadAck` 发出指定消息的已读回执；
-- `sendGroupMessageReadAck` 发出群组消息的已读回执。
+- 开启消息已读回执；
+- 开启消息送达回执；
+- 发出指定会话的已读回执；
+- 发出指定消息的已读回执；
+- 发出群组消息的已读回执。
 
 实现送达回执和已读回执逻辑分别如下：
 

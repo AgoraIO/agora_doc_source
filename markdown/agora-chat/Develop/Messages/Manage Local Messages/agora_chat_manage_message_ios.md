@@ -4,16 +4,14 @@
 
 ## 技术原理
 
-即时通讯 IM iOS SDK 支持管理用户设备上存储的消息会话数据，SDK 内部使用 SQLCipher 保存本地消息，方便消息处理。
+即时通讯 IM iOS SDK 支持管理用户设备上存储的消息会话数据，SDK 内部使用 SQLCipher 保存本地消息，方便消息处理。主要功能如下：
 
-其中包含如下主要方法：
-
-- `getAllConversations` 加载本地存储的会话列表；
-- `deleteConversations` 删除本地存储的会话；
-- `AgoraChatConversation.unreadMessagesCount`：获取指定会话的未读消息数；
-- `deleteConversation` 删除指定会话；
-- `AgoraChatConversation.loadMessagesStartFromId`：从本地数据库中搜索消息。
-- `AgoraChatConversation.insertMessage`：在指定会话中插入消息。
+- 加载本地存储的会话列表；
+- 删除本地存储的会话；
+- 获取指定会话的未读消息数；
+- 删除指定会话；
+- 从本地数据库中搜索消息；
+- 在指定会话中插入消息。
 
 ## 前提条件
 

@@ -16,11 +16,11 @@ SDK 在支持按需翻译和自动翻译：
 
 ## 技术原理
 
-即时通讯 IM iOS SDK 支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM iOS SDK 支持你通过调用 API 实现如下翻译功能：
 
-- `fetchSupportedLanguages`：获取支持的翻译语言；
-- `translateMessage`：翻译收到的文本消息；
-- `AgoraChatTextMessageBody.targetLanguages`：设置发送消息前自动翻译。当收件人收到消息时，它包含原始语言和目标语言的消息。
+- 获取支持的翻译语言；
+- 翻译收到的文本消息；
+- 设置发送消息前自动翻译。当收件人收到消息时，它包含原始语言和目标语言的消息。
 
 ## 实现方法
 

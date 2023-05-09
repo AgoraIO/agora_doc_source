@@ -6,13 +6,13 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 在 `ChatManager` 类中提供消息回执。以下是核心方法：
+即时通讯 IM SDK 在 `ChatManager` 类中提供消息回执，实现以下功能：
 
-- `ChatOptions.setRequireAck`：开启消息已读回执。
-- `ChatOptions.setRequireDeliveryAck`：开启消息送达回执。
-- `ackConversationRead`：发送指定会话的已读回执。
-- `ackMessageRead`：发送指定消息的已读回执。
-- `ackGroupMessageRead`：发送群组消息的已读回执。
+- 开启消息已读回执；
+- 开启消息送达回执；
+- 发送指定会话的已读回执；
+- 发送指定消息的已读回执；
+- 发送群组消息的已读回执。
 
 送达和已读回执逻辑分别如下：
 

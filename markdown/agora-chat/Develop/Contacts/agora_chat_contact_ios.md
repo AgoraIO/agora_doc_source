@@ -5,14 +5,14 @@
 
 ## 技术原理
 
-即时通讯 IM iOS SDK 可以实现好友的添加移除，黑名单的添加移除等功能，主要调用方法如下：
+即时通讯 IM iOS SDK 可以实现好友的添加移除，黑名单的添加移除等功能：
 
-- `addContact` 申请添加好友。
-- `deleteContact` 删除好友。
-- `getContactsFromServerWithCompletion` 从服务器获取好友列表。
-- `addUserToBlackList` 添加黑名单。
-- `removeUserFromBlackList` 删除黑名单。
-- `getBlackListFromServerWithCompletion` 从服务器获取黑名单列表。
+- 申请添加好友；
+- 删除好友；
+- 从服务器获取好友列表；
+- 添加黑名单；
+- 删除黑名单；
+- 从服务器获取黑名单列表。
 
 ## 前提条件
 

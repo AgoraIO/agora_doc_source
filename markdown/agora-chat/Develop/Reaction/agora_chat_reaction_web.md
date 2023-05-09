@@ -19,13 +19,13 @@
 
 ## 技术原理
 
-即时通讯 IM SDK 支持你通过调用 API 在项目中实现如下功能：
+即时通讯 IM SDK 支持你通过调用方法实现如下功能：
 
-- `addReaction` 在消息上添加 Reaction；
-- `deleteReaction` 删除消息的 Reaction；
-- `getReactionList` 获取消息的 Reaction 列表；
-- `getReactionDetail` 获取 Reaction 详情；
-- `getHistoryMessages` 获取漫游消息中的 Reaction。
+- 在消息上添加 Reaction；
+- 删除消息的 Reaction；
+- 获取消息的 Reaction 列表；
+- 获取 Reaction 详情；
+- 获取漫游消息中的 Reaction。
 
 ## 前提条件
 
