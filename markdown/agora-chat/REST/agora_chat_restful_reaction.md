@@ -191,7 +191,7 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/{{userId}}?msgIdList=msgId1&
                 {
                     "reactionId": "945272584050659838",
                     "reaction": "message123456",
-                    "count": 0,
+                    "count": 1,
                     "state": false,
                     "userList": [
                         "test5"
