@@ -626,10 +626,6 @@
                 <stentry><xref keyref="enableVirtualBackground"/></stentry>
                 <stentry><ph conkeyref="enableVirtualBackground/shortdesc"/></stentry>
             </strow>
-            <strow props="rn flutter unity">
-                <stentry><xref keyref="enableRemoteSuperResolution"/></stentry>
-                <stentry><ph conkeyref="enableRemoteSuperResolution/shortdesc"/><ph props="cpp rn flutter unity">(For Android and iOS only)</ph></stentry>
-            </strow>
             <strow>
                 <stentry><xref keyref="setColorEnhanceOptions"/></stentry>
                 <stentry><ph conkeyref="setColorEnhanceOptions/shortdesc"/></stentry>
@@ -1409,7 +1405,7 @@
                 <stentry><xref keyref="updateLocalTranscoderConfiguration"/></stentry>
                 <stentry><ph conkeyref="updateLocalTranscoderConfiguration/shortdesc"/></stentry>
             </strow>
-            </simpletable> 
+            </simpletable>
             <simpletable>
                 <sthead>
                     <stentry>Event</stentry>
@@ -1419,7 +1415,7 @@
                     <stentry><xref keyref="onLocalVideoTranscoderError"/></stentry>
                     <stentry><ph conkeyref="onLocalVideoTranscoderError/shortdesc"/></stentry>
                 </strow>
-                </simpletable> 
+                </simpletable>
             </section>
         <section id="media_stream_relay_across_channels">
             <title>Channel media stream relay</title>
@@ -1465,7 +1461,7 @@
                 <stentry><xref keyref="onChannelMediaRelayEvent"/></stentry>
                 <stentry><ph conkeyref="onChannelMediaRelayEvent/shortdesc"/></stentry>
             </strow>
-        </simpletable> </section>
+            </simpletable> </section>
         <section id="custom_audio_source">
             <title>Custom audio source</title>
             <simpletable>
@@ -1473,6 +1469,14 @@
                 <stentry>Method</stentry>
                 <stentry>Description</stentry>
             </sthead>
+            <strow>
+                <stentry><xref keyref="createCustomAudioTrack"/></stentry>
+                <stentry><ph conkeyref="createCustomAudioTrack/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="destroyCustomAudioTrack"/></stentry>
+                <stentry><ph conkeyref="destroyCustomAudioTrack/shortdesc"/></stentry>
+            </strow>
             <strow>
                 <stentry><xref keyref="setExternalAudioSource2"/></stentry>
                 <stentry><ph conkeyref="setExternalAudioSource2/shortdesc"/></stentry>
@@ -1679,7 +1683,7 @@
             <strow>
                 <stentry><xref keyref="destroyCustomVideoTrack"/></stentry>
                 <stentry><ph conkeyref="destroyCustomVideoTrack/shortdesc"/></stentry>
-            </strow>          
+            </strow>
             </simpletable></section>
         <section id="external_video_data">
             <title>External video source</title>
@@ -1930,7 +1934,7 @@
                 <stentry><ph conkeyref="onRecorderInfoUpdated/shortdesc"/></stentry>
             </strow>
             </simpletable> </section>
-        <section id="camera_control" props="android ios cpp flutter rn">
+        <section id="camera_control">
             <title>Camera management</title>
             <simpletable>
             <sthead>
@@ -1939,13 +1943,17 @@
             </sthead>
             <strow props="ios cpp unity flutter rn">
                 <stentry><xref keyref="enableMultiCamera"/></stentry>
-                <stentry><ph conkeyref="enableMultiCamera/shortdesc"/><ph props="cpp">(For iOS only)</ph></stentry>
+                <stentry><ph conkeyref="enableMultiCamera/shortdesc"/><ph props="cpp unity rn flutter">(For iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android ios cpp unity flutter rn">
                 <stentry><xref keyref="switchCamera"/></stentry>
-                <stentry><ph conkeyref="switchCamera/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="switchCamera/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="cpp unity cs electron flutter">
+                <stentry><xref keyref="setCameraDeviceOrientation"/></stentry>
+                <stentry><ph conkeyref="setCameraDeviceOrientation/shortdesc"/><ph props="cpp unity electron flutter"> (For Windows only)</ph></stentry>
+            </strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="setCameraCapturerConfiguration"/></stentry>
                 <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
             </strow>
@@ -1957,74 +1965,74 @@
                 <stentry><xref keyref="stopCameraCapture"/></stentry>
                 <stentry><ph conkeyref="stopCameraCapture/shortdesc"/></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="isCameraZoomSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="getCameraMaxZoomFactor"/></stentry>
-                <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="setCameraZoomFactor"/></stentry>
-                <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="isCameraTorchSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="setCameraTorchOn"/></stentry>
-                <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow props="android cpp flutter rn">
+            <strow props="android cpp unity rn flutter">
                 <stentry><xref keyref="isCameraFaceDetectSupported"/></stentry>
                 <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="isCameraFocusSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="setCameraFocusPositionInPreview"/></stentry>
-                <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="isCameraAutoFocusFaceModeSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="setCameraAutoFocusFaceModeEnabled"/></stentry>
-                <stentry><ph conkeyref="setCameraAutoFocusFaceModeEnabled/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="setCameraAutoFocusFaceModeEnabled/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="isCameraExposurePositionSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow props="ios cpp unity flutter">
+            <strow props="ios cpp unity rn flutter">
                 <stentry><xref keyref="isCameraAutoExposureFaceModeSupported"/></stentry>
-                <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/><ph props="cpp unity flutter">(For iOS only)</ph></stentry>
+                <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/><ph props="cpp unity rn flutter">(For iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="android cpp ios unity rn flutter">
                 <stentry><xref keyref="setCameraExposurePosition"/></stentry>
-                <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/><ph props="cpp flutter">(For Android and iOS only)</ph></stentry>
+                <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
-            <strow>
+            <strow props="ios cpp unity rn flutter">
                 <stentry><xref keyref="setCameraAutoExposureFaceModeEnabled"/></stentry>
-                <stentry><ph conkeyref="setCameraAutoExposureFaceModeEnabled/shortdesc"/><ph props="cpp flutter">(For iOS only)</ph></stentry>
+                <stentry><ph conkeyref="setCameraAutoExposureFaceModeEnabled/shortdesc"/><ph props="cpp unity rn flutter">(For iOS only)</ph></stentry>
             </strow>
-            </simpletable> <simpletable>
+            </simpletable> <simpletable props="android ios cpp unity rn flutter">
             <sthead>
                 <stentry>Event</stentry>
                 <stentry>Description</stentry>
             </sthead>
             <strow>
                 <stentry><xref keyref="onCameraFocusAreaChanged"/></stentry>
-                <stentry><ph conkeyref="onCameraFocusAreaChanged/shortdesc"/></stentry>
+                <stentry><ph conkeyref="onCameraFocusAreaChanged/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="onCameraExposureAreaChanged"/></stentry>
-                <stentry><ph conkeyref="onCameraExposureAreaChanged/shortdesc"/></stentry>
+                <stentry><ph conkeyref="onCameraExposureAreaChanged/shortdesc"/><ph props="cpp unity flutter">(For Android and iOS only)</ph></stentry>
             </strow>
             </simpletable> </section>
         <section id="section_gmr_5rz_3qb">
@@ -2492,7 +2500,7 @@
             <strow>
                 <stentry><xref keyref="getCurrentMonotonicTimeInMs"/></stentry>
                 <stentry><ph conkeyref="getCurrentMonotonicTimeInMs/shortdesc"/></stentry>
-            </strow>            
+            </strow>
             <strow props="cn">
                 <stentry><xref keyref="setAVSyncSource"/></stentry>
                 <stentry><ph conkeyref="setAVSyncSource/shortdesc"/></stentry>

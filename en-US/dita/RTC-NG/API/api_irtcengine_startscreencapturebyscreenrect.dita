@@ -46,17 +46,17 @@
                 </dl>
    <p id="desc">This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
    <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
-   <note type="attention" id="note">This method applies to Windows only.</note>
+   <note type="attention" id="note" props="cpp electron unity flutter">This method applies to Windows only.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
-       <plentry props="cpp unity flutter electron">
+       <plentry props="cpp unity flutter electron cs">
   <pt>screenRect</pt>
   <pd>Sets the relative location of the screen to the virtual screen.</pd>
        </plentry>
        <plentry>
   <pt>regionRect</pt>
-  <pd props="cpp unity flutter electron"><ph props="cpp unity">(Optional) </ph>Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
+  <pd props="cpp unity flutter electron cs"><ph props="cpp unity cs">(Optional) </ph>Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
 </plentry>
        <plentry>
   <pt>captureParams</pt>
@@ -68,7 +68,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn">0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul conkeyref="startScreenCaptureByDisplayId/err"><li /></ul>
             </li>
             </ul> </section>

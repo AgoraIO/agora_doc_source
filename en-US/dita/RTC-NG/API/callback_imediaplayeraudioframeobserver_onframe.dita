@@ -17,7 +17,10 @@
             <codeblock props="ios mac" outputclass="language-objectivec" />
             <codeblock props="cpp" outputclass="language-cpp" />
             <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame videoFrame)</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame frame)
+        {
+            return true;
+        }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(AudioPcmFrame frame)? onFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -29,15 +32,14 @@
             <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry>
-                <pt props="unity">videoFrame</pt>
-                <pt props="electron rn flutter">frame</pt>
+                <pt>frame</pt>
                 <pd>
                     <p>Audio frame information. See <xref keyref="AudioPcmFrame" />.</p>
                 </pd>
             </plentry>
             </parml>
         </section>
-        <section id="return_values" props="unity">
+        <section id="return_values" props="unity cs">
             <title>Returns</title>
                 <p>Reserved for future use.</p>
         </section>

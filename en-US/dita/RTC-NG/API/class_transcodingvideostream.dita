@@ -67,7 +67,7 @@
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingVideoStream {
 
-  sourceType?: MediaSourceType;
+  sourceType?: VideoSourceType;
 
   remoteUserUid?: number;
 
@@ -106,7 +106,7 @@
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class TranscodingVideoStream {
 
-  sourceType?: MediaSourceType;
+  sourceType?: VideoSourceType;
 
   remoteUserUid?: number;
 
@@ -190,14 +190,10 @@ class TranscodingVideoStream {
                 <pd>The video source type for local video mixing. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry>
-                <pt>mediaPlayerId</pt>
-                <pd>(Optional) Media player ID. Use parameter only when you set <parmname>sourceType</parmname> to <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
-            </plentry>
-            <plentry>
                 <pt>remoteUserUid</pt>
                 <pd>
                     <p>The user ID of the remote user.</p>
-                    <note id="note_m2h_lxn_3qb" type="attention">Use this parameter only when the source type is <apiname keyref="VIDEO_SOURCE_REMOTE" /> for local video mixing.</note></pd>
+                    <note type="attention">Use this parameter only when the source type is <apiname keyref="VIDEO_SOURCE_REMOTE" /> for local video mixing.</note></pd>
             </plentry>
             <plentry>
                 <pt>imageUrl</pt>
@@ -205,19 +201,23 @@ class TranscodingVideoStream {
                     <p>The URL of the image.<note type="attention">Use this parameter only when the source type is the image for local video mixing.</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter">
+            <plentry>
+                <pt>mediaPlayerId</pt>
+                <pd>(Optional) Media player ID. Use parameter only when you set <parmname>sourceType</parmname> to <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/>.</pd>
+            </plentry>
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>x</pt>
                 <pd>The relative lateral displacement of the top left corner of the video for local video mixing to the origin (the top left corner of the canvas).</pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter">
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>y</pt>
                 <pd>The relative longitudinal displacement of the top left corner of the captured video to the origin (the top left corner of the canvas).</pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter">
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>width</pt>
                 <pd>The width (px) of the video for local video mixing on the canvas.</pd>
             </plentry>
-            <plentry props="cpp android unity electron rn flutter">
+            <plentry props="cpp android unity cs electron rn flutter">
                 <pt>height</pt>
                 <pd>The height (px) of the video for local video mixing on the canvas.</pd>
             </plentry>

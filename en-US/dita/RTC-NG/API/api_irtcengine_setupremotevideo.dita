@@ -30,15 +30,15 @@
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
             <note type="attention">
             <ul>
-             <li props="unity">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface"/> class instead.</li>
-            <li props="native unity rn flutter unreal">To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
+             <li props="unity cs">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface"/> class instead.</li>
+            <li props="native unity rn flutter unreal cs">To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
             <li>If you use the Agora recording function, the recording client joins the channel as a placeholder client, triggering the <xref keyref="onUserJoined"/> callback. Do not bind the placeholder client to the app view because the placeholder client does not send any video streams. If your app does not recognize the placeholder client, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="cpp unity rn electron flutter">canvas</pt>
+                <pt props="cpp unity rn electron flutter cs">canvas</pt>
                 <pt props="android ios mac">remote</pt>
                 <pd>
                     <p>The remote video view and settings. See <xref keyref="VideoCanvas"/>.</p>
@@ -49,7 +49,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn">0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

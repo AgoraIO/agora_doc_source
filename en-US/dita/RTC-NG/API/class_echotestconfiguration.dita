@@ -13,7 +13,7 @@
   public String token = null;
   public String channelId = null;
   public int intervalInSeconds = 2;
- 
+
   @CalledByNative
   public EchoTestConfiguration(SurfaceView view, boolean enableAudio, boolean enableVideo,
       String token, String channelId, int intervalInSeconds) {
@@ -40,7 +40,7 @@
     this.channelId = null;
   }
 }</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration) 
+            <codeblock props="ios mac" outputclass="language-objectivec">NS_SWIFT_NAME(AgoraEchoTestConfiguration)
 __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : NSObject
 @property(strong, nonatomic) VIEW_CLASS* _Nullable view NS_SWIFT_NAME(view);
 @property(assign, nonatomic) BOOL enableAudio NS_SWIFT_NAME(enableAudio);
@@ -75,32 +75,17 @@ struct EchoTestConfiguration {
   token?: string;
 
   channelId?: string;
+
+  intervalInSeconds?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class EchoTestConfiguration
     {
-        public view_t view { set; get; }
-        public bool enableAudio { set; get; }
-        public bool enableVideo { set; get; }
-        public string token { set; get; }
-        public string channelId { set; get; }
-
-        public EchoTestConfiguration(view_t v, bool ea, bool ev, string t, string c)
-        {
-            view = v;
-            enableAudio = ea;
-            enableVideo = ev;
-            token = t;
-            channelId = c;
-        }
-
-        public EchoTestConfiguration()
-        {
-            view = 0;
-            enableAudio = true;
-            enableVideo = true;
-            token = "";
-            channelId = "";
-        }
+        public view_t view;
+        public bool enableAudio;
+        public bool enableVideo;
+        public string token;
+        public string channelId;
+        public int intervalInSeconds;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class EchoTestConfiguration {
 
@@ -113,14 +98,18 @@ struct EchoTestConfiguration {
   token?: string;
 
   channelId?: string;
+
+  intervalInSeconds?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class EchoTestConfiguration {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class EchoTestConfiguration {
   const EchoTestConfiguration(
       {this.view,
       this.enableAudio,
       this.enableVideo,
       this.token,
-      this.channelId});
+      this.channelId,
+      this.intervalInSeconds});
 
   @JsonKey(name: 'view')
   final int? view;
@@ -136,6 +125,9 @@ struct EchoTestConfiguration {
 
   @JsonKey(name: 'channelId')
   final String? channelId;
+
+  @JsonKey(name: 'intervalInSeconds')
+  final int? intervalInSeconds;
 
   factory EchoTestConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$EchoTestConfigurationFromJson(json);
@@ -174,7 +166,7 @@ struct EchoTestConfiguration {
                 <pd>The channel name that identifies each audio and video call loop. To ensure proper loop test functionality, the channel name passed in to identify each loop test cannot be the same when users of the same project (App ID) perform audio and video call loop tests on different devices.</pd>
             </plentry>
             <plentry>
-                <pt >intervalInSeconds</pt>
+                <pt>intervalInSeconds</pt>
                 <pd>The time interval (s) between when you start the call and when the recording plays back. The value range is [2, 10], and the default value is 2.</pd>
             </plentry>
             </parml> </section>

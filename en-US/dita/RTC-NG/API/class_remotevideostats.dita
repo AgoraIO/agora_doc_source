@@ -23,7 +23,6 @@
     public int avSyncTimeMs;
     public long totalActiveTime;
     public long publishDuration;
-    public int superResolutionType;
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcRemoteVideoStats : NSObject
 @property(assign, nonatomic) NSUInteger uid;
@@ -43,7 +42,6 @@
 @property(assign, nonatomic) NSUInteger totalActiveTime;
 @property(assign, nonatomic) NSInteger publishDuration;
 @property(assign, nonatomic) NSInteger avSyncTimeMs;
-@property(assign, nonatomic) NSInteger superResolutionType;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct RemoteVideoStats {
   uid_t uid;
@@ -62,7 +60,6 @@
   int avSyncTimeMs;
   int totalActiveTime;
   int publishDuration;
-  int superResolutionType;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteVideoStats {
 
@@ -97,8 +94,6 @@
   totalActiveTime?: number;
 
   publishDuration?: number;
-
-  superResolutionType?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class RemoteVideoStats
     {
@@ -153,7 +148,6 @@
 
   publishDuration?: number;
 
-  superResolutionType?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class RemoteVideoStats {
@@ -295,7 +289,7 @@ class RemoteVideoStats {
             </plentry>
             <plentry>
                 <pt>rxStreamType</pt>
-                <pd><ph>The type of the video stream. </ph><ph props="ios mac cpp unity rn electron flutter">See <xref keyref="VIDEO_STREAM_TYPE"/>.</ph><p props="android">
+                <pd><ph>The type of the video stream. </ph><ph props="ios mac cpp unity cs rn electron flutter">See <xref keyref="VIDEO_STREAM_TYPE"/>.</ph><p props="android">
                     <ul>
                     <li><ph keyref="VIDEO_STREAM_HIGH"/>(0): High-quality stream, that is, a high-resolution and high-bitrate video stream.</li>
                     <li><ph keyref="VIDEO_STREAM_LOW"/>(1): Low-quality stream, that is, a low-resolution and low-bitrate video stream.</li>
@@ -322,13 +316,6 @@ class RemoteVideoStats {
                 <pd>
                     <p>The total duration (ms) of the remote video stream.</p>
                 </pd>
-            </plentry>
-            <plentry props="unity rn flutter">
-                <pt>superResolutionType</pt>
-                <pd>The state of super resolution:<ul>
-                    <li>>0: Super resolution is enabled.</li>
-                    <li>=0: Super resolution is not enabled.</li>
-                    </ul> </pd>
             </plentry>
             <plentry>
                 <pt>avSyncTimeMs</pt>

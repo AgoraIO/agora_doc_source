@@ -16,15 +16,9 @@
             <codeblock props="android" outputclass="language-java">public int startRecording(MediaRecorderConfiguration config)</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startRecording:(AgoraMediaRecorderConfiguration* _Nonnull)config;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int startRecording(const media::MediaRecorderConfiguration&amp; config) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">abstract startRecording(
-    connection: RtcConnection,
-    config: MediaRecorderConfiguration
-  ): number;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">abstract startRecording(config: MediaRecorderConfiguration): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartRecording(MediaRecorderConfiguration config);</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">abstract startRecording(
-    connection: RtcConnection,
-    config: MediaRecorderConfiguration
-  ): number;</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">abstract startRecording(config: MediaRecorderConfiguration): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void> startRecording(MediaRecorderConfiguration config);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
@@ -42,7 +36,7 @@
             </ul></p>
             <p>Once the recording is started, if the video resolution is changed, the SDK stops the recording; if the sampling rate and audio channel changes, the SDK continues recording and generates audio files respectively.</p>
             <p>The SDK can generate a recording file only when it detects audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops the recording and triggers the <codeph><apiname keyref="onRecorderStateChanged"/>(<apiname keyref="RECORDER_STATE_ERROR"/>, <apiname keyref="RECORDER_ERROR_NO_STREAM"/>)</codeph> callback.</p>
-            
+
             <note type="attention">
             <ul>
             <li>If you want to record the media streams of the local user, ensure the role of the local user is set as broadcaster.</li>
@@ -60,7 +54,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native unity rn electron">0: Success.</li>
+            <li props="native unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-2: The parameter is invalid. Ensure the following:<ul>
                     <li>The specified path of the recording file exists and is writable.</li>

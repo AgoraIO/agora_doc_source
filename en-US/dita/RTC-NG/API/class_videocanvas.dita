@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
     <title><ph keyref="VideoCanvas"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Attributes of video canvas object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Attributes of the video canvas object.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -206,7 +206,7 @@ class VideoCanvas {
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</p>
+                    <p props="ios mac cpp unity electron rn flutter cs">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li/>
@@ -216,7 +216,7 @@ class VideoCanvas {
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
+                    <p props="ios mac cpp unity electron rn flutter cs">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li/>
@@ -268,17 +268,18 @@ class VideoCanvas {
                 <pt>cropArea</pt>
                 <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
             </plentry>
-            <plentry props="cpp ios mac unity electron flutter">
+            <plentry props="cpp ios mac unity electron flutter cs">
                 <pt>enableAlphaMask</pt>
-                <pd>
+                <pd props="cpp ios mac unity electron flutter">
                 <p>(Optional) Whether the receiver enables alpha mask rendering:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (default) The receiver disables alpha mask rendering.</li>
                   </ul>
                 </p>
+                <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</p>
                 <note type="attention"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
-                <note type="note">Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</note>
                 </pd>
+                <pd props="cs">Reserved.</pd>
             </plentry>
 
             </parml> </section>
