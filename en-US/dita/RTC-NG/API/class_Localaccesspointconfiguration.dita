@@ -83,7 +83,6 @@
   AdvancedConfigInfo advancedConfig;
   LocalAccessPointConfiguration() : ipList(NULL), ipListSize(0), domainList(NULL), domainListSize(0), verifyDomainName(NULL), mode(ConnectivityFirst) {}
 };</codeblock>
-            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAccessPointConfiguration {
   
   ipList?: string[];
@@ -97,8 +96,10 @@
   verifyDomainName?: string;
   
   mode?: LocalProxyMode;
+
+  advancedConfig?: AdvancedConfigInfo;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class LocalAccessPointConfiguration
+            <codeblock props="unity cs" outputclass="language-csharp">public class LocalAccessPointConfiguration
     {
         public string[] ipList { set; get; }
         public int ipListSize { set; get; }
@@ -132,6 +133,8 @@
   verifyDomainName?: string;
   
   mode?: LocalProxyMode;
+
+  advancedConfig?: AdvancedConfigInfo;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class LocalAccessPointConfiguration {
   const LocalAccessPointConfiguration(
@@ -168,18 +171,17 @@
       _$LocalAccessPointConfigurationFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$LocalAccessPointConfigurationToJson(this);
-}</codeblock> </p>
+}</codeblock>            
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>ipList</pt>
                 <pd>The list of IP addresses for the Local Access Point. ipList and domainList must be filled in at least one.</pd>
             </plentry>
-            <plentry props="cpp electron unity rn flutter">
+            <plentry props="cpp electron unity rn flutter cs">
                 <pt>ipListSize</pt>
                 <pd>The number of IP addresses of the Local Access Point. This value must be the same as the number of IP addresses that you specify for the ipList parameter.</pd>
             </plentry>
@@ -187,7 +189,7 @@
                 <pt>domainList</pt>
                 <pd>The list of domain names for the Local Access Point. The SDK will parse the IP addresses according to the provided domain names. The parse times out after 10 seconds. ipList and domainList must be filled in at least one. If you specify an IP address and a domain name at the same time, the SDK will combine the IP address parsed from the domain name and the IP address you specify, remove duplicates, and then connect to a random IP to achieve load balancing.</pd>
             </plentry>
-            <plentry props="cpp electron unity rn flutter">
+            <plentry props="cpp electron unity rn flutter cs">
                 <pt>domainListSize</pt>
                 <pd>The number of domain names for Local Access Point. This value must be the same as the number of domain names that you specifyfor the domainList parameter.</pd>
             </plentry>
@@ -198,8 +200,8 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp electron unity rn flutter"
-                    >The connection mode. See .<xref keyref="LOCAL_PROXY_MODE"/></p>
+                    <p props="ios mac cpp electron unity rn flutter cs"
+                    >The connection mode. See <xref keyref="LOCAL_PROXY_MODE"/>.</p>
                     <p props="android">Select one of the following connection modes:<ul>
                     <li><ph keyref="ConnectivityFirst"
                         />(0): The SDK firstly tries to connect to the specified Agora private media server; if the connection attempt fails, it will connect to the Agora SD-RTN™ instead.</li>
@@ -209,8 +211,8 @@
             </plentry>
             <plentry>
                 <pt>advancedConfig</pt>
-                <pd>The advanced options for the Local Access Point. See .<xref
-                    keyref="AdvancedConfigInfo"/></pd>
+                <pd>The advanced options for the Local Access Point. See <xref
+                    keyref="AdvancedConfigInfo"/>.</pd>
             </plentry>
             </parml> </section>
     </refbody>
