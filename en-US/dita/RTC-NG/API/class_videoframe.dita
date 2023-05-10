@@ -331,8 +331,6 @@
 
   matrix?: number[];
 
-  alphaBuffer?: Uint8Array;
-
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class VideoFrame
     {
@@ -375,10 +373,6 @@
         public int textureId;
 
         public float[] matrix;
-
-        public byte[] alphaBuffer;
-
-
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class VideoFrame {
 
@@ -414,8 +408,6 @@
 
   matrix?: number[];
 
-  alphaBuffer?: Uint8Array;
-
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class VideoFrame {
@@ -436,7 +428,6 @@ class VideoFrame {
       this.metadataSize,
       this.textureId,
       this.matrix,
-      this.alphaBuffer,
       this.pixelBuffer});
 
   @JsonKey(name: 'type')
@@ -486,9 +477,6 @@ class VideoFrame {
 
   @JsonKey(name: 'matrix')
   final List&lt;double&gt;? matrix;
-
-  @JsonKey(name: 'alphaBuffer', ignore: true)
-  final Uint8List? alphaBuffer;
 
   @JsonKey(name: 'pixelBuffer', ignore: true)
   final Uint8List? pixelBuffer;
