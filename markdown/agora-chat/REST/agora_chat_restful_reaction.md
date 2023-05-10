@@ -98,7 +98,7 @@ curl -g -X POST 'http://XXXX/XXXX/XXXX/reaction/user/e1' -H 'Authorization: Bear
         "msgId": "msg3333",
         "msgType": "chat",
         "groupId": null,
-        "reaction": "message123456",
+        "reaction": "emoji_40",
         "createdAt": "2022-02-24T10:57:43.138934Z",
         "updatedAt": "2022-02-24T10:57:43.138939Z"
     }
@@ -107,7 +107,7 @@ curl -g -X POST 'http://XXXX/XXXX/XXXX/reaction/user/e1' -H 'Authorization: Bear
 
 ## 根据消息 ID 获取 Reaction
 
-该方法根据单聊或群聊中的消息 ID 获取单个或多个消息的 Reaction 信息，包括 Reaction ID、使用的表情 ID、以及使用该 Reaction 的用户 ID 及用户人数。获取的 Reaction 的用户列表只展示最早三个添加 Reaction 的用户。
+该方法根据单聊或群聊中的消息 ID 获取单个或多个消息的 Reaction 信息，包括 Reaction ID、使用的表情 ID、以及使用该 Reaction 的用户 ID 及用户人数。获取的 Reaction 的用户列表只展示最早添加 Reaction 的三个用户。
 
 ### HTTP 请求
 
@@ -175,7 +175,7 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/{{userId}}?msgIdList=msgId1&
                 {
                     "reactionId": "944330310986837168",
                     "reaction": "message123456",
-                    "count": 0,
+                    "count": 3,
                     "state": false,
                     "userList": [
                         "test123",
