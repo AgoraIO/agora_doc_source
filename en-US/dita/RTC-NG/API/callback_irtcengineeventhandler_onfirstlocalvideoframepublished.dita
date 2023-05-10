@@ -27,42 +27,41 @@
     connection: RtcConnection,
     elapsed: number
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFramePublished(RtcConnection connection, int elapsed) {}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnFirstLocalVideoFramePublished(RtcConnection connection, int elapsed) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onFirstLocalVideoFramePublished?(
     connection: RtcConnection,
     elapsed: number
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
-      onFirstLocalVideoFramePublished;
-</codeblock> </p>
+      onFirstLocalVideoFramePublished;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>The SDK triggers this callback under one of the following circumstances:<ul>
-            <li>The local client enables the video module and calls <apiname keyref="joinChannel2" /> successfully.</li>
-            <li>The local client calls <xref keyref="muteLocalVideoStream" />(<codeph><ph keyref="true" /></codeph>) and <apiname keyref="muteLocalVideoStream" />(<codeph><ph keyref="false" /></codeph>) in sequence.</li>
-            <li>The local client calls <xref keyref="disableVideo" /> and <xref keyref="enableVideo" /> in sequence.</li>
-            <li props="android ios mac cpp">The local client calls <xref keyref="pushVideoFrame" /> to successfully push the video frame to the SDK.</li>
+            <li>The local client enables the video<apiname keyref="joinChannel2" /> module and calls  successfully.</li>
+            <li>The local<apiname keyref="muteLocalVideoStream" /> client calls <xref keyref="muteLocalVideoStream" />() and () in sequence.<codeph><ph keyref="true" /></codeph><codeph><ph keyref="false" /></codeph></li>
+            <li>The local client calls<xref keyref="disableVideo" />  and  in <xref keyref="enableVideo" />sequence.</li>
+            <li props="android ios mac cpp">The<xref keyref="pushVideoFrame" /> local client calls  to successfully push the video frame to the SDK.</li>
             </ul> </p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt />
                 <pd />
             </plentry>
-                <plentry props="unity electron rn flutter">
+            <plentry props="unity electron rn flutter cs">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
+                <pd>The connection information. See .<xref keyref="RtcConnection" /></pd>
             </plentry>
                 <plentry conkeyref="onLocalVideoStateChanged/source" props="native">
                     <pt />
                     <pd />
                 </plentry>
-               <plentry>
+            <plentry>
                 <pt>elapsed</pt>
-                <pd>Time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
+                <pd>Time elapsed<apiname keyref="joinChannel2" /> (ms) from the local user calling  until the SDK triggers this callback.</pd>
             </plentry>
             </parml> </section>
     </refbody>

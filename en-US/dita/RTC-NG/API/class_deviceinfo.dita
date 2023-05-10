@@ -21,16 +21,15 @@
   DeviceInfo() : isLowLatencyAudioSupported(false) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DeviceInfo {
-  
+
   isLowLatencyAudioSupported?: boolean;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class DeviceInfo
+            <codeblock props="unity cs" outputclass="language-csharp">public class DeviceInfoMobile
     {
-        public string deviceName;
-        public string deviceId;
+        public bool isLowLatencyAudioSupported;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class DeviceInfo {
-  
+
   isLowLatencyAudioSupported?: boolean;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class DeviceInfo {
@@ -41,28 +40,20 @@
   factory DeviceInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$DeviceInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$DeviceInfoToJson(this);
-}</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+}</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <note type="attention" props="cpp rn flutter">This class is for Android only.</note> </section>
+            <note type="attention" props="cpp unity cs rn flutter">This class is for Android only.</note> </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-            <plentry props="native rn flutter">
+            <plentry props="native unity cs rn flutter">
                 <pt>isLowLatencyAudioSupported</pt>
                 <pd>Whether the audio device supports ultra-low-latency capture and playback:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: The device supports ultra-low-latency capture and playback.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: The device does not support ultra-low-latency capture and playback.</li>
+                    <li>: The device supports ultra-low-latency capture and playback.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: The device does not support ultra-low-latency capture and playback.<codeph><ph keyref="false" /></codeph></li>
                     </ul></pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>deviceName</pt>
-                <pd>The device name.</pd>
-            </plentry>
-            <plentry props="unity">
-                <pt>deviceId</pt>
-                <pd>The device ID.</pd>
             </plentry>
             </parml> </section>
     </refbody>

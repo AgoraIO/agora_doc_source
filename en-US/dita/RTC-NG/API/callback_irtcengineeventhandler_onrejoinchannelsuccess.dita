@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onrejoinchannelsuccess">
-    <title><ph keyref="onRejoinChannelSuccess"/></title>
+    <title><ph keyref="onRejoinChannelSuccess" /></title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when a user rejoins the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRejoinChannelSuccess"/>
+                <indexterm keyref="onRejoinChannelSuccess" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,25 +21,24 @@
      (void)uid;
      (void)elapsed;
      }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRejoinChannelSuccess(RtcConnection connection, int elapsed) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onRejoinChannelSuccess?(connection: RtcConnection, elapsed: number): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int elapsed)?
-      onRejoinChannelSuccess;
-</codeblock> </p>
+      onRejoinChannelSuccess;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p id="desc">When a user loses connection with the server because of network problems, the SDK automatically tries to reconnect and triggers this callback upon reconnection.</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
-            <plentry props="native electron">
+            <plentry props="native">
                 <pt>channel</pt>
                 <pd>The channel name.</pd>
             </plentry>
@@ -47,13 +46,13 @@
                 <pt>uid</pt>
                 <pd>The ID of the user who rejoins the channel.</pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity electron rn cs">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd>The connection information. See .<xref keyref="RtcConnection" /></pd>
             </plentry>
             <plentry id="elapsed">
                 <pt>elapsed</pt>
-                <pd>Time elapsed (ms) from the local user calling the <xref keyref="joinChannel1"/> or <xref keyref="joinChannel2"/> method until this callback is triggered.</pd>
+                <pd>Time elapsed (ms) from<xref keyref="joinChannel1" /> the local user calling the  or<xref keyref="joinChannel2" />  method until this callback is triggered.</pd>
             </plentry>
             </parml> </section>
     </refbody>

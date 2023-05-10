@@ -24,7 +24,7 @@
     remoteUid: number,
     muted: boolean
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserMuteVideo(RtcConnection connection, uint remoteUid, bool muted) {}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnUserMuteVideo(RtcConnection connection, uint remoteUid, bool muted) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onUserMuteVideo?(
     connection: RtcConnection,
     remoteUid: number,
@@ -38,13 +38,13 @@
             <dl outputclass="deprecated" props="hide">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>You can also use the <xref keyref="onRemoteVideoStateChanged" /> callback with the following parameters:<ul>
-                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" /> (5).</li>
-                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /> (6).</li>
+                <dd>You can also use the  callback with<xref keyref="onRemoteVideoStateChanged" /> the following parameters:<ul>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_STOPPED" />(0) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />  (5).</li>
+                    <li><apiname keyref="REMOTE_VIDEO_STATE_DECODING" />(2) and<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />  (6).</li>
                     </ul> </dd>
             </dlentry>
             </dl>
-            <p>When a remote user calls <xref keyref="muteLocalVideoStream" /> to stop or resume publishing the video stream, the SDK triggers this callback to report to the local user the state of the streams published by the remote user.</p>
+            <p>When a remote user calls<xref keyref="muteLocalVideoStream" />  to stop or resume publishing the video stream, the SDK triggers this callback to report to the local user the state of the streams published by the remote user.</p>
             <note type="attention">This callback can be inaccurate when the number of users (in the communication profile) or hosts (in the live streaming profile) in a channel exceeds 17.</note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
@@ -53,20 +53,20 @@
                     <pt />
                     <pd />
                 </plentry>
-                <plentry props="unity electron rn flutter">
+                <plentry props="unity electron rn flutter cs">
                     <pt>connection</pt>
-                    <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
+                    <pd>The connection information. See .<xref keyref="RtcConnection" /></pd>
                 </plentry>
                 <plentry>
                     <pt props="native">uid</pt>
-                    <pt props="unity electron rn flutter">remoteUid</pt>
+                    <pt props="unity electron rn flutter cs">remoteUid</pt>
                     <pd>The user ID of the remote user.</pd>
                 </plentry>
                 <plentry>
                     <pt>muted</pt>
                     <pd>Whether the remote user stops publishing the video stream:<ul>
-                        <li><codeph><ph keyref="true" /></codeph>: The remote user stops publishing the video stream.</li>
-                        <li><codeph><ph keyref="false" /></codeph>: The remote user resumes publishing the video stream.</li>
+                        <li>: The remote user stops publishing the video stream.<codeph><ph keyref="true" /></codeph></li>
+                        <li>: The remote user resumes publishing the video stream.<codeph><ph keyref="false" /></codeph></li>
                         </ul> </pd>
                 </plentry>
             </parml>

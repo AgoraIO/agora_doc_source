@@ -107,7 +107,7 @@
   
   qualityChangedReason?: number;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class RemoteAudioStats
+            <codeblock props="unity cs" outputclass="language-csharp">public class RemoteAudioStats
     {
         public RemoteAudioStats()
         {
@@ -260,10 +260,10 @@
   @JsonKey(name: 'qualityChangedReason')
   final int? qualityChangedReason;
 
-  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
       _$RemoteAudioStatsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteAudioStatsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
 }
 </codeblock>
             </p>
@@ -278,7 +278,7 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>The quality of the audio stream sent by the user. <ph props="ios mac cpp electron rn unity flutter">See <xref keyref="QUALITY_TYPE" />.</ph></p>
+                    <p>The quality of the audio stream sent by the user. See .<ph props="ios mac cpp electron rn unity flutter cs"><xref keyref="QUALITY_TYPE" /></ph></p>
                     <p props="android">
                     <ul id="qualitytype">
                     <li><ph keyref="QUALITY_UNKNOWN" />(0): The quality is unknown.</li>
@@ -298,7 +298,7 @@
             <plentry>
                 <pt>jitterBufferDelay</pt>
                 <pd>
-                    <p>The network delay (ms) from the audio receiver to the jitter buffer.<note type="attention">When the receiving end is an audience member and <parmname>audienceLatencyLevel</parmname> of <xref keyref="ClientRoleOptions" /> is 1, this parameter does not take effect.</note></p>
+                    <p>The network delay (ms) from the audio receiver to the jitter buffer.<note type="attention">When the receiving end is an audience member and <xref keyref="ClientRoleOptions" /><parmname>audienceLatencyLevel</parmname> of  is 1, this parameter does not take effect.</note></p>
                 </pd>
             </plentry>
             <plentry>
@@ -341,7 +341,7 @@
             <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p><ph>The Quality of Experience (QoE) of the local user when receiving a remote audio stream. </ph><ph props="ios mac cpp electron rn unity">See <xref keyref="EXPERIENCE_QUALITY_TYPE" />.</ph><ul props="android">
+                    <p><ph>The Quality of Experience (QoE) of the local user when receiving a remote audio stream. </ph><ph props="ios mac cpp electron rn unity cs">See <xref keyref="EXPERIENCE_QUALITY_TYPE" />.</ph><ul props="android">
                     <li><ph keyref="EXPERIENCE_QUALITY_GOOD" />(0): The QoE of the local user is good.</li>
                     <li><ph keyref="EXPERIENCE_QUALITY_BAD" />(1): The QoE of the local user is poor.</li>
                     </ul></p>
@@ -350,7 +350,7 @@
             <plentry>
                 <pt>qualityChangedReason</pt>
                 <pd>
-                    <p><ph>Reasons why the QoE of the local user when receiving a remote audio stream is poor. </ph><ph props="ios mac cpp unity rn electron flutter">See <xref keyref="EXPERIENCE_POOR_REASON" />.</ph><ul props="android">
+                    <p><ph>Reasons why the QoE of the local user when receiving a remote audio stream is poor. </ph><ph props="ios mac cpp unity rn electron flutter cs">See <xref keyref="EXPERIENCE_POOR_REASON" />.</ph><ul props="android">
                     <li><ph keyref="EXPERIENCE_REASON_NONE" />(0): No reason, indicating a good QoE of the local user.</li>
                     <li><ph keyref="REMOTE_NETWORK_QUALITY_POOR" />(1): The remote user's network quality is poor.</li>
                     <li><ph keyref="LOCAL_NETWORK_QUALITY_POOR" />(2): The local user's network quality is poor.</li>
@@ -363,7 +363,7 @@
                 <pt>mosValue</pt>
                 <pd>
                     <p>The quality of the remote audio stream in the reported interval. The quality is determined by the Agora real-time audio MOS (Mean Opinion Score) measurement method. The return value range is [0, 500]. Dividing the return value by 100 gets the MOS score, which ranges from 0 to 5. The higher the score, the better the audio quality.</p>
-                    <p>The subjective perception of audio quality corresponding to the Agora real-time audio MOS scores is as follows:<simpletable>
+                    <p>声网实时音频 MOS 评分对应的主观音质感受如下：<simpletable>
                     <sthead>
                         <stentry>MOS score</stentry>
                         <stentry>Perception of audio quality</stentry>

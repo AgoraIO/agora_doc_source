@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremoteaudiostats">
-    <title><ph keyref="onRemoteAudioStats"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the audio stream sent by each remote users.</ph></shortdesc>
+    <title><ph keyref="onRemoteAudioStats" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Reports the transport-layer statistics of each remote audio stream.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onRemoteAudioStats"/>
+                <indexterm keyref="onRemoteAudioStats" />
             </keywords>
         </metadata>
     </prolog>
@@ -19,31 +19,30 @@
             <codeblock props="cpp" outputclass="language-cpp">virtual void onRemoteAudioStats(const RemoteAudioStats&amp; stats) {
     (void)stats;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRemoteAudioStats(RtcConnection connection, RemoteAudioStats stats) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRemoteAudioStats(RtcConnection connection, RemoteAudioStats stats) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onRemoteAudioStats?(connection: RtcConnection, stats: RemoteAudioStats): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, RemoteAudioStats stats)?
-      onRemoteAudioStats;
-</codeblock> </p>
+      onRemoteAudioStats;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p id="desc">The SDK triggers this callback once every two seconds. If a channel includes multiple users, the SDK triggers this callback as many times.</p>
+            <p id="desc">The SDK triggers this callback once every two seconds for each remote user who is sending audio streams. If a channel includes multiple remote users, the SDK triggers this callback as many times.</p>
         </section>
         <section id="parameters">
-            <title><ph keyref="callback-section-title"/></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter"/>
+            <title><ph keyref="callback-section-title" /></title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
-            <plentry props="unity electron rn flutter">
+            <plentry props="unity electron rn flutter cs">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd>The connection information. See .<xref keyref="RtcConnection" /></pd>
             </plentry>
             <plentry id="stats">
                 <pt>stats</pt>
-                <pd>Statistics of the received remote audio stream. See <xref keyref="RemoteAudioStats"/>.</pd>
+                <pd>The statistics of the received remote audio streams. See <xref keyref="RemoteAudioStats" />.</pd>
             </plentry>
             </parml> </section>
     </refbody>

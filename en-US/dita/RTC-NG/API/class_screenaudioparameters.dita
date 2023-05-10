@@ -44,7 +44,6 @@
     int captureSignalVolume = 100;
 };
 </codeblock>
-            <codeblock props="cs" outputclass="language-csharp" />
             <codeblock props="electron" outputclass="language-typescript">export class ScreenAudioParameters {
   
   sampleRate?: number;
@@ -53,7 +52,7 @@
   
   captureSignalVolume?: number;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class ScreenAudioParameters
+            <codeblock props="unity cs" outputclass="language-csharp">public class ScreenAudioParameters
     {
         public int sampleRate { set; get; }
         public int channels { set; get; }
@@ -87,24 +86,24 @@
   @JsonKey(name: 'captureSignalVolume')
   final int? captureSignalVolume;
 
-  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory ScreenAudioParameters.fromJson(Map&lt;String, dynamic> json) =>
       _$ScreenAudioParametersFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ScreenAudioParametersToJson(this);
+  Map&lt;String, dynamic> toJson() => _$ScreenAudioParametersToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>Only available where <parmname>captureAudio</parmname> is <codeph><ph keyref="true" /></codeph>.</p>
+            <p>Only available where <parmname>captureAudio</parmname> is .<codeph><ph keyref="true" /></codeph></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-                <plentry props="android cpp rn electron unity flutter">
+                <plentry props="android cpp rn electron unity flutter cs">
                     <pt>sampleRate</pt>
                     <pd>Audio sample rate (Hz). The default value is 16000.</pd>
                 </plentry>
-                <plentry props="android cpp rn electron unity flutter">
+                <plentry props="android cpp rn electron unity flutter cs">
                     <pt>channels</pt>
                     <pd>The number of audio channels. The default value is 2, which means stereo.</pd>
                 </plentry>

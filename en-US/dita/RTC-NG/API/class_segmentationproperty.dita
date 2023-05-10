@@ -41,7 +41,7 @@
 
   greenCapacity?: number;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class SegmentationProperty
+            <codeblock props="unity cs" outputclass="language-csharp">public class SegmentationProperty
     {
         public SEG_MODEL_TYPE modelType { set; get; }
         public float greenCapacity { set; get; }
@@ -68,12 +68,12 @@
   @JsonKey(name: 'greenCapacity')
   final double? greenCapacity;
 
-  factory SegmentationProperty.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory SegmentationProperty.fromJson(Map&lt;String, dynamic> json) =>
       _$SegmentationPropertyFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$SegmentationPropertyToJson(this);
+  Map&lt;String, dynamic> toJson() => _$SegmentationPropertyToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p />
@@ -83,7 +83,7 @@
             <parml>
             <plentry>
                 <pt>modelType</pt>
-                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp electron flutter unity rn">See <xref keyref="SEG_MODEL_TYPE" />.</ph><ul props="android">
+                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp electron flutter unity rn cs">See <xref keyref="SEG_MODEL_TYPE" />.</ph><ul props="android">
                     <li><ph keyref="SEG_MODEL_AI" />(1): (Default) Use the algorithm suitable for all scenarios.</li>
                     <li><ph keyref="SEG_MODEL_GREEN" />(2): Use the algorithm designed specifically for scenarios with a green screen background.</li>
                     </ul></pd>
@@ -99,7 +99,7 @@
             <plentry>
                 <pt>greenCapacity</pt>
                 <pd>
-                    <p>The range of accuracy for identifying green colors (different shades of green) in the view. The value range is [0,1], and the default value is 0.5. The larger the value, the wider the range of identifiable shades of green. When the value of this parameter is too large, the edge of the portrait and the green color in the portrait range are also detected. Agora recommends that you dynamically adjust the value of this parameter according to the actual effect.</p>
+                    <p>The range of accuracy for identifying green colors (different shades of green) in the view. The value range is [0,1], and the default value is 0.5. The larger the value, the wider the range of identifiable shades of green. When the value of this parameter is too large, the edge of the portrait and the green color in the portrait range are also detected. 建议你根据实际效果动态调整该参数的值。</p>
                     <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.</note> </pd>
             </plentry>
             </parml> </section>

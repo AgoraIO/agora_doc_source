@@ -37,7 +37,7 @@ elapseSinceLastState:(int)elapseSinceLastState;
     newState: StreamPublishState,
     elapseSinceLastState: number
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, string channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) { }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, string channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onVideoPublishStateChanged?(
     source: VideoSourceType,
     channel: string,
@@ -50,28 +50,27 @@ elapseSinceLastState:(int)elapseSinceLastState;
       String channel,
       StreamPublishState oldState,
       StreamPublishState newState,
-      int elapseSinceLastState)? onVideoPublishStateChanged;
-</codeblock></p>
+      int elapseSinceLastState)? onVideoPublishStateChanged;</codeblock>            
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title" /> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt />
                 <pd />
             </plentry>
             <plentry>
-                <pt props="android cpp unity flutter electron rn">channel</pt>
+                <pt props="android cpp unity flutter electron rn cs">channel</pt>
                 <pt props="ios mac">channelId</pt>
                 <pd>The channel name.</pd>
             </plentry>
             <plentry id="source">
                     <pt props="apple">sourceType</pt>
-                    <pt props="android cpp unity electron rn flutter">source</pt>
-                    <pd>The capture type of the custom video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                    <pt props="android cpp unity electron rn flutter cs">source</pt>
+                    <pd>The type of the video source. See .<xref keyref="VIDEO_SOURCE_TYPE" /></pd>
                 </plentry>
                 <plentry>
                 <pt>oldState</pt>
