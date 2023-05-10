@@ -1,0 +1,45 @@
+# 高音质最佳实践
+
+在对音质体验要求较高的场景下，你可以参考本文设置实现最佳音质。
+
+
+## 通用设置
+
+### 设置音频编码属性
+
+调用 [`setAudioProfile[2/2]`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioprofile2) 设置音频编码属性为 `MUSIC_HIGH_QUALITY_STEREO(5)`，即 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
+
+```java
+setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
+```
+
+### 设置音频场景
+
+调用 [`setAudioScenario`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioscenario) 设置音频场景为 `AUDIO_SCENARIO_GAME_STREAMING(3)`，即高音质场景，使用软件 3A。
+
+```java
+setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
+```
+
+
+## (仅适用声卡用户) 声卡设置
+
+### 关闭 3A
+
+调用 [`setParameters`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_network.html?platform=Android#api_irtcengine_setparameters) 关闭默认开启的回声消除 (AEC)、降噪 (NS) 和增效控制 (AGC)。
+
+```java
+setParameters("{"che.audio.enable.aec":false}");  // 关闭回音消除
+setParameters("{"che.audio.enable.ns":false}");   // 关闭降噪
+setParameters("{"che.audio.enable.agc":false}");  // 关闭增益控制
+```
+
+### (仅适用移动端) 打开立体声采集
+
+调用 [`setAdvancedAudioOptions`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android) 设置音频前处理声道数为 `AGORA_AUDIO_STEREO_PROCESSING(2)`，即采用双声道，采集并发送立体声。
+
+```java
+AdvancedAudioOptions options;
+options.audioProcessingChannels = 2;
+m_lpAgoraEngine->setAdvancedAudioOptions(options);
+```
