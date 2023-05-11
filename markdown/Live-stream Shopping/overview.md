@@ -8,7 +8,7 @@
 
 | <span style="white-space:nowrap;">功能&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>  | 描述 |
 | ---------------- | ---------------- |
-| 实时音视频互动	      | 超低延时下，观众实时接收主播的音视频流，保证流畅的观看体验。 |
+| 实时音视频互动	      | 超低延时下，观众实时接收房主的音视频流，保证流畅的观看体验。 |
 | 实时消息互动	| 直播间内的房主和观众使用文字消息实时交流。|
 | PK 连麦       | 房主邀请其他房主 PK 连麦。直播间的观众可以在连麦的两个频道间快速跳转，购买心仪的商品，给喜爱的房主投票或刷礼物，增强 PK 气氛。 |
 | 商品列表管理     | 房主管理商品的上下架，提供商品链接，以便观众边看边买。       |
@@ -23,11 +23,11 @@
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
-![](https://web-cdn.agora.io/docs-files/1683354184122)
+![](https://web-cdn.agora.io/docs-files/1683774790711)
 
-![](https://web-cdn.agora.io/docs-files/1683354192966)
+![](https://web-cdn.agora.io/docs-files/1683774804784)
 
 
 ## 方案优势
 
-~abd0fdb0-b128-11ea-aa07-c5bcc14a9a95~
+<TODO> frag
