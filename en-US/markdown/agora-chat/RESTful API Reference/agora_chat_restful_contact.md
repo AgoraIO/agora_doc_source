@@ -101,7 +101,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/contacts",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
     "timestamp": 1542598913819,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
@@ -170,7 +170,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/contacts",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
     "timestamp": 1542599266616,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
@@ -247,7 +247,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
     "uri": "http://XXXX/XXXX/XXXX/users/user1/contacts/users",
     "timestamp": 1543819826513,
     "entities": [],
-    "count": 2
+    "count": 2,
     "action": "get",
     "data": [
         "user3",
@@ -259,7 +259,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 
 ## Adding users to the block list
 
-Adds the specified user or users to the block list. Once you add a user to the block list, you can no longer receive messages from that user. The maximum number of users in the block list for each user is 500.
+Adds the specified user or users to the block list. Once you add a user to the block list, you can no longer receive messages from that user. The maximum number of users in the block list for each user is 500. 
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -287,7 +287,7 @@ The request body is a JSON object, which contains the following fields:
 
 | Field | Type | Description | Required |
 | :-------- | :--------- | :------------------------------------------------ | :------- |
-| `usernames` | An array of usernames | The usernames to be added to the block list, such as ["user1", "user2"]. | Yes |
+| `usernames` | An array of usernames | The usernames to be added to the block list, such as ["user1", "user2"]. You can pass in a maximum of 50 user IDs each time. | Yes |
 
 ### HTTP response
 
@@ -308,7 +308,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 #### Request example
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '{     "usernames": [       "user2"     ]   }' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{ "usernames": [ "user2" ] }' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users'
 ```
 
 #### Response example
@@ -446,7 +446,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/blocks",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/blocks",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/blocks",
     "timestamp": 1542600712985,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",

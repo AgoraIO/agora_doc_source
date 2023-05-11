@@ -105,7 +105,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer YWMte3bGuOukEeiTkNP4grL7iwAAAAAAAAAAAAAAAAAAAAGL4CTw6XgR6LaXXVmNX4QCAgMAAAFnKdc-ZgBPGgBFTrLhhyK8woMEI005emtrLJFJV6aoxsZSioSIZkr5kw' -d '{    "nickname": "testuser"   }' 'http://a1.agora.com/agora-demo/testapp/users/user1'
+curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{ "nickname": "testuser" }' 'http://XXXX/XXXX/XXXX/users/user1'
 ```
 
 #### Response example
@@ -113,12 +113,12 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 ```json
 {  
   "action": "put",  
-  "application": "8be024f0-e978-11e8-b697-5d598d5f8402",  
+  "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",  
   "path": "/users",  
-  "uri": "https://a1.agora.com/agora-demo/testapp/users",  
+  "uri": "https://XXXX/XXXX/XXXX/users",  
   "entities": [    
     {      
-      "uuid": "4759aa70-eba5-11e8-925f-6fa0510823ba",      
+      "uuid": "4759aa70-XXXX-XXXX-925f-6fa0510823ba",      
       "type": "user",      
       "created": 1542595573399,      
       "modified": 1542596083687,      
@@ -189,7 +189,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2xNh8GhUCdKViBFDSEF2E" -i  https://a1.agora.com/agora-demo/testapp/users/a -d '{"notification_display_style": "1"}'
+curl -X PUT -H "Authorization: Bearer <YourAppToken>" -i https://XXXX/XXXX/XXXX/users/a -d '{"notification_display_style": "1"}'
 ```
 
 #### Response example
@@ -197,12 +197,12 @@ curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2
 ```json
 {  
   "action" : "put",  
-  "application" : "17d59e50-0aee-11e8-8092-0dc80c0f5e99",  
+  "application" : "17d59e50-XXXX-XXXX-8092-0dc80c0f5e99",  
   "path" : "/users",  
-  "uri" : "https://a1.agora.com/agora-demo/testapp/users",  
+  "uri" : "https://XXXX/XXXX/XXXX/users",  
   "entities" : [ 
     {    
-      "uuid" : "3b8c9890-7b9a-11e8-9d88-f50bf55cafad",    
+      "uuid" : "3b8c9890-XXXX-XXXX-9d88-f50bf55cafad",    
       "type" : "user",    
       "created" : 1530276298905,    
       "modified" : 1534407146060,   
@@ -214,8 +214,8 @@ curl -X PUT -H "Authorization: Bearer YWMtSozP9jHNEeSQegV9EKeAQAAAUlmBR2bTGr-GP2
       } ],  
 "timestamp" : 1534407146058,  
 "duration" : 3,  
-"organization" : "1112171214115068",  
-"applicationName" : "testapp"
+"organization" : "XXXX",  
+"applicationName" : "XXXX"
 }
 ```
 
@@ -279,8 +279,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{key}' \
--H 'Authorization: Bearer {token}' \
+curl -L -X PUT 'http://XXXX/XXXX/XXXX/users/{username}/notification/user/{key}' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "type":"NONE",
@@ -294,10 +294,10 @@ curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/user/hxtest",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/user/hxtest",
     "timestamp": 1647503749918,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "put",
     "data": {
         "type": "NONE",
@@ -305,7 +305,7 @@ curl -L -X PUT '{url}/{org_name}/{app_name}/users/{username}/notification/user/{
         "ignoreInterval": "21:30-08:00"
     },
     "duration": 20,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -319,7 +319,7 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-GET https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
+GET https://{host}/{org_name}/{app_name}/users/{username}/notification/{chattype}/{key}
 ```
 
 #### Path parameter
@@ -358,8 +358,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}' \
--H 'Authorization: Bearer {token}' 
+curl -L -X GET 'https://XXXX/XXXX/XXXX/users/{username}/notification/chatgroup/{key}' \
+-H 'Authorization: Bearer <YourAppToken>' 
 ```
 
 #### Response example
@@ -367,10 +367,10 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}'
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/chatgroup/12312312321",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/chatgroup/12312312321",
     "timestamp": 1647503749918,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "get",
     "data": {
         "type": "NONE",
@@ -378,7 +378,7 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/chatgroup/{key}'
         "ignoreInterval": "21:30-08:00"
     },
     "duration": 20,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -392,7 +392,7 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-PUT https://{host}/{org}/{app}/users/{username}/notification/language
+PUT https://{host}/{org_name}/{app_name}/users/{username}/notification/language
 ```
 
 #### Path parameter
@@ -431,8 +431,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X PUT '{url}/{org}/{app}/users/{username}/notification/language' \
--H 'Authorization: Bearer {token}' \
+curl -L -X PUT 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "translationLanguage":"EU"
@@ -444,16 +444,16 @@ curl -L -X PUT '{url}/{org}/{app}/users/{username}/notification/language' \
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/language",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/language",
     "timestamp": 1648089630244,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "put",
     "data": {
         "language": "EU"
     },
     "duration": 66,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -500,8 +500,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/language' \
--H 'Authorization: Bearer {token}'
+curl -L -X GET 'https://XXXX/XXXX/XXXX/users/{username}/notification/language' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example
@@ -509,16 +509,16 @@ curl -L -X GET '{url}/{org}/{app}/users/{username}/notification/language' \
 ```json
 {
     "path": "/users",
-    "uri": "https://localhost/hx/hxdemo/users/notification/language",
+    "uri": "https://XXXX/XXXX/XXXX/users/notification/language",
     "timestamp": 1648089630244,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "put",
     "data": {
         "language": "EU"
     },
     "duration": 66,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -577,8 +577,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X POST '{url}/{org}/{app}/notification/template' \
--H 'Authorization: Bearer {token}' \
+curl -X POST 'https://XXXX/XXXX/XXXX/notification/template' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "name": "test7",
@@ -591,10 +591,10 @@ curl -X POST '{url}/{org}/{app}/notification/template' \
 
 ```json
 {
-    "uri": "https://localhost/hx/hxdemo/notification/template",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template",
     "timestamp": 1646989584108,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "post",
     "data": {
         "name": "test7",
@@ -604,7 +604,7 @@ curl -X POST '{url}/{org}/{app}/notification/template' \
         "content_pattern": "Test,{0}"
     },
     "duration": 26,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -658,18 +658,18 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X GET '{url}/{org}/{app}/notification/template/{name}' \
--H 'Authorization: Bearer {token}'  
+curl -X GET 'https://XXXX/XXXX/XXXX/notification/template/{name}' \
+-H 'Authorization: Bearer <YourAppToken>' 
 ```
 
 #### Response example
 
 ```json
 {
-    "uri": "https://localhost/hx/hxdemo/notification/template/test7",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template/test7",
     "timestamp": 1646989686393,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "get",
     "data": {
         "name": "test7",
@@ -679,7 +679,7 @@ curl -X GET '{url}/{org}/{app}/notification/template/{name}' \
         "content_pattern": "Test,{0}"
     },
     "duration": 11,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 
@@ -733,18 +733,18 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```bash
-curl -X DELETE '{url}/{org}/{app}/notification/template' \
--H 'Authorization: Bearer {token}' 
+curl -X DELETE 'https://XXXX/XXXX/XXXX/notification/template' \
+-H 'Authorization: Bearer <YourAppToken>' 
 ```
 
 #### Response example
 
 ```json
 {
-    "uri": "https://localhost/hx/hxdemo/notification/template",
+    "uri": "https://XXXX/XXXX/XXXX/notification/template",
     "timestamp": 1646989686393,
-    "organization": "hx",
-    "application": "17fe201b-ad9b-4a3a-83df-1ed1ebd7b227",
+    "organization": "XXXX",
+    "application": "17fe201b-XXXX-XXXX-83df-1ed1ebd7b227",
     "action": "delete",
     "data": {
         "name": "test7",
@@ -754,7 +754,7 @@ curl -X DELETE '{url}/{org}/{app}/notification/template' \
         "content_pattern": "Test,{0}"
     },
     "duration": 11,
-    "applicationName": "hxdemo"
+    "applicationName": "XXXX"
 }
 ```
 

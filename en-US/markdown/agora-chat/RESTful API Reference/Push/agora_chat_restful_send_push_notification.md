@@ -86,15 +86,15 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorization: Bearer YWMtOzQVjJ3mEeuJQv1qXhB5QAAAAAAAAAAAAAAAAAAAAAFDtjwasNNKD6W3CET2O3RNAQMAAAF41YIKUABPGgDuIZeu5IMVC_M9G5JlTjUsZeYVSg5o8BwshLgWveZxjA" -H "Content-Type: application/json" --data-raw "{
-    \"targets\": [
-        \"test2\"
+curl -X POST "http://XXXX/XXXX/XXXX/push/single" -H "Authorization: Bearer <YourAppToken>" -H "Content-Type: application/json" --data-raw "{
+    "targets": [
+        "test2"
     ],
-    \"pushMessage\": {
-        \"title\": \"Hello\",
-        \"subTitle\": \"Hello\",
-        \"content\": \"Hello\",
-        \"vivo\": {
+    "pushMessage": {
+        "title": "Hello",
+        "subTitle": "Hello",
+        "content": "Hello",
+        "vivo": {
  
         }
     }
@@ -121,7 +121,7 @@ curl -X POST "http://localhost:8099/agora-demo/testy/push/single" -H "Authorizat
 
 Sends push notifications to all users under one label, or the intersection of users under multiple labels.
 
-A push task is automatically created per request, and the ID of the push task is returned for data statistics.
+A push task is automatically created per request, and the ID of the push task is returned for data statistics. A maximum of three push tasks can be executed at the same time.
 
 ### HTTP request
 
@@ -169,8 +169,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
--H 'Authorization: Bearer YWMtIPBHKsOyEeAAAAAAAAAAAExCXvf5bRGAJBgXNYFJVQ9AQMAAAGAWu67KQBPGgBOV9ghkGKbtt9H9b1' \
+curl -L -X POST 'http://XXXX/XXXX/XXXX/push/list/label' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "targets": [
@@ -202,7 +202,7 @@ curl -L -X POST 'http://a1-hsb.agora.com/agora-demo/easeim/push/list/label' \
 
 Sends push notifications to all users under the app.
 
-A push task is automatically created per request, and the ID of the push task is returned for data statistics.
+A push task is automatically created per request, and the ID of the push task is returned for data statistics. A maximum of three push tasks can be executed at the same time.
 ### HTTP request
 
 ```http
@@ -246,12 +246,12 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -X POST "http://a1-hsb.agora.com/agora-demo/testy/push/task" -H "Content-Type: application/json" --data-raw "{
-    \"pushMessage\": {
-        \"title\": \"Hello1234\",
-        \"subTitle\": \"Hello\",
-        \"content\": \"Hello\",
-        \"vivo\": {}
+curl -X POST "http://XXXX/XXXX/XXXX/push/task" -H "Content-Type: application/json" --data-raw "{
+    "pushMessage": {
+        "title": "Hello1234",
+        "subTitle": "Hello",
+        "content": "Hello",
+        "vivo": {}
     }
 }"
 ```

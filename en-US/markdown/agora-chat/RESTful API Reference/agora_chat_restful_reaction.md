@@ -109,7 +109,7 @@ curl -g -X POST 'http://XXXX/XXXX/XXXX/reaction/user/e1' -H 'Authorization: Bear
         "msgId": "msg3333",
         "msgType": "chat",
         "groupId": null,
-        "reaction": "message123456",
+        "reaction": "emoji_40",
         "createdAt": "2022-02-24T10:57:43.138934Z",
         "updatedAt": "2022-02-24T10:57:43.138939Z"
     }
@@ -185,8 +185,8 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/{{userId}}?msgIdList=msgId1&
             "reactionList": [
                 {
                     "reactionId": "944330310986837168",
-                    "reaction": message123456,
-                    "userCount": 0,
+                    "reaction": "message123456",
+                    "count": 3,
                     "state": false,
                     "userList": [
                         "test123",
@@ -201,8 +201,8 @@ curl -g -X GET 'http://XXXX/XXXX/XXXX/reaction/user/{{userId}}?msgIdList=msgId1&
             "reactionList": [
                 {
                     "reactionId": "945272584050659838",
-                    "reaction": message123456,
-                    "userCount": 0,
+                    "reaction": "message123456",
+                    "count": 1,
                     "state": false,
                     "userList": [
                         "test5"
