@@ -53,7 +53,6 @@ The error codes and error messages might be returned in the following ways:
 | 505        | `SERVICE_NOT_ENABLED`                     | When you try using a service that is not enabled, the SDK returns this error code. |
 | 506        | `MESSAGE_EXPIRED`                         | If you send a group receipt after the time limit (the default is three days), the SDK returns this error code. |
 | 507        | `MESSAGE_ILLEGAL_WHITELIST`          | If all members are banned in the group chatroom and the user ID is not included in the whitelist, when this user tries sending a message, the SDK returns this error code. |
-| 509        | `MESSAGE_CURRENT_LIMITING`          | You have exceeded the maximum allowed frequency of sending messages in a group by using one user ID. |
 | 510        | `MESSAGE_SIZE_LIMIT`          | The size of the message that you send has exceeded the upper limit. |
 | 600        | `GROUP_INVALID_ID`                   | When you call the methods related to the group and the group ID provided is invalid, the SDK returns this error code. |
 | 601        | `GROUP_ALREADY_JOINED`                | When you call the group joining method, if the user has already joined the group, the SDK returns this error code. |

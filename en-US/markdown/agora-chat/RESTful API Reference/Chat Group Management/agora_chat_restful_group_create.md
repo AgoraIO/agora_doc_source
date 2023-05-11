@@ -307,7 +307,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `affiliations` | Array | The list of existing group members, including the group owner and regular group members, for example, `[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`. |
 | `public` | Boolean | Whether the chat group is a public group.<ul><li>`true`: Yes.</li><li>`fale`: No.</li></ul> |
 | `custom` | String | The extension information of the chat group. |
-| `count` | String | The number of retrieved chat groups. |
+| `count` | Number | The number of retrieved chat groups. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
