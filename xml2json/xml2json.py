@@ -1153,13 +1153,10 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     data = {}
 
     data['id'] = api_id
-
     # 处理 name 字段
     data['name'] = api_name.replace("\n", "") if isinstance(api_name, str) else api_name
-
     # 处理 description 字段
     data['description'] = api_desc.replace("\n", "") if isinstance(api_desc, str) else api_desc
-
     # 处理 parameters 字段
     data['parameters'] = [
         {key.replace("\n", "") if isinstance(key, str) and key is not None else key:
@@ -1167,13 +1164,9 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
         for param in json_array
         for key, value in param.items()
     ]
-
     # 处理 returns 字段
     data['returns'] = return_values.replace("\n", "") if isinstance(return_values, str) and return_values is not None else return_values
-
-
     data['is_hide'] = True if api_id in json_hide_id_list or data['name'] == "" else False
-
 
     print(data)
 
