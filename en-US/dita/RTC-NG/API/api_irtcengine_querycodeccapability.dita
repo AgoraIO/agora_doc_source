@@ -41,7 +41,7 @@
                         <p>Input and output parameter. An array representing the video codec capabilities of the device. See <xref keyref="CodecCapInfo"/>.</p>
                         <ul>
                             <li>Input value: One <apiname keyref="CodecCapInfo"/> defined by the user when executing this method, representing the video codec capability to be queried.</li>
-                            <li>Output value: The outputted <apiname keyref="CodecCapInfo"/> after the method is executed, representing the actual video codec capabilities supported by the device.</li>
+                            <li>Output value: The <apiname keyref="CodecCapInfo"/> after the method is executed, representing the actual video codec capabilities supported by the device.</li>
                         </ul>
                     </pd>
             </plentry>
@@ -51,24 +51,24 @@
                         <li>Input value: Size of the <apiname keyref="CodecCapInfo"/> defined by the user when executing the method.</li>
                         <li>Output value: Size of the output <apiname keyref="CodecCapInfo"/> after this method is executed.</li>
                         </ul> </pd>
-                <pd props="flutter"><apiname keyref="CodecCapInfo"/>的大小。</pd>
+                <pd props="flutter">The size of <apiname keyref="CodecCapInfo"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul props="electron rn">
-            <li>如果调用成功，则返回一个包含以下属性的对象：<ul>
-                <li><codeph>codecInfo</codeph>：<xref keyref="CodecCapInfo"/> 数组，表示设备的视频编码能力。</li>
-                <li><codeph>size</codeph>：<apiname keyref="CodecCapInfo"/> 数组的大小。</li></ul></li>
-            <li>如果调用超时，请修改调用逻辑，不要在主线程中调用该方法。</li>
+            <li>If the call is successful, an object containing the following attributes is returned:<ul>
+                <li><codeph>codecInfo</codeph>: The <xref keyref="CodecCapInfo"/> array, indicating the video codec capabillity of the device.</li>
+                <li><codeph>size</codeph>: The size of the <apiname keyref="CodecCapInfo"/> array.</li></ul></li>
+            <li>If the call timeouts, please modify the call logic and do not invoke the method in the main thread.</li>
             </ul>
             <ul props="cpp unity cs">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="android apple flutter">
-            <li>One  array indicating the video encoding capability<apiname keyref="CodecCapInfo"/> of the device, if the method call succeeds.</li>
-            <li>如果调用超时，请修改调用逻辑，不要在主线程中调用该方法。</li>
+            <li>One <apiname keyref="CodecCapInfo"/> array indicating the video encoding capability of the device, if the method call succeeds.</li>
+            <li>If the call timeouts, please modify the call logic and do not invoke the method in the main thread.</li>
             </ul> </section>
     </refbody>
 </reference>
