@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setdualstreammode">
     <title><ph keyref="setDualStreamMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets dual-stream mode on the sender side.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the dual-stream mode on the sender side.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,8 +29,8 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">The SDK enables the low-quality video stream auto mode on the sender by default (not actively sending low-quality video streams). The host at the receiving end can call to initiate <xref keyref="setRemoteVideoStreamType"/>a low-quality video stream request on the receiving end, and The sender automatically switches to the low-quality video stream mode after receiving the request.<ul>
-                <li>If you want to modify this behavior, you can call this method and modify the mode to (never send low-quality video streams) or  (always send low-quality video streams).<parmname></parmname><apiname keyref="DISABLE_SIMULCAST_STREAM"/><apiname keyref="ENABLE_SIMULCAST_STREAM"/></li>
+            <p id="desc">The SDK enables the low-quality video stream auto mode on the sender's side by default (not actively sending low-quality video streams). The host at the receiving end can call to initiate <xref keyref="setRemoteVideoStreamType"/>a low-quality video stream request on the receiving end, and the sender automatically switches to the low-quality video stream mode after receiving the request.<ul>
+                <li>If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</li>
                 <li>If you want to restore the default behavior after making changes, you can call this method again with <parmname>mode</parmname> set to <apiname keyref="AUTO_SIMULCAST_STREAM"/>.</li></ul></p>
             <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamMode"/> is as follows:<ul>
                 <li>When calling this method and setting <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/>, it has the same effect as <codeph><apiname keyref="enableDualStreamMode"/>(<ph keyref="false"/>)</codeph>.</li>
