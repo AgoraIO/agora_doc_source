@@ -89,6 +89,15 @@ Error running install script for optional dependency: "/root/flexible-classroom-
 
 ## 如何处理加入课堂相关报错？
 
+### 加入房间时报 `600001: Failed to join the classroom` 错误怎么办？
+
+该错误有以下几种可能的错误原因：
+- 用户 Token 无效，可参照《Web 端加入房间时报 `600001-1` 错误，或登录教室时服务端报 401 错误怎么办？》。
+- 用户选择的区域错误。 请检查 [`launch`](/cn/agora-class/agora_class_api_ref_web?platform=Web#launch) 方法的 `region` 字段是否设置了正确的区域。
+- 教室内该角色人数已达上限，无法进入。例如，教室内老师的数量达到上限，则用户无法再以老师的角色进入教室。
+- 房间人数已达上限，无法进入。例如，房间总人数大于 200。
+- 房间不存在或者创建的房间已结束，请检查房间是否过期。
+
 ### Web 端加入房间时报 `600001-1` 错误，或登录教室时服务端报 401 错误怎么办？
 
 ![](https://web-cdn.agora.io/docs-files/1680084824802)
