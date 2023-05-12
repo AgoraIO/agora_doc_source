@@ -54,7 +54,7 @@
             <note type="attention">
             <ul>
             <li props="cpp unity flutter cs">This callback is for Android and iOS only.</li>
-            <li>When it is detected that the face in front of the camera disappears, the callback will be triggered immediately. In the state of no face, the trigger frequency of the callback will be reduced to save power consumption on the local device.</li>
+            <li>When it is detected that the face in front of the camera disappears, the callback will be triggered immediately. When no human face is detected, the frequency of this callback to be rtriggered wil be decreased to reduce power consumption on the local device.</li>
             <li>The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
             <li props="cpp android flutter">On Android, the value of distance reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation.</li>
             </ul> </note> </section>
@@ -78,14 +78,12 @@
             <plentry props="android ios mac">
                 <pt props="android">faceRectArr</pt>
                 <pt props="ios mac">faces</pt>
-                <pd>For the information of the detected face, see  for details<xref keyref="AgoraFacePositionInfo" />. If several faces are detected, this callback reports several<apiname keyref="AgoraFacePositionInfo" />  arrays. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
+                <pd>Information of the detected face. See <xref keyref="AgoraFacePositionInfo" />. The number of <apiname keyref="AgoraFacePositionInfo" /> array reported in this callback is based on the faces detected. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron cs">
                 <pt>vecRectangle</pt>
                 <pd props="cpp">
-                    <p>是一个长度为 <parmname>numFaces</parmname> 的数组，表示检测到的人脸信息：
-
-                    <ul>
+                    <p>An array of <parmname>numFaces</parmname>, representing the detected face information:<ul>
                     <li><codeph>x</codeph>: The x-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the x-coordinate represents the horizontal position of the human face relative to the origin.</li>
                     <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the y-coordinate represents the vertical position of the human face relative to the origin.</li>
                     <li><codeph>width</codeph>: The width (px) of the human face in the captured view.</li>
@@ -96,7 +94,7 @@
             </plentry>
             <plentry props="cpp unity flutter rn electron cs">
                 <pt>vecDistance</pt>
-                <pd props="cpp">是一个长度为 <parmname>numFaces</parmname> 的数组，表示人脸和设备屏幕之间的距离 (cm)。</pd>
+                <pd props="cpp">An array of <parmname>numFaces</parmname>, representing the distance (cm) between a face and the device screen.</pd>
                 <pd props="unity flutter rn electron cs">The distance between the human face and the device screen (cm).</pd>
             </plentry>
             <plentry props="cpp unity flutter rn electron cs">
