@@ -307,6 +307,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `affiliations` | Array | The list of existing group members, including the group owner and regular group members, for example, `[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`. |
 | `public` | Boolean | Whether the chat group is a public group.<ul><li>`true`: Yes.</li><li>`fale`: No.</li></ul> |
 | `custom` | String | The extension information of the chat group. |
+| `count` | Number | The number of retrieved chat groups. |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -325,40 +326,40 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
 ```json
 {
     "action": "get",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/66016455491585",
-    "entities": [],
-    "data": [
-      {
-        "id": "66016455491585",
-        "name": "testgroup1",
-        "description": "testgroup1",
-        "membersonly": false,
-        "allowinvites": false,
-        "maxusers": 200,
-        "owner": "user1",
-        "created": 1542356598609,
-        "custom": "",
-        "affiliations_count": 3,
-        "disable":false,
-        "affiliations": [
-          {
-            "member": "user3"
-          },
-          {
-            "member": "user2"
-          },
-          {
-            "owner": "user1"
-          }
-        ],
-        "public": true
-      }
-    ],
-    "timestamp": 1542360200677,
-    "duration": 0,
-    "organization": "XXXX",
+    "application": "09ebbf8b-XXXX-XXXX-bd4b-d47c3b38e434",
     "applicationName": "XXXX",
+    "count": 1,
+    "data": [
+        {
+            "id": "XXXX",
+            "name": "XXXX",
+            "description": "XXXX",
+            "membersonly": true,
+            "allowinvites": false,
+            "maxusers": 2000,
+            "owner": "XXXX",
+            "created": 1682588716646,
+            "custom": "",
+            "mute": false,
+            "affiliations_count": 2,
+            "disabled": false,
+            "affiliations": [
+                {
+                    "member": "XXXX"
+                },
+                {
+                    "owner": "XXXX"
+                }
+            ],
+            "public": false
+        }
+    ],
+    "duration": 35,
+    "entities": [],
+    "organization": "XXXX",
+    "properties": {},
+    "timestamp": 1682588814419,
+    "uri": "http://XXXX/XXXX/XXXX/chatgroups/XXXX"
 }
 ```
 
@@ -680,7 +681,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 #### Request example
 
 ```shell
-curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups?pagesize=1&pagenum=100'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken> ' 'http://XXXX/XXXX/XXXX/users/user1/joined_chatgroups?pagesize=100&pagenum=1'
 ```
 
 #### Response example
@@ -701,10 +702,10 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToke
     "organization":"XXXX",
     "params":{
         "pagesize":[
-            "1"
+            "100"
         ],
         "pagenum":[
-            "100"
+            "1"
         ]
     },
     "properties":{

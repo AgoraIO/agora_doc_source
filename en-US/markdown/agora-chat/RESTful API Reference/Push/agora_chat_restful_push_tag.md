@@ -88,8 +88,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X POST 'localhost/hx/hxdemo/push/label' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A' \
+curl -L -X POST 'http://XXXX/XXXX/XXXX/push/label' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "name":"post-90s",
@@ -158,8 +158,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
  
 ```shell
-curl -L -X GET 'localhost/hx/hxdemo/push/label/90' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X GET 'http://XXXX/XXXX/XXXX/push/label/90' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example
@@ -297,8 +297,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X DELETE 'http://XXXX/XXXX/XXXX/push/label/post-90s' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example
@@ -366,8 +366,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X POST 'localhost/hx/hxdemo/push/label/post-90s/user' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A' \
+curl -L -X POST 'http://XXXX/XXXX/XXXX/push/label/post-90s/user' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "usernames":["hx1","hx2"]
@@ -436,8 +436,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user/hx1' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X GET 'http://XXXX/XXXX/XXXX/push/label/post-90s/user/hx1' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example
@@ -505,8 +505,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X GET 'localhost/hx/hxdemo/push/label/post-90s/user?limit=1' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A'
+curl -L -X GET 'http://XXXX/XXXX/XXXX/push/label/post-90s/user?limit=1' \
+-H 'Authorization: Bearer <YourAppToken>'
 ```
 
 #### Response example
@@ -576,8 +576,8 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 #### Request example
 
 ```shell
-curl -L -X DELETE 'localhost/hx/hxdemo/push/label/post-90s/user' \
--H 'Authorization: Bearer YWMt5lyAUJnNEeyHUS2MdMYkPAAAAAAAAAAAAAAAAAAAAAEHMpqy501HZr2ms92z-Hz9AQMAAAF_SGRs1QBPGgBOIAaoCYWXntKF-h0vuvlyUCNB-IXTM4eEpSVqIdei9A' \
+curl -L -X DELETE 'http://XXXX/XXXX/XXXX/push/label/post-90s/user' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -H 'Content-Type: application/json' \
 --data-raw '{
     "usernames":["hx1","hx2"]

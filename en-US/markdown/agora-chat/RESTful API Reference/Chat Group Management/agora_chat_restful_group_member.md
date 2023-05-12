@@ -84,7 +84,8 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | Parameter | Type | Description |
 | :----- | :----- | :--------------------------------------- |
 | `owner` | String | The username of the group owner, for example, `{"owner":"user1"}`. |
-| `member` | String | The username of group members, for example, `{"member":"user2"}`. |
+| `member` | String | The username of a group admin or regular group member, for example, `{"member":"user2"}`. |
+| `count` | String | The number of group members retrieved at this call of this API. |
 
 For other fields and descriptions, see [Common parameters](#param).
 
@@ -116,7 +117,7 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
     "entities": [],
     "data": [
     {
-            "member": "user1"
+            "owner": "user1"
     },
     {
             "member": "user2"
@@ -425,7 +426,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
         "result": false,
         "action": "remove_member",
         "reason": "user ttestuser0015981 doesn't exist.",
-        "user": "user1"
+        "user": "user1",
         "groupid": "1433492852257879"
     },
     {
