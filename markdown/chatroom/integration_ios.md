@@ -2,7 +2,7 @@
 
 ## 1. 对麦位操作
 
-首先需要 注册回调，注册之后才能收到房间变化的通知
+首先需要注册回调，注册之后才能收到房间变化的通知。
 
 ```swift
 ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
@@ -14,7 +14,7 @@ ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
 
 <pic> //TODO
 
-房主通过调用ChatRoomServiceImp的startMicSeatInvitation方法
+房主邀请用户上麦：调用 ChatRoomServiceImp 的 startMicSeatInvitation 方法。
 
 ```swift
 // 邀请上麦
@@ -28,7 +28,10 @@ private func inviteUser(user: VRUser?) {
 }
 ```
 
-然后房间内所有用户通过注册回调的onReceiveSeatInvitation获取到邀请信息的更新
+监听上麦
+房间内所有用户（除房主）注册
+
+房间内所有用户都通过注册 onReceiveSeatInvitation 回调获取房主邀请上麦的通知。
 
 ```swift
 // 接收到邀请通知
@@ -37,7 +40,7 @@ func onReceiveSeatInvitation(roomId: String, user: VRUser) {
 }
 ```
 
-通过弹出邀请弹窗让观众选择接受邀请，通过调用ChatRoomServiceImp的acceptMicSeatInvitation方法
+通过弹出邀请弹窗让观众选择接受邀请，通过调用 ChatRoomServiceImp 的 acceptMicSeatInvitation 方法。
 
 ```swift
 // 接受邀请

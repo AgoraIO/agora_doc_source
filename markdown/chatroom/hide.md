@@ -133,3 +133,21 @@ public class MainActivity extends AppCompatActivity {
 }
 
 ```
+
+# 竞品相关
+
+火山引擎
+
+[https://www.volcengine.com/docs/6348/117919](https://www.volcengine.com/docs/6348/117919)
+
+zego
+
+[https://doc-zh.zego.im/article/15943.html](https://doc-zh.zego.im/article/15943.html)
+
+TRTC
+
+[https://cloud.tencent.com/document/product/647/46252](https://cloud.tencent.com/document/product/647/46252)
+
+阿里
+
+[https://help.aliyun.com/document_detail/176832.htm](https://help.aliyun.com/document_detail/176832.htm)
