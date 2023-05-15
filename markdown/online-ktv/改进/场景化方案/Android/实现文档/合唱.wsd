@@ -2,19 +2,31 @@
 title 合唱 API 时序图
 autonumber
 skinparam monochrome true
-participant "主唱/伴唱 App" as a
+participant "领唱/伴唱 App" as a
 participant "声网 SDK" as b
 participant "听众 App" as c
-== 设置私有参数 ==
-a -> b: setParameters
 == 加入频道 ==
 a -> b: joinChannel
 c -> b: joinChannel
 == 加载歌曲歌词 ==
-a -> b: loadSong
-c -> b: loadSong
-b -->> a: KTVLoadSongStateOK
-b -->> c: KTVLoadSongStateOK
+a -> b: loadMusic()
+note left
+autoPlay 设为 true，歌曲加载成功后自动播放
+end note
+b -->> a: onMusicLoadSuccess
+note right
+autoPlay 设为 false，仅加载歌词
+听众不播放歌曲，只是进入播放状态
+end note
+c -> b: loadMusic()
+b -->> c: onMusicLoadSuccess
+== 切换角色 ==
+a -> b:swithSingerRole(LeadSinger/CoSinger)
+note left
+伴唱加入合唱后，独唱者变为 LeadSinger
+伴唱将角色设为 CoSinger
+end note
+
 == 开始播放歌曲 ==
 a -> b: playSong(KTVSingRoleMainSinger/KTVSingRoleCoSinger)
 b -->> a: onPlayerStateChanged(PLAYER_STATE_PLAYING)
