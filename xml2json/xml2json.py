@@ -1166,7 +1166,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     ]
     # save returns, remove "\n"
     data['returns'] = return_values.replace("\n", "") if isinstance(return_values, str) and return_values is not None else return_values
-    # for the resource-only apis whose names are left blank, hide them
+    # for the hidden apis and the resource-only apis whose names are left blank, hide them
     data['is_hide'] = True if api_id in json_hide_id_list or data['name'] == "" else False
 
     print(data)
