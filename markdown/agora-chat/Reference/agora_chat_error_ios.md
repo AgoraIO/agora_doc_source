@@ -53,7 +53,7 @@
 | 506    | `AgoraChatErrorMessageExpired`              | 消息已过期：发送群组回执时超过时间限制 (默认 3 天) 。                    |
 | 507    | `AgoraChatErrorMessageIllegalWhiteList`     | 用户未在白名单中：当群组或聊天室开启全员禁言，未在禁言白名单中的用户发送消息。   |
 | 508    | `AgoraChatErrorMessageExternalLogicBlocked` | 消息执行发送前回调导致被拦截：发送的消息被用户定义的发送前回调规则拦截，请确认发送前回调规则。 |
-| 509    | `AgoraChatErrorMessageCurrentLimiting`    | 单个用户 ID 发送群聊消息超出频率限制。                       |
+| 509    | `AgoraChatErrorMessageCurrentLimiting`    | 单个用户 ID 发送消息超出频率限制。默认情况下，SDK 对单个用户 ID 发送群消息未做频率限制。如果你联系了 [sales@agora.io](mailto:sales@agora.io) 设置了该限制，一旦在在单聊、群聊或聊天室中单个用户的消息发送频率超过设定的上限，则会提示该错误。  |
 | 510    | `AgoraChatErrorMessageSizeLimit`    | 发送消息时消息体大小超过上限。 |
 | 600    | `AgoraChatErrorGroupInvalidId`              | 群组 ID 异常：调用群组相关方法，传入的群组 ID 为空。                       |
 | 601    | `AgoraChatErrorGroupAlreadyJoined`          | 已在该群组中：已在群组中的用户尝试加入该群组。                             |

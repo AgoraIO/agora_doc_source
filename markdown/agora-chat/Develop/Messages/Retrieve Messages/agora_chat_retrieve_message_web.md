@@ -61,7 +61,7 @@ WebIM.conn.getHistoryMessages(options).then((res)=>{
 
 ### 单向删除服务端的历史消息
 
-你可以调用 `removeHistoryMessages` 方法按照时间或消息 ID 单向删除服务端的历史消息。每次最多可删除 50 条消息。消息删除后，消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。多端多设备登录时，删除成功后会触发 `onMultiDeviceEvent#deleteRoaming` 回调。
+你可以调用 `removeHistoryMessages` 方法按照时间或消息 ID 单向删除服务端的历史消息。每次最多可删除 50 条消息。消息删除后，消息删除后，该用户无法从服务端拉取到该消息。其他用户不受该操作影响。多设备登录时，若你在一台设备上单向删除服务端的历史消息，其他设备会收到 `onMultiDeviceEvent#deleteRoaming` 事件。
 
 示例代码如下：
 

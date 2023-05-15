@@ -27,7 +27,11 @@
 
 ### 发送文本消息
 
-使用 `Message` 类创建并发送文本消息。示例代码如下：
+使用 `Message` 类创建并发送文本消息。
+
+默认情况下，SDK 对单个用户发送消息的频率未做限制。如果你联系了 [sales@agora.io](mailto:sales@agora.io) 设置了该限制，一旦在单聊、群聊或聊天室中单个用户的消息发送频率超过设定的上限，SDK 会上报错误，即错误码 509 `MESSAGE_CURRENT_LIMITING`。
+
+示例代码如下：
 
 ```javascript
 // 发送文本消息。
