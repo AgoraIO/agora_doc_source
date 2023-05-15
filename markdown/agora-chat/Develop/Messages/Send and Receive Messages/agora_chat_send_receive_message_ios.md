@@ -36,6 +36,8 @@
 
 使用 `AgoraChatTextMessageBody` 类创建文本消息，然后发送消息。
 
+默认情况下，SDK 对单个用户发送消息的频率未做限制。如果你联系了 [sales@agora.io](mailto:sales@agora.io) 设置了该限制，一旦在单聊、群聊或聊天室中单个用户的消息发送频率超过设定的上限，SDK 会上报错误，即错误码 509 `MESSAGE_CURRENT_LIMITING`。
+
 ```objectivec
 // 创建一条文本消息，`content` 为消息文字内容，`toChatUsername` 为对方用户或者群聊的 ID，`fromChatUsername` 为发送方用户或群聊的 ID，`textMessageBody` 为消息体，`messageExt` 为消息扩展，后文皆是如此。
 AgoraChatTextMessageBody *textMessageBody = [[AgoraChatTextMessageBody alloc] initWithText:content];

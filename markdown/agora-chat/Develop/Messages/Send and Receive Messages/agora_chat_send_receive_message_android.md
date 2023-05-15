@@ -37,6 +37,8 @@
 
 使用 `ChatMessage` 类创建文本消息并发送消息。
 
+默认情况下，SDK 对单个用户发送消息的频率未做限制。如果你联系了 [sales@agora.io](mailto:sales@agora.io) 设置了该限制，一旦在单聊、群聊或聊天室中单个用户的消息发送频率超过设定的上限，SDK 会上报错误，即错误码 509 `MESSAGE_CURRENT_LIMITING`。
+
 ```java
  // 创建一条文本消息，`content` 为消息文字内容，`conversationId` 为会话 ID，在单聊时为对端用户 ID、群聊时为群组 ID，聊天室时为聊天室 ID。
         ChatMessage message = ChatMessage.createTextSendMessage(content, conversationId);

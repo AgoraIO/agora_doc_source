@@ -62,8 +62,8 @@
 | 506    | `MESSAGE_EXPIRED`         | 消息已过期：发送群组回执时如果已经超过时间限制 (默认 3 天) 会提示该错误。 |
 | 507    | `MESSAGE_ILLEGAL_WHITELIST`    | 用户未在白名单中：如果群组或聊天室开启全员禁言，且用户未在白名单中发送消息时提示该错误。 |
 | 508    | `MESSAGE_EXTERNAL_LOGIC_BLOCKED`  | 消息执行发送前回调，发送的消息被用户自己的服务器定义的规则拦截掉时提示该错误。 |
-| 509    |      MESSAGE_CURRENT_LIMITING      |              单个用户 ID 发送群聊消息超出频率限制。              |
-| 510    |      MESSAGE_SIZE_LIMIT      | 发送消息时消息体大小超过上限。|
+| 509    | `MESSAGE_CURRENT_LIMITING`      | 单个用户 ID 发送消息超出频率限制。默认情况下，SDK 对单个用户 ID 发送群消息未做频率限制。如果你联系了 [sales@agora.io](mailto:sales@agora.io) 设置了该限制，一旦在在单聊、群聊或聊天室中单个用户的消息发送频率超过设定的上限，则会提示该错误。 |
+| 510    | `MESSAGE_SIZE_LIMIT`      | 发送消息时消息体大小超过上限。|
 | 600    | `GROUP_INVALID_ID`         | 群组 ID 异常：使用群组相关 API，提供的群组 ID 为空时提示该错误。 |
 | 601    | `GROUP_ALREADY_JOINED`       | 已在该群组中：调用加入群组的 API 时如果已经在该群组中则提示该错误。 |
 | 602    | `GROUP_NOT_JOINED`         | 未加入该群组：尝试在未加入的群组中发送消息或进行群组操作时提示该错误。 |
