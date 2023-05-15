@@ -29,9 +29,9 @@ setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
 使用声卡的前提下是没有回声噪声问题，因此可以调用 [`setParameters`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_network.html?platform=Android#api_irtcengine_setparameters) 关闭默认开启的回声消除 (AEC)、降噪 (ANS) 和增效控制 (AGC)。
 
 ```java
-setParameters("{"che.audio.enable.aec":false}");  // 关闭回音消除
-setParameters("{"che.audio.enable.ns":false}");   // 关闭降噪
-setParameters("{"che.audio.enable.agc":false}");  // 关闭增益控制
+setParameters("{"che.audio.aec.enable":false}");  // 关闭回音消除
+setParameters("{"che.audio.ans.enable":false}");   // 关闭降噪
+setParameters("{"che.audio.agc.enable":false}");  // 关闭增益控制
 ```
 
 ### 打开立体声采集
