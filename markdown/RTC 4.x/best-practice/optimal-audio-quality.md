@@ -30,7 +30,7 @@ setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
 
 ```java
 setParameters("{"che.audio.aec.enable":false}");  // 关闭回音消除
-setParameters("{"che.audio.ans.enable":false}");   // 关闭降噪
+setParameters("{"che.audio.ans.enable":false}");  // 关闭降噪
 setParameters("{"che.audio.agc.enable":false}");  // 关闭增益控制
 ```
 
