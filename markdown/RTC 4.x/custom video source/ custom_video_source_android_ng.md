@@ -81,7 +81,7 @@
 
 参考下图调用时序，在你的 app 中实现自定义视频采集：
 
-![](https://web-cdn.agora.io/docs-files/1683598705647)
+![](https://web-cdn.agora.io/docs-files/1684223014176)
 
 ### 实现步骤 
 
@@ -94,7 +94,7 @@
 int videoTrackId = RtcEngine.createCustomVideoTrack();
 ```
 
-2. 调用 `joinChannel` 加入频道，或调用 `joinChannelEx` 加入多频道， 在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为步骤 1 中获得的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`，`publishCameraTrack` 设置为 `false`，即可在多个频道中发布指定的自定义视频轨道。
+2. 调用 `joinChannel` 加入频道，或调用 `joinChannelEx` 加入多频道， 在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为步骤 1 中获得的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`，即可在多个频道中发布指定的自定义视频轨道。
 
 ```java
 // 如需在多个频道发布自定义视频轨道，则需要多次设置 ChannelMediaOptions 并多次调用 joinChannelEx
@@ -102,13 +102,11 @@ ChannelMediaOptions option = new ChannelMediaOptions();
 option.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
 option.autoSubscribeAudio = true;
 option.autoSubscribeVideo = true;
-// 取消发布摄像头流
-option.publishCameraTrack = false;
 // 发布自采集视频流
 option.publishCustomVideoTrack = true;
 option.customVideoTrackId = videoTrackId;
 // 加入主频道
-int res = RtcEngine.joinChannel(accessToken, option, new IRtcEngineEventHandler(){});
+int res = engine.joinChannel(accessToken, channelId, 0, option);
 // 或加入多频道
 int res = RtcEngine.joinChannelEx(accessToken, connection, option, new IRtcEngineEventHandler(){});
 ```
