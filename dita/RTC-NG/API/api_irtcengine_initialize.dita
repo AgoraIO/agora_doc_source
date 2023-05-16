@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_initialize">
     <title><ph keyref="initialize"/></title>
-    <shortdesc id="short"><ph props="ios mac android electron">创建并初始化 <xref keyref="IRtcEngine"/>。</ph><ph props="cpp flutter unity" id="shortdesc">初始化 <apiname keyref="IRtcEngine"/>。</ph></shortdesc>
+    <shortdesc id="short"><ph props="ios mac android electron">创建并初始化 <xref keyref="IRtcEngine"/>。</ph><ph props="cpp flutter unity cs" id="shortdesc">初始化 <apiname keyref="IRtcEngine"/>。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,14 +19,14 @@
                                        delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract initialize(context: RtcEngineContext): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract initialize(context: RtcEngineContext): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; initialize(RtcEngineContext context);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p props="native unity electron flutter"><apiname keyref="IRtcEngine"/> 类的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。</p>
+            <p props="native unity electron flutter cs"><apiname keyref="IRtcEngine"/> 类的所有接口函数，如无特殊说明，都是异步调用，对接口的调用建议在同一个线程进行。</p>
             <note type="attention">
             <ul>
             <li props="cpp flutter rn electron">请确保在调用其他 API 前先调用 <xref keyref="createAgoraRtcEngine"/> 和 <apiname keyref="initialize"/> 创建并初始化 <apiname keyref="IRtcEngine"/>。</li>
@@ -38,7 +38,7 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp electron unity rn flutter">context</pt>
+                <pt props="cpp electron unity rn flutter cs">context</pt>
                 <pt props="android ios mac">config</pt>
                 <pd>
                     <p><xref keyref="IRtcEngine"/> 实例的配置。详见 <xref keyref="RtcEngineConfig"/>。</p>
@@ -54,8 +54,9 @@
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
             <li props="android apple">方法调用成功，返回一个 <apiname keyref="IRtcEngine"/> 对象。</li>
-            <li props="cpp unity rn electron">0: 方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。               
+            <li props="cpp unity rn electron cs">0: 方法调用成功。</li>
+            <li props="android">方法调用失败，抛出异常，你需要捕获异常并进行处理。</li>         
+            <li props="ios mac cpp framework">&lt; 0：方法调用失败。               
                 <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>
                 <li>-2: 设置了无效的参数。</li>

@@ -21,7 +21,7 @@
     sourceType?: VideoSourceType,
     streamConfig?: SimulcastStreamConfig
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableDualStreamMode(VIDEO_SOURCE_TYPE sourceType, bool enabled);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableDualStreamMode(VIDEO_SOURCE_TYPE sourceType, bool enabled);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableDualStreamMode(
     enabled: boolean,
     sourceType?: VideoSourceType,
@@ -32,6 +32,12 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
+                <dl outputclass="deprecated">
+                <dlentry>
+                    <dt>弃用：</dt>
+                    <dd>从 v4.2.0 起废弃，请改用 <xref keyref="setDualStreamMode2"/>。</dd>
+                </dlentry>
+                </dl>
             <p id="desc1">你可以在发流端调用该方法开启或关闭双流模式。双流指视频大流和视频小流：
             <ul>
             <li>视频大流：高分辨率、高帧率的视频流。</li>
@@ -64,7 +70,7 @@
                 </pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
+        <section id="return_values" props="native electron unity rn cs">
             <title>返回值</title>
             <ul id="ul_bpp_x2z_hqb">
             <li>0: 方法调用成功</li>

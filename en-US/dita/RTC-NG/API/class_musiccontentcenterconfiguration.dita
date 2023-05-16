@@ -45,34 +45,25 @@
   appId?: string;
   token?: string;
   mccUid?: number;
+  maxCacheSize?: number;
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class MusicContentCenterConfiguration
+            <codeblock props="unity cs" outputclass="language-csharp">public class MusicContentCenterConfiguration
     {
         public string appId;
         public string token;
         public UInt64 mccUid;
-
-        public MusicContentCenterConfiguration()
-        {
-            appId = "";
-            token = "";
-            mccUid = 0;
-        }
-
-        public MusicContentCenterConfiguration(string appId, string token, UInt64 uid)
-        {
-            this.appId = appId;
-            this.token = token;
-            this.mccUid = uid;
-        }
+        public UInt32 maxCacheSize;
     }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class MusicContentCenterConfiguration {
   appId?: string;
   token?: string;
   mccUid?: number;
+  maxCacheSize?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class MusicContentCenterConfiguration {
-  const MusicContentCenterConfiguration({this.appId, this.token, this.mccUid});
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class MusicContentCenterConfiguration {
+  const MusicContentCenterConfiguration(
+      {this.appId, this.token, this.mccUid, this.maxCacheSize});
 
   @JsonKey(name: 'appId')
   final String? appId;

@@ -25,7 +25,7 @@
     enable?: boolean,
     type?: MediaSourceType
   ): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public abstract int EnableExtension(string provider, string extension, bool enable = true, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int EnableExtension(string provider, string extension, bool enable = true, MEDIA_SOURCE_TYPE type = MEDIA_SOURCE_TYPE.UNKNOWN_MEDIA_SOURCE);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract enableExtension(
     provider: string,
     extension: string,
@@ -59,7 +59,7 @@
                 <pd />
             </plentry>
             <plentry id="enable">
-                <pt props="android cpp unity rn electron flutter">enable</pt>
+                <pt props="android cpp unity rn electron flutter cs">enable</pt>
                 <pt props="ios mac">enabled</pt>
                 <pd>
                     <p>是否启用插件：
@@ -70,7 +70,7 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry id="source" props="cpp unity rn electron flutter">
+            <plentry id="source" props="cpp unity rn electron flutter cs">
                     <pt>type</pt>
                     <pd>媒体资源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。
                         <note type="attention">在该方法中，该参数仅支持以下两种设置：
@@ -84,7 +84,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li props="native unity rn electron">0: 方法调用成功</li>
+            <li props="native unity rn electron cs">0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败            
                 <ul>
                 <li>-3: 该插件动态库没有被加载。声网推荐你检查该动态库是否存放在预期的位置或该动态库名是否正确。</li>

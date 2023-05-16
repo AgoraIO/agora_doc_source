@@ -24,7 +24,7 @@
     bool replace,
     int cycle) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startAudioMixing(filePath: string, loopback: boolean, replace: boolean, cycle: number, startPos?: number): number;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"> public abstract int StartAudioMixing(string filePath, bool loopback, int cycle);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"> public abstract int StartAudioMixing(string filePath, bool loopback, int cycle);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startAudioMixing(
     filePath: string,
     loopback: boolean,
@@ -51,7 +51,7 @@
             <ul>
             <li>该方法在加入频道前后均可调用。如需多次调用 <apiname keyref="startAudioMixing" />，请确保调用间隔大于 500 ms。</li>
             <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告警告码 701。</li>
-            <li props="android cpp unity" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
+            <li props="android cpp unity flutter rn cs" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
                 <ul>
                 <li>请确保使用 Android 4.2 或以上设备，且 API Level 不低于 16。</li>
                 <li>如果播放的是在线音乐文件，建议不要使用重定向地址。重定向地址在某些机型上可能无法打开。</li>
@@ -61,7 +61,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry conkeyref="playEffect2/filepath" props="unity">
+            <plentry conkeyref="playEffect2/filepath" props="unity cs">
                 <pt />
                 <pd />
             </plentry>
@@ -98,7 +98,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li props="native unity rn electron">0: 方法调用成功</li>
+            <li props="native unity rn electron cs">0: 方法调用成功</li>
             <li>&lt; 0: 方法调用失败</li>
             </ul> </section>
     </refbody>

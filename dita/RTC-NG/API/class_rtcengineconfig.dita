@@ -13,10 +13,12 @@
   public IAgoraEventHandler mEventHandler;
   public int mChannelProfile;
   public int mAudioScenario;
+  public boolean mAutoRegisterAgoraExtensions;
   public List&lt;String&gt; mExtensionList;
   public IMediaExtensionObserver mExtensionObserver;
   public LogConfig mLogConfig;
   public String mNativeLibPath;
+  public boolean mDomainLimit;
 
   public static class LogConfig {
     public String filePath;
@@ -48,6 +50,8 @@
     mExtensionList = new ArrayList&lt;&gt;();
     mExtensionObserver = null;
     mLogConfig = new LogConfig();
+    mDomainLimit = false;
+    mAutoRegisterAgoraExtensions = true;
   }
 
   public void addExtension(String providerName) {
@@ -96,6 +100,8 @@
 @property (assign, nonatomic) AgoraAudioScenario audioScenario;
 @property (assign, nonatomic) AgoraAreaCodeType areaCode;
 @property (strong, nonatomic) AgoraLogConfig * _Nullable logConfig;
+@property (assign, nonatomic) BOOL domainLimit;
+@property (assign, nonatomic) BOOL autoRegisterAgoraExtensions;
 @property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
 @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
 @end</codeblock>
@@ -108,106 +114,111 @@
   unsigned int areaCode;
   commons::LogConfig logConfig;
   bool domainLimit;
+  bool autoRegisterAgoraExtensions;
 
   RtcEngineContext()
       : eventHandler(NULL), appId(NULL), context(NULL),
         channelProfile(CHANNEL_PROFILE_LIVE_BROADCASTING),
-        license(NULL),
         audioScenario(AUDIO_SCENARIO_DEFAULT),
         areaCode(AREA_CODE_GLOB),
-        logConfig(), domainLimit(false) {}
+        logConfig(), domainLimit(false),
+        autoRegisterAgoraExtensions(true) {}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RtcEngineContext {
-  
+
   appId?: string;
-  
+
   channelProfile?: ChannelProfileType;
-  
+
   audioScenario?: AudioScenarioType;
-  
+
   areaCode?: number;
-  
+
   logConfig?: LogConfig;
-  
+
   threadPriority?: ThreadPriorityType;
-  
+
   useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
+
 }</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
+            <codeblock props="unity cs" outputclass="language-csharp">public class RtcEngineContext : OptionalJsonParse
     {
-        public RtcEngineContext()
-        {
-            eventHandler = null;
-            appId = "";
-            context = 0;
 
-            channelProfile = CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING;
-            audioScenario = AUDIO_SCENARIO_TYPE.AUDIO_SCENARIO_DEFAULT;
-            areaCode = AREA_CODE.AREA_CODE_GLOB;
-            logConfig = new LogConfig();
-            useExternalEglContext = false;
-        }
-
-        public RtcEngineContext(string appId, UInt64 context,
-            CHANNEL_PROFILE_TYPE channelProfile, AUDIO_SCENARIO_TYPE audioScenario,
-            AREA_CODE areaCode = AREA_CODE.AREA_CODE_CN,
-            LogConfig logConfig = null)
-        {
-            this.appId = appId;
-            this.context = context;
-            this.channelProfile = channelProfile;
-            this.audioScenario = audioScenario;
-            this.areaCode = areaCode;
-            this.logConfig = logConfig ?? new LogConfig();
-        }
+        public string appId;
+        public UInt64 context;
+        public CHANNEL_PROFILE_TYPE channelProfile;
+        public AUDIO_SCENARIO_TYPE audioScenario;
+        public AREA_CODE areaCode;
+        public LogConfig logConfig;
+        public bool domainLimit;
+        public bool autoRegisterAgoraExtensions;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class RtcEngineContext {
-  
+
   appId?: string;
-  
+
   channelProfile?: ChannelProfileType;
-  
+
   audioScenario?: AudioScenarioType;
-  
+
   areaCode?: number;
-  
+
   logConfig?: LogConfig;
-  
+
   threadPriority?: ThreadPriorityType;
-  
+
   useExternalEglContext?: boolean;
+
+  domainLimit?: boolean;
+
+  autoRegisterAgoraExtensions?: boolean;
+
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class RtcEngineContext {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class RtcEngineContext {
   const RtcEngineContext(
       {this.appId,
-      this.enableAudioDevice,
       this.channelProfile,
       this.audioScenario,
       this.areaCode,
       this.logConfig,
       this.threadPriority,
-      this.useExternalEglContext});
+      this.domainLimit,
+      this.autoRegisterAgoraExtensions});
 
   @JsonKey(name: 'appId')
   final String? appId;
-  @JsonKey(name: 'enableAudioDevice')
-  final bool? enableAudioDevice;
+
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
   @JsonKey(name: 'audioScenario')
   final AudioScenarioType? audioScenario;
+
   @JsonKey(name: 'areaCode')
   final int? areaCode;
+
   @JsonKey(name: 'logConfig')
   final LogConfig? logConfig;
+
   @JsonKey(name: 'threadPriority')
   final ThreadPriorityType? threadPriority;
-  @JsonKey(name: 'useExternalEglContext')
-  final bool? useExternalEglContext;
-  factory RtcEngineContext.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+
+  @JsonKey(name: 'domainLimit')
+  final bool? domainLimit;
+
+  @JsonKey(name: 'autoRegisterAgoraExtensions')
+  final bool? autoRegisterAgoraExtensions;
+
+  factory RtcEngineContext.fromJson(Map&lt;String, dynamic> json) =>
       _$RtcEngineContextFromJson(json);
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$RtcEngineContextToJson(this);
-}</codeblock>            
+
+  Map&lt;String, dynamic> toJson() => _$RtcEngineContextToJson(this);
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
@@ -223,13 +234,13 @@
                 <pt props="android">mAppId</pt>
                 <pd id="appid">声网为 app 开发者签发的 App ID。 使用同一个 App ID 的 app 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建。</pd>
             </plentry>
-            <plentry props="android cpp unity">
-                <pt props="cpp unity">context</pt>
+            <plentry props="android cpp unity cs">
+                <pt props="cpp unity cs">context</pt>
                 <pt props="android">mContext</pt>
                 <pd id="context">
-                    <ul props="cpp unity">
+                    <ul props="cpp unity cs">
                     <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
-                    <li>Android 平台上，context 是安卓活动上下文。</li>
+                    <li props="cpp unity">Android 平台上，context 是安卓活动上下文。</li>
                     </ul>
                     <p props="android">安卓活动上下文。</p>
                 </pd>
@@ -249,23 +260,23 @@
                     </ul></note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter">channelProfile</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">channelProfile</pt>
                 <pt props="android">mChannelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter">audioScenario</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">audioScenario</pt>
                 <pt props="android">mAudioScenario</pt>
                 <pd conkeyref="setAudioProfile/scenario-ng"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter">areaCode</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
                 <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
                 <pd>指定访问区域后，集成了 SDK 的 app 会连接指定区域内的声网服务器。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter">logConfig</pt>
+                <pt props="cpp ios mac unity cs electron rn flutter">logConfig</pt>
                 <pt props="android">mLogConfig</pt>
                 <pd>
                     <p>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
@@ -288,7 +299,8 @@
                 <pd><xref keyref="AgoraMediaFilterExtensionDelegate"/> 实例。</pd>
             </plentry>
             <plentry>
-                <pt>domainLimit</pt>
+                <pt props="android">mDomainLimit</pt>
+                <pt props="cpp ios mac electron unity cs rn flutter">domainLimit</pt>
                 <pd>
                     <p>是否开启域名限制：
                     <ul>
@@ -297,6 +309,17 @@
                     </ul></p>
                 </pd>
             </plentry>
+            <plentry>
+              <pt props="android">mAutoRegisterAgoraExtensions</pt>
+              <pt props="cpp ios mac electron unity cs rn flutter">autoRegisterAgoraExtensions</pt>
+              <pd>
+                  <p>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
+                  <ul>
+                  <li><codeph><ph keyref="true"/></codeph>：（默认）初始化 <apiname keyref="IRtcEngine"/> 时自动注册声网插件。</li>
+                  <li><codeph><ph keyref="false"/></codeph>：初始化 <apiname keyref="IRtcEngine"/> 时不注册声网插件。你需要调用 <xref keyref="enableExtension"/> 来注册声网插件。</li>
+                  </ul></p>
+              </pd>
+          </plentry>
             </parml> </section>
             <section props="android">
               <title>方法</title>

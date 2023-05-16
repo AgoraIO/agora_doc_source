@@ -112,13 +112,11 @@
 #if TARGET_OS_IOS
 @property (assign, nonatomic) AgoraCameraDirection cameraDirection;
 #endif
-
+#elif TARGET_OS_MAC
+@property (copy, nonatomic) NSString * _Nullable deviceId;
 @property(assign, nonatomic) CGSize dimensions;
-
 @property(assign, nonatomic) int frameRate;
-
 @property(assign, nonatomic) BOOL followEncodeDimensionRatio;
-
 @end</codeblock>
       <codeblock props="cpp" outputclass="language-cpp">struct CameraCapturerConfiguration {
   #if defined(__ANDROID__) || (defined(__APPLE__) &amp;&amp; TARGET_OS_IOS)
@@ -147,7 +145,7 @@
   followEncodeDimensionRatio?: boolean;
 
 }</codeblock>
-      <codeblock props="unity" outputclass="language-csharp">public class CameraCapturerConfiguration
+      <codeblock props="unity cs" outputclass="language-csharp">public class CameraCapturerConfiguration
     {
         public CameraCapturerConfiguration()
         {
@@ -212,20 +210,22 @@
       <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/>
       </title>
       <parml>
-      <plentry props="android ios cpp unity rn flutter">
+      <plentry props="android ios cpp unity rn flutter cs">
         <pt>cameraDirection</pt>
         <pd>
-          <note type="attention" props="cpp unity rn flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。</ph><ph props="ios cpp unity android rn flutter">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
+          <note type="attention" props="cpp unity rn flutter">该参数仅适用于 Android 和 iOS 平台。</note> <ph>摄像头方向设置。</ph><ph props="ios cpp unity android rn flutter cs">详见 <xref keyref="CAMERA_DIRECTION"/>。</ph></pd>
       </plentry>
-      <plentry props="cpp android unity electron rn flutter">
-        <pt props="cpp unity electron rn flutter">format</pt>
+      <plentry props="cpp android unity electron rn flutter cs">
+        <pt props="cpp unity electron rn flutter cs">format</pt>
         <pt props="android">captureFormat</pt>
         <pd>视频帧格式。详见 <xref keyref="VideoFormat"/>。</pd>
       </plentry>
-      <plentry props="cpp unity electron flutter">
+      <plentry props="cpp apple unity electron flutter cs">
         <pt>deviceId</pt>
         <pd>
-          <note type="attention" props="cpp unity electron flutter">该参数仅适用于 Windows 平台。</note><ph>摄像头的 ID。</ph><ph props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
+          <note type="attention" props="cpp unity electron flutter">该参数仅适用于 Windows 平台。</note>
+          <note type="attention" props="apple">该参数仅适用于 macOS 平台。</note>
+          <ph>摄像头的 ID。</ph><ph props="cpp electron flutter">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE"/>。</ph></pd>
       </plentry>
       <plentry>
         <pt>followEncodeDimensionRatio</pt>

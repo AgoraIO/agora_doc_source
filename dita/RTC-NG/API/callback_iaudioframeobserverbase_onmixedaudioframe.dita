@@ -19,7 +19,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMixedAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onMixedAudioFrame(_:channelId:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onMixedAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(string channelId, AudioFrame audio_frame)
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(string channelId, AudioFrame audio_frame)
         {
             return true;
         }</codeblock>
@@ -29,16 +29,16 @@
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p props="native unity">为保证采集和播放混音后的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置音频的数据格式：                    
+            <p props="native unity cs">为保证采集和播放混音后的音频数据格式符合预期，你可以在如下两种方法中任选一种，设置音频的数据格式：                    
                 
             <ul>
             <li>方法一：调用 <xref keyref="setMixedAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
             <li>方法二：调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象后，在 <xref keyref="getObservedAudioFramePosition"/> 回调的返回值中设置具体的音频观测位置，然后在 <xref keyref="getMixedAudioParams"/> 回调的返回值中设置音频数据格式，SDK 会根据该回调的返回值计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
             </ul> </p>
             <p props="flutter rn electron">为保证采集和播放混音后的音频数据格式符合预期，你可以在如下方法设置音频的数据格式：调用 <xref keyref="setMixedAudioFrameParameters"/> 设置音频数据格式后，调用 <xref keyref="registerAudioFrameObserver"/> 注册音频观测器对象，SDK 会根据该方法中的参数计算采样间隔，并根据该采样间隔触发 <apiname keyref="onMixedAudioFrame"/> 回调。</p>
-            <note type="note" id="attention" props="native unity flutter">
+            <note type="note" id="attention" props="native unity flutter cs">
             <ul>
-            <li props="native unity">方法一的优先级高于方法二，如果使用方法一设置音频数据格式，方法二设置无效。</li>
+            <li props="native unity cs">方法一的优先级高于方法二，如果使用方法一设置音频数据格式，方法二设置无效。</li>
             <li props="flutter">由于 Flutter 框架的限制，该回调不支持将处理后的音频数据发送回 SDK。</li>
             </ul></note> </section>
         <section id="parameters">
@@ -46,11 +46,11 @@
             <parml>
             <plentry>
                 <pt props="cpp electron rn flutter">audioFrame</pt>
-                <pt props="unity">audio_frame</pt>
+                <pt props="unity cs">audio_frame</pt>
                 <pt props="ios mac">frame</pt>
                 <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
             </plentry>
-            <plentry props="ios mac cpp unity rn electron flutter" id="id">
+            <plentry props="ios mac cpp unity rn electron flutter cs" id="id">
                 <pt>channelId</pt>
                 <pd>频道 ID。</pd>
             </plentry>
@@ -96,7 +96,7 @@
                 <pd>预留参数。</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native unity rn electron">
+        <section id="return_values" props="native unity rn electron cs">
             <title>返回值</title>
             <p>无实际含义。</p>
         </section>
