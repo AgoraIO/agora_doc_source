@@ -20,12 +20,12 @@
             <codeblock props="unity cs" outputclass="language-csharp">public abstract string UploadLogFile();</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; uploadLogFile(String requestId);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p>Uploads all SDK log files from the client to the Agora server. After calling this method successfully, the SDK triggers the <xref keyref="onUploadLogResult" /> callback to report whether the log file is successfully uploaded to the Agora server.</p>
-            <p props="cpp unity">
+            <p props="cpp unity cs">
             <note type="attention">Do not call this method more than once per minute; otherwise, the SDK reports <codeph>ERR_TOO_OFTEN</codeph>(12).</note></p>
             <p props="android ios mac">
             <note type="attention">This method cannot be called more than once per minute; otherwise, the SDK returns <ph keyref="NULL" />.</note></p>
@@ -42,10 +42,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="cpp electron unity">0: Success.</li>
+            <li props="cpp electron unity cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-12(<codeph>ERR_TOO_OFTEN</codeph>): The call frequency exceeds the limit.</li>
                 </ul></li>

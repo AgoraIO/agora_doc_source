@@ -20,35 +20,35 @@
 </codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRecordAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRecordAudioFrame(string channelId, AudioFrame audioFrame)
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnRecordAudioFrame(string channelId, AudioFrame audioFrame)
         {
             return true;
         }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRecordAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, AudioFrame audioFrame)?
-      onRecordAudioFrame</codeblock>
+      onRecordAudioFrame;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
-            <p props="native unity">To ensure that the format of the cpatured audio frame is as expected, you can choose one of the following two methods to set the audio data format:<ul>
+            <p props="native unity cs">To ensure that the format of the cpatured audio frame is as expected, you can choose one of the following two methods to set the audio data format:<ul>
             <li>Method 1: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
             <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, set the audio data format in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback. The SDK then calculates the sampling interval according to the return value of the <xref keyref="getRecordAudioParams"/> callback, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
             </ul> </p>
             <p props="flutter electron rn">To ensure that the data format of captured audio frame is as expected, Agora recommends that you set the audio data format as follows: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK will calculate the sampling interval according to the parameters set in this method, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</p>
-            <note type="note" id="attention" props="native unity flutter">
+            <note type="note" id="attention" props="native unity flutter cs">
             <ul>
-            <li props="native unity">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</li>
+            <li props="native unity cs">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</li>
             <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed audio data back to the SDK.</li>
             </ul></note></section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="cpp electron rn flutter unity">audioFrame</pt>
+                <pt props="cpp electron rn flutter unity cs">audioFrame</pt>
                 <pt props="ios mac">frame</pt>
                 <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
             </plentry>
-            <plentry props="cpp unity rn electron flutter" id="id">
+            <plentry props="cpp unity rn electron flutter cs" id="id">
                 <pt>channelId</pt>
                 <pd>The channel ID.</pd>
             </plentry>
@@ -92,10 +92,9 @@
                 <pd>Reserved for future use.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
-            <p props="native unity rn electron">Reserved for future use.</p>
+        <section id="return_values" props="native unity rn electron cs">
+            <title>Returns</title>
+            <p>Reserved for future use.</p>
         </section>
     </refbody>
 </reference>

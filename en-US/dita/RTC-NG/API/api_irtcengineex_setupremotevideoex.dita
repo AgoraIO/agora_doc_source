@@ -28,7 +28,7 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setupRemoteVideoEx(
     {required VideoCanvas canvas, required RtcConnection connection});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -37,7 +37,7 @@
             <p>If the remote uid is unknown to the application, set it after the application receives the <xref keyref="onUserJoined" /> callback. If the Video Recording function is enabled, the Video Recording Service joins the channel as a dummy client, causing other clients to also receive the <codeph>onUserJoined</codeph> callback. Do not bind the dummy client to the application view because the dummy client does not send any video streams.</p>
             <p>To unbind the remote user from the view, set the <parmname>view</parmname> parameter to NULL.</p>
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
-            <note type="attention" props="android ios mac">
+            <note type="attention">
             <p>To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderModeEx" /> method.</p>
             </note> </section>
         <section id="parameters">
@@ -45,7 +45,7 @@
             <parml>
             <plentry>
                 <pt props="android ios mac">remote</pt>
-                <pt props="cpp unity rn electron flutter">canvas</pt>
+                <pt props="cpp unity rn electron flutter cs">canvas</pt>
                 <pd>
                     <p>The remote video view settings. See <xref keyref="VideoCanvas" />.</p>
                 </pd>
@@ -56,10 +56,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn">0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

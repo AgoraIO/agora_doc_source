@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videoframe">
-    <title><ph keyref="VideoFrame" /></title>
+    <title><ph keyref="VideoFrame"/></title>
     <shortdesc id="short"><ph id="shortdesc">Configurations of the video frame.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -476,58 +476,58 @@ class VideoFrame {
   final int? textureId;
 
   @JsonKey(name: 'matrix')
-  final List&lt;double&gt;? matrix;
+  final List&lt;double>? matrix;
 
   @JsonKey(name: 'pixelBuffer', ignore: true)
   final Uint8List? pixelBuffer;
 
-  factory VideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory VideoFrame.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoFrameFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFrameToJson(this);
+  Map&lt;String, dynamic> toJson() => _$VideoFrameToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>Note that the buffer provides a pointer to a pointer. This interface cannot modify the pointer of the buffer, but it can modify the content of the buffer.</p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>type</pt>
-          <pd props="cpp unity electron rn flutter">The pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT" />.</pd>
-          <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format" />
+          <pd props="cpp unity electron rn flutter cs">The pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</pd>
+          <pd props="ios mac" conkeyref="ExternalVideoFrame/oc-format"/>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>width</pt>
           <pd>The width of the video, in pixels.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>height</pt>
           <pd>The height of the video, in pixels.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>yStride</pt>
           <pd>For YUV data, the line span of the Y buffer; for RGBA data, the total data length.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>uStride</pt>
           <pd>For YUV data, the line span of the U buffer; for RGBA data, the value is 0.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>vStride</pt>
           <pd>For YUV data, the line span of the V buffer; for RGBA data, the value is 0.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>yBuffer</pt>
           <pd>For YUV data, the pointer to the Y buffer; for RGBA data, the data buffer.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>uBuffer</pt>
           <pd>For YUV data, the pointer to the U buffer; for RGBA data, the value is 0.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>vBuffer</pt>
           <pd>For YUV data, the pointer to the V buffer; for RGBA data, the value is 0.</pd>
         </plentry>
@@ -561,7 +561,7 @@ class VideoFrame {
           <pt>rotation</pt>
           <pd>The clockwise rotation of the video frame before rendering. Supported values include 0, 90, 180, and 270 degrees.</pd>
         </plentry>
-        <plentry props="apple cpp unity flutter rn electron">
+        <plentry props="apple cpp unity flutter rn electron cs">
           <pt>renderTimeMs</pt>
           <pd>The Unix timestamp (ms) when the video frame is rendered. This timestamp can be used to guide the rendering of the video frame. It is required.</pd>
         </plentry>
@@ -569,30 +569,30 @@ class VideoFrame {
           <pt>timestampNs</pt>
           <pd>The timestamp (ns) of a video frame.</pd>
         </plentry>
-        <plentry props="apple cpp electron rn unity flutter">
-          <pt props="apple cpp unity rn electron">avsync_type</pt>
+        <plentry props="apple cpp electron rn unity flutter cs">
+          <pt props="apple cpp unity rn electron cs">avsync_type</pt>
           <pt props="flutter">avsyncType</pt>
           <pd>Reserved for future use.</pd>
         </plentry>
-        <plentry props="cpp electron rn unity flutter">
-          <pt props="cpp electron unity rn">metadata_buffer</pt>
+        <plentry props="cpp electron rn unity flutter cs">
+          <pt props="cpp electron unity rn cs">metadata_buffer</pt>
           <pt props="flutter">metadataBuffer</pt>
           <pd>This parameter only applies to video data in Texture format. The MetaData buffer. The default value is <codeph>NULL</codeph>.</pd>
         </plentry>
-        <plentry props="cpp electron rn unity flutter">
-          <pt props="cpp electron unity rn">metadata_size</pt>
+        <plentry props="cpp electron rn unity flutter cs">
+          <pt props="cpp electron unity rn cs">metadata_size</pt>
           <pt props="flutter">metadataSize</pt>
           <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.</pd>
         </plentry>
-        <plentry props="cpp unity">
+        <plentry props="cpp unity cs">
           <pt>sharedContext</pt>
           <pd>This parameter only applies to video data in Texture format. EGL Context.</pd>
         </plentry>
-        <plentry props="cpp electron unity rn flutter">
+        <plentry props="cpp electron unity rn flutter cs">
           <pt>textureId</pt>
           <pd>This parameter only applies to video data in Texture format. Texture ID.</pd>
         </plentry>
-        <plentry props="cpp electron unity rn flutter">
+        <plentry props="cpp electron unity rn flutter cs">
           <pt>matrix</pt>
           <pd>This parameter only applies to video data in Texture format. Incoming 4 × 4 transformational matrix. The typical value is a unit matrix.</pd>
         </plentry>
@@ -602,7 +602,7 @@ class VideoFrame {
         </plentry>
         <plentry props="android">
           <pt>colorSpace</pt>
-          <pd>The color space of a video frame. See <xref keyref="videocolorspace-link" />.</pd>
+          <pd>The color space of a video frame. See <xref keyref="videocolorspace-link"/>.</pd>
         </plentry>
         <plentry props="android">
           <pt>sourceType</pt>
@@ -619,8 +619,8 @@ class VideoFrame {
         <plentry props="hide">
           <pt>alphaBuffer</pt>
           <pd>
-            <p>Indicates the output data of the portrait segmentation algorithm, which is consistent with the size of the video frame. The value range of each pixel is [0,255], where 0 represents the background; 255 represents the foreground (portrait).</p>
-            <p>In the custom video renderer scenario, you can use this parameter to render the video background into various effects, such as transparent, solid color, picture, video, and so on.<note>To use this parameter, contact <xref keyref="ticket-link" />.</note></p>
+            <p>Indicates the alpha channel data output by the portrait segmentation algorithm, which is consistent with the size of the video frame. The value range of each pixel is [0,255], where 0 represents the background; 255 represents the foreground (portrait).</p>
+            <p>In the costom video renderer scenario, you can use this parameter to render the video background into various effects, such as: transparent, solid color, picture, video and so on.<note>To use this parameter, contact <xref keyref="ticket-link"/>.</note></p>
           </pd>
         </plentry>
       </parml></section>

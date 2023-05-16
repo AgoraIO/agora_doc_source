@@ -20,18 +20,18 @@
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int GetAudioMixingPlayoutVolume();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract getAudioMixingPlayoutVolume(): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; getAudioMixingPlayoutVolume();</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method retrieves the audio mixing volume for local playback. You can use it to troubleshoot audio volume related issues.</p>
+            <p>This method helps troubleshoot audio volume‑related issues.</p>
             <note type="attention">
             <p>You need to call this method after calling <xref keyref="startAudioMixing2" /> and receiving the <codeph><apiname keyref="onAudioMixingStateChanged" />(<apiname keyref="AUDIO_MIXING_STATE_PLAYING" />)</codeph> callback.</p>
             </note> </section>
-        <section id="return_values" props="native electron unity rn flutter">
+        <section id="return_values" props="native electron unity rn flutter cs">
             <title>Returns</title>
             <ul>
-            <li>The audio mixing volume, if this method call succeeds. The value range is [0,100].</li>
+            <li>≥ 0: The audio mixing volume, if this method call succeeds. The value range is [0,100].</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
