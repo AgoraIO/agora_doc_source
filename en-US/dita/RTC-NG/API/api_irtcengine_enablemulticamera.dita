@@ -42,11 +42,11 @@
             <p>In scenarios where there are existing cameras to capture video, Agora recommends that you use the following steps to capture and publish video with multiple cameras:<ol>
             <li>Call this method to enable multi-channel camera capture.</li>
             <li>Call <xref keyref="startPreview" /> to start the local video preview.</li>
-            <li>Call <xref keyref="startSecondaryCameraCapture" /> to start video capture with the second camera.</li>
+            <li>Call <xref keyref="startCameraCapture" />, and set <parmname>sourceType</parmname> to start video capture with the second camera.</li>
             <li>Call <xref keyref="joinChannelEx" />, and set <parmname>publishSecondaryCameraTrack</parmname> to <codeph><ph keyref="true" /></codeph> to publish the video stream captured by the second camera in the channel.</li>
             </ol></p>
             <p>If you want to disable multi-channel camera capture, use the following steps:<ol>
-            <li>Call <xref keyref="stopSecondaryCameraCapture" />.</li>
+            <li>Call <xref keyref="stopCameraCapture" />.</li>
             <li>Call this method with <parmname>enabled</parmname> set to <codeph><ph keyref="false" /></codeph>.</li>
             </ol></p>
             <note>
@@ -81,9 +81,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="apple cpp electron unity rn">0: Success.</li>
+            <li props="apple cpp electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
         </section>

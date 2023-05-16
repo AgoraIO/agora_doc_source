@@ -41,18 +41,18 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>The virtual background function allows you to replace the original background image of the local user or to blur the background. After successfully enabling the virtual background function, all users in the channel can see the customized background.</p>
+            <p>The virtual background feature enables the local user to replace their original background with a static image, dynamic video, blurred background, or portrait-background segmentation to achieve picture-in-picture effect.  Once the virtual background feature is enabled, all users in the channel can see the custom background.</p>
             <p>Call this method before calling <xref keyref="enableVideo" /> or <xref keyref="startPreview" />.</p>
             <note type="attention">
             <ul>
             <li>This feature requires high performance devices. Agora recommends that you implement it on devices equipped with the following chips:<ul>
-                <li props="android unity cpp rn flutter">Snapdragon 700 series 750G and later</li>
-                <li props="android unity cpp rn flutter">Snapdragon 800 series 835 and later</li>
-                <li props="android unity cpp rn flutter">Dimensity 700 series 720 and later</li>
-                <li props="android unity cpp rn flutter">Kirin 800 series 810 and later</li>
-                <li props="android unity cpp rn flutter">Kirin 900 series 980 and later</li>
-                <li props="mac cpp unity electron">Devices with an i5 CPU and better</li>
-                <li props="ios cpp unity rn flutter">Devices with an A9 chip and better, as follows:<ul>
+                <li props="android unity cpp rn flutter cs">Snapdragon 700 series 750G and later</li>
+                <li props="android unity cpp rn flutter cs">Snapdragon 800 series 835 and later</li>
+                <li props="android unity cpp rn flutter cs">Dimensity 700 series 720 and later</li>
+                <li props="android unity cpp rn flutter cs">Kirin 800 series 810 and later</li>
+                <li props="android unity cpp rn flutter cs">Kirin 900 series 980 and later</li>
+                <li props="mac cpp unity electron cs">Devices with an i5 CPU and better</li>
+                <li props="ios cpp unity rn flutter cs">Devices with an A9 chip and better, as follows:<ul>
                     <li>iPhone 6S and later</li>
                     <li>iPad Air 3rd generation and later</li>
                     <li>iPad 5th generation and later</li>
@@ -70,7 +70,7 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="cpp android unity flutter rn electron">enabled</pt>
+                <pt props="cpp android unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable virtual background:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Enable virtual background.</li>
@@ -78,16 +78,16 @@
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt props="cpp android unity flutter rn electron">backgroundSource</pt>
+                <pt props="cpp android unity flutter rn electron cs">backgroundSource</pt>
                 <pt props="mac ios">backData</pt>
-                <pd>The custom background image. See <xref keyref="VirtualBackgroundSource" />. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
+                <pd>The custom background. See <xref keyref="VirtualBackgroundSource" />. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
             </plentry>
             <plentry>
-                <pt props="android cpp unity electron rn flutter">segproperty</pt>
+                <pt props="android cpp unity electron rn flutter cs">segproperty</pt>
                 <pt props="ios mac">segData</pt>
                 <pd>Processing properties for background images. See <xref keyref="SegmentationProperty" />.</pd>
             </plentry>
-            <plentry props="cpp unity rn electron flutter">
+            <plentry props="cpp unity rn electron flutter cs">
                 <pt>type</pt>
                 <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE" />.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
                     <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE" />.</li>
@@ -97,9 +97,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn">0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-1: The custom background image does not exist. Check the value of <parmname>source</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>
                 <li>-2: The color format of the custom background image is invalid. Check the value of <parmname>color</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>

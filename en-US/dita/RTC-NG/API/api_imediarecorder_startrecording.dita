@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_startrecording">
     <title><ph keyref="startRecording" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Starts recording the local audio and video.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts recording audio and video streams.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,19 +24,27 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p props="android apple">After successfully getting the <xref keyref="IMediaRecorder" /> object, you can all this method to enable the recoridng of the local audio and video.</p>
-            <p props="cpp">After successfully getting the <xref keyref="IMediaRecorder" /> object by calling <xref keyref="queryInterface" />, you can call this method to enable the recoridng of the local audio and video.</p>
-            <p props="electron unity rn flutter">After successfully getting the <xref keyref="IMediaRecorder" /> object by calling <xref keyref="getMediaRecorder" />, you can call this method to enable the recoridng of the local audio and video.</p>
-            <p>This method can record the audio captured by the local microphone and encoded in AAC format, and the video captured by the local camera and encoded in H.264 format. The SDK can generate a recording file only when it detects audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops the recording and triggers the <codeph><apiname keyref="onRecorderStateChanged" />(<apiname keyref="RECORDER_STATE_ERROR" />, <apiname keyref="RECORDER_ERROR_NO_STREAM" />)</codeph> callback.</p>
+            <p>You can call this method to enable the recording function. Agora supports recording the media streams of local and remote users at the same time.</p>
+            <p>Before you call this method, ensure the following:<ul>
+            <li>The recording object is created through <xref keyref="createMediaRecorder" />.</li>
+            <li>The recording observer is registered through <xref keyref="setMediaRecorderObserver" />.</li>
+            <li>You have joined the channel which the remote user that you want to record is in.</li>
+            </ul></p>
+            <p>Supported formats of recording are listed as below:<ul>
+            <li>AAC-encoded audio captured by the microphone.</li>
+            <li>Video captured by a camera and encoded in H.264 or H.265.</li>
+            </ul></p>
             <p>Once the recording is started, if the video resolution is changed, the SDK stops the recording; if the sampling rate and audio channel changes, the SDK continues recording and generates audio files respectively.</p>
-            <note type="attention">Call this method after joining a channel.</note> </section>
+            <p>The SDK can generate a recording file only when it detects audio and video streams; when there are no audio and video streams to be recorded or the audio and video streams are interrupted for more than five seconds, the SDK stops the recording and triggers the <codeph><apiname keyref="onRecorderStateChanged" />(<apiname keyref="RECORDER_STATE_ERROR" />, <apiname keyref="RECORDER_ERROR_NO_STREAM" />)</codeph> callback.</p>
+
+            <note type="attention">
+            <ul>
+            <li>If you want to record the media streams of the local user, ensure the role of the local user is set as broadcaster.</li>
+            <li>If you want to record the media streams of a remote user, ensure you have subscribed to the user's media streams before starting the recording.</li>
+            </ul></note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
-            </plentry>
             <plentry>
                 <pt>config</pt>
                 <pd>The recording configuration. See <xref keyref="MediaRecorderConfiguration" />.</pd>
@@ -44,9 +52,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native unity rn electron">0: Success.</li>
+            <li props="native unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
                 <li>-2: The parameter is invalid. Ensure the following:<ul>
                     <li>The specified path of the recording file exists and is writable.</li>
@@ -54,7 +62,7 @@
                     <li>The maximum recording duration is correctly set.</li>
                     </ul></li>
                 <li>-4: <xref keyref="IRtcEngine" /> does not support the request. The recording is ongoing or the recording stops because an error occurs.</li>
-                <li>-7: The method is called before <xref keyref="IRtcEngine" /> is initialized. <ph props="android apple">Ensure that you have called <xref keyref="getMediaRecorder" /> before calling this method.</ph></li>
+                <li>-7: The method is called before <xref keyref="IRtcEngine" /> is initialized. Ensure the <xref keyref="IMediaRecorder" /> object is created before calling this method.</li>
                 </ul></li>
             </ul> </section>
     </refbody>

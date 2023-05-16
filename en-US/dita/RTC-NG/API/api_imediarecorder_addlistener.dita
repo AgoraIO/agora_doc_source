@@ -24,7 +24,7 @@
             <codeblock props="rn" outputclass="language-typescript">addListener?&lt;EventType extends keyof IMediaRecorderEvent&gt;(
       eventType: EventType,
       listener: IMediaRecorderEvent[EventType]
-    ): EventSubscription;</codeblock>
+    ): void;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
@@ -40,12 +40,9 @@
             </plentry>
             <plentry id="listener">
                 <pt>listener</pt>
-                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onRecorderStateChanged" /> as an example: <codeblock outputclass="language-typescript">// Create an onRecorderStateChanged object
-const onRecorderStateChanged = (state: RecorderState, error: RecorderErrorCode) =&gt; {};
-// Add one onRecorderStateChanged listener
+                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onRecorderStateChanged" /> as an example:<codeblock outputclass="language-typescript">const onRecorderStateChanged = (state: RecorderState, error: RecorderErrorCode) =&gt; {};
 engine.addListener('onRecorderStateChanged', onRecorderStateChanged);</codeblock></pd>
             </plentry>
             </parml> </section>
-        <section conkeyref="addListener/return_values" props="rn" />
     </refbody>
 </reference>

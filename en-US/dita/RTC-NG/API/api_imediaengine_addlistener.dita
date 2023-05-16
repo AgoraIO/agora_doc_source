@@ -24,7 +24,7 @@
             <codeblock props="rn" outputclass="language-typescript">addListener?&lt;EventType extends keyof IMediaEngineEvent&gt;(
       eventType: EventType,
       listener: IMediaEngineEvent[EventType]
-    ): EventSubscription;</codeblock>
+    ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart" />
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
@@ -41,12 +41,9 @@
             </plentry>
             <plentry id="listener">
                 <pt>listener</pt>
-                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onPlaybackAudioFrameBeforeMixing" /> as an example: <codeblock outputclass="language-typescript">// Create an onPlaybackAudioFrameBeforeMixing object
-const onPlaybackAudioFrameBeforeMixing = (channelId: string, uid: number, audioFrame: AudioFrame) =&gt; {};
-// Add one onPlaybackAudioFrameBeforeMixing listener
+                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onPlaybackAudioFrameBeforeMixing" /> as an example:<codeblock outputclass="language-typescript">const onPlaybackAudioFrameBeforeMixing = (channelId: string, uid: number, audioFrame: AudioFrame) =&gt; {};
 engine.addListener('onPlaybackAudioFrameBeforeMixing', onPlaybackAudioFrameBeforeMixing);</codeblock></pd>
             </plentry>
             </parml> </section>
-        <section conkeyref="addListener/return_values" props="rn" />
     </refbody>
 </reference>

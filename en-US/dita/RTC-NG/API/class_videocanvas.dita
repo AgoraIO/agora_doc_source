@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videocanvas">
     <title><ph keyref="VideoCanvas" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Attributes of video canvas object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Attributes of the video canvas object.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -206,7 +206,7 @@ class VideoCanvas {
             <plentry>
                 <pt>renderMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity electron rn flutter cs">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE" />.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/rendermodetype">
                     <li />
@@ -216,7 +216,7 @@ class VideoCanvas {
             <plentry>
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp unity electron rn flutter">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity electron rn flutter cs">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li />
@@ -233,7 +233,7 @@ class VideoCanvas {
             </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
-                <pd>The type of the video frame, see <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
             </plentry>
             <plentry props="android ios mac">
                 <pt>sourceId</pt>
@@ -248,7 +248,7 @@ class VideoCanvas {
                 <pd>Setting mode of the view.<ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE" />(0): (Default) Replaces a view.</li>
                     <li><ph keyref="VIDEO_VIEW_SETUP_ADD" />(1): Adds a view.</li>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Delete a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Deletes a view.</li>
                 </ul></pd>
             </plentry>
             <plentry>
@@ -256,19 +256,32 @@ class VideoCanvas {
                 <pd>The ID of the media player. You can get the Device ID by calling <xref keyref="getMediaPlayerId" />.</pd>
                 <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER" />.</pd>
             </plentry>
-            <plentry props="android cpp framework">
+            <plentry props="android">
+              <pt>rect</pt>
+              <pd>(Optional) Display area for the video frame. See <xref keyref="rect-link" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
+          </plentry>
+          <plentry props="cpp framework">
                 <pt>cropArea</pt>
-                <pd><ph props="cpp framework">(Android and iOS only)</ph> (Optional) The display area for the video frame. See <xref keyref="Rectangle" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
-             </plentry>   
+                <pd>(Optional) Display area of the video frame, see <xref keyref="Rectangle" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
+             </plentry>
              <plentry props="apple">
                 <pt>cropArea</pt>
-                    <pd>(Optional) The display area for video frames, which consists of the following parameters:<ul>
-                    <li>x: The horizontal offset from the top-left corner.</li>
-                    <li>y: The vertical offset from the top-left corner.</li>
-                    <li>width: The width of the region.</li>
-                    <li>height: The height of the region.</li>
-                    </ul><parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
+                <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
             </plentry>
+            <plentry props="cpp ios mac unity electron flutter cs">
+                <pt>enableAlphaMask</pt>
+                <pd props="cpp ios mac unity electron flutter">
+                <p>(Optional) Whether the receiver enables alpha mask rendering:<ul>
+                    <li><codeph><ph keyref="true" /></codeph>: The receiver enables alpha mask rendering.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (default) The receiver disables alpha mask rendering.</li>
+                  </ul>
+                </p>
+                <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</p>
+                <note type="attention"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link" />.</li></ul></note>
+                </pd>
+                <pd props="cs">Reserved.</pd>
+            </plentry>
+
             </parml> </section>
     </refbody>
 </reference>

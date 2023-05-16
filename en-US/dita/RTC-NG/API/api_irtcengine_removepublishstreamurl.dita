@@ -27,29 +27,30 @@
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>This method is deprecated. This method is deprecated. Use <xref keyref="stopRtmpStream" /> instead.</dd>
+                <dd>This method is deprecated. Use <xref keyref="stopRtmpStream" /> instead.</dd>
             </dlentry>
             </dl>
-            <p>After a successful method call, the SDK triggers the <xref keyref="onRtmpStreamingStateChanged" /> callback on the local client to report the result of deleting the URL.</p>
+            <p>After a successful method call, the SDK triggers <xref keyref="onRtmpStreamingStateChanged" /> on the local client to report the result of deleting the URL.</p>
             <note type="attention" id="note">
             <ul>
-            <li>Before calling this method, make sure that the Media Push function has been enabled. <ph props="hide">For details, see the prerequisites in <xref keyref="guide-cdn-streaming" format="html" scope="external">Media Push</xref>.</ph></li>
+            <li>Before calling this method, make sure that the media push function has been enabled. <ph props="android ios">For details, see the prerequisites in <xref keyref="guide-cdn-streaming" format="html" scope="external">Media Push</xref>.</ph></li>
             <li>This method takes effect only when you are a host in live interactive streaming.</li>
             <li>Call this method after joining a channel.</li>
-            <li>This method removes only one Media Push URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
+            <li>This method removes only one media push URL each time it is called. To remove multiple URLs, call this method multiple times.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>url</pt>
-                <pd>The Media Push URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The Media Push URL must not contain special characters, such as Chinese characters.</pd>
+                <pd>The media push URL in the RTMP or RTMPS format. The maximum length of this parameter is 1024 bytes. The media push URL must not contain special characters, such as Chinese characters.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

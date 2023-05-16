@@ -24,7 +24,7 @@
             <codeblock props="rn" outputclass="language-typescript">addListener?&lt;EventType extends keyof IRtcEngineEvent&gt;(
       eventType: EventType,
       listener: IRtcEngineEvent[EventType]
-    ): EventSubscription;</codeblock>
+    ): void;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
@@ -40,15 +40,9 @@
             </plentry>
             <plentry id="listener">
                 <pt>listener</pt>
-                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onJoinChannelSuccess" /> as an example: <codeblock outputclass="language-typescript">// Create an onJoinChannelSuccess object
-const onJoinChannelSuccess = (connection: RtcConnection, elapsed: number) =&gt; {};
-// Add one onJoinChannelSuccess listener
+                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onJoinChannelSuccess" /> as an example:<codeblock outputclass="language-typescript">const onJoinChannelSuccess = (connection: RtcConnection, elapsed: number) =&gt; {};
 engine.addListener('onJoinChannelSuccess', onJoinChannelSuccess);</codeblock></pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="rn">
-            <title>Returns</title>
-            <p>The native interface <codeph>EventSubscription</codeph> in React Native API.</p>
-        </section>
     </refbody>
 </reference>

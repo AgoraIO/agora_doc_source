@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencapturesourceinfo">
     <title><ph keyref="ScreenCaptureSourceInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The information about the specified shareable window or screen. <ph props="cpp">It is returned in <xref keyref="IScreenCaptureSourceList" />.</ph></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The information about the specified shareable window or screen. <ph props="cpp">The information is returned in <xref keyref="IScreenCaptureSourceList" />.</ph></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -169,12 +169,20 @@
                     <li><codeph><ph keyref="false" /></codeph>: The screen is not the primary display.</li>
                     </ul></pd>
             </plentry>
+            <plentry>
+                <pt>position</pt>
+                <pd><ph>The position of a window relative to the entire screen space (including all shareable screens). </ph><ph props="cpp unity electron flutter">See <xref keyref="Rectangle" />. </ph><ph props="mac">See <xref keyref="rect-link" />.</ph></pd>
+            </plentry>
             <plentry props="cpp flutter rn electron">
                 <pt>minimizeWindow</pt>
                 <pd>(For Windows only) Whether the window is minimized:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: The window is minimized.</li>
                     <li><codeph><ph keyref="false" /></codeph>: The window is not minimized.</li>
                     </ul></pd>
+            </plentry>
+            <plentry props="cpp unity cs electron flutter">
+                <pt>sourceDisplayId</pt>
+                <pd>(For Windows only) Screen ID where the window is located. If the window is displayed across multiple screens, this parameter indicates the ID of the screen with which the window has the largest intersection area. If the window is located outside of the visible screens, the value of this member is -2.</pd>
             </plentry>
             </parml> </section>
     </refbody>

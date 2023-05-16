@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onplayersourcestatechanged">
     <title><ph keyref="onPlayerSourceStateChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the playback state change.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the changes of playback state.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,24 +15,23 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onPlayerStateChanged(Constants.MediaPlayerState state, Constants.MediaPlayerError error);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraMediaPlayer:(AgoraMediaPlayer *_Nonnull)playerKit
-       didChangedToState:(AgoraMediaPlayerState)state
-                   error:(AgoraMediaPlayerError)error;
-</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+          didChangedToState:(AgoraMediaPlayerState)state
+                      error:(AgoraMediaPlayerError)error NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didChangedTo:error:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
                                         media::base::MEDIA_PLAYER_ERROR ec) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlayerSourceStateChanged?(
     state: MediaPlayerState,
     ec: MediaPlayerError
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(MEDIA_PLAYER_STATE state, MEDIA_PLAYER_ERROR ec) { }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnPlayerSourceStateChanged(MEDIA_PLAYER_STATE state, MEDIA_PLAYER_ERROR ec) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onPlayerSourceStateChanged?(
     state: MediaPlayerState,
     ec: MediaPlayerError
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(MediaPlayerState state, MediaPlayerError ec)?
-      onPlayerSourceStateChanged;
-</codeblock> </p>
+      onPlayerSourceStateChanged;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>When the state of the media player changes, the SDK triggers this callback to report the current playback state.</p>
@@ -46,11 +45,11 @@
             </plentry>
             <plentry>
                 <pt>state</pt>
-                <pd>The playback state, see <xref keyref="MEDIA_PLAYER_STATE" />.</pd>
+                <pd>The playback state. See <xref keyref="MEDIA_PLAYER_STATE" />.</pd>
             </plentry>
             <plentry>
                 <pt props="android ios mac">error</pt>
-                <pt props="cpp unity flutter rn electron">ec</pt>
+                <pt props="cpp unity flutter rn electron cs">ec</pt>
                 <pd>The error code. See <xref keyref="MEDIA_PLAYER_ERROR" />.</pd>
             </plentry>
             </parml> </section>

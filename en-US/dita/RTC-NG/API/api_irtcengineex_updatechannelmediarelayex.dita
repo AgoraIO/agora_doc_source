@@ -33,6 +33,12 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
+            <dl outputclass="deprecated">
+            <dlentry>
+                <dt>Deprecated:</dt>
+                <dd>This method is deprecated. Use <xref keyref="startOrUpdateChannelMediaRelayEx" /> instead.</dd>
+            </dlentry>
+            </dl>
             <p id="desc">After the media relay starts, if you want to relay the media stream to more channels, or leave the current relay channel, you can call this method.</p>
             <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayEvent" /> callback with the <apiname keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL" /> (7) state code.</p>
             <note type="attention">Call the method after successfully calling the <xref keyref="startChannelMediaRelayEx" /> method and receiving <codeph><xref keyref="onChannelMediaRelayStateChanged" />(<ph keyref="RELAY_STATE_RUNNING" />, <ph keyref="RELAY_OK" />)</codeph>; otherwise, the method call fails.</note> </section>
@@ -52,9 +58,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn">0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
