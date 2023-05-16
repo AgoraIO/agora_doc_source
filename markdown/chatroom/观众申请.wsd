@@ -1,0 +1,14 @@
+@startuml
+autonumber
+participant "房主" as a
+participant "即时通讯（环信）SDK" as b #White
+participant "观众" as c
+c -> b: 发送上麦申请
+b --> a: 发送上麦申请
+a -> a: 更新上麦邀请列表
+a -> b: 同意上麦申请，更新麦位信息
+b --> c: 设置聊天室属性，通知全员刷新房间设置
+c -> c: 刷新 UI
+b --> a: 设置聊天室属性，通知全员刷新房间设置
+a -> a: 刷新 UI
+@enduml

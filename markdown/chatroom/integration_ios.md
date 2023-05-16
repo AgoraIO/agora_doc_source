@@ -2,35 +2,21 @@
 
 麦位管理涉及用户上下麦、麦位静音和状态锁定等操作。声网即时通讯（环信）SDK 提供消息通讯的能力，声网 RTC SDK 提供控制用户音视频流收发的能力。
 
-## 上麦
+## 1. 麦位操作
 
-## 下麦
-
-## 静音
-
-## 锁麦
-
-## 换麦
-
------
-
-
-
-## 1. 对麦位操作
-
-首先需要注册回调，注册之后才能收到房间变化的通知。
+通过 ChatRoomServiceImp 类的 subscribeEvent 方法注册回调事件，监听房间内的变化。
 
 ```swift
 ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
 ```
 
-### 1. 邀请/申请上麦
+### 上麦
 
-#### 1. 邀请上麦
+#### 房主邀请用户上麦
 
-<pic> //TODO
+![](https://web-cdn.agora.io/docs-files/1684231366436)
 
-房主邀请用户上麦：调用 ChatRoomServiceImp 的 startMicSeatInvitation 方法。
+1. 房主调用 ChatRoomServiceImp 的 startMicSeatInvitation 方法，开始邀请用户上麦。
 
 ```swift
 // 邀请上麦
@@ -44,10 +30,7 @@ private func inviteUser(user: VRUser?) {
 }
 ```
 
-监听上麦
-房间内所有用户（除房主）注册
-
-房间内所有用户都通过注册 onReceiveSeatInvitation 回调获取房主邀请上麦的通知。
+2. 房间内其他所有用户都注册 onReceiveSeatInvitation 回调，以获取房主邀请上麦的通知。
 
 ```swift
 // 接收到邀请通知
@@ -56,7 +39,11 @@ func onReceiveSeatInvitation(roomId: String, user: VRUser) {
 }
 ```
 
-通过弹出邀请弹窗让观众选择接受邀请，通过调用 ChatRoomServiceImp 的 acceptMicSeatInvitation 方法。
+3. 收到房主上麦邀请的用户会看到邀请弹窗，观众可以选择是否接受邀请：
+
+    - 用户可以调用 ChatRoomServiceImp 的 acceptMicSeatInvitation 方法接受邀请。
+    - 用户也可以调用 ChatRoomServiceImp 的 refuseInvite 方法拒绝邀请。
+
 
 ```swift
 // 接受邀请
@@ -81,8 +68,6 @@ func agreeInvite(index: Int?) {
 }
 ```
 
-如果需要拒绝邀请，则可以调用ChatRoomServiceImp的refuseInvite方法
-
 ```swift
 // 拒绝邀请
 func refuse() {
@@ -91,7 +76,7 @@ func refuse() {
 }
 ```
 
-如果观众接受邀请，那么此时房间内其他人会收到麦位更新通知
+4. 如果用户接受上麦邀请，那么房内其他用户都会收到麦位更新的通知。
 
 ```swift
 // 麦位更新
@@ -102,11 +87,11 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 注意：多个观众同时主动修改麦位时会产生冲突。例如，房主邀请多观众，然后多个观众同时点击，可能会出现A观众上麦之后被B观众踢下去的情况。后续集成方案会修改成由房主决定谁上麦而不是观众决定自己上麦。
 
-#### 2. 申请上麦
+#### 用户申请上麦
 
-<pic> //TODO
+![](https://web-cdn.agora.io/docs-files/1684231374938)
 
-发送申请上麦请求，通过调用ChatRoomServiceImp的startMicSeatApply方法
+1. 用户调用 ChatRoomServiceImp 的 startMicSeatApply 方法向房主发送申请上麦的请求。
 
 ```swift
 // 申请上麦
@@ -125,7 +110,7 @@ func requestSpeak(index: Int?) {
 }
 ```
 
-如果观众需要取消申请，通过调用ChatRoomServiceImp的cancelMicSeatApply方法请求
+2. 如果用户希望取消上麦申请，可以调用 ChatRoomServiceImp 的 cancelMicSeatApply 方法。
 
 ```swift
 // 观众取消自己的上麦申请
@@ -141,7 +126,7 @@ func cancelRequestSpeak(index: Int?) {
 }
 ```
 
-然后房间内所有用户通过注册回调的onReceiveSeatRequest获取到申请上麦信息的更新，刷新申请列表
+3. 房间内其他所有用户都注册 onReceiveSeatRequest 回调，以获取用户申请上麦的信息更新，从而刷新上麦申请列表。
 
 ```swift
 // 房主收到申请上麦信息
@@ -150,7 +135,7 @@ func onReceiveSeatRequest(roomId: String, applicant: VoiceRoomApply) {
 }
 ```
 
-房主选择同意某一用户的上麦申请，通过调用ChatRoomServiceImp的acceptMicSeatApply发起请求
+4. 房主调用 ChatRoomServiceImp 的 acceptMicSeatApply 方法，以同意某个用户的上麦申请。
 
 ```swift
 // 房主同意观众上麦申请
@@ -169,6 +154,8 @@ private func agreeUserApply(user: VoiceRoomApply?) {
 }
 ```
 
+5. 如果房主同意某个用户的上麦申请，那么房内其他用户都收到麦位更新的通知。
+
 如果房主同意上麦申请，房间内所有用户收到麦位更新消息，更新之后的RTC操作请参考RTC上麦和RTC下麦操作
 
 ```swift
@@ -178,7 +165,15 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 }
 ```
 
-注意：目前没有提供房主拒绝上麦申请的接口
+注意：目前声动互娱没有提供房主拒绝上麦申请的 API。
+
+#### 切换上麦用户角色
+
+不论是房主邀请，还是用户主动申请，在用户上麦后，你需要将其角色从观众切换成主播（broadcaster），以让用户可以发送音频流。
+
+```swift
+rtcKit.setClientRole(.broadcaster)
+```
 
 ### 2. 下麦
 
