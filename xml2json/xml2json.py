@@ -1159,11 +1159,11 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     data['description'] = api_desc.rstrip("\n")
     # save parameters, remove "\n"
     data['parameters'] = [
-        {key.replace("\n", "") if isinstance(key, str) and key is not None else key:
-        value.replace("\n", "") if isinstance(value, str) and value is not None else value}
-        for param in json_array
-        for key, value in param.items()
-    ]
+    {key.rstrip("\n") if isinstance(key, str) and key is not None else key:
+     value.rstrip("\n") if isinstance(value, str) and value is not None else value}
+    for param in json_array
+    for key, value in param.items()
+]
     # save returns, remove "\n"
     data['returns'] = return_values.strip("\n ")
     # for the hidden apis and the resource-only apis whose names are left blank, hide them
