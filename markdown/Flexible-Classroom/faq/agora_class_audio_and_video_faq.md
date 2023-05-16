@@ -73,6 +73,25 @@ const args = {
 };
 ```
 
+
+### ios端自定义小流分辨率
+只要在 join room 成功后，往  edu core 对象里设置一个私有方法就可以了
+
+比如在 AgoraClassroomSDK.m 里
+```
+- (void)onJoinRoomSuccessWithRoomInfo:(AgoraEduContextRoomInfo *)roomInfo {
+    NSString *config = @"{\"width\":100,\"height\":100,\"frameRate\":5,\"bitRate\":50}";
+    NSString *value = [NSString stringWithFormat:@"{\"che.video.lowBitRateStreamParameter\":%@}", config];
+    
+    NSDictionary *parameters = @{@"rtc": value};
+    
+    [self.core setParameters:parameters];
+}
+
+ ```
+
+
+
 ## 使用屏幕共享报错时“请先打开屏幕录制权限”?
 
 如果你在开启屏幕共享时遇到如下错误，说明你还未开启系统屏幕录制权限。
