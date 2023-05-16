@@ -31,8 +31,9 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>
-            <note type="attention" props="unity flutter">(For Windows and Android only)</note> </p>
+            <note type="attention" props="cpp unity flutter">(For Windows and Android only)</note>
+            <note type="attention" props="rn">This method is for Android only.</note>
+            <note type="attention" props="electron">This method applies to Windows only.</note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -42,7 +43,7 @@
                 <pd>The extension library path and name. For example: <codeph>/library/libagora_segmentation_extension.dll</codeph>.</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unity">unload_after_use</pt>
+                <pt props="cpp unity cs">unload_after_use</pt>
                 <pt props="electron rn flutter">unloadAfterUse</pt>
                 <pd>Whether to uninstall the current extension when you no longer using it:<ul>
                         <li><codeph><ph keyref="true" /></codeph>: Uninstall the extension when the <xref keyref="IRtcEngine" /> is destroyed.</li>
@@ -53,9 +54,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn">0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

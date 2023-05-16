@@ -13,9 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onPreLoadEvent(long songCode, int percent, int status, String msg, String lyricUrl);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent status:(AgoraMusicContentCenterPreloadStatus)status msg:(NSString *)msg lyricUrl:(NSString *)lyricUrl;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, PreloadStatusCode status, const char* msg, const char* lyricUrl = nullptr) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">void onPreLoadEvent(long songCode, int percent, String lyricUrl, int status, int errorCode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl status:(AgoraMusicContentCenterPreloadStatus)status errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onPreLoadEvent(int64_t songCode, int percent, const char* lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode error_code) = 0;</codeblock>
             <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">onPreLoadEvent?(
     songCode: number,
@@ -43,7 +43,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>When you call the <xref keyref="preload"/> method to preload music assets, the SDK will trigger this callback.</p>
+            <p>When you call<xref keyref="preload"/> the  method to preload music assets, the SDK will trigger this callback.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -63,7 +63,7 @@
             <plentry id="status">
                 <pt>status</pt>
                 <pd>
-                    <p props="apple cpp electron unity rn flutter">The loading status of the current music asset. See <xref keyref="PreloadStatusCode"/>.</p>
+                    <p props="apple cpp framework">The loading status of the current music asset. See .<xref keyref="PreloadStatusCode"/></p>
                     <p props="android">The loading statuses of the current music asset contain the following:<ul>
                     <li>0: The preload of music assets is complete.</li>
                     <li>1: The preload of music assets fails.</li>
@@ -71,10 +71,10 @@
                     </ul></p>
                 </pd>
             </plentry>
-                <plentry>
-                    <pt>msg</pt>
-                    <pd>加载状态信息。</pd>
-                </plentry>
+            <plentry conkeyref="onMusicChartsResult/error">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
     </refbody>
 </reference>

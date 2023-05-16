@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediarecorder_setmediarecorderobserver">
     <title><ph keyref="setMediaRecorderObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers one <xref keyref="IMediaRecorderObserver" /> object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers one <xref keyref="IMediaRecorderObserver" />oberver.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,25 +26,26 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>Make sure that <xref keyref="IRtcEngine" /> is initialized before you call this method.</p>
+            <p>This method is used to set the callbacks of audio and video recording, so as to notify the app of the recording status and information of the audio and video stream during recording.</p>
+            <p>Before calling this method, ensure the following:<ul>
+            <li>The <xref keyref="IRtcEngine" /> object is created and initialized.</li>
+            <li>The recording object is created through <xref keyref="createMediaRecorder" />.</li>
+            </ul></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry conkeyref="joinChannelEx/connection">
-                <pt />
-                <pd />
-            </plentry>
             <plentry>
-                <pt>callback</pt>
-                <pd>The callbacks for recording local audio and video streams. See <xref keyref="IMediaRecorderObserver" />.</pd>
+                <pt props="cpp android framework">callback</pt>
+                <pt props="apple">delegate</pt>
+                <pd>The callbacks for recording audio and video streams. See <xref keyref="IMediaRecorderObserver" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native rn electron unity">0: Success.</li>
+            <li props="native rn electron unity cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

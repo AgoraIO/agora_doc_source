@@ -149,7 +149,7 @@
                     <p>The URL of the media file to be played.</p>
                     <note>
                         <p props="apple" id="url">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>playerOnReadCallback</parmname> and <parmname>playerOnSeekCallback</parmname>. Agora recommends that you do not pass in values to all these parameters in one call; otherwise, this call may fail.</p>
-                        <p props="android cpp unity">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>provider</parmname>. Agora recommends that you do not pass in values to both parameters in one call; otherwise, this call may fail.</p>
+                        <p props="android cpp unity cs">If you open a common media resource, pass in the value to <parmname>url</parmname>. If you open a custom media resource, pass in the value to <parmname>provider</parmname>. Agora recommends that you do not pass in values to both parameters in one call; otherwise, this call may fail.</p>
                     </note></pd>
             </plentry>
             <plentry>
@@ -178,8 +178,8 @@
                     </ul>
                     <note>
                     <ul>
-                    <li>The SDK only supports caching on-demand streams.</li>
-                    <li>If you need to enable caching, pass in a value to<parmname> uri</parmname>; otherwise, caching is based on the <parmname>url</parmname> of the media file.</li>
+                    <li>Agora only supports caching on-demand audio and video streams that are not transmitted in HLS protocol.</li>
+                    <li>If you need to enable caching, pass in a value to <parmname>uri</parmname>; otherwise, caching is based on the <parmname>url</parmname> of the media file.</li>
                     <li>If you enable this function, the Media Player caches part of the media file being played on your local device, and you can play the cached media file without internet connection. The statistics about the media file being cached are updated every second after the media file is played. See <xref keyref="CacheStatistics" />.</li>
                     </ul> </note></pd>
             </plentry>
@@ -204,7 +204,7 @@
                     <p>If the media resource you open is not a live stream, but you set <parmname>isLiveSource</parmname> as <codeph><ph keyref="true" /></codeph>, the media resource is not to be loaded more quickly.</p>
                     </note> </pd>
             </plentry>
-            <plentry props="android cpp unity">
+            <plentry props="android cpp unity cs">
                     <pt>provider</pt>
                     <pd>
                         <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider" />.</p>

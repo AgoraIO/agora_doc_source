@@ -26,9 +26,11 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
+            <p props="hide">On the Android platform, if you need to open a file in URI format, use <xref keyref="open2" />.</p>
+            <p id="uri" props="android">This method supports playing URI files starting with <codeph>content://</codeph>.</p>
             <p props="hide">If you want to choose the CDN route for playing the media resource, you can call the <xref keyref="openWithAgoraCDNSrc" /> method. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you do not need to choose the CDN route for playing the media resource, you can call the <xref keyref="open" /> method.</p>
             <note type="attention" id="note">
-            <p props="native unity electron flutter">This method is called asynchronously.</p>
+            <p props="native unity electron flutter cs">This method is called asynchronously.</p>
             <p id="open">If you need to play a media file, make sure you receive the <xref keyref="onPlayerSourceStateChanged" /> callback reporting <apiname keyref="PLAYER_STATE_OPEN_COMPLETED" /> before calling the <xref keyref="play" /> method to play the file.</p>
             </note> </section>
         <section id="parameters">
@@ -36,8 +38,7 @@
             <parml>
             <plentry>
                 <pt>url</pt>
-                <pd>The path of the media file. Both local path and online path are supported.<note type="attention" props="android">On the Android platform, if you need to open a file in URI format, use <xref keyref="open2" />.</note>
-                    <note type="attention" props="rn flutter electron unity">On the Android platform, if you need to open a file in URI format, use <xref keyref="open" />.</note></pd>
+                <pd>The path of the media file. Both local path and online path are supported.</pd>
             </plentry>
             <plentry>
                 <pt>startPos</pt>
@@ -46,9 +47,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_uns_l2y_hqb">
-            <li props="native unity rn electron">0: Success.</li>
+            <li props="native unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

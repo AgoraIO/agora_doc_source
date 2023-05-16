@@ -265,7 +265,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
                  print("------------------- Tag to remove ---------------------------")
@@ -890,7 +890,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
@@ -912,7 +912,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
@@ -935,7 +935,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
@@ -958,7 +958,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
@@ -981,7 +981,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
          if child.get("props") is not None:
              # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
             if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
+                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
                  print("------------------- Tag to remove ---------------------------")
@@ -1153,11 +1153,21 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     data = {}
 
     data['id'] = api_id
+    # save name, remove "\n"
     data['name'] = api_name.strip("\n ")
+    # save description, remove "\n"
     data['description'] = api_desc.rstrip("\n")
-    data['parameters'] = json_array
+    # save parameters, remove "\n"
+    data['parameters'] = [
+    {key.rstrip("\n") if isinstance(key, str) and key is not None else key:
+     value.rstrip("\n") if isinstance(value, str) and value is not None else value}
+    for param in json_array
+    for key, value in param.items()
+]
+    # save returns, remove "\n"
     data['returns'] = return_values.strip("\n ")
-    data['is_hide'] = True if api_id in json_hide_id_list else False
+    # for the hidden apis and the resource-only apis whose names are left blank, hide them
+    data['is_hide'] = True if api_id in json_hide_id_list or data['name'] == "" else False
 
     print(data)
 

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_removeinjectstreamurl">
-<title><ph keyref="removeInjectStreamUrl" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Removes the audio or video stream URL address from the live streaming.</ph></shortdesc>
+    <title><ph keyref="removeInjectStreamUrl" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Removes the voice or video stream URL address from the live streaming.</ph></shortdesc>
     <prolog>
         <metadata>
-   <keywords>
-       <indexterm keyref="removeInjectStreamUrl" /></keywords>
+            <keywords>
+                <indexterm keyref="removeInjectStreamUrl" />
+            </keywords>
         </metadata>
     </prolog>
     <refbody>
@@ -23,9 +24,8 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-
-       <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="cn" />
-       <p>If you call this method and successfully remove a URL address, the SDK triggers the <xref keyref="onUserOffline" /> callback with the <parmname>uid</parmname> as <codeph>666</codeph>.</p>
+            <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="cn" />
+            <p>After a successful method, the SDK triggers the <xref keyref="onUserOffline" /> callback with the <parmname>uid</parmname> of <codeph>666</codeph>.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -35,10 +35,11 @@
                 <pd>The URL address of the injected stream to be removed.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

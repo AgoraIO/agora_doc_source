@@ -23,10 +23,7 @@
     remoteUid: number,
     videoFrame: VideoFrame
   ): boolean;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(string channelId, uint uid, VideoFrame videoFrame)
-        {
-            return true;
-        }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnRenderVideoFrame(string channelId, uint remoteUid, VideoFrame videoFrame)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onRenderVideoFrame?(
     channelId: string,
     remoteUid: number,
@@ -43,13 +40,13 @@
             <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
             <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
             </ul></note>
-        <note props="unity">If you use Unity for development, Agora only supports sending video data in YUV format to SDK. Ensure that you set <parmname>mode</parmname> as <codeph>INTPTR</codeph> when you call the <xref keyref="registerVideoFrameObserver"/> method to register a video frame observer.</note> </section>
+        <note props="unity cs">If you use Unity for development, Agora only supports sending video data in YUV format to SDK. Ensure that you set <parmname>mode</parmname> as <codeph>INTPTR</codeph> when you call the <xref keyref="registerVideoFrameObserver"/> method to register a video frame observer.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android ios mac unity">uid</pt>
-                <pt props="cpp rn electron flutter">remoteUid</pt>
+                <pt props="android ios mac">uid</pt>
+                <pt props="cpp rn electron flutter unity cs">remoteUid</pt>
                 <pd>The user ID of the remote user who sends the current video frame.</pd>
             </plentry>
             <plentry conkeyref="onCaptureVideoFrame/videoframe">
@@ -61,10 +58,9 @@
                 <pd>The channel ID.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values">
-            <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; you need to catch the exception and handle it accordingly.</p>
-            <p conkeyref="onCaptureVideoFrame/return" props="native electron unity rn"/>
+        <section id="return_values" props="native electron unity rn cs">
+            <title>Returns</title>
+            <p conkeyref="onCaptureVideoFrame/return"/>
         </section>
     </refbody>
 </reference>

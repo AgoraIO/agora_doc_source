@@ -28,51 +28,47 @@
     (void)elapsed;
   }
                </codeblock>
-               <codeblock props="electron" outputclass="language-typescript">  onFirstLocalVideoFrame?(
-    connection: RtcConnection,
+               <codeblock props="electron" outputclass="language-typescript">onFirstLocalVideoFrame?(
+    source: VideoSourceType,
     width: number,
     height: number,
     elapsed: number
   ): void;</codeblock>
-               <codeblock props="unity" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(RtcConnection connection, int width, int height, int elapsed) {}</codeblock>
-               <codeblock props="rn" outputclass="language-typescript">  onFirstLocalVideoFrame?(
-    connection: RtcConnection,
+               <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnFirstLocalVideoFrame(VIDEO_SOURCE_TYPE source, int width, int height, int elapsed) { }</codeblock>
+               <codeblock props="rn" outputclass="language-typescript">onFirstLocalVideoFrame?(
+    source: VideoSourceType,
     width: number,
     height: number,
     elapsed: number
   ): void;</codeblock>
                <codeblock props="flutter" outputclass="language-dart">final void Function(
-               RtcConnection connection, int width, int height, int elapsed)?
-               onFirstLocalVideoFrame;</codeblock></p>
+          VideoSourceType source, int width, int height, int elapsed)?
+      onFirstLocalVideoFrame;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
           </section>
           <section id="detailed_desc">
                <p id="desc">The SDK triggers this callback when the first local video frame is displayed on the local video view.</p>
           </section>
           <section id="parameters">
                <title><ph keyref="callback-section-title" /></title>
-               <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter" />
                <parml>
                <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                     <pt />
                     <pd />
                </plentry>
-                <plentry conkeyref="onLocalVideoStateChanged/source" props="native">
+                <plentry conkeyref="onLocalVideoStateChanged/source">
                     <pt />
                     <pd />
                 </plentry>
                     <plentry props="ios mac">
                     <pt>size</pt>
-                    <pd>The size of the renderd local view.</pd>
+                    <pd>The size of the first local video frame.</pd>
                </plentry>
-               <plentry props="unity electron rn flutter">
-                    <pt>connection</pt>
-                    <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
-               </plentry>
-               <plentry props="android cpp unity electron rn flutter">
+               <plentry props="android cpp unity cs electron rn flutter">
                     <pt>width</pt>
                     <pd>The width (px) of the first local video frame.</pd>
                </plentry>
-               <plentry props="android cpp unity electron rn flutter">
+               <plentry props="android cpp unity cs electron rn flutter">
                     <pt>height</pt>
                     <pd>The height (px) of the first local video frame.</pd>
                </plentry>

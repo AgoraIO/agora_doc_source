@@ -24,14 +24,15 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p props="cpp">This method returns a <xref keyref="IVideoDeviceCollection" /> object including all video devices in the system. With the <apiname keyref="IVideoDeviceCollection" /> object, the application can enumerate video devices. The application must call the <xref keyref="release_IVideoDeviceCollection" /> method to release the returned object after using it.</p>
+            <note type="attention">This method is for Windows and macOS only.</note>
+            <p props="cpp">This method returns an <xref keyref="IVideoDeviceCollection" /> object including all video devices in the system. With the <apiname keyref="IVideoDeviceCollection" /> object, the application can enumerate video devices. The application must call the <xref keyref="release_IVideoDeviceCollection" /> method to release the returned object after using it.</p>
         </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li props="cpp">Success: A <apiname keyref="IVideoDeviceCollection" /> object including all video devices in the system.</li>
-            <li props="unity">Success: A DeviceInfo array including all video devices in the system.</li>
-            <li props="cpp unity">Failure: <ph keyref="NULL" />.</li>
+            <li props="cpp">Success: One <apiname keyref="IVideoDeviceCollection" /> object including all video devices in the system.</li>
+            <li props="unity cs">Success: A <apiname keyref="DeviceInfo" /> array including all video devices in the system.</li>
+            <li props="cpp unity cs">Failure: <ph keyref="NULL" />.</li>
             <li props="electron flutter">Success: A <xref keyref="VideoDeviceInfo" /> array including all video devices in the system.</li>
             <li props="electron flutter">Failure: An empty array.</li>
             </ul> </section>

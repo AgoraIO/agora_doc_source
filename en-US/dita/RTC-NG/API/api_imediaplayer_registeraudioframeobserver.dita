@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_registeraudioframeobserver">
     <title><ph keyref="registerAudioFrameObserver1_IMediaPlayer" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers an audio frame observer object.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers a PCM audio frame observer object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,22 +24,20 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>You need to implement the <xref props="cpp" keyref="IAudioFrameObserver" /><xref props="electron unity rn flutter" keyref="IMediaPlayerAudioFrameObserver" /> class in this method and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
+            <p>You need to implement the <xref keyref="IAudioPcmFrameSink" /> class in this method and register callbacks according to your scenarios. After you successfully register the video frame observer, the SDK triggers the registered callbacks each time a video frame is received.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>observer</pt>
-                <pd props="cpp">The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IAudioFrameObserver" />.</pd>
-                <pd props="electron unity rn flutter">The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IMediaPlayerAudioFrameObserver" />.</pd>
+                <pd>The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IAudioPcmFrameSink" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_uns_l2y_hqb">
-                <li props="cpp rn unity electron">0: Success.</li>
+                <li>0: Success.</li>
                 <li>&lt; 0: Failure.</li>
             </ul>
         </section>

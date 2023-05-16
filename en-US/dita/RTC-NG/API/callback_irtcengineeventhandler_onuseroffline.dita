@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onuseroffline">
-    <title> <ph keyref="onUserOffline"/> </title>
+    <title> <ph keyref="onUserOffline" /> </title>
     <shortdesc id="short"><ph id="shortdesc">Occurs when a remote user (in the communication profile)/ host (in the live streaming profile) leaves the channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="onUserOffline"/>
+                <indexterm keyref="onUserOffline" />
             </keywords>
         </metadata>
     </prolog>
@@ -21,16 +21,20 @@
     (void)uid;
     (void)reason;
     }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onUserOffline?(connection: RtcConnection, remoteUid: number, reason: UserOfflineReasonType): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnUserOffline(RtcConnection connection, uint remoteUid, USER_OFFLINE_REASON_TYPE reason) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onUserOffline?(
-  connection: RtcConnection,
-  remoteUid: number,
-  reason: UserOfflineReasonType
-): void;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">  onUserOffline?(
+    connection: RtcConnection,
+    remoteUid: number,
+    reason: UserOfflineReasonType
+  ): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnUserOffline(RtcConnection connection, uint remoteUid, USER_OFFLINE_REASON_TYPE reason) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onUserOffline?(
+    connection: RtcConnection,
+    remoteUid: number,
+    reason: UserOfflineReasonType
+  ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(RtcConnection connection, int remoteUid,
-      UserOfflineReasonType reason)? onUserOffline;
-</codeblock> </p>
+      UserOfflineReasonType reason)? onUserOffline;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p id="desc">There are two reasons for users to become offline:<ul>
@@ -39,30 +43,29 @@
             </ul> </p>
         </section>
         <section id="parameters">
-            <title> <ph keyref="callback-section-title"/> </title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn"/>
+            <title> <ph keyref="callback-section-title" /> </title>
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
-                <pt/>
-                <pd/>
+                <pt />
+                <pd />
             </plentry>
-            <plentry props="unity electron rn flutter">
+            <plentry props="unity electron rn flutter cs">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
             <plentry id="uid">
                 <pt props="native">uid</pt>
-                <pt props="unity electron rn flutter">remoteUid</pt>
+                <pt props="unity electron rn flutter cs">remoteUid</pt>
                 <pd>The ID of the user who leaves the channel or goes offline.</pd>
             </plentry>
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter electron rn">Reasons why the user goes offline: <xref keyref="USER_OFFLINE_REASON_TYPE"/>.</p>
+                    <p props="ios mac cpp unity flutter electron rn cs">Reasons why the user goes offline: <xref keyref="USER_OFFLINE_REASON_TYPE" />.</p>
                     <p props="android">Reasons why a remote user (COMMUNICATION) or a host (LIVE_BROADCASTING) goes offline:<ul>
-                    <li><ph keyref="USER_OFFLINE_QUIT"/>(0): The user has quit the call. When the user leaves the channel, the user sends a goodbye message. When this message is received, the SDK determines that the user leaves the channel.</li>
-                    <li><ph keyref="USER_OFFLINE_DROPPED"/>(1): The SDK timed out and the user dropped offline because it has not received any data package within a certain period of time. A poor network connection may lead to false detection, so we recommend using the RTM SDK for reliable offline detection.</li>
-                    <li><ph keyref="USER_OFFLINE_BECOME_AUDIENCE"/>(2): The user switches the user role from a broadcaster to an audience.</li>
+                    <li><ph keyref="USER_OFFLINE_QUIT" />(0): The user has quit the call. When the user leaves the channel, the user sends a goodbye message. When this message is received, the SDK determines that the user leaves the channel.</li>
+                    <li><ph keyref="USER_OFFLINE_DROPPED" />(1): The SDK timed out and the user dropped offline because it has not received any data package within a certain period of time. A poor network connection may lead to false detection. It is recommended to use the Agora RTM SDK for reliable offline detection.</li>
+                    <li><ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />(2): The user switches the user role from a broadcaster to an audience.</li>
                     </ul> </p>
                 </pd>
             </plentry>

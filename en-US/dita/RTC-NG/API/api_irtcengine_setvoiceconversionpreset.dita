@@ -31,12 +31,13 @@
             <li>You can call this method either before or after joining a channel.</li>
             <li>Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<ph props="cpp rn electron flutter"> or <apiname keyref="AUDIO_PROFILE_IOT" />(6)</ph>, or the method does not take effect.</li>
             <li>This method has the best effect on human voice processing, and Agora does not recommend calling this method to process audio data containing music.</li>
-            <li>After calling <apiname keyref="setVoiceConversionPreset" />, Agora does not recommend you to call the following methods, otherwise the effect set by <apiname keyref="setVoiceConversionPreset" /> will be overwritten: <ul>
+            <li>After calling <apiname keyref="setVoiceConversionPreset" />, Agora does not recommend you to call the following methods, otherwise the effect set by <apiname keyref="setVoiceConversionPreset" /> will be overwritten:<ul>
                 <li><xref keyref="setAudioEffectPreset" /></li>
                 <li><xref keyref="setAudioEffectParameters" /></li>
                 <li><xref keyref="setVoiceBeautifierPreset" /></li>
                 <li><xref keyref="setVoiceBeautifierParameters" /></li>
                 <li><xref keyref="setLocalVoicePitch" /></li>
+                <li><xref keyref="setLocalVoiceFormant" /></li>
                 <li><xref keyref="setLocalVoiceEqualization" /></li>
                 <li><xref keyref="setLocalVoiceReverb" /></li>
                 </ul> </li>
@@ -48,7 +49,7 @@
             <plentry>
                 <pt>preset</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter rn electron">The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET" />.</p>
+                    <p props="ios mac cpp unity flutter rn electron cs">The options for the preset voice beautifier effects: <xref keyref="VOICE_CONVERSION_PRESET" />.</p>
                     <p props="android">The options for SDK preset voice conversion effects.<ul>
                     <li><ph keyref="VOICE_CONVERSION_OFF" />: Turn off voice conversion effects and use the original voice.</li>
                     <li><ph keyref="VOICE_CHANGER_NEUTRAL" />: A gender-neutral voice. To avoid audio distortion, ensure that you use this enumerator to process a female-sounding voice.</li>
@@ -61,9 +62,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn">0: Success.</li>
+            <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
