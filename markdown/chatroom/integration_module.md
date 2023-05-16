@@ -1,4 +1,4 @@
-
+#TODO 内容如何整合到文档中
 ## 加入频道
 
 ![](https://docimg2.docs.qq.com/image/AgAACiNGFGNo4fwZxj9MHr8tjIYjJoJA.png?w=806&h=330)
@@ -162,26 +162,6 @@ setParameters("{\"che.audio.custom_payload_type\":78}");
 
 注意：上述配置适用于娱乐房场景的高音质设置。如果在其他场景中需要音质，可以联系声网服务人员进行咨询。
 
-## 耳返
-
-对于耳返功能，延迟是一个最重要的指标。在 iOS 设备上，耳返延迟平均在 50ms 左右。而在 Android 设备上，由于手机生产厂家众多且机型众多，因此耳返延迟不尽相同，有的设备能达到 100ms 之内，而有的则在 200ms 至 300ms 之间。
-
-针对 Android 设备，声网使用了自主开发的 Opensl 耳返算法，使得在某些设备上能将耳返延迟降至 50ms 以下，但在某些设备上，耳返延迟仍然在 200ms 至 300ms 之间。
-
-使用声网 SDK 开启耳返：
-
-iOS：
-
-```objective-c
-- (int)enableInEarMonitoring:(BOOL)enabled;
-```
-
-Android:
-
-```java
-public abstract int enableInEarMonitoring(boolean enabled, int includeAudioFilters);
-```
-
 ## 背景音乐 & 音效
 
 在语音聊天室中，主播可以选择在线音乐播放，让音乐的声音和自己的声音混合在一起发送到聊天室中，让整个聊天室充满轻松欢快的气氛。
@@ -201,7 +181,7 @@ public abstract int enableInEarMonitoring(boolean enabled, int includeAudioFilte
 
 2. 使用 SDK 中带的 MediaPlayerKit 播放器播放，详情可以参考 [内置媒体播放器](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_mediaplayer.html)。
 
-## 声网 DRM 音乐
+### 声网 DRM 音乐
 
 目前声网和音集协合作提供了数十万首热门歌曲，支持直播间 BGM 版权。我们建议您使用声网 SDK 中自带的 DRM 模块来使用声网版权音乐。具体步骤如下：
 
@@ -217,7 +197,7 @@ public abstract int enableInEarMonitoring(boolean enabled, int includeAudioFilte
 
 注意：声网 DRM 版权音乐不仅能用于聊天室中的背景音乐，还可以用于 K 歌等应用。更多关于版权音乐的信息，请参考[声网歌曲内容中心](https://docs.agora.io/cn/online-ktv/ktv_song_rest?platform=All%20Platforms)。
 
-## 第三方版权音乐（例如：AME）
+### 第三方版权音乐（例如：AME）
 
 版权来源还可以来自第三方版权音乐服务商，例如 AME。一般第三方音乐服务商都会提供一个 SDK，用于音乐播放。
 
@@ -239,38 +219,3 @@ public abstract int enableInEarMonitoring(boolean enabled, int includeAudioFilte
 
 在 [onAudioVolumeIndication](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#callback_irtcengineeventhandler_onaudiovolumeindication) 回调中，包含本地和远端讲话者的音量信息，一般在 volume 值大于 20 的时候给到音量提示。
 
-## 录制 & 审核
-
-录制可以通过云录制和本地录制来实现；语音审核可以通过第三方审核语音审核平台数美或依图等。对于录制而言，使用云录制简单方便，使用本地服务端录制业务复杂但费用较云录制便宜。
-
-- 录制服务
-  - [声网云录制](https://docs.agora.io/cn/cloud-recording/product_cloud_recording?platform=All%20Platforms)
-  - [本地服务端录制](https://docs.agora.io/cn/Recording/product_recording?platform=Linux)
-- 语音审核
-  - [数美语音审核](https://docs.agora.io/cn/extension_customer/quickstart_shumei_moderation_audio?platform=All%20Platforms)
-  - [依图语音审核](https://docs.agora.io/cn/extension_customer/quickstart_yitu_moderation_audio?platform=All%20Platforms)
-
-## 防炸房
-
-在语音聊天室中，炸房问题是场景化安全问题。所谓的炸房就是非法用户通过一定技术手段侵入语聊房内部恶意发言，干扰正常的聊天秩序，该现象也常被称为“鬼麦”或“炸麦”。解决炸房问题主要从两方面入手，一方面是发现捣乱者，另一方面是发现捣乱者后所做的处理。炸房相关的业务架构如下图所示。
-
-![](https://docimg8.docs.qq.com/image/AgAACiNGFGOlBDNhfGBN-ZtFNraDxa1V.png?w=795&h=788)
-
-对于炸房的处理一般从两个方面，一方面是发现捣乱者，另一方面是处理捣乱者。
-
-### 发现捣乱者
-
-一般而言，合法进入直播间的用户客户的业务服务器是有所记录的，发现非法用户的方式有如下几种：
-
-1. 通过 SDK 的 onAudioVolumeIndication 回调，获知当前正在讲话人的 uid，然后和业务服务器记录的正常用户的 uid 做对比，判断其是否非法；
-2. 通过频道管理服务的 /dev/v1/channel/user/property/{apid}/{uid}/{channelName} API 查询频道内当前在线用户列表，和业务服务器记录的正常用户做对比，找出非法用户；
-3. 通过消息通知服务告知的上麦的用户 uid 和业务服务器记录的正常用户做对比，找出非法用户。
-
-### 处理捣乱者
-
-处理捣乱者有两种方式，一种是从源头上禁止捣乱者，另一种是让频道内的观众不接收捣乱者的语音。所以具体处理可以按照下面方式：
-
-1. 发现捣乱者后，可以调用声网的频道管理 API 做出踢人处理；
-2. 服务端通过 IM 消息告知频道内所有观众，禁止收听捣乱者的声音；
-
-以上两种策略都依赖一个非常重要的工作——合法用户状态列表维护。用户进入频道、离开频道、上麦、下麦、禁麦等状态都要维护好，一旦和发用户状态列表维护的有问题，那么当炸房发生时也不知道捣乱的人是否是非法用户或合法用户处在异常状态。炸房问题处理详细文档请参考[炸房捣乱现象的预防和应对](https://docs.agora.io/cn/live-streaming-premium-legacy/prevent_stream_bombing?platform=Android)。
