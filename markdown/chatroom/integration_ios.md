@@ -1,8 +1,6 @@
-本文通过声动互娱项目介绍如何在在语聊房中进行麦位管理。
+本文通过声动互娱项目介绍如何在在语聊房中进行麦位管理，包含上麦、下麦、控制麦位是否静音、设置是否锁麦、换麦的操作。声网即时通讯（环信）SDK 提供消息通讯服务，声网 RTC SDK 提供实时音视频流互动的能力。
 
-麦位管理涉及用户上下麦、麦位静音和状态锁定等操作。声网即时通讯（环信）SDK 提供消息通讯的能力，声网 RTC SDK 提供控制用户音视频流收发的能力。
-
-## 1. 麦位操作
+～～～～
 
 通过 ChatRoomServiceImp 类的 subscribeEvent 方法注册回调事件，监听房间内的变化。
 
@@ -10,11 +8,11 @@
 ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
 ```
 
-### 上麦
+## 1. 上麦
 
 本节介绍如何让用户上麦和在麦位上发送音频流。上麦的方式分为房主邀请或用户主动申请。
 
-#### 房主邀请用户上麦
+### 房主邀请上麦
 
 ![](https://web-cdn.agora.io/docs-files/1684231366436)
 
@@ -89,7 +87,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 注意：房主邀请多个用户上麦时，如果多个用户同时点击接受上麦邀请，那么可能会出现用户 A 上麦后又被新上麦的用户 B 踢下麦位。因此，为了避免多个用户同时主动修改麦位时造成互踢的冲突，声网推荐你在集成逻辑中控制用户上麦由房主决定，而不是用户自身决定。
 
-#### 用户申请上麦
+### 用户申请上麦
 
 ![](https://web-cdn.agora.io/docs-files/1684231374938)
 
@@ -167,7 +165,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 注意：目前声动互娱没有提供房主拒绝上麦申请的 API。
 
-#### 切换上麦用户角色
+### 切换上麦用户角色
 
 不管是房主邀请，还是用户主动申请，在用户上麦后，你需要将其角色从观众（audience）切换成主播（broadcaster），以让用户拥有发送音频流的权限。
 
@@ -175,11 +173,11 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 rtcKit.setClientRole(.broadcaster)
 ```
 
-### 2. 下麦
+## 2. 下麦
 
 本节介绍如何让在麦位上的用户下麦和在下麦后无法发送音频流。下麦的方式分为用户主动下麦和被踢下麦。
 
-#### 用户主动下麦
+### 用户主动下麦
 
 在麦位上的用户调用 ChatRoomServiceImp 类的 leaveMic 方法可以主动下麦。
 
@@ -199,7 +197,7 @@ func leaveMic(with index: Int) {
 }
 ```
 
-#### 用户被踢下麦
+### 用户被踢下麦
 
 房主调用 ChatRoomServiceImp 类的 kickoff 方法可以将麦位上的用户踢下麦。
 
@@ -214,7 +212,7 @@ func kickoff(with index: Int) {
 }
 ```
 
-#### 麦位更新回调
+### 麦位更新回调
 
 不管是用户主动下麦，还是用户被踢下麦，在用户下麦后，你需要让房内其他用户都收到麦位更新的通知。
 
@@ -224,7 +222,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 }
 ```
 
-#### 切换下麦用户角色
+### 切换下麦用户角色
 
 不管是用户主动下麦，还是用户被踢下麦，在用户下麦后，你需要将其角色从主播（broadcaster）切换成观众（audience），以让用户失去发送音频流的权限。
 
@@ -232,11 +230,11 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 rtcKit.setClientRole(.audience)
 ```
 
-### 3. 控制麦位是否静音
+## 3. 控制麦位是否静音
 
 用户上麦后，你可以控制麦位是否静音，以达到禁言的目的。将麦位静音意味着不允许该麦位上的用户发言。将麦位取消静音意味着恢复该麦位上的用户发言的权限。
 
-#### 麦位静音
+### 麦位静音
 
 你可以通过 ChatRoomServiceImp 类的 forbidMic 方法将某个麦位标记为静音。
 
@@ -251,7 +249,7 @@ func mute(with index: Int) {
 }
 ```
 
-#### 麦位取消静麦
+### 麦位取消静麦
 
 你可以通过 ChatRoomServiceImp 类的 unForbidMic 方法将某个麦位标记为取消静音。
 
@@ -273,7 +271,7 @@ func unMute(with index: Int) {
 ```
 
 
-#### 麦位更新回调
+### 麦位更新回调
 
 将麦位静音或取消静音后，你需要让房内其他用户收到麦位更新的通知。
 
@@ -283,7 +281,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 }
 ```
 
-#### 停止或恢复发送音频流
+### 停止或恢复发送音频流
 
 标记麦位静音或取消静音后，通过 RTC SDK 的 [`muteLocalAudioStream`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_mutelocalaudiostream) 方法停止发送或恢复发送麦位上用户的音频流，以达到静音或取消静音的效果。
 
@@ -295,11 +293,11 @@ public func muteLocalAudioStream(mute: Bool) -> Int32 {
 }
 ```
 
-### 4. 设置是否锁麦
+## 4. 设置是否锁麦
 
 锁麦意味着不允许任何用户占据该麦位。将某个麦位锁住后，用户无法向该位置上麦。将某个麦位解锁后，麦位恢复空闲状态，用户可以向该位置上麦。
 
-#### 1. 锁麦
+### 锁麦
 
 你可以调用 ChatRoomServiceImp 类的 lockMic 方法将某个麦位锁住。
 
@@ -315,7 +313,7 @@ func lock(with index: Int) {
 }
 ```
 
-#### 2. 取消锁麦
+### 取消锁麦
 
 你可以调用 ChatRoomServiceImp 类的 unLockMic 方法将某个麦位解锁。
 
@@ -331,7 +329,7 @@ func unLock(with index: Int) {
 }
 ```
 
-#### 麦位更新回调
+### 麦位更新回调
 
 将麦位锁住或解锁后，你需要让房内其他用户收到麦位更新的通知。
 
@@ -341,9 +339,9 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 }
 ```
 
-### 5. 换麦
+## 5. 换麦
 
-从当前麦位切换到另一个空闲麦，通过调用ChatRoomServiceImp的changeMic方法
+1. 换麦指将把上麦用户从当前麦位更换到另一个空闲麦位。你可以调用 ChatRoomServiceImp 类的 changeMic 方法更换麦位。
 
 ```swift
 func changeMic(from: Int, to: Int) {
@@ -370,36 +368,11 @@ func changeMic(from: Int, to: Int) {
 }
 ```
 
-如果换麦成功，那么此时房间内其他人会收到麦位更新通知
+2. 如果换麦成功，那么此时你需要让房内其他用户收到麦位更新的通知。
+
 
 ```swift
 func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
     self.updateMic(mics, fromId: fromId)
-}
-```
-
-## 2. 相关RTC处理
-
-### 上麦
-
-需要把用户角色改为主播，发送音频流
-
-```swift
-rtcKit.setClientRole(.broadcaster)
-```
-
-### 下麦
-
-需要把角色切换为观众，停止发送音频流
-
-```swift
-rtcKit.setClientRole(.audience)
-```
-
-### 静音/取消静音
-
-```swift
-public func muteLocalAudioStream(mute: Bool) -> Int32 {
-    return rtcKit.muteLocalAudioStream(mute)
 }
 ```
