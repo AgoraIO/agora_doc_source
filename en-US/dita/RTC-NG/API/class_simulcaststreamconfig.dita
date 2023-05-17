@@ -30,56 +30,40 @@
  @property (assign, nonatomic) CGSize dimensions;
  @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct SimulcastStreamConfig {
+
   VideoDimensions dimensions;
-  int bitrate;
+
+  int kBitrate;
+
   int framerate;
-  SimulcastStreamConfig() : dimensions(160, 120), bitrate(65), framerate(5) {}
+  SimulcastStreamConfig() : dimensions(160, 120), kBitrate(65), framerate(5) {}
   bool operator==(const SimulcastStreamConfig&amp; rhs) const {
-    return dimensions == rhs.dimensions &amp;&amp; bitrate == rhs.bitrate &amp;&amp; framerate == rhs.framerate;
+    return dimensions == rhs.dimensions &amp;&amp; kBitrate == rhs.kBitrate &amp;&amp; framerate == rhs.framerate;
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
-  
   dimensions?: VideoDimensions;
-  
-  bitrate?: number;
-  
+  kBitrate?: number;
   framerate?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class SimulcastStreamConfig
     {
-        public SimulcastStreamConfig()
-        {
-            dimensions = new VideoDimensions(160, 120);
-            bitrate = 65;
-            framerate = 5;
-        }
-
-        public SimulcastStreamConfig(VideoDimensions dimensions, int bitrate, int framerate)
-        {
-            this.dimensions = dimensions;
-            this.bitrate = bitrate;
-            this.framerate = framerate;
-        }
-        public VideoDimensions dimensions { set; get; }
-        public int bitrate { set; get; }
-        public int framerate { set; get; }
-    }</codeblock>
+        public VideoDimensions dimensions;
+        public int kBitrate;
+        public int framerate;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class SimulcastStreamConfig {
-  
   dimensions?: VideoDimensions;
-  
-  bitrate?: number;
-  
+  kBitrate?: number;
   framerate?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
-  const SimulcastStreamConfig({this.dimensions, this.bitrate, this.framerate});
+  const SimulcastStreamConfig({this.dimensions, this.kBitrate, this.framerate});
 
   @JsonKey(name: 'dimensions')
   final VideoDimensions? dimensions;
-  @JsonKey(name: 'bitrate')
-  final int? bitrate;
+  @JsonKey(name: 'kBitrate')
+  final int? kBitrate;
   @JsonKey(name: 'framerate')
   final int? framerate;
   factory SimulcastStreamConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
