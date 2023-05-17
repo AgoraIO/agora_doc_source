@@ -760,9 +760,16 @@ public String buildAppToken(String appId, String appCertificate, int expire) {
 
 Token 即将过期或已经过期后，即时通讯 IM SDK 会分别触发 `onTokenWillExpire` 或 `onTokenExpired` 回调。你需要在 app 逻辑中添加如下操作：
 
-- 识别即将过期或已经过期的是哪类权限的 Token。
-- App 从 App Server 获取新的 AccessToken2。 
-- SDK 调用 `renewToken` 更新 AccessToken2。
+1. App 识别即将过期或已经过期的是哪类权限的 Token。
+2. App 从 App Server 获取新的 AccessToken2。 
+3. SDK 调用 `renewToken` 更新 AccessToken2。
+
+### 实现 Token 过期后自动重连
+
+Token 过期后自动重连可确保终端用户在后台运行应用时保持即时通讯服务的连接状态，重新进入应用时无需再次登录。实现该功能的流程如下：
+
+1. 你的 App Server 需生成 Token，并且提供获取 Token 的 API。
+2. 在你的 App 端实现对 Token 过期的判断。当 Token 过期时，你的 App 需通过获取 Token 的 API 获取新的 Token，重新登录声网服务器。
 
 ### Token 和 RTC 产品
 

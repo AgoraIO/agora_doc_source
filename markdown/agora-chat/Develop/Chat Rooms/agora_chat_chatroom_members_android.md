@@ -58,7 +58,7 @@ ChatClient.getInstance().chatroomManager().joinChatRoom(chatRoomId, new ValueCal
 
 聊天室所有成员均可以调用 `leaveChatRoom` 方法退出当前聊天室。成员退出聊天室时，其他成员收到 `ChatRoomChangeListener#onMemberExited` 回调。
 
-与群主无法退出群组不同，聊天室所有者可以离开聊天室，如果所有者从服务器下线则 5 分钟后自动离开聊天室。如果所有者重新进入聊天室仍是该聊天室的所有者。
+与群主无法退出群组不同，聊天室所有者可以离开聊天室，如果所有者从服务器下线则 2 分钟后自动离开聊天室。如果所有者重新进入聊天室仍是该聊天室的所有者。
 
 示例代码如下：
 
@@ -85,7 +85,7 @@ Map<String, Long> members = ChatClient.getInstance().chatroomManager().fetchChat
 ChatClient.getInstance().chatroomManager().removeChatRoomMembers(chatRoomId, members);
 ```
 
-默认情况下，退出聊天室时，SDK 会删除本地设备上的所有聊天室消息。若要在退出聊天室时保留这些消息，需将 `ChatOptions` 中的 `setDeleteMessagesAsExitChatRoom` 设置为 `false`。
+默认情况下，退出聊天室时，SDK 会删除本地设备上的所有聊天室消息。若要在退出聊天室时保留这些消息，需将 `io.agora.chat.ChatOptions#setDeleteMessagesAsExitChatRoom` 设置为 `false`。
 
 ### 获取聊天室成员列表
 
