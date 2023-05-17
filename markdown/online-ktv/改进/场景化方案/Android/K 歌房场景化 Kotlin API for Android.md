@@ -72,7 +72,7 @@ fun removeEventHandler(ktvApiEventHandler: IKTVApiEventHandler)
 ```kotlin
 fun fetchMusicCharts(
     onMusicChartResultListener: (
-        requestId: String?,
+        requestId: String?, 
         status: Int,
         list: Array<out MusicChartInfo>?
     ) -> Unit
@@ -99,6 +99,34 @@ fun fetchMusicCharts(
     - 5：音乐资源加载时出错。
     - 6：音乐资源解密时出错。
   - `list`：[`MusicChartInfo`](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/java_ng/API/class_musicchartinfo.html?platform=Android) 对象数组。
+
+### searchMusicByMusicChartId
+
+```kotlin
+fun searchMusicByMusicChartId(
+    musicChartId: Int,
+    page: Int,
+    pageSize: Int,
+    jsonOption: String,
+    onMusicCollectionResultListener: (
+        requestId: String?, 
+        status: Int,         
+        page: Int,
+        pageSize: Int,
+        total: Int,
+        list: Array<out Music>?
+    ) -> Unit
+)
+```
+
+通过歌曲榜单的 ID 获取指定榜单的歌曲资源列表。
+
+当你调用 `fetchMusicCharts` 获取歌曲榜单 ID 之后，可以通过此方法来检索对应的歌曲资源列表。此方法提供一个回调函数用于处理异步调用的结果。
+
+#### 参数
+
+- `musicChartId`：歌曲榜单 ID，可通过 `fetchMusicCharts` 获取。
+- `page`：
 
 ### loadSong
 
