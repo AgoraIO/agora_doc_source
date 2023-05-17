@@ -74,12 +74,12 @@
   framerate?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
-  const SimulcastStreamConfig({this.dimensions, this.bitrate, this.framerate});
+  const SimulcastStreamConfig({this.dimensions, this.kBitrate, this.framerate});
 
   @JsonKey(name: 'dimensions')
   final VideoDimensions? dimensions;
-  @JsonKey(name: 'bitrate')
-  final int? bitrate;
+  @JsonKey(name: 'kBitrate')
+  final int? kBitrate;
   @JsonKey(name: 'framerate')
   final int? framerate;
   factory SimulcastStreamConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -96,7 +96,8 @@
                 <pd><ph>视频尺寸。</ph><ph props="android cpp unity electron rn flutter cs">详见 <xref keyref="VideoDimensions" />。</ph><ph>默认值为 160 × 120。</ph></pd>
             </plentry>
             <plentry>
-                <pt>bitrate</pt>
+                <pt props="native electron rn unity cs">bitrate</pt>
+                <pt props="flutter">kBitrate</pt>
                 <pd>视频码率 (Kbps)。默认值为 65。</pd>
             </plentry>
             <plentry>
