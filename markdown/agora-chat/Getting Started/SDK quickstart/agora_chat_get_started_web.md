@@ -67,6 +67,7 @@
 ![](https://web-cdn.agora.io/docs-files/1681094132023)
 
 <div class="alert note">为了在该 Demo 中测试使用，需注册两个用户，即发送方和接收方，并且分别为其生成 Token。</div>
+
 ## 项目设置
 
 在本节中，我们准备了将即时通讯 IM 集成到你的 app 中所需的开发环境。
@@ -115,7 +116,9 @@ agora_quickstart
 
 将以下代码复制到 `index.html` 文件中实现客户端用户界面。
 
-<script type="module" src="/main.js"></script> 用于访问 main.js 文件。
+`<script type="module" src="/main.js"></script>` 用于访问 `main.js` 文件。
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,21 +159,23 @@ agora_quickstart
 </body>
 
 </html>
+```
 
 ### 实现发送与接收消息
 
 参考以下步骤实现发送和接收单聊消息：
 
-1. 导入即时通讯 IM SDK。将以下代码复制到 `index.js` 文件：
+1. 导入即时通讯 IM SDK。将以下代码复制到 `main.js` 文件：
 
 ```javascript
 // Javascript
 // 为了避免浏览器兼容性问题，该示例通过导入命令导入 SDK 和 vite 打包 JS 文件。
 import AC from 'agora-chat'
+```
 
 你若使用 typescript，运行以下代码：
 
-// Typescript
+```javascript
 import AC, { AgoraChat } from 'agora-chat'
 ```
 
