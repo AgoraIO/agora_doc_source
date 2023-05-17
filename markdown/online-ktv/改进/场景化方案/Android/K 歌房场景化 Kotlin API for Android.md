@@ -1,21 +1,14 @@
-本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
+本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
 
 ## 方法
 
-### initWithRtcEngine
+### initialize
 
 ```kotlin
-fun initWithRtcEngine(
-    engine: RtcEngine,
-    channelName: String,
-    musicCenter: IAgoraMusicContentCenter,
-    player: IAgoraMusicPlayer,
-    streamId: Int,
-    ktvApiEventHandler: KTVApiEventHandler
-)
+fun initialize(config: KTVApiConfig)
 ```
 
-初始化 KTV API。
+初始化 KTV API 并进行初始化配置。
 
 调用该方法可以初始化 KTV API 模块内部变量和缓存数据，并注册相应的回调监听。
 
@@ -25,12 +18,7 @@ fun initWithRtcEngine(
 
 #### 参数
 
-- `engine`: [RtcEngine](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_irtcengine) 实例。
-- `channelName`: 待加入的频道名。
-- `musicCenter`: 版权音乐内容中心实例。详见 [IAgoraMusicContentCenter](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_imusiccontentcenter)。
-- `player`: 音乐播放器实例。详见 [IAgoraMusicPlayer](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_imusicplayer)。
-- `streamId`: 数据流（Data Stream）ID。
-- `ktvApiEventHandler`: K 歌场景化 API 的事件句柄。详见[回调](#onplayerstatechanged)。
+- `config`：初始化配置，详见 [KTVApiConfig](#KTVApiConfig)。
 
 
 ### release
@@ -43,7 +31,7 @@ fun release()
 
 调用该方法可以清空 KTV API 模块内部变量和缓存数据，取消 `ktvApiEventHandler` 的事件监听，取消网络请求等。
 
-#### 用法示例
+#### 用法示例 ？为什么要加？
 
 ```kotlin
 // K 歌房 Activity 销毁时调用 ktvApiProtocol 释放，随后释放创建的实例
@@ -54,6 +42,63 @@ protected void onDestroy() {
     // 释放 mRtcEngine、iAgoraMusicContentCenter、mPlayer、streamId
 }
 ```
+
+### addEventHandler
+
+```kotlin
+fun addEventHandler(ktvApiEventHandler: IKTVApiEventHandler)
+```
+
+注册 KTV API 事件。你可以多次调用该方法注册多个事件回调。
+
+#### 参数
+
+- `ktvApiEventHandler`：KTV API 的事件句柄，详见[IKTVApiEventHandler]()。
+
+### removeEventHandler
+
+```kotlin
+fun removeEventHandler(ktvApiEventHandler: IKTVApiEventHandler)
+```
+
+取消注册 KTV API 事件。
+
+#### 参数
+
+- `ktvApiEventHandler`：KTV API 的事件句柄，详见[IKTVApiEventHandler]()。
+
+### fetchMusicCharts
+
+```kotlin
+fun fetchMusicCharts(
+    onMusicChartResultListener: (
+        requestId: String?,
+        status: Int,
+        list: Array<out MusicChartInfo>?
+    ) -> Unit
+)
+```
+
+获取歌曲榜单。
+
+该方法用于获取歌曲榜单的信息，并提供一个回调函数用于处理异步调用的结果。
+
+#### 参数
+
+- `onMusicChartResultListener`：歌曲榜单列表回调，包含以下参数：
+  - `requestId`：请求 ID。本次请求的唯一标识。
+  - `status`：请求状态。
+    - 0：请求成功。
+    - 1：一般错误，无明确归因。
+    - 2：网关异常。可能的原因有：
+      - 当前使用的 Token 已过期。请重新生成 Token。
+      - 传入的 Token 无效。请确保你使用的是 RTM Token。
+      - 网络错误。请检查你的网络。
+    - 3：权限错误或音乐资源不存在。请确保你的项目已开通声网音乐内容中心权限。
+    - 4：内部数据解析错误。
+    - 5：音乐资源加载时出错。
+    - 6：音乐资源解密时出错。
+  - `list`：[`MusicChartInfo`](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/java_ng/API/class_musicchartinfo.html?platform=Android) 对象数组。
 
 ### loadSong
 
