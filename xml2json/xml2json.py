@@ -1154,18 +1154,19 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
     data['id'] = api_id
     # save name, remove "\n"
-    data['name'] = api_name.strip("\n ")
-    # save description, remove "\n"
-    data['description'] = api_desc.rstrip("\n")
-    # save parameters, remove "\n"
+    data['name'] = api_name.rstrip("\n ").rstrip(" ")
+    # save description, remove "\n" and trailing spaces
+    data['description'] = api_desc.rstrip("\n ").rstrip(" ")
+    # save parameters, remove "\n" and trailing spaces
     data['parameters'] = [
-    {key.rstrip("\n") if isinstance(key, str) and key is not None else key:
-     value.rstrip("\n") if isinstance(value, str) and value is not None else value}
-    for param in json_array
-    for key, value in param.items()
-]
-    # save returns, remove "\n"
-    data['returns'] = return_values.strip("\n ")
+        {key.rstrip("\n ").rstrip(" ") if isinstance(key, str) and key is not None else key:
+        value.rstrip("\n ").rstrip(" ") if isinstance(value, str) and value is not None else value}
+        for param in json_array
+        for key, value in param.items()
+    ]
+    # save returns, remove "\n" and trailing spaces
+    data['returns'] = return_values.rstrip("\n ").rstrip(" ")
+
     # for the hidden apis and the resource-only apis whose names are left blank, hide them
     data['is_hide'] = True if api_id in json_hide_id_list or data['name'] == "" else False
 
