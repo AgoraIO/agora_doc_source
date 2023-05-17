@@ -1,5 +1,14 @@
 本文通过声动互娱项目介绍如何在在语聊房中进行麦位管理，包含上麦、下麦、控制麦位是否静音、设置是否锁麦、换麦的操作。声网即时通讯（环信）SDK 提供消息通讯服务，声网 RTC SDK 提供实时音视频流互动的能力。
 
+//TODO
+上麦之前应该介绍集成 RTC SDK、环信（是否需要，没有在文档里看到用到？）、引入 ChatRoomServiceProtocol 类、初始化 ChatRoomService、subscribeEvent、creteRoom、joinRoom。
+
+语聊房的礼物打赏可以后期补充。
+
+ChatRoomServiceProtocol 是场景化 API 吗？需要提供 API 文档吗，还是用源代码中的注释即可？
+
+用户不是调用 ChatRoomServiceProtocol 的方法，而是 ChatRoomServiceImp 吗？
+
 ～～～～
 
 通过 ChatRoomServiceImp 类的 subscribeEvent 方法注册回调事件，监听房间内的变化。
@@ -125,8 +134,8 @@ func cancelRequestSpeak(index: Int?) {
     }
 }
 ```
-
-3. 房间内其他所有用户都注册 onReceiveSeatRequest 回调，以获取用户申请上麦的信息更新，从而刷新上麦申请列表。
+//TODO 原始 input 是“房间内所有用户”？
+3. 房主注册 onReceiveSeatRequest 回调，以获取用户申请上麦的信息更新，从而刷新上麦申请列表。
 
 ```swift
 // 房主收到申请上麦信息
