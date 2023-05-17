@@ -37,7 +37,6 @@
    | `Privacy - Photo Library Usage Description`               | String  | 相册权限。 |
    | `Privacy - Microphone Usage Description`                  | String  | 麦克风权限。|
    | `Privacy - Camera Usage Description`                      | String  | 相机权限。|
-   | `App Transport Security Settings > Allow Arbitrary Loads` | Boolean | YES        |
 
 5. 在项目中集成 Chat UIKit。
 
