@@ -46,12 +46,12 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 ## Retrieving the chat group block list
 
-Retrieves the block list of the specified chat group.
+Retrieves the block list of the specified chat group. Users added to the block list can neither see nor receive messages in the chat group.
 
 ### HTTP request
 
 ```shell
-GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
+GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users?pageSize={N}&cursor={cursor}
 ```
 
 #### Path parameter
@@ -61,6 +61,16 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users
 | `group_id` | String | The group ID. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+| :------- | :----- | :-------- | :------- |
+| `pageSize` | Number | The number of users on the block list to retrieve per page. | Yes |
+| `cursor` | String | The position from which to start getting data. | Yes |
+
+<div class="alert info">If you pass in neither `pageSize` nor `cursor`, the server returns the top 500 users in the descending order of time when they are added to the block list. If you pass in only  `pageSize`, but not `cursor`, the server returns a maximum of 50 users in the descending order of time when they are added to the block list.</div>
+
 
 #### Request header
 
@@ -74,35 +84,40 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the usernames in the group block list.
+If the returned HTTP status code is 200, the request succeeds, and the data field in the response body contains the following parameters:
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+| Parameter | Type | Description |
+| :----- | :---- | :------------------ |
+| `data` | Array | The user IDs in the chat group block list. |
+| `count` | Number | The number of users in the chat group block list. |
+
+For other fields and descriptions, see [Public parameters](#param).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
 #### Request example
 
 ```shell
-curl -X GET -H ``'Accept: application/json'` `-H ``'Authorization: Bearer <YourAppToken>'` `'http://XXXX/XXXX/XXXX/chatgroups/66016455491585/blocks/users'
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'https://XXXX/XXXX/XXXX/chatgroups/66XXXX85/blocks/users?pageSize=2'
 ```
 
 #### Response example
 
 ```json
 {
-    "action": "get",
-    "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
-    "uri": "http://XXXX/XXXX/XXXX/chatgroups/67178793598977/blocks/users",
+    "uri": " https://XXXX/XXXX/XXXX/chatgroups/66XXXX85/users/blocks/users",
+    "timestamp": 1682064422108,
     "entities": [],
+    "cursor": "MTA5OTAwMzMwNDUzNTA2ODY1NA==",
+    "count": 2,
+    "action": "get",
     "data": [
-      "user2",
-      "user3"
+        "tst05",
+        "tst04"
     ],
-    "timestamp": 1543466293681,
-    "duration": 0,
-    "organization": "XXXX",
-    "applicationName": "XXXX",
-    "count": 2
+    "duration": 52
 }
 ```
 
@@ -147,9 +162,9 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `action` | String | The request method. |
 | `user` | String | The usernames added to the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -230,9 +245,9 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `action` | String | The request method. |
 | `user` | String | The usernames added to the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -314,9 +329,9 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `action` | String | The request method. |
 | `user` | String | The usernames removed from the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -388,9 +403,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `action` | String | The request method. |
 | `user` | String | The usernames removed from the group block list. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 

@@ -67,7 +67,7 @@ POST https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users/
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 | `friend_username` | String | The username to be added as a contact. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
@@ -101,7 +101,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/contacts",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
     "timestamp": 1542598913819,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
@@ -137,7 +137,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/user
 
 | Parameter | Type | Description | Required |
 | :-------------- | :----- | :------------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 | `friend_username` | String | The username to be removed from the contact list. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
@@ -170,7 +170,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/contacts",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/contacts",
     "timestamp": 1542599266616,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
@@ -192,7 +192,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## Retrieving the contact list
 
-This method retrieves the local user's contact list.
+This method retrieves the current user's contact list.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -206,9 +206,9 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/contacts/users
 
 | Parameter | Type | Description | Required |
 | :------------- | :----- | :----------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -228,7 +228,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | `data` | Array | The contact list data. |
 | `count` | Number | The number of contacts. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -247,7 +247,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
     "uri": "http://XXXX/XXXX/XXXX/users/user1/contacts/users",
     "timestamp": 1543819826513,
     "entities": [],
-    "count": 2
+    "count": 2,
     "action": "get",
     "data": [
         "user3",
@@ -259,7 +259,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 
 ## Adding users to the block list
 
-Adds the specified user or users to the block list. Once you add a user to the block list, you can no longer receive messages from that user. The maximum number of users in the block list for each user is 500.
+Adds the specified user or users to the block list. Once you add a user to the block list, you can no longer receive messages from that user. The maximum number of users in the block list for each user is 500. 
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -287,7 +287,7 @@ The request body is a JSON object, which contains the following fields:
 
 | Field | Type | Description | Required |
 | :-------- | :--------- | :------------------------------------------------ | :------- |
-| `usernames` | An array of usernames | The usernames to be added to the block list, such as ["user1", "user2"]. | Yes |
+| `usernames` | An array of usernames | The usernames to be added to the block list, such as ["user1", "user2"]. You can pass in a maximum of 50 user IDs each time. | Yes |
 
 ### HTTP response
 
@@ -299,7 +299,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | :--- | :---- | :----------------------------- |
 | `data` | Array | An array of usernames to add to the block list. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -308,7 +308,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 #### Request example
 
 ```shell
-curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' -d '{     "usernames": [       "user2"     ]   }' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users'
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{ "usernames": [ "user2" ] }' 'http://XXXX/XXXX/XXXX/users/user1/blocks/users'
 ```
 
 #### Response example
@@ -345,7 +345,7 @@ GET https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users
 
 | Parameter | Type | Description | Required |
 | --- | --- | --- | --- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 
@@ -367,7 +367,7 @@ If the returned HTTP status code is 200, the request succeeds, and the response 
 | :--- | :---- | :------------------------- |
 | `data` | Array | An array of usernames in the block list. |
 
-For other fields and descriptions, see [Common parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible causes.
 
@@ -397,7 +397,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 
 ## Removing a user from the block list
 
-This method removes the specified user from the block list. After removing a user from the block list, that user resumes their previous relationship with the local user, as a contact or a regular chat user, and can send and receive messages with the local user.
+Removes the specified user from the block list. After removing a user from the block list, that user resumes their previous relationship with the current user, as one of the following:
+- A contact who can send and receive messages with the current user.
+- A user who has not been added as contact.
 
 For each App Key, the call frequency limit of this method is 50 per second.
 
@@ -411,7 +413,7 @@ DELETE https://{host}/{org_name}/{app_name}/users/{owner_username}/blocks/users/
 
 | Parameter | Type | Description | Required |
 | :--------------- | :----- | :--------------------- | :------- |
-| `owner_username` | String | The username of the local user. | Yes |
+| `owner_username` | String | The username of the current user. | Yes |
 | `blocked_username` | String | The username to be removed from the block list. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
@@ -444,7 +446,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 ```json
 {
     "path": "/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/blocks",
-    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-eba5-11e8-925f-6fa0510823ba/blocks",
+    "uri": "https://XXXX/XXXX/XXXX/users/4759aa70-XXXX-XXXX-925f-6fa0510823ba/blocks",
     "timestamp": 1542600712985,
     "organization": "XXXX",
     "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",

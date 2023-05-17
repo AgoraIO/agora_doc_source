@@ -76,9 +76,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | :----------- | :----- | :----------- |
 | `announcement` | String | The content of the group announcement. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -143,9 +143,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `id` | String | The group ID. |
 | `result` | Boolean | Whether the group announce is successfully modified.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -198,6 +198,13 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/share_files?pagen
 
 For the descriptions of other path parameters, see [Common Parameters](#param).
 
+#### Query parameter
+
+| Parameter | Type   | Description   | Required |
+| :------- | :----- | :------------------------ | :------- |
+| `pagesize`  | String | The number of shared files to retrieve per page. The value range is [1,1000] and the default value is `1000`.    | No  |
+| `pagenum` | String | The current page number. The query starts from the first page by default.  | No  |
+
 #### Request header
 
 | Parameter | Type | Description | Required |
@@ -220,9 +227,9 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `file_size` | Number | The size of the chat group shared file, in bytes. |
 | `created` | Long | The Unix timestamp for uploading the group shared file. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -314,9 +321,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `file_id` | String | The ID of the group's shared file. This field is required if you want to download or remove a group's shared files. |
 | `file_size` | Number | The size of the group's shared file, in the unit of bytes. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -391,9 +398,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `file_id` | String | The ID of the chat group shared file. This field is required if you want to download or remove a chat group shared file. |
 | `file_size` | Number | The size of the group's shared file, in bytes. |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 
@@ -464,9 +471,9 @@ If the returned HTTP status code is 200, the request succeeds, and the `data` fi
 | `file_id` | String | The ID of the chat group shared file. This field is required if you want to download or remove a shared files. |
 | `result` | Boolean | The result of deleting the file: <li>true: Success.</li><li>false: Failure.</li> |
 
-For other fields and descriptions, see [Public parameter](#param).
+For other fields and descriptions, see [Common parameters](#param).
 
-If the returned HTTP status code is not 200, the request fails. You can refer to [Status code ](#code) for possible causes.
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
 ### Example
 

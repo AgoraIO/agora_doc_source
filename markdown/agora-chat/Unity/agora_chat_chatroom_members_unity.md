@@ -18,7 +18,7 @@
 
 - 完成 SDK 初始化，详见 [快速开始](./agora_chat_get_started_unity)。
 - 了解 [使用限制](./agora_chat_limitation)。
-- 了解聊天室和聊天室成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 了解套餐包的聊天室和聊天室成员相关数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 
 ## 实现方法
 

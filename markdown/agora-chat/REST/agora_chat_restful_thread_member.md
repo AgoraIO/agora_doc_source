@@ -1,4 +1,6 @@
-本页展示了如何通过调用即时通讯 IM RESTful API 来管理子区成员。在调用以下方法之前，请了解即时通讯 IM 的 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
+本页展示了如何通过调用即时通讯 IM RESTful API 实现子区成员管理，包括获取子区成员列表以及批量加入和踢出子区成员。
+
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -6,31 +8,29 @@
 
 ### 请求参数
 
-| 参数       | 类型   | 描述                                                                                                                                                                                                                | 是否必填 |
-| :--------- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。           | 是       |
+| 参数       | 类型   | 描述              | 是否必填 |
+| :--------- | :----- | :---------------------------------------------------- | :------- |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。      | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。           | 是       |
 
 ### 响应参数
 
 | 参数              | 类型   | 描述                                                                |
 | :---------------- | :----- | :------------------------------------------------------------------ |
 | `action`          | String | HTTP 请求方法。                                                     |
-| `organization`    | String | 即时通讯 IM 服务分配给每个公司（组织）的唯一标识符。这与`org_name`. |
-| `applicationName` | String | Agora 聊天服务分配给每个应用的唯一标识符。这与`app_name`.           |
-| `data`            | String | 响应的详细信息。                                                    |
-| `duration`        | String | 从发送 HTTP 请求到收到响应的持续时间（毫秒）。                      |
-| `timestamp`       | String | HTTP 响应的 Unix 时间戳 (ms)。                                      |
-| `uri`             | String | 请求 URI，它是请求 URL 的一部分。无需关注。                         |
-| `entities`        | String | 请求实体。                                                          |
-| `properties`      | String | 请求属性。                                                          |
+| `organization`    | String | 即时通讯服务为每个企业（组织）分配的唯一标识，与请求参数 `org_name` 相同。 |
+| `applicationName` | String | 即时通讯服务为每个 app 分配的唯一标识，与请求参数 `app_name` 相同。           |
+| `duration`        | Number | 从发送 HTTP 请求到收到响应的持续时间，单位为毫秒。                      |
+| `timestamp`       | Number | HTTP 响应的 Unix 时间戳，单位为毫秒。                               |
+| `uri`             | String | 请求 URI，即请求 URL 的一部分。无需关注。                        |
+| `properties`      | JSON | 响应属性。                                                          |
 
-## 认证方式 <a name="auth"></a>
+## 认证方式
 
 ~458499a0-7908-11ec-bcb4-b56a01c83d2e~
 
-## 获取子区成员
+## 获取子区成员列表
 
 获取指定子区中的所有成员。
 
@@ -44,37 +44,48 @@ GET https://{host}/{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&curs
 
 #### 路径参数
 
-| 参数        | 类型   | 描述                                                     | 是否必填 |
-| :---------- | :----- | :------------------------------------------------------- | :------- |
-| `thread_id` | String | 子区的 ID。                                              | 是       |
-| `limit`     | String | 每页获取的最大子区数。范围是 [1, 50]。默认值为 50。      | 否       |
-| `cursor`    | String | 开始获取子区的页面。在第一次查询时传入`null`或空字符串。 | 否       |
+| 参数        | 类型   | 描述                 | 是否必填 |
+| :---------- | :----- | :--------------------- | :------- |
+| `thread_id` | String | 子区的 ID。          | 是       |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
+
+#### 查询参数
+
+| 参数        | 类型   | 描述                 | 是否必填 |
+| :---------- | :----- | :--------------------- | :------- |
+| `limit`     | Number | 每次期望返回的子区成员数量，取值范围为 [1,50]。      | 否       |
+| `cursor`    | String | 数据查询的起始位置。 | 否       |
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Authorization` | String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 data 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
 | 参数           | 类型 | 描述                 |
 | :------------- | :--- | :------------------- |
-| `affiliations` | 列表 | 子区中成员的用户 ID。 |
+| `data` | JSON | 获取的子区中的成员信息。 |
+| `data.affiliations` | Array | 子区中成员的用户 ID。 |
+| `properties.cursor` | String | 查询游标，指定下次查询的起始位置。 |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
 #### 请求示例
 
-```json
+```shell
+# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+
 curl -X GET http://XXXX.com/XXXX/testapp/thread/177916702949377/users -H 'Authorization: Bearer <YourAppToken>'
 ```
 
@@ -97,7 +108,7 @@ curl -X GET http://XXXX.com/XXXX/testapp/thread/177916702949377/users -H 'Author
 }
 ```
 
-## 将多个用户添加到子区
+## 用户批量加入子区
 
 将多个用户添加到指定子区。每次调用最多可以将 10 个用户添加到一个子区。
 
@@ -115,31 +126,42 @@ POST https://{host}/{org_name}/{app_name}/thread/{thread_id}/users
 | :---------- | :----- | :---------- | :------- |
 | `thread_id` | String | 子区的 ID。 | 是       |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 是否必需 | 描述      |
+| :-------------- | :----- | :---------------- | :------- |
+| `Authorization` | String | 是    | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。|
 
 #### 请求 body
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
+| `usernames` | List | 批量加入子区的用户 ID 列表。每次最多可传 10 个用户 ID。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
+如果返回的 HTTP 状态码为 `200`，表示请求成功。响应包体中包含以下字段：
 
-其他字段说明详见[公共参数](#pubparam)。
+| 字段   |  类型     | 描述      |
+|:------|:--------|:--------|
+| `data` | JSON | 群成员加入子区的结果。 |
+| `data.status` | String | 群成员是否成功加入子区。`ok` 表示成功添加。否则，你可以根据返回的原因进行故障排除。 |
+
+其他参数及描述详见[公共参数](#pubparam)。
+
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful) 了解可能的原因。
 
 ### 示例
 
 #### 请求示例
 
-```json
+```shell
+# 将 <YourAppToken> 替换为你在服务端生成的 App Token
+
 curl -X POST http://XXXX.com/XXXX/testapp/thread/177916702949377/users -d '{
 "usernames": [
 "test2",
@@ -164,9 +186,9 @@ curl -X POST http://XXXX.com/XXXX/testapp/thread/177916702949377/users -d '{
 }
 ```
 
-## 删除多个子区成员
+## 批量删除子区成员
 
-从指定子区中删除多个用户。每次调用时，最多可以从一个子区中删除 10 个用户。
+从指定子区中删除多个用户。每次最多可从一个子区中删除 10 个用户。
 
 对于每个 App Key，此方法的调用频率限制为每秒 100 次。
 
@@ -182,38 +204,41 @@ DELETE https://{host}/{org_name}/{app_name}/threads/{thread_id}/users
 | :---------- | :----- | :---------- | :------- |
 | `thread_id` | String | 子区的 ID。 | 是       |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
-有关请求 header 参数的描述，请参阅 [认证方式](#auth)。
+| 参数    | 类型   | 描述      | 是否必填 |
+| :-------------- | :----- | :---------------- | :------- |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是    |
 
 #### 请求 body
 
 | 参数        | 类型 | 描述                 | 是否必填 |
 | :---------- | :--- | :------------------- | :------- |
-| `usernames` | 列表 | 子区中成员的用户 ID。 | 是       |
+| `usernames` | List | 批量移除的子区成员的用户 ID 列表。每次最多可踢出 10 个子区成员。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 `200`，则请求成功，响应 body 中的 data 字段包含以下参数：
+如果返回的 HTTP 状态码为 `200`，则请求成功，响应包体中包含以下字段：
 
-| 参数     | 类型 | 描述                                                                 |
-| :------- | :--- | :------------------------------------------------------------------- |
-| `result` | 布尔 | 指定的子区成员是否从子区中移除：<li>`true`： 是的。<li>`false`：否。 |
-| `user`   | 列表 | 子区中成员的用户 ID。                                                 |
+| 参数     | 类型 | 描述              |
+| :------- | :--- | :------------------- |
+| `entities` | JSON Array | 子区成员移出结果。|
+| `entities.result` | Boolean | 指定的子区成员是否被成功移除：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `entities.user`   | String | 被移出子区的成员的用户 ID。     |
 
-其他字段说明详见 [公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考 [响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
+如果返回的 HTTP 状态码不是 `200`，则请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
 #### 请求示例
 
-```json
+```shell
 curl -X DELETE http://XXXX.com/XXXX/testapp/thread/177916702949377/users -H 'Authorization: Bearer <YourAppToken>'
 ```
 
@@ -240,8 +265,6 @@ curl -X DELETE http://XXXX.com/XXXX/testapp/thread/177916702949377/users -H 'Aut
 }
 ```
 
-<a name="code"></code>
-
 ## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。

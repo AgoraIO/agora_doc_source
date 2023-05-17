@@ -58,7 +58,7 @@ The following code sample shows how to create a chat group:
 ```c#
 GroupOptions option = new GroupOptions(GroupStyle.PrivateMemberCanInvite);
 option.MaxCount = 100;
-SDKClient.Instance.GroupManager.CreateGroup(groupname, option, desc, members, handle:new ValueCallBack<Group>(
+SDKClient.Instance.GroupManager.CreateGroup(groupname, option, desc, members, callback:new ValueCallBack<Group>(
   onSuccess: (group) => {
   },
   onError:(code, error) => {
@@ -106,7 +106,7 @@ The following code sample shows how to join a chat group:
 
 ```c#
 // Retrieve the list of public groups from the server
-SDKClient.Instance.GroupManager.FetchPublicGroupsFromServer(handle: new ValueCallBack<CursorResult<GroupInfo>>(
+SDKClient.Instance.GroupManager.FetchPublicGroupsFromServer(callback: new ValueCallBack<CursorResult<GroupInfo>>(
             // `result` is of CursorResult<GroupInfo> type
             onSuccess: (result) => {
             },
@@ -172,7 +172,7 @@ All chat group members can call `GetGroupMemberListFromServer` to retrieve the c
 The following code sample shows how to retrieve the chat group member list:
 
 ```c#
-SDKClient.Instance.GroupManager.GetGroupMemberListFromServer(groupId, pageSize, cursor, handle: new ValueCallBack<CursorResult<string>>(
+SDKClient.Instance.GroupManager.GetGroupMemberListFromServer(groupId, pageSize, cursor, callback: new ValueCallBack<CursorResult<string>>(
   onSuccess: (result) => 
   {
   },
@@ -187,7 +187,7 @@ SDKClient.Instance.GroupManager.GetGroupMemberListFromServer(groupId, pageSize, 
 Users can call `FetchJoinedGroupsFromServer` to retrieve the joined chat group list from the server, as shown in the following code sample:
 
 ```c#
-SDKClient.Instance.GroupManager.FetchJoinedGroupsFromServer(handle: new ValueCallBack<List<Group>>(
+SDKClient.Instance.GroupManager.FetchJoinedGroupsFromServer(callback: new ValueCallBack<List<Group>>(
   onSuccess: (groupList) => {
   },
   onError: (code, desc) =>
@@ -205,7 +205,7 @@ List<Group> groupList = SDKClient.Instance.GroupManager.GetJoinedGroups();
 Users can also call `FetchPublicGroupsFromServer` to retrieve public chat group list from the server with pagination, as shown in the following code sample:
 
 ```c#
-SDKClient.Instance.GroupManager.FetchPublicGroupsFromServer(pageSize, cursor, handle: new ValueCallBack<CursorResult<GroupInfo>>(
+SDKClient.Instance.GroupManager.FetchPublicGroupsFromServer(pageSize, cursor, callback: new ValueCallBack<CursorResult<GroupInfo>>(
   onSuccess: (result) => 
   {
   },

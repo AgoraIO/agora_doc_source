@@ -1,9 +1,10 @@
-如果你同时集成了 Agora Chat SDK 和 Agora RTC SDK，Agora 建议你将 Agora RTC SDK 的 Token 鉴权机制从 [AccessToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken.h) 升级到 [AccessToken2](https://github.com/AgoraIO/Tools/blob/release/accesstoken2/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken2.h)。
-本文以 Java 服务端和 Web 客户端为例，通过具体步骤引导你搭建并升级 Agora RTC SDK 的 Token 鉴权机制。
+如果你同时集成了即时通讯 IM SDK 和声网 RTC SDK，声网建议你将声网 RTC SDK 的 Token 鉴权机制从 [AccessToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken.h) 升级到 [AccessToken2](https://github.com/AgoraIO/Tools/blob/release/accesstoken2/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken2.h)。
+本文以 Java 服务端和 Web 客户端为例，通过具体步骤引导你搭建并升级声网 RTC SDK 的 Token 鉴权机制。
 
 ## 前提条件
-- 你已经根据[使用 User Token 鉴权](https://docs-preprod.agora.io/cn/null/generate_user_tokens%20?platform=All%20Platforms)文档完成了基于 Spring 框架的 Token 服务端和基于 Web 的 Agora Chat 客户端的搭建。
-- 为 Agora Chat 的 Token 服务端添加基于 [AccessToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken.h) 的 RTC Token 服务。在 AgoraChatTokenController.java 文件中，增加 `import com.agora.chat.token.io.agora.media.RtcTokenBuilder;` 引用并添加以下方法：
+
+- 你已经根据[使用 User Token 鉴权](https://docs-preprod.agora.io/cn/null/generate_user_tokens%20?platform=All%20Platforms)文档完成了基于 Spring 框架的 Token 服务端和基于 Web 的即时通讯 IM 客户端的搭建。
+- 为即时通讯 IM 的 Token 服务端添加基于 [AccessToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/AccessToken.h) 的 RTC Token 服务。在 AgoraChatTokenController.java 文件中，增加 `import com.agora.chat.token.io.agora.media.RtcTokenBuilder;` 引用并添加以下方法：
 ```java
 // 生成 RTC AccessToken
 @GetMapping("/rtc/{rtcChannelName}/{rtcUserId}/{role}/token")
@@ -159,6 +160,7 @@ public String getRtcToken(@PathVariable String rtcChannelName, @PathVariable int
 ### 在 Token 服务端将鉴权机制升级到 AccessToken2
 
 该小节引导你将 Token 服务端升级到 AccessToken2。
+
 1. 更新 import 语句，导入 `RtcTokenBuilder2`。
 ```java
 import com.agora.chat.token.io.agora.media.RtcTokenBuilder2;
@@ -203,7 +205,8 @@ import com.agora.chat.token.io.agora.media.RtcTokenBuilder2;
 本节介绍 SDK 版本支持、AccessToken2 生成器代码库等相关文档。
 
 ### SDK 版本支持
-Agora RTC SDK 对于 AccessToken2 的支持情况如下：
+
+声网RTC SDK 对于 AccessToken2 的支持情况如下：
 
 | SDK 类型             | 支持 AccessToken2 鉴权的首个版本 |
 | :------------------- | :------------------------------- |
@@ -217,10 +220,11 @@ Agora RTC SDK 对于 AccessToken2 的支持情况如下：
 
 使用 AccessToken2 的 SDK 版本可以和使用 AccessToken 的 SDK 版本互通。同时，支持 AccessToken2 的版本也支持 AccessToken。
 
-如果你还使用了云端录制、推流等 RTC 配套产品或服务，请在升级到 AccessToken2 之前[提交工单](https://agora-ticket.agora.io/)联系技术支持。
+如果你还使用了云端录制、推流等 RTC 配套产品或服务，请在升级到 AccessToken2 之前[联系技术支持](https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms)。
 
 ### Token 生成器代码
-Agora 在 GitHub 上提供一个开源的[ AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) 仓库，支持使用 C++、Java、Go 等语言在你自己的服务器上生成 AccessToken2。
+
+声网在 GitHub 上提供一个开源的 [AgoraDynamicKey](https://github.com/AgoraIO/Tools/tree/master/DynamicKey/AgoraDynamicKey) 仓库，支持使用 C++、Java、Go 等语言在你自己的服务器上生成 AccessToken2。
 
 
 | 语言    | 算法        | 核心方法                                                     | 示例代码                                                     |
@@ -234,7 +238,8 @@ Agora 在 GitHub 上提供一个开源的[ AgoraDynamicKey](https://github.com/A
 | Python3 | HMAC-SHA256 | [buildTokenWithUid](https://github.com/AgoraIO/Tools/blob/release/accesstoken2/DynamicKey/AgoraDynamicKey/python3/src/RtcTokenBuilder2.py) | [RtcTokenBuilder2Sample.py](https://github.com/AgoraIO/Tools/blob/release/accesstoken2/DynamicKey/AgoraDynamicKey/python3/sample/RtcTokenBuilder2Sample.py) |
 
 ### API 参考
-本节介绍生成 AccessToken2 的 API 参数和描述。 以 Java 为例：
+
+本节介绍生成 AccessToken2 的 API 参数和描述。以 Java 为例：
 
 ```java
 public String buildTokenWithUid(String appId, String appCertificate, String channelName, int uid, Role role, int expire) 
@@ -242,7 +247,7 @@ public String buildTokenWithUid(String appId, String appCertificate, String chan
 
 | 参数             | 描述                                                         |
 | :--------------- | :----------------------------------------------------------- |
-| `appId`          | 你在 Agora 控制台创建项目时生成的 App ID。                   |
+| `appId`          | 你在声网控制台创建项目时生成的 App ID。                   |
 | `appCertificate` | 你的项目的 App 证书。                                        |
 | `channelName`    | 频道名称，长度在 64 个字节以内。以下为支持的字符集范围：26 个小写英文字母 a-z；26 个大写英文字母 A-Z；10 个数字 0-9；空格标点符号和其他符号, 包括: "!", "#", "$", "%", "&", "(", ")", "+", "-", ":", ";", "<", "=", ".", ">", "?", "@", "[", "]", "^", "_", " {", "}", "\|", "~", ",". |
 | `uid`            | 待鉴权用户的用户 ID 32 位无符号整数，范围为 1 到 (2³² - 1)， 并保证唯一性。 如不需对用户 ID 进行鉴权，即客户端使用任何 `uid` 都可加入频道，请把 `uid` 设为 0。 |
@@ -251,7 +256,7 @@ public String buildTokenWithUid(String appId, String appCertificate, String chan
 
 ### 精细权限设置
 
-为方便你对频道中的用户的发流权限进行更精细的控制，Agora 还提供一个同名的重载方法。支持你对用户分别设置加入频道、发布音频流、发布视频流及发布数据流的权限进行分别设置。以 Java 为例：
+为方便你对频道中的用户的发流权限进行更精细的控制，声网还提供一个同名的重载方法。支持你对用户分别设置加入频道、发布音频流、发布视频流及发布数据流的权限进行分别设置。以 Java 为例：
 
 ```java
 public String buildTokenWithUid(String appId, String appCertificate, String channelName, int uid, int tokenExpire, int joinChannelPrivilegeExpire, int pubAudioPrivilegeExpire, int pubVideoPrivilegeExpire, int pubDataStreamPrivilegeExpire) 
@@ -281,9 +286,9 @@ public String buildTokenWithUid(String appId, String appCertificate, String chan
 
 ### 开通连麦鉴权
 
-请参考以下步骤在 Agora 控制台开启连麦鉴权服务：
+请参考以下步骤在声网控制台开启连麦鉴权服务：
 
-1. 登录 Agora 控制台，在**项目列表**区域选择你想要开启的项目，点击编辑按钮，进入编辑项目页面。
+1. 登录声网控制台，在**项目列表**区域选择你想要开启的项目，点击编辑按钮，进入编辑项目页面。
 2. 在项目详情页，下滑到功能区域，点击激活**连麦鉴权**。
 3. 按照屏幕提示，了解开通该功能的主要事项，勾选后点击 **Enable**。
 

@@ -1,6 +1,6 @@
 The Agora Chat SDK stores historical messages on the chat server. When a chat user logs in from a different device, you can retrieve the historical messages from the server, so that the user can also browse these messages on the new device.
 
-This page introduces how to use the Agora Chat SDK to retrieve messages from the server.
+This page introduces how to use the Agora Chat SDK to retrieve and delete messages from the server.
 
 ## Understand the tech
 
@@ -8,6 +8,8 @@ The Agora Chat SDK uses `IAgoraChatManager` to retrieve historical messages from
 
 - `getConversationsFromServer`: Retrieves a list of conversations stored on the server.
 - `asyncFetchHistoryMessagesFromServer`: Retrieves the historical messages in the specified conversation from the server.
+- `removeMessagesFromServerWithTimeStamp`/`removeMessagesFromServerMessageIds`: Deletes historical messages from the server unidirectionally.
+- `deleteServerConversation`: Deletes conversations and their historical messages from the server.
 
 ## Prerequisites
 
@@ -20,21 +22,19 @@ Before proceeding, ensure that you meet the following requirements:
 
 This section shows how to implement retrieving conversations and messages.
 
-### Retrieve a list of conversations from the server
+## Retrieve a list of conversations from the server
 
-Call `getConversationsFromServer` to retrieve all the conversations from the server. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `getAllConversations` to retrieve conversations on the local device.
+Call `getConversationsFromServerByPage` to retrieve conversations from the server with pagination. Each retrieved conversation contains one last historical message. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `getAllConversations` to retrieve conversations on the local device.
 
 ```objective-c
-[[AgoraChatClient sharedClient].chatManager getConversationsFromServer:^(NSArray *aCoversations, AgoraChatError *aError) {
-   if (!aError) {
-      for (AgoraConversation *conversation in aCoversations) {
-        // Parse the conversation 
-      }
-   }
+// pageNum: The current page number, starting from 1.
+// pageSize: The number of conversations to get per page. The value range is [1,20].
+[AgoraChatClient.sharedClient.chatManager getConversationsFromServerByPage:pageNum pageSize:pageSize completion:^(NSArray<AgoraChatConversation *> * _Nullable aConversations, AgoraChatError * _Nullable aError) {
+            
 }];
 ```
 
-By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact support@agora.io.
+For users that do not support `getConversationsFromServerByPage`, call `getConversationsFromServer` method to retrieve the conversations from the server, the SDK, by default, retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact [support@agora.io](mailto:support@agora.io).
 
 ### Retrieve historical messages of the specified conversation
 
@@ -49,6 +49,33 @@ To ensure data reliability, we recommend retrieving less than 50 historical mess
         [conversation loadMessagesStartFromId:@"startMsgId" count:10 searchDirection:AgoraChatMessageSearchDirectionUp completion:nil];
     }];
 ```
+
+### Delete Historical Messages from the Server Unidirectionally
+
+Call `removeMessagesFromServerWithTimeStamp` or `removeMessagesFromServerMessageIds` to delete historical messages one way from the server. You can remove a maximum of 50 messages from the server each time. Once the messages are deleted, you can no longer retrieve them from the server. Other chat users can still get the messages from the server.
+
+```objective-c
+// Delete messages by timestamp
+AgoraChatConversation* conversation = [AgoraChatClient.sharedClient.chatManager getConversationWithConvId:@"conversationId"];
+    [conversation removeMessagesFromServerWithTimeStamp:timeToRemove completion:^(AgoraChatError * _Nullable aError) {
+            
+    }];
+
+// Delete messages by message ID
+ [conversation removeMessagesFromServerMessageIds:@[@"msgId1",@"msgId2"] completion:^(AgoraChatError * _Nullable aError) {
+            
+    }];
+```
+
+### Delete Conversations and Related Messages from the Server
+
+Call `deleteServerConversation` to delete conversations and their historical messages from the server. After the conversations are deleted from the server, you and other users can no longer get them from the server. If the historical messages are deleted with the conversations, all users can no longer get the messages from the server.
+
+```objective-c
+[AgoraChatClient.sharedClient.chatManager deleteServerConversation:@"conversationId1" conversationType:AgoraChatConversationTypeChat isDeleteServerMessages:YES completion:^(NSString *aConversationId, AgoraChatError *aError) {
+        
+    }];
+```    
 
 ## Next steps
 

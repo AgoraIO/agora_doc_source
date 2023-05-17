@@ -2,7 +2,7 @@
 
 本文介绍如何通过 Agora Chat SDK 管理用户属性，包括设置、更新、获取用户属性。
 
-<div class="alert note"> 为保证用户信息安全，Agora Chat 仅支持用户本人或 app 管理员（使用 app token 鉴权）管理用户属性。</div>
+<div class="alert note"> 为保证用户信息安全，Agora Chat 仅支持用户本人或 app 管理员（使用 App 权限 token 鉴权）管理用户属性。</div>
 
 ## 技术原理
 

@@ -1,6 +1,6 @@
-聊天群白名单列表是指在群主或管理员使用 [全员禁言](./agora_chat_restful_group_mute?platform=RESTful#muting-all-chat-group-members) 方法将所有群成员禁言后，可以发送群消息的聊天室成员列表。即时通讯提供了一套完整的允许列表管理方法，包括将用户添加到白名单列表中、将其从其中删除，以及查询白名单列表中的成员。
+群组白名单列表指在群主或管理员使用[群组全员禁言](./agora_chat_restful_group_mute?platform=RESTful#禁言全体群成员)方法将所有群成员禁言后，仍可发送群消息的群成员列表。即时通讯 IM 提供多个接口实现群组白名单管理，包括查看群组白名单中的用户以及将用户添加至或移除白名单等。
 
-本页面展示了如何使即时通讯 RESTful API 管理群组白名单列表。在调用以下方法之前，请确保了解 [使用限制](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side)。
+调用本文中的 API 前，请先参考[使用限制](./agora_chat_limitation?platform=RESTful#服务端接口调用频率限制)了解即时通讯 RESTful API 的调用频率限制。
 
 <a name="pubparam"></a>
 
@@ -12,29 +12,23 @@
 
 | 参数       | 类型   | 描述                                                         | 是否必填 |
 | :--------- | :--- | :----------------------------------------------------------- | :----- |
-| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过 Agora 控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
-| `username` | String | 用户 ID。用户的唯一登录账号。长度在 64 个字符内，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul>注意：<ul><li>该参数不区分大小写，因此 `Aa` 和 `aa` 为相同用户 ID。</li><li>请确保同一个 app 下，`username` 唯一。</li></ul> | 是       |
+| `host`     | String | 即时通讯服务分配的 RESTful API 访问域名。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `org_name` | String | 即时通讯服务分配给每个企业（组织）的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `app_name` | String | 即时通讯服务分配给每个 app 的唯一标识。你可以通过声网控制台获取该字段，详见[获取即时通讯项目信息](./enable_agora_chat?platform=RESTful#获取即时通讯项目信息)。 | 是       |
+| `username` | String | 用户 ID。用户的唯一登录账号。 | 是       |
 
 ### 响应参数
 
 | 参数                 | 类型    | 描述                                                         |
 | :------------------- | :------ | :----------------------------------------------------------- |
 | `action`             | String  | 请求方式。                                                   |
-| `organization`       | String  | 组织 ID，等同于 org_name，即时通讯服务分配给每个企业（组织）的唯一标识。 |
+| `organization`       | String  | 组织 ID，即时通讯服务分配给每个企业（组织）的唯一标识，与请求参数 `org_name` 相同。 |
 | `application`        | String  | 系统内为 app 生成的唯一内部标识，无需关注。                  |
-| `applicationName`    | String  | App ID，等同于 app_name，即时通讯服务分配给每个 app 的唯一标识。 |
+| `applicationName`    | String  | App ID，即时通讯服务分配给每个 app 的唯一标识，与请求参数 `app_name` 相同。 |
 | `uri`                | String  | 请求 URL。                                                   |
-| `path`               | String  | 请求路径，属于请求 URL 的一部分，无需关注。                  |
 | `entities`           | JSON    | 返回实体信息。                                               |
-| `data`               | Array   | 实际请求到的数据。                                           |
-| `created`       | Long     | 群组创建时间，Unix 时间戳，单位为毫秒。                      |
-| `username`    | String  | 用户 ID。                                                     |
-| `groupname`     | String    | 群组名。                                                     |
-| `nickname`          | String | 用户昵称。                                                   |
-| `timestamp`          | Long  | 响应的 Unix 时间戳（毫秒）。                                 |
-| `duration`           | Number  | 从发送请求到响应的时长（毫秒）。                             |
+| `timestamp`          | Number  | 响应的 Unix 时间戳，单位为毫秒。                                 |
+| `duration`           | Number  | 从发送请求到响应的时长，单位为毫秒。                             |
 
 ## 认证方式
 
@@ -42,11 +36,11 @@
 
 ## 查询群组白名单
 
-查询一个群组白名单中的用户列表。
+查询群组白名单中的用户列表。
 
 ### HTTP 请求
 
-```shell
+```http
 GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 ```
 
@@ -56,22 +50,28 @@ GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 | :------- | :----- | :-------- | :------- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`   | String   |内容类型。请填 `application/json` | 是  |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`   | String   |内容类型。填入 `application/json`。 | 是  |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段中就包含群组白名单用户的 ID。其他参数详见[公共参数](#pubparam)。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+| 参数                 | 类型    | 描述                                                         |
+| :------------------- | :------ | :----------------------------------------------------------- |
+| `data`             | Array  | 群组白名单中的成员信息。                   |
+| `data.username`             | String  | 群组白名单中的成员的用户 ID。           |
+| `count`             | Number  | 群组白名单中的成员数量。       |
+
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -93,7 +93,7 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
     "entities": [],
     "data": [
         "username1",
-        "username1",
+        "username2",
         "username3",
         "username4",
         "username5"
@@ -106,9 +106,9 @@ curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToke
 }
 ```
 
-## 添加单个成员至群组白名单列表
+## 添加单个成员至群组白名单
 
-此方法将指定用户添加至群组白名单列表。在群组所有者或管理员使用 [全员禁言](./agora_chat_restful_group_allowlist?platform=RESTful) 方法将所有群组成员禁言后，群组白名单列表中的成员仍然可以发送群组消息。
+将指定的单个成员添加至群组白名单。用户添加至群组白名单后，[当群组全员禁言时](./agora_chat_restful_group_mute?platform=RESTful#禁言全体群成员) ，群组白名单列表中的成员仍然可以发送群组消息。
 
 ### HTTP 请求
 
@@ -121,7 +121,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{use
 | 参数     | 类型   | 描述      | 是否必需 |
 | :--------- | :--- | :------------------------------ | :----- |
 | `group_id` | String | 群组 ID。 | 是       |
-| `username` | String  | 要添加到群组白名单的用户 ID。 | 是   |
+| `username` | String  | 要添加到群组白名单的成员的用户 ID。 | 是   |
 
 其他路径参数说明详见[公共参数](#pubparam)。
 
@@ -129,26 +129,27 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{use
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 data 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数    | 类型    | 描述                                              |
 | :-------- | :----- | :----------------------------------------------------------- |
-| `result`  | Boolean | 是否成功将指定用户添加到白名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
-| `reason`  | String   | 未能将成员添加到允许列表的原因。                             |
-| `groupid` | String  | 群组 ID。                                         |
-| `action`  | String  | 执行操作。                                        |
-| `user`    | String  | 被添加到群组白名单的用户 ID。                     |
+| `data`  | JSON | 群组白名单中添加成员的相关信息。 |
+| `data.result`  | Boolean | 是否成功将指定成员添加到白名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data.reason`  | String   | 成员未能成功添加到群组白名单的原因。                             |
+| `data.groupid` | String  | 群组 ID。                                         |
+| `data.action`  | String  | 执行操作。在该响应中，`add_user_whitelist` 表示将群成员添加至白名单。  |
+| `data.user`    | String  | 被添加到群组白名单的成员的用户 ID。                     |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -163,6 +164,7 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppTok
 #### 响应示例
 
 ```json
+{
     "action": "post",
     "application": "5cf28979-XXXX-XXXX-b969-60141fb9c75d",
     "uri": "http://XXXX/XXXX/XXXX/chatgroups/120824965169153/white/users/username1",
@@ -180,9 +182,9 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppTok
 }
 ```
 
-## 批量添加用户至群组白名单
+## 批量添加成员至群组白名单
 
-此方法将多个成员添加到群组白名单列表中。每次方法调用最多可以将 60 个组成员添加到白名单列表。
+添加多个用户至群组白名单。你一次最多可添加 60 个用户。用户添加至白名单后，在群组全员禁言时仍可以在群组中发送消息。
 
 ### HTTP 请求
 
@@ -196,14 +198,14 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 | :--------- | :--- | :---------- | :----- |
 | `group_id` | String | 群组 ID。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :-------------- | :--- | :----------------------------------------------------------- | :----- |
-| `Content-Type`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Content-Type`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。| 是       |
 
 #### 请求 body
 
@@ -215,19 +217,20 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 data 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数    | 类型    | 描述                                              |
 | :------ | :------ | :------------------------------------------------ |
-| `result`  | Boolean | 是否成功将指定用户添加到白名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
-| `reason`  | String  | 添加失败的原因。                                  |
-| `groupid` | String  | 群组 ID。                                         |
-| `action`  | String  | 执行操作。                                        |
-| `user`    | String  | 被添加到群组白名单的用户 ID。                     |
+| `data`  | JSON | 批量添加的相关信息。 |
+| `data.result`  | Boolean | 是否成功将群成员批量添加至白名单：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data.reason`  | String  | 添加失败的原因。                                  |
+| `data.groupid` | String  | 群组 ID。                                         |
+| `data.action`  | String  | 执行操作。在该响应中，`add_user_whitelist` 表示将群成员添加至白名单。                                      |
+| `data.user`    | String  | 被添加至群组白名单的用户 ID。                     |
 
-其他字段说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -268,9 +271,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## 从群组白名单中删除成员
+## 从群组白名单移除成员
 
-此方法从群组白名单中删除指定的群组成员。每次方法调用最多可以从白名单列表中删除 60 个组成员。
+将指定用户从群组白名单中移除。你每次最多可移除 60 个用户。
 
 ### HTTP 请求
 
@@ -285,32 +288,33 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users/{u
 | `group_id`  | String | 群组 ID。                                 | 是       |
 | `usernames` | String | 用户 ID。多个用户 ID 之间使用英文逗号隔开。 | 是       |
 
-其他路径参数说明详见[公共参数](#pubparam)。
+其他参数及描述详见[公共参数](#pubparam)。
 
 #### 请求 header
 
 | 参数          | 类型   | 描述                                                         | 是否必需 |
 | :------------ | :----- | :----------------------------------------------------------- | :------- |
-| `Accept`  | String | 内容类型。填入 `application/json`                                   | 是       |
-| `Authorization` | String | `Bearer ${YourAppToken}` | 是       |
+| `Accept`  | String | 内容类型。填入 `application/json`。                                   | 是       |
+| `Authorization` | String | App 管理员的鉴权 token，格式为 `Bearer YourAppToken`，其中 `Bearer` 为固定字符，后面为英文空格和获取到的 app 权限 token。 | 是       |
 
 ### HTTP 响应
 
 #### 响应 body
 
-如果返回的 HTTP 状态码为 200，表示请求成功，响应 body 中 `data` 字段的说明见下文。
+如果返回的 HTTP 状态码为 200，表示请求成功，响应包体中包含以下字段：
 
 | 参数    | 类型    | 描述                                              |
 | :-------- | :----- | :----------------------------------------------------------- |
-| `result`  | Bool | 群组成员是否成功从群组白名单中删除。<ul><li>`true`：是。</li><li>`false`：否。</li></ul> |
-| `reason`  | String  | 未能从允许列表中删除成员的原因。                             |
-| `groupid` | String  | 群组 ID。                                         |
-| `action`  | String  | 执行操作。                                        |
-| `user`    | String  | 被从群组白名单移除的用户 ID。                     |
+| `data`  | JSON Array | 白名单成员移除结果。 |
+| `data.result`  | Boolean | 群成员是否成功从群组白名单中移除：<ul><li>`true`：是</li><li>`false`：否</li></ul> |
+| `data.reason`  | String  | 群成员未能从群组白名单中移除的原因。                             |
+| `data.groupid` | String  | 群组 ID。                                         |
+| `data.action`  | String  | 执行操作。在该响应中，`remove_user_whitelist` 表示将群成员移除白名单。                                        |
+| `user`    | String  | 被从群组白名单中移除的用户 ID。                     |
 
 其他字段说明详见[公共参数](#pubparam)。
 
-如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[状态码](#code)了解可能的原因。
+如果返回的 HTTP 状态码不是 200，则表示请求失败。你可以参考[响应状态码](./agora_chat_status_code?platform=RESTful)了解可能的原因。
 
 ### 示例
 
@@ -351,6 +355,6 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 }
 ```
 
-## <a name="code"></code> 状态码
+## 状态码
 
-有关详细信息，请参阅 [HTTP 状态代码](./agora_chat_status_code?platform=RESTful)。
+详见 [HTTP 状态码](./agora_chat_status_code?platform=RESTful)。

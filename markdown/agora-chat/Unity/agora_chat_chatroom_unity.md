@@ -22,7 +22,7 @@
 
 - 完成 SDK 初始化，详见 [快速开始](./agora_chat_get_started_unity)。
 - 了解 [使用限制](./agora_chat_limitation)。
-- 了解聊天室和聊天室成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 了解套餐包的聊天室和聊天室成员相关数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 - 只有应用超级管理员才有创建聊天室的权限。确保已调用 [super-admin RESTful API](./agora_chat_restful_chatroom_superadmin#添加超级管理员) 添加了应用超级管理员。
 
 ## 实现方法

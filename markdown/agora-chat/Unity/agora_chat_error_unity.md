@@ -1,6 +1,6 @@
 本文主要介绍在调用即时通讯 Unity SDK 中的接口过程中，SDK 返回的错误码和错误信息。
 
-你可以根据如下错误码及错误信息了解出错的可能原因，并采取响应措施。如果收到此处未包含的错误代码，Agora 建议您联系 [support@agora.io](mailto:support@agora.io)，以便技术支持团队帮助解决问题。
+你可以根据如下错误码及错误信息了解出错的可能原因，并采取响应措施。如果收到此处未包含的错误代码，Agora 建议您联系 [sales@agora.io](mailto:sales@agora.io)，以便技术支持团队帮助解决问题。
 
 即时通讯 Unity SDK 在运行过程中，可能通过如下方式返回错误码和错误信息：
 
@@ -33,7 +33,7 @@ SDKClient.Instance.Login(username, passwd,
 | 1      | GENERAL_ERROR                   | 默认未区分类型的错误：提示 SDK 内部未正确初始化，或者请求服务器时未识别出具体原因的错误。 |
 | 2      | NETWORK_ERROR                   | 网络错误：无网络服务时会回调此错误，表示 SDK 与服务器的连接已断开。 |
 | 4      | EXCEED_SERVICE_LIMIT            | 超过服务限制：超过服务版本的数量限制，比如创建的用户 ID 数量超过购买服务的限制时提示该错误。 |
-| 100    | INVALID_APP_KEY                 | App Key 不合法：你的 App Key 格式不正确。                    |
+| 100    | INVALID_APP_KEY                 | App Key 不合法：你的 App Key 格式不正确。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。                    |
 | 101    | INVALID_USER_NAME               | 用户 ID 不正确：一般是用户 ID 为空时提示该错误，比如使用邀请好友 API 时 username 参数为空字符。 |
 | 102    | INVALID_PASSWORD                | 用户密码不正确：登录时提供的密码为空或不正确。               |
 | 104    | INVALID_TOKEN                   | 登录时提供的 token 为空或不正确。                            |

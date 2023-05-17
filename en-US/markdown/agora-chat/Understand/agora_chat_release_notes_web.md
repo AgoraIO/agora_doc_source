@@ -1,13 +1,43 @@
 This page provides release notes for the Agora Chat Web SDK.
 
-## V1.0.7
+## v1.1.0
 
-V1.0.7 was released on September 30, 2022. 
+v1.1.0 was released on February 28, 2023.
+
 #### New features
 
-- Supports custom chat room attributes.
-- Adds the `onLog`  method to implement user log callbacks.
-- Adds the `needAffiliations` and `needRole` parameters in the `getJoinedGroups` method to allow you to get the number of members and your role in the groups that you join. 
+1. Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
+2. Adds the `priority` attribute to the message creation method `create` to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
+3. Adds the pagination parameters `pageNum` and `pageSize` in the `getConversationlist` method to allow users to get the conversation list from the server with pagination.
+5. Adds the group creation event `create` which occurs on other devices of the group owner after group creation.
+6. Adds the support for push notifications on the server side to allow you to send push notifications to all users, individual users specified by IDs, or groups of users by labels. For how to configure and send push notifications, see the following RESTful API documents:
+- Send push notifications (./agora_chat_restful_send_push_notification).
+- Configure push notifications(./agora_chat_restful_config_push_notification).
+- Set push labels(./agora_chat_restful_push_tag).
+
+#### Improvements
+
+Reduced the size of MiniCore.
+
+#### Issues fixed
+
+Type-related issues in code written in TypeScript.
+
+## v1.0.8
+
+v1.0.8 was released on December 19.
+
+#### Improvements
+
+Optimized the callback for a message sending failure to make sure that it is triggered immediately when the network is disconnected.
+
+#### Issues fixed
+
+The `file_length` parameter in the `create` method did not work when this method was called to create an attachment message.
+
+## v1.0.7
+
+v1.0.7 was released on November 22, 2022. 
 
 #### Improvements
 
@@ -15,7 +45,7 @@ V1.0.7 was released on September 30, 2022.
 - Added in-line comments.
 - Optimized the reconnection logic.
 
-#### Bugs fixed
+#### Issues fixed
 
 - An issue with compatibility with Internet Explorer. 
 - An issue of lacking the longest validity period of token.

@@ -17,7 +17,7 @@
 
 - 完成 SDK 初始化，并连接到服务器，详见 [RN 快速开始](./agora_chat_get_started_rn)。
 - 了解即时通讯 IM 的 [使用限制](./agora_chat_limitation)。
-- 了解群组和群成员的数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 了解套餐包的群组和群成员相关数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 
 ## 实现方法
 

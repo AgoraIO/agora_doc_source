@@ -1,13 +1,15 @@
 The Agora Chat SDK stores historical messages on the chat server. When a chat user logs in from a different device, you can retrieve the historical messages from the server, so that the user can also browse these messages on the new device.
 
-This page introduces how to use the Agora Chat SDK to retrieve messages from the server.
+This page introduces how to use the Agora Chat SDK to retrieve and delete messages from the server.
 
 ## Understand the tech
 
 The Agora Chat SDK uses `ChatManager` to retrieve historical messages from the server. Followings are the core methods:
 
-- `getConversationsFromServer`: Retrieve a list of conversations stored on the server.
-- `fetchHistoryMessages`: Retrieve the historical messages in the specified conversation from the server.
+- `fetchConversationListFromServer`: Retrieves a list of conversations stored on the server.
+- `fetchHistoryMessages`: Retrieves the historical messages in the specified conversation from the server.
+- `deleteRemoteMessagesBefore`/`deleteRemoteMessagesWithIds`: Deletes historical messages from the server unidirectionally.
+- `deleteRemoteConversation`: Deletes conversations and their historical messages from the server.
 
 ## Prerequisites
 
@@ -22,17 +24,20 @@ This section shows how to implement retrieving conversations and messages.
 
 ### Retrieve a list of conversations from the server
 
-Call `getConversationsFromServer` to retrieve all the conversations from the server. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `loadAllConversations` to retrieve conversations on the local device.
+Call `fetchConversationListFromServer` to retrieve conversations from the server with pagination. Each retrieved conversation contains one last historical message. We recommend calling this method when the app is first installed, or when there is no conversation on the local device. Otherwise, you can call `loadAllConversations` to retrieve conversations on the local device.
 
 ```dart
 try {
   List<ChatConversation> list =
-      await ChatClient.getInstance.chatManager.getConversationsFromServer();
+      await ChatClient.getInstance.chatManager.fetchConversationListFromServer(
+    pageNum: pageNum,
+    pageSize: pageSize,
+  );
 } on ChatError catch (e) {
 }
 ```
 
-By default, the SDK retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact support@agora.io.
+For users that do not support `fetchConversationListFromServer`, call `getConversationsFromServer` to retrieve the conversations from the server without pagination, the SDK, by default, retrieves the last ten conversations in the past seven days, and each conversation contains one last historical message. To adjust the time limit or the number of conversations retrieved, contact [support@agora.io](mailto:support@agora.io).
 
 ### Retrieve historical messages of the specified conversation
 
@@ -59,6 +64,41 @@ try {
   );
 } on ChatError catch (e) {
 }
+```
+
+### Delete historical messages from the server unidirectionally
+
+Call `deleteRemoteMessagesBefore` or `deleteRemoteMessagesWithIds` to delete historical messages one way from the server. You can remove a maximum of 50 messages from the server each time. Once the messages are deleted, you can no longer retrieve them from the server. Other chat users can still get the messages from the server.
+
+```dart
+try {
+  // Delete messages by timestamp
+  await ChatClient.getInstance.chatManager.deleteRemoteMessagesBefore(
+    conversationId: conversationId,
+    type: convType,
+    timestamp: timestamp,
+  );
+} on ChatError catch (e) {}
+try {
+  // Delete messages by message ID
+  await ChatClient.getInstance.chatManager.deleteRemoteMessagesWithIds(
+    conversationId: conversationId,
+    type: convType,
+    msgIds: msgIds,
+  );
+} on ChatError catch (e) {}
+```
+
+### Delete conversations and related messages from the server
+
+Call `deleteRemoteConversation` to delete conversations and their historical messages from the server. After the conversations are deleted from the server, you and other users can no longer get them from the server. If the historical messages are deleted with the conversations, all users can no longer get the messages from the server.
+
+```dart
+try {
+  await ChatClient.getInstance.chatManager.deleteRemoteConversation(
+    conversationId,
+  );
+} on ChatError catch (e) {}
 ```
 
 ## Next steps

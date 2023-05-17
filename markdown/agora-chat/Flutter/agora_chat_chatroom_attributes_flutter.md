@@ -15,9 +15,9 @@
 
 开始前，请确保满足以下条件：
 
-- 完成 SDK 初始化，详见 [快速开始](./agora_chat_get_started_flutter)。
-- 了解 [使用限制](./agora_chat_limitation)。
-- 了解聊天室的数量限制，详见 [套餐包详情](./agora_chat_plan)。
+- 完成 SDK 初始化，详见[快速开始](./agora_chat_get_started_flutter)。
+- 了解即时通讯 IM 的[使用限制](./agora_chat_limitation)。
+- 了解套餐包的聊天室的相关数量限制，详见[各套餐包功能使用限制](./agora_chat_pricing#各套餐包功能使用限制)。
 
 ## 实现方法
 

@@ -107,7 +107,7 @@ List<String> usernames = ChatClient.getInstance().contactManager().getContactsFr
 > - 黑名单是与好友关系是两个独立体系，你可以将任何用户加入黑名单，不论该用户是否与你是好友关系。
 > - 如果你将好友加入黑名单，该用户仍然在你的好友列表中。
 
-#### 添加黑名单
+#### 添加用户至黑名单
 
 参考如下代码，将指定用户加入黑名单：
 
@@ -116,7 +116,7 @@ List<String> usernames = ChatClient.getInstance().contactManager().getContactsFr
 ChatClient.getInstance().contactManager().addUserToBlackList(username,true);
 ```
 
-#### 移出黑名单
+#### 将用户移出黑名单
 
 参考如下代码，将指定用户移出黑名单：
 

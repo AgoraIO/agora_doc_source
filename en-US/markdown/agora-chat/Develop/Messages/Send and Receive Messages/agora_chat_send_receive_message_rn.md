@@ -6,6 +6,8 @@ After logging in to Agora Chat, users can send the following types of messages t
 - Extended messages.
 - Custom messages.
 
+In high-concurrency scenarios, you can set a certain message type or messages from a chat room member as high, normal, or low. In this case, low-priority messages are dropped first to reserve resources for the high-priority ones (e.g. gifts and announcements) when the server is overloaded. This ensures that the high-priority messages can be dealt with first when loads of messages are being sent in high concurrency or high frequency. Note that this feature can increase the delivery reliability of high-priority messages, but cannot guarantee the deliveries. Even high-priorities messages can be dropped when the server load goes too high.
+
 This page shows how to implement sending and receiving these messages using the Agora Chat SDK.
 
 ## Understand the tech
@@ -47,7 +49,22 @@ class ChatMessageCallback implements ChatMessageStatusCallback {
     console.log(`sendMessage: onSuccess: `, message);
     // Update the message state or add subsequent handling logics after receiving the callback.
   }
-}
+  // You can set the priority of chat room messages. The default priority is `PriorityNormal`, indicating the normal priority.
+  if (ret.chatType === ChatMessageChatType.ChatRoom) {
+    ret.messagePriority = priority;
+  }
+
+  ChatClient.getInstance()
+  .chatManager.sendMessage(msg!, new ChatMessageCallback())
+  .then(() => {
+  // The sending operation is complete and the log is printed here. 
+  // The sending operation is returned via callback.
+  console.log("send message operation success.");
+  })
+  .catch((reason) => {
+  // The sending operation fails and the log is printed here.
+  console.log("send message operation fail.", reason);
+  });
 ```
 
 Use the `ChatMessage` class to create a message, and `ChannelManager` to send the message. 

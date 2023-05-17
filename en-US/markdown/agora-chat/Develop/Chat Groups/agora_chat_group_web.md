@@ -38,6 +38,7 @@ Refer to the following sample code to create and destroy a chat group:
 
 ```javascript
 let option = {
+  data: {
     groupname: "groupName",
     desc: "A description of a group",
     members: ["user1", "user2"],
@@ -49,16 +50,19 @@ let option = {
     allowinvites: true,
     // Group invitations must be confirmed by invitees.
     inviteNeedConfirm: true
-}
+    maxusers: 500,
+    ext: "group detail extensions",
+  },
+};
 // Call createGroup to create a chat group.
-conn.createGroup(option).then(res => console.log(res))
+conn.createGroup(option).then((res) => console.log(res))
 
 
 // Call destroyGroup to disband a chat group.
 let option = {
     groupId: "groupId"
 };
-conn.destroyGroup(option).then(res => console.log(res))
+conn.destroyGroup(option).then((res) => console.log(res))
 ```
 
 
@@ -136,6 +140,9 @@ Refer to the following sample code to listen for chat group events:
 conn.addEventHandler("eventName", {
   onGroupEvent: function(msg){
     switch(msg.operation){
+      // Occurs on the other devices of the group owner when a group is created.
+      case "create":
+        break;  
       // Occurs when all chat group members are unmuted.
       case 'unmuteAllMembers':
         break;

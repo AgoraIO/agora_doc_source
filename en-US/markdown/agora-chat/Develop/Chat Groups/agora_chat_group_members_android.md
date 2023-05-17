@@ -43,7 +43,7 @@ After a user is invited to join a chat group, the implementation logic varies ba
     - If the user does not require a group invitation confirmation, the inviter receives the `onAutoAcceptInvitationFromGroup` callback. In this case, the user automatically accepts the group invitation and receives the `onInvitationAccepted` callback. All group members receive the `onMemberJoined` callback.
 
 3. Remove chat group members from a chat group.  
-The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, all the other group members receive the `onMemberExited` callback.
+The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, the removed member receives the onUserRemoved callback and all other members in the group receive the onMemberExited callback.
 
 Refer to the following sample code to add and remove a user:
 

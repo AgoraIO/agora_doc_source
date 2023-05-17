@@ -1,20 +1,49 @@
 This page provides release notes for the Agora Chat Flutter SDK.
 
-## V1.0.8
+## v1.1.0
 
-V1.0.8 was released on September 30, 2022.
+v1.1.0 was released on February 28, 2023.
 
 #### New features
 
-- Supports custom chat room attributes.
-- Adds the `areaCode` attribute to the `ChatOptions` class to restrict the scope of accessible edge nodes.
-- Adds the `isDisabled` attribute to the `ChatGroup` class to indicate whether a group is disabled. This attribute needs to be set by developers at the server side. This attribute is returned when you call the `fetchGroupInfoFromServer` method in `ChatGroupManager` to get group details.
+1. Upgrades the native platforms `iOS` and `Android` that the Flutter platform depends on to v1.1.0.
+2. Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
+3. Adds the `ChatManager#fetchConversationListFromServer` method to allow users to get the conversation list from the server with pagination.
+4. Adds the `ChatMessage#chatroomMessagePriority` attribute to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
+5. Adds the support for push notifications on the server side to allow you to send push notifications to all users, individual users specified by IDs, or groups of users by labels. For how to configure and send push notifications, see the following RESTful API documents:
+- Send push notifications (./agora_chat_restful_send_push_notification).
+- Configure push notifications(./agora_chat_restful_config_push_notification).
+- Set push labels(./agora_chat_restful_push_tag).
+
+#### Improvements
+
+Changed the message sending result callback from `ChatMessage#setMessageStatusCallBack` to `ChatManager#addMessageEvent`.
+
+#### Issues fixed
+
+`ChatManager#deleteMessagesBeforeTimestamp` execution failures.
+
+## v1.0.9
+
+v1.0.9 was released on December 19.
+
+#### Issues fixed
+
+- Some alerts on Android 12.
+- The inconsistency of messages in the memory and the database due to a call to the `updateMessage` method in rare scenarios.
+- The `EMGroupEventHandler#onDestroyedFromGroup` callback that occurs when a group is destroyed does not work on the Android platform.
+- The `EMGroupEventHandler#onAutoAcceptInvitationFromGroup` callback that occurs when a user's group invitation is accepted automatically does not work on the Android platform.
+- Crashes in rare scenarios.
+
+## v1.0.8
+
+v1.0.8 was released on November 22, 2022.
 
 #### Improvements
 
 Removed some redundant logs of the SDK.
 
-#### Bugs fixed
+#### Issues fixed
 
 - Failures in getting a large number of messages from the server in few scenarios.
 - The issue of incorrect data statistics.

@@ -1,16 +1,38 @@
 This page provides release notes for the Agora Chat Android SDK.
 
-## V1.0.8
+## v1.1.0
 
-V1.0.8 was released on September 30, 2022. 
+v1.1.0 was released on February 28, 2023.
 
 #### New features
 
-- Supports custom chat room attributes.
-- Adds the `setAreaCode` method to restrict the scope of accessible edge nodes.
-- Adds the `getJoinedGroupsFromServer` method to allow you to get the number of members and your group role when getting the groups that you join.
+1. Adds the function of managing custom chat room attributes to implement functions like seat control and synchronization in voice chatrooms.
+2. Adds the `ChatMessage#setPriority(ChatRoomMessagePriority)` method to implement the chat room message priority function to ensure that high-priority messages are dealt with first.
+3. Adds the pagination parameters `pageNum` and `pageSize` to the `ChatManager#asyncFetchConversationsFromServer` method to allow users to get the conversation list from the server with pagination.
+4. Adds the support for push notifications on the server side to allow you to send push notifications to all users, individual users specified by IDs, or groups of users by labels. For how to configure and send push notifications, see the following RESTful API documents:
+- Send push notifications (./agora_chat_restful_send_push_notification).
+- Configure push notifications(./agora_chat_restful_config_push_notification).
+- Set push labels(./agora_chat_restful_push_tag).
 
-#### Bugs fixed
+#### improvements
+
+Improved code security.
+
+## v1.0.9
+
+v1.0.9 was released on December 19, 2022.
+
+#### Issues fixed
+
+- Some alerts on Android 12.
+- The inconsistency of messages in the memory and the database due to a call to the `updateMessage` method in rare scenarios.
+- Crashes in rare scenarios.
+
+## v1.0.8
+
+V1.0.8 was released on November 22, 2022. 
+
+#### Issues fixed
 
 - Failures in getting a large number of messages from the server in few scenarios.
 - An issue of incorrect data statistics.
