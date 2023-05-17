@@ -89,7 +89,7 @@
     // App.js
     import React, {Component} from 'react';
     import { EaseApp } from "agora-chat-uikit"
-    import './App.scss';
+    import './App.css';
 
     class App extends Component {
     render() {
@@ -113,7 +113,7 @@
 
 2. 设置会话布局。
 
-   打开 `my-app/src/App.js`，将文件中的内容替换为以下代码：
+   打开 `my-app/src/App.css`，将文件中的内容替换为以下代码：
 
    ```javascript
     /** App.css */
