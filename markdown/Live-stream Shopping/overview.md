@@ -16,12 +16,11 @@
 
 ## 技术方案
 
-声网使用声网 RTC SDK、声网云服务共同搭建电商直播场景：
+声网使用声网 RTC SDK、声网云服务（SyncManager）共同搭建电商直播场景：
 
-- RTC SDK：让用户加入 RTC 频道，进行实时音视频互动。
+- RTC SDK：让用户加入 RTC 频道，进行实时音视频互动和 PK 连麦。
 - 云服务：让用户收发文字消息、礼物、上下架商品、发起上麦邀请等。
 
-<div class="alert note">声网云服务为内部自研服务，暂不对外提供。声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
 ![](https://web-cdn.agora.io/docs-files/1683774790711)
 
