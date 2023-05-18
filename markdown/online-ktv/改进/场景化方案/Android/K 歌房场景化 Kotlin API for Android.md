@@ -1,5 +1,7 @@
 本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
 
+<div class="alert note">本文适用于场景化 API v2.1.1。</div>
+
 ## 方法
 
 ### initWithRtcEngine
@@ -177,8 +179,14 @@ interface KTVApiEventHandler {
 - `state`: 播放器的当前状态。详见 [MediaPlayerState](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/enum_mediaplayerstate.html?platform=Android)。
 - `error`: 播放器的错误码。详见 [MediaPlayerError](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/enum_mediaplayererror.html?platform=Android)。
 - `isLocal`: 是否为本地事件：
-    - `true`: 是本地事件。
-    - `false`: 不是本地事件。
+    - `true`: 代表是本地播放器的状态改变。可用于主唱和伴唱监听本地播放器状态。
+    - `false`: 是远端播放器的状态改变。可用于伴唱和听众知晓主唱的播放器状态，从而方便后续进行多端播放同步。
+
+举例来说，在合唱场景下，主唱、伴唱、听众收到的 `onPlayerStateChanged` 回调有如下区别：
+
+- 主唱：收到一个 `isLocal` 为 `true` 的回调，报告主唱播放器的状态改变。
+- 伴唱：收到一个 `isLocal` 为 `true` 的回调，报告伴唱播放器的状态改变；同时，还收到一个 `isLocal` 为 `false` 的回调，报告主唱播放器的状态改变。
+- 听众：收到一个 `isLocal` 为 `false` 的回调报告主唱端播放器的状态改变。
 
 
 ## Enum class

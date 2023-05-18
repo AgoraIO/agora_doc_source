@@ -1,5 +1,7 @@
 本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApi.h](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.h) 和 [KTVApi.m](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.m)。
 
+<div class="alert note">本文适用于场景化 API v2.1.1。</div>
+
 ## 方法
 
 ### initWithRtcEngine:channel:musicCenter:player:dataStreamId:delegate:
@@ -159,8 +161,14 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 - `songCode`: 歌曲编号。
 - `state`: 播放器的当前状态。详见 [AgoraMediaPlayerState](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/enum_mediaplayerstate.html?platform=iOS)。
 - `local`: 是否为本地事件：
-    - `YES`: 是本地事件。
-    - `NO`: 不是本地事件。
+    - `YES`: 代表是本地播放器的状态改变。可用于主唱和伴唱监听本地播放器状态。
+    - `NO`: 是远端播放器的状态改变。可用于伴唱和听众知晓主唱的播放器状态，从而方便后续进行多端播放同步。
+
+举例来说，在合唱场景下，主唱、伴唱、听众收到的 `didChangedToState` 回调有如下区别：
+
+- 主唱：收到一个 `local` 为 `YES` 的回调，报告主唱播放器的状态改变。
+- 伴唱：收到一个 `local` 为 `YES` 的回调，报告伴唱播放器的状态改变；同时，还收到一个 `local` 为 `NO` 的回调，报告主唱播放器的状态改变。
+- 听众：收到一个 `local` 为 `NO` 的回调报告主唱端播放器的状态改变。
 
 
 ## Enum
