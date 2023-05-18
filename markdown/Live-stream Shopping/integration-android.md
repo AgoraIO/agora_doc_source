@@ -109,15 +109,24 @@
 
 ### 预览直播
 
+调用如下方法，创建直播间并开启本地预览：
+
+- create
+- setupLocalVideo
+- startPreview
+
 
 ```java
 try {
+    // 创建 RtcEngine 引擎
     rtcEngine = RtcEngine.create(this, getString(R.string.rtc_app_id), new IRtcEngineEventHandler() {});
     FrameLayout surfaceViewContainer = findViewById(R.id.surface_view_container);
     SurfaceView videoView = new SurfaceView(this);
     surfaceViewContainer.removeAllViews();
     surfaceViewContainer.addView(videoView);
+    // 开启本地视频
     rtcEngine.setupLocalVideo(new VideoCanvas(videoView, Constants.RENDER_MODE_HIDDEN));
+    // 开启本地预览
     rtcEngine.startPreview();
 } catch (Exception e) {
     e.printStackTrace();
@@ -126,29 +135,40 @@ try {
 
 ### 加入直播间
 
+你可以使用声网 RTC SDK 的 create 方法创建一个 RtcEngine 引擎，再通过 joinChannel 和 setChannelProfile 方法让用户加入一个频道场景为 LIVE_BROADCASTING 的频道。频道意味着电商直播业务中的直播间。用户在频道内可以进行实时音视频互动。RTC 频道内的用户有两种角色：
+
+- 主播：可以发送和接收音视频流。直播间的房主即为主播。
+- 观众：只可以接收音视频流。
+
+你需要在主播端渲染本地视频，在观众端渲染远端视频（即主播的视频）。
+
 ```java
 try {
+    // 创建 RtcEngine 引擎
     rtcEngine = (RtcEngineEx) RtcEngine.create(this, getString(R.string.rtc_app_id), new IRtcEngineEventHandler() {
         ...
     });
+
+    // 开启视频和音频
     rtcEngine.enableVideo();
     rtcEngine.enableAudio();
 
+    // 设置频道场景为直播
     rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING);
 
-    // Room owner render local video
+    // 主播端渲染本地视频
     SurfaceView videoView = new SurfaceView(this);
     mBinding.localVideoContainer.removeAllViews();
     mBinding.localVideoContainer.addView(videoView);
     rtcEngine.setupLocalVideo(new VideoCanvas(videoView, Constants.RENDER_MODE_HIDDEN));
 
-    // Audience render remote video
+    // 观众端渲染远端视频，即渲染主播的视频
     SurfaceView videoView = new SurfaceView(AudienceDetailActivity.this);
     mBinding.localVideoContainer.removeAllViews();
     mBinding.localVideoContainer.addView(videoView);
     rtcEngine.setupRemoteVideo(new VideoCanvas(videoView, Constants.RENDER_MODE_HIDDEN, uid));
 
-    // join channel
+    // 加入频道
     ChannelMediaOptions options = new ChannelMediaOptions();
     options.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
     options.publishMicrophoneTrack = true;
@@ -164,18 +184,33 @@ try {
 
 ### 开始 PK 连麦
 
+
+房主跨直播间 PK 连麦意味着不同频道内的主播加入对方频道进行连麦。当房间内用户收到房主 PK 连麦的信令消息后，房间内用户的代码逻辑如下：
+
+- 房间 A，即频道 A：
+    - 房主 A 通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 B 中主播的视频。
+    - 观众通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 B 中主播的视频。
+- 房间 B，即频道 B：
+    - 房主 B 通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 A 中主播的视频。
+    - 观众通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 A 中主播的视频。
+
+总结来说，观众可以同时接受房间 A 和 B 的直播流，因此可以同时看到两个房间的房主。房主仅在自己的房间发流，在对方的房间内不发流仅收流，因此，房主可以在对方房间看到对方。
+
+
 ```java
 exChannelConnection = new RtcConnection();
 exChannelConnection.localUid = new Random(System.currentTimeMillis()).nextInt(1000) + 10000;
 exChannelConnection.channelId = exChannelId;
 rtcEngine.setVideoEncoderConfigurationEx(io.agora.scene.shopping.Constants.encoderConfiguration, exChannelConnection);
 options = new ChannelMediaOptions();
+// 加入对方频道时，订阅音视频流，但是不发送音视频流
 options.clientRoleType = Constants.CLIENT_ROLE_AUDIENCE;
 options.autoSubscribeAudio = true;
 options.autoSubscribeVideo = true;
 TokenGenerator.gen(this, exChannelConnection.channelId, exChannelConnection.localUid, new TokenGenerator.OnTokenGenCallback<String>() {
     @Override
     public void onTokenGen(String ret) {
+        // 加入对方频道以 PK 连麦
         rtcEngine.joinChannelEx(ret, exChannelConnection, options, new IRtcEngineEventHandler() {
             @Override
             public void onUserJoined(int uid, int elapsed) {
@@ -187,6 +222,7 @@ TokenGenerator.gen(this, exChannelConnection.channelId, exChannelConnection.loca
                     SurfaceView videoView = new SurfaceView(HostDetailActivity.this);
                     mBinding.pkVideoContainer.removeAllViews();
                     mBinding.pkVideoContainer.addView(videoView);
+                    // 渲染对方房主的视频
                     rtcEngine.setupRemoteVideoEx(new VideoCanvas(videoView, Constants.RENDER_MODE_HIDDEN, uid), exChannelConnection);
                 });
             }
@@ -207,6 +243,8 @@ TokenGenerator.gen(this, exChannelConnection.channelId, exChannelConnection.loca
 
 ### 结束 PK 连麦
 
+结束 PK 连麦时，房间内用户都需要调用 leaveChannelEx 离开对方房间。
+
 ```java
 mBinding.pkVideoContainer.setVisibility(View.GONE);
 mBinding.pkVideoContainer.removeAllViews();
@@ -219,6 +257,8 @@ if (exChannelConnection != null) {
 ```
 
 ### 退出直播间
+
+退出直播间时，房间内用户都需要调用 leaveChannel 离开房间。如果不再加入房间，还可以调用 destroy 销毁房间。
 
 ```java
 if (exChannelConnection != null) {

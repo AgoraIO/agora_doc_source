@@ -43,9 +43,9 @@ app -> cloud: 主播 A 发起 PK
 cloud --> app: 主播 B 收到 PK 邀请
 app -> cloud: 主播 B 接受 PK 邀请
 cloud --> app: 主播 A 和主播 B 开始 PK
-app -> sdk: joinChannelEx（主播加入对方频道）
+app -> sdk: joinChannelEx（主播和观众加入对方主播房间）
 sdk --> app: onUserJoined
-app -> sdk: setupRemoteVideoEx（主播渲染对方的视频）
+app -> sdk: setupRemoteVideoEx（主播和观众渲染对方主播的视频）
 app -> cloud: 主播 A 和主播 B 结束 PK
 cloud --> app: 主播 A 和主播 B 结束 PK
 app -> sdk: leaveChannelEx（主播退出对方频道）
