@@ -52,8 +52,8 @@
    ```java
    android {
        defaultConfig {
-               // Android 19 或以上系统版本。
-               minSdkVersion 19
+               // Android 21 或以上系统版本。
+               minSdkVersion 21
        }
        compileOptions {
            sourceCompatibility JavaVersion.VERSION_1_8
@@ -80,6 +80,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <!-- 对于 Android 12，需添加下行代码申请闹铃定时权限。对于即时通讯 IM 1.0.9 及以上版本，该权限为可选。--> 
+   <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
    ```
 
    以上为启动即时通讯 IM 所需的最低权限。你还可以根据使用情况添加其他权限。
@@ -491,7 +493,7 @@
                 return;
             }
             // 1：单聊；2：群聊；3：聊天室
-            EaseChatFragment fragment = new EaseChatFragment.Builder(toChatUsername, 1)
+            EaseChatFragment fragment = new EaseChatFragment.Builder(toChatUsername, EaseChatType.SINGLE_CHAT)
                     .useHeader(false)
                     .setOnChatExtendMenuItemClickListener(new OnChatExtendMenuItemClickListener() {
                         @Override
