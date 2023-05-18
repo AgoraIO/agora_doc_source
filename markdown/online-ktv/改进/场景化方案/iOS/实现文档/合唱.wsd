@@ -9,29 +9,29 @@ participant "听众 App" as c
 a -> b: joinChannelByToken
 c -> b: joinChannelByToken
 == 加载歌曲歌词并播放 ==
-a -> b: loadMusicWithSongCode
+a -> b: loadMusic()
 note left
 autoPlay 设为 YES，歌曲加载成功后自动播放
 end note
-b -->> a: onMusicLoadSuccessWithSongCode
+b -->> a: onMusicLoadSuccess
 note right
 autoPlay 设为 NO，仅加载歌词
 听众不播放歌曲，只是进入播放状态
 end note
-c -> b: loadMusicWithSongCode
-b -->> c: onMusicLoadSuccessWithSongCode
+c -> b: loadMusic()
+b -->> c: onMusicLoadSuccess
 == 切换角色 ==
-a -> b:switchSingerRoleWithNewRole(leadSinger/coSinger)
+a -> b:switchSingerRole(LeadSinger/CoSinger)
 b --> a: onSwitchRoleState
 note left
-伴唱加入合唱后，独唱者变为 leadSinger
-伴唱将角色设为 coSinger
+伴唱加入合唱后，独唱者变为 LeadSinger
+伴唱将角色设为 CoSinger
 end note
 == 歌曲结束 ==
-a -> b: switchSingerRoleWithNewRole(audience)
+a -> b: switchSingerRole(Audience)
 b -->> a: onSwitchRoleState
 == 关闭麦克风 ==
-a -> b: options.publishMicrophoneTrack
+a -> b: adjustRecordingSignalVolume
 == 更新媒体选项 ==
 a -> b: updateChannelMediaOptions
 c -> b: updateChannelMediaOptions

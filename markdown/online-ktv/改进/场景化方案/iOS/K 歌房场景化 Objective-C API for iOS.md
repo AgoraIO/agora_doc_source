@@ -1,21 +1,18 @@
-本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApi.h](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.h) 和 [KTVApi.m](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.m)。
+本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApi.h](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.h) 和 [KTVApi.m](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.m)。【links to be updated】
 
-## 方法
+## KTVApiDelegate
 
-### initWithRtcEngine:channel:musicCenter:player:dataStreamId:delegate:
+该协议提供实现K 歌场景的核心方法。
+
+### init
 
 ```objective-c
-- (id)initWithRtcEngine:(AgoraRtcEngineKit *)engine
-    channel:(NSString*)channelName
-    musicCenter:(AgoraMusicContentCenter*)musicCenter
-    player:(nonnull id<AgoraMusicPlayerProtocol>)rtcMediaPlayer
-    dataStreamId:(NSInteger)streamId
-    delegate:(id<KTVApiDelegate>)delegate;
+init(config: KTVApiConfig)
 ```
 
-初始化 KTVApi 模块。
+初始化 KTV API 并进行初始化配置。
 
-调用该方法可以初始化 KTV API 模块内部变量和缓存数据，并注册相应的回调监听。
+调用该方法可以初始化 KTV API 模块内部变量和缓存数据。
 
 #### 注意事项
 
@@ -23,115 +20,237 @@
 
 #### 参数
 
-- `engine`: [AgoraRtcEngineKit](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_irtcengine)。
-- `channel`: 待加入的频道名。
-- `musicCenter`: 版权音乐内容中心实例。详见 [AgoraMusicContentCenter](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusiccontentcenter)。
-- `player`: 音乐播放器实例。详见 [AgoraMusicPlayerProtocol](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusicplayer)。
-- `dataStreamId`: 数据流（Data Stream）ID。
-- `delegate`: [KTVApiDelegate](#controllersongdidchangedtostatelocal)。
+- `config`：初始化配置，详见 [KTVApiConfig](#KTVApiConfig)。
 
-#### 返回值
-
-KTVApi 实例。
-
-
-### loadSong:withConfig:withCallback:
+### cleanCache
 
 ```objective-c
-- (void)loadSong:(NSInteger)songCode
-withConfig:(nonnull KTVSongConfiguration *)config
-withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSingRole role, KTVLoadSongState state))block
+func cleanCache()
 ```
 
-加载歌曲。
+释放 KTV API 资源。
 
-传入歌曲编号和 K 歌配置，调用 `loadSong` 加载歌曲。加载结果会异步地通过 `block` 回调通知你。
+调用该方法可以清空 KTV API 模块内部变量和缓存数据，取消 `ktvApiEventHandler` 的事件监听，取消网络请求等。
+
+
+### addEventHandler
+
+```objective-c
+func addEventHandler(ktvApiEventHandler: KTVApiEventHandlerDelegate)
+```
+
+注册 KTV API 事件。【是否支持多注册？】
 
 #### 参数
 
-- `songCode`: 歌曲编号。
-- `config`: K 歌配置。详见 [KTVSongConfiguration](#ktvsongconfiguration)。
-- `block`: 歌词加载状态事件，包含如下参数：
-    - `songCode`: 歌曲编号。
-    - `lyricUrl`: 歌词文件的 URL。
-    - `role`: 当前用户角色，详见 [KTVSingRole](#ktvsingrole)。
-    - `state`: 歌曲加载状态，详见 [KTVLoadSongState](#ktvloadsongstate)。
+- `ktvApiEventHandler`：KTV API 的事件句柄，详见 [KTVApiEventHandlerDelegate](#KTVApiEventHandlerDelegate)。
 
-
-### playSong:
+### removeEventHandler
 
 ```objective-c
-- (void)playSong:(NSInteger)songCode
+func removeEventHandler(ktvApiEventHandler: KTVApiEventHandlerDelegate)
+```
+
+取消注册 KTV API 事件。
+
+#### 参数
+
+- `ktvApiEventHandler`：KTV API 的事件句柄，详见 [KTVApiEventHandlerDelegate](#KTVApiEventHandlerDelegate)。
+
+### fetchMusicCharts
+
+```objective-c
+func fetchMusicCharts(completion:@escaping MusicChartCallBacks)
+```
+
+获取歌曲榜单。
+
+该方法用于异步操作，调用后会触发获取歌曲榜单的操作，并在操作完成后调用回调闭包以返回结果。
+
+#### 参数
+
+- `completion`：用于处理获取歌曲榜单后的回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicChartCallBacks` 对象作为参数，用于获取歌曲榜单的结果。【重点review】
+
+
+### searchMusic [1/2]
+
+```objective-c
+func searchMusic(musicChartId: Int,
+                     page: Int,
+                     pageSize: Int,
+                     jsonOption: String,
+                     completion:@escaping MusicResultCallBacks)
+```
+
+通过歌曲榜单的 ID 获取指定榜单的歌曲资源列表。
+
+当你调用 `fetchMusicCharts` 获取歌曲榜单 ID 之后，可以通过此方法来检索对应的歌曲资源列表。
+
+#### 参数
+
+- `musicChartId`：歌曲榜单 ID，可通过 `fetchMusicCharts` 获取。
+- `page`：当前页面编号，默认从 1 开始。
+- `pageSize`：当前音乐资源列表的总页面数量，最大值为 50。
+- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
+- `completion`：用于处理获取指定榜单的歌曲列表回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲列表。【重点review】
+
+### searchMusic [2/2]
+
+```objective-c
+func searchMusic(keyword: String,
+                     page: Int, pageSize: Int,
+                     jsonOption: String,
+                     completion: @escaping MusicResultCallBacks)
+```
+
+通过关键词搜索歌曲。
+
+#### 参数
+
+- `keyword`：搜索关键词，支持歌曲名、歌手搜索。
+- `page`：想要获取的音乐资源列表的目标页编号。
+- `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
+- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
+- `completion`：用于处理获取指定歌曲的回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲资源。【重点review】
+
+### loadMusic [1/2]
+
+```objective-c
+func loadMusic(songCode: Int, config: KTVSongConfiguration, onMusicLoadStateListener: IMusicLoadStateListener)
+```
+
+加载歌曲和歌词。
+
+传入歌曲编号和加载配置，调用 `loadMusic` 加载歌曲和歌词。加载结果会通过 `IMusicLoadStateListener` 回调异步通知你。
+
+#### 注意
+
+目前一次仅支持加载一首歌曲，请在一首歌曲加载完成后再加载下一首。
+
+#### 参数
+
+- `songCode`: 歌曲编号，用于标识一个音乐资源。你可以通过 `searchMusic[1/2]` 或 `searchMusic[2/2]` 获取需要加载的歌曲编号，也可以通过 RESTful API 来获取[获取曲库所有歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=iOS#a-namegeta%E8%8E%B7%E5%8F%96%E6%9B%B2%E5%BA%93%E6%89%80%E6%9C%89%E6%AD%8C%E6%9B%B2%E5%88%97%E8%A1%A8)或[增量歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=iOS#获取增量歌曲列表)。
+- `config`: 加载配置。详见 [KTVSongConfiguration](#KTVSongConfiguration)。
+- `musicLoadStateListener`: 歌曲加载状态，详见 [`IMusicLoadStateListener`](#IMusicLoadStateListener)。
+
+### loadMusic [2/2]
+
+```objective-c
+func loadMusic(config: KTVSongConfiguration, url: String)
+```
+
+加载歌曲和歌词。
+
+传入歌曲的 URL 和加载配置，调用 `loadMusic` 加载歌曲和歌词。
+
+#### 注意
+
+目前一次仅支持加载一首歌曲，请在一首歌曲加载完成后再加载下一首。
+
+#### 参数
+
+- `url`：歌曲的 URL。
+
+- `config`：加载配置。详见 [KTVSongConfiguration](#KTVSongConfiguration)。
+
+### switchSingerRole
+
+```objective-c
+func switchSingerRole(newRole: KTVSingRole, onSwitchRoleState:@escaping ISwitchRoleStateListener)
+```
+
+切换 K 歌时的用户角色。
+
+KTV API 初始化时默认用户角色为听众，如果需要开始独唱或加入合唱，需要调用 `switchSingerRole` 来切换至相应的角色。你可以参考[切换说明](link)来进行角色切换。
+
+KTV API 内部会根据角色的切换来控制演唱过程中音乐播放器的播放、同步，以及订阅和发布音频流的行为。
+
+#### 参数
+
+- `newRole`: 切换后的用户角色，详见 [`KTVSingRole`](#KTVSingRole)。
+- `onSwitchRoleState`：切换角色状态回调闭包，类型为 [`ISwitchRoleStateListener`](#ISwitchRoleStateListener)，用于处理切换角色的状态。
+
+### startSing [1/2]
+
+```objective-c
+func startSing(songCode: Int, startPos: Int)
 ```
 
 播放歌曲。
 
-建议在调用 `loadSong` 函数并收到 `block` 回调的 `KTVLoadSongStateOK` 状态后再调用 `playSong`。
+如果你在调用 `loadMusic[1/2]` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。
 
 #### 参数
 
-- `songCode`: 歌曲编号。
+- `songCode`：歌曲编号，用于标识一个音乐资源。你可以通过 `searchMusic[1/2]` 或 `searchMusic[2/2]` 获取需要加载的歌曲编号，也可以通过 RESTful API 来获取[获取曲库所有歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=iOS#a-namegeta%E8%8E%B7%E5%8F%96%E6%9B%B2%E5%BA%93%E6%89%80%E6%9C%89%E6%AD%8C%E6%9B%B2%E5%88%97%E8%A1%A8)或[增量歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=iOS#获取增量歌曲列表)。
+- `startPos`：起始播放位置，单位为毫秒。
 
-### stopSong
+### startSing [2/2]
 
 ```objective-c
-- (void)stopSong;
+fun startSing(url: String, startPos: Long)
 ```
 
-结束播放歌曲。
+播放歌曲。
 
-### resumePlay
+你可以通过传入歌曲的 URL 来进行播放。
+
+如果你在调用 `loadMusic[2/2]` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。
+
+#### 参数
+
+- `url`：歌曲的 URL。
+- `startPos`：起始播放位置，单位为毫秒。
+
+### resumeSing
 
 ```objective-c
-- (void)resumePlay;
+fun resumeSing()
 ```
 
 恢复播放歌曲。
 
 
-### pausePlay
+### pauseSing
 
 ```objective-c
-- (void)pausePlay;
+fun pauseSing()
 ```
 
 暂停播放歌曲。
 
-### seek:
+### seekSing
 
 ```objective-c
-- (void)seek:(time: NSInteger);
+func seekSing(time: Int)
 ```
 
 跳转到指定时间播放歌曲。
 
 #### 参数
 
-- `time`: 跳转的时间点。单位为毫秒。取值不得超过歌曲总时长。
+- `time`: 跳转的时间点，单位为毫秒。
 
-### selectTrackMode:
+### setMicStatus
 
 ```objective-c
-- (void)selectTrackMode:(KTVPlayerTrackMode)mode;
+func setMicStatus(isOnMicOpen: Bool)
 ```
 
-选择播放的音轨。
+同步麦克风的开关状态。
 
-歌曲的音轨包含原唱和伴奏。调用该方法可以选择播放的音轨。
+如果你调用 [`adjustRecordSignalVolume`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_audio_process.html?platform=iOS#api_irtcengine_adjustrecordingsignalvolume) 将`volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
 
 #### 参数
 
-- `mode`: 音轨的类型。详见 [KTVPlayerTrackMode](#ktvplayertrackmode)。
+- `isOnMicOpen`：当前麦克风的开关状态：
+  - `true`：麦克风开启。
+  - `false`：麦克风关闭。
 
-### setKaraokeView:
+### setLrcView
 
 ```objective-c
-@property(nonatomic, weak) KaraokeView* karaokeView;
-
-- (void)setKaraokeView:(KaraokeView *)karaokeView{
-    _karaokeView = karaokeView;
-    _karaokeView.delegate = self;
-}
+func setLrcView(view: KTVLrcViewDelegate)
 ```
 
 设置歌词控制视图。
@@ -140,115 +259,353 @@ withCallback:(void (^ _Nullable)(NSInteger songCode, NSString* lyricUrl, KTVSing
 
 #### 参数
 
-- `karaokeView`: 歌词控制视图，`KaraokeView` 对象。
+- `view`: 歌词控制视图，`KTVLrcViewDelegate` 对象。你需要继承 `KTVLrcViewDelegate` ，并实现 `KTVLrcViewDelegate` 下的接口。
 
-## 回调
-
-### controller:song:didChangedToState:local:
+### setAudioPlayoutDelay
 
 ```objective-c
-@protocol KTVApiDelegate <NSObject>
-    - (void)controller:(KTVApi*)controller song:(NSInteger)songCode didChangedToState:(AgoraMediaPlayerState)state local:(BOOL)local;
-@end
+func setAudioPlayoutDelay(audioPlayoutDelay: Int)
 ```
+
+设置音频播放延迟时间。
+
+在音频自采集的情况下，你需要调用该方法传入音频帧处理和播放开始前的时间差以便播放器的实时同步。
+
+#### 参数
+
+- `audioPlayoutDelay`：音频帧处理和播放开始前的时间差，单位为毫秒❓。
+
+### getMediaPlayer
+
+```objective-c
+func getMediaPlayer() -> AgoraMusicPlayerProtocol?
+```
+
+获取播放器实例。
+
+#### 返回值
+
+-  [AgoraMusicPlayerProtocol](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusicplayer) 实例。
+
+### getMusicContentCenter
+
+```objective-c
+func getMusicContentCenter() -> AgoraMusicContentCenter?
+```
+
+获取音乐内容中心实例。
+
+返回值
+
+- [`AgoraMusicContentCenter`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusiccontentcenter) 实例。
+
+## KTVLrcViewDelegate
+
+该协议提供歌词组件的相关回调。在调用 `setLrcView` 设置歌词控制视图时，你需要继承此协议并实现其下的方法。
+
+### onUpdatePitch
+
+```objective-c
+func onUpdatePitch(pitch: Float)
+```
+
+人声音调更新回调。
+
+当 KTV API 内部更新人声音调后，会主动调用该 API 将更新后的音调值传给歌词打分组件。【这里是指sdk主动调用吗？】
+
+#### 参数
+
+- `pitch`：音调值。【是否有取值范围❓】
+
+### onUpdateProgress
+
+```objective-c
+func onUpdateProgress(progress: Int)
+```
+
+当歌曲播放进度更新时，会主动调用该 API 将歌曲的播放进度同步给歌词打分组件，该回调每 50 ms 触发一次。
+
+#### 参数
+
+- `progress`：当前歌曲的播放进度，单位为毫秒。
+
+### onDownloadLrcData
+
+```objective-c
+func onDownloadLrcData(url: String)
+```
+
+当获取到歌词下载地址后，会主动调用该 API 将歌词下载地址传给歌词组件用于歌词显示。
+
+#### 注意
+
+请在这个回调内完成歌词下载。
+
+#### 参数
+
+- `url`：歌词的下载地址。
+
+## IMusicLoadStateListener
+
+该接口类提供歌曲加载状态的相关回调。
+
+### onMusicLoadSuccess
+
+```objective-c
+func onMusicLoadSuccess(songCode: Int, lyricUrl: String)
+```
+
+歌曲加载成功回调。
+
+当你调用 `loadMusic` 成功加载歌曲后，会触发该回调。
+
+#### 参数
+
+- `songCode`：歌曲编号，与你调用  `loadMusic` 时传入的歌曲编号一致。
+- `lyricUrl`：歌词下载地址。
+
+### onMusicLoadFail
+
+```objective-c
+func onMusicLoadFail(songCode: Int, reason: KTVLoadSongFailReason)
+```
+
+歌曲加载失败。
+
+当你调用 `loadMusic` 加载歌曲，加载失败后会触发该回调报告失败的原因。
+
+#### 参数
+
+- `songCode`：歌曲编号，与你调用  `loadMusic` 时传入的歌曲编号一致。
+- `reason`：歌曲加载失败的原因，详见 [KTVLoadSongFailReason](#KTVLoadSongFailReason)。
+
+### onMusicLoadProgress
+
+```objective-c
+func onMusicLoadProgress(songCode: Int, percent: Int, status: AgoraMusicContentCenterPreloadStatus, msg: String?, lyricUrl: String?)
+```
+
+歌曲加载进度回调。
+
+你可以通过该回调来获取当前歌曲的加载进度和状态。
+
+#### 参数
+
+- `songCode`：歌曲编号，与你调用  `loadMusic` 时传入的歌曲编号一致。
+- `percent`：歌曲加载进度，取值范围为 [0,100]，100 表示加载完成。
+- `status`：歌曲加载状态，详见 [AgoraMusicContentCenterPreloadStatus](#https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/enum_preloadstatucode.html?platform=iOS)。
+- `msg`：本次请求返回的消息。`ok` 表示请求成功。
+- `lyricUrl`：歌词下载地址。
+
+## KTVApiEventHandlerDelegate
+
+该协议提供 K 歌场景的核心回调。
+
+### onMusicPlayerStateChanged
+
+```objective-c
+func onMusicPlayerStateChanged(state: AgoraMediaPlayerState,
+                                   error: AgoraMediaPlayerError,
+                                   isLocal: Bool)
+```
+
 播放器状态改变回调。
 
 #### 参数
 
-- `controller`: KTVApi 实例。
-- `songCode`: 歌曲编号。
-- `state`: 播放器的当前状态。详见 [AgoraMediaPlayerState](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/enum_mediaplayerstate.html?platform=iOS)。
-- `local`: 是否为本地事件：
-    - `YES`: 是本地事件。
-    - `NO`: 不是本地事件。
+- `state`：播放器的当前状态。详见 [AgoraMediaPlayerState](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/enum_mediaplayerstate.html?platform=iOS)。
+- `error`：播放器的错误码。详见 [AgoraMediaPlayerError](https://docs.agora.io/cn/online-ktv/API%20Reference/ios_ng/API/enum_mediaplayererror.html?platform=iOS)。
+- `isLocal`: 是否为本地事件：
+  - `true`: 代表是本地播放器的状态改变。可用于主唱和伴唱监听本地播放器状态。
+  - `false`: 是远端播放器的状态改变。可用于伴唱和听众知晓主唱的播放器状态，从而方便后续进行多端播放同步。
+
+举例来说，在合唱场景下，主唱、伴唱、听众收到的 `onMusicPlayerStateChanged` 回调有如下区别：
+
+- 主唱：收到一个 `isLocal` 为 `true` 的回调，报告主唱播放器的状态改变。
+- 伴唱：收到一个 `isLocal` 为 `true` 的回调，报告伴唱播放器的状态改变；同时，还收到一个 `isLocal` 为 `false` 的回调，报告主唱播放器的状态改变。
+- 听众：收到一个 `isLocal` 为 `false` 的回调报告主唱端播放器的状态改变。
+
+### onSingerRoleChanged
+
+```objective-c
+func onSingerRoleChanged(oldRole: KTVSingRole, newRole: KTVSingRole)
+```
+
+用户角色改变回调。
+
+当你调用 `switchSingerRole` 成功切换用户角色后，会触发该回调报告切换前后的用户角色。
+
+#### 参数
+
+- `oldRole`：切换前的用户角色，详见 [KTVSingRole](#KTVSingRole)。
+- `newRole`：切换后的用户角色，详见 [KTVSingRole](#KTVSingRole)。
+
+### onChorusChannelTokenPrivilegeWillExpire
+
+```objective-c
+func onChorusChannelTokenPrivilegeWillExpire(token: String?)
+```
+
+Token 即将过期回调。
+
+在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。当用于加入频道 2 的 Token 即将过期时，会触发该回调提醒你及时更新 Token。你可以调用 [renewToken](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_core_method.html?platform=iOS#api_irtcengine_renewtoken) 来传入新的 Token。
+
+#### 参数
+
+- `token`：即将服务失效的 Token。
 
 
 ## Enum
 
-### KTVSongType
-
-```objective-c
-typedef enum : NSUInteger {
-    KTVSongTypeUnknown = 0,
-    KTVSongTypeSolo,
-    KTVSongTypeChorus
-} KTVSongType;
-```
-K 歌场景类型：
-- `KTVSongTypeUnknown`: 未知
-- `KTVSongTypeSolo`: 独唱场景
-- `KTVSongTypeChorus`: 合唱场景
-
 ### KTVSingRole
 
-```objective-c
-typedef enum : NSUInteger {
-    KTVSingRoleUnknown = 0,
-    KTVSingRoleMainSinger,
-    KTVSingRoleCoSinger,
-    KTVSingRoleAudience
-} KTVSingRole;
+```objc
+public enum KTVSingRole: Int {
+    case soloSinger = 0 
+    case coSinger 
+    case leadSinger 
+    case audience 
+}
 ```
 K 歌用户角色类型：
-- `KTVSingRoleUnknown`: 未知
-- `KTVSingRoleMainSinger`: 主唱
-- `KTVSingRoleCoSinger`: 伴唱
-- `KTVSingRoleAudience`: 观众
 
-### KTVPlayerTrackMode
+- `SoloSinger`：独唱者。
+- `CoSinger`：伴唱。
+- `LeadSinger`：领唱。
+- `Audience`：听众。
+
+### KTVLoadSongFailReason
 
 ```objective-c
-typedef enum : NSUInteger {
-    KTVPlayerTrackOrigin = 0,
-    KTVPlayerTrackAcc = 1
-} KTVPlayerTrackMode;
+public enum KTVLoadSongFailReason: Int {
+    case noLyricUrl = 0
+    case musicPreloadFail
+    case cancelled
+}
 ```
 
-K 歌播放音轨类型：
-- `KTVPlayerTrackOrigin`: 原唱
-- `KTVPlayerTrackAcc`: 伴奏
+歌曲加载失败的原因：
+
+- `noLyricUrl`：(0)  无歌词下载地址。
+- `musicPreloadFail`：(1) 歌曲加载失败。请检查你的网络连接或检查 Token 是否过期。
+- `cancelled`：(2) 歌曲加载因出现错误而终止。
+
+### KTVSwitchRoleFailReason
+
+```objective-c
+public enum KTVSwitchRoleFailReason: Int {
+    case none = 0
+    case joinChannelFail
+    case noPermission
+}
+```
+
+用户角色切换失败的原因：
+
+- `none`：【缺少 input，是指没有错误还是说一般错误，无明确归因？btw，java没有这个枚举，只有下面两个】
+- `joinChannelFail`：加入频道失败。
+- `noPermission`：不支持从当前角色切换为目标角色，请参考[切换说明]()进行角色切换。
+
+### KTVLoadMusicMode
+
+```objective-c
+public enum KTVLoadMusicMode: Int {
+    case loadMusicOnly
+    case loadLrcOnly
+    case loadMusicAndLrc
+}
+```
+
+歌曲加载模式：
+
+- `loadMusicOnly`：仅加载歌曲。用户在加入合唱成为伴唱时使用此模式。
+- `loadLrcOnly`：仅加载歌词。用户角色为观众时使用此模式。
+- `loadMusicAndLrc`：（默认）加载歌词和歌曲。用户角色为独唱者时使用此模式。
 
 
 ### KTVLoadSongState
 
 ```objective-c
-typedef enum : NSUInteger {
-    KTVLoadSongStateIdle = 0,
-    KTVLoadSongStateOK,
-    KTVLoadSongStateInProgress,
-    KTVLoadSongStateNoLyricUrl,
-    KTVLoadSongStatePreloadFail,
-} KTVLoadSongState;
+public enum KTVLoadSongState: Int {
+    case idle = -1 
+    case ok = 0
+    case failed
+    case inProgress
+}
 ```
 
 歌曲加载的状态：
-- `KTVLoadSongStateIdle`: 空闲状态，未加载歌曲
-- `KTVLoadSongStateOK`: 加载成功
-- `KTVLoadSongStateInProgress`: 正在加载中
-- `KTVLoadSongStateNoLyricUrl`: 歌曲无法加载，缺少歌词地址
-- `KTVLoadSongStatePreloadFail`: 加载失败
+- `idle`: 空闲状态，未加载歌曲。
+- `ok`: 加载成功。
+- `failed`: 加载失败。
+- `inProgress`: 正在加载中。
 
-## Interface
+## Class
 
-### KTVSongConfiguration
+### KTVApiConfig
 
 ```objective-c
-@interface KTVSongConfiguration : NSObject
-@property(nonatomic, assign)KTVSongType type;
-@property(nonatomic, assign)KTVSingRole role;
-@property(nonatomic, assign)NSInteger songCode;
-@property(nonatomic, assign)NSInteger mainSingerUid;
-@property(nonatomic, assign)NSInteger coSingerUid;
-+(KTVSongConfiguration*)configWithSongCode:(NSInteger)songCode;
-@end
+open class KTVApiConfig: NSObject{
+    var appId: String
+    var rtmToken: String
+    weak var engine: AgoraRtcEngineKit?
+    var channelName: String
+    var localUid: Int = 0
+    var chorusChannelName: String
+    var chorusChannelToken: String
+     
+    public
+    init(appId: String,
+         rtmToken: String,
+         engine: AgoraRtcEngineKit,
+         channelName: String,
+         localUid: Int,
+         chorusChannelName: String,
+         chorusChannelToken: String
+    ) {
+        self.appId = appId
+        self.rtmToken = rtmToken
+        self.engine = engine
+        self.channelName = channelName
+        self.localUid = localUid
+        self.chorusChannelName = chorusChannelName
+        self.chorusChannelToken = chorusChannelToken
+    }
+}
 ```
 
 K 歌配置：
 
-- `type`: K 歌场景类型，详见 [KTVSongType](#ktvsongtype)
-- `role`: K 歌用户角色类型，详见 [KTVSingRole](#ktvsingrole)
-- `songCode`: 歌曲的编号
-- `mainSingerUid`: 主唱的 UID
-- `coSingerUid`: 伴唱的 UID
+- `appId`：你的项目的 App ID。
 
-UID 指用户 ID，用于标识频道内的用户，频道内的每个 UID 都必须是唯一。UID 是 32 位无符号整数，建议取值范围为 [1,2<sup>32</sup>-1]。
+- `rtmToken`：RTM Token，用于音乐内容中心鉴权。
+
+  <div class="alert info">你可以获取临时 RTM Token 用于测试，但在正式生产环境中，你需要自己部署一个 RTM Token 服务器来生成、更新 Token，详见使用 RTM Token 鉴权。</div>
+
+- `engine`：[`AgoraRtcEngineKit`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_irtcengine) 对象。
+
+- `channelName`：频道名。
+
+- `localUid`：本地用户的 ID。频道内的每个用户 ID 都必须是唯一，需是 32 位无符号整数，建议取值范围为 [1,2<sup>32</sup>-1]。
+
+- `chorusChannelName`: 频道 2 的名称。在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。<mark>如果是独唱场景，这两个参数是否可以为空？</mark>
+
+- `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。
+
+### KTVSongConfiguration
+
+```objective-c
+open class KTVSongConfiguration: NSObject {
+    public var autoPlay: Bool = false 
+    public var mainSingerUid: Int = 0 
+    public var mode: KTVLoadMusicMode = .loadMusicAndLrc
+}
+```
+
+歌曲加载设置：
+
+- `autoPlay`：歌曲加载完成后是否自动播放：
+  - `true`：自动播放。通常用户角色为独唱者时，推荐设为该值；用户角色为听众时，请勿设为该值。
+  - `false`：（默认）不自动播放。
+- `mainSingerUid`：独唱者的用户 ID。
+- `mode`：歌曲加载的模式，详见 [KTVLoadMusicMode](#KTVLoadMusicMode)。

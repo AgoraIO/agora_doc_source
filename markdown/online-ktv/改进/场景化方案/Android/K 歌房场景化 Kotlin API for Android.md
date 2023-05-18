@@ -177,7 +177,7 @@ fun searchMusicByKeyword(
 - `keyword`：搜索关键词，支持歌曲名、歌手搜索。
 - `page`：想要获取的音乐资源列表的目标页编号。
 - `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
-- 扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
+- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
 - `onMusicCollectionResultListener`：获取歌曲资源列表回调，包含以下参数：
   - `requestId`：请求 ID。本次请求的唯一标识。
   - `status`：请求状态。
@@ -231,7 +231,7 @@ fun loadMusic(
 
 加载歌曲和歌词。
 
-传入歌曲的 URL 和加载配置，调用 `loadMusic` 加载歌曲和歌词。加载结果会通过 `IMusicLoadStateListener` 回调异步通知你。
+传入歌曲的 URL 和加载配置，调用 `loadMusic` 加载歌曲和歌词。
 
 #### 注意
 
@@ -332,7 +332,7 @@ fun setMicStatus(isOnMicOpen: Boolean)
 
 同步麦克风的开关状态。
 
-如果你调用 `adjustRecordSignalVolume` 将`volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
+如果你调用 [`adjustRecordSignalVolume`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android#api_irtcengine_adjustrecordingsignalvolume) 将`volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
 
 #### 参数
 
@@ -537,9 +537,15 @@ open fun onMusicPlayerStateChanged(
 
 - `state`：播放器的当前状态。详见 [MediaPlayerState](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/enum_mediaplayerstate.html?platform=Android)。
 - `error`：播放器的错误码。详见 [MediaPlayerError](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/enum_mediaplayererror.html?platform=Android)。
-- `isLocal`：是否为本地事件：
-    - `true`: 是本地事件。
-    - `false`: 不是本地事件。
+- `isLocal`: 是否为本地事件：
+    - `true`: 代表是本地播放器的状态改变。可用于主唱和伴唱监听本地播放器状态。
+    - `false`: 是远端播放器的状态改变。可用于伴唱和听众知晓主唱的播放器状态，从而方便后续进行多端播放同步。
+
+举例来说，在合唱场景下，主唱、伴唱、听众收到的 `onMusicPlayerStateChanged` 回调有如下区别：
+
+- 主唱：收到一个 `isLocal` 为 `true` 的回调，报告主唱播放器的状态改变。
+- 伴唱：收到一个 `isLocal` 为 `true` 的回调，报告伴唱播放器的状态改变；同时，还收到一个 `isLocal` 为 `false` 的回调，报告主唱播放器的状态改变。
+- 听众：收到一个 `isLocal` 为 `false` 的回调报告主唱端播放器的状态改变。
 
 ### onSingerRoleChanged
 
@@ -555,6 +561,20 @@ open fun onSingerRoleChanged(oldRole: KTVSingRole, newRole: KTVSingRole) {}
 
 - `oldRole`：切换前的用户角色，详见 [KTVSingRole](#KTVSingRole)。
 - `newRole`：切换后的用户角色，详见 [KTVSingRole](#KTVSingRole)。
+
+### onChorusChannelTokenPrivilegeWillExpire
+
+```kotlin
+open fun onChorusChannelTokenPrivilegeWillExpire(token: String?) {}
+```
+
+Token 即将过期回调。
+
+在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。当用于加入频道 2 的 Token 即将过期时，会触发该回调提醒你及时更新 Token。你可以调用 [renewToken](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_core_method.html?platform=Android#api_irtcengine_renewtoken) 来传入新的 Token。
+
+#### 参数
+
+- `token`：即将服务失效的 Token。
 
 
 ## Enum class
@@ -670,20 +690,13 @@ K 歌配置：
 
 - `localUid`：本地用户的 ID。频道内的每个用户 ID 都必须是唯一，需是 32 位无符号整数，建议取值范围为 [1,2<sup>32</sup>-1]。
 
-- `chorusChannelName`: 频道 2 的名称。在合唱场景下，领唱需要加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。<mark>如果是独唱场景，这两个参数是否可以为空？</mark>
+- `chorusChannelName`: 在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。<mark>如果是独唱场景，这两个参数是否可以为空？</mark>
 
 - `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。
 
-#### KTVLoadMusicConfiguration
+### KTVLoadMusicConfiguration
 
 ```kotlin
-/**
- * 加载歌曲的配置，不允许在一首歌没有load完成前（成功/失败均算完成）进行下一首歌的加载
- * @param autoPlay 是否自动播放歌曲（通常主唱选择true）默认为false
- * @param mode 歌曲加载的模式， 默认为音乐和歌词均加载
- * @param songCode 歌曲 id
- * @param mainSingerUid 主唱的 Uid，如果是伴唱，伴唱需要根据这个信息 mute 主频道主唱的声音
- */
 data class KTVLoadMusicConfiguration(
     val autoPlay: Boolean = false,
     val mainSingerUid: Int,
