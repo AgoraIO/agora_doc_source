@@ -23,7 +23,7 @@ ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
 
 ### 房主邀请上麦
 
-![](https://web-cdn.agora.io/docs-files/1684231366436)
+![](https://web-cdn.agora.io/docs-files/1684381350502)
 
 1. 房主调用 ChatRoomServiceImp 类的 startMicSeatInvitation 方法，开始邀请用户上麦。
 

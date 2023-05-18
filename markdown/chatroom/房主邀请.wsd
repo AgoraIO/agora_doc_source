@@ -6,10 +6,9 @@ participant "观众" as c
 a -> b: 发送上麦邀请
 b --> c: 发送上麦邀请
 c -> c: 弹出上麦邀请的弹窗
-alt 拒绝
+alt #LightCyan 拒绝
 c -> b: 拒绝上麦邀请
-end
-alt 接受
+else #White 接受
 c -> b: 同意上麦邀请
 end
 b --> a: 设置聊天室属性，通知全员刷新房间设置
