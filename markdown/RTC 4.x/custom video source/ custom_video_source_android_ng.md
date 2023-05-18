@@ -55,13 +55,9 @@
 
 下图展示在单频道和多频道中实现自定义视频采集时，视频数据的传输过程：
 
-### 单频道
-
 仅在一个频道内发布自采集视频流：
 
 ![](https://web-cdn.agora.io/docs-files/1683598621022)
-
-### 多频道
 
 在多个频道内发布不同的自采集视频流：
 
@@ -75,26 +71,24 @@
 
 ## 实现自定义视频采集
 
-参考如下内容，在你的 app 中实现自定义视频采集功能。
-
-### API 调用时序
-
 参考下图调用时序，在你的 app 中实现自定义视频采集：
 
 ![](https://web-cdn.agora.io/docs-files/1684223014176)
 
-### 实现步骤 
-
 参考如下步骤，在你的 app 中实现自定义视频采集功能：
 
-1. 初始化 `RtcEngine` 后，调用 `createCustomVideoTrack` 创建自定义视频轨道并获得视频轨道 ID。根据场景需要，你可以创建多个自定义视频轨道。
+### 1. 创建自定义视频轨道
+
+初始化 `RtcEngine` 后，调用 `createCustomVideoTrack` 创建自定义视频轨道并获得视频轨道 ID。根据场景需要，你可以创建多个自定义视频轨道。
 
 ```java
 // 如需创建多个自定义视频轨道，可以多次调用 createCustomVideoTrack
 int videoTrackId = RtcEngine.createCustomVideoTrack();
 ```
 
-2. 调用 `joinChannel` 加入频道，或调用 `joinChannelEx` 加入多频道， 在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为步骤 1 中获得的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`，即可在多个频道中发布指定的自定义视频轨道。
+### 2. 加入频道并发布自定义视频轨道
+
+调用 `joinChannel` 加入频道，或调用 `joinChannelEx` 加入多频道， 在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为步骤 1 中获得的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`，即可在多个频道中发布指定的自定义视频轨道。
 
 ```java
 // 如需在多个频道发布自定义视频轨道，则需要多次设置 ChannelMediaOptions 并多次调用 joinChannelEx
@@ -104,6 +98,7 @@ option.autoSubscribeAudio = true;
 option.autoSubscribeVideo = true;
 // 发布自采集视频流
 option.publishCustomVideoTrack = true;
+// 设置自定义视频轨道 ID
 option.customVideoTrackId = videoTrackId;
 // 加入主频道
 int res = engine.joinChannel(accessToken, channelId, 0, option);
@@ -111,106 +106,104 @@ int res = engine.joinChannel(accessToken, channelId, 0, option);
 int res = RtcEngine.joinChannelEx(accessToken, connection, option, new IRtcEngineEventHandler(){});
 ```
 
-3. 实现视频采集。声网提供 [VideoFileReader.java](https://github.com/AgoraIO/API-Examples/blob/main/Android/APIExample/app/src/main/java/io/agora/api/example/utils/VideoFileReader.java) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，声网 SDK 不提供自定义视频处理 API，你需要结合业务需求使用 Android SDK 为你的设备创建自定义视频模块。
+### 3. 实现自采集模块
 
-4. 将采集到的视频帧发送至 SDK 之前，通过设置 `VideoFrame` 集成你的视频模块。你可以参考以下代码，将采集到的 YUV 视频数据转换为不同类型的 `VideoFrame`。为确保音视频同步，声网建议你调用 `getCurrentMonotonicTimeInMs` 获取 SDK 当前的 Monotonic Time 后，将该值传入采集的 `VideoFrame` 的时间戳参数。
+声网提供 [VideoFileReader.java](https://github.com/AgoraIO/API-Examples/blob/main/Android/APIExample/app/src/main/java/io/agora/api/example/utils/VideoFileReader.java) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，声网 SDK 不提供自定义视频处理 API，你需要结合业务需求使用 Android SDK 为你的设备创建自定义视频模块。
 
-   ```java
-   // 创建不同类型的 VideoFrame
-   VideoFrame.Buffer frameBuffer;
-   // 将 YUV 视频数据转换为 NV21 格式
-   if ("NV21".equals(selectedItem)) {
+### 4. 通过视频轨道推送视频数据到 SDK
+
+将采集到的视频帧发送至 SDK 之前，通过设置 `VideoFrame` 集成你的视频模块。你可以参考以下代码，将采集到的 YUV 视频数据转换为不同类型的 `VideoFrame`。为确保音视频同步，声网建议你调用 `getCurrentMonotonicTimeInMs` 获取 SDK 当前的 Monotonic Time 后，将该值传入采集的 `VideoFrame` 的时间戳参数。
+
+```java
+// 创建不同类型的 VideoFrame
+VideoFrame.Buffer frameBuffer;
+// 将 YUV 视频数据转换为 NV21 格式
+if ("NV21".equals(selectedItem)) {
+   int srcStrideY = width;
+   int srcHeightY = height;
+   int srcSizeY = srcStrideY * srcHeightY;
+   ByteBuffer srcY = ByteBuffer.allocateDirect(srcSizeY);
+   srcY.put(yuv, 0, srcSizeY);
+
+   int srcStrideU = width / 2;
+   int srcHeightU = height / 2;
+   int srcSizeU = srcStrideU * srcHeightU;
+   ByteBuffer srcU = ByteBuffer.allocateDirect(srcSizeU);
+   srcU.put(yuv, srcSizeY, srcSizeU);
+
+   int srcStrideV = width / 2;
+   int srcHeightV = height / 2;
+   int srcSizeV = srcStrideV * srcHeightV;
+   ByteBuffer srcV = ByteBuffer.allocateDirect(srcSizeV);
+   srcV.put(yuv, srcSizeY + srcSizeU, srcSizeV);
+
+   int desSize = srcSizeY + srcSizeU + srcSizeV;
+   ByteBuffer des = ByteBuffer.allocateDirect(desSize);
+   YuvHelper.I420ToNV12(srcY, srcStrideY, srcV, srcStrideV, srcU, srcStrideU, des, width, height);
+
+   byte[] nv21 = new byte[desSize];
+   des.position(0);
+   des.get(nv21);
+
+   frameBuffer = new NV21Buffer(nv21, width, height, null);
+}
+   // 将 YUV 视频数据转换为 NV12 格式
+   else if ("NV12".equals(selectedItem)) {
       int srcStrideY = width;
       int srcHeightY = height;
       int srcSizeY = srcStrideY * srcHeightY;
       ByteBuffer srcY = ByteBuffer.allocateDirect(srcSizeY);
       srcY.put(yuv, 0, srcSizeY);
-   
+
       int srcStrideU = width / 2;
       int srcHeightU = height / 2;
       int srcSizeU = srcStrideU * srcHeightU;
       ByteBuffer srcU = ByteBuffer.allocateDirect(srcSizeU);
       srcU.put(yuv, srcSizeY, srcSizeU);
-   
+
       int srcStrideV = width / 2;
       int srcHeightV = height / 2;
       int srcSizeV = srcStrideV * srcHeightV;
       ByteBuffer srcV = ByteBuffer.allocateDirect(srcSizeV);
       srcV.put(yuv, srcSizeY + srcSizeU, srcSizeV);
-   
+
       int desSize = srcSizeY + srcSizeU + srcSizeV;
       ByteBuffer des = ByteBuffer.allocateDirect(desSize);
-      YuvHelper.I420ToNV12(srcY, srcStrideY, srcV, srcStrideV, srcU, srcStrideU, des, width, height);
-   
-      byte[] nv21 = new byte[desSize];
-      des.position(0);
-      des.get(nv21);
-   
-      frameBuffer = new NV21Buffer(nv21, width, height, null);
-   }
-      // 将 YUV 视频数据转换为 NV12 格式
-      else if ("NV12".equals(selectedItem)) {
-         int srcStrideY = width;
-         int srcHeightY = height;
-         int srcSizeY = srcStrideY * srcHeightY;
-         ByteBuffer srcY = ByteBuffer.allocateDirect(srcSizeY);
-         srcY.put(yuv, 0, srcSizeY);
-   
-         int srcStrideU = width / 2;
-         int srcHeightU = height / 2;
-         int srcSizeU = srcStrideU * srcHeightU;
-         ByteBuffer srcU = ByteBuffer.allocateDirect(srcSizeU);
-         srcU.put(yuv, srcSizeY, srcSizeU);
-   
-         int srcStrideV = width / 2;
-         int srcHeightV = height / 2;
-         int srcSizeV = srcStrideV * srcHeightV;
-         ByteBuffer srcV = ByteBuffer.allocateDirect(srcSizeV);
-         srcV.put(yuv, srcSizeY + srcSizeU, srcSizeV);
-   
-         int desSize = srcSizeY + srcSizeU + srcSizeV;
-         ByteBuffer des = ByteBuffer.allocateDirect(desSize);
-         YuvHelper.I420ToNV12(srcY, srcStrideY, srcU, srcStrideU, srcV, srcStrideV, des, width, height);
-   
-         frameBuffer = new NV12Buffer(width, height, width, height, des, null);
-      }
-      // 将 YUV 视频数据转换为 Texture 格式
-      else if ("Texture2D".equals(selectedItem)) {
-         if (textureBufferHelper == null) {
-               textureBufferHelper = TextureBufferHelper.create("PushExternalVideoYUV", EglBaseProvider.instance().getRootEglBase().getEglBaseContext());
-         }
-         if (yuvFboProgram == null) {
-               textureBufferHelper.invoke((Callable<Void>) () -> {
-                  yuvFboProgram = new YuvFboProgram();
-                  return null;
-         });
-         }
-         Integer textureId = textureBufferHelper.invoke(() -> yuvFboProgram.drawYuv(yuv, width, height));
-         frameBuffer = textureBufferHelper.wrapTextureBuffer(width, height, VideoFrame.TextureBuffer.Type.RGB, textureId, new Matrix());
-      }
-      // 将 YUV 视频数据转换为 I420 格式
-      else if("I420".equals(selectedItem))
-      {
-         JavaI420Buffer i420Buffer = JavaI420Buffer.allocate(width, height);
-         i420Buffer.getDataY().put(yuv, 0, i420Buffer.getDataY().limit());
-         i420Buffer.getDataU().put(yuv, i420Buffer.getDataY().limit(), i420Buffer.getDataU().limit());
-         i420Buffer.getDataV().put(yuv, i420Buffer.getDataY().limit() + i420Buffer.getDataU().limit(), i420Buffer.getDataV().limit());
-         frameBuffer = i420Buffer;
-      }
-   
-   // 获取 SDK 当前的 Monotonic Time
-   long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
-   // 创建 VideoFrame，并将 SDK 当前的 Monotonic Time 赋值到 VideoFrame 的时间戳参数
-   VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs);
-   
-   // 通过视频轨道推送视频帧到 SDK
-   int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
-   if (ret < 0) {
-      Log.w(TAG, "pushExternalVideoFrameEx error code=" + ret);
-   }
-   ```
+      YuvHelper.I420ToNV12(srcY, srcStrideY, srcU, srcStrideU, srcV, srcStrideV, des, width, height);
 
-5. 调用 `pushExternalVideoFrameEx` 并将 `videoTrackId` 指定为步骤 2 中指定的视频轨道 ID，将视频帧通过视频轨道发送给 SDK。
+      frameBuffer = new NV12Buffer(width, height, width, height, des, null);
+   }
+   // 将 YUV 视频数据转换为 Texture 格式
+   else if ("Texture2D".equals(selectedItem)) {
+      if (textureBufferHelper == null) {
+            textureBufferHelper = TextureBufferHelper.create("PushExternalVideoYUV", EglBaseProvider.instance().getRootEglBase().getEglBaseContext());
+      }
+      if (yuvFboProgram == null) {
+            textureBufferHelper.invoke((Callable<Void>) () -> {
+               yuvFboProgram = new YuvFboProgram();
+               return null;
+      });
+      }
+      Integer textureId = textureBufferHelper.invoke(() -> yuvFboProgram.drawYuv(yuv, width, height));
+      frameBuffer = textureBufferHelper.wrapTextureBuffer(width, height, VideoFrame.TextureBuffer.Type.RGB, textureId, new Matrix());
+   }
+   // 将 YUV 视频数据转换为 I420 格式
+   else if("I420".equals(selectedItem))
+   {
+      JavaI420Buffer i420Buffer = JavaI420Buffer.allocate(width, height);
+      i420Buffer.getDataY().put(yuv, 0, i420Buffer.getDataY().limit());
+      i420Buffer.getDataU().put(yuv, i420Buffer.getDataY().limit(), i420Buffer.getDataU().limit());
+      i420Buffer.getDataV().put(yuv, i420Buffer.getDataY().limit() + i420Buffer.getDataU().limit(), i420Buffer.getDataV().limit());
+      frameBuffer = i420Buffer;
+   }
+
+// 获取 SDK 当前的 Monotonic Time
+long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
+// 创建 VideoFrame，并将 SDK 当前的 Monotonic Time 赋值到 VideoFrame 的时间戳参数
+VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs);
+```
+
+调用 `pushExternalVideoFrameEx` 并将 `videoTrackId` 指定为步骤 2 中指定的视频轨道 ID，将视频帧通过视频轨道发送给 SDK。
 
 ```java
 // 通过视频轨道推送视频帧到 SDK
@@ -220,7 +213,9 @@ if (ret < 0) {
 }
 ```
 
-6. 如需停止自定义视频采集，调用 `destroyCustomVideoTrack` 来销毁视频轨道。如需销毁多个视频轨道，可多次调用 `destroyCustomVideoTrack`。
+### 5. 销毁自定义视频轨道
+
+如需停止自定义视频采集，调用 `destroyCustomVideoTrack` 来销毁视频轨道。如需销毁多个视频轨道，可多次调用 `destroyCustomVideoTrack`。
 
 ```java
 engine.destroyCustomVideoTrack(videoTrack);
