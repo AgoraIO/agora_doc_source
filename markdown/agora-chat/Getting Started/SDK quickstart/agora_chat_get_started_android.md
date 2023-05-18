@@ -170,7 +170,7 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
 
 2. 添加 UI 框架。打开 `app/res/layout/activity_main.xml`，将内容并替换为以下代码：
 
-   ```xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -246,9 +246,9 @@ b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 中，添加以
         android:hint="Show log area..."
         android:scrollbars="vertical"
         android:padding="10dp"/>
-   ```
 
 </LinearLayout>
+```
 
 ### 实现消息的发送和接收
 
