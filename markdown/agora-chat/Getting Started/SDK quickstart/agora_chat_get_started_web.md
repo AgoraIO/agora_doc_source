@@ -333,7 +333,7 @@ $ npm run dev
 ```
 
 - 关于即时通讯 IM 的安装指南，详见[示例代码](https://github.com/AgoraIO/Agora-Chat-API-Examples/blob/main/Chat-Web/src/index.js)。
-- 安装 [demo app](https://webdemo.chat.agora.io/#/login)。
+- 体验 [demo app](https://webdemo.chat.agora.io/#/login)。
 
 
 

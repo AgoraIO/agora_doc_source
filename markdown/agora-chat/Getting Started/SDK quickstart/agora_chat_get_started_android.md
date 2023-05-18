@@ -507,7 +507,7 @@ b. 利用接收方的账号在另一台 Android 设备或模拟器上运行该 a
 
 ## 参考
 
-除了使用 Maven Central 将即时通讯 IM SDK 集成到你项目中外，你还可以手动下载 [即时通讯 IM Android SDK](https://download.agora.io/sdk/release/Agora_Chat_SDK_for_Android_v1.0.0.zip)。
+除了使用 Maven Central 将即时通讯 IM SDK 集成到你项目中外，你还可以手动下载 [即时通讯 IM Android SDK](./downloads?platform=Android)。
 
 1. 下载最新版本的即时通讯 IM Android SDK，并从下载的 SDK 包中解压文件。
 

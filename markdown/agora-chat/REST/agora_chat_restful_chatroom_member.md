@@ -198,9 +198,9 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
-## 分页查询聊天室成员
+## 分页查询聊天室成员列表
 
-分页查询聊天室成员。
+分页查询聊天室成员列表。
 
 ### HTTP 请求
 
@@ -233,7 +233,9 @@ GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/users?pagenum={
 
 | 字段     | 类型   | 描述                 |
 | :------- | :----- | :------------------- |
-| `data.member` | String | 聊天室成员的用户 ID。 |
+| `data.owner` | String | 聊天室所有者的用户 ID。 |
+| `data.member` | String | 聊天室普通成员或管理员的用户 ID。 |
+| `count` | String | 本次调用获取的聊天室成员数量。 |
 
 其他字段及说明详见[公共参数](#param)。
 
@@ -263,7 +265,7 @@ curl -X GET http://XXXX/XXXX/XXXX/chatrooms/12XXXX11/users?pagenum=2&pagesize=2 
     "entities": [],
     "data": [
         {
-            "member": "user1"
+            "owner": "user1"
         },
         {
             "member": "user2"
