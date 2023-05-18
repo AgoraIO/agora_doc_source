@@ -74,7 +74,7 @@ POST https://{host}/{org_name}/{app_name}/users
 | 字段       | 类型   | 描述           | 是否必填 |
 | :--------- | :----- | :----------------------------------- | :------- |
 | `username` | String | 用户 ID。长度不可超过 64 个字节，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul><div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户 ID 唯一。</li><li>用户 ID 是公开信息，请勿使用 UUID、邮箱地址、手机号等敏感信息。</li></ul></div>| 是       |
-| `password` | String | 用户的登录密码。长度必须在 64 个字符以内。 | 是       |
+| `password` | String | 用户的登录密码。长度必须在 64 个字符以内。 | 否       |
 | `nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称，而非用户属性的用户昵称。长度必须在 100 个字符以内。默认为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>中文</li><li>特殊字符</li></ul> | 否       |
 
 ### HTTP 响应
@@ -98,7 +98,7 @@ POST https://{host}/{org_name}/{app_name}/users
 
 ```shell
 # 将 <YourAppToken> 替换为你在服务端生成的 app token
-curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer <YourAppToken>' -i "https://XXXX/XXXX/XXXX/users" -d '
+curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization:Bearer <YourAppToken>' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
       "username": "XXXX",
       "password": "XXXX",
@@ -166,7 +166,7 @@ POST https://{host}/{org_name}/{app_name}/users
 | 字段       | 类型   | 描述     | 是否必填 |
 | :--------- | :----- | :----------------- | :------- |
 | `username` | String | 用户 ID。用户的唯一登录账号。长度不可超过 64 个字节，不可设置为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>"_", "-", "."</li></ul><div class="alert note"><ul><li>不区分大小写。</li><li>同一个 app 下，用户 ID 唯一。</li><li>用户 ID 是公开信息，请勿使用 UUID、邮箱地址、手机号等敏感信息。</li></ul></div> | 是       |
-| `password` | String | 用户的登录密码。长度必须在 64 个字符以内。   | 是       |
+| `password` | String | 用户的登录密码。长度必须在 64 个字符以内。   | 否     |
 | `nickname` | String | 推送消息时，在消息推送通知栏内显示的用户昵称，而非用户属性的用户昵称。长度必须在 100 个字符以内。默认为空。支持以下字符集：<ul><li>26 个小写英文字母 a-z</li><li>26 个大写英文字母 A-Z</li><li>10 个数字 0-9</li><li>中文</li><li>特殊字符</li></ul> | 否       |
 
 ### HTTP 响应

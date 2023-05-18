@@ -166,7 +166,7 @@ import AC from "./Agora-chat";
     </view>
     <view class="input-field">
       <label>Token</label>
-      <input type="text" placeholder="Token" bindinput="handleTokenChange"/>
+      <input type="text" placeholder="Token" bindinput="handleTokenChange" maxlength="-1"/>
     </view>
     <view>
       <button type="button" bindtap="login" >Login</button>
@@ -178,7 +178,7 @@ import AC from "./Agora-chat";
     </view>
     <view class="input-field">
       <label>Peer Message</label>
-      <input type="text" placeholder="Peer message" bindinput="handleMessageChange"/>
+      <input type="text" placeholder="Peer message" bindinput="handleMessageChange" maxlength="-1"/>
       <button type="button" bindtap="sendMessage">send</button>
     </view>
   </view>
@@ -279,7 +279,7 @@ Page({
     });
   },
 
-  handleMessageChange(e) {
+  handlePeerIdChange(e) {
     this.setData({
       peerUserId: e.detail.value,
     });

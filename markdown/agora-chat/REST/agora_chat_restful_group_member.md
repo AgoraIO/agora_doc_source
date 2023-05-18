@@ -34,7 +34,7 @@
 
 ~458499a0-7908-11ec-bcb4-b56a01c83d2e~
 
-## 分页获取群组成员
+## 分页获取群组成员列表
 
 分页获取群组成员列表。
 
@@ -111,7 +111,7 @@ curl -X GET -H 'Accept: application/json' 'http://XXXX/XXXX/XXXX/chatgroups/1013
     "entities": [],
     "data": [
     {
-            "member": "user1"
+            "owner": "user1"
     },
     {
             "member": "user2"

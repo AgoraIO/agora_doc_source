@@ -234,6 +234,8 @@ DELETE -X POST -H 'Content-Type: application/json' -H 'Accept: application/json'
 
 用户强制设置指定聊天室的自定义属性信息，即该方法可覆盖其他用户设置的聊天室自定义属性。
 
+该方法每次最多可删除 10 个自定义属性。
+
 ### HTTP 请求
 
 ```http

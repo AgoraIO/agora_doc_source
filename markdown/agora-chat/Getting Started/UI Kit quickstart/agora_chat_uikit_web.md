@@ -74,10 +74,7 @@
 
 ## 操作步骤
 
-即时通讯 IM Web UIKit 包含两部分：
-
-- `EaseApp`：包含会话列表，适用于大多数聊天用例，可快速启动实时聊天应用。
-- `EaseChat`：包含一个对话框，适用于大多数聊天用例，例如发送和接收消息、在用户界面上显示消息以及管理未读消息。
+即时通讯 IM Web UIKit 包含 `EaseApp`，用于实现会话列表，可在大多数聊天用例中快速启动实时聊天应用。
 
 下文介绍如何利用 `EaseApp` 快速实现单聊。
 
@@ -137,48 +134,6 @@ npm run start
 
 本节介绍你可以在项目中实现的更高级功能。
 
-### 适用的用例
-
-作为会话组件，`EaseChat` 可以在广泛的用例中应用，例如，通过弹出对话框以进行点击事件，或在用户登录后添加回调事件。
-
-```javascript
-import React, { useState } from "react";
-import { EaseChat } from "agora-chat-uikit";
-    const addListen = (res) => {
-    if(res.isLogin){
-           const WebIM = EaseChat.getSdk()
-        WebIM.conn.addEventHandler('testListen',{
-          onTextMessage:()=>{},
-          onError:()=>{},
-          ...
-        })
-     }
-  }
-    const chat = () => {
-        return (
-        <div>
-      <EaseChat
-        appkey={'xxx'}
-        username={'xxx'}
-        agoraToken={'xxx'}
-        to={'xxx'}
-                successLoginCallback={addListener}
-      />
-     <div/>
-        )
-    }
-    const app = () =>{
-    const [showSession, setShowSession] = useState(false);
-    return(
-    <div>
-        { showSession && chat()}
-        <button onClick={()=>setShowSession(true)}>Launch the session</button>
-        <button onClick={()=>setShowSession(false)}>Close the session</button>
-    <div/>
-    )
-    }
-```
-
 ### 自定义属性
 
 `EaseChat` 提供以下自定义属性。你可以通过设置这些属性实现自定义功能和布局。为确保 `EaseChat` 的功能实现，必须设置所有必选参数。
@@ -189,7 +144,7 @@ import { EaseChat } from "agora-chat-uikit";
 | `username`             | String                 | 是  | 用户标识。                                                   |
 | `agoraToken`           | String                  | 是  | 声网 Token.                                             |
 | `to`                   | String                  | 是  | 消息接收方。单聊时为对方用户 ID，群聊时为群组 ID。 |
-| `showByselfAvatar`     | Bool                  | 否    | 是否显示当前用户的头像。<li>`true`： 是。<li>（默认）`false`：否。     |
+| `showByselfAvatar`     | Boolean                  | 否    | 是否显示当前用户的头像。<li>`true`： 是。<li>（默认）`false`：否。     |
 | `easeInputMenu`        | String                 | 否    | 输入菜单模式。<li>（默认）`all`: 完整模式。<li>`noAudio`：无音频。<li>`noEmoji`：无表情符号。<li>`noAudioAndEmoji`: 没有视频和表情符号。<li>`onlyText`: 仅文本。 |
 | `menuList`             | Array                 | 否    | 输入框右侧栏菜单扩展。(默认) `menuList`: `[ {name:'发送图片', value:'img'},{name:'发送文件', value:'file'}]`。 |
 | `handleMenuItem`       | function({item, key}) | 否     | 在输入框中点击菜单栏。 |
@@ -203,7 +158,7 @@ import { EaseChat } from "agora-chat-uikit";
 1. 获取 SDK 实例
 
    ```javascript
-    const WebIM = EaseChat.getSdk({ appkey: 'xxxx' })
+    const WebIM = EaseApp.getSdk({ appkey: 'xxxx' })
    ```
 
 2. 添加回调事件
