@@ -2,40 +2,41 @@
 title 合唱 API 时序图
 autonumber
 skinparam monochrome true
-participant "主唱/伴唱 App" as a
+participant "领唱/伴唱 App" as a
 participant "声网 SDK" as b
 participant "听众 App" as c
-== 设置私有参数 ==
-a -> b: setParameters
 == 加入频道 ==
 a -> b: joinChannelByToken
 c -> b: joinChannelByToken
-== 加载歌曲歌词 ==
-a -> b: loadSong
-c -> b: loadSong
-b -->> a: KTVLoadSongStateOK
-b -->> c: KTVLoadSongStateOK
-== 开始播放歌曲 ==
-a -> b: playSong(KTVSingRoleMainSinger/KTVSingRoleCoSinger)
-b -->> a: didChangedToState(AgoraMediaPlayerStatePlaying)
-c -> b: playSong(KTVSingRoleAudience)
-b -->> c: didChangedToState(AgoraMediaPlayerStatePlaying)
+== 加载歌曲歌词并播放 ==
+a -> b: loadMusicWithSongCode
 note left
+autoPlay 设为 YES，歌曲加载成功后自动播放
+end note
+b -->> a: onMusicLoadSuccessWithSongCode
+note right
+autoPlay 设为 NO，仅加载歌词
 听众不播放歌曲，只是进入播放状态
 end note
-== 停止播放 ==
-a -> b: stopSong
-b -->> a: didChangedToState(AgoraMediaPlayerStateStopped)
-c -> b: stopSong
-b -->> c: didChangedToState(AgoraMediaPlayerStateStopped)
+c -> b: loadMusicWithSongCode
+b -->> c: onMusicLoadSuccessWithSongCode
+== 切换角色 ==
+a -> b:switchSingerRoleWithNewRole(leadSinger/coSinger)
+b --> a: onSwitchRoleState
+note left
+伴唱加入合唱后，独唱者变为 leadSinger
+伴唱将角色设为 coSinger
+end note
+== 歌曲结束 ==
+a -> b: switchSingerRoleWithNewRole(audience)
+b -->> a: onSwitchRoleState
 == 关闭麦克风 ==
-a -> b: adjustRecordingSignalVolume
+a -> b: options.publishMicrophoneTrack
 == 更新媒体选项 ==
 a -> b: updateChannelMediaOptions
 c -> b: updateChannelMediaOptions
 note left
 主唱、伴唱、上麦听众发布麦克风，角色为主播
-
 普通听众不发布麦克风，角色为观众
 end note
 @enduml
