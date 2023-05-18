@@ -4,24 +4,29 @@ autonumber
 skinparam monochrome true
 participant "App" as a
 participant "声网 SDK" as b
-== 初始化 KTV API 模块==
+== 初始化 KTV API 模块并注册事件==
 a -> b: initWithRtcEngine
+a -> b: addEventHandler
 == 获取歌曲列表（方式一：用关键词）==
 a -> b: searchMusicWithKeyWord
-b -->> a: onMusicCollectionResult
+b -->> a: completion
 == 获取歌曲列表（方式二：用音乐榜单）==
-a -> b: getMusicCollectionWithMusicChartId
-b -->> a: onMusicChartsResult
+a -> b: fetchMusicChartsWithCompletion
+b -->> a: AgoraMusicChartInfo
 == 加载歌曲 ==
-a -> b: loadSong
-== 开始播放歌曲 ==
-b -->> a: KTVLoadSongStateOK
-a -> b: playSong
-b -->> a: didChangedToState(AgoraMediaPlayerStatePlaying)
-== 控制歌曲播放 ==
-a ->b: seek/pause/resume/selectTrackMode
-b -->> a: didChangedToState(AgoraMediaPlayerStateXX)
-== 停止播放 ==
-a -> b: stopSong
-b -->> a: didChangedToState(AgoraMediaPlayerStateStopped)
+a -> b: loadMusicWithSongCode
+b -->> a: onMusicLoadProgressWithSongCode
+== 切换用户角色 ==
+a -> b: switchSingerRoleWithNewRole(soloSinger)
+b -->> a:onSwitchRoleState
+b -->> a: KTV 模块内部根据设置的用户角色控制歌曲播放、同步。
+b -->> a:onMusicPlayerStateChanged(PLAYER_STATE_PLAYING)
+== 控制播放器 ==
+a ->b: seekSing/pauseSing/resumeSing/selectAudioTrack
+b -->> a: onMusicPlayerStateChanged(PLAYER_STATE_XX)
+== 停止播放或中途切歌 ==
+a -> b: switchSingerRoleWithNewRole(audience)
+b -->> a: onMusicPlayerStateChanged(PLAYER_STATE_STOPPED)
+== 释放 KTV API 模块资源 ==
+a ->b: cleanCache()
 @enduml
