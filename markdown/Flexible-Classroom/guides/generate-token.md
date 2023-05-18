@@ -51,7 +51,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 <div class="alert warning">此示例服务器仅用于演示，请勿用于生产环境中。</div>
 
-1. 创建一个 `server.go` 文件，然后贴入如下代码。将其中的 `<Your App ID>`和 `<Your App Certificate>` 替换为你的 App ID 和 App 证书。
+1. 创建一个 `server.go` 文件，然后贴入如下代码。将其中的 `Your_App_ID` 和 `Your_Certificate` 替换为你的 App ID 和 App 证书。
 
     ```golang
     package main
@@ -297,7 +297,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 | 语言 | 算法 | 核心方法       | 示例代码 |
 | -------- | ----------- |----------------| ---------------- |
-| C++ | HMAC-SHA256 | [BuildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/EducationTokenBuilder2.h)                                  |  |
+| C++ | HMAC-SHA256 | [BuildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/EducationTokenBuilder2.h)                                  | N/A |
 | Go | HMAC-SHA256 | [BuildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/src/educationtokenbuilder/educationtokenbuilder.go)             | [sample.go](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/sample/educationtokenbuilder/sample.go) |
 | Java | HMAC-SHA256 | [buildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/education/EducationTokenBuilder2.java) | [EducationTokenBuilder2Sample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/EducationTokenBuilder2Sample.java) |
 | Node.js | HMAC-SHA256 | [buildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/EducationTokenBuilder.js)                                    | [EducationTokenSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/EducationTokenSample.js) |
@@ -311,7 +311,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 | 语言 | 算法 | 核心方法      | 示例代码 |
 | -------- | ----------- |-------------------| ---------------- |
-| C++ | HMAC-SHA256 | [BuildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/EducationTokenBuilder2.h)                                  |  |
+| C++ | HMAC-SHA256 | [BuildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/EducationTokenBuilder2.h)                                  | N/A |
 | Go | HMAC-SHA256 | [BuildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/src/educationtokenbuilder/educationtokenbuilder.go)             | [sample.go](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/sample/educationtokenbuilder/sample.go) |
 | Java | HMAC-SHA256 | [buildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/education/EducationTokenBuilder2.java) | [EducationTokenBuilder2Sample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/EducationTokenBuilder2Sample.java) |
 | Node.js | HMAC-SHA256 | [buildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/EducationTokenBuilder.js)                               | [EducationTokenSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/EducationTokenSample.js) |
@@ -321,11 +321,11 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 #### 指定房间指定用户（客户端使用）
 
-作用域为制定房间中的制定用户，该 Token 打包了 `ServiceEducation` 和 `ServiceRtm` 两个服务，在客户端 SDK 启动时传入，可以帮助用户打通灵动课堂及 RTM 用户登录的 token。
+作用域为指定房间中的指定用户，该 Token 打包了 `ServiceEducation` 和 `ServiceRtm` 两个服务，在客户端 SDK 启动时传入，可以帮助用户打通灵动课堂及 RTM 用户登录的 token。
 
 | 语言 | 算法 | 核心方法       | 示例代码 |
-| -------- | ----------- |--------------- |
-| C++ | HMAC-SHA256 | [BuildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/EducationTokenBuilder2.h)                                  |  |
+| -------- | ----------- | --------------- | --------------- |
+| C++ | HMAC-SHA256 | [BuildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/EducationTokenBuilder2.h)                                  |  N/A  | 
 | Go | HMAC-SHA256 | [BuildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/src/educationtokenbuilder/educationtokenbuilder.go)             | [sample.go](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/go/sample/educationtokenbuilder/sample.go) |
 | Java | HMAC-SHA256 | [buildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/education/EducationTokenBuilder2.java) | [EducationTokenBuilder2Sample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/EducationTokenBuilder2Sample.java) |
 | Node.js | HMAC-SHA256 | [buildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/EducationTokenBuilder.js)                               | [EducationTokenSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/EducationTokenSample.js) |
@@ -357,14 +357,4 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 ### App 证书与 Token
 
 生成 Token 需要先在控制台启用对应项目的 App 证书。项目一旦开启了 App 证书，就必须使用 Token 鉴权。
-
-### Token 过期
-
-你可以根据业务需求指定 Token 的有效期 (最长为 24 小时)。当 Token 临 30 秒过期时，会触发 `onTokenPrivilegeWillExpire` 回调，提醒用户 Token 即将过期。收到该回调时，你可以在服务端重新生成 RTM Token，然后调用 `renewToken` 方法，将新生成的 Token 传给 SDK。
-
-Token 过期时，分为以下两种情况：
-- 如果用户处于已连接状态 (`CONNECTION_STATE_CONNECTED`)，会收到 `onTokenExpired` 回调和因 Token 过期 (`CONNECTION_CHANGE_REASON_TOKEN_EXPIRED (9)`) 触发的 `onConnectionStateChanged` 回调，提醒用户连接状态切换至停止登录 (`CONNECTION_STATE_ABORTED`)。此时，用户需要调用 `login` 方法重新登录。
-- 如果用户由于网络问题处于断线重连状态 (`CONNECTION_STATE_RECONNECTING`)，会在网络恢复时收到 `onTokenExpired` 回调。此时，用户需要调用 `renewToken` 方法恢复连接。
-
-<div class="alert note">你可以通过 <code>onTokenPrivilegeWillExpire</code> 回调和 <code>onTokenExpired</code> 回调进行 Token 过期处理，但声网推荐你通过定时（例如每小时）更新 Token 来解决 Token 过期问题。</div>
 
