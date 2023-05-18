@@ -102,7 +102,7 @@ mediaOptions.autoSubscribeAudio = false;
 // 设置自定义视频轨道 ID
 mediaOptions.customVideoTrackId = videoTrackId;
 // 加入频道
-int res = m_rtcEngine->joinChannel(APP_TOKEN, szChannelId.data(), 0, mediaOptions);
+int ret = m_rtcEngine->joinChannel(APP_TOKEN, szChannelId.data(), 0, mediaOptions);
 // 或加入多频道
 int ret = m_rtcEngine->joinChannelEx(APP_TOKEN, m_trackConnections[trackIndex], mediaOptions, &m_trackEventHandlers[trackIndex]);
 ```
@@ -130,7 +130,6 @@ m_videoFrame.height = height;
 m_videoFrame.stride = width;
 m_videoFrame.buffer = buffer;
 // 获取 SDK 当前的 Monotonic Time
-
 // 将 SDK 当前的 Monotonic Time 赋值到 videoFrame 的时间戳参数
 m_videoFrame.timestamp = ???;
 ```

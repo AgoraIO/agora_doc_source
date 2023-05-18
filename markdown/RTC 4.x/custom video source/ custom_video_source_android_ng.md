@@ -103,7 +103,7 @@ option.customVideoTrackId = videoTrackId;
 // 加入主频道
 int res = engine.joinChannel(accessToken, channelId, 0, option);
 // 或加入多频道
-int res = RtcEngine.joinChannelEx(accessToken, connection, option, new IRtcEngineEventHandler(){});
+int res = engine.joinChannelEx(accessToken, connection, option, new IRtcEngineEventHandler() {});
 ```
 
 ### 3. 实现自采集模块
