@@ -129,7 +129,7 @@
 </resources>
 ```
 
-1. 要添加 UI 框架，需打开 `app/res/layout/activity_main.xml`，将内容并替换为以下代码：
+2. 要添加 UI 框架，需打开 `app/res/layout/activity_main.xml`，将内容并替换为以下代码：
 
    ```xml
     <?xml version="1.0" encoding="utf-8"?>
