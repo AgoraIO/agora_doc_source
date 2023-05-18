@@ -261,7 +261,7 @@ fun startSing(songCode: Long, startPos: Long)
 
 播放歌曲。
 
-如果你在调用 `loadMusic` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。<mark>实际上观众不需要调用startsing，只有独唱需要？根据hugo的解释，伴唱也不用播放。</mark>
+如果你在调用 `loadMusic` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。<mark>实际上独唱不需要调用startsing，只有观众需要？根据hugo的解释，伴唱也不用播放。</mark>
 
 #### 参数
 
@@ -294,44 +294,46 @@ fun resumeSing()
 恢复播放歌曲。
 
 
-### pausePlay
+### pauseSing
 
 ```kotlin
-fun pausePlay()
+fun pauseSing()
 ```
 
 暂停播放歌曲。
 
-### seek
+### seekSing
 
 ```kotlin
-fun seek(time: Long)
+fun seekSing(time: Long)
 ```
 
 跳转到指定时间播放歌曲。
 
 #### 参数
 
-- `time`: 跳转的时间点。单位为毫秒。
+- `time`: 跳转的时间点，单位为毫秒。
 
-### selectTrackMode
+### setMicStatus
 
 ```kotlin
-fun selectTrackMode(mode: KTVPlayerTrackMode)
+fun setMicStatus(isOnMicOpen: Boolean)
 ```
 
-选择播放的音轨。
+同步麦克风的开关状态。
 
-歌曲的音轨包含原唱和伴奏。调用该方法可以选择播放的音轨。
+如果你调用 `adjustRecordSignalVolume` 将`volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
 
 #### 参数
 
-- `mode`: 音轨的类型。详见 [KTVPlayerTrackMode](#ktvplayertrackmode)。
+- `isOnMicOpen`：当前麦克风的开关状态：
+  - `true`：麦克风开启。
+  - `false`：麦克风关闭。
 
 ### setLycView
 
 ```kotlin
-fun setLycView(view: LrcControlView)
+fun setLrcView(view: ILrcView)
 ```
 
 设置歌词控制视图。
@@ -340,8 +342,29 @@ fun setLycView(view: LrcControlView)
 
 #### 参数
 
-- `view`: 歌词控制视图，`LrcControlView` 对象。
+- `view`: 歌词控制视图，`ILrcView` 对象。你需要继承 `ILrcView` 类，并实现 `ILrcView` 下的接口。
 
+### setAudioPlayoutDelay
+
+```kotlin
+fun setAudioPlayoutDelay(audioPlayoutDelay: Int)
+```
+
+设置音频播放延迟时间。
+
+在音频自采集的情况下，你需要调用该方法传入音频帧处理和播放开始前的时间差以便播放器的实时同步。
+
+#### 参数
+
+- `audioPlayoutDelay`：音频帧处理和播放开始前的时间差，单位为毫秒❓。
+
+### getMediaPlayer
+
+```kotlin
+fun getMediaPlayer() : IMediaPlayer
+```
+
+获取媒体
 
 ## 回调
 
