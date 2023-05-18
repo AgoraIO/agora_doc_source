@@ -81,7 +81,7 @@ fun fetchMusicCharts(
 
 获取歌曲榜单。
 
-该方法用于获取歌曲榜单的信息，并提供一个回调函数用于处理异步调用的结果。
+该方法用于获取各类歌曲榜单，并提供一个回调函数用于处理异步调用的结果。
 
 #### 参数
 
@@ -94,11 +94,11 @@ fun fetchMusicCharts(
       - 当前使用的 Token 已过期。请重新生成 Token。
       - 传入的 Token 无效。请确保你使用的是 RTM Token。
       - 网络错误。请检查你的网络。
-    - 3：权限错误或音乐资源不存在。请确保你的项目已开通声网音乐内容中心权限。
+    - 3：权限错误或歌曲不存在。请确保你的项目已开通声网音乐内容中心权限。
     - 4：内部数据解析错误。
-    - 5：音乐资源加载时出错。
-    - 6：音乐资源解密时出错。
-  - `list`：[`MusicChartInfo`](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/java_ng/API/class_musicchartinfo.html?platform=Android) 对象数组。
+    - 5：歌曲加载时出错。
+    - 6：歌曲解密时出错。
+  - `list`：[`MusicChartInfo`](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/java_ng/API/class_musicchartinfo.html?platform=Android) 对象数组，包含歌曲榜单信息。
 
 ### searchMusicByMusicChartId
 
@@ -126,59 +126,169 @@ fun searchMusicByMusicChartId(
 #### 参数
 
 - `musicChartId`：歌曲榜单 ID，可通过 `fetchMusicCharts` 获取。
-- `page`：
+- `page`：当前页面编号，默认从 1 开始。
+- `pageSize`：当前音乐资源列表的总页面数量，最大值为 50。
+- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
+- `onMusicCollectionResultListener`：获取歌曲资源列表回调，包含以下参数：
+  - `requestId`：请求 ID。本次请求的唯一标识。
+  - `status`：请求状态。
+    - 0：请求成功。
+    - 1：一般错误，无明确归因。
+    - 2：网关异常。可能的原因有：
+      - 当前使用的 Token 已过期。请重新生成 Token。
+      - 传入的 Token 无效。请确保你使用的是 RTM Token。
+      - 网络错误。请检查你的网络。
+    - 3：权限错误或歌曲不存在。请确保你的项目已开通声网音乐内容中心权限。
+    - 4：内部数据解析错误。
+    - 5：歌曲加载时出错。
+    - 6：歌曲解密时出错。
+  - `page`：当前页面编号，默认从 1 开始。
+  - `pageSize`：当前歌曲资源列表的总页面数量，最大值为 50。
+  - `total`：列表内歌曲资源的总数量。
+  - `list`：[`Music`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/class_music.html) 对象数组，包含歌曲的详细信息。
 
-### loadSong
+### searchMusicByKeyword
 
 ```kotlin
-fun loadSong(
-    songCode: Long,
-    config: KTVSongConfiguration,
-    onLoaded: (songCode: Long, lyricUrl: String, role: KTVSingRole, state: KTVLoadSongState) -> Unit
-)
+fun searchMusicByKeyword(
+        keyword: String,
+        page: Int, 
+        pageSize: Int,
+        jsonOption: String,
+        onMusicCollectionResultListener: (
+            requestId: String?, 
+            status: Int, 
+            page: Int,
+            pageSize: Int,
+            total: Int,
+            list: Array<out Music>?
+        ) -> Unit
+    )
 ```
 
-加载歌曲。
+通过关键词搜索歌曲。
 
-传入歌曲编号和 K 歌配置，调用 `loadSong` 加载歌曲。加载结果会异步地通过 `onLoaded` 回调通知你。
+此方法提供一个回调函数用于处理异步调用的结果。
 
 #### 参数
 
-- `songCode`: 歌曲编号。
-- `config`: K 歌配置。详见 [KTVSongConfiguration](#ktvsongconfiguration)。
-- `onLoaded`: 歌词加载状态事件，包含如下参数：
-    - `songCode`: 歌曲编号。
-    - `lyricUrl`: 歌词文件的 URL。
-    - `role`: 当前用户角色，详见 [KTVSingRole](#ktvsingrole)。
-    - `state`: 歌曲加载状态，详见 [KTVLoadSongState](#ktvloadsongstate)。
+- `keyword`：搜索关键词，支持歌曲名、歌手搜索。
+- `page`：想要获取的音乐资源列表的目标页编号。
+- `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
+- 扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
+- `onMusicCollectionResultListener`：获取歌曲资源列表回调，包含以下参数：
+  - `requestId`：请求 ID。本次请求的唯一标识。
+  - `status`：请求状态。
+    - 0：请求成功。
+    - 1：一般错误，无明确归因。
+    - 2：网关异常。可能的原因有：
+      - 当前使用的 Token 已过期。请重新生成 Token。
+      - 传入的 Token 无效。请确保你使用的是 RTM Token。
+      - 网络错误。请检查你的网络。
+    - 3：权限错误或歌曲不存在。请确保你的项目已开通声网音乐内容中心权限。
+    - 4：内部数据解析错误。
+    - 5：歌曲加载时出错。
+    - 6：歌曲解密时出错。
+  - `page`：当前页面编号，默认从 1 开始。
+  - `pageSize`：当前歌曲资源列表的总页面数量，最大值为 50。
+  - `total`：列表内歌曲资源的总数量。
+  - `list`：[`Music`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/class_music.html) 对象数组，包含歌曲的详细信息。
 
-
-### playSong
+### loadMusic [1/2]
 
 ```kotlin
-fun playSong(songCode: Long)
+fun loadMusic(
+    songCode: Long,
+    config: KTVLoadMusicConfiguration,
+    musicLoadStateListener: IMusicLoadStateListener
+)
+```
+
+加载歌曲和歌词。
+
+传入歌曲编号和加载配置，调用 `loadMusic` 加载歌曲和歌词。加载结果会通过 `IMusicLoadStateListener` 回调异步通知你。
+
+#### 参数
+
+- `songCode`: 歌曲编号，用于标识一个音乐资源。你可以通过 `searchMusicByMusicChartId` 或 `searchMusicByKeyword` 获取需要加载的歌曲编号，也可以通过 RESTful API 来获取[获取曲库所有歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=Android#a-namegeta获取曲库所有歌曲列表)或[增量歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=Android#获取增量歌曲列表)。
+- `config`: 加载配置。详见 [KTVLoadMusicConfiguration](#ktvsongconfiguration)。
+- `musicLoadStateListener`: 歌曲加载状态，详见 [`IMusicLoadStateListener`](#IMusicLoadStateListener)。
+
+## loadMusic [2/2]
+
+```kotlin
+fun loadMusic(
+    url: String,
+    config: KTVLoadMusicConfiguration
+)
+```
+
+加载歌曲和歌词。
+
+传入歌曲的 URL 和加载配置，调用 `loadMusic` 加载歌曲和歌词。加载结果会通过 `IMusicLoadStateListener` 回调异步通知你。
+
+#### 参数
+
+- `url`：歌曲的 URL。
+- `config`：加载配置。详见 [KTVLoadMusicConfiguration](#ktvsongconfiguration)。
+
+
+### switchSingerRole
+
+```kotlin
+fun switchSingerRole(
+    newRole: KTVSingRole,
+    switchRoleStateListener: ISwitchRoleStateListener?
+)
+```
+
+切换 K 歌时的用户角色。
+
+KTV API 初始化时默认用户角色为听众，如果需要开始独唱或加入合唱，需要调用 `switchSingerRole` 来切换至相应的角色。你可以参考[切换说明](link)来进行角色切换。
+
+KTV API 内部会根据角色的切换来控制演唱过程中音乐播放器的播放、同步，以及订阅和发布音频流的行为。角色切换的结果会通过 `ISwitchRoleStateListener` 回调异步通知你。
+
+#### 参数
+
+- `newRole`: 切换后的用户角色，详见 [`KTVSingRole`](#KTVSingRole)。
+- `switchRoleStateListener`：用户角色切换结果回调，详见 [`ISwitchRoleStateListener`](#ISwitchRoleStateListener)。
+
+### startSing [1/2]
+
+```kotlin
+fun startSing(songCode: Long, startPos: Long)
 ```
 
 播放歌曲。
 
-建议在调用 `loadSong` 函数并收到 `onLoaded` 回调的 `KTVLoadSongState.KTVLoadSongStateOK` 状态后再调用 `playSong`。
+如果你在调用 `loadMusic` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。<mark>实际上观众不需要调用startsing，只有独唱需要？根据hugo的解释，伴唱也不用播放。</mark>
 
 #### 参数
 
-- `songCode`: 歌曲编号。
+- `songCode`：歌曲编号，用于标识一个音乐资源。你可以通过 `searchMusicByMusicChartId` 或 `searchMusicByKeyword` 获取需要加载的歌曲编号，也可以通过 RESTful API 来获取[获取曲库所有歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=Android#a-namegeta获取曲库所有歌曲列表)或[增量歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=Android#获取增量歌曲列表)。
+- `startPos`：起始播放位置，单位为毫秒。
 
-### stopSong
+### startSing [2/2]
 
 ```kotlin
-fun stopSong()
+fun startSing(url: String, startPos: Long)
 ```
 
-结束播放歌曲。
+播放歌曲。
 
-### resumePlay
+你可以通过传入歌曲的 URL 来进行播放。
+
+如果你在调用 `loadMusic[2/2]` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。
+
+#### 参数
+
+- `url`：歌曲的 URL。
+- `startPos`：起始播放位置，单位为毫秒。
+
+### resumeSing
 
 ```kotlin
-fun resumePlay()
+fun resumeSing()
 ```
 
 恢复播放歌曲。
