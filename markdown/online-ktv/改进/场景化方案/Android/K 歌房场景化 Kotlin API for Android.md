@@ -2,7 +2,7 @@
 
 ## KTV API 接口类
 
-该类提供实现K 歌场景的核心方法。
+该类提供实现 K 歌场景的核心方法。
 
 ### initialize
 
@@ -33,18 +33,6 @@ fun release()
 
 调用该方法可以清空 KTV API 模块内部变量和缓存数据，取消 `ktvApiEventHandler` 的事件监听，取消网络请求等。
 
-#### 用法示例 ？为什么要加？
-
-```kotlin
-// K 歌房 Activity 销毁时调用 ktvApiProtocol 释放，随后释放创建的实例
-@Override
-protected void onDestroy() {
-    super.onDestroy();
-    ktvApiProtocol.release()
-    // 释放 mRtcEngine、iAgoraMusicContentCenter、mPlayer、streamId
-}
-```
-
 ### addEventHandler
 
 ```kotlin
@@ -55,7 +43,7 @@ fun addEventHandler(ktvApiEventHandler: IKTVApiEventHandler)
 
 #### 参数
 
-- `ktvApiEventHandler`：KTV API 的事件句柄，详见[IKTVApiEventHandler]()。
+- `ktvApiEventHandler`：KTV API 的事件句柄，详见[IKTVApiEventHandler](#IKTVApiEventHandler)。
 
 ### removeEventHandler
 
@@ -67,7 +55,7 @@ fun removeEventHandler(ktvApiEventHandler: IKTVApiEventHandler)
 
 #### 参数
 
-- `ktvApiEventHandler`：KTV API 的事件句柄，详见[IKTVApiEventHandler]()。
+- `ktvApiEventHandler`：KTV API 的事件句柄，详见[IKTVApiEventHandler](#IKTVApiEventHandler)。
 
 ### fetchMusicCharts
 
@@ -217,7 +205,7 @@ fun loadMusic(
 #### 参数
 
 - `songCode`: 歌曲编号，用于标识一个音乐资源。你可以通过 `searchMusicByMusicChartId` 或 `searchMusicByKeyword` 获取需要加载的歌曲编号，也可以通过 RESTful API 来获取[获取曲库所有歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=Android#a-namegeta获取曲库所有歌曲列表)或[增量歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=Android#获取增量歌曲列表)。
-- `config`: 加载配置。详见 [KTVLoadMusicConfiguration](#ktvsongconfiguration)。
+- `config`: 加载配置。详见 [KTVLoadMusicConfiguration](#KTVLoadMusicConfiguration)。
 - `musicLoadStateListener`: 歌曲加载状态，详见 [`IMusicLoadStateListener`](#IMusicLoadStateListener)。
 
 ## loadMusic [2/2]
@@ -240,7 +228,7 @@ fun loadMusic(
 #### 参数
 
 - `url`：歌曲的 URL。
-- `config`：加载配置。详见 [KTVLoadMusicConfiguration](#ktvsongconfiguration)。
+- `config`：加载配置。详见 [KTVLoadMusicConfiguration](#KTVLoadMusicConfiguration)。
 
 
 ### switchSingerRole
@@ -271,7 +259,7 @@ fun startSing(songCode: Long, startPos: Long)
 
 播放歌曲。
 
-如果你在调用 `loadMusic` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。<mark>实际上独唱不需要调用startsing，只有观众需要？根据hugo的解释，伴唱也不用播放。</mark>
+如果你在调用 `loadMusic[1/2]` 加载歌曲时，将 `autoPlay` 设为 `true` (仅独唱角色可设为该值)，歌曲在加载完成后会自动播放，无需再调用该方法播放歌曲。如果将 `autoPlay` 设为 `false`，则需在收到 `onMusicLoadSuccess` 回调后再调用该方法来播放歌曲。
 
 #### 参数
 
@@ -332,7 +320,7 @@ fun setMicStatus(isOnMicOpen: Boolean)
 
 同步麦克风的开关状态。
 
-如果你调用 [`adjustRecordSignalVolume`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android#api_irtcengine_adjustrecordingsignalvolume) 将`volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
+如果你调用 [`adjustRecordSignalVolume`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android#api_irtcengine_adjustrecordingsignalvolume) 将 `volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
 
 #### 参数
 
@@ -366,7 +354,7 @@ fun setAudioPlayoutDelay(audioPlayoutDelay: Int)
 
 #### 参数
 
-- `audioPlayoutDelay`：音频帧处理和播放开始前的时间差，单位为毫秒❓。
+- `audioPlayoutDelay`：音频帧处理和播放开始前的时间差，单位为毫秒。
 
 ### getMediaPlayer
 
@@ -440,6 +428,8 @@ fun onDownloadLrcData(url: String?)
 
 ## IMusicLoadStateListener
 
+<a id="IMusicLoadStateListener"/>
+
 该接口类提供歌曲加载状态的相关回调。
 
 ### onMusicLoadSuccess
@@ -492,6 +482,8 @@ fun onMusicLoadProgress(songCode: Long, percent: Int, status: MusicLoadStatus, m
 
 ## ISwitchRoleStateListener
 
+<a id="ISwitchRoleStateListener"/>
+
 该接口类提供用户角色切换状态的相关回调。
 
 ### onSwitchRoleSuccess
@@ -519,6 +511,8 @@ fun onSwitchRoleFail(reason: SwitchRoleFailReason)
 - `reason`：切换角色失败的原因，详见 [SwitchRoleFailReason](#SwitchRoleFailReason)。
 
 ## IKTVApiEventHandler
+
+<a id="IKTVApiEventHandler"/>
 
 该接口类提供 K 歌场景的核心回调。
 
@@ -581,6 +575,8 @@ Token 即将过期回调。
 
 ### KTVSingRole
 
+<a id="KTVSingRole"/>
+
 ```kotlin
 enum class KTVSingRole(val value: Int) {
     SoloSinger(0),
@@ -596,6 +592,8 @@ K 歌用户角色类型：
 - `Audience`：(3) 听众。
 
 ### KTVLoadSongFailReason
+
+<a id="KTVLoadSongFailReason"/>
 
 ```kotlin
 enum class KTVLoadSongFailReason(val value: Int) {
@@ -643,8 +641,9 @@ enum class KTVLoadMusicMode(val value: Int) {
 - `LOAD_LRC_ONLY`：(1) 仅加载歌词。用户角色为观众时使用此模式。
 - `LOAD_MUSIC_AND_LRC`：(2) (默认) 加载歌词和歌曲。用户角色为独唱者时使用此模式。
 
-
 ### MusicLoadStatus
+
+<a id="MusicLoadStatus"/>
 
 ```kotlin
 enum class MusicLoadStatus(val value: Int) {
@@ -661,6 +660,8 @@ enum class MusicLoadStatus(val value: Int) {
 
 
 ## Data class
+
+<a id="KTVApiConfig"/>
 
 ### KTVApiConfig
 
@@ -695,6 +696,8 @@ K 歌配置：
 - `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。
 
 ### KTVLoadMusicConfiguration
+
+<a id="KTVLoadMusicConfiguration"/>
 
 ```kotlin
 data class KTVLoadMusicConfiguration(
