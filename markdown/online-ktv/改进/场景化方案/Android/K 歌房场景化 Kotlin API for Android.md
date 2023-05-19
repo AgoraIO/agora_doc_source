@@ -88,7 +88,7 @@ fun fetchMusicCharts(
     - 4：内部数据解析错误。
     - 5：歌曲加载时出错。
     - 6：歌曲解密时出错。
-  - `list`：[`MusicChartInfo`](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/java_ng/API/class_musicchartinfo.html?platform=Android) 对象数组，包含歌曲榜单信息。
+  - `list`：[MusicChartInfo](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/java_ng/API/class_musicchartinfo.html?platform=Android) 对象数组，包含歌曲榜单信息。
 
 ### searchMusicByMusicChartId
 
@@ -135,7 +135,7 @@ fun searchMusicByMusicChartId(
   - `page`：当前页面编号，默认从 1 开始。
   - `pageSize`：当前歌曲资源列表的总页面数量，最大值为 50。
   - `total`：列表内歌曲资源的总数量。
-  - `list`：[`Music`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/class_music.html) 对象数组，包含歌曲的详细信息。
+  - `list`：[Music](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/class_music.html) 对象数组，包含歌曲的详细信息。
 
 ### searchMusicByKeyword
 

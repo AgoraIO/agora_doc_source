@@ -1,8 +1,8 @@
-本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApi.h](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.h) 和 [KTVApi.m](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.1.1-ktv-iOS/iOS/AgoraEntScenarios/Scenes/KTV/ViewController/KTV/KTVApi.m)。【links to be updated】
+本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApiDelegate](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/feat/scene/ktv_2.3.1_ios/iOS/AgoraEntScenarios/Scenes/KTV/KTVAPI/KTVApiDelegate.swift) 和 [KTVApiImpl](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/feat/scene/ktv_2.3.1_ios/iOS/AgoraEntScenarios/Scenes/KTV/KTVAPI/KTVApiImpl.swift)。
 
 ## KTVApiDelegate
 
-该协议提供实现K 歌场景的核心方法。
+该协议提供实现 K 歌场景的核心方法。
 
 ### init
 
@@ -69,7 +69,7 @@ func fetchMusicCharts(completion:@escaping MusicChartCallBacks)
 
 #### 参数
 
-- `completion`：用于处理获取歌曲榜单后的回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicChartCallBacks` 对象作为参数，用于获取歌曲榜单的结果。【重点review】
+- `completion`：用于处理获取歌曲榜单后的回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicChartCallBacks` 对象作为参数，用于获取歌曲榜单的结果。
 
 
 ### searchMusic [1/2]
@@ -91,8 +91,8 @@ func searchMusic(musicChartId: Int,
 - `musicChartId`：歌曲榜单 ID，可通过 `fetchMusicCharts` 获取。
 - `page`：当前页面编号，默认从 1 开始。
 - `pageSize`：当前音乐资源列表的总页面数量，最大值为 50。
-- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
-- `completion`：用于处理获取指定榜单的歌曲列表回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲列表。【重点review】
+- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `Nil`。
+- `completion`：用于处理获取指定榜单的歌曲列表回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲列表。
 
 ### searchMusic [2/2]
 
@@ -110,8 +110,8 @@ func searchMusic(keyword: String,
 - `keyword`：搜索关键词，支持歌曲名、歌手搜索。
 - `page`：想要获取的音乐资源列表的目标页编号。
 - `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
-- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
-- `completion`：用于处理获取指定歌曲的回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲资源。【重点review】
+- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `Nil`。
+- `completion`：用于处理获取指定歌曲的回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲资源。
 
 ### loadMusic [1/2]
 
@@ -131,7 +131,7 @@ func loadMusic(songCode: Int, config: KTVSongConfiguration, onMusicLoadStateList
 
 - `songCode`: 歌曲编号，用于标识一个音乐资源。你可以通过 `searchMusic[1/2]` 或 `searchMusic[2/2]` 获取需要加载的歌曲编号，也可以通过 RESTful API 来获取[获取曲库所有歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=iOS#a-namegeta%E8%8E%B7%E5%8F%96%E6%9B%B2%E5%BA%93%E6%89%80%E6%9C%89%E6%AD%8C%E6%9B%B2%E5%88%97%E8%A1%A8)或[增量歌曲列表](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=iOS#获取增量歌曲列表)。
 - `config`: 加载配置。详见 [KTVSongConfiguration](#KTVSongConfiguration)。
-- `musicLoadStateListener`: 歌曲加载状态，详见 [`IMusicLoadStateListener`](#IMusicLoadStateListener)。
+- `musicLoadStateListener`: 歌曲加载状态，详见 [IMusicLoadStateListener](#IMusicLoadStateListener)。
 
 ### loadMusic [2/2]
 
@@ -167,8 +167,8 @@ KTV API 内部会根据角色的切换来控制演唱过程中音乐播放器的
 
 #### 参数
 
-- `newRole`: 切换后的用户角色，详见 [`KTVSingRole`](#KTVSingRole)。
-- `onSwitchRoleState`：切换角色状态回调闭包，类型为 [`ISwitchRoleStateListener`](#ISwitchRoleStateListener)，用于处理切换角色的状态。
+- `newRole`: 切换后的用户角色，详见 [KTVSingRole](#KTVSingRole)。
+- `onSwitchRoleState`：切换角色状态回调闭包，类型为 [ISwitchRoleStateListener](#ISwitchRoleStateListener)，用于处理切换角色的状态。//TODO
 
 ### startSing [1/2]
 
@@ -239,7 +239,7 @@ func setMicStatus(isOnMicOpen: Bool)
 
 同步麦克风的开关状态。
 
-如果你调用 [`adjustRecordSignalVolume`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_audio_process.html?platform=iOS#api_irtcengine_adjustrecordingsignalvolume) 将`volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
+如果你调用 [adjustRecordSignalVolume](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_audio_process.html?platform=iOS#api_irtcengine_adjustrecordingsignalvolume) 将 `volume` 设为 0（即闭麦），你需要调用此方法将 `isOnMicOpen` 设为 `false` 来将闭麦状态设置给歌词打分组件。
 
 #### 参数
 
@@ -273,7 +273,7 @@ func setAudioPlayoutDelay(audioPlayoutDelay: Int)
 
 #### 参数
 
-- `audioPlayoutDelay`：音频帧处理和播放开始前的时间差，单位为毫秒❓。
+- `audioPlayoutDelay`：音频帧处理和播放开始前的时间差，单位为毫秒。
 
 ### getMediaPlayer
 
@@ -297,7 +297,7 @@ func getMusicContentCenter() -> AgoraMusicContentCenter?
 
 返回值
 
-- [`AgoraMusicContentCenter`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusiccontentcenter) 实例。
+- [AgoraMusicContentCenter](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_imusiccontentcenter) 实例。
 
 ## KTVLrcViewDelegate
 
@@ -346,6 +346,8 @@ func onDownloadLrcData(url: String)
 - `url`：歌词的下载地址。
 
 ## IMusicLoadStateListener
+
+<a id="IMusicLoadStateListener"/>
 
 该接口类提供歌曲加载状态的相关回调。
 
@@ -398,6 +400,8 @@ func onMusicLoadProgress(songCode: Int, percent: Int, status: AgoraMusicContentC
 - `lyricUrl`：歌词下载地址。
 
 ## KTVApiEventHandlerDelegate
+
+<a id="KTVApiEventHandlerDelegate"/>
 
 该协议提供 K 歌场景的核心回调。
 
@@ -459,6 +463,8 @@ Token 即将过期回调。
 
 ### KTVSingRole
 
+<a id="KTVSingRole"/>
+
 ```objc
 public enum KTVSingRole: Int {
     case soloSinger = 0 
@@ -475,6 +481,8 @@ K 歌用户角色类型：
 - `Audience`：听众。
 
 ### KTVLoadSongFailReason
+
+<a id="KTVLoadSongFailReason"/>
 
 ```objective-c
 public enum KTVLoadSongFailReason: Int {
@@ -502,11 +510,13 @@ public enum KTVSwitchRoleFailReason: Int {
 
 用户角色切换失败的原因：
 
-- `none`：【缺少 input，是指没有错误还是说一般错误，无明确归因？btw，java没有这个枚举，只有下面两个】
+- `none`：【缺少 input，是指没有错误还是说一般错误，无明确归因？btw，java没有这个枚举，只有下面两个】//TODO
 - `joinChannelFail`：加入频道失败。
 - `noPermission`：不支持从当前角色切换为目标角色，请参考[切换说明]()进行角色切换。
 
 ### KTVLoadMusicMode
+
+<a id="KTVLoadMusicMode"/>
 
 ```objective-c
 public enum KTVLoadMusicMode: Int {
@@ -541,6 +551,8 @@ public enum KTVLoadSongState: Int {
 - `inProgress`: 正在加载中。
 
 ## Class
+
+<a id="KTVApiConfig"/>
 
 ### KTVApiConfig
 
@@ -593,6 +605,8 @@ K 歌配置：
 - `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。
 
 ### KTVSongConfiguration
+
+<a id="KTVSongConfiguration"/>
 
 ```objective-c
 open class KTVSongConfiguration: NSObject {
