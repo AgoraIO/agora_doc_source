@@ -10,9 +10,13 @@
 
 ### 实时互动
 
+房主进入直播间，开始上架商品，进行电商直播。用户可以查看商品列表进行下单。
+
 ![](https://web-cdn.agora.io/docs-files/1684397470563)
 
 ### PK 连麦
+
+房主邀请另一个房间的房主开始 PK 连麦。用户可以看到两个房主 PK 连麦直播的画面。
 
 ![](https://web-cdn.agora.io/docs-files/1684397483079)
 
@@ -68,7 +72,7 @@
     dependencies {
         ...
         // x.y.z，请填写具体的 SDK 版本号，如：4.0.0 或 4.1.0-1。
-        // 通过发版说明获取最新版本号。
+        // 通过互动直播产品发版说明获取最新版本号。
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
    ```
@@ -100,20 +104,19 @@
 
 ## 实现电商直播
 
-本节介绍集成电商直播的 API 时序和关键步骤。
+如下时序图中展示了如何预览直播、加入直播间、上下架商品、PK 连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图自行实现。
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
-<pic>
+![](https://web-cdn.agora.io/docs-files/1684484123337)
 
+### 1. 预览直播
 
-### 预览直播
+房主进入直播间前一般需要预览本地直播视频。你可以调用如下方法，创建 `RtcEngine` 引擎并开启本地视频预览：
 
-调用如下方法，创建直播间并开启本地预览：
-
-- create
-- setupLocalVideo
-- startPreview
+- [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create): 创建 RtcEngine 引擎。
+- [`setupLocalVideo`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_setuplocalvideo): 初始化本地视图。
+- [`startPreview`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_startpreview): 开启视频预览。
 
 
 ```java
@@ -133,9 +136,9 @@ try {
 }
 ```
 
-### 加入直播间
+### 2. 加入直播间
 
-你可以使用声网 RTC SDK 的 create 方法创建一个 RtcEngine 引擎，再通过 joinChannel 和 setChannelProfile 方法让用户加入一个频道场景为 LIVE_BROADCASTING 的频道。频道意味着电商直播业务中的直播间。用户在频道内可以进行实时音视频互动。RTC 频道内的用户有两种角色：
+你可以使用声网 RTC SDK 的 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 方法创建一个 RtcEngine 引擎，再通过 [`joinChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 和 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile) 方法让用户加入一个频道场景为 `LIVE_BROADCASTING` 的频道。频道对应直播间中的音视频，云服务对应直播间中的信令消息。用户在频道内可以进行实时音视频互动。频道内的用户有两种角色：
 
 - 主播：可以发送和接收音视频流。直播间的房主即为主播。
 - 观众：只可以接收音视频流。
@@ -182,19 +185,18 @@ try {
 }
 ```
 
-### 开始 PK 连麦
-
+### 3. 开始 PK 连麦
 
 房主跨直播间 PK 连麦意味着不同频道内的主播加入对方频道进行连麦。当房间内用户收到房主 PK 连麦的信令消息后，房间内用户的代码逻辑如下：
 
-- 房间 A，即频道 A：
-    - 房主 A 通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 B 中主播的视频。
-    - 观众通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 B 中主播的视频。
-- 房间 B，即频道 B：
-    - 房主 B 通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 A 中主播的视频。
-    - 观众通过 joinChannelEx 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 setupRemoteVideoEx 渲染频道 A 中主播的视频。
+- 房间 A：
+    - 房主 A 通过 [`joinChannelEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_joinchannelex) 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 [`setupRemoteVideoEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_setupremotevideoex) 渲染频道 B 中主播的视频。
+    - 观众通过 `joinChannelEx` 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 `setupRemoteVideoEx` 渲染频道 B 中主播的视频。
+- 房间 B：
+    - 房主 B 通过 `joinChannelEx` 加入频道 A，并且设置订阅频道 A 内音视频流，但不发送音视频流。同时通过 `setupRemoteVideoEx` 渲染频道 A 中主播的视频。
+    - 观众通过 `joinChannelEx` 加入频道 A，并且设置订阅频道 A 内音视频流，但不发送音视频流。同时通过 `setupRemoteVideoEx` 渲染频道 A 中主播的视频。
 
-总结来说，观众可以同时接受房间 A 和 B 的直播流，因此可以同时看到两个房间的房主。房主仅在自己的房间发流，在对方的房间内不发流仅收流，因此，房主可以在对方房间看到对方。
+完成这些逻辑后，观众可以同时接收频道 A 和 B 的音视频流，因此可以同时看到两个房间的房主。房主仅在自己的频道发流，在对方的频道内不发流仅收流，因此，房主可以（在对方频道）看到对方，达到连麦的效果。
 
 
 ```java
@@ -241,9 +243,9 @@ TokenGenerator.gen(this, exChannelConnection.channelId, exChannelConnection.loca
     }
 ```
 
-### 结束 PK 连麦
+### 4. 结束 PK 连麦
 
-结束 PK 连麦时，房间内用户都需要调用 leaveChannelEx 离开对方房间。
+结束 PK 连麦时，房间内用户都需要调用 `leaveChannelEx` 离开对方频道。
 
 ```java
 mBinding.pkVideoContainer.setVisibility(View.GONE);
@@ -256,9 +258,9 @@ if (exChannelConnection != null) {
 }
 ```
 
-### 退出直播间
+### 5. 退出直播间
 
-退出直播间时，房间内用户都需要调用 leaveChannel 离开房间。如果不再加入房间，还可以调用 destroy 销毁房间。
+直播结束，所有用户退出直播间时都需要调用 [`leaveChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 离开频道。如果不再加入房间，还可以调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 `RtcEngine` 引擎。
 
 ```java
 if (exChannelConnection != null) {
