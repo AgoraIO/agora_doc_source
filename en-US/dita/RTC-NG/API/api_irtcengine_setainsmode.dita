@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setainsmode">
-    <title><ph keyref="setAINSMode" /></title>
+    <title><ph keyref="setAINSMode"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets whether to enable the AI ​​noise reduction function and set the noise reduction mode.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setAINSMode" />
+                <indexterm keyref="setAINSMode"/>
             </keywords>
         </metadata>
     </prolog>
@@ -19,7 +19,7 @@
             <codeblock props="electron" outputclass="language-typescript">abstract setAINSMode(enabled: boolean, mode: AudioAinsMode): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetAINSMode(bool enabled, AUDIO_AINS_MODE mode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setAINSMode(enabled: boolean, mode: AudioAinsMode): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setAINSMode(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setAINSMode(
       {required bool enabled, required AudioAinsMode mode});</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -30,15 +30,15 @@
                 <dd>v4.2.0</dd>
             </dlentry>
             </dl>
-            <p>You can call this method to enable AI noise reduction function. Once enabled, the SDK automatically detects and reduce stationary and non-stationary noises from your audio on the premise of ensuring the quality of human voice. Stationary noises refers to noise signal with constant average statistical properties and negligibly small fluctuations of level within the period of observation. Common sources of stationary noises are:<ul><li>Television;</li>
+            <p>You can call this method to enable AI noise reduction function. Once enabled, the SDK automatically detects and reduces stationary and non-stationary noise from your audio on the premise of ensuring the quality of human voice. Stationary noise refers to noise signal with constant average statistical properties and negligibly small fluctuations of level within the period of observation. Common sources of stationary noises are:<ul><li>Television;</li>
             <li>Air conditioner;</li>
-            <li>Machinery, etc.</li></ul>Non-stationary noises refers to noise signal with huge fluctuations of level within the period of observation, Common source of non-stationary noises are:<ul><li>Thunder;</li>
+            <li>Machinery, etc.</li></ul>Non-stationary noise refers to noise signal with huge fluctuations of level within the period of observation. Common sources of non-stationary noises are:<ul><li>Thunder;</li>
             <li>Explosion;</li>
             <li>Cracking, etc.</li></ul></p>
         </section>
         <section id="scenario">
             <title>Applicable scenarios</title>
-            <p>In scenarios such as co-hosting, online education and video meeting, this function can detects and reduce background noises to improve experience.</p>
+            <p>In scenarios such as co-hosting, online education and video meeting, this function can detect and reduce background noises to improve experience.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -46,25 +46,25 @@
             <plentry>
                 <pt>enabled</pt>
                 <pd>Whether to enable the AI noise reduction function:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: <ph>Enable the AI noise reduction.</ph></li>
-                    <li><codeph><ph keyref="false" /></codeph>: <ph>(Default) Disable the AI noise reduction.</ph></li>
+                    <li><codeph><ph keyref="true"/></codeph>: <ph>Enable the AI noise reduction.</ph></li>
+                    <li><codeph><ph keyref="false"/></codeph>: <ph>(Default) Disable the AI noise reduction.</ph></li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="cpp apple framework">The AI noise reduction modes. See <xref keyref="AUDIO_AINS_MODE" />.</p>
+                    <p props="cpp apple framework">The AI noise reduction modes. See <xref keyref="AUDIO_AINS_MODE"/>.</p>
                     <p props="android">The AI noise reduction modes:<ul>
                     <li>0: (Default) Balance mode. This mode allows for a balanced performance on noice reduction and time delay.</li>
                     <li>1: Aggressive mode. In scenarios where high performance on noise reduction is required, such as live streaming outdoor events, this mode reduces nosies more dramatically, but sometimes may affect the original character of the audio.</li>
-                    <li>2: Aggressive mode with low latency. The noise reduction delay of this mode is about only half of that of the balance and aggressive mode. It is suitable for scenarios that have high requirements on noise reduction with low latency, such as sing together online in real-time.</li>
+                    <li>2: Aggressive mode with low latency. The noise reduction delay of this mode is about only half of that of the balance and aggressive modes. It is suitable for scenarios that have high requirements on noise reduction with low latency, such as sing together online in real time.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
