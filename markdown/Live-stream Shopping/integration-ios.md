@@ -41,15 +41,15 @@
 
 ### 1. 预览直播
 
-房主进入直播间前一般需要预览本地直播视频。你可以调用如下方法，创建 `RtcEngine` 引擎并开启本地视频预览：
+房主进入直播间前一般需要预览本地直播视频。你可以调用如下方法，创建 `AgoraRtcEngineKit` 并开启本地视频预览：
 
-- [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create): 创建 `RtcEngine` 引擎。
-- [`setupLocalVideo`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_setuplocalvideo): 初始化本地视图。
-- [`startPreview`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_startpreview): 开启视频预览。
+- [`sharedEngineWithConfig`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_initialize): 创建 `AgoraRtcEngineKit`。
+- [`setupLocalVideo`](): 初始化本地视图。#TODO enableVideo？时序图是否要改？
+- [`startPreview`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_video_process.html#api_irtcengine_startpreview): 开启视频预览。
 
 
 ```swift
-// 创建 RtcEngine 引擎
+// 创建 AgoraRtcEngineKit
 agoraKit = AgoraRtcEngineKit.sharedEngine(with: rtcEngineConfig, delegate: self)
 agoraKit?.setClientRole(getRole(uid: currentUserId))
 // 开启视频
@@ -62,7 +62,7 @@ agoraKit?.startPreview()
 
 ### 2. 加入直播间 #TODO 为什么是 joinChannelEx 不是非 Ex
 
-你可以使用声网 RTC SDK 的 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 方法创建一个 `RtcEngine` 引擎，再通过 [`joinChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 和 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile) 方法让用户加入一个频道场景为 `LIVE_BROADCASTING` 的频道。频道对应直播间中的音视频，云服务对应直播间中的信令消息。用户在频道内可以进行实时音视频互动。频道内的用户有两种角色：
+你可以使用声网 RTC SDK 的 [`sharedEngineWithConfig`]() 方法创建一个 `AgoraRtcEngineKit`，再通过 [`joinChannel`]() 和 [`setChannelProfile`]() 方法让用户加入一个频道场景为 `LiveBroadcasting` 的频道。频道对应直播间中的音视频，云服务对应直播间中的信令消息。用户在频道内可以进行实时音视频互动。频道内的用户有两种角色：#TODO 这里和 Android 不同
 
 - 主播：可以发送和接收音视频流。直播间的房主即为主播。
 - 观众：只可以接收音视频流。
@@ -112,7 +112,7 @@ agoraKit?.setupRemoteVideoEx(canvas, connection: remoteConnection)
 房主跨直播间 PK 连麦意味着不同频道内的主播加入对方频道进行连麦。当房间内用户收到房主 PK 连麦的信令消息后，房间内用户的代码逻辑如下：
 
 - 房间 A：
-    - 房主 A 通过 [`joinChannelEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_joinchannelex) 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 [`setupRemoteVideoEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_setupremotevideoex) 渲染频道 B 中主播的视频。
+    - 房主 A 通过 [`joinChannelEx`]() 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 [`setupRemoteVideoEx`]() 渲染频道 B 中主播的视频。
     - 观众通过 `joinChannelEx` 加入频道 B，并且设置订阅频道 B 内音视频流，但不发送音视频流。同时通过 `setupRemoteVideoEx` 渲染频道 B 中主播的视频。
 - 房间 B：
     - 房主 B 通过 `joinChannelEx` 加入频道 A，并且设置订阅频道 A 内音视频流，但不发送音视频流。同时通过 `setupRemoteVideoEx` 渲染频道 A 中主播的视频。
@@ -155,7 +155,7 @@ agoraKit?.setupRemoteVideoEx(canvas, connection: remoteConnection)
 
 ### 4. 结束 PK 连麦
 
-结束 PK 连麦时，房间内用户都需要调用 [`leaveChannelEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_leavechannelex) 离开对方频道。
+结束 PK 连麦时，房间内用户都需要调用 [`leaveChannelEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_multi_channel.html#api_irtcengineex_leavechannelex) 离开对方频道。
 
 ```swift
 let connection = AgoraRtcConnection()
@@ -166,7 +166,7 @@ agoraKit?.leaveChannelEx(connection, leaveChannelBlock: nil)
 
 ### 5. 退出直播间
 
-直播结束，所有用户退出直播间时都需要调用 [`leaveChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 离开频道。如果不再加入房间，还可以调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 `RtcEngine` 引擎。
+直播结束，所有用户退出直播间时都需要调用 [`leaveChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 离开频道。如果不再加入房间，还可以调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 `AgoraRtcEngineKit`。
 
 ```swift
 agoraKit?.leaveChannel()
