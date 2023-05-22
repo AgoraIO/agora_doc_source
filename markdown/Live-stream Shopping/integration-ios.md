@@ -43,7 +43,7 @@
 
 房主进入直播间前一般需要预览本地直播视频。你可以调用如下方法，创建 `RtcEngine` 引擎并开启本地视频预览：
 
-- [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create): 创建 RtcEngine 引擎。
+- [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create): 创建 `RtcEngine` 引擎。
 - [`setupLocalVideo`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_setuplocalvideo): 初始化本地视图。
 - [`startPreview`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_startpreview): 开启视频预览。
 
@@ -62,7 +62,7 @@ agoraKit?.startPreview()
 
 ### 2. 加入直播间 #TODO 为什么是 joinChannelEx 不是非 Ex
 
-你可以使用声网 RTC SDK 的 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 方法创建一个 RtcEngine 引擎，再通过 [`joinChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 和 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile) 方法让用户加入一个频道场景为 `LIVE_BROADCASTING` 的频道。频道对应直播间中的音视频，云服务对应直播间中的信令消息。用户在频道内可以进行实时音视频互动。频道内的用户有两种角色：
+你可以使用声网 RTC SDK 的 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 方法创建一个 `RtcEngine` 引擎，再通过 [`joinChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 和 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile) 方法让用户加入一个频道场景为 `LIVE_BROADCASTING` 的频道。频道对应直播间中的音视频，云服务对应直播间中的信令消息。用户在频道内可以进行实时音视频互动。频道内的用户有两种角色：
 
 - 主播：可以发送和接收音视频流。直播间的房主即为主播。
 - 观众：只可以接收音视频流。
