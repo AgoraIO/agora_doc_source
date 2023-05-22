@@ -21,9 +21,9 @@
 开始前，请确保你的项目或使用的声网产品满足如下条件：
 
 - 一个有效的[声网账户](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)。
-- 已开启 [App 证书](https://docs.agora.io/cn/Agora%20Platform/manage_projects?platform=All%20Platforms#manage-your-app-certificates)的声网项目。
-- [Golang](https://golang.org/) 1.14 以上版本，GO111MODULE 设置为开启。
-   <div class="alert note">如果你使用的是 Go 1.16 及以上版本，GO111MODULE 已默认开启。详情请参考 <a href="https://blog.golang.org/go116-module-changes">New module changes in Go 1.16</a>。</div>
+- 已开启 [App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/manage_projects?platform=All%20Platforms#%E5%90%AF%E7%94%A8%E4%B8%BB%E8%A6%81%E8%AF%81%E4%B9%A6a-nameprimarya)的声网项目。
+- [Golang](https://golang.org/) 1.14 以上版本，`GO111MODULE` 设置为开启。
+   <div class="alert note">如果你使用的是 Go 1.16 及以上版本，<code>GO111MODULE</code> 已默认开启。详情请参考 <a href="https://blog.golang.org/go116-module-changes">New module changes in Go 1.16</a>。</div>
 - [npm](https://www.npmjs.com/get-npm) 以及[支持的浏览器](https://docs.agora.io/cn/All/faq/browser_support)。
 
 
@@ -302,7 +302,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 | Java | HMAC-SHA256 | [buildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/education/EducationTokenBuilder2.java) | [EducationTokenBuilder2Sample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/EducationTokenBuilder2Sample.java) |
 | Node.js | HMAC-SHA256 | [buildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/EducationTokenBuilder.js)                                    | [EducationTokenSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/EducationTokenSample.js) |
 | PHP | HMAC-SHA256 | [buildAppToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/src/EducationTokenBuilder.php)                                      | [EducationTokenBuilderSample.php](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/EducationTokenBuilderSample.php) |
-| Python 2 | HMAC-SHA256 | [build_app_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/education_token_builder.pypy)                                    | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/education_token_builder_sample.py) |
+| Python 2 | HMAC-SHA256 | [build_app_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/education_token_builder.py)                                    | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/education_token_builder_sample.py) |
 | Python 3 | HMAC-SHA256 | [build_app_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/src/education_token_builder.py)                                   | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/sample/education_token_builder_sample.py) |
 
 #### 个人用户 Token
@@ -316,7 +316,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 | Java | HMAC-SHA256 | [buildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/education/EducationTokenBuilder2.java) | [EducationTokenBuilder2Sample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/EducationTokenBuilder2Sample.java) |
 | Node.js | HMAC-SHA256 | [buildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/EducationTokenBuilder.js)                               | [EducationTokenSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/EducationTokenSample.js) |
 | PHP | HMAC-SHA256 | [buildUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/src/EducationTokenBuilder.php)                                 | [EducationTokenBuilderSample.php](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/EducationTokenBuilderSample.php) |
-| Python 2 | HMAC-SHA256 | [build_user_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/education_token_builder.pypy)                         | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/education_token_builder_sample.py) |
+| Python 2 | HMAC-SHA256 | [build_user_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/education_token_builder.py)                         | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/education_token_builder_sample.py) |
 | Python 3 | HMAC-SHA256 | [build_user_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/src/education_token_builder.py)                          | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/sample/education_token_builder_sample.py) |
 
 #### 指定房间指定用户（客户端使用）
@@ -330,7 +330,7 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 | Java | HMAC-SHA256 | [buildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/education/EducationTokenBuilder2.java) | [EducationTokenBuilder2Sample.java](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/java/src/main/java/io/agora/sample/EducationTokenBuilder2Sample.java) |
 | Node.js | HMAC-SHA256 | [buildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/src/EducationTokenBuilder.js)                               | [EducationTokenSample.js](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/nodejs/sample/EducationTokenSample.js) |
 | PHP | HMAC-SHA256 | [buildRoomUserToken](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/src/EducationTokenBuilder.php)                                 | [EducationTokenBuilderSample.php](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/php/sample/EducationTokenBuilderSample.php) |
-| Python 2 | HMAC-SHA256 | [build_room_user_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/education_token_builder.pypy)                        | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/education_token_builder_sample.py) |
+| Python 2 | HMAC-SHA256 | [build_room_user_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/src/education_token_builder.py)                        | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python/sample/education_token_builder_sample.py) |
 | Python 3 | HMAC-SHA256 | [build_room_user_token](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/src/education_token_builder.py)                               | [education_token_builder_sample.py](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/python3/sample/education_token_builder_sample.py) |
 
 ### AccessToken 生成器代码
