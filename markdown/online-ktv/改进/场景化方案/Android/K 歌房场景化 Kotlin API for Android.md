@@ -392,11 +392,11 @@ fun onUpdatePitch(pitch: Float?)
 
 人声音调更新回调。
 
-当 KTV API 内部更新人声音调后，会主动调用该 API 将更新后的音调值传给歌词打分组件。【谁调用，sdk吗？主动调用回调是什么意思？】
+你需要实现该回调来获取实时的人声音调传递给 KTV API 内部，便于打分组件使用。
 
 #### 参数
 
-- `pitch`：音调值。【是否有取值范围❓】
+- `pitch`：音调值。
 
 ### onUpdateProgress
 
@@ -404,7 +404,7 @@ fun onUpdatePitch(pitch: Float?)
 fun onUpdateProgress(progress: Long?)
 ```
 
-当歌曲播放进度更新时，会主动调用该 API 将歌曲的播放进度同步给歌词打分组件，该回调每 50 ms 触发一次。
+当歌曲播放进度更新时，会触发该回调报告歌曲的实时播放进度。该回调每 50 ms 触发一次。
 
 #### 参数
 
@@ -416,7 +416,7 @@ fun onUpdateProgress(progress: Long?)
 fun onDownloadLrcData(url: String?)
 ```
 
-当获取到歌词下载地址后，会主动调用该 API 将歌词下载地址传给歌词组件用于歌词显示。
+当获取到歌词下载地址后，会触发调该回调报告歌词的下载地址。
 
 #### 注意
 
@@ -691,9 +691,9 @@ K 歌配置：
 
 - `localUid`：本地用户的 ID。频道内的每个用户 ID 都必须是唯一，需是 32 位无符号整数，建议取值范围为 [1,2<sup>32</sup>-1]。
 
-- `chorusChannelName`: 在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。<mark>如果是独唱场景，这两个参数是否可以为空？</mark>
+- `chorusChannelName`: 在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。在独唱场景下，该参数可以为空。
 
-- `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。
+- `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。在独唱场景下，该参数可以为空。
 
 ### KTVLoadMusicConfiguration
 
