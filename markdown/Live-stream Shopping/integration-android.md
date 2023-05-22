@@ -245,7 +245,7 @@ TokenGenerator.gen(this, exChannelConnection.channelId, exChannelConnection.loca
 
 ### 4. 结束 PK 连麦
 
-结束 PK 连麦时，房间内用户都需要调用 `leaveChannelEx` 离开对方频道。
+结束 PK 连麦时，房间内用户都需要调用 [`leaveChannelEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_leavechannelex) 离开对方频道。
 
 ```java
 mBinding.pkVideoContainer.setVisibility(View.GONE);
