@@ -70,16 +70,9 @@
 
 **新增**
 
-- `startCameraCapture`
-- `stopCameraCapture`
-- `startScreenCapture`[2/2]
-- `stopScreenCapture`[2/2]
 - `startOrUpdateChannelMediaRelay`
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
-- `setVideoScenario`
-- `getCurrentMonotonicTimeInMs`
-- `onLocalVideoTranscoderError`
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
@@ -93,14 +86,10 @@
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
 - `SCREEN_CAPTURE_CAPABILITY_LEVEL`
 - `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
-- `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
-- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 中增加 `sourceType` 参数
-- `BACKGROUND_SOURCE_TYPE` 中新增 `BACKGROUND_NONE` 和 `BACKGROUND_VIDEO`
+- `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参
 
 **废弃**
 
-- `enableDualStreamMode`[1/2]
-- `enableDualStreamMode`[2/2]
 - `startChannelMediaRelay`
 - `startChannelMediaRelayEx`
 - `updateChannelMediaRelay`

@@ -10,12 +10,12 @@ If you use the features mentioned in this section, ensure that you modify the im
 
 This release optimizes the APIs for camera and screen capture function. As of v4.2.0, ensure you use the alternative methods listed in the table below and specify the video source by setting the `sourceType` parameter.
 
-| Deleted Methods                                          | Alternative Methods      |
-| :------------------------------------------------------- | :----------------------- |
-| <li>`startPrimaryCameraCapture`</li><li>`startSecondaryCameraCapture`</li> | `startCameraCapture`     |
-| <li>`stopPrimaryCameraCapture`</li><li>`stopSecondaryCameraCapture`</li>   | `stopCameraCapture`      |
-| <li>`startPrimaryScreenCapture`</li><li>`startSecondaryScreenCapture`</li> | `startSreenCapture`[2/2] |
-| <li>`stopPrimaryScreenCapture`</li><li>`stopSecondaryScreenCapture`</li>   | `stopSreenCapture`[2/2]  |
+| Deleted Methods                                              | Alternative Methods       |
+| :----------------------------------------------------------- | :------------------------ |
+| <li>`startPrimaryCameraCapture`</li><li>`startSecondaryCameraCapture`</li> | `startCameraCapture`      |
+| <li>`stopPrimaryCameraCapture`</li><li>`stopSecondaryCameraCapture`</li> | `stopCameraCapture`       |
+| <li>`startPrimaryScreenCapture`</li><li>`startSecondaryScreenCapture`</li> | `startScreenCapture`[2/2] |
+| <li>`stopPrimaryScreenCapture`</li><li>`stopSecondaryScreenCapture`</li> | `stopScreenCapture`[2/2]  |
 
 **2. Video data acquisition**
 

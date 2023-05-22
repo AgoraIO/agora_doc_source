@@ -10,12 +10,12 @@
 
 原有用于摄像头和屏幕采集的方法已删除，请改用下表中列出的替代方法，并通过设置 `sourceType` 来指定视频源。
 
-| 已删除方法                                                   | 替代方法                 |
-| :----------------------------------------------------------- | :----------------------- |
-| <li>`startPrimaryCameraCapture`<li>`startSecondaryCameraCapture` | `startCameraCapture`     |
-| <li>`stopPrimaryCameraCapture`<li>`stopSecondaryCameraCapture` | `stopCameraCapture`      |
-| <li>`startPrimaryScreenCapture`<li>`startSecondaryScreenCapture` | `startSreenCapture`[2/2] |
-| <li>`stopPrimaryScreenCapture`<li>`stopSecondaryScreenCapture` | `stopSreenCapture`[2/2]  |
+| 已删除方法                                                   | 替代方法                  |
+| :----------------------------------------------------------- | :------------------------ |
+| <li>`startPrimaryCameraCapture`<li>`startSecondaryCameraCapture` | `startCameraCapture`      |
+| <li>`stopPrimaryCameraCapture`<li>`stopSecondaryCameraCapture` | `stopCameraCapture`       |
+| <li>`startPrimaryScreenCapture`<li>`startSecondaryScreenCapture` | `startScreenCapture`[2/2] |
+| <li>`stopPrimaryScreenCapture`<li>`stopSecondaryScreenCapture` | `stopScreenCapture`[2/2]  |
 
 **2. 视频数据获取**
 
