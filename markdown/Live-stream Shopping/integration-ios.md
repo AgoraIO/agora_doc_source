@@ -67,7 +67,7 @@ agoraKit?.startPreview()
 - 主播：可以发送和接收音视频流。直播间的房主即为主播。
 - 观众：只可以接收音视频流。
 
-你需要在主播端渲染本地视频，在观众端渲染远端视频（即主播的视频）。
+你需要调用 `setupLocalVideo` 在主播端渲染本地视频，调用 `setupRemoteVideo` 在观众端渲染远端视频（即主播的视频）。#TODO 这里和 Android 不同
 
 ```swift
 let connection = AgoraRtcConnection()
