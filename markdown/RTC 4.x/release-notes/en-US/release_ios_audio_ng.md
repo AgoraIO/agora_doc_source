@@ -9,7 +9,6 @@ If you use the features mentioned in this section, ensure that you modify the im
 **1. Channel media options**
 
 - `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
 - `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
 
 **2. Audio recording**
