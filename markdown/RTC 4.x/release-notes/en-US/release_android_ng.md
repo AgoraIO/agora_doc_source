@@ -12,9 +12,9 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 
 **2. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `ChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **3. Miscellaneous**
 
@@ -33,7 +33,7 @@ This release introduces the AI noise reduction function. Once enabled, the SDK a
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.  
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -66,7 +66,7 @@ This release introduces the `setLocalVoiceFormant` method that allows you to adj
 
 **2. Enhanced screen share**
 
-This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand. 
+This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand.
 
 This release also adds the `setScreenCaptureScenario` method, which is used to set the scenario type for screen sharing. The SDK automatically adjusts the smoothness and clarity of the shared screen based on the scenario type you set.
 
@@ -149,7 +149,7 @@ This release fixed the following issues:
 **Deleted**
 
 - `onApiCallExecuted`
-- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` in `ChannelMediaOptions`
 
 
 ## v4.1.1
@@ -205,7 +205,7 @@ This release fixed the following issues:
 - When using a video frame observer, the first video frame was occasionally missed on the receiver's end.
 - When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens.
 - Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted.
-- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed. 
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
 
 
 
@@ -274,7 +274,7 @@ In order to enable users to know whether the switched user role is low-latency o
 - `AUDIENCE_LATENCY_LEVEL_LOW_LATENCY` (1): Low latency.
 - `AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY` (2): Ultra-low latency.
 
-#### Improvements 
+#### Improvements
 
 **1. Bluetooth permissions**
 
@@ -320,7 +320,7 @@ This release includes the following additional improvements:
 This release fixed the following issues:
 
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
-- The call `getExtensionProperty` failed and returned an empty string. 
+- The call `getExtensionProperty` failed and returned an empty string.
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 
 #### API changes
@@ -365,7 +365,7 @@ This release fixed the following issues:
 
 - `followEncodeDimensionRatio` in `CameraCapturerConfiguration`
 
-- `hwEncoderAccelerating` in `LocalVideoStats` 
+- `hwEncoderAccelerating` in `LocalVideoStats`
 
 - `advanceOptions` in `VideoEncoderConfiguration`
 
