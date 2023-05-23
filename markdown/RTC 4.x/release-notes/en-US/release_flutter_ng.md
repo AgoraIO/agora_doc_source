@@ -37,7 +37,15 @@ The following callbacks are deleted. Get the video source type through the newly
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `videoInputStreams`.
 - The `MediaSourceType` in `TranscodingVideoStream` is changed to `VideoSourceType`.
 
-**5. Miscellaneous**
+**5. Video encoder algorithm**
+
+As of this release, the SDK optimizes the video encoder algorithm and upgrades the default video encoding resolution from 640 × 360 to 960 × 540 to accommodate improvements in device performance and network bandwidth, providing users with a full-link HD experience in various audio and video interaction scenarios.
+
+Call the `setVideoEncoderConfiguration` method to set the expected video encoding resolution in the video encoding parameters configuration.
+
+The increase in the default resolution affects the aggregate resolution and thus the billing rate. See [Pricing](https://docs.agora.io/en/video-calling/reference/pricing).
+
+**6. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 
@@ -84,6 +92,16 @@ This release adds the `onLocalVideoTranscoderError` callback. When there is an e
 
 In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
+**7. Instant frame rendering**
+
+This release adds the `enableInstantMediaRendering` method to enable instant rendering mode for audio and video frames, which can speed up the first video or audio frame rendering after the user joins the channel.
+
+**8. Video rendering tracing**
+
+This release adds the `startMediaRenderingTracing` and `startMediaRenderingTracingEx` methods. The SDK starts tracing the rendering status of the video frames in the channel from the moment this method is called and reports information about the event through the `onVideoRenderingTracingResult` callback.
+
+Agora recommends that you use this method in conjunction with the UI settings, such as buttons and sliders, in your app. For example, call this method when the user clicks **Join Channel** button and then get the indicators in the video frame rendering process through the `onVideoRenderingTracingResult` callback. This enables developers to optimize the indicators and improve the user experience.
+
 
 #### Improvements
 
@@ -124,6 +142,12 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
 - Mixable audio track: Supports mixing multiple external audio sources and publishing them to the same channel, suitable for multi-channel audio capture scenarios.
 - Direct audio track: Only supports publishing one external audio source to a single channel, suitable for low-latency audio capture scenarios.
 
+**9. Video frame observer**
+
+As of this release, the SDK optimizes the `onRenderVideoFrame` callback, and the meaning of the return value is different depending on the video processing mode:
+
+- When the video processing mode is `processModeReadOnly`, the return value is reserved for future use.
+- When the video processing mode is `processModeReadWrite`, the SDK receives the video frame when the return value is `true`. The video frame is discarded when the return value is `false`.
 
 #### Issues fixed
 
@@ -169,6 +193,22 @@ This release fixed the following issues:
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
 - The `sourceType` parameter in `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks
 - The `backgroundNone` and `backgroundVideo` enumerators in `backgroundSourceType`
+- When using Agora Media Player to play RTSP video streams, the video images sometimes appeared pixelated. (Windows)
+- Playing audio files with a sample rate of 48 kHz failed.
+- Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices. (Android)
+- If the rendering view of the player was set as a `UIViewController`'s view, the video was zoomed from the bottom-left corner to the middle of the screen when entering full-screen mode. (macOS)
+- Adding an alpha channel to an image in PNG or GIF format failed when the local client mixed video streams. (Windows)
+- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. (Android)
+- When the playback of the local music finished, the `onAudioMixingFinished` callback was not properly triggered. (Android)
+- After joining the channel, remotes users saw a watermark even though the watermark was deleted. (Windows)
+- If a watermark was added after starting screen sharing, the watermark did not display the screen. (Windows)
+- When joining a channel and accessing an external camera, calling `setDevice` to specify the video capture device as the external camera did not take effect. (macOS, Windows)
+- When using a video frame observer, the first video frame was occasionally missed on the receiver's end. (Android)
+- When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens. (Android)
+- When trying to outline the shared window and put it on top, the shared window did not stay on top of other windows. (Windows)
+- Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted. (Android)
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
+- At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
 
 **Deprecated**
 
@@ -178,6 +218,12 @@ This release fixed the following issues:
 - `updateChannelMediaRelayEx`
 - `onChannelMediaRelayEvent`
 - `ChannelMediaRelayEvent`
+- `enableInstantMediaRendering`
+- `startMediaRenderingTracing`
+- `startMediaRenderingTracingEx`
+- `onVideoRenderingTracingResult`
+- `MediaTraceEvent`
+- `VideoRenderingTracingInfo`
 
 **Deleted**
 
@@ -194,7 +240,9 @@ This release fixed the following issues:
 - `onPreEncodeScreenVideoFrame` (Windows)
 - `onSecondaryPreEncodeScreenVideoFrame` (Windows)
 - `onApiCallExecuted`
-- `ChannelMediaOptions` 中的 `publishCustomAudioTrackEnableAec`
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions`
+- `enableRemoteSuperResolution`
+- `superResolutionType` in `RemoteVideoStats`
 
 ## v6.1.0
 
