@@ -1,186 +1,117 @@
-## v4.1.0
+# v4.2.0
 
-v4.1.0 was released on November xx, 2022.
+v4.2.0 was released on May xx, 2023.
 
-#### New features
+## Compatibility changes
 
-**1. In-ear monitoring**
+If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
 
-This release adds support for in-ear monitoring. You can call `EnableInEarMonitoring` to enable the in-ear monitoring function.
+**1. Channel media options**
 
-After successfully enabling the in-ear monitoring function, you can call `RegisterAudioFrameObserver` to register the audio observer, and the SDK triggers the `OnEarMonitoringAudioFrame` callback to report the audio frame data. You can use your own audio effect processing module to preprocess the audio frame data of the in-ear monitoring to implement custom audio effects. Agora recommends that you choose one of the following two methods to set the audio data format of the in-ear monitoring:
+- `PublishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `PublishCustomAudioTrack` instead.
+- `PublishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `PublishCustomAudioTrackId`.
 
-- Call the `SetEarMonitoringAudioFrameParameters` method to set the audio data format of in-ear monitoring. The SDK calculates the sampling interval based on the parameters in this method and triggers the `OnEarMonitoringAudioFrame` callback based on the sampling interval.
-- Set the audio data format in the return value of the `GetEarMonitoringAudioParams` callback. The SDK calculates the sampling interval based on the return value of the callback and triggers the `OnEarMonitoringAudioFrame` callback based on the sampling interval.
+**2. Virtual sound card (macOS)**
 
-To adjust the in-ear monitoring volume, you can call `SetInEarMonitoringVolume`.
+As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
-**2. Audio capture device test (Android)**
+<div class="alert info">If you set AgoraALD or Soundflower as the default input or output device when joining a channel, you will not hear audio.</div>
 
-This release adds support for testing local audio capture devices before joining a channel. You can call `StartRecordingDeviceTest` to start the audio capture device test. After the test is complete, call the `StopPlaybackDeviceTest` method to stop the audio capture device test.
+**3. Miscellaneous**
 
-**3. Local network connection types**
+- `OnApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 
-To make it easier for users to know the connection type of the local network at any stage, this release adds the `GetNetworkType` method. You can use this method to get the type of network connection in use. The available values are UNKNOWN, DISCONNECTED, LAN, WIFI, 2G, 3G, 4G, and 5G. When the local network connection type changes, the SDK triggers the `OnNetworkTypeChanged` callback to report the current network connection type.
+  The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`,thus the prototype of the following methods are updated accordingly:
 
-**4. Audio stream filter**
+  - `OnFrame`
+  - `RegisterAudioFrameObserver` [1/2] and `RegisterAudioFrameObserver`[2/2] in `IMediaPlayer`
 
-This release introduces filtering audio streams based on volume. Once this function is enabled, the Agora server ranks all audio streams by volume and transports the three audio streams with the highest volumes to the receivers by default. The number of audio streams to be transported can be adjusted; contact [support@agora.io](support@agora.io) to adjust this number according to your scenarios. 
+- `StartChannelMediaRelay`, `UpdateChannelMediaRelay`, `StartChannelMediaRelayEx` and `UpdateChannelMediaRelayEx` are deprecated. Use `StartOrUpdateChannelMediaRelay`And `StartOrUpdateChannelMediaRelayEx` instead.
 
-Agora also supports publishers in choosing whether the audio streams being published are to be filtered based on volume. Streams that are not filtered bypass this filter mechanism and are transported directly to the receivers. In scenarios with a number of publishers, enabling this function helps reduce the bandwidth and device system pressure for the receivers.
+## New features
 
-<div class="alert info">To enable this function, contact <a href="support@agora.io">support@agora.io</a>.</div>
+**1. AI noise reduction**
 
-**5. Loopback device (Windows)** 
+This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `SetAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
-The SDK uses the playback device as the loopback device by default. As of 4.1.0, you can specify a loopback device separately and publish the captured audio to the remote end.
+**2. Cross-device synchronization**
 
-- `SetLoopbackDevice`: Specifies the loopback device. If you do not want the current playback device to be the loopback device, you can call this method to specify another device as the loopback device.
-- `GetLoopbackDevice`: Gets the current loopback device.
-- `FollowSystemLoopbackDevice`: Whether the loopback device follows the default playback device of the system.
+In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `GetNtpWallTimeInMs`For obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyricsprogression, resulting in a better collaborative experience.
 
-**6. Spatial audio effect**
+**3. Instant frame rendering**
 
-This release adds the following features applicable to spatial audio effect scenarios, which can effectively enhance the user's sense-of-presence experience in virtual interactive scenarios.
+This release adds the `EnableInstantMediaRendering` method to enable instant rendering mode for audio  frames, which can speed up the first audio frame rendering after the user joins the channel.
 
-- Sound insulation area: You can set a sound insulation area and sound attenuation parameter by calling `SetZones`. When the sound source (which can be a user or the media player) and the listener belong to the inside and outside of the sound insulation area, the listener experiences an attenuation effect similar to that of the sound in the real environment when it encounters a building partition. You can also set the sound attenuation parameter for the media player and the user by calling `SetPlayerAttenuation` and `SetRemoteAudioAttenuation` respectively, and specify whether to use that setting to force an override of the sound attenuation parameter in `SetZones`.
-- Doppler sound: You can enable Doppler sound by setting the `enable_doppler` parameter in `SpatialAudioParams`. The receiver experiences noticeable tonal changes in the event of a high-speed relative displacement between the source source and receiver (such as in a racing game scenario).
-- Headphone equalizer: You can use a preset headphone equalization effect by calling the `SetHeadphoneEQPreset` method to improve the audio experience for users with headphones.
 
-**7. Headphone equalization effect**
+## Improvements
 
-This release adds the `SetHeadphoneEQParameters` method, which is used to adjust the low- and high-frequency parameters of the headphone EQ. This is mainly useful in spatial audio scenarios. If you cannot achieve the expected headphone EQ effect after calling `SetHeadphoneEQPreset`, you can call setHeadphoneEQParameters to adjust the EQ.
+**1. Voice changer**
 
-**8. MPUDP (MultiPath UDP) (Beta)** 
+This release introduces the `SetLocalVoiceFormant` method that allows you to adjust the formant ratio to change the timbre of the voice. This method can be used together with the `SetLocalVoicePitch` method to adjust the pitch and timbre of voice at the same time, enabling a wider range of voice transformation effects.
 
-As of this release, the SDK supports MPUDP protocol, which enables you to connect and use multiple paths to maximize the use of channel resources based on the UDP protocol. You can use different physical NICs on both mobile and desktop and aggregate them to effectively combat network jitter and improve transmission quality.
 
-<div class="alert info">To enable this feature, contact <a href="sales-us@agora.io">sales-us@agora.io</a>.</div>
+ **2. Improved compatibility with audio file types (Android)**
 
-**9. Register extensions (Windows)**
+As of v4.2.0, you can use the following methods to open files with a URI starting with `Content://` : `StartAudioMixing` [2/2], `PlayEffect` [3/3], `Open`, and `OpenWithMediaSource`.
 
-This release adds the `RegisterExtension` method for registering extensions. When using a third-party extension, you need to call the extension-related APIs in the following order:
+**3. Channel media relay**
 
-`loadExtensionProvider` -> `registerExtension` -> `setExtensionProviderProperty` -> `enableExtension`
+This release introduces `StartOrUpdateChannelMediaRelay` and `StartOrUpdateChannelMediaRelayEx`, allowing for a simpler and smoother way to start and update media relay across channels. With these methods, developers can easily start the media relay across channels and update the target channels for media relay with a single method. Additionally, the internal interaction frequency has been optimized, effectively reducing latency in function calls.
 
-**10. Device management (Windows,macOS)**
+**4. Custom audio tracks**
 
-This release adds a series of callbacks to help you better understand the status of your audio devices:
+To better meet the needs of custom audio capture scenarios, this release adds `CreateCustomAudioTrack` and `DestroyCustomAudioTrack` for creating and destroying custom audio tracks. Two types of audio tracks are also provided for users to choose from, further improving the flexibility of capturing external audio source:
 
-- `OnAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
-- `OnAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
+- Mixable audio track: Supports mixing multiple external audio sources and publishing them to the same channel, suitable for multi-channel audio capture scenarios.
+- Direct audio track: Only supports publishing one external audio source to a single channel, suitable for low-latency audio capture scenarios.
 
-**11. Multi-channel management**
-
-This release adds a series of multi-channel related methods that you can call to manage audio streams in multi-channel scenarios.
-
-- The `MuteLocalAudioStreamEx` method is used to cancel or resume publishing a local audio stream.
-- The `MuteAllRemoteAudioStreamsEx`  is used to cancel or resume the subscription of all remote users to audio streams.
-- The `StartRtmpStreamWithoutTranscodingEx`, `StartRtmpStreamWithTranscodingEx`, `UpdateRtmpTranscodingEx`, and `StopRtmpStreamEx` methods are used to implement Media Push in multi-channel scenarios.
-- The `StartChannelMediaRelayEx`, `UpdateChannelMediaRelayEx`, `PauseAllChannelMediaRelayEx`, `ResumeAllChannelMediaRelayEx`, and `StopChannelMediaRelayEx` methods are used to relay media streams across channels in multi-channel scenarios.
-- Adds the `LeaveChannelEx` [2/2] method. Compared with the `LeaveChannelEx` [1/2] method, a new `options` parameter is added, which is used to choose whether to stop recording with the microphone when leaving a channel in a multi-channel scenario.
-
-**12. Client role switching**
-
-In order to enable users to know whether the switched user role is low-latency or ultra-low-latency, this release adds the `newRoleOptions` parameter to the `OnClientRoleChanged` callback. The value of this parameter is as follows:
-
-- `AUDIENCE_LATENCY_LEVEL_LOW_LATENCY` (1): Low latency.
-- `AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY` (2): Ultra-low latency.
-
-#### Improvements
-
-**1. Bluetooth permissions (Android)**
-
-To simplify integration, as of this release, you can use the SDK to enable Android users to use Bluetooth normally without adding the `BLUETOOTH_CONNECT`permission.
-
-**2. Relaying media streams across channels**
-
-This release optimizes the `UpdateChannelMediaRelay` method as follows:
-
-- Before v4.1.0: If the target channel update fails due to internal reasons in the server, the SDK returns the error code `RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED`(8), and you need to call the `UpdateChannelMediaRelay` method again.
-- v4.1.0 and later: If the target channel update fails due to internal server reasons, the SDK retries the update until the target channel update is successful.
-
-**3. Reconstructed AIAEC algorithm**
-
-This release reconstructs the AEC algorithm based on the AI method. Compared with the traditional AEC algorithm, the new algorithm can preserve the complete, clear, and smooth near-end vocals under poor echo-to-signal conditions, significantly improving the system's echo cancellation and dual-talk performance. This gives users a more comfortable call and live-broadcast experience. AIAEC is suitable for conference calls, chats, karaoke, and other scenarios.
-
-#### **Other improvements**
-
-This release includes the following additional improvements:
-
-- Reduces the latency when pushing external audio sources.
-- Improves the performance of echo cancellation when using the `AUDIO_SCENARIO_MEETING` scenario.
-- Enhances the ability to identify different network protocol stacks and improves the SDK's access capabilities in multiple-operator network scenarios.
-
-#### Issues fixed
+## Issues fixed
 
 This release fixed the following issues:
 
-- All platforms：
-  - The call `GetExtensionProperty` failed and returned an empty string.
-  - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
-  - Crashes occurred if you call the `RegisterAudioEncodedFrameObserver` method after failing to initialize  `RtcEngine`.
+**Android**
 
-- Android：
-  - After calling `SetCloudProxy` to set the cloud proxy, calling `JoinChannelEx` to join multiple channels failed.
+- Occasional crashes occur on Android devices when users joining or leaving a channel. 
+- Occational failure when enabling in-ear monitoring. 
+- Occational echo. 
+- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. 
+- When the playback of the local music finished, the `OnAudioMixingFinished` callback was not properly triggered. 
+- Abnormal client status caused by an exception in the `OnRemoteAudioStateChanged` callback. 
 
-  - In online meeting scenarios, the local user and the remote user occasionally could not hear each other after the local user was interrupted by a call.
+**iOS**
 
-- iOS：
-  - Calling `StartAudioMixing` to play music files in the `ipod-library://item` path failed.
+- Abnormal client status cased by an exception in the `OnRemoteAudioStateChanged` callback.
 
-- macOS：
-  - After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started.
+**All platforms**
 
-#### API changes
+- When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
+- Playing audio files with a sample rate of 48 kHz failed.
 
-**Added** 
+## API changes
 
-- `EnableInEarMonitoring`
-- `SetEarMonitoringAudioFrameParameters`
-- `OnEarMonitoringAudioFrame`
-- `SetInEarMonitoringVolume`
-- `GetEarMonitoringAudioParams`
-- `StartRecordingDeviceTest` (Android)
-- `StopRecordingDeviceTest` (Android)
-- `GetNetworkType`
-- `SetRecordingDeviceVolume`  (Windows)
-- `isAudioFilterable` in `ChannelMediaOptions` 
-- `SetLoopbackDevice` 
-- `GetLoopbackDevice`
-- `FollowSystemLoopbackDevice`
-- `SetZones`
-- `SetPlayerAttenuation`
-- `SetRemoteAudioAttenuation`
-- `MuteRemoteAudioStream`
-- `SpatialAudioParams`
-- `SetHeadphoneEQPreset`
-- `HEADPHONE_EQUALIZER_PRESET`
-- `SetHeadphoneEQParameters`
-- `LeaveChannelEx` [2/2]
-- `MuteLocalAudioStreamEx`
-- `MuteAllRemoteAudioStreamsEx`
-- `StartRtmpStreamWithoutTranscodingEx`
-- `StartRtmpStreamWithTranscodingEx`
-- `UpdateRtmpTranscodingEx`
-- `StopRtmpStreamEx`
-- `StartChannelMediaRelayEx`
-- `UpdateChannelMediaRelayEx`
-- `PauseAllChannelMediaRelayEx`
-- `ResumeAllChannelMediaRelayEx`
-- `StopChannelMediaRelayEx`
-- `newRoleOptions` in `OnClientRoleChanged` 
-- `AdjustUserPlaybackSignalVolumeEx`
-- `EnableAudioVolumeIndicationEx`
-- `OnAudioDeviceStateChanged ` (Windows,macOS)
-- `OnAudioDeviceVolumeChanged ` (Windows,macOS)
-- `SetParameters` in `IRtcEngine` (Windows)
+**Added**
+
+- `StartOrUpdateChannelMediaRelay`
+- `StartOrUpdateChannelMediaRelayEx`
+- `GetNtpWallTimeInMs`
+- `CreateAudioCustomTrack`
+- `DestroyAudioCustomTrack`
+- `AudioTrackConfig`
+- `AUDIO_TRACK_TYPE`
+- The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
+- The `channelId` and `uid` parameters in `OnRecorderStateChanged` and `OnRecorderInfoUpdated` callbacks
+- `EnableInstantMediaRendering`
 
 **Deprecated**
 
-- `StartEchoTest` [2/3]
-- `OnApiCallExecuted`. Use the callbacks triggered by specific methods instead.
+- `StartChannelMediaRelay`
+- `StartChannelMediaRelayEx`
+- `UpdateChannelMediaRelay`
+- `UpdateChannelMediaRelayEx`
+- `OnChannelMediaRelayEvent`
+- `CHANNEL_MEDIA_RELAY_EVENT`
 
 **Deleted**
 
-- Removes `RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL_REFUSED`(8) in `OnChannelMediaRelayEvent callback`
+- `OnApiCallExecuted`
+- `PublishCustomAudioTrackEnableAec ` in ` ChannelMediaOptions`
