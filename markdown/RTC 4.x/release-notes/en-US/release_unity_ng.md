@@ -161,48 +161,83 @@ This release improves the performance of super resolution. To optimize the usabi
 ## Issues fixed
 
 This release fixed the following issues:
+
+**Windows**
+
+- When using Agora Media Player to play RTSP video streams, the video images sometimes appeared pixelated. 
+- Adding an alpha channel to an image in PNG or GIF format failed when the local client mixed video streams. 
+- After joining the channel, remote users saw a watermark even though the watermark was deleted.
+- If a watermark was added after starting screen sharing, the watermark did not display the screen.
+- When joining a channel and accessing an external camera, calling `SetDevice` to specify the video capture device as the external camera did not take effect.
+- When trying to outline the shared window and put it on top, the shared window did not stay on top of other windows.
+
+**Android**
+
+- Occasional crashes occur on Android devices when users joining or leaving a channel. 
+- Occational failure when enabling in-ear monitoring. 
+- Occational echo. 
+- Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices. 
+- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. 
+- When the playback of the local music finished, the `OnAudioMixingFinished` callback was not properly triggered. 
+- When using a video frame observer, the first video frame was occasionally missed on the receiver's end. 
+- When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens. 
+- Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted. 
+- Abnormal client status caused by an exception in the `OnRemoteAudioStateChanged` callback. 
+
+**iOS**
+
+- Occasional loss of the `OnFirstRemoteVideoFrame` callback during channel media relay. 
+- The receiver actively subscribed to the high-quality stream but unexpectedly received a low-quality stream. 
+- Abnormal client status cased by an exception in the `OnRemoteAudioStateChanged` callback.
+
+**macOS**
+
+- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds. 
+- Occasional screen jittering during screen sharing. 
+- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds. 
+- Occasional screen jittering during screen sharing. 
+- If the rendering view of the player was set as a UIViewController's view, the video was zoomed from the bottom-left corner to the middle of the screen when entering full-screen mode.
+- When joining a channel and accessing an external camera, calling `SetDevice` to specify the video capture device as the external camera did not take effect.
+
+**All platforms**
+
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
-- Occasional crashes occur on Android devices when users joining or leaving a channel. (Android)
-- Occational failure when enabling in-ear monitoring.(Android)
-- Occasional loss of the `FirstRemoteVideoFrameOfUid` callback during channel media relay. (iOS)
-- The receiver actively subscribed to the high-quality stream but unexpectedly received a low-quality stream. (iOS)
-- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds. (macOS)
-- Incorrect information in the `Type` field of the return value after calling `GetDefaultAudioDevice`. (Mac)
-- Occational echo. (Android)
-- Occasional screen jittering during screen sharing. (macOS)
-- Abnormal client status cased by an exception in the onRemoteAudioStateChanged callback. (Android, iOS)
-
-
+- Playing audio files with a sample rate of 48 kHz failed.
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed. 
 
 ## API changes
 
 **Added**
 
-- `StartCameraCapture`
+- `StartCameraCapture` 
 - `StopCameraCapture`
-- `StartScreenCapture[2/2]`
-- `StopScreenCapture[2/2]`
+- `StartScreenCapture`[2/2]  (Windows,macOS)
+- `StopScreenCapture`[2/2]  (Windows,macOS)
 - `StartOrUpdateChannelMediaRelay`
 - `StartOrUpdateChannelMediaRelayEx`
 - `GetNtpWallTimeInMs`
 - `SetVideoScenario`
 - `GetCurrentMonotonicTimeInMs`
 - `OnLocalVideoTranscoderError`
-- `QueryScreenCaptureCapability`
-- `SetScreenCaptureScenario`
+- `startLocalVideoTranscoder`（macOS, iOS, Android）
+- `updateLocalTranscoderConfiguration`（macOS, iOS, Android）
+- `QueryScreenCaptureCapability`  (iOS, Android)
+- `SetScreenCaptureScenario`  (iOS, Android)
 - `CreateAudioCustomTrack`
 - `DestroyAudioCustomTrack`
-- `CreateMediaRecorder`
-- `DestroyMediaRecorder`
 - `AudioTrackConfig`
-- `RecorderStreamInfo`
 - `AUDIO_TRACK_TYPE`
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
-- `SCREEN_CAPTURE_CAPABILITY_LEVEL`
-- The `DomainLimit` and `AutoRegisterAgoraExtensions` members in `RtcEngineContext`
-- The `ChannelId` and `uid` parameters in `OnRecorderStateChanged` and `OnRecorderInfoUpdated` callbacks
+- `SCREEN_CAPTURE_FRAMERATE_CAPABILITY`
+- The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
 - The `sourceType` parameter in `OnCaptureVideoFrame` and `OnPreEncodeVideoFrame` callbacks
 - The `BACKGROUND_NONE` and `BACKGROUND_VIDEO` enumerators in `BACKGROUND_SOURCE_TYPE`
+- `EnableInstantMediaRendering`
+- `StartMediaRenderingTracing`
+- `StartMediaRenderingTracingEx`
+- `OnVideoRenderingTracingResult`
+- `MEDIA_TRACE_EVENT`
+- `VideoRenderingTracingInfo`
 
 **Deprecated**
 
@@ -217,15 +252,15 @@ This release fixed the following issues:
 
 **Deleted**
 
-- `StartPrimaryScreenCapture`
-- `StartSecondaryScreenCapture`
-- `StopPrimaryScreenCapture`
-- `StopSecondaryScreenCapture`
-- `StartPrimaryCameraCapture`
-- `StartSecondaryCameraCapture`
-- `StopPrimaryCameraCapture`
-- `StopSecondaryCameraCapture`
+- `StartPrimaryScreenCapture`  (Windows)
+- `StartSecondaryScreenCapture`  (Windows)
+- `StopPrimaryScreenCapture ` (Windows)
+- `StopSecondaryScreenCapture ` (Windows)
+- `StartPrimaryCameraCapture`  (Windows)
+- `StartSecondaryCameraCapture` (Windows/iOS)
+- `StopPrimaryCameraCapture`  (Windows)
+- `StopSecondaryCameraCapture ` (Windows/iOS)
 - `OnApiCallExecuted`
-- `PublishCustomAudioTrackEnableAec `In` ChannelMediaOptions`
-- `GetMediaRecorder`
-- The `Connection` parameter in `StartRecording`, `StopRecording`, and `SetMediaRecorderObserver`
+- `PublishCustomAudioTrackEnableAec ` in` ChannelMediaOptions`
+- `EnableRemoteSuperResolution`
+- `superResolutionType` in `RemoteVideoStats` 
