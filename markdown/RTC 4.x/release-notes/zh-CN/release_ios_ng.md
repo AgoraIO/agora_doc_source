@@ -144,7 +144,7 @@
 - 当快速切换身份角色时，观众端听不到声音。
 - 跨频道连麦时 `firstRemoteVideoFrameOfUid` 回调偶现丢失。
 - 接收端主动订阅大流但是异常接收小流。
-- 由于 `remoteAudioStateChangedOfUid` 回调异常造成客户客户端状态异常。
+- 由于 `remoteAudioStateChangedOfUid` 回调异常造成客户端状态异常。
 
 
 

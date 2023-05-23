@@ -122,7 +122,7 @@
 - 当快速切换身份角色时，观众端听不到声音。
 - 偶现耳返开启无效。
 - 偶现回声。
-- 由于 `onRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+- 由于 `onRemoteAudioStateChanged` 回调异常造成客户端状态异常。
 
 
 #### API 变更

@@ -79,7 +79,7 @@
 - 偶现耳返开启无效。(Android)
 - 接收端主动订阅大流但是异常接收小流。(iOS)
 - 偶现回声。(Android)
-- 由于 `onRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+- 由于 `onRemoteAudioStateChanged` 回调异常造成客户端状态异常。
 - 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
 - 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音。(Android)
 - 本地音乐文件结束播放时，未能触发 onAudioMixingFinished 回调。(Android)

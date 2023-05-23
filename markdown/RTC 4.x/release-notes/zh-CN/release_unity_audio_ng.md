@@ -86,13 +86,13 @@
 
 - 偶现耳返开启无效。
 - 偶现回声。
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户端状态异常。
 - 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音。
 - 本地音乐文件结束播放时，未能触发 `OnAudioMixingFinished` 回调。
 
 **iOS**
 
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户端状态异常。
 
 **全平台**
 

@@ -78,7 +78,7 @@
 该版本修复了以下问题：
 
 - 当快速切换身份角色时，观众端听不到声音。
-- 由于 `remoteAudioStateChangedOfUid` 回调异常造成客户客户端状态异常。
+- 由于 `remoteAudioStateChangedOfUid` 回调异常造成客户端状态异常。
 
 
 
