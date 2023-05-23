@@ -14,17 +14,17 @@
 |:---------|:--------|
 | <li>`startPrimaryCameraCapture` (Windows)</li><li>`startSecondaryCameraCapture` (Windows, iOS)</li> | `startCameraCapture` |
 | <li>`stopPrimaryCameraCapture` (Windows)</li><li>`stopSecondaryCameraCapture` (Windows, iOS)</li> | `stopCameraCapture` |
-| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` (Windows, macOS) |
-| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` (Windows, macOS) |
+| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` (Windows) |
+| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` (Windows) |
 
-**2. 视频数据获取 (Windows)**
+**2. 视频数据获取**
 
-以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中新增的 `sourceType` 参数得知视频源类型。
-
-- `onSecondaryPreEncodeCameraVideoFrame`
-- `onScreenCaptureVideoFrame`
-- `onPreEncodeScreenVideoFrame`
-- `onSecondaryPreEncodeScreenVideoFrame`
+- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
+- 以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中的 `sourceType` 参数得知视频源类型。(Windows)
+    - `onSecondaryPreEncodeCameraVideoFrame`
+    - `onScreenCaptureVideoFrame`
+    - `onPreEncodeScreenVideoFrame`
+    - `onSecondaryPreEncodeScreenVideoFrame`
 
 **3. 媒体发布选项**
 
