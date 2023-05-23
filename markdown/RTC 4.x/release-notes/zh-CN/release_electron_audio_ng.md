@@ -16,13 +16,13 @@
 - 删除 ` InterfaceIdType` 中的 `AgoraIidMediaRecorder` 。在创建录制对象前无需再获取 `AgoraIidMediaRecorder` 接口类指针，你可以直接调用该版本新增的 `createMediaRecorder` 方法创建录制对象。（Windows）
 - 删除 `getMediaRecorder` 方法，可通过该版本新增的 `createMediaRecorder` 方法来创建录制对象。(macOS)
 - 删除 `startRecording` 、`stopRecording`、`setMediaRecorderObserver` 中的 `connection` 参数。
-- 删除 `IMediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。 
+- 删除 `IMediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。
 
 **3. 虚拟声卡 (macOS)**
 
 自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 `stateChanged` 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
 
-<div class="alert note">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。</div>
+<div class="alert note">加频道时如果设置 AgoraALD、Soundflower 作为系统的默认输入或输出设备，会造成无声。</div>
 
 **4. 其他兼容性变更**
 
@@ -50,13 +50,10 @@
 - `stopRecording`：停止录制。
 - `destroyMediaRecorder`：销毁录制对象。
 
-**3. 多端同步**
-
-在实时合唱的场景中，可能会出现网络原因导致各接收端下行链路不一致的情况，该版本新增 `getNtpWallTimeInMs` 方法获取当前的 NTP (网络时间协议) 时间，用于对齐多个接收端的歌词和音乐，实现合唱同步、歌词进度同步等，为用户提供更佳的协同体验。
 
 #### 改进
 
-**1.优化变声** 
+**1.优化变声**
 
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
 
@@ -82,7 +79,8 @@
 - 当快速切换身份角色时，观众端听不到声音。
 - 接收端默认接收小流几秒后自动变为大流。(Mac)。
 - 调用 `getdefaultaudiodevice` 后返回值中的 `type` 字段信息错误。(Mac)
-
+- 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
+- 客户端主动退出频道时未向服务端发起请求，导致服务端判定为退出频道超时。
 
 
 #### API 变更

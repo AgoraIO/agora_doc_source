@@ -37,7 +37,7 @@
 - 删除 `InterfaceIdType` 中的 `agoraIidMediaRecorder`。在创建录制对象前无需再获取 `agoraIidMediaRecorder` 接口类指针，你可以直接调用该版本新增的 `createMediaRecorder` 方法创建录制对象。(Windows)
 - 删除 `getMediaRecorder` 方法，可通过该版本新增的 `createMediaRecorder` 方法来创建录制对象。(Android, iOS, macOS)
 - 删除 `startRecording` 、`stopRecording`、`setMediaRecorderObserver` 中的 `connection` 参数。
-- 删除 `MediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。 
+- 删除 `MediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。
 
 **5. 本地合图 (Windows)**
 
@@ -132,7 +132,7 @@
 
 **3. 提升音频文件类型兼容性 (Android)**
 
-该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`、`playEffect`、`openWithMediaSource` 发放来打开以 `content://` 开头的 URI 文件。
+该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`、`playEffect`、`openWithMediaSource` 方法来打开以 `content://` 开头的 URI 文件。
 
 **4. 提升渲染兼容性 (Windows)**
 
@@ -329,7 +329,7 @@
 
 **3. 本地网络连接类型**
 
-为方便用户在任何阶段知悉本地网络的连接类型，该版本新增  `getNetworkType` 方法。你可以通过该方法获取正在使用的网络连接的类型，包括 UNKNOWN、DISCONNECTED、LAN、WIFI、2G、3G、4G、5G。当本地网络连接类型发生改变时，SDK 会触发 `onNetworkTypeChanged` 回调，报告当前的网络连接类型。 
+为方便用户在任何阶段知悉本地网络的连接类型，该版本新增  `getNetworkType` 方法。你可以通过该方法获取正在使用的网络连接的类型，包括 UNKNOWN、DISCONNECTED、LAN、WIFI、2G、3G、4G、5G。当本地网络连接类型发生改变时，SDK 会触发 `onNetworkTypeChanged` 回调，报告当前的网络连接类型。
 
 
 **4. 音强选流**
@@ -470,10 +470,10 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 该版本对屏幕共享功能做了一系列优化，除以下列出的功能性改进之外，还有一部分可用性提升，详见[问题修复](#问题修复)。
 
 **Windows**
-- 在 `ScreenCaptureSourceInfo` 中增加了 `minimizeWindow` 成员，用于表示目标窗口是否已最小化。 
+- 在 `ScreenCaptureSourceInfo` 中增加了 `minimizeWindow` 成员，用于表示目标窗口是否已最小化。
 - 在 `ScreenCaptureParameters` 中增加了 `enableHighLight`、`highLightColor` 和 `highLightWidth` 成员，支持你在屏幕共享时对目标窗口或屏幕进行描边。
 - 兼容更多主流 app，包括但不限于：WPS Office，Microsoft Office PowerPoint，Visual Studio Code，Adobe Photoshop，Windows Media Player，Scratch。
-- 兼容更多设备和操作系统，包括但不限于：Window 8 系统，无独立显卡的设备，双显卡设备。 
+- 兼容更多设备和操作系统，包括但不限于：Window 8 系统，无独立显卡的设备，双显卡设备。
 - 支持超高清视频 (分辨率为 4K，帧率为 60 fps)，你可以在满足要求的设备上使用该功能。声网推荐的最低设备规格为：intel(R) Core(TM) i7-9750H CPU @ 2.60GHZ。
 
 **macOS**
@@ -556,7 +556,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - 在屏幕共享场景下，在横屏显示器与竖屏显示器之间共享屏幕时出现黑屏。
 - 在屏幕共享场景下屏蔽窗口时，屏幕共享区域超出屏幕分辨率导致崩溃。
 - 调用 `startScreenCaptureByDisplayId` 进行屏幕共享时无法屏蔽窗口。
-- 在屏幕共享场景下，远端用户看到的画面偶现黑屏、卡顿、崩溃。 
+- 在屏幕共享场景下，远端用户看到的画面偶现黑屏、卡顿、崩溃。
 - 在屏幕共享场景下，偶现 `onNetworkQuality` 回调报告频道内指定用户的上下行网络状态不准确。
 - 在屏幕共享场景下，在共享窗口中看到的鼠标位置与实际位置有偏差。
 - 从普通场景切换屏幕共享场景后，由于两种场景下设置的分辨率不同导致偶现崩溃。
@@ -567,7 +567,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 - 在屏幕共享场景下，将共享的窗口最小化或关闭共享窗口时，共享窗口自动切换为该 app 的其他窗口。
 - 在屏幕共享场景下，偶现系统声音音量变小。
 - 在屏幕共享场景下，当共享的窗口为半屏模式时，对窗口的描边不正确。
-- 在屏幕共享场景下，远端用户看到的画面偶现黑屏、卡顿、崩溃。 
+- 在屏幕共享场景下，远端用户看到的画面偶现黑屏、卡顿、崩溃。
 - 在屏幕共享场景下，偶现 `onNetworkQuality` 回调报告频道内指定用户的上下行网络状态不准确。
 - 启动并停止音频采集设备测试后，启动音频播放设备测试时必现无声。
 - `onVideoPublishStateChanged` 回调报告的视频源类型不准确。
@@ -671,7 +671,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 
 
-## v6.0.0 (对应 Native v4.0.0) 
+## v6.0.0 (对应 Native v4.0.0)
 
 该版本于 2022 年 9 月 29 日发布。
 
@@ -681,7 +681,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 v6.0.0 SDK 包名由 `agora_rtc_ng` 变更为 `agora_rtc_engine`，且对部分功能的实现方式进行了优化，从而导致与 v5.x 不兼容。如下为存在兼容性变更的主要功能：
 - 多频道
 - 媒体流发布控制
-- 自定义视频采集与渲染 (Media IO 方式) 
+- 自定义视频采集与渲染 (Media IO 方式)
 - 错误码与警告码
 升级 SDK 后，你需要结合实际业务场景更新 app 代码，详见[迁移指南](./migration_guide_flutter_ng)。
 
