@@ -41,20 +41,16 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
     | Android/smaple/SenseMeEffects/app/libs/SenseArSourceManager-release.aar   | Android/scenes/show/aars/SenseArSourceManager    |
     | 商汤证书SenseME.lic   |Android/scenes/show/src/main/assets/license/SenseME.lic     |
 
-3. 设置应用的包名。包名用于在设备上唯一标识应用程序。在开发应用时，你需要设置包名。在此处设置的包名需要与你申请 SDK 时提供的包名一致。
+3. 在项目的 `build.gradle` 文件中，将 `applicationId` 修改为你的包名，例如 `com.example.app`。包名用于在设备上唯一标识应用程序。在开发应用时，你需要设置包名。在此处设置的包名需要与你申请 SDK 时提供的包名一致。
 
-    - 在项目的 `build.gradle` 文件中，将 `applicationId` 修改为你的包名，例如 `com.example.app`。
-
-        ```java
-        android {
-            defaultConfig {
-                applicationId "io.agora.entfull"
-                ndk.abiFilters 'arm64-v8a', 'armeabi-v7a'//, 'arm64-v8a'//, 'x86', 'x86-64'
-            }
+    ```java
+    android {
+        defaultConfig {
+            applicationId "io.agora.entfull"
+            ndk.abiFilters 'arm64-v8a', 'armeabi-v7a'//, 'arm64-v8a'//, 'x86', 'x86-64'
         }
-        ```
-
-    - 在项目的 `AndroidManifest.xml` 文件中，将 `package` 属性的值修改为你的包名，例如 `com.example.app`。
+    }
+    ```
 
 ## 配置示例项目
 
