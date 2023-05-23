@@ -12,13 +12,7 @@ If you use the features mentioned in this section, ensure that you modify the im
 - `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
 - `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
 
-**2. Virtual sound card (macOS)**
-
-As of v6.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the stateChanged callback to see whether the current input or output device selected by the SDK is a virtual sound card.
-
-<div class="alert note">If you set AgoraALD or Soundflower as the default input or output device when joining a channel, you will not hear audio.</div>
-
-**3. Miscellaneous**
+**2. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 

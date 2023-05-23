@@ -18,13 +18,7 @@
 - 删除 `startRecording` 、`stopRecording`、`setMediaRecorderObserver` 中的 `connection` 参数。
 - 删除 `MediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。 
 
-**3. 虚拟声卡 (macOS)**
-
-自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 stateChanged 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
-
-<div class="alert note">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。</div>
-
-**4. 其他兼容性变更**
+**3. 其他兼容性变更**
 
 - `onApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
 - `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`，因此下列方法原型也有相应更新：

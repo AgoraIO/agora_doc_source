@@ -37,13 +37,7 @@ The following callbacks are deleted. Get the video source type through the newly
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `videoInputStreams`.
 - The `MediaSourceType` in `TranscodingVideoStream` is changed to `VideoSourceType`.
 
-**5. Virtual sound card (macOS)**
-
-As of v6.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the stateChanged callback to see whether the current input or output device selected by the SDK is a virtual sound card.
-
-<div class="alert note">If you set AgoraALD or Soundflower as the default input or output device when joining a channel, you will not hear audio.</div>
-
-**6. Miscellaneous**
+**5. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 
@@ -58,7 +52,7 @@ As of v6.2.0, Agora supports third-party virtual sound cards. You can use a thir
 
 This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
-**2. Enhanced Virtual Background**
+**2. Enhanced virtual background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
