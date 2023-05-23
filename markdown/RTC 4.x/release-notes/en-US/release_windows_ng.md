@@ -28,17 +28,17 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 
 **3. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `ChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **4. Audio and video recording**
 
-- `AGORA_IID_MEDIA_RECORDER` in `INTERFACE_ID_TYPE` is deleted. As of v4.2.0, before creating a recording object, you don't need to obtain the `AGORA_IID_MEDIA_RECORDER` interface class pointer. You can directly create a recording object through the `createMediaRecorder` method released in this version. 
+- `AGORA_IID_MEDIA_RECORDER` in `INTERFACE_ID_TYPE` is deleted. As of v4.2.0, before creating a recording object, you don't need to obtain the `AGORA_IID_MEDIA_RECORDER` interface class pointer. You can directly create a recording object through the `createMediaRecorder` method released in this version.
 - The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderObserver` methods is deleted.
-- The `release` method in the `IMediaRecorder` class is deleted. You can use the `destroyMediaRecorder `method released in this version to destroy a recording object and release resources. 
+- The `release` method in the `IMediaRecorder` class is deleted. You can use the `destroyMediaRecorder `method released in this version to destroy a recording object and release resources.
 
-**5. Local video mixing** 
+**5. Local video mixing**
 
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `videoInputStreams`.
 - The `MEDIA_SOURCE_TYPE` in `TranscodingVideoStream` is changed to `VIDEO_SOURCE_TYPE`.
@@ -46,7 +46,7 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 **6. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
-- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 
+- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly:
   - `onFrame`
   - `registerAudioFrameObserver` [1/2] and `registerAudioFrameObserver`[2/2] in `IMediaPlayer`
 - `enableDualStreamMode`[1/2] and `enableDualStreamMode`[2/2] are depredated. Use `setDualStreamMode`[1/2] and `setDualStreamMode`[2/2] instead.
@@ -56,13 +56,13 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 
 **1. AI noise reduction**
 
-This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios. 
+This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
 **2.** **Enhanced Virtual Background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect. 
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -74,15 +74,15 @@ Currently, this feature provides targeted optimizations for real-time video conf
 - Automatically activate multiple anti-weak network technologies to enhance the capability and performance of low-quality video streams in meeting scenarios where high bitrates are required, ensuring smoothness when multiple streams are subscribed by the receiving end.
 - Monitor the number of subscribers for the high-quality and low-quality video streams in real time, dynamically adjusting the configuration of the high-quality stream and dynamically enabling or disabling the low-quality stream, to save uplink bandwidth and consumption.
 
-**4. Local video mixing** 
+**4. Local video mixing**
 
 This release adds the `onLocalVideoTranscoderError` callback. When there is an error in starting or updating the local video mixing, the SDK triggers this callback to report the reason for the failure.
 
 **5. Cross-device synchronization**
 
-In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyricsprogression, resulting in a better collaborative experience.
+In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
-## Improvements 
+## Improvements
 
 **1. Voice changer**
 
@@ -96,7 +96,7 @@ This release enhances the rendering compatibility of the SDK. Issues like black 
 
 For custom video and audio capture scenarios, this release introduces `getCurrentMonotonicTimeInMs` for obtaining the current Monotonic Time. By passing this value into the timestamps of audio and video frames, developers can accurately control the timing of their audio and video streams, ensuring proper synchronization.
 
-**4. Multi-camera capture and multi-screen capture** 
+**4. Multi-camera capture and multi-screen capture**
 
 This release introduces `startCameraCapture` and `startScreenCapture`[2/2]. By calling these methods multiple times and specifying the `sourceType` parameter, developers can start capturing video streams from multiple cameras and screens for local video mixing or multi-channel publishing. This is particularly useful for scenarios such as remote medical care and online education, where multiple cameras and displays need to be connected.
 
@@ -173,5 +173,5 @@ This release fixed the issue that when the host frequently switching the user ro
 - `publishCustomAudioTrackEnableAec ` in ` ChannelMediaOptions`
 - `getMediaRecorder`
 - `release` in `IMediaRecorder`
-- `AGORA_IID_MEDIA_RECORDER` 
+- `AGORA_IID_MEDIA_RECORDER`
 - The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderObserver`

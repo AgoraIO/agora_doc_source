@@ -28,11 +28,11 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 
 **3. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `ChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
-**4. Local video mixing** 
+**4. Local video mixing**
 
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `videoInputStreams`.
 - The `MediaSourceType` in `TranscodingVideoStream` is changed to `VideoSourceType`.
@@ -54,7 +54,7 @@ Call the setVideoEncoderConfiguration method to set the expected video encoding 
 **7. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
-- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 
+- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly:
   - `onFrame`
   - `registerAudioFrameObserver` and `unregisterAudioFrameObserver` in `IMediaPlayer`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
@@ -63,13 +63,13 @@ Call the setVideoEncoderConfiguration method to set the expected video encoding 
 
 **1. AI noise reduction**
 
-This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios. 
+This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
 **2. Enhanced Virtual Background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect. 
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -81,13 +81,13 @@ Currently, this feature provides targeted optimizations for real-time video conf
 - Automatically activate multiple anti-weak network technologies to enhance the capability and performance of low-quality video streams in meeting scenarios where high bitrates are required, ensuring smoothness when multiple streams are subscribed by the receiving end.
 - Monitor the number of subscribers for the high-quality and low-quality video streams in real time, dynamically adjusting the configuration of the high-quality stream and dynamically enabling or disabling the low-quality stream, to save uplink bandwidth and consumption.
 
-**4. Local video mixing** 
+**4. Local video mixing**
 
 Starting from this release, the local video mixing feature supports macOS. In addition, this release adds the `onLocalVideoTranscoderError` callback. When there is an error in starting or updating the local video mixing, the SDK triggers this callback to report the reason for the failure.
 
 **5. Cross-device synchronization**
 
-In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyricsprogression, resulting in a better collaborative experience.
+In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
 **6. Instant frame rendering**
 
@@ -113,7 +113,7 @@ This release enhances the rendering compatibility of the SDK. Issues like black 
 
 For custom video and audio capture scenarios, this release introduces `getCurrentMonotonicTimeInMs` for obtaining the current Monotonic Time. By passing this value into the timestamps of audio and video frames, developers can accurately control the timing of their audio and video streams, ensuring proper synchronization.
 
-**4. Multi-camera capture and multi-screen capture** 
+**4. Multi-camera capture and multi-screen capture**
 
 This release introduces `startCameraCapture` and `startScreenCaptureBySourceType`. By calling these methods multiple times and specifying the `sourceType` parameter, developers can start capturing video streams from multiple cameras and screens for local video mixing or multi-channel publishing. This is particularly useful for scenarios such as remote medical care and online education, where multiple cameras and displays need to be connected.
 
@@ -287,9 +287,9 @@ This release adds the `registerExtension` method for registering extensions. Whe
 
 This release adds a series of callbacks to help you better understand the status of your audio and video devices:
 
-- `onVideoDeviceStateChanged`: Occurs when the status of the video device changes. 
-- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
+- `onVideoDeviceStateChanged`: Occurs when the status of the video device changes.
+- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes.
+- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes.
 
 **11. Camera capture options**
 
@@ -389,7 +389,7 @@ This release fixed the following issues:
 
 **All**
 - When calling `setVideoEncoderConfigurationEx` in the channel to increase the resolution of the video, it occasionally failed.
-- When using the Agora media player to play videos, after you played and paused the video, and then called the `seek` method to specify a new position for playback, the video image occasionally remained unchanged; if you called the `resume` method to resume playback, the video was sometimes played at a speed faster than the original one. 
+- When using the Agora media player to play videos, after you played and paused the video, and then called the `seek` method to specify a new position for playback, the video image occasionally remained unchanged; if you called the `resume` method to resume playback, the video was sometimes played at a speed faster than the original one.
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 - The call `getExtensionProperty` failed and returned an empty string.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.

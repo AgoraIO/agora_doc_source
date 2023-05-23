@@ -9,7 +9,6 @@
 **1. 媒体发布选项**
 
 - `AgoraRtcChannelMediaOptions` 中的 `publishCustomAudioTrackEnableAec` 已删除，请改用 `publishCustomAudioTrack`。
-- `AgoraRtcChannelMediaOptions` 中的成员 `publishTrancodedVideoTrack` 变更为 `publishTranscodedVideoTrack`.
 - `AgoraRtcChannelMediaOptions` 中的成员 `publishCustomAudioSourceId` 变更为 `publishCustomAudioTrackId`。
 
 **2. 音频录制**
@@ -56,25 +55,17 @@
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
 
 
-**2. 提升音频同步能力**
-
-针对自定义音频采集场景，该版本新增 `getCurrentMonotonicTimeInMs` 方法用于获取当前的 Monotonic Time，将该值传入音频帧的时间戳，可以精确控制音频时序，确保音频同步。
-
-
-
-**3. 优化版权音乐**
+**2. 优化版权音乐**
 
 针对在线 K 歌房场景，改版本新增 `getCaches` 和 `removeCacheWithSongCode` 方法，用于获取、删除音乐资源缓存，并新增状态码和错误码，可方便用户排查问题。
 
 
-
-**4. 优化跨频道连麦**
+**3. 优化跨频道连麦**
 
 该版本新增 `startOrUpdateChannelMediaRelay` 和 `startOrUpdateChannelMediaRelayEx` 方法，通过一个方法实现开始跨频道转发和更新转发的目标频道，提升了接口易用性；同时，优化内部交互次数，有效降低调用了延迟。在降低开发难度的同时，为开发者提供更顺畅的使用体验。
 
 
-
-**5. 多路音频自采集**
+**4. 多路音频自采集**
 
 为更好地满足音频自采集的场景需求，该版本新增了 `createCustomAudioTrack` 和 `destroyCustomAudioTrack` 方法用于创建和销毁自定义音频轨道，并提供了两种音频轨道类型供用户选择，进一步提升了自采集音频处理的灵活性和易用性：
 
@@ -98,7 +89,6 @@
 - `startOrUpdateChannelMediaRelay`
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
-- `getCurrentMonotonicTimeInMs`
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`

@@ -6,7 +6,7 @@ v4.2.0 was released on May 23, 2023.
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
 
-**1. Video capture** 
+**1. Video capture**
 
 This release optimizes the APIs for camera and screen capture function. As of v4.2.0, ensure you use the alternative methods listed in the table below and specify the video source by setting the `sourceType` parameter.
 
@@ -21,15 +21,15 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 
 **3. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `AgoraRtcChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `AgoraRtcChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **4. Audio and video recording**
 
 - `sharedMediaRecorderWithRtcEngine` is deleted. You can create a recording object through the `createMediaRecorder` method released in this version.
 - The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderDelegate` methods is deleted.
-- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources. 
+- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources.
 
 **5. Miscellaneous**
 
@@ -43,11 +43,11 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 
 This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
-**2. Enhanced Virtual Background**
+**2. Enhanced virtual background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect. 
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -70,7 +70,7 @@ Additionally, the SDK provides the `updateLocalTranscoderConfiguration` method a
 **5. Cross-device synchronization**
 
 In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
-## Improvements 
+## Improvements
 
 **1. Voice changer**
 
@@ -78,7 +78,7 @@ This release introduces the `setLocalVoiceFormant` method that allows you to adj
 
 **2. Enhanced screen share**
 
-This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand. 
+This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand.
 
 This release also adds the `setScreenCaptureScenario` method, which is used to set the scenario type for screen sharing. The SDK automatically adjusts the smoothness and clarity of the shared screen based on the scenario type you set.
 
@@ -105,9 +105,9 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
 This release fixed the following issues:
 
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
-- Occasional loss of the `firstRemoteVideoFrameOfUid` callback during channel media relay. 
-- The receiver actively subscribed to the high-quality stream but unexpectedly received a low-quality stream. 
-- Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback. 
+- Occasional loss of the `firstRemoteVideoFrameOfUid` callback during channel media relay.
+- The receiver actively subscribed to the high-quality stream but unexpectedly received a low-quality stream.
+- Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback.
 ## API changes
 
 **Added**
@@ -122,8 +122,8 @@ This release fixed the following issues:
 - `didLocalVideoTranscoderErrorWithStream`
 - `startLocalVideoTranscoder`
 - `updateLocalTranscoderConfiguration`
-- `queryScreenCaptureCapability` 
-- `setScreenCaptureScenario` 
+- `queryScreenCaptureCapability`
+- `setScreenCaptureScenario`
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
@@ -155,12 +155,12 @@ This release fixed the following issues:
 - `startSecondaryCameraCapture`
 - `stopSecondaryCameraCapture`
 - `didApiCallExecute`
-- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in `AgoraRtcChannelMediaOptions`
 - `sharedMediaRecorderWithRtcEngine`
 - `destroy` in `AgoraMediaRecorder`
 - The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderDelegate`
 
-## v4.1.1 
+## v4.1.1
 
 v4.1.1 was released on January xx, 2023.
 
@@ -211,7 +211,7 @@ This release improves the performance of super resolution. To optimize the usabi
 This release fixed the following issues:
 
 - Playing audio files with a sample rate of 48 kHz failed.
-- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed. 
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
 - At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
 
 
@@ -292,7 +292,7 @@ In order to enable users to know whether the switched user role is low-latency o
 - `AgoraAudienceLatencyLevelLowLatency` (1): Low latency.
 - `AgoraAudienceLatencyLevelUltraLowLatency` (2): Ultra-low latency.
 
-#### Improvements 
+#### Improvements
 
 **1. Relaying media streams across channels**
 
@@ -327,10 +327,10 @@ This release includes the following additional improvements:
 
 This release fixed the following issues:
 
-- Calling `startAudioMixing` to play music files in the `ipod-library://item` path failed. 
+- Calling `startAudioMixing` to play music files in the `ipod-library://item` path failed.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
-- Different timestamps for audio and video data were obtained simultaneously and separately via `onRecordAudioFrame` and `onCaptureVideoFrame` callbacks. 
-- The call `getExtensionProperty` failed and returned an empty string. 
+- Different timestamps for audio and video data were obtained simultaneously and separately via `onRecordAudioFrame` and `onCaptureVideoFrame` callbacks.
+- The call `getExtensionProperty` failed and returned an empty string.
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 
 #### **API changes**
@@ -357,10 +357,10 @@ This release fixed the following issues:
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
 - `followEncodeDimensionRatio` in `AgoraCameraCapturerConfiguration`
-- `hwEncoderAccelerating` in `AgoraRtcLocalVideoStats` 
+- `hwEncoderAccelerating` in `AgoraRtcLocalVideoStats`
 - `leaveChannelEx` [2/2]
-- `advancedVideoOptions` in `AgoraVideoEncoderConfiguration` 
-- `newRoleOptions` in `didClientRoleChanged` 
+- `advancedVideoOptions` in `AgoraVideoEncoderConfiguration`
+- `newRoleOptions` in `didClientRoleChanged`
 - `adjustUserPlaybackSignalVolumeEx`
 - `enableAudioVolumeIndicationEx`
 

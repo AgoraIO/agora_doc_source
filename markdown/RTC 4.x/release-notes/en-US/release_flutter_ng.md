@@ -28,9 +28,9 @@ The following callbacks are deleted. Get the video source type through the newly
 
 **3. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `ChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **4. Local video mixing (Windows)**
 
@@ -48,7 +48,7 @@ The increase in the default resolution affects the aggregate resolution and thus
 **6. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
-- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 
+- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly:
     - `onFrame`
     - `registerAudioFrameObserver` and `unregisterAudioFrameObserver` in `MediaPlayer`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
@@ -64,7 +64,7 @@ This release introduces the AI noise reduction function. Once enabled, the SDK a
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.  
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -111,7 +111,7 @@ This release introduces the `setLocalVoiceFormant` method that allows you to adj
 
 **2. Enhanced screen share (Android, iOS)**
 
-This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand. 
+This release adds the `queryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand.
 
 This release also adds the `setScreenCaptureScenario` method, which is used to set the scenario type for screen sharing. The SDK automatically adjusts the smoothness and clarity of the shared screen based on the scenario type you set.
 
@@ -240,7 +240,7 @@ This release fixed the following issues:
 - `onPreEncodeScreenVideoFrame` (Windows)
 - `onSecondaryPreEncodeScreenVideoFrame` (Windows)
 - `onApiCallExecuted`
-- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` in `ChannelMediaOptions`
 - `enableRemoteSuperResolution`
 - `superResolutionType` in `RemoteVideoStats`
 
@@ -347,9 +347,9 @@ This release adds the `registerExtension` method for registering extensions. Whe
 
 This release adds a series of callbacks to help you better understand the status of your audio and video devices:
 
-- `onVideoDeviceStateChanged`: Occurs when the status of the video device changes. 
-- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
+- `onVideoDeviceStateChanged`: Occurs when the status of the video device changes.
+- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes.
+- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes.
 
 
 **13. Camera capture options**
@@ -458,7 +458,7 @@ This release fixed the following issues:
 
 **All**
 - When calling `setVideoEncoderConfigurationEx` in the channel to increase the resolution of the video, it occasionally failed.
-- When using the Agora media player to play videos, after you played and paused the video, and then called the `seek` method to specify a new position for playback, the video image occasionally remained unchanged; if you called the `resume` method to resume playback, the video was sometimes played at a speed faster than the original one. 
+- When using the Agora media player to play videos, after you played and paused the video, and then called the `seek` method to specify a new position for playback, the video image occasionally remained unchanged; if you called the `resume` method to resume playback, the video was sometimes played at a speed faster than the original one.
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 - The call `getExtensionProperty` failed and returned an empty string.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.

@@ -12,17 +12,17 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 
 **2. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `AgoraRtcChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `AgoraRtcChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **3. Audio and video recording**
 
 - `sharedMediaRecorderWithRtcEngine` is deleted. You can create a recording object through the `createMediaRecorder` method released in this version.
 - The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderDelegate` methods is deleted.
-- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources. 
+- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources.
 
-**4. Virtual sound card** 
+**4. Virtual sound card**
 
 As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
@@ -40,11 +40,11 @@ As of v4.2.0, Agora supports third-party virtual sound cards. You can use a thir
 
 This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
-**2. Enhanced Virtual Background**
+**2. Enhanced virtual background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect. 
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -68,7 +68,7 @@ Additionally, the SDK provides the `updateLocalTranscoderConfiguration` method a
 
 In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
-## Improvements 
+## Improvements
 
 **1. Voice changer**
 
@@ -78,7 +78,7 @@ This release introduces the `setLocalVoiceFormant` method that allows you to adj
 
 For custom video and audio capture scenarios, this release introduces `getCurrentMonotonicTimeInMs` for obtaining the current Monotonic Time. By passing this value into the timestamps of audio and video frames, developers can accurately control the timing of their audio and video streams, ensuring proper synchronization.
 
-**3. Multi-camera capture and multi-screen capture** 
+**3. Multi-camera capture and multi-screen capture**
 
 This release introduces `startCameraCapture` and `startScreenCapture`[2/2]. By calling these methods multiple times and specifying the `sourceType` parameter, developers can start capturing video streams from multiple cameras and screens for local video mixing or multi-channel publishing. This is particularly useful for scenarios such as remote medical care and online education, where multiple cameras and displays need to be connected.
 
@@ -148,12 +148,12 @@ This release fixed the following issues:
 **Deleted**
 
 - `didApiCallExecute`
-- `publishCustomAudioTrackEnableAec` in ` AgoraRtcChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in ` AgoraRtcChannelMediaOptions`
 - `sharedMediaRecorderWithRtcEngine`
 - `destroy` in `AgoraMediaRecorder`
 - The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderDelegate`
 
-## v4.1.1 
+## v4.1.1
 
 v4.1.1 was released on January xx, 2023.
 
@@ -256,9 +256,9 @@ To enable this feature, contact [sales-us@agora.io](https://docs.agora.io/cn/vid
 
 This release adds a series of callbacks to help you better understand the status of your audio and video devices:
 
-- `onVideoDeviceStateChanged` (C++) : Occurs when the status of the video device changes. 
-- `onAudioDeviceStateChanged`(C++) : Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged` (C++) : Occurs when the volume of an audio device or app changes. 
+- `onVideoDeviceStateChanged` (C++) : Occurs when the status of the video device changes.
+- `onAudioDeviceStateChanged`(C++) : Occurs when the status of the audio device changes.
+- `onAudioDeviceVolumeChanged` (C++) : Occurs when the volume of an audio device or app changes.
 
 **5. Camera capture options**
 
@@ -288,14 +288,14 @@ In order to enable users to know whether the switched user role is low-latency o
 - `AgoraAudienceLatencyLevelLowLatency` (1): Low latency.
 - `AgoraAudienceLatencyLevelUltraLowLatency` (2): Ultra-low latency.
 
-#### Improvements 
+#### Improvements
 
 **1. Screen sharing**
 
 In addition to the usability enhancements detailed in the fixed issued section, this release includes a number of functional improvements to screen sharing, as follows:
 
 - Compatibility with additional devices and scenarios, including: dual graphics devices and screen sharing using external screens.
-- Support for Ultra HD video (4K, 60 fps) on devices that meet the requirements. Agora recommends a 2021 16" M1 Macbook Pro or better. 
+- Support for Ultra HD video (4K, 60 fps) on devices that meet the requirements. Agora recommends a 2021 16" M1 Macbook Pro or better.
 
 **2. Relaying media streams across channels**
 
@@ -324,22 +324,22 @@ This release includes the following additional improvements:
 - Reduces the latency when pushing external audio sources.
 - Improves the performance of echo cancellation when using the `AgoraAudioScenarioMeeting` scenario.
 - Improves the smoothness of SDK video rendering.
-- Reduces the CPU usage and power consumption of the local device when the host calls the `muteLocalVideoStream` method. 
+- Reduces the CPU usage and power consumption of the local device when the host calls the `muteLocalVideoStream` method.
 - Enhances the ability to identify different network protocol stacks and improves the SDK's access capabilities in multiple-operator network scenarios.
 
 #### **Issues fixed**
 
 This release fixed the following issues:
 
-- In screen sharing scenarios on Mac devices, when the user minimized or closed a shared application window, another window of the same application was automatically shared. 
-- In screen sharing scenarios, the system volume of the local user occasionally decreased. 
-- In screen sharing scenarios, the shared window of a split screen was not highlighted correctly. 
-- In screen sharing scenarios, the screen seen by the remote user occasionally crashed, lagged, or displayed a black screen. 
+- In screen sharing scenarios on Mac devices, when the user minimized or closed a shared application window, another window of the same application was automatically shared.
+- In screen sharing scenarios, the system volume of the local user occasionally decreased.
+- In screen sharing scenarios, the shared window of a split screen was not highlighted correctly.
+- In screen sharing scenarios, the screen seen by the remote user occasionally crashed, lagged, or displayed a black screen.
 - The uplink network quality reported by the `networkQuality` callback was inaccurate for the user who was sharing a screen.
-- After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started. 
+- After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
-- The `didVideoPublishStateChange` callback reported an inaccurate video source type. 
-- The call `getExtensionProperty` failed and returned an empty string. 
+- The `didVideoPublishStateChange` callback reported an inaccurate video source type.
+- The call `getExtensionProperty` failed and returned an empty string.
 - When entering a live streaming room that has been played for a long time as an audience, the time for the first frame to be rendered was shortened.
 
 #### **API changes**
@@ -363,11 +363,11 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `followEncodeDimensionRatio` in `AgoraCameraCapturerConfiguration` 
-- `hwEncoderAccelerating` in `AgoraRtcLocalVideoStats` 
+- `followEncodeDimensionRatio` in `AgoraCameraCapturerConfiguration`
+- `hwEncoderAccelerating` in `AgoraRtcLocalVideoStats`
 - `leaveChannelEx` [2/2]
-- `advancedVideoOptions` in `AgoraVideoEncoderConfiguration` 
-- `newRoleOptions` in `didClientRoleChanged` 
+- `advancedVideoOptions` in `AgoraVideoEncoderConfiguration`
+- `newRoleOptions` in `didClientRoleChanged`
 - `adjustUserPlaybackSignalVolumeEx`
 - `enableAudioVolumeIndicationEx`
 

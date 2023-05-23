@@ -8,15 +8,14 @@ If you use the features mentioned in this section, ensure that you modify the im
 
 **1. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishCustomAudioSourceId` in `AgoraRtcChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **2. Audio recording**
 
 - `sharedMediaRecorderWithRtcEngine` is deleted. You can create a recording object through the `createMediaRecorder` method released in this version.
 - The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderDelegate` methods is deleted.
-- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources. 
+- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources.
 
 **3. Miscellaneous**
 
@@ -32,7 +31,7 @@ This release introduces the AI noise reduction function. Once enabled, the SDK a
 **2. Cross-device synchronization**
 
 In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
-## Improvements 
+## Improvements
 
 **1. Voice changer**
 
@@ -53,7 +52,7 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
 This release fixed the following issues:
 
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
-- Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback. 
+- Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback.
 ## API changes
 
 **Added**
@@ -61,7 +60,6 @@ This release fixed the following issues:
 - `startOrUpdateChannelMediaRelay`
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
-- `getCurrentMonotonicTimeInMs`
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
@@ -86,12 +84,12 @@ This release fixed the following issues:
 **Deleted**
 
 - `didApiCallExecute`
-- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in `AgoraRtcChannelMediaOptions`
 - `sharedMediaRecorderWithRtcEngine`
 - `destroy` in `AgoraMediaRecorder`
 - The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderDelegate`
 
-## v4.1.1 
+## v4.1.1
 
 v4.1.1 was released on January xx, 2023.
 
@@ -149,7 +147,7 @@ In order to enable users to know whether the switched user role is low-latency o
 - `AgoraAudienceLatencyLevelLowLatency` (1): Low latency.
 - `AgoraAudienceLatencyLevelUltraLowLatency` (2): Ultra-low latency.
 
-#### Improvements 
+#### Improvements
 
 **1. Relaying media streams across channels**
 
@@ -174,10 +172,10 @@ This release includes the following additional improvements:
 
 This release fixed the following issues:
 
-- Calling `startAudioMixing` to play music files in the `ipod-library://item` path failed. 
+- Calling `startAudioMixing` to play music files in the `ipod-library://item` path failed.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
-- Different timestamps for audio data were obtained simultaneously and separately via `onRecordAudioFrame` callbacks. 
-- The call `getExtensionProperty` failed and returned an empty string. 
+- Different timestamps for audio data were obtained simultaneously and separately via `onRecordAudioFrame` callbacks.
+- The call `getExtensionProperty` failed and returned an empty string.
 
 #### **API changes**
 
@@ -200,7 +198,7 @@ This release fixed the following issues:
 - `stopChannelMediaRelayEx`
 - `followEncodeDimensionRatio` in `AgoraCameraCapturerConfiguration`
 - `leaveChannelEx` [2/2]
-- `newRoleOptions` in `didClientRoleChanged` 
+- `newRoleOptions` in `didClientRoleChanged`
 - `adjustUserPlaybackSignalVolumeEx`
 - `enableAudioVolumeIndicationEx`
 
