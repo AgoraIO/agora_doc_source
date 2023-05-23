@@ -51,19 +51,15 @@
 
 该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`、`playEffect`、`openWithMediaSource` 方法来打开以 `content:/`/ 开头的 URI 文件。
 
-**3. 提升音频同步能力**
-
-针对自定义音频采集场景，该版本新增 `getCurrentMonotonicTimeInMs` 方法用于获取当前的 Monotonic Time，将该值传入音频帧的时间戳，可以精确控制音频时序，确保音频同步。
-
-**4. 优化版权音乐**
+**3. 优化版权音乐**
 
 针对在线 K 歌房场景，改版本新增 `getCaches` 和 `removeCache` 方法，用于获取、删除音乐资源缓存，并新增状态码和错误码，可方便用户排查问题。
 
-**5. 优化跨频道连麦**
+**4. 优化跨频道连麦**
 
 该版本新增 `startOrUpdatechannelMediaRelay` 和 `startOrUpdatechannelMediaRelayEx` 方法，通过一个方法实现开始跨频道转发和更新转发的目标频道，提升了接口易用性；同时，优化内部交互次数，有效降低调用了延迟。在降低开发难度的同时，为开发者提供更顺畅的使用体验。
 
-**6. 多路音频自采集**
+**5. 多路音频自采集**
 
 为更好地满足音频自采集的场景需求，该版本新增了 `createCustomAudioTrack` 和 `destroyCustomAudioTrack` 方法用于创建和销毁自定义音频轨道，并提供了两种音频轨道类型供用户选择，进一步提升了自采集音频处理的灵活性和易用性：
 
@@ -77,7 +73,6 @@
 - 加入或退出频道时，安卓设备端偶现的崩溃。（Android）
 - 当快速切换身份角色时，观众端听不到声音。
 - 偶现耳返开启无效。(Android)
-- 接收端主动订阅大流但是异常接收小流。(iOS)
 - 偶现回声。(Android)
 - 由于 `onRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
 - 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
@@ -91,46 +86,29 @@
 **新增**
 
 - `startOrUpdateChannelMediaRelay`
-
 - `startOrUpdateChannelMediaRelayEx`
-
 - `getNtpWallTimeInMs`
-
 - `getCurrentMonotonicTimeInMs`
-
 - `setAINSMode`
-
 - `createAudioCustomTrack`
-
 - `destroyAudioCustomTrack`
-
 - `createMediaRecorder`
-
 - `destroyMediaRecorder`
-
 - `IMusicContentCenter` 中新增如下方法
 
   - `removeCache`
   - `getCaches`
 
 - `AudioTrackConfig`
-
 - `MusicCacheInfo`
-
 - `RecorderStreamInfo`
-
 - `AudioAinsMode`
-
 - `AudioTrackType`
-
 - `MusicCacheStatusType`
 
 - `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
-
 - `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
-
 - `PreloadStatusCode` 中增加 `KPreloadStatusRemoved`
-
 - `MusicContentCenterStatusCode` 中增加如下枚举：
 
   - `KMusicContentCenterStatusErrGateway`
@@ -140,8 +118,6 @@
   - `KMusicContentCenterStatusErrMusicDecryption`
 
 - `MusicContentCenterConfiguration` 中新增 `maxCacheSize `
-
-
 
 **修改**
 
