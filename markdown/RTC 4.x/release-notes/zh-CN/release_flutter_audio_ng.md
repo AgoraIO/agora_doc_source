@@ -16,7 +16,7 @@
 - 删除 `InterfaceIdType` 中的 `agoraIidMediaRecorder`。在创建录制对象前无需再获取 `agoraIidMediaRecorder` 接口类指针，你可以直接调用该版本新增的 `createMediaRecorder` 方法创建录制对象。(Windows)
 - 删除 `getMediaRecorder` 方法，可通过该版本新增的 `createMediaRecorder` 方法来创建录制对象。(Android, iOS, macOS)
 - 删除 `startRecording` 、`stopRecording`、`setMediaRecorderObserver` 中的 `connection` 参数。
-- 删除 `MediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。 
+- 删除 `MediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。
 
 **3. 其他兼容性变更**
 
@@ -58,7 +58,7 @@
 
 **2. 提升音频文件类型兼容性 (Android)**
 
-该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`、`playEffect`、`openWithMediaSource` 发放来打开以 `content://` 开头的 URI 文件。
+该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`、`playEffect`、`openWithMediaSource` 方法来打开以 `content://` 开头的 URI 文件。
 
 **3. 优化版权音乐 (Android, iOS)**
 
@@ -168,7 +168,7 @@
 
 **3. 本地网络连接类型**
 
-为方便用户在任何阶段知悉本地网络的连接类型，该版本新增  `getNetworkType` 方法。你可以通过该方法获取正在使用的网络连接的类型，包括 UNKNOWN、DISCONNECTED、LAN、WIFI、2G、3G、4G、5G。当本地网络连接类型发生改变时，SDK 会触发 `onNetworkTypeChanged` 回调，报告当前的网络连接类型。 
+为方便用户在任何阶段知悉本地网络的连接类型，该版本新增  `getNetworkType` 方法。你可以通过该方法获取正在使用的网络连接的类型，包括 UNKNOWN、DISCONNECTED、LAN、WIFI、2G、3G、4G、5G。当本地网络连接类型发生改变时，SDK 会触发 `onNetworkTypeChanged` 回调，报告当前的网络连接类型。
 
 
 **4. 音强选流**

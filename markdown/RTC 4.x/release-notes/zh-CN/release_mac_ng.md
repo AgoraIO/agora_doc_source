@@ -27,7 +27,7 @@
 自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 `stateChanged` 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
 
 
-<div class-="alert note">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。<div>
+<div class-="alert note">加频道时如果设置 AgoraALD、Soundflower 作为系统的默认输入或输出设备，会造成无声。<div>
 
 **5. 其他兼容性变更**
 
@@ -54,7 +54,7 @@
 
 
 
-**3. 视频场景化设置** 
+**3. 视频场景化设置**
 
 该版本新增 `setVideoScenario` 方法用于设置视频业务场景，SDK 会根据不同场景自动启用最佳实践策略，调整关键性能指标，进而优化视频质量，提升用户体验。无论是正式的商务会议还是轻松的在线聚会，该功能都能确保视频质量满足需求。目前，该特性主要为实时视频会议场景提供了以下针对性的优化：
 
@@ -90,7 +90,7 @@
 
 ## 改进
 
-**1.优化变声** 
+**1.优化变声**
 
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
 
@@ -186,7 +186,7 @@
 - `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 中增加 `sourceType` 参数
 
 - `AgoraVirtualBackgroundSourceType` 中新增 `AgoraVirtualBackgroundNone` 和 `AgoraVirtualBackgroundVideo`
-  
+
 
 **废弃**
 

@@ -49,7 +49,7 @@
 - 将背景处理为 alpha 信息，不作替换，仅分割人像和背景，可结合本地合图功能实现人像画中画效果。
 - 将背景替换为多种格式的本地视频。
 
-**3. 视频场景化设置** 
+**3. 视频场景化设置**
 
 该版本新增 `setVideoScenario` 方法用于设置视频业务场景，SDK 会根据不同场景自动启用最佳实践策略，调整关键性能指标，进而优化视频质量，提升用户体验。无论是正式的商务会议还是轻松的在线聚会，该功能都能确保视频质量满足需求。目前，该特性主要为实时视频会议场景提供了以下针对性的优化：
 
@@ -82,7 +82,7 @@
 
 #### 改进
 
-**1.优化变声** 
+**1.优化变声**
 
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
 
@@ -94,7 +94,7 @@
 
  **3. 提升音频文件类型兼容性（Android）**
 
-该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`、`playEffect`、`openWithMediaSource` 发放来打开以 `content:/`/ 开头的 URI 文件。
+该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`、`playEffect`、`openWithMediaSource` 方法来打开以 `content:/`/ 开头的 URI 文件。
 
 **4. 提升音视频同步能力**
 
@@ -157,9 +157,9 @@
 
 - `updateLocalTranscoderConfiguration`
 
-- `queryScreenCaptureCapability` 
+- `queryScreenCaptureCapability`
 
-- `setScreenCaptureScenario` 
+- `setScreenCaptureScenario`
 
 - `setAINSMode`
 
@@ -212,7 +212,7 @@
 
 - `MusicContentCenterConfiguration` 中新增 `maxCacheSize `
 
-  
+
 
 **修改**
 
@@ -561,7 +561,7 @@ v4.0.0 SDK 包名由 `react-native-agora-rtc-ng` 变更为 `react-native-agora`�
 
 为还原音频的细节、提升音频的清晰度，该版本新增 `UltraHighQualityVoice`。在语聊、歌唱等以人声为主的场景中，你可以调用 `setVoiceBeautifierPreset` 并使用该枚举体验超高音质。
 
-**6. 空间音效** 
+**6. 空间音效**
 
 <div class="alert note">空间音效功能当前处于实验阶段，请联系  <a href= "mailto:sales@agora.io">sales@agora.io</a>  开通空间音效功能，如果需要技术支持，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
