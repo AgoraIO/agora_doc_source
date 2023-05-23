@@ -6,44 +6,30 @@
 
 该版本对部分功能的实现方式进行了优化，请在升级到该版本后更新 app 代码。
 
-**1. 视频采集**
+**1. 视频数据获取**
 
-原有用于摄像头和屏幕采集的方法已删除，请改用下表中列出的替代方法，并通过设置 `sourceType` 来指定视频源。
+`onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
 
-| 已删除方法                                               | 替代方法                 |
-| :------------------------------------------------------- | :----------------------- |
-| <li>`startPrimaryCameraCapture`<li>`startSecondaryCameraCapture` | `startCameraCapture`     |
-| <li>`stopPrimaryCameraCapture`<li>`stopSecondaryCameraCapture`   | `stopCameraCapture`      |
-| <li>`startPrimaryScreenCapture`<li>`startSecondaryScreenCapture` | `startScreenCapture`[2/2] |
-| <li>`stopPrimaryScreenCapture`<li>`stopSecondaryScreenCapture`   | `stopScreenCapture`[2/2]  |
-
-
-
-**2. 视频数据获取**
-
-- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
-
-**3. 媒体发布选项**
+**2. 媒体发布选项**
 
 - `AgoraRtcChannelMediaOptions` 中的 `publishCustomAudioTrackEnableAec` 已删除，请改用 `publishCustomAudioTrack`。
 - `AgoraRtcChannelMediaOptions` 中的成员 `publishTrancodedVideoTrack` 变更为 `publishTranscodedVideoTrack。`
 - `AgoraRtcChannelMediaOptions` 中的成员 `publishCustomAudioSourceId` 变更为 `publishCustomAudioTrackId`。
 
-**4. 音视频录制**
+**3. 音视频录制**
 
 - 删除 `sharedMediaRecorderWithRtcEngine` 方法，可通过该版本新增的 `createMediaRecorder` 方法来创建录制对象。
 - 删除 `startRecording` 、`stopRecording`、`setMediaRecorderDelegate` 中的 `connection` 参数。
 - 删除 `AgoraMediaRecorder` 类中的 `destroy` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。
 
-**6. 虚拟声卡**
+**4. 虚拟声卡**
 
 自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 `stateChanged` 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
 
 
+<div class-="alert note">加频道时如果设置 AgoraALD、Soundflower 作为系统的默认输入或输出设备，会造成无声。<div>
 
-<div class-="alert note">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。<div>
-
-**7. 其他兼容性变更**
+**5. 其他兼容性变更**
 
 - `didApiCallExecute` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
 - `enableDualStreamMode`[1/2] 和 `enableDualStreamMode`[2/2] 已废弃，请改用 `setDualStreamMode`[1/2] 和 `setDualStreamMode`[2/2]。
@@ -68,7 +54,7 @@
 
 
 
-**3. 视频场景化设置** 
+**3. 视频场景化设置**
 
 该版本新增 `setVideoScenario` 方法用于设置视频业务场景，SDK 会根据不同场景自动启用最佳实践策略，调整关键性能指标，进而优化视频质量，提升用户体验。无论是正式的商务会议还是轻松的在线聚会，该功能都能确保视频质量满足需求。目前，该特性主要为实时视频会议场景提供了以下针对性的优化：
 
@@ -96,22 +82,17 @@
 另外，SDK 还提供了`updateLocalTranscoderConfiguration` 方法和 `didLocalVideoTranscoderErrorWithStream` 回调。当你在开启本地合图后，可以调用 `updateLocalTranscoderConfiguration` 更新合图的配置；当你在开启本地合图或者更新本地合图配置失败时，可通过 `didLocalVideoTranscoderErrorWithStream` 回调得知合图失败的原因。
 
 
-
 <div class="alert note">本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</div>
 
-
-
-**7. 多端同步**
+**6. 多端同步**
 
 在实时合唱的场景中，可能会出现网络原因导致各接收端下行链路不一致的情况，该版本新增 `getNtpWallTimeInMs` 方法获取当前的 NTP (网络时间协议) 时间，用于对齐多个接收端的歌词和音乐，实现合唱同步、歌词进度同步等，为用户提供更佳的协同体验。
 
 ## 改进
 
-**1.优化变声** 
+**1.优化变声**
 
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
-
-
 
 **5. 提升音视频同步能力**
 
@@ -192,7 +173,7 @@
 
 - `AUDIO_AINS_MODE`
 
-- `AUDIO_TRACK_TYPE`
+- `AgoraAudioTrackType`
 
 - `AgoraApplicationScenarioType`
 
@@ -205,7 +186,7 @@
 - `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 中增加 `sourceType` 参数
 
 - `AgoraVirtualBackgroundSourceType` 中新增 `AgoraVirtualBackgroundNone` 和 `AgoraVirtualBackgroundVideo`
-  
+
 
 **废弃**
 

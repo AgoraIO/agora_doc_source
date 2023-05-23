@@ -18,7 +18,7 @@
 
 **2. 视频数据获取**
 
-- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
+`onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
 
 **3. 媒体发布选项**
 
@@ -176,7 +176,7 @@
 - `AgoraMusicCacheInfo` 
 - `AgoraRecorderStreamInfo`
 - `AUDIO_AINS_MODE`
-- `AUDIO_TRACK_TYPE`
+- `AgoraAudioTrackType`
 - `AgoraMusicCacheStatusType` 
 - `AgoraApplicationScenarioType`
 - `AgoraScreenCaptureFrameRateCapability`

@@ -111,7 +111,7 @@
 - `AgoraMusicCacheInfo` 
 - `AgoraRecorderStreamInfo`
 - `AUDIO_AINS_MODE`
-- `AUDIO_TRACK_TYPE`
+- `AgoraAudioTrackType`
 - `AgoraMusicCacheStatusType` 
 - `AgoraApplicationScenarioType`
 - `AgoraRtcEngineConfig` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性

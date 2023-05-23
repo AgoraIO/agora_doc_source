@@ -38,7 +38,7 @@
 - 删除 ` InterfaceIdType` 中的 `AgoraIidMediaRecorder` 。在创建录制对象前无需再获取 `AgoraIidMediaRecorder` 接口类指针，你可以直接调用该版本新增的 `createMediaRecorder` 方法创建录制对象。（Windows）
 - 删除 `getMediaRecorder` 方法，可通过该版本新增的 `createMediaRecorder` 方法来创建录制对象。(macOS)
 - 删除 `startRecording` 、`stopRecording`、`setMediaRecorderObserver` 中的 `connection` 参数。
-- 删除 `IMediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。 
+- 删除 `IMediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。
 
 **5. 本地合图**
 
@@ -49,7 +49,7 @@
 
 自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 `stateChanged` 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
 
-<div class="alert note">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。</div>
+<div class="alert note">加频道时如果设置 AgoraALD、Soundflower 作为系统的默认输入或输出设备，会造成无声。</div>
 
 **7. 默认分辨率提升**
 
@@ -80,7 +80,7 @@
 - 将背景处理为 alpha 信息，不作替换，仅分割人像和背景，可结合本地合图功能实现人像画中画效果。
 - 将背景替换为多种格式的本地视频。
 
-**3. 视频场景化设置** 
+**3. 视频场景化设置**
 
 该版本新增 `setVideoScenario` 方法用于设置视频业务场景，SDK 会根据不同场景自动启用最佳实践策略，调整关键性能指标，进而优化视频质量，提升用户体验。无论是正式的商务会议还是轻松的在线聚会，该功能都能确保视频质量满足需求。目前，该特性主要为实时视频会议场景提供了以下针对性的优化：
 
@@ -119,7 +119,7 @@
 
 #### 改进
 
-**1.优化变声** 
+**1.优化变声**
 
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
 
@@ -381,7 +381,7 @@ SDK 默认使用播放设备为声卡采集设备，自该版本起，你可以�
 
 **Windows**
 
-- 在 `ScreenCaptureSourceInfo` 中增加了 `minimizeWindow` 成员，用于表示目标窗口是否已最小化。 
+- 在 `ScreenCaptureSourceInfo` 中增加了 `minimizeWindow` 成员，用于表示目标窗口是否已最小化。
 - 在 `ScreenCaptureParameters` 中增加了 `enableHighLight`、`highLightColor` 和 `highLightWidth` 成员，支持你在屏幕共享时对目标窗口或屏幕进行描边。
 - 兼容更多主流 app，包括但不限于：WPS Office，Microsoft Office PowerPoint，Visual Studio Code，Adobe Photoshop，Windows Media Player，Scratch。
 - 兼容更多设备和操作系统，包括但不限于：Window 8 系统，无独立显卡的设备，双显卡设备。

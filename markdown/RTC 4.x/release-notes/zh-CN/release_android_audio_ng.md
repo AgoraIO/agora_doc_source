@@ -54,7 +54,7 @@
 
 **2. 提升音频文件类型兼容性**
 
-该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`[2/2]、`playEffect`[3/3]、`open`[2/2]、`openWithMediaSource` 发放来打开以 `content://` 开头的 URI 文件。
+该版本提升了音频文件类型兼容性，你可以通过 `startAudioMixing`[2/2]、`playEffect`[3/3]、`open`[2/2]、`openWithMediaSource` 方法来打开以 `content://` 开头的 URI 文件。
 
 **3. 优化版权音乐**
 
@@ -122,7 +122,7 @@
 - `onMusicChartsResult` 中的 `status` 修改为 `errorCode`
 - `onMusicCollectionResult` 中的 `status` 修改为 `errorCode`
 - `onLyricResult` 中的 `status` 修改为 `errorCode`
-- `onPreLoadEvent` 中的 `msg` 修改为 `errorCode` 
+- `onPreLoadEvent` 中的 `msg` 修改为 `errorCode`
 
 
 **废弃**
@@ -299,7 +299,7 @@
 
 **3. 本地网络连接类型**
 
-为方便用户在任何阶段知悉本地网络的连接类型，该版本新增 `getNetworkType` 方法。你可以通过该方法获取正在使用的网络连接的类型，包括 UNKNOWN、DISCONNECTED、LAN、WIFI、2G、3G、4G、5G。当本地网络连接类型发生改变时，SDK 会触发 `onNetworkTypeChanged` 回调，报告当前的网络连接类型。 
+为方便用户在任何阶段知悉本地网络的连接类型，该版本新增 `getNetworkType` 方法。你可以通过该方法获取正在使用的网络连接的类型，包括 UNKNOWN、DISCONNECTED、LAN、WIFI、2G、3G、4G、5G。当本地网络连接类型发生改变时，SDK 会触发 `onNetworkTypeChanged` 回调，报告当前的网络连接类型。
 
 **4. 音强选流**
 
@@ -401,7 +401,7 @@ v4.0.0 SDK 对部分功能的实现方式进行了优化，从而导致与 v3.7.
 为还原音频的细节、提升音频的清晰度，该版本新增 `ULTRA_HIGH_QUALITY_VOICE`。在语聊、歌唱等以人声为主的场景中，你可以调用 `setVoiceBeautifierPreset` 并使用该枚举体验超高音质。
 
 **5. 实时合唱**
- 
+
 该版本为实时合唱赋予了如下能力：
 
 - 支持两人及两人以上合唱。
@@ -415,10 +415,10 @@ v4.0.0 SDK 对部分功能的实现方式进行了优化，从而导致与 v3.7.
 <div class="alert info">空间音效功能当前处于实验阶段，请联系 <a href ="sales@agora.io">sales@agora.io</a> 开通空间音效功能，如果需要技术支持，请<a href ="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">联系技术支持</a>。</div>
 
 该版本支持对远端用户设置空间音效：
- 
+
 - 本地直角坐标系计算方案: 该方案使用 `ILocalSpatialAudioEngine` 类实现空间音效，通过 SDK 计算远端用户的空间坐标。你需要分别调用 `updateSelfPosition` 和 `updateRemotePosition` 更新本地和远端用户的空间坐标，本地用户才能听到远端用户的空间音效。
   ![](https://web-cdn.agora.io/docs-files/1646815293857)
- 
+
 该版本还支持对媒体播放器设置空间音效：
 
 - 本地直角坐标系计算方案: 该方案通过 SDK 计算媒体播放器的空间坐标。你需要在 `ILocalSpatialAudioEngine` 类中分别调用 `updateSelfPosition` 和 `updatePlayerPositionInfo` 更新本地用户和媒体播放器的空间坐标，本地用户才能听到媒体播放器的空间音效。
