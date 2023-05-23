@@ -8,8 +8,8 @@ If you use the features mentioned in this section, ensure that you modify the im
 
 **1. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **2. Miscellaneous**
 
@@ -92,7 +92,7 @@ This release fixed the following issues:
 **Deleted**
 
 - `onApiCallExecuted`
-- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` in `ChannelMediaOptions`
 
 
 
@@ -158,7 +158,7 @@ In order to enable users to know whether the switched user role is low-latency o
 - `AUDIENCE_LATENCY_LEVEL_LOW_LATENCY` (1): Low latency.
 - `AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY` (2): Ultra-low latency.
 
-#### Improvements 
+#### Improvements
 
 **1. Bluetooth permissions**
 
@@ -190,7 +190,7 @@ This release includes the following additional improvements:
 This release fixed the following issues:
 
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
-- The call `getExtensionProperty` failed and returned an empty string. 
+- The call `getExtensionProperty` failed and returned an empty string.
 
 #### API changes
 

@@ -8,17 +8,17 @@ If you use the features mentioned in this section, ensure that you modify the im
 
 **2. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `AgoraRtcChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `AgoraRtcChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **3. Audio recording**
 
 - `sharedMediaRecorderWithRtcEngine` is deleted. You can create a recording object through the `createMediaRecorder` method released in this version.
 - The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderDelegate` methods is deleted.
-- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources. 
+- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources.
 
-**4. Virtual sound card** 
+**4. Virtual sound card**
 
 As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
@@ -39,7 +39,7 @@ This release introduces the AI noise reduction function. Once enabled, the SDK a
 
 In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
-## Improvements 
+## Improvements
 
 **1. Voice changer**
 
@@ -94,12 +94,12 @@ This release fixed the following issues:
 **Deleted**
 
 - `didApiCallExecute`
-- `publishCustomAudioTrackEnableAec` in ` AgoraRtcChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in ` AgoraRtcChannelMediaOptions`
 - `sharedMediaRecorderWithRtcEngine`
 - `destroy` in `AgoraMediaRecorder`
 - The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderDelegate`
 
-## v4.1.1 
+## v4.1.1
 
 v4.1.1 was released on January xx, 2023.
 
@@ -144,8 +144,8 @@ As of this release, the SDK supports MPUDP protocol, which enables you to connec
 
 This release adds a series of callbacks to help you better understand the status of your audio devices:
 
-- `onAudioDeviceStateChanged`(C++) : Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged` (C++) : Occurs when the volume of an audio device or app changes. 
+- `onAudioDeviceStateChanged`(C++) : Occurs when the status of the audio device changes.
+- `onAudioDeviceVolumeChanged` (C++) : Occurs when the volume of an audio device or app changes.
 
 **4. Multi-channel management**
 
@@ -164,7 +164,7 @@ In order to enable users to know whether the switched user role is low-latency o
 - `AgoraAudienceLatencyLevelLowLatency` (1): Low latency.
 - `AgoraAudienceLatencyLevelUltraLowLatency` (2): Ultra-low latency.
 
-#### Improvements 
+#### Improvements
 
 **1. Relaying media streams across channels**
 
@@ -189,9 +189,9 @@ This release includes the following additional improvements:
 
 This release fixed the following issues:
 
-- After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started. 
+- After starting and stopping the audio capture device test, there was no sound when the audio playback device was subsequently started.
 - Audience members heard buzzing noises when the host switched between speakers and earphones during live streaming.
-- The call `getExtensionProperty` failed and returned an empty string. 
+- The call `getExtensionProperty` failed and returned an empty string.
 
 #### **API changes**
 
@@ -209,9 +209,9 @@ This release fixed the following issues:
 - `pauseAllChannelMediaRelayEx`
 - `resumeAllChannelMediaRelayEx`
 - `stopChannelMediaRelayEx`
-- `followEncodeDimensionRatio` in `AgoraCameraCapturerConfiguration` 
+- `followEncodeDimensionRatio` in `AgoraCameraCapturerConfiguration`
 - `leaveChannelEx` [2/2]
-- `newRoleOptions` in `didClientRoleChanged` 
+- `newRoleOptions` in `didClientRoleChanged`
 - `adjustUserPlaybackSignalVolumeEx`
 - `enableAudioVolumeIndicationEx`
 

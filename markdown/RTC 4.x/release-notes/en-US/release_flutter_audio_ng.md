@@ -8,14 +8,14 @@ If you use the features mentioned in this section, ensure that you modify the im
 
 **1. Channel media options**
 
-- `publishCustomAudioTrackEnableAec` is deleted. Use `publishCustomAudioTrack` instead.
-- `publishTrancodedVideoTrack` is renamed to `publishTranscodedVideoTrack`.
-- `publishCustomAudioSourceId` is renamed to `publishCustomAudioTrackId`.
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
+- `publishTrancodedVideoTrack` in `ChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
+- `publishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
 **2. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
-- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly: 
+- The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly:
     - `onFrame`
     - `registerAudioFrameObserver` and `unregisterAudioFrameObserver` in `MediaPlayer`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
@@ -101,7 +101,7 @@ This release fixed the following issues:
 **Deleted**
 
 - `onApiCallExecuted`
-- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions`
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` in `ChannelMediaOptions`
 
 ## v6.1.0
 
@@ -173,8 +173,8 @@ This release adds the `registerExtension` method for registering extensions. Whe
 
 This release adds a series of callbacks to help you better understand the status of your audio devices:
 
-- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes. 
-- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes. 
+- `onAudioDeviceStateChanged`: Occurs when the status of the audio device changes.
+- `onAudioDeviceVolumeChanged`: Occurs when the volume of an audio device or app changes.
 
 
 **10. Multi-channel management**
