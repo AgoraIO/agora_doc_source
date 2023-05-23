@@ -49,6 +49,9 @@
 
 在实时合唱的场景中，可能会出现网络原因导致各接收端下行链路不一致的情况，该版本新增 `getNtpWallTimeInMs` 方法获取当前的 NTP (网络时间协议) 时间，用于对齐多个接收端的歌词和音乐，实现合唱同步、歌词进度同步等，为用户提供更佳的协同体验。
 
+**4. 快速出声**
+
+该版本新增 `enableInstantMediaRendering` 方法，用于开启音频帧的加速渲染模式，可加快用户加入频道后的首帧出声速度。
 
 #### 改进
 
@@ -84,7 +87,11 @@
 - 当快速切换身份角色时，观众端听不到声音。
 - 偶现耳返开启无效。(Android)
 - 偶现回声。(Android)
-- 由于 `onRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS, Android)。
+- 由于 `onRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS, Android)
+- 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
+- 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音。(Android)
+- 本地音乐文件结束播放时，未能触发 `onAudioMixingFinished` 回调。(Android)
+- 客户端主动退出频道时未向服务端发起请求，导致服务端判定为退出频道超时。
 
 
 #### API 变更
@@ -118,6 +125,7 @@
     - `kMusicContentCenterStatusErrMusicLoading`
     - `kMusicContentCenterStatusErrMusicDecryption`
 - `MusicContentCenterConfiguration` 中新增 `maxCacheSize` (Android, iOS)
+- `enableInstantMediaRendering`
 
 **修改**
 
