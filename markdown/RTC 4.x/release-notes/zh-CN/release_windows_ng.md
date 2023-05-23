@@ -46,7 +46,7 @@
 **6. 其他兼容性变更**
 
 - `onApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
-- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink，因此下列方法原型也有相应更新`：（Windows）
+- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink，因此下列方法原型也有相应更新`：
   - `onFrame`
   - `IMediaPlayer` 下的 `registerAudioFrameObserver` [1/2]、`registerAudioFrameObserver`[2/2]
 - `enableDualStreamMode`[1/2] 和 `enableDualStreamMode`[2/2] 已废弃，请改用 `setDualStreamMode`[1/2] 和 `setDualStreamMode`[2/2]。
@@ -150,7 +150,7 @@
 - `AUDIO_TRACK_TYPE`
 
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
-- `SCREEN_CAPTURE_CAPABILITY_LEVEL`
+- `SCREEN_CAPTURE_FRAMERATE_CAPABILITY`
 - `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
 - `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
 - `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 中增加 `sourceType` 参数
@@ -169,18 +169,18 @@
 
 **删除**
 
-- `startPrimaryScreenCapture `
-- `startSecondaryScreenCapture `
-- `stopPrimaryScreenCapture `
-- `stopSecondaryScreenCapture `
-- `startPrimaryCameraCapture `
-- `startSecondaryCameraCapture `
-- `stopPrimaryCameraCapture `
-- `stopSecondaryCameraCapture `
-- `onSecondaryPreEncodeCameraVideoFrame `
+- `startPrimaryScreenCapture`
+- `startSecondaryScreenCapture`
+- `stopPrimaryScreenCapture`
+- `stopSecondaryScreenCapture`
+- `startPrimaryCameraCapture`
+- `startSecondaryCameraCapture`
+- `stopPrimaryCameraCapture`
+- `stopSecondaryCameraCapture`
+- `onSecondaryPreEncodeCameraVideoFrame`
 - `onScreenCaptureVideoFrame`
 - `onPreEncodeScreenVideoFrame `
-- `onSecondaryPreEncodeScreenVideoFrame `
+- `onSecondaryPreEncodeScreenVideoFrame`
 - `onApiCallExecuted`
 - `ChannelMediaOptions `中的` publishCustomAudioTrackEnableAec`
 - `getMediaRecorder`

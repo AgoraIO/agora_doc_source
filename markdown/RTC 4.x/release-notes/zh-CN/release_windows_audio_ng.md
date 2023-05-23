@@ -85,8 +85,6 @@
 - `AUDIO_AINS_MODE`
 - `AUDIO_TRACK_TYPE`
 
-- `VIDEO_APPLICATION_SCENARIO_TYPE`
-- `SCREEN_CAPTURE_CAPABILITY_LEVEL`
 - `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
 - `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参
 
@@ -102,7 +100,7 @@
 **删除**
 
 - `onApiCallExecuted`
-- `ChannelMediaOptions `中的` publishCustomAudioTrackEnableAec`
+- `ChannelMediaOptions` 中的 `publishCustomAudioTrackEnableAec`
 - `getMediaRecorder`
 - `IMediaRecorder` 类中的 `release`
 - `AGORA_IID_MEDIA_RECORDER` 

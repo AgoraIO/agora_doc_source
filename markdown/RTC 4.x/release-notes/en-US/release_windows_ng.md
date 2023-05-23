@@ -138,7 +138,7 @@ This release fixed the issue that when the host frequently switching the user ro
 - `RecorderStreamInfo`
 - `AUDIO_TRACK_TYPE`
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
-- `SCREEN_CAPTURE_CAPABILITY_LEVEL`
+- `SCREEN_CAPTURE_FRAMERATE_CAPABILITY`
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
 - The `channelId` and `uid` parameters in `onRecorderStateChanged` and `onRecorderInfoUpdated` callbacks
 - The `sourceType` parameter in `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks
@@ -157,18 +157,18 @@ This release fixed the issue that when the host frequently switching the user ro
 
 **Deleted**
 
-- `startPrimaryScreenCapture `
-- `startSecondaryScreenCapture `
-- `stopPrimaryScreenCapture `
-- `stopSecondaryScreenCapture `
-- `startPrimaryCameraCapture `
-- `startSecondaryCameraCapture `
-- `stopPrimaryCameraCapture `
-- `stopSecondaryCameraCapture `
-- `onSecondaryPreEncodeCameraVideoFrame `
+- `startPrimaryScreenCapture`
+- `startSecondaryScreenCapture`
+- `stopPrimaryScreenCapture`
+- `stopSecondaryScreenCapture`
+- `startPrimaryCameraCapture`
+- `startSecondaryCameraCapture`
+- `stopPrimaryCameraCapture`
+- `stopSecondaryCameraCapture`
+- `onSecondaryPreEncodeCameraVideoFrame`
 - `onScreenCaptureVideoFrame`
-- `onPreEncodeScreenVideoFrame `
-- `onSecondaryPreEncodeScreenVideoFrame `
+- `onPreEncodeScreenVideoFrame`
+- `onSecondaryPreEncodeScreenVideoFrame`
 - `onApiCallExecuted`
 - `publishCustomAudioTrackEnableAec ` in ` ChannelMediaOptions`
 - `getMediaRecorder`
