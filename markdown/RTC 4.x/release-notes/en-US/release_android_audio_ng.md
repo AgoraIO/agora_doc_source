@@ -81,8 +81,6 @@ This release fixed the following issues:
 
 **Deprecated**
 
-- `enableDualStreamMode`[1/2]
-- `enableDualStreamMode`[2/2]
 - `startChannelMediaRelay`
 - `startChannelMediaRelayEx`
 - `updateChannelMediaRelay`
