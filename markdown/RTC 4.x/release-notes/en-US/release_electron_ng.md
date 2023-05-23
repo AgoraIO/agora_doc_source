@@ -37,17 +37,26 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `videoInputStreams`.
 - The `MediaSourceType` in `TranscodingVideoStream` is changed to `VideoSourceType`.
 
-5. **Virtual sound card (macOS)**
+**5. Virtual sound card (macOS)** 
 
 As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
 <div class="alert note">If you set AgoraALD or Soundflower as the default input or output device when joining a channel, you will not hear audio.</div>
 
-**6. Miscellaneous**
+**6. Upgrade the default video encoding resolution**
+
+As of this release, the SDK optimizes the video encoder algorithm and upgrades the default video encoding resolution from 640 × 360 to 960 × 540 to accommodate improvements in device performance and network bandwidth, providing users with a full-link HD experience in various audio and video interaction scenarios.
+
+Call the setVideoEncoderConfiguration method to set the expected video encoding resolution in the video encoding parameters configuration.
+
+<div class="note">The increase in the default resolution affects the aggregate resolution and thus the billing rate. See <a href="https://docs.agora.io/en/video-calling/reference/pricing">Pricing</a>.</div>
+
+**7. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly:
   - `onFrame`
+  - `registerAudioFrameObserver` and `unregisterAudioFrameObserver` in `IMediaPlayer`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
 
 ## New features
@@ -56,7 +65,7 @@ As of v4.2.0, Agora supports third-party virtual sound cards. You can use a thir
 
 This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
-**2.** **Enhanced Virtual Background**
+**2. Enhanced Virtual Background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
@@ -74,19 +83,29 @@ Currently, this feature provides targeted optimizations for real-time video conf
 
 **4. Local video mixing**
 
-This release adds the `onLocalVideoTranscoderError` callback. When there is an error in starting or updating the local video mixing, the SDK triggers this callback to report the reason for the failure.
+Starting from this release, the local video mixing feature supports macOS. In addition, this release adds the `onLocalVideoTranscoderError` callback. When there is an error in starting or updating the local video mixing, the SDK triggers this callback to report the reason for the failure.
 
 **5. Cross-device synchronization**
 
-In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyricsprogression, resulting in a better collaborative experience.
+In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
-## Improvements
+**6. Instant frame rendering**
+
+This release adds the `enableInstantMediaRendering` method to enable instant rendering mode for audio and video frames, which can speed up the first video or audio frame rendering after the user joins the channel.
+
+**7. Video rendering tracing**
+
+This release adds the `startMediaRenderingTracing` and `startMediaRenderingTracingEx` methods. The SDK starts tracing the rendering status of the video frames in the channel from the moment this method is called and reports information about the event through the `onVideoRenderingTracingResult` callback.
+
+Agora recommends that you use this method in conjunction with the UI settings, such as buttons and sliders, in your app. For example, call this method when the user clicks **Join Channel** button and then get the indicators in the video frame rendering process through the `onVideoRenderingTracingResult` callback. This enables developers to optimize the indicators and improve the user experience.
+
+## Improvements 
 
 **1. Voice changer**
 
 This release introduces the `setLocalVoiceFormant` method that allows you to adjust the formant ratio to change the timbre of the voice. This method can be used together with the `setLocalVoicePitch` method to adjust the pitch and timbre of voice at the same time, enabling a wider range of voice transformation effects.
 
- **2. Enhanced rendering compatibility**
+ **2. Enhanced rendering compatibility (Windows)**
 
 This release enhances the rendering compatibility of the SDK. Issues like black screens caused by rendering failures on certain devices are fixed.
 
@@ -96,7 +115,7 @@ For custom video and audio capture scenarios, this release introduces `getCurren
 
 **4. Multi-camera capture and multi-screen capture**
 
-This release introduces `startCameraCapture` and `startScreenCapture`[2/2]. By calling these methods multiple times and specifying the `sourceType` parameter, developers can start capturing video streams from multiple cameras and screens for local video mixing or multi-channel publishing. This is particularly useful for scenarios such as remote medical care and online education, where multiple cameras and displays need to be connected.
+This release introduces `startCameraCapture` and `startScreenCaptureBySourceType`. By calling these methods multiple times and specifying the `sourceType` parameter, developers can start capturing video streams from multiple cameras and screens for local video mixing or multi-channel publishing. This is particularly useful for scenarios such as remote medical care and online education, where multiple cameras and displays need to be connected.
 
 **5. Channel media relay**
 
@@ -109,9 +128,30 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
 - Mixable audio track: Supports mixing multiple external audio sources and publishing them to the same channel, suitable for multi-channel audio capture scenarios.
 - Direct audio track: Only supports publishing one external audio source to a single channel, suitable for low-latency audio capture scenarios.
 
+
+**7. Video frame observer**
+
+As of this release, the SDK optimizes the `onRenderVideoFrame` callback, and the meaning of the return value is different depending on the video processing mode:
+
+When the video processing mode is `ProcessModeReadOnly`, the return value is reserved for future use.
+When the video processing mode is `ProcessModeReadWrite`, the SDK receives the video frame when the return value is `true`. The video frame is discarded when the return value is `false`.
+
 ## Issues fixed
 
-This release fixed the issue that when the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
+This release fixed the following issues:
+- When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
+- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds. (macOS)
+- Incorrect information in the type field of the return value after calling getDefaultAudioDevice. (macOS)
+- Occasional screen jittering during screen sharing. (macOS)
+- When using Agora Media Player to play RTSP video streams, the video images sometimes appeared pixelated.(Windows)
+- Playing audio files with a sample rate of 48 kHz failed.
+- If the rendering view of the player was set as a UIViewController's view, the video was zoomed from the bottom-left corner to the middle of the screen when entering full-screen mode. (macOS)
+- Adding an alpha channel to an image in PNG or GIF format failed when the local client mixed video streams.(Windows)
+- After joining the channel, remotes users saw a watermark even though the watermark was deleted.(Windows)
+- If a watermark was added after starting screen sharing, the watermark did not display the screen.(Windows)
+- When joining a channel and accessing an external camera, calling setDevice to specify the video capture device as the external camera did not take effect.
+- When trying to outline the shared window and put it on top, the shared window did not stay on top of other windows.(Windows)
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
 
 ## API changes
 
@@ -119,60 +159,53 @@ This release fixed the issue that when the host frequently switching the user ro
 
 - `startCameraCapture`
 - `stopCameraCapture`
-- `startScreenCapture`[2/2]
-- `stopScreenCapture`[2/2]
+- `startScreenCaptureBySourceType`
+- `stopScreenCaptureBySourceType`
 - `startOrUpdateChannelMediaRelay`
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
 - `setVideoScenario`
 - `getCurrentMonotonicTimeInMs`
 - `onLocalVideoTranscoderError`
+- `startLocalVideoTranscoder`(macOS)
+- `updateLocalTranscoderConfiguration`(macOS)
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
-- `createMediaRecorder`
-- `destroyMediaRecorder`
 - `AudioTrackConfig`
-- `RecorderStreamInfo`
-- `AUDIO_TRACK_TYPE`
-- `VIDEO_APPLICATION_SCENARIO_TYPE`
-- `SCREEN_CAPTURE_CAPABILITY_LEVEL`
+- `AudioAinsMode`
+- `AudioTrackType`
+- `VideoApplicationScenarioType`
+- `ScreenCaptureFramerateCapability`
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
-- The `channelId` and `uid` parameters in `onRecorderStateChanged` and `onRecorderInfoUpdated` callbacks
 - The `sourceType` parameter in `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks
-- The `BACKGROUND_NONE` and `BACKGROUND_VIDEO` enumerators in `BACKGROUND_SOURCE_TYPE`
+- The `BackgourndNone` and `BackgroundVideo` enumerators in `BackgroundSourceType`
 
 **Deprecated**
 
-- `enableDualStreamMode`[1/2]
-- `enableDualStreamMode`[2/2]
 - `startChannelMediaRelay`
 - `startChannelMediaRelayEx`
 - `updateChannelMediaRelay`
 - `updateChannelMediaRelayEx`
 - `onChannelMediaRelayEvent`
-- `CHANNEL_MEDIA_RELAY_EVENT`
+- `ChannelMediaRelayEvent`
 
 **Deleted**
 
 - `startPrimaryScreenCapture `
-- `startSecondaryScreenCapture `
-- `stopPrimaryScreenCapture `
-- `stopSecondaryScreenCapture `
-- `startPrimaryCameraCapture `
-- `startSecondaryCameraCapture `
-- `stopPrimaryCameraCapture `
-- `stopSecondaryCameraCapture `
-- `onSecondaryPreEncodeCameraVideoFrame `
-- `onScreenCaptureVideoFrame`
-- `onPreEncodeScreenVideoFrame `
-- `onSecondaryPreEncodeScreenVideoFrame `
+- `startSecondaryScreenCapture`
+- `stopPrimaryScreenCapture`
+- `stopSecondaryScreenCapture`
+- `startPrimaryCameraCapture`
+- `startSecondaryCameraCapture`
+- `stopPrimaryCameraCapture`
+- `stopSecondaryCameraCapture`
+- `onSecondaryPreEncodeCameraVideoFrame`(Windows)
+- `onScreenCaptureVideoFrame`(Windows)
+- `onPreEncodeScreenVideoFrame`(Windows)
+- `onSecondaryPreEncodeScreenVideoFrame`(Windows)
 - `onApiCallExecuted`
-- `publishCustomAudioTrackEnableAec ` in ` ChannelMediaOptions`
-- `getMediaRecorder`
-- `release` in `IMediaRecorder`
-- `AGORA_IID_MEDIA_RECORDER`
-- The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderObserver`
+- `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions`
 
 ## v4.1.0
 
@@ -185,7 +218,7 @@ This release deletes the `sourceType` parameter in `enableDualStreamMode`, becau
 
 #### New features
 
-**1. In-ear monitoring**
+**1. 耳返**
 
 This release adds support for in-ear monitoring. You can call `enableInEarMonitoring` to enable the in-ear monitoring function.
 

@@ -188,7 +188,7 @@ macOS，iOS，Android：该版本新增本地合图功能，用户可以调用 `
 **Android**
 - 偶现耳返开启无效。
 - 偶现回声
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户端状态异常。
 - 在红米 9A 上进行 CDN 推流，将推流的视频分辨率设置为 3840 × 2160 必现崩溃。
 - 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音
 - 本地音乐文件结束播放时，未能触发 `OnAudioMixingFinished` 回调。
@@ -199,7 +199,7 @@ macOS，iOS，Android：该版本新增本地合图功能，用户可以调用 `
 **iOS**
 - 跨频道连麦时 `OnFirstRemoteVideoFrame` 回调偶现丢失。
 - 接收端主动订阅大流但是异常接收小流。
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户端状态异常。
 
 **macOS**
 - 接收端默认接收小流几秒后自动变为大流。

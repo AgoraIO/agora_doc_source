@@ -25,13 +25,7 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 - `publishTrancodedVideoTrack` in `AgoraRtcChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
 - `publishCustomAudioSourceId` in `AgoraRtcChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
-**4. Audio and video recording**
-
-- `sharedMediaRecorderWithRtcEngine` is deleted. You can create a recording object through the `createMediaRecorder` method released in this version.
-- The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderDelegate` methods is deleted.
-- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources.
-
-**5. Miscellaneous**
+**4. Miscellaneous**
 
 - `didApiCallExecute` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - `enableDualStreamMode`[1/2] and `enableDualStreamMode`[2/2] are depredated. Use `setDualStreamMode`[1/2] and `setDualStreamMode`[2/2] instead.
@@ -43,7 +37,7 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 
 This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
-**2. Enhanced Virtual Background**
+**2. Enhanced virtual background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
@@ -127,10 +121,7 @@ This release fixed the following issues:
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
-- `createMediaRecorder`
-- `destroyMediaRecorder`
 - `AudioTrackConfig`
-- `RecorderStreamInfo`
 - `AgoraAudioTrackType`
 - `AgoraApplicationScenarioType`
 - `AgoraScreenCaptureFrameRateCapability`
@@ -156,9 +147,6 @@ This release fixed the following issues:
 - `stopSecondaryCameraCapture`
 - `didApiCallExecute`
 - `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in `AgoraRtcChannelMediaOptions`
-- `sharedMediaRecorderWithRtcEngine`
-- `destroy` in `AgoraMediaRecorder`
-- The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderDelegate`
 
 ## v4.1.1
 

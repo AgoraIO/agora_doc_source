@@ -32,12 +32,12 @@ The `OnCaptureVideoFrame` and `OnPreEncodeVideoFrame` callbacks are added with a
 - `PublishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `PublishCustomAudioTrackId`.
 
 
-**5. Local video mixing (Windows)** 
+**5. Local video mixing (Windows)**
 
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `VideoInputStreams.`
 - The `MEDIA_SOURCE_TYPE` in `TranscodingVideoStream` is changed to `VIDEO_SOURCE_TYPE.`
 
-**6. Virtual sound card (macOS)** 
+**6. Virtual sound card (macOS)**
 
 As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
@@ -67,13 +67,13 @@ You can call the `SetVideoEncoderConfiguration` method to set the expected video
 
 **1. AI noise reduction**
 
-This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `SetAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios. 
+This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `SetAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
 **2. Enhanced Virtual Background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `EnableVirtualBackground` method, including:
 
-- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect. 
+- Process the background as alpha information without replacement, only separating the portrait and the background. This can be combined with the local video mixing feature to achieve a portrait-in-picture effect.
 - Replace the background with various formats of local videos.
 
 **3. Video scenario settings**
@@ -111,7 +111,7 @@ This release adds the `StartMediaRenderingTracing` and `StartMediaRenderingTraci
 Agora recommends that you use this method in conjunction with the UI settings (such as buttons and sliders) in your app. For example, call this method at the moment when the user clicks the "Join Channel" button, and then get the indicators in the video frame rendering process through the `OnVideoRenderingTracingResult` callback. This enables developers to facilitate developers to optimize the indicators to improve the user experience.
 
 
-## Improvements 
+## Improvements
 
 **1. Voice changer**
 
@@ -120,7 +120,7 @@ This release introduces the `SetLocalVoiceFormant` method that allows you to adj
 
 **2. Enhanced screen share (Android, iOS)**
 
-This release adds the `QueryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand. 
+This release adds the `QueryScreenCaptureCapability` method, which is used to query the screen capture capabilities of the current device. To ensure optimal screen sharing performance, particularly in enabling high frame rates like 60 fps, Agora recommends you to query the device's maximum supported frame rate using this method beforehand.
 
 This release also adds the `SetScreenCaptureScenario` method, which is used to set the scenario type for screen sharing. The SDK automatically adjusts the smoothness and clarity of the shared screen based on the scenario type you set.
 
@@ -139,7 +139,7 @@ This release enhances the rendering compatibility of the SDK. Issues like black 
 For custom video and audio capture scenarios, this release introduces `GetCurrentMonotonicTimeInMs` for obtaining the current Monotonic Time. By passing this value into the timestamps of audio and video frames, developers can accurately control the timing of their audio and video streams, ensuring proper synchronization.
 
 
-**6. Multi-camera capture and multi-screen capture** 
+**6. Multi-camera capture and multi-screen capture**
 
 This release introduces `StartScreenCapture` [2/2] (PC only) and `StartCameraCapture`. By calling these methods multiple times and specifying the `sourceType` parameter, developers can start capturing video streams from multiple cameras and screens for local video mixing or multi-channel publishing. This is particularly useful for scenarios such as remote medical care and online education, where multiple cameras and displays need to be connected.
 
@@ -156,7 +156,7 @@ To better meet the needs of custom audio capture scenarios, this release adds `C
 
 **9. Super resolution (Android, iOS)**
 
-This release improves the performance of super resolution. To optimize the usability of super resolution, this release removes `EnableRemoteSuperResolution`; super resolution no longer needs to be enabled manually. The SDK now automatically optimizes the resolution of the remote video based on the performance of the user's device. 
+This release improves the performance of super resolution. To optimize the usability of super resolution, this release removes `EnableRemoteSuperResolution`; super resolution no longer needs to be enabled manually. The SDK now automatically optimizes the resolution of the remote video based on the performance of the user's device.
 
 ## Issues fixed
 
@@ -189,7 +189,7 @@ This release fixed the following issues:
 - `GetCurrentMonotonicTimeInMs`
 - `OnLocalVideoTranscoderError`
 - `QueryScreenCaptureCapability`
-- `SetScreenCaptureScenario` 
+- `SetScreenCaptureScenario`
 - `CreateAudioCustomTrack`
 - `DestroyAudioCustomTrack`
 - `CreateMediaRecorder`

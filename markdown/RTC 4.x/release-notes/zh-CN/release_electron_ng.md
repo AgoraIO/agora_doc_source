@@ -131,7 +131,7 @@
 
 针对自定义视频和音频采集场景，该版本新增 `getCurrentMonotonicTimeInMs` 方法用于获取当前的 Monotonic Time，将该值传入视频帧和音频帧的时间戳，可以精确控制音视频时序，确保音视频同步。
 
-**4.  优化多路摄像头采集**
+**4.  优化多路摄像头及屏幕采集**
 
 该版本新增 `startCameraCapture` 和 `startScreenCaptureBySourceType` 方法，通过多次调用并指定 `sourceType` 参数可以开启多路摄像头采集的视频流和多路屏幕采集的视频流，用于本地合图或多频道发布。适用于如远程医疗、远程教育等连接多个摄像头和显示器的场景。
 
@@ -234,7 +234,7 @@
 - `onPreEncodeScreenVideoFrame`（Windows）
 - `onSecondaryPreEncodeScreenVideoFrame`（Windows）
 - `onApiCallExecuted`
-- `ChannelMediaOptions `中的` publishCustomAudioTrackEnableAec`
+- `ChannelMediaOptions` 中的 `publishCustomAudioTrackEnableAec`
 - `getMediaRecorder`
 - `IMediaRecorder` 类中的 `release`
 - `AgoraIidMediaRecorder`（Windows）

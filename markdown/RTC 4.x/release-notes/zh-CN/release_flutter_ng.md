@@ -185,7 +185,7 @@
 - 接收端默认接收小流几秒后自动变为大流。(macOS)。
 - 偶现回声。(Android)
 - 屏幕共享偶现共享画面抖动。(macOS)
-- 由于 `onRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS, Android)。
+- 由于 `onRemoteAudioStateChanged` 回调异常造成客户端状态异常。(iOS, Android)。
 - 使用媒体播放器播放网络摄像头的 RTSP 码流时，偶现花屏。(Windows)
 - 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
 - 在红米 9A 上进行 CDN 推流，将推流的视频分辨率设置为 3840 × 2160 必现崩溃。(Android)
