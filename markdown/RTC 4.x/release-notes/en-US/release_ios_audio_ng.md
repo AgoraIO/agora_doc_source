@@ -11,13 +11,7 @@ If you use the features mentioned in this section, ensure that you modify the im
 - `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
 - `publishCustomAudioSourceId` in `AgoraRtcChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
-**2. Audio recording**
-
-- `sharedMediaRecorderWithRtcEngine` is deleted. You can create a recording object through the `createMediaRecorder` method released in this version.
-- The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderDelegate` methods is deleted.
-- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources.
-
-**3. Miscellaneous**
+**2. Miscellaneous**
 
 - `didApiCallExecute` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
@@ -63,10 +57,7 @@ This release fixed the following issues:
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
-- `createMediaRecorder`
-- `destroyMediaRecorder`
 - `AudioTrackConfig`
-- `RecorderStreamInfo`
 - `AgoraAudioTrackType`
 - `AgoraApplicationScenarioType`
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `AgoraRtcEngineConfig`
@@ -85,10 +76,6 @@ This release fixed the following issues:
 
 - `didApiCallExecute`
 - `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in `AgoraRtcChannelMediaOptions`
-- `sharedMediaRecorderWithRtcEngine`
-- `destroy` in `AgoraMediaRecorder`
-- The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderDelegate`
-
 ## v4.1.1
 
 v4.1.1 was released on January xx, 2023.

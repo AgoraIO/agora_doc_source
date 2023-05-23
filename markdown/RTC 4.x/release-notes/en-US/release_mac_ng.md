@@ -16,19 +16,13 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 - `publishTrancodedVideoTrack` in `AgoraRtcChannelMediaOptions` is renamed to `publishTranscodedVideoTrack`.
 - `publishCustomAudioSourceId` in `AgoraRtcChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
-**3. Audio and video recording**
-
-- `sharedMediaRecorderWithRtcEngine` is deleted. You can create a recording object through the `createMediaRecorder` method released in this version.
-- The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderDelegate` methods is deleted.
-- The `destroy` method in the `AgoraMediaRecorder` class is deleted. You can use the `destroyMediaRecorder` method released in this version to destroy a recording object and release resources.
-
-**4. Virtual sound card**
+**3. Virtual sound card**
 
 As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
 <div class="alert note">If you set AgoraALD or Soundflower as the default input or output device when joining a channel, you will not hear audio.</div>
 
-**5. Miscellaneous**
+**4. Miscellaneous**
 
 - `didApiCallExecute` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - `enableDualStreamMode`[1/2] and `enableDualStreamMode`[2/2] are depredated. Use `setDualStreamMode`[1/2] and `setDualStreamMode`[2/2] instead.
@@ -122,10 +116,7 @@ This release fixed the following issues:
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
-- `createMediaRecorder`
-- `destroyMediaRecorder`
 - `AudioTrackConfig`
-- `RecorderStreamInfo`
 - `AgoraAudioTrackType`
 - `AgoraApplicationScenarioType`
 - `AgoraScreenCaptureFrameRateCapability`
@@ -149,9 +140,6 @@ This release fixed the following issues:
 
 - `didApiCallExecute`
 - `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in ` AgoraRtcChannelMediaOptions`
-- `sharedMediaRecorderWithRtcEngine`
-- `destroy` in `AgoraMediaRecorder`
-- The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderDelegate`
 
 ## v4.1.1
 
