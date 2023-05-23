@@ -225,11 +225,6 @@
 - `MediaTraceEvent`
 - `VideoRenderingTracingInfo`
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 83ee22fc2b454770c97c7cdaaa07c4ee998451c1
-
 **修改**
 
 - `onMusicChartsResult` 中的 `status` 修改为 `errorCode`
