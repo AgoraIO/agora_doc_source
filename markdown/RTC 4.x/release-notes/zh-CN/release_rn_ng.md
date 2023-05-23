@@ -31,7 +31,15 @@
 - 删除 `startRecording` 、`stopRecording`、`setMediaRecorderObserver` 中的 `connection` 参数。
 - 删除 `IMediaRecorder` 类中的 `release` 方法，你可直接调用该版本新增的 `destroyMediaRecorder` 方法来销毁录制对象以释放资源。
 
-**5. 其他兼容性变更**
+**5. 默认分辨率提升**
+
+ 自该版本起，SDK 对视频编码的算法进行了优化，将默认的视频编码分辨率从 640 × 360 提升为 960 × 540，以适应设备性能和网络带宽的提升，在各种音视频互动场景下，为用户提供全链路的高清体验。
+
+ 如果你想自定义视频编码分辨率，可调用 `setVideoEncoderConfiguration` 方法，重新设置视频编码参数配置中的视频编码分辨率。
+
+<div class="note">由于默认分辨率的提升，会影响集合分辨率从而导致费用变更。详见<a href="./billing_rtc_ng">计费说明</a>。</div>
+
+**6. 其他兼容性变更**
 
 - `onApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
 - `startChannelMediaRelay`、`updateChannelMediaRelay`、`startChannelMediaRelayEx` 和 `updateChannelMediaRelayEx` 已废弃，请改用 `startOrUpdateChannelMediaRelay` 和 `startOrUpdateChannelMediaRelayEx`。
@@ -80,6 +88,16 @@
 
 在实时合唱的场景中，可能会出现网络原因导致各接收端下行链路不一致的情况，该版本新增 `getNtpWallTimeInMs` 方法获取当前的 NTP (网络时间协议) 时间，用于对齐多个接收端的歌词和音乐，实现合唱同步、歌词进度同步等，为用户提供更佳的协同体验。
 
+ **7. 快速出图出声**
+
+ 该版本新增 `enableInstantMediaRendering` 方法，用于开启音视频帧的加速渲染模式，可加快用户加入频道后的首帧出图与出声速度。
+
+ **8. 视频渲染数据打点**
+
+ 该版本新增 `startMediaRenderingTracing` 和 `startMediaRenderingTracingEx` 方法，SDK 以调用该方法的时刻作为起点，开始跟踪频道内视频帧的渲染状态，并通过 `onVideoRenderingTracingResult` 回调报告相关事件的信息。
+
+ 声网推荐你将该方法和 app 中的 UI 设置（按钮、滑动条等）结合使用。例如：在终端用户点击“加入频道”按钮的时刻调用该方法进行打点，然后通过 `onVideoRenderingTracingResult` 回调获取视频帧渲染过程中的指标，从而方便开发者针对指标进行专项优化，以提高出图效率。
+
 #### 改进
 
 **1.优化变声** 
@@ -119,6 +137,17 @@
 - 可混音的音频轨道：支持将多路外部音频源混合发布到同一频道中，适用于多路音频源的自采集场景。
 - 非混音的音频轨道：仅支持将一路外部音频源发布到单个频道中，适用于实时低延迟的自采集场景。
 
+ **9. 视频观测器**
+
+ 自该版本起，SDK 对 `onRenderVideoFrame` 回调进行了优化，在不同的视频处理模式下返回值的意义不同：
+
+ - 当视频处理模式为 `ProcessModeReadOnly` 时，返回值无实际含义。
+ - 当视频处理模式为 `ProcessModeReadWrite` 时，返回 `true` 代表设置 SDK 接收视频帧；返回 `false` 代表设置 SDK 丢弃视频帧。
+
+**10. 超分辨率**
+
+该版本提升了超分辨率的性能表现。为提升超分辨率易用性，该版本删除了 `enableRemoteSuperResolution`，超分辨率不再需要手动开启，SDK 将自动根据用户设备性能优化远端视频的分辨率。
+
 #### 问题修复
 
 该版本修复了以下问题：
@@ -130,7 +159,15 @@
 - 接收端主动订阅大流但是异常接收小流。(iOS)
 - 偶现回声。(Android)
 - 由于 `onRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
-
+- 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
+- 在红米 9A 上进行 CDN 推流，将推流的视频分辨率设置为 3840 × 2160 必现崩溃。（Android）
+- 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音。(Android)
+- 本地音乐文件结束播放时，未能触发 onAudioMixingFinished 回调。(Android)
+- 接收端通过视频观测器接收的第一帧视频帧偶现丢包。(Android)
+- 在多频道场景下开启屏幕共享，偶现远端看到的本地屏幕共享画面为黑屏。(Android)
+- 开启虚拟背景时切换至后置摄像头会导致背景倒置。（Android）
+- 当频道内有多路视频流时，调用部分视频增强插件相关 API 偶现失败。
+- 客户端主动退出频道时未向服务端发起请求，导致服务端判定为退出频道超时。
 
 
 #### API 变更
@@ -138,70 +175,40 @@
 **新增**
 
 - `startCameraCapture`
-
 - `stopCameraCapture`
-
 - `startOrUpdateChannelMediaRelay`
-
 - `startOrUpdateChannelMediaRelayEx`
-
 - `getNtpWallTimeInMs`
-
 - `setVideoScenario`
-
 - `getCurrentMonotonicTimeInMs`
-
 - `onLocalVideoTranscoderError`
-
 - `startLocalVideoTranscoder`
-
 - `updateLocalTranscoderConfiguration`
-
 - `queryScreenCaptureCapability` 
-
 - `setScreenCaptureScenario` 
-
 - `setAINSMode`
-
 - `createAudioCustomTrack`
-
 - `destroyAudioCustomTrack`
-
 - `createMediaRecorder`
-
 - `destroyMediaRecorder`
-
 - `IMusicContentCenter` 中新增如下方法
 
   - `removeCache`
   - `getCaches`
 
 - `AudioTrackConfig`
-
 - `MusicCacheInfo`
-
 - `RecorderStreamInfo`
-
 - `AudioAinsMode`
-
 - `AudioTrackType`
-
 - `MusicCacheStatusType`
-
 - `VideoApplicationScenarioType`
-
-- `ScreenCaptureCapabilityLevel`
-
+- `ScreenCaptureFramerateCapability`
 - `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
-
 - `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
-
 - `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 中增加 `sourceType` 参数
-
 - `BackgroundSourceType` 中新增 `BackgourndNone` 和 `BackgroundVideo`
-
 - `PreloadStatusCode` 中增加 `KPreloadStatusRemoved`
-
 - `MusicContentCenterStatusCode` 中增加如下枚举：
 
   - `KMusicContentCenterStatusErrGateway`
@@ -211,8 +218,13 @@
   - `KMusicContentCenterStatusErrMusicDecryption`
 
 - `MusicContentCenterConfiguration` 中新增 `maxCacheSize `
+- `enableInstantMediaRendering`
+- `startMediaRenderingTracing`
+- `startMediaRenderingTracingEx`
+- `onVideoRenderingTracingResult`
+- `MediaTraceEvent`
+- `VideoRenderingTracingInfo`
 
-  
 
 **修改**
 
@@ -237,8 +249,8 @@
 - `getMediaRecorder`
 - `IMediaRecorder` 类中的 `release`
 - `startRecording`、`stopRecording`、`setMediaRecorderObserver` 中删除 `connection` 参数
-
-
+- `enableRemoteSuperResolution`
+- `RemoteVideoStats` 中删除 `superResolutionType`
 
 ## v4.1.0
 
