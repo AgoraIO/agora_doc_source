@@ -101,7 +101,7 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
     ```
 
 
-### 编译并运行示例项目
+## 编译并运行示例项目
 
 1. 开启 Android 设备的开发者选项，打开 USB 调试，通过 USB 连接线将 Android 设备接入电脑。
 
