@@ -100,11 +100,13 @@
 
    ```java
    -keep class io.agora.**{*;}
+   -dontwarn javax.**
+   -dontwarn com.google.devtools.build.android.**
    ```
 
 ## 实现电商直播
 
-如下时序图中展示了如何预览直播、加入直播间、上下架商品、PK 连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图自行实现。
+如下时序图中展示了如何预览直播、加入直播间、上下架商品、PK 连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图自行实现。
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
@@ -138,7 +140,7 @@ try {
 
 ### 2. 加入直播间
 
-你可以使用声网 RTC SDK 的 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 方法创建一个 `RtcEngine` 引擎，再通过 [`joinChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 和 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile) 方法让用户加入一个频道场景为 `LIVE_BROADCASTING` 的频道。频道对应直播间中的音视频，云服务对应直播间中的信令消息。用户在频道内可以进行实时音视频互动。频道内的用户有两种角色：
+你可以使用声网 RTC SDK 的 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 方法创建一个 `RtcEngine` 引擎，再通过 [`joinChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 和 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile) 方法让用户加入一个频道场景为 `LIVE_BROADCASTING` 的频道。频道用于传输直播间中的音视频流，云服务用于传输直播间中的信令消息和存储数据。用户在频道内可以进行实时音视频互动。频道内的用户有两种角色：
 
 - 主播：可以发送和接收音视频流。直播间的房主即为主播。
 - 观众：只可以接收音视频流。
