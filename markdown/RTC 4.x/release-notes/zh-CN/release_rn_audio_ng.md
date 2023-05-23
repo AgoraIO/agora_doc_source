@@ -329,7 +329,7 @@
 **废弃**
 
 - `onApiCallExecuted`
-- `ChannelMediaRelayEvent`：废弃 `relayEventPacketUpdateDestChannelRefused (8)`
+- `ChannelMediaRelayEvent`：废弃 `RelayEventPacketUpdateDestChannelRefused (8)`
 
 
 ## v4.0.0
