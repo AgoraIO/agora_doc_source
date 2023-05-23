@@ -69,7 +69,6 @@ This release fixed the following issues:
 - `startOrUpdateChannelMediaRelay`
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
-- `getCurrentMonotonicTimeInMs`
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`

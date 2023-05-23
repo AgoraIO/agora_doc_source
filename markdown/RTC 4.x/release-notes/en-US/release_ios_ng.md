@@ -43,7 +43,7 @@ The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a
 
 This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios.
 
-**2. Enhanced Virtual Background**
+**2. Enhanced virtual background**
 
 To increase the fun of real-time video calls and protect user privacy, this version has enhanced the virtual background feature. You can now set custom backgrounds of various types by calling the `enableVirtualBackground` method, including:
 
