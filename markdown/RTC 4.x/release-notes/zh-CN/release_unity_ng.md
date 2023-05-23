@@ -37,9 +37,14 @@
 - 删除 `GetMediaRecorder` 方法，可通过该版本新增的 `CreateMediaRecorder` 方法来创建录制对象。
 - 删除 `StartRecording` 、`StopRecording`、`SetMediaRecorderObserver` 中的 `connection` 参数。
 
-**6. 本地合图**
+**6. 本地合图 (Windows)**
 
 `TranscodingVideoStream` 中的枚举类 `MEDIA_SOURCE_TYPE` 变更为 `VIDEO_SOURCE_TYPE`。
+
+**7. 虚拟声卡 (macOS)**
+
+自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 stateChanged 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
+<div class="alert info">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。</div>
 
 **7. 视频编码分辨率**
 

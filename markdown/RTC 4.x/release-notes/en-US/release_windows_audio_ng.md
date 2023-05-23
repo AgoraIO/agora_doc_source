@@ -11,13 +11,7 @@ If you use the features mentioned in this section, ensure that you modify the im
 - `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` is deleted. Use `publishCustomAudioTrack` instead.
 - `publishCustomAudioSourceId` in `ChannelMediaOptions` is renamed to `publishCustomAudioTrackId`.
 
-**2. Audio recording**
-
-- `AGORA_IID_MEDIA_RECORDER` in `INTERFACE_ID_TYPE` is deleted. As of v4.2.0, before creating a recording object, you don't need to obtain the `AGORA_IID_MEDIA_RECORDER` interface class pointer. You can directly create a recording object through the `createMediaRecorder` method released in this version.
-- The `connection` parameter in the `startRecording`, `stopRecording`, and `setMediaRecorderObserver` methods is deleted.
-- The `release` method in the `IMediaRecorder` class is deleted. You can use the `destroyMediaRecorder `method released in this version to destroy a recording object and release resources.
-
-**3. Miscellaneous**
+**2. Miscellaneous**
 
 - `onApiCallExecuted` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - The `IAudioFrameObserver` class is renamed to `IAudioPcmFrameSink`, thus the prototype of the following methods are updated accordingly:
@@ -44,7 +38,7 @@ This release introduces the `setLocalVoiceFormant` method that allows you to adj
 
 **2. Channel media relay**
 
-This release introduces `startOrUpdateChannleMediaRelay` and `startOrUpdateChannleMediaRelayEx`, allowing for a simpler and smoother way to start and update media relay across channels. With these methods, developers can easily start the media relay across channels and update the target channels for media relay with a single method. Additionally, the internal interaction frequency has been optimized, effectively reducing latency in function calls.
+This release introduces `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx`, allowing for a simpler and smoother way to start and update media relay across channels. With these methods, developers can easily start the media relay across channels and update the target channels for media relay with a single method. Additionally, the internal interaction frequency has been optimized, effectively reducing latency in function calls.
 
 **3. Custom audio tracks**
 
@@ -67,13 +61,9 @@ This release fixed the issue that when the host frequently switching the user ro
 - `setAINSMode`
 - `createAudioCustomTrack`
 - `destroyAudioCustomTrack`
-- `createMediaRecorder`
-- `destroyMediaRecorder`
 - `AudioTrackConfig`
-- `RecorderStreamInfo`
 - `AUDIO_TRACK_TYPE`
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
-- The `channelId` and `uid` parameters in `onRecorderStateChanged` and `onRecorderInfoUpdated` callbacks
 
 **Deprecated**
 
@@ -88,7 +78,3 @@ This release fixed the issue that when the host frequently switching the user ro
 
 - `onApiCallExecuted`
 - `publishCustomAudioTrackEnableAec ` in ` ChannelMediaOptions`
-- `getMediaRecorder`
-- `release` in `IMediaRecorder`
-- `AGORA_IID_MEDIA_RECORDER`
-- The `connection` parameter in `startRecording`, `stopRecording`, and `setMediaRecorderObserver`
