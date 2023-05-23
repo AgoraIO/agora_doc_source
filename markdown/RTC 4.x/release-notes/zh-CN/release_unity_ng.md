@@ -12,10 +12,10 @@
 
 | 已删除方法                                                   | 替代方法                  |
 | :----------------------------------------------------------- | :------------------------ |
-| <li>`StartPrimaryCameraCapture`</li><li>`StartSecondaryCameraCapture`<li> | `StartCameraCapture`      |
-| <li>`StopPrimaryCameraCapture`</li><li>`StopSecondaryCameraCapture`</li> | `StopCameraCapture`       |
-| <li>`StartPrimaryScreenCapture `</li>`StartSecondaryScreenCapture`</li> | `StartScreenCapture`[2/2] |
-| <li>`StopPrimaryScreenCapture`</li><li>`StopSecondaryScreenCapture`</li> | `StopScreenCapture`[2/2]  |
+| <li>`StartPrimaryCameraCapture`（Windows）</li><li>`StartSecondaryCameraCapture`（Windows，iOS）<li> | `StartCameraCapture`      |
+| <li>`StopPrimaryCameraCapture`（Windows）</li><li>`StopSecondaryCameraCapture`（Windows，iOS）</li> | `StopCameraCapture`       |
+| <li>`StartPrimaryScreenCapture `（Windows）</li>`StartSecondaryScreenCapture`（Windows，iOS）</li> | `StartScreenCapture`[2/2] |
+| <li>`StopPrimaryScreenCapture`（Windows）</li><li>`StopSecondaryScreenCapture`（Windows，iOS）</li> | `StopScreenCapture`[2/2]  |
 
 **2.视频渲染**
 
@@ -29,20 +29,27 @@
 **4. 媒体发布选项**
 
 - `ChannelMediaOptions` 中的 `PublishCustomAudioTrackEnableAec` 已删除，请改用 `PublishCustomAudioTrack`。
-- `ChannelMediaOptions` 中的成员 `PublishTrancodedVideoTrack` 变更为 `PublishTranscodedVideoTrack。`
+- `ChannelMediaOptions` 中的成员 `PublishTrancodedVideoTrack` 变更为 `PublishTranscodedVideoTrack`。
 - `ChannelMediaOptions` 中的成员 `PublishCustomAudioSourceId` 变更为 `PublishCustomAudioTrackId`。
 
 **5. 音视频录制**
 
-- `删除 GetMediaRecorder` 方法，可通过该版本新增的 `CreateMediaRecorder` 方法来创建录制对象。
-- `删除 StartRecording` 、`StopRecording`、`SetMediaRecorderObserver` 中的 `connection` 参数。
+- 删除 `GetMediaRecorder` 方法，可通过该版本新增的 `CreateMediaRecorder` 方法来创建录制对象。
+- 删除 `StartRecording` 、`StopRecording`、`SetMediaRecorderObserver` 中的 `connection` 参数。
 
 **6. 本地合图**
 
 `TranscodingVideoStream` 中的枚举类 `MEDIA_SOURCE_TYPE` 变更为 `VIDEO_SOURCE_TYPE`。
 
+**7. 视频编码分辨率**
 
-**7. 其他兼容性变更**
+自该版本起，SDK 对视频编码的算法进行了优化，将默认的视频编码分辨率从 640 × 360 提升为 960 × 540，以适应设备性能和网络带宽的提升，在各种音视频互动场景下，为用户提供全链路的高清体验。
+
+ 如果你想自定义视频编码分辨率，可调用 `SetVideoEncoderConfiguration` 方法，重新设置视频编码参数配置中的视频编码分辨率。
+
+<div class="note">由于默认分辨率的提升，会影响集合分辨率从而导致费用变更。详见<a href="./billing_rtc_ng">计费说明</a>。</div>
+
+**8. 其他兼容性变更**
 
 - `OnApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
 - `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`，因此下列方法原型也有相应更新：
@@ -85,12 +92,28 @@
 
 **5. 本地合图**
 
-该版本新增了 `OnLocalVideoTranscoderError` 回调，当你在开启本地合图或者更新本地合图配置失败时，SDK 会触发该回调并报告合图失败的原因。
+Windows: 该版本新增了 `OnLocalVideoTranscoderError` 回调，当你在开启本地合图或者更新本地合图配置失败时，SDK 会触发该回调并报告合图失败的原因。
+
+macOS，iOS，Android：该版本新增本地合图功能，用户可以调用 `StartLocalVideoTranscoder` 方法，在本地将多路视频流（例如：摄像头采集的视频、屏幕共享流、视频文件、图片等）混合和渲染，以实现自定义布局和效果。通过这项功能，你可以轻松创建个性化的视频显示效果，满足各种场景需求，如远程会议、直播、在线教育场景，同时支持人像画中画等功能。
+
+另外，SDK 还提供了 `UpdateLocalTranscoderConfiguration` 方法和 `OnLocalVideoTranscoderError` 回调。当你在开启本地合图后，可以调用 `UpdateLocalTranscoderConfiguration` 更新合图的配置；当你在开启本地合图或者更新本地合图配置失败时，可通过 `OnLocalVideoTranscoderError` 回调得知合图失败的原因。
+
+<div class="alert info">本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</div>
 
 
 **6. 多端同步**
 
 在实时合唱的场景中，可能会出现网络原因导致各接收端下行链路不一致的情况，该版本新增 `GetNtpWallTimeInMs` 方法获取当前的 NTP (网络时间协议) 时间，用于对齐多个接收端的歌词和音乐，实现合唱同步、歌词进度同步等，为用户提供更佳的协同体验。
+
+ **7. 快速出图出声**
+
+ 该版本新增 `EnableInstantMediaRendering` 方法，用于开启音视频帧的加速渲染模式，可加快用户加入频道后的首帧出图与出声速度。
+
+ **8. 视频渲染数据打点**
+
+ 该版本新增 `StartMediaRenderingTracing` 和 `StartMediaRenderingTracingEx` 方法，SDK 以调用该方法的时刻作为起点，开始跟踪频道内视频帧的渲染状态，并通过 `OnVideoRenderingTracingResult` 回调报告相关事件的信息。
+
+ 声网推荐你将该方法和 app 中的 UI 设置（按钮、滑动条等）结合使用。例如：在终端用户点击“加入频道”按钮的时刻调用该方法进行打点，然后通过 `OnVideoRenderingTracingResult` 回调获取视频帧渲染过程中的指标，从而方便开发者针对指标进行专项优化，以提高出图效率。
 
 #### 改进
 
@@ -117,7 +140,7 @@
 
 **5. 提升音视频同步能力**
 
-针对自定义视频和音频采集场景，该版本新增 `GetCurrentMonotonicTimeInMs` 方法用于获取当前的 Monotonic Time，将该值传入视频帧和音频帧的时间戳，可以`精确控制音视频时序，确保音视频同步。
+针对自定义视频和音频采集场景，该版本新增 `GetCurrentMonotonicTimeInMs` 方法用于获取当前的 Monotonic Time，将该值传入视频帧和音频帧的时间戳，可以精确控制音视频时序，确保音视频同步。
 
 **6. 优化多路摄像头及屏幕采集**
 
@@ -130,7 +153,7 @@
 
 **8. 优化跨频道连麦**
 
-该版本新增 `StartOrUpdateChannleMediaRelay` 和 `StartOrUpdateChannleMediaRelayEx` 方法，通过一个方法实现开始跨频道转发和更新转发的目标频道，提升了接口易用性；同时，优化内部交互次数，有效降低调用了延迟。在降低开发难度的同时，为开发者提供更顺畅的使用体验。
+该版本新增 `StartOrUpdateChannelMediaRelay` 和 `StartOrUpdateChannelMediaRelayEx` 方法，通过一个方法实现开始跨频道转发和更新转发的目标频道，提升了接口易用性；同时，优化内部交互次数，有效降低调用了延迟。在降低开发难度的同时，为开发者提供更顺畅的使用体验。
 
 
 **9. 多路音频自采集**
@@ -140,20 +163,49 @@
 - 可混音的音频轨道：支持将多路外部音频源混合发布到同一频道中，适用于多路音频源的自采集场景。
 - 非混音的音频轨道：仅支持将一路外部音频源发布到单个频道中，适用于实时低延迟的自采集场景。
 
+**10. 超分辨率 （Android, iOS）**
+
+该版本提升了超分辨率的性能表现。为提升超分辨率易用性，该版本删除了 `enableRemoteSuperResolution`，超分辨率不再需要手动开启，SDK 将自动根据用户设备性能优化远端视频的分辨率。
+
 
 #### 问题修复
 
 该版本修复了以下问题：
 
+**Windows**
+- 使用媒体播放器播放网络摄像头的 RTSP 码流时，偶现花屏。
+- 加入频道后添加水印然后删除，远端仍能看到水印。
+- 开始屏幕共享后添加水印，远端接收的屏幕共享画面没有水印。
+- 在屏幕共享场景下，如果将一个窗口设置为前置和描边，则必现窗口前置失败。
+- 在本地合图场景下，不支持对 PNG 和 GIF 图片的 Alpha 通道渲染，导致透明底色的图片显示为非透明底色。
+- 加入频道后接入外接摄像头，调用 `setDevice` 指定视频采集设备为该外接摄像头，方法未生效。
+
+**Android**
+- 偶现耳返开启无效。
+- 偶现回声
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+- 在红米 9A 上进行 CDN 推流，将推流的视频分辨率设置为 3840 × 2160 必现崩溃。
+- 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音
+- 本地音乐文件结束播放时，未能触发 `OnAudioMixingFinished` 回调。
+- 接收端通过视频观测器接收的第一帧视频帧偶现丢包。
+- 在多频道场景下开启屏幕共享，偶现远端看到的本地屏幕共享画面为黑屏。
+- 开启虚拟背景时切换至后置摄像头会导致背景倒置。
+
+**iOS**
+- 跨频道连麦时 `OnFirstRemoteVideoFrame` 回调偶现丢失。
+- 接收端主动订阅大流但是异常接收小流。
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。
+
+**macOS**
+- 接收端默认接收小流几秒后自动变为大流。
+- 屏幕共享偶现共享画面抖动。
+- 把播放器的渲染视图设为 UIViewController 的视图后，使用播放器播放视频，视频窗口切到全屏时视频画面会从左下角开始逐渐放大。
+- 加入频道后接入外接摄像头，调用 `setDevice` 指定视频采集设备为该外接摄像头，方法未生效。
+
+**全平台**
+- 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
 - 当快速切换身份角色时，观众端听不到声音。
-- 偶现耳返开启无效。(Android)
-- 跨频道连麦时 `FirstRemoteVideoFrameOfUid` 回调偶现丢失。(iOS)
-- 接收端主动订阅大流但是异常接收小流。(IOS)
-- 接收端默认接收小流几秒后自动变为大流。(macOS)。
-- 调用 `Getdefaultaudiodevice` 后返回值中的 `Type` 字段信息错误。(macOS)
-- 偶现回声。(Android)
-- 屏幕共享偶现共享画面抖动。(macOS)
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS, Android)。
+- 当频道内有多路视频流时，调用部分视频增强插件相关 API 偶现失败。
 
 
 
@@ -162,77 +214,53 @@
 **新增**
 
 - `StartCameraCapture`
-
 - `StopCameraCapture`
-
-- `StartScreenCapture`[2/2]
-
-- `StopScreenCapture`[2/2]
-
+- `StartScreenCapture`[2/2] (Windows,macOS)
+- `StopScreenCapture`[2/2] (Windows,macOS)
 - `StartOrUpdateChannelMediaRelay`
-
 - `StartOrUpdateChannelMediaRelayEx`
-
 - `GetNtpWallTimeInMs`
-
 - `SetVideoScenario`
-
 - `GetCurrentMonotonicTimeInMs`
-
 - `OnLocalVideoTranscoderError`
-
+- `startLocalVideoTranscoder`（macOS, iOS, Android）
+- `updateLocalTranscoderConfiguration`（macOS, iOS, Android）
 - `QueryScreenCaptureCapability` (iOS, Android)
-
 - `SetScreenCaptureScenario` (iOS, Android)
-
 - `SetAINSMode`
-
 - `CreateAudioCustomTrack`
-
 - `DestroyAudioCustomTrack`
-
 - `CreateMediaRecorder`
-
 - `DestroyMediaRecorder`
-
 - `IMusicContentCenter` 中新增如下方法：(iOS, Android)
   - `RemoveCache`
   - `GetCaches`
-
 - `AudioTrackConfig`
-
 - `MusicCacheInfo` (iOS, Android)
-
 - `RecorderStreamInfo`
-
 - `AUDIO_AINS_MODE`
-
 - `AUDIO_TRACK_TYPE`
-
 - `MUSIC_CACHE_STATUS_TYPE ` (iOS, Android)
-
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
-
 - `SCREEN_CAPTURE_CAPABILITY_LEVEL`
-
 - `RtcEngineContext` 中新增 `DomainLimit` 和 `AutoRegisterAgoraExtensions` 属性
-
 - `OnRecorderStateChanged`、`OnRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
-
 - `OnCaptureVideoFrame` 和 `OnPreEncodeVideoFrame` 中增加 `sourceType` 参数
-
 - `BACKGROUND_SOURCE_TYPE` 中新增 `BACKGROUND_NONE` 和 `BACKGROUND_VIDEO`
-
 - `PreloadStatusCode` 中增加 `KPreloadStatusRemoved` (iOS, Android)
-
 - `MusicContentCenterStatusCode` 中增加如下枚举：(iOS, Android)
   - `KMusicContentCenterStatusErrGateway`
   - `KMusicContentCenterStatusErrPermissionAndResource`
   - `KMusicContentCenterStatusErrInternalDataParse`
   - `KMusicContentCenterStatusErrMusicLoading`
   - `KMusicContentCenterStatusErrMusicDecryption`
-
 - `MusicContentCenterConfiguration` 中新增 `maxCacheSize ` (iOS, Android)
+- `EnableInstantMediaRendering`
+- `StartMediaRenderingTracing`
+- `StartMediaRenderingTracingEx`
+- `OnVideoRenderingTracingResult`
+- `MEDIA_TRACE_EVENT`
+- `VideoRenderingTracingInfo`
 
 **修改**
 
@@ -254,20 +282,18 @@
 
 **删除**
 
-- `StartPrimaryScreenCapture`
-- `StartSecondaryScreenCapture`
-- `StopPrimaryScreenCapture`
-- `StopSecondaryScreenCapture`
-- `StartPrimaryCameraCapture`
-- `StartSecondaryCameraCapture`
-- `StopPrimaryCameraCapture`
-- `StopSecondaryCameraCapture`
-- `OnSecondaryPreEncodeCameraVideoFrame`
-- `OnScreenCaptureVideoFrame`
-- `OnPreEncodeScreenVideoFrame`
-- `OnSecondaryPreEncodeScreenVideoFrame`
+- `StartPrimaryScreenCapture` (Windows)
+- `StartSecondaryScreenCapture` (Windows)
+- `StopPrimaryScreenCapture` (Windows)
+- `StopSecondaryScreenCapture` (Windows)
+- `StartPrimaryCameraCapture` (Windows)
+- `StartSecondaryCameraCapture` (Windows/iOS)
+- `StopPrimaryCameraCapture` (Windows)
+- `StopSecondaryCameraCapture` (Windows/iOS)
 - `OnApiCallExecuted`
 - `ChannelMediaOptions` 中的 `PublishCustomAudioTrackEnableAec`
 - `GetMediaRecorder`
 - `AGORA_IID_MEDIA_RECORDER` 
 - `StartRecording`、`StopRecording`、`SetMediaRecorderObserver` 中删除 `connection` 参数
+- `EnableRemoteSuperResolution`
+- `RemoteVideoStats` 中删除 `superResolutionType`
