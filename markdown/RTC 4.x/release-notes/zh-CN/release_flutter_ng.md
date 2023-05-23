@@ -20,6 +20,7 @@
 **2. 视频数据获取 (Windows)**
 
 以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中新增的 `sourceType` 参数得知视频源类型。
+
 - `onSecondaryPreEncodeCameraVideoFrame`
 - `onScreenCaptureVideoFrame`
 - `onPreEncodeScreenVideoFrame`
@@ -84,7 +85,7 @@
 - `stopRecording`：停止录制。
 - `destroyMediaRecorder`：销毁录制对象。
 
-**5. 本地合图(macOS, iOS, Android)**
+**5. 本地合图 (macOS, iOS, Android)**
 
 该版本新增本地合图功能，用户可以调用 `startLocalVideoTranscoder` 方法，在本地将多路视频流（例如：摄像头采集的视频、屏幕共享流、视频文件、图片等）混合和渲染，以实现自定义布局和效果。通过这项功能，你可以轻松创建个性化的视频显示效果，满足各种场景需求，如远程会议、直播、在线教育场景，同时支持人像画中画等功能。
 
@@ -183,36 +184,36 @@
 - `destroyAudioCustomTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
-- `MusicContentCenter` 中新增如下方法：
+- `MusicContentCenter` 中新增如下方法 (Android, iOS)：
     - `getCaches`
     - `removeCache`
 - `AudioTrackConfig`
-- `MusicCacheInfo`
+- `MusicCacheInfo` (Android, iOS)
 - `RecorderStreamInfo`
 - `AudioAinsMode`
 - `AudioTrackType`
-- `MusicCacheStatusType`
+- `MusicCacheStatusType` (Android, iOS)
 - `VideoApplicationScenarioType`
 - `ScreenCaptureFramerateCapability`
-- `RtcEngineContext` 中新增 `domainLimit` 和 - `autoRegisterAgoraExtensions` 属性
-- `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 - `channelId` 和 `uid` 参数
-- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 中增加 - `sourceType` 参数
+- `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
+- `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
+- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 中增加 `sourceType` 参数
 - `backgroundSourceType` 中新增 `backgroundNone` 和 `backgroundVideo`
-- `PreloadStatusCode` 中 增加 `kPreloadStatusRemoved`
-- `MusicContentCenterStatusCode` 中增加如下枚举：
+- `PreloadStatusCode` 中 增加 `kPreloadStatusRemoved` (Android, iOS)
+- `MusicContentCenterStatusCode` 中增加如下枚举 (Android, iOS)：
     - `kMusicContentCenterStatusErrGateway`
     - `kMusicContentCenterStatusErrPermissionAndResource`
     - `kMusicContentCenterStatusErrInternalDataParse`
     - `kMusicContentCenterStatusErrMusicLoading`
     - `kMusicContentCenterStatusErrMusicDecryption`
-- `MusicContentCenterConfiguration` 中新增 `maxCacheSize`
+- `MusicContentCenterConfiguration` 中新增 `maxCacheSize` (Android, iOS)
 
 **修改**
 
-- `onMusicChartsResult` 中的 `status` 修改为 `errorCode`
-- `onMusicCollectionResult` 中的 `status` 修改为 `errorCode`
-- `onLyricResult` 中的 `status` 修改为 `errorCode`
-- `onPreLoadEvent` 中的 `msg` 修改为 `errorCode` 
+- `onMusicChartsResult` 中的 `status` 修改为 `errorCode` (Android, iOS)
+- `onMusicCollectionResult` 中的 `status` 修改为 `errorCode` (Android, iOS)
+- `onLyricResult` 中的 `status` 修改为 `errorCode` (Android, iOS)
+- `onPreLoadEvent` 中的 `msg` 修改为 `errorCode` (Android, iOS)
 
 **废弃**
 

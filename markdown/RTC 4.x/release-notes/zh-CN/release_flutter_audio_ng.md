@@ -99,32 +99,32 @@
 - `destroyAudioCustomTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
-- `MusicContentCenter` 中新增如下方法：
+- `MusicContentCenter` 中新增如下方法 (Android, iOS)：
     - `getCaches`
     - `removeCache`
 - `AudioTrackConfig`
-- `MusicCacheInfo`
+- `MusicCacheInfo` (Android, iOS)
 - `RecorderStreamInfo`
 - `AudioAinsMode`
 - `AudioTrackType`
-- `MusicCacheStatusType`
-- `RtcEngineContext` 中新增 `domainLimit` 和 - `autoRegisterAgoraExtensions` 属性
-- `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 - `channelId` 和 `uid` 参数
-- `PreloadStatusCode` 中 增加 `kPreloadStatusRemoved`
-- `MusicContentCenterStatusCode` 中增加如下枚举：
+- `MusicCacheStatusType` (Android, iOS)
+- `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
+- `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
+- `PreloadStatusCode` 中增加 `kPreloadStatusRemoved` (Android, iOS)
+- `MusicContentCenterStatusCode` 中增加如下枚举 (Android, iOS)：
     - `kMusicContentCenterStatusErrGateway`
     - `kMusicContentCenterStatusErrPermissionAndResource`
     - `kMusicContentCenterStatusErrInternalDataParse`
     - `kMusicContentCenterStatusErrMusicLoading`
     - `kMusicContentCenterStatusErrMusicDecryption`
-- `MusicContentCenterConfiguration` 中新增 `maxCacheSize`
+- `MusicContentCenterConfiguration` 中新增 `maxCacheSize` (Android, iOS)
 
 **修改**
 
-- `onMusicChartsResult` 中的 `status` 修改为 `errorCode`
-- `onMusicCollectionResult` 中的 `status` 修改为 `errorCode`
-- `onLyricResult` 中的 `status` 修改为 `errorCode`
-- `onPreLoadEvent` 中的 `msg` 修改为 `errorCode` 
+- `onMusicChartsResult` 中的 `status` 修改为 `errorCode` (Android, iOS)
+- `onMusicCollectionResult` 中的 `status` 修改为 `errorCode` (Android, iOS)
+- `onLyricResult` 中的 `status` 修改为 `errorCode` (Android, iOS)
+- `onPreLoadEvent` 中的 `msg` 修改为 `errorCode` (Android, iOS)
 
 **废弃**
 

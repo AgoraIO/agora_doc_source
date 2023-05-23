@@ -100,11 +100,11 @@
 
 **6. 优化版权音乐**
 
-针对在线 K 歌房场景，改版本新增 `getCaches` 和 `removeCaches` 方法，用于获取、删除音乐资源缓存，并新增状态码和错误码，可方便用户排查问题。
+针对在线 K 歌房场景，改版本新增 `getCaches` 和 `removeCache` 方法，用于获取、删除音乐资源缓存，并新增状态码和错误码，可方便用户排查问题。
 
 **7. 优化跨频道连麦**
 
-该版本新增 `startOrUpdateChannleMediaRelay` 和 `startOrUpdateChannleMediaRelayEx` 方法，通过一个方法实现开始跨频道转发和更新转发的目标频道，提升了接口易用性；同时，优化内部交互次数，有效降低调用了延迟。在降低开发难度的同时，为开发者提供更顺畅的使用体验。
+该版本新增 `startOrUpdateChannelMediaRelay` 和 `startOrUpdateChannelMediaRelayEx` 方法，通过一个方法实现开始跨频道转发和更新转发的目标频道，提升了接口易用性；同时，优化内部交互次数，有效降低调用了延迟。在降低开发难度的同时，为开发者提供更顺畅的使用体验。
 
 **8. 多路音频自采集**
 
