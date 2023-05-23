@@ -1,4 +1,4 @@
-## v4.2.0
+## v6.2.0 (对应 Native v6.1.0)
 
 该版本于 2023 年 5 月 23 日发布。
 
@@ -14,8 +14,8 @@
 |:---------|:--------|
 | <li>`startPrimaryCameraCapture` (Windows)</li><li>`startSecondaryCameraCapture` (Windows, iOS)</li> | `startCameraCapture` |
 | <li>`stopPrimaryCameraCapture` (Windows)</li><li>`stopSecondaryCameraCapture` (Windows, iOS)</li> | `stopCameraCapture` |
-| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` |
-| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` |
+| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` (Windows, macOS) |
+| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` (Windows, macOS) |
 
 **2. 视频数据获取 (Windows)**
 
@@ -44,7 +44,13 @@
 - `LocalTranscoderConfiguration` 中的 `VideoInputStreams` 变更为 `videoInputStreams`。
 - `TranscodingVideoStream` 中的枚举类 `MediaSourceType` 变更为 `VideoSourceType`。
 
-**6. 其他兼容性变更**
+**6. 虚拟声卡 (macOS)**
+
+自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 stateChanged 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
+
+<div class="alert note">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。</div>
+
+**7. 其他兼容性变更**
 
 - `onApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
 - `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`，因此下列方法原型也有相应更新：
