@@ -215,8 +215,6 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 #### Android
 
-#### 使用 Token 对用户鉴权
-
 本节以 Android 端灵动课堂 App 为例，展示如何使用 Token 对客户端的用户进行鉴权。
 
 下列参考代码来自灵动课堂 Android 端源码 [`app/src/main/java/io/agora/education/setting/FcrMainActivity.kt`](https://github.com/AgoraIO-Community/CloudClass-Android/blob/release/2.8.30/app/src/main/java/io/agora/education/setting/FcrMainActivity.kt)。
