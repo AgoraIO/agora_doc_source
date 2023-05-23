@@ -46,7 +46,9 @@
 **6. 其他兼容性变更**
 
 - `onApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
-- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`。
+- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink，因此下列方法原型也有相应更新`：（Windows）
+  - `onFrame`
+  - `IMediaPlayer` 下的 `registerAudioFrameObserver` [1/2]、`registerAudioFrameObserver`[2/2]
 - `enableDualStreamMode`[1/2] 和 `enableDualStreamMode`[2/2] 已废弃，请改用 `setDualStreamMode`[1/2] 和 `setDualStreamMode`[2/2]。
 - `startChannelMediaRelay`、`updateChannelMediaRelay`、`startChannelMediaRelayEx` 和 `updateChannelMediaRelayEx` 已废弃，请改用 `startOrUpdateChannelMediaRelay` 和 `startOrUpdateChannelMediaRelayEx`。
 
