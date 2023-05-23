@@ -19,7 +19,9 @@
 **3. 其他兼容性变更**
 
 - `OnApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
-- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`。
+- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`，因此下列方法原型也有相应更新：
+  - `OnFrame`
+  - `IMediaPlayer` 下的 `RegisterAudioFrameObserver` [1/2]、`RegisterAudioFrameObserver`[2/2]
 - `StartChannelMediaRelay`、`UpdateChannelMediaRelay`、`StartChannelMediaRelayEx` 和 `UpdateChannelMediaRelayEx` 已废弃，请改用 `StartOrUpdateChannelMediaRelay` 和 `StartOrUpdateChannelMediaRelayEx`。
 
 #### 新增特性
@@ -53,7 +55,7 @@
 
  **2. 提升音频文件类型兼容性（Android）**
 
-该版本提升了音频文件类型兼容性，你可以通过 `StartAudioMixing`[2/2]、`PlayEffect`[3/3]、`Open`[2/2]、`OpenWithMediaSource` 发放来打开以 `Content:/`/ 开头的 URI 文件。
+该版本提升了音频文件类型兼容性，你可以通过 `StartAudioMixing`[2/2]、`PlayEffect`[3/3]、`Open`、`OpenWithMediaSource` 方法来打开以 `Content://` 开头的 URI 文件。
 
 **3. 优化版权音乐（Android，iOS）**
 
@@ -80,7 +82,7 @@
 - 偶现耳返开启无效。(Android)
 - 调用 `Getdefaultaudiodevice` 后返回值中的 `Type` 字段信息错误。(macOS)
 - 偶现回声。(Android)
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS,Android)。
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS, Android)。
 
 #### API 变更
 
@@ -102,13 +104,13 @@
 
 - `DestroyMediaRecorder`
 
-- `IMusicContentCenter` 中新增如下方法：(iOS,Android)
+- `IMusicContentCenter` 中新增如下方法：(iOS, Android)
   - `RemoveCache`
   - `GetCaches`
 
 - `AudioTrackConfig`
 
-- `MusicCacheInfo` (iOS,Android)
+- `MusicCacheInfo` (iOS, Android)
 
 - `RecorderStreamInfo`
 
@@ -116,29 +118,29 @@
 
 - `AUDIO_TRACK_TYPE`
 
-- `MUSIC_CACHE_STATUS_TYPE ` (iOS,Android)
+- `MUSIC_CACHE_STATUS_TYPE ` (iOS, Android)
 
 - `RtcEngineContext` 中新增 `DomainLimit` 和 `AutoRegisterAgoraExtensions` 属性
 
 - `OnRecorderStateChanged`、`OnRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
 
-- `PreloadStatusCode` 中增加 `KPreloadStatusRemoved` (iOS,Android)
+- `PreloadStatusCode` 中增加 `KPreloadStatusRemoved` (iOS, Android)
 
-- `MusicContentCenterStatusCode` 中增加如下枚举：(iOS,Android)
+- `MusicContentCenterStatusCode` 中增加如下枚举：(iOS, Android)
   - `KMusicContentCenterStatusErrGateway`
   - `KMusicContentCenterStatusErrPermissionAndResource`
   - `KMusicContentCenterStatusErrInternalDataParse`
   - `KMusicContentCenterStatusErrMusicLoading`
   - `KMusicContentCenterStatusErrMusicDecryption`
 
-- `MusicContentCenterConfiguration` 中新增 `maxCacheSize ` (iOS,Android)
+- `MusicContentCenterConfiguration` 中新增 `maxCacheSize ` (iOS, Android)
 
 **修改**
 
-- `OnMusicChartsResult` 中的 `status` 修改为 `error_code` (iOS,Android)
-- `OnMusicCollectionResult` 中的 `status` 修改为 `error_code` (iOS,Android)
-- `OnLyricResult` 中的 `status` 修改为 `error_code` (iOS,Android)
-- `OnPreLoadEvent `中的 `msg` 修改为 `error_code` (iOS,Android)
+- `OnMusicChartsResult` 中的 `status` 修改为 `error_code` (iOS, Android)
+- `OnMusicCollectionResult` 中的 `status` 修改为 `error_code` (iOS, Android)
+- `OnLyricResult` 中的 `status` 修改为 `error_code` (iOS, Android)
+- `OnPreLoadEvent `中的 `msg` 修改为 `error_code` (iOS, Android)
 
 **废弃**
 

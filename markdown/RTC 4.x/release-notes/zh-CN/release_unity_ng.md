@@ -12,9 +12,9 @@
 
 | 已删除方法                                                   | 替代方法                  |
 | :----------------------------------------------------------- | :------------------------ |
-| <li>`StartPrimaryCameraCapture (Windows)`</li><li>`StartSecondaryCameraCapture`<li> | `StartCameraCapture`      |
-| <li>`StopPrimaryCameraCapture (Windows)`</li><li>`StopSecondaryCameraCapture`</li> | `StopCameraCapture`       |
-| <li>`StartPrimaryScreenCapture (Windows)`</li>`StartSecondaryScreenCapture`</li> | `StartScreenCapture`[2/2] |
+| <li>`StartPrimaryCameraCapture`</li><li>`StartSecondaryCameraCapture`<li> | `StartCameraCapture`      |
+| <li>`StopPrimaryCameraCapture`</li><li>`StopSecondaryCameraCapture`</li> | `StopCameraCapture`       |
+| <li>`StartPrimaryScreenCapture `</li>`StartSecondaryScreenCapture`</li> | `StartScreenCapture`[2/2] |
 | <li>`StopPrimaryScreenCapture`</li><li>`StopSecondaryScreenCapture`</li> | `StopScreenCapture`[2/2]  |
 
 **2.视频渲染**
@@ -45,7 +45,9 @@
 **7. 其他兼容性变更**
 
 - `OnApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
-- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`。
+- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`，因此下列方法原型也有相应更新：
+  - `OnFrame`
+  - `IMediaPlayer` 下的 `RegisterAudioFrameObserver` [1/2]、`RegisterAudioFrameObserver`[2/2]
 - `EnableDualStreamMode`[1/2] 和 `EnableDualStreamMode`[2/2] 已废弃，请改用 `SetDualStreamMode`[1/2] 和 `SetDualStreamMode`[2/2]。
 - `StartChannelMediaRelay`、`UpdateChannelMediaRelay`、`StartChannelMediaRelayEx` 和 `UpdateChannelMediaRelayEx` 已废弃，请改用 `StartOrUpdateChannelMediaRelay` 和 `StartOrUpdateChannelMediaRelayEx`。
 
@@ -106,7 +108,7 @@
 
  **3. 提升音频文件类型兼容性（Android）**
 
-该版本提升了音频文件类型兼容性，你可以通过 `StartAudioMixing`[2/2]、`PlayEffect`[3/3]、`Open`[2/2]、`OpenWithMediaSource` 发放来打开以 `Content:/`/ 开头的 URI 文件。
+该版本提升了音频文件类型兼容性，你可以通过 `StartAudioMixing`[2/2]、`PlayEffect`[3/3]、`Open`、`OpenWithMediaSource` 方法来打开以 `Content://` 开头的 URI 文件。
 
 
  **4. 提升渲染兼容性（Windows）**
@@ -151,7 +153,7 @@
 - 调用 `Getdefaultaudiodevice` 后返回值中的 `Type` 字段信息错误。(macOS)
 - 偶现回声。(Android)
 - 屏幕共享偶现共享画面抖动。(macOS)
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS,Android)。
+- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户客户端状态异常。(iOS, Android)。
 
 
 
@@ -163,9 +165,9 @@
 
 - `StopCameraCapture`
 
-- `StartScreenCapture[2/2]`
+- `StartScreenCapture`[2/2]
 
-- `StopScreenCapture[2/2]`
+- `StopScreenCapture`[2/2]
 
 - `StartOrUpdateChannelMediaRelay`
 
@@ -179,9 +181,9 @@
 
 - `OnLocalVideoTranscoderError`
 
-- `QueryScreenCaptureCapability` (iOS,Android)
+- `QueryScreenCaptureCapability` (iOS, Android)
 
-- `SetScreenCaptureScenario` (iOS,Android)
+- `SetScreenCaptureScenario` (iOS, Android)
 
 - `SetAINSMode`
 
@@ -193,13 +195,13 @@
 
 - `DestroyMediaRecorder`
 
-- `IMusicContentCenter` 中新增如下方法：(iOS,Android)
+- `IMusicContentCenter` 中新增如下方法：(iOS, Android)
   - `RemoveCache`
   - `GetCaches`
 
 - `AudioTrackConfig`
 
-- `MusicCacheInfo` (iOS,Android)
+- `MusicCacheInfo` (iOS, Android)
 
 - `RecorderStreamInfo`
 
@@ -207,7 +209,7 @@
 
 - `AUDIO_TRACK_TYPE`
 
-- `MUSIC_CACHE_STATUS_TYPE ` (iOS,Android)
+- `MUSIC_CACHE_STATUS_TYPE ` (iOS, Android)
 
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
 
@@ -221,23 +223,23 @@
 
 - `BACKGROUND_SOURCE_TYPE` 中新增 `BACKGROUND_NONE` 和 `BACKGROUND_VIDEO`
 
-- `PreloadStatusCode` 中增加 `KPreloadStatusRemoved` (iOS,Android)
+- `PreloadStatusCode` 中增加 `KPreloadStatusRemoved` (iOS, Android)
 
-- `MusicContentCenterStatusCode` 中增加如下枚举：(iOS,Android)
+- `MusicContentCenterStatusCode` 中增加如下枚举：(iOS, Android)
   - `KMusicContentCenterStatusErrGateway`
   - `KMusicContentCenterStatusErrPermissionAndResource`
   - `KMusicContentCenterStatusErrInternalDataParse`
   - `KMusicContentCenterStatusErrMusicLoading`
   - `KMusicContentCenterStatusErrMusicDecryption`
 
-- `MusicContentCenterConfiguration` 中新增 `maxCacheSize ` (iOS,Android)
+- `MusicContentCenterConfiguration` 中新增 `maxCacheSize ` (iOS, Android)
 
 **修改**
 
-- `OnMusicChartsResult` 中的 `status` 修改为 `error_code` (iOS,Android)
-- `OnMusicCollectionResult` 中的 `status` 修改为 `error_code` (iOS,Android)
-- `OnLyricResult` 中的 `status` 修改为 `error_code` (iOS,Android)
-- `OnPreLoadEvent `中的 `msg` 修改为 `error_code` (iOS,Android)
+- `OnMusicChartsResult` 中的 `status` 修改为 `error_code` (iOS, Android)
+- `OnMusicCollectionResult` 中的 `status` 修改为 `error_code` (iOS, Android)
+- `OnLyricResult` 中的 `status` 修改为 `error_code` (iOS, Android)
+- `OnPreLoadEvent `中的 `msg` 修改为 `error_code` (iOS, Android)
 
 **废弃**
 
