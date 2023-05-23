@@ -119,7 +119,7 @@
 
 - `AUDIO_AINS_MODE`
 
-- `AUDIO_TRACK_TYPE`
+- `AgoraAudioTrackType`
 
 - `AgoraApplicationScenarioType`
 
