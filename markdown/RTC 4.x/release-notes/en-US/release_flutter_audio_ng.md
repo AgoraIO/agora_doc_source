@@ -31,6 +31,10 @@ This release introduces the AI noise reduction function. Once enabled, the SDK a
 
 In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
+**3. Instant frame rendering**
+
+This release adds the `enableInstantMediaRendering` method to enable instant rendering mode for audio frames, which can speed up the first audio frame rendering after the user joins the channel.
+
 
 #### Improvements
 
@@ -63,6 +67,10 @@ This release fixed the following issues:
 - Occasional failure when enabling in-ear monitoring. (Android)
 - Occasional echo. (Android)
 - Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback. (Android, iOS)
+- Playing audio files with a sample rate of 48 kHz failed.
+- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. (Android)
+- When the playback of the local music finished, the `onAudioMixingFinished` callback was not properly triggered. (Android)
+- At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
 
 
 #### API changes
@@ -79,6 +87,7 @@ This release fixed the following issues:
 - `AudioAinsMode`
 - `AudioTrackType`
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
+- `enableInstantMediaRendering`
 
 **Deprecated**
 

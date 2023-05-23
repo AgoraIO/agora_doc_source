@@ -89,7 +89,7 @@
 
 **4.本地录制远端音视频（Beta）**
 
-该版本新增本地录制远端音视频功能。本地用户可以录制远端用户的音频视频流，便于将来回放、分析或分享，适用于在线教育、企业培训、在线会议等多类场景。为更准确报告录制状态，该版本在 `onRecorderStateChanged` 、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数，用于表示录制的音视频流的具体信息，并新增 `createMediaRecorder` 方法，用于创建本地或远端的录制对象。
+该版本新增本地录制远端音视频功能。本地用户可以录制远端用户的音频视频流，便于将来回放、分析或分享，适用于在线教育、企业培训、在线会议等多类场景。为更准确报告录制状态，该版本在 `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数，用于表示录制的音视频流的具体信息，并新增 `createMediaRecorder` 方法，用于创建本地或远端的录制对象。
 
 你可以通过如下方法体验本地录制远端音视频功能：
 
@@ -101,7 +101,7 @@
 
 **5. 本地合图**
 
-自该版本起，本地合图功能支持 Mac 端。此外，该版本新增了 `onLocalVideoTranscoderError` 回调，当你在开启本地合图或者更新本地合图配置失败时，SDK 会触发该回调并报告合图失败的原因。
+自该版本起，本地合图功能支持 macOS。此外，该版本新增了 `onLocalVideoTranscoderError` 回调，当你在开启本地合图或者更新本地合图配置失败时，SDK 会触发该回调并报告合图失败的原因。
 
 **6. 多端同步**
 
@@ -158,9 +158,8 @@
 该版本修复了以下问题：
 
 - 当快速切换身份角色时，观众端听不到声音。
-- 接收端默认接收小流几秒后自动变为大流。(Mac)。
-- 调用 `getdefaultaudiodevice` 后返回值中的 `type` 字段信息错误。(Mac)
-- 屏幕共享偶现共享画面抖动。(Mac)
+- 接收端默认接收小流几秒后自动变为大流。(macOS)。
+- 屏幕共享偶现共享画面抖动。(macOS)
 - 使用媒体播放器播放网络摄像头的 RTSP 码流时，偶现花屏。（Windows）
 - 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
 - 把播放器的渲染视图设为 UIViewController 的视图后，使用播放器播放视频，视频窗口切到全屏时视频画面会从左下角开始逐渐放大。（macOS）
@@ -223,22 +222,22 @@
 **删除**
 
 - `startPrimaryScreenCapture `
-- `startSecondaryScreenCapture `
-- `stopPrimaryScreenCapture `
-- `stopSecondaryScreenCapture `
-- `startPrimaryCameraCapture `
-- `startSecondaryCameraCapture `
-- `stopPrimaryCameraCapture `
-- `stopSecondaryCameraCapture `
-- `onSecondaryPreEncodeCameraVideoFrame `（Windows）
+- `startSecondaryScreenCapture`
+- `stopPrimaryScreenCapture`
+- `stopSecondaryScreenCapture`
+- `startPrimaryCameraCapture`
+- `startSecondaryCameraCapture`
+- `stopPrimaryCameraCapture`
+- `stopSecondaryCameraCapture`
+- `onSecondaryPreEncodeCameraVideoFrame`（Windows）
 - `onScreenCaptureVideoFrame`（Windows）
-- `onPreEncodeScreenVideoFrame `（Windows）
-- `onSecondaryPreEncodeScreenVideoFrame `（Windows）
+- `onPreEncodeScreenVideoFrame`（Windows）
+- `onSecondaryPreEncodeScreenVideoFrame`（Windows）
 - `onApiCallExecuted`
 - `ChannelMediaOptions `中的` publishCustomAudioTrackEnableAec`
 - `getMediaRecorder`
 - `IMediaRecorder` 类中的 `release`
-- `AgoraIidMediaRecorder` （Windows）
+- `AgoraIidMediaRecorder`（Windows）
 - `startRecording`、`stopRecording`、`setMediaRecorderObserver` 中删除 `connection` 参数
 
 
