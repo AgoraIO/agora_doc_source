@@ -24,13 +24,15 @@ $$
 
 ### 创建 Windows 项目
 
-1. 参考[创建 C# Winform 应用项目](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/ide/create-csharp-winform-visual-studio?view=vs-2017)，在 Visual Studio 上创建一个 Windows Forms 应用项目。
-2. 参考 **[How to: Create and edit configurations](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/ide/how-to-create-and-edit-configurations?view=vs-2017)**，为你的项目添加配置信息和目标平台（x64/x86 Platforms）。
+1. 在 Visual Studio 上创建一个 Windows Forms 应用项目，详见[创建 C# Winform 应用项目](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/ide/create-csharp-winform-visual-studio?view=vs-2017)。
+2. 为你的项目添加配置信息和目标平台（x64/x86 Platforms），详见 [How to: Create and edit configurations](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/ide/how-to-create-and-edit-configurations?view=vs-2017)。
 
 ### 集成 SDK
 
-请参考[快速入门：在 Visual Studio 中安装和使用包](https://learn.microsoft.com/zh-cn/nuget/quickstart/install-and-use-a-package-in-visual-studio)，将 SDK 集成到项目中。你可以在 [nuget](https://www.nuget.org/packages/agora_rtc_sdk/#versions-body-tab) 中获取 agora_rtc_sdk 的版本信息。
 
+使用 Visual Studio 中的 NuGet 包管理器，将 SDK 集成到项目中。详见[快速入门：在 Visual Studio 中安装和使用包](https://learn.microsoft.com/zh-cn/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
+ 
+<div class="alert info">你可以在 <a href="https://www.nuget.org/packages/agora_rtc_sdk/#versions-body-tab">agora_rtc_sdk</a> 中获取最新发布的 SDK 的版本信息。</div>
 ## 在客户端实现音频通话
 
 本节介绍如何使用 SDK 在你的项目中实现音频通话功能。
@@ -50,7 +52,7 @@ $$
 
    a. 在你的项目中，打开 **Solution Explore** 窗口，双击 **Form1.cs**，打开 **Toolbox** 窗口，选择 **Button** 控件，依次添加两个按钮，并将两个按钮拖放至合适位置。
    b. 将鼠标移至其中一个按钮上，点击鼠标右键，选中 **Properties**，在打开的 **Properties** 窗口中修改 **Text** 属性为 **Join**，修改 **Name** 属性为 **btnJoin**。
-   c. 重复上一个步骤来修改 **Leave** 按钮的属性：修改 **Text** 为 **Leave**；修改 **Name** 为 **btnLeave**。
+   c. 重复上一个步骤来修改另一个按钮的属性：修改 **Text** 为 **Leave**；修改 **Name** 为 **btnLeave**。
 
 3. 创建频道名输入框
 
@@ -72,12 +74,12 @@ $$
 
 2. 在弹出的 `Form1.cs` 界面中，将下列代码添加至 `using System.Windows.Forms;` 之后：
 
-```c#
-using Agora.Rtc;
-```
+    ```c#
+    using Agora.Rtc;
+    ```
 
 3. 创建加入频道相关变量
-   在 `Form1.cs` 中，将下列代码添加至 `public Form1()`之前：
+   在 `Form1.cs` 中，将下列代码添加至 `public Form1()` 之前：
 
    ```c#
    // 填写项目的 App ID，可在声网控制台中生成。
