@@ -76,6 +76,8 @@ defined_path_text = args['defined_path']
 # These variables are used globally
 # android_path, cpp_path, rust_full_path, electron_path
 android_path = "config/keys-rtc-api-android.ditamap"
+ios_path = "config/keys-rtc-ng-api-ios.ditamap"
+macos_path = "config/keys-rtc-ng-api-macos.ditamap"
 cpp_path = "config/keys-rtc-api-cpp.ditamap"
 cpp_ng_path = "config/keys-rtc-ng-api-cpp.ditamap"
 rust_path = "config/keys-rtc-api-rust.ditamap"
@@ -93,6 +95,8 @@ unity_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
 if sys.platform == 'darwin' or sys.platform == 'linux':
     print("macOS")
     android_full_path = path.join(working_dir, android_path)
+    ios_full_path = path.join(working_dir, ios_path)
+    macos_full_path = path.join(working_dir, macos_path)
     cpp_full_path = path.join(working_dir, cpp_path)
     cpp_ng_full_path = path.join(working_dir, cpp_ng_path)
     rust_full_path = path.join(working_dir, rust_path)
@@ -111,6 +115,8 @@ if sys.platform == 'darwin' or sys.platform == 'linux':
 elif sys.platform == 'win32':
     print("Windows")
     android_full_path = path.join(working_dir, android_path.replace("/", "\\"))
+    ios_full_path = path.join(working_dir, ios_path.replace("/", "\\"))
+    macos_full_path = path.join(working_dir, macos_path.replace("/", "\\"))
     cpp_full_path = path.join(working_dir, cpp_path.replace("/", "\\"))
     cpp_ng_full_path = path.join(working_dir, cpp_ng_path.replace("/", "\\"))
     rust_full_path = path.join(working_dir, rust_path.replace("/", "\\"))
@@ -140,6 +146,10 @@ if defined_path_text == "flutter":
     print("The defined path is " + flutter_full_path)
 elif defined_path_text == "electron":
     defined_path = electron_full_path
+elif defined_path_text == "ios":
+    defined_path = ios_full_path
+elif defined_path_text == "macos":
+    defined_path = macos_full_path
 elif defined_path_text == "unity":
     defined_path = unity_full_path
 elif defined_path_text == "unity-ng":
@@ -212,7 +222,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     with open(file_dir, "r", encoding='utf-8') as f:
         text= f.read()
         text = re.sub('>\s+(?=<)', '>', text)
-        
+
         #text = re.sub('<ph',' <ph', text)
         #text = re.sub('<apiname',' <apiname', text)
         #text = re.sub('<codeph',' <codeph', text)
@@ -734,6 +744,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
         # 3. Set href text in current dita
         href_text = ""
         if xref.get("keyref") is not None:
+            # TODO: Change xref keyref bits
             # xref.text = str(xref.get("keyref"))
             # ET.SubElement(xref, "text")
             # dita_file_tree = ET.parse(defined_path)
@@ -741,6 +752,9 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             dita_file_root = dita_file_tree.getroot()
             for keydef in dita_file_root.iter("keydef"):
                 if keydef.get("keys") == xref.get("keyref"):
+                    # TODO: At the right map level, fetch href
+                    # keydef.get("href") -> "../API/api_imediaplayercachemanager_getmaxcachefilesize.dita"
+                    # open that file, find matching codeblock text for obj-c
                     for text in keydef.itertext():
                         href_text = href_text + text
                     xref.text = href_text
@@ -1120,7 +1134,10 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             for text in section.itertext():
                 print(text)
                 if text is not None:
-                    return_values = return_values + text
+                    if return_values:
+                        # Add a space between the previous section and this one.
+                        return_values += " "
+                    return_values += text
 
     print("----------------------- Return values ------------------------")
     print(return_values)
