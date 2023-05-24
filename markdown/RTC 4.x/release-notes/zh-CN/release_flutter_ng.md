@@ -10,21 +10,21 @@
 
 原有用于摄像头和屏幕采集的方法已删除，请改用下表中列出的替代方法，并通过设置 `sourceType` 来指定视频源。
 
-| 已删除方法 | 替代方法 ｜
+| 已删除方法 | 替代方法 |
 |:---------|:--------|
 | <li>`startPrimaryCameraCapture` (Windows)</li><li>`startSecondaryCameraCapture` (Windows, iOS)</li> | `startCameraCapture` |
 | <li>`stopPrimaryCameraCapture` (Windows)</li><li>`stopSecondaryCameraCapture` (Windows, iOS)</li> | `stopCameraCapture` |
-| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` (Windows, macOS) |
-| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` (Windows, macOS) |
+| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` (Windows) |
+| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` (Windows) |
 
-**2. 视频数据获取 (Windows)**
+**2. 视频数据获取**
 
-以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中新增的 `sourceType` 参数得知视频源类型。
-
-- `onSecondaryPreEncodeCameraVideoFrame`
-- `onScreenCaptureVideoFrame`
-- `onPreEncodeScreenVideoFrame`
-- `onSecondaryPreEncodeScreenVideoFrame`
+- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
+- 以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中的 `sourceType` 参数得知视频源类型。(Windows)
+    - `onSecondaryPreEncodeCameraVideoFrame`
+    - `onScreenCaptureVideoFrame`
+    - `onPreEncodeScreenVideoFrame`
+    - `onSecondaryPreEncodeScreenVideoFrame`
 
 **3. 媒体发布选项**
 
@@ -79,7 +79,7 @@
 - 针对会议场景对小流码率要求较高的情况，自动启用多项抗弱网技术，提升小流的抗弱网能力，确保多路流订阅时接收端的流畅性。
 - 实时监测接收端大小流的订阅人数，根据订阅人数动态调节大流配置、动态开启和关闭小流，以节省上行带宽和消耗。
 
-**4. 本地录制远端音视频(Beta)**
+**4. 本地录制远端音视频 (Beta)**
 
 该版本新增本地录制远端音视频功能。本地用户可以录制远端用户的音频视频流，便于将来回放、分析或分享，适用于在线教育、企业培训、在线会议等多类场景。为更准确报告录制状态，该版本在 `onRecorderStateChanged`、`onRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数，用于表示录制的音视频流的具体信息，并新增 `createMediaRecorder` 方法，用于创建本地或远端的录制对象。
 

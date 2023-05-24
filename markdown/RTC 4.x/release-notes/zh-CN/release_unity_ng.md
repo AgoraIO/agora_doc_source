@@ -37,9 +37,14 @@
 - 删除 `GetMediaRecorder` 方法，可通过该版本新增的 `CreateMediaRecorder` 方法来创建录制对象。
 - 删除 `StartRecording` 、`StopRecording`、`SetMediaRecorderObserver` 中的 `connection` 参数。
 
-**6. 本地合图**
+**6. 本地合图 (Windows)**
 
 `TranscodingVideoStream` 中的枚举类 `MEDIA_SOURCE_TYPE` 变更为 `VIDEO_SOURCE_TYPE`。
+
+**7. 虚拟声卡 (macOS)**
+
+自该版本起，SDK 新增对第三方虚拟声卡的支持，你可以将第三方虚拟声卡作为 SDK 的音频输入或输出设备。你可以通过 stateChanged 回调来了解当前 SDK 选择的输入输出设备是否为虚拟声卡。
+<div class="alert info">加频道时如果设置 AgoraALD、Soundflower 做为系统的默认输入或输出设备，会造成无声。</div>
 
 **7. 视频编码分辨率**
 
@@ -178,14 +183,14 @@ macOS，iOS，Android：该版本新增本地合图功能，用户可以调用 `
 - 开始屏幕共享后添加水印，远端接收的屏幕共享画面没有水印。
 - 在屏幕共享场景下，如果将一个窗口设置为前置和描边，则必现窗口前置失败。
 - 在本地合图场景下，不支持对 PNG 和 GIF 图片的 Alpha 通道渲染，导致透明底色的图片显示为非透明底色。
-- 加入频道后接入外接摄像头，调用 `setDevice` 指定视频采集设备为该外接摄像头，方法未生效。
+- 加入频道后接入外接摄像头，调用 `SetDevice` 指定视频采集设备为该外接摄像头，方法未生效。
 
 **Android**
 - 偶现耳返开启无效。
-- 偶现回声
+- 偶现回声。
 - 由于 `OnRemoteAudioStateChanged` 回调异常造成客户端状态异常。
 - 在红米 9A 上进行 CDN 推流，将推流的视频分辨率设置为 3840 × 2160 必现崩溃。
-- 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音
+- 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音。
 - 本地音乐文件结束播放时，未能触发 `OnAudioMixingFinished` 回调。
 - 接收端通过视频观测器接收的第一帧视频帧偶现丢包。
 - 在多频道场景下开启屏幕共享，偶现远端看到的本地屏幕共享画面为黑屏。
@@ -200,14 +205,12 @@ macOS，iOS，Android：该版本新增本地合图功能，用户可以调用 `
 - 接收端默认接收小流几秒后自动变为大流。
 - 屏幕共享偶现共享画面抖动。
 - 把播放器的渲染视图设为 UIViewController 的视图后，使用播放器播放视频，视频窗口切到全屏时视频画面会从左下角开始逐渐放大。
-- 加入频道后接入外接摄像头，调用 `setDevice` 指定视频采集设备为该外接摄像头，方法未生效。
+- 加入频道后接入外接摄像头，调用 `SetDevice` 指定视频采集设备为该外接摄像头，方法未生效。
 
 **全平台**
 - 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
 - 当快速切换身份角色时，观众端听不到声音。
 - 当频道内有多路视频流时，调用部分视频增强插件相关 API 偶现失败。
-
-
 
 #### API 变更
 
@@ -230,19 +233,16 @@ macOS，iOS，Android：该版本新增本地合图功能，用户可以调用 `
 - `SetAINSMode`
 - `CreateAudioCustomTrack`
 - `DestroyAudioCustomTrack`
-- `CreateMediaRecorder`
-- `DestroyMediaRecorder`
 - `IMusicContentCenter` 中新增如下方法：(iOS, Android)
   - `RemoveCache`
   - `GetCaches`
 - `AudioTrackConfig`
 - `MusicCacheInfo` (iOS, Android)
-- `RecorderStreamInfo`
 - `AUDIO_AINS_MODE`
 - `AUDIO_TRACK_TYPE`
 - `MUSIC_CACHE_STATUS_TYPE ` (iOS, Android)
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
-- `SCREEN_CAPTURE_CAPABILITY_LEVEL`
+- `SCREEN_CAPTURE_FRAMERATE_CAPABILITY`
 - `RtcEngineContext` 中新增 `DomainLimit` 和 `AutoRegisterAgoraExtensions` 属性
 - `OnRecorderStateChanged`、`OnRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
 - `OnCaptureVideoFrame` 和 `OnPreEncodeVideoFrame` 中增加 `sourceType` 参数
@@ -292,8 +292,5 @@ macOS，iOS，Android：该版本新增本地合图功能，用户可以调用 `
 - `StopSecondaryCameraCapture` (Windows/iOS)
 - `OnApiCallExecuted`
 - `ChannelMediaOptions` 中的 `PublishCustomAudioTrackEnableAec`
-- `GetMediaRecorder`
-- `AGORA_IID_MEDIA_RECORDER` 
-- `StartRecording`、`StopRecording`、`SetMediaRecorderObserver` 中删除 `connection` 参数
 - `EnableRemoteSuperResolution`
 - `RemoteVideoStats` 中删除 `superResolutionType`

@@ -14,17 +14,18 @@ This release optimizes the APIs for camera and screen capture function. As of v6
 |:---------|:--------|
 | <li>`startPrimaryCameraCapture` (Windows)</li><li>`startSecondaryCameraCapture` (Windows, iOS)</li> | `startCameraCapture` |
 | <li>`stopPrimaryCameraCapture` (Windows)</li><li>`stopSecondaryCameraCapture` (Windows, iOS)</li> | `stopCameraCapture` |
-| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` (Windows, macOS) |
-| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` (Windows, macOS) |
+| <li>`startPrimaryScreenCapture` (Windows)</li><li>`startSecondaryScreenCapture` (Windows)</li> | `startScreenCaptureBySourceType` (Windows) |
+| <li>`stopPrimaryScreenCapture` (Windows)</li><li>`stopSecondaryScreenCapture` (Windows)</li> | `stopScreenCaptureBySourceType` (Windows) |
 
-**2. Video data acquisition (Windows)**
+**2. Video data acquisition**
 
-The following callbacks are deleted. Get the video source type through the newly-added `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
+- The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
 
-- `onSecondaryPreEncodeCameraVideoFrame`
-- `onScreenCaptureVideoFrame`
-- `onPreEncodeScreenVideoFrame`
-- `onSecondaryPreEncodeScreenVideoFrame`
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. (Windows)
+    - `onSecondaryPreEncodeCameraVideoFrame`
+    - `onScreenCaptureVideoFrame`
+    - `onPreEncodeScreenVideoFrame`
+    - `onSecondaryPreEncodeScreenVideoFrame`
 
 **3. Channel media options**
 
