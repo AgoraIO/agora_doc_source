@@ -1,13 +1,14 @@
 # 高音质最佳实践
 
-在对音质体验要求较高的场景下，你可以参考本文设置实现最佳音质。
+本文适用于对音质体验要求较高的场景，包括但不限于K歌、播客和表演性质的语聊。你可以参考本文提供的实践方法，获得高清晰度、高还原度的音频效果。
 
+<div class="alert info">本文以 Android 客户端为例。如需设置其他平台，请参考对应平台的同名 API。</div>
 
 ## 通用设置
 
 ### 设置音频编码属性
 
-调用 [`setAudioProfile[2/2]`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioprofile2) 设置音频编码属性为 `MUSIC_HIGH_QUALITY_STEREO(5)`，即 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
+调用 [`setAudioProfile`[2/2]](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioprofile2) 设置音频编码属性为 `MUSIC_HIGH_QUALITY_STEREO(5)`，即 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps。
 
 ```java
 setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
@@ -22,7 +23,7 @@ setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
 ```
 
 
-## (仅适用声卡用户) 声卡设置
+## 声卡用户设置
 
 ### 关闭 3A
 
