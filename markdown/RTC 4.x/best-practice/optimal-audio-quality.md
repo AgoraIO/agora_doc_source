@@ -25,9 +25,11 @@ setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
 
 ## 声卡用户设置
 
+该小节仅适用于使用声卡的用户。
+
 ### 关闭 3A
 
-使用声卡的前提下是没有回声噪声问题，因此可以调用 [`setParameters`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_network.html?platform=Android#api_irtcengine_setparameters) 关闭默认开启的回声消除 (AEC)、降噪 (ANS) 和增效控制 (AGC)。
+声卡通常会提供一些内置的音频处理，比如回声、噪声消除等，如果在应用层开启3A，可能会导致音频信号的过度处理和不同算法之间互相干扰，对音质有一定干扰，因此可以调用 [`setParameters`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_network.html?platform=Android#api_irtcengine_setparameters) 关闭默认开启的回声消除 (AEC)、降噪 (ANS) 和增效控制 (AGC)。
 
 ```java
 setParameters("{"che.audio.aec.enable":false}");  // 关闭回音消除
