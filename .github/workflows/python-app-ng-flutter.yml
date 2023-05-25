@@ -4,11 +4,9 @@ name: Awesome JSON CI build for NG Flutter SDK
 on:
     push:
         branches:
-        #    - 'release/rtc-ng/4.1.0'
             - 'master'
     pull_request:
         branches:
-        #    - 'release/rtc-ng/4.1.0'
             - 'master'
 jobs:
     build:
@@ -33,13 +31,22 @@ jobs:
                   echo "Running for flutter NG"
                   python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter --json_file flutter_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
             - name: Run EN json creation
-              if: always()
               run: |
                   cd xml2json
                   echo "Running for flutter NG"
                   python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+            - name: Upload CN Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: flutter_ng_json_template_cn.json
+                path: xml2json/flutter_cn_ng.json
+            - name: Upload EN Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                name: flutter_ng_json_template_en.json
+                path: xml2json/flutter_en_ng.json
             - name: Upload Flutter NG CN JSON to release
-              if: always()
+              if: github.ref == github.event.repository.default_branch
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,7 +56,7 @@ jobs:
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload Flutter NG EN JSON to release
-              if: always()
+              if: github.ref == github.event.repository.default_branch
               uses: svenstaro/upload-release-action@v2
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
