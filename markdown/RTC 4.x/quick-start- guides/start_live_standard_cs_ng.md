@@ -250,9 +250,9 @@ $$
            ChannelMediaOptions options = new ChannelMediaOptions();
            // 将频道场景设置为直播。
            options.channelProfile.SetValue(CHANNEL_PROFILE_TYPE.CHANNEL_PROFILE_LIVE_BROADCASTING);
-           // 将用户角色设置为主播或观众。
-           options.clientRoleType.SetValue(CLIENT_ROLE_TYPE.CLIENT_ROLE_BROADCASTER);
-           // 极速直播下的观众，需设置用户级别为 AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY
+           // 将用户角色设置为主播或观众。此处以观众为例。
+           options.clientRoleType.SetValue(CLIENT_ROLE_TYPE.CLIENT_ROLE_AUDIENCE);
+           // 对于极速直播下的观众，需设置用户级别为 AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY；对于主播，无需此设置。
            options.audienceLatencyLevel.SetValue(AUDIENCE_LATENCY_LEVEL_TYPE.AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY);
            // 使用临时 Token 加入频道。
            var ret = engine_.JoinChannel(APP_TOKEN, txChannelName.Text, 0, options);
@@ -295,8 +295,8 @@ $$
 
 1. 将你从声网控制台获取的 App ID、频道名以及临时 Token 别填入到 `Form1.cs` 文件的 `APP_ID` 和 `APP_TOKEN` 中。
 2. 在 Visual Studio 中点击 **Start** 按钮运行你的项目，你将在本地视图中看到自己。
-3. 输入频道名并点击 **Join** 按钮加入频道。
-4. 邀请一位朋友通过另一台设备来使用相同的 App ID、Token、频道名加入频道。如果你的朋友以主播身份加入，你们可以听见、看见对方；如果作为观众加入，你只能看到自己，你的朋友可以看到你并听到你的声音。
+3. 在输入框中输入你在声网控制台获取的频道名，并点击 **Join** 按钮加入频道。
+4. 邀请一位朋友通过另一台设备来使用相同的 App ID、Token、频道名加入频道。如果你的朋友以主播身份加入，你们可以听见、看见对方；如果你的朋友作为观众加入，你只能看到自己，你的朋友可以看到你并听到你的声音。
 
 ### 示例项目
 
