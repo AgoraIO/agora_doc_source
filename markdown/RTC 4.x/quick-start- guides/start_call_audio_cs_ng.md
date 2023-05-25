@@ -11,8 +11,7 @@ $$
 - [Microsoft Visual Studio 2017 或以上版本](https://visualstudio.microsoft.com/zh-hans/vs/older-downloads/)
 - Windows 7 或以上版本的设备
 - [.NET 桌面开发组件](https://learn.microsoft.com/en-us/dotnet/framework/install/guide-for-developers)
-- 有效的声网账户（免费[注册](https://dashboard.agora.io/)）
-- 计算机可以访问互联网。请确保你的网络环境未部署防火墙，否则可能无法正常使用声网服务。
+- 计算机可以访问互联网。如果你的网络环境部署了防火墙，请参考[应用企业防火墙限制](https://docportal.shengwang.cn/cn/video-call-4.x/firewall)。
 - 有效的[声网账户](https://console.agora.io/)和声网项目，请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)，从声网控制台获取以下信息：
   - App ID：声网随机生成的字符串，用于识别你的 app。
   - 临时 Token：你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。临时 Token 的有效期为 24 小时。
@@ -24,8 +23,8 @@ $$
 
 ### 创建 Windows 项目
 
-1. 在 Visual Studio 上创建一个 Windows Forms 应用项目，详见[创建 C# Winform 应用项目](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/ide/create-csharp-winform-visual-studio?view=vs-2017)。
-2. 为你的项目添加配置信息和目标平台（x64/x86 Platforms），详见 [How to: Create and edit configurations](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/ide/how-to-create-and-edit-configurations?view=vs-2017)。
+1. 在 Visual Studio 上创建一个 Windows Forms 应用项目，详见 [Create a Windows Forms app in Visual Studio with C#](https://learn.microsoft.com/en-us/previous-versions/visualstudio/visual-studio-2017/ide/create-csharp-winform-visual-studio?view=vs-2017)。
+3. 打开 **Configuration Manager** 窗口，在 **Active solution platform** 下拉菜单中选择 **New**，在弹出的窗口中选择 **x64** 或 **x86** 作为目标平台。
 
 ### 集成 SDK
 
@@ -39,16 +38,16 @@ $$
 
 ### 创建用户界面
 
-为直观地体验音频通话，需根据应用场景创建用户界面 (UI)。若你的项目中已有用户界面，可略过此步骤。
+为直观地体验音频通话，你需要根据应用场景创建用户界面 (UI)。若你的项目中已有用户界面，可略过此步骤。
 
-如果你想实现一个音频通话，推荐在 UI 上添加以下控件：
+如果你想实现音频通话，推荐在 UI 上添加以下控件：
 
 - 加入频道按钮
 - 离开频道按钮
 
 参考以下步骤创建 UI。
 
-1. 创建 **Join**/**Leave** 按钮
+1. 创建 **Join** 和 **Leave** 按钮
 
    a. 在你的项目中，打开 **Solution Explore** 窗口，双击 **Form1.cs**，打开 **Toolbox** 窗口，选择 **Button** 控件，依次添加两个按钮，并将两个按钮拖放至合适位置。
    b. 将鼠标移至其中一个按钮上，点击鼠标右键，选中 **Properties**，在打开的 **Properties** 窗口中修改 **Text** 属性为 **Join**，修改 **Name** 属性为 **btnJoin**。
@@ -101,10 +100,10 @@ $$
    ```c#
    internal class RtcEventHandler : IRtcEngineEventHandler
    {
-       // Declare a delegate for event OnUserJoined.
+       // 声明一个代理，用于处理 OnUserJoined 事件。
        public delegate void OnUserJoinedHandler(RtcConnection connection, uint remoteUid, int elapsed);
    
-       // Declare a event of OnUserJoinedHandler.
+       // 声明 OnUserJoined 回调。
        public event OnUserJoinedHandler EventOnUserJoined;
    
        public RtcEventHandler()
@@ -151,7 +150,7 @@ $$
    a. 调用 `CreateAgoraRtcEngine` 来创建 `IRtcEngine` 实例。将以下代码添加到 `InitializeComponent();` 的后面：
 
    ```c#
-    // 创建 IRtcEngine
+    // 创建 IRtcEngine。
     engine_ = RtcEngine.CreateAgoraRtcEngine();
      
     RtcEngineContext ctx = new RtcEngineContext()
@@ -164,7 +163,7 @@ $$
         }
     };
      
-    // 初始化 IRtcEngine
+    // 初始化 IRtcEngine。
     var ret = engine_.Initialize(ctx);
     if(ret != 0)
     {
@@ -176,7 +175,7 @@ $$
    b. 创建并注册事件监听器。将以下代码添加至上一段代码之后：
 
    ```c#
-   // 注册事件监听器
+   // 注册事件监听器。
    handler_ = new RtcEventHandler();
    handler_.EventOnUserJoined += OnUserJoined;
    engine_.InitEventHandler(handler_);
@@ -219,7 +218,7 @@ $$
 ## 测试你的项目
 按照以下步骤来测试你的音频通话项目：
 
-1. 将你从声网控制台获取的 App ID、频道名以及临时 Token 别填入到 `Form1.cs` 文件的 `APP_ID` 和 `APP_TOKEN` 中。
+1. 将你从声网控制台获取的 App ID 和临时 Token 分别填入到 `Form1.cs` 文件的 `APP_ID` 和 `APP_TOKEN` 中。
 2. 在 Visual Studio 中点击 **Start** 按钮运行你的项目。
 3. 在输入框中输入你在声网控制台获取的频道名，并点击 **Join** 按钮加入频道。
 4. 邀请一位朋友通过另一台设备来使用相同的 App ID、频道名、Token 加入频道。你的朋友加入频道后，你们可以听见对方。
