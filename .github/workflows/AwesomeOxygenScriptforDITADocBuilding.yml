@@ -76,9 +76,49 @@ jobs:
                   zip -qq -r mac_ng_en_doc.zip "mac-ng_en"
                   zip -qq -r android_ng_en_doc.zip "android-ng_en"
 
+            - name: Upload C++ NG CN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: dita/RTC-NG/out/cpp_ng_cn_doc.zip
+                name: cpp_ng_cn_doc.zip
+            - name: Upload C++ NG EN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: en-US/dita/RTC-NG/out/cpp_ng_en_doc.zip
+                name: cpp_ng_en_doc.zip
+            - name: Upload Android NG CN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: dita/RTC-NG/out/android_ng_cn_doc.zip
+                name: android_ng_cn_doc.zip
+            - name: Upload Android NG EN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: en-US/dita/RTC-NG/out/android_ng_en_doc.zip
+                name: android_ng_en_doc.zip
+            - name: Upload iOS NG CN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: dita/RTC-NG/out/ios_ng_cn_doc.zip
+                name: ios_ng_cn_doc.zip
+            - name: Upload iOS NG EN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: en-US/dita/RTC-NG/out/ios_ng_en_doc.zip
+                name: ios_ng_en_doc.zip
+            - name: Upload macOS NG CN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: dita/RTC-NG/out/mac_ng_cn_doc.zip
+                name: mac_ng_cn_doc.zip
+            - name: Upload macOS NG EN doc Artifact
+              uses: actions/upload-artifact@v3
+              with:
+                path: en-US/dita/RTC-NG/out/mac_ng_en_doc.zip
+                name: mac_ng_en_doc.zip
             - name: Upload C++ NG CN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dita/RTC-NG/out/cpp_ng_cn_doc.zip
@@ -88,8 +128,8 @@ jobs:
                   overwrite: true
                   body: "DITA docs."
             - name: Upload C++ NG EN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: en-US/dita/RTC-NG/out/cpp_ng_en_doc.zip
@@ -99,8 +139,8 @@ jobs:
                   overwrite: true
                   body: "DITA docs."
             - name: Upload Android NG CN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dita/RTC-NG/out/android_ng_cn_doc.zip
@@ -110,8 +150,8 @@ jobs:
                   overwrite: true
                   body: "DITA docs."
             - name: Upload Android NG EN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: en-US/dita/RTC-NG/out/android_ng_en_doc.zip
@@ -121,8 +161,8 @@ jobs:
                   overwrite: true
                   body: "DITA docs."
             - name: Upload iOS NG CN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dita/RTC-NG/out/ios_ng_cn_doc.zip
@@ -132,8 +172,8 @@ jobs:
                   overwrite: true
                   body: "DITA docs."
             - name: Upload iOS NG EN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: en-US/dita/RTC-NG/out/ios_ng_en_doc.zip
@@ -143,8 +183,8 @@ jobs:
                   overwrite: true
                   body: "DITA docs."
             - name: Upload macOS NG CN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dita/RTC-NG/out/mac_ng_cn_doc.zip
@@ -154,8 +194,8 @@ jobs:
                   overwrite: true
                   body: "DITA docs."
             - name: Upload macOS NG EN doc to release
-              if: always()
-              uses: svenstaro/upload-release-action@v2
+              if: github.ref == github.event.repository.default_branch
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: en-US/dita/RTC-NG/out/mac_ng_en_doc.zip
@@ -164,3 +204,4 @@ jobs:
                   make_latest: false
                   overwrite: true
                   body: "DITA docs."
+  
