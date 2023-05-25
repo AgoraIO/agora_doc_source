@@ -17,6 +17,9 @@ jobs:
               uses: actions/setup-python@v2
               with:
                   python-version: 3.8
+            - name: Get branch name
+              id: branch-name
+              uses: tj-actions/branch-names@v7
             - name: Install dependencies
               run: |
                   cd xml2json
@@ -40,38 +43,38 @@ jobs:
                   python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag macos --json_file macos_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path macos
                   python xml2json.py --working_dir ../dita/RTC-NG --platform_tag macos --json_file macos_ng_cn.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path macos
             - name: Upload Flutter CG JSON to release
-              uses: svenstaro/upload-release-action@v2
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/flutter_newer.json
                   asset_name: flutter_doc_template.json
-                  tag: main
+                  tag: ${{ steps.branch-name.outputs.current_branch }}
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload CS CG JSON to release
-              uses: svenstaro/upload-release-action@v2
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/csharp_cg.json
                   asset_name: csharp_cg_doc_template.json
-                  tag: main
+                  tag: ${{ steps.branch-name.outputs.current_branch }}
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload iOS JSON to release
-              uses: svenstaro/upload-release-action@v2
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/ios_ng_en.json
                   asset_name: ios_en_ng_doc_template.json
-                  tag: main
+                  tag: ${{ steps.branch-name.outputs.current_branch }}
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload macOS JSON to release
-              uses: svenstaro/upload-release-action@v2
+              uses: svenstaro/upload-release-action@2.5.0
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/macos_ng_en.json
                   asset_name: macos_ng_en_doc_template.json
-                  tag: main
+                  tag: ${{ steps.branch-name.outputs.current_branch }}
                   overwrite: true
                   body: "Template file for automatic comment population."
