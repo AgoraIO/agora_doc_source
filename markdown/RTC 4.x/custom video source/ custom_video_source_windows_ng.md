@@ -92,6 +92,13 @@ m_trackVideoTrackIds[trackIndex] = videoTrackId;
 调用 `joinChannel` 加入频道，或调用 `joinChannelEx` 加入多频道， 在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为步骤 1 中获得的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`，即可在频道中发布指定的自定义视频轨道。
 
 ```cpp
+int uid = 10001 + trackIndex;
+m_trackUids[trackIndex] = uid;
+m_trackConnections[trackIndex].channelId = m_strChannel.c_str();
+m_trackConnections[trackIndex].localUid = uid;
+m_trackEventHandlers[trackIndex].SetId(trackIndex + 1);
+m_trackEventHandlers[trackIndex].SetMsgReceiver(m_hWnd);
+
 // 如需在多个频道发布自定义视频轨道，则需要多次设置 ChannelMediaOptions 并多次调用 joinChannelEx
 ChannelMediaOptions mediaOptions;
 mediaOptions.clientRoleType = CLIENT_ROLE_BROADCASTER;
@@ -120,6 +127,8 @@ void MultiVideoSourceTracksYUVReaderHander::OnYUVRead(int width, int height, uns
 
 将采集到的视频帧发送至 SDK 之前，你可以参考以下代码，将采集到的 YUV 原始视频数据转换为不同类型的 `videoFrame`。为确保音视频同步，声网建议你调用 `getCurrentMonotonicTimeInMs` 获取 SDK 当前的 Monotonic Time 后，将该值传入采集的 `videoFrame` 的时间戳参数。
 
+以下代码演示推送 I420 格式的原始视频数据，如需推送其他格式的外部视频帧，请进行对应的设置。声网支持的视频像素格式详见 [VIDEO_PIXEL_FORMAT](https://docportal.shengwang.cn/cn/voice-call-4.x/API%20Reference/windows_ng/API/enum_videopixelformat.html)。
+
 ```cpp
 // 设置视频像素格式为 I420
 m_videoFrame.format = agora::media::base::VIDEO_PIXEL_I420;
@@ -129,9 +138,8 @@ m_videoFrame.type = agora::media::base::ExternalVideoFrame::VIDEO_BUFFER_TYPE::V
 m_videoFrame.height = height;
 m_videoFrame.stride = width;
 m_videoFrame.buffer = buffer;
-// 获取 SDK 当前的 Monotonic Time
-// 将 SDK 当前的 Monotonic Time 赋值到 videoFrame 的时间戳参数
-m_videoFrame.timestamp = ???;
+// 获取 SDK 当前的 Monotonic Time 并赋值给 videoFrame 的时间戳参数
+m_videoFrame.timestamp = m_rtcEngine->getCurrentMonotonicTimeInMs();
 ```
 
 调用 `pushVideoFrame` 并将 `videoTrackId` 指定为步骤 2 中指定的视频轨道 ID，将视频帧通过视频轨道发送给 SDK。
