@@ -76,8 +76,8 @@ defined_path_text = args['defined_path']
 # These variables are used globally
 # android_path, cpp_path, rust_full_path, electron_path
 android_path = "config/keys-rtc-api-android.ditamap"
-ios_path = "config/keys-rtc-ng-api-ios.ditamap"
-macos_path = "config/keys-rtc-ng-api-macos.ditamap"
+ios_ng_path = "config/keys-rtc-ng-api-ios.ditamap"
+macos_ng_path = "config/keys-rtc-ng-api-macos.ditamap"
 cpp_path = "config/keys-rtc-api-cpp.ditamap"
 cpp_ng_path = "config/keys-rtc-ng-api-cpp.ditamap"
 rust_path = "config/keys-rtc-api-rust.ditamap"
@@ -95,8 +95,6 @@ unity_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
 if sys.platform == 'darwin' or sys.platform == 'linux':
     print("macOS")
     android_full_path = path.join(working_dir, android_path)
-    ios_full_path = path.join(working_dir, ios_path)
-    macos_full_path = path.join(working_dir, macos_path)
     cpp_full_path = path.join(working_dir, cpp_path)
     cpp_ng_full_path = path.join(working_dir, cpp_ng_path)
     rust_full_path = path.join(working_dir, rust_path)
@@ -111,6 +109,8 @@ if sys.platform == 'darwin' or sys.platform == 'linux':
     flutter_ng_full_path = path.join(working_dir, flutter_ng_path)
     rn_ng_full_path = path.join(working_dir, rn_ng_path)
     unity_ng_full_path = path.join(working_dir, unity_ng_path)
+    ios_ng_full_path = path.join(working_dir, ios_ng_path)
+    macos_ng_full_path = path.join(working_dir, macos_ng_path)
     # Need to add electron??
 elif sys.platform == 'win32':
     print("Windows")
@@ -143,31 +143,30 @@ elif sys.platform == 'win32':
 
 if defined_path_text == "flutter":
     defined_path = flutter_full_path
-    print("The defined path is " + flutter_full_path)
+elif defined_path_text == "flutter-ng":
+    defined_path = flutter_ng_full_path
 elif defined_path_text == "electron":
     defined_path = electron_full_path
-elif defined_path_text == "ios":
-    defined_path = ios_full_path
-elif defined_path_text == "macos":
-    defined_path = macos_full_path
+elif defined_path_text == "electron-ng":
+    defined_path = electron_ng_full_path
 elif defined_path_text == "unity":
     defined_path = unity_full_path
 elif defined_path_text == "unity-ng":
     defined_path = unity_ng_full_path
-elif defined_path_text == "rn-ng":
-    defined_path = rn_ng_full_path
-elif defined_path_text == "flutter-ng":
-    defined_path = flutter_ng_full_path
-elif defined_path_text == "electron-ng":
-    defined_path = electron_ng_full_path
 elif defined_path_text == "rn":
     defined_path = rn_full_path
+elif defined_path_text == "rn-ng":
+    defined_path = rn_ng_full_path
 elif defined_path_text == "cpp":
     defined_path = cpp_full_path
 elif defined_path_text == "cpp-ng":
     defined_path = cpp_ng_full_path
 elif defined_path_text == "cs":
     defined_path = cs_full_path
+elif defined_path_text == "ios-ng":
+    defined_path = ios_ng_full_path
+elif defined_path_text == "macos-ng":
+    defined_path = macos_ng_full_path
 #
 # defined_path = android_full_path
 # defined_path = cpp_full_path

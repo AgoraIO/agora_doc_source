@@ -12,6 +12,7 @@ on:
             - 'master'
 jobs:
     build:
+        if: ${{ false }}
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -46,6 +47,7 @@ jobs:
                   file: xml2json/rn_cn_ng.json
                   asset_name: rn_ng_json_template_cn.json
                   tag: ${{ steps.branch-name.outputs.current_branch }}
+                  make_latest: false
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload RN NG JSON to release
@@ -56,5 +58,6 @@ jobs:
                   file: xml2json/rn_en_ng.json
                   asset_name: rn_ng_json_template_en.json
                   tag: ${{ steps.branch-name.outputs.current_branch }}
+                  make_latest: false
                   overwrite: true
                   body: "Template file for automatic comment population."

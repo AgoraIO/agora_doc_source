@@ -12,6 +12,7 @@ on:
             - 'master'
 jobs:
     build:
+        if: ${{ false }}
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
@@ -48,6 +49,7 @@ jobs:
                   file: xml2json/unity_cn_ng.json
                   asset_name: unity_ng_doc_template_cn.json
                   tag: ${{ steps.branch-name.outputs.current_branch }}
+                  make_latest: false
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload Unity NG JSON to release
@@ -58,5 +60,6 @@ jobs:
                   file: xml2json/unity_en_ng.json
                   asset_name: unity_ng_doc_template_en.json
                   tag: ${{ steps.branch-name.outputs.current_branch }}
+                  make_latest: false
                   overwrite: true
                   body: "Template file for automatic comment population."
