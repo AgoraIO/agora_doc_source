@@ -17,9 +17,12 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: Set up python 3.8
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4
               with:
-                  python-version: 3.8
+                  python-version: '3.8'
+            - name: Get branch name
+              id: branch-name
+              uses: tj-actions/branch-names@v7
             - name: Install dependencies
               run: |
                   cd xml2json
@@ -42,7 +45,7 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/electron_ng_cn.json
                   asset_name: electron_ng_json_template_cn.json
-                  tag: main
+                  tag: ${{ steps.branch-name.outputs.current_branch }}
                   overwrite: true
                   body: "Template file for automatic comment population."
             - name: Upload electron NG JSON to release
@@ -52,7 +55,7 @@ jobs:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: xml2json/electron_ng_en.json
                   asset_name: electron_ng_json_template_en.json
-                  tag: main
+                  tag: ${{ steps.branch-name.outputs.current_branch }}
                   overwrite: true
                   body: "Template file for automatic comment population."
         

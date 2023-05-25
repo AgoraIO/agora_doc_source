@@ -19,6 +19,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: montudor/action-zip@v1
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v7
     - name: Set up JDK 8
       uses: actions/setup-java@v3
       with:
@@ -69,7 +72,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: en-US/dita/flexible-classroom/edu-context/out/fc-android-en-doc.zip
           asset_name: fc-android-en-doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}
           overwrite: true
           body: "DITA docs."
     - name: Upload FC EN iOS doc to release
@@ -78,7 +81,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: en-US/dita/flexible-classroom/edu-context/out/fc-ios-en-doc.zip
           asset_name: fc-ios-en-doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}
           overwrite: true
           body: "DITA docs."
     - name: Upload FC CN Android doc to release
@@ -87,7 +90,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dita/flexible-classroom/edu-context/out/fc-android-cn-doc.zip
           asset_name: fc-android-cn-doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}
           overwrite: true
           body: "DITA docs."
     - name: Upload FC CN iOS doc to release
@@ -96,6 +99,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dita/flexible-classroom/edu-context/out/fc-ios-cn-doc.zip
           asset_name: fc-ios-cn-doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}
           overwrite: true
           body: "DITA docs."
