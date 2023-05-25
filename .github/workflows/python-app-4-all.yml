@@ -1,0 +1,71 @@
+# GitHub CI build pipeline
+name: All 4.x Doc JSON Files
+
+on:
+    push:
+        branches:
+            - 'master'
+    pull_request:
+        branches:
+            - 'master'
+jobs:
+    build:
+      strategy:
+        matrix:
+          platform: [flutter, ios, macos, electron, unity, rn]
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v3
+          - name: Set up python 3.8
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.8'
+          - name: Get branch name
+            id: branch-name
+            uses: tj-actions/branch-names@v7
+          - name: Install dependencies
+            run: |
+                cd xml2json
+                python -m pip install --upgrade pip
+                if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          - name: Run CN json creation
+            run: |
+                cd xml2json
+                echo "Running for ${{matrix.platform}} NG"
+                python xml2json.py --working_dir ../dita/RTC-NG --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
+          - name: Run EN json creation
+            run: |
+                cd xml2json
+                echo "Running for ${{matrix.platform}} NG"
+                python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
+          - name: Upload CN Artifact
+            uses: actions/upload-artifact@v3
+            with:
+              name: ${{matrix.platform}}_ng_json_template_cn.json
+              path: xml2json/${{matrix.platform}}_cn_ng.json
+          - name: Upload EN Artifact
+            uses: actions/upload-artifact@v3
+            with:
+              name: ${{matrix.platform}}_ng_json_template_en.json
+              path: xml2json/${{matrix.platform}}_en_ng.json
+          - name: Upload ${{matrix.platform}} NG CN JSON to release
+            if: github.ref == github.event.repository.default_branch
+            uses: svenstaro/upload-release-action@2.5.0
+            with:
+                repo_token: ${{ secrets.GITHUB_TOKEN }}
+                file: xml2json/${{matrix.platform}}_cn_ng.json
+                asset_name: ${{matrix.platform}}_ng_json_template_cn.json
+                tag: ${{ steps.branch-name.outputs.current_branch }}
+                overwrite: true
+                body: "Template file for automatic comment population."
+          - name: Upload ${{matrix.platform}} NG EN JSON to release
+            if: github.ref == github.event.repository.default_branch
+            uses: svenstaro/upload-release-action@2.5.0
+            with:
+                repo_token: ${{ secrets.GITHUB_TOKEN }}
+                file: xml2json/${{matrix.platform}}_en_ng.json
+                asset_name: ${{matrix.platform}}_ng_json_template_en.json
+                tag: ${{ steps.branch-name.outputs.current_branch }}
+                overwrite: true
+                body: "Template file for automatic comment population."
+      
