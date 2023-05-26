@@ -87,7 +87,7 @@ jobs:
           path: dita/flexible-classroom/edu-context/out/fc-ios-cn-doc.zip
           name: fc-ios-cn-doc.zip
     - name: Upload FC EN Android doc to release
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -98,7 +98,7 @@ jobs:
           overwrite: true
           body: "DITA docs."
     - name: Upload FC EN iOS doc to release
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -109,7 +109,7 @@ jobs:
           overwrite: true
           body: "DITA docs."
     - name: Upload FC CN Android doc to release
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -120,7 +120,7 @@ jobs:
           overwrite: true
           body: "DITA docs."
     - name: Upload FC CN iOS doc to release
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
