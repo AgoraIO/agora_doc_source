@@ -1,0 +1,30 @@
+# GitHub CI build pipeline
+name: All 4.x Doc JSON Files
+
+on:
+    push
+
+jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v3
+          - name: Set up python 3.8
+            uses: actions/setup-python@v4
+            with:
+                python-version: '3.8'
+          - name: Get branch name
+            id: branch-name
+            uses: tj-actions/branch-names@v7
+          - name: echo some things
+            run: |
+              echo ${{ steps.branch-name.outputs.current_branch }}
+              echo ${{ github.ref }}
+              echo ${{ github.ref_name }}
+              echo ${{ github.event.repository.default_branch }}
+              echo ${{ github.event.repository.master_branch }}
+              echo ${{ github.event.base_ref }}
+          - name: Check branch
+            if: github.ref == github.event.repository.default_branch
+            run: echo success
+      
