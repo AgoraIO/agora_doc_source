@@ -86,7 +86,7 @@ jobs:
           name: cs_cg_en_doc.zip
     
     - name: Upload Flutter CG CN doc Artifact
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -98,7 +98,7 @@ jobs:
           body: "DITA docs."
         
     - name: Upload CSharp CG CN doc to release
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -110,7 +110,7 @@ jobs:
           body: "DITA docs."
     
     - name: Upload Flutter CG EN doc to release
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -122,7 +122,7 @@ jobs:
           body: "DITA docs."
     
     - name: Upload CSharp CG EN doc to release
-      if: github.ref == github.event.repository.default_branch
+      if: github.ref_name == github.event.repository.default_branch
       uses: svenstaro/upload-release-action@2.5.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
