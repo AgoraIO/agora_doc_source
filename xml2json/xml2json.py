@@ -1042,7 +1042,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     if short_desc is not None:
         for text in short_desc.itertext():
             # Add "\n" to add a line break after short desc
-            short_desc_text = short_desc_text.strip("\n") + text.strip("\n") + "\n"
+            short_desc_text = short_desc_text.strip("\n") + text.strip("\n") + "\n\n"
 
     if short_desc is None:
         # short_desc = "Empty"
