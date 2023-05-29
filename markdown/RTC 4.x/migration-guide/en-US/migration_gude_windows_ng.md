@@ -177,15 +177,15 @@ In v3.7.0, you can call `enableLastmileTest` to start the network quality test. 
 In v4.0.0, you can call `startLastmileProbeTest` to enable network quality testing. If you want to stop network testing, you need to call `stopLastmileProbeTest`.
 
 #### Remote media event triggering mechanism
-Assuming the following two scenarios:
+In the following scenarios, the mechanism of triggering remote media events is changed:
 
-- Scenario 1: The host calls `muteLocalAudioStream` or `muteLocalVideoStream` outside the channel to change the publishing status of the local audio or video stream and then joins the channel.
-- Scenario 2: The host calls `muteLocalAudioStream` or `muteLocalVideoStream` within the channel to change the publishing status of the local audio or video stream, and then other users join the channel.
+- Scenario 1: When the host calls `muteLocalAudioStream` or `muteLocalVideoStream` outside the channel to change the publishing status of the local audio or video stream and then joins the channel.
+- Scenario 2: When the host calls `muteLocalAudioStream` or `muteLocalVideoStream` within the channel to change the publishing status of the local audio or video stream, and then other users join the channel.
 
-There are behavior differences between v3.7.0 and v4.2.0 SDK:
+The behavior differences of Agora SDK between v3.7.0 and v4.0.0 are listed as follow:
 
 - In v3.7.0, the local user receives the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, which reports the status changes of the remote host's audio or video streams.
-- In v4.0.0, the local user does not receive the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback. Instead, they receive the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's streaming status (whether they are actively publishing audio or video streams).
+- In v4.0.0, instead of the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, the local user receives the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's publishing status.
 
 ### Function gaps
 

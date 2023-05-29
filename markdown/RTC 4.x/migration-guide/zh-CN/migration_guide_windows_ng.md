@@ -188,9 +188,9 @@ v4.0.0 在 v4.0.0 Beta 的基础上新增了自动加载自研动态库功能。
 - 场景一：主播在频道外调用 `muteLocalAudioStream` 或 `muteLocalVideoStream` 改变本地音视频流的发布状态、然后加入频道。
 - 场景二：主播在频道内调用 `muteLocalAudioStream` 或 `muteLocalVideoStream` 改变本地音视频流的发布状态，然后其他用户加入频道。
 
-v3.7.0 和 v4.2.0 SDK 中存在以下行为差异：
-- 在 v3.7.0 中，用户会收到 `onRemoteAudioStateChanged` 或 `onRemoteVideoStateChanged` 回调，报告来自远端主播的音频流的状态变化。
-- 在 v4.0.0 中，用户不会收到 `onRemoteAudioStateChanged` 或 `onRemoteVideoStateChanged` 回调，但是会收到 `onUserMuteAudio` 或 `onUserMuteVideo` 回调，报告远端主播的发流状态变化（即是否正在发布音视频流）。
+v3.7.0 和 v4.0.0 SDK 中存在以下行为差异：
+- 在 v3.7.0 中，本地用户会收到 `onRemoteAudioStateChanged` 或 `onRemoteVideoStateChanged` 回调，报告远端主播的音视频流的状态变化。
+- 在 v4.0.0 中，本地用户不会收到 `onRemoteAudioStateChanged` 或 `onRemoteVideoStateChanged` 回调，但是会收到 `onUserMuteAudio` 或 `onUserMuteVideo` 回调，报告远端主播的发流状态变化（即是否正在发布音视频流）。
 
 
 ### 功能差距
