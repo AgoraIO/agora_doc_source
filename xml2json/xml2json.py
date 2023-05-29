@@ -765,7 +765,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     # keydef.get("href") -> "../API/api_imediaplayercachemanager_getmaxcachefilesize.dita"
                     # open that file, find matching codeblock text for obj-c
                     for text in keydef.itertext():
-                        href_text = href_text + text
+                        href_text = href_text + text.strip()
                     xref.text = href_text
                 href_text = ""
 
@@ -1042,7 +1042,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     if short_desc is not None:
         for text in short_desc.itertext():
             # Add "\n" to add a line break after short desc
-            short_desc_text = short_desc_text.strip("\n") + text.strip("\n") + "<!DOUBLE_BREAK!>"
+            short_desc_text = short_desc_text.strip("\n") + text.strip("\n")
 
     if short_desc is None:
         # short_desc = "Empty"
@@ -1067,7 +1067,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     # new_text = text.text
                     # print(new_text)
                     # if new_text is not None:
-                    detailed_desc = detailed_desc + text
+                    detailed_desc = detailed_desc + ' ' + text.strip()
 
     detailed_desc = detailed_desc.strip(" \n ")
     # detailed_desc_text = ""
@@ -1079,6 +1079,8 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     print(detailed_desc)
     print("----------------------- Detailed desc ------------------------")
 
+    if detailed_desc.strip():
+        short_desc_text += "<!DOUBLE_BREAK!>"
     api_desc = short_desc_text + detailed_desc
 
     # Get parameter description <plentry> by id
