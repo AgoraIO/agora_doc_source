@@ -176,6 +176,17 @@ In v3.7.0, you can call `enableLastmileTest` to start the network quality test. 
 
 In v4.0.0, you can call `startLastmileProbeTest` to enable network quality testing. If you want to stop network testing, you need to call `stopLastmileProbeTest`.
 
+#### Remote media event triggering mechanism
+Assuming the following two scenarios:
+
+- Scenario 1: The host calls `muteLocalAudioStream` or `muteLocalVideoStream` outside the channel to change the publishing status of the local audio or video stream and then joins the channel.
+- Scenario 2: The host calls `muteLocalAudioStream` or `muteLocalVideoStream` within the channel to change the publishing status of the local audio or video stream, and then other users join the channel.
+
+There are behavior differences between v3.7.0 and v4.2.0 SDK:
+
+- In v3.7.0, the local user receives the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, which reports the status changes of the remote host's audio or video streams.
+- In v4.0.0, the local user does not receive the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback. Instead, they receive the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's streaming status (whether they are actively publishing audio or video streams).
+
 ### Function gaps
 
 This section introduces functions that were supported in v3.7.0 but are no longer supported or behave inconsistently in v4.0.0. Plans exist to support them or make them consistent in a future release, however.
