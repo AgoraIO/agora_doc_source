@@ -1042,7 +1042,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     if short_desc is not None:
         for text in short_desc.itertext():
             # Add "\n" to add a line break after short desc
-            short_desc_text = short_desc_text.strip("\n") + text.strip("\n") + "\n\n"
+            short_desc_text = short_desc_text.strip("\n") + text.strip("\n") + "<!DOUBLE_BREAK!>"
 
     if short_desc is None:
         # short_desc = "Empty"
@@ -1270,6 +1270,7 @@ def replace_newline():
     replaced_file_text = re.sub(r'For more details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r'For details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r':[\s]{0,10}"\\n[\s\\n]{0,50}', ':"', replaced_file_text)
+    replaced_file_text = replaced_file_text.replace("<!DOUBLE_BREAK!>", "\\n\\n")
 
     # ------------------ Special processing for Flutter classes ------------------------------------------
     replaced_file_text = re.sub('class_rtc_render_view_rtcsurfaceview', 'class_rtcsurfaceview', replaced_file_text)

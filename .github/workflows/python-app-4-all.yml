@@ -33,11 +33,13 @@ jobs:
                 cd xml2json
                 echo "Running for ${{matrix.platform}} NG"
                 python xml2json.py --working_dir ../dita/RTC-NG --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
+                python -mjson.tool "${{matrix.platform}}_cn_ng.json" > /dev/null
           - name: Run EN json creation
             run: |
                 cd xml2json
                 echo "Running for ${{matrix.platform}} NG"
                 python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
+                python -mjson.tool "${{matrix.platform}}_en_ng.json" > /dev/null
           - name: Upload CN Artifact
             uses: actions/upload-artifact@v3
             with:
