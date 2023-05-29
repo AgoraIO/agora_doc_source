@@ -1,33 +1,37 @@
 # 基于 DITA 的文档内容仓库（附带自动化 CI/CD）
 
-[![Awesome JSON CI build](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml)
-
-[![Awesome JSON CI build for NG Flutter SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml)
-
-[![Awesome JSON CI build for NG RN SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml)
-
-[![Awesome JSON CI build for NG Unity SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml)
-
-[![Awesome JSON CI build for NG electron SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml)
-
-[![Awesome prototype syncs](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml)
-
-[![Awesome DITA API doc prototype validation](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml)
-
-[![OxygenScript for DITA processing](https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml)
-
-[![Awesome OxygenScript for DITA doc building (CG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
-
-[![Awesome OxygenScript for DITA doc building (NG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
-
-[![(NG SDK Frameworks)Awesome OxygenScript for DITA doc building](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
-
-[![Awesome automerge](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml)
-
-[![Awesome prototype from code to DITA (Electron)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml)
-
-[![Awesome script sync](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml)
-
+<p align="center">
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-4-all.yml">
+        <img alt="4.x Json Docs" src="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-4-all.yml/badge.svg" />
+    </a><br/>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml">
+        <img alt="Awesome prototype syncs" src="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml">
+        <img alt="Awesome DITA API doc prototype validation" src="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml">
+        <img alt="OxygenScript for DITA processing" src="https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.ym">
+        <img alt="Awesome OxygenScript for DITA doc building (CG SDK)" src="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml">
+        <img alt="Awesome OxygenScript for DITA doc building (NG SDK)" src="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml">
+        <img alt="(NG SDK Frameworks)Awesome OxygenScript for DITA doc building" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml">
+        <img alt="Awesome automerge" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml">
+        <img alt="Awesome prototype from code to DITA (Electron)" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml">
+        <img alt="Awesome script sync" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml/badge.svg"/>
+    </a>
+</p>
 <!-- TOC -->
 
 - [基于 DITA 的文档内容仓库](#基于-dita-的文档内容仓库)
