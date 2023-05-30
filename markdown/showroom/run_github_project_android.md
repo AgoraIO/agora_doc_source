@@ -6,8 +6,8 @@
 
 - [Git](https://git-scm.com/downloads)
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)
-- [Android Studio](https://developer.android.com/studio/)，3.5 及以上
-- Android 手机，Android 5.0（API Level 21）及以上
+- [Android Studio](https://developer.android.com/studio/) 3.5 及以上
+- Android 手机，版本 Android 5.0（API Level 21）及以上
 - 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)
 
 <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
