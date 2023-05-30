@@ -87,48 +87,48 @@ jobs:
     
     - name: Upload Flutter CG CN doc Artifact
       if: github.ref_name == github.event.repository.default_branch
-      uses: svenstaro/upload-release-action@2.5.0
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dita/RTC/out/flutter_cg_cn_doc.zip
           asset_name: flutter_cg_cn_doc.zip
-          tag: ${{ steps.branch-name.outputs.current_branch }}
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
           make_latest: false
           overwrite: true
           body: "DITA docs."
         
     - name: Upload CSharp CG CN doc to release
       if: github.ref_name == github.event.repository.default_branch
-      uses: svenstaro/upload-release-action@2.5.0
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dita/RTC/out/cs_cg_cn_doc.zip
           asset_name: cs_cg_cn_doc.zip
-          tag: ${{ steps.branch-name.outputs.current_branch }}
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
           make_latest: false
           overwrite: true
           body: "DITA docs."
     
     - name: Upload Flutter CG EN doc to release
       if: github.ref_name == github.event.repository.default_branch
-      uses: svenstaro/upload-release-action@2.5.0
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: en-US/dita/RTC/out/flutter_cg_en_doc.zip
           asset_name: flutter_cg_en_doc.zip
-          tag: ${{ steps.branch-name.outputs.current_branch }}
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
           make_latest: false
           overwrite: true
           body: "DITA docs."
     
     - name: Upload CSharp CG EN doc to release
       if: github.ref_name == github.event.repository.default_branch
-      uses: svenstaro/upload-release-action@2.5.0
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: en-US/dita/RTC/out/cs_cg_en_doc.zip
           asset_name: cs_cg_en_doc.zip
-          tag: ${{ steps.branch-name.outputs.current_branch }}
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
           make_latest: false
           overwrite: true
           body: "DITA docs."          

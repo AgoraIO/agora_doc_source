@@ -635,7 +635,7 @@ def main():
 
 ## 从 API 文档自动构建用于自动化填充代码注释的文档模板
 
-文档模板文件（JSON 文件）会在 https://github.com/AgoraIO/agora_doc_source/releases/tag/main 自动生成。SDK 研发可以通过脚本自动抓取。
+文档模板文件（JSON 文件）会在 https://github.com/AgoraIO/agora_doc_source/releases/tag/master-build 自动生成。SDK 研发可以通过脚本自动抓取。
 
 如果你需要为某分支生成 JSON 文件，你需要在以下文件中添加你的分支：
 
