@@ -52,22 +52,22 @@ jobs:
               path: xml2json/${{matrix.platform}}_en_ng.json
           - name: Upload ${{matrix.platform}} NG CN JSON to release
             if: github.ref_name == github.event.repository.default_branch
-            uses: svenstaro/upload-release-action@2.5.0
+            uses: svenstaro/upload-release-action@2.6.0
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
                 file: xml2json/${{matrix.platform}}_cn_ng.json
                 asset_name: ${{matrix.platform}}_ng_json_template_cn.json
-                tag: ${{ steps.branch-name.outputs.current_branch }}
+                tag: ${{ steps.branch-name.outputs.current_branch }}-build
                 overwrite: true
                 body: "Template file for automatic comment population."
           - name: Upload ${{matrix.platform}} NG EN JSON to release
             if: github.ref_name == github.event.repository.default_branch
-            uses: svenstaro/upload-release-action@2.5.0
+            uses: svenstaro/upload-release-action@2.6.0
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
                 file: xml2json/${{matrix.platform}}_en_ng.json
                 asset_name: ${{matrix.platform}}_ng_json_template_en.json
-                tag: ${{ steps.branch-name.outputs.current_branch }}
+                tag: ${{ steps.branch-name.outputs.current_branch }}-build
                 overwrite: true
                 body: "Template file for automatic comment population."
       
