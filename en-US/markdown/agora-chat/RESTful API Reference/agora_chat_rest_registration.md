@@ -159,7 +159,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 
 #### Request body
 
-The request body is a JSON object, which contains the following fields:
+The request body is a JSONArray object, which contains the following fields:
 
 | Field | Type | Description | Required |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
