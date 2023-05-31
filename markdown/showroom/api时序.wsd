@@ -1,0 +1,100 @@
+@startuml
+autonumber
+skinparam monochrome true
+title 秀场直播 API 时序图
+participant "RTC SDK" as sdk
+participant "秀场直播 App" as app
+participant "云服务\n(SyncManager)" as cloud
+app -> cloud: 获取房间列表
+activate cloud
+cloud -->> app: 显示房间列表
+deactivate cloud
+== 创建房间 ==
+app -> app: 进入预览界面
+app -> sdk: RtcEngine.create(RtcEngineConfig)
+app -> sdk: registerVideoFrameObserver(sencestimeBeautyObserver)
+app -> sdk: setupLocalVideo()
+app -> sdk: startPreview()
+app -> cloud: 创建房间
+activate cloud
+cloud -->> app: 创建房间成功
+deactivate cloud
+== 观众/主播加入频道 ==
+app -> app: 进入单主播直播界面
+app -> sdk: setupLocalVideoEx()/setupRemoteVideoEx()
+app -> sdk: joinChannelEx(ChannelMediaOptions)
+app -> cloud: 加入房间
+activate cloud
+cloud -->> app: 加入房间成功
+deactivate cloud
+app -> cloud: 获取房间内用户列表
+activate cloud
+cloud -->> app: 获取用户列表成功
+deactivate cloud
+app -> cloud: 获取房间内互动状态（PK 中或连麦中）
+activate cloud
+cloud -->> app: 获取房间内互动状态成功
+deactivate cloud
+app -> cloud: 订阅断网重连事件
+app -> cloud: 订阅房间销毁事件
+app -> cloud: 订阅用户进出事件
+app -> cloud: 订阅聊天消息事件
+app -> cloud: 订阅PK消息事件
+app -> cloud: 订阅连麦消息事件
+== 主播PK ==
+app -> cloud: 发起 PK 申请
+activate cloud
+cloud -->> app: 对方主播拒绝 PK 申请
+cloud -->> app: 对方主播接受 PK 申请
+deactivate cloud
+app -> app: 收到 PK 接受通知，包含对方主播频道和 uid
+app -> sdk: joinChannelEx（对方主播频道，clientRole=audience）
+app -> sdk: setupRemoteVideoEx（对方主播频道，对方主播 uid）
+app -> app: 切换到 PK 界面
+app -> cloud: 结束 PK
+activate cloud
+cloud -> app: PK 结束通知
+deactivate cloud
+app -> sdk:  leaveChannelEx（对方主播频道）
+app -> app: 切换到单主播界面
+== 观众连麦 ==
+app -> cloud: 主播邀请观众连麦
+activate cloud
+cloud -->> app: 观众拒绝连麦
+cloud -->> app: 观众接受连麦
+deactivate cloud
+app -> cloud: 观众向主播申请连麦
+activate cloud
+cloud -->> app: 主播拒绝连麦
+cloud -->> app: 主播接受连麦
+deactivate cloud
+app -> app: 连麦观众收到连麦接受通知
+app -> sdk: updateChannelMediaOptionEx(clientRole=broadcast)
+app -> sdk: startPreview()
+app -> sdk: setupLocalVideo()
+app -> app: 普通观众/主播收到连麦接受通知，包含对方 uid
+app -> sdk: setupRemoteVideoEx（主播频道，对方 uid）
+app -> app: 切换到连麦界面
+app -> cloud: 停止连麦
+activate cloud
+cloud -->> app: 通知连麦停止
+deactivate cloud
+app -> app: 连麦观众收到连麦结束通知
+app -> sdk: updateChannelMediaOptionEx(clientRole=audience)
+app -> sdk: stopPreview()
+app -> app: 普通观众/主播收到连麦结束通知
+app -> sdk: setupRemoteVideoEx(view=null)
+app -> app: 切换到单主播界面
+== 离开/销毁房间 ==
+app -> cloud: 主播离开房间
+activate cloud
+cloud -> app: 通知所有观众房间已关闭
+deactivate cloud
+app -> cloud: 观众离开房间
+activate cloud
+cloud -> app: 通知所有观众/房主，刷新听众/主播列表
+deactivate cloud
+app -> sdk: leaveChannel
+app -> sdk: RtcEngine.destroy
+app -> app: 回到房间列表界面
+@enduml
