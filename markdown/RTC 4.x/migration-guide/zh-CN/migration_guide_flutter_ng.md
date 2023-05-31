@@ -164,6 +164,16 @@ agora_rtc_engine: ^5.x 的 `RtcChannel` 和 `RtcEngine` 在功能上有部分重
 - 在 agora_rtc_engine: ^5.x 中，你可以调用 `enableLastmileTest` 开启网络质量测试，如果你想停止网络测试，需要调用 `disableLastmileTest`。
 - 在 agora_rtc_engine: ^6.0.0 中，你可以调用 `startLastmileProbeTest` 启用网络质量测试，如果你想停止网络测试，需要调用 `stopLastmileProbeTest`。
 
+#### 远端媒体事件触发机制
+
+假设存在以下两种场景：
+- 场景一：主播在频道外调用 `muteLocalAudioStream` 或 `muteLocalVideoStream` 改变本地音视频流的发布状态、然后加入频道。
+- 场景二：主播在频道内调用 `muteLocalAudioStream` 或 `muteLocalVideoStream` 改变本地音视频流的发布状态，然后其他用户加入频道。
+
+agora_rtc_engine: ^5.x 和 agora_rtc_engine: ^6.0.0 中存在以下行为差异：
+- 在 agora_rtc_engine: ^5.x 中，本地用户会收到 `onRemoteAudioStateChanged` 或 `onRemoteVideoStateChanged` 回调，报告远端主播的音视频流的状态变化。
+- 在 agora_rtc_engine: ^6.0.0 中，本地用户不会收到 `onRemoteAudioStateChanged` 或 `onRemoteVideoStateChanged` 回调，但是会收到 `onUserMuteAudio` 或 `onUserMuteVideo` 回调，报告远端主播的发流状态变化（即是否正在发布音视频流）。
+
 
 ### 功能差距
 
