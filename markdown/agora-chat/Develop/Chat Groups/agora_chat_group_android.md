@@ -109,27 +109,36 @@ List<String> admins=group.getAdminList();
 
 ### 获取群成员列表
 
-要获取群组的成员列表，请根据组大小选择方法：
-
-- 如果群组的成员大于等于 200，可分页获取群成员。
-- 如果群成员少于 200 人，除了分页获取群成员列表，也可以调用 `getGroupFromServer` 方法。
-
-参考以下示例代码获取群组的成员列表：
+- 当群成员少于 200 人时，你可以调用从服务器获取群组详情的方法 `getGroupFromServer` 获取获取群成员列表，包括群主、群管理员和普通群成员：
 
 ```java
-// 分页获取群组成员列表
-List<String> memberList = new ArrayList<>;
+// 第二个参数传入 `true`，默认取 200 人的群成员列表。
+// 同步方法，会阻塞当前线程。
+Group group = ChatClient.getInstance().groupManager().getGroupFromServer(groupId, true);
+List<String> memberList = group.getMembers();//普通成员
+memberList.addAll(group.getAdminList());//加上管理员
+memberList.add(group.getOwner());//加上群主
+```
+
+- 当群成员数量大于等于 200 时，你可以首先调用 `getGroupFromServer` 方法获取群组和群管理员，然后调用 `fetchGroupMembers` 方法获取普通群成员列表：
+
+```java
+// 第二个参数传入 `true`，默认取 200 人的群成员列表。
+// 同步方法，会阻塞当前线程。
+Group group = ChatClient.getInstance().groupManager().getGroupFromServer(groupId, true);
+
+List<String> memberList = new ArrayList<>();
 CursorResult<String> result = null;
 final int pageSize = 20;
 do {
+    // 同步方法，会阻塞当前线程。异步方法为 asyncFetchGroupMembers(String, String, int, ValueCallBack)。
      result = ChatClient.getInstance().groupManager().fetchGroupMembers(groupId,
              result != null? result.getCursor(): "", pageSize);
      memberList.addAll(result.getData());
-} while (!TextUtils.isnull(result.getCursor()) && result.getData().size() == pageSize);
+} while (!TextUtils.isEmpty(result.getCursor()) && result.getData().size() == pageSize);
 
-// 调用 `getGroupFromServer` 获取群组成员列表。
-Group group = ChatClient.getInstance().groupManager().getGroupFromServer(groupId, true);
-List<String> memberList = group.getMembers();
+ memberList.addAll(group.getAdminList());//加上管理员
+ memberList.add(group.getOwner());//加上群主
 ```
 
 ### 获取群组列表
