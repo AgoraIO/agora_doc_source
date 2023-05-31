@@ -172,7 +172,7 @@ In the following scenarios, the mechanism of triggering remote media events is c
 - Scenario 1: When the host calls `muteLocalAudioStream` or `muteLocalVideoStream` outside the channel to change the publishing status of the local audio or video stream and then joins the channel.
 - Scenario 2: When the host calls `muteLocalAudioStream` or `muteLocalVideoStream` within the channel to change the publishing status of the local audio or video stream, and then other users join the channel.
 
-The behavior differences of Agora SDK between v3.7.0 and v4.0.0 are listed as follow:
+The behavior differences of Agora SDK between ^5.x and ^6.0.0 are listed as follow:
 
 - In ^5.x, the local user receives the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, which reports the status changes of the remote host's audio or video streams.
 - In ^6.0.0, instead of the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, the local user receives the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's publishing status.
