@@ -84,14 +84,20 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
 ## 常见问题
 
+### 签名报错
+
 使用 Xcode 14 编译失败，遇到 **Signing for "SenseLib-SenseLib" requires a developement team** 的签名报错，如下面截图所示：
 
 ![](https://web-cdn.agora.io/docs-files/1685614210647)
 
-此时，你可以通过在 Terminal 中执行如下命令将 CocoaPods 升级到 1.12.0 以上解决报错。
+### 解决方案
+
+你可以通过在 Terminal 中执行如下命令将 CocoaPods 升级到 1.12.0 以上解决报错。
 
 ```shell
 sudo gem install -n /usr/local/bin cocoapods
 ```
+
+### 备选解决方案
 
 如果遇到 CocoaPods 升级失败，你还可以通过手动给第三方库签名来解决报错。将 **Signing > Team** 设置为你的开发团队即可。
