@@ -91,6 +91,23 @@ m_trackVideoTrackIds[trackIndex] = videoTrackId;
 
 调用 `joinChannel` 加入频道，或调用 `joinChannelEx` 加入多频道， 在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为步骤 1 中获得的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`，即可在频道中发布指定的自定义视频轨道。
 
+加入主频道：
+
+```cpp
+ChannelMediaOptions mediaOptions;
+mediaOptions.clientRoleType = CLIENT_ROLE_BROADCASTER;
+// 发布自采集视频流
+mediaOptions.publishCustomVideoTrack = true;
+mediaOptions.autoSubscribeVideo = false;
+mediaOptions.autoSubscribeAudio = false;
+// 设置自定义视频轨道 ID
+mediaOptions.customVideoTrackId = videoTrackId;
+// 加入频道
+int ret = m_rtcEngine->joinChannel(APP_TOKEN, szChannelId.data(), 0, mediaOptions);
+```
+
+加入多频道：
+
 ```cpp
 int uid = 10001 + trackIndex;
 m_trackUids[trackIndex] = uid;
@@ -108,52 +125,60 @@ mediaOptions.autoSubscribeVideo = false;
 mediaOptions.autoSubscribeAudio = false;
 // 设置自定义视频轨道 ID
 mediaOptions.customVideoTrackId = videoTrackId;
-// 加入频道
-int ret = m_rtcEngine->joinChannel(APP_TOKEN, szChannelId.data(), 0, mediaOptions);
 // 或加入多频道
 int ret = m_rtcEngine->joinChannelEx(APP_TOKEN, m_trackConnections[trackIndex], mediaOptions, &m_trackEventHandlers[trackIndex]);
 ```
 
 ### 3. 实现自采集模块
 
-声网提供 [YUVReader.cpp](https://github.com/AgoraIO/API-Examples/blob/dev/4.2.0/windows/APIExample/APIExample/YUVReader.cpp) 和 [YUVReader.h](https://github.com/AgoraIO/API-Examples/blob/dev/4.2.0/windows/APIExample/APIExample/YUVReader.h) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，声网 SDK 不提供自定义视频处理 API，你需要结合业务需求为你的采集设备创建自定义视频采集模块。
+声网提供 [YUVReader.cpp](https://github.com/AgoraIO/API-Examples/blob/main/windows/APIExample/APIExample/YUVReader.cpp) 和 [YUVReader.h](https://github.com/AgoraIO/API-Examples/blob/main/windows/APIExample/APIExample/YUVReader.h) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，声网 SDK 不提供自定义视频处理 API，你需要结合业务需求为你的采集设备创建自定义视频采集模块。
 
 ```cpp
-// 通过 OnYUVRead 回调读取 YUV 视频数据的宽、高、缓冲区和大小
-void MultiVideoSourceTracksYUVReaderHander::OnYUVRead(int width, int height, unsigned char* buffer, int size)
+// 通过自定义的 YUVReader 类，在 YUVReader 线程中不断读取 YUV 格式视频数据并将数据传递给 OnYUVRead 回调函数进行后续处理
+m_yuvReaderHandlers[trackIndex].Setup(m_rtcEngine, m_mediaEngine.get(), videoTrackId);
+m_yuvReaders[trackIndex].start(std::bind(&MultiVideoSourceTracksYUVReaderHander::OnYUVRead, m_yuvReaderHandlers[trackIndex], std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
 ```
 
 ### 4. 通过视频轨道推送视频数据到 SDK
 
-将采集到的视频帧发送至 SDK 之前，你可以参考以下代码，将采集到的 YUV 原始视频数据转换为不同类型的 `videoFrame`。为确保音视频同步，声网建议你调用 `getCurrentMonotonicTimeInMs` 获取 SDK 当前的 Monotonic Time 后，将该值传入采集的 `videoFrame` 的时间戳参数。
+调用 `pushVideoFrame` 将采集到的视频帧通过视频轨道推送至 SDK。其中， `videoTrackId` 要与步骤 2 加入频道时指定视频轨道 ID 一致，`videoFrame` 中可以设置视频帧的像素格式、数据类型和时间戳等参数。
 
-以下代码演示推送 I420 格式的原始视频数据，如需推送其他格式的外部视频帧，请进行对应的设置。声网支持的视频像素格式详见 [VIDEO_PIXEL_FORMAT](https://docportal.shengwang.cn/cn/voice-call-4.x/API%20Reference/windows_ng/API/enum_videopixelformat.html)。
-
-```cpp
-// 设置视频像素格式为 I420
-m_videoFrame.format = agora::media::base::VIDEO_PIXEL_I420;
-// 设置视频数据类型为原始数据
-m_videoFrame.type = agora::media::base::ExternalVideoFrame::VIDEO_BUFFER_TYPE::VIDEO_BUFFER_RAW_DATA;
-// 将采集到的 YUV 视频数据的宽、高、缓冲区传给 videoFrame
-m_videoFrame.height = height;
-m_videoFrame.stride = width;
-m_videoFrame.buffer = buffer;
-// 获取 SDK 当前的 Monotonic Time 并赋值给 videoFrame 的时间戳参数
-m_videoFrame.timestamp = m_rtcEngine->getCurrentMonotonicTimeInMs();
-```
-
-调用 `pushVideoFrame` 并将 `videoTrackId` 指定为步骤 2 中指定的视频轨道 ID，将视频帧通过视频轨道发送给 SDK。
+<div class="alert info"><ul><li>以下代码演示将 YUV 格式转换为 I420 格式的原始视频数据。如需推送其他格式的外部视频帧，详见 <a href="https://docportal.shengwang.cn/cn/voice-call-4.x/API%20Reference/windows_ng/API/enum_videopixelformat.html">VIDEO_PIXEL_FORMAT</a>。</li><li>为确保音视频同步，声网建议你将 <code>videoFrame</code> 的时间戳参数设置为系统 Monotonic Time。你可以调用 <code>getCurrentMonotonicTimeInMs</code> 获取当前的 Monotonic Time。</li></ul></div>
 
 ```cpp
-m_mediaEngine->pushVideoFrame(&m_videoFrame, m_videoTrackId);
+void MultiVideoSourceTracksYUVReaderHander::OnYUVRead(int width, int height, unsigned char* buffer, int size)
+{
+	if (m_mediaEngine == nullptr || m_rtcEngine == nullptr) {
+		return;
+	}
+    // 设置视频像素格式为 I420
+	m_videoFrame.format = agora::media::base::VIDEO_PIXEL_I420;
+    // 设置视频数据类型为原始数据
+	m_videoFrame.type = agora::media::base::ExternalVideoFrame::VIDEO_BUFFER_TYPE::VIDEO_BUFFER_RAW_DATA;
+    // 将采集到的 YUV 视频数据的宽、高、缓冲区传给 videoFrame
+	m_videoFrame.height = height;
+	m_videoFrame.stride = width;
+	m_videoFrame.buffer = buffer;
+    // 获取 SDK 当前的 Monotonic Time 并赋值给 videoFrame 的时间戳参数
+	m_videoFrame.timestamp = m_rtcEngine->getCurrentMonotonicTimeInMs();
+    // 推送视频帧至 SDK
+	m_mediaEngine->pushVideoFrame(&m_videoFrame, m_videoTrackId);
+}
 ```
+
 
 ### 5. 销毁自定义视频轨道
 
 如需停止自定义视频采集，调用 `destroyCustomVideoTrack` 来销毁视频轨道。如需销毁多个视频轨道，可多次调用 `destroyCustomVideoTrack`。
 
 ```cpp
+// 停止视频数据的自采集
+m_yuvReaders[trackIndex].stop();
+m_yuvReaderHandlers[trackIndex].Release();
+// 销毁自定义视频轨道
 m_rtcEngine->destroyCustomVideoTrack(m_trackVideoTrackIds[trackIndex]);
+// 离开频道
+m_rtcEngine->leaveChannelEx(m_trackConnections[trackIndex]);
 ```
 
 
@@ -173,4 +198,6 @@ m_rtcEngine->destroyCustomVideoTrack(m_trackVideoTrackIds[trackIndex]);
 
 - [`createCustomVideoTrack`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_irtcengine_createcustomvideotrack)
 - [`destroyCustomVideoTrack`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_irtcengine_destroycustomvideotrack)
+- [getCurrentMonotonicTimeInMs](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_irtcengine_getcurrentmonotonictimeinms)
+- [joinChannelEx](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_multi_channel.html?platform=Windows#api_irtcengineex_joinchannelex)
 - [`pushVideoFrame`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_imediaengine_pushvideoframe)
