@@ -124,7 +124,7 @@
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
-<pic>
+<pic> //TODO
 
 ### 1. 创建房间
 

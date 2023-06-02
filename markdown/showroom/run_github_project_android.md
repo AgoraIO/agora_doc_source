@@ -32,14 +32,14 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
 2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到秀场直播示例项目对应的文件路径下：
 
-    |SDK 文件    |  项目路径   |
-    |-----|-----|
-    | Android/models   | Android/scenes/show/src/main/assets/    |
-    | Android/smaple/SenseMeEffects/app/src/main/assets/sticker_face_shape   |Android/scenes/show/src/main/assets/     |
-    | Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly   | Android/scenes/show/src/main/assets/    |
-    | Android/aar/STMobileJNI-release.aar   | Android/scenes/show/aars/STMobileJNI/    |
-    | Android/smaple/SenseMeEffects/app/libs/SenseArSourceManager-release.aar   | Android/scenes/show/aars/SenseArSourceManager    |
-    | 商汤证书SenseME.lic   |Android/scenes/show/src/main/assets/license/SenseME.lic     |
+    | 用途|SDK 文件    |  项目路径   |
+    |---|-----|-----|
+    | 基础美颜| Android/aar/STMobileJNI-release.aar   | Android/scenes/show/aars/STMobileJNI/    |
+    | 基础美颜| Android/smaple/SenseMeEffects/app/libs/SenseArSourceManager-release.aar   | Android/scenes/show/aars/SenseArSourceManager    |
+    | 基础美颜| Android/models   | Android/scenes/show/src/main/assets/    |
+    | 贴纸| Android/smaple/SenseMeEffects/app/src/main/assets/sticker_face_shape   |Android/scenes/show/src/main/assets/     |
+    |风格妆| Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly   | Android/scenes/show/src/main/assets/    |
+    |证书 | 商汤证书SenseME.lic   |Android/scenes/show/src/main/assets/license/SenseME.lic     |
 
 3. 在项目的 `build.gradle` 文件中，将 `applicationId` 修改为你的包名，例如 `com.example.app`。包名用于在设备上唯一标识应用程序。在开发应用时，你需要设置包名。在此处设置的包名需要与你申请 SDK 时提供的包名一致。
 

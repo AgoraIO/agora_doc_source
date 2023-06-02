@@ -32,15 +32,17 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
 2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到秀场直播示例项目对应的文件路径下：
 
-    |SDK 文件    |  项目路径   |
-    |-----|-----|
-    | iOS/include/*.h   | iOS/SenseLib/*.h    |
-    | iOS/libs/ios_os-universal/libst_mobile.a   |iOS/SenseLib/libst_mobile.a     |
-    | iOS/models/model.bundle   | iOS/SenseLib/model.bundle   |
-    | iOS/samples/SenseMeEffects/SenseMeEffects/datasource/resources/StickerZipAndIcons/lianxingface.zip   | iOS/SenseLib/sticker_face_shape/lianxingface.zip   |
-    | #TODO  qise.zip | iOS/SenseLib/style_ligthly/qise.zip   |
-    | #TODO  wanneng.zip  | iOS/SenseLib/style_ligthly/wanneng.zip   |
-    | 商汤证书SENSEME.lic   | iOS/AgoraEntScenarios/Scenes/Show/Beauty/SenseBeaufy/SENSEME.lic     |\
+    |用途 |SDK 文件    |  项目路径   |
+    |----|-----|-----|
+    | 基础美颜| iOS/include/*.h | iOS/SenseLib/*.h  |
+    | 基础美颜| iOS/libs/ios_os-universal/libst_mobile.a  |iOS/SenseLib/libst_mobile.a     |
+    | 基础美颜| iOS/models/model.bundle   | iOS/SenseLib/model.bundle   |
+    | 美颜贴纸| iOS/samples/SenseMeEffects/SenseMeEffects/datasource/resources/StickerZipAndIcons/lianxingface.zip   | iOS/SenseLib/sticker_face_shape/lianxingface.zip   |
+    | 风格妆| #TODO  qise.zip | iOS/SenseLib/style_ligthly/qise.zip   |
+    | 风格妆| #TODO  wanneng.zip  | iOS/SenseLib/style_ligthly/wanneng.zip   |
+    | 证书| 商汤证书SENSEME.lic   | iOS/AgoraEntScenarios/Scenes/Show/Beauty/SenseBeaufy/SENSEME.lic     |
+
+
 
 ## 配置示例项目
 
