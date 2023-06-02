@@ -6,9 +6,9 @@
 
 - [Git](https://git-scm.com/downloads)
 - [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
-- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 9.0 及以上
+- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上
 - iOS 设备，版本 13.0 及以上
-- 有效的苹果开发者签名
+- 有效的苹果开发者账号
 - 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)
 
 <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>

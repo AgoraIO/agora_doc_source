@@ -6,7 +6,7 @@
 
 - [Git](https://git-scm.com/downloads)
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)
-- [Android Studio](https://developer.android.com/studio/) 3.5 及以上
+- [Android Studio](https://developer.android.com/studio/) 4.1 及以上
 - Android 手机，版本 Android 5.0（API Level 21）及以上
 - 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)
 

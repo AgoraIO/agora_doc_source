@@ -11,7 +11,16 @@
 ## 准备开发环境
 
 ### 前提条件
-bbe55090-5cb0-11ec-af4b-2b38abdb1c68
+
+- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上。
+- iOS 设备，版本 13.0 及以上。
+- 有效的苹果开发者账号。
+- 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
+- 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)和声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得以下信息：
+  - App ID：声网随机生成的字符串，用于识别你的项目。
+  - 临时 Token：Token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
+  - 频道名：用于标识频道的字符串。
+
 
 ### 创建项目
 

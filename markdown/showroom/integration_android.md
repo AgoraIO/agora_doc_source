@@ -38,11 +38,10 @@
 
 ### 前提条件
 
-- Android Studio 4.1 以上版本。
-- Android API 级别 16 或以上。
-- 两台运行 Android 4.1 或以上版本的移动设备。
+- [Android Studio](https://developer.android.com/studio/) 4.1 及以上。
+- Android 手机，版本 Android 5.0（API Level 21）及以上。
 - 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
-- 有效的[声网账户](https://console.agora.io/)和声网项目，请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)，从声网控制台获取以下信息：
+- 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)和声网项目，请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)，从声网控制台获取以下信息：
   - App ID：声网随机生成的字符串，用于识别你的 app。
   - 临时 Token：你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。临时 Token 的有效期为 24 小时。
   - 频道名称：用于标识直播频道的字符串。
