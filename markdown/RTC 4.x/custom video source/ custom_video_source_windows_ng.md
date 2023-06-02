@@ -167,7 +167,7 @@ void MultiVideoSourceTracksYUVReaderHander::OnYUVRead(int width, int height, uns
 ```
 
 
-### 5. 销毁自定义视频轨道
+### 5. 销毁自定义视频轨道并离开频道
 
 如需停止自定义视频采集，调用 `destroyCustomVideoTrack` 来销毁视频轨道。如需销毁多个视频轨道，可多次调用 `destroyCustomVideoTrack`。
 
@@ -198,6 +198,6 @@ m_rtcEngine->leaveChannelEx(m_trackConnections[trackIndex]);
 
 - [`createCustomVideoTrack`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_irtcengine_createcustomvideotrack)
 - [`destroyCustomVideoTrack`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_irtcengine_destroycustomvideotrack)
-- [getCurrentMonotonicTimeInMs](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_irtcengine_getcurrentmonotonictimeinms)
-- [joinChannelEx](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_multi_channel.html?platform=Windows#api_irtcengineex_joinchannelex)
+- [`getCurrentMonotonicTimeInMs`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_irtcengine_getcurrentmonotonictimeinms)
+- [`joinChannelEx`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_multi_channel.html?platform=Windows#api_irtcengineex_joinchannelex)
 - [`pushVideoFrame`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/windows_ng/API/toc_video_process.html?platform=Windows#api_imediaengine_pushvideoframe)
