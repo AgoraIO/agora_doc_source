@@ -1,6 +1,9 @@
 本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
 
-## KTV API 接口类
+<div class="alert note">本文适用于 K 歌场景化 API v2.3.1。</div>
+
+
+## KTVApi
 
 该类提供实现 K 歌场景的核心方法。
 
@@ -117,7 +120,7 @@ fun searchMusicByMusicChartId(
 
 - `musicChartId`：歌曲榜单 ID，可通过 `fetchMusicCharts` 获取。
 - `page`：当前页面编号，默认从 1 开始。
-- `pageSize`：当前音乐资源列表的总页面数量，最大值为 50。
+- `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
 - `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
 - `onMusicCollectionResultListener`：获取歌曲资源列表回调，包含以下参数：
   - `requestId`：请求 ID。本次请求的唯一标识。
@@ -194,7 +197,7 @@ fun loadMusic(
 )
 ```
 
-加载歌曲和歌词。
+通过歌曲编号加载歌曲和歌词。
 
 传入歌曲编号和加载配置，调用 `loadMusic` 加载歌曲和歌词。加载结果会通过 `IMusicLoadStateListener` 回调异步通知你。
 
@@ -208,7 +211,7 @@ fun loadMusic(
 - `config`: 加载配置。详见 [KTVLoadMusicConfiguration](#KTVLoadMusicConfiguration)。
 - `musicLoadStateListener`: 歌曲加载状态，详见 [`IMusicLoadStateListener`](#IMusicLoadStateListener)。
 
-## loadMusic [2/2]
+### loadMusic [2/2]
 
 ```kotlin
 fun loadMusic(
@@ -217,7 +220,7 @@ fun loadMusic(
 )
 ```
 
-加载歌曲和歌词。
+通过歌曲 URL 加载歌曲和歌词。
 
 传入歌曲的 URL 和加载配置，调用 `loadMusic` 加载歌曲和歌词。
 
@@ -242,7 +245,7 @@ fun switchSingerRole(
 
 切换 K 歌时的用户角色。
 
-KTV API 初始化时默认用户角色为听众，如果需要开始独唱或加入合唱，需要调用 `switchSingerRole` 来切换至相应的角色。你可以参考[切换说明](link)来进行角色切换。
+KTV API 初始化时默认用户角色为听众，如果需要开始独唱或加入合唱，需要调用 `switchSingerRole` 来切换至相应的角色。你可以参考[切换说明](https://docportal.shengwang.cn/cn/online-ktv/ktv_integration_android?platform=Android#4-切换角色)来进行角色切换。
 
 KTV API 内部会根据角色的切换来控制演唱过程中音乐播放器的播放、同步，以及订阅和发布音频流的行为。角色切换的结果会通过 `ISwitchRoleStateListener` 回调异步通知你。
 
@@ -326,7 +329,7 @@ fun setMicStatus(isOnMicOpen: Boolean)
 
 - `isOnMicOpen`：当前麦克风的开关状态：
   - `true`：麦克风开启。
-  - `false`：麦克风关闭。
+  - `false`：（默认）麦克风关闭。
 
 ### setLrcView
 
@@ -380,7 +383,7 @@ fun getMusicContentCenter() : IAgoraMusicContentCenter
 
 - [`IAgoraMusicContentCenter`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_imusiccontentcenter) 实例。
 
-## ILrcView 接口类
+## ILrcView 
 
 该类提供歌词组件的相关回调。在调用 `setLrcView` 设置歌词控制视图时，你需要继承此接口类并实现其下的方法。
 
@@ -426,9 +429,9 @@ fun onDownloadLrcData(url: String?)
 
 - `url`：歌词的下载地址。
 
-## IMusicLoadStateListener
+## IMusicLoadStateListener 
 
-<a id="IMusicLoadStateListener"/>
+<a name="IMusicLoadStateListener"></a>
 
 该接口类提供歌曲加载状态的相关回调。
 
@@ -480,9 +483,9 @@ fun onMusicLoadProgress(songCode: Long, percent: Int, status: MusicLoadStatus, m
 - `msg`：本次请求返回的消息。`ok` 表示请求成功。
 - `lyricUrl`：歌词下载地址。
 
-## ISwitchRoleStateListener
+## ISwitchRoleStateListener 
 
-<a id="ISwitchRoleStateListener"/>
+<a name="ISwitchRoleStateListener"></a>
 
 该接口类提供用户角色切换状态的相关回调。
 
@@ -512,7 +515,7 @@ fun onSwitchRoleFail(reason: SwitchRoleFailReason)
 
 ## IKTVApiEventHandler
 
-<a id="IKTVApiEventHandler"/>
+<a name="IKTVApiEventHandler"></a>
 
 该接口类提供 K 歌场景的核心回调。
 
@@ -525,6 +528,7 @@ open fun onMusicPlayerStateChanged(
     isLocal: Boolean
 ) {}
 ```
+
 播放器状态改变回调。
 
 #### 参数
@@ -532,8 +536,8 @@ open fun onMusicPlayerStateChanged(
 - `state`：播放器的当前状态。详见 [MediaPlayerState](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/enum_mediaplayerstate.html?platform=Android)。
 - `error`：播放器的错误码。详见 [MediaPlayerError](https://docs.agora.io/cn/online-ktv/API%20Reference/java_ng/API/enum_mediaplayererror.html?platform=Android)。
 - `isLocal`: 是否为本地事件：
-    - `true`: 代表是本地播放器的状态改变。可用于主唱和伴唱监听本地播放器状态。
-    - `false`: 是远端播放器的状态改变。可用于伴唱和听众知晓主唱的播放器状态，从而方便后续进行多端播放同步。
+  - `true`: 代表是本地播放器的状态改变。可用于主唱和伴唱监听本地播放器状态。
+  - `false`: 是远端播放器的状态改变。可用于伴唱和听众知晓主唱的播放器状态，从而方便后续进行多端播放同步。
 
 举例来说，在合唱场景下，主唱、伴唱、听众收到的 `onMusicPlayerStateChanged` 回调有如下区别：
 
@@ -575,7 +579,7 @@ Token 即将过期回调。
 
 ### KTVSingRole
 
-<a id="KTVSingRole"/>
+<a name="KTVSingRole"></a>
 
 ```kotlin
 enum class KTVSingRole(val value: Int) {
@@ -585,7 +589,9 @@ enum class KTVSingRole(val value: Int) {
     Audience(3)
 }
 ```
+
 K 歌用户角色类型：
+
 - `SoloSinger`：(0) 独唱者。
 - `CoSinger`：(1) 伴唱。
 - `LeadSinger`：(2) 领唱。
@@ -593,7 +599,7 @@ K 歌用户角色类型：
 
 ### KTVLoadSongFailReason
 
-<a id="KTVLoadSongFailReason"/>
+<a name="KTVLoadSongFailReason"></a>
 
 ```kotlin
 enum class KTVLoadSongFailReason(val value: Int) {
@@ -610,6 +616,7 @@ enum class KTVLoadSongFailReason(val value: Int) {
 - `CANCELED`：(2) 歌曲加载因出现错误而终止。
 
 ### KTVSwitchRoleFailReason
+<a name="SwitchRoleFailReason"/>
 
 ```kotlin
 enum class KTVSwitchRoleFailReason(val value: Int) {
@@ -621,11 +628,11 @@ enum class KTVSwitchRoleFailReason(val value: Int) {
 用户角色切换失败的原因：
 
 - `JOIN_CHANNEL_FAIL`：(0) 加入频道失败。
-- `NO_PERMISSION`：(1) 不支持从当前角色切换为目标角色，请参考[切换说明]()进行角色切换。
+- `NO_PERMISSION`：(1) 不支持从当前角色切换为目标角色，请参考[切换说明](https://docportal.shengwang.cn/cn/online-ktv/ktv_integration_android?platform=Android#4-切换角色)进行角色切换。
 
 ### KTVLoadMusicMode 
 
-<a name="KTVLoadMusicMode">
+<a name="KTVLoadMusicMode"></a>
 
 ```kotlin
 enum class KTVLoadMusicMode(val value: Int) {
@@ -643,7 +650,7 @@ enum class KTVLoadMusicMode(val value: Int) {
 
 ### MusicLoadStatus
 
-<a id="MusicLoadStatus"/>
+<a name="MusicLoadStatus"></a>
 
 ```kotlin
 enum class MusicLoadStatus(val value: Int) {
@@ -654,6 +661,7 @@ enum class MusicLoadStatus(val value: Int) {
 ```
 
 歌曲加载的状态：
+
 - `COMPLETED`: (0) 加载成功。
 - `FAILED`: (1) 加载失败。
 - `INPROGRESS`: (2) 正在加载中。
@@ -661,7 +669,7 @@ enum class MusicLoadStatus(val value: Int) {
 
 ## Data class
 
-<a id="KTVApiConfig"/>
+<a name="KTVApiConfig"></a>
 
 ### KTVApiConfig
 
@@ -697,7 +705,7 @@ K 歌配置：
 
 ### KTVLoadMusicConfiguration
 
-<a id="KTVLoadMusicConfiguration"/>
+<a name="KTVLoadMusicConfiguration"></a>
 
 ```kotlin
 data class KTVLoadMusicConfiguration(
@@ -714,6 +722,3 @@ data class KTVLoadMusicConfiguration(
   - `false`：（默认）不自动播放。
 - `mainSingerUid`：独唱者的用户 ID。
 - `mode`：歌曲加载的模式，详见 [KTVLoadMusicMode](#KTVLoadMusicMode)。
-
-
-
