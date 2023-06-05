@@ -56,7 +56,7 @@
     pod 'AgoraRtcEngine_iOS', 'x.y.z'
     end
     ```
-6. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_ios#集成商汤美颜-SDK)。
+6. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_ios#集成商汤美颜-SDK)。#TODO review
 
 7. 在终端内运行 <code>pod install</code> 命令安装声网 SDK。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
 

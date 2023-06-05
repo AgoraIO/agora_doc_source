@@ -88,7 +88,7 @@
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
    ```
-3. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_android#集成商汤美颜-SDK)。
+3. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_android#集成商汤美颜-SDK)。#TODO review
 
 4. 添加网络及设备权限。
 
