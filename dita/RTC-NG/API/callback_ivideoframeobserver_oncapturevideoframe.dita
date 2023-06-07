@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_oncapturevideoframe">
     <title><ph keyref="onCaptureVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">获取本地摄像头采集到的视频数据。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">获取本地设备采集到的视频数据。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,7 +30,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取本地摄像头采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
+            <p>成功注册视频数据观测器后，SDK 会在捕捉到每个视频帧时触发该回调。你可以在回调中获取本地设备采集到的视频数据，然后根据场景需要，对视频数据进行前处理。</p>
             <p props="native unity electron rn cs">完成前处理后，你可以在该回调中直接修改 <parmname>videoFrame</parmname>，并将返回值设置为 <codeph><ph keyref="true"/></codeph>，即可将修改后的视频数据发送给 SDK。</p>
             <note type="attention" id="note">
             <ul>
@@ -41,9 +41,9 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-                <plentry conkeyref="enableDualStreamMode2/sourcetype">
-                    <pt/>
-                    <pd/>
+                <plentry>
+                    <pt>sourceType</pt>
+                    <pd>视频源类型，可能的视频源包括：摄像头、屏幕或媒体播放器。详见 <xref keyref="VIDEO_SOURCE_TYPE"/> 。</pd>
                 </plentry>
             <plentry id="videoframe">
                 <pt>videoFrame</pt>

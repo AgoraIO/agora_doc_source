@@ -29,14 +29,14 @@
             <note type="attention">
             <ul>
             <li>该方法设置的是内部引擎为启用状态，在离开频道后仍然有效。</li>
-            <li>该方法重置整个引擎，响应时间较慢，因此声网建议使用如下方法来控制视频模块：
-
+            <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制视频模块的某一项功能：
                 <ul>
                 <li><xref keyref="enableLocalVideo" />: 是否启动摄像头采集并创建本地视频流。</li>
                 <li><xref keyref="muteLocalVideoStream" />: 是否发布本地视频流。</li>
                 <li><xref keyref="muteRemoteVideoStream" />: 是否接收并播放远端视频流。</li>
                 <li><xref keyref="muteAllRemoteVideoStreams" />: 是否接收并播放所有远端视频流。</li>
                 </ul></li>
+            <li>在频道内调用该方法时，会重置 <apiname keyref="enableLocalVideo" />、<apiname keyref="muteRemoteVideoStream" /> 和 <apiname keyref="muteAllRemoteVideoStreams" /> 的设置，需谨慎使用。</li>
             </ul> </note> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
