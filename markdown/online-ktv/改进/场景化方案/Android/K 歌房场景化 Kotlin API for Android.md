@@ -36,6 +36,24 @@ fun release()
 
 调用该方法可以清空 KTV API 模块内部变量和缓存数据，取消 `ktvApiEventHandler` 的事件监听，取消网络请求等。
 
+### renewToken
+
+```kotlin
+fun renewToken(
+    rtmToken: String,
+    chorusChannelRtcToken: String
+)
+```
+
+更新 Token。
+
+当你收到 `onTokenPrivilegeWillExpire` 回调报告 Token 即将过期时，需要主动调用此方法更新 Token。
+
+#### 参数
+
+- `rtmToken`：用于音乐内容中心鉴权的 RTM Token。
+- `chorusChannelRtcToken`：加入频道 2 的 Token。在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。
+
 ### addEventHandler
 
 ```kotlin
@@ -383,6 +401,19 @@ fun getMusicContentCenter() : IAgoraMusicContentCenter
 
 - [`IAgoraMusicContentCenter`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_imusiccontentcenter) 实例。
 
+### renewInnerDataStreamId
+
+```kotlin
+fun renewInnerDataStreamId()
+```
+
+更新 KTV API 内部使用的数据流 ID。
+
+如果你调用 `leaveChannel` 离开当前频道，之前创建的数据流会失效，你需要在调用 `joinChannel` 加入频道后，重新调用该方法更新数据流的 ID 。
+
+<div class="alert info">由于每个频道中最多只能创建 5 个数据流，因此请勿再一个频道内多次调用该方法。  
+</div>
+
 ## ILrcView 
 
 该类提供歌词组件的相关回调。在调用 `setLrcView` 设置歌词控制视图时，你需要继承此接口类并实现其下的方法。
@@ -560,19 +591,31 @@ open fun onSingerRoleChanged(oldRole: KTVSingRole, newRole: KTVSingRole) {}
 - `oldRole`：切换前的用户角色，详见 [KTVSingRole](#KTVSingRole)。
 - `newRole`：切换后的用户角色，详见 [KTVSingRole](#KTVSingRole)。
 
-### onChorusChannelTokenPrivilegeWillExpire
+
+### onTokenPrivilegeWillExpire
 
 ```kotlin
-open fun onChorusChannelTokenPrivilegeWillExpire(token: String?) {}
+open fun onTokenPrivilegeWillExpire() {}
 ```
 
 Token 即将过期回调。
 
-在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。当用于加入频道 2 的 Token 即将过期时，会触发该回调提醒你及时更新 Token。你可以调用 [renewToken](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_core_method.html?platform=Android#api_irtcengine_renewtoken) 来传入新的 Token。
+当用于音乐内容中心鉴权的 RTM Token 或用于加入频道鉴权的 Token 即将过期时，会触发该回调。
 
-#### 参数
+在收到该回调后，你需要调用 `renewToken` 来更新 Token。
 
-- `token`：即将服务失效的 Token。
+### onChorusChannelAudioVolumeIndication
+
+```kotlin
+open fun onChorusChannelAudioVolumeIndication(
+        speakers: Array<out IRtcEngineEventHandler.AudioVolumeInfo>?,
+        totalVolume: Int) {}
+```
+
+合唱频道中用户音量提示回调。【是否也需要调用 [enableAudioVolumeIndication](https://docs-preprod.agora.io/cn/extension_customer/API Reference/java_ng/v4.2.0/API/toc_audio_process.html#api_irtcengine_enableaudiovolumeindication) 开启，还是默认开启？回调的触发间隔是多少？
+启用该功能后，如果有用户将自己静音（volume 设为 0），SDK 会继续报告本地用户的音量提示回调。
+
+瞬时音量最高的远端用户静音后 20 秒，远端的音量提示回调中将不再包含该用户；如果远端所有用户都将自己静音，20 秒后 SDK 停止报告远端用户的音量提示回调。
 
 
 ## Enum class
@@ -681,7 +724,8 @@ data class KTVApiConfig(
     val channelName: String,
     val localUid: Int,
     val chorusChannelName: String,
-    val chorusChannelToken: String
+    val chorusChannelToken: String,
+	val maxCacheSize: Int = 10
 )
 ```
 
@@ -691,7 +735,7 @@ K 歌配置：
 
 - `rtmToken`：RTM Token，用于音乐内容中心鉴权。
 
-  <div class="alert info">你可以获取临时 RTM Token 用于测试，但在正式生产环境中，你需要自己部署一个 RTM Token 服务器来生成、更新 Token，详见使用 RTM Token 鉴权。</div>
+  <div class="alert info">你可以获取临时 RTM Token 用于测试，但在正式生产环境中，你需要自己部署一个 RTM Token 服务器来生成、更新 Token，详见<a href="https://docportal.shengwang.cn/cn/Real-time-Messaging/token_upgrade_rtm#参考">使用 RTM Token 鉴权</a>。</div>
 
 - `engine`：[`RtcEngine`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_irtcengine) 对象。
 
@@ -702,6 +746,8 @@ K 歌配置：
 - `chorusChannelName`: 在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。在独唱场景下，该参数可以为空。
 
 - `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。在独唱场景下，该参数可以为空。
+
+- `maxCacheSize`：可缓存的音乐资源数量，最多不能超过 50。
 
 ### KTVLoadMusicConfiguration
 
