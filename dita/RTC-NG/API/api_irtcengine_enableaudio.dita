@@ -28,7 +28,7 @@
             <note type="attention">
             <ul>
             <li>该方法设置音频模块为启用状态，在频道内和频道外均可调用。在离开频道后仍然有效。</li>
-            <li>该方法开启整个音频模块，响应时间较慢，因此建议使用如下方法来控制音频模块：
+            <li>调用该方法会重置整个引擎，响应时间较慢。你可以根据实际需求用以下方法来独立控制音频模块的某一项功能：
 
                 <ul>
                 <li><xref keyref="enableLocalAudio" />: 是否启动麦克风采集并创建本地音频流。</li>
@@ -36,6 +36,7 @@
                 <li><xref keyref="muteRemoteAudioStream" />: 是否接收并播放远端音频流。</li>
                 <li><xref keyref="muteAllRemoteAudioStreams" />: 是否接收并播放所有远端音频流。</li>
                 </ul></li>
+            <li>在频道内调用该方法时，会重置 <apiname keyref="enableLocalAudio" />、<apiname keyref="muteRemoteAudioStream" /> 和 <apiname keyref="muteAllRemoteAudioStreams" /> 的设置，需谨慎使用。</li>
             </ul></note> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
