@@ -1,30 +1,16 @@
-## 概览
+本文介绍声网 MetaWorld SDK 的 Java API。
 
-### 实时音视频功能
+## 概述
 
-实时音视频功能相关的 API，请直接查看 RTC SDK 4.x 的 API 参考。
+MetaWorld SDK 是基于声网视频 SDK 开发的元系列特殊版 SDK。相比[视频 SDK](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/rtc_api_overview_ng.html)，MetaWorld SDK 中新增元系列相关的 API。
 
-| 类  | 描述     |
-| -------- | ------- |
-| `RtcEngine`  | 实时音视频功能的基础接口。详见  [`RtcEngine`](https://docs.agora.io/cn/voice-call-4.x/API%20Reference/java_ng/API/class_irtcengine.html)。     |
-| `ILocalSpatialAudioEngine`  | 空间音效相关接口。详见 [`ILocalSpatialAudioEngine`](https://docs.agora.io/cn/voice-call-4.x/API%20Reference/java_ng/API/class_ilocalspatialaudioengine.html)。       |
-| `IMediaPlayer`  | 媒体播放器相关接口。详见  [`IMediaPlayer`](https://docs.agora.io/cn/voice-call-4.x/API%20Reference/java_ng/API/class_imediaplayer.html)。      |
+### 接口对象关系图
 
-### 元语聊定制功能
-
-本文重点提供元语聊定制功能的 API 参考。
-
-| 类  | 描述  #TODO add more   |
-| -------- | ------- |
-| [IMetaService](#IMetaService)  | 房间和场景场景相关接口。     |
-| [IMetaScene](#IMetaScene)   | 场景资源操作相关接口。           |
-| [ILocalUserAvatar](#ilocaluseravatar) | 本地用户的昵称、虚拟形象、装扮、捏脸相关接口。   |
-| [IMetaServiceEventHandler](#IMetaServiceEventHandler)   | 房间和场景场景相关回调。 |
-| [IMetaSceneEventHandler](#IMetaSceneeventhandler) | 场景资源操作相关回调。       |
+![](https://web-cdn.agora.io/docs-files/1686215859897)
 
 ## IMetaService
 
-元语聊服务的基础类。
+MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于 创建 IMetaScene。
 
 ### create
 
@@ -46,9 +32,8 @@ public static synchronized IMetaService create();
 public abstract int initialize(MetaServiceConfig config);
 ```
 
-初始化 `IMetaService` 对象并登录声网 RTM 系统。#TODO delete
+初始化 `IMetaService` 对象并登录声网 RTM 系统。
 
-成功调用该方法会触发 `onConnectionStateChanged` 回调。#TODO delete
 
 **参数**
 
@@ -133,7 +118,7 @@ public abstract int isSceneAssetsDownloaded(long sceneId);
 
 **参数**
 
-`sceneId`：场景场景的 ID，可以从 [MetaSceneAssetsInfo](#metasceneassetsinfo) 获取。
+`sceneId`：场景场景的 ID，可以从 [`MetaSceneAssetsInfo`](#metasceneassetsinfo) 获取。
 
 **返回值**
 
@@ -154,7 +139,7 @@ public abstract int downloadSceneAssets(long sceneId);
 
 **参数**
 
-`sceneId`：场景资源的 ID，可以从 [MetaSceneAssetsInfo](#metasceneassetsinfo) 获取。
+`sceneId`：场景资源的 ID，可以从 [`MetaSceneAssetsInfo`](#metasceneassetsinfo) 获取。
 
 **返回值**
 
@@ -177,7 +162,7 @@ public abstract int cancelDownloadSceneAssets(long sceneId);
 
 **参数**
 
-`sceneId`：场景资源的 ID，可以从 [MetaSceneAssetsInfo](#metasceneassetsinfo) 获取。
+`sceneId`：场景资源的 ID，可以从 [`MetaSceneAssetsInfo`](#metasceneassetsinfo) 获取。
 
 **返回值**
 
@@ -197,7 +182,7 @@ public abstract int cleanSceneAssets(long sceneId);
 
 **参数**
 
-`sceneId`：场景资源的 ID，可以从 [MetaSceneAssetsInfo](#metasceneassetsinfo) 获取。
+`sceneId`：场景资源的 ID，可以从 [`MetaSceneAssetsInfo`](#metasceneassetsinfo) 获取。
 
 **返回值**
 
@@ -212,11 +197,12 @@ public abstract int cleanSceneAssets(long sceneId);
 ```java
 public abstract int createScene(MetaSceneConfig config);
 ```
-调用该方法会触发 `IMetaServiceEventHandler` 类的 [onCreateSceneResult](#oncreatesceneresult) 回调。成功创建的 `IMetaScene` 对象可以在该回调里拿到。
+
+调用该方法会触发 `IMetaServiceEventHandler` 类的 [`onCreateSceneResult`](#oncreatesceneresult) 回调。成功创建的 `IMetaScene` 对象可以在该回调里拿到。
 
 **参数**
 
-`config`：创建 `IMetaScene` 对象需要的配置信息，详见 [MetachatSceneConfig](#metasceneconfig)。
+`config`：创建 `IMetaScene` 对象需要的配置信息，详见 [`MetaSceneConfig`](#metasceneconfig)。
 
 **返回值**
 
@@ -234,9 +220,9 @@ public abstract int createScene(MetaSceneConfig config);
 public abstract int release();
 ```
 
-销毁 IMetaScene 对象。
+销毁 `IMetaScene` 对象。
 
-调用该方法会触发 [onReleasedScene](#onreleasedscene) 回调。#TODO
+调用该方法会触发 [`onReleasedScene`](#onreleasedscene) 回调。
 
 **返回值**
 
@@ -310,7 +296,7 @@ public abstract int enterScene(EnterSceneConfig config);
 
 **参数**
 
-`config`：进入场景所需要的配置信息，详见 [EnterSceneConfig](#entersceneconfig)。
+`config`：进入场景所需要的配置信息，详见 [`EnterSceneConfig`](#entersceneconfig)。
 
 
 **返回值**
@@ -368,10 +354,7 @@ public abstract int setSceneParameters(String jsonParam);
 
 （预留方法，尚未实现）设置场景渲染相关参数。
 
-
-
 ### enableVideoDisplay
-
 
 ```java
 public abstract int enableVideoDisplay(String displayId, boolean enable);
@@ -381,7 +364,7 @@ public abstract int enableVideoDisplay(String displayId, boolean enable);
 
 **参数**
 
-- `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
+- `displayId`：指定显示器的 ID。该 ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
 - `enable`：是否开启指定显示器：
   - `true`：开启显示器，即开始视频渲染。
   - `false`：关闭显示器，即关闭视频渲染。
@@ -389,7 +372,6 @@ public abstract int enableVideoDisplay(String displayId, boolean enable);
 **返回值**
 
 - 0：方法调用成功
-
 - < 0：方法调用失败
 
 ### pushVideoFrameToDisplay
@@ -403,7 +385,7 @@ public abstract int pushVideoFrameToDisplay(String displayId, AgoraVideoFrame fr
 **参数**
 
 - `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
-- `frame`：原始视频帧。详见 RTC SDK API 参考中的 [AgoraVideoFrame](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
+- `frame`：原始视频帧。详见 RTC SDK API 参考中的 [`AgoraVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
 
 **返回值**
 
@@ -417,19 +399,18 @@ public abstract int pushVideoFrameToDisplay(String displayId, AgoraVideoFrame fr
 public abstract int addSceneView(TextureView view, SceneDisplayConfig config);
 ```
 
-添加场景显示视图
+添加场景显示视图。
 
-该方法可添加一个额外的视图，以显示 Unity 场景的 Camera 的画面。调用成功后，SDK 会触发 `IMetaSceneEventHandler` 类的 `onAddSceneViewResult` 回调。#TODO
+该方法可添加一个额外的视图，以在显示虚拟人脸视图外还能显示 Unity 场景的摄像头采集到的视频画面。调用成功后，SDK 会触发 `IMetaSceneEventHandler` 类的 [`onAddSceneViewResult`](onaddsceneviewresult) 回调。
 
 **参数**
 
-- view：unity camera画面显示需要的视图。
-- config：场景显示相关配置参数，[SceneDisplayConfig](#scenadiaplayconfig)。#TODO
+- `view`：视频视图。
+- `config`：场景显示相关配置参数，[`SceneDisplayConfig`](#scenadiaplayconfig)。
 
 **返回值**
 
 - 0：方法调用成功
-
 - < 0：方法调用失败
 
 ### removeSceneView
@@ -438,13 +419,13 @@ public abstract int addSceneView(TextureView view, SceneDisplayConfig config);
 public abstract int removeSceneView(TextureView view);
 ```
 
-移除场景显示视图
+移除场景显示视图。
 
 调用成功后，SDK 会触发 `IMetaSceneEventHandler` 类的 `onRemoveSceneViewResult` 回调。
 
 **参数**
 
-view：待移除的视图。
+`view`：待移除的视图。
 
 
 **返回值**
@@ -459,23 +440,28 @@ view：待移除的视图。
 public abstract int enableSceneVideoCapture(TextureView view, boolean enable);
 ```
 
-开启或关闭场景渲染画面捕获
+开启或关闭场景渲染画面捕获。
 
-开启或关闭场景渲染画面捕获，配合RtcEngine的joinChannel，可以把场景渲染的画面发布到RTC频道里面。#TODO
+该方法用于开启或关闭场景渲染画面捕获。通过与 `RtcEngine` 的 `joinChannel` 方法配合使用，可以将场景渲染的画面发布到 RTC 频道中。
 
 **参数**
 
-- view：需要捕获的场景视图。
-- enable：为true时，表示把场景画面发布到RTC频道里面；所有场景视图捕获为false时，会把摄像头画面发布到RTC频道。默认为false。
+- `view`：需要捕获的场景视图。
+- `enable`：是否开启场景渲染画面捕获。
+  - `true`：开启。场景画面会发布到 RTC 频道中。
+  - `false`：（默认）不开启。场景画面不会发不到 RTC 频道中。
+
 
 **返回值**
 
 - 0：方法调用成功
-
 - < 0：方法调用失败
 
 
+
 ## ILocalUserAvatar
+
+包含在 `IMetaScene` 中，生命周期和 `IMetaScene` 相同。
 
 ### setUserInfo
 
@@ -487,7 +473,7 @@ int setUserInfo(MetaUserInfo userInfo);
 
 **参数**
 
-`userInfo`：在场景内展示的用户信息，详见 [MetaUserInfo](#metauserinfo)。
+`userInfo`：在场景内展示的用户信息，详见 [`MetaUserInfo`](#metauserinfo)。
 
 **返回值**
 
@@ -496,8 +482,6 @@ int setUserInfo(MetaUserInfo userInfo);
 
 ### getUserInfo
 
-
-
 ```java
 MetaUserInfo getUserInfo();
 ```
@@ -505,7 +489,7 @@ MetaUserInfo getUserInfo();
 
 **返回值**
 
-[MetaUserInfo](#metauserinfo) 对象。
+[`MetaUserInfo`](#metauserinfo) 对象。
 
 ### setModelInfo
 
@@ -519,7 +503,7 @@ int setModelInfo(AvatarModelInfo modelInfo);
 
 **参数**
 
-`modelInfo`：用户的虚拟形象模型信息，详见 [AvatarModelInfo](#avatarmodelinfo)。
+`modelInfo`：用户的虚拟形象模型信息，详见 [`AvatarModelInfo`](#avatarmodelinfo)。
 
 **返回值**
 
@@ -537,12 +521,10 @@ AvatarModelInfo getModelInfo();
 
 **返回值**
 
-[AvatarModelInfo](#avatarmodelinfo) 对象。
+[`AvatarModelInfo`](#avatarmodelinfo) 对象。
 
 
 ### setExtraInfo
-
-
 
 ```java
 int setExtraInfo(byte[] extraInfo);
@@ -596,7 +578,7 @@ int applyInfo();
 
 ## IMetaServiceEventHandler
 
-`IMetaService` 类的回调。
+`IMetaService` 的异步方法的事件回调类。
 
 ### onCreateSceneResult
 
@@ -627,11 +609,11 @@ public void onConnectionStateChanged(int state, int reason);
 **参数**
 
 - `state`：连接状态。
-  - 1：断开连接。
-  - 2：正在连接。
-  - 3：连接成功。
-  - 4：正在重连。
-  - 5：连接丢弃。
+  - `1`：断开连接。
+  - `2`：正在连接。
+  - `3`：连接成功。
+  - `4`：正在重连。
+  - `5`：连接丢弃。
 
 - `reason`：连接状态改变的原因。
 
@@ -652,11 +634,11 @@ Token 即将过期回调。
 public void onGetSceneAssetsInfoResult(MetaSceneAssetsInfo[] metaSceneAssetsInfo, int errorCode);
 ```
 
-获取场景资源列表回调
+获取场景资源列表回调。
 
 **参数**
 
-- `metaSceneAssetsInfo`：场景资源信息列表，详见 [MetaSceneAssetsInfo](#metasceneassetsinfo)。
+- `metaSceneAssetsInfo`：场景资源信息列表，详见 [`MetaSceneAssetsInfo`](#metasceneassetsinfo)。
 
 - `errorCode`：错误码：
   - 0 表示获取列表成功。
@@ -676,14 +658,14 @@ public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state)
 - `progress`：下载进度，取值范围 [0,100]。
 
 - `state`：下载状态：
-  - 0：空闲。
-  - 1：正在下载。
-  - 2：下载完成。
-  - 3：下载失败
+  - `0`：空闲。
+  - `1`：正在下载。
+  - `2`：下载完成。
+  - `3`：下载失败
 
 ## IMetaSceneEventHandler
 
-`IMetaScene` 类的回调。
+`IMetaScene` 的异步方法的事件回调类。
 
 ### onEnterSceneResult
 
@@ -697,9 +679,9 @@ public void onEnterSceneResult(int errorCode);
 
 **参数**
 
-- `errorCode`：错误码：
-  - 0 表示进入场景成功。
-  - 其余情况进入场景失败。
+`errorCode`：错误码：
+- 0 表示进入场景成功。
+- 其余情况进入场景失败。
 
 ### onLeaveSceneResult
 
@@ -714,9 +696,9 @@ public void onLeaveSceneResult(int errorCode);
 
 **参数**
 
-- `errorCode`：错误码：
-  - 0 表示离开场景成功。
-  - 其余情况离开场景失败。
+`errorCode`：错误码：
+- 0 表示离开场景成功。
+- 其余情况离开场景失败。
 
 ### onSceneMessageReceived
 
@@ -744,7 +726,7 @@ public void onUserPositionChanged(String uid, MetaUserPositionInfo posInfo);
 **参数**
 
 - `uid`：本地或远端用户的用户 ID。
-- `posInfo`：用户的位置信息，详见 [MetaUserPositionInfo](#metauserpositioninfo)。
+- `posInfo`：用户的位置信息，详见 [`MetaUserPositionInfo`](#metauserpositioninfo)。
 
 
 ### onReleasedScene
@@ -759,21 +741,22 @@ void onReleasedScene(int status);
 **参数**
 
 `status`：错误码：
-- 0 表示释放 IMetaScene 成功。
-- 其余情况释放 IMetaScene 失败。
+- 0 表示释放 `IMetaScene` 成功。
+- 其余情况释放 `IMetaScene` 失败。
 
 ### onAddSceneViewResult
 ```java
 void onAddSceneViewResult(TextureView view, int errorCode);
 ```
 
-添加场景显示视图回调
+添加场景显示视图回调。
 
-调用 IMetaScene 类的 addSceneView 方法添加场景显示视图后，SDK 会触发该回调。
+调用 `IMetaScene` 类的 `addSceneView` 方法添加场景显示视图后，SDK 会触发该回调。
 
 **参数**
-- view：视图对象：TextureView。
-- errorCode：错误码：
+
+- `view`：视图对象：`TextureView`。
+- `errorCode`：错误码：
   - 0 表示添加视图成功。
   - 其余情况添加视图失败。
 
@@ -783,13 +766,14 @@ void onAddSceneViewResult(TextureView view, int errorCode);
 void onRemoveSceneViewResult(TextureView view, int errorCode);
 ```
 
-移除场景显示视图回调
+移除场景显示视图回调。
 
-调用 IMetaScene 类的 removeSceneView 方法移除场景显示视图后，SDK 会触发该回调。
+调用 `IMetaScene` 类的 `removeSceneView` 方法移除场景显示视图后，SDK 会触发该回调。
 
 **参数**
-- view：视图对象：TextureView。
-- errorCode：错误码：
+
+- `view`：视图对象：`TextureView`。
+- `errorCode`：错误码：
   - 0 表示移除视图成功。
   - 其余情况移除视图失败。
 
@@ -801,7 +785,7 @@ void onRemoveSceneViewResult(TextureView view, int errorCode);
 初始化 `IMetaService` 对象的配置信息。
 
 ```java
-public class MetachatConfig {
+public class MetaServiceConfig {
   public RtcEngine mRtcEngine;
   public String mAppId;
   public String mRtmToken;
@@ -821,15 +805,13 @@ public class MetachatConfig {
   - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
 - `mEventHandler`：回调事件，详见 [IMetaServiceEventHandler](#IMetaServiceEventHandler)。
 
-
-
 ### MetaUserInfo
 
 用户信息。
 
 ```java
 public class MetaUserInfo {
-  public String mUserId; // 此接口设置无效 #TODO？
+  public String mUserId;
   public String mUserName;
   public String mUserIconUrl;
 }
@@ -857,7 +839,7 @@ public class MetaSceneAssetsInfo {
   public String mDescription;
   public String mSceneConfig;
   public String mExtraInfo;
-  public MetachatBundleInfo[] mBundles;
+  public MetaBundleInfo[] mBundles;
   public String mSceneVersion;
   public String mSceneLocalVersion;
   public long mTotalSize;
@@ -884,7 +866,7 @@ public class MetaSceneAssetsInfo {
 
 
 ```java
-public class MetachatBundleInfo {
+public class MetaBundleInfo {
   public long mBundleId;
   public long mSceneId;
   public int mBundleType;
@@ -900,7 +882,7 @@ public class MetachatBundleInfo {
 }
 ```
 
-- `mBundleId`：资源包 ID，不同平台（Android、iOS）同一个资源包的ID 不同。
+- `mBundleId`：资源包 ID。不同平台（Android、iOS）的同一个资源包的 ID 是不同的。
 - `mSceneId`：所属的场景资源 ID。
 - `mBundleType`：资源包类型：
   - 1：场景场景。
@@ -916,65 +898,47 @@ public class MetachatBundleInfo {
 - `mExtraInfo`：资源包的其它额外信息。
 - `mBundleSize`：资源包大小。
 
-方法：
-- `toString`：返回 `MetachatBundleInfo` 对象的字符串表示形式。
 
-### MetachatSceneConfig
+### MetaSceneConfig
 
 场景资源的配置信息。
 
-```java
-public class MetachatSceneConfig {
-  public Context mActivityContext;
+```java #TODO code need
 
-  public MetachatSceneConfig() {
-    mActivityContext = null;
-  }
-}
 ```
 
-属性：
+- `mSyncMode`：消息同步模式：
+  - `STATE_SYNC_MODE_NONE`：不同步消息。
+  - `STATE_SYNC_MODE_NORMAL`：（默认）通过 RTM 同步消息。
 - `mActivityContext`：Activity 的 Context 对象，用于初始化 Unity。
+- `mEnableFaceCapture`：是否开启面部捕捉：
+  - true：开启。
+  - false：（默认）不开启。
+- `mFaceCaptureAppId`：开启面部捕捉时设置的 App ID。
+- `mFaceCaptureCertificate`：开启面部捕捉时设置的 Certificate（证书）。
+
+开启面捕功能时，需要设置面捕证书（license）。通过面捕 App ID 和 Certificate 可以获取对应的面捕证书（license）。
 
 ### EnterSceneConfig
 
 进入场景资源的配置信息。
-
-<details>
-<summary>class EnterSceneConfig</summary>
 
 ```java
 public class EnterSceneConfig {
   public String mRoomName;
   public TextureView mSceneView;
   public long mSceneId;
-  public byte[] mExtraCustomInfo;
-
-  public EnterSceneConfig() {
-    mRoomName = "";
-    mSceneView = null;
-    mSceneId = 0;
-    mExtraCustomInfo = null;
-  }
-
-  @Override
-  public String toString() {
-    return "EnterSceneConfig{"
-        + "mRoomName='" + mRoomName + '\'' + ", mSceneView=" + mSceneView + ", mSceneId=" + mSceneId
-        + ", mExtraCustomInfo=" + Arrays.toString(mExtraCustomInfo) + '}';
-  }
+  public String mScenePath;
+  public byte[] mExtraInfo;
 }
 ```
-</details>
 
-属性：
 - `mRoomName`：进入场景资源的房间名称。
 - `mSceneView`：场景资源渲染所需要的视图。Android 上用原生的 [TextureView](https://developer.android.com/reference/android/view/TextureView) 对象即可。
 - `mSceneId`：进入场景资源的 ID。
-- `mExtraCustomInfo`：（可选）加载场景资源时需要的其它额外自定义信息。你可以自行定义，目前只支持字符串。
+- `mScenePath`：（可选）`mSceneId` 为 0 时，表示从本地路径加载资源，此时，`mScenePath` 必须设为本地资源文件夹的路径。
+- `mExtraInfo`：（可选）加载场景资源时需要的其它额外自定义信息。你可以自行定义，目前只支持字符串。
 
-方法：
-- `toString`：返回 `EnterSceneConfig` 对象的字符串表示形式。
 
 ### AvatarModelInfo
 
@@ -992,83 +956,12 @@ public boolean mSyncPosition;  // 是否同步本地用户的模型装扮等信�
 - `mBundleCode`：人物模型所在的资源包代码。
 - `mLocalVisible`：虚拟人物在本地是否显示。如果设为 `false`，`mRemoteVisible` 和 `mSyncPosition` 会自动设为 `false`，并且无法更改。
 - `mRemoteVisible`：虚拟人物在远端是否可见。
-- `mSyncPosition`：是否同步本地用户的位置，用于控制玩家和游客模式。如果设为 `false``，`mRemoteVisible`  不生效。
+- `mSyncPosition`：是否同步本地人物渲染时所需要的信息（例如模型、装扮、捏脸信息等），用于控制玩家和游客模式。如果设为 `false`，`mRemoteVisible` 不生效。
 
-
-### DressInfo
-用户的装扮信息。
-
-<details>
-<summary>class DressInfo</summary>
-
-```java
-public class DressInfo {
-  public byte[] mExtraCustomInfo;
-
-  @CalledByNative
-  public DressInfo(byte[] mExtraCustomInfo) {
-    this.mExtraCustomInfo = mExtraCustomInfo;
-  }
-
-  public DressInfo() {
-    mExtraCustomInfo = null;
-  }
-
-  @Override
-  public String toString() {
-    return "DressInfo{"
-        + "mExtraCustomInfo=" + Arrays.toString(mExtraCustomInfo) + '}';
-  }
-}
-```
-</details>
-
-属性：
-- `mExtraCustomInfo`：（可选）其他额外自定义信息。目前只支持字符串。
-
-方法：
-- `toString`：返回 `DressInfo` 对象的字符串表示形式。
-
-### FaceInfo
-用户的捏脸信息。
-
-<details>
-<summary>class FaceInfo</summary>
-
-```java
-public class FaceInfo {
-  public byte[] mExtraCustomInfo;
-
-  @CalledByNative
-  public FaceInfo(byte[] mExtraCustomInfo) {
-    this.mExtraCustomInfo = mExtraCustomInfo;
-  }
-
-  public FaceInfo() {
-    mExtraCustomInfo = null;
-  }
-
-  @Override
-  public String toString() {
-    return "FaceInfo{"
-        + "mExtraCustomInfo=" + Arrays.toString(mExtraCustomInfo) + '}';
-  }
-}
-```
-</details>
-
-属性：
-- `mExtraCustomInfo`：（可选）其他额外自定义信息。目前只支持字符串。
-
-方法：
-- `toString`：返回 `FaceInfo` 对象的字符串表示形式。
 
 ### MetaUserPositionInfo
 
 用户的位置信息。
-
-<details>
-<summary>class MetaUserPositionInfo</summary>
 
 ```java
 public class MetaUserPositionInfo {
@@ -1076,30 +969,26 @@ public class MetaUserPositionInfo {
   public float[] mForward;
   public float[] mRight;
   public float[] mUp;
-
-  @CalledByNative
-  MetaUserPositionInfo(float[] position, float[] forward, float[] right, float[] up) {
-    mPosition = position;
-    mForward = forward;
-    mRight = right;
-    mUp = up;
-  }
-
-  @Override
-  public String toString() {
-    return "MetaUserPositionInfo{"
-        + "mPosition=" + Arrays.toString(mPosition) + ", mForward=" + Arrays.toString(mForward)
-        + ", mRight=" + Arrays.toString(mRight) + ", mUp=" + Arrays.toString(mUp) + '}';
-  }
 }
 ```
-</details>
 
-属性：
 - `mPosition`：用户的坐标位置。
 - `mForward`：用户朝向的三维向量。
 - `mRight`：用户右手方向的向量。
 - `mUp`：用户头朝向的向量。
 
-方法：
-- `toString`：返回 `MetaUserPositionInfo` 对象的字符串表示形式。
+### SceneDisplayConfig
+
+场景显示相关配置。
+
+```java #TODO code need
+public class SceneDisplayConfig {
+  public int width;
+  public int height;
+  public String extraInfo;
+}
+```
+
+- `width`：场景渲染画面的宽。
+- `height`：场景渲染画面的高度。该宽高决定拿到场景渲染画面的原始视频帧的大小。如果要将画面发布到 RTC 频道中，建议将该宽高设置为与 RTC 的视频编码参数宽高一致，以避免缩放裁剪导致的性能损耗。
+- `extraInfo`：Unity 渲染场景所需的额外信息，该字段是用户自定义的，一般由你的 Native 开发人员和 Unity 开发人员约定好。
