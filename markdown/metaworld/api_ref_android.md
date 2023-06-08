@@ -192,11 +192,12 @@ public abstract int cleanSceneAssets(long sceneId);
 
 ### createScene
 
-创建 `IMetaScene` 对象。
 
 ```java
 public abstract int createScene(MetaSceneConfig config);
 ```
+
+创建 `IMetaScene` 对象。
 
 调用该方法会触发 `IMetaServiceEventHandler` 类的 [`onCreateSceneResult`](#oncreatesceneresult) 回调。成功创建的 `IMetaScene` 对象可以在该回调里拿到。
 
@@ -307,11 +308,13 @@ public abstract int enterScene(EnterSceneConfig config);
 
 ### leaveScene
 
-离开场景资源。
 
 ```java
 public abstract int leaveScene();
 ```
+
+离开场景资源。
+
 成功调用该方法会触发 `IMetaSceneEventHandler` 类的 `onLeaveSceneResult` 回调。
 
 **返回值**
@@ -465,11 +468,12 @@ public abstract int enableSceneVideoCapture(TextureView view, boolean enable);
 
 ### setUserInfo
 
-设置用户的基本信息。
 
 ```java
 int setUserInfo(MetaUserInfo userInfo);
 ```
+
+设置用户的基本信息。
 
 **参数**
 
@@ -646,11 +650,13 @@ public void onGetSceneAssetsInfoResult(MetaSceneAssetsInfo[] metaSceneAssetsInfo
 
 ### onDownloadSceneAssetsProgress
 
-下载场景资源进度回调。
 
 ```java
 public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state);
 ```
+
+下载场景资源进度回调。
+
 **参数**
 
 - `sceneId`：场景资源 ID。
