@@ -1,22 +1,19 @@
-Agora SDK v4.0.0 is a new version of the SDK that you can use to embed real-time video and audio into your app. It supports large-scale real-time interactive activities and provides better real-time interactive effects. For details, see [Benefits and features](https://docs.agora.io/en/live-streaming-premium-4.x/product_live_ng?platform=Windows#benefits).
+Agora SDK v4.0.0 is a new version of the SDK that you can use to embed real-time video and audio into your app. It supports large-scale real-time interactive activities and provides better real-time interactive effects. For details, see [Benefits and features](https://docs.agora.io/en/video-call-4.x/product_video_ng?platform=React%20Native#benefits-and-features).
 
-This page introduces the main steps to upgrade the SDK from v3.x (v3.7.0 and earlier) or v2.x to v4.0.0, as well as the related changes.
+This page introduces the main steps to upgrade the SDK from v3.x (v3.7.0 and earlier) to v4.0.0, as well as the related changes.
 
 ## Migration steps
 
-This section introduces the main steps to upgrade the SDK from v3.x or 2.x to v4.0.0.
+This section introduces the main steps to upgrade the SDK from v3.x to v4.0.0.
 
 ### 1. Integrate the SDK
 
-See [Project setup](https://docs.agora.io/en/live-streaming-premium-4.x/start_live_windows_ng?platform=Windows#project) for more information about integrating the v4.0.0 SDK into your project.
+See [Project setup](./start_live_react_native_ng?platform=React%20Native#project-setup) for more information about integrating the v4.0.0 SDK into your project.
 
 ### 2. Update the Agora code in your app
 
-The v4.0.0 SDK has optimized or modified the implementation of some functions, resulting in incompatibility with the v3.7.0 SDK. In order to retain Agora functionality in your app, update the code in your app according to [What has changed](https://docs.agora.io/en/live-streaming-premium-4.x/migration_guide_windows_ng?platform=Windows#change).
+The v4.0.0 SDK has optimized or modified the implementation of some functions, resulting in incompatibility with the v3.7.0 SDK. In order to retain Agora functionality in your app, update the code in your app according to [What has changed](./migration_guide_rn_ng?platform=React%20Native#what-has-changed).
 
-
-
-<a name="changes"></a>
 
 ## What has changed
 
@@ -28,18 +25,41 @@ This section is based on v3.7.0 and introduces the main changes of v4.0.0 compar
 - Removed APIs: Introduces APIs that were supported in v3.7.0 but removed in v4.0.0. Most of these APIs have alternatives in v4.0.0. Modifying the related implementation should require less time.
 - Naming and data type changes: Introduces the naming and data type changes of the main APIs. You can update the relevant implementation according to the error message in the IDE, which is expected to take less time.
 
-### Breaking changes
+### Breaking changes (v3.x to v4.0.0)
 
 After upgrading from v3.7.0 to v4.0.0, the way the APIs implement some functions is different. This section introduces compatibility changes for these APIs and the logic for updating the code of your app.
 
+#### Initialize engine
+
+In v3.7.0, the SDK provides the `create` and `createWithContext` method to create and initialize the `RtcEngine` instance. 
+
+In v4.0.0, the SDK provides the `createAgoraRtcEngine` method to create the `RtcEngine` instance, and the `initialize` method to initialize the engine. 
+
+#### Register event listener
+
+Take `onError` as an example:
+
+In v3.7.0, the SDK provides the `addListener` method to register event listener. 
+
+```typescript
+this.engine.addListener('Error', (errorCode) => {});
+```
+
+In v4.0.0, the SDK provides the `registerEventHandler` method to register event listener. 
+
+```typescript
+this.engine.registerEventHandler({
+  onError(err: ErrorCodeType, msg: string) {},
+});
+```
+
 #### Multiple channels
 
-In v3.7.0, the SDK provides the `IChannel` and `IChannelEventHandler` classes to implement multi-channel control. The v3.7.0 SDK supports subscribing to the audio and video streams of multiple channels, but only supports publishing one group of audio and video streams in one channel.
+In v3.7.0, the SDK provides the `RtcChannel` and `RtcChannelEvents` classes to implement multi-channel control. The v3.7.0 SDK supports subscribing to the audio and video streams of multiple channels, but only supports publishing one group of audio and video streams in one channel.
 
 v4.0.0 introduces the following changes:
 
-- The SDK supports one `IRtcEngine` instance to collect multiple audio and video sources at the same time and publish them to the remote users by setting `IRtcEngineEx` and `ChannelMediaOptions`.
-- After calling `joinChannel` to join the first channel, call `joinChannelEx` multiple times to join multiple channels, and publish the specified stream to different channels through different user ID (`localUid`) and `ChannelMediaOptions` settings.
+- The SDK provides the `IRtcEngineEx` class to join multiple channels. After calling `joinChannel` to join the first channel, call `joinChannelEx` multiple times to join multiple channels, and publish the specified stream to different channels through different user ID (`localUid`) and `ChannelMediaOptions` settings.
 - Added a binary group `RtcConnection` to represent the connection established by `joinChannel`. A connection is determined by the channel name (`channelId`) and `localUid`. You can control the publishing and subscribing state of different connections through `RtcConnection`. The SDK adds Ex in the name of all APIs with a `connection` parameter (corresponding to the `RtcConnection` class) to distinguish them, and gathers these APIs in the `IRtcEngineEx` class to implement more multi-stream functions.
 
 Combined with the multi-channel capability, you can also experience the following functions:
@@ -48,42 +68,19 @@ Combined with the multi-channel capability, you can also experience the followin
 - Mix multiple audio streams and publish them to the remote user through one `localUid`.
 - Mix multiple video streams and publish them to the remote user through one `localUid`.
 
-`IChannel` and `IRtcEngine` of v3.7.0 are partially duplicated and overlap in their functionality, so v4.0.0 hides the `IChannel` and `IChannelEventHandler` classes. See the [JoinMultiChannel](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/MultiChannel) sample project for more details on how to replace `IChannel` with `joinChannel` and `ChannelMediaOptions`. The expected migration cost is one day or less.
+`RtcChannel` and `IRtcEngine` of v3.7.0 are partially duplicated and overlap in their functionality, so v4.0.0 hides the `RtcChannel` and `RtcChannelEvents` classes. See the [JoinMultiChannel](https://github.com/AgoraIO-Extensions/react-native-agora-rtc-ng/blob/main/example/src/examples/advanced/JoinMultipleChannel/JoinMultipleChannel.tsx) sample project for more details on how to replace `RtcChannel` with `joinChannel` and `ChannelMediaOptions`. The expected migration cost is one day or less.
 
-If you need to continue to use the `IChannel` and `IChannelEventHandler` classes, contact [support@agora.io](mailto:support@agora.io). The decision whether to maintain compatibility in a future release is based on your feedback.
+If you need to continue to use the `RtcChannel` and `RtcChannelEvents` classes, contact [support@agora.io](mailto:support@agora.io). The decision whether to maintain compatibility in a future release is based on your feedback.
 
 #### Media stream publishing control
 
 In v4.0.0, the SDK gathers more channel-related settings into `ChannelMediaOptions`, including publishing of audio and video streams from different sources, automatic subscribing of audio and video streams, user role switching, token updating, and default dual stream options. You can determine the media stream publishing and subscribing behavior by calling `joinChannel` or `joinChannelEx` when joining a channel, or you can flexibly update the media options by calling `updateChannelMediaOptions` after joining a channel, such as switching video sources.
 
-See the [LiveBroadcasting](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Basic/LiveBroadcasting) sample project to update the code in your app.
-
-#### Custom video source and renderer
-
-In v3.7.0, the SDK provides the following ways to implement the custom video source and renderer:
-
-- Push mode for custom video source
-- Raw video data mode for custom video renderer
-- MediaIO mode (`IVideoSource`) for custom video source
-- MediaIO mode (`IVideoSink`) for custom video renderer
-
-v4.0.0 unifies the audio and video processing pipeline internally. Push mode and raw video data mode are simpler for integration, so Agora recommends using them for custom video source and renderer and removes the following related APIs of the MediaIO mode:
-
-- `IVideoSource`
-- `IVideoSink`
-- `IVideoFrameConsumer`
-- `setVideoSource`
-- `setLocalVideoRenderer`
-- `setRemoteVideoRenderer`
-
-If you use the MediaIO mode in v3.7.0 to implement custom video source, custom video renderer, switching video source, and other functions, Agora recommends updating the code of your app by referring to the following sample projects:
-
-- Custom video source/Custom video renderer: [CustomVideoCapture](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/CustomVideoCapture)
-- Switching video source: [ScreenShare](https://github.com/AgoraIO/API-Examples/tree/4.0.0-GA/windows/APIExample/APIExample/Advanced/ScreenShare)
+See the [JoinMultiChannel](https://github.com/AgoraIO-Extensions/react-native-agora-rtc-ng/blob/main/example/src/examples/advanced/JoinMultipleChannel/JoinMultipleChannel.tsx) sample project to update the code in your app.
 
 #### Warning codes
 
-In v3.7.0, the SDK returns warning codes through the `onWarning` callbacks.
+In v3.7.0, the SDK returns warning codes through the `Warning` event.
 
 To facilitate locating and troubleshooting issues, v4.0.0 reports problems and causes through the return values of APIs or different callbacks for listening to states. For example:
 
@@ -93,13 +90,41 @@ To facilitate locating and troubleshooting issues, v4.0.0 reports problems and c
 - `onRemoteAudioStateChanged`: Reports the remote audio state.
 - `onRemoteVideoStateChanged`: Reports the remote video state.
 
-As a consequence, v4.0.0 removes the `onWarning` callbacks.
+As a consequence, v4.0.0 removes the `Warning` event.
 
-<div class="alert note">In addition to the breaking changes listed here relative to v3.7.0, v4.0.0 has a small number of breaking changes relative to the v4.0.0 Beta release. For example:
 
-- In v4.0.0, replace `publishAudioTrack` in `ChannelMediaOptions` with `publishMicrophoneTrack`.
+### Breaking changes (v4.0.0 Beta to v4.0.0)
 
-If you used this feature in v4.0.0 Beta and wish to upgrade to v4.0.0, modify the implementation code of the feature after upgrading the SDK.</div>
+This section introduces the breaking changes in upgrading the SDK from v4.0.0 Beta to v4.0.0.
+
+#### SDK package name
+
+After upgrading from v4.0.0 Beta to v4.0.0, the SDK package name has changed from `react-native-agora-rtc-ng` to `react-native-agora`, see [Intergrate the SDK](./start_live_react_native_ng?platform=React%20Native#integrate-the-sdk).
+
+#### Join channel
+
+In v4.0.0 Beta, the SDK provides the `joinChannel` and `joinChannelWithOptions` methods to join a channel.  
+
+```typescript
+
+this._engine?.joinChannel(token: string, channelId: string, info: string, uid: number): number;
+
+this._engine?.joinChannelWithOptions(token: string, channelId: string, uid: number, options: ChannelMediaOptions): number;
+
+```
+
+In v4.0.0, the original `joinChannel` is removed, and the original `joinChannelWithOptions` is renamed to `joinChannel`. 
+
+```typescript
+this._engine?.joinChannel(
+ token: string,
+ channelId: string,
+ uid: number,
+ options: ChannelMediaOptions
+): number;
+```
+
+Besides, `publishAudioTrack` in the `ChannelMediaOptions` enum is replaced with `publishMicrophoneTrack`. If you used this feature in v4.0.0 Beta and wish to upgrade to v4.0.0, modify the implementation code of the feature after upgrading the SDK. 
 
 ### Behavior changes
 
@@ -107,9 +132,9 @@ This section introduces changes caused by reasonable optimization of the SDK def
 
 #### Channel profile
 
-In v3.7.0, the default channel profile is `CHANNEL_PROFILE_COMMUNICATION` (the communication profile).
+In v3.7.0, the default channel profile is `ChannelProfileCommunication` (the communication profile).
 
-Because the interactive live streaming profile supports seamless switching from one-to-one calls to multi-user interaction, since v3.0.0, Agora has changed the internal transmission protocol and the ability to resist poor network conditions in the communication profile to be consistent with the interactive live streaming profile. In v4.0.0, Agora also changed the default channel profile to `CHANNEL_PROFILE_LIVE_BROADCASTING` (the interactive live streaming profile).
+Because the interactive live streaming profile supports seamless switching from one-to-one calls to multi-user interaction, since v3.0.0, Agora has changed the internal transmission protocol and the ability to resist poor network conditions in the communication profile to be consistent with the interactive live streaming profile. In v4.0.0, Agora also changed the default channel profile to `ChannelProfileLiveBroadcasting` (the interactive live streaming profile).
 
 #### Network quality callback
 
@@ -123,11 +148,9 @@ In v3.7.0, when the SDK creates multiple log files, the earlier files are named 
 
 In v3.7.0, you need to call `switchChannel` to quickly switch a channel.
 
-
-
 In v4.0.0, you can achieve the same switching speed as `switchChannel` in v3.7.0 by switching a channel through `leaveChannel` and `joinChannel`. Therefore, v4.0.0 removes `switchChannel`. If you call `switchChannel` to quickly switch a channel in v3.7.0, you need to call `leaveChannel` to leave the current channel in v4.0.0 and `joinChannel` to join the second channel instead.
 
-#### Agora self-developed extensions
+**Agora self-developed extensions**
 
 v4.0.0 adds the feature of automatically loading self-developed dynamic libraries based on v4.0.0 Beta. As of this release, when using an Agora self-developed extension, you do not need to manually integrate the dynamic library in the project. The SDK automatically loads the dynamic library during the initialization phase of `IRtcEngine`. You can directly call the corresponding method of the extension to enable this feature.
 
@@ -140,19 +163,20 @@ v4.0.0 adds the feature of automatically loading self-developed dynamic librarie
 | enableSpatialAudio                                           | Spatial audio extension      |
 | enableContentInspect                                         | Content moderation extension |
 
-#### Local audio and video recording
 
-In v3.7.0, if you want to enable local audio and video recording, you need to call the `getMediaRecorder` method to get the `AgoraMediaRecorder` object.
-In v 4.0.0, if you want to enable local audio and video recording, you need to call the `queryInterface` method to get the `IMediaRecorder` object.
+**Local audio and video recording**
 
-#### Virtual metronome
+In v3.7.0, if you want to enable local audio and video recording, you need to call the `startRecording` method.
+In v 4.0.0, if you want to enable local audio and video recording, you need to call the `getMediaRecorder` method to get the IMediaRecorder object.
+	
+**Virtual metronome**
 
 When you call `startRhythmPlayer`, the SDK publishes the sound of the virtual metronome to the remote by default. If you do not want the remote users to hear the virtual metronome, refer to the following operations:
 
 In v3.7.0, call the `configRhythmPlayer,` and set `publish` to `false`.
 In v4.0.0, set `publishRhythmPlayerTrack` in `ChannelMediaOptions` to `false`.
 
-#### Volume indication
+**Volume indication**
 You can call the `enableAudioVolumeIndication` method to enable the user's volume indication function. There is a difference in the definition of the `interval` parameter in the `enableAudioVolumeIndication` method between v3.7.0 and v4.0.0, as follows:
 
 In v3.7.0, Agora recommends that you set the `interval` to be greater than 200 ms. The minimum is 10 ms; otherwise, the `onAudioVolumeIndication` callback is not received.
@@ -163,12 +187,12 @@ When the user's volume indication is enabled, the SDK triggers the onAudioVolume
 In v3.7.0, the SDK immediately stops reporting the local user's volume indication callback.
 In v4.0.0, the SDK continues to report the local user's volume indication callback.
 
-#### Device permissions
-In v3.7.0, `LOCAL_AUDIO_STREAM_ERROR_DEVICE_NO_PERMISSION` in `onLocalAudioStateChanged` reports that there is no permission to start the capture device, and `LOCAL_VIDEO_STREAM_ERROR_DEVICE_NO_PERMISSION` in `onLocalVideoStateChanged` reports that there is no permission to start the video capture device.
+**Device permissions**
+In v3.7.0, `AudioLocalError.DeviceNoPermission` in `onLocalAudioStateChanged` reports that there is no permission to start the capture device, and `LocalVideoStreamError` in `onLocalVideoStateChanged` reports that there is no permission to start the video capture device.
 
 In v4.0.0, the permission statuses of the audio and video capture devices are both reported in the `onPermissionError` callback.
 
-#### Pre-call network test
+**Pre-call network test**
 
 If you need to start or stop the network connection quality test, note the following:
 
@@ -184,8 +208,9 @@ In the following scenarios, the mechanism of triggering remote media events is c
 
 The behavior differences of Agora SDK between v3.7.0 and v4.0.0 are listed as follow:
 
-- In v3.7.0, the local user receives the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, which reports the status changes of the remote host's audio or video streams.
-- In v4.0.0, instead of the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, the local user receives the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's publishing status.
+- In v3.7.0, the local user receives the `remoteAudioStateChangedOfUid` or `remoteVideoStateChangedOfUid` callback, which reports the status changes of the remote host's audio or video streams.
+- In v4.0.0, instead of the `remoteAudioStateChangedOfUid` or `remoteVideoStateChangedOfUid` callback, the local user receives the `didAudioMuted` or `didVideoMuted` callback, which reports the changes in the remote host's publishing status.
+
 
 ### Function gaps
 
@@ -195,82 +220,45 @@ This section introduces functions that were supported in v3.7.0 but are no longe
 
 v4.0.0 reconstructs the audio application scenarios, which can replace most of the audio application scenarios of v3.7.0. The following table shows the correspondence of audio application scenarios in the two releases:
 
-| v3.7.0                                  | v4.0.0                                                       |
-| :-------------------------------------- | :----------------------------------------------------------- |
-| `AUDIO_SCENARIO_DEFAULT`                | `AUDIO_SCENARIO_DEFAULT`                                     |
-| `AUDIO_SCENARIO_CHATROOM_ENTERTAINMENT` | `AUDIO_SCENARIO_CHATROOM`                                    |
-| `AUDIO_SCENARIO_EDUCATION`              | `AUDIO_SCENARIO_DEFAULT`                                     |
-| `AUDIO_SCENARIO_GAME_STREAMING`         | `AUDIO_SCENARIO_GAME_STREAMING` or `AUDIO_SCENARIO_HIGH_DEFINITION` |
-| `AUDIO_SCENARIO_SHOWROOM`               | `AUDIO_SCENARIO_DEFAULT`                                     |
-| `AUDIO_SCENARIO_CHATROOM_GAMING`        | `AUDIO_SCENARIO_CHATROOM`                                    |
-| `AUDIO_SCENARIO_IOT`                    | `AUDIO_SCENARIO_DEFAULT`                                     |
-| `AUDIO_SCENARIO_MEETING`                | `AUDIO_SCENARIO_MEETING`                                     |
+| v3.7.0                               | v4.0.0                       |
+| :----------------------------------- | :--------------------------- |
+| `AudioScenarioDefault`               | `AudioScenarioDefault`       |
+| `AudioScenarioChatroomEntertainment` | `AudioScenarioChatroom`      |
+| `AudioScenarioEducation`             | `AudioScenarioDefault`       |
+| `AudioScenarioGameStreaming`         | `AudioScenarioGameStreaming` |
+| `AudioScenarioShowroom`              | `AudioScenarioDefault`       |
+| `AudioScenarioChatroomGaming`        | `AudioScenarioChatroom`      |
+| `AudioScenarioIot`                   | `AudioScenarioDefault`       |
+| `AudioScenarioMeeting`               | `AudioScenarioMeeting`       |
 
-
-
-#### Unsupported functions
-
-
-
-Compared to v3.7.0, some features are not supported or only partially supported in v4.0.0. This section shows the APIs currently unsupported but for which support is planned in a future release.
-
-
-
-Remote video stream fallback:
-
-
-
-- `setRemoteUserPriority`
-
-
-
-Screen sharing:
-
-- `onScreenCaptureInfoUpdated`
 
 ### Removed APIs
-
-
 
 The v4.0.0 removes deprecated or unrecommended APIs. Alternatives to the removed API or reasons for their removal are shown as follows:
 
 - `virtualBackgroundSourceEnabled`: Use the return value of `enableVirtualBackground` instead.
 - `onUserSuperResolutionEnabled`: Use the `remoteVideoStats` member of the `superResolutionType` class instead.
-- `setAudioMixingPlaybackSpeed`: Use the relevant API under the IMediaPlayer (`AgoraRtcMediaPlayerProtocol`) class instead.
-- `setExternalAudioSourceVolume`: Use `adjustCustomAudioPublishVolume` instead.
+- `setAudioMixingPlaybackSpeed`: Use the relevant API under the `IMediaPlayer` class instead.
 - `getAudioFileInfo` and `onRequestAudioFileInfo: `Use `getDuration` instead.
-- `onAudioDeviceTestVolumeIndication`：Use `onAudioVolumeIndication` instead.
 - `setLocalPublishFallbackOption` and `onLocalPublishFallbackToAudioOnly`: Rarely used in v3.7.0.
-- `RENDER_MODE_FILL(4)` in `RENDER_MODE_TYPE`: This mode can cause image overstretch and is not recommended.
-- The following enumerations in `AUDIO_MIXING_REASON_TYPE`: Rarely used in v3.7.0.
-  - `AUDIO_MIXING_REASON_STARTED_BY_USER`
-  - `AUDIO_MIXING_REASON_START_NEW_LOOP`
-  - `AUDIO_MIXING_REASON_PAUSED_BY_USER`
-  - `AUDIO_MIXING_REASON_RESUMED_BY_USER`
+- The following enumerations in `AudioMixingReason`: Rarely used in v3.7.0.
+  - `AudioMixingReasonStartedByUser`
+  - `AudioMixingReasonStartNewLoop`
+  - `AudioMixingReasonPausedByUser`
+  - `AudioMixingReasonResumedByUser`
 - `onAudioMixingFinished`: Use `onAudioMixingStateChanged` instead.
 - `enableDeepLearningDenoise`: The SDK adds deep-learning noise reduction as one of its capability in a future release instead of implementing through an API.
 - The `Channel` parameter in `takeSnapshot` and `onSnapshotTaken`: The parameter is redundant.
 - `SetDefaultMuteAllRemoteVideoStreams: Use` `autoSubscribeVideo` in the `ChannelMediaOptions` instead.
 - `SetDefaultMuteAllRemoteAudioStreams`：Use `autoSubscribeAudio` in the `ChannelMediaOptions` instead.
-- `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED in LOCAL_VIDEO_STREAM_ERROR`：Deprecated in v3.7.0.
 - The `replace` parameter in `startAudioMixing`: Use `publishMicrophoneTrack` in the `ChannelMediaOptions` instead.
-
-
 
 ### Naming changes
 
-
-
 The naming changes in v4.0.0 cause error messages in the IDE when you compile your project, and you need to update the code of your app according to each error message.
-
-
 
 The main API and parameter name changes are as follows:
 
-
-
-- `adjustLoopbackRecordingSignalVolume` is changed to `adjustLoopbackRecordingVolume`.
 - `onFirstLocalAudioFrame` is changed to `onFirstLocalAudioFramePublished.`
 - The `fileSize` member in `LogConfig` is renamed to `fileSizeInKB`.
-- The `options` parameter in `joinChannel`[2/2] is changed to `mediaOptions`.
 - The `report_vad` parameter in enableAudioVolumeIndication is changed to `reportVad`.
