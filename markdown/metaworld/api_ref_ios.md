@@ -33,14 +33,14 @@
 创建和初始化 `AgoraMetachatKit` 对象，并且登录声网 RTM 系统。
 
 ```objective-c
-+ (instancetype _Nonnull)sharedMetachatWithConfig:(AgoraMetachatConfig* _Nonnull)config;
++ (instancetype _Nonnull)sharedMetaServiceWithConfig:(AgoraMetaServiceConfig* _Nonnull)config;
 ```
 
 成功调用该方法会触发 `onConnectionStateChanged` 回调。
 
 **参数**
 
-  `config`：初始化 `AgoraMetachatKit` 对象需要的配置信息，详见 [AgoraMetachatConfig](#agorametachatconfig)。
+`config`：初始化 `AgoraMetachatKit` 对象需要的配置信息，详见 [AgoraMetachatConfig](#agorametachatconfig)。
 
 **返回值**
 
