@@ -73,7 +73,7 @@
 
 参考下图调用时序，在你的 app 中实现自定义视频采集：
 
-![](https://web-cdn.agora.io/docs-files/1684223014176)
+![](https://web-cdn.agora.io/docs-files/1686295832877)
 
 参考如下步骤，在你的 app 中实现自定义视频采集功能：
 
@@ -90,8 +90,9 @@ int videoTrackId = RtcEngine.createCustomVideoTrack();
 
 调用 `joinChannel` 加入频道，或调用 `joinChannelEx` 加入多频道， 在每个频道的 `ChannelMediaOptions` 中，将 `customVideoTrackId` 参数设置为步骤 1 中获得的视频轨道 ID，并将 `publishCustomVideoTrack` 设置为 `true`，即可在多个频道中发布指定的自定义视频轨道。
 
+加入主频道：
+
 ```java
-// 如需在多个频道发布自定义视频轨道，则需要多次设置 ChannelMediaOptions 并多次调用 joinChannelEx
 ChannelMediaOptions option = new ChannelMediaOptions();
 option.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
 option.autoSubscribeAudio = true;
@@ -102,17 +103,35 @@ option.publishCustomVideoTrack = true;
 option.customVideoTrackId = videoTrackId;
 // 加入主频道
 int res = engine.joinChannel(accessToken, channelId, 0, option);
-// 或加入多频道
+```
+
+加入多频道：
+
+```java
+// 如需在多个频道发布自定义视频轨道，则需要多次设置 ChannelMediaOptions 并多次调用 joinChannelEx
+ChannelMediaOptions option = new ChannelMediaOptions();
+option.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER;
+option.autoSubscribeAudio = true;
+option.autoSubscribeVideo = true;
+// 发布自采集视频流
+option.publishCustomVideoTrack = true;
+// 设置自定义视频轨道 ID
+option.customVideoTrackId = videoTrackId;
+// 加入多频道
 int res = engine.joinChannelEx(accessToken, connection, option, new IRtcEngineEventHandler() {});
 ```
 
 ### 3. 实现自采集模块
 
-声网提供 [VideoFileReader.java](https://github.com/AgoraIO/API-Examples/blob/main/Android/APIExample/app/src/main/java/io/agora/api/example/utils/VideoFileReader.java) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，声网 SDK 不提供自定义视频处理 API，你需要结合业务需求使用 Android SDK 为你的设备创建自定义视频模块。
+声网提供 [VideoFileReader.java](https://github.com/AgoraIO/API-Examples/blob/main/Android/APIExample/app/src/main/java/io/agora/api/example/utils/VideoFileReader.java) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，你需要结合业务需求使用 Android SDK 为你的设备创建自定义视频模块。
 
 ### 4. 通过视频轨道推送视频数据到 SDK
 
 将采集到的视频帧发送至 SDK 之前，通过设置 `VideoFrame` 集成你的视频模块。你可以参考以下代码，将采集到的 YUV 视频数据转换为不同类型的 `VideoFrame`。为确保音视频同步，声网建议你调用 `getCurrentMonotonicTimeInMs` 获取 SDK 当前的 Monotonic Time 后，将该值传入采集的 `VideoFrame` 的时间戳参数。
+
+调用 `pushExternalVideoFrameEx` 将采集到的视频帧通过视频轨道推送至 SDK。其中， `videoTrackId` 要与步骤 2 加入频道时指定视频轨道 ID 一致，`VideoFrame` 中可以设置视频帧的像素格式、数据类型和时间戳等参数。
+
+<div class="alert info"><ul><li>以下代码演示将 YUV 格式转换为 NV21、NV12、Texture 和 I420 格式的视频数据。</a>。</li><li>为确保音视频同步，声网建议你将 <code>VideoFrame</code> 的时间戳参数设置为系统 Monotonic Time。你可以调用 <code>getCurrentMonotonicTimeInMs</code> 获取当前的 Monotonic Time。</li></ul></div>
 
 ```java
 // 创建不同类型的 VideoFrame
@@ -201,11 +220,7 @@ if ("NV21".equals(selectedItem)) {
 long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
 // 创建 VideoFrame，并将 SDK 当前的 Monotonic Time 赋值到 VideoFrame 的时间戳参数
 VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs);
-```
 
-调用 `pushExternalVideoFrameEx` 并将 `videoTrackId` 指定为步骤 2 中指定的视频轨道 ID，将视频帧通过视频轨道发送给 SDK。
-
-```java
 // 通过视频轨道推送视频帧到 SDK
 int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
 if (ret < 0) {
@@ -218,7 +233,10 @@ if (ret < 0) {
 如需停止自定义视频采集，调用 `destroyCustomVideoTrack` 来销毁视频轨道。如需销毁多个视频轨道，可多次调用 `destroyCustomVideoTrack`。
 
 ```java
+// 销毁自定义视频轨道
 engine.destroyCustomVideoTrack(videoTrack);
+// 离开频道
+engine.leaveChannelEx(connection);
 ```
 
 
@@ -238,4 +256,6 @@ engine.destroyCustomVideoTrack(videoTrack);
 
 - [`createCustomVideoTrack`](https://docs.agora.io/cn/extension_customer/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_createcustomvideotrack)
 - [`destroyCustomVideoTrack`](https://docs.agora.io/cn/extension_customer/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_destroycustomvideotrack)
+- [`getCurrentMonotonicTimeInMs`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_getcurrentmonotonictimeinms)
+- [`joinChannelEx`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_joinchannelex)
 - [`pushExternalVideoFrameEx` [2/2]](https://docs.agora.io/cn/extension_customer/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_pushvideoframeex2)
