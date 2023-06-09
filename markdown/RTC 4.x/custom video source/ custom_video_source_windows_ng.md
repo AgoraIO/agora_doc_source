@@ -73,7 +73,7 @@
 
 参考下图调用时序，在你的 app 中实现自定义视频采集：
 
-![](https://web-cdn.agora.io/docs-files/1684381970999)
+![](https://web-cdn.agora.io/docs-files/1686294982670)
 
 参考如下步骤，在你的 app 中实现自定义视频采集功能：
 
@@ -131,7 +131,7 @@ int ret = m_rtcEngine->joinChannelEx(APP_TOKEN, m_trackConnections[trackIndex], 
 
 ### 3. 实现自采集模块
 
-声网提供 [YUVReader.cpp](https://github.com/AgoraIO/API-Examples/blob/main/windows/APIExample/APIExample/YUVReader.cpp) 和 [YUVReader.h](https://github.com/AgoraIO/API-Examples/blob/main/windows/APIExample/APIExample/YUVReader.h) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，声网 SDK 不提供自定义视频处理 API，你需要结合业务需求为你的采集设备创建自定义视频采集模块。
+声网提供 [YUVReader.cpp](https://github.com/AgoraIO/API-Examples/blob/main/windows/APIExample/APIExample/YUVReader.cpp) 和 [YUVReader.h](https://github.com/AgoraIO/API-Examples/blob/main/windows/APIExample/APIExample/YUVReader.h) 演示从本地文件读取 YUV 格式的视频数据。在实际的生产环境中，你需要结合业务需求为你的采集设备创建自定义视频采集模块。
 
 ```cpp
 // 通过自定义的 YUVReader 类，在 YUVReader 线程中不断读取 YUV 格式视频数据并将数据传递给 OnYUVRead 回调函数进行后续处理
@@ -143,7 +143,7 @@ m_yuvReaders[trackIndex].start(std::bind(&MultiVideoSourceTracksYUVReaderHander:
 
 调用 `pushVideoFrame` 将采集到的视频帧通过视频轨道推送至 SDK。其中， `videoTrackId` 要与步骤 2 加入频道时指定视频轨道 ID 一致，`videoFrame` 中可以设置视频帧的像素格式、数据类型和时间戳等参数。
 
-<div class="alert info"><ul><li>以下代码演示将 YUV 格式转换为 I420 格式的原始视频数据。如需推送其他格式的外部视频帧，详见 <a href="https://docportal.shengwang.cn/cn/voice-call-4.x/API%20Reference/windows_ng/API/enum_videopixelformat.html">VIDEO_PIXEL_FORMAT</a>。</li><li>为确保音视频同步，声网建议你将 <code>videoFrame</code> 的时间戳参数设置为系统 Monotonic Time。你可以调用 <code>getCurrentMonotonicTimeInMs</code> 获取当前的 Monotonic Time。</li></ul></div>
+<div class="alert info"><ul><li>以下代码演示将 YUV 格式转换为 I420 格式的原始视频数据。声网视频自采集还支持推送其他格式的外部视频帧，详见 <a href="https://docportal.shengwang.cn/cn/voice-call-4.x/API%20Reference/windows_ng/API/enum_videopixelformat.html">VIDEO_PIXEL_FORMAT</a>。</li><li>为确保音视频同步，声网建议你将 <code>videoFrame</code> 的时间戳参数设置为系统 Monotonic Time。你可以调用 <code>getCurrentMonotonicTimeInMs</code> 获取当前的 Monotonic Time。</li></ul></div>
 
 ```cpp
 void MultiVideoSourceTracksYUVReaderHander::OnYUVRead(int width, int height, unsigned char* buffer, int size)
