@@ -36,7 +36,7 @@
     {required int displayId,
     required Rectangle regionRect,
     required ScreenCaptureParameters captureParams});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -45,18 +45,19 @@
                 <li>Call this method before joining a channel, and then call <xref keyref="joinChannel2" /> to join a channel and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
                 <li>Call this method after joining a channel, and then call <xref keyref="updateChannelMediaOptions" /> and set <parmname>publishScreenTrack</parmname> or <parmname>publishSecondaryScreenTrack</parmname> to <codeph><ph keyref="true" /></codeph> to start screen sharing.</li>
                 </ul></p>
-            <note type="attention" props="cpp flutter unity">This method is for Windows and macOS only.</note> </section>
+            <note type="attention" props="cpp flutter unity">This method is for Windows and macOS only.</note> 
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>displayId</pt>
-                <pd>The display ID of the screen to be shared.<p props="native">For more information on how to get the display ID, see <xref keyref="guide-screensharing">Share the Screen</xref>.</p>
+                <pd>The display ID of the screen to be shared.<note type="note" props="cpp unity flutter electron">对于 Windows 平台，如果你需要同时共享两个屏幕（主屏 + 副屏），可以在调用该方法时，将 <parmname>displayId</parmname> 设置为 <codeph>-1</codeph>。</note>
                 </pd>
             </plentry>
             <plentry props="cpp unity flutter electron cs">
                 <pt>regionRect</pt>
-                <pd><ph>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. </ph><ph props="cpp unity flutter cs">See <xref keyref="Rectangle" />. </ph><ph props="mac">It consists of the following parameters:</ph><ul props="mac">
+                <pd><ph>(Optional) Sets the relative location of the region to the screen. 如需共享整个屏幕，则填 <codeph>nil</codeph>。 </ph>See . <ph props="mac">It consists of the following parameters:</ph><ph props="cpp unity flutter cs"><xref keyref="Rectangle" /></ph><ul props="mac">
                     <li>x: The horizontal offset from the top-left corner.</li>
                     <li>y: The vertical offset from the top-left corner.</li>
                     <li>width: The width of the region.</li>
@@ -70,8 +71,8 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul id="err">
