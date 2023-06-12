@@ -39,11 +39,17 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 销毁 `AgoraMetaServiceKit` 对象。
 
-### renewToken #TODO（android also）
+### renewToken #TODO（android）
 
 ```objective-c
 - (NSInteger)renewToken:(NSString *_Nonnull)token;
 ```
+
+更新 Token。
+
+Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告 Token 即将过期。此时，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
+
+
 ### getSceneAssetsInfo
 
 ```objective-c
@@ -166,7 +172,7 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 - < 0：方法调用失败
 
-## AgoraMetaScene #TODO WIP
+## AgoraMetaScene
 
 场景相关操作。
 
@@ -186,28 +192,28 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### getLocalUserAvatar
 
-进入场景前，可以调用该方法获取用户的昵称、虚拟形象、装扮捏脸等信息。
 
 ```objective-c
 - (AgoraMetaLocalUserAvatar *_Nullable)getLocalUserAvatar;
 ```
 
+进入场景前，可以调用该方法获取用户的昵称、虚拟形象、装扮捏脸等信息。
+
 **返回值**
 
-`AgoraMetachatLocalUserAvatar` 对象。
+`AgoraMetaLocalUserAvatar` 对象。
 
 ### createRenderView
-
-创建场景渲染所需的视图。
 
 ```objective-c
 - (UIView *_Nullable)createRenderView:(CGRect)frame;
 ```
 
+创建场景渲染所需的视图。
+
 **参数**
 
-- `venderType`：场景渲染引擎的厂商类型，详见 [AgoraMetachatVenderType](#agorametachatvendertype)。
-- `region`：视图的位置和大小。
+- `frame`：视图的位置和大小。
 
 **返回值**
 
@@ -215,16 +221,19 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### enterScene
 
-进入场景。
+
 
 ```objective-c
 - (NSInteger)enterScene:(AgoraMetaEnterSceneConfig *_Nonnull)config;
 ```
-成功调用该方法会触发 `onEnterSceneResult` 回调。
+
+进入场景。
+
+成功调用该方法会触发 `AgoraMetaSceneEventDelegate` 协议的 `onEnterSceneResult` 回调。
 
 **参数**
 
- `config`：进入场景所需要的配置信息，详见 [AgoraMetachatEnterSceneConfig](#agorametachatentersceneconfig)。
+`config`：进入场景所需要的配置信息，详见 [AgoraMetaEnterSceneConfig](#agorametaentersceneconfig)。
 
 **返回值**
 
@@ -234,12 +243,13 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### leaveScene
 
-离开场景。
 
 ```objective-c
 - (NSInteger)leaveScene;
 ```
-成功调用该方法会触发 `onLeaveSceneResult` 回调。
+进入场景。
+
+成功调用该方法会触发 `AgoraMetaSceneEventDelegate` 协议的 `onLeaveSceneResult` 回调。
 
 **返回值**
 
@@ -249,18 +259,20 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### sendSceneMessage
 
-往场景发送自定义消息。
-
 ```objective-c
 - (NSInteger)sendSceneMessage:(NSData *_Nonnull)message;
 ```
+往场景发送自定义消息。
 
-- 该方法适用于 app 需要和 Unity 通信的场景。Unity 收到自定义消息后可以进行自定义的逻辑处理。
-- 该方法必须在 `enterScene` 之后调用。
+该方法适用于 app 需要和 Unity 通信的场景资源。Unity 收到自定义消息后可以进行自定义的逻辑处理。
+
+**注意**
+
+该方法必须在 `enterScene` 之后调用。
 
 **参数**
 
- `message`：自定义消息，目前只支持字符串。消息格式可以自定义。
+`message`：自定义消息，目前只支持字符串。消息格式可以自定义。
 
 **返回值**
 
@@ -271,15 +283,16 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### enableVideoDisplay
 
-开启/关闭场景内指定的显示器。
 
 ```objective-c
 - (NSInteger)enableVideoDisplay:(NSString *_Nonnull)displayId enable:(BOOL)enable;
 ```
 
+开启/关闭场景里的视频显示器。
+
 **参数**
 
-- `displayId`：指定显示器的 ID。
+- `displayId`：指定显示器的 ID。该 ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
 - `enable`：是否开启指定显示器：
   - `YES`：开启显示器，即开始视频渲染。
   - `NO`：关闭显示器，即关闭视频渲染。
@@ -292,16 +305,16 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### pushVideoFrameToDisplay
 
-往场景内指定的显示器推送原始视频帧。
 
 ```objective-c
 - (NSInteger)pushVideoFrameToDisplay:(NSString *_Nonnull)displayId frame:(AgoraVideoFrame *_Nullable)frame;
 ```
+往场景里的视频显示器推送原始视频帧。
 
 **参数**
 
-- `displayId`：指定显示器的 ID。
-- `frame`：视频帧。详见 RTC SDK 4.x API 参考中的 [AgoraVideoFrame](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
+- `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
+- `frame`：视频帧。详见 RTC SDK API 参考中的 [AgoraVideoFrame](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
 
 **返回值**
 
@@ -314,38 +327,97 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 ```objective-c
 - (NSInteger)addSceneView:(UIView *_Nonnull)view sceneDisplayConfig:(AgoraMetaSceneDisplayConfig *_Nullable)config;
 ```
+添加场景显示视图。
 
+该方法可添加一个额外的视图，以在显示虚拟人脸视图外还能显示 Unity 场景的摄像头采集到的视频画面。调用成功后，SDK 会触发 `AgoraMetaSceneEventDelegate` 协议的 [`onAddSceneViewResult`](onaddsceneviewresult) 回调。
+
+**参数**
+
+- `view`：视频视图。
+- `config`：场景显示相关配置参数，[`AgoraMetaSceneDisplayConfig`](#agorametascenedisplayconfig)。
+
+**返回值**
+
+- 0：方法调用成功
+- < 0：方法调用失败
 
 ### removeSceneView
 ```objective-c
 - (NSInteger)removeSceneView:(UIView *_Nonnull)view;
 ```
 
+移除场景显示视图。
+
+调用成功后，SDK 会触发 `AgoraMetaSceneEventDelegate` 协议的 `onRemoveSceneViewResult` 回调。
+
+**参数**
+
+`view`：待移除的视图。
+
+
+**返回值**
+
+- 0：方法调用成功
+
+- < 0：方法调用失败
 
 ### enableFaceCapture
 ```objective-c
 - (NSInteger)enableFaceCapture:(BOOL)enable;
 ```
 
+开启或关闭面部捕捉。
+
+**参数**
+
+`enable`：是否开启面部捕捉：
+- `YES`：开启。
+- `NO`：不开启。
+
+**返回值**
+
+- 0：方法调用成功
+- < 0：方法调用失败
 
 ### enableSceneVideoCapture
+
 ```objective-c
 - (NSInteger)enableSceneVideoCapture:(UIView *_Nonnull)view enable:(BOOL)enable;
 ```
 
+开启或关闭场景渲染画面捕获。
+
+该方法用于开启或关闭场景渲染画面捕获。通过与 `AgoraRtcEngineKit` 的 `joinChannelByToken` 方法配合使用，可以将场景渲染的画面发布到 RTC 频道中。
+
+**参数**
+
+- `view`：需要捕获的场景视图。
+- `enable`：是否开启场景渲染画面捕获。
+  - `YES`：开启。场景画面会发布到 RTC 频道中。
+  - `NO`：（默认）不开启。场景画面不会发不到 RTC 频道中。
+
+**返回值**
+
+- 0：方法调用成功
+- < 0：方法调用失败
+
 ## AgoraMetaLocalUserAvatar
+
+包含在 `AgoraMetaScene` 中，生命周期和 `AgoraMetaScene` 相同。
+
 
 ### setUserInfo
 
-设置用户的基本信息。
 
 ```objective-c
 - (NSInteger)setUserInfo:(AgoraMetaUserInfo *_Nullable)userInfo;
 ```
 
+设置用户的基本信息。
+
 **参数**
 
- `userInfo`：在场景内展示的用户信息，详见 [AgoraMetachatUserInfo](#agorametachatuserinfo)。
+`userInfo`：在场景内展示的用户信息，详见 [`AgoraMetaUserInfo`](#agorametauserinfo)。
 
 **返回值**
 
@@ -354,27 +426,29 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### getUserInfo
 
-获取用户的基本信息。
 
 ```objective-c
 - (AgoraMetaUserInfo *_Nullable)getUserInfo;
 ```
+获取用户的基本信息。
 
 **返回值**
 
-[AgoraMetachatUserInfo](#agorametachatuserinfo) 对象。
+[`AgoraMetaUserInfo`](#metauserinfo) 对象。
 
 ### setModelInfo
 
-设置用户的模型信息。
 
 ```objective-c
 - (NSInteger)setModelInfo:(AgoraMetaAvatarModelInfo *_Nullable)modelInfo;
 ```
 
+设置用户的模型信息。
+
+
 **参数**
 
- `modelInfo`：用户的虚拟形象模型信息，详见 [AgoraMetachatAvatarModelInfo](#agorametachatavatarmodelinfo)。
+`modelInfo`：用户的虚拟形象模型信息，详见 [`AgoraMetaAvatarModelInfo`](#agorametaavatarmodelinfo)。
 
 **返回值**
 
@@ -383,28 +457,32 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### getModelInfo
 
-获取用户的模型信息。
 
 ```objective-c
 - (AgoraMetaAvatarModelInfo *_Nullable)getModelInfo;
 ```
 
+获取当前使用的用户模型信息。
+
 **返回值**
 
-[AgoraMetachatAvatarModelInfo](#agorametachatavatarmodelinfo) 对象。
+[`AgoraMetaAvatarModelInfo`](#agorametaavatarmodelinfo) 对象。
 
 
 ### setExtraInfo
 
-设置自定义的用户信息。
 
 ```objective-c
 - (NSInteger)setExtraInfo:(NSData *_Nullable)customInfo;
 ```
 
+设置自定义的用户信息。
+
+你可以通过该方法设置用户的装扮信息、捏脸信息。
+
 **参数**
 
- `customInfo`：自定义的用户信息。
+`customInfo`：自定义的用户信息。
 
 **返回值**
 
@@ -413,26 +491,29 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### getExtraInfo
 
-获取自定义的用户信息。
 
 ```objective-c
 - (NSData *_Nullable)getExtraInfo;
 ```
+获取自定义的用户信息。
 
 **返回值**
 
-自定义的用户信息。
+当前使用的自定义的用户信息。
 
 ### applyInfo
 
-应用新设置的用户信息。
 
 ```objective-c
 - (NSInteger)applyInfo;
 ```
 
-- 如果你在进入场景前调用 `setUserInfo`、`setModelInfo`、`setDressInfo`、`setFaceInfo` 或 `setExtraCustomInfo` 方法，则不需要调用 `applyInfo`。
-- 如果你在进入场景后调用了 `setUserInfo`、`setModelInfo`、`setDressInfo`、`setFaceInfo` 或 `setExtraCustomInfo` 方法，必须再调用 `applyInfo` 让设置的信息生效。
+应用新设置的用户信息。
+
+**注意**
+
+- 如果你在进入场景资源前调用 `setUserInfo`、`setModelInfo`、`setExtraInfo`  方法，则不需要调用 `applyInfo`。
+- 如果你在进入场景资源后调用了 `setUserInfo`、`setModelInfo`、`setExtraInfo` 方法，必须再调用 `applyInfo` 让设置的信息生效。
 
 **返回值**
 
@@ -441,137 +522,167 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ## AgoraMetaEventDelegate
 
-`AgoraMetaServiceKit` 类的回调。
+`AgoraMetaServiceKit` 接口的异步方法的事件回调协议。
 
 ### onCreateSceneResult
-
-创建 `AgoraMetaScene` 对象的状态回调。
 
 ```objective-c
 - (void)onCreateSceneResult:(AgoraMetaScene *_Nullable)scene errorCode:(NSInteger)errorCode;
 ```
+`IMetaScene` 创建回调。
+
 **参数**
 
 - `scene`：创建的 `AgoraMetaScene` 对象，用于后续进出场景等操作。
-- `errorCode`：错误码。0 表示创建成功。
+- `errorCode`：错误码：
+  - 0 表示创建成功。
+  - 其余情况表示创建失败。
 
 ### onConnectionStateChanged
 
-连接状态改变回调。
 
 ```objective-c
 - (void)onConnectionStateChanged:(AgoraMetaConnectionStateType)state reason:(AgoraMetaConnectionChangedReasonType)reason;
 ```
+
+连接状态改变回调。
+
 **参数**
 
 - `state`：连接状态。
-  - 1：断开连接。
-  - 2：正在连接。
-  - 3：连接成功。
-  - 4：正在重连。
-  - 5：连接丢弃。
+  - `1`：断开连接。
+  - `2`：正在连接。
+  - `3`：连接成功。
+  - `4`：正在重连。
+  - `5`：连接丢弃。
 
 - `reason`：连接状态改变的原因。
 
-### onTokenWillExpire #TODOrequestToken
+### onTokenWillExpire
 
-请求 token 回调。
 
 ```objective-c
 - (void)onTokenWillExpire;
 ```
 
+Token 即将过期回调。
+
+收到该回调后，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
+
 ### onGetSceneAssetsInfoResult
 
-获取场景列表回调。
+
 
 ```objective-c
 - (void)onGetSceneAssetsInfoResult:(NSMutableArray * _Nonnull)sceneInfos errorCode:(NSInteger)errorCode;
 ```
+
+获取场景资源列表回调。
+
 **参数**
 
-- `sceneInfos`：场景信息列表，详见 [MetachatSceneInfo](#metachatsceneinfo)。
+- `metaSceneAssetsInfo`：场景资源信息列表，详见 [`AgoraMetaSceneInfo`](#agormetasceneinfo)。
 
-- `errorCode`：错误码。0 表示获取场景列表成功。
+- `errorCode`：错误码：
+  - 0 表示获取列表成功。
+  - 其余情况表示获取列表失败。
 
 ### onDownloadSceneAssetsProgress
-
-下载场景进度回调。
 
 ```objective-c
 - (void)onDownloadSceneAssetsProgress:(NSInteger)sceneId progress:(NSInteger)progress state:(AgoraMetaDownloadStateType)state;
 ```
+下载场景资源进度回调。
+
 **参数**
 
-- `sceneId`：场景 ID。
+- `sceneId`：场景资源 ID。
 
 - `progress`：下载进度，取值范围 [0,100]。
 
-- `state`：下载状态。
-  - 0：空闲。
-  - 1：正在下载。
-  - 2：下载完成。
-  - 3：下载失败
+- `state`：下载状态：
+  - `0`：空闲。
+  - `1`：正在下载。
+  - `2`：下载完成。
+  - `3`：下载失败
 
 ## AgoraMetaSceneEventDelegate
 
-`AgoraMetaScene` 类的回调。
+`AgoraMetaScene` 接口的异步方法的事件回调协议。
 
 ### onEnterSceneResult
 
-进入场景回调。
 
 ```objective-c
 - (void)metaScene:(AgoraMetaScene *_Nonnull)scene onEnterSceneResult:(NSInteger)errorCode;
 ```
+进入场景的结果回调。
+
+
 **参数**
 
- `errorCode`：0 表示进入房间成功，其它表示失败
+`errorCode`：错误码：
+- 0 表示进入场景成功。
+- 其余情况进入场景失败。
 
 ### onLeaveSceneResult
 
-离开场景回调。
 
 ```objective-c
 - (void)metaScene:(AgoraMetaScene *_Nonnull)scene onLeaveSceneResult:(NSInteger)errorCode;
 ```
+
+离开场景的结果回调。
+
+
 **参数**
 
- `errorCode`：0 表示进入房间成功，其它表示失败
+`errorCode`：错误码：
+- 0 表示离开场景成功。
+- 其余情况离开场景失败。
 
-### onRecvMessageFromScene
-
-App 收到 Unity 发送的自定义信息时，该回调被触发。
+### onSceneMessageReceived
 
 ```objective-c
 - (void)metaScene:(AgoraMetaScene *_Nonnull)scene onSceneMessageReceived:(NSData * _Nonnull)message;
 ```
+
+接收场景信息回调。
+
+App 收到 Unity 场景发送的自定义信息时，SDK 会触发该回调。
+
 **参数**
 
- `message`：自定义消息。目前只支持字符串。
+`message`：自定义格式的消息。目前只支持字符串。
 
 ### onUserPositionChanged
 
-本地或远端用户位置变化回调。
 
 ```objective-c
 - (void)metaScene:(AgoraMetaScene *_Nonnull)scene onUserPositionChanged:(NSString * _Nonnull)uid posInfo:(AgoraMetaPositionInfo * _Nonnull)posInfo;
 ```
+
+本地或远端用户位置变化回调。
+
 **参数**
 
 - `uid`：本地或远端用户的用户 ID。
-- `posInfo`：用户的位置信息，详见 [AgoraMetachatPositionInfo](#agorametachatpositioninfo)。
+- `posInfo`：用户的位置信息，详见 [`AgoraMetaPositionInfo`](#agorametapositioninfo)。
 
 ### onReleasedScene
 
-销毁 `AgoraMetaScene` 对象的回调。
 
 ```objective-c
 - (void)metaScene:(AgoraMetaScene *_Nonnull)scene onReleasedScene:(NSInteger)errorCode;
 ```
+
+`AgoraMetaScene` 释放回调。
+
 **参数**
 
- `errorCode`：错误码，0 表示销毁成功。
+`status`：错误码：
+- 0 表示释放 `AgoraMetaScene` 成功。
+- 其余情况释放 `AgoraMetaScene` 失败。
 
 ### onAddSceneViewResult
 
@@ -579,11 +690,36 @@ App 收到 Unity 发送的自定义信息时，该回调被触发。
 - (void)metaScene:(AgoraMetaScene *_Nonnull)scene onAddSceneViewResult:(UIView * _Nonnull)view errorCode:(NSInteger)errorCode;
 ```
 
+
+添加场景显示视图回调。
+
+调用 `AgoraMetaScene` 类的 `addSceneView` 方法添加场景显示视图后，SDK 会触发该回调。
+
+**参数**
+
+- `view`：视频视图。
+- `errorCode`：错误码：
+  - 0 表示添加视图成功。
+  - 其余情况添加视图失败。
+
+
 ### onRemoveSceneViewResult
 
 ```objective-c
 - (void)metaScene:(AgoraMetaScene *_Nonnull)scene onRemoveSceneViewResult:(UIView * _Nonnull)view errorCode:(NSInteger)errorCode;
 ```
+
+移除场景显示视图回调。
+
+调用 `AgoraMetaScene` 类的 `removeSceneView` 方法移除场景显示视图后，SDK 会触发该回调。
+
+**参数**
+
+- `view`：视频视图。
+- `errorCode`：错误码：
+  - 0 表示移除视图成功。
+  - 其余情况移除视图失败。
+
 
 ## 类型定义
 
@@ -603,17 +739,15 @@ __attribute__((visibility("default"))) @interface AgoraMetaServiceConfig : NSObj
 ```
 
 
-属性：
-- `rtcEngine`：`AgoraRtcEngineKit` 实例，创建方法详见 [create [1/2]](https://docs.agora.io/cn/video-call-4.x/API20%Reference/ios_ng/API/class_irtcengine.html#api_create)。
 - `appId`：在声网控制台获取的 App ID。
 - `rtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。集成及测试阶段请将 `token` 设置为 `null`。
-- `localDownloadPath` ：场景资源下载到本地的保存路径。
 - `userId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
   - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
   - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
   - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
-- `delegate`：回调事件，详见 [AgoraMetachatEventDelegate](#agorametachateventdelegate)。
-
+- `delegate`：回调事件，详见 [AgoraMetaEventDelegate](#agorametaeventdelegate)。
+- `localDownloadPath` ：场景资源下载到本地的保存路径。
+- `rtcEngine`：`AgoraRtcEngineKit` 实例，创建方法详见 [create [1/2]](https://docs.agora.io/cn/video-call-4.x/API20%Reference/ios_ng/API/class_irtcengine.html#api_create)。
 
 ### AgoraMetaUserInfo
 
@@ -627,21 +761,20 @@ __attribute__((visibility("default"))) @interface AgoraMetaUserInfo : NSObject
 @end
 ```
 
-
-属性：
 - `userId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
   - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
   - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
   - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
 
 - `userName`：用户昵称，用于在场景里显示用户昵称。
+
 - `userIconUrl`：用户头像的 URL，用于在场景里显示用户头像。
-- `extraCustomInfo`：自定义的用户信息。目前只支持字符串。
+
 
 
 ### AgoraMetaSceneInfo
 
-场景信息。
+场景资源信息。
 
 ```objective-c
 __attribute__((visibility("default"))) @interface AgoraMetaSceneInfo : NSObject
@@ -660,7 +793,6 @@ __attribute__((visibility("default"))) @interface AgoraMetaSceneInfo : NSObject
 @end
 ```
 
-属性：
 - `sceneId`：场景的唯一标识符。
 - `sceneName`：场景名称。
 - `thumbnailPath`：场景缩略图的本地路径。
@@ -694,14 +826,13 @@ __attribute__((visibility("default"))) @interface AgoraMetaBundleInfo : NSObject
 @end
 ```
 
-属性：
-- `bundleId`：资源包 ID，不同平台（Android、iOS）同一个资源包的ID 不同。
-- `sceneId`：所属的场景 ID。
+- `bundleId`：资源包 ID。不同平台（Android、iOS）的同一个资源包的 ID 是不同的。
+- `sceneId`：所属的场景资源 ID。
 - `bundleType`：资源包类型：
-  - 1：场景资源。
-  - 2：虚拟形象（avatar）资源。
-  - 3：assetManifest 资源。
-  - 100：其他资源。
+  - `1`：场景资源。
+  - `2`：虚拟形象（avatar）资源。
+  - `3`：assetManifest 资源。
+  - `100`：其他资源。
 - `bundleCode`：资源包代码，不同平台（Android、iOS）同一个资源包的代码要保持一致。
 - `bundleName`：资源包名称。
 - `desc`：资源包描述。
@@ -710,7 +841,7 @@ __attribute__((visibility("default"))) @interface AgoraMetaBundleInfo : NSObject
 - `assets`：预留参数。
 - `extraInfo`：资源包的其它额外信息。
 - `bundleSize`：资源包大小。
-### MetaSceneConfig
+### AgoraMetaSceneConfig
 
 场景的配置信息。
 
@@ -724,8 +855,17 @@ __attribute__((visibility("default"))) @interface AgoraMetaSceneConfig : NSObjec
 @end
 ```
 
-属性：
-`delegate`：AgoraMetaSceneEventDelegate 对象。
+- `syncMode`：消息同步模式：
+  - `AgoraMetaStateSyncModeNone(0)`：不同步消息。
+  - `AgoraMetaStateSyncModeNormal(1)`：（默认）通过 RTM 同步消息。
+- `delegate`：`AgoraMetaSceneEventDelegate` 事件回调协议。
+- `enableFaceCapture`：是否开启面部捕捉：#TODO 重复？
+  - `YES`：开启。
+  - `NO`：（默认）不开启。
+- `faceCaptureAppId`：开启面部捕捉时设置的 App ID。开启面捕时必填。
+- `faceCaptureCertificate`：开启面部捕捉时设置的 Certificate（证书）。开启面捕时必填。
+
+通过面捕 App ID 和 Certificate 可以获取对应的面捕证书（license）。开启面捕功能时，需要你设置面捕证书（license）。
 
 ### AgoraMetaEnterSceneConfig
 
@@ -741,16 +881,16 @@ __attribute__((visibility("default"))) @interface AgoraMetaEnterSceneConfig : NS
 @end
 ```
 
-属性：
 - `roomName`：进入场景的房间名称。
-- `sceneView`：渲染场景所需要的 view。iOS 上需要用 `AgoraMetaScene` 的 `createRenderView` 方法创建。
+- `sceneView`：场景渲染所需要的视图。iOS 上需要用 `AgoraMetaScene` 类的的 `createRenderView` 方法创建。
 - `sceneId`：进入场景的 ID。
-- `extraCustomInfo`：（可选）加载场景时需要的其它额外自定义信息。你可以自行定义，目前只支持字符串。
+- `scenePath`：（可选）`sceneId` 为 0 时，表示从本地路径加载资源，此时，`scenePath` 必须设为本地资源文件夹的路径。
+- `extraInfo`：（可选）加载场景资源时需要的其它额外自定义信息。你可以自行定义，目前只支持字符串。
 
 
 ### AgoraMetaAvatarModelInfo
 
-用户的虚拟人物配置。
+用户的虚拟形象（Avatar）信息。
 
 ```objective-c
 __attribute__((visibility("default"))) @interface AgoraMetaAvatarModelInfo : NSObject
@@ -761,14 +901,11 @@ __attribute__((visibility("default"))) @interface AgoraMetaAvatarModelInfo : NSO
 @end
 ```
 
-属性：
+
 - `bundleCode`：人物模型所在的资源包代码。
-- `localVisible`：虚拟人物在本地是否显示。如果设为 `false`，`mRemoteVisible` 和 `mSyncPosition` 会自动设为 `false`，并且无法更改。
-- `remoteVisible`：虚拟人物在远端是否可见。
-- `syncPosition`：是否同步本地用户的位置，用于控制玩家和游客模式。如果设为 `false``，`mRemoteVisible`  不生效。
-- `extraCustomInfo`：（可选）其他额外自定义信息。目前只支持字符串。
-
-
+- `localVisible`：虚拟人物模型是否在本地可见。如果设为 `NO`，`remoteVisible` 和 `syncPosition` 会自动设为 `NO`，并且无法更改。
+- `remoteVisible`：虚拟人物模型是否在远端可见。
+- `syncPosition`：是否同步本地人物渲染时所需要的信息（例如模型、装扮、捏脸信息等），用于控制玩家和游客模式。如果设为 `NO`，`remoteVisible` 不生效。
 
 
 ### AgoraMetaPositionInfo
@@ -783,16 +920,15 @@ __attribute__((visibility("default"))) @interface AgoraMetaPositionInfo : NSObje
 @property (nonatomic, copy) NSArray * _Nonnull up;
 @end
 ```
-属性：
+
 - `position`：用户的坐标位置。
-
 - `forward`：用户朝向的三维向量。
-
 - `right`：用户右手方向的向量。
-
 - `up`：用户头朝向的向量。
 
 ### AgoraMetaSceneDisplayConfig
+
+场景显示相关配置。
 
 ```objective-c
 __attribute__((visibility("default"))) @interface AgoraMetaSceneDisplayConfig : NSObject
@@ -801,3 +937,6 @@ __attribute__((visibility("default"))) @interface AgoraMetaSceneDisplayConfig : 
 @property (nonatomic, strong) NSData * _Nullable extraInfo;
 @end
 ```
+- `width`：场景渲染画面的宽。
+- `height`：场景渲染画面的高度。该宽高决定拿到场景渲染画面的原始视频帧的大小。如果要将画面发布到 RTC 频道中，建议将该宽高设置为与 RTC 的视频编码参数宽高一致，以避免缩放裁剪导致的性能损耗。
+- `extraInfo`：Unity 渲染场景所需的额外信息，该字段是用户自定义的，一般由你的 Native 开发人员和 Unity 开发人员约定好。

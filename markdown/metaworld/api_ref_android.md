@@ -230,13 +230,11 @@ public abstract int release();
 
 ### getLocalUserAvatar
 
-
-
 ```java
 public abstract ILocalUserAvatar getLocalUserAvatar();
 ```
 
-进入场景资源前，可以调用该方法获取用户的昵称、虚拟形象、装扮捏脸等信息。
+进入场景前，可以调用该方法获取用户的昵称、虚拟形象、装扮捏脸等信息。
 
 **返回值**
 
@@ -283,7 +281,6 @@ public abstract int removeEventHandler(IMetaServiceEventHandler eventHandler);
 ### enterScene
 
 
-
 ```java
 public abstract int enterScene(EnterSceneConfig config);
 ```
@@ -310,7 +307,7 @@ public abstract int enterScene(EnterSceneConfig config);
 public abstract int leaveScene();
 ```
 
-离开场景资源。
+离开场景。
 
 成功调用该方法会触发 `IMetaSceneEventHandler` 类的 `onLeaveSceneResult` 回调。
 
@@ -592,13 +589,12 @@ public void onCreateSceneResult(IMetaScene scene, int errorCode);
 
 **参数**
 
-- `scene`：创建的 `IMetaScene` 对象，用于后续进出场景资源等操作。
+- `scene`：创建的 `IMetaScene` 对象，用于后续进出场景等操作。
 - `errorCode`：错误码：
   - 0 表示创建成功。
   - 其余情况表示创建失败。
 
 ### onConnectionStateChanged
-
 
 
 ```java
@@ -627,8 +623,9 @@ public void onTokenWillExpire();
 
 Token 即将过期回调。
 
-### onGetSceneAssetsInfoResult
+收到该回调后，你需要更新 Token。
 
+### onGetSceneAssetsInfoResult
 
 
 ```java
@@ -687,8 +684,6 @@ public void onEnterSceneResult(int errorCode);
 - 其余情况进入场景失败。
 
 ### onLeaveSceneResult
-
-
 
 ```java
 public void onLeaveSceneResult(int errorCode);
@@ -824,8 +819,8 @@ public class MetaUserInfo {
   - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
   - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
   - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
-- `mUserName`：用户昵称，用于在场景资源内显示用户昵称。
-- `mUserIconUrl`：用户头像的 URL，用于在场景资源内显示用户头像。
+- `mUserName`：用户昵称，用于在场景内显示用户昵称。
+- `mUserIconUrl`：用户头像的 URL，用于在场景内显示用户头像。
 
 
 ### MetaSceneAssetsInfo
@@ -888,10 +883,10 @@ public class MetaBundleInfo {
 - `mBundleId`：资源包 ID。不同平台（Android、iOS）的同一个资源包的 ID 是不同的。
 - `mSceneId`：所属的场景资源 ID。
 - `mBundleType`：资源包类型：
-  - 1：场景场景。
-  - 2：虚拟形象（Avatar）资源。
-  - 3：assetManifest 资源。
-  - 100：其他资源。
+  - `1`：场景场景。
+  - `2`：虚拟形象（Avatar）资源。
+  - `3`：assetManifest 资源。
+  - `100`：其他资源。
 - `mBundleCode`：资源包代码，不同平台（Android、iOS）同一个资源包的代码要保持一致。
 - `mBundleName`：资源包名称。
 - `mDescription`：资源包描述。
@@ -917,12 +912,12 @@ public class MetaSceneConfig {
 ```
 
 - `mSyncMode`：消息同步模式：
-  - `STATE_SYNC_MODE_NONE`：不同步消息。
-  - `STATE_SYNC_MODE_NORMAL`：（默认）通过 RTM 同步消息。
+  - `STATE_SYNC_MODE_NONE(0)`：不同步消息。
+  - `STATE_SYNC_MODE_NORMAL(1)`：（默认）通过 RTM 同步消息。
 - `mActivityContext`：Activity 的 Context 对象，用于初始化 Unity。
 - `mEnableFaceCapture`：是否开启面部捕捉：
-  - true：开启。
-  - false：（默认）不开启。
+  - `true`：开启。
+  - `false`：（默认）不开启。
 - `mFaceCaptureAppId`：开启面部捕捉时设置的 App ID。开启面捕时必填。
 - `mFaceCaptureCertificate`：开启面部捕捉时设置的 Certificate（证书）。开启面捕时必填。
 
@@ -930,7 +925,7 @@ public class MetaSceneConfig {
 
 ### EnterSceneConfig
 
-进入场景资源的配置信息。
+进入场景的配置信息。
 
 ```java
 public class EnterSceneConfig {
@@ -942,9 +937,9 @@ public class EnterSceneConfig {
 }
 ```
 
-- `mRoomName`：进入场景资源的房间名称。
+- `mRoomName`：进入场景的房间名称。
 - `mSceneView`：场景资源渲染所需要的视图。Android 上用原生的 [TextureView](https://developer.android.com/reference/android/view/TextureView) 对象即可。
-- `mSceneId`：进入场景资源的 ID。
+- `mSceneId`：进入场景的 ID。
 - `mScenePath`：（可选）`mSceneId` 为 0 时，表示从本地路径加载资源，此时，`mScenePath` 必须设为本地资源文件夹的路径。
 - `mExtraInfo`：（可选）加载场景资源时需要的其它额外自定义信息。你可以自行定义，目前只支持字符串。
 
