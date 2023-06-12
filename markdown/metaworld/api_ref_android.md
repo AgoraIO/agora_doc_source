@@ -10,7 +10,7 @@ MetaWorld SDK 是基于声网视频 SDK 开发的元系列特殊版 SDK。相比
 
 ## IMetaService
 
-MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于 创建 IMetaScene。
+MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于创建 `IMetaScene`。
 
 ### create
 
@@ -96,7 +96,7 @@ public abstract int removeEventHandler(IMetaServiceEventHandler eventHandler);
 public abstract int getSceneAssetsInfo();
 ```
 
-获取场景场景列表。
+获取场景列表。
 
 调用该方法会触发 [`onGetSceneAssetsInfosResult`](#ongetsceneassetsinfosresult) 回调。
 
@@ -172,13 +172,10 @@ public abstract int cancelDownloadSceneAssets(long sceneId);
 
 ### cleanSceneAssets
 
-
-
 ```java
 public abstract int cleanSceneAssets(long sceneId);
 ```
 
-清理本地场景资源。
 
 **参数**
 
@@ -323,7 +320,7 @@ public abstract int leaveScene();
 
 - < 0：方法调用失败
 
-### sendMessageToScene
+### sendSceneMessage
 
 
 
@@ -909,8 +906,14 @@ public class MetaBundleInfo {
 
 场景资源的配置信息。
 
-```java #TODO code need
-
+```java
+public class MetaSceneConfig {
+  public int mSyncMode;
+  public Context mActivityContext;
+  public boolean mEnableFaceCapture;
+  public String mFaceCaptureAppId;
+  public String mFaceCaptureCertificate;
+}
 ```
 
 - `mSyncMode`：消息同步模式：
@@ -920,10 +923,10 @@ public class MetaBundleInfo {
 - `mEnableFaceCapture`：是否开启面部捕捉：
   - true：开启。
   - false：（默认）不开启。
-- `mFaceCaptureAppId`：开启面部捕捉时设置的 App ID。
-- `mFaceCaptureCertificate`：开启面部捕捉时设置的 Certificate（证书）。
+- `mFaceCaptureAppId`：开启面部捕捉时设置的 App ID。开启面捕时必填。
+- `mFaceCaptureCertificate`：开启面部捕捉时设置的 Certificate（证书）。开启面捕时必填。
 
-开启面捕功能时，需要设置面捕证书（license）。通过面捕 App ID 和 Certificate 可以获取对应的面捕证书（license）。
+通过面捕 App ID 和 Certificate 可以获取对应的面捕证书（license）。开启面捕功能时，需要你设置面捕证书（license）。
 
 ### EnterSceneConfig
 
@@ -952,16 +955,16 @@ public class EnterSceneConfig {
 
 ```java
 public class AvatarModelInfo {
-public String mBundleCode;  // 素材编号
-public boolean mLocalVisible;  // 本地是否可以看见人物模型
-public boolean mRemoteVisible;  // 远端是否可以看见本地用户的人物模型
-public boolean mSyncPosition;  // 是否同步本地用户的模型装扮等信息
+public String mBundleCode;
+public boolean mLocalVisible;
+public boolean mRemoteVisible;
+public boolean mSyncPosition;
 }
 ```
 
 - `mBundleCode`：人物模型所在的资源包代码。
-- `mLocalVisible`：虚拟人物在本地是否显示。如果设为 `false`，`mRemoteVisible` 和 `mSyncPosition` 会自动设为 `false`，并且无法更改。
-- `mRemoteVisible`：虚拟人物在远端是否可见。
+- `mLocalVisible`：虚拟人物模型是否在本地可见。如果设为 `false`，`mRemoteVisible` 和 `mSyncPosition` 会自动设为 `false`，并且无法更改。
+- `mRemoteVisible`：虚拟人物模型是否在远端可见。
 - `mSyncPosition`：是否同步本地人物渲染时所需要的信息（例如模型、装扮、捏脸信息等），用于控制玩家和游客模式。如果设为 `false`，`mRemoteVisible` 不生效。
 
 
@@ -987,11 +990,11 @@ public class MetaUserPositionInfo {
 
 场景显示相关配置。
 
-```java #TODO code need
+```java
 public class SceneDisplayConfig {
   public int width;
   public int height;
-  public String extraInfo;
+  public byte[] extraInfo;
 }
 ```
 
