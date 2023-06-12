@@ -1,3 +1,5 @@
+
+
 ## KaraokeView
 
 歌词打分组件的基础接口类，实现歌词同步、演唱评分的主要功能。请确保在主线程中调用该类下的 API。
@@ -66,81 +68,99 @@ public void reset();
 
 ### attachUi
 
-关联界面视图。//TODO
+关联界面视图。
 
 ```java
 public void attachUi(LyricsView lyrics, ScoringView scoring);
 ```
 
-你可以调用该方法将 `LyricsView` 和 `ScoringView` 
+你可以调用该方法将 `LyricsView` 和 `ScoringView` 的视图添加到 `KaraokeView` 上。如果需要重置已添加的视图，你需要调用相应的 ` LyricsView` 或 ` ScoringView` 下的 `reset` 方法来进行重置，然后再调用此方法添加新的视图。【//TODO karaokeview是重置整个，然后两个是分别重置单个的？】
+
+<div class="alert info">在调用该方法之前，请确保已经初始化了 <code>KaraokeView</code>。</div>
+
+参数
+
+- `lyrics`：要添加的 `LyricsView` 对象，用于显示歌词。若传入 `null`，表示不添加歌词视图。
+- `scoring`：要添加的 `ScoringView` 对象，用于显示评分。若传入 `null`，表示不添加打分视图。
+
+### getLyricsData
+
+获取歌词数据。
+
+```java
+public final LyricsModel getLyricsData();
+```
+
+当你调用 `parseLyricsData` 解析歌词数据后，可以调用该方法来获取歌词数据。//TODO 调用时序是否正确
+
+返回值
+
+- 一个 `LyricModel` 对象，包含解析后的歌词数据。//TODO 方法调用失败的时候返回 null 吗？
 
 ### setProgress
 
 把歌曲当前的播放进度同步给歌词、打分组件。
 
-```objectivec
-public func setProgress(progress: Int)
+```java
+public void setProgress(long progress);
 ```
 
 在实现歌词和歌曲播放同步时，你需要调用该方法来将歌曲当前的播放进度设置给 `KaraokeView` 以便 `KaraokeView` 根据当前歌曲的播放位置显示对相应的歌词。
 
-调用该方法前你需要先通过内置媒体播放器的 [getPosition](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb) 方法获取歌曲当前的播放进度。声网建议你每 20 ms 调用一次该方法来把歌曲的播放进度同步给歌词打分组件。
+调用该方法前你需要先通过内置媒体播放器的 [getPlayPosition](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_mediaplayer.html#api_imediaplayer_getplayposition) 方法获取歌曲当前的播放进度。声网建议你每 20 ms 调用一次该方法来把歌曲的播放进度同步给歌词打分组件。
 
 参数
 
 - `progress`：歌曲的播放进度，单位为 ms。
 
-### setPitch[1/2]
+### setPitch
 
 把获取的实时人声音调同步给打分组件。
 
-```objectivec
-public func setPitch(pitch: Double)
+```java
+public void setPitch(float pitch);
 ```
 
-当你通过 `AgoraRtcEngineDelegate` 下的 [reportAudioVolumeIndicationOfSpeakers](https://docportal.shengwang.cn/cn/online-ktv/API Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调后，你需要调用该方法把获取到的实时人声音调同步给打分组件用于演唱评分。
+当你通过 `IRtcEngineEventHandler` 下的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/online-ktv/API Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调后，你需要调用该方法把获取到的实时人声音调同步给打分组件用于演唱评分。
 
 参数
 
 - `pitch`：用户的实时人声音调。
 
-### setPitch[2/2]
+### setKaraokeEvent
 
-把获取的实时人声音调和当前歌曲的播放进度同步给打分组件。
+设置歌词打分组件事件回调。
 
-```objectivec
- public func setPitch(pitch: Double, progress: Int)
+```java
+public void setKaraokeEvent(KaraokeEvent event);
 ```
 
-当你通过 `AgoraRtcEngineDelegate` 下的 [reportAudioVolumeIndicationOfSpeakers](https://docportal.shengwang.cn/cn/online-ktv/API Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调、通过内置媒体播放器的 [getPosition](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb) 方法获取歌曲当前的播放进度后，你需要调用该方法把获取到的实时人声音调和歌曲的播放进度同步给打分组件。
-
-<div class="alert info">声网推荐 K 歌角色为观众的用户调用该方法。</div>
+在调用该方法前，请确保已初始化 `KaraokeView` 对象。
 
 参数
 
-- `pitch`：获取到的实时人声音调。
-- `progress`：歌曲当前的播放进度 (ms)。
+- `event`：歌词打分组件事件，详见 [KaraokeEvent](#KaraokeEvent)。
 
 ### setScoreAlgorithm
 
-设置 `IScoreAlgorithm` 对象。
+自定义打分算法。
 
-```objectivec
-public func setScoreAlgorithm(algorithm: IScoreAlgorithm) 
+```java
+public void setScoringAlgorithm(IScoringAlgorithm algorithm);
 ```
 
-如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法应遵循 `IScoreAlgorithm` 协议。 
+如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法对象应实现 `IScoreAlgorithm` 接口。 
 
 参数
 
-- `algorithm`：实现了`IScoreAlgorithm` 协议的对象。
+- `algorithm`：实现了 `IScoreAlgorithm` 接口的打分算法对象。
 
 ### setScoreLevel
 
 设置得分的难易程度。
 
-```objectivec
-public func setScoreLevel(level: Int)
+```java
+public void setScoringLevel(int level);
 ```
 
 你可以通过该方法来设置演唱者得分的难易程度。
@@ -159,15 +179,30 @@ public func setScoreLevel(level: Int)
 | 中高难度 | 25       |
 | 高难度   | 35       |
 
-### setScoreCompensationOffset
+### getScoringLevel
 
-调整演唱评分分数结果。
+获取得分的难易程度。
 
-```objectivec
-public func setScoreCompensationOffset(offset: Int)
+```java
+public int getScoringLevel();
 ```
 
-如果你的业务场景对演唱分数有特殊要求，你可以调用此方法来调整演唱评分的分数结果。
+当你调用 `setScoringLevel` 设置得分的难易程度后，可以调用该方法来获取当前你设置的得分难易程度，默认值为 10。
+
+返回值
+
+- *≥* 0：方法调用成功，返回当前设置的得分难易程度。
+- < 0：方法调用失败。
+
+### setScoreCompensationOffset
+
+调整演唱评分结果。
+
+```java
+public void setScoringCompensationOffset(int offset);
+```
+
+如果你的业务场景对演唱分数有特殊要求，你可以调用此方法来调整演唱评分的结果。
 
 参数
 
@@ -175,36 +210,35 @@ public func setScoreCompensationOffset(offset: Int)
 
 声网不建议你同时使用 `setScoreLevel` 和 `setScoreCompensationOffset` 来调整打分机制。
 
-## KaraokeDelegate
+### getScoringCompensationOffset
+
+获取调整后的//TODO
+
+## KaraokeEvent
 
 `KaraokeView` 的核心事件回调。
 
-### onKaraokeView[1/2]
+### onDragTo
 
 歌词拖动结束的回调。
 
-```objectivec
-optional func onKaraokeView(view: KaraokeView, didDragTo position: Int)
+```java
+public void onDragTo(KaraokeView view, long position);
 ```
 
-如果你设置允许歌词拖动（将 `draggable` 设为 `YES`），当歌词拖动结束后会触发此回调。你可以通过该回调获取歌词拖动后对应的播放位置。
+如果你设置允许歌词拖动（将 `enableDragging` 设为 `true`），当歌词拖动结束后会触发此回调。你可以通过该回调获取歌词拖动后对应的播放位置。
 
 参数
 
-- `view`：KaraokeView 实例。
+- `view`：`KaraokeView` 实例。
 - `position`：歌词拖动后对应的歌曲播放位置，单位为毫秒。
 
-### onKaraokeView[2/2]
+### onLineFinished
 
 一行歌词播放完毕回调。
 
-```objectivec
-optional func onKaraokeView(view: KaraokeView,
-                            didFinishLineWith model: LyricLineModel,
-                            score: Int,
-                            cumulativeScore: Int,
-                            lineIndex: Int,
-                            lineCount: Int)
+```java
+public void onLineFinished(KaraokeView view, LyricsLineModel line, int score, int cumulativeScore, int index, int total);
 ```
 
 当一行歌词播放完毕后，会触发该回调报告当前行的歌词的得分、累计得分等信息。
@@ -212,15 +246,328 @@ optional func onKaraokeView(view: KaraokeView,
 参数
 
 - `view`：`KaraokeView` 实例。
-- `model`：当前歌词行的信息，详见 `LyricLineModel`。
+- `line`：当前歌词行的信息，详见 `LyricLineModel`。
 - `score`：当前歌曲行的得分，取值范围 [0, 100]。
 - `cumulativeScore`：当前累计得分。
-- `lineIndex`：歌词行数的索引号，最小值为 0。
-- `lineCount`：歌词的总行数。
+- `Index`：歌词行数的索引号，最小值为 0。
+- `total`：歌词的总行数。
 
-## IScoreAlgorithm
+### onRefPitchUpdate
 
-该协议中提供演唱打分相关的 API。
+歌词标准音高值回调。//TODO
+
+```java
+public void onRefPitchUpdate(float refPitch, int numberOfRefPitches);
+```
+
+## ScoringView
+
+该类提供打分组件的核心 API。
+
+### setRefPitchStickDefaultColor
+
+设置标准音高线的颜色。
+
+```java
+public void setRefPitchStickDefaultColor(int color);
+```
+
+参数
+
+- `color`：标准音高线的颜色。//TODO 是否有示例？比如xxx表示蓝色。
+
+### setRefPitchStickHighlightedColor
+
+设置人声音调与标准音高线匹配后，音高线的颜色。
+
+```java
+public void setRefPitchStickHighlightedColor(int color);
+```
+
+参数
+
+- `color`：标准音高线的颜色。//TODO 是否有示例？比如xxx表示蓝色。
+
+### setRefPitchStickHeight
+
+设置标准音高线的高度。
+
+```java
+public void setRefPitchStickHeight(float height);
+```
+
+参数
+
+- `height`：标准音高线的高度（pt）。
+
+### enableParticleEffect
+
+设置是否开启粒子动画效果。
+
+```java
+public void enableParticleEffect(boolean enable);
+```
+
+粒子动画可以在歌词或背景等区域中播放，以呈现各种漂亮、流畅且动感的效果，与歌声的节奏和音调进行同步。
+
+参数
+
+- `enable`：
+  - `true`：开启粒子动画。
+  - `false`：（默认）关闭粒子动画。//TODO input 里面写的this is expensive是什么意思？这个我们是收费的吗？
+
+### setParticles
+
+自定义粒子动画样式。
+
+```java
+public void setParticles(Drawable[] particles);
+```
+
+如果你不想使用声网默认的粒子动画样式，你可以调用该方法来自定义粒子动画样式。
+
+参数
+
+- `particles`：自定义的粒子动画图片。//TODO input 里面写的this is expensive是什么意思？这个我们是收费的吗？
+
+### setLocalPitchIndicator
+
+//TODO 没有input
+
+```java
+public void setLocalPitchIndicator(Bitmap bitmap);
+```
+
+### attachToScoringMachine
+
+//TODO
+
+### requestRefreshUi
+
+更新打分组件视图界面。
+
+```java
+public final void requestRefreshUi();
+```
+
+当你修改了打分组件视图后，例如调用 `enableParticleEffect` 开启粒子动画效果、调用 `setParticles` 自定义粒子动画样式后，你需要调用该方法来更新打分组件试图。//TODO 调用时机是否正确？
+
+### updatePitchAndScore
+
+更新人声音调和演唱评分。
+
+```java
+public final void updatePitchAndScore(final float pitch, final double scoreAfterNormalization, final boolean betweenCurrentPitch);
+```
+
+//TODO 没有input，调用时机，注意事项，参数解释。
+
+参数：
+
+- `pitch`：人声音调。
+- `scoreAfterNormalization`：
+- `betweenCurrentPitch`：
+
+### reset
+
+重置打分组件。
+
+```java
+public void reset();
+```
+
+当一首歌曲播放完毕后或是播放过程中切到另外一首歌曲时，需要调用该方法来重置打分设置。
+
+## LyricsView
+
+该类提供歌词组件的核心 API。
+
+### enableDragging
+
+设置是否允许歌词拖动。
+
+```java
+public void enableDragging(boolean enable);
+```
+
+参数
+
+- `enable`：是否允许拖动歌词：
+  - `true`：允许拖动歌词。
+  - `false`：不允许拖动歌词。
+
+### setNormalTextColor
+
+设置未在当前播放的歌词的颜色。
+
+```java
+public void setNormalTextColor(@ColorInt int color);
+```
+
+参数
+
+- `color`：歌词的颜色。//TODO 是否有示例？
+
+### setNormalTextSize
+
+设置未在当前播放的歌词文字大小。
+
+```java
+public void setNormalTextSize(float size);
+```
+
+参数：
+
+- `size`：歌词文字大小。//TODO 单位 是 pt 么？
+
+### setCurrentTextColor
+
+设置当前播放的歌词的颜色。
+
+```java
+public void setCurrentTextColor(@ColorInt int color);
+```
+
+参数：
+
+- `color`：歌词的颜色。//TODO 示例？
+
+### setCurrentHighlightedTextColor
+
+设置高亮歌词的颜色。//TODO 什么情况下会高亮？感觉一般是唱到某一句，那句歌词会高亮。如果是这样的话，感觉这个方法和上面那个方法是重复的？
+
+```java
+public void setCurrentHighlightedTextColor(@ColorInt int color);
+```
+
+参数：
+
+- `color`：歌词的颜色。//TODO 示例？
+
+### setCurrentTextSize
+
+设置当前播放的歌词文字大小。
+
+```java
+public void setCurrentTextSize(float size);
+```
+
+参数：
+
+- `size`：歌词文字大小。//TODO 单位 是 pt 么？
+
+### setLabelShownWhenNoLyrics
+
+设置无歌词时显示的提示文字。
+
+```java
+public void setLabelShownWhenNoLyrics(String label);
+```
+
+参数
+
+- `label`：提示文字的内容。
+
+### setLabelShownWhenNoLyricsTextSize
+
+设置无歌词显示时，提示文字的大小。
+
+```java
+public void setLabelShownWhenNoLyricsTextSize(float size);
+```
+
+参数
+
+- `size`：歌词文字大小。//TODO 单位 是 pt 么？
+
+### setLabelShownWhenNoLyricsTextColor
+
+设置无歌词显示时，提示文字的颜色。
+
+```java
+public void setLabelShownWhenNoLyricsTextColor(@ColorInt int color);
+```
+
+参数：
+
+- `color`：文字的颜色。//TODO 示例？
+
+### enableStartOfVerseIndicator
+
+在播放歌曲前奏时是否显示等待圆点。
+
+```java
+public void enableStartOfVerseIndicator(boolean enable);
+```
+
+等待圆点的作用是在播放器播放前奏时，在歌词视图中显示一个提示，让用户知道何时应该开始唱歌。
+
+参数：
+
+- `enable`：是否显示等待圆点：
+  - `true`：（默认）显示等待圆点。
+  - `false`：不显示等待圆点。
+
+### setStartOfVerseIndicatorPaddingTop
+
+// TODO
+
+```java
+public void setStartOfVerseIndicatorPaddingTop(float paddingTop);
+```
+
+### setStartOfVerseIndicatorRadius
+
+设置等待圆点的半径大小。
+
+```java
+public void setStartOfVerseIndicatorRadius(float radius);
+```
+
+参数：
+
+- `radius`：等待圆点的半径，//TODO 默认值为？是否有取值限制
+
+### setStartOfVerseIndicatorColor
+
+设置等待圆点的颜色。
+
+```java
+public void setStartOfVerseIndicatorColor(int color);
+```
+
+参数：
+
+- `color`：待圆点的颜色。//TODO 示例？
+
+### attachToScoringMachine
+
+//TODO lyricview下面也有一个这个方法。
+
+### requestRefreshUi
+
+更新歌词组件视图界面。
+
+```java
+public final void requestRefreshUi();
+```
+
+当你修改了歌词组件视图后，例如调用 `setCurrentTextSize` 设置当前播放的歌词的颜色、调用 `setNormalTextSize` 设置未在当前播放的歌词的字体大小时，你需要调用该方法来更新歌词组件试图。//TODO 调用时机是否正确？
+
+### reset
+
+重置歌词组件。
+
+```java
+public void reset();
+```
+
+当一首歌曲播放完毕后或是播放过程中切到另外一首歌曲时，需要调用该方法来重置歌词设置。
+
+
+## IScoreAlgorithm //TODO 还没确定
+
+该类提供演唱打分相关的 API。
 
 ### getLineScore
 
@@ -261,122 +608,72 @@ onLog(content: String, tag: String?, time: String, level: LoggerLevel)
 
 ## Data class
 
-### LyricsView
-
-```objectivec
-public class LyricsView: UIView {
-    public var noLyricTipsText: String = "无歌词"
-    public var noLyricTipsColor: UIColor = .orange
-    public var noLyricTipsFont: UIFont = .systemFont(ofSize: 17)
-    public var waitingViewHidden: Bool = false
-    public var textNormalColor: UIColor = .white
-    public var textSelectedColor: UIColor = .white
-    public var textHighlightedColor: UIColor = .colorWithHex(hexStr: "#FF8AB4")
-    public var textNormalFontSize = UIFont(name: "PingFangSC-Semibold", size: 15)!
-    public var textHighlightFontSize = UIFont(name: "PingFangSC-Semibold", size: 18)!
-    public var maxWidth: CGFloat = UIScreen.main.bounds.width - 30
-    public var lyricLineSpacing: CGFloat = 10
-    public let firstToneHintViewStyle: FirstToneHintViewStyle = .init()
-    public var draggable: Bool = false
-}
-```
-
-歌词组件界面设置。
-
-- `noLyricTipsText`：无歌词时显示的提示文字。
-
-- `noLyricTipsColor`：无歌词时显示的提示文字的颜色。
-
-- `noLyricTipsFont`：无歌词时显示的提示文字的大小。
-
-- `waitingViewHidden`：在播放歌曲前奏时是否显示等待圆点。
-
-- `textNormalColor`：未在当前播放的歌词的颜色。
-
-- `textSelectedColor`：选中的歌词的颜色。
-
-- `textHighlightedColor`：歌词高亮的颜色。
-
-- `textNormalFontSize`：未在当前播放的歌词文字大小。
-
-- `textHighlightFontSize`：高亮的歌词文字大小。
-
-- `maxWidth`：歌词视图的最大宽度（pt）。
-
-- `lyricLineSpacing`：歌词行间距。
-
-- `FirstToneHintViewStyle`：等待圆点的风格，详见 [FirstToneHintViewStyle](#FirstToneHintViewStyle)。
-
-- `draggable`：是否允许歌词拖动：
-- `true`：允许歌词拖动。
-  - `false`：（默认）不允许歌词拖动。
-
-### ScoringView
-
-打分组件界面设置。
-
-```objectivec
-public class ScoringView: UIView {
-    public var viewHeight: CGFloat = 120
-    public var topSpaces: CGFloat = 0
-    public var defaultPitchCursorX: CGFloat = 100
-    public var standardPitchStickViewHeight: CGFloat = 3
-    public var movingSpeedFactor: CGFloat = 120
-    public var standardPitchStickViewColor: UIColor = .gray
-    public var standardPitchStickViewHighlightColor: UIColor = .colorWithHex(hexStr: "#FF8AB4")
-    public var localPitchCursorOffsetX: CGFloat = -3
-    public var localPitchCursorImage: UIImage? = nil
-    public var particleEffectHidden: Bool = false
-    public var emitterImages: [UIImage]?
-    public var hitScoreThreshold: Float = 0.7
-}
-```
-
-- `viewHeight`：打分视图的高度。
-
-- `topSpaces`：打分视图和 `KaraokeView` 的顶部距离。
-
-- `defaultPitchCursorX`：游标出现的起始位置。
-
-- `standardPitchStickViewHeight`：标准音高线的高度。
-
-- `movingSpeedFactor`：标准音高线的移动速度。
-
-- `standardPitchStickViewColor`：标准音高线默认的颜色。
-
-- `standardPitchStickViewHighlightColor`：击中标准音高线时的颜色。
-
-- `localPitchCursorOffsetX`：游标在 X 轴上的偏移量，游标的中心到竖线中心的距离。
-
-  - 0：游标中心点和竖线中心点重合。
-
-  - < 0：游标向左偏移。
-
-  - > 0: 游标向向偏移。
-
-- `localPitchCursorImage`：自定义游标样式。支持的格式？
-
-- `particleEffectHidden`：是否隐藏粒子动画效果：
-
-  - `true`：隐藏粒子动画效果。
-  - `false`：（默认）不隐藏粒子动画效果。
-
-- `emitterImages`：自定义粒子动画样式。支持的格式？
-
-- `hitScoreThreshold`：音高阈值，取值范围为为 [0, 1]。例如，如果你将该值设为 0.1，则一行歌词得分超过 10 分，就会触发音高线着色和粒子动画。
-
 ### LyricToneModel
 
 <a name="LyricToneModel"></a>
 
 ```objectivec
-public class LyricToneModel: NSObject {
-    @objc public let beginTime: Int
-    @objc public let duration: Int
-    @objc public var word: String
-    @objc public let pitch: Double
-    @objc public var lang: Lang
-    @objc public let pronounce: String
+public class LyricsLineModel {
+
+    public enum Lang {
+        Chinese, English
+    }
+
+    public static class Tone {
+        public long begin;
+        public long end;
+        public String word;
+        public Lang lang = Lang.Chinese;
+        public int pitch = 0;
+        public boolean highlight;
+
+        public float highlightOffset = -1;
+        public float highlightWidth = -1;
+
+        public void resetHighlight() {
+            this.highlight = false;
+            this.highlightOffset = -1;
+            this.highlightWidth = -1;
+        }
+
+        public long getDuration() {
+            return end - begin;
+        }
+    }
+
+    public static class Monolog extends Tone {
+        // Better not use extend
+    }
+
+    public List<Tone> tones;
+
+    public LyricsLineModel(Tone tone) {
+        this.tones = new ArrayList<>();
+        this.tones.add(tone);
+    }
+
+    public LyricsLineModel(Monolog tone) {
+        this.tones = new ArrayList<>();
+        this.tones.add(tone);
+    }
+
+    public LyricsLineModel(List<Tone> tones) {
+        this.tones = tones;
+    }
+
+    public long getStartTime() {
+        if (tones == null || tones.size() <= 0) {
+            return 0;
+        }
+
+        Tone first = tones.get(0);
+        return first.begin;
+    }
+
+    public long getEndTime() {
+        if (tones == null || tones.isEmpty()) return 0;
+        else return tones.get(tones.size() - 1).end;
+    }
 }
 ```
 
@@ -389,7 +686,7 @@ public class LyricToneModel: NSObject {
 - `lang`：歌词语言，详见 [Lang](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb#Lang)。
 - `pronounce`：不确定指的具体是什么。
 
-### ToneScoreModel
+### ToneScoreModel //TODO 这里往下都没弄
 
 ```objectivec
 public class ToneScoreModel: NSObject {
