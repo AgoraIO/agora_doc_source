@@ -16,8 +16,6 @@
 
 ## 获取示例项目
 
-//TODO: 需要补充分支：dev_metasdk1.0 么？还是发布后会合入主分支？
-
 运行以下命令克隆仓库到本地：
 
 ```shell
@@ -28,11 +26,11 @@ git clone git@github.com:AgoraIO-Community/Agora-MetaWorld.git
 
 ### 集成 SDK
 
-1. 联系技术支持获取 MetaWorld SDK，下载并解压。//TODO: 咋联系
+1. 联系技术支持获取 MetaWorld SDK，下载并解压。
 
 2. 将 SDK 包内 `libs` 及路径下的文件，拷贝到示例项目的 `./Agora-MetaWorld/ios/sdk/` 路径下。
 
-3. 点击 `MetaChatDemo.xcodeproj` 文件以通过 Xcode 打开项目，添加 SDK 包 `libs` 路径下的框架和库。//TODO: 手动添加这步需要做么，还是直接 pod install 就好
+3. 点击 `MetaChatDemo.xcodeproj` 文件以通过 Xcode 打开项目，添加 SDK 包 `libs` 路径下的框架和库。
     
     ![](https://web-cdn.agora.io/docs-files/1686302836178)
 
@@ -77,8 +75,6 @@ git clone git@github.com:AgoraIO-Community/Agora-MetaWorld.git
 2. 通过 USB 线将你的 iOS 设备接入电脑，并在 **iOS Device** 选项中勾选你的 iOS 设备。
 
 3. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 用于在设备上唯一标识应用程序。在开发应用时，你需要设置 Bundle ID。
-
-//TODO: 这里适用 Meta 么？“在此处设置的 Bundle ID 需要与你申请商汤美颜 SDK 时提供的 Bundle ID 一致。”
 
 4. 点击 <img src="https://web-cdn.agora.io/docs-files/1686540324207" width="25"/> 开始编译。编译成功后，你的 iOS 设备上会出现 **MetaChatDemo** 应用。在 iOS 系统设置中将该应用设为信任开发者后你才能打开应用。
 
