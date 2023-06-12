@@ -12,7 +12,7 @@
 
 下图展示房主预览、创建、进入、退出直播的流程。
 
-![](https://web-cdn.agora.io/docs-files/1685528911266)
+![](https://web-cdn.agora.io/docs-files/1686563166145)
 
 ### 进入/退出房间
 
@@ -20,7 +20,7 @@
 - 观众：可以观看房主直播或与主播连麦。
 - 虚假主播：通过声网输入在线媒体流服务在房间内创建的一路视频流，是伪直播。观众和房主可以观看虚假主播，但是不能与其连麦。
 
-![](https://web-cdn.agora.io/docs-files/1685528919199)
+![](https://web-cdn.agora.io/docs-files/1686563061182)
 ### 主播 PK 连麦
 
 下图展示主播 PK 连麦的流程。在这个流程中，房主邀请另一个房间的房主开始 PK 连麦。两个房间内的观众都可以看到两个房主 PK 连麦直播的画面。
@@ -88,7 +88,7 @@
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
    ```
-3. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_android#集成商汤美颜-SDK)。#TODO review
+3. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_android#集成商汤美颜-SDK)。#TODO input needed
 
 4. 添加网络及设备权限。
 
@@ -123,7 +123,7 @@
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
-<pic> //TODO
+<pic> //TODO input change
 
 ### 1. 创建房间
 

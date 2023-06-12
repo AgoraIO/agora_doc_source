@@ -28,7 +28,7 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
 ## 集成商汤美颜 SDK
 
-1. 联系商汤技术支持获取最新的美颜 SDK 和测试证书。
+1. 联系商汤技术支持获取最新的美颜 SDK 和测试证书。美颜 SDK 中包含 Android 和 iOS SDK。
 
 2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到秀场直播示例项目对应的文件路径下：
 
@@ -38,8 +38,8 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
     | 基础美颜| iOS/libs/ios_os-universal/libst_mobile.a  |iOS/SenseLib/libst_mobile.a     |
     | 基础美颜| iOS/models/model.bundle   | iOS/SenseLib/model.bundle   |
     | 美颜贴纸| iOS/samples/SenseMeEffects/SenseMeEffects/datasource/resources/StickerZipAndIcons/lianxingface.zip   | iOS/SenseLib/sticker_face_shape/lianxingface.zip   |
-    | 风格妆| #TODO  qise.zip | iOS/SenseLib/style_ligthly/qise.zip   |
-    | 风格妆| #TODO  wanneng.zip  | iOS/SenseLib/style_ligthly/wanneng.zip   |
+    | 风格妆| Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly/qise.zip | iOS/SenseLib/style_ligthly/qise.zip   |
+    | 风格妆| Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly/wanneng.zip  | iOS/SenseLib/style_ligthly/wanneng.zip   |
     | 证书| 商汤证书SENSEME.lic   | iOS/AgoraEntScenarios/Scenes/Show/Beauty/SenseBeaufy/SENSEME.lic     |
 
 
