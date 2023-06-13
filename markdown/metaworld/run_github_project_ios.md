@@ -16,54 +16,56 @@
 
 ## 获取示例项目
 
-运行以下命令克隆仓库到本地：
+1. 运行以下命令克隆仓库到本地：
 
 ```shell
 git clone git@github.com:AgoraIO-Community/Agora-MetaWorld.git
+```
+
+2. 运行以下命令切换到 `dev_metasdk1.0` 分支：
+
+```shell
+git checkout dev_metasdk1.0
 ```
 
 ## 配置示例项目
 
 ### 集成 SDK
 
-1. 联系技术支持获取 MetaWorld SDK，下载并解压。
+1. 联系技术支持获取 MetaWorld SDK，下载并解压。//TODO: 联系谁
 
 2. 将 SDK 包内 `libs` 及路径下的文件，拷贝到示例项目的 `./Agora-MetaWorld/ios/sdk/` 路径下。
 
-3. 点击 `MetaChatDemo.xcodeproj` 文件以通过 Xcode 打开项目，添加 SDK 包 `libs` 路径下的框架和库。
-    
-    ![](https://web-cdn.agora.io/docs-files/1686302836178)
+3. 在 `Agora-MetaWorld/ios` 目录下运行 `pod install`，然后等待依赖库安装完成。
 
 
 ### 设置 ID 和证书
 
-1. 运行示例项目前，你需要在 `./Agora-MetaWorld/ios/MetaChatDemo/KeyCenter.swift` 文件中设置如下参数：
+运行示例项目前，你需要在 `./Agora-MetaWorld/ios/MetaChatDemo/KeyCenter.swift` 文件中设置如下参数：
 
-    ```shell
-    @objc static let APP_ID: String = <#AppId#>
-    @objc static let certificate: String = <#Certificate#>
-    @objc static let FACE_CAPTURE_APP_ID: String = <#Face Capture App Id#>
-    @objc static let FACE_CAPTURE_CERTIFICATE: String = <#Face Capture Certificate#>
-    ...
-    ...
-    @objc static let kUserKey: String = <#kUserKey#>
-    @objc static let kUserSecret: String = <#kUserSecret#>
-    ```
+```shell
+@objc static let APP_ID: String = <#AppId#>
+@objc static let certificate: String = <#Certificate#>
+@objc static let FACE_CAPTURE_APP_ID: String = <#Face Capture App Id#>
+@objc static let FACE_CAPTURE_CERTIFICATE: String = <#Face Capture Certificate#>
+...
+...
+@objc static let kUserKey: String = <#kUserKey#>
+@objc static let kUserSecret: String = <#kUserSecret#>
+```
 
-    详情如下：
+详情如下：
 
-    | 参数  |  描述  | 获取方式 |
-    | ---- | ------ | ------ |
-    | AppId    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
-    | Certificate | 声网项目的 App 证书 | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)   |
-    | Face Capture App Id | 声网面捕的 App ID | 联系销售获取 |
-    | Face Capture Certificate | 声网面捕的 App 证书 | 联系销售获取 |
-    | kUserKey | 客户 ID，声网 RESTful API 使用客户 ID 和客户密钥进行 HTTP 基本认证 | [生成客户 ID 和密钥](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7-id-%E5%92%8C%E5%AF%86%E9%92%A5) |
-    | kUserSecret | 客户密钥，声网 RESTful API 使用客户 ID 和客户密钥进行 HTTP 基本认证 | [生成客户 ID 和密钥](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7-id-%E5%92%8C%E5%AF%86%E9%92%A5) |
+| 参数  |  描述  | 获取方式 |
+| ---- | ------ | ------ |
+| AppId    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
+| Certificate | 声网项目的 App 证书 | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)   |
+| Face Capture App Id | 声网面捕的 App ID | 联系销售获取 //TODO: 联系谁 |
+| Face Capture Certificate | 声网面捕的 App 证书 | 联系销售获取 |
+| kUserKey | 客户 ID，声网 RESTful API 使用客户 ID 和客户密钥进行 HTTP 基本认证 | [生成客户 ID 和密钥](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7-id-%E5%92%8C%E5%AF%86%E9%92%A5) |
+| kUserSecret | 客户密钥，声网 RESTful API 使用客户 ID 和客户密钥进行 HTTP 基本认证 | [生成客户 ID 和密钥](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7-id-%E5%92%8C%E5%AF%86%E9%92%A5) |
 
 <div class="alert info"><code>CHANNEL_ID</code> 设置为任意字符串，<code>RTC_UID</code> 设置为 0 以外的任意 Int 值。</div>
-
-2. 在 `Agora-MetaWorld/ios` 目录下运行 `pod install`，然后等待依赖库安装完成。
 
 
 ## 编译并运行示例项目
