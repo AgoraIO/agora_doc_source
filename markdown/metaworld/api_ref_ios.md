@@ -20,7 +20,7 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 **参数**
 
-`config`：初始化 `AgoraMetaServiceKit` 对象需要的配置信息，详见 [AgoraMetaServiceConfig](#agorametaserviceconfig)。
+`config`：初始化 `AgoraMetaServiceKit` 对象需要的配置信息，详见 [`AgoraMetaServiceConfig`](#agorametaserviceconfig)。
 
 **返回值**
 
@@ -45,7 +45,7 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 更新 Token。
 
-Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告 Token 即将过期。此时，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
+Token 有有效期，在过期前 SDK 会触发 [`onTokenWillExpire`](#ontokenwillexpire) 回调报告 Token 即将过期。此时，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
 
 
 ### getSceneAssetsInfo
@@ -78,7 +78,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 **参数**
 
-`sceneId`：场景的 ID，可以从 [AgoraMetaSceneInfo](#agorametaceneinfo) 获取。
+`sceneId`：场景的 ID，可以从 [`AgoraMetaSceneInfo`](#agorametaceneinfo) 获取。
 
 **返回值**
 
@@ -99,7 +99,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 **参数**
 
-`sceneId`：场景的 ID，可以从 [AgoraMetaSceneInfo](#agorametaceneinfo) 获取。
+`sceneId`：场景的 ID，可以从 [`AgoraMetaSceneInfo`](#agorametaceneinfo) 获取。
 
 **返回值**
 
@@ -122,7 +122,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 **参数**
 
-`sceneId`：场景的 ID，可以从 [AgoraMetaSceneInfo](#agorametaceneinfo) 获取。
+`sceneId`：场景的 ID，可以从 [`AgoraMetaSceneInfo`](#agorametaceneinfo) 获取。
 
 **返回值**
 
@@ -141,7 +141,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 **参数**
 
-`sceneId`：场景的 ID，可以从 [AgoraMetaSceneInfo](#agorametaceneinfo) 获取。
+`sceneId`：场景的 ID，可以从 [`AgoraMetaSceneInfo`](#agorametaceneinfo) 获取。
 
 **返回值**
 
@@ -158,11 +158,16 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 创建 `AgoraMetaScene` 对象。
 
-调用该方法会触发 `AgoraMetaEventDelegate` 协议的 [onCreateSceneResult](#oncreatesceneresult) 回调。成功创建的 `AgoraMetaScene` 对象可以在该回调里拿到。
+调用该方法会触发 `AgoraMetaEventDelegate` 协议的 [`onCreateSceneResult`](#oncreatesceneresult) 回调。成功创建的 `AgoraMetaScene` 对象可以在该回调里拿到。
+
+**注意**
+
+- 如果你在创建场景时想开启面部捕捉，你可以通过 `config` 中的 `enableFaceCapture` 属性设置。
+- 如果你在创建场景时不想开启面部捕捉，但是在后续流程中想开启面部捕捉，你可以调用 [`enableFaceCapture`](#enablefacecapture)。
 
 **参数**
 
-`config`：创建 `AgoraMetaScene` 对象需要的配置信息，详见 [AgoraMetaSceneConfig](#agorametasceneconfig)。
+`config`：创建 `AgoraMetaScene` 对象需要的配置信息，详见 [`AgoraMetaSceneConfig`](#agorametasceneconfig)。
 
 **返回值**
 
@@ -176,7 +181,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 ### destroy
 
-销毁 AgoraMetaScene 对象。
+销毁 `AgoraMetaScene` 对象。
 
 ```objective-c
 - (NSInteger)destroy;
@@ -227,11 +232,11 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 进入场景。
 
-成功调用该方法会触发 `AgoraMetaSceneEventDelegate` 协议的 `onEnterSceneResult` 回调。
+成功调用该方法会触发 `AgoraMetaSceneEventDelegate` 协议的 [`onEnterSceneResult`](onentersceneresult) 回调。
 
 **参数**
 
-`config`：进入场景所需要的配置信息，详见 [AgoraMetaEnterSceneConfig](#agorametaentersceneconfig)。
+`config`：进入场景所需要的配置信息，详见 [`AgoraMetaEnterSceneConfig`](#agorametaentersceneconfig)。
 
 **返回值**
 
@@ -247,7 +252,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 ```
 进入场景。
 
-成功调用该方法会触发 `AgoraMetaSceneEventDelegate` 协议的 `onLeaveSceneResult` 回调。
+成功调用该方法会触发 `AgoraMetaSceneEventDelegate` 协议的 [`onLeaveSceneResult`](onleavesceneresult) 回调。
 
 **返回值**
 
@@ -312,7 +317,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 **参数**
 
 - `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
-- `frame`：视频帧。详见 RTC SDK API 参考中的 [AgoraVideoFrame](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
+- `frame`：视频帧。详见 RTC SDK API 参考中的 [`AgoraVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
 
 **返回值**
 
@@ -346,7 +351,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 移除场景显示视图。
 
-调用成功后，SDK 会触发 `AgoraMetaSceneEventDelegate` 协议的 `onRemoveSceneViewResult` 回调。
+调用成功后，SDK 会触发 `AgoraMetaSceneEventDelegate` 协议的 [`onRemoveSceneViewResult`](onremovesceneviewresult) 回调。
 
 **参数**
 
@@ -360,11 +365,16 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 - < 0：方法调用失败
 
 ### enableFaceCapture
+
 ```objective-c
 - (NSInteger)enableFaceCapture:(BOOL)enable;
 ```
 
 开启或关闭面部捕捉。
+
+**注意**
+
+如果你在调用 [`createScene`](#createscene) 创建场景时不想开启面部捕捉，但是在后续流程中想开启面部捕捉，你可以调用本方法。
 
 **参数**
 
@@ -385,7 +395,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 开启或关闭场景渲染画面捕获。
 
-该方法用于开启或关闭场景渲染画面捕获。通过与 `AgoraRtcEngineKit` 的 `joinChannelByToken` 方法配合使用，可以将场景渲染的画面发布到 RTC 频道中。
+该方法用于开启或关闭场景渲染画面捕获。通过与 `AgoraRtcEngineKit` 的 [`joinChannelByToken` [1/2]](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel) 方法配合使用，可以将场景渲染的画面发布到 RTC 频道中。
 
 **参数**
 
@@ -527,7 +537,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 ```objective-c
 - (void)onCreateSceneResult:(AgoraMetaScene *_Nullable)scene errorCode:(NSInteger)errorCode;
 ```
-`IMetaScene` 创建回调。
+`AgoraMetaScene` 创建回调。
 
 **参数**
 
@@ -565,7 +575,7 @@ Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告
 
 Token 即将过期回调。
 
-收到该回调后，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
+收到该回调后，你需要在服务器生成新的 Token，然后调用 [`renewToken`](#renewToken) 并在参数里传入新 Token。
 
 ### onGetSceneAssetsInfoResult
 
@@ -691,7 +701,7 @@ App 收到 Unity 场景发送的自定义信息时，SDK 会触发该回调。
 
 添加场景显示视图回调。
 
-调用 `AgoraMetaScene` 类的 `addSceneView` 方法添加场景显示视图后，SDK 会触发该回调。
+调用 `AgoraMetaScene` 类的 [`addSceneView`](#addsceneview) 方法添加场景显示视图后，SDK 会触发该回调。
 
 **参数**
 
@@ -709,7 +719,7 @@ App 收到 Unity 场景发送的自定义信息时，SDK 会触发该回调。
 
 移除场景显示视图回调。
 
-调用 `AgoraMetaScene` 类的 `removeSceneView` 方法移除场景显示视图后，SDK 会触发该回调。
+调用 `AgoraMetaScene` 类的 [`removeSceneView`](#removesceneview) 方法移除场景显示视图后，SDK 会触发该回调。
 
 **参数**
 
@@ -738,7 +748,7 @@ __attribute__((visibility("default"))) @interface AgoraMetaServiceConfig : NSObj
 
 
 - `appId`：在声网控制台获取的 App ID。
-- `rtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。集成及测试阶段请将 `token` 设置为 `null`。
+- `rtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。集成及测试阶段请将 `token` 设置为 `nil`。
 - `userId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
   - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
   - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
@@ -857,7 +867,7 @@ __attribute__((visibility("default"))) @interface AgoraMetaSceneConfig : NSObjec
   - `AgoraMetaStateSyncModeNone(0)`：不同步消息。
   - `AgoraMetaStateSyncModeNormal(1)`：（默认）通过 RTM 同步消息。
 - `delegate`：`AgoraMetaSceneEventDelegate` 事件回调协议。
-- `enableFaceCapture`：是否开启面部捕捉：#TODO 重复？
+- `enableFaceCapture`：是否开启面部捕捉：
   - `YES`：开启。
   - `NO`：（默认）不开启。
 - `faceCaptureAppId`：开启面部捕捉时设置的 App ID。开启面捕时必填。

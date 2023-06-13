@@ -37,7 +37,7 @@ public abstract int initialize(MetaServiceConfig config);
 
 **参数**
 
-`config`：初始化 `IMetaService` 对象需要的配置信息，详见 [MetaServiceConfig](#metaserviceconfig)。
+`config`：初始化 `IMetaService` 对象需要的配置信息，详见 [`MetaServiceConfig`](#metaserviceconfig)。
 
 **返回值**
 
@@ -97,7 +97,7 @@ public abstract int renewToken(String token);
 
 更新 Token。
 
-Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告 Token 即将过期。此时，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
+Token 有有效期，在过期前 SDK 会触发 [`onTokenWillExpire`](#ontokenwillexpire) 回调报告 Token 即将过期。此时，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
 
 
 ### getSceneAssetsInfo
@@ -298,7 +298,7 @@ public abstract int enterScene(EnterSceneConfig config);
 
 进入场景。
 
-成功调用该方法会触发 `IMetaSceneEventHandler` 类的 `onEnterSceneResult` 回调。
+成功调用该方法会触发 `IMetaSceneEventHandler` 类的 [`onEnterSceneResult`](#onentersceneresult) 回调。
 
 **参数**
 
@@ -320,7 +320,7 @@ public abstract int leaveScene();
 
 离开场景。
 
-成功调用该方法会触发 `IMetaSceneEventHandler` 类的 `onLeaveSceneResult` 回调。
+成功调用该方法会触发 `IMetaSceneEventHandler` 类的 [`onLeaveSceneResult`](#onleavesceneresult) 回调。
 
 **返回值**
 
@@ -409,7 +409,7 @@ public abstract int addSceneView(TextureView view, SceneDisplayConfig config);
 
 添加场景显示视图。
 
-该方法可添加一个额外的视图，以在显示虚拟人脸视图外还能显示 Unity 场景的摄像头采集到的视频画面。调用成功后，SDK 会触发 `IMetaSceneEventHandler` 类的 [`onAddSceneViewResult`](onaddsceneviewresult) 回调。
+该方法可添加一个额外的视图，以在显示虚拟人脸视图外还能显示 Unity 场景的摄像头采集到的视频画面。调用成功后，SDK 会触发 `IMetaSceneEventHandler` 类的 [`onAddSceneViewResult`](#onaddsceneviewresult) 回调。
 
 **参数**
 
@@ -429,7 +429,7 @@ public abstract int removeSceneView(TextureView view);
 
 移除场景显示视图。
 
-调用成功后，SDK 会触发 `IMetaSceneEventHandler` 类的 `onRemoveSceneViewResult` 回调。
+调用成功后，SDK 会触发 `IMetaSceneEventHandler` 类的 [`onRemoveSceneViewResult`](#onremovesceneviewresult) 回调。
 
 **参数**
 
@@ -450,7 +450,7 @@ public abstract int enableSceneVideoCapture(TextureView view, boolean enable);
 
 开启或关闭场景渲染画面捕获。
 
-该方法用于开启或关闭场景渲染画面捕获。通过与 `RtcEngine` 的 `joinChannel` 方法配合使用，可以将场景渲染的画面发布到 RTC 频道中。
+该方法用于开启或关闭场景渲染画面捕获。通过与 `RtcEngine` 的 [`joinChannel` [2/2]](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 方法配合使用，可以将场景渲染的画面发布到 RTC 频道中。
 
 **参数**
 
@@ -633,7 +633,7 @@ public void onTokenWillExpire();
 
 Token 即将过期回调。
 
-收到该回调后，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
+收到该回调后，你需要在服务器生成新的 Token，然后调用 [`renewToken`](#renewtoken) 并在参数里传入新 Token。
 
 ### onGetSceneAssetsInfoResult
 
@@ -803,7 +803,7 @@ public class MetaServiceConfig {
 }
 ```
 
-- `mRtcEngine`：`RtcEngine` 实例，创建方法详见 [create [1/2]](https://docs.agora.io/cn/video-call-4.x/API%20Reference/java_ng/API/class_irtcengine.html#api_create)。
+- `mRtcEngine`：`RtcEngine` 实例，创建方法详见 [`create` [1/2]](https://docs.agora.io/cn/video-call-4.x/API%20Reference/java_ng/API/class_irtcengine.html#api_create)。
 - `mAppId`：在声网控制台获取的 App ID。
 - `mRtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。
 - `mLocalDownloadPath` ：场景场景下载到本地的保存路径。
@@ -811,7 +811,7 @@ public class MetaServiceConfig {
   - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
   - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
   - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
-- `mEventHandler`：回调事件，详见 [IMetaServiceEventHandler](#IMetaServiceEventHandler)。
+- `mEventHandler`：回调事件，详见 [`IMetaServiceEventHandler`](#imetaserviceeventhandler)。
 
 ### MetaUserInfo
 
