@@ -1,27 +1,15 @@
-
-
 ## KaraokeView
 
 歌词打分组件的基础接口类，实现歌词同步、演唱评分的主要功能。请确保在主线程中调用该类下的 API。
 
-### init
+### KaraokeView
 
-初始化 `KaraokeView` 。
+// TODO
 
-```objectivec
-public convenience init(frame: CGRect, loggers: [ILogger] = [FileLogger(), ConsoleLogger()])
+```java
+public KaraokeView(LyricsView lyricsView, ScoringView scoringView);
 ```
 
-在调用 `KaraokeView` 接口类下的其他 API 前，你需要先调用此方法进行初始化。
-
-参数
-
-- `frame`：`KaraokeView` 视图的位置和大小。
-- `loggers`：日志记录器。SDK 使用 `ILogger` 对象的数组来记录日志。 `ILogger` 数组默认包含一个 [FileLogger](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb) 对象和一个 [ConsoleLogger](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb) 对象。
-
-返回值
-
-- 一个 `KaraokeView` 实例。
 
 ### parseLyricData
 
@@ -58,7 +46,7 @@ public void setLyricsData(LyricsModel model);
 
 ### reset
 
-重置歌词及打分设置。
+重置歌词及打分设置
 
 ```java
 public void reset();
@@ -68,7 +56,7 @@ public void reset();
 
 ### attachUi
 
-关联界面视图。
+关联界面视图。//optional 更新UI对象，需要调用。动态隐藏/添加对象。
 
 ```java
 public void attachUi(LyricsView lyrics, ScoringView scoring);
@@ -83,19 +71,6 @@ public void attachUi(LyricsView lyrics, ScoringView scoring);
 - `lyrics`：要添加的 `LyricsView` 对象，用于显示歌词。若传入 `null`，表示不添加歌词视图。
 - `scoring`：要添加的 `ScoringView` 对象，用于显示评分。若传入 `null`，表示不添加打分视图。
 
-### getLyricsData
-
-获取歌词数据。
-
-```java
-public final LyricsModel getLyricsData();
-```
-
-当你调用 `parseLyricsData` 解析歌词数据后，可以调用该方法来获取歌词数据。//TODO 调用时序是否正确
-
-返回值
-
-- 一个 `LyricModel` 对象，包含解析后的歌词数据。//TODO 方法调用失败的时候返回 null 吗？
 
 ### setProgress
 
@@ -149,7 +124,7 @@ public void setKaraokeEvent(KaraokeEvent event);
 public void setScoringAlgorithm(IScoringAlgorithm algorithm);
 ```
 
-如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法对象应实现 `IScoreAlgorithm` 接口。 
+如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法对象应实现 `IScoreAlgorithm` 接口。
 
 参数
 
@@ -212,7 +187,18 @@ public void setScoringCompensationOffset(int offset);
 
 ### getScoringCompensationOffset
 
-获取调整后的//TODO
+获取调整后的分数结果。
+
+```java
+public int getScoringCompensationOffset();
+```
+
+当你调用 `setScoringCompensationOffset` 方法调整演唱评分的结果后，你可以调用过该方法来获取调整后的分数结果。
+
+返回值
+
+- 调整后的分数结果。
+
 
 ## KaraokeEvent
 
@@ -254,11 +240,27 @@ public void onLineFinished(KaraokeView view, LyricsLineModel line, int score, in
 
 ### onRefPitchUpdate
 
-歌词标准音高值回调。//TODO
+歌词标准音高值回调。
 
 ```java
-public void onRefPitchUpdate(float refPitch, int numberOfRefPitches);
+/**
+     * 歌词原始参考 pitch 值回调, 用于开发者自行实现打分逻辑。歌词每个 tone 回调一次
+     *
+     * @param refPitch           当前 tone 的 pitch 值
+     * @param numberOfRefPitches 整个歌词当中的 tone 个数, 用于开发者方便自己在 app 层计算平均分.//TODO 每个tone是指每个字的音调吗？ 是的 pronounce参数隐藏 待确认。
+     */
+public void onRefPitchUpdate(float refPitch, int numberOfRefPitches); //TODO代码仓库里面没有这个回调
 ```
+
+歌词中每一个字都有自己的音符（tone），代表一个单独的音高值。SDK 会在播放到歌词的每一个字时触发该回调，报告当前音符的音高值，以及整首歌歌词中音符的个数。
+
+
+参数：
+
+- `refPitch`：当前音符的音高值。
+- `numberOfRefPitches`：整首歌歌词中音符的个数。如果你是想要自定义打分算法，你可以通过该参数来在 app 层计算一首歌演唱的平均分。
+
+
 
 ## ScoringView
 
@@ -274,7 +276,7 @@ public void setRefPitchStickDefaultColor(int color);
 
 参数
 
-- `color`：标准音高线的颜色。//TODO 是否有示例？比如xxx表示蓝色。
+- `color`：标准音高线的颜色。
 
 ### setRefPitchStickHighlightedColor
 
@@ -286,7 +288,7 @@ public void setRefPitchStickHighlightedColor(int color);
 
 参数
 
-- `color`：标准音高线的颜色。//TODO 是否有示例？比如xxx表示蓝色。
+- `color`：标准音高线的颜色。
 
 ### setRefPitchStickHeight
 
@@ -298,7 +300,7 @@ public void setRefPitchStickHeight(float height);
 
 参数
 
-- `height`：标准音高线的高度（pt）。
+- `height`：标准音高线的宽度，默认值为 6 dp (device independent pixels)。
 
 ### enableParticleEffect
 
@@ -313,8 +315,10 @@ public void enableParticleEffect(boolean enable);
 参数
 
 - `enable`：
-  - `true`：开启粒子动画。
-  - `false`：（默认）关闭粒子动画。//TODO input 里面写的this is expensive是什么意思？这个我们是收费的吗？
+  - `true`：（默认）开启粒子动画。
+  - `false`：关闭粒子动画。
+
+<div class="alert info">该方法可能会消耗较多系统性能，声网建议不要频繁调用该方法。</div>
 
 ### setParticles
 
@@ -324,7 +328,7 @@ public void enableParticleEffect(boolean enable);
 public void setParticles(Drawable[] particles);
 ```
 
-如果你不想使用声网默认的粒子动画样式，你可以调用该方法来自定义粒子动画样式。
+如果你不想使用声网默认的粒子动画样式，你可以调用该方法来自定义粒子动画样式。在调用该方法前，请确保你已经开启粒子动画效果，即 `enableParticleEffect` 设为 `true`。
 
 参数
 
@@ -332,7 +336,7 @@ public void setParticles(Drawable[] particles);
 
 ### setLocalPitchIndicator
 
-//TODO 没有input
+//TODO 没有input 指游标？通过bitmap来构建一个本地游标的图
 
 ```java
 public void setLocalPitchIndicator(Bitmap bitmap);
@@ -340,11 +344,11 @@ public void setLocalPitchIndicator(Bitmap bitmap);
 
 ### attachToScoringMachine
 
-//TODO
+//TODO 不对外
 
-### requestRefreshUi
+### requestRefreshUi //TODO不对外
 
-更新打分组件视图界面。
+更新打分组件视图界面。 宽高发生变化？
 
 ```java
 public final void requestRefreshUi();
@@ -352,7 +356,7 @@ public final void requestRefreshUi();
 
 当你修改了打分组件视图后，例如调用 `enableParticleEffect` 开启粒子动画效果、调用 `setParticles` 自定义粒子动画样式后，你需要调用该方法来更新打分组件试图。//TODO 调用时机是否正确？
 
-### updatePitchAndScore
+### updatePitchAndScore//不对外
 
 更新人声音调和演唱评分。
 
@@ -406,9 +410,9 @@ public void setNormalTextColor(@ColorInt int color);
 
 参数
 
-- `color`：歌词的颜色。//TODO 是否有示例？
+- `color`：歌词的颜色。//TODO 是否有示例？设字体大小的方法也先不写api
 
-### setNormalTextSize
+### setNormalTextSize // 改为 setTextSize
 
 设置未在当前播放的歌词文字大小。
 
@@ -418,9 +422,9 @@ public void setNormalTextSize(float size);
 
 参数：
 
-- `size`：歌词文字大小。//TODO 单位 是 pt 么？
+- `size`：歌词文字大小。//TODO 单位 是 pixel.
 
-### setCurrentTextColor
+### setCurrentTextColor //不写，用新的方法
 
 设置当前播放的歌词的颜色。
 
@@ -432,7 +436,7 @@ public void setCurrentTextColor(@ColorInt int color);
 
 - `color`：歌词的颜色。//TODO 示例？
 
-### setCurrentHighlightedTextColor
+### setCurrentHighlightedTextColor //不写，用新的方法
 
 设置高亮歌词的颜色。//TODO 什么情况下会高亮？感觉一般是唱到某一句，那句歌词会高亮。如果是这样的话，感觉这个方法和上面那个方法是重复的？
 
@@ -510,7 +514,7 @@ public void enableStartOfVerseIndicator(boolean enable);
 
 ### setStartOfVerseIndicatorPaddingTop
 
-// TODO
+// TODO和lyricsview顶部之间的距离，默认 8 dp。
 
 ```java
 public void setStartOfVerseIndicatorPaddingTop(float paddingTop);
@@ -526,7 +530,7 @@ public void setStartOfVerseIndicatorRadius(float radius);
 
 参数：
 
-- `radius`：等待圆点的半径，//TODO 默认值为？是否有取值限制
+- `radius`：等待圆点的半径，//TODO 默认值为 6dp。是否有取值限制
 
 ### setStartOfVerseIndicatorColor
 
@@ -606,14 +610,29 @@ onLog(content: String, tag: String?, time: String, level: LoggerLevel)
 - `time`：日志记录的时间。
 - `level`：日志的级别，详见 [LoggerLevel](#LoggerLevel)。
 
+//TODOjava 有一个 logger 的接口类
+```java
+public interface Logger {
+    /**
+     * Dispatch log message to target handler.
+     * Should not block this method
+     *
+     * @param level
+     * @param tag
+     * @param message
+     */
+    void onLog(int level, String tag, String message);
+}
+```
+
 ## Data class
 
 ### LyricToneModel
 
 <a name="LyricToneModel"></a>
 
-```objectivec
-public class LyricsLineModel {
+```java //TODO 参数解释
+public class LyricsLineModel { //一行歌词的信息
 
     public enum Lang {
         Chinese, English
@@ -625,16 +644,6 @@ public class LyricsLineModel {
         public String word;
         public Lang lang = Lang.Chinese;
         public int pitch = 0;
-        public boolean highlight;
-
-        public float highlightOffset = -1;
-        public float highlightWidth = -1;
-
-        public void resetHighlight() {
-            this.highlight = false;
-            this.highlightOffset = -1;
-            this.highlightWidth = -1;
-        }
 
         public long getDuration() {
             return end - begin;
@@ -645,7 +654,7 @@ public class LyricsLineModel {
         // Better not use extend
     }
 
-    public List<Tone> tones;
+    public List<Tone> tones;//一行歌词里面所有tone
 
     public LyricsLineModel(Tone tone) {
         this.tones = new ArrayList<>();
@@ -661,7 +670,7 @@ public class LyricsLineModel {
         this.tones = tones;
     }
 
-    public long getStartTime() {
+    public long getStartTime() {//一句歌词的开始
         if (tones == null || tones.size() <= 0) {
             return 0;
         }
@@ -670,7 +679,7 @@ public class LyricsLineModel {
         return first.begin;
     }
 
-    public long getEndTime() {
+    public long getEndTime() {//结束
         if (tones == null || tones.isEmpty()) return 0;
         else return tones.get(tones.size() - 1).end;
     }
@@ -686,7 +695,42 @@ public class LyricsLineModel {
 - `lang`：歌词语言，详见 [Lang](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb#Lang)。
 - `pronounce`：不确定指的具体是什么。
 
-### ToneScoreModel //TODO 这里往下都没弄
+
+### LyricsModel
+
+```java
+public class LyricsModel {
+    public static enum Type {
+        General, Migu;
+    } //暂不对外
+
+    public Type type; //TODO 这个type指的是什么？
+    public List<LyricsLineModel> lines;
+
+    public long duration; // milliseconds
+
+    /**
+     * Also known as end of intro
+     */
+    public long startOfVerse; // milliseconds
+
+    /**
+     * <a href="https://en.wikipedia.org/wiki/ID3#ID3v2">ID3 title</a>
+     */
+    public String title;
+
+    /**
+     * <a href="https://en.wikipedia.org/wiki/ID3#ID3v2">ID3 artist</a>
+     */
+    public String artist;
+
+    public LyricsModel(Type type) {
+        this.type = type;
+    }
+}
+```
+
+### ToneScoreModel //
 
 ```objectivec
 public class ToneScoreModel: NSObject {
@@ -797,7 +841,7 @@ public class ConsoleLogger: NSObject, ILogger {
 
 ## Enum class
 
-### MusicType
+### MusicType //TODO java 好像没有这个
 
 ```objectivec
 @objc public enum MusicType: Int, CustomStringConvertible {
@@ -841,3 +885,10 @@ public enum LoggerLevel: UInt8, CustomStringConvertible {case debug, info, warni
 - `info`: 信息级别。
 - `warning`: 警告级别。
 - `error`: 错误级别。
+
+//TODO java的这个类要写吗？
+public class DefaultConsoleLogger implements Logger
+
+public static enum Type {
+        General, Migu;
+    }

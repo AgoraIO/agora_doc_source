@@ -230,9 +230,9 @@ public class ScoringView: UIView {
     @objc public var standardPitchStickViewHeight: CGFloat = 3
     // 标准音高线的移动速度
     @objc public var movingSpeedFactor: CGFloat = 120
-    // 标准音高线默认的背景色
+    // 标准音高线默认的颜色
     @objc public var standardPitchStickViewColor: UIColor = .gray
-    // 标准音高线匹配后的背景色
+    // 标准音高线匹配后的颜色
     @objc public var standardPitchStickViewHighlightColor: UIColor = .colorWithHex(hexStr: "#FF8AB4")
     /** 游标偏移量(X轴) 游标的中心到竖线的 centerX 的距离
      - 等于0：游标中心点和竖线中心点重合
