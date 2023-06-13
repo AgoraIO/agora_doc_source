@@ -89,6 +89,17 @@ public abstract int removeEventHandler(IMetaServiceEventHandler eventHandler);
 - 0：方法调用成功
 - < 0：移除事件句柄失败
 
+### renewToken
+
+```objective-c
+public abstract int renewToken(String token);
+```
+
+更新 Token。
+
+Token 有有效期，在过期前 SDK 会触发 `onTokenWillExpire` 回调报告 Token 即将过期。此时，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
+
+
 ### getSceneAssetsInfo
 
 
@@ -616,14 +627,13 @@ public void onConnectionStateChanged(int state, int reason);
 
 ### onTokenWillExpire
 
-
 ```java
 public void onTokenWillExpire();
 ```
 
 Token 即将过期回调。
 
-收到该回调后，你需要更新 Token。
+收到该回调后，你需要在服务器生成新的 Token，然后调用 `renewToken` 并在参数里传入新 Token。
 
 ### onGetSceneAssetsInfoResult
 

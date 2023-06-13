@@ -31,15 +31,13 @@ MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载
 
 ### destroy
 
-
-
 ```objective-c
 + (void)destroy NS_SWIFT_NAME(destroy());
 ```
 
 销毁 `AgoraMetaServiceKit` 对象。
 
-### renewToken #TODO（android）
+### renewToken
 
 ```objective-c
 - (NSInteger)renewToken:(NSString *_Nonnull)token;
