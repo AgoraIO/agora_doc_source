@@ -18,7 +18,6 @@ rtc -->> app: IMetaService
 == 创建并初始化 IMetaService ==
 app -> service: create
 app -> service: initialize
-app -> service: addEventHandler
 == 获取并下载场景资源 ==
 app -> service: getSceneAssetsInfo
 serviceevent -->> app: onGetSceneAssetsInfoResult
@@ -32,13 +31,15 @@ scene -->> service: return
 service -->> app: IMetaScene
 serviceevent -->> app: onCreateSceneResult
 serviceevent -->> app: onConnectionStateChanged
-app -> scene: addEventHandler
 end
 alt 获取并设置用户信息
 app -> scene: getLocalUserAvatar
 app -> avatar: setUserInfo
 app -> avatar: setModelInfo
 app -> avatar: setExtraInfo
+note right
+自定义捏脸换装需要调用该方法
+end note
 end
 alt 进入虚拟人直播场景
 app -> scene: enterScene
@@ -56,7 +57,5 @@ app -> scene: leaveScene
 sceneevent -->> app: onLeaveSceneResult
 app -> scene: release
 sceneevent -->> app: onReleasedScene
-app -> scene: removeEventHandler
-app -> service: removeEventHandler
 app -> service: destroy
 @enduml
