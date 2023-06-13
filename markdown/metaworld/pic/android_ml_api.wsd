@@ -1,0 +1,62 @@
+@startuml
+autonumber
+skinparam monochrome true
+
+title 虚拟人直播 API 时序图
+participant "<b>虚拟人直播 App</b>" as app #White
+participant "<b>RtcEngine</b>" as rtc
+participant "<b>IMetaService</b>" as service
+participant "<b>IMetaScene</b>" as scene
+participant "<b>ILocalUserAvatar</b>" as avatar
+participant "<b>IMetaServiceEventHandler</b>" as serviceevent
+participant "<b>IMetaSceneEventHandler</b>" as sceneevent
+
+app -> rtc: queryInterface
+rtc -> service: new
+service -->> rtc: return
+rtc -->> app: IMetaService
+== 创建并初始化 IMetaService ==
+app -> service: create
+app -> service: initialize
+app -> service: addEventHandler
+== 获取并下载场景资源 ==
+app -> service: getSceneAssetsInfo
+serviceevent -->> app: onGetSceneAssetsInfoResult
+app -> service: downloadSceneAssets
+serviceevent -->> app: onDownloadSceneAssetsProgress
+== 创建并进入虚拟人直播场景 ==
+alt 创建 IMetaScene
+app -> service: createScene
+service -> scene: new
+scene -->> service: return
+service -->> app: IMetaScene
+serviceevent -->> app: onCreateSceneResult
+serviceevent -->> app: onConnectionStateChanged
+app -> scene: addEventHandler
+end
+alt 获取并设置用户信息
+app -> scene: getLocalUserAvatar
+app -> avatar: setUserInfo
+app -> avatar: setModelInfo
+app -> avatar: setExtraInfo
+end
+alt 进入虚拟人直播场景
+app -> scene: enterScene
+sceneevent -->> app: onEnterSceneResult
+note right
+Android 可以在该回调之前渲染 Texture
+end note
+end
+== 加入频道并开启虚拟人直播 ==
+app -> rtc: joinChannel
+app -> scene: enableSceneVideoCapture(view, true)
+== 离开并释放资源 ==
+app -> rtc: leaveChannel
+app -> scene: leaveScene
+sceneevent -->> app: onLeaveSceneResult
+app -> scene: release
+sceneevent -->> app: onReleasedScene
+app -> scene: removeEventHandler
+app -> service: removeEventHandler
+app -> service: destroy
+@enduml

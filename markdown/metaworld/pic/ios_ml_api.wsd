@@ -1,0 +1,55 @@
+@startuml
+autonumber
+skinparam monochrome true
+
+title 虚拟人直播 API 时序图
+participant "<b>虚拟人直播 App</b>" as app #White
+participant "<b>AgoraRtcEngineKit</b>" as rtc
+participant "<b>AgoraMetaServiceKit</b>" as service
+participant "<b>AgoraMetaScene</b>" as scene
+participant "<b>AgoraMetaLocalUserAvatar</b>" as avatar
+participant "<b>AgoraMetaEventDelegate</b>" as serviceevent
+participant "<b>AgoraMetaSceneEventDelegate</b>" as sceneevent
+
+app -> rtc: queryInterface
+rtc -> service: new
+service -->> rtc: return
+rtc -->> app: AgoraMetaServiceKit
+== 创建并初始化 AgoraMetaServiceKit ==
+app -> service: sharedMetaServiceWithConfig
+== 获取并下载场景资源 ==
+app -> service: getSceneAssetsInfo
+serviceevent -->> app: onGetSceneAssetsInfoResult
+app -> service: downloadSceneAssets
+serviceevent -->> app: onDownloadSceneAssetsProgress
+== 创建并进入虚拟人直播场景 ==
+alt 创建 AgoraMetaScene
+app -> service: createScene
+service -> scene: new
+scene -->> service: return
+service -->> app: AgoraMetaScene
+serviceevent -->> app: onCreateSceneResult
+serviceevent -->> app: onConnectionStateChanged
+end
+alt 获取并设置用户信息
+app -> scene: getLocalUserAvatar
+app -> avatar: setUserInfo
+app -> avatar: setModelInfo
+app -> avatar: setExtraInfo
+end
+alt 进入虚拟人直播场景
+app -> scene: createRenderView
+app -> scene: enterScene
+sceneevent -->> app: onEnterSceneResult
+end
+== 加入频道并开启虚拟人直播 ==
+app -> rtc: joinChannel
+app -> scene: enableSceneVideoCapture(view, true)
+== 离开并释放资源 ==
+app -> rtc: leaveChannel
+app -> scene: leaveScene
+sceneevent -->> app: onLeaveSceneResult
+app -> scene: destroy
+sceneevent -->> app: onReleasedScene
+app -> service: destroy
+@enduml
