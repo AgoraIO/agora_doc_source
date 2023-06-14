@@ -23,7 +23,8 @@
 
 在实现屏幕共享前，请确保已在你的项目中实现基本的实时音视频功能。详见[实现视频通话](./start_call_ios_ng?platform=iOS)或[实现视频直播](./start_live_ios_ng?platform=iOS)。
 
-## 修改项目文件
+## 项目设置
+按照以下步骤修改你的项目文件。
 
 1. 前往你的项目文件夹，用 Xcode 打开 `ios/.xcodeproj`。
 1. 点击 **File > New > Target...**, 在弹出的窗口中选择 **Broadcast Upload Extension**, 点击 **Next**。
@@ -37,8 +38,7 @@
 4. 修改 `SampleHandler.h` 文件，以实现屏幕共享的代码逻辑：
 
    - 如果你只需使用声网提供的 `AgoraReplayKitExtension.xcframework` 中的功能，修改方式为：选中 **Target** 为刚刚创建的 Extension，在 **Info** 中将 **NSExtension > NSExtensionPrincipalClass** 所对应的 **Value** 从 **SampleHandler** 改为 **AgoraReplayKitHandler**。
-  
-    ![](https://web-cdn.agora.io/docs-files/1648112619203)
+  ![](https://web-cdn.agora.io/docs-files/1648112619203)
    - 如果你还需要自定义一些业务逻辑，可将如下代码替换到 `SampleHandler.h` 文件中。
   
         ```objective-c
@@ -128,14 +128,85 @@ end
 </div>
 
 
-### 调用 API
-调用 `startScreenCapture`，并结合用户的手动操作，使 app 开启屏幕共享。有两种方式供你参考：
+### 开启屏幕共享
+1. 调用 `startScreenCapture`，并在 `parameters` 中设置你预期的视频编码属性。
 
-- 方式一：提示用户在 iOS 系统的控制中心长按**屏幕录制**按钮，并选择用你创建的 Extension 开启录制。
-- 方式二：使用 Apple 在 iOS 12.0 中新增的 [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)，使 app 界面弹出 “开启屏幕共享” 的按钮，提示用户通过点击该按钮开启录制。
+    ```swift
+    // 设置屏幕共享的参数。
+    private lazy var screenParams: AgoraScreenCaptureParameters2 = {
+            let params = AgoraScreenCaptureParameters2()
+            params.captureVideo = true
+            params.captureAudio = true
+            let audioParams = AgoraScreenAudioParameters()
+            // 设置采集的系统音量。
+            audioParams.captureSignalVolume = 50
+            params.audioParams = audioParams
+            let videoParams = AgoraScreenVideoParameters()
+            // 设置共享屏幕的分辨率。
+            videoParams.dimensions = screenShareVideoDimension()
+            // 设置视频编码帧率。
+            videoParams.frameRate = .fps15
+            // 设置视频编码码率。
+            videoParams.bitrate = AgoraVideoBitrateStandard
+            params.videoParams = videoParams
+            return params
+        }()
 
-<div class="alert info"><code>RPSystemBroadcastPickerView</code> 存在一些使用限制并可能在后续版本的 iOS 系统中失效。因此，请酌情使用方式二。</div>
+    // 开启屏幕共享
+    agoraKit.startScreenCapture(screenParams)
+    ```
 
+1. 结合用户的手动操作，使 app 开启屏幕共享。有两种方式供你参考：
+   - 方式一：提示用户在 iOS 系统的控制中心长按**屏幕录制**按钮，并选择用你创建的 Extension 开启录制。
+   - 方式二：使用 Apple 在 iOS 12.0 中新增的 [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)，使 app 界面弹出 “开启屏幕共享” 的按钮，提示用户通过点击该按钮开启录制。
+   <div class="alert info"><code>RPSystemBroadcastPickerView</code> 存在一些使用限制并可能在后续版本的 iOS 系统中失效。因此，请酌情使用方式二。</div>
+
+#### 加入频道并发布屏幕共享视频流
+
+```swift
+// 在进行屏幕视频采集（state 为 capturing，souceType 为 screen）时，定义 rtcEngine 的行为。
+func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStateChangedOf state: AgoraVideoLocalState, error: AgoraLocalVideoStreamError, sourceType: AgoraVideoSourceType) {
+    switch (state, sourceType) {
+    case (.capturing, .screen):
+        // 在频道中发布屏幕采集的视频。
+        option.publishScreenCaptureVideo = true
+        // 在频道中发布屏幕采集的音频。
+        option.publishScreenCaptureAudio = true
+        // 不发布摄像头采集的视频。
+        option.publishCameraTrack = false
+        // 使用以上 option 中的设置更新频道设置
+        agoraKit.updateChannel(with: option)
+        
+    default: break
+    }
+}
+
+//加入频道
+func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {}
+```
+#### （可选）设置屏幕共享场景
+
+API example 中无示例代码
+
+#### （可选）更新屏幕共享
+如果你要更新屏幕共享的参数，调用 `updateScreenCapture`，重新设置 `parameters` 参数（例如：视频编码分辨率、帧率、码率）。
+```swift
+agoraKit.updateScreenCapture(screenParams)
+```
+#### 停止屏幕共享
+调用 `stopScreenCapture`，在频道内停止屏幕共享。示例代码如下：
+
+```swift
+// 停止屏幕共享
+agoraKit.stopScreenCapture()
+// 停止在频道中发布屏幕采集的视频
+option.publishScreenCaptureVideo = false
+// 停止在频道中发布屏幕采集的音频
+option.publishScreenCaptureAudio = false
+// 在频道中发布摄像头采集的视频。
+option.publishCameraTrack = true
+agoraKit.updateChannel(with: option)
+```
 
 ## 参考信息
 
@@ -150,5 +221,3 @@ end
 - [`startScreenCapture`](./API%20Reference/ios_ng/API/toc_screen_share.html.html#api_irtcengine_startscreencapture)
 - [`updateScreenCapture`](./API%20Reference/ios_ng/API/toc_screen_share.html.html#api_irtcengine_updatescreencapture)
 - [`stopScreenCapture`](./API%20Reference/ios_ng/API/toc_screen_share.html.html#api_irtcengine_stopscreencapture)
-
-
