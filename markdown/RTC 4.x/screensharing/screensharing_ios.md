@@ -131,30 +131,30 @@ end
 ### 开启屏幕共享
 1. 调用 `startScreenCapture`，并在 `parameters` 中设置你预期的视频编码属性。
 
-    ```swift
-    // 设置屏幕共享的参数。
-    private lazy var screenParams: AgoraScreenCaptureParameters2 = {
-            let params = AgoraScreenCaptureParameters2()
-            params.captureVideo = true
-            params.captureAudio = true
-            let audioParams = AgoraScreenAudioParameters()
-            // 设置采集的系统音量。
-            audioParams.captureSignalVolume = 50
-            params.audioParams = audioParams
-            let videoParams = AgoraScreenVideoParameters()
-            // 设置共享屏幕的分辨率。
-            videoParams.dimensions = screenShareVideoDimension()
-            // 设置视频编码帧率。
-            videoParams.frameRate = .fps15
-            // 设置视频编码码率。
-            videoParams.bitrate = AgoraVideoBitrateStandard
-            params.videoParams = videoParams
-            return params
-        }()
+```swift
+// 设置屏幕共享的参数。
+private lazy var screenParams: AgoraScreenCaptureParameters2 = {
+        let params = AgoraScreenCaptureParameters2()
+        params.captureVideo = true
+        params.captureAudio = true
+        let audioParams = AgoraScreenAudioParameters()
+        // 设置采集的系统音量。
+        audioParams.captureSignalVolume = 50
+        params.audioParams = audioParams
+        let videoParams = AgoraScreenVideoParameters()
+        // 设置共享屏幕的分辨率。
+        videoParams.dimensions = screenShareVideoDimension()
+        // 设置视频编码帧率。
+        videoParams.frameRate = .fps15
+        // 设置视频编码码率。
+        videoParams.bitrate = AgoraVideoBitrateStandard
+        params.videoParams = videoParams
+        return params
+    }()
 
-    // 开启屏幕共享
-    agoraKit.startScreenCapture(screenParams)
-    ```
+// 开启屏幕共享
+agoraKit.startScreenCapture(screenParams)
+```
 
 1. 结合用户的手动操作，使 app 开启屏幕共享。有两种方式供你参考：
    - 方式一：提示用户在 iOS 系统的控制中心长按**屏幕录制**按钮，并选择用你创建的 Extension 开启录制。
