@@ -14,7 +14,7 @@ MetaWorld 解决方案支持元语聊、元直播、元 K 歌场景。本文介�
   - 临时 Token：你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。临时 Token 的有效期为 24 小时。
   - 频道名称：用于标识直播频道的字符串。
 
-<div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div> #TODO showroom update
+<div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
 
 ### 创建项目并集成 SDK
 
@@ -24,19 +24,19 @@ MetaWorld 解决方案支持元语聊、元直播、元 K 歌场景。本文介�
 
    <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。</div>
 
-2. 集成声网 RTC SDK（元系列特殊版）。联系销售获取该 SDK，下载并解压。打开解压文件，将以下文件或文件夹复制到你的项目路径中。
+2. 集成声网 MetaWorld SDK，该 SDK 是基于 RTC SDK 开发的元系列特殊版 SDK。联系销售获取该 SDK，下载并解压。打开解压文件，将以下文件或文件夹复制到你的项目路径中。
 
-|  SDK 文件或文件夹      |  项目路径       |
-|----------|--------|
-| agora-rtc-sdk.jar 文件       |/app/libs/         |
-| metakit.jar 文件       | /app/libs/        |
-| face_capture.jar 文件       | /app/libs/        |
-| AgoraMetaKit.aar 文件       | /app/libs/        |
-| FaceCapture.aar 文件       | /app/libs/        |
-| arm64-v8a 文件夹       | /app/src/main/jniLibs/        |
-| armeabi-v7a 文件夹       | /app/src/main/jniLibs/        |
-| x86 文件夹       | /app/src/main/jniLibs/        |
-| x86_64 文件夹               | /app/src/main/jniLibs/                   |
+   |  SDK 文件或文件夹      |  项目路径       |
+   |----------|--------|
+   | agora-rtc-sdk.jar 文件       |/app/libs/         |
+   | metakit.jar 文件       | /app/libs/        |
+   | face_capture.jar 文件       | /app/libs/        |
+   | AgoraMetaKit.aar 文件       | /app/libs/        |
+   | FaceCapture.aar 文件       | /app/libs/        |
+   | arm64-v8a 文件夹       | /app/src/main/jniLibs/        |
+   | armeabi-v7a 文件夹       | /app/src/main/jniLibs/        |
+   | x86 文件夹       | /app/src/main/jniLibs/        |
+   | x86_64 文件夹               | /app/src/main/jniLibs/                   |
 
 3. 在项目的 `build.gradle` 文件中的 `dependencies` 节点中添加行，以添加第三方库和依赖。
 
@@ -81,6 +81,8 @@ MetaWorld 解决方案支持元语聊、元直播、元 K 歌场景。本文介�
    ```
 
 ## 实现元语聊
+
+
 
 
 
