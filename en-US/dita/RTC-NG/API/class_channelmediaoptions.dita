@@ -411,11 +411,11 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true"/></codeph>: Publish the audio captured by the microphone.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the audio captured by the microphone.</li>
                 </ul></pd>
-                <pd props="native unity rn electron">
-                    <note type="note">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</note>
-                </pd>
-                <pd props="flutter">
-                    <note type="note">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</note>
+                <pd>
+                    <note type="note">
+                    <ul><li props="native unity rn electron">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
+                    <li props="flutter">As of v6.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
+                    <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true"/></codeph>.</li></ul></note>
                 </pd>
             </plentry>
             <plentry props="cpp unity cs flutter rn electron">
@@ -431,7 +431,7 @@ class ChannelMediaOptions {
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from the screen.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
                     <p><note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p>
                 </pd>
@@ -441,7 +441,7 @@ class ChannelMediaOptions {
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the captured video from the screen.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
                     <p><note type="attention" props="cpp unity flutter rn electron">This parameter applies to Android and iOS only.</note></p> </pd>
             </plentry>
@@ -543,7 +543,8 @@ class ChannelMediaOptions {
                 <pd>Whether to enable audio capturing or playback:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Do not enable audio capturing or playback.</li>
                     <li><codeph><ph keyref="false"/> </codeph>: Do not enable audio capturing or playback.</li>
-                    </ul> </pd>
+                    </ul>
+                    <note type="note">If you need to publish the audio streams captured by your microphone, ensure this parameter is set as <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
             <plentry>
                 <pt>publishMediaPlayerId</pt>
