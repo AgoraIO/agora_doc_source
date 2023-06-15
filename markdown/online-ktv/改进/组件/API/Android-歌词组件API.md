@@ -4,11 +4,16 @@
 
 ### KaraokeView
 
-// TODO
+创建 `KaraokeView` 实例。
 
 ```java
 public KaraokeView(LyricsView lyricsView, ScoringView scoringView);
 ```
+
+**参数**
+
+- `lyricsView`：用于显示歌词的 `LyricsView` 对象。
+- `scoringView`：用于显示评分的 `ScoringView` 对象。
 
 
 ### parseLyricData
@@ -40,7 +45,7 @@ public void setLyricsData(LyricsModel model);
 
 请在主线程调用该方法。
 
-参数
+**参数**
 
 - `model`：[LyricsModel](#LyricsModel) 对象，表示歌词数据模型，包含歌曲的基本信息、歌词信息等。如果为 `null`，表示当前歌曲为纯音乐，没有对应的歌词信息。
 
@@ -54,19 +59,8 @@ public void reset();
 
 当一首歌曲播放完毕后或是播放过程中切到另外一首歌曲时，需要调用该方法来重置歌词、打分设置。
 
-### attachUi
 
-关联界面视图。//optional 更新UI对象，需要调用。动态隐藏/添加对象。
-
-```java
-public void attachUi(LyricsView lyrics, ScoringView scoring);
-```
-
-你可以调用该方法将 `LyricsView` 和 `ScoringView` 的视图添加到 `KaraokeView` 上。如果需要重置已添加的视图，你需要调用相应的 ` LyricsView` 或 ` ScoringView` 下的 `reset` 方法来进行重置，然后再调用此方法添加新的视图。【//TODO karaokeview是重置整个，然后两个是分别重置单个的？】
-
-<div class="alert info">在调用该方法之前，请确保已经初始化了 <code>KaraokeView</code>。</div>
-
-参数
+**参数**
 
 - `lyrics`：要添加的 `LyricsView` 对象，用于显示歌词。若传入 `null`，表示不添加歌词视图。
 - `scoring`：要添加的 `ScoringView` 对象，用于显示评分。若传入 `null`，表示不添加打分视图。
@@ -84,7 +78,7 @@ public void setProgress(long progress);
 
 调用该方法前你需要先通过内置媒体播放器的 [getPlayPosition](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_mediaplayer.html#api_imediaplayer_getplayposition) 方法获取歌曲当前的播放进度。声网建议你每 20 ms 调用一次该方法来把歌曲的播放进度同步给歌词打分组件。
 
-参数
+**参数**
 
 - `progress`：歌曲的播放进度，单位为 ms。
 
@@ -98,7 +92,7 @@ public void setPitch(float pitch);
 
 当你通过 `IRtcEngineEventHandler` 下的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/online-ktv/API Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调后，你需要调用该方法把获取到的实时人声音调同步给打分组件用于演唱评分。
 
-参数
+**参数**
 
 - `pitch`：用户的实时人声音调。
 
@@ -112,7 +106,7 @@ public void setKaraokeEvent(KaraokeEvent event);
 
 在调用该方法前，请确保已初始化 `KaraokeView` 对象。
 
-参数
+**参数**
 
 - `event`：歌词打分组件事件，详见 [KaraokeEvent](#KaraokeEvent)。
 
@@ -126,7 +120,7 @@ public void setScoringAlgorithm(IScoringAlgorithm algorithm);
 
 如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法对象应实现 `IScoreAlgorithm` 接口。
 
-参数
+**参数**
 
 - `algorithm`：实现了 `IScoreAlgorithm` 接口的打分算法对象。
 
@@ -140,7 +134,7 @@ public void setScoringLevel(int level);
 
 你可以通过该方法来设置演唱者得分的难易程度。
 
-参数
+**参数**
 
 - `level`：难度等级，取值范围为 [0, 100]，默认值为 10。值越小表示难度等级越低，演唱者越容易得分。
 
@@ -164,7 +158,7 @@ public int getScoringLevel();
 
 当你调用 `setScoringLevel` 设置得分的难易程度后，可以调用该方法来获取当前你设置的得分难易程度，默认值为 10。
 
-返回值
+**返回值**
 
 - *≥* 0：方法调用成功，返回当前设置的得分难易程度。
 - < 0：方法调用失败。
@@ -179,7 +173,7 @@ public void setScoringCompensationOffset(int offset);
 
 如果你的业务场景对演唱分数有特殊要求，你可以调用此方法来调整演唱评分的结果。
 
-参数
+**参数**
 
 - `offset`：额外增加或减少的分数，取值范围为 [-100, 100]，默认值为 0。
 
@@ -195,7 +189,7 @@ public int getScoringCompensationOffset();
 
 当你调用 `setScoringCompensationOffset` 方法调整演唱评分的结果后，你可以调用过该方法来获取调整后的分数结果。
 
-返回值
+**返回值**
 
 - 调整后的分数结果。
 
@@ -214,7 +208,7 @@ public void onDragTo(KaraokeView view, long position);
 
 如果你设置允许歌词拖动（将 `enableDragging` 设为 `true`），当歌词拖动结束后会触发此回调。你可以通过该回调获取歌词拖动后对应的播放位置。
 
-参数
+**参数**
 
 - `view`：`KaraokeView` 实例。
 - `position`：歌词拖动后对应的歌曲播放位置，单位为毫秒。
@@ -229,7 +223,7 @@ public void onLineFinished(KaraokeView view, LyricsLineModel line, int score, in
 
 当一行歌词播放完毕后，会触发该回调报告当前行的歌词的得分、累计得分等信息。
 
-参数
+**参数**
 
 - `view`：`KaraokeView` 实例。
 - `line`：当前歌词行的信息，详见 `LyricLineModel`。
@@ -249,7 +243,7 @@ public void onRefPitchUpdate(float refPitch, int numberOfRefPitches);
 歌词中每一个字都有自己的音符（tone），代表一个单独的音高值。SDK 会在播放到歌词的每一个字时触发该回调，报告当前音符的音高值，以及整首歌歌词中音符的个数。
 
 
-参数：
+**参数**
 
 - `refPitch`：当前音符的音高值。
 - `numberOfRefPitches`：整首歌歌词中音符的个数。如果你是想要自定义打分算法，你可以通过该参数来在 app 层计算一首歌演唱的平均分。
@@ -268,7 +262,7 @@ public void onRefPitchUpdate(float refPitch, int numberOfRefPitches);
 public void setRefPitchStickDefaultColor(int color);
 ```
 
-参数
+**参数**
 
 - `color`：标准音高线的颜色。
 
@@ -280,7 +274,7 @@ public void setRefPitchStickDefaultColor(int color);
 public void setRefPitchStickHighlightedColor(int color);
 ```
 
-参数
+**参数**
 
 - `color`：标准音高线的颜色。
 
@@ -292,7 +286,7 @@ public void setRefPitchStickHighlightedColor(int color);
 public void setRefPitchStickHeight(float height);
 ```
 
-参数
+**参数**
 
 - `height`：标准音高线的宽度，默认值为 6 dp (device independent pixels)。
 
@@ -306,7 +300,7 @@ public void enableParticleEffect(boolean enable);
 
 粒子动画可以在歌词或背景等区域中播放，以呈现各种漂亮、流畅且动感的效果，与歌声的节奏和音调进行同步。
 
-参数
+**参数**
 
 - `enable`：
   - `true`：（默认）开启粒子动画。
@@ -324,7 +318,7 @@ public void setParticles(Drawable[] particles);
 
 如果你不想使用声网默认的粒子动画样式，你可以调用该方法来自定义粒子动画样式。在调用该方法前，请确保你已经开启粒子动画效果，即 `enableParticleEffect` 设为 `true`。
 
-参数
+**参数**
 
 - `particles`：自定义的粒子动画图片。
 
@@ -340,7 +334,7 @@ public void setLocalPitchIndicator(Bitmap bitmap);
 
 该方法用于设置本地游标的样式，来可视化地表示当前音高值，可显示实时的音高的变化，帮助演唱者对自己的声音进行调准和校正。
 
-参数
+**参数**
 
 - `bitmap`：本地游标的位图图像。如果你不想显示本地游标，传入 `null`。
 
@@ -366,7 +360,7 @@ public void reset();
 public void enableDragging(boolean enable);
 ```
 
-参数
+**参数**
 
 - `enable`：是否允许拖动歌词：
   - `true`：允许拖动歌词。
@@ -380,7 +374,7 @@ public void enableDragging(boolean enable);
 public void setInactiveLineTextColor(@ColorInt int color) {}
 ```
 
-参数
+**参数**
 
 - `color`：未在当前播放的歌词的颜色。
 
@@ -392,7 +386,7 @@ public void setInactiveLineTextColor(@ColorInt int color) {}
 public void setTextSize(float size) {}
 ```
 
-参数：
+**参数**
 
 - `size`：歌词文字大小，单位为 pixel。
 
@@ -404,7 +398,7 @@ public void setTextSize(float size) {}
 public void setActiveLinePlayedTextColor(@ColorInt int color) {}
 ```
 
-参数：
+**参数**
 
 - `color`：歌词的颜色。
 
@@ -416,7 +410,7 @@ public void setActiveLinePlayedTextColor(@ColorInt int color) {}
 public void setActiveLineUpcomingTextColor(@ColorInt int color) {}
 ```
 
-参数：
+**参数**
 
 - `color`：歌词的颜色。
 
@@ -428,7 +422,7 @@ public void setActiveLineUpcomingTextColor(@ColorInt int color) {}
 public void setCurrentLineTextSize(float size) {}
 ```
 
-参数：
+**参数**
 
 - `size`：歌词文字大小，单位为 pixel。
 
@@ -440,7 +434,7 @@ public void setCurrentLineTextSize(float size) {}
 public void setLabelShownWhenNoLyrics(String label);
 ```
 
-参数
+**参数**
 
 - `label`：提示文字的内容。
 
@@ -452,7 +446,7 @@ public void setLabelShownWhenNoLyrics(String label);
 public void setLabelShownWhenNoLyricsTextSize(float size);
 ```
 
-参数
+**参数**
 
 - `size`：歌词文字大小，单位为 pixel。
 
@@ -464,7 +458,7 @@ public void setLabelShownWhenNoLyricsTextSize(float size);
 public void setLabelShownWhenNoLyricsTextColor(@ColorInt int color);
 ```
 
-参数：
+**参数**
 
 - `color`：文字的颜色。
 
@@ -478,7 +472,7 @@ public void enableStartOfVerseIndicator(boolean enable);
 
 等待圆点的作用是在播放器播放前奏时，在歌词视图中显示一个提示，让用户知道何时应该开始唱歌。
 
-参数：
+**参数**
 
 - `enable`：是否显示等待圆点：
   - `true`：（默认）显示等待圆点。
@@ -494,7 +488,7 @@ public void setStartOfVerseIndicatorPaddingTop(float paddingTop);
 
 调用该方法前，请确保 `enableStartOfVerseIndicator` 为 `true`。
 
-参数
+**参数**
 
 - `paddingTop`：等待圆点和歌词组件顶部之间的距离，默认为 8 dp。
 
@@ -507,7 +501,7 @@ public void setStartOfVerseIndicatorRadius(float radius);
 ```
 调用该方法前，请确保 `enableStartOfVerseIndicator` 为 `true`。
 
-参数：
+**参数**
 
 - `radius`：等待圆点的半径，默认值 6dp。
 
@@ -521,7 +515,7 @@ public void setStartOfVerseIndicatorColor(int color);
 
 调用该方法前，请确保 `enableStartOfVerseIndicator` 为 `true`。
 
-参数：
+**参数**
 
 - `color`：等待圆点的颜色。
 
@@ -538,45 +532,6 @@ public void reset();
 
 ## IScoreAlgorithm //TODO 还没确定
 
-该类提供演唱打分相关的 API。
-
-### getLineScore
-
-获取当前歌词行的演唱得分。
-
-```objectivec
-func getLineScore(with toneScores: [ToneScoreModel]) -> Int
-```
-
-当用户唱完一句歌词后，你可以调用该方法来自定该行歌词的分数计算。
-
-参数
-
-- `toneScores`：当前歌词行中每一个字得分的集合，详见 `ToneScoreModel`。
-
-## ILogger
-
-该协议提供日志相关的 API。
-
-### onLog
-
-`KaraokeView` 的日志回调。
-
-```objectivec
-onLog(content: String, tag: String?, time: String, level: LoggerLevel)
-```
-
-你可以通过该回调来了解日志的相关内容，可用于排查问题。
-
-<div class="alert info">请确保该回调是在子线程中进行。</div>
-
-参数：
-
-- `content`：要记录的日志内容。
-- `tag`：日志标签（可选参数），用于进一步分类或标识日志。
-- `time`：日志记录的时间。
-- `level`：日志的级别，详见 [LoggerLevel](#LoggerLevel)。
-
 ## Logger
 
 该接口类提供日志相关的 API。
@@ -590,7 +545,7 @@ void onLog(int level, String tag, String message);
 ```
 你可以通过该回调来了解日志的相关内容，可用于排查问题。
 
-参数：
+**参数**
 
 - `level`：日志的级别：
  -`2`：详细的日志信息。
@@ -604,14 +559,14 @@ void onLog(int level, String tag, String message);
 - `message`：日志的具体内容，包含了要输出的信息。
 
 
-## Data class
+## 普通类
 
-### LyricToneModel
+### LyricsLineModel
 
-<a name="LyricToneModel"></a>
+<a name="LyricsLineModel"></a>
 
 ```java
-public class LyricsLineModel { //一行歌词的信息
+public class LyricsLineModel {
 
     public enum Lang {
         Chinese, English
@@ -629,13 +584,11 @@ public class LyricsLineModel { //一行歌词的信息
         }
     }
 
-    public List<Tone> tones;//一行歌词里面所有tone
+    public List<Tone> tones;
 
-    public long getStartTime() {//一句歌词的开始
-}
+    public long getStartTime() {}
 
-    public long getEndTime() {//结束
-    }
+    public long getEndTime() {}
 }
 ```
 
@@ -658,173 +611,32 @@ public class LyricsLineModel { //一行歌词的信息
 
 
 
-
-- `beginTime`：歌词开始的时间，单位为毫秒。
-- `duration`：歌词的总时长，单位为毫秒。
-- `word`：歌词内容。
-- `pitch`：该词的音高。
-- `lang`：歌词语言，详见 [Lang](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb#Lang)。
-- `pronounce`：不确定指的具体是什么。
-
-
 ### LyricsModel
 
 ```java
 public class LyricsModel {
-    public static enum Type {
+    public static enum Type {//暂不对外
         General, Migu;
-    } //暂不对外
-
-    public Type type; //TODO 这个type指的是什么？
-    public List<LyricsLineModel> lines;
-
-    public long duration; // milliseconds
-
-    /**
-     * Also known as end of intro
-     */
-    public long startOfVerse; // milliseconds
-
-    /**
-     * <a href="https://en.wikipedia.org/wiki/ID3#ID3v2">ID3 title</a>
-     */
-    public String title;
-
-    /**
-     * <a href="https://en.wikipedia.org/wiki/ID3#ID3v2">ID3 artist</a>
-     */
-    public String artist;
-
-    public LyricsModel(Type type) {
-        this.type = type;
     }
+
+    public Type type;//暂不对外
+    public List<LyricsLineModel> lines;
+    public long duration;
+    public long startOfVerse;
+    public String title;
+    public String artist;
 }
 ```
 
-### ToneScoreModel //
+歌词的数据模型。
 
-```objectivec
-public class ToneScoreModel: NSObject {
-    @objc public let tone: LyricToneModel
-    @objc public var score: Float
-    var scores = [Float]()
-}
-```
-
-歌词中每一个字的得分信息。
-
-- `tone`：每一个字对应的音高信息，详见 [LyricToneModel](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb#LyricToneModel)。
-- `score`：每一个字的得分，取值范围 [0, 100]。
-
-### LyricModel
-
-```objectivec
-public class LyricModel: NSObject {
-    @objc public var name: String
-    @objc public var singer: String
-    @objc public var type: MusicType
-    @objc public var lines: [LyricLineModel]
-    @objc public var preludeEndPosition: Int
-    @objc public var duration: Int
-    @objc public var hasPitch: Bool
-}
-```
-
-歌词数据模型。
-
-- `name`：歌曲名称。
-
-- `singer`：歌手。
-
-- `type`：歌曲类型，详见 [MusicType](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb#MusicType)。
-
-- `lines`：歌词行数信息，详见 [LyricLineModel](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb#LyricLineModel)。
-
-- `preludeEndPosition`：前奏结束的时间，单位为毫秒。
-
+- `lines`：当前行的歌词的相关信息，详见 [LyricsLineModel](#LyricsLineModel)。
 - `duration`：歌词总演唱时长，单位为毫秒。
+- `startOfVerse`：前奏结束的时间，单位为毫秒。
+- `title`：歌曲名称。
+- `artist`：歌手。
 
-- `hasPitch` ：该歌曲是否有标准音高线数据：
-- `yes`：有标准音高线数据。
-  - `false`：没有标准音高线数据。
 
-### LyricLineModel
 
-<a name="LyricLineModel"></a>
 
-```objectivec
-public class LyricLineModel: NSObject {
-    @objc public var beginTime: Int
-    @objc public var duration: Int
-    @objc public var content: String
-    @objc public var tones: [LyricToneModel]
-}
-```
-
-歌词行的相关信息。
-
-- `beginTime`：歌词开始的时间，单位为毫秒。
-- `duration`：歌词的总时长，单位为毫秒。
-- `content`：每一行歌词的内容。
-- `tones`：每一个词的音高信息，详见 [LyricToneModel](https://docs-preprod.agora.io/cn/online-ktv/ktv_api_oc?platform=iOS&versionId=a9b7ea40-006a-11ee-8efe-b91caddc8ecb#LyricToneModel)。
-
-### FirstToneHintViewStyle
-
-```objectivec
-public class FirstToneHintViewStyle: NSObject {
-    public var backgroundColor: UIColor = .gray
-    public var size: CGFloat = 10
-    public var bottomMargin: CGFloat = 0
-}
-```
-
-等待圆点的风格设置。
-
-- `backgroundColor`：等待圆点的颜色。
-- `size`：等待圆点的半径（pt）。
-- `bottomMargin`：等待圆点和歌词之间的间距。
-
-### FileLogger
-
-```objective-c
-public class FileLogger: NSObject, ILogger // 这个原型咋搞捏
-```
-
-### ConsoleLogger
-
-```objective-c
-public class ConsoleLogger: NSObject, ILogger {
-    @objc public func onLog(content: String,
-                            tag: String?,
-                            time: String,
-                            level: LoggerLevel)
-}
-```
-
-实现 `ILogger` 协议的日志记录器，用于将消息打印到控制台。
-
-参数
-
-- `content`：要记录的日志内容。
-- `tag`：日志标签（可选参数），用于进一步分类或标识日志。
-- `time`：日志记录的时间。
-- `level`：日志的级别，详见 [LoggerLevel](#LoggerLevel)。
-
-## Enum
-
-### Lang
-
-```objectivec
-@objc public enum Lang: Int {
-    case zh = 1
-    case en = 2
-    case unknown = -1
-}
-```
-
-歌词的语言。
-
-- `unkown`：(-1) 未知。
-- `zh`：(1) 中文。
-- `en`：(2) 英文。
 
