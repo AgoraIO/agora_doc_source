@@ -243,13 +243,7 @@ public void onLineFinished(KaraokeView view, LyricsLineModel line, int score, in
 歌词标准音高值回调。
 
 ```java
-/**
-     * 歌词原始参考 pitch 值回调, 用于开发者自行实现打分逻辑。歌词每个 tone 回调一次
-     *
-     * @param refPitch           当前 tone 的 pitch 值
-     * @param numberOfRefPitches 整个歌词当中的 tone 个数, 用于开发者方便自己在 app 层计算平均分.//TODO 每个tone是指每个字的音调吗？ 是的 pronounce参数隐藏 待确认。
-     */
-public void onRefPitchUpdate(float refPitch, int numberOfRefPitches); //TODO代码仓库里面没有这个回调
+public void onRefPitchUpdate(float refPitch, int numberOfRefPitches);
 ```
 
 歌词中每一个字都有自己的音符（tone），代表一个单独的音高值。SDK 会在播放到歌词的每一个字时触发该回调，报告当前音符的音高值，以及整首歌歌词中音符的个数。
@@ -332,45 +326,23 @@ public void setParticles(Drawable[] particles);
 
 参数
 
-- `particles`：自定义的粒子动画图片。//TODO input 里面写的this is expensive是什么意思？这个我们是收费的吗？
+- `particles`：自定义的粒子动画图片。
+
+<div class="alert info">该方法可能会消耗较多系统性能，声网建议不要频繁调用该方法。</div>
 
 ### setLocalPitchIndicator
 
-//TODO 没有input 指游标？通过bitmap来构建一个本地游标的图
+设置本地游标的样式。
 
 ```java
 public void setLocalPitchIndicator(Bitmap bitmap);
 ```
 
-### attachToScoringMachine
+该方法用于设置本地游标的样式，来可视化地表示当前音高值，可显示实时的音高的变化，帮助演唱者对自己的声音进行调准和校正。
 
-//TODO 不对外
+参数
 
-### requestRefreshUi //TODO不对外
-
-更新打分组件视图界面。 宽高发生变化？
-
-```java
-public final void requestRefreshUi();
-```
-
-当你修改了打分组件视图后，例如调用 `enableParticleEffect` 开启粒子动画效果、调用 `setParticles` 自定义粒子动画样式后，你需要调用该方法来更新打分组件试图。//TODO 调用时机是否正确？
-
-### updatePitchAndScore//不对外
-
-更新人声音调和演唱评分。
-
-```java
-public final void updatePitchAndScore(final float pitch, final double scoreAfterNormalization, final boolean betweenCurrentPitch);
-```
-
-//TODO 没有input，调用时机，注意事项，参数解释。
-
-参数：
-
-- `pitch`：人声音调。
-- `scoreAfterNormalization`：
-- `betweenCurrentPitch`：
+- `bitmap`：本地游标的位图图像。如果你不想显示本地游标，传入 `null`。
 
 ### reset
 
@@ -400,65 +372,65 @@ public void enableDragging(boolean enable);
   - `true`：允许拖动歌词。
   - `false`：不允许拖动歌词。
 
-### setNormalTextColor
+### setInactiveLineTextColor
 
 设置未在当前播放的歌词的颜色。
 
 ```java
-public void setNormalTextColor(@ColorInt int color);
+public void setInactiveLineTextColor(@ColorInt int color) {}
 ```
 
 参数
 
-- `color`：歌词的颜色。//TODO 是否有示例？设字体大小的方法也先不写api
+- `color`：未在当前播放的歌词的颜色。
 
-### setNormalTextSize // 改为 setTextSize
+### setTextSize
 
 设置未在当前播放的歌词文字大小。
 
 ```java
-public void setNormalTextSize(float size);
+public void setTextSize(float size) {}
 ```
 
 参数：
 
-- `size`：歌词文字大小。//TODO 单位 是 pixel.
+- `size`：歌词文字大小，单位为 pixel。
 
-### setCurrentTextColor //不写，用新的方法
+### setActiveLinePlayedTextColor
 
-设置当前播放的歌词的颜色。
+设置当前歌词行中，已播放的歌词的颜色。
 
 ```java
-public void setCurrentTextColor(@ColorInt int color);
+public void setActiveLinePlayedTextColor(@ColorInt int color) {}
 ```
 
 参数：
 
-- `color`：歌词的颜色。//TODO 示例？
+- `color`：歌词的颜色。
 
-### setCurrentHighlightedTextColor //不写，用新的方法
+### setActiveLineUpcomingTextColor
 
-设置高亮歌词的颜色。//TODO 什么情况下会高亮？感觉一般是唱到某一句，那句歌词会高亮。如果是这样的话，感觉这个方法和上面那个方法是重复的？
+设置当前歌词行中，未播放的歌词的颜色。
 
 ```java
-public void setCurrentHighlightedTextColor(@ColorInt int color);
+public void setActiveLineUpcomingTextColor(@ColorInt int color) {}
 ```
 
 参数：
 
-- `color`：歌词的颜色。//TODO 示例？
+- `color`：歌词的颜色。
 
-### setCurrentTextSize
+### setCurrentLineTextSize
 
-设置当前播放的歌词文字大小。
+设置当前播放的歌词行的文字大小。
 
 ```java
-public void setCurrentTextSize(float size);
+public void setCurrentLineTextSize(float size) {}
 ```
 
 参数：
 
-- `size`：歌词文字大小。//TODO 单位 是 pt 么？
+- `size`：歌词文字大小，单位为 pixel。
 
 ### setLabelShownWhenNoLyrics
 
@@ -482,7 +454,7 @@ public void setLabelShownWhenNoLyricsTextSize(float size);
 
 参数
 
-- `size`：歌词文字大小。//TODO 单位 是 pt 么？
+- `size`：歌词文字大小，单位为 pixel。
 
 ### setLabelShownWhenNoLyricsTextColor
 
@@ -494,7 +466,7 @@ public void setLabelShownWhenNoLyricsTextColor(@ColorInt int color);
 
 参数：
 
-- `color`：文字的颜色。//TODO 示例？
+- `color`：文字的颜色。
 
 ### enableStartOfVerseIndicator
 
@@ -514,11 +486,17 @@ public void enableStartOfVerseIndicator(boolean enable);
 
 ### setStartOfVerseIndicatorPaddingTop
 
-// TODO和lyricsview顶部之间的距离，默认 8 dp。
+设置等待圆点和歌词组件顶部之间的距离。
 
 ```java
 public void setStartOfVerseIndicatorPaddingTop(float paddingTop);
 ```
+
+调用该方法前，请确保 `enableStartOfVerseIndicator` 为 `true`。
+
+参数
+
+- `paddingTop`：等待圆点和歌词组件顶部之间的距离，默认为 8 dp。
 
 ### setStartOfVerseIndicatorRadius
 
@@ -527,10 +505,11 @@ public void setStartOfVerseIndicatorPaddingTop(float paddingTop);
 ```java
 public void setStartOfVerseIndicatorRadius(float radius);
 ```
+调用该方法前，请确保 `enableStartOfVerseIndicator` 为 `true`。
 
 参数：
 
-- `radius`：等待圆点的半径，//TODO 默认值为 6dp。是否有取值限制
+- `radius`：等待圆点的半径，默认值 6dp。
 
 ### setStartOfVerseIndicatorColor
 
@@ -540,23 +519,11 @@ public void setStartOfVerseIndicatorRadius(float radius);
 public void setStartOfVerseIndicatorColor(int color);
 ```
 
+调用该方法前，请确保 `enableStartOfVerseIndicator` 为 `true`。
+
 参数：
 
-- `color`：待圆点的颜色。//TODO 示例？
-
-### attachToScoringMachine
-
-//TODO lyricview下面也有一个这个方法。
-
-### requestRefreshUi
-
-更新歌词组件视图界面。
-
-```java
-public final void requestRefreshUi();
-```
-
-当你修改了歌词组件视图后，例如调用 `setCurrentTextSize` 设置当前播放的歌词的颜色、调用 `setNormalTextSize` 设置未在当前播放的歌词的字体大小时，你需要调用该方法来更新歌词组件试图。//TODO 调用时机是否正确？
+- `color`：等待圆点的颜色。
 
 ### reset
 
@@ -603,27 +570,39 @@ onLog(content: String, tag: String?, time: String, level: LoggerLevel)
 
 <div class="alert info">请确保该回调是在子线程中进行。</div>
 
-参数
+参数：
 
 - `content`：要记录的日志内容。
 - `tag`：日志标签（可选参数），用于进一步分类或标识日志。
 - `time`：日志记录的时间。
 - `level`：日志的级别，详见 [LoggerLevel](#LoggerLevel)。
 
-//TODOjava 有一个 logger 的接口类
+## Logger
+
+该接口类提供日志相关的 API。
+
+### onLog
+
+`KaraokeView` 的日志回调。
+
 ```java
-public interface Logger {
-    /**
-     * Dispatch log message to target handler.
-     * Should not block this method
-     *
-     * @param level
-     * @param tag
-     * @param message
-     */
-    void onLog(int level, String tag, String message);
-}
+void onLog(int level, String tag, String message);
 ```
+你可以通过该回调来了解日志的相关内容，可用于排查问题。
+
+参数：
+
+- `level`：日志的级别：
+ -`2`：详细的日志信息。
+ -`3`：调试级别的日志信息。
+ -`4`：一般信息级别的日志信息。
+ -`5`：警告级别的日志信息，表示可能存在的问题或潜在的错误。
+ -`6`：错误级别的日志信息，表示出现了错误或异常情况。
+ -`7`：中断级别的日志，表示出现了不可恢复的错误。
+
+- `tag`：日志标签，用于进一步分类或标识日志。
+- `message`：日志的具体内容，包含了要输出的信息。
+
 
 ## Data class
 
@@ -631,7 +610,7 @@ public interface Logger {
 
 <a name="LyricToneModel"></a>
 
-```java //TODO 参数解释
+```java
 public class LyricsLineModel { //一行歌词的信息
 
     public enum Lang {
@@ -650,43 +629,35 @@ public class LyricsLineModel { //一行歌词的信息
         }
     }
 
-    public static class Monolog extends Tone {
-        // Better not use extend
-    }
-
     public List<Tone> tones;//一行歌词里面所有tone
 
-    public LyricsLineModel(Tone tone) {
-        this.tones = new ArrayList<>();
-        this.tones.add(tone);
-    }
-
-    public LyricsLineModel(Monolog tone) {
-        this.tones = new ArrayList<>();
-        this.tones.add(tone);
-    }
-
-    public LyricsLineModel(List<Tone> tones) {
-        this.tones = tones;
-    }
-
     public long getStartTime() {//一句歌词的开始
-        if (tones == null || tones.size() <= 0) {
-            return 0;
-        }
-
-        Tone first = tones.get(0);
-        return first.begin;
-    }
+}
 
     public long getEndTime() {//结束
-        if (tones == null || tones.isEmpty()) return 0;
-        else return tones.get(tones.size() - 1).end;
     }
 }
 ```
 
-一行歌词中，每一个词的音高数据。
+当前行的歌词的相关信息。
+
+
+- `tones`：一行歌词里面包含的音符（tone）的个数。
+- `getStartTime`：一行歌词开始的时间，单位为毫秒。
+- `getEndTime`：一行歌词结束的时间，单位为毫秒。
+- `Lang`：歌曲的语言。//TODO 是否要暴露？说现在没有用到
+ - `Chinese`：中文。
+ - `English`：英文。
+- `Tone`：当前音符的信息。
+ -`begin`：音符开始的时间，单位为毫秒。
+ -`end`：音符结束的时间，单位为毫秒。
+ -`word`：音符对应的字。
+ -`lang`：语言。
+ -`pitch`：音符对应的音高值。
+ -`getDuration`：获取当前音符开始和结束的
+
+
+
 
 - `beginTime`：歌词开始的时间，单位为毫秒。
 - `duration`：歌词的总时长，单位为毫秒。
@@ -839,21 +810,7 @@ public class ConsoleLogger: NSObject, ILogger {
 - `time`：日志记录的时间。
 - `level`：日志的级别，详见 [LoggerLevel](#LoggerLevel)。
 
-## Enum class
-
-### MusicType //TODO java 好像没有这个
-
-```objectivec
-@objc public enum MusicType: Int, CustomStringConvertible {
-    case fast = 1
-    case slow = 2
-}
-```
-
-歌曲类型：
-
-- `fast`：(1) 快歌。
-- `slow`：(2) 慢歌。
+## Enum
 
 ### Lang
 
@@ -871,24 +828,3 @@ public class ConsoleLogger: NSObject, ILogger {
 - `zh`：(1) 中文。
 - `en`：(2) 英文。
 
-### LoggerLevel
-
-<a name="LoggerLevel"></a>
-
-```objectivec
-public enum LoggerLevel: UInt8, CustomStringConvertible {case debug, info, warning, error}
-```
-
-日志等级。
-
-- `debug`：调试级别。
-- `info`: 信息级别。
-- `warning`: 警告级别。
-- `error`: 错误级别。
-
-//TODO java的这个类要写吗？
-public class DefaultConsoleLogger implements Logger
-
-public static enum Type {
-        General, Migu;
-    }

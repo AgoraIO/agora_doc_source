@@ -179,7 +179,7 @@ mKaraokeView.setPitch(pitch);
 
 ### 实现打分事件回调
 
-实现 `KaraokeEvent` 并设置打分事件回调。设置回调后，当前行歌词播放完后会触发 `onLineFinished` 回调报告当前行歌词的演唱得分和累计得分。//TODO onRefPitchUpdate 是干嘛的
+实现 `KaraokeEvent` 并设置打分事件回调。设置回调后，SDK 会在播放到歌词的每一个字时触发 `onRefPitchUpdate` 回调，报告当前音符的音高值，以及整首歌歌词中音符的个数。当前行歌词播放完后会触发 `onLineFinished` 回调报告当前行歌词的演唱得分和累计得分。
 
 ```java
 mKaraokeView.setKaraokeEvent(new KaraokeEvent() {
