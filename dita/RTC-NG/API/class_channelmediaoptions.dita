@@ -416,10 +416,12 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布麦克风采集到的音频。</li>
                 </ul></pd>
                 <pd props="native unity rn electron">
-                    <note type="note">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
+                    <note type="note"><ul><li>自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</li>
+                    <li>如果你想要发布麦克风采集到的音频流，请确保 <parmname>enableAudioRecordingOrPlayout</parmname> 设为 <codeph><ph keyref="true"/></codeph>。</li></ul></note>
                 </pd>
                 <pd props="flutter">
-                    <note type="note">自 v6.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</note>
+                    <note type="note"><ul><li>自 v6.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</li>
+                    <li>如果你想要发布麦克风采集到的音频流，请确保 <parmname>enableAudioRecordingOrPlayout</parmname> 设为 <codeph><ph keyref="true"/></codeph>。</li></ul></note>
                 </pd>
             </plentry>
             <plentry props="cpp unity cs flutter rn electron">
@@ -573,7 +575,8 @@ class ChannelMediaOptions {
                     <ul>
                     <li> <codeph><ph keyref="true"/></codeph>：开启音频录制或播放。</li>
                     <li> <codeph> <ph keyref="false"/></codeph>：不开启音频录制或播放。</li>
-                    </ul> </pd>
+                    </ul>
+                    <note type="note">如果那你需要发布麦克风采集的音频流，请确保该参数设为 <codeph><ph keyref="true"/></codeph>。</note></pd>
             </plentry>
             <plentry>
                 <pt>publishMediaPlayerId</pt>
