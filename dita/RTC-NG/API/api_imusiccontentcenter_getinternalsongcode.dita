@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_imusiccontentcenter_getinternalsongcode">
+    <title><ph keyref="getInternalSongCode"/></title>
+    <shortdesc id="short"><ph id="shortdesc">创建音乐资源的内部歌曲编号。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="getInternalSongCode"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract long getInternalSongCode(long songCode, String jsonOption);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (NSInteger)getInternalSongCode:(NSInteger)songCode jsonOption:(NSString * _Nullable)jsonOption  NS_SWIFT_NAME(getInternalSongCode(songCode:jsonOption:));</codeblock>
+            <codeblock props="cpp" outputclass="language-cpp">virtual int getInternalSongCode(int64_t songCode, const char* jsonOption, int64_t&amp; internalSongCode) = 0;</codeblock>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int GetInternalSongCode(Int64 songCode, string jsonOption, ref Int64 internalSongCode);</codeblock>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.2.2</dd>
+            </dlentry>
+            </dl>
+        </section>
+        <section id="scenario">
+            <title>适用场景</title>
+            <p>当你对播放的音乐资源有特殊要求，例如需要播放某一音乐资源的高潮片段时，你可以调用此方法，通过该音乐资源的 <parmname>songCode</parmname> 和 <parmname>jsonOption</parmname> 参数来为该音乐资源的高潮片段创建一个内部歌曲编号，作为该资源的唯一标识。当你获取到该资源的内部歌曲编号后，如果你需要打开、预加载、移除该资源时，请在调用相应方法时将该内部音乐资源编号传入 <parmname>songCode</parmname>。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+            <plentry>
+                <pt>songCode</pt>
+                <pd>音乐资源编号，用于标识音乐资源。</pd>
+            </plentry>
+            <plentry>
+                <pt>jsonOption</pt>
+                <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。例如 {"needHighPart":true} 表示仅筛选出有高潮片段的音乐资源。该 JSON 字段的 <codeph>key</codeph> 值和 <codeph>value</codeph> 值还可根据你的需求进行定制，详情<xref keyref="ticket-link" />。</pd>
+            </plentry>
+            <plentry props="cpp unity">
+                <pt>internalSongCode</pt>
+                <pd>输出参数，音乐资源的内部歌曲编号。</pd>
+            </plentry>
+            </parml> </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <ul props="cpp unity">
+                <li>0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+                </ul>
+        <ul props="android apple">
+                <li>方法调用成功，返回创建的音乐资源内部编号。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul></section>
+        </refbody>
+</reference>
