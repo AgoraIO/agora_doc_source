@@ -1,6 +1,6 @@
 # 跑通 MetaWorld 示例项目
 
-声网在 GitHub 上提供一个开源的 MetaWorld 示例项目 [MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0)。本文介绍如何快速跑通该示例项目，体验效果。
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0)。本文介绍如何快速跑通该示例项目，体验效果。
 
 ## 前提条件
 
