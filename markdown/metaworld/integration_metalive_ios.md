@@ -1,40 +1,90 @@
 # 客户端实现 (iOS)
 
-本文介绍如何实现虚拟人直播。
+本文介绍如何实现元直播。
+
+//TODO: 直播、语聊、直播 + 语聊的对外官方命名？？
+
 ## 示例项目
 
-声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供[虚拟人直播](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0/ios)源代码供你参考。
+声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供[元直播](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0/ios)源代码供你参考。
+
+## 开通 Meta 服务
+
+//TODO: 开通服务的步骤需要请产品看下有没有问题
+
+### 创建声网项目
+
+1. 进入声网控制台的[项目管理](https://console.agora.io/projects)页面。
+
+2. 在项目管理页面，点击**创建**按钮。
+
+3. 在弹出的对话框内输入项目名称、使用场景，然后选择**安全模式：** **APP ID + Token**。
+
+4. 点击**提交**按钮。新建的项目会显示在项目管理页中。
+
+### 获取 ID 及证书
+
+1. 创建项目后，从控制台获取声网项目的 [App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) 和 [App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)。
+
+2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限，获取面部捕捉 App ID 和面部捕捉证书。
+
+//TODO: 准备开发环境和集成的步骤要请开发review一下
 
 ## 准备开发环境
 
 ### 前提条件
 
 - [Git](https://git-scm.com/downloads)
+- [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
 - [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上
 - iOS 设备，版本 11.0 及以上
     <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
 - 有效的苹果开发者账号
-- 有效的[声网账户](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA%E5%A3%B0%E7%BD%91%E8%B4%A6%E5%8F%B7)和[声网项目](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA%E5%A3%B0%E7%BD%91%E9%A1%B9%E7%9B%AE)
 
-### 开通 Meta 服务
+### 创建项目
 
-参考以下步骤开通虚拟人直播服务：
+在 Xcode 中进行以下操作，在你的 app 中实现元直播功能：
 
-1. 获取 App ID。详情请参考[开始使用声网平台](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)。
+1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 
-2. 联系销售并提供你的 App ID，用于开通声网内容中心的权限。
+    <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，点击 <b>Next</b>，完成后即可选择你的 Apple 账户作为开发团队。</div>
 
-//TODO: 跑通中的其他字段，如面捕appid、面捕certificate等是否也需要？
+2. 为你的项目设置[自动签名](https://help.apple.com/xcode/mac/current/#/dev23aab79b4)。
 
-### 集成 SDK
+3. 设置部署你的 app 的[目标设备](https://help.apple.com/xcode/mac/current/#/deve69552ee5)。
 
-1. 联系技术支持获取 MetaWorld SDK，下载并解压。//TODO: 联系谁
+4. 添加项目的设备权限。在项目导航栏中打开 `info.plist` 文件，编辑[属性列表](https://help.apple.com/xcode/mac/current/#/dev3f399a2a6)，添加以下属性：
 
-2. 将 SDK 包内 `libs` 及路径下的文件，拷贝到你的项目路径下。
+    | key   | type   | value   |
+    | ------------------- | ------ | ------------------------------------------------------------ |
+    | Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如 for a live interactive streaming |
+    | Privacy - Camera Usage Description       | String | 使用摄像头的目的，例如 for a live interactive streaming |
 
-3. 打开 Xcode，[添加对应动态库](https://help.apple.com/xcode/mac/current/#/dev51a648b07)，确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
+    <div class="alert note"><ul><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 <b>Hardened Runtime</b> > <b>Runtime Exceptions</b> 中的 <b>Disable Library Validation</b>。</li><li>更多注意事项，可以参考 <a href="https://developer.apple.com/documentation/xcode/preparing_your_app_for_distribution">Preparing Your App for Distribution</a >。</li></ul></div>
 
-<div class="alert note"><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 **Do Not Embed**。</li><li>声网 SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></div>
+5. 将声网视频 SDK 集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+
+    1. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
+    2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
+
+    ```shell
+    platform :ios, '9.0'
+    target 'Your App' do
+    # x.y.z 请填写具体的 SDK 版本号，如 4.0.1 或 4.0.0.4。
+    # 可通过互动直播发版说明获取最新版本号。
+    pod 'AgoraRtcEngine_iOS', 'x.y.z'
+    end
+    ```
+
+6. 将 MetaWorld SDK 集成到你的项目中。
+
+    1. 联系 sales@agora.io 获取 MetaWorld SDK，下载并解压。
+    2. 将 SDK 包内 `libs` 及路径下的文件，拷贝到你的项目路径下。
+    3. 打开 Xcode，[添加对应动态库](https://help.apple.com/xcode/mac/current/#/dev51a648b07)，确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
+
+    <div class="alert note"><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>声网 SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></div>
+
+7. 在终端内运行 `pod install` 命令安装声网 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`。
 
 ### 配置依赖库
 
@@ -42,10 +92,12 @@
 
 2. 添加 `libz.tbd` 依赖库。
 
+8. 成功安装后，项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。</ul>
 
-## 实现虚拟人直播
 
-本节介绍在集成 MetaSDK 后，如何实现虚拟人直播的核心业务模块的功能。
+## 实现元直播
+
+本节介绍在集成 MetaSDK 后，如何实现元直播的核心业务模块的功能。
 
 实现流程中需要用到声网 SDK 的以下接口类：
 
@@ -60,7 +112,7 @@
 
 ### 1. 初始化
 
-在创建虚拟人直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。本节展示调用 `sharedEngine` 初始化 `AgoraRtcEngineKit` 对象和调用 `sharedMetaServiceWithConfig` 初始化 `AgoraMetaServiceKit` 对象的示例代码。
+在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。本节展示调用 `sharedEngine` 初始化 `AgoraRtcEngineKit` 对象和调用 `sharedMetaServiceWithConfig` 初始化 `AgoraMetaServiceKit` 对象的示例代码。
 
 ```swift
 // 创建并初始化 RTC 引擎
@@ -83,6 +135,8 @@ func createRtcEngine() {
     rtcEngine?.setVideoEncoderConfiguration(vec)
 }
 ```
+
+//TODO: 因为提供的示例代码里没有初始化 MetaService 的，我去 Demo 里扒了一下，需要看下有没有问题
 
 ```swift
 // 创建并初始化 Meta 服务
@@ -112,7 +166,7 @@ func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaE
 
 ### 2. 获取并下载场景资源
 
-初始化完成后，请参考如下代码调用 `getSceneAssetsInfo` 和 `downloadSceneAssets` 获取、下载场景资源。
+初始化完成后，请参考如下代码调用 `getSceneAssetsInfo` 和 `downloadSceneAssets` 获取并下载场景资源。
 
 ```swift
 // 获取场景资源信息
@@ -120,35 +174,34 @@ metaService?.getSceneAssetsInfo()
 // 获取场景资源信息回调
 func onGetSceneAssetsInfoResult(_ scenes: NSMutableArray, errorCode: Int)
  
- 
 // 下载场景资源信息
 metaService?.downloadSceneAssets(_ sceneId: Int)
 // 下载场景资源信息回调
 func onDownloadSceneAssetsProgress(_ sceneId: Int, progress: Int, state: AgoraMetaDownloadStateType)
  
- 
 // 取消下载场景资源信息
 metaService?.cancelDownloadSceneAssets(_ sceneId: Int)
 ```
 
-### 3. 创建虚拟人直播场景
+### 3. 创建元直播场景
 
-搭建元语聊首先需要创建 3D 场景。
+搭建元直播首先需要调用 `createScene` 创建场景。
 
 ```swift
 func createScene(_ delegate: MetaChatSceneViewController) {
     // 场景配置信息
     let config = AgoraMetaSceneConfig()
     config.delegate = delegate
-    // 支持面捕
+    // 支持面部捕捉
     config.enableFaceCapture = true
-    config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_APP_ID
+    // 传入面部捕捉 Certificate
+    config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_CERTIFICATE
+    // 传入面部捕捉 App ID
     config.faceCaptureAppId = KeyCenter.FACE_CAPTURE_APP_ID
     // 创建场景
     metaService?.createScene(config)
 }
- 
- 
+
 // 创建场景回调
 func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
     if errorCode != 0 {
@@ -156,28 +209,23 @@ func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
         return
     }
      
-    metachatScene = scene
+    metaScene = scene
     DispatchQueue.main.async {
-        // 创建 render view
+        // 创建渲染视图
         guard let view = scene?.createRenderView(CGRect(x: 0, y: 0, width: width, height: height)) else { return }
-        // 开启视频
+        // 启用视频功能
         rtcEngine?.enableVideo()
     }
 }
 ```
 
-### 4. 获取并设置用户信息
+//TODO: 是否需要补充 `onConnectionStateChanged` 的示例代码？
 
-```swift
-// 设置avatar信息
-localUserAvatar = metachatScene?.getLocalUserAvatar()
-localUserAvatar?.setUserInfo(currentUserInfo)
-localUserAvatar?.setModelInfo(avatarInfo)
-```
+### 4. 设置用户信息并进入场景
 
-支持自定义捏脸换装，详见。
+进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮信息、捏脸信息等。
 
-### 5. 进入虚拟人直播场景
+//TODO: 按之前的说法会单开一篇将捏脸换装，这里示例代码可能需要把 setExternalInfo 拿掉
 
 ```swift
 func enterScene(view: UIView) {
@@ -207,7 +255,7 @@ func enterScene(view: UIView) {
     let extraInfo = String(data: data!, encoding: String.Encoding.utf8)
     enterSceneConfig.extraInfo = extraInfo!.data(using: String.Encoding.utf8)
     // 设置avatar信息
-    localUserAvatar = metachatScene?.getLocalUserAvatar()
+    localUserAvatar = metaScene?.getLocalUserAvatar()
     localUserAvatar?.setUserInfo(currentUserInfo)
     localUserAvatar?.setModelInfo(avatarInfo)
     // avatar装扮信息
@@ -216,33 +264,42 @@ func enterScene(view: UIView) {
     let extraInfo = String(data: data!, encoding: String.Encoding.utf8)
     localUserAvatar?.setExtraInfo(extraInfo!.data(using: String.Encoding.utf8))
     // 进入场景
-    metachatScene?.enter(enterSceneConfig)
+    metaScene?.enter(enterSceneConfig)
 }
- 
- 
+
 // 进入场景后回调
 func metaScene(_ scene: AgoraMetaScene, onEnterSceneResult errorCode: Int) {}
 ```
 
-### 6. 加入频道并开启虚拟人直播
+<div class="alert note"><ul><li>本小节展示在<b>进入场景前</b>设置用户和模型信息，如需在<b>进入场景后</b>变更设置，需调用 <code>applyInfo</code> 使设置生效。</li><li>声网 MetaWorld SDK 支持自定义装扮捏脸功能，详见 //TODO: 待链接。</li></ul></div>
+
+
+### 5. 加入频道并开启元直播
+
+进入场景后，你需要调用 `enableSceneVideoCapture` 开启场景渲染画面捕获，并调用 `joinChannel` 加入频道并把场景渲染的画面发布到 RTC 频道内。
 
 ```swift
 func joinRtcChannel(success: @escaping () -> Void) {
-    // RTCEngine加入频道
-    rtcEngine?.joinChannel(byToken: KeyCenter.RTC_TOKEN, channelId: KeyCenter.CHANNEL_ID, info: nil, uid: KeyCenter.RTC_UID, joinSuccess: { String, UInt, Int in
-    DLog("joinChannel 回调 ======= ",String,UInt,Int)
-    success()
-})
+        rtcEngine?.joinChannel(byToken: KeyCenter.RTC_TOKEN, channelId: KeyCenter.CHANNEL_ID, info: nil, uid: KeyCenter.RTC_UID, joinSuccess: { String, UInt, Int in
+        DLog("joinChannel 回调 ======= ",String,UInt,Int)
+        success()
+    })
 }
+
+//TODO: 补充一下 true 和 false 设置的注释
 ```
 
-### 7. 离开并释放资源
+//TODO: 话说这里为啥没用到 `enableSceneVideoCapture`
+
+### 6. 离开频道并释放资源
+
+直播结束时，你可以离开频道并释放资源。
 
 ```swift
 private func leaveScene() {
     // 退出频道
     rtcEngine?.leaveChannel()
-    // 退出场景
+    // 离开场景
     metaScene?.leave()
 }
 // 离开场景回调
@@ -251,7 +308,7 @@ func metaScene(_ scene: AgoraMetaScene, onLeaveSceneResult errorCode: Int) {
     metaScene?.destroy()
     metaScene = nil
 }
-// 场景销毁回调
+// 销毁场景回调
 func metaScene(_ scene: AgoraMetaScene, onReleasedScene errorCode: Int) {
     // 销毁 AgoraMetaServiceKit
     AgoraMetaServiceKit.destroy()

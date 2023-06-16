@@ -2,8 +2,8 @@
 autonumber
 skinparam monochrome true
 
-title 虚拟人直播 API 时序图
-participant "<b>虚拟人直播 App</b>" as app #White
+title 元直播 API 时序图
+participant "<b>元直播 App</b>" as app #White
 participant "<b>RtcEngine</b>" as rtc
 participant "<b>IMetaService</b>" as service
 participant "<b>IMetaScene</b>" as scene
@@ -23,7 +23,7 @@ app -> service: getSceneAssetsInfo
 serviceevent -->> app: onGetSceneAssetsInfoResult
 app -> service: downloadSceneAssets
 serviceevent -->> app: onDownloadSceneAssetsProgress
-== 创建并进入虚拟人直播场景 ==
+== 创建并进入元直播场景 ==
 alt 创建 IMetaScene
 app -> service: createScene
 service -> scene: new
@@ -41,14 +41,14 @@ note right
 自定义捏脸换装需要调用该方法
 end note
 end
-alt 进入虚拟人直播场景
+alt 进入元直播场景
 app -> scene: enterScene
 sceneevent -->> app: onEnterSceneResult
 note right
 Android 可以在该回调之前渲染 Texture
 end note
 end
-== 加入频道并开启虚拟人直播 ==
+== 加入频道并开启元直播 ==
 app -> rtc: joinChannel
 app -> scene: enableSceneVideoCapture(view, true)
 == 离开并释放资源 ==
