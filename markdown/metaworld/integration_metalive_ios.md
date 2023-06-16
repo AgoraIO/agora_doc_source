@@ -2,15 +2,11 @@
 
 本文介绍如何实现元直播。
 
-//TODO: 直播、语聊、直播 + 语聊的对外官方命名？？
-
 ## 示例项目
 
 声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供[元直播](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0/ios)源代码供你参考。
 
 ## 开通 Meta 服务
-
-//TODO: 开通服务的步骤需要请产品看下有没有问题
 
 ### 创建声网项目
 
@@ -26,16 +22,13 @@
 
 1. 创建项目后，从控制台获取声网项目的 [App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) 和 [App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)。
 
-2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限，获取面部捕捉 App ID 和面部捕捉证书。
-
-//TODO: 准备开发环境和集成的步骤要请开发review一下
+2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限并获取声网面捕插件。
 
 ## 准备开发环境
 
 ### 前提条件
 
 - [Git](https://git-scm.com/downloads)
-- [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
 - [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上
 - iOS 设备，版本 11.0 及以上
     <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
@@ -62,53 +55,36 @@
 
     <div class="alert note"><ul><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 <b>Hardened Runtime</b> > <b>Runtime Exceptions</b> 中的 <b>Disable Library Validation</b>。</li><li>更多注意事项，可以参考 <a href="https://developer.apple.com/documentation/xcode/preparing_your_app_for_distribution">Preparing Your App for Distribution</a >。</li></ul></div>
 
-5. 将声网视频 SDK 集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+5. 将 Meta SDK 集成到你的项目中。
 
-    1. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
-    2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
-
-    ```shell
-    platform :ios, '9.0'
-    target 'Your App' do
-    # x.y.z 请填写具体的 SDK 版本号，如 4.0.1 或 4.0.0.4。
-    # 可通过互动直播发版说明获取最新版本号。
-    pod 'AgoraRtcEngine_iOS', 'x.y.z'
-    end
-    ```
-
-6. 将 MetaWorld SDK 集成到你的项目中。
-
-    1. 联系 sales@agora.io 获取 MetaWorld SDK，下载并解压。
+    1. 联系 [sales@agora.io](mailto:sales@agora.io) 获取 Meta SDK，下载并解压。
     2. 将 SDK 包内 `libs` 及路径下的文件，拷贝到你的项目路径下。
     3. 打开 Xcode，[添加对应动态库](https://help.apple.com/xcode/mac/current/#/dev51a648b07)，确保添加的动态库 **Embed** 属性设置为 **Embed & Sign**。
 
-    <div class="alert note"><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>声网 SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></div>
+<div class="alert note"><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>声网 SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></div>
 
-7. 在终端内运行 `pod install` 命令安装声网 SDK。成功安装后，Terminal 中会显示 `Pod installation complete!`。
+6. 除 SDK 外，你还需要添加以下依赖库：
 
-### 配置依赖库
+    1. 添加 [OpenSSL](https://www.openssl.org/source/) 依赖库 `libcrypto.a` 和 `libssl.a`。
+    2. 添加 `libz.tbd` 依赖库。
 
-1. 添加 [OpenSSL](https://www.openssl.org/source/) 依赖库 `libcrypto.a` 和 `libssl.a`。
-
-2. 添加 `libz.tbd` 依赖库。
-
-8. 成功安装后，项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。</ul>
+    ![](https://web-cdn.agora.io/docs-files/1686901281260)
 
 
 ## 实现元直播
 
-本节介绍在集成 MetaSDK 后，如何实现元直播的核心业务模块的功能。
+本节介绍在集成 Meta SDK 后，如何实现元直播的核心业务模块的功能。
 
 实现流程中需要用到声网 SDK 的以下接口类：
 
 - `AgoraRtcEngineKit` 类：提供实时音视频功能。
-- `AgoraMetaServiceKit` 类：MetaSDK 所有接口的入口，用于创建 `AgoraMetaScene` 对象，负责获取、下载和删除场景资源。
+- `AgoraMetaServiceKit` 类：Meta SDK 所有接口的入口，用于创建 `AgoraMetaScene` 对象，负责获取、下载和删除场景资源。
 - `AgoraMetaScene` 类：负责进出场景、场景视频渲染、场景相关参数设置等场景相关操作。
 - `AgoraLocalUserAvatar` 类：用于设置用户昵称、徽章、Avatar 模型、捏脸换装等详细信息。
 - `AgoraMetaEventDelegate` 类：`AgoraMetaServiceKit` 的异步方法的事件回调类。
 - `AgoraMetaSceneEventDelegate` 类：`AgoraMetaScene` 的异步方法的事件回调类。
 
-![](https://web-cdn.agora.io/docs-files/1686650391606)
+![](https://web-cdn.agora.io/docs-files/1686901281260)
 
 ### 1. 初始化
 
@@ -135,8 +111,6 @@ func createRtcEngine() {
     rtcEngine?.setVideoEncoderConfiguration(vec)
 }
 ```
-
-//TODO: 因为提供的示例代码里没有初始化 MetaService 的，我去 Demo 里扒了一下，需要看下有没有问题
 
 ```swift
 // 创建并初始化 Meta 服务
@@ -219,13 +193,9 @@ func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
 }
 ```
 
-//TODO: 是否需要补充 `onConnectionStateChanged` 的示例代码？
-
 ### 4. 设置用户信息并进入场景
 
 进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮信息、捏脸信息等。
-
-//TODO: 按之前的说法会单开一篇将捏脸换装，这里示例代码可能需要把 setExternalInfo 拿掉
 
 ```swift
 func enterScene(view: UIView) {
@@ -271,7 +241,7 @@ func enterScene(view: UIView) {
 func metaScene(_ scene: AgoraMetaScene, onEnterSceneResult errorCode: Int) {}
 ```
 
-<div class="alert note"><ul><li>本小节展示在<b>进入场景前</b>设置用户和模型信息，如需在<b>进入场景后</b>变更设置，需调用 <code>applyInfo</code> 使设置生效。</li><li>声网 MetaWorld SDK 支持自定义装扮捏脸功能，详见 //TODO: 待链接。</li></ul></div>
+<div class="alert note"><ul><li>本小节展示在<b>进入场景前</b>设置用户和模型信息，如需在<b>进入场景后</b>变更设置，需调用 <code>applyInfo</code> 使设置生效。</li><li>声网 Meta SDK 支持自定义装扮捏脸功能，详见 //TODO: 待链接。</li></ul></div>
 
 
 ### 5. 加入频道并开启元直播
@@ -286,10 +256,9 @@ func joinRtcChannel(success: @escaping () -> Void) {
     })
 }
 
-//TODO: 补充一下 true 和 false 设置的注释
 ```
 
-//TODO: 话说这里为啥没用到 `enableSceneVideoCapture`
+//TODO: 话说这里为啥没用到 `enableSceneVideoCapture`，swift和oc api name 的区别，以及 true 和 false 的设置
 
 ### 6. 离开频道并释放资源
 
