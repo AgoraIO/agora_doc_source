@@ -1,6 +1,6 @@
 本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
 
-<div class="alert note">本文适用于 K 歌场景化 API v2.3.1。</div>
+<div class="alert note">本文适用于 K 歌场景化 API v3.0.0。</div>
 
 
 ## KTVApi
@@ -600,7 +600,7 @@ open fun onTokenPrivilegeWillExpire() {}
 
 Token 即将过期回调。
 
-当用于音乐内容中心鉴权的 RTM Token 或用于加入频道鉴权的 Token 即将过期时，会触发该回调。
+当用于音乐内容中心鉴权的 RTM Token 或用于加入合唱频道鉴权的 Token 即将过期时，会触发该回调。
 
 在收到该回调后，你需要调用 `renewToken` 来更新 Token。
 
@@ -612,10 +612,13 @@ open fun onChorusChannelAudioVolumeIndication(
         totalVolume: Int) {}
 ```
 
-合唱频道中用户音量提示回调。【是否也需要调用 [enableAudioVolumeIndication](https://docs-preprod.agora.io/cn/extension_customer/API Reference/java_ng/v4.2.0/API/toc_audio_process.html#api_irtcengine_enableaudiovolumeindication) 开启，还是默认开启？回调的触发间隔是多少？
-启用该功能后，如果有用户将自己静音（volume 设为 0），SDK 会继续报告本地用户的音量提示回调。
+领唱的人声音量回调。
+开始合唱后，该回调会每 50 ms 触发一次，报告领唱的人声音量信息。
 
-瞬时音量最高的远端用户静音后 20 秒，远端的音量提示回调中将不再包含该用户；如果远端所有用户都将自己静音，20 秒后 SDK 停止报告远端用户的音量提示回调。
+#### 参数
+
+- `speaker`：领唱的音量信息，详见 [AudioVolumeInfo](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/java_ng/API/class_audiovolumeinfo.html?platform=Android) 数组。
+- `totalVolume`：混音后的总音量，取值范围为 [0, 255]。
 
 
 ## Enum class
@@ -709,6 +712,22 @@ enum class MusicLoadStatus(val value: Int) {
 - `FAILED`: (1) 加载失败。
 - `INPROGRESS`: (2) 正在加载中。
 
+### KTVType
+
+<a name="KTVType"></a>
+
+```kotlin
+enum class KTVType(val value: Int)  {
+    Normal(0),
+    SingBattle(1)
+}
+```
+
+K 歌的场景：
+
+- `Normal`：(0) 独唱、合唱场景。
+- `SingBattle`：(1) 抢唱场景。
+
 
 ## Data class
 
@@ -725,7 +744,8 @@ data class KTVApiConfig(
     val localUid: Int,
     val chorusChannelName: String,
     val chorusChannelToken: String,
-	val maxCacheSize: Int = 10
+	  val maxCacheSize: Int = 10,
+    val type: KTVType = KTVType.Normal
 )
 ```
 
@@ -748,6 +768,8 @@ K 歌配置：
 - `chorusChannelToken`：根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。在独唱场景下，该参数可以为空。
 
 - `maxCacheSize`：可缓存的音乐资源数量，最多不能超过 50。
+
+- `type`：K 歌场景，详见 [KTVType](#KTVType)。
 
 ### KTVLoadMusicConfiguration
 
