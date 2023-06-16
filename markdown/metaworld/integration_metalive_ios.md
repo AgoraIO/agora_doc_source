@@ -34,7 +34,7 @@
     <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
 - 有效的苹果开发者账号
 
-### 创建项目
+### 创建项目并集成 SDK
 
 在 Xcode 中进行以下操作，在你的 app 中实现元直播功能：
 
@@ -84,7 +84,7 @@
 - `AgoraMetaEventDelegate` 类：`AgoraMetaServiceKit` 的异步方法的事件回调类。
 - `AgoraMetaSceneEventDelegate` 类：`AgoraMetaScene` 的异步方法的事件回调类。
 
-![](https://web-cdn.agora.io/docs-files/1686901281260)
+![](https://web-cdn.agora.io/docs-files/1686906134026)
 
 ### 1. 初始化
 
@@ -256,9 +256,10 @@ func joinRtcChannel(success: @escaping () -> Void) {
     })
 }
 
+// Swift 中的 enableVideoCapture 对应 Objective-C API 中的 enableSceneVideoCapture
+// 设置为 true，把场景画面和 avatar 形象发布到频道，设置为 false，把摄像头采集画面发布到频道
+scene?.enableVideoCapture(view!, enable: true)
 ```
-
-//TODO: 话说这里为啥没用到 `enableSceneVideoCapture`，swift和oc api name 的区别，以及 true 和 false 的设置
 
 ### 6. 离开频道并释放资源
 

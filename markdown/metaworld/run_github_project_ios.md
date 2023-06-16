@@ -92,9 +92,7 @@ git checkout dev_metasdk1.0
 
 6. 打开应用，体验 MetaWorld 场景。
 
-![](https://web-cdn.agora.io/docs-files/1686883882565)
-
-//TODO: 待替换为视频
+<p style="text-align: center;"><video src="https://web-cdn.agora.io/docs-files/1686906669607"  controls width = 100% height = auto >你的浏览器不支持 <code>video</code> 标签。</video></p>
 
 如仅想体验直播的场景示例，请打开 `./Agora-MetaWorld/ios/MetaChatDemo/MetaChatLoginViewController.swift` 进行以下修改，并重新编译和运行示例项目。
 
@@ -110,3 +108,5 @@ if true {
     switchOrientation(isPortrait: true, isFullScreen: isEnter)
 }
 ```
+
+<p style="text-align: center;"><video src="https://web-cdn.agora.io/docs-files/1686906622677"  controls width = 50% height = auto >你的浏览器不支持 <code>video</code> 标签。</video></p>
