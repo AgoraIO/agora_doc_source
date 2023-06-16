@@ -1,12 +1,12 @@
-本文介绍声网 MetaWorld SDK 的 Objective API。
+本文介绍声网 Meta SDK 的 Objective API。
 
 ## 概述
 
-MetaWorld SDK 是基于声网视频 SDK 开发的元系列特殊版 SDK。相比[视频 SDK](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/rtc_api_overview_ng.html)，MetaWorld SDK 中新增元系列相关的 API。
+Meta SDK 是基于声网视频 SDK 开发的元系列特殊版 SDK。相比[视频 SDK](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/rtc_api_overview_ng.html)，Meta SDK 中新增元系列相关的 API。
 
 ## AgoraMetaServiceKit
 
-MetaWorld SDK 所有接口的入口，可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于创建 `AgoraMetaScene`。
+Meta SDK 所有接口的入口，可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于创建 `AgoraMetaScene`。
 
 ### sharedMetaServiceWithConfig
 
