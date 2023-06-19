@@ -1,3 +1,7 @@
+本文提供在线 K 歌房歌词打分组件相关 API。
+
+<div class="alert note">本文仅适用于歌词打分组件 v1.1.1。</div>
+
 ## KaraokeView
 
 歌词打分组件的基础接口类，实现歌词同步、演唱评分的主要功能。请确保在主线程中调用该类下的 API。
@@ -16,7 +20,7 @@ public KaraokeView(LyricsView lyricsView, ScoringView scoringView);
 - `scoringView`：用于显示评分的 `ScoringView` 对象。
 
 
-### parseLyricData
+### parseLyricsData
 
 解析歌词文件数据。
 
@@ -33,7 +37,7 @@ public static LyricsModel parseLyricsData(File file);
 - 方法调用成功时返回一个 `LyricModel` 对象，包含解析后的歌词数据。
 - 方法调用失败时返回 `null`。
 
-### setLyricData
+### setLyricsData
 
 设置歌词数据模型。
 
@@ -90,7 +94,7 @@ public void setProgress(long progress);
 public void setPitch(float pitch);
 ```
 
-当你通过 `IRtcEngineEventHandler` 下的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/online-ktv/API Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调后，你需要调用该方法把获取到的实时人声音调同步给打分组件用于演唱评分。
+当你通过 `IRtcEngineEventHandler` 下的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调后，你需要调用该方法把获取到的实时人声音调同步给打分组件用于演唱评分。
 
 **参数**
 
@@ -122,7 +126,7 @@ public void setScoringAlgorithm(IScoringAlgorithm algorithm);
 
 **参数**
 
-- `algorithm`：实现了 `IScoreAlgorithm` 接口的打分算法对象。
+- `algorithm`：实现了 [IScoringAlgorithm](#IScoringAlgorithm) 接口的打分算法对象。
 
 ### setScoreLevel
 
@@ -193,8 +197,9 @@ public int getScoringCompensationOffset();
 
 - 调整后的分数结果。
 
-
 ## KaraokeEvent
+
+<a name="KaraokeEvent"></a>
 
 `KaraokeView` 的核心事件回调。
 
@@ -226,7 +231,7 @@ public void onLineFinished(KaraokeView view, LyricsLineModel line, int score, in
 **参数**
 
 - `view`：`KaraokeView` 实例。
-- `line`：当前歌词行的信息，详见 `LyricLineModel`。
+- `line`：当前歌词行的信息，详见 [LyricsLineModel](#LyricsLineModel)。
 - `score`：当前歌曲行的得分，取值范围 [0, 100]。
 - `cumulativeScore`：当前累计得分。
 - `Index`：歌词行数的索引号，最小值为 0。
@@ -247,8 +252,6 @@ public void onRefPitchUpdate(float refPitch, int numberOfRefPitches);
 
 - `refPitch`：当前音符的音高值。
 - `numberOfRefPitches`：整首歌歌词中音符的个数。如果你是想要自定义打分算法，你可以通过该参数来在 app 层计算一首歌演唱的平均分。
-
-
 
 ## ScoringView
 
@@ -288,7 +291,7 @@ public void setRefPitchStickHeight(float height);
 
 **参数**
 
-- `height`：标准音高线的宽度，默认值为 6 dp (device independent pixels)。
+- `height`：标准音高线的宽度，默认值为 6 dp。
 
 ### enableParticleEffect
 
@@ -499,11 +502,12 @@ public void setStartOfVerseIndicatorPaddingTop(float paddingTop);
 ```java
 public void setStartOfVerseIndicatorRadius(float radius);
 ```
+
 调用该方法前，请确保 `enableStartOfVerseIndicator` 为 `true`。
 
 **参数**
 
-- `radius`：等待圆点的半径，默认值 6dp。
+- `radius`：等待圆点的半径，默认值 6 dp。
 
 ### setStartOfVerseIndicatorColor
 
@@ -529,8 +533,26 @@ public void reset();
 
 当一首歌曲播放完毕后或是播放过程中切到另外一首歌曲时，需要调用该方法来重置歌词设置。
 
+## IScoringAlgorithm
+<a name="IScoringAlgorithm"></a>
 
-## IScoreAlgorithm //TODO 还没确定
+该类提供自定义打分相关的 API。
+
+### getLineScore
+
+获取当前行歌词的演唱得分。
+
+```java
+int getLineScore(LinkedHashMap<Long, Float> pitchesForLine, final int indexOfLineJustFinished, final LyricsLineModel lineJustFinished);
+```
+
+当用户唱完一句歌词后，你可以调用该方法来自定义计算该行歌词的得分。
+
+**参数**
+
+- `pitchesForLine`：标准音高值。
+- `indexOfLineJustFinished`：歌词行的索引号。
+- `lineJustFinished`：当前歌词行的相关信息，详见 [LyricsLineModel](#LyricsLineModel)。
 
 ## Logger
 
@@ -543,17 +565,18 @@ public void reset();
 ```java
 void onLog(int level, String tag, String message);
 ```
+
 你可以通过该回调来了解日志的相关内容，可用于排查问题。
 
 **参数**
 
 - `level`：日志的级别：
- -`2`：详细的日志信息。
- -`3`：调试级别的日志信息。
- -`4`：一般信息级别的日志信息。
- -`5`：警告级别的日志信息，表示可能存在的问题或潜在的错误。
- -`6`：错误级别的日志信息，表示出现了错误或异常情况。
- -`7`：中断级别的日志，表示出现了不可恢复的错误。
+  -`2`：详细的日志信息。
+   -`3`：调试级别的日志信息。
+   -`4`：一般信息级别的日志信息。
+   -`5`：警告级别的日志信息，表示可能存在的问题或潜在的错误。
+   -`6`：错误级别的日志信息，表示出现了错误或异常情况。
+   -`7`：中断级别的日志，表示出现了不可恢复的错误。
 
 - `tag`：日志标签，用于进一步分类或标识日志。
 - `message`：日志的具体内容，包含了要输出的信息。
@@ -567,59 +590,46 @@ void onLog(int level, String tag, String message);
 
 ```java
 public class LyricsLineModel {
-
-    public enum Lang {
-        Chinese, English
-    }
-
     public static class Tone {
-        public long begin;
-        public long end;
-        public String word;
-        public Lang lang = Lang.Chinese;
-        public int pitch = 0;
+    public long begin;
+    public long end;
+    public String word;
+    public int pitch = 0;
 
-        public long getDuration() {
-            return end - begin;
-        }
+    public long getDuration() {
+        return end - begin;
+    }
     }
 
     public List<Tone> tones;
-
     public long getStartTime() {}
-
     public long getEndTime() {}
 }
 ```
 
 当前行的歌词的相关信息。
 
+- `Tone`：当前音符的信息。
+  - `begin`：音符开始的时间，单位为毫秒。
+  - `end`：音符结束的时间，单位为毫秒。
+  - `word`：音符对应的字。
+  -  `pitch`：音符对应的音高值。
+  - `getDuration`：获取当前音符从开始到结束的时间。
+    - 返回值：当前音符从开始到结束的时间，单位为毫秒。
+
 
 - `tones`：一行歌词里面包含的音符（tone）的个数。
-- `getStartTime`：一行歌词开始的时间，单位为毫秒。
-- `getEndTime`：一行歌词结束的时间，单位为毫秒。
-- `Lang`：歌曲的语言。//TODO 是否要暴露？说现在没有用到
- - `Chinese`：中文。
- - `English`：英文。
-- `Tone`：当前音符的信息。
- -`begin`：音符开始的时间，单位为毫秒。
- -`end`：音符结束的时间，单位为毫秒。
- -`word`：音符对应的字。
- -`lang`：语言。
- -`pitch`：音符对应的音高值。
- -`getDuration`：获取当前音符开始和结束的
-
-
+- `getStartTime`：获取一行歌词开始的时间。
+  - 返回值：当前行歌词开始的时间，单位为毫秒。
+- `getEndTime`：获取一行歌词结束的时间。
+  - 返回值：当前行歌词结束的时间，单位为毫秒。
 
 ### LyricsModel
 
+<a name="LyricsModel"></a>
+
 ```java
 public class LyricsModel {
-    public static enum Type {//暂不对外
-        General, Migu;
-    }
-
-    public Type type;//暂不对外
     public List<LyricsLineModel> lines;
     public long duration;
     public long startOfVerse;
@@ -635,8 +645,3 @@ public class LyricsModel {
 - `startOfVerse`：前奏结束的时间，单位为毫秒。
 - `title`：歌曲名称。
 - `artist`：歌手。
-
-
-
-
-

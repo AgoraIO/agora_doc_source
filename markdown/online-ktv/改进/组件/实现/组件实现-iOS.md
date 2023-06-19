@@ -1,8 +1,8 @@
-声网歌词打分组件（KaraokeView）包含歌词组件（LyricView）和打分组件（ScoringView）。在 K 歌房场景中，你可以通过歌词组件实现歌曲播放时歌词同步展示以及自定义歌词界面，通过打分组件实现根据当前播放进度展示对应的原唱音准线、展示演唱者和原唱音准线的匹配效果、演唱者的分数、自定义打分逻辑以及打分组件界面。
+声网歌词打分组件（KaraokeView）包含歌词组件（LyricsView）和打分组件（ScoringView）。在 K 歌房场景中，你可以通过歌词组件实现歌曲播放时歌词同步展示以及自定义歌词界面，通过打分组件实现根据当前播放进度展示对应的原唱音准线、展示演唱者和原唱音准线的匹配效果、演唱者的分数、自定义打分逻辑以及打分组件界面。
 
 本文介绍如何在项目中集成并使用声网歌词和打分组件。
 
-<img src="https://web-cdn.agora.io/docs-files/1652093851887" style="zoom:50%;" />
+<div class="alert note">本文仅适用于歌词打分组件 v1.1.1。</div>
 
 ## 功能描述
 
@@ -15,6 +15,8 @@
 
 - 将演唱者和歌曲原唱的音调进行对比，并实时将匹配度以动画和分数的方式呈现在界面上。
 - 自定义打分逻辑和界面显示，如音准线的颜色、粒子动画效果、游标样式等。
+
+<img src="https://web-cdn.agora.io/docs-files/1687162089264" style="zoom:60%;" />
 
 ## 前提条件
 
@@ -45,7 +47,7 @@
 
 参考如下歌词打分组件的 API 调用时序图：
 
-![image-20230601110710446](/Users/admin/Library/Application Support/typora-user-images/image-20230601110710446.png)
+![](https://web-cdn.agora.io/docs-files/1687165804719)
 
 ### 创建 `KaraokeView` 对象并初始化
 
@@ -59,21 +61,19 @@ view.addSubview(karaokeView)
 karaokeView.delegate = self
 ```
 
-<div class="alert info"><code>KaraokeView</code> 中包含 <code>LyricView</code> （歌词组件）和 <code>ScoringView</code>（打分组件），因此你在初始化 <code>KaraokeView</code> 后，无需再额外初始化歌词或打分组件。</div>
-
 ### 实现歌词事件回调
 
 实现 `KaraokeDelegate` 并设置歌词事件回调。设置回调后，当拖动歌词视图时会触发 `onKaraokeView`[1/2] 回调报告拖动之后歌词的位置。
 
 ```swift
-// sample code to be provided.
+func onKaraokeView(view: KaraokeView, didDragTo position: Int)
 ```
 
 ### 歌词显示及同步
 
 1. **解析歌词**
 
-   调用 `parseLyricData` 方法解析歌词，然后通过 `setLyricsData` 方法将解析后的歌词数据模型设置给 `KaraokeView` 对象以便后续的歌词展示。歌词数据模型中包含了歌曲类型、歌词类型、歌曲时长、前奏时长、歌曲名和演唱者等信息。
+   调用 `parseLyricData` 方法解析歌词，然后通过 `setLyricData` 方法将解析后的歌词数据模型设置给 `KaraokeView` 对象以便后续的歌词展示。歌词数据模型中包含了歌曲类型、歌词类型、歌曲时长、前奏时长、歌曲名和演唱者等信息。
 
    ```swift
    let url = URL(fileURLWithPath: filePath)
@@ -87,7 +87,7 @@ karaokeView.delegate = self
 
    当播放器开始播放歌曲后，你可以通过内置媒体播放器的 [getPosition](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/ios_ng/API/toc_mediaplayer.html?platform=iOS#api_imediaplayer_getplayposition) 获取歌曲当前的播放进度，然后通过 `setProgress` 来把歌词的播放进度设置给歌词组件，从而实现歌词同步。
 
-   声网歌词组件还支持歌词拖动，当拖动到指定时间的歌词时，歌曲进度随之改变。当你设置允许歌词拖动后（即 `draggable` 设为 `YES`），SDK 会触发 `onKaraokeView` 回调报告歌词拖动后的位置，然后你需要调用 `setProgress` 方法同步此时歌曲的播放位置给歌词组件，从而实现歌词同步。
+   声网歌词组件还支持歌词拖动，当拖动到指定时间的歌词时，歌曲进度随之改变。当你设置允许歌词拖动后（即 `draggable` 设为 `true`），SDK 会触发 `onKaraokeView`[1/2] 回调报告歌词拖动后的位置，然后你需要调用 `setProgress` 方法同步此时歌曲的播放位置给歌词组件，从而实现歌词同步。
 
    <div class="alert info">为保证歌词 UI 界面的流畅性，声网建议调用 <code>setProgress</code> 方法的时间间隔不超过 20 ms。</div>
 
@@ -125,15 +125,15 @@ public class LyricsView: UIView {
     // 设置在播放歌曲前奏时是否显示等待圆点
     @objc public var waitingViewHidden: Bool = false
     // 设置未在播放中的歌词颜色
-    @objc public var textNormalColor: UIColor = .white
-    // 设置选中的歌词颜色
-    @objc public var textSelectedColor: UIColor = .white
-    // 设置高亮的歌词颜色
-    @objc public var textHighlightedColor: UIColor = .colorWithHex(hexStr: "#FF8AB4")
+    @objc public var inactiveLineTextColor: UIColor = .white
+    // 设置当前播放的歌词行中，即将播放的歌词颜色
+    @objc public var activeLineUpcomingTextColor: UIColor = .white
+    // 设置当前播放的歌词行中，已播放的歌词颜色
+    @objc public var activeLinePlayedTextColor: UIColor = .colorWithHex(hexStr: "#FF8AB4")
     // 设置未在播放中的歌词文字大小
-    @objc public var textNormalFontSize = UIFont(name: "PingFangSC-Semibold", size: 15)!
-    // 设置高亮歌词文字大小
-    @objc public var textHighlightFontSize = UIFont(name: "PingFangSC-Semibold", size: 18)!
+    @objc public var inactiveLineFontSize = UIFont(name: "PingFangSC-Semibold", size: 15)!
+    // 设置当前播放的歌词文字大小
+    @objc public var activeLineUpcomingFontSize = UIFont(name: "PingFangSC-Semibold", size: 18)!
     // 设置歌词界面的最大宽度
     @objc public var maxWidth: CGFloat = UIScreen.main.bounds.width - 30
     // 设置歌词行间距
@@ -148,7 +148,7 @@ public class LyricsView: UIView {
 
 ### 同步人声音调
 
-当演唱者开始唱歌，你可以通过 `AgoraRtcEngineDelegate` 下的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 来获取本地用户的人声音调，然后通过 `setPitch` 来将用户实时的人声音调同步给打分组件。
+当演唱者开始唱歌，你可以通过 `AgoraRtcEngineDelegate` 下的 [reportAudioVolumeIndicationOfSpeakers](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_audio_process.html?platform=iOS#callback_irtcengineeventhandler_onaudiovolumeindication) 来获取本地用户的人声音调，然后通过 `setPitch` 来将用户实时的人声音调同步给打分组件。
 
 ```swift
 karaokeView.setPitch(pitch: pitch)
@@ -159,7 +159,12 @@ karaokeView.setPitch(pitch: pitch)
 实现 `KaraokeDelegate` 并设置歌词事件回调。设置回调后，当前行歌词播放完后会触发 `onKaraokeView`[2/2] 回调报告当前行歌词的演唱得分和累计得分。
 
 ```swift
-// sample code to be provided.
+func onKaraokeView(view: KaraokeView,
+                       didFinishLineWith model: LyricLineModel,
+                       score: Int,
+                       cumulativeScore: Int,
+                       lineIndex: Int,
+                       lineCount: Int) 
 ```
 
 ### 自定义打分偏好
@@ -168,7 +173,7 @@ karaokeView.setPitch(pitch: pitch)
 
 **设置得分难易程度**
 
-调用 `setScoreLevel` 来设置演唱者得分的难易程度。你可以通过 `level` 参数来调节难易程度，取值范围为 [0,100]，默认值为 10。值越小难度越低，演唱者越容易得分。你也可以参考[不同难度的推荐取值]()来进行设置。
+调用 `setScoreLevel` 来设置演唱者得分的难易程度。你可以通过 `level` 参数来调节难易程度，取值范围为 [0,100]，默认值为 10。值越小难度越低，演唱者越容易得分。你也可以参考[不同难度的推荐取值](/cn/online-ktv/lyrics_scores_ios?platform=iOS#table)来进行设置。
 
 ```swift
 // 设置打分难易程度
@@ -187,9 +192,9 @@ karaokeView.setScoreCompensationOffset(offset: 0)
 
 <div class="alert info">声网不建议你同时使用 <code>setScoreLevel</code> 和 <code>setScoreCompensationOffset</code> 来调整打分逻辑。</div>
 
-**设置音高阈值**
+**设置动画效果阈值**
 
-音高阈值是指在 K 歌打分时用于判断演唱者音高准确性的一个设定值。它决定了何时触发音高线着色和粒子动画的显示并对 UI 界面产生影响。较低的音高阈值意味着更小的误差容忍度，更容易触发音高线着色和粒子动画。你可以调用 `hitScoreThreshold` 方法来调整音高阈值，取值范围为 [0, 1]。例如，如果你将该值设为 0.1，则一行歌词得分超过 10 分，就会触发音高线着色和粒子动画。
+动画效果阈值决定了何时触发音高线着色和粒子动画的显示并对 UI 界面产生影响。你可以调用 `hitScoreThreshold` 方法来调整音高阈值，取值范围为 [0, 1]，默认值为 0.7，取值越小越容易触发音高线着色和粒子动画。例如，如果你将该值设为 0.1，则一行歌词得分超过 10 分，就会触发音高线着色和粒子动画。
 
 ```swift
 karaokeView.scoringView.hitScoreThreshold = 0.7
@@ -256,10 +261,8 @@ public class ScoringView: UIView {
 
 ### 示例项目
 
-声网在 GitHub 上提供歌词组件开源的[示例项目](https://github.com/AgoraIO-Community/LyricsView)供你参考。
+声网在 GitHub 上提供歌词组件开源的[示例项目](https://github.com/AgoraIO-Community/LrcView-iOS/tree/feature/1.1.1)供你参考。
 
 ### 参考文档
 
-- [歌词组件 API 文档]()
-
-
+- [歌词组件 API 文档](/cn/online-ktv/lyrics_scores_ios?platform=iOS)
