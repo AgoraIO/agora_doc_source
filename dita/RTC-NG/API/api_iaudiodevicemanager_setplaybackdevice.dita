@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setPlaybackDevice(const char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setPlaybackDevice(deviceId: string): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetPlaybackDevice(string deviceId);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setPlaybackDevice(deviceId: string): number;</codeblock>
@@ -24,7 +24,7 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <note type="attention" props="cpp unity flutter">该方法仅适用于 Windows 和 macOS。</note>
+            <note type="attention" props="cpp unreal bp unity flutter">该方法仅适用于 Windows 和 macOS。</note>
             <p>该方法可以更改当前的音频路由，但不会改变系统默认的音频路由。假设系统默认的音频路由是扬声器 1，你在加入频道前调用该方法设置当前的音频路由为扬声器 2，如果在此时进行设备检测，SDK 会对扬声器 2 进行检测。检测结束后，当你加入频道时 SDK 依然会选择使用系统默认的音频路由，即扬声器 1。</p>
             </section>
         <section id="parameters">
@@ -34,7 +34,7 @@
                 <pt>deviceId</pt>
                 <pd>
                     <p>指定播放设备。由 <xref keyref="enumeratePlaybackDevices" /> 获取。插拔设备不会影响 <parmname>deviceId</parmname>。</p>
-                    <p props="cpp electron">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</p>
+                    <p props="cpp unreal bp electron">最大长度为 <xref keyref="MAX_DEVICE_ID_LENGTH_TYPE" />。</p>
                 </pd>
             </plentry>
             </parml> </section>

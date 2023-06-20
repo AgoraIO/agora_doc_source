@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int stopCameraCapture(Constants.VideoSourceType sourceType);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopCameraCapture:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(stopCameraCapture(_:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int stopCameraCapture(VIDEO_SOURCE_TYPE sourceType) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int stopCameraCapture(VIDEO_SOURCE_TYPE sourceType) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract stopCameraCapture(sourceType: VideoSourceType): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StopCameraCapture(VIDEO_SOURCE_TYPE sourceType);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract stopCameraCapture(sourceType: VideoSourceType): number;</codeblock>
@@ -31,7 +31,7 @@
             </dlentry>
             </dl>
             <p>调用 <xref keyref="startCameraCapture" /> 开启一路或多路摄像头采集的视频流后，你可以调用该方法，通过设置 <parmname>sourceType</parmname> 停止一路或多路摄像头的视频采集。</p>
-            <note props="ios cpp unity rn flutter">在 iOS 平台上，如果要关闭多路摄像头采集，需要在调用该方法之后调用 <xref keyref="enableMultiCamera"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="false"/></codeph>。</note>
+            <note props="ios cpp unreal bp unity rn flutter">在 iOS 平台上，如果要关闭多路摄像头采集，需要在调用该方法之后调用 <xref keyref="enableMultiCamera"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="false"/></codeph>。</note>
             <note type="attention">如果你正在使用本地合图功能，调用该方法停止通过第一个摄像头采集视频，会造成本地合图中断。</note>
         </section>
         <section id="parameters">

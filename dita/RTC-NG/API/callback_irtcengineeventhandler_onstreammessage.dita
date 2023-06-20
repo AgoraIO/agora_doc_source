@@ -18,7 +18,7 @@
                 receiveStreamMessageFromUid:(NSUInteger)uid
                 streamId:(NSInteger)streamId
                 data:(NSData * _Nonnull)data;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
                     (void)userId;
                     (void)streamId;
                     (void)data;
@@ -57,7 +57,7 @@
             </plentry>
             <plentry id="uid">
                 <pt props="android ios mac flutter">uid</pt>
-                <pt props="cpp">userId</pt>
+                <pt props="cpp unreal bp">userId</pt>
                 <pt props="unity electron rn flutter cs">remoteUid</pt>
                 <pd>发送消息的用户 ID。</pd>
             </plentry>
@@ -69,11 +69,11 @@
                 <pt>data</pt>
                 <pd>接收到的数据。</pd>
             </plentry>
-            <plentry id="length" props="cpp unity electron rn flutter cs">
+            <plentry id="length" props="cpp unreal bp unity electron rn flutter cs">
                 <pt>length</pt>
                 <pd>数据长度，单位为字节。</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter cs">
+            <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>sentTs</pt>
                 <pd>数据流发出的时间。</pd>
             </plentry>

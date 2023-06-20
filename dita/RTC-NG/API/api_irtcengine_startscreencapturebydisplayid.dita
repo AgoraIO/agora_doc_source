@@ -18,7 +18,7 @@
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
             <codeblock props="android" outputclass="language-java" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(uint32_t displayId, const Rectangle&amp; regionRect,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int startScreenCaptureByDisplayId(uint32_t displayId, const Rectangle&amp; regionRect,
                                             const ScreenCaptureParameters&amp; captureParams) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByDisplayId(
@@ -46,7 +46,7 @@
                 <li>在加入频道前调用该方法，然后调用 <xref keyref="joinChannel2" /> 加入频道并设置 <parmname>publishScreenTrack</parmname> 或 <parmname>publishSecondaryScreenTrack</parmname> 为 <codeph><ph keyref="true" /></codeph>，即可开始屏幕共享。</li>
                 <li>在加入频道后调用该方法，然后调用 <xref keyref="updateChannelMediaOptions" /> 设置 <parmname>publishScreenTrack</parmname> 或 <parmname>publishSecondaryScreenTrack</parmname> 为 <codeph><ph keyref="true" /></codeph>，即可开始屏幕共享。</li>
                 </ul></p>
-            <note type="attention" props="cpp flutter unity">该方法仅适用于 Windows 和 macOS。</note> 
+            <note type="attention" props="cpp unreal bp flutter unity">该方法仅适用于 Windows 和 macOS。</note> 
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -54,12 +54,12 @@
             <plentry>
                 <pt>displayId</pt>
                 <pd>指定待共享的屏幕 ID。
-                    <note type="note" props="cpp unity flutter electron">对于 Windows 平台，如果你需要同时共享两个屏幕（主屏 + 副屏），可以在调用该方法时，将 <parmname>displayId</parmname> 设置为 <codeph>-1</codeph>。</note>
+                    <note type="note" props="cpp unreal bp unity flutter electron">对于 Windows 平台，如果你需要同时共享两个屏幕（主屏 + 副屏），可以在调用该方法时，将 <parmname>displayId</parmname> 设置为 <codeph>-1</codeph>。</note>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter electron cs">
+            <plentry props="cpp unreal bp unity flutter electron cs">
                 <pt>regionRect</pt>
-                <pd><ph>（可选）指定待共享区域相对于整个屏幕的位置。如需共享整个屏幕，则填 <codeph>nil</codeph>。</ph><ph props="cpp unity flutter cs">详见 <xref keyref="Rectangle" />。</ph><ph props="mac">由如下参数组成：</ph>
+                <pd><ph>（可选）指定待共享区域相对于整个屏幕的位置。如需共享整个屏幕，则填 <codeph>nil</codeph>。</ph><ph props="cpp unreal bp unity flutter cs">详见 <xref keyref="Rectangle" />。</ph><ph props="mac">由如下参数组成：</ph>
                     <ul props="mac">
                     <li>x：左上角的横向偏移。</li>
                     <li>y：左上角的纵向偏移。</li>
@@ -70,7 +70,7 @@
             </plentry>
             <plentry>
                 <pt>captureParams</pt>
-                <pd>屏幕共享的参数配置。默认的视频编码分辨率为 1920 × 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" props="cpp electron flutter mac unity" />。</pd>
+                <pd>屏幕共享的参数配置。默认的视频编码分辨率为 1920 × 1080，即 2073600 像素。该像素值为计费标准。详见 <xref keyref="ScreenCaptureParameters" props="cpp unreal bp electron flutter mac unity" />。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
