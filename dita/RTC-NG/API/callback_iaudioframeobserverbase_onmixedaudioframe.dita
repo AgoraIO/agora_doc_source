@@ -17,7 +17,7 @@
       int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs, int avsync_type);
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onMixedAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onMixedAudioFrame(_:channelId:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onMixedAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onMixedAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onMixedAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnMixedAudioFrame(string channelId, AudioFrame audio_frame)
         {
@@ -45,12 +45,12 @@
             <title>参数</title>
             <parml>
             <plentry>
-                <pt props="cpp electron rn flutter">audioFrame</pt>
+                <pt props="cpp unreal bp electron rn flutter">audioFrame</pt>
                 <pt props="unity cs">audio_frame</pt>
                 <pt props="ios mac">frame</pt>
                 <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
             </plentry>
-            <plentry props="ios mac cpp unity rn electron flutter cs" id="id">
+            <plentry props="ios mac cpp unreal bp unity rn electron flutter cs" id="id">
                 <pt>channelId</pt>
                 <pd>频道 ID。</pd>
             </plentry>

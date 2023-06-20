@@ -17,7 +17,7 @@
                 int samplesPerChannel, int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer,
                 long renderTimeMs, int avsync_type);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onPlaybackAudioFrameBeforeMixing:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId uid:(NSUInteger)uid  NS_SWIFT_NAME(onPlaybackAudioFrame(beforeMixing:channelId:uid:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onPlaybackAudioFrameBeforeMixing(const char* channelId, rtc::uid_t uid, AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlaybackAudioFrameBeforeMixing?(
     channelId: string,
     uid: number,
@@ -43,18 +43,18 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp electron unity rn flutter cs">
-                <pt props="ios mac cpp electron rn flutter">channelId</pt>
+            <plentry props="cpp unreal bp electron unity rn flutter cs">
+                <pt props="ios mac cpp unreal bp electron rn flutter">channelId</pt>
                 <pt props="unity cs">channel_id</pt>
                 <pd>频道 ID。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter cs">uid</pt>
+                <pt props="cpp unreal bp ios mac unity electron rn flutter cs">uid</pt>
                 <pt props="android">userId</pt>
                 <pd>指定用户的用户 ID。</pd>
             </plentry>
-            <plentry props="cpp unity ios mac electron rn flutter cs">
-                <pt props="cpp electron rn flutter">audioFrame</pt>
+            <plentry props="cpp unreal bp unity ios mac electron rn flutter cs">
+                <pt props="cpp unreal bp electron rn flutter">audioFrame</pt>
                 <pt props="ios mac">frame</pt>
                 <pt props="unity cs">audio_frame</pt>
                 <pd>音频原始数据。详见 <xref keyref="AudioFrame"/>。</pd>
