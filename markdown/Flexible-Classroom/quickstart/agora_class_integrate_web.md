@@ -295,7 +295,6 @@ externals: {
 
 <a name="main-sub-device"></a>
 
-示例代码中 `userUuid` 的填写方式：在线监考时，学生需要使用主、副设备接入考试。比如，主设备为 Web 端，用于采集学生视频，并分享学生答题时的屏幕画面；副设备为 Android 或 iOS 设备，用于拍摄学生答题的身姿。监考老师通过三种视角的视频观察学生答题，防止作弊。你需要在不同设备上以 `${用户id}-${设备类型（main/sub）}` 的规则填写 `userUuid`。比如，对学生小明，在 Web 端集成代码 `AgoraProctorSDK.launch` 方法的 `userUuid` 参数中传入 `'xiaoming-main'`，在 Android 或 iOS 端对应的 `userUuid` 参数中传入 `'xiaoming-sub'`。灵动课堂会将 `xiaoming-main` 和 `xiaoming-sub` 识别为用户小明的主、副设备，然后合并主、副设备的视频画面，最终将合并后的视频画面渲染在老师的监考视频窗口中。
 
 示例代码中 `rtmToken` 的填写方式：你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
 <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="generate-token">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
@@ -337,6 +336,9 @@ externals: {
 
 <div class="alert info">打包完成的 JS 文件会输出至 <code>packages/agora-proctor-sdk/lib/proctor_sdk.bundle.js</code>。</div>
 
+### userUuid规则
+在线监考场景中，学生需要使用主、副设备接入考试。一般情况下，主设备为 Web 端，用于采集学生视频，并分享学生答题时的屏幕画面；副设备为 Android 或 iOS 设备，用于拍摄学生答题的身姿。监考老师通过三种视角的视频观察学生答题，防止作弊。
+你需要在不同设备上以 `${用户id}-${设备类型（main/sub）}` 的规则填写 userUuid。比如，对学生小明，原始id为`xiaoming`，在 Web 端集成代码 AgoraProctorSDK.launch 方法的 userUuid 参数中传入 `'xiaoming-main'`，在 Android 或 iOS 端对应的 userUuid 参数中传入 `'xiaoming-sub'`。灵动课堂会将 `xiaoming-main` 和 `xiaoming-sub` 识别为用户小明的主、副设备，然后合并主、副设备的视频画面，最终将合并后的视频画面渲染在老师的监考视频窗口中。
 ### 设置考卷链接
 
 在线考试开始后，考生会在本地通过 `Widget` 创建的 Webview 窗口加载考卷。考卷的链接通过房间属性（`roomProperties`）中的 `examinationUrl` 字段设置。你可以参考如下方式设置考卷链接：
@@ -345,26 +347,25 @@ externals: {
 
     ```json
     {
-        "roomName": "jasoncai61734",
-        "roomType": 4,
+        "roomName": "your room name",
+        "roomType": 6,
         "roomProperties": {
-            "schedule": {
-                "startTime": 1655452800000,
-                "duration": 600,
-                "closeDelay": 0
-            },
             // 设置本场考试的考卷链接
-            "examinationUrl": "your examination url"
+            "flexProps": {
+                "examinationUrl": "your examination url"
+            },
+            ...other properties
         }
     }
     ```
-- 创建考试房间后设置考卷：创建房间后，调用灵动课堂 RESTful API 的[更新课堂属性](/cn/agora-class/agora_class_restful_api?platform=Web#更新课堂属性)接口，并在请求包体的 `roomProperties` 字段中设置 `examinationUrl` 字段。
+- 创建考试房间后设置考卷：创建房间后，调用灵动课堂 RESTful API 的[更新课堂属性](/cn/agora-class/agora_class_restful_api?platform=Web#更新课堂属性)接口，并在请求包体的 `properties` 字段中设置 `examinationUrl` 字段。
 
     ```json
     {
         "properties": {
              // 设置本场考试的考卷链接
-            "examinationUrl": "your examination url"
+            "examinationUrl": "your examination url",
+            ...other properties
         },
         "cause": {}
     }
