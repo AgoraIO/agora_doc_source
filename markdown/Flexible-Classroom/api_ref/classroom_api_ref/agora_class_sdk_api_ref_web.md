@@ -91,7 +91,7 @@ export type LaunchOption = {
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
 | `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
 | `roomServiceType`  |（选填）大班课使用的服务类型。详见 [EduRoomServiceTypeEnum](#eduroomservicetypeenum)。  |
-| `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
+| `listener`               | （必填）教室事件监听回调，详见 [ListenerCallback](#listenercallback)。  |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
 | `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。                                                                                                                                |
@@ -405,3 +405,71 @@ export type LanguageEnum = "en" | "zh";
 | :----- | :----- |
 | `en` | 英文。 |
 | `zh` | 中文。 |
+
+
+### ListenerCallback
+```typescript
+export type ListenerCallback = (evt: AgoraEduClassroomEvent, ...args: unknown[]) => void;
+
+export declare enum AgoraEduClassroomEvent {
+    Ready = 1,
+    Destroyed = 2,
+    KickOut = 101,
+    TeacherTurnOnMyMic = 102,
+    TeacherTurnOffMyMic = 103,
+    TeacherGrantPermission = 104,
+    TeacherRevokePermission = 105,
+    UserAcceptToStage = 106,
+    UserLeaveStage = 107,
+    RewardReceived = 108,
+    TeacherTurnOnMyCam = 109,
+    TeacherTurnOffMyCam = 110,
+    CurrentCamUnplugged = 111,
+    CurrentMicUnplugged = 112,
+    CurrentSpeakerUnplugged = 113,
+    CaptureScreenPermissionDenied = 114,
+    BatchRewardReceived = 117,
+    InvitedToGroup = 118,
+    MoveToOtherGroup = 119,
+    JoinSubRoom = 120,
+    LeaveSubRoom = 121,
+    AcceptedToGroup = 122,
+    UserJoinGroup = 123,
+    UserLeaveGroup = 124,
+    RejectedToGroup = 125,
+    RTCStateChanged = 201,
+    ClassStateChanged = 202
+}
+```
+
+教室事件监听器。在 [LaunchOption](#launchoption) 中设置。
+
+| 参数   | 描述   |
+| :----- | :----- |
+| `Ready` | 教室已准备好。 |
+| `Destroyed` | 教室已销毁。 |
+| `KickOut` | 被踢出房间。 |
+| `TeacherTurnOnMyMic` | 被开启音频发流权限。 |
+| `TeacherTurnOffMyMic` | 被关闭音频发流权限。 |
+| `TeacherGrantPermission` | 被授予白板权限。 |
+| `TeacherRevokePermission` | 白板权限被收回。 |
+| `UserAcceptToStage` | 登上讲台。 |
+| `UserLeaveStage` | 离开讲台。 |
+| `RewardReceived` | 收到奖励。 |
+| `TeacherTurnOnMyCam` | 被开启视频发流权限。 |
+| `TeacherTurnOffMyCam` | 被关闭视频发流权限。 |
+| `CurrentCamUnplugged` | 当前摄像头设备拔出。 |
+| `CurrentMicUnplugged` | 当前麦克风设备拔出。 |
+| `CurrentSpeakerUnplugged` | 当前扬声器拔出。 |
+| `CaptureScreenPermissionDenied` | 无屏幕采集权限。 |
+| `BatchRewardReceived` | 收到批量奖励。 |
+| `InvitedToGroup` | 收到邀请进入分组。 |
+| `MoveToOtherGroup` | 被移动到其他分组。 |
+| `JoinSubRoom` | 加入分组。 |
+| `LeaveSubRoom` | 离开分组。 |
+| `AcceptedToGroup` | 用户接受加入分组。 |
+| `UserJoinGroup` | 其他用户加入分组。 |
+| `UserLeaveGroup` | 其他用户离开分组。 |
+| `RejectedToGroup` | 用户拒绝加入分组。 |
+| `RTCStateChanged` | RTC连接状态变更。 |
+| `ClassStateChanged` | 教室状态变更。 |
