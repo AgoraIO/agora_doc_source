@@ -53,7 +53,7 @@ public static func parseLyricData(data: Data) -> LyricModel?
 **返回值**
 
 - 方法调用成功时返回一个对应的歌词数据模型对象，包含歌词文本等信息。
-- 方法调用失败时返回 `null`。
+- 方法调用失败时返回 `nil`。
 
 ### setLyricData
 
@@ -128,20 +128,6 @@ public func setPitch(pitch: Double)
 - `pitch`：获取到的实时人声音调。
 - `progress`：歌曲当前的播放进度 (ms)。
 
-### setScoreAlgorithm
-
-设置 `IScoreAlgorithm` 对象。
-
-```objectivec
-public func setScoreAlgorithm(algorithm: IScoreAlgorithm) 
-```
-
-如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法应遵循 `IScoreAlgorithm` 协议。 
-
-**参数**
-
-- `algorithm`：实现了`IScoreAlgorithm` 协议的对象。
-
 ### setScoreLevel
 
 设置得分的难易程度。
@@ -181,6 +167,20 @@ public func setScoreCompensationOffset(offset: Int)
 - `offset`：额外增加或减少的分数，取值范围为 [-100, 100]，默认值为 0。
 
 声网不建议你同时使用 `setScoreLevel` 和 `setScoreCompensationOffset` 来调整打分机制。
+
+### setScoreAlgorithm
+
+设置 `IScoreAlgorithm` 对象。
+
+```objectivec
+public func setScoreAlgorithm(algorithm: IScoreAlgorithm) 
+```
+
+如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法应遵循 `IScoreAlgorithm` 协议。 
+
+**参数**
+
+- `algorithm`：实现了`IScoreAlgorithm` 协议的对象。
 
 ## KaraokeDelegate
 
@@ -257,7 +257,7 @@ onLog(content: String, tag: String?, time: String, level: LoggerLevel)
 
 你可以通过该回调来了解日志的相关内容，可用于排查问题。
 
-<div class="alert info">请确保该回调是在子线程中进行。</div>
+<div class="alert info">此回调将会在子线程被调用。</div>
 
 **参数**
 
@@ -456,9 +456,9 @@ public class LyricLineModel: NSObject {
 
 歌词行的相关信息。
 
-- `beginTime`：歌词开始的时间，单位为毫秒。
-- `duration`：歌词的总时长，单位为毫秒。
-- `content`：每一行歌词的内容。
+- `beginTime`：该行歌词开始的时间，单位为毫秒。
+- `duration`：该行歌词的总时长，单位为毫秒。
+- `content`：该行歌词的内容。
 - `tones`：每一个词的音高信息，详见 [LyricToneModel](#LyricToneModel)。
 
 ### FirstToneHintViewStyle
@@ -498,6 +498,25 @@ public class ConsoleLogger: NSObject, ILogger {
 - `tag`：日志标签（可选参数），用于进一步分类或标识日志。
 - `time`：日志记录的时间。
 - `level`：日志的级别，详见 [LoggerLevel](#LoggerLevel)。
+
+### FileLogger
+
+```objective-c
+public class FileLogger: NSObject, ILogger {
+    @objc public func onLog(content: String,
+                            tag: String?,
+                            time: String,
+                            level: LoggerLevel) {
+    }
+}
+```
+实现 `ILogger` 协议的日志记录器，用于将日志信息写入日志文件。
+
+- `onLog`：日志文件的回调。
+  - `content`：要记录的日志内容。
+  - `tag`：日志标签（可选参数），用于进一步分类或标识日志。
+  - `time`：日志记录的时间。
+  - `level`：日志的级别，详见 [LoggerLevel](#LoggerLevel)。
 
 ## Enum
 
