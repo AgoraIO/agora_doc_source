@@ -208,6 +208,7 @@ externals: {
 
 - 如果你直接使用灵动课堂的默认 UI，无需修改灵动课堂的代码，则可选择 [npm](https://www.npmjs.com/package/agora-classroom-sdk) 或 CDN 集成。
 - 如果你想要基于灵动课堂的默认 UI 进行修改，则可选择通过 [GitHub 源码](https://github.com/AgoraIO-Community/flexible-classroom-desktop)集成。
+- 监考场景回放功能依赖云录制，参考[配置录制功能]。
 
 ### 使用默认 UI 的方式集成
 
