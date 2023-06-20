@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setCameraFocusPositionInPreview(float positionX, float positionY);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setCameraFocusPositionInPreview:(CGPoint)position;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setCameraFocusPositionInPreview(float positionX, float positionY) = 0;
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setCameraFocusPositionInPreview(float positionX, float positionY) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setCameraFocusPositionInPreview(
     positionX: number,
@@ -33,15 +33,15 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>This method must be called after the camera is turned on, such as calling after <xref keyref="startPreview" props="apple" /><xref keyref="startPreview2" props="android cpp framework"/> and <xref keyref="enableVideo" />. After a successful method call, the SDK triggers the <xref keyref="onCameraFocusAreaChanged" /> callback.</p>
-            <note type="attention" props="cpp unity flutter cs">This method is for Android and iOS only.</note> </section>
+            <note type="attention" props="cpp unreal bp unity flutter cs">This method is for Android and iOS only.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="cpp android flutter unity rn cs">
+            <plentry props="cpp unreal bp android flutter unity rn cs">
                 <pt>positionX</pt>
                 <pd>The horizontal coordinate of the touchpoint in the view.</pd>
             </plentry>
-            <plentry props="cpp android flutter unity rn cs">
+            <plentry props="cpp unreal bp android flutter unity rn cs">
                 <pt>positionY</pt>
                 <pd>The vertical coordinate of the touchpoint in the view.</pd>
             </plentry>

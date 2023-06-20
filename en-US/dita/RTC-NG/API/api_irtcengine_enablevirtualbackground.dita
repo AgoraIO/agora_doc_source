@@ -17,7 +17,7 @@
       boolean enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty);
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableVirtualBackground:(BOOL)enable backData:(AgoraVirtualBackgroundSource* _Nullable)backData segData:(AgoraSegmentationProperty* _Nullable)segData NS_SWIFT_NAME(enableVirtualBackground(_:backData:segData:));</codeblock>
-            <codeblock props="cpp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;
+            <codeblock props="cpp unreal bp">virtual int enableVirtualBackground(bool enabled, VirtualBackgroundSource backgroundSource, SegmentationProperty segproperty, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableVirtualBackground(
     enabled: boolean,
@@ -46,13 +46,13 @@
             <note type="attention">
             <ul>
             <li>This feature requires high performance devices. Agora recommends that you implement it on devices equipped with the following chips:<ul>
-                <li props="android unity cpp rn flutter cs">Snapdragon 700 series 750G and later</li>
-                <li props="android unity cpp rn flutter cs">Snapdragon 800 series 835 and later</li>
-                <li props="android unity cpp rn flutter cs">Dimensity 700 series 720 and later</li>
-                <li props="android unity cpp rn flutter cs">Kirin 800 series 810 and later</li>
-                <li props="android unity cpp rn flutter cs">Kirin 900 series 980 and later</li>
-                <li props="mac cpp unity electron cs">Devices with an i5 CPU and better</li>
-                <li props="ios cpp unity rn flutter cs">Devices with an A9 chip and better, as follows:<ul>
+                <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 700 series 750G and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 800 series 835 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Dimensity 700 series 720 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Kirin 800 series 810 and later</li>
+                <li props="android unity cpp unreal bp rn flutter cs">Kirin 900 series 980 and later</li>
+                <li props="mac cpp unreal bp unity electron cs">Devices with an i5 CPU and better</li>
+                <li props="ios cpp unreal bp unity rn flutter cs">Devices with an A9 chip and better, as follows:<ul>
                     <li>iPhone 6S and later</li>
                     <li>iPad Air 3rd generation and later</li>
                     <li>iPad 5th generation and later</li>
@@ -70,7 +70,7 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="cpp android unity flutter rn electron cs">enabled</pt>
+                <pt props="cpp unreal bp android unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable virtual background:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Enable virtual background.</li>
@@ -78,16 +78,16 @@
                     </ul></pd>
             </plentry>
             <plentry>
-                <pt props="cpp android unity flutter rn electron cs">backgroundSource</pt>
+                <pt props="cpp unreal bp android unity flutter rn electron cs">backgroundSource</pt>
                 <pt props="mac ios">backData</pt>
                 <pd>The custom background. See <xref keyref="VirtualBackgroundSource"/>. To adapt the resolution of the custom background image to that of the video captured by the SDK, the SDK scales and crops the custom background image while ensuring that the content of the custom background image is not distorted.</pd>
             </plentry>
             <plentry>
-                <pt props="android cpp unity electron rn flutter cs">segproperty</pt>
+                <pt props="android cpp unreal bp unity electron rn flutter cs">segproperty</pt>
                 <pt props="ios mac">segData</pt>
                 <pd>Processing properties for background images. See <xref keyref="SegmentationProperty"/>.</pd>
             </plentry>
-            <plentry props="cpp unity rn electron flutter cs">
+            <plentry props="cpp unreal bp unity rn electron flutter cs">
                 <pt>type</pt>
                 <pd>The type of the video source. See <xref keyref="MEDIA_SOURCE_TYPE"/>.<note type="attention">In this method, this parameter supports only the following two settings:<ul>
                     <li>The default value is <apiname keyref="PRIMARY_CAMERA_SOURCE"/>.</li>

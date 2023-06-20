@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int startScreenCaptureByScreenRect(const Rectangle&amp; screenRect,
      const Rectangle&amp; regionRect,
      const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByScreenRect(
@@ -46,17 +46,17 @@
                 </dl>
    <p id="desc">This method shares a screen or part of the screen. You need to specify the area of the screen to be shared.</p>
    <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
-   <note type="attention" id="note" props="cpp electron unity flutter">This method applies to Windows only.</note>
+   <note type="attention" id="note" props="cpp unreal bp electron unity flutter">This method applies to Windows only.</note>
         </section>
         <section id="parameters"><title>Parameters</title>
    <parml>
-       <plentry props="cpp unity flutter electron cs">
+       <plentry props="cpp unreal bp unity flutter electron cs">
   <pt>screenRect</pt>
   <pd>Sets the relative location of the screen to the virtual screen.</pd>
        </plentry>
        <plentry>
   <pt>regionRect</pt>
-  <pd props="cpp unity flutter electron cs"><ph props="cpp unity cs">(Optional) </ph>Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
+  <pd props="cpp unreal bp unity flutter electron cs"><ph props="cpp unreal bp unity cs">(Optional) </ph>Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the screen, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole screen.</pd>
 </plentry>
        <plentry>
   <pt>captureParams</pt>

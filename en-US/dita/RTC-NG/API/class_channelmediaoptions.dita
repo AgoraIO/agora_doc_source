@@ -73,7 +73,7 @@
 @property(assign, nonatomic) BOOL isAudioFilterable;
 
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
   Optional&lt;bool&gt; publishSecondaryCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
@@ -386,7 +386,7 @@ class ChannelMediaOptions {
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishAudioTrack</parmname>, publishCustomAudioTrack, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios cpp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp flutter unity electron">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection"/>. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishAudioTrack</parmname>, publishCustomAudioTrack, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios cpp unreal bp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp unreal bp flutter unity electron">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true"/></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
@@ -398,7 +398,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the camera.</li>
                     </ul></pd>
             </plentry>
-            <plentry props="mac cpp unity cs flutter rn electron">
+            <plentry props="mac cpp unreal bp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>Whether to publish the video captured by the second camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second camera.</li>
@@ -418,7 +418,7 @@ class ChannelMediaOptions {
                     <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true"/></codeph>.</li></ul></note>
                 </pd>
             </plentry>
-            <plentry props="cpp unity cs flutter rn electron">
+            <plentry props="cpp unreal bp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>Whether to publish the video captured by the second camera:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second camera.</li>
@@ -436,14 +436,14 @@ class ChannelMediaOptions {
                     <p><note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unity flutter rn electron">
+            <plentry props="cpp unreal bp unity flutter rn electron">
                 <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <p><note type="attention" props="cpp unity flutter rn electron">This parameter applies to Android and iOS only.</note></p> </pd>
+                    <p><note type="attention" props="cpp unreal bp unity flutter rn electron">This parameter applies to Android and iOS only.</note></p> </pd>
             </plentry>
             <plentry props="android ios cpp framework">
                 <pt>publishScreenCaptureAudio</pt>
@@ -453,12 +453,12 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>: Publish the audio captured from the screen.</li>
                     </ul></p>
                     <p>
-                    <note type="attention" props="cpp unity flutter rn electron">This parameter applies to Android and iOS only.</note></p>
+                    <note type="attention" props="cpp unreal bp unity flutter rn electron">This parameter applies to Android and iOS only.</note></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt props="android ios">publishScreenCaptureVideo</pt>
-                <pt props="mac cpp framework">publishScreenTrack</pt>
+                <pt props="mac cpp unframework">publishScreenTrack</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the screen.</li>
@@ -467,7 +467,7 @@ class ChannelMediaOptions {
                     <p><note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unity cs flutter rn electron">
+            <plentry props="mac cpp unreal bp unity cs flutter rn electron">
                 <pt>publishSecondaryScreenTrack</pt>
                 <pd>Whether to publish the video captured from the second screen:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the video captured from the second screen.</li>
@@ -475,7 +475,7 @@ class ChannelMediaOptions {
                     </ul>
                 </pd>
             </plentry>
-            <plentry props="cpp unity cs flutter rn electron">
+            <plentry props="cpp unreal bp unity cs flutter rn electron">
                 <pt>publishTranscodedVideoTrack</pt>
                 <pd>Whether to publish the local transcoded video:<ul>
                     <li><codeph><ph keyref="true"/></codeph>: Publish the local transcoded video.</li>

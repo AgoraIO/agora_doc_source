@@ -17,7 +17,7 @@
             <codeblock props="mac" outputclass="language-objectivec">- (int)startScreenCaptureByWindowId:(UInt32)windowId
                 regionRect:(CGRect)regionRect
                 captureParams:(AgoraScreenCaptureParameters *_Nonnull)captureParams;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int startScreenCaptureByWindowId(view_t windowId,
                 const Rectangle&amp; regionRect,
                 const ScreenCaptureParameters&amp; captureParams) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureByWindowId(
@@ -42,10 +42,10 @@
             <p id="desc">This method captures a window or part of the window. You need to specify the ID of the window to be captured.</p>
             <p conkeyref="startScreenCaptureByDisplayId/apisequence" />
             <note type="attention" id="note">
-                <ul><li props="cpp unity flutter">This method applies to the macOS and Windows only.</li>
+                <ul><li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
                 <li>The window sharing feature of the Agora SDK relies on WGC (Windows Graphics Capture) or GDI (Graphics Device Interface) capture, and WGC cannot be set to disable mouse capture on systems earlier than Windows 10 2004. Therefore, <codeph>captureMouseCursor(false)</codeph> might not work when you start window sharing on a device with a system earlier than Windows 10 2004. See <xref keyref="ScreenCaptureParameters" />.</li></ul></note>
-            <p props="cpp unity flutter electron cs">This method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
-            <p props="cpp unity flutter electron cs"> <table id="table_lvk_tfs_r4b">
+            <p props="cpp unreal bp unity flutter electron cs">This method supports window sharing of UWP (Universal Windows Platform) applications. Agora tests the mainstream UWP applications by using the lastest SDK, see details as follows:</p>
+            <p props="cpp unreal bp unity flutter electron cs"> <table id="table_lvk_tfs_r4b">
             <tgroup cols="4">
                 <colspec colnum="1" colname="col1" />
                 <colspec colnum="2" colname="col2" />
@@ -174,7 +174,7 @@
                 <pt>windowId</pt>
                 <pd>The ID of the window to be shared.</pd>
             </plentry>
-            <plentry props="cpp electron unity flutter cs">
+            <plentry props="cpp unreal bp electron unity flutter cs">
                 <pt>regionRect</pt>
                 <pd>(Optional) Sets the relative location of the region to the screen. If you do not set this parameter, the SDK shares the whole screen. See <xref keyref="Rectangle" />. If the specified region overruns the window, the SDK shares only the region within it; if you set width or height as 0, the SDK shares the whole window.</pd>
             </plentry>

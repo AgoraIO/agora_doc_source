@@ -19,7 +19,7 @@
 @property(assign, nonatomic) NSUInteger highLightWidth;
 @end
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ScreenCaptureParameters {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ScreenCaptureParameters {
     VideoDimensions dimensions;
     int frameRate;
     int bitrate;
@@ -229,27 +229,27 @@
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
-            <note type="note" props="mac cpp unity cs">The video profiles of the shared screen stream are only set by <xref keyref="ScreenCaptureParameters"/>, independent of <xref keyref="setVideoEncoderConfiguration"/>.</note>
+            <note type="note" props="mac cpp unreal bp unity cs">The video profiles of the shared screen stream are only set by <xref keyref="ScreenCaptureParameters"/>, independent of <xref keyref="setVideoEncoderConfiguration"/>.</note>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p><ph>The video encoding resolution of the shared screen stream. </ph>See <xref keyref="VideoDimensions"/>. The default value is 1920 × 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</p>
-                    <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unity flutter cs">dimensions</parmname> is set to 1920 × 1080:<ul>
+                    <p><ph>The video encoding resolution of the shared screen stream. </ph><ph props="cpp unreal bp unity electron flutter cs">See <xref keyref="VideoDimensions"/>. The default value is 1920 × 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
+                    <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unreal bp unity flutter cs">dimensions</parmname> is set to 1920 × 1080:<ul>
                     <li>If the value of the screen dimensions is lower than that of <parmname>dimensions</parmname>, for example, 1000 × 1000 pixels, the SDK uses the screen dimensions, that is, 1000 × 1000 pixels, for encoding.</li>
-                    <li>If the value of the screen dimensions is higher than that of <parmname>dimensions</parmname>, for example, 2000 × 1500, the SDK uses the maximum value under <parmname props="mac cpp unity flutter cs">dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 × 1080.</li>
+                    <li>If the value of the screen dimensions is higher than that of <parmname>dimensions</parmname>, for example, 2000 × 1500, the SDK uses the maximum value under <parmname props="mac cpp unreal bp unity flutter cs">dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 × 1080.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd><ph props="flutter rn">The frame rate of the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp electron">On Windows and macOS, this represents the video encoding frame rate (fps) of the shared screen stream. </ph><ph>The frame rate (fps) of the shared region. The default value is 5.  Agora does not recommend setting this to a value greater than 15.</ph></pd>
+                <pd><ph props="flutter rn">The frame rate of the shared region. </ph><ph props="mac">The video encoding resolution of the shared screen stream. </ph><ph props="unity cpp unreal bp electron">On Windows and macOS, this represents the video encoding frame rate (fps) of the shared screen stream. </ph><ph>The frame rate (fps) of the shared region. The default value is 5.  Agora does not recommend setting this to a value greater than 15.</ph></pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
-                <pd><ph props="unity flutter rn cs">The bitrate of the shared region. </ph><ph props="mac">The video encoding bitrate of the shared screen stream. </ph><ph props="unity cpp electron">On Windows and macOS, this represents the video encoding bitrate of the shared screen stream. </ph><ph>The bitrate (Kbps) of the shared region. The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).</ph></pd>
+                <pd><ph props="unity flutter rn cs">The bitrate of the shared region. </ph><ph props="mac">The video encoding bitrate of the shared screen stream. </ph><ph props="unity cpp unreal bp electron">On Windows and macOS, this represents the video encoding bitrate of the shared screen stream. </ph><ph>The bitrate (Kbps) of the shared region. The default value is 0 (the SDK works out a bitrate according to the dimensions of the current screen).</ph></pd>
             </plentry>
-            <plentry props="mac cpp unity electron rn flutter cs">
+            <plentry props="mac cpp unreal bp unity electron rn flutter cs">
                 <pt>captureMouseCursor</pt>
                 <pd>
                     <p>Whether to capture the mouse in screen sharing:<ul>
@@ -258,7 +258,7 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unity electron rn flutter cs">
+            <plentry props="mac cpp unreal bp unity electron rn flutter cs">
                 <pt>windowFocus</pt>
                 <pd>
                     <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId"/> method to share it:<ul>
@@ -267,30 +267,30 @@
                     </ul></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unity electron rn flutter cs">
+            <plentry props="mac cpp unreal bp unity electron rn flutter cs">
                 <pt>excludeWindowList</pt>
                 <pd>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</pd>
             </plentry>
-            <plentry props="mac cpp electron unity rn flutter cs">
+            <plentry props="mac cpp unreal bp electron unity rn flutter cs">
                 <pt props="mac">highLighted</pt>
-                <pt props="cpp electron unity cs flutter">enableHighLight</pt>
-                <pd><ph props="cpp unity flutter">(For macOS and Windows only) </ph><ph>Whether to place a border around the shared window or screen:</ph><ul>
+                <pt props="cpp unreal bp electron unity cs flutter">enableHighLight</pt>
+                <pd><ph props="cpp unreal bp unity flutter">(For macOS and Windows only) </ph><ph>Whether to place a border around the shared window or screen:</ph><ul>
                     <li><codeph><ph keyref="true"/></codeph>: Place a border.</li>
                     <li><codeph><ph keyref="false"/></codeph>: (Default) Do not place a border.</li>
                     </ul>
                     <note>When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set this parameter to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
-            <plentry props="mac cpp electron unity flutter cs">
+            <plentry props="mac cpp unreal bp electron unity flutter cs">
                 <pt>highLightColor</pt>
-                <pd><ph props="cpp unity flutter">(For macOS and Windows only)</ph><ul>
-                <li props="cpp unity electron flutter cs">On Windows platforms, the color of the border in ARGB format. The default value is 0xFF8CBF26.</li>
-                <li props="cpp mac unity electron flutter">On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</li></ul></pd>
+                <pd><ph props="cpp unreal bp unity flutter">(For macOS and Windows only)</ph><ul>
+                <li props="cpp unreal bp unity electron flutter cs">On Windows platforms, the color of the border in ARGB format. The default value is 0xFF8CBF26.</li>
+                <li props="cpp unreal bp mac unity electron flutter">On macOS, <codeph>COLOR_CLASS</codeph> refers to <codeph>NSColor</codeph>.</li></ul></pd>
             </plentry>
-            <plentry props="mac cpp electron unity flutter cs">
+            <plentry props="mac cpp unreal bp electron unity flutter cs">
                 <pt>highLightWidth</pt>
-                <pd><ph props="cpp unity flutter">(For macOS and Windows only) </ph><ph>The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true"/></codeph>.</note></pd>
+                <pd><ph props="cpp unreal bp unity flutter">(For macOS and Windows only) </ph><ph>The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter cs">
+            <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>excludeWindowCount</pt>
                 <pd>The number of windows to be excluded.<note>On the Windows platform, the maximum value of this parameter is 24; if this value is exceeded, excluding the window fails.</note>
                 </pd>
