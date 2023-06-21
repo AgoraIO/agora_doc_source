@@ -128,35 +128,39 @@ NSArray *admins = aGroup.adminList;
 
 ### 获取群成员列表
 
-群成员可以调用 `getGroupMemberListFromServerWithId` 方法从服务器分页获取群成员列表。
+- 当群成员少于 200 人时，你可以调用从服务器获取群组详情的方法 `getGroupSpecificationFromServerWithId` 获取获取群成员列表，包括群主、群管理员和普通群成员：
 
-- 当群成员数量大于等于 200 时，可分页获取群成员列表：
+```objectivec
+// 第二个参数传入 `YES`，默认取 200 人的群成员列表。
+// 同步方法，异步方法见 [AgoraChatGroupManager getGroupSpecificationFromServerWithId:fetchMembers:completion:]
+AgoraChatGroup *group = [[AgoraChatClient sharedClient].groupManager
+                                          getGroupSpecificationFromServerWithId:@"groupID"
+                                          fetchMembers:YES
+                                          error:nil];
+NSArray *memberList = group.memberList;
+```
 
-```objective-c
+- 当群成员数量大于等于 200 时，你可以首先调用 `getGroupSpecificationFromServerWithId` 方法获取群主和群管理员，然后调用 `getGroupMemberListFromServerWithId` 方法获取普通群成员列表：
+
+```objectivec
+AgoraChatGroup *group = [[AgoraChatClient sharedClient].groupManager
+                                          getGroupSpecificationFromServerWithId:@"groupID"
+                                          fetchMembers:NO
+                                          error:nil];
 NSMutableArray *memberList = [[NSMutableArray alloc]init];
 NSInteger pageSize = 50;
 NSString *cursor = nil;
 AgoraChatCursorResult *result = [[AgoraChatCursorResult alloc]init];
 do {
-  result = [[AgoraChatClient sharedClient].groupManager
-                            getGroupMemberListFromServerWithId:@"groupID"
-                                                                                    cursor:cursor
-                                                                                pageSize:pageSize
-                                                                                     error:nil];
-  [memberList addObjectsFromArray:result.list];
-  cursor = result.cursor;
+  // 同步方法，异步方法见 [AgoraChatGroupManager getGroupMemberListFromServerWithId:cursor:pageSize:completion:]
+    result = [[AgoraChatClient sharedClient].groupManager
+                                      getGroupMemberListFromServerWithId:@"groupID"
+                                      cursor:cursor
+                                      pageSize:pageSize
+                                      error:nil];
+    [memberList addObjectsFromArray:result.list];
+    cursor = result.cursor;
 } while (result && result.list < pageSize);
-```
-
-- 当群成员少于 200 人时，也可以调用 `getGroupSpecificationFromServerWithId` 获取聊天群成员列表。
-
-```objective-c
-// 第二个参数传入 TRUE，默认取 200 人的群成员列表。
-AgoraChatGroup *group = [[AgoraChatClient sharedClient].groupManager
-                                 getGroupSpecificationFromServerWithId:@"groupID"
-                                                                          fetchMembers:YES
-                                                                                                 error:nil];
-NSArray *memberList = [group.memberList];
 ```
 
 ### 获取群组列表
