@@ -34,7 +34,7 @@ Sending a thread message is similar to sending a message in a chat group. The di
 // Sets `chatThreadId` to thread ID.
 // Sets `content` to the message content.
 ChatMessage msg = ChatMessage.createTxtSendMessage(
-  chatThreadId: thread ID,
+  chatThreadId: threadId,
   content: content,
 );
 // Sets `ChatType` to GroupChat as a thread belongs to a chat group.
