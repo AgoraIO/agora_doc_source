@@ -159,7 +159,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 
 #### Request body
 
-The request body is a JSON object, which contains the following fields:
+The request body is a JSONArray object, which contains the following fields:
 
 | Field | Type | Description | Required |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
@@ -190,7 +190,7 @@ Registering 2 users:
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '
+curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '[
     {
         "username":"user1",
         "password":"123",
@@ -200,7 +200,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourA
         "username":"user2",
         "password":"456",
         "nickname":"testuser2"
-    }'
+    }
+]'    
 ```
 
 #### Response example 1
@@ -245,7 +246,7 @@ If the request body contains a user3 that has previously been registered, the re
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '
+curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '[
     {
         "username":"user1",
         "password":"123",
@@ -260,7 +261,8 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourA
         "username":"user3",
         "password":"789",
         "nickname":"testuser3"
-    }'
+    }
+]'
 ```
 
 #### Response example 2
