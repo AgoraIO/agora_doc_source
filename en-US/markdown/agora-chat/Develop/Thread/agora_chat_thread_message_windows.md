@@ -36,7 +36,7 @@ This section describes how to call the APIs provided by the Agora Chat SDK to im
 Send a thread message is similar to send a message in a chat group. The difference lies in the `IsThread` field, as shown in the following code sample:
 
 ```c#
-// Creates a text message. `content` contains the message content, and `chatThreadId` contains the thread ID. 
+// Creates a text message. Sets `chatThreadId` to the thread ID and `content` to the message content. 
 Message msg = Message.CreateTextSendMessage(chatThreadId, content);
 // Sets the message type. For thread messages, set `ChatType` as `GroupChat`.
 msg.MessageType = MessageType.Group
