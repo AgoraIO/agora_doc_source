@@ -57,6 +57,36 @@ func removeEventHandler(ktvApiEventHandler: KTVApiEventHandlerDelegate)
 
 - `ktvApiEventHandler`：KTV API 的事件句柄，详见 [KTVApiEventHandlerDelegate](#KTVApiEventHandlerDelegate)。
 
+### renewToken
+
+```objective-c
+func renewToken(
+    rtmToken: String,
+    chorusChannelRtcToken: String
+)
+```
+
+更新 Token。
+
+当你收到 `onTokenPrivilegeWillExpire` 回调报告 Token 即将过期时，需要主动调用此方法更新 Token。
+
+参数
+
+- `rtmToken`：用于音乐内容中心鉴权的 RTM Token。
+- `chorusChannelRtcToken`：加入频道 2 的 Token。在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。
+
+### renewInnerDataStreamId
+
+```objective-c
+func renewInnerDataStreamId()
+```
+
+更新 KTV API 内部使用的数据流 ID。
+
+如果你调用 `leaveChannel` 离开当前频道，之前创建的数据流会失效，你需要在调用 `joinChannel` 加入频道后，重新调用该方法更新数据流的 ID 。
+
+由于每个频道中最多只能创建 5 个数据流，因此请勿再一个频道内多次调用该方法。
+
 ### fetchMusicCharts
 
 ```objective-c
@@ -409,8 +439,8 @@ func onMusicLoadProgress(songCode: Int, percent: Int, status: AgoraMusicContentC
 
 ```objective-c
 func onMusicPlayerStateChanged(state: AgoraMediaPlayerState,
-                                   error: AgoraMediaPlayerError,
-                                   isLocal: Bool)
+                               error: AgoraMediaPlayerError,
+                               isLocal: Bool)
 ```
 
 播放器状态改变回调。
@@ -444,19 +474,43 @@ func onSingerRoleChanged(oldRole: KTVSingRole, newRole: KTVSingRole)
 - `oldRole`：切换前的用户角色，详见 [KTVSingRole](#KTVSingRole)。
 - `newRole`：切换后的用户角色，详见 [KTVSingRole](#KTVSingRole)。
 
-### onChorusChannelTokenPrivilegeWillExpire
+### onSingingScoreResult
 
 ```objective-c
-func onChorusChannelTokenPrivilegeWillExpire(token: String?)
+func onSingingScoreResult(score: Float)
+```
+
+//TODO
+
+### onTokenPrivilegeWillExpire
+
+```objective-c
+open fun onTokenPrivilegeWillExpire() {}
 ```
 
 Token 即将过期回调。
 
-在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。当用于加入频道 2 的 Token 即将过期时，会触发该回调提醒你及时更新 Token。你可以调用 [renewToken](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_core_method.html?platform=iOS#api_irtcengine_renewtoken) 来传入新的 Token。
+当用于音乐内容中心鉴权的 RTM Token 或用于加入合唱频道（频道 2）鉴权的 Token 即将过期时，会触发该回调。
 
-#### 参数
+在收到该回调后，你需要调用 `renewToken` 来更新 Token。
 
-- `token`：即将服务失效的 Token。
+### onChorusChannelAudioVolumeIndication
+
+```objective-c
+func onChorusChannelAudioVolumeIndication(
+        speakers: [AgoraRtcAudioVolumeInfo],
+        totalVolume: Int)
+}
+```
+
+领唱的人声音量回调。
+
+开始合唱后，该回调会每 50 ms 触发一次，报告领唱的人声音量信息。
+
+参数
+
+- speakers：领唱的音量信息，详见 [AgoraRtcAudioVolumeInfo](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/ios_ng/API/class_audiovolumeinfo.html?platform=iOS) 数组。
+- totalVolume：混音后的总音量，取值范围为 [0,255]。
 
 
 ## Enum
@@ -557,7 +611,7 @@ public enum KTVLoadSongState: Int {
 ### KTVApiConfig
 
 ```objective-c
-open class KTVApiConfig: NSObject{
+@objc open class KTVApiConfig: NSObject{
     var appId: String
     var rtmToken: String
     weak var engine: AgoraRtcEngineKit?
@@ -565,15 +619,16 @@ open class KTVApiConfig: NSObject{
     var localUid: Int = 0
     var chorusChannelName: String
     var chorusChannelToken: String
-     
-    public
+    var maxCacheSize: Int = 10
+    @objc public
     init(appId: String,
          rtmToken: String,
          engine: AgoraRtcEngineKit,
          channelName: String,
          localUid: Int,
          chorusChannelName: String,
-         chorusChannelToken: String
+         chorusChannelToken: String,
+         maxCacheSize: Int
     ) {
         self.appId = appId
         self.rtmToken = rtmToken
@@ -582,8 +637,10 @@ open class KTVApiConfig: NSObject{
         self.localUid = localUid
         self.chorusChannelName = chorusChannelName
         self.chorusChannelToken = chorusChannelToken
+        self.maxCacheSize = maxCacheSize
     }
 }
+
 ```
 
 K 歌配置：
@@ -603,6 +660,8 @@ K 歌配置：
 - `chorusChannelName`: 频道 2 的名称。在合唱场景下，领唱需要加入两个频道，频道 1 用户发布人声和播放器的混流，加入频道 2 发布麦克风采集的音频流，伴唱需要加入频道 2 来同步领唱的人声。在独唱场景下，该参数可以为空。
 
 - `chorusChannelToken`：合唱场景下，根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。在独唱场景下，该参数可以为空。
+
+- `maxCacheSize`：可缓存的音乐资源数量，最多不能超过 50。
 
 ### KTVSongConfiguration
 
