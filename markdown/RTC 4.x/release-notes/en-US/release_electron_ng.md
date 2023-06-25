@@ -1,6 +1,6 @@
 ## v4.2.1
 
-This version was released on June 25, 2023.
+This version was released on June 21, 2023.
 
 #### Improvements
 
