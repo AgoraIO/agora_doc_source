@@ -4,7 +4,7 @@
 
 ## 示例项目
 
-声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供[元直播](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0/Android)源代码供你参考。
+声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供元直播源代码供你参考。
 
 ## 开通 Meta 服务
 
@@ -45,7 +45,7 @@
 
 2. 添加网络及设备权限。
 
-   打开 `./app/src/main/AndroidManifest.xml` 文件，在 `</application>` 后面添加如下权限：
+   打开 `./<Your Project>/app/src/main/AndroidManifest.xml` 文件，在 `</application>` 后面添加如下权限：
 
    ```xml
     <uses-permission android:name="android.permission.INTERNET" />
@@ -76,7 +76,7 @@
     | `x86_64` 文件夹           | `/app/src/main/jniLibs/` |
     | `x86` 文件夹	            | `/app/src/main/jniLibs/` |
 
-    3. 在 `./Android/app/build.gradle` 文件中添加以下代码指定本地依赖：
+    3. 在 `./<Your Project>/app/build.gradle` 文件中添加以下代码指定本地依赖：
 
     ```java
     dependencies {
@@ -87,7 +87,7 @@
     }
     ```
 
-4. 除 SDK 外，你还需要添加其他依赖。在 `./Android/app/build.gradle` 文件中添加以下代码：
+4. 除 SDK 外，你还需要添加其他依赖。在 `./<Your Project>/app/build.gradle` 文件中添加以下代码：
 
 ```java
 dependencies {
@@ -112,7 +112,7 @@ dependencies {
 实现流程中需要用到声网 SDK 的以下接口类：
 
 - `RtcEngine` 类：提供实时音视频功能。
-- `IMetaService` 类：Meta SDK 所有接口的入口，用于创建 `AgoraMetaScene` 对象，负责获取、下载和删除场景资源。
+- `IMetaService` 类：Meta SDK 所有接口的入口，用于创建 `IMetaScene` 对象，负责获取、下载和删除场景资源。
 - `IMetaScene` 类：负责进出场景、场景视频渲染、场景相关参数设置等场景相关操作。
 - `ILocalUserAvatar` 类：用于设置用户昵称、徽章、Avatar 模型、捏脸换装等详细信息。
 - `IMetaServiceEventHandler` 类：`IMetaService` 的异步方法的事件回调类。
@@ -120,19 +120,21 @@ dependencies {
 
 元直播的 API 调用时序见下图：
 
-![](https://web-cdn.agora.io/docs-files/1687674891386)
+![](https://web-cdn.agora.io/docs-files/1687684407522)
 
 ### 1. 初始化
 
-在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。本节展示调用 `RtcEngine.create` 初始化 `RtcEngine` 对象和调用 `IMetaService.create` 和 `IMetaService.initialize`初始化 `IMetaService` 对象的示例代码。
+在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。
+
+- 调用 `RtcEngine.create` 创建并初始化 `RtcEngine` 对象：
 
 ```java
-// 创建并初始化 RTC 引擎
+// 配置 RtcEngine
 RtcEngineConfig rtcConfig = new RtcEngineConfig();
-rtcConfig.mContext = context; // 设置 Android 活动上下文
-rtcConfig.mAppId = KeyCenter.APP_ID; // 设置 App ID
-rtcConfig.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING; // 设置频道为直播模式
-// 设置 RtcEngine 的事件句柄
+rtcConfig.mContext = context; // Android 活动上下文
+rtcConfig.mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
+rtcConfig.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING; // 频道使用场景设置为直播模式
+// RtcEngine 的事件句柄
 rtcConfig.mEventHandler = new IRtcEngineEventHandler() {
     @Override
     public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
@@ -160,21 +162,48 @@ rtcConfig.mEventHandler = new IRtcEngineEventHandler() {
     }
 };
 
+rtcConfig.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT); // 音频场景设置为默认场景
+
 // 创建并初始化 RtcEngine
 rtcEngine = RtcEngine.create(rtcConfig);
-```
+
+rtcEngine.setParameters("{\"rtc.enable_debug_log\":true}");
  
+rtcEngine.enableAudio();
+rtcEngine.enableVideo();
+ 
+rtcEngine.setAudioProfile(
+        Constants.AUDIO_PROFILE_DEFAULT, Constants.AUDIO_SCENARIO_GAME_STREAMING
+);
+rtcEngine.setDefaultAudioRoutetoSpeakerphone(true);
+ 
+scenePath = context.getExternalFilesDir("").getPath();
+{
+    metaService = IMetaService.create();
+    MetaServiceConfig config = new MetaServiceConfig() {{
+        mRtcEngine = rtcEngine;
+        mAppId = KeyCenter.APP_ID;
+        mRtmToken = KeyCenter.RTM_TOKEN;
+        mLocalDownloadPath = scenePath;
+        mUserId = KeyCenter.RTM_UID;
+        mEventHandler = MetaContext.this;
+    }};
+    ret += metaService.initialize(config);
+    Log.i(TAG, "launcher version=" + metaService.getLauncherVersion(context));
+}
+```
+
+- 调用 `IMetaService.create` 和 `IMetaService.initialize` 创建并初始化 `IMetaService` 对象：
 
 ```java
-// 创建并初始化 Meta 服务
 scenePath = context.getExternalFilesDir("").getPath();
 {
     // 创建 IMetaService 对象
     metaService = IMetaService.create();
-    // 配置 MetaServiceConfig
+    // 配置 IMetaService
     MetaServiceConfig config = new MetaServiceConfig() {{
-        mRtcEngine = rtcEngine; // Rtc Engine
-        mAppId = KeyCenter.APP_ID; // App ID
+        mRtcEngine = rtcEngine; // RTC 引擎
+        mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
         mRtmToken = KeyCenter.RTM_TOKEN; // RTM token
         mLocalDownloadPath = scenePath; // 场景资源的本地下载路径
         mUserId = KeyCenter.RTM_UID; // RTM 用户 ID
@@ -220,14 +249,12 @@ public boolean cancelDownloadScene(MetaSceneAssetsInfo sceneInfo) {
 搭建元直播首先需要调用 `createScene` 创建场景。
 
 ```java
-// 场景配置信息
+// 配置场景信息
 MetaSceneConfig sceneConfig = new MetaSceneConfig();
-sceneConfig.mActivityContext = activityContext;
-// 支持面捕
-sceneConfig.mEnableFaceCapture = true;
-// 传入面捕插件
-sceneConfig.mFaceCaptureAppId = KeyCenter.FACE_CAP_APP_ID;
-sceneConfig.mFaceCaptureCertificate = KeyCenter.FACE_CAP_APP_KEY;
+sceneConfig.mActivityContext = activityContext; // Android 活动上下文
+sceneConfig.mEnableFaceCapture = true; // 支持面捕
+sceneConfig.mFaceCaptureAppId = KeyCenter.FACE_CAP_APP_ID; // 传入面捕插件
+sceneConfig.mFaceCaptureCertificate = KeyCenter.FACE_CAP_APP_KEY; // 传入面捕插件
 int ret = -1;
 if (metaScene == null) {
     // 创建场景
@@ -269,17 +296,16 @@ public void enterScene() {
     if (null != metaScene) {
         // 设置回调接口
         metaScene.addEventHandler(MetaContext.getInstance());
+        // 配置进入场景信息
         EnterSceneConfig config = new EnterSceneConfig();
-        // 指定场景的渲染视图，Android 上使用 TextureView 控件
-        config.mSceneView = this.sceneView;
-        // 指定场景的频道名
-        config.mRoomName = KeyCenter.CHANNEL_ID;
+        config.mSceneView = this.sceneView; // 场景的渲染视图，Android 上使用 TextureView 控件
+        config.mRoomName = KeyCenter.CHANNEL_ID; // 场景的频道名
         if (null != sceneInfo) {
-            config.mSceneId = this.sceneInfo.mSceneId;
+            config.mSceneId = this.sceneInfo.mSceneId; // 场景 ID
         }
         if (isEnableLocalSceneRes) {
             config.mSceneId = 0;
-            config.mScenePath = scenePath + "/" + getSceneId();
+            config.mScenePath = scenePath + "/" + getSceneId(); // 场景的加载路径
         }
         /*
          *仅为示例格式，具体格式以项目实际为准
@@ -287,7 +313,7 @@ public void enterScene() {
          *     "sceneIndex":1  //1为换装设置场景
          *   }
          */
-        // 设置进入场景信息
+        // 加载场景时额外的自定义信息
         EnterSceneExtraInfo extraInfo = new EnterSceneExtraInfo();
         extraInfo.setSceneIndex(MetaConstants.SCENE_DRESS);
         // 加载的场景 index
@@ -384,6 +410,8 @@ public void destroy() {
 ## 参考信息
 
 ### 开发注意事项
+
+//TODO: 这两个注意事项怎么理解
 
 - 使用 3D 场景的过程中，不能销毁 Activity。如果场景所在的 Activity 需要置于后台，可以添加 Intent 的 Flags 为 Intent.FLAG_ACTIVITY_REORDER_TO_FRONT。
 - 使用 3D 场景的过程中，不能销毁 Texture。如果 Texture 尺寸大小发生变化，例如切换场景时需要切换显示横竖屏，你需要在setSurfaceTextureListener 的回调方法 onSurfaceTextureSizeChanged 中再次调用 createScene 和 enterScene 等方法，从创建和进入场景重新开始。

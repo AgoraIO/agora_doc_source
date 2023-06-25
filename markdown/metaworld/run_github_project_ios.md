@@ -92,6 +92,8 @@ git checkout dev_metasdk1.0
 
 6. 打开应用，体验 MetaWorld 场景。
 
+//TODO: 可以在登录界面切换了，更新一下描述和截图
+
 <p style="text-align: center;"><video src="https://web-cdn.agora.io/docs-files/1686906669607"  controls width = 100% height = auto >你的浏览器不支持 <code>video</code> 标签。</video></p>
 
 如仅想体验直播的场景示例，请打开 `./Agora-MetaWorld/ios/MetaChatDemo/MetaChatLoginViewController.swift` 进行以下修改，并重新编译和运行示例项目。

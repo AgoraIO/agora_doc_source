@@ -4,7 +4,7 @@
 
 ## 示例项目
 
-声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供[元直播](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0/ios)源代码供你参考。
+声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供元直播源代码供你参考。
 
 ## 开通 Meta 服务
 
@@ -63,7 +63,7 @@
 
 <div class="alert note"><li>根据 Apple 官方要求，app 的 Extension 中不允许包含动态库。如果项目中的 Extension 需要集成 SDK，则添加动态库时需将文件状态改为 <b>Do Not Embed</b>。</li><li>声网 SDK 默认使用 libc++ (LLVM)，如需使用 libstdc++ (GNU)，请联系 <a href="mailto:sales@agora.io">sales@agora.io</a>。SDK 提供的库是 FAT Image，包含 32/64 位模拟器、32/64 位真机版本。</li></div>
 
-6. 除 SDK 外，你还需要添加以下依赖库：
+6. 除 SDK 外，你还需要[添加以下依赖库](https://help.apple.com/xcode/mac/current/#/dev51a648b07)：
 
     1. 添加 [OpenSSL](https://www.openssl.org/source/) 依赖库 `libcrypto.a` 和 `libssl.a`。
     2. 添加 `libz.tbd` 依赖库。
@@ -86,19 +86,20 @@
 
 元直播的 API 调用时序见下图：
 
-![](https://web-cdn.agora.io/docs-files/1686906134026)
+![](https://web-cdn.agora.io/docs-files/1687685321495)
 
 ### 1. 初始化
 
-在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。本节展示调用 `sharedEngine` 初始化 `AgoraRtcEngineKit` 对象和调用 `sharedMetaServiceWithConfig` 初始化 `AgoraMetaServiceKit` 对象的示例代码。
+在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。
+
+- 调用 `sharedEngine` 创建并初始化 `AgoraRtcEngineKit` 对象
 
 ```swift
-// 创建并初始化 RTC 引擎
 func createRtcEngine() {
     guard let token = KeyCenter.RTM_TOKEN else { return }
-    // 配置 AgoraRtcEngineConfig 并设置 App ID
+    // 配置 AgoraRtcEngineKit
     let rtcEngineConfig = AgoraRtcEngineConfig()
-    rtcEngineConfig.appId = KeyCenter.APP_ID
+    rtcEngineConfig.appId = KeyCenter.APP_ID // 声网签发的 App ID
     rtcEngineConfig.areaCode = .global
     // 创建和初始化 AgoraRtcEngineKit 对象
     rtcEngine = AgoraRtcEngineKit.sharedEngine(with: rtcEngineConfig, delegate: self)
@@ -114,8 +115,9 @@ func createRtcEngine() {
 }
 ```
 
+- 调用 `sharedMetaServiceWithConfig` 创建并初始化 `AgoraMetaServiceKit` 对象
+
 ```swift
-// 创建并初始化 Meta 服务
 func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaEventDelegate?) {
     playerName = userName
             
@@ -124,17 +126,16 @@ func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaE
     currentUserInfo?.userName = userName
     currentUserInfo?.userIconUrl = avatarUrl
     
-    // 配置 AgoraMetaServiceConfig 并设置 App ID、RTM Token、RTM UID 和回调接口
+    // 配置 AgoraMetaServiceKit
     let metaServiceConfig = AgoraMetaServiceConfig()
-    metaServiceConfig.appId = KeyCenter.APP_ID
-    metaServiceConfig.rtmToken = KeyCenter.RTM_TOKEN ?? ""
-    metaServiceConfig.userId = KeyCenter.RTM_UID
-    metaServiceConfig.delegate = delegate
+    metaServiceConfig.appId = KeyCenter.APP_ID // 声网签发的 App ID
+    metaServiceConfig.rtmToken = KeyCenter.RTM_TOKEN ?? "" // RTM token
+    metaServiceConfig.userId = KeyCenter.RTM_UID // RTM 用户 ID
+    metaServiceConfig.delegate = delegate // AgoraMetaServiceKit 的异步回调接口类
     
-    // 设置场景资源的本地下载路径和 RTC 引擎
     let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
-    metaServiceConfig.localDownloadPath = paths.first!
-    metaServiceConfig.rtcEngine = rtcEngine
+    metaServiceConfig.localDownloadPath = paths.first! // 场景资源的本地下载路径
+    metaServiceConfig.rtcEngine = rtcEngine // RTC 引擎
     // 创建和初始化 AgoraMetaServiceKit 对象
     metaService = AgoraMetaServiceKit.sharedMetaServiceWithConfig(_: metaServiceConfig)
 }
@@ -165,14 +166,12 @@ metaService?.cancelDownloadSceneAssets(_ sceneId: Int)
 
 ```swift
 func createScene(_ delegate: MetaChatSceneViewController) {
-    // 场景配置信息
+    // 配置场景信息
     let config = AgoraMetaSceneConfig()
-    config.delegate = delegate
-    // 支持面部捕捉
-    config.enableFaceCapture = true
-    // 传入面捕插件
-    config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_CERTIFICATE
-    config.faceCaptureAppId = KeyCenter.FACE_CAPTURE_APP_ID
+    config.delegate = delegate // AgoraMetaScene 的异步回调接口类
+    config.enableFaceCapture = true // 支持面捕
+    config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_CERTIFICATE // 传入面捕插件
+    config.faceCaptureAppId = KeyCenter.FACE_CAPTURE_APP_ID // 传入面捕插件
     // 创建场景
     metaService?.createScene(config)
 }
@@ -188,7 +187,6 @@ func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
     DispatchQueue.main.async {
         // 创建渲染视图
         guard let view = scene?.createRenderView(CGRect(x: 0, y: 0, width: width, height: height)) else { return }
-        // 启用视频功能
         rtcEngine?.enableVideo()
     }
 }
@@ -214,15 +212,14 @@ func enterScene(view: UIView) {
     avatarInfo.localVisible = true
     avatarInfo.remoteVisible = true
     avatarInfo.syncPosition = true
-    // 设置进入场景信息
+    // 配置进入场景信息
     let enterSceneConfig = AgoraMetaEnterSceneConfig()
-    // 指定场景的频道名
-    enterSceneConfig.roomName = KeyCenter.CHANNEL_ID
-    // 指定场景的渲染视图，iOS 上使用调用 createRenderView 创建的场景视图
-    enterSceneConfig.sceneView = view
-    enterSceneConfig.sceneId = sceneInfo.sceneId
+    enterSceneConfig.roomName = KeyCenter.CHANNEL_ID // 场景的频道名
+    enterSceneConfig.sceneView = view // 场景的渲染视图，iOS 上使用调用 createRenderView 创建的场景视图
+    enterSceneConfig.sceneId = sceneInfo.sceneId // 场景 ID
     // sceneIndex 目前 0 为元直播场景，1 为元语聊场景
     let dict = ["sceneIndex": kSceneIndex.rawValue]
+    // 加载场景时额外的自定义信息
     let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
     let extraInfo = String(data: data!, encoding: String.Encoding.utf8)
     enterSceneConfig.extraInfo = extraInfo!.data(using: String.Encoding.utf8)

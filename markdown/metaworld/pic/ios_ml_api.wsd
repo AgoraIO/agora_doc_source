@@ -29,12 +29,11 @@ scene -->> service: return
 service -->> app: AgoraMetaScene
 serviceevent -->> app: onCreateSceneResult
 serviceevent -->> app: onConnectionStateChanged
-== 设置用户信息 ==
+== 设置用户信息并进入场景 ==
 app -> scene: getLocalUserAvatar
 app -> avatar: setUserInfo
 app -> avatar: setModelInfo
 app -> avatar: setExtraInfo
-== 进入元直播场景 ==
 app -> scene: createRenderView
 app -> scene: enterScene
 sceneevent -->> app: onEnterSceneResult
