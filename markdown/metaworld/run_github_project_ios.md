@@ -1,4 +1,4 @@
-# 跑通 MetaWorld 示例项目
+# 跑通 MetaWorld 示例项目 (iOS)
 
 声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0)。本文介绍如何快速跑通该示例项目，体验效果。
 
@@ -10,7 +10,7 @@
 - iOS 设备，版本 11.0 及以上
     <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
 - 有效的苹果开发者账号
-- 有效的[声网账户](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA%E5%A3%B0%E7%BD%91%E8%B4%A6%E5%8F%B7)
+- 有效的[声网账号](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA%E5%A3%B0%E7%BD%91%E8%B4%A6%E5%8F%B7)
 
 ## 创建声网项目
 
@@ -52,16 +52,16 @@ git checkout dev_metasdk1.0
 运行示例项目前，你需要在 `./Agora-MetaWorld/ios/MetaChatDemo/KeyCenter.swift` 文件中设置如下参数：
 
 ```shell
-@objc static let CHANNEL_ID: String = <#ChannelId#>
-@objc static let APP_ID: String = <#AppId#>
-@objc static let certificate: String = <#Certificate#>
-@objc static let FACE_CAPTURE_APP_ID: String = <#Face Capture App Id#>
-@objc static let FACE_CAPTURE_CERTIFICATE: String = <#Face Capture Certificate#>
+@objc static let CHANNEL_ID: String = "<#ChannelId#>"
+@objc static let APP_ID: String = "<#AppId#>"
+@objc static let certificate: String = "<#Certificate#>"
+@objc static let FACE_CAPTURE_APP_ID: String = "<#Face Capture App Id#>"
+@objc static let FACE_CAPTURE_CERTIFICATE: String = "<#Face Capture Certificate#>"
 ...
-@objc static let RTC_UID: UInt = <#UID#>
+@objc static let RTC_UID: UInt = "<#UID#>"
 ...
-@objc static let kUserKey: String = <#kUserKey#>
-@objc static let kUserSecret: String = <#kUserSecret#>
+@objc static let kUserKey: String = "<#kUserKey#>"
+@objc static let kUserSecret: String = "<#kUserSecret#>"
 ```
 
 在创建声网项目后，从控制台获取这些参數的值，详情如下：
