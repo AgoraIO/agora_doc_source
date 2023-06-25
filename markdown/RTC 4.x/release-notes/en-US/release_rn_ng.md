@@ -1,8 +1,28 @@
-# v4.2.0
+## v4.2.1
+
+This version was released on June 25, 2023.
+
+#### Improvements
+
+This version improves the network transmission strategy, enhancing the smoothness of audio and video interactions.
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
+- After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
+- Brief noise occurred while playing media files using the media player.
+- Occational crash after calling the `destroyMediaPlayer` method. (iOS)
+- In screen sharing scenarios, some Android devices experienced choppy video on the receiving end. (Android)
+
+
+
+## v4.2.0
 
 v4.2.0 was released on May xx, 2023.
 
-## Compatibility changes
+#### Compatibility changes
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
 
@@ -43,7 +63,7 @@ Call the setVideoEncoderConfiguration method to set the expected video encoding 
   - `onFrame`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
 
-## New features
+#### New features
 
 **1. AI noise reduction**
 
@@ -87,7 +107,7 @@ This release adds the `startMediaRenderingTracing` and `startMediaRenderingTraci
 
 Agora recommends that you use this method in conjunction with the UI settings, such as buttons and sliders, in your app. For example, call this method when the user clicks **Join Channel** button and then get the indicators in the video frame rendering process through the `onVideoRenderingTracingResult` callback. This enables developers to optimize the indicators and improve the user experience.
 
-## Improvements 
+#### Improvements 
 
 **1. Voice changer**
 
@@ -134,7 +154,7 @@ When the video processing mode is `ProcessModeReadWrite`, the SDK receives the v
 
 This release improves the performance of super resolution. To optimize the usability of super resolution, this release removes `enableRemoteSuperResolution`; super resolution no longer needs to be enabled manually. The SDK now automatically optimizes the resolution of the remote video based on the performance of the user's device. 
 
-## Issues fixed
+#### Issues fixed
 
 This release fixed the following issues:
 - Occasional crashes occur on Android devices when users joining or leaving a channel. (Android)
@@ -153,7 +173,7 @@ This release fixed the following issues:
 - Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted.  (Android)
 - When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed. 
 
-## API changes
+#### API changes
 
 **Added**
 

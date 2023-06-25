@@ -1,8 +1,26 @@
-# v4.2.0
+## v4.2.1
+
+This version was released on June 25, 2023.
+
+#### Improvements
+
+This version improves the network transmission strategy, enhancing the smoothness of audio interactions.
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
+- After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
+- Brief noise occurred while playing media files using the media player.
+
+
+
+## v4.2.0
 
 v4.2.0 was released on May xx, 2023.
 
-## Compatibility changes
+#### Compatibility changes
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
 
@@ -26,13 +44,13 @@ As of v4.2.0, Agora supports third-party virtual sound cards. You can use a thir
   - `registerAudioFrameObserver` and `unregisterAudioFrameObserver` in `IMediaPlayer`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
 
-## New features
+#### New features
 
 **AI noise reduction**
 
 This release introduces the AI noise reduction function. Once enabled, the SDK automatically detects and reduces background noises. Whether in bustling public venues or real-time competitive arenas that demand lightning-fast responsiveness, this function guarantees optimal audio clarity, providing users with an elevated audio experience. You can enable this function through the newly-introduced `setAINSMode` method and set the noise reduction mode as balance, aggressive or low latency according to your scenarios. 
 
-## Improvements 
+#### Improvements 
 
 **1. Voice changer**
 
@@ -49,7 +67,7 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
 - Mixable audio track: Supports mixing multiple external audio sources and publishing them to the same channel, suitable for multi-channel audio capture scenarios.
 - Direct audio track: Only supports publishing one external audio source to a single channel, suitable for low-latency audio capture scenarios.
 
-## Issues fixed
+#### Issues fixed
 
 This release fixed the following issues:
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
@@ -57,7 +75,7 @@ This release fixed the following issues:
 - Incorrect information in the type field of the return value after calling getDefaultAudioDevice. (macOS)
 - Playing audio files with a sample rate of 48 kHz failed.
 
-## API changes
+#### API changes
 
 **Added**
 
@@ -138,7 +156,9 @@ As of this release, the SDK supports MPUDP protocol, which enables you to connec
 
 This release adds the `registerExtension` method for registering extensions. When using a third-party extension, you need to call the extension-related APIs in the following order:
 
-`loadExtensionProvider` -> `registerExtension` -> `setExtensionProviderProperty` -> `enableExtension`
+```
+loadExtensionProvider` -> `registerExtension` -> `setExtensionProviderProperty` -> `enableExtension
+```
 
 **8. Device management**
 
