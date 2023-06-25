@@ -70,8 +70,8 @@ git checkout dev_metasdk1.0
 | ---- | ------ | ------ |
 | AppId    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
 | Certificate | 声网项目的 App 证书 | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)   |
-| <li>Face Capture App Id</li><li>Face Capture Certificate</li> | 声网面捕插件 | 联系 [sales@agora.io](mailto:sales@agora.io) 获取 |
-| <li>kUserKey</li><li>kUserSecret</li> | 客户 ID 和密钥，声网 RESTful API 使用客户 ID 和客户密钥进行 HTTP 基本认证 | [生成客户 ID 和密钥](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7-id-%E5%92%8C%E5%AF%86%E9%92%A5) |
+| Face Capture App Id<br>Face Capture Certificate | 声网面捕插件 | 联系 [sales@agora.io](mailto:sales@agora.io) 获取 |
+| kUserKey<br>kUserSecret | 客户 ID 和密钥，声网 RESTful API 使用客户 ID 和客户密钥进行 HTTP 基本认证 | [生成客户 ID 和密钥](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7-id-%E5%92%8C%E5%AF%86%E9%92%A5) |
 
 <div class="alert info"><code>CHANNEL_ID</code> 设置为任意字符串，<code>RTC_UID</code> 设置为 0 以外的任意 Int 值。</div>
 
