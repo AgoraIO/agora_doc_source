@@ -13,7 +13,7 @@ This version fixed the following issues:
 - Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
 - After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
 - Brief noise occurred while playing media files using the media player.
-- Occational crash after calling the `destroyMediaPlayer` method. (iOS)
+- Occasional crash after calling the `destroyMediaPlayer` method. (iOS)
 - In screen sharing scenarios, some Android devices experienced choppy video on the receiving end. (Android)
 
 
@@ -159,10 +159,10 @@ This release improves the performance of super resolution. To optimize the usabi
 This release fixed the following issues:
 - Occasional crashes occur on Android devices when users joining or leaving a channel. (Android)
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
-- Occational failure when enabling in-ear monitoring.(Android)
+- Occasional failure when enabling in-ear monitoring.(Android)
 - Occasional loss of the `firstRemoteVideoFrameOfUid` callback during channel media relay. (iOS)
 - The receiver actively subscribed to the high-quality stream but unexpectedly received a low-quality stream. (iOS)
-- Occational echo. (Android)
+- Occasional echo. (Android)
 - Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback.
 - Playing audio files with a sample rate of 48 kHz failed.
 - Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices. (Android)

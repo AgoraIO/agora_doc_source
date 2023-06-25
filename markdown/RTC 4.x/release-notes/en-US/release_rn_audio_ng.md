@@ -13,7 +13,7 @@ This version fixed the following issues:
 - Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
 - After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
 - Brief noise occurred while playing media files using the media player.
-- Occational crash after calling the `destroyMediaPlayer` method. (iOS)
+- occasional crash after calling the `destroyMediaPlayer` method. (iOS)
 
 
 
@@ -73,8 +73,8 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
 This release fixed the following issues:
 - Occasional crashes occur on Android devices when users joining or leaving a channel. (Android)
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
-- Occational failure when enabling in-ear monitoring.(Android)
-- Occational echo. (Android)
+- occasional failure when enabling in-ear monitoring.(Android)
+- occasional echo. (Android)
 - Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback.
 - Playing audio files with a sample rate of 48 kHz failed.
 - In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. (Android)
