@@ -14,6 +14,6 @@ This version fixed the following issues:
 - After the sending end called `SetAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
 - Brief noise occurred while playing media files using the media player.
 - After enabling the screen sharing function on the sending end, there was high delay until the receiving end could see the shared screen. (macOS)
-- Occational crash after calling the `DestroyMediaPlayer` method. (iOS)
+- Occasional crash after calling the `DestroyMediaPlayer` method. (iOS)
 - When the sending end mixed and published two streams of video captured by two cameras locally, the video from the second camera was occasionally missing on the receiving end. (Windows)
 - In screen sharing scenarios, some Android devices experienced choppy video on the receiving end. (Android)
