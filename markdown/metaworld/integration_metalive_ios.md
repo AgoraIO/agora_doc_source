@@ -217,9 +217,8 @@ func enterScene(view: UIView) {
     enterSceneConfig.roomName = KeyCenter.CHANNEL_ID // 场景的频道名
     enterSceneConfig.sceneView = view // 场景的渲染视图，iOS 上使用调用 createRenderView 创建的场景视图
     enterSceneConfig.sceneId = sceneInfo.sceneId // 场景 ID
-    // sceneIndex 目前 0 为元直播场景，1 为元语聊场景
+    // 示例项目中，sceneIndex 的 0 为元直播场景，1 为元语聊场景，在实际场景中，你可以根据业务需求调整自定义扩展信息
     let dict = ["sceneIndex": kSceneIndex.rawValue]
-    // 加载场景时额外的自定义信息
     let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
     let extraInfo = String(data: data!, encoding: String.Encoding.utf8)
     enterSceneConfig.extraInfo = extraInfo!.data(using: String.Encoding.utf8)

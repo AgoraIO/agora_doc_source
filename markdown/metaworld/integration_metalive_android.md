@@ -274,8 +274,6 @@ public void onCreateSceneResult(IMetaScene scene, int errorCode) {
 
 进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮和捏脸信息等。
 
-//TODO: 这里 index 怎么理解？
-
 ```java
 public void enterScene() {
    if (null != localUserAvatar) {
@@ -307,13 +305,10 @@ public void enterScene() {
             config.mSceneId = 0;
             config.mScenePath = scenePath + "/" + getSceneId(); // 场景的加载路径
         }
-        /*
-         *仅为示例格式，具体格式以项目实际为准
-         *   "extraInfo":{
-         *     "sceneIndex":1  //1为换装设置场景
-         *   }
-         */
-        // 加载场景时额外的自定义信息
+        // 示例项目中，sceneIndex 的 0 为元直播场景，1 为元语聊场景，在实际场景中，你可以根据业务需求调整自定义扩展信息
+        "extraInfo": {
+           "sceneIndex":1
+        }
         EnterSceneExtraInfo extraInfo = new EnterSceneExtraInfo();
         extraInfo.setSceneIndex(MetaConstants.SCENE_DRESS);
         // 加载的场景 index
@@ -334,8 +329,6 @@ public void onEnterSceneResult(int errorCode) {
 
 
 ### 5. 加入频道并开启元直播
-
-//TODO: 从demo里扒的，最好再看看。。
 
 进入场景后，你需要调用 `enableSceneVideoCapture` 开启场景渲染画面捕获，并调用 `joinChannel` 加入频道并把场景渲染的画面发布到 RTC 频道内。
 
@@ -365,8 +358,6 @@ public void enableSceneVideo(TextureView view, boolean enable) {
 ### 6. 离开频道并释放资源
 
 直播结束时，你可以离开频道并释放资源。
-
-//TODO: 补一个 leaveChannel 的示例代码？
 
 ```java
 // 退出频道
@@ -411,7 +402,7 @@ public void destroy() {
 
 ### 开发注意事项
 
-//TODO: 这两个注意事项怎么理解
+在使用 3D 场景的过程中，需要注意以下几点：
 
-- 使用 3D 场景的过程中，不能销毁 Activity。如果场景所在的 Activity 需要置于后台，可以添加 Intent 的 Flags 为 Intent.FLAG_ACTIVITY_REORDER_TO_FRONT。
-- 使用 3D 场景的过程中，不能销毁 Texture。如果 Texture 尺寸大小发生变化，例如切换场景时需要切换显示横竖屏，你需要在setSurfaceTextureListener 的回调方法 onSurfaceTextureSizeChanged 中再次调用 createScene 和 enterScene 等方法，从创建和进入场景重新开始。
+- 为了保持场景的连续性和流畅性，通常不能销毁 Activity。为了避免销毁场景所在的 Activity，可以使用 `Intent.FLAG_ACTIVITY_REORDER_TO_FRONT` 标志将 Activity 置于后台。
+- 由于 Texture 的数据是在 GPU 中处理的，因此不能在运行时被销毁或重新创建，否则会影响应用程序的性能和稳定性。如果 Texture 尺寸大小发生变化，例如切换场景时需要切换横竖屏，你需要在`setSurfaceTextureListener` 的回调方法 `onSurfaceTextureSizeChanged` 中再次调用 `createScene` 和 `enterScene` 等方法，重新创建和进入场景。
