@@ -24,30 +24,23 @@ serviceevent -->> app: onGetSceneAssetsInfoResult
 app -> service: downloadSceneAssets
 serviceevent -->> app: onDownloadSceneAssetsProgress
 == 创建并进入元直播场景 ==
-alt 创建 IMetaScene
 app -> service: createScene
 service -> scene: new
 scene -->> service: return
 service -->> app: IMetaScene
 serviceevent -->> app: onCreateSceneResult
 serviceevent -->> app: onConnectionStateChanged
-end
-alt 获取并设置用户信息
+== 设置用户信息 ==
 app -> scene: getLocalUserAvatar
 app -> avatar: setUserInfo
 app -> avatar: setModelInfo
 app -> avatar: setExtraInfo
-note right
-自定义捏脸换装需要调用该方法
-end note
-end
-alt 进入元直播场景
+== 进入元直播场景 ==
 app -> scene: enterScene
-sceneevent -->> app: onEnterSceneResult
 note right
 Android 可以在该回调之前渲染 Texture
 end note
-end
+sceneevent -->> app: onEnterSceneResult
 == 加入频道并开启元直播 ==
 app -> rtc: joinChannel
 app -> scene: enableSceneVideoCapture(view, true)

@@ -36,7 +36,7 @@
 
 ### 创建项目并集成 SDK
 
-在 Xcode 中进行以下操作，在你的 app 中实现元直播功能：
+在 Xcode 中进行以下操作，准备开发环境：
 
 1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 
@@ -80,9 +80,11 @@
 - `AgoraRtcEngineKit` 类：提供实时音视频功能。
 - `AgoraMetaServiceKit` 类：Meta SDK 所有接口的入口，用于创建 `AgoraMetaScene` 对象，负责获取、下载和删除场景资源。
 - `AgoraMetaScene` 类：负责进出场景、场景视频渲染、场景相关参数设置等场景相关操作。
-- `AgoraLocalUserAvatar` 类：用于设置用户昵称、徽章、Avatar 模型、捏脸换装等详细信息。
+- `AgoraMetaLocalUserAvatar` 类：用于设置用户昵称、徽章、Avatar 模型、捏脸换装等详细信息。
 - `AgoraMetaEventDelegate` 类：`AgoraMetaServiceKit` 的异步方法的事件回调类。
 - `AgoraMetaSceneEventDelegate` 类：`AgoraMetaScene` 的异步方法的事件回调类。
+
+元直播的 API 调用时序见下图：
 
 ![](https://web-cdn.agora.io/docs-files/1686906134026)
 
@@ -168,9 +170,8 @@ func createScene(_ delegate: MetaChatSceneViewController) {
     config.delegate = delegate
     // 支持面部捕捉
     config.enableFaceCapture = true
-    // 传入面部捕捉 Certificate
+    // 传入面捕插件
     config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_CERTIFICATE
-    // 传入面部捕捉 App ID
     config.faceCaptureAppId = KeyCenter.FACE_CAPTURE_APP_ID
     // 创建场景
     metaService?.createScene(config)
@@ -195,14 +196,14 @@ func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
 
 ### 4. 设置用户信息并进入场景
 
-进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮信息、捏脸信息等。
+进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮和捏脸信息等。
 
 ```swift
 func enterScene(view: UIView) {
     guard let sceneInfo = currentSceneInfo else {
         return
     }
-    // 设置avatar模型信息
+    // 设置 avatar 模型信息
     let avatarInfo = AgoraMetaAvatarModelInfo.init()
     for info in sceneInfo.bundles {
         if info.bundleType == .avatar {
@@ -215,20 +216,22 @@ func enterScene(view: UIView) {
     avatarInfo.syncPosition = true
     // 设置进入场景信息
     let enterSceneConfig = AgoraMetaEnterSceneConfig()
+    // 指定场景的频道名
     enterSceneConfig.roomName = KeyCenter.CHANNEL_ID
-    // 该view为场景场合后创建的renderView
+    // 指定场景的渲染视图，iOS 上使用调用 createRenderView 创建的场景视图
     enterSceneConfig.sceneView = view
     enterSceneConfig.sceneId = sceneInfo.sceneId
-    // sceneIndex目前0为元直播场景，1为元语聊场景
+    // sceneIndex 目前 0 为元直播场景，1 为元语聊场景
     let dict = ["sceneIndex": kSceneIndex.rawValue]
     let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
     let extraInfo = String(data: data!, encoding: String.Encoding.utf8)
     enterSceneConfig.extraInfo = extraInfo!.data(using: String.Encoding.utf8)
-    // 设置avatar信息
     localUserAvatar = metaScene?.getLocalUserAvatar()
+    // 设置场景中展示的用户信息
     localUserAvatar?.setUserInfo(currentUserInfo)
+    // 设置用户的 avatar 模型信息
     localUserAvatar?.setModelInfo(avatarInfo)
-    // avatar装扮信息
+    // 设置用户的自定义捏脸、换装信息
     let dict = ["avatar": "girl", "dress": [10000, 10100], "face": [["key": "eyeBlink_L", "val": 30] as [String : Any]], "2dbg": ""] as [String : Any]
     let data = try? JSONSerialization.data(withJSONObject: dict, options: [])
     let extraInfo = String(data: data!, encoding: String.Encoding.utf8)
