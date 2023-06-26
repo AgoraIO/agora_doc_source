@@ -94,7 +94,9 @@ const encrypter = crypto.createCipheriv('aes-128-ctr', key, iv);
 // 对数据进行加密
 const encrypted = Buffer.concat([iv, encrypter.update(data), encrypter.final()]);
  
-const streamkey = encrypted.toString('base64');
+ // base64 转换，并保证 URL 安全
+const streamkey = encrypted.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/\=+$/, '');
+
 console.log(`streamkey is ${streamkey}`);
 ```
 
@@ -154,6 +156,8 @@ console.log(`Authorization: ${auth}`);
 ```
 
 ## Create: 创建推流码
+
+调用该接口创建一个推流码。
 
 ### HTTP 请求
 
@@ -243,6 +247,8 @@ POST https://api.agora.io/{region}/v1/projects/{appId}/rtls/ingress/streamkeys
 
 ## Query: 查询推流码信息
 
+调用该接口，查询推流码的信息，如绑定的 UID，绑定的频道名，有效时长等。
+
 ### HTTP 请求
 
 ```text
@@ -310,6 +316,8 @@ GET https://api.agora.io/{region}/v1/projects/{appId}/rtls/ingress/streamkeys/{s
 
 ## Delete: 销毁推流码
 
+调用该接口销毁不再使用的推流码。
+
 ### HTTP 请求
 
 ```text
@@ -364,6 +372,10 @@ DELETE https://api.agora.io/{region}/v1/projects/{appId}/rtls/ingress/streamkeys
 ```
 
 ## Update: 设置服务配置信息
+
+调用该接口，设置 RTMP 网关服务的转码配置信息。
+
+<div class="alert note"><ul><li>首次调用该接口设置服务配置信息时，设置成功后会立即生效。之后再调用该接口更新配置信息，调用成功后 5 分钟才会更新到全网所有节点。</li><li>调用该接口设置的配置信息对于在推的流不会立即生效，需要断开重推，才能使用更新后的配置信息。</li></ul></div>
 
 ### HTTP 请求
 
