@@ -295,7 +295,7 @@ For the parameters and the detailed description, see [Common parameters](#param)
 | --- | --- | --- | --- |
 | `msgId` | String | The message ID. | Yes |
 | `message` | String | The ID of the emoji that is added as the reaction. | Yes |
-| `limit` | Number | The number of users that have added the reaction on each page when you retrieve the users with pagination. The value range is [1,50]. The default value is 50. | No |
+| `limit` | Number | The number of users that added the reaction on each page when you retrieve the users with pagination. The value range is [1,50]. The default value is 50. | No |
 | `cursor` | String | The cursor for specifying where to retrieve data if you retrieve the users with pagination.| No |
 
 <div class="alert note">If the pagination parameters are specified, the server returns the users that added the reaction in the ascending order of when reactions are added. If the pagination parameters are not specified, the server returns the first 50 users that added the reaction.</div>
