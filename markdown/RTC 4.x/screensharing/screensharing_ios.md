@@ -161,7 +161,7 @@ agoraKit.startScreenCapture(screenParams)
    - 方式二：使用 Apple 在 iOS 12.0 中新增的 [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)，使 app 界面弹出 “开启屏幕共享” 的按钮，提示用户通过点击该按钮开启录制。
    <div class="alert info"><code>RPSystemBroadcastPickerView</code> 存在一些使用限制并可能在后续版本的 iOS 系统中失效。因此，请酌情使用方式二。</div>
 
-#### 加入频道并发布屏幕共享视频流
+### 加入频道并发布屏幕共享视频流
 
 ```swift
 // 在进行屏幕视频采集（state 为 capturing，souceType 为 screen）时，定义 rtcEngine 的行为。
@@ -184,16 +184,16 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStateChangedOf state: Agor
 //加入频道
 func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {}
 ```
-#### （可选）设置屏幕共享场景
+### （可选）设置屏幕共享场景
 
 API example 中无示例代码
 
-#### （可选）更新屏幕共享
+### （可选）更新屏幕共享
 如果你要更新屏幕共享的参数，调用 `updateScreenCapture`，重新设置 `parameters` 参数（例如：视频编码分辨率、帧率、码率）。
 ```swift
 agoraKit.updateScreenCapture(screenParams)
 ```
-#### 停止屏幕共享
+### 停止屏幕共享
 调用 `stopScreenCapture`，在频道内停止屏幕共享。示例代码如下：
 
 ```swift
