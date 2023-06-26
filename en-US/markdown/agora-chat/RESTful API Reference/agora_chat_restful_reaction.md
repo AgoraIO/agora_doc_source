@@ -1,5 +1,4 @@
 During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. 
-
 This page shows how to use the Agora Chat RESTful API to implement reaction in your project.
 
 Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
@@ -42,7 +41,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 ## Create/Add a reaction
 
-This method creates or adds a reaction to a specified message in one-to-one chats or group chats. A maximum of 20 reactions can be added for one message. For one message, if many users add the same reaction, these reactions are counted as one reaction.
+This method creates or adds a reaction to a specified message in one-to-one chats or group chats. A maximum of 20 reactions can be added for one message. For one message, if many users add the same reaction, these reactions are counted as one reaction. A message can have a maximum of 20 reactions. To raise the limit, contact [support@agora.io](mailto:support@agora.io).
 
 ### HTTP request
 
