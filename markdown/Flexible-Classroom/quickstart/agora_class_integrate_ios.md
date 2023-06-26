@@ -58,14 +58,14 @@ pod --version
    pod 'Whiteboard',                  '2.16.51'
    
    # open-source libs
-   pod 'AgoraClassroomSDK_iOS', '2.8.30'
-   pod 'AgoraEduUI',            '2.8.30'
+   pod 'AgoraClassroomSDK_iOS', '2.8.40'
+   pod 'AgoraEduUI',            '2.8.40'
       
-   pod 'AgoraWidgets',          '2.8.30'
+   pod 'AgoraWidgets',          '2.8.40'
    
    # close-source libs
    pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 	         '2.8.30'
+   pod 'AgoraEduCore', 	         '2.8.40'
    pod 'AgoraWidget',           '2.8.0'
    ```
 
@@ -209,7 +209,7 @@ pod --version
    
    # close-source libs
    pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 	         '2.8.30'
+   pod 'AgoraEduCore', 	         '2.8.40'
    pod 'AgoraWidget',           '2.8.0'
    ```
    
@@ -357,7 +357,7 @@ pod --version
     
    # close-source libs
    pod 'AgoraUIBaseViews',    '2.8.0'
-   pod 'AgoraEduCore', 			'2.8.30'
+   pod 'AgoraEduCore', 			'2.8.40'
    pod 'AgoraWidget', 			'2.8.0'
    ```
 
@@ -400,7 +400,7 @@ pod --version
     
    # close-source libs
    pod 'AgoraUIBaseViews',    '2.8.0'
-   pod 'AgoraEduCore', 			'2.8.30'
+   pod 'AgoraEduCore', 			'2.8.40'
    pod 'AgoraWidget', 			'2.8.0'
    ```
 4. 在终端中进入到工程目录，执行 `pod install` 命令。
