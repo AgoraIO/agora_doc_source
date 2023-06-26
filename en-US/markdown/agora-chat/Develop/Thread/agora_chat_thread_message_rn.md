@@ -37,7 +37,9 @@ Sending a thread message is similar to sending a message in a chat group. The di
 // Sets `content` to the message content.
 // Sets `chatType` to `GroupChat` as a thread belongs to a chat group.
 // Sets `isChatThread` to `true` to mark this message as a thread message.
-ChatMessage message = ChatMessage.createTextMessage(chatThreadId, content, chatType, {isChatThread});
+const message = ChatMessage.createTextMessage(chatThreadId, content, chatType, {
+  isChatThread: true,
+});
 // Implements `ChatMessageCallback` to listen for the message sending event.
 const callback = new ChatMessageCallback();
 // Sends the message.
