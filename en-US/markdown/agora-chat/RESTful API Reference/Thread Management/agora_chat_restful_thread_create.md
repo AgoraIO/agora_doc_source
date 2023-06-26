@@ -85,8 +85,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
-curl -X POST http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <YourAppToken>' -d '{
+```shell
+curl -X POST http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <YourAppToken>' -H 'Content-Type:application/json' -d '
+{
     "group_id": 179800091197441,
     "name": "1",
     "owner": "test4",
@@ -103,7 +104,7 @@ curl -X POST http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <Your
     "duration": 4,
     "data": {
         "thread_id": "177916702949377"
-    }
+    },
     "organization": "XXXX",
     "timestamp": 1650869972109,
     "uri": "http://XXXX.com/XXXX/testy/thread"
@@ -159,7 +160,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X PUT http://XXXX.com/XXXX/testapp/thread/177916702949377 -H 'Authorization: Bearer <YourAppToken>' -d '{"name": "test4"}'
 ```
 
@@ -172,7 +173,7 @@ curl -X PUT http://XXXX.com/XXXX/testapp/thread/177916702949377 -H 'Authorizatio
     "duration": 4,
     "data": {
         "name": "test4"
-    }
+    },
     "organization": "XXXX",
     "timestamp": 1650869972109,
     "uri": "http://XXXX.com/XXXX/testy/thread"
@@ -220,7 +221,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X DELETE http://XXXX.com/XXXX/testapp/thread/177916702949377 -H 'Authorization: Bearer <YourAppToken>'
 ```
 
@@ -289,7 +290,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X GET http://XXXX.com/XXXX/testapp/thread -H 'Authorization: Bearer <YourAppToken>'
 ```
 
@@ -367,7 +368,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X GET http://XXXX.com/XXXX/testapp/threads/user/test4 -H 'Authorization: Bearer <YourAppToken>'
 ```
 
@@ -455,7 +456,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
+```shell
 curl -X GET http://XXXX.com/XXXX/testapp/threads/user/test4 -H 'Authorization: Bearer <YourAppToken>'
 ```
 

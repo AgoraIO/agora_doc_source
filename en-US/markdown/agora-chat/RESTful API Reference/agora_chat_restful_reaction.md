@@ -1,4 +1,5 @@
-During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. This page shows how to use the Agora Chat RESTful API to implement reaction in your project.
+During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. 
+This page shows how to use the Agora Chat RESTful API to implement reaction in your project.
 
 Before calling the following methods, make sure you understand the call frequency limit of the Chat RESTful APIs as described in [Limitations](./agora_chat_limitation?platform=RESTful#call-limit-of-server-side).
 
@@ -40,7 +41,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 ## Create/Add a reaction
 
-This method creates or adds a reaction to a specified message in one-to-one chats or group chats.
+This method creates or adds a reaction to a specified message in one-to-one chats or group chats. A maximum of 20 reactions can be added for one message. For one message, if many users add the same reaction, these reactions are counted as one reaction. A message can have a maximum of 20 reactions. To raise the limit, contact [support@agora.io](mailto:support@agora.io).
 
 ### HTTP request
 
@@ -294,8 +295,10 @@ For the parameters and the detailed description, see [Common parameters](#param)
 | --- | --- | --- | --- |
 | `msgId` | String | The message ID. | Yes |
 | `message` | String | The ID of the emoji that is added as the reaction. | Yes |
-| `limit` | Number | The number of reactions retrieved on each page when you retrieve the reactions with pagination. The value range is [1,100]. The default value is 100. | No |
-| `cursor` | String | The starting page from which to retrieve data if you retrieve the reactions with pagination.| No |
+| `limit` | Number | The number of users that added the reaction on each page when you retrieve the users with pagination. The value range is [1,50]. The default value is 50. | No |
+| `cursor` | String | The cursor for specifying where to retrieve data if you retrieve the users with pagination.| No |
+
+<div class="alert note">If the pagination parameters are specified, the server returns the users that added the reaction in the ascending order of when reactions are added. If the pagination parameters are not specified, the server returns the first 50 users that added the reaction.</div>
 
 #### Request header
 
@@ -317,7 +320,7 @@ If the returned HTTP status code is `200`, the request succeeds, and the `data` 
 | `reaction` | String | The emoji ID that is the same as the `message` parameter specified in the request body when [adding a reaction](#create). |
 | `count` | Number | The number of users that have added the reaction. |
 | `state` | Bool | Whether the user sending this request has added a reaction to this message:<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
-| `userList` | Array | The list of the users that have added this reaction. Note that this list only contains the last three user IDs to do so. |
+| `userList` | Array | The list of the users that have added this reaction. Users are listed in the ascending order of the reaction addition time.|
 | `cursor` | String | The cursor that indicates that starting position of the next query. |
 
 For other fields and the detailed descriptions, see [Common parameters](#param).
