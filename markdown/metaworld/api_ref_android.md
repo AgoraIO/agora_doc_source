@@ -607,7 +607,6 @@ public void onCreateSceneResult(IMetaScene scene, int errorCode);
 
 ### onConnectionStateChanged
 
-
 ```java
 public void onConnectionStateChanged(int state, int reason);
 ```
