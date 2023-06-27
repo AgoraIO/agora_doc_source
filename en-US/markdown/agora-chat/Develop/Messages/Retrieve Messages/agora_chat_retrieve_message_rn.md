@@ -56,8 +56,14 @@ const convType = ChatConversationType.PeerChat;
 const pageSize = 10;
 // Specify the message ID from which to retrieve the historical messages.
 const startMsgId = "";
+// Specify the message search direction.
+const direction = ChatSearchDirection.UP;
 ChatClient.getInstance()
-  .chatManager.fetchHistoryMessages(convId, chatType, pageSize, startMsgId)
+  .chatManager.fetchHistoryMessages(convId, chatType, {
+    pageSize,
+    startMsgId,
+    direction,
+  })
   .then((messages) => {
     console.log("get message success: ", messages);
   })
