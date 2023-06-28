@@ -2,15 +2,29 @@
 
 ## 前提条件
 
+- [Git](https://git-scm.com/downloads)
+- [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)
 - [Android Studio](https://developer.android.com/studio/) 4.1 及以上。
 - Android 手机，版本 Android 5.1（API Level 22）及以上。
 - 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
-- 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)和声网项目，请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)，从声网控制台获取以下信息：
-  - App ID：声网随机生成的字符串，用于识别你的 app。
-  - 临时 Token：你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。临时 Token 的有效期为 24 小时。
-  - 频道名称：用于标识直播频道的字符串。
+- 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)。
 
 <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
+
+## 创建声网项目
+
+1. 进入声网控制台的[项目管理](https://console.agora.io/projects)页面。
+2. 在项目管理页面，点击**创建**按钮。
+3. 在弹出的对话框内输入项目名称、使用场景，然后选择**安全模式：APP ID + Token**。
+4. 点击**提交**按钮。新建的项目会显示在项目管理页中。
+
+## 开通服务
+
+1. 创建项目后，从控制台获取以下信息：
+  - App ID：声网项目的 App ID。详见[获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)。
+  - App Certificate：声网项目的 App 证书。详见[获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)。
+  - 频道名称：用于标识直播频道的字符串。
+2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，以开通声网内容中心的权限并获取声网面部捕捉插件的 App ID 和 Certificate。
 
 ## 创建项目并集成 SDK
 
@@ -86,7 +100,4 @@ dependencies {
 
 ## 下一步
 
-集成后，你可以参考如下文档实现元语聊、元直播：
-- [实现元语聊](./integration_metachat_android)
-- [实现元直播](./integration_metalive_android)
-- [实现融合元语聊和直播场景](./integration_mixed_android)
+集成后，你可以参考下一篇文档实现元语聊、元直播。

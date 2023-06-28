@@ -10,7 +10,7 @@ Meta SDK 是基于声网视频 SDK 开发的元系列特殊版 SDK。相比[视�
 
 ## IMetaService
 
-Meta SDK 所有接口的入口，可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于创建 `IMetaScene`。
+提供 Meta 服务的核心类。可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于创建 `IMetaScene`。
 
 ### create
 
@@ -469,7 +469,7 @@ public abstract int enableSceneVideoCapture(TextureView view, boolean enable);
 
 ## ILocalUserAvatar
 
-包含在 `IMetaScene` 中，生命周期和 `IMetaScene` 相同。
+包含在 `IMetaScene` 中，生命周期和 `IMetaScene` 相同，用于设置虚拟形象（Avatar）。
 
 ### setUserInfo
 
@@ -805,7 +805,7 @@ public class MetaServiceConfig {
 - `mRtcEngine`：`RtcEngine` 实例，创建方法详见 [`create` [1/2]](https://docs.agora.io/cn/video-call-4.x/API%20Reference/java_ng/API/class_irtcengine.html#api_create)。
 - `mAppId`：在声网控制台获取的 App ID。
 - `mRtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。
-- `mLocalDownloadPath` ：场景场景下载到本地的保存路径。
+- `mLocalDownloadPath` ：场景资源下载到本地的保存路径。
 - `mUserId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
   - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
   - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。

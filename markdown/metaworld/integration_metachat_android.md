@@ -1,39 +1,52 @@
 MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实现元语聊。
 
-## 示例项目
+## 示例项目 #TODO fragment
 
-#TODO add
-
-## 准备开发环境
-
-参考[集成声网 Meta SDK](./integrate_sdk_android) 准备开发环境。
+声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供项目源代码供你参考。
 
 ## 实现元语聊
 
-本节介绍集成 Meta SDK 后如何实现元语聊。
+完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元语聊。
 
-实现元语聊会用到以下接口类：
+下图展示实现元语聊的 API 调用时序：
+
+#TODO pic.svg
+
+
+实现步骤需用到如下类：
 
 - `RtcEngine` 类：提供实时音视频功能的核心类。
-- `IMetaService` 类：提供 Meta 服务的核心类。用于创建 `IMetaScene` 对象，负责获取、下载和删除场景资源。
-- `IMetaScene` 类：提供 Meta 场景的核心类。负责进出场景、场景视频渲染、场景相关参数设置等场景相关操作。
-- `ILocalUserAvatar` 类：用于设置用户昵称、徽章、Avatar 模型、捏脸换装等详细信息。
+- `IMetaService` 类：提供 Meta 服务的核心类。可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于创建 `IMetaScene`。
+- `IMetaScene` 类：场景资源相关操作。
+- `ILocalUserAvatar` 类：包含在 `IMetaScene` 中，生命周期和 `IMetaScene` 相同，用于设置虚拟形象（Avatar）。
 - `IMetaServiceEventHandler` 类：`IMetaService` 的异步方法的事件回调类。
 - `IMetaSceneEventHandler` 类：`IMetaScene` 的异步方法的事件回调类。
 
-下图展示实现元语聊的 API 时序：
-
-<pic> #TODO
 
 ### 1. 创建并初始化 IMetaService
 
 调用 RtcEngine 类的 create 创建 RtcEngine。调用 IMetaService 类的 create 和 initialize 创建并初始化 IMetaService。
+
+初始化 IMetaService 时，需要在 MetaServiceConfig 里设置如下重要的字段：
+- `mRtcEngine`：通过 create 方法创建的 `RtcEngine` 实例。
+- `mAppId`：在声网控制台获取的 App ID。详见[集成声网 Meta SDK](./integrate_sdk_android)。
+- `mUserId`：登录声网 RTM 系统的用户 ID。推荐取值详见 [API 参考](./api_ref_android?platform=All%20Platforms#metaserviceconfig)。
+- `mRtmToken`：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。详见[生成 Token](https://docportal.shengwang.cn/cn/Real-time-Messaging/messaging_android?platform=Android#4-生成-token)。
+- `mLocalDownloadPath`：场景资源下载到本地的保存路径。
+- `mEventHandler`：IMetaService 的回调事件句柄。
+
+声网项目有两种 Token 和 UID，请不要搞混淆：
+- RTC UID：用于在实时音视频通讯中标志用户身份的用户 ID。推荐取值详见 [joinChannel 的参数解释](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2)。
+- RTM UID：用于在云信令系统中标志用户身份的用户 ID。推荐取值详见 [MetaServiceConfig 的字段解释](./api_ref_android?platform=All%20Platforms#metaserviceconfig)。
+- RTC Token：用于保障实时音视频通讯安全的动态密钥。详见[如何生成 RTC Token 进行鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)。
+- RTM Token：用于保障云信令系统安全的动态密钥。详见[如何生成 RTM Token 进行鉴权](https://docportal.shengwang.cn/cn/Real-time-Messaging/token2_server_rtm?platform=All%20Platforms)。
 
 
 ```java
 // 设置 RtcEngine 配置
 RtcEngineConfig rtcConfig = new RtcEngineConfig();
 rtcConfig.mContext = context;
+// 声网项目的 App ID，从控制台获取
 rtcConfig.mAppId = KeyCenter.APP_ID;
 rtcConfig.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
 // 监听 RTC 引擎回调事件
@@ -82,11 +95,18 @@ scenePath = context.getExternalFilesDir("").getPath();
 {
    // 创建 IMetaService
     metaService = IMetaService.create();
+
     MetaServiceConfig config = new MetaServiceConfig() {{
+        // RtcEngine 实例
         mRtcEngine = rtcEngine;
+        // 声网项目的 App ID，从控制台获取
         mAppId = KeyCenter.APP_ID;
+        // 声网 RTM（云信令）Token，保障安全
+        // 声网项目有 RTC Token 和 RTM Token，不要搞混淆
         mRtmToken = KeyCenter.RTM_TOKEN;
         mLocalDownloadPath = scenePath;
+        // 声网 RTM（云信令）UID，用户 ID，标志用户身份
+        // 声网项目有 RTC UID 和 RTM UID，不要搞混淆
         mUserId = KeyCenter.RTM_UID;
         mEventHandler = MetaContext.this;
     }};
@@ -127,7 +147,7 @@ public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state)
 
 ### 3. 创建 IMetaScene
 
-调用 createScene 创建 IMetaScene，并在 sceneConfig 中设置场景配置信息。通过 IMetaServiceEventHandler 类的onCreateSceneResult 和 onConnectionStateChanged 回调监听创建场景和连接状态的事件。
+调用 createScene 创建 IMetaScene，并在 sceneConfig 中设置场景配置信息。通过 IMetaServiceEventHandler 类的 onCreateSceneResult 和 onConnectionStateChanged 回调监听创建场景和连接状态的事件。
 
 ```java
 // 设置场景配置信息
@@ -168,7 +188,11 @@ public void onConnectionStateChanged(int state, int reason) {
 
 ### 4. 设置用户信息并进入场景 #TODO 换装捏脸
 
-依次调用 setUserInfo 和 setModelInfo 设置用户的基本信息和虚拟形象（Avatar）的模型信息。调用 IMetaScene 类的 addEventHandler 添加事件句柄，监听 IMetaScene 的事件回调。调用 enterScene 进入场景，并通过 config 设置配置信息。最后通过 IMetaSceneEventHandler 类的 onEnterSceneResult 回调知晓进入场景的结果。
+要完成进入场景的操作，参考如下步骤：
+1. 依次调用 setUserInfo 和 setModelInfo 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
+2. 调用 IMetaScene 类的 addEventHandler 添加事件句柄，监听 IMetaScene 的事件回调。
+3. 调用 enterScene 进入场景，并通过 config 设置配置信息。
+4. 通过 IMetaSceneEventHandler 类的 onEnterSceneResult 回调监听进入场景的结果。
 
 ```java
 // 进入场景
@@ -225,7 +249,11 @@ public void onEnterSceneResult(int errorCode) {
 
 ### 5. 离开场景并释放资源
 
-调用 leaveScene 离开场景。通过 IMetaSceneEventHandler 类的 onLeaveSceneResult 回调得知成功离开场景后，调用 release 释放 IMetaScene。通过 IMetaSceneEventHandler 类的 onReleasedScene 回调监听 IMetaScene 是否释放成功。最后依次调用 IMetaService 和 RtcEngine 类的 destroy 方法销毁 IMetaService 和 RtcEngine。
+离开场景时，参考如下步骤：
+1. 调用 leaveScene 离开场景。
+2. 通过 IMetaSceneEventHandler 类的 onLeaveSceneResult 回调得知成功离开场景后，调用 release 释放 IMetaScene。
+3. 通过 IMetaSceneEventHandler 类的 onReleasedScene 回调监听 IMetaScene 是否释放成功。
+4. 依次调用 IMetaService 和 RtcEngine 类的 destroy 方法销毁 IMetaService 和 RtcEngine。
 
 ```java
 // 离开场景

@@ -140,22 +140,22 @@ rtcConfig.mEventHandler = new IRtcEngineEventHandler() {
     public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
         Log.d(TAG, String.format("onJoinChannelSuccess %s %d", channel, uid));
     }
- 
+
     @Override
     public void onUserOffline(int uid, int reason) {
         Log.d(TAG, String.format("onUserOffline %d %d ", uid, reason));
     }
- 
+
     @Override
     public void onAudioRouteChanged(int routing) {
         Log.d(TAG, String.format("onAudioRouteChanged %d", routing));
     }
- 
+
     @Override
     public void onUserJoined(int uid, int elapsed) {
         Log.d(TAG, "onUserJoined uid=" + uid);
     }
- 
+
     @Override
     public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
         Log.d(TAG, "onFirstRemoteVideoDecoded uid=" + uid + ",width=" + width + ",heigh=" + height + ",elapsed=" + elapsed);
@@ -168,15 +168,15 @@ rtcConfig.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScena
 rtcEngine = RtcEngine.create(rtcConfig);
 
 rtcEngine.setParameters("{\"rtc.enable_debug_log\":true}");
- 
+
 rtcEngine.enableAudio();
 rtcEngine.enableVideo();
- 
+
 rtcEngine.setAudioProfile(
         Constants.AUDIO_PROFILE_DEFAULT, Constants.AUDIO_SCENARIO_GAME_STREAMING
 );
 rtcEngine.setDefaultAudioRoutetoSpeakerphone(true);
- 
+
 scenePath = context.getExternalFilesDir("").getPath();
 {
     metaService = IMetaService.create();
@@ -235,7 +235,7 @@ public boolean downloadScene(MetaSceneAssetsInfo sceneInfo) {
 }
 // 下载场景资源信息回调
 @Override
-public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state) {    
+public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state) {
 }
 
 // 取消下载场景资源信息
