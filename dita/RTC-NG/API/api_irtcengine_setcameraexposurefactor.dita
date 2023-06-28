@@ -31,13 +31,13 @@
                 <dd>v4.2.2</dd>
             </dlentry>
             </dl>
-            <p>光线不足或过于明亮都会影响视频采集的画质。为了获得更好的曝光效果，你可以使用该方法调节曝光系数。</p>
+            <p>当拍摄场景光线不足或过于明亮时，会影响视频采集的画质。为了获得更好的视频效果，你可以使用该方法调节摄像头的曝光系数。</p>
             <note type="attention">
             <ul>
                 <li props="cpp unreal bp flutter unity">该方法仅适用于 Android 和 iOS。</li>
-                <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在 <xref keyref="startPreview2"/> 或 <xref keyref="joinChannel2"/> 后实际生效。</li>
+                <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在 <xref keyref="startPreview2"/> 或 <xref keyref="joinChannel2"/> 后生效。</li>
                 <li>建议你在调用该方法前，先调用 <xref keyref="isCameraExposureSupported"/> 查询当前摄像头是否支持调节曝光系数。</li>
-                <li>该方法调节当前使用的摄像头的曝光系数，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                <li>当你调用该方法时，设置的是当前正在使用的摄像头的曝光系数，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
             </ul></note>
         </section>
         <section id="parameters">
@@ -46,12 +46,12 @@
             <plentry>
                 <pt props="android">factor</pt>
                 <pt props="ios">exposureFactor</pt>
-                <pt props="cpp">value</pt>
+                <pt props="cpp unreal bp">value</pt>
                 <pd>
-                    <p>摄像头的曝光系数。默认值为 0，表示使用摄像头的默认曝光量。取值越大，曝光量越大。视频图像过曝时，你可以降低曝光系数；视频图像欠曝且暗部细节丢失时，你可以增加曝光系数。如果你指定的曝光系数超出设备支持的范围，系统会自动调节为设备实际支持的范围。</p>
+                    <p>摄像头的曝光系数。默认值为 0，表示使用摄像头的默认曝光量。取值越大，曝光量越大。视频图像过曝时，你可以降低曝光系数；视频图像欠曝且暗部细节丢失时，你可以增加曝光系数。如果你指定的曝光系数超出设备支持的范围，SDK 会自动调节为设备实际支持的范围。</p>
                     <p props="android">取值范围为 [-20,20]。</p>
                     <p props="ios">取值范围为 [-8.0,8.0]。</p>
-                    <p props="cpp framework">在 Android 平台上，取值范围为 [-20.0,20.0]；在 iOS 平台上，取值范围为 [-8.0,8.0]。</p>
+                    <p props="cpp unreal bp flutter unity rn">在 Android 平台上，取值范围为 [-20.0,20.0]；在 iOS 平台上，取值范围为 [-8.0,8.0]。</p>
                 </pd>
             </plentry>
             </parml> </section>
