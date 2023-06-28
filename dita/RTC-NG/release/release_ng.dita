@@ -42,11 +42,20 @@
                 <title>改进</title>
                 <body>
                     <ol>
+                        <li props="android ios cpp unreal bp flutter unity rn"><b><ph>摄像头采集效果提升 </ph><ph props="cpp unreal bp flutter unity">(Android &amp; iOS)</ph></b>
+                            <p props="ios cpp unreal bp flutter unity rn">该版本从以下几个方面提升了摄像头采集效果：<ol>
+                                <li><ph>支持摄像头采集曝光调节</ph>
+                                    <p>新增 <codeph><apiname keyref="isCameraExposureSupported"/></codeph> 和 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 方法，用于查询当前设备是否支持曝光调节和设置摄像头的曝光增益。</p></li>
+                                <li><ph>优化默认摄像头选择 </ph><ph props="cpp unreal bp flutter unity rn">(iOS)</ph>
+                                    <p>自该版本起，SDK 的默认摄像头选择对齐 iOS 系统相机行为。如果设备拥有多个后置摄像头，则在视频采集时可以获得更好的拍摄视野、变焦能力、低光性能和深度感应，从而提高视频采集的质量。</p></li>
+                            </ol></p>
+                            <p props="android">该版本支持摄像头采集曝光调节。新增 <codeph><apiname keyref="isCameraExposureSupported"/></codeph> 和 <codeph><apiname keyref="setCameraExposureFactor"/></codeph> 方法，用于查询当前设备是否支持曝光调节和设置摄像头的曝光增益。</p>
+                        </li>
                         <li><b>视频编解码查询能力增强</b>
                             <p>为提升设备编解码能力查询功能，该版本在 <codeph><apiname keyref="CodecCapInfo"/></codeph> 中新增 <codeph>codecLevels</codeph> 成员。当成功调用 <codeph><apiname keyref="queryCodecCapability"/></codeph> 后，可通过 <codeph>codecLevels</codeph> 得知当前设备对于 H.264 和 H.265 格式的视频的硬件和软件解码能力等级。</p>
                         </li>
-                        <li>第二条改进名称 
-                            <p>xx</p>
+                        <li><b>跨频道连麦优化</b>
+                            <p>该版本将跨频道连麦时媒体流转发的目标频道增加至 6 个，在调用 <codeph><apiname keyref="startOrUpdateChannelMediaRelay"/></codeph> 和 <codeph><apiname keyref="startOrUpdateChannelMediaRelayEx"/></codeph> 时，你可以指定最多 6 个目标频道。</p>
                         </li>
                     </ol>
                     <p>该版本还进行了如下改进：
@@ -72,6 +81,8 @@
                         <ul>
                         <li><apiname keyref="startPreview2" props="apple"/></li>
                         <li><apiname keyref="stopPreview2" props="apple"/></li>
+                        <li><apiname keyref="setCameraExposureFactor" props="android ios cpp unreal bp flutter unity rn"/><ph props="cpp unreal bp flutter unity"> (Android &amp; iOS)</ph></li>
+                        <li><apiname keyref="isCameraExposureSupported" props="android ios cpp unreal bp flutter unity rn"/><ph props="cpp unreal bp flutter unity"> (Android &amp; iOS)</ph></li>
                         <li><codeph><apiname keyref="VideoCanvas"/></codeph> 中增加 <codeph>backgroundColor</codeph> 成员</li>
                         <li><codeph><apiname keyref="CodecCapInfo"/></codeph> 中增加 <codeph>codecLevels</codeph> 成员</li>
                         <li><codeph><apiname keyref="CodecCapLevels"/></codeph></li>
