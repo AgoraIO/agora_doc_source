@@ -748,14 +748,14 @@ __attribute__((visibility("default"))) @interface AgoraMetaServiceConfig : NSObj
 
 
 - `appId`：在声网控制台获取的 App ID。
-- `rtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。集成及测试阶段请将 `token` 设置为 `nil`。
+- `rtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。
 - `userId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
   - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
   - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
   - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
 - `delegate`：回调事件，详见 [AgoraMetaEventDelegate](#agorametaeventdelegate)。
 - `localDownloadPath` ：场景资源下载到本地的保存路径。
-- `rtcEngine`：`AgoraRtcEngineKit` 实例，创建方法详见 [create [1/2]](https://docs.agora.io/cn/video-call-4.x/API20%Reference/ios_ng/API/class_irtcengine.html#api_create)。
+- `rtcEngine`：`AgoraRtcEngineKit` 实例，创建方法详见 [`sharedEngineWithConfig`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_initialize)。
 
 ### AgoraMetaUserInfo
 

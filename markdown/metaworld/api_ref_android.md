@@ -245,6 +245,8 @@ public abstract int release();
 public abstract ILocalUserAvatar getLocalUserAvatar();
 ```
 
+获取 `ILocalUserAvatar` 对象。
+
 进入场景前，可以调用该方法获取用户的昵称、虚拟形象、装扮捏脸等信息。
 
 **返回值**
@@ -802,7 +804,7 @@ public class MetaServiceConfig {
 }
 ```
 
-- `mRtcEngine`：`RtcEngine` 实例，创建方法详见 [`create` [1/2]](https://docs.agora.io/cn/video-call-4.x/API%20Reference/java_ng/API/class_irtcengine.html#api_create)。
+- `mRtcEngine`：`RtcEngine` 实例，创建方法详见 [`create` [1/2]](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create)。
 - `mAppId`：在声网控制台获取的 App ID。
 - `mRtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。
 - `mLocalDownloadPath` ：场景资源下载到本地的保存路径。
