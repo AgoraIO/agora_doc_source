@@ -6,7 +6,7 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 ## 实现元语聊
 
-完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元语聊。
+完成[集成声网 Meta SDK](./mw_integrate_sdk_android) 后，你可以参考本节实现元语聊。
 
 下图展示实现元语聊的 API 调用时序：
 
@@ -24,19 +24,19 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 ### 1. 创建并初始化 IMetaService
 
-调用 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 创建 `RtcEngine`。调用 `IMetaService` 类的 [`create`](./api_ref_android?platform=All%20Platforms#create) 和 [`initialize`](./api_ref_android?platform=All%20Platforms#initialize) 创建并初始化 `IMetaService`。
+调用 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_create) 创建 `RtcEngine`。调用 `IMetaService` 类的 [`create`](./mw_api_ref_android?platform=All%20Platforms#create) 和 [`initialize`](./mw_api_ref_android?platform=All%20Platforms#initialize) 创建并初始化 `IMetaService`。
 
 初始化 `IMetaService` 时，需要在 `MetaServiceConfig` 里设置如下重要的字段：
 - `mRtcEngine`：通过 `create` 方法创建的 `RtcEngine` 实例。
-- `mAppId`：在声网控制台获取的 App ID。详见[集成声网 Meta SDK](./integrate_sdk_android)。
-- `mUserId`：登录声网 RTM 系统的用户 ID。推荐取值详见 [API 参考](./api_ref_android?platform=All%20Platforms#metaserviceconfig)。
+- `mAppId`：在声网控制台获取的 App ID。详见[集成声网 Meta SDK](./mw_integrate_sdk_android)。
+- `mUserId`：登录声网 RTM 系统的用户 ID。推荐取值详见 [API 参考](./mw_api_ref_android?platform=All%20Platforms#metaserviceconfig)。
 - `mRtmToken`：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。详见[生成 Token](https://docportal.shengwang.cn/cn/Real-time-Messaging/messaging_android?platform=Android#4-生成-token)。
 - `mLocalDownloadPath`：场景资源下载到本地的保存路径。
 - `mEventHandler`：`IMetaService` 的回调事件句柄。
 
 声网项目有两种 Token 和 UID，请不要搞混淆：
 - RTC UID：用于在实时音视频通讯中标志用户身份的用户 ID。推荐取值详见 [joinChannel 的参数解释](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2)。
-- RTM UID：用于在云信令系统中标志用户身份的用户 ID。推荐取值详见 [MetaServiceConfig 的字段解释](./api_ref_android?platform=All%20Platforms#metaserviceconfig)。
+- RTM UID：用于在云信令系统中标志用户身份的用户 ID。推荐取值详见 [MetaServiceConfig 的字段解释](./mw_api_ref_android?platform=All%20Platforms#metaserviceconfig)。
 - RTC Token：用于保障实时音视频通讯安全的动态密钥。详见[如何生成 RTC Token 进行鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)。
 - RTM Token：用于保障云信令系统安全的动态密钥。详见[如何生成 RTM Token 进行鉴权](https://docportal.shengwang.cn/cn/Real-time-Messaging/token2_server_rtm?platform=All%20Platforms)。
 
@@ -118,9 +118,9 @@ scenePath = context.getExternalFilesDir("").getPath();
 
 ### 2. 下载场景资源
 
-调用 `IMetaService` 类的 [`getSceneAssetsInfo`](./api_ref_android?platform=All%20Platforms#getsceneassetsinfo) 获取场景资源，并通过 `IMetaServiceEventHandler` 类的 [`onGetSceneAssetsInfoResult`](./api_ref_android?platform=All%20Platforms#ongetsceneassetsinforesult) 回调监听获取场景资源时的事件。
+调用 `IMetaService` 类的 [`getSceneAssetsInfo`](./mw_api_ref_android?platform=All%20Platforms#getsceneassetsinfo) 获取场景资源，并通过 `IMetaServiceEventHandler` 类的 [`onGetSceneAssetsInfoResult`](./mw_api_ref_android?platform=All%20Platforms#ongetsceneassetsinforesult) 回调监听获取场景资源时的事件。
 
-调用 `IMetaService` 类的 [`downloadScene`](./api_ref_android?platform=All%20Platforms#downloadscene) 获取场景资源，并通过 `IMetaServiceEventHandler` 类的 [`onDownloadSceneAssetsProgress`](./api_ref_android?platform=All%20Platforms#ondownloadsceneassetsprogress) 回调监听获取场景资源时的事件。
+调用 `IMetaService` 类的 [`downloadScene`](./mw_api_ref_android?platform=All%20Platforms#downloadscene) 获取场景资源，并通过 `IMetaServiceEventHandler` 类的 [`onDownloadSceneAssetsProgress`](./mw_api_ref_android?platform=All%20Platforms#ondownloadsceneassetsprogress) 回调监听获取场景资源时的事件。
 
 ```java
 // 获取场景资源
@@ -146,7 +146,7 @@ public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state)
 
 ### 3. 创建 IMetaScene
 
-调用 [`createScene`](./api_ref_android?platform=All%20Platforms#createscene) 创建 `IMetaScene`，并在 `sceneConfig` 中设置场景配置信息。通过 `IMetaServiceEventHandler` 类的 [`onCreateSceneResult`](./api_ref_android?platform=All%20Platforms#oncreatesceneresult) 和 [`onConnectionStateChanged`](./api_ref_android?platform=All%20Platforms#onconnectionstatechanged) 回调监听创建场景和连接状态的事件。
+调用 [`createScene`](./mw_api_ref_android?platform=All%20Platforms#createscene) 创建 `IMetaScene`，并在 `sceneConfig` 中设置场景配置信息。通过 `IMetaServiceEventHandler` 类的 [`onCreateSceneResult`](./mw_api_ref_android?platform=All%20Platforms#oncreatesceneresult) 和 [`onConnectionStateChanged`](./mw_api_ref_android?platform=All%20Platforms#onconnectionstatechanged) 回调监听创建场景和连接状态的事件。
 
 ```java
 // 设置场景配置信息
@@ -189,10 +189,10 @@ public void onConnectionStateChanged(int state, int reason) {
 ### 4. 设置用户信息并进入场景 #TODO 换装捏脸
 
 要完成进入场景的操作，参考如下步骤：
-1. 调用 [`setUserInfo`](./api_ref_android?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./api_ref_android?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
-2. 调用 `IMetaScene` 类的 [`addEventHandler`](./api_ref_android?platform=All%20Platforms#addeventhandler-1) 添加事件句柄，监听 `IMetaScene` 的事件回调。
-3. 调用 [`enterScene`](./api_ref_android?platform=All%20Platforms#enterscene) 进入场景，并通过 `config` 设置配置信息。
-4. 通过 `IMetaSceneEventHandler` 类的 [`onEnterSceneResult`](./api_ref_android?platform=All%20Platforms#onentersceneresult) 回调监听进入场景的结果。
+1. 调用 [`setUserInfo`](./mw_api_ref_android?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./mw_api_ref_android?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
+2. 调用 `IMetaScene` 类的 [`addEventHandler`](./mw_api_ref_android?platform=All%20Platforms#addeventhandler-1) 添加事件句柄，监听 `IMetaScene` 的事件回调。
+3. 调用 [`enterScene`](./mw_api_ref_android?platform=All%20Platforms#enterscene) 进入场景，并通过 `config` 设置配置信息。
+4. 通过 `IMetaSceneEventHandler` 类的 [`onEnterSceneResult`](./mw_api_ref_android?platform=All%20Platforms#onentersceneresult) 回调监听进入场景的结果。
 
 ```java
 public void enterScene() {
@@ -249,9 +249,9 @@ public void onEnterSceneResult(int errorCode) {
 ### 5. 离开场景并释放资源
 
 离开场景时，参考如下步骤：
-1. 调用 [`leaveScene`](./api_ref_android?platform=All%20Platforms#leavescene) 离开场景。
-2. 通过 `IMetaSceneEventHandler` 类的 [`onLeaveSceneResult`](./api_ref_android?platform=All%20Platforms#onleavesceneresult) 回调得知成功离开场景后，调用 [`release`](./api_ref_android?platform=All%20Platforms#release) 释放 `IMetaScene`。
-3. 通过 `IMetaSceneEventHandler` 类的 [`onReleasedScene`](./api_ref_android?platform=All%20Platforms#onreleasedscene) 回调监听 `IMetaScene` 是否释放成功。
+1. 调用 [`leaveScene`](./mw_api_ref_android?platform=All%20Platforms#leavescene) 离开场景。
+2. 通过 `IMetaSceneEventHandler` 类的 [`onLeaveSceneResult`](./mw_api_ref_android?platform=All%20Platforms#onleavesceneresult) 回调得知成功离开场景后，调用 [`release`](./mw_api_ref_android?platform=All%20Platforms#release) 释放 `IMetaScene`。
+3. 通过 `IMetaSceneEventHandler` 类的 [`onReleasedScene`](./mw_api_ref_android?platform=All%20Platforms#onreleasedscene) 回调监听 `IMetaScene` 是否释放成功。
 4. 依次调用 `IMetaService` 和 `RtcEngine` 类的 `destroy` 方法销毁 `IMetaService` 和 `RtcEngine`。
 
 ```java

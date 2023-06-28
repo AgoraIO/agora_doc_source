@@ -6,7 +6,7 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 ## 实现元语聊
 
-完成[集成声网 Meta SDK](./integrate_sdk_ios) 后，你可以参考本节实现元语聊。
+完成[集成声网 Meta SDK](./mw_integrate_sdk_ios) 后，你可以参考本节实现元语聊。
 
 下图展示实现元语聊的 API 调用时序：
 
@@ -24,19 +24,19 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 ### 1. 创建并初始化 AgoraMetaServiceKit
 
-调用 [`sharedEngineWithConfig`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_initialize) 创建 `AgoraRtcEngineKit`。调用 `AgoraMetaServiceKit` 类的 [`sharedMetaServiceWithConfig`](./api_ref_ios?platform=All%20Platforms#sharedmetaservicewithconfig) 创建并初始化 `AgoraMetaServiceKit`。
+调用 [`sharedEngineWithConfig`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_initialize) 创建 `AgoraRtcEngineKit`。调用 `AgoraMetaServiceKit` 类的 [`sharedMetaServiceWithConfig`](./mw_api_ref_ios?platform=All%20Platforms#sharedmetaservicewithconfig) 创建并初始化 `AgoraMetaServiceKit`。
 
 初始化 `AgoraMetaServiceKit` 时，需要在 `AgoraMetaServiceConfig` 里设置如下重要的字段：
 - `rtcEngine`：通过 `sharedEngineWithConfig` 方法创建的 `AgoraRtcEngineKit` 实例。
-- `appId`：在声网控制台获取的 App ID。详见[集成声网 Meta SDK](./integrate_sdk_ios)。
-- `userId`：登录声网 RTM 系统的用户 ID。推荐取值详见 [API 参考](./api_ref_ios?platform=All%20Platforms#agorametaserviceconfig)。
+- `appId`：在声网控制台获取的 App ID。详见[集成声网 Meta SDK](./mw_integrate_sdk_ios)。
+- `userId`：登录声网 RTM 系统的用户 ID。推荐取值详见 [API 参考](./mw_api_ref_ios?platform=All%20Platforms#agorametaserviceconfig)。
 - `rtmToken`：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。详见[生成 Token](https://docportal.shengwang.cn/cn/Real-time-Messaging/messaging_ios?platform=iOS#4-生成-token)。
 - `localDownloadPath`：场景资源下载到本地的保存路径。
 - `delegate``：AgoraMetaServiceKit` 的回调事件。
 
 声网项目有两种 Token 和 UID，请不要搞混淆：
 - RTC UID：用于在实时音视频通讯中标志用户身份的用户 ID。推荐取值详见 [joinChannelByToken 的参数解释](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。
-- RTM UID：用于在云信令系统中标志用户身份的用户 ID。推荐取值详见 [AgoraMetaServiceConfig 的字段解释](./api_ref_ios?platform=All%20Platforms#agorametaserviceconfig)。
+- RTM UID：用于在云信令系统中标志用户身份的用户 ID。推荐取值详见 [AgoraMetaServiceConfig 的字段解释](./mw_api_ref_ios?platform=All%20Platforms#agorametaserviceconfig)。
 - RTC Token：用于保障实时音视频通讯安全的动态密钥。详见[如何生成 RTC Token 进行鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_ios_ng?platform=iOS)。
 - RTM Token：用于保障云信令系统安全的动态密钥。详见[如何生成 RTM Token 进行鉴权](https://docportal.shengwang.cn/cn/Real-time-Messaging/token2_server_rtm?platform=All%20Platforms)。
 
@@ -90,9 +90,9 @@ func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaE
 
 ### 2. 下载场景资源
 
-调用 `AgoraMetaServiceKit` 类的 [`getSceneAssetsInfo`](./api_ref_ios?platform=All%20Platforms#getsceneassetsinfo) 获取场景资源，并通过 `AgoraMetaEventDelegate` 类的 [`onGetSceneAssetsInfoResult`](./api_ref_ios?platform=All%20Platforms#ongetsceneassetsinforesult) 回调监听获取场景资源时的事件。
+调用 `AgoraMetaServiceKit` 类的 [`getSceneAssetsInfo`](./mw_api_ref_ios?platform=All%20Platforms#getsceneassetsinfo) 获取场景资源，并通过 `AgoraMetaEventDelegate` 类的 [`onGetSceneAssetsInfoResult`](./mw_api_ref_ios?platform=All%20Platforms#ongetsceneassetsinforesult) 回调监听获取场景资源时的事件。
 
-调用 `AgoraMetaServiceKit` 类的 [`downloadScene`](./api_ref_ios?platform=All%20Platforms#downloadscene) 获取场景资源，并通过 `AgoraMetaEventDelegate` 类的 [`onDownloadSceneAssetsProgress`](./api_ref_ios?platform=All%20Platforms#ondownloadsceneassetsprogress) 回调监听获取场景资源时的事件。
+调用 `AgoraMetaServiceKit` 类的 [`downloadScene`](./mw_api_ref_ios?platform=All%20Platforms#downloadscene) 获取场景资源，并通过 `AgoraMetaEventDelegate` 类的 [`onDownloadSceneAssetsProgress`](./mw_api_ref_ios?platform=All%20Platforms#ondownloadsceneassetsprogress) 回调监听获取场景资源时的事件。
 
 ```swift
 // 判断是否下载场景资源
@@ -124,7 +124,7 @@ metaService?.cleanSceneAssets(_ sceneId: Int)
 
 ### 3. 创建 AgoraMetaScene
 
-调用 [`createScene`](./api_ref_ios?platform=All%20Platforms#createscene) 创建 `AgoraMetaScene`，并在 `AgoraMetaSceneConfig` 中设置场景配置信息。通过 `AgoraMetaEventDelegate` 类的 [`onCreateSceneResult`](./api_ref_ios?platform=All%20Platforms#oncreatesceneresult) 和 [`onConnectionStateChanged`](./api_ref_ios?platform=All%20Platforms#onconnectionstatechanged) 回调监听创建场景和连接状态的事件。
+调用 [`createScene`](./mw_api_ref_ios?platform=All%20Platforms#createscene) 创建 `AgoraMetaScene`，并在 `AgoraMetaSceneConfig` 中设置场景配置信息。通过 `AgoraMetaEventDelegate` 类的 [`onCreateSceneResult`](./mw_api_ref_ios?platform=All%20Platforms#oncreatesceneresult) 和 [`onConnectionStateChanged`](./mw_api_ref_ios?platform=All%20Platforms#onconnectionstatechanged) 回调监听创建场景和连接状态的事件。
 
 
 ```swift
@@ -172,9 +172,9 @@ func onConnectionStateChanged(_ state: AgoraMetaConnectionStateType, reason: Ago
 ### 4. 设置用户信息并进入场景 #TODO 换装捏脸
 
 要完成进入场景的操作，参考如下步骤：
-1. 调用 [`setUserInfo`](./api_ref_ios?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./api_ref_ios?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
-2. 调用 [`enterScene`](./api_ref_ios?platform=All%20Platforms#enterscene) 进入场景，并通过 `config` 设置配置信息。
-3. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onEnterSceneResult`](./api_ref_ios?platform=All%20Platforms#onentersceneresult) 回调监听进入场景的结果。
+1. 调用 [`setUserInfo`](./mw_api_ref_ios?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./mw_api_ref_ios?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
+2. 调用 [`enterScene`](./mw_api_ref_ios?platform=All%20Platforms#enterscene) 进入场景，并通过 `config` 设置配置信息。
+3. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onEnterSceneResult`](./mw_api_ref_ios?platform=All%20Platforms#onentersceneresult) 回调监听进入场景的结果。
 
 ```swift
 func enterScene(view: UIView) {
@@ -225,9 +225,9 @@ func metaScene(_ scene: AgoraMetaScene, onEnterSceneResult errorCode: Int) {}
 ### 5. 离开场景并释放资源
 
 离开场景时，参考如下步骤：
-1. 调用 [`leaveScene`](./api_ref_ios?platform=All%20Platforms#leavescene) 离开场景。
-2. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onLeaveSceneResult`](./api_ref_ios?platform=All%20Platforms#onleavesceneresult) 回调得知成功离开场景后，调用 [`destroy`](./api_ref_ios?platform=All%20Platforms#destroy-1) 释放 `AgoraMetaScene`。
-3. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onReleasedScene`](./api_ref_ios?platform=All%20Platforms#onreleasedscene) 回调监听 `AgoraMetaScene` 是否释放成功。
+1. 调用 [`leaveScene`](./mw_api_ref_ios?platform=All%20Platforms#leavescene) 离开场景。
+2. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onLeaveSceneResult`](./mw_api_ref_ios?platform=All%20Platforms#onleavesceneresult) 回调得知成功离开场景后，调用 [`destroy`](./mw_api_ref_ios?platform=All%20Platforms#destroy-1) 释放 `AgoraMetaScene`。
+3. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onReleasedScene`](./mw_api_ref_ios?platform=All%20Platforms#onreleasedscene) 回调监听 `AgoraMetaScene` 是否释放成功。
 4. 依次调用 `AgoraMetaServiceKit` 和 `AgoraRtcEngineKit` 类的 `destroy` 方法销毁 `AgoraMetaServiceKit` 和 `AgoraRtcEngineKit`。
 
 ```swift
