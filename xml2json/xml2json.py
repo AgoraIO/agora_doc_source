@@ -421,6 +421,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 # Assume that a conkeyref contains only two levels
                 dita_file_tree = ET.parse(defined_path)
                 dita_file_root = dita_file_tree.getroot()
+                href_text = ""
                 for keydef in dita_file_root.iter("keydef"):
                     if keydef.get("keys") == key:
                         href_text = keydef.get("href")
@@ -438,7 +439,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
                 if sys.platform == 'darwin' or sys.platform == 'linux':
                     localLogger.debug("macOS")
-                    if href_text is not None and href_text != "":
+                    if href_text:
                         dir = path.join(working_dir, href_text).replace("../", "")
                         dir = path.join("..", dir)
                     else:
