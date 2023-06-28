@@ -357,7 +357,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 
 ## 从群组黑名单批量移除用户
 
-将多名指定用户从群组黑名单中移除。对于群组黑名单中的用户，如果需要将其再次加入群组，需要先将其从群组黑名单中移除。
+将多名指定用户从群组黑名单中移除。你一次最多可移除 60 个用户。对于群组黑名单中的用户，如果需要将其再次加入群组，需要先将其从群组黑名单中移除。
 
 ### HTTP 请求
 
@@ -370,7 +370,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/blocks/users/{
 | 参数      | 类型   | 描述                                      | 是否必需 |
 | :-------- | :----- | :---------------------------------------- | :------- |
 | `group_id`  | String | 群组 ID。                                 | 是       |
-| `usernames` | String | 要移除群组黑名单的用户 ID。多个用户 ID 之间使用英文逗号隔开。 | 是       |
+| `usernames` | String | 要移除群组黑名单的用户 ID。一次最多可传 60 个多个用户 ID，用户 ID 之间使用英文逗号隔开。 | 是       |
 
 其他参数及描述详见[公共参数](#pubparam)。
 

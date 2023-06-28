@@ -238,6 +238,7 @@ vivo 推送相关字段与 vivo 推送官网的字段的映射关系如下表所
 | `requestId`       |    `requestId`   |
 | `pushMode`        |    `pushMode`    |
 | `extra`           |    `extra`     |
+| `category` | `category` | 
 
 vivo 推送回调相关字段与 vivo 推送官网的字段的映射关系如下表所示：
 
@@ -249,7 +250,6 @@ vivo 推送回调相关字段与 vivo 推送官网的字段的映射关系如下
 关于以上字段的描述，详见 [vivo 推送官网](https://dev.vivo.com.cn/documentCenter/doc/362#w2-98542835)。
 
 ### OPPO 推送说明
-
 
 OPPO 推送相关字段与 OPPO 推送官网的字段的映射关系如下表所示：
 
@@ -435,3 +435,69 @@ OPPO 推送相关字段与 OPPO 推送官网的字段的映射关系如下表所
 | `blue`  |   `blue`   |
 
 关于以上字段的描述，详见[华为推送官网](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/https-send-api-0000001050986197#section13271045101216)。
+
+### 荣耀推送
+
+荣耀推送相关字段与荣耀推送官网的字段的映射关系如下表所示：
+
+#### 推送消息结构体
+
+| 荣耀推送字段           | 荣耀推送官网字段            |
+| :------------- | :-------------------------- |
+| `data` | `data`   |
+| `androidConfig`     | `android` |
+
+##### 安卓消息推送控制参数
+
+| 荣耀推送字段 | 荣耀推送官网字段                  | 
+| :-------------------- | :----- | 
+| `ttl`                 | `ttl` | 
+| `biTag`               | `biTag` | 
+| `data`                | `data` | 
+| `androidNotification` | `notification` | 
+
+##### 安卓通知栏消息结构体
+
+| 荣耀推送字段       | 荣耀推送官网字段    |
+| :-------------------- | :------------- |
+| `title`             | `title`     |
+| `body`              | `body`    |
+| `clickAction`       | `clickAction`    | 
+| `image`             | `image`   |
+| `style`             | `style`     |
+| `bigTitle`          | `bigTitle`     |
+| `bigBody`           | `bigBody`          |
+| `importance`        | `importance`    | 
+| `when`              | `when`   |
+| `buttons`           | `buttons`    |
+| `badgeNotification` | `badge`         |
+| `notifyId`          | `notifyId`     | 
+
+#####  通知栏消息点击行为
+
+| 荣耀推送字段 | 荣耀推送官网字段  |
+| :-------------------- | :----- |
+| `type`   | `actionType`  | 
+| `intent` | `intent`  | 
+| `url`    | `url`    |
+| `action` | `action`    |
+
+##### 通知栏消息动作按钮
+
+| 荣耀推送字段       | 荣耀推送官网字段             |
+| :-------------------- | :----- |
+| `name`       | `name`       |
+| `actionType` | `actionType`    |
+| `intentType` | `intentType`    |
+| `intent`     | `intent`    |  
+| `data`       | `data`  |
+
+##### 角标控制
+
+| 参数       | 荣耀推送官网字段      |
+| :-------------------- | :----- |
+| `addNum`     | `addNum`        | 
+| `badgeClass` | `badgeClass`        |
+| `setNum`     | `setNum`        |
+
+关于以上字段的描述，详见 [荣耀推送官网](https://developer.hihonor.com/cn/kitdoc?category=基础服务&kitId=11002&navigation=ref&docId=downlink-message.md)。

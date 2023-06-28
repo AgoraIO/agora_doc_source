@@ -18,7 +18,7 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 | -2     | REQUEST_UNKNOWN               | 默认未区分类型的错误。         |
 | -3     | REQUEST_PARAMETER_ERROR               | 参数错误。                                     |
 | -4     | REQUEST_ABORT               | 取消请求。                                     |
-| 1      | WEBIM_CONNCTION_OPEN_ERROR                    | 登录失败：获取 token 接口请求失败。                          |
+| 1      | WEBIM_CONNCTION_OPEN_ERROR                    | 登录失败：获取 token 接口请求失败或 Token 无效。                          |
 | 2      | WEBIM_CONNCTION_AUTH_ERROR                     | 鉴权失败：调用 API 时校验 App Key 失败，App Key 不合法。关于如何获取 App Key，详见[获取即时通讯项目信息](./enable_agora_chat#获取即时通讯项目信息)。     |
 | 12     | WEBIM_CONNCTION_GETROSTER_ERROR                | 获取 Chat token 失败：通过 Agora token 置换 Chat token 失败。 |
 | 16     | WEBIM_CONNCTION_DISCONNECTED                   | WebSocket 断开连接：由于断网等原因 WebSocket 已经断开。      |
@@ -29,7 +29,7 @@ error.type === statusCode.WEBIM_CONNCTION_USER_NOT_ASSIGN_ERROR 其中 `error` �
 | 32     | WEBIM_CONNCTION_CLIENT_OFFLINE                 | 当前用户未登录。                                             |
 | 39     | WEBIM_CONNECTION_CLOSED                        | 退出或未登录：未登录或掉线后发送消息。                       |
 | 40     | WEBIM_CONNECTION_ERROR                         | 用户鉴权失败。                  |
-| 50     | MAX_LIMIT                         | 达到上限，如：Reaction 数量已达到限制或翻译用量达到上限。                  |
+| 50     | MAX_LIMIT                         | 达到上限，例如 Reaction 数量已达到限制、翻译用量达到上限、应用的日活跃用户数（DAU）超限、在线用户数量超限和月活跃用户数（MAU）。       |
 | 51     | MESSAGE_NOT_FOUND                         | 没查到消息，如：没有查询到要举报的消息。                 |
 | 52     | NO_PERMISSION                          | 用户对当前操作没有权限。                 |
 | 53     | OPERATION_UNSUPPORTED                         | 不支持的操作。                 |

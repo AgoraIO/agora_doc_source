@@ -63,13 +63,14 @@ AgoraChatConversation* conversation = [AgoraChatClient.sharedClient.chatManager 
     }];
 ```
 
-### 删除服务端会话及其历史消息
+### 单向删除服务端会话及其历史消息
 
-你可以调用 `deleteServerConversation` 方法删除服务器端会话和历史消息。会话删除后，当前用户和其他用户均无法从服务器获取该会话。若该会话的历史消息也删除，所有用户均无法从服务器获取该会话的消息。
+你可以调用 `deleteServerConversation` 方法删除服务器端会话和历史消息。会话和消息删除后，当前用户无法从服务器获取该会话和消息，对本地的会话无影响，但会删除本地消息，而其他用户不受影响。
 
 示例代码如下：
 
 ```objective-c
+// 删除指定会话。若需要保留历史消息，`isDeleteServerMessages` 参数传 `NO`。
 [AgoraChatClient.sharedClient.chatManager deleteServerConversation:@"conversationId1" conversationType:AgoraChatConversationTypeChat isDeleteServerMessages:YES completion:^(NSString *aConversationId, AgoraChatError *aError) {
         
     }];

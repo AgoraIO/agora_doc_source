@@ -34,22 +34,22 @@
 
 ### 发送子区消息
 
-发送子区消息和发送群组消息的方法基本一致，区别在于 `isChatThread` 字段，如以下示例代码所示：
+发送子区消息和发送群组消息的方式基本一致，区别在于需传入子区 ID 且将 `isChatThread` 字段设置为 `YES`，如以下示例代码所示：
 
 ```objective-c
 // 调用 `initWithConversationID` 创建一条文本消息
 // 设置 `*message` 为消息文字内容
-// 设置 `*to` 为子区 ID
+// 设置 `*chatThreadId` 为子区 ID
 NSString *from = [[AgoraChatClient sharedClient] currentUsername];
-NSString *to = self.currentConversation.conversationId;
-AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:to from:from to:to body:aBody ext:aExt];
+NSString *chatThreadId = self.currentConversation.conversationId;
+AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:chatThreadId from:from to:chatThreadId body:aBody ext:aExt];
     // 是否需要消息已读回执。
 if([aExt objectForKey:MSG_EXT_READ_RECEIPT]) {
     message.isNeedGroupAck = YES;
 }
-// 设置 `chatType` 为 `AgoraChatTypeGroupChat` 标示为群组消息
+// 设置 `chatType` 为 `AgoraChatTypeGroupChat`，即群聊。
 message.chatType = (AgoraChatType)self.conversationType;
-// 设置 `isChatThread` 为 `YES` 标记为子区消息
+// 设置 `isChatThread` 为 `YES` 标记为子区消息。
 message.isChatThreadMessage = self.isChatThread;
 // 发送消息。
 [[AgoraChatClient sharedClient].chatManager sendMessage:message progress:nil completion:^(AgoraChatMessage *message, AgoraChatError *error) {
@@ -94,9 +94,17 @@ message.isChatThreadMessage = self.isChatThread;
 
 进入单个子区会话后默认展示最早消息，用户可以从服务器获取子区历史消息；若需要合并本地和服务器拉取到的消息（例如有用户撤回子区消息的提示是 SDK 在本地生成的一条消息，可以选择从本地获取子区消息。
 
+<div class="alert note">可通过 `AgoraChatConversation#isChatThread()` 判断当前会话是否为子区会话。</div>
+
 ### 从服务器获取子区消息 (消息漫游)
 
-关于如何从服务器获取子区消息，详见[从服务器获取历史消息](./agora_chat_retrieve_message_ios#从服务器获取指定会话的历史消息)。
+调用 `AgoraChatManager#asyncFetchHistoryMessagesFromServer` 方法从服务器获取子区消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
+
+```objective-c
+[AgoraChatClient.sharedClient.chatManager asyncFetchHistoryMessagesFromServer:@"threadId" conversationType:AgoraChatConversationTypeGroupChat startMessageId:@"" fetchDirection:AgoraChatMessageFetchHistoryDirectionUp pageSize:20 completion:^(AgoraChatCursorResult<AgoraChatMessage *> * _Nullable aResult, AgoraChatError * _Nullable aError) {
+            
+    }];
+```
 
 #### 从内存和本地数据库中获取子区消息
 
@@ -110,5 +118,3 @@ AgoraChatConversation* conversation = [AgoraChatClient.sharedClient.chatManager 
            
 }];
 ```
-
-<div class="alert info">可以通过 `AgoraChatConversation#isChatThread` 属性判断当前会话是否为子区会话。</div>

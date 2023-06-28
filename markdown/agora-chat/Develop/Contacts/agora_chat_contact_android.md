@@ -104,27 +104,31 @@ List<String> usernames = ChatClient.getInstance().contactManager().getContactsFr
 
 ### 管理黑名单
 
+黑名单是与好友无任何关系的独立体系。可以将任何用户加入黑名单，不论该用户与你是否是好友关系。
+
+黑名单功能包括加入黑名单，从黑名单移出用户和获取黑名单列表。对于获取黑名单，你可从服务器获取黑名单列表，也可从本地数据库获取已保存的黑名单列表。
+
 #### 将用户添加到黑名单
 
-你可以调用 `addUserToBlackList` 将指定用户添加到黑名单。你仍然可以向黑名单用户发送聊天消息，但无法接收来自他们的消息。
+你可以调用 `addUserToBlackList` 方法将用户加入黑名单。
 
-用户可以将任何其他聊天用户添加到他们的黑名单列表中，无论该用户是否是好友。添加到黑名单列表的好友保留在好友列表中。
+用户可以将任何其他用户添加到黑名单列表，无论该用户是否是好友。好友被加入黑名单后仍在好友列表上显示。将用户添加到黑名单后，你仍然可以向黑名单用户发送聊天消息，但无法接收来自他们的消息。黑名单上的用户无法向你发送消息，也无法发送好友申请。
 
 ```java
 ChatClient.getInstance().contactManager().addUserToBlackList(username,true);
 ```
 
-### 将用户从黑名单移除
+#### 将用户从黑名单移除
 
-你可以调用 `removeUserFromBlackList` 将用户从黑名单移除，示例代码如下：
+你可以调用 `removeUserFromBlackList` 将用户从黑名单移除，，用户发送消息等行为将恢复。
 
 ```java
 ChatClient.getInstance().contactManager().removeUserFromBlackList(username);
 ```
 
-#### 从服务器获取黑名单列表
+#### 获取黑名单列表
 
-你可以调用 `getBlackListFromServer` 从服务器获取黑名单用户的列表。
+你可以调用 `getBlackListFromServer` 从服务器获取黑名单用户的列表。 
 
 ```java
 ChatClient.getInstance().contactManager().getBlackListFromServer();

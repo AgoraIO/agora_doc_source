@@ -44,8 +44,8 @@ ChatMessage message = ChatMessage.createTxtSendMessage(content, chatThreadId);
 // 设置消息类型，子区消息需要将 `ChatType` 设置为 `GroupChat`。
 message.setChatType(ChatType.GroupChat);
 // 设置消息标记 `isChatThreadMessage` 为 `true`。
-message.setisChatThreadMessage(true);
-// 调用 `setMessageStatusCallback` 获得消息发送的状态。可以在该回调中更新消息的显示状态。例如消息发送失败后的提示等等。
+message.setIsChatThreadMessage(true);
+// 调用 `setMessageStatusCallback` 获得消息发送的状态。可以在该回调中更新消息的显示状态。例如消息发送失败后的提示等。
 message.setMessageStatusCallback(new CallBack() {
      @Override
      public void onSuccess() {
@@ -120,13 +120,36 @@ MessageListener msgListener = new MessageListener() {
 
 进入单个子区会话后默认展示最早消息，用户可以从服务器获取子区历史消息；若需要合并本地和服务器拉取到的消息（例如有用户撤回子区消息的提示是 SDK 在本地生成的一条消息，可以选择从本地获取子区消息。
 
+<div class="alert note">可通过 `ChatConversation#isChatThread()` 判断当前会话是否为子区会话。</div>
+
 #### 从服务器获取子区消息（消息漫游）
 
-关于如何从服务器获取子区消息，详见[从服务器获取历史消息](./agora_chat_retrieve_message_android#从服务器获取指定会话的历史消息)。
+调用 `asyncFetchHistoryMessage` 方法从服务器获取子区消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
+
+```java
+String chatThreadId = "{your chatThreadId}";
+Conversation.ConversationType type = Conversation.ConversationType.GroupChat;
+int pageSize = 10;
+String startMsgId = "";// 开始查询的消息 ID。若传 ""，SDK 忽略该参数，按搜索方向查询消息。
+Conversation.SearchDirection direction = Conversation.SearchDirection.DOWN;
+
+ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(chatThreadId, type, 
+        pageSize, startMsgId, direction, new ValueCallBack<CursorResult<ChatMessage>>() {
+    @Override
+    public void onSuccess(CursorResult<ChatMessage> value) {
+        
+    }
+
+    @Override
+    public void onError(int error, String errorMsg) {
+
+    }
+});
+```
 
 #### 从内存和本地数据库中获取子区消息
 
-调用 [`getAllConversations`](./agora_chat_manage_message_android#获取本地所有会话)方法只能获取单聊或群聊会话。要获取子区会话，参考以下示例代码：
+调用 [`getAllConversations`](./agora_chat_manage_message_android#获取本地所有会话)方法只能获取单聊或群聊会话。你可以调用以下方法从本地数据库中读取指定子区的消息：
 
 ```java
 // 需设置会话类型为 `ChatConversationType.GroupChat` 和 `isChatThread` 为 `true`
@@ -137,4 +160,3 @@ List<ChatMessage> messages = conversation.getAllMessages();
 List<ChatMessage> messages = conversation.loadMoreMsgFromDB(startMsgId, pagesize, searchDirection);
 ```
 
-<div class="alert note">判断当前会话是否为子区会话，可以调用 `ChatConversation#isChatThread()` 方法。</div>
