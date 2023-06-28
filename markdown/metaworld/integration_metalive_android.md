@@ -6,121 +6,22 @@
 
 声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供元直播源代码供你参考。
 
-## 开通 Meta 服务
-
-### 创建声网项目
-
-1. 进入声网控制台的[项目管理](https://console.agora.io/projects)页面。
-
-2. 在项目管理页面，点击**创建**按钮。
-
-3. 在弹出的对话框内输入项目名称、使用场景，然后选择**安全模式：** **APP ID + Token**。
-
-4. 点击**提交**按钮。新建的项目会显示在项目管理页中。
-
-### 获取 ID 及证书
-
-1. 创建项目后，从控制台获取声网项目的 [App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) 和 [App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)。
-
-2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限并获取声网面部捕捉插件。
-
-## 准备开发环境
-
-### 前提条件
-
-- [Git](https://git-scm.com/downloads)
-- [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)
-- [Android Studio](https://developer.android.com/studio/) 4.1 及以上
-- Android API 级别 22 及以上。
-- Android 设备，版本 Android 5.1 及以上
-    <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
-
-### 创建项目并集成 SDK
-
-在 Android Studio 中进行以下操作，准备开发环境：
-
-1. 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
-
-   <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。</div>
-
-2. 添加网络及设备权限。
-
-   打开 `./<Your Project>/app/src/main/AndroidManifest.xml` 文件，在 `</application>` 后面添加如下权限：
-
-   ```xml
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-   ```
-
-3. 将 Meta SDK 集成到你的项目中。
-
-    1. 联系 [sales@agora.io](mailto:sales@agora.io) 获取 Meta SDK，下载并解压。
-    2. 打开解压的 SDK，将以下文件或子文件夹复制到你的项目路径中。
-
-        | 文件或子文件夹             | 项目路径     |
-        |:-------------------------|:-----------|
-        | `agora-rtc-sdk.jar` 文件	| `/app/libs/` |
-        | `AgoraMetaKit.aar` 文件 	| `/app/libs/` |
-        | `face_capture.jar` 文件   | `/app/libs/` |
-        | `FaceCapture.aar` 文件    | `/app/libs/` |
-        | `metakit.jar` 文件        | `/app/libs/` |
-        | `arm64-v8a` 文件夹      	| `/app/src/main/jniLibs/` |
-        | `armeabi-v7a` 文件夹	    | `/app/src/main/jniLibs/` |
-        | `x86_64` 文件夹           | `/app/src/main/jniLibs/` |
-        | `x86` 文件夹	            | `/app/src/main/jniLibs/` |
-
-    3. 在 `./<Your Project>/app/build.gradle` 文件中添加以下代码指定本地依赖：
-
-        ```java
-        dependencies {
-            ...
-            // 指定 libs 目录下的所有 JAR 和 AAR 文件，即声网 Meta SDK
-            implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
-            ...
-        }
-        ```
-
-4. 除 SDK 外，你还需要添加其他依赖。在 `./<Your Project>/app/build.gradle` 文件中添加以下代码：
-
-    ```java
-    dependencies {
-        ...
-        // 指定两组远程依赖项
-        implementation(['com.squareup.okhttp3:logging-interceptor:3.9.0',
-                            'com.squareup.retrofit2:retrofit:2.3.0',
-                            'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
-                            'com.squareup.retrofit2:converter-gson:2.3.0'])
-        implementation(["io.reactivex.rxjava2:rxandroid:2.0.1",
-                            "io.reactivex.rxjava2:rxjava:2.1.3"])
-    }
-    ```
-
-    ![](https://web-cdn.agora.io/docs-files/1687674307175)
-
-
 ## 实现元直播
 
-本节介绍在集成 Meta SDK 后，如何实现元直播的核心业务模块的功能。
+完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元直播。
+
+下图展示实现元直播的 API 调用时序：
+
+![](https://web-cdn.agora.io/docs-files/1687684407522)
 
 实现流程中需要用到声网 SDK 的以下接口类：
 
-- `RtcEngine` 类：提供实时音视频功能。
-- `IMetaService` 类：Meta SDK 所有接口的入口，用于创建 `IMetaScene` 对象，负责获取、下载和删除场景资源。
-- `IMetaScene` 类：负责进出场景、场景视频渲染、场景相关参数设置等场景相关操作。
-- `ILocalUserAvatar` 类：用于设置用户昵称、徽章、Avatar 模型、捏脸换装等详细信息。
+- `RtcEngine` 类：提供实时音视频功能的核心类。
+- `IMetaService` 类：提供 Meta 服务的核心类。可用于获取场景资源列表、下载场景资源、删除本地场景资源等场景资源管理，还可用于创建 `IMetaScene`。
+- `IMetaScene` 类：场景资源相关操作。
+- `ILocalUserAvatar` 类：包含在 `IMetaScene` 中，生命周期和 `IMetaScene` 相同，用于设置虚拟形象（Avatar）。
 - `IMetaServiceEventHandler` 类：`IMetaService` 的异步方法的事件回调类。
 - `IMetaSceneEventHandler` 类：`IMetaScene` 的异步方法的事件回调类。
-
-元直播的 API 调用时序见下图：
-
-![](https://web-cdn.agora.io/docs-files/1687684407522)
 
 ### 1. 初始化 RTC 引擎和 Meta 服务
 
@@ -132,9 +33,9 @@
     // 配置 RtcEngine
     RtcEngineConfig rtcConfig = new RtcEngineConfig();
     rtcConfig.mContext = context; // Android 活动上下文
-    rtcConfig.mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
+    rtcConfig.mAppId = KeyCenter.APP_ID; // 声网项目的 App ID
     rtcConfig.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING; // 频道使用场景设置为直播模式
-    // RtcEngine 的事件句柄
+    // RtcEngine 的回调事件句柄
     rtcConfig.mEventHandler = new IRtcEngineEventHandler() {
         @Override
         public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
@@ -162,33 +63,28 @@
         }
     };
 
-    rtcConfig.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT); // 音频场景设置为默认场景
+    rtcConfig.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
 
     // 创建并初始化 RtcEngine
     rtcEngine = RtcEngine.create(rtcConfig);
-
     rtcEngine.setParameters("{\"rtc.enable_debug_log\":true}");
     
+    // 开启音视频模块并设置音频属性和路由
     rtcEngine.enableAudio();
     rtcEngine.enableVideo();
-    
     rtcEngine.setAudioProfile(
             Constants.AUDIO_PROFILE_DEFAULT, Constants.AUDIO_SCENARIO_GAME_STREAMING
     );
     rtcEngine.setDefaultAudioRoutetoSpeakerphone(true);
     ```
 
-- 调用 `IMetaService.create` 和 `IMetaService.initialize` 创建并初始化 `IMetaService` 对象。调用 `create` 时，你需要在 `MetaServiceConfig` 中设置如下参数：
-    - `mRtcEngine`：`RtcEngine` 实例。
-    - `mAppId`：从声网控制台获取的 App ID。
-    - `mRtmToken`：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。详见[使用 RTM Token 鉴权](https://docportal.shengwang.cn/cn/Real-time-Messaging/token2_server_rtm?platform=All%20Platforms)。
-    //TODO: Meta SDK 现在用的应该是 RTM 1.x，我先给了个 1.x 的链接，后面升级了再改成 2.x 的
+- 调用 `IMetaService.create` 和 `IMetaService.initialize` 创建并初始化 `IMetaService` 对象。初始化 `IMetaService` 时，你需要在 `MetaServiceConfig` 中设置如下参数：
+    - `mRtcEngine`：通过 `RtcEngine.create` 方法创建的 `RtcEngine` 实例。
+    - `mAppId`：在声网控制台获取的 App ID。详见[集成声网 Meta SDK](./integrate_sdk_android)。
+    - `mUserId`：登录声网 RTM 系统的用户 ID。推荐取值详见 [API 参考](./api_ref_android?platform=All%20Platforms#metaserviceconfig)。
+    - `mRtmToken`：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。详见[生成 Token](https://docportal.shengwang.cn/cn/Real-time-Messaging/messaging_android?platform=Android#4-生成-token)。
     - `mLocalDownloadPath`：场景资源下载到本地的保存路径。
-    - `mUserId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
-        - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
-        - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
-        - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
-    - `mEventHandler`：`IMetaService` 的异步回调事件。
+    - `mEventHandler`：`IMetaService` 的回调事件句柄。
 
     ```java
     scenePath = context.getExternalFilesDir("").getPath();
@@ -197,11 +93,11 @@
         metaService = IMetaService.create();
         // 配置 IMetaService
         MetaServiceConfig config = new MetaServiceConfig() {{
-            mRtcEngine = rtcEngine; // RTC 引擎
-            mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
-            mRtmToken = KeyCenter.RTM_TOKEN; // RTM token
+            mRtcEngine = rtcEngine; // RtcEngine 实例
+            mAppId = KeyCenter.APP_ID; // 声网项目的 App ID
+            mRtmToken = KeyCenter.RTM_TOKEN; // 声网 RTM（云信令）Token，保障安全，声网项目有 RTC Token 和 RTM Token，不要搞混淆
             mLocalDownloadPath = scenePath; // 场景资源的本地下载路径
-            mUserId = KeyCenter.RTM_UID; // RTM 用户 ID
+            mUserId = KeyCenter.RTM_UID; // 声网 RTM（云信令）UID，用户 ID，标志用户身份，声网项目有 RTC UID 和 RTM UID，不要搞混淆
             mEventHandler = MetaContext.this; // IMetaService 的异步回调事件
         }};
         // 初始化 IMetaService
