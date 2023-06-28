@@ -9,10 +9,7 @@ participant "ILocalUserAvatar" as avatar
 participant "IMetaServiceEventHandler" as serviceevent
 participant "IMetaSceneEventHandler" as sceneevent
 == 创建并初始化 IMetaService ==
-app -> rtc: queryInterface
-rtc -> service: new
-service -->> rtc: return
-rtc -->> app: IMetaService
+app -> rtc: RtcEngine.create
 app -> service: create
 app -> service: initialize
 == 获取并下载场景资源 ==
