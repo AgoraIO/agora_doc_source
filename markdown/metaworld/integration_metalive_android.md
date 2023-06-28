@@ -22,7 +22,7 @@
 
 1. 创建项目后，从控制台获取声网项目的 [App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) 和 [App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)。
 
-2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限并获取声网面捕插件。
+2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限并获取声网面部捕捉插件。
 
 ## 准备开发环境
 
@@ -64,45 +64,45 @@
     1. 联系 [sales@agora.io](mailto:sales@agora.io) 获取 Meta SDK，下载并解压。
     2. 打开解压的 SDK，将以下文件或子文件夹复制到你的项目路径中。
 
-    | 文件或子文件夹             | 项目路径     |
-    |:-------------------------|:-----------|
-    | `agora-rtc-sdk.jar` 文件	| `/app/libs/` |
-    | `AgoraMetaKit.aar` 文件 	| `/app/libs/` |
-    | `face_capture.jar` 文件   | `/app/libs/` |
-    | `FaceCapture.aar` 文件    | `/app/libs/` |
-    | `metakit.jar` 文件        | `/app/libs/` |
-    | `arm64-v8a` 文件夹      	| `/app/src/main/jniLibs/` |
-    | `armeabi-v7a` 文件夹	    | `/app/src/main/jniLibs/` |
-    | `x86_64` 文件夹           | `/app/src/main/jniLibs/` |
-    | `x86` 文件夹	            | `/app/src/main/jniLibs/` |
+        | 文件或子文件夹             | 项目路径     |
+        |:-------------------------|:-----------|
+        | `agora-rtc-sdk.jar` 文件	| `/app/libs/` |
+        | `AgoraMetaKit.aar` 文件 	| `/app/libs/` |
+        | `face_capture.jar` 文件   | `/app/libs/` |
+        | `FaceCapture.aar` 文件    | `/app/libs/` |
+        | `metakit.jar` 文件        | `/app/libs/` |
+        | `arm64-v8a` 文件夹      	| `/app/src/main/jniLibs/` |
+        | `armeabi-v7a` 文件夹	    | `/app/src/main/jniLibs/` |
+        | `x86_64` 文件夹           | `/app/src/main/jniLibs/` |
+        | `x86` 文件夹	            | `/app/src/main/jniLibs/` |
 
     3. 在 `./<Your Project>/app/build.gradle` 文件中添加以下代码指定本地依赖：
+
+        ```java
+        dependencies {
+            ...
+            // 指定 libs 目录下的所有 JAR 和 AAR 文件，即声网 Meta SDK
+            implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+            ...
+        }
+        ```
+
+4. 除 SDK 外，你还需要添加其他依赖。在 `./<Your Project>/app/build.gradle` 文件中添加以下代码：
 
     ```java
     dependencies {
         ...
-        // 指定 libs 目录下的所有 JAR 和 AAR 文件，即声网 Meta SDK
-        implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
-        ...
+        // 指定两组远程依赖项
+        implementation(['com.squareup.okhttp3:logging-interceptor:3.9.0',
+                            'com.squareup.retrofit2:retrofit:2.3.0',
+                            'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
+                            'com.squareup.retrofit2:converter-gson:2.3.0'])
+        implementation(["io.reactivex.rxjava2:rxandroid:2.0.1",
+                            "io.reactivex.rxjava2:rxjava:2.1.3"])
     }
     ```
 
-4. 除 SDK 外，你还需要添加其他依赖。在 `./<Your Project>/app/build.gradle` 文件中添加以下代码：
-
-```java
-dependencies {
-    ...
-    // 指定两组远程依赖项
-    implementation(['com.squareup.okhttp3:logging-interceptor:3.9.0',
-                        'com.squareup.retrofit2:retrofit:2.3.0',
-                        'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
-                        'com.squareup.retrofit2:converter-gson:2.3.0'])
-    implementation(["io.reactivex.rxjava2:rxandroid:2.0.1",
-                        "io.reactivex.rxjava2:rxjava:2.1.3"])
-}
-```
-
-![](https://web-cdn.agora.io/docs-files/1687674307175)
+    ![](https://web-cdn.agora.io/docs-files/1687674307175)
 
 
 ## 实现元直播
@@ -122,98 +122,83 @@ dependencies {
 
 ![](https://web-cdn.agora.io/docs-files/1687684407522)
 
-### 1. 初始化
+### 1. 初始化 RTC 引擎和 Meta 服务
 
 在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。
 
 - 调用 `RtcEngine.create` 创建并初始化 `RtcEngine` 对象：
 
-```java
-// 配置 RtcEngine
-RtcEngineConfig rtcConfig = new RtcEngineConfig();
-rtcConfig.mContext = context; // Android 活动上下文
-rtcConfig.mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
-rtcConfig.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING; // 频道使用场景设置为直播模式
-// RtcEngine 的事件句柄
-rtcConfig.mEventHandler = new IRtcEngineEventHandler() {
-    @Override
-    public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
-        Log.d(TAG, String.format("onJoinChannelSuccess %s %d", channel, uid));
-    }
- 
-    @Override
-    public void onUserOffline(int uid, int reason) {
-        Log.d(TAG, String.format("onUserOffline %d %d ", uid, reason));
-    }
- 
-    @Override
-    public void onAudioRouteChanged(int routing) {
-        Log.d(TAG, String.format("onAudioRouteChanged %d", routing));
-    }
- 
-    @Override
-    public void onUserJoined(int uid, int elapsed) {
-        Log.d(TAG, "onUserJoined uid=" + uid);
-    }
- 
-    @Override
-    public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
-        Log.d(TAG, "onFirstRemoteVideoDecoded uid=" + uid + ",width=" + width + ",heigh=" + height + ",elapsed=" + elapsed);
-    }
-};
+    ```java
+    // 配置 RtcEngine
+    RtcEngineConfig rtcConfig = new RtcEngineConfig();
+    rtcConfig.mContext = context; // Android 活动上下文
+    rtcConfig.mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
+    rtcConfig.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING; // 频道使用场景设置为直播模式
+    // RtcEngine 的事件句柄
+    rtcConfig.mEventHandler = new IRtcEngineEventHandler() {
+        @Override
+        public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+            Log.d(TAG, String.format("onJoinChannelSuccess %s %d", channel, uid));
+        }
+    
+        @Override
+        public void onUserOffline(int uid, int reason) {
+            Log.d(TAG, String.format("onUserOffline %d %d ", uid, reason));
+        }
+    
+        @Override
+        public void onAudioRouteChanged(int routing) {
+            Log.d(TAG, String.format("onAudioRouteChanged %d", routing));
+        }
+    
+        @Override
+        public void onUserJoined(int uid, int elapsed) {
+            Log.d(TAG, "onUserJoined uid=" + uid);
+        }
+    
+        @Override
+        public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
+            Log.d(TAG, "onFirstRemoteVideoDecoded uid=" + uid + ",width=" + width + ",heigh=" + height + ",elapsed=" + elapsed);
+        }
+    };
 
-rtcConfig.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT); // 音频场景设置为默认场景
+    rtcConfig.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT); // 音频场景设置为默认场景
 
-// 创建并初始化 RtcEngine
-rtcEngine = RtcEngine.create(rtcConfig);
+    // 创建并初始化 RtcEngine
+    rtcEngine = RtcEngine.create(rtcConfig);
 
-rtcEngine.setParameters("{\"rtc.enable_debug_log\":true}");
- 
-rtcEngine.enableAudio();
-rtcEngine.enableVideo();
- 
-rtcEngine.setAudioProfile(
-        Constants.AUDIO_PROFILE_DEFAULT, Constants.AUDIO_SCENARIO_GAME_STREAMING
-);
-rtcEngine.setDefaultAudioRoutetoSpeakerphone(true);
- 
-scenePath = context.getExternalFilesDir("").getPath();
-{
-    metaService = IMetaService.create();
-    MetaServiceConfig config = new MetaServiceConfig() {{
-        mRtcEngine = rtcEngine;
-        mAppId = KeyCenter.APP_ID;
-        mRtmToken = KeyCenter.RTM_TOKEN;
-        mLocalDownloadPath = scenePath;
-        mUserId = KeyCenter.RTM_UID;
-        mEventHandler = MetaContext.this;
-    }};
-    ret += metaService.initialize(config);
-    Log.i(TAG, "launcher version=" + metaService.getLauncherVersion(context));
-}
-```
+    rtcEngine.setParameters("{\"rtc.enable_debug_log\":true}");
+    
+    rtcEngine.enableAudio();
+    rtcEngine.enableVideo();
+    
+    rtcEngine.setAudioProfile(
+            Constants.AUDIO_PROFILE_DEFAULT, Constants.AUDIO_SCENARIO_GAME_STREAMING
+    );
+    rtcEngine.setDefaultAudioRoutetoSpeakerphone(true);
+    ```
 
 - 调用 `IMetaService.create` 和 `IMetaService.initialize` 创建并初始化 `IMetaService` 对象：
 
-```java
-scenePath = context.getExternalFilesDir("").getPath();
-{
-    // 创建 IMetaService 对象
-    metaService = IMetaService.create();
-    // 配置 IMetaService
-    MetaServiceConfig config = new MetaServiceConfig() {{
-        mRtcEngine = rtcEngine; // RTC 引擎
-        mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
-        mRtmToken = KeyCenter.RTM_TOKEN; // RTM token
-        mLocalDownloadPath = scenePath; // 场景资源的本地下载路径
-        mUserId = KeyCenter.RTM_UID; // RTM 用户 ID
-        mEventHandler = MetaContext.this; // IMetaService 的异步回调接口类
-    }};
-    // 初始化 IMetaService
-    ret += metaService.initialize(config);
-    Log.i(TAG, "launcher version=" + metaService.getLauncherVersion(context));
-}
-```
+    ```java
+    scenePath = context.getExternalFilesDir("").getPath();
+    {
+        // 创建 IMetaService 对象
+        metaService = IMetaService.create();
+        // 配置 IMetaService
+        MetaServiceConfig config = new MetaServiceConfig() {{
+            mRtcEngine = rtcEngine; // RTC 引擎
+            mAppId = KeyCenter.APP_ID; // 声网签发的 App ID
+            mRtmToken = KeyCenter.RTM_TOKEN; // RTM token
+            mLocalDownloadPath = scenePath; // 场景资源的本地下载路径
+            mUserId = KeyCenter.RTM_UID; // RTM 用户 ID
+            mEventHandler = MetaContext.this; // IMetaService 的异步回调接口类
+        }};
+        // 初始化 IMetaService
+        ret += metaService.initialize(config);
+        Log.i(TAG, "launcher version=" + metaService.getLauncherVersion(context));
+    }
+    ```
 
 ### 2. 获取并下载场景资源
 
@@ -238,7 +223,7 @@ public boolean downloadScene(MetaSceneAssetsInfo sceneInfo) {
 public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state) {    
 }
 
-// 取消下载场景资源信息
+// 取消下载场景资源信息 (按需调用)
 public boolean cancelDownloadScene(MetaSceneAssetsInfo sceneInfo) {
     return metaService.cancelDownloadSceneAssets(sceneInfo.mSceneId) == Constants.ERR_OK;
 }
@@ -246,15 +231,15 @@ public boolean cancelDownloadScene(MetaSceneAssetsInfo sceneInfo) {
 
 ### 3. 创建元直播场景
 
-搭建元直播首先需要调用 `createScene` 创建场景。
+搭建元直播首先需要调用 `createScene` 创建场景。为增加直播趣味性，声网推荐你开启面部捕捉，使用同步人脸表情的 Avatar 形象。你需要在 `MetaSceneConfig` 中设置 `mEnableFaceCapture` 为 `true`，并在 `mFaceCaptureAppId` 和 `mFaceCaptureCertificate` 中传入面部捕捉插件的 ID 和 Key。
 
 ```java
 // 配置场景信息
 MetaSceneConfig sceneConfig = new MetaSceneConfig();
 sceneConfig.mActivityContext = activityContext; // Android 活动上下文
-sceneConfig.mEnableFaceCapture = true; // 支持面捕
-sceneConfig.mFaceCaptureAppId = KeyCenter.FACE_CAP_APP_ID; // 传入面捕插件
-sceneConfig.mFaceCaptureCertificate = KeyCenter.FACE_CAP_APP_KEY; // 传入面捕插件
+sceneConfig.mEnableFaceCapture = true; // 支持面部捕捉
+sceneConfig.mFaceCaptureAppId = KeyCenter.FACE_CAP_APP_ID; // 传入面部捕捉插件
+sceneConfig.mFaceCaptureCertificate = KeyCenter.FACE_CAP_APP_KEY; // 传入面部捕捉插件
 int ret = -1;
 if (metaScene == null) {
     // 创建场景
@@ -272,7 +257,12 @@ public void onCreateSceneResult(IMetaScene scene, int errorCode) {
 
 ### 4. 设置用户信息并进入场景
 
-进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮和捏脸信息等。
+进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮和捏脸信息等。如下示例代码展示设置用户信息后进入场景：
+
+- 调用 `setUserInfo` 设置用户基本信息。
+- 调用 `setModelInfo` 设置模型信息。
+- 调用 `setExtraInfo` 设置自定义信息，此处设置了用户的捏脸和换装信息。
+- 调用 `enterScene` 进入场景。
 
 ```java
 public void enterScene() {
@@ -331,6 +321,13 @@ public void onEnterSceneResult(int errorCode) {
 ### 5. 加入频道并开启元直播
 
 进入场景后，你需要调用 `enableSceneVideoCapture` 开启场景渲染画面捕获，并调用 `joinChannel` 加入频道并把场景渲染的画面发布到 RTC 频道内。
+
+进入场景后，你需要将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播：
+
+- 调用 `enableVideoCapture` 开启场景渲染画面捕获，开启对主播 Avatar 形象的视频采集；`enable` 设置为 `true`，把场景画面和 Avatar 形象发布到频道，`enable` 设置为 `false`，把摄像头采集的主播真人画面发布到频道。
+- 调用 `joinChannel` 使主播加入 RTC 频道。
+
+<div class="alert note">发送 Avatar 视频前，请确保 <code>AgoraMetaSceneConfig</code> 中已设置开启面部捕捉。</div>
 
 ```java
 public void joinChannel() {

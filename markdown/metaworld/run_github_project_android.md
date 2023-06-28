@@ -44,17 +44,17 @@ git checkout dev_metasdk1.0
 
 2. 打开解压的 SDK，将以下文件或子文件夹复制到你的项目路径中。
 
-| 文件或子文件夹             | 项目路径     |
-|:-------------------------|:-----------|
-| `agora-rtc-sdk.jar` 文件	| `/app/libs/` |
-| `AgoraMetaKit.aar` 文件 	| `/app/libs/` |
-| `face_capture.jar` 文件   | `/app/libs/` |
-| `FaceCapture.aar` 文件    | `/app/libs/` |
-| `metakit.jar` 文件        | `/app/libs/` |
-| `arm64-v8a` 文件夹      	| `/app/src/main/jniLibs/` |
-| `armeabi-v7a` 文件夹	    | `/app/src/main/jniLibs/` |
-| `x86_64` 文件夹           | `/app/src/main/jniLibs/` |
-| `x86` 文件夹	            | `/app/src/main/jniLibs/` |
+  | 文件或子文件夹             | 项目路径     |
+  |:-------------------------|:-----------|
+  | `agora-rtc-sdk.jar` 文件	| `/app/libs/` |
+  | `AgoraMetaKit.aar` 文件 	| `/app/libs/` |
+  | `face_capture.jar` 文件   | `/app/libs/` |
+  | `FaceCapture.aar` 文件    | `/app/libs/` |
+  | `metakit.jar` 文件        | `/app/libs/` |
+  | `arm64-v8a` 文件夹      	| `/app/src/main/jniLibs/` |
+  | `armeabi-v7a` 文件夹	    | `/app/src/main/jniLibs/` |
+  | `x86_64` 文件夹           | `/app/src/main/jniLibs/` |
+  | `x86` 文件夹	            | `/app/src/main/jniLibs/` |
 
 ### 设置 ID 和证书
 
@@ -71,9 +71,9 @@ FACE_CAP_APP_KEY="<#Face Capture Certificate#>"
 
 | 参数  |  描述  | 获取方式 |
 | ---- | ------ | ------ |
-| AppId    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
 | Certificate | 声网项目的 App 证书 | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)   |
-| Face Capture App Id<br>Face Capture Certificate | 声网面捕插件 | 联系 [sales@agora.io](mailto:sales@agora.io) 获取 |
+| AppId    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
+| Face Capture App Id<br>Face Capture Certificate | 声网面部捕捉插件 | 联系 [sales@agora.io](mailto:sales@agora.io) 获取 |
 
 ## 编译并运行示例项目
 
@@ -89,7 +89,9 @@ FACE_CAP_APP_KEY="<#Face Capture Certificate#>"
 
 5. 编译成功后，你的 Android 设备上会出现 **AgoraMetaExample** 应用。
 
-6. 打开应用，体验 MetaWorld 场景。登录后默认进入元语聊 + 元直播的融合场景，点击右上角的 <img src="https://web-cdn.agora.io/docs-files/1687670859690" width="25"/> 即可切换至元直播场景。
+6. 打开应用，体验 MetaWorld 场景。登录后默认进入融合元语聊和元直播的场景，点击右上角的 <img src="https://web-cdn.agora.io/docs-files/1687670859690" width="25"/> 即可切换至元直播场景。
+
+<div class="alert info">MetaWorld 包含元语聊和元直播场景：<ul><li>在元语聊场景中，用户可以在 3D 场景中自由走动，与其他用户或 NPC 进行语音聊天，开始 K 歌等。</li><li>在元直播场景中，用户可以在 3D 场景中直播。声网面部捕捉插件使用户可以通过模拟脸部表情的 Avatar 形象进行直播，增加直播趣味性。</li><li>在融合元语聊和元直播的场景中，用户可以进行在元语聊和元直播场景中支持的所有操作。</li></ul></div>
 
 <video src="https://web-cdn.agora.io/docs-files/1686906669607"  controls width = 100% height = auto></video>
 <p style="text-align: center;">元语聊 + 元直播融合场景</p>

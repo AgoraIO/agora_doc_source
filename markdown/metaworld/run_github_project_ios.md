@@ -70,7 +70,7 @@ git checkout dev_metasdk1.0
 | ---- | ------ | ------ |
 | AppId    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
 | Certificate | 声网项目的 App 证书 | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)   |
-| Face Capture App Id<br>Face Capture Certificate | 声网面捕插件 | 联系 [sales@agora.io](mailto:sales@agora.io) 获取 |
+| Face Capture App Id<br>Face Capture Certificate | 声网面部捕捉插件 | 联系 [sales@agora.io](mailto:sales@agora.io) 获取 |
 | kUserKey<br>kUserSecret | 客户 ID 和密钥，声网 RESTful API 使用客户 ID 和客户密钥进行 HTTP 基本认证 | [生成客户 ID 和密钥](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E7%94%9F%E6%88%90%E5%AE%A2%E6%88%B7-id-%E5%92%8C%E5%AF%86%E9%92%A5) |
 
 <div class="alert info"><code>CHANNEL_ID</code> 设置为任意字符串，<code>RTC_UID</code> 设置为 0 以外的任意 Int 值。</div>
@@ -90,25 +90,24 @@ git checkout dev_metasdk1.0
 
 5. 编译成功后，你的 iOS 设备上会出现 **MetaChatDemo** 应用。在 iOS 系统设置中将该应用设为信任开发者后你才能打开应用。
 
-6. 打开应用，体验 MetaWorld 场景。
+
+6. 打开应用，体验 MetaWorld 场景。登录后默认进入融合元语聊和元直播的场景，点击右上角的 <img src="https://web-cdn.agora.io/docs-files/1687670859690" width="25"/> 即可切换至元直播场景。
+
+<div class="alert info">MetaWorld 包含元语聊和元直播场景：<ul><li>在元语聊场景中，用户可以在 3D 场景中自由走动，与其他用户或 NPC 进行语音聊天，开始 K 歌等。</li><li>在元直播场景中，用户可以在 3D 场景中直播。声网面部捕捉插件使用户可以通过模拟脸部表情的 Avatar 形象进行直播，增加直播趣味性。</li><li>在融合元语聊和元直播的场景中，用户可以进行在元语聊和元直播场景中支持的所有操作。</li></ul></div>
 
 //TODO: 可以在登录界面切换了，更新一下描述和截图
 
-<p style="text-align: center;"><video src="https://web-cdn.agora.io/docs-files/1686906669607"  controls width = 100% height = auto >你的浏览器不支持 <code>video</code> 标签。</video></p>
+<video src="https://web-cdn.agora.io/docs-files/1686906669607"  controls width = 100% height = auto></video>
+<p style="text-align: center;">元语聊 + 元直播融合场景</p>
 
-如仅想体验直播的场景示例，请打开 `./Agora-MetaWorld/ios/MetaChatDemo/MetaChatLoginViewController.swift` 进行以下修改，并重新编译和运行示例项目。
-
-```swift
-// 将 true 改为 false 即可体验直播场景
-if true {
-    // kSceneIndex = .chat 为语聊和直播场景示例
-    kSceneIndex = .chat
-    switchOrientation(isPortrait: false, isFullScreen: isEnter)
-} else {
-    // kSceneIndex = .live 为纯直播场景示例
-    kSceneIndex = .live
-    switchOrientation(isPortrait: true, isFullScreen: isEnter)
+<style>
+.video-container {
+  display: flex;
+  justify-content: center;
 }
-```
+</style>
 
-<p style="text-align: center;"><video src="https://web-cdn.agora.io/docs-files/1686906622677"  controls width = 50% height = auto >你的浏览器不支持 <code>video</code> 标签。</video></p>
+<div class="video-container">
+  <video src="https://web-cdn.agora.io/docs-files/1686906622677" controls width="50%" height="auto"></video>
+</div>
+<p style="text-align: center;">元直播场景</p>
