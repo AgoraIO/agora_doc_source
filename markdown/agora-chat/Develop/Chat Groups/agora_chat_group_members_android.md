@@ -245,6 +245,7 @@ ChatClient.getInstance().groupManager().getBlockedUsers(groupId);
 群成员被加入群禁言列表后，将无法发言，即使加入群白名单也不能发言。
 
 ```java
+// 若对 `duration` 传 -1，表示永久禁言。
 ChatClient.getInstance().groupManager().muteGroupMembers(groupId, muteMembers, duration);
 ```
 

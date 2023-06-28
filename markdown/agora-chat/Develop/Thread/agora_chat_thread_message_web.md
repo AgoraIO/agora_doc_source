@@ -106,4 +106,28 @@ conn.addEventHandler('MESSAGES',{
 
 ### 从服务器获取子区消息
 
-关于如何从服务器获取子区消息，详见[从服务器获取历史消息](./agora_chat_retrieve_message_web#从服务器获取指定会话的历史消息)。
+调用 `getHistoryMessages` 方法从服务器获取子区消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
+
+```javascript
+let options = {
+  // 子区 ID。
+  targetId: "threadId",
+  // 每页期望获取的消息条数。取值范围为 [1,50]，默认值为 20。
+  pageSize: 20,
+  // 查询的起始消息 ID。若该参数设置为 `-1`、`null` 或空字符串，从最新消息开始。
+  cursor: -1,
+  // 会话类型，设置为 "groupChat"。
+  chatType: "groupChat",
+  // 消息搜索方向：（默认）`up`：按服务器收到消息的时间的逆序获取；`down`：按服务器收到消息的时间的正序获取。
+  searchDirection: "up",
+};
+conn
+  .getHistoryMessages(options)
+  .then((res) => {
+    // 成功获取历史消息。
+    console.log(res);
+  })
+  .catch((e) => {
+    // 获取失败。
+  });
+```

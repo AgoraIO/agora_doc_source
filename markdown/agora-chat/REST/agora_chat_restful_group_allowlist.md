@@ -211,7 +211,7 @@ POST https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/white/users
 
 | 参数      | 类型  | 描述                            | 是否必须 |
 | :-------- | :---- | :------------------------------ | :------- |
-| `usernames` | Array | 待添加至群组白名单中的用户 ID。 | 是       |
+| `usernames` | Array | 待添加至群组白名单中的用户 ID，一次最多可添加 60 个。 | 是       |
 
 ### HTTP 响应
 
