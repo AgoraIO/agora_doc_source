@@ -22,7 +22,7 @@
 
 1. 创建项目后，从控制台获取声网项目的 [App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) 和 [App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书)。
 
-2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限并获取声网面捕插件。
+2. 联系 [sales@agora.io](mailto:sales@agora.io) 并供你的声网项目 App ID，用于开通声网内容中心的权限并获取声网面部捕捉插件。
 
 ## 准备开发环境
 
@@ -88,58 +88,58 @@
 
 ![](https://web-cdn.agora.io/docs-files/1687685321495)
 
-### 1. 初始化
+### 1. 初始化 RTC 引擎和 Meta 服务
 
 在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。
 
 - 调用 `sharedEngine` 创建并初始化 `AgoraRtcEngineKit` 对象
 
-```swift
-func createRtcEngine() {
-    guard let token = KeyCenter.RTM_TOKEN else { return }
-    // 配置 AgoraRtcEngineKit
-    let rtcEngineConfig = AgoraRtcEngineConfig()
-    rtcEngineConfig.appId = KeyCenter.APP_ID // 声网签发的 App ID
-    rtcEngineConfig.areaCode = .global
-    // 创建和初始化 AgoraRtcEngineKit 对象
-    rtcEngine = AgoraRtcEngineKit.sharedEngine(with: rtcEngineConfig, delegate: self)
-    rtcEngine?.setVideoFrameDelegate(self)
-    rtcEngine?.setParameters("{\"rtc.audio.force_bluetooth_a2dp\": true}")
-    // 设置频道为直播模式
-    rtcEngine?.setChannelProfile(.liveBroadcasting)
-    // 设置角色为主播
-    rtcEngine?.setClientRole(.broadcaster)
-    // 设置视频编码属性
-    let vec = AgoraVideoEncoderConfiguration(size: resolution!, frameRate: .fps30, bitrate: AgoraVideoBitrateStandard, orientationMode: .adaptative, mirrorMode: .enabled)
-    rtcEngine?.setVideoEncoderConfiguration(vec)
-}
-```
+    ```swift
+    func createRtcEngine() {
+        guard let token = KeyCenter.RTM_TOKEN else { return }
+        // 配置 AgoraRtcEngineKit
+        let rtcEngineConfig = AgoraRtcEngineConfig()
+        rtcEngineConfig.appId = KeyCenter.APP_ID // 声网签发的 App ID
+        rtcEngineConfig.areaCode = .global
+        // 创建和初始化 AgoraRtcEngineKit 对象
+        rtcEngine = AgoraRtcEngineKit.sharedEngine(with: rtcEngineConfig, delegate: self)
+        rtcEngine?.setVideoFrameDelegate(self)
+        rtcEngine?.setParameters("{\"rtc.audio.force_bluetooth_a2dp\": true}")
+        // 设置频道为直播模式
+        rtcEngine?.setChannelProfile(.liveBroadcasting)
+        // 设置角色为主播
+        rtcEngine?.setClientRole(.broadcaster)
+        // 设置视频编码属性
+        let vec = AgoraVideoEncoderConfiguration(size: resolution!, frameRate: .fps30, bitrate: AgoraVideoBitrateStandard, orientationMode: .adaptative, mirrorMode: .enabled)
+        rtcEngine?.setVideoEncoderConfiguration(vec)
+    }
+    ```
 
 - 调用 `sharedMetaServiceWithConfig` 创建并初始化 `AgoraMetaServiceKit` 对象
 
-```swift
-func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaEventDelegate?) {
-    playerName = userName
-            
-    currentUserInfo = AgoraMetaUserInfo.init()
-    currentUserInfo?.userId = KeyCenter.RTM_UID
-    currentUserInfo?.userName = userName
-    currentUserInfo?.userIconUrl = avatarUrl
-    
-    // 配置 AgoraMetaServiceKit
-    let metaServiceConfig = AgoraMetaServiceConfig()
-    metaServiceConfig.appId = KeyCenter.APP_ID // 声网签发的 App ID
-    metaServiceConfig.rtmToken = KeyCenter.RTM_TOKEN ?? "" // RTM token
-    metaServiceConfig.userId = KeyCenter.RTM_UID // RTM 用户 ID
-    metaServiceConfig.delegate = delegate // AgoraMetaServiceKit 的异步回调接口类
-    
-    let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
-    metaServiceConfig.localDownloadPath = paths.first! // 场景资源的本地下载路径
-    metaServiceConfig.rtcEngine = rtcEngine // RTC 引擎
-    // 创建和初始化 AgoraMetaServiceKit 对象
-    metaService = AgoraMetaServiceKit.sharedMetaServiceWithConfig(_: metaServiceConfig)
-}
-```
+    ```swift
+    func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaEventDelegate?) {
+        playerName = userName
+                
+        currentUserInfo = AgoraMetaUserInfo.init()
+        currentUserInfo?.userId = KeyCenter.RTM_UID
+        currentUserInfo?.userName = userName
+        currentUserInfo?.userIconUrl = avatarUrl
+
+        // 配置 AgoraMetaServiceKit
+        let metaServiceConfig = AgoraMetaServiceConfig()
+        metaServiceConfig.appId = KeyCenter.APP_ID // 声网签发的 App ID
+        metaServiceConfig.rtmToken = KeyCenter.RTM_TOKEN ?? "" // RTM token
+        metaServiceConfig.userId = KeyCenter.RTM_UID // RTM 用户 ID
+        metaServiceConfig.delegate = delegate // AgoraMetaServiceKit 的异步回调接口类
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+        metaServiceConfig.localDownloadPath = paths.first! // 场景资源的本地下载路径
+        metaServiceConfig.rtcEngine = rtcEngine // RTC 引擎
+        // 创建和初始化 AgoraMetaServiceKit 对象
+        metaService = AgoraMetaServiceKit.sharedMetaServiceWithConfig(_: metaServiceConfig)
+    }
+    ```
 
 ### 2. 获取并下载场景资源
 
@@ -156,22 +156,22 @@ metaService?.downloadSceneAssets(_ sceneId: Int)
 // 下载场景资源信息回调
 func onDownloadSceneAssetsProgress(_ sceneId: Int, progress: Int, state: AgoraMetaDownloadStateType)
  
-// 取消下载场景资源信息
+// 取消下载场景资源信息 (按需调用)
 metaService?.cancelDownloadSceneAssets(_ sceneId: Int)
 ```
 
 ### 3. 创建元直播场景
 
-搭建元直播首先需要调用 `createScene` 创建场景。
+搭建元直播首先需要调用 `createScene` 创建场景。为增加直播趣味性，声网推荐你开启面部捕捉，使用同步人脸表情的 Avatar 形象。你需要在 `AgoraMetaSceneConfig` 中设置 `enableFaceCapture` 为 `true`，并在 `faceCaptureAppId` 和 `faceCaptureCertificate` 中传入面部捕捉插件的 ID 和 Key。
 
 ```swift
 func createScene(_ delegate: MetaChatSceneViewController) {
     // 配置场景信息
     let config = AgoraMetaSceneConfig()
     config.delegate = delegate // AgoraMetaScene 的异步回调接口类
-    config.enableFaceCapture = true // 支持面捕
-    config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_CERTIFICATE // 传入面捕插件
-    config.faceCaptureAppId = KeyCenter.FACE_CAPTURE_APP_ID // 传入面捕插件
+    config.enableFaceCapture = true // 支持面部捕捉
+    config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_CERTIFICATE // 传入面部捕捉插件
+    config.faceCaptureAppId = KeyCenter.FACE_CAPTURE_APP_ID // 传入面部捕捉插件
     // 创建场景
     metaService?.createScene(config)
 }
@@ -194,7 +194,12 @@ func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
 
 ### 4. 设置用户信息并进入场景
 
-进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮和捏脸信息等。
+进入场景之前，你可以先设置好用户的基本信息、模型信息、装扮和捏脸信息等。如下示例代码展示设置用户信息后进入场景：
+
+- 调用 `setUserInfo` 设置用户基本信息。
+- 调用 `setModelInfo` 设置模型信息。
+- 调用 `setExtraInfo` 设置自定义信息，此处设置了用户的捏脸和换装信息。
+- 调用 `enterScene` 进入场景。
 
 ```swift
 func enterScene(view: UIView) {
@@ -245,7 +250,12 @@ func metaScene(_ scene: AgoraMetaScene, onEnterSceneResult errorCode: Int) {}
 
 ### 5. 加入频道并开启元直播
 
-进入场景后，你需要调用 `enableSceneVideoCapture` 开启场景渲染画面捕获，并调用 `joinChannel` 加入频道并把场景渲染的画面发布到 RTC 频道内。
+进入场景后，你需要将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播：
+
+- 调用 `enableVideoCapture` 开启场景渲染画面捕获，开启对主播 Avatar 形象的视频采集；`enable` 设置为 `true`，把场景画面和 Avatar 形象发布到频道，`enable` 设置为 `false`，把摄像头采集的主播真人画面发布到频道。
+- 调用 `joinChannel` 使主播加入 RTC 频道。
+
+<div class="alert note">发送 Avatar 视频前，请确保 <code>AgoraMetaSceneConfig</code> 中已设置开启面部捕捉。</div>
 
 ```swift
 func joinRtcChannel(success: @escaping () -> Void) {
@@ -256,7 +266,6 @@ func joinRtcChannel(success: @escaping () -> Void) {
 }
 
 // Swift 中的 enableVideoCapture 对应 Objective-C API 中的 enableSceneVideoCapture
-// 设置为 true，把场景画面和 avatar 形象发布到频道，设置为 false，把摄像头采集画面发布到频道
 scene?.enableVideoCapture(view!, enable: true)
 ```
 
