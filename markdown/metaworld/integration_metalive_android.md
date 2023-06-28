@@ -178,7 +178,17 @@
     rtcEngine.setDefaultAudioRoutetoSpeakerphone(true);
     ```
 
-- 调用 `IMetaService.create` 和 `IMetaService.initialize` 创建并初始化 `IMetaService` 对象：
+- 调用 `IMetaService.create` 和 `IMetaService.initialize` 创建并初始化 `IMetaService` 对象。调用 `create` 时，你需要在 `MetaServiceConfig` 中设置如下参数：
+    - `mRtcEngine`：`RtcEngine` 实例。
+    - `mAppId`：从声网控制台获取的 App ID。
+    - `mRtmToken`：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。详见[使用 RTM Token 鉴权](https://docportal.shengwang.cn/cn/Real-time-Messaging/token2_server_rtm?platform=All%20Platforms)。
+    //TODO: Meta SDK 现在用的应该是 RTM 1.x，我先给了个 1.x 的链接，后面升级了再改成 2.x 的
+    - `mLocalDownloadPath`：场景资源下载到本地的保存路径。
+    - `mUserId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
+        - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
+        - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
+        - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
+    - `mEventHandler`：`IMetaService` 的异步回调事件。
 
     ```java
     scenePath = context.getExternalFilesDir("").getPath();
@@ -192,7 +202,7 @@
             mRtmToken = KeyCenter.RTM_TOKEN; // RTM token
             mLocalDownloadPath = scenePath; // 场景资源的本地下载路径
             mUserId = KeyCenter.RTM_UID; // RTM 用户 ID
-            mEventHandler = MetaContext.this; // IMetaService 的异步回调接口类
+            mEventHandler = MetaContext.this; // IMetaService 的异步回调事件
         }};
         // 初始化 IMetaService
         ret += metaService.initialize(config);
@@ -320,14 +330,12 @@ public void onEnterSceneResult(int errorCode) {
 
 ### 5. 加入频道并开启元直播
 
-进入场景后，你需要调用 `enableSceneVideoCapture` 开启场景渲染画面捕获，并调用 `joinChannel` 加入频道并把场景渲染的画面发布到 RTC 频道内。
-
 进入场景后，你需要将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播：
 
-- 调用 `enableVideoCapture` 开启场景渲染画面捕获，开启对主播 Avatar 形象的视频采集；`enable` 设置为 `true`，把场景画面和 Avatar 形象发布到频道，`enable` 设置为 `false`，把摄像头采集的主播真人画面发布到频道。
+- 调用 `enableSceneVideoCapture` 开启场景渲染画面捕获，开启对主播 Avatar 形象的视频采集；`enable` 设置为 `true`，把场景画面和 Avatar 形象发布到频道；`enable` 设置为 `false`，把摄像头采集的主播真人画面发布到频道。
 - 调用 `joinChannel` 使主播加入 RTC 频道。
 
-<div class="alert note">发送 Avatar 视频前，请确保 <code>AgoraMetaSceneConfig</code> 中已设置开启面部捕捉。</div>
+<div class="alert note">发送 Avatar 视频前，请确保 <code>MetaSceneConfig</code> 中已设置开启面部捕捉。</div>
 
 ```java
 public void joinChannel() {
