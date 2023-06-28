@@ -92,7 +92,7 @@
 
 在创建元直播场景前，你需要创建并初始化 RTC 引擎和 Meta 服务。
 
-- 调用 `sharedEngine` 创建并初始化 `AgoraRtcEngineKit` 对象
+- 调用 `sharedEngine` 创建并初始化 `AgoraRtcEngineKit` 对象：
 
     ```swift
     func createRtcEngine() {
@@ -115,7 +115,17 @@
     }
     ```
 
-- 调用 `sharedMetaServiceWithConfig` 创建并初始化 `AgoraMetaServiceKit` 对象
+- 调用 `sharedMetaServiceWithConfig` 创建并初始化 `AgoraMetaServiceKit` 对象。调用 `sharedMetaServiceWithConfig` 时，你需要在 `AgoraMetaServiceConfig` 中设置如下参数：
+    - `appId`：从声网控制台获取的 App ID。
+    - `rtmToken` ：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。集成及测试阶段请将 `token` 设置为 `nil`。详见[使用 RTM Token 鉴权](https://docportal.shengwang.cn/cn/Real-time-Messaging/token2_server_rtm?platform=All%20Platforms)。
+    //TODO: Meta SDK 现在用的应该是 RTM 1.x，我先给了个 1.x 的链接，后面升级了再改成 2.x 的
+    - `userId`：登录声网 RTM 系统的用户 ID。该字符串不可超过 64 字节。可以通过以下方式和声网 RTC 用户 ID 绑定：
+        - （推荐）使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为相同的数字字符串。
+        - 使用 String 型的 RTC 用户 ID，RTM 用户 ID 设为相同的字符串。
+        - 使用 Int 型的 RTC 用户 ID，RTM 用户 ID 设为不同的数字字符串，并且自行维护二者的映射关系。
+    - `delegate`：`AgoraMetaServiceKit` 的异步回调事件。
+    - `localDownloadPath` ：场景资源下载到本地的保存路径。
+    - `rtcEngine`：`AgoraRtcEngineKit` 实例.
 
     ```swift
     func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaEventDelegate?) {
@@ -252,7 +262,7 @@ func metaScene(_ scene: AgoraMetaScene, onEnterSceneResult errorCode: Int) {}
 
 进入场景后，你需要将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播：
 
-- 调用 `enableVideoCapture` 开启场景渲染画面捕获，开启对主播 Avatar 形象的视频采集；`enable` 设置为 `true`，把场景画面和 Avatar 形象发布到频道，`enable` 设置为 `false`，把摄像头采集的主播真人画面发布到频道。
+- 调用 `enableVideoCapture` 开启场景渲染画面捕获，开启对主播 Avatar 形象的视频采集；`enable` 设置为 `true`，把场景画面和 Avatar 形象发布到频道；`enable` 设置为 `false`，把摄像头采集的主播真人画面发布到频道。
 - 调用 `joinChannel` 使主播加入 RTC 频道。
 
 <div class="alert note">发送 Avatar 视频前，请确保 <code>AgoraMetaSceneConfig</code> 中已设置开启面部捕捉。</div>
