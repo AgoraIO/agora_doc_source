@@ -1,87 +1,272 @@
-MetaWorld 解决方案支持元语聊、元直播、元 K 歌场景。本文介绍如何实现元语聊。
+MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实现元语聊。
 
 ## 示例项目
 
+#TODO add
+
 ## 准备开发环境
 
-### 前提条件
-
-- [Android Studio](https://developer.android.com/studio/) 4.1 及以上。
-- Android 手机，版本 Android 5.1（API Level 22）及以上。
-- 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
-- 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)和声网项目，请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)，从声网控制台获取以下信息：
-  - App ID：声网随机生成的字符串，用于识别你的 app。
-  - 临时 Token：你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。临时 Token 的有效期为 24 小时。
-  - 频道名称：用于标识直播频道的字符串。
-
-<div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
-
-### 创建项目并集成 SDK
-
-按照以下步骤准备开发环境：
-
-1. 如果你没项目文件，你需要创建新项目。在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
-
-   <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。</div>
-
-2. 集成声网 Meta SDK，该 SDK 是基于 RTC SDK 开发的元系列特殊版 SDK。联系销售获取该 SDK，下载并解压。打开解压文件，将以下文件或文件夹复制到你的项目路径中。
-
-   |  SDK 文件或文件夹      |  项目路径       |
-   |----------|--------|
-   | agora-rtc-sdk.jar 文件       |/app/libs/         |
-   | metakit.jar 文件       | /app/libs/        |
-   | face_capture.jar 文件       | /app/libs/        |
-   | AgoraMetaKit.aar 文件       | /app/libs/        |
-   | FaceCapture.aar 文件       | /app/libs/        |
-   | arm64-v8a 文件夹       | /app/src/main/jniLibs/        |
-   | armeabi-v7a 文件夹       | /app/src/main/jniLibs/        |
-   | x86 文件夹       | /app/src/main/jniLibs/        |
-   | x86_64 文件夹               | /app/src/main/jniLibs/                   |
-
-3. 在项目的 `build.gradle` 文件中的 `dependencies` 节点中添加行，以添加第三方库和依赖。
-
-    ```java
-    dependencies {
-        ...
-        implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
-        implementation(['com.squareup.okhttp3:logging-interceptor:3.9.0',
-                            'com.squareup.retrofit2:retrofit:2.3.0',
-                            'com.squareup.retrofit2:adapter-rxjava2:2.3.0',
-                            'com.squareup.retrofit2:converter-gson:2.3.0'])
-        implementation(["io.reactivex.rxjava2:rxandroid:2.0.1",
-                        "io.reactivex.rxjava2:rxjava:2.1.3"])
-    }
-    ```
-
-4. 添加网络及设备权限。
-
-   在 `/app/Manifests/AndroidManifest.xml` 文件中，在 `</application>` 后面添加如下权限：
-
-   ```xml
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <!-- 对于 Android 12.0 及以上且集成 v4.1.0 以下声网 SDK 的设备，还需要添加以下权限 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
-    <!-- 对于 Android 12.0 及以上设备，还需要添加以下权限 -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
-   ```
-
-5. 在 `/Gradle Scripts/proguard-rules.pro` 文件中添加如下行，以防止声网 SDK 的代码被混淆：
-
-   ```java
-   -keep class io.agora.**{*;}
-   -dontwarn javax.**
-   -dontwarn com.google.devtools.build.android.**
-   ```
+参考[集成声网 Meta SDK](./integrate_sdk_android) 准备开发环境。
 
 ## 实现元语聊
 
+本节介绍集成 Meta SDK 后如何实现元语聊。
+
+实现元语聊会用到以下接口类：
+
+- `RtcEngine` 类：提供实时音视频功能的核心类。
+- `IMetaService` 类：提供 Meta 服务的核心类。用于创建 `IMetaScene` 对象，负责获取、下载和删除场景资源。
+- `IMetaScene` 类：提供 Meta 场景的核心类。负责进出场景、场景视频渲染、场景相关参数设置等场景相关操作。
+- `ILocalUserAvatar` 类：用于设置用户昵称、徽章、Avatar 模型、捏脸换装等详细信息。
+- `IMetaServiceEventHandler` 类：`IMetaService` 的异步方法的事件回调类。
+- `IMetaSceneEventHandler` 类：`IMetaScene` 的异步方法的事件回调类。
+
+下图展示实现元语聊的 API 时序：
+
+<pic> #TODO
+
+### 1. 创建并初始化 IMetaService
+
+调用 RtcEngine 类的 create 创建 RtcEngine。调用 IMetaService 类的 create 和 initialize 创建并初始化 IMetaService。
 
 
+```java
+// 设置 RtcEngine 配置
+RtcEngineConfig rtcConfig = new RtcEngineConfig();
+rtcConfig.mContext = context;
+rtcConfig.mAppId = KeyCenter.APP_ID;
+rtcConfig.mChannelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING;
+// 监听 RTC 引擎回调事件
+rtcConfig.mEventHandler = new IRtcEngineEventHandler() {
+    @Override
+    public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
+        Log.d(TAG, String.format("onJoinChannelSuccess %s %d", channel, uid));
+    }
 
+    @Override
+    public void onUserOffline(int uid, int reason) {
+        Log.d(TAG, String.format("onUserOffline %d %d ", uid, reason));
+    }
+
+    @Override
+    public void onAudioRouteChanged(int routing) {
+        Log.d(TAG, String.format("onAudioRouteChanged %d", routing));
+    }
+
+    @Override
+    public void onUserJoined(int uid, int elapsed) {
+        Log.d(TAG, "onUserJoined uid=" + uid);
+    }
+
+    @Override
+    public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
+        Log.d(TAG, "onFirstRemoteVideoDecoded uid=" + uid + ",width=" + width + ",heigh=" + height + ",elapsed=" + elapsed);
+    }
+};
+rtcConfig.mAudioScenario = Constants.AudioScenario.getValue(Constants.AudioScenario.DEFAULT);
+
+// 创建 RtcEngine
+rtcEngine = RtcEngine.create(rtcConfig);
+rtcEngine.setParameters("{\"rtc.enable_debug_log\":true}");
+
+// 开启音视频模块并设置音频属性和路由
+rtcEngine.enableAudio();
+rtcEngine.enableVideo();
+rtcEngine.setAudioProfile(
+        Constants.AUDIO_PROFILE_DEFAULT, Constants.AUDIO_SCENARIO_GAME_STREAMING
+);
+rtcEngine.setDefaultAudioRoutetoSpeakerphone(true);
+
+// 设置场景资源的下载路径
+scenePath = context.getExternalFilesDir("").getPath();
+{
+   // 创建 IMetaService
+    metaService = IMetaService.create();
+    MetaServiceConfig config = new MetaServiceConfig() {{
+        mRtcEngine = rtcEngine;
+        mAppId = KeyCenter.APP_ID;
+        mRtmToken = KeyCenter.RTM_TOKEN;
+        mLocalDownloadPath = scenePath;
+        mUserId = KeyCenter.RTM_UID;
+        mEventHandler = MetaContext.this;
+    }};
+    // 初始化 IMetaService
+    ret += metaService.initialize(config);
+    Log.i(TAG, "launcher version=" + metaService.getLauncherVersion(context));
+}
+```
+
+
+### 2. 下载场景资源
+
+调用 IMetaService 类的 getSceneAssetsInfo 获取场景资源，并通过 IMetaServiceEventHandler 类的 onGetSceneAssetsInfoResult 回调监听获取场景资源时的事件。
+
+调用 IMetaService 类的 downloadScene 获取场景资源，并通过 IMetaServiceEventHandler 类的 onDownloadSceneAssetsProgress 回调监听获取场景资源时的事件。
+
+```java
+// 获取场景资源
+public boolean getSceneInfos() {
+    return metaService.getSceneAssetsInfo() == Constants.ERR_OK;
+}
+
+// 监听获取场景资源的回调事件
+@Override
+public void onGetSceneAssetsInfoResult(MetaSceneAssetsInfo[] metaSceneAssetsInfos, int errorCode) {
+}
+
+// 下载场景资源
+public boolean downloadScene(MetaSceneAssetsInfo sceneInfo) {
+    return metaService.downloadSceneAssets(sceneInfo.mSceneId) == Constants.ERR_OK;
+}
+
+// 监听下载场景资源的回调事件
+@Override
+public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state) {
+}
+```
+
+### 3. 创建 IMetaScene
+
+调用 createScene 创建 IMetaScene，并在 sceneConfig 中设置场景配置信息。通过 IMetaServiceEventHandler 类的onCreateSceneResult 和 onConnectionStateChanged 回调监听创建场景和连接状态的事件。
+
+```java
+// 设置场景配置信息
+MetaSceneConfig sceneConfig = new MetaSceneConfig();
+sceneConfig.mActivityContext = activityContext;
+// 设置是否开启面部捕捉
+// 元语聊场景无需开启面部捕捉
+sceneConfig.mEnableFaceCapture = false;
+// 传入面部捕捉插件的 App ID 和 Certificate
+// 仅开启面部捕捉时才需要传值
+sceneConfig.mFaceCaptureAppId = KeyCenter.FACE_CAP_APP_ID;
+sceneConfig.mFaceCaptureCertificate = KeyCenter.FACE_CAP_APP_KEY;
+int ret = -1;
+if (metaScene == null) {
+    // 创建场景
+    ret = metaService.createScene(sceneConfig);
+}
+
+// 监听创建场景的回调事件
+@Override
+public void onCreateSceneResult(IMetaScene scene, int errorCode) {
+    Log.i(TAG, "onCreateSceneResult errorCode: " + errorCode);
+    metaScene = scene;
+    localUserAvatar = metaScene.getLocalUserAvatar();
+}
+
+// 监听连接状态
+@Override
+public void onConnectionStateChanged(int state, int reason) {
+    Log.d(TAG, "onConnectionStateChanged state=" + state + ",reason=" + reason);
+    if (state == ConnectionState.META_CONNECTION_STATE_ABORTED) {
+        setCurrentScene(MetaConstants.SCENE_NONE);
+        resetRoleInfo();
+        leaveScene();
+    }
+}
+```
+
+### 4. 设置用户信息并进入场景 #TODO 换装捏脸
+
+依次调用 setUserInfo 和 setModelInfo 设置用户的基本信息和虚拟形象（Avatar）的模型信息。调用 IMetaScene 类的 addEventHandler 添加事件句柄，监听 IMetaScene 的事件回调。调用 enterScene 进入场景，并通过 config 设置配置信息。最后通过 IMetaSceneEventHandler 类的 onEnterSceneResult 回调知晓进入场景的结果。
+
+```java
+// 进入场景
+public void enterScene() {
+   if (null != localUserAvatar) {
+      // 设置用户的基本信息
+        localUserAvatar.setUserInfo(userInfo);
+        // 设置用户的虚拟形象模型信息
+        // 模型信息的 mBundleType 需设为 2(BUNDLE_TYPE_AVATAR)
+        localUserAvatar.setModelInfo(modelInfo);
+    }
+    if (null != metaScene) {
+        // 监听 IMetaScene 的事件回调
+        metaScene.addEventHandler(MetaContext.getInstance());
+        // 设置进入场景时的配置信息
+        EnterSceneConfig config = new EnterSceneConfig();
+        // 场景资源渲染时所需要的视图，Android 上使用原生 TextureView
+        config.mSceneView = this.sceneView;
+        // 进入场景的房间名称
+        config.mRoomName = KeyCenter.CHANNEL_ID;
+        // 内容中心对应的 ID
+        if (null != sceneInfo) {
+            config.mSceneId = this.sceneInfo.mSceneId;
+        }
+        // 设置进入场景的 ID 和加载场景资源的路径
+        if (isEnableLocalSceneRes) {
+            config.mSceneId = 0;
+            config.mScenePath = scenePath + "/" + getSceneId();
+        }
+        /*
+         * 仅为示例格式，具体格式以项目实际为准
+         *   "extraInfo":{
+         *     "sceneIndex":0  // 0 为默认场景，在这里指咖啡厅
+         *   }
+         */
+        EnterSceneExtraInfo extraInfo = new EnterSceneExtraInfo();
+        extraInfo.setSceneIndex(MetaConstants.SCENE_GAME);
+
+        // 设置加载场景资源时需要的额外自定义信息，只支持字符串
+        // 在这里指设置 sceneIndex
+        // 在业务逻辑中包含多个场景的情况下，你可以用 sceneIndex 来区分不同的场景，Unity 场景脚本可以根据 sceneIndex 来确定进入哪个场景，并执行相应的逻辑
+        config.mExtraInfo = JSONObject.toJSONString(extraInfo).getBytes();
+        // 进入场景
+        metaScene.enterScene(config);
+    }
+}
+
+// 监听进入场景的回调事件
+@Override
+public void onEnterSceneResult(int errorCode) {
+    Log.d(TAG, String.format("onEnterSceneResult %d", errorCode));
+}
+```
+
+### 5. 离开场景并释放资源
+
+调用 leaveScene 离开场景。通过 IMetaSceneEventHandler 类的 onLeaveSceneResult 回调得知成功离开场景后，调用 release 释放 IMetaScene。通过 IMetaSceneEventHandler 类的 onReleasedScene 回调监听 IMetaScene 是否释放成功。最后依次调用 IMetaService 和 RtcEngine 类的 destroy 方法销毁 IMetaService 和 RtcEngine。
+
+```java
+// 离开场景
+private void leaveScene() {
+    if (metaScene != null) {
+        metaScene.leaveScene();
+    }
+}
+
+// 监听离开场景的回调事件
+@Override
+public void onLeaveSceneResult(int errorCode) {
+    Log.d(TAG, String.format("onLeaveSceneResult %d", errorCode));
+    if (errorCode == 0) {
+      // 释放 IMetaScene
+        metaScene.release();
+        metaScene = null;
+    }
+}
+
+// 监听释放 IMetaScene 的回调事件
+@Override
+public void onReleasedScene(int status) {
+    Log.d(TAG, String.format("[meta] onReleasedScene %d", status));
+    destroy();
+}
+
+// 销毁 IMetaService 和 RtcEngine
+public void destroy() {
+    IMetaService.destroy();
+    metaService = null;
+    RtcEngine.destroy();
+    rtcEngine = null;
+}
+```
+
+## 参考信息
+
+### 开发注意事项 #TODO fragment
+
+在使用 3D 场景的过程中，需要注意以下几点：
+
+- 为了保持场景的连续性和流畅性，通常不能销毁 Activity。为了避免销毁场景所在的 Activity，可以使用 `Intent.FLAG_ACTIVITY_REORDER_TO_FRONT` 标志将 Activity 置于后台。
+- 由于 Texture 的数据是在 GPU 中处理的，因此不能在运行时被销毁或重新创建，否则会影响应用程序的性能和稳定性。如果 Texture 尺寸大小发生变化，例如切换场景时需要切换横竖屏，你需要在 `setSurfaceTextureListener` 的回调方法 `onSurfaceTextureSizeChanged` 中再次调用 `createScene` 和 `enterScene` 等方法，重新创建和进入场景。
