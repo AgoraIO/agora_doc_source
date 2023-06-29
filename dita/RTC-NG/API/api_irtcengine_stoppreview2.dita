@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int stopPreview(Constants.VideoSourceType sourceType);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopPreview: (AgoraVideoSourceType)sourceType NS_SWIFT_NAME(stopPreview(_:));</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">virtual int stopPreview(VIDEO_SOURCE_TYPE sourceType) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract stopPreview(sourceType?: VideoSourceType): number;</codeblock>
@@ -25,8 +25,14 @@
     {VideoSourceType sourceType = VideoSourceType.videoSourceCameraPrimary});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
-        <section id="detailed_desc">
+        <section id="detailed_desc"> 
             <title>详情</title>
+            <dl outputclass="since">
+                <dlentry props="apple">
+                    <dt>自从</dt>
+                    <dd>v4.2.2</dd>
+                </dlentry>
+                </dl>    
             <p>调用 <xref keyref="startPreview2" /> 开启预览后，如果你想关闭本地视频预览，请调用该方法。</p>
             <note type="note">请在加入频道前或离开频道后调用该方法。</note>
             </section>
@@ -42,7 +48,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-                <li props="android cpp unity cs">0：方法调用成功。</li>
+                <li props="native rn electron unity cs">0：方法调用成功。</li>
                 <li>&lt; 0：方法调用失败。</li>
                 </ul>
         </section>
