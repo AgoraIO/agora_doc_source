@@ -2,9 +2,9 @@
 
 本文介绍如何实现元直播。
 
-## 示例项目
+## 示例项目 //TODO fragment-1
 
-声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供元直播源代码供你参考。
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0)。
 
 ## 开通 Meta 服务
 
@@ -130,7 +130,7 @@
     ```swift
     func createMetaService(userName: String, avatarUrl: String, delegate: AgoraMetaEventDelegate?) {
         playerName = userName
-                
+
         currentUserInfo = AgoraMetaUserInfo.init()
         currentUserInfo?.userId = KeyCenter.RTM_UID
         currentUserInfo?.userName = userName
@@ -142,7 +142,7 @@
         metaServiceConfig.rtmToken = KeyCenter.RTM_TOKEN ?? "" // RTM token
         metaServiceConfig.userId = KeyCenter.RTM_UID // RTM 用户 ID
         metaServiceConfig.delegate = delegate // AgoraMetaServiceKit 的异步回调接口类
-        
+
         let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
         metaServiceConfig.localDownloadPath = paths.first! // 场景资源的本地下载路径
         metaServiceConfig.rtcEngine = rtcEngine // RTC 引擎
@@ -160,12 +160,12 @@
 metaService?.getSceneAssetsInfo()
 // 获取场景资源信息回调
 func onGetSceneAssetsInfoResult(_ scenes: NSMutableArray, errorCode: Int)
- 
+
 // 下载场景资源信息
 metaService?.downloadSceneAssets(_ sceneId: Int)
 // 下载场景资源信息回调
 func onDownloadSceneAssetsProgress(_ sceneId: Int, progress: Int, state: AgoraMetaDownloadStateType)
- 
+
 // 取消下载场景资源信息 (按需调用)
 metaService?.cancelDownloadSceneAssets(_ sceneId: Int)
 ```
@@ -192,7 +192,7 @@ func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
         print("create scene error: \(errorCode)")
         return
     }
-     
+
     metaScene = scene
     DispatchQueue.main.async {
         // 创建渲染视图

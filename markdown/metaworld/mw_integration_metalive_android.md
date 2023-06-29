@@ -2,9 +2,9 @@
 
 本文介绍如何实现元直播。
 
-## 示例项目
+## 示例项目 //TODO fragment-1
 
-声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供元直播源代码供你参考。
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0)。
 
 ## 实现元直播
 
@@ -41,22 +41,22 @@
         public void onJoinChannelSuccess(String channel, int uid, int elapsed) {
             Log.d(TAG, String.format("onJoinChannelSuccess %s %d", channel, uid));
         }
-    
+
         @Override
         public void onUserOffline(int uid, int reason) {
             Log.d(TAG, String.format("onUserOffline %d %d ", uid, reason));
         }
-    
+
         @Override
         public void onAudioRouteChanged(int routing) {
             Log.d(TAG, String.format("onAudioRouteChanged %d", routing));
         }
-    
+
         @Override
         public void onUserJoined(int uid, int elapsed) {
             Log.d(TAG, "onUserJoined uid=" + uid);
         }
-    
+
         @Override
         public void onFirstRemoteVideoDecoded(int uid, int width, int height, int elapsed) {
             Log.d(TAG, "onFirstRemoteVideoDecoded uid=" + uid + ",width=" + width + ",heigh=" + height + ",elapsed=" + elapsed);
@@ -68,7 +68,7 @@
     // 创建并初始化 RtcEngine
     rtcEngine = RtcEngine.create(rtcConfig);
     rtcEngine.setParameters("{\"rtc.enable_debug_log\":true}");
-    
+
     // 开启音视频模块并设置音频属性和路由
     rtcEngine.enableAudio();
     rtcEngine.enableVideo();

@@ -1,8 +1,8 @@
 MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实现元语聊。
 
-## 示例项目 #TODO fragment-1
+## 示例项目 //TODO fragment-1
 
-声网在 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/) 仓库的 `dev_metasdk1.0` 分支提供项目源代码供你参考。
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0)。
 
 ## 实现元语聊
 
@@ -174,7 +174,7 @@ func onConnectionStateChanged(_ state: AgoraMetaConnectionStateType, reason: Ago
 ```
 
 
-### 4. 设置用户信息并进入场景 #TODO 换装捏脸
+### 4. 设置用户信息并进入场景 //TODO 换装捏脸
 
 要完成进入场景的操作，参考如下步骤：
 1. 调用 [`setUserInfo`](./mw_api_ref_ios?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./mw_api_ref_ios?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
