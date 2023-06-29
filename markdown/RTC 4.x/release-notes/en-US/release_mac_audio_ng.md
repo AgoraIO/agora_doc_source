@@ -1,8 +1,25 @@
-# v4.2.0
+## v4.2.1
+
+This version was released on June 21, 2023.
+
+#### Improvements
+
+This version improves the network transmission strategy, enhancing the smoothness of audio interactions.
+
+
+#### Fixed Issues
+
+This version fixed the following issues:
+
+- Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
+- After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
+- Brief noise occurred while playing media files using the media player.
+
+## v4.2.0
 
 v4.2.0 was released on May 23, 2023.
 
-## Compatibility changes
+#### Compatibility changes
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
 
@@ -22,7 +39,7 @@ As of v4.2.0, Agora supports third-party virtual sound cards. You can use a thir
 - `didApiCallExecute` is deleted. Agora recommends getting the results of the API implementation through relevant channels and media callbacks.
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
 
-## New features
+#### New features
 
 **1. AI noise suppression**
 
@@ -32,7 +49,7 @@ This release introduces the AI noise suppression function. Once enabled, the SDK
 
 In real-time collaborative singing scenarios, network issues can cause inconsistencies in the downlinks of different client devices. To address this, this release introduces `getNtpWallTimeInMs` for obtaining the current Network Time Protocol (NTP) time. By using this method to synchronize lyrics and music across multiple client devices, users can achieve synchronized singing and lyrics progression, resulting in a better collaborative experience.
 
-## Improvements
+#### Improvements
 
 **1. Voice changer**
 
@@ -49,14 +66,14 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
 - Mixable audio track: Supports mixing multiple external audio sources and publishing them to the same channel, suitable for multi-channel audio capture scenarios.
 - Direct audio track: Only supports publishing one external audio source to a single channel, suitable for low-latency audio capture scenarios.
 
-## Issues fixed
+#### Issues fixed
 
 This release fixed the following issues:
 
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
 - Incorrect information in the `type` field of the return value after calling `getDefaultAudioDevice`.
 
-## API changes
+#### API changes
 
 **Added**
 
