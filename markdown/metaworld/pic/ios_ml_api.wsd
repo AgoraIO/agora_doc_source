@@ -1,6 +1,6 @@
 @startuml
 autonumber
-title 元直播 API 时序图
+title 元直播 Objective-C API 时序图
 participant "App" as app #LightGrey
 participant "AgoraRtcEngineKit" as rtc #White
 participant "AgoraMetaServiceKit" as service
@@ -36,7 +36,7 @@ app -> scene: enterScene
 sceneevent -->> app: onEnterSceneResult
 == 加入频道并开启元直播 ==
 app -> rtc: joinChannelByToken
-app -> scene: enableSceneVideoCapture(view,true)
+app -> scene: enableSceneVideoCapture(view,YES)
 == 离开并释放资源 ==
 app -> rtc: leaveChannel
 app -> scene: leaveScene
