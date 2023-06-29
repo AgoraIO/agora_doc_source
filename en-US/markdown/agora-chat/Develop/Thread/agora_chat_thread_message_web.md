@@ -110,4 +110,28 @@ For more information about recalling a message, see [Recall Messages](./agora_ch
 
 ### Retrieve thread messages from the server
 
-For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_retrieve_message_web?platform=Web#retrieve-historical-messages-of-the-specified-conversation).
+You can call `ChatManager#FetchHistoryMessagesFromServer` to retrieve messages of a thread from the server. The only difference between retrieving messages of a thread from the server and retrieving group messages is that a thread ID needs to be passed in for the former and a group ID is required for the latter.
+
+```javascript
+let options = {
+  // The thread ID.
+  targetId: "threadId",
+  // The number of thread messages that you expect to get on each page. The value range is [1,50], with `20` as the default. 
+  pageSize: 20,
+  // The starting message ID for retrieving. If you set this parameter to `-1`, `null`, or an empty string, the SDK retrieves messages from the latest one.
+  cursor: -1,
+  // The chat type is set to `groupChat` as a thread belongs to a group chat.
+  chatType: "groupChat",
+  // The message search direction: (Default): `up`: The SDK retrieves messages in the descending order of the time when the server receives the messages. `down`: The SDK retrieves messages in the ascending order of the time when the server receives the messages.
+  searchDirection: "up",
+};
+conn
+  .getHistoryMessages(options)
+  .then((res) => {
+    // Succeed in getting historical messages.
+    console.log(res);
+  })
+  .catch((e) => {
+    // Fail to get historical messages.
+  });
+  ```

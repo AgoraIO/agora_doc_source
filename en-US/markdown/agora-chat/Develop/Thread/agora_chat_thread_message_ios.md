@@ -89,6 +89,28 @@ Once a message is recalled in a thread, all chat group members receive the `Agor
 {}
 ```
 
-### Retrieve thread messages from the server
+### Retrieve thread messages
 
-For details about how to retrieve messages from the server, see [Retrieve Historical Messages](./agora_chat_retrieve_message_ios?platform=iOS#retrieve-historical-messages-of-the-specified-conversation).
+You can retrieve thread messages locally or from the server, depending on your production environment.
+
+You can check `AgoraChatConversation#isChatThread()` to determine whether the current conversation is a thread conversation.
+
+#### Retrieve messages of a thread from the server
+
+You can call `asyncFetchHistoryMessagesFromServer` to retrieve messages of a thread from the server. The only difference between retrieving messages of a thread from the server and retrieving group messages is that a thread ID needs to be passed in for the former and a group ID is required for the latter.
+
+```ObjectiveC
+[AgoraChatClient.sharedClient.chatManager asyncFetchHistoryMessagesFromServer:@"threadId" conversationType:AgoraChatConversationTypeGroupChat startMessageId:@"" fetchDirection:AgoraChatMessageFetchHistoryDirectionUp pageSize:20 completion:^(AgoraChatCursorResult<AgoraChatMessage *> * _Nullable aResult, AgoraChatError * _Nullable aError) {
+            
+    }];
+```
+
+#### Retrieve messages of a thread locally
+
+By calling [`getAllConversations`](./agora_chat_manage_message_ios?platform=ios#retrieve-conversations), you can only retrieve local one-to-one chat conversations and group conversations. To retrieve messages of a thread locally, refer to the following code sample:
+
+```ObjectiveC
+AgoraChatConversation *conversation = [AgoraChatClient.sharedClient.chatManager getConversation:@"threadId" type:AgoraChatConversationTypeGroupChat createIfNotExist:NO isThread:YES];
+[conversation loadMessagesStartFromId:msgId count:50 searchDirection:AgoraChatMessageSearchDirectionUp completion:^(NSArray *aMessages, AgoraChatError *aError) {
+}];
+```

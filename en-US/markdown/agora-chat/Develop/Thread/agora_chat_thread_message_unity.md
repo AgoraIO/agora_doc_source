@@ -109,21 +109,37 @@ For more information about recalling a message, see [Recall Messages](./agora_ch
 
 ### Retrieve thread messages
 
-A single thread displays the earliest message by default, users can retrieve the history messages from the server. If you want to handle thread messages both locally and from the server (), you can retrieve thread messages locally.
+You can retrieve thread messages locally or from the server, depending on your production environment.
 
+You can check `Conversation#IsThread()` to determine whether the current conversation is a thread conversation.
 
-#### Retrieve thread messages from the server
+#### Retrieve messages of a thread from the server
 
-For details about how to retrieve messages from the server, see [Retrieve Conversations and Messages from Server](./agora_chat_retrieve_message_unity#retrieve-historical-messages-of-the-specified-conversation).
+You can call `ChatManager#FetchHistoryMessagesFromServer` to retrieve messages of a thread from the server. The only difference between retrieving messages of a thread from the server and retrieving group messages is that a thread ID needs to be passed in for the former and a group ID is required for the latter.
 
-#### Retrieve local messages
+```c#
+SDKClient.Instance.ChatManager.FetchHistoryMessagesFromServer(threadId, ConversationType.Group, startMsgId, pageSize, MessageSearchDirection.DOWN, new ValueCallBack<CursorResult<Message>>(
+          onSuccess: (result) =>
+          {
+              foreach (var msg in result.Data)
+              {
+                  //process every msg
+              }
+          },
+          onError: (code, desc) =>
+          {
+          }
+      ));
+```      
 
-Calling `EMChatManager#getAllConversations()` returns peer-to-peer messages and chat group messages but not thread messages. You can get specified thread messages from local database, as shown in the following code sample:
+#### Retrieve messages of a thread locally
+
+By calling `ChatManager#LoadAllConversations`, you can only retrieve local one-to-one chat conversations and group conversations. To retrieve messages of a thread locally, refer to the following code sample:
 
 ```c#
 // Specifies the conversation type by setting `ConversationType.Group` and setting `isChatThread` as `true`.
 Conversation conversation = SDKClient.Instance.ChatManager.GetConversation(chatThreadId, EMConversationType.GroupChat, createIfNotExists, isChatThread);
-// If you want to handle thread messages from your local database, use the following methods to retrieve the messages. The SDK automatically saves these messages.
+// If you want to handle thread messages from your local database, use the following methods to retrieve the messages. The SDK automatically stores the retrieved messages to the memory.
 conversation.LoadMessages(startMsgId, count, direct, new ValueCallBack<List<Message>>(
     onSuccess: (list) => {
         Console.WriteLine($"LoadMessages found {list.Count} messages");
@@ -137,6 +153,3 @@ conversation.LoadMessages(startMsgId, count, direct, new ValueCallBack<List<Mess
     }
 ));
 ```
-
-**Note:**
-You can identify a thread message by `Conversation#IsThread()`.
