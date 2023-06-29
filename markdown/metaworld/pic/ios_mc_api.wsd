@@ -9,10 +9,8 @@ participant "AgoraMetaLocalUserAvatar" as avatar
 participant "AgoraMetaEventDelegate" as serviceevent
 participant "AgoraMetaSceneEventDelegate" as sceneevent
 == 创建并初始化 AgoraMetaServiceKit ==
-app -> rtc: AgoraRtcEngineKit.sharedEngineWithConfig
-app -> service: sharedEngineWithConfig
-service -->> rtc: return
-rtc -->> app: AgoraMetaServiceKit
+app -> rtc: sharedEngineWithConfig
+app -> service: sharedMetaServiceWithConfig
 == 获取并下载场景资源 ==
 app -> service: getSceneAssetsInfo
 serviceevent -->> app: onGetSceneAssetsInfoResult
@@ -30,6 +28,7 @@ app -> scene: getLocalUserAvatar
 app -> avatar: setUserInfo
 app -> avatar: setModelInfo
 app -> avatar: setExtraInfo
+app -> scene: createRenderView
 app -> scene: enterScene
 sceneevent -->> app: onEnterSceneResult
 == 离开场景并释放资源 ==

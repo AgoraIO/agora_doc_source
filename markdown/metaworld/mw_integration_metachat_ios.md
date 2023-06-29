@@ -10,7 +10,7 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 下图展示实现元语聊的 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1687943311038)
+![](https://web-cdn.agora.io/docs-files/1688007098828)
 
 实现步骤需用到如下类：
 
@@ -24,7 +24,7 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 ### 1. 创建并初始化 AgoraMetaServiceKit
 
-调用 [`sharedEngineWithConfig`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_initialize) 创建 `AgoraRtcEngineKit`。调用 `AgoraMetaServiceKit` 类的 [`sharedMetaServiceWithConfig`](./mw_api_ref_ios?platform=All%20Platforms#sharedmetaservicewithconfig) 创建并初始化 `AgoraMetaServiceKit`。
+调用 [`sharedEngineWithConfig`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_initialize) 创建 `AgoraRtcEngineKit`。调用 [`sharedMetaServiceWithConfig`](./mw_api_ref_ios?platform=All%20Platforms#sharedmetaservicewithconfig) 创建并初始化 `AgoraMetaServiceKit`。
 
 初始化 `AgoraMetaServiceKit` 时，需要在 `AgoraMetaServiceConfig` 里设置如下重要的字段：
 - `rtcEngine`：通过 `sharedEngineWithConfig` 方法创建的 `AgoraRtcEngineKit` 实例。
@@ -152,8 +152,13 @@ func onCreateSceneResult(_ scene: AgoraMetaScene?, errorCode: Int) {
         return
     }
 
-    // 一些处理操作，详见源代码
-    ......
+    metachatScene = scene
+    DispatchQueue.main.async {
+        // 创建场景渲染所需的视图
+        guard let view = scene?.createRenderView(CGRect(x: 0, y: 0, width: width, height: height)) else { return }
+        // 开启视频模块
+        rtcEngine?.enableVideo()
+    }
 }
 
 // 监听连接状态
