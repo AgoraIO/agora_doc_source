@@ -108,7 +108,7 @@ conn.addEventHandler('MESSAGES',{
 For more information about recalling a message, see [Recall Messages](./agora_chat_send_receive_message_web?platform=Web#recall-a-message).
 
 
-### Retrieve thread messages from the server
+### Retrieve messages of a thread from the server
 
 You can call `ChatManager#FetchHistoryMessagesFromServer` to retrieve messages of a thread from the server. The only difference between retrieving messages of a thread from the server and retrieving group messages is that a thread ID needs to be passed in for the former and a group ID is required for the latter.
 

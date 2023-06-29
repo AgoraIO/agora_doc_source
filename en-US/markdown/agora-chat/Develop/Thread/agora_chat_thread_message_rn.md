@@ -150,7 +150,7 @@ By calling [`getAllConversations`](./agora_chat_manage_message_rn?platform=react
 ChatClient.getInstance()
   .chatManager.getThreadConversation(chatThreadID, createIfNeed)
   .then((conv) => {
-    // Gets messages of the thread from the local database.
+    // Gets messages of the thread from the local database. The SDK automatically loads and stores the retrieved messages to the memory.
     conv
       .getMessages(
         chatThreadID,

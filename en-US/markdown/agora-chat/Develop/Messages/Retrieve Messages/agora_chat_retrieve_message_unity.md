@@ -84,7 +84,7 @@ SDKClient.Instance.ChatManager.RemoveMessagesFromServer(convId, ctype, msgList, 
 
 ### Delete conversations and related messages from the server unidirectionally
 
-Call `DeleteConversationFromServer` to delete conversations and their historical messages unidirectionally from the server. After the conversations and messages are deleted from the server, you can no longer get them from the server. The deleted conversations still exist on the local device, but the messages are automatically removed from the device. Other chat users can still get the conversations and their historical messages from the server.
+Call `DeleteConversationFromServer` to delete conversations and their historical messages unidirectionally from the server. After the conversations and messages are deleted from the server, you can no longer get them from the server. The deleted conversations still exist on your local device, but the messages are automatically removed from the device. Other chat users can still get the conversations and their historical messages from the server.
 
 ```C#
 SDKClient.Instance.ChatManager.DeleteConversationFromServer(conversationId, conversationType, isDeleteServerMessages, new CallBack(

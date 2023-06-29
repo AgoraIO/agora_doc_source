@@ -105,11 +105,9 @@ Once a message is recalled in a thread, all chat group members receive the `Chat
 
 ### Retrieve thread messages
 
-Whether to retrieve thread messages from the server or local database depends on your production environment.
+You can retrieve thread messages locally or from the server, depending on your production environment.
 
-When you join a thread, messages are displayed in the chronological order by default. In this case, Agora recommends that you retrieve the historical messages of the thread from the server. When you recall a thread message, Agora recommends that you insert the recall notification in the local database.
-
-<div class="alert note">You can check `ChatConversation#isChatThread()` to determine whether the current conversation is a thread conversation.</div>
+You can check `ChatConversation#isChatThread()` to determine whether the current conversation is a thread conversation.
 
 #### Retrieve messages of a thread from the server
 

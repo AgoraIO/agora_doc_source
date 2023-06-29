@@ -139,7 +139,7 @@ By calling `ChatManager#LoadAllConversations`, you can only retrieve local one-t
 ```c#
 // Specifies the conversation type by setting `ConversationType.Group` and setting `isChatThread` as `true`.
 Conversation conversation = SDKClient.Instance.ChatManager.GetConversation(chatThreadId, EMConversationType.GroupChat, createIfNotExists, isChatThread);
-// If you want to handle thread messages from your local database, use the following methods to retrieve the messages. The SDK automatically stores the retrieved messages to the memory.
+// If you want to handle thread messages from your local database, use the following methods to retrieve the messages. The SDK automatically loads and stores the retrieved messages to the memory.
 conversation.LoadMessages(startMsgId, count, direct, new ValueCallBack<List<Message>>(
     onSuccess: (list) => {
         Console.WriteLine($"LoadMessages found {list.Count} messages");
