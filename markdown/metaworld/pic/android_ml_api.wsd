@@ -1,21 +1,15 @@
 @startuml
 autonumber
-skinparam monochrome true
-
 title 元直播 API 时序图
-participant "<b>元直播 App</b>" as app #White
-participant "<b>RtcEngine</b>" as rtc
-participant "<b>IMetaService</b>" as service
-participant "<b>IMetaScene</b>" as scene
-participant "<b>ILocalUserAvatar</b>" as avatar
-participant "<b>IMetaServiceEventHandler</b>" as serviceevent
-participant "<b>IMetaSceneEventHandler</b>" as sceneevent
-
-app -> rtc: queryInterface
-rtc -> service: new
-service -->> rtc: return
-rtc -->> app: IMetaService
+participant "App" as app #LightGrey
+participant "RtcEngine" as rtc #White
+participant "IMetaService" as service
+participant "IMetaScene" as scene
+participant "ILocalUserAvatar" as avatar
+participant "IMetaServiceEventHandler" as serviceevent
+participant "IMetaSceneEventHandler" as sceneevent
 == 创建并初始化 IMetaService ==
+app -> rtc: RtcEngine.create
 app -> service: create
 app -> service: initialize
 == 获取并下载场景资源 ==
@@ -25,6 +19,9 @@ app -> service: downloadSceneAssets
 serviceevent -->> app: onDownloadSceneAssetsProgress
 == 创建元直播场景 ==
 app -> service: createScene
+note right
+config 中开启并设置面部捕捉插件
+end note
 service -> scene: new
 scene -->> service: return
 service -->> app: IMetaScene
@@ -42,7 +39,7 @@ Android 可以在该回调之前渲染 Texture
 end note
 == 加入频道并开启元直播 ==
 app -> rtc: joinChannel
-app -> scene: enableSceneVideoCapture(view, true)
+app -> scene: enableSceneVideoCapture(view,true)
 == 离开并释放资源 ==
 app -> rtc: leaveChannel
 app -> scene: leaveScene
@@ -50,4 +47,5 @@ sceneevent -->> app: onLeaveSceneResult
 app -> scene: release
 sceneevent -->> app: onReleasedScene
 app -> service: destroy
+app -> rtc: destroy
 @enduml
