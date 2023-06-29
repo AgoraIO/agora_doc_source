@@ -32,18 +32,18 @@
         </section>
         <section id="scenario">
             <title>适用场景</title>
-            <p>当你对播放的音乐资源有特殊要求，例如需要播放某一音乐资源的高潮片段时，你可以调用此方法，通过该音乐资源的 <parmname>songCode</parmname> 和 <parmname>jsonOption</parmname> 参数来为该音乐资源的高潮片段创建一个内部歌曲编号，作为该资源的唯一标识。当你获取到该资源的内部歌曲编号后，如果你需要打开、预加载、移除该资源时，请在调用相应方法时将该内部音乐资源编号传入 <parmname>songCode</parmname>。</p>
+            <p>当你对播放的音乐资源有特殊要求，例如需要播放某一音乐资源的副歌片段时，你可以调用此方法，通过该音乐资源的 <parmname>songCode</parmname> 和 <parmname>jsonOption</parmname> 参数来为该音乐资源的副歌片段创建一个内部歌曲编号，作为该资源的唯一标识。当你获取到该资源的内部歌曲编号后，如果你需要打开、预加载、移除该资源时，请在调用相应方法时将该内部音乐资源编号向 <parmname>songCode</parmname> 传参。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>songCode</pt>
-                <pd>音乐资源编号，用于标识音乐资源。</pd>
+                <pd>音乐资源编号，用于标识音乐资源。你可以通过调用 <xref keyref="getMusicCollectionByMusicChartId"/> 或 <xref keyref="searchMusic"/> 方法来获取音乐资源，并通过由此触发的 <xref keyref="onMusicCollectionResult"/> 回调获取音乐资源的编号（<parmname>songCode</parmname>）。</pd>
             </plentry>
             <plentry>
                 <pt>jsonOption</pt>
-                <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。例如 {"needHighPart":true} 表示仅筛选出有高潮片段的音乐资源。该 JSON 字段的 <codeph>key</codeph> 值和 <codeph>value</codeph> 值还可根据你的需求进行定制，详情<xref keyref="ticket-link" />。</pd>
+                <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。例如 {"needHighPart":true} 表示仅筛选出有高潮片段的音乐资源。该 JSON 字段的 <codeph>key</codeph> 值和 <codeph>value</codeph> 值可根据你的需求进行定制，详情<xref keyref="ticket-link" />。</pd>
             </plentry>
             <plentry props="cpp unity">
                 <pt>internalSongCode</pt>
