@@ -333,7 +333,6 @@ public abstract int leaveScene();
 ### sendSceneMessage
 
 
-
 ```java
 public abstract int sendSceneMessage(byte[] message);
 ```
@@ -374,7 +373,7 @@ public abstract int enableVideoDisplay(String displayId, boolean enable);
 
 **参数**
 
-- `displayId`：指定显示器的 ID。该 ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
+- `displayId`：指定显示器的 ID。该 ID 需要由你的 Native 开发人员和 Unity 开发人员协商后规定。
 - `enable`：是否开启指定显示器：
   - `true`：开启显示器，即开始视频渲染。
   - `false`：关闭显示器，即关闭视频渲染。
@@ -394,7 +393,7 @@ public abstract int pushVideoFrameToDisplay(String displayId, AgoraVideoFrame fr
 
 **参数**
 
-- `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
+- `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发人员和 Unity 开发人员协商后规定。
 - `frame`：原始视频帧。详见 RTC SDK API 参考中的 [`AgoraVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
 
 **返回值**

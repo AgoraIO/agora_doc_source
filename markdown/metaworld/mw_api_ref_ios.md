@@ -295,7 +295,7 @@ Token 有有效期，在过期前 SDK 会触发 [`onTokenWillExpire`](#ontokenwi
 
 **参数**
 
-- `displayId`：指定显示器的 ID。该 ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
+- `displayId`：指定显示器的 ID。该 ID 需要由你的 Native 开发人员和 Unity 开发人员协商后规定。
 - `enable`：是否开启指定显示器：
   - `YES`：开启显示器，即开始视频渲染。
   - `NO`：关闭显示器，即关闭视频渲染。
@@ -316,7 +316,7 @@ Token 有有效期，在过期前 SDK 会触发 [`onTokenWillExpire`](#ontokenwi
 
 **参数**
 
-- `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发者和 Unity 开发者协商后规定。
+- `displayId`：指定显示器的 ID。ID 需要由你的 Native 开发人员和 Unity 开发人员协商后规定。
 - `frame`：视频帧。详见 RTC SDK API 参考中的 [`AgoraVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/rtc_api_data_type.html#class_externalvideoframe)。
 
 **返回值**

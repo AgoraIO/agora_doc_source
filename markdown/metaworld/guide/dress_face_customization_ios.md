@@ -1,90 +1,60 @@
-在虚拟场景中，塑造一个独一无二的虚拟形象是进入场景的第一步。元语聊支持导入自定义人物素材模型，并支持换装和捏脸功能。本文介绍如何在元语聊中实现对虚拟形象的换装和捏脸。
+在虚拟场景中，塑造一个独一无二的虚拟形象是进入场景的第一步。MetaWorld 支持导入自定义人物素材模型，并支持换装和捏脸功能。本文介绍如何在 MetaWorld 中实现对虚拟形象的换装和捏脸。
 
-## 示例项目
+## 示例项目 //TODO fragment-1
 
-声网在 GitHub 上提供开源 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考使用。如果你还需了解 Unity 部分的工程文件和功能指南，请联系 sales@agora.io 获取。
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
 
 
 ## 前提条件
 
-实现换装和捏脸前，请确保你已实现基础的元语聊功能，如创建、进入 3D 场景、创建虚拟形象。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_ios?platform=All%20Platforms)。
-
+实现换装和捏脸前，请确保你已实现基础的元语聊或元直播功能，如创建 Meta 服务、获取并下载场景资源、创建场景、设置虚拟形象的信息并进入场景。详见[基础功能](https://docs.agora.io/cn/metaworld/mw_integration_metachat_ios?platform=All%20Platforms)。
 
 ## 实现步骤
 
-本节展示如何实现换装，内容以 Native 部分的开发为主，Unity 部分的开发请参考 Unity 工程文件和功能指南。捏脸的功能实现也请参考 Unity 工程文件。
-
 下图展示 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1680172665142)
+![](https://web-cdn.agora.io/docs-files/1688029010963)
 
-### 1. 更换装扮
+### 1. 解压资源并设置 UI
 
-建议在业务逻辑中包含多个场景的情况下，调用 [`enterScene`](https://docs.agora.io/cn/metaworld/api_ref_ios?platform=All%20Platforms#enterscene) 时使用 `AgoraMetachatEnterSceneConfig` 中的 `extraCustomInfo` 来设置 `sceneIndex`，以便区分不同的场景。Unity 场景脚本可以根据 `sceneIndex` 来确定进入哪个场景，并执行相应的逻辑。
+解压用于换装和捏脸的资源压缩包，并根据下载的资源文件显示特定的 UI。
 
-在这种情况下，我们将 `sceneIndex` 设置为“换装”或场景，这些场景只包含待更换装扮的用户，没有其他用户。因此，在这些场景中，只需要更换装扮。你可以通过 `AgoraMetachatScene` 的 [`sendMessageToScene`](https://docs.agora.io/cn/metaworld/api_ref_ios?platform=All%20Platforms#sendmessagetoscene) 方法向 Unity 场景发送自定义的换装消息。Unity 场景脚本可以处理对应的自定义消息，实现人物装扮的更换。
+### 2. 发送换装和捏脸消息
+
+通过 [`sendSceneMessage`](/mw_api_ref_ios?platform=All%20Platforms#sendscenemessage) 方法向虚拟场景中发送用户虚拟角色的换装和捏脸消息。
 
 ```swift
-// 本节代码展示换装的逻辑
-// 创建 dressDic 字典，包含用户的着装信息，并将其转换成 JSON 格式的数据
-// 信息格式需要与 Unity 场景使用的格式协商一致
-let dressDic = ["gender": userDressInfo.gender,
-                "hair": userDressInfo.hair,
-                "tops": userDressInfo.tops,
-                "lower": userDressInfo.lower,
-                "shoes": userDressInfo.shoes]
-let value = try? JSONSerialization.data(withJSONObject: dressDic, options: [])
-let str = String(data: value!, encoding: String.Encoding.utf8)
+private let UPDATE_DRESS = "updateDress"
 
-// 创建 msgDic 字段，包含 key 和 value
-// 设置 key 为 dressSetting
-// 设置 value 为 dressDic 的 JSON 字符串
-let msgDic = [
-    "key": "dressSetting",
+let dic = ["id": [10002]]
+let data = try? JSONSerialization.data(withJSONObject: dic, options: [])
+let str = String(data: data!, encoding: String.Encoding.utf8)
+
+let sendDic = [
+    "key": UPDATE_DRESS,
     "value": str as Any
 ] as [String : Any]
-data = try? JSONSerialization.data(withJSONObject:msgDic, options: .fragmentsAllowed)
-// 将 msgDic 的 JSON 格式的数据（换装消息）发送到场景中
-metachatScene?.sendMessage(toScene: data)
-```
 
-
-### 2. 同步装扮
-
-更换人物装扮后，如果用户需进入其他场景并让其他用户看到新形象，则需要同步更换的装扮信息。你可以通过 `AgoraMetachatLocalUserAvatar` 的 [`setDressInfo`](https://docs.agora.io/cn/metaworld/api_ref_ios?platform=All%20Platforms#setdressinfo) 方法让 SDK 将更新后的形象同步给场景中的其他用户：
-
-
-```swift
-// 本节代码展示同步装扮的逻辑
-// 创建 dict 字段，存储用户的着装信息，并将其转换成 JSON 格式的数据
-let dict = ["gender": userDressInfo.gender,
-            "hair": userDressInfo.hair,
-            "tops": userDressInfo.tops,
-            "lower": userDressInfo.lower,
-            "shoes": userDressInfo.shoes]
-let value = try? JSONSerialization.data(withJSONObject: dict, options: [])
-let str = String(data: value!, encoding: String.Encoding.utf8)
-
-let dressInfo = AgoraMetachatDressInfo()
-// extraCustomInfo 是额外的自定义信息
-// 将 extraCustomInfo 设置为换装消息的 JSON 字符串
-dressInfo.extraCustomInfo = str!.data(using: String.Encoding.utf8)
-
-// 设置本地用户的模型信息
-let avatarInfo = AgoraMetachatAvatarModelInfo.init()
-for info in sceneInfo.bundles {
-    if info.bundleType == .avatar {
-        avatarInfo.bundleCode = info.bundleCode;
-        break
-    }
+// 注意：message 协议格式需要由你们的 Unity 开发人员和 Native 开发人员协商后规定
+if let message = try? JSONSerialization.data(withJSONObject:sendDic, options: .fragmentsAllowed) {
+    // 发送换装消息到虚拟场景中
+    metaScene?.sendMessage(message)
 }
 
-localUserAvatar = metachatScene?.getLocalUserAvatar()
-// 设置用户信息
-localUserAvatar?.setUserInfo(currentUserInfo)
-// 设置本地用户的模型信息
-localUserAvatar?.setModelInfo(avatarInfo)
-// 设置本地用户的服装信息
-localUserAvatar?.setDressInfo(currentDressInfo)
-```
 
+private let UPDATE_FACE = "updateFace"
+
+let dic = ["value": [["key": "EB_updown_1", "value": value]]]
+let data = try? JSONSerialization.data(withJSONObject: dic, options: [])
+let str = String(data: data!, encoding: String.Encoding.utf8)
+let sendDic = [
+    "key": UPDATE_FACE,
+    "value": str as Any
+] as [String : Any]
+
+// 注意：message 协议格式需要由你们的 Unity 开发人员和 Native 开发人员协商后规定
+if let message = try? JSONSerialization.data(withJSONObject:sendDic, options: .fragmentsAllowed) {
+    // 发送捏脸消息到虚拟场景中
+    metaScene?.sendMessage(message)
+}
+```

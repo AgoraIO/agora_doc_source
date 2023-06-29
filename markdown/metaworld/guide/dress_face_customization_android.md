@@ -1,64 +1,117 @@
-在虚拟场景中，塑造一个独一无二的虚拟形象是进入场景的第一步。元语聊支持导入自定义人物素材模型，并支持换装和捏脸功能。本文介绍如何在元语聊中实现对虚拟形象的换装和捏脸。
+在虚拟场景中，塑造一个独一无二的虚拟形象是进入场景的第一步。MetaWorld 支持导入自定义人物素材模型，并支持换装和捏脸功能。本文介绍如何在 MetaWorld 中实现对虚拟形象的换装和捏脸。
 
-## 示例项目
+## 示例项目 //TODO fragment-1
 
-声网在 GitHub 上提供开源 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考使用。如果你还需了解 Unity 部分的工程文件和功能指南，请联系 sales@agora.io 获取。
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
 
 
 ## 前提条件
 
-实现换装和捏脸前，请确保你已实现基础的元语聊功能，如创建、进入 3D 场景、创建虚拟形象。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_android?platform=All%20Platforms)。
-
+实现换装和捏脸前，请确保你已实现基础的元语聊或元直播功能，如创建 Meta 服务、获取并下载场景资源、创建场景、设置虚拟形象的信息并进入场景。详见[基础功能](https://docs.agora.io/cn/metaworld/mw_integration_metachat_android?platform=All%20Platforms)。
 
 ## 实现步骤
 
-本节展示如何实现换装，内容以 Native 部分的开发为主，Unity 部分的开发请参考 Unity 工程文件和功能指南。捏脸的功能实现也请参考 Unity 工程文件。
-
 下图展示 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1680172657171)
+![](https://web-cdn.agora.io/docs-files/1688028999286)
 
-### 1. 更换装扮
 
-建议在业务逻辑中包含多个场景的情况下，调用 [`enterScene`](https://docs.agora.io/cn/metaworld/api_ref_android?platform=All%20Platforms#enterscene) 时使用 `EnterSceneConfig` 中的 `mExtraCustomInfo` 来设置 `sceneIndex`，以便区分不同的场景。Unity 场景脚本可以根据 `sceneIndex` 来确定进入哪个场景，并执行相应的逻辑。
+### 1. 解压资源并设置 UI
 
-在这种情况下，我们将 `sceneIndex` 设置为“换装”场景，这些场景只包含待更换装扮的用户，没有其他用户。因此，在这些场景中，只需要更换装扮。你可以通过 `IMetachatScene` 的 [`sendMessageToScene`](https://docs.agora.io/cn/metaworld/api_ref_android?platform=All%20Platforms#sendmessagetoscene) 方法向 Unity 场景发送自定义的换装消息。Unity 场景脚本可以处理对应的自定义消息，实现人物装扮的更换。
+解压用于换装和捏脸的资源压缩包，并根据下载的资源文件显示特定的 UI。
 
 ```java
-// 本节代码展示换装的逻辑
-// 自定义 UnityMessage 实体类
-// UnityMessage 包含 key 和 value 属性
-UnityMessage message = new UnityMessage();
-// 设置 key
-message.setKey("dressSetting");
-// 设置 value
-message.setValue(JSONObject.toJSONString(getUnityRoleInfo()));
-// 将 UnityMessage 实体类转换成 JSON 字符串
-String msg = JSONObject.toJSONString(message);
+// 解压换装捏脸资源
+// 如下只是示例，你可以根据自己的开发环境自行实现解压
+private void unzipIcons(String filePath) {
+    // 创建目标文件夹路径，用于存储解压后的文件
+    File targetFolderPath = new File(filePath + File.separator + FILE_NAME_ICON_FOLDER);
+    if (targetFolderPath.exists()) {
+        Utils.deleteFile(targetFolderPath);
+    }
+    // 调用 unzip 方法解压 icon 资源压缩包
+    Utils.unzip(filePath + File.separator + FILE_NAME_ICONS_ZIP, filePath);
+}
 
-// 将 UnityMessage 字符串转换成字节数组并发送到场景中
-metaChatScene.sendMessageToScene(msg.getBytes());
+// unzip 方法的实现
+// 通过系统原生的 ZipInputStream 类和 FileOutputStream 类实现 unzip 方法
+// 用于解压 icon 资源压缩包
+public static void unzip(String zipFilePath, String destDirectory) {
+    File destDir = new File(destDirectory);
+    if (!destDir.exists()) {
+        destDir.mkdir();
+    }
+    try (ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(zipFilePath));) {
+        ZipEntry zipEntry = zipInputStream.getNextEntry();
+        byte[] buffer = new byte[1024];
+        while (zipEntry != null) {
+            if (!zipEntry.isDirectory()) {
+                String fileName = zipEntry.getName();
+                File newFile = new File(destDirectory + File.separator + fileName);
+                // create all non exists folders
+                new File(newFile.getParent()).mkdirs();
+                FileOutputStream fileOutputStream = new FileOutputStream(newFile);
+                int len;
+                while ((len = zipInputStream.read(buffer)) > 0) {
+                    fileOutputStream.write(buffer, 0, len);
+                }
+                fileOutputStream.close();
+            }
+            zipEntry = zipInputStream.getNextEntry();
+        }
+        zipInputStream.closeEntry();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+
+private void setupUI() {
+    // 根据下载的资源文件显示特定的 UI
+    ......
+}
 ```
 
-### 2. 同步装扮
+### 2. 发送换装和捏脸消息
 
-更换人物装扮后，如果用户需进入其他场景并让其他用户看到新形象，则需要同步更换的装扮信息。你可以通过 `ILocalUserAvatar` 的 [`setDressInfo`](https://docs.agora.io/cn/metaworld/api_ref_android?platform=All%20Platforms#setdressinfo) 方法让 SDK 将更新后的形象同步给场景中的其他用户。
-
+通过 [`sendSceneMessage`](/mw_api_ref_android?platform=All%20Platforms#sendscenemessage) 方法向虚拟场景中发送用户虚拟角色的换装和捏脸消息。
 
 ```java
-// 本节代码展示同步装扮的逻辑
-// 设置用户信息
-localUserAvatar.setUserInfo(userInfo);
-// 设置本地用户的模型信息
-// model 对应的资源包类型为 2(BUNDLE_TYPE_AVATAR)
-localUserAvatar.setModelInfo(modelInfo);
-if (null != roleInfo) {
-    DressInfo dressInfo = new DressInfo();
-    // mExtraCustomInfo 是额外的自定义信息
-    // getUnityRoleInfo 代表 Unity 场景的角色信息
-    // 将 mExtraCustomInfo 设置为 getUnityRoleInfo 方法获取的 JSON 字节数组
-    dressInfo.mExtraCustomInfo = (JSONObject.toJSONString(getUnityRoleInfo())).getBytes();
-    // 设置本地用户的服装信息
-    localUserAvatar.setDressInfo(dressInfo);
+public static final String KEY_UNITY_MESSAGE_UPDATE_DRESS = "updateDress";
+public static final String KEY_UNITY_MESSAGE_UPDATE_FACE = "updateFace";
+
+// 发送换装消息到虚拟场景中
+public void sendRoleDressInfo(int[] resIdArray) {
+    // 注意：message 协议格式需要由你们的 Unity 开发人员和 Native 开发人员协商后规定
+    UnityMessage message = new UnityMessage();
+    message.setKey(MetaConstants.KEY_UNITY_MESSAGE_UPDATE_DRESS);
+    JSONObject valueJson = new JSONObject();
+    valueJson.put("id", resIdArray);
+    message.setValue(valueJson.toJSONString());
+    sendSceneMessage(JSONObject.toJSONString(message));
+}
+
+// 发送捏脸消息到虚拟场景中
+public void sendRoleFaceInfo(FaceParameterItem[] faceParameterItems) {
+    // 注意：message 协议格式需要由你们的 Unity 开发人员和 Native 开发人员协商后规定
+    UnityMessage message = new UnityMessage();
+    message.setKey(MetaConstants.KEY_UNITY_MESSAGE_UPDATE_FACE);
+    JSONObject valueJson = new JSONObject();
+    valueJson.put("value", faceParameterItems);
+    message.setValue(valueJson.toJSONString());
+    sendSceneMessage(JSONObject.toJSONString(message));
+}
+
+// 发送消息到虚拟场景中
+public void sendSceneMessage(String msg) {
+    if (metaScene == null) {
+        Log.e(TAG, "sendMessageToScene metaScene is null");
+        return;
+    }
+
+    if (metaScene.sendSceneMessage(msg.getBytes()) == 0) {
+        Log.i(TAG, "send " + msg + " successful");
+    } else {
+        Log.e(TAG, "send " + msg + " fail");
+    }
 }
 ```
