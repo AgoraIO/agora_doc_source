@@ -2,7 +2,7 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 ## 示例项目 //TODO fragment-1
 
-声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0)。
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
 
 ## 实现元语聊
 
