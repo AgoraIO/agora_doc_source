@@ -174,7 +174,7 @@ func onConnectionStateChanged(_ state: AgoraMetaConnectionStateType, reason: Ago
 ```
 
 
-### 4. 设置用户信息并进入场景 //TODO 换装捏脸
+### 4. 设置用户信息并进入场景
 
 要完成进入场景的操作，参考如下步骤：
 1. 调用 [`setUserInfo`](./mw_api_ref_ios?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./mw_api_ref_ios?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
@@ -258,10 +258,3 @@ func metaScene(_ scene: AgoraMetaScene, onReleasedScene errorCode: Int) {
     rtcEngine = nil
 }
 ```
-
-
-## 参考信息
-
-### 开发注意事项
-
-使用 3D 场景的过程中，不能销毁调用 [`createRenderView`](./mw_api_ref_ios?platform=All%20Platforms#createrenderview) 创建的视图。该视图只有退出整个 app 时才能销毁。

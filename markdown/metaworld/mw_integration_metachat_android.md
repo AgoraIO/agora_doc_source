@@ -186,7 +186,7 @@ public void onConnectionStateChanged(int state, int reason) {
 }
 ```
 
-### 4. 设置用户信息并进入场景 //TODO 换装捏脸
+### 4. 设置用户信息并进入场景
 
 要完成进入场景的操作，参考如下步骤：
 1. 调用 [`setUserInfo`](./mw_api_ref_android?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./mw_api_ref_android?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
@@ -291,7 +291,7 @@ public void destroy() {
 
 ## 参考信息
 
-### 开发注意事项 //TODO fragment-2
+### 开发注意事项
 
 在使用 3D 场景的过程中，需要注意以下几点：
 
