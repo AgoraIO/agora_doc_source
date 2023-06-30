@@ -14,7 +14,7 @@
 
 声网在 GitHub 上提供开源 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考。
 
-如果你还需了解 Unity 部分的工程文件和功能指南，请联系 sales@agora.io 获取。
+如果你还需了解 Unity 部分的工程文件和功能指南，请联系 [sales@agora.io](mailto:sales@agora.io) 获取。
 
 
 ## 前提条件
