@@ -43,18 +43,18 @@
     required String channelId,
     required String userAccount,
     required ChannelMediaOptions options});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p props="native flutter" conkeyref="joinChannelWithUserAccount2/desc1" />
+            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc1" />
             <p props="rn electron" id="desc1">This method allows a user to join the channel with the user account. After the user successfully joins the channel, the SDK triggers the following callbacks:<ul>
             <li>The local client: <xref keyref="onLocalUserRegistered" />, <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
             <li>The remote client: The <xref keyref="onUserJoined" /> callback, if the user is in the COMMUNICATION profile, and the <xref keyref="onUserInfoUpdated" /> callback if the user is a host in the LIVE_BROADCASTING profile.</li>
             </ul></p>
-            <p props="native flutter" conkeyref="joinChannelWithUserAccount2/desc2" />
+            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc2" />
             <p props="rn electron" id="desc2">Once a user joins the channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
-            <note conkeyref="joinChannelWithUserAccount1/note" props="native flutter unity cs" />
+            <note conkeyref="joinChannelWithUserAccount1/note" props="native unreal bp flutter unity cs" />
             <note type="attention" id="note" props="rn electron">To ensure smooth communication, use the same parameter type to identify the user. For example, if a user joins the channel with a user ID, then ensure all the other users use the user ID too. The same applies to the user account. If a user joins the channel with the Agora Web SDK, ensure that the ID of the user is set to the same parameter type.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -69,16 +69,16 @@
                     <p conkeyref="joinChannel2/channelID_desc" />
                 </pd>
             </plentry>
-            <plentry props="native flutter unity rn electron cs" conkeyref="joinChannelWithUserAccount2/userAccount">
+            <plentry props="native unreal bp flutter unity rn electron cs" conkeyref="joinChannelWithUserAccount2/userAccount">
                 <pt />
                 <pd />
             </plentry>
             <plentry>
-                <pt props="cpp android unity rn electron flutter cs">options</pt>
+                <pt props="cpp unreal bp android unity rn electron flutter cs">options</pt>
                 <pt props="ios mac">mediaOptions</pt>
                 <pd conkeyref="joinChannel2/options_desc" />
             </plentry>
-            <plentry props="cpp android unity cs" conkeyref="joinChannelEx/event">
+            <plentry props="cpp unreal bp android unity cs" conkeyref="joinChannelEx/event">
                 <pt />
                 <pd />
             </plentry>
@@ -88,10 +88,10 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron rn">0: Success.</li>
+            <li props="native unreal bp electron rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

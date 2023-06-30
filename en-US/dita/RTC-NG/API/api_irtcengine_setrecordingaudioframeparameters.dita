@@ -41,7 +41,7 @@
     required int channel,
     required RawAudioFrameOpModeType mode,
     required int samplesPerCall});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -49,19 +49,19 @@
             <note type="attention">
             <ul>
             <li>Ensure that you call this method before joining a channel.</li>
-            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac cpp unity cs">The SDK triggers the <apiname keyref="onRecordAudioFrame" /> callback according to the sampling interval.</ph></li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). <ph props="android ios mac cpp unreal bp unity cs">The SDK triggers the <apiname keyref="onRecordAudioFrame" /> callback according to the sampling interval.</ph></li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd props="native unity flutter rn cs">The sample rate returned in the <apiname keyref="onRecordAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                <pd props="native unreal bp unity flutter rn cs">The sample rate returned in the <apiname keyref="onRecordAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
                 <pd props="electron">The sample rate returned in the SDK, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
             </plentry>
             <plentry>
                 <pt>channel</pt>
-                <pd props="native unity flutter rn cs">
+                <pd props="native unreal bp unity flutter rn cs">
                     <p>The number of channels returned in the <apiname keyref="onRecordAudioFrame" /> callback:<ul>
                     <li>1: Mono.</li>
                     <li>2: Stereo.</li>
@@ -77,22 +77,22 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter rn electron cs">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                 </pd>
                 <pd props="electron">The use mode of the returned data from the SDK. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd props="native unity flutter rn cs">The number of data samples returned in the <apiname keyref="onRecordAudioFrame" /> callback, such as 1024 for the Media Push.</pd>
+                <pd props="native unreal bp unity flutter rn cs">The number of data samples returned in the <apiname keyref="onRecordAudioFrame" /> callback, such as 1024 for the Media Push.</pd>
                 <pd props="electron">The number of data samples returned in the SDK, such as 1024 for the Media Push.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native unity electron rn cs">0: Success.</li>
+            <li props="native unreal bp unity electron rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
