@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imusiccontentcenter_getinternalsongcode">
     <title><ph keyref="getInternalSongCode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">创建音乐资源的内部歌曲编号。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">创建音乐资源的副歌片段编号。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,7 +32,7 @@
         </section>
         <section id="scenario">
             <title>适用场景</title>
-            <p>当你对播放的音乐资源有特殊要求，例如需要播放某一音乐资源的副歌片段时，你可以调用此方法，通过该音乐资源的 <parmname>songCode</parmname> 和 <parmname>jsonOption</parmname> 参数来为该音乐资源的副歌片段创建一个内部歌曲编号，作为该资源的唯一标识。当你获取到该资源的内部歌曲编号后，如果你需要打开、预加载、移除该资源时，请在调用相应方法时将该内部音乐资源编号向 <parmname>songCode</parmname> 传参。</p>
+            <p>当你需要播放某一音乐资源的副歌片段前，你需要调用此方法，通过 <parmname>jsonOption</parmname> 参数和该音乐资源的 <parmname>songCode</parmname> 来为该音乐资源的副歌片段创建一个编号，作为该资源的唯一标识。当你获取到该片段的编号后，在你调用相应方法打开、预加载、移除该资源时，将该内部歌曲编号传入 <parmname>songCode</parmname> 参数。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -43,7 +43,33 @@
             </plentry>
             <plentry>
                 <pt>jsonOption</pt>
-                <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。例如 {"needHighPart":true} 表示仅筛选出有高潮片段的音乐资源。该 JSON 字段的 <codeph>key</codeph> 值和 <codeph>value</codeph> 值可根据你的需求进行定制，详情<xref keyref="ticket-link" />。</pd>
+                <pt>jsonOption</pt>
+                <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。目前支持传入下列值：
+                <simpletable>
+                    <sthead>
+                        <stentry>Key 值</stentry>
+                        <stentry>Value 值</stentry>
+                        <stentry>示例</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry>sceneType</stentry>
+                        <stentry>场景类型：
+                            <ul>
+                    <li>1：直播场景：K 歌及背景音乐播放。</li>
+                    <li>2：直播场景：背景音乐播放。</li>
+                    <li>3：（默认）语聊场景：K 歌。</li>
+                    <li>4：语聊场景：背景音乐播放。</li>
+                    <li>5：VR 场景：K 歌及背景音乐播放。</li>
+                    </ul><note>声网会根据你在 <parmname>sceneType</parmname> 传入的应用场景进行收费。不同的应用场景对应不同的费率，你可以参考 <xref keyref="ktv-billing"/> 查看详细的计费。如果需要切换到不同场景，需要重新调用此方法并传入 <parmname>sceneType</parmname> 的值。</note></stentry>
+                        <stentry>{"sceneType":1}</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>highPart</stentry>
+                        <stentry>副歌片段的索引。你可以从 <xref keyref="onMusicCollectionResult"/> 回调中获取副歌片段的索引然后传值。索引序号从 0 开始。
+                        </stentry>
+                        <stentry>{"format": {"highpart": 0}}</stentry>
+                    </strow>
+                </simpletable></pd>
             </plentry>
             <plentry props="cpp unity">
                 <pt>internalSongCode</pt>
@@ -52,7 +78,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <ul props="cpp unity">
+            <ul props="cpp">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。</li>
                 </ul>
