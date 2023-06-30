@@ -228,7 +228,7 @@ func metaScene(_ scene: AgoraMetaScene, onEnterSceneResult errorCode: Int) {}
 
 进入场景后，你需要在场景中添加一个视图，将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播。参考如下步骤：
 1. 调用 `AgoraRtcEngineKit` 类的 [`setupLocalVideo`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/ios_ng/API/toc_video_process.html?platform=iOS#api_irtcengine_setuplocalvideo) 初始化本地视图，用于摄像头画面本地预览。
-2. 调用 `AgoraRtcEngineKit` 类的 [`joinChannel`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel) 使主播加入 RTC 频道。
+2. 调用 `AgoraRtcEngineKit` 类的 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel) 使主播加入 RTC 频道。
 3. 调用 `AgoraMetaScene` 类的 [`addSceneView`](./mw_api_ref_ios?platform=All%20Platforms#addsceneview) 在场景中添加一个视图，用于在频道内发布主播的 Avatar 形象。
 4. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onAddSceneViewResult`](./mw_api_ref_ios?platform=All%20Platforms#onaddsceneviewresult) 回调监听添加场景显示视图的结果。
 5. 调用 `AgoraMetaScene` 类的 [`enableSceneVideoCapture`](./mw_api_ref_ios?platform=All%20Platforms#enablescenevideocapture) 并将 `enable` 设置为 `true` 开启场景渲染画面捕获，发布主播的 Avatar 形象到 RTC 频道。
