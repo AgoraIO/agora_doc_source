@@ -1,8 +1,8 @@
 在虚拟场景中，塑造一个独一无二的虚拟形象是进入场景的第一步。MetaWorld 支持导入自定义人物素材模型，并支持换装和捏脸功能。本文介绍如何在 MetaWorld 中实现对虚拟形象的换装和捏脸。
 
-## 示例项目 //TODO fragment-1
+## 示例项目
 
-声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
+声网在 GitHub 上提供一个开源的 [MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考。
 
 
 ## 前提条件
@@ -13,7 +13,7 @@
 
 下图展示 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1688029010963)
+![](https://web-cdn.agora.io/docs-files/1688114645529)
 
 ### 1. 解压资源并设置 UI
 

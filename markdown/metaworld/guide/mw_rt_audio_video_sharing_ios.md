@@ -20,13 +20,13 @@
 
 ## 前提条件
 
-实现实时共赏影音功能前，请确保你已实现基础的元语聊功能，如创建、进入 3D 场景、创建虚拟形象。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_ios?platform=All%20Platforms)。
+实现该进阶功能前，请确保你已实现基础的元语聊或元直播功能，如创建 Meta 服务、获取并下载场景资源、创建场景、设置虚拟形象的信息并进入场景。详见[基础功能](https://docs.agora.io/cn/metaworld/mw_integration_metachat_android?platform=All%20Platforms)。
 
 ## 实现步骤
 
 下图展示 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1682064521515)
+![](https://web-cdn.agora.io/docs-files/1688115367827)
 
 ### 1. 推送视频
 
@@ -35,7 +35,7 @@
 ```swift
 // 开启视频显示屏
 // "1" 为指定的 displayID
-metachatScene?.enableVideoDisplay("1", enable: true)
+metaScene?.enableVideoDisplay("1", enable: true)
 
 // vf 为待推送的视频帧
 let vf = AgoraVideoFrame()
@@ -46,7 +46,7 @@ vf.height = Int32(videoFrame.height)
 vf.dataBuf = data
 
 // 将视频帧推送至指定的视频显示屏上
-metachatScene?.pushVideoFrame(toDisplay: "1", frame: vf)
+metaScene?.pushVideoFrame(toDisplay: "1", frame: vf)
 ```
 
 ### 2. 同步视频播放进度

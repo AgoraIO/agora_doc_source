@@ -2,9 +2,9 @@
 
 本文介绍如何实现元语聊和元直播的融合场景。
 
-## 示例项目 //TODO fragment-1
+## 示例项目
 
-声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
+声网在 GitHub 上提供一个开源的 [MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考。
 
 ## 实现元语聊和元直播
 

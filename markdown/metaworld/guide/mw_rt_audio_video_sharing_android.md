@@ -21,13 +21,13 @@
 
 ## 前提条件
 
-实现实时共赏影音功能前，请确保你已实现基础的元语聊功能，如创建、进入 3D 场景、创建虚拟形象。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_android?platform=All%20Platforms)。
+实现该进阶功能前，请确保你已实现基础的元语聊或元直播功能，如创建 Meta 服务、获取并下载场景资源、创建场景、设置虚拟形象的信息并进入场景。详见[基础功能](https://docs.agora.io/cn/metaworld/mw_integration_metachat_android?platform=All%20Platforms)。
 
 ## 实现步骤
 
 下图展示 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1682064472217)
+![](https://web-cdn.agora.io/docs-files/1688115356531)
 
 ### 1. 推送视频
 
@@ -36,14 +36,14 @@
 ```java
 // 开启视频显示屏
 // "1" 为指定的 displayID
-metaChatScene.enableVideoDisplay("1", true);
+metaScene.enableVideoDisplay("1", true);
 // 将媒体播放器 onFrame 回调视频帧推送至指定的视频显示屏上
-metaChatScene.pushVideoFrameToDisplay("1", frame);
+metaScene.pushVideoFrameToDisplay("1", frame);
 ```
 
 ### 2. 同步视频播放进度
 
-为了同步主播和观众的视频播放进度，主播调用 [`sendStreamMessage`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_sendstreammessage) 发布携带播放进度的数据流，观众通过 [`onStreamMessage`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/v4.1.1/API/toc_network.html#callback_irtcengineeventhandler_onstreammessage) 接收数据流，解析出播放进度。
+为了同步主播和观众的视频播放进度，主播调用 [`sendStreamMessage`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_sendstreammessage) 发布携带播放进度的数据流，观众通过 [`onStreamMessage`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_network.html#callback_irtcengineeventhandler_onstreammessage) 接收数据流，解析出播放进度。
 
 ```java
 public abstract int sendStreamMessage(int streamId, byte[] message);

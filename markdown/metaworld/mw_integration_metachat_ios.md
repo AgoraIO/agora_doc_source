@@ -1,8 +1,8 @@
 MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实现元语聊。
 
-## 示例项目 //TODO fragment-1
+## 示例项目
 
-声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
+声网在 GitHub 上提供一个开源的 [MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考。
 
 ## 实现元语聊
 
@@ -262,6 +262,6 @@ func metaScene(_ scene: AgoraMetaScene, onReleasedScene errorCode: Int) {
 
 ## 参考信息
 
-### 开发注意事项 //TODO fragment-3 元直播和 mixed 需要，元语聊拿掉
+### 开发注意事项
 
-使用 3D 场景的过程中，不能销毁调用 createRenderView 创建的视图。该视图只有退出整个 app 时才能销毁。
+使用 3D 场景的过程中，不能销毁调用 [`createRenderView`](./mw_api_ref_ios?platform=All%20Platforms#createrenderview) 创建的视图。该视图只有退出整个 app 时才能销毁。

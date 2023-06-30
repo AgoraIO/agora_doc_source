@@ -731,6 +731,8 @@ public void onUserPositionChanged(String uid, MetaUserPositionInfo posInfo);
 
 本地或远端用户位置变化回调。
 
+用户位置变化时，SDK 会触发该回调。
+
 **参数**
 
 - `uid`：本地或远端用户的用户 ID。
