@@ -332,7 +332,7 @@ Token 有有效期，在过期前 SDK 会触发 [`onTokenWillExpire`](#ontokenwi
 ```
 添加场景显示视图。
 
-该方法可添加一个额外的视图，以在显示虚拟人脸视图外还能显示 Unity 场景的摄像头采集到的视频画面。调用成功后，SDK 会触发 `AgoraMetaSceneEventDelegate` 协议的 [`onAddSceneViewResult`](onaddsceneviewresult) 回调。
+调用该方法在场景中添加一个视图，用于在频道内发布主播的 Avatar 形象。调用成功后，SDK 会触发 `AgoraMetaSceneEventDelegate` 协议的 [`onAddSceneViewResult`](onaddsceneviewresult) 回调。
 
 **参数**
 
