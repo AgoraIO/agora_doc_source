@@ -400,7 +400,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布摄像头采集的视频。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="mac cpp unreal bp unity cs flutter rn electron">
+            <plentry props="ios mac cpp unreal bp unity cs flutter rn electron">
                 <pt>publishSecondaryCameraTrack</pt>
                 <pd>设置是否发布第二个摄像头采集的视频：
                     <ul>
@@ -417,18 +417,10 @@ class ChannelMediaOptions {
                 </ul></pd>
                 <pd>
                     <note type="note">
-                    <ul><li props="native unity rn electron">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</li>
+                    <ul><li props="native unreal bp unity rn electron">自 v4.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</li>
                     <li props="flutter">自 v6.0.0 起，该参数名称由 <parmname>publishAudioTrack</parmname> 改为 <parmname>publishMicrophoneTrack</parmname>。</li>
                     <li>如果你想要发布麦克风采集到的音频流，请确保 <parmname>enableAudioRecordingOrPlayout</parmname> 设为 <codeph><ph keyref="true"/></codeph>。</li></ul></note>
                 </pd>
-            </plentry>
-            <plentry props="cpp unreal bp unity cs flutter rn electron">
-                <pt>publishSecondaryCameraTrack</pt>
-                <pd>设置是否发布第二个摄像头采集的视频：
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>：发布第二个摄像头采集的视频。</li>
-                    <li><codeph><ph keyref="false"/></codeph>：不发布第二个摄像头采集的视频。</li>
-                    </ul></pd>
             </plentry>
             <plentry>
                 <pt props="android ios">publishScreenCaptureVideo</pt>
@@ -436,21 +428,21 @@ class ChannelMediaOptions {
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
                     <ul>
-                    <li> <codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
-                    <li> <codeph><ph keyref="false"/></codeph>：不发布屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集到的视频。</li>
                     </ul></p>
                     <p><note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter rn electron">
+            <plentry props="cpp unreal bp unity flutter rn">
                 <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>设置是否发布屏幕采集的视频：
                     <ul>
-                    <li> <codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
-                    <li> <codeph><ph keyref="false"/></codeph>：不发布屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集到的视频。</li>
                     </ul></p>
-                    <p><note type="attention" props="cpp unreal bp unity flutter rn electron">该参数仅适用于 Android 和 iOS 平台。</note></p> </pd>
+                    <p><note type="attention" props="cpp unreal bp unity flutter electron">该参数仅适用于 Android 和 iOS 平台。</note></p> </pd>
             </plentry>
             <plentry props="android ios cpp framework">
                 <pt>publishScreenCaptureAudio</pt>
@@ -461,19 +453,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布屏幕采集到的音频。</li>
                     </ul></p>
                     <p>
-                    <note type="attention" props="cpp unreal bp unity flutter rn electron">该参数仅适用于 Android 和 iOS 平台。</note></p>
-                </pd>
-            </plentry>
-            <plentry>
-                <pt props="android ios">publishScreenCaptureVideo</pt>
-                <pt props="mac cpp unframework">publishScreenTrack</pt>
-                <pd>
-                    <p>设置是否发布屏幕采集的视频：
-                    <ul>
-                    <li> <codeph><ph keyref="true"/></codeph>：发布屏幕采集到的视频。</li>
-                    <li> <codeph><ph keyref="false"/></codeph>：（默认）不发布屏幕采集到的视频。</li>
-                    </ul></p>
-                    <p><note type="note" props="android ios">自 v4.0.0 起，该参数名称由 <parmname>publishScreenTrack</parmname> 改为 <parmname>publishScreenCaptureVideo</parmname>。</note></p>
+                    <note type="attention" props="cpp unreal bp unity flutter electron">该参数仅适用于 Android 和 iOS 平台。</note></p>
                 </pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity cs flutter rn electron">
@@ -493,7 +473,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true"/></codeph>：发布本地的转码视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布本地的转码视频。</li>
                     </ul>
-                    <p><note type="note" props="native">自 v4.2.0 起，该参数名称由 <parmname>publishTrancodedVideoTrack</parmname> 更正为 <parmname>publishTranscodedVideoTrack</parmname>。</note></p>
+                    <p><note type="note" props="native unreal bp">自 v4.2.0 起，该参数名称由 <parmname>publishTrancodedVideoTrack</parmname> 更正为 <parmname>publishTranscodedVideoTrack</parmname>。</note></p>
                 </pd>
             </plentry>
             <plentry>
@@ -553,17 +533,17 @@ class ChannelMediaOptions {
                 <pd>设置是否自动订阅所有音频流：
 
                     <ul id="ul_gxf_vq5_3qb">
-                    <li> <codeph><ph keyref="true"/></codeph>：自动订阅所有音频流。</li>
-                    <li> <codeph><ph keyref="false"/></codeph>：不自动订阅任何音频流。</li>
-                    </ul> </pd>
+                    <li><codeph><ph keyref="true"/></codeph>：自动订阅所有音频流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何音频流。</li>
+                    </ul></pd>
             </plentry>
             <plentry>
                 <pt>autoSubscribeVideo</pt>
                 <pd>设置是否自动订阅所有视频流：
 
                     <ul id="ul_gfh_xq5_3qb">
-                    <li> <codeph><ph keyref="true"/></codeph>：自动订阅所有视频流。</li>
-                    <li> <codeph><ph keyref="false"/></codeph>：不自动订阅任何视频流。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：自动订阅所有视频流。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不自动订阅任何视频流。</li>
                     </ul> </pd>
             </plentry>
             <plentry>
@@ -571,7 +551,7 @@ class ChannelMediaOptions {
                 <pd>设置是否开启音频录制或播放：
 
                     <ul>
-                    <li> <codeph><ph keyref="true"/></codeph>：开启音频录制或播放。</li>
+                    <li><codeph><ph keyref="true"/></codeph>：开启音频录制或播放。</li>
                     <li> <codeph> <ph keyref="false"/></codeph>：不开启音频录制或播放。</li>
                     </ul>
                     <note type="note">如果那你需要发布麦克风采集的音频流，请确保该参数设为 <codeph><ph keyref="true"/></codeph>。</note></pd>
@@ -580,7 +560,7 @@ class ChannelMediaOptions {
                 <pt>publishMediaPlayerId</pt>
                 <pd>待发布的媒体播放器的 ID。默认值为 0。</pd>
             </plentry>
-            <plentry props="native unity cs">
+            <plentry props="native unreal bp unity cs">
                 <pt>clientRoleType</pt>
                 <pd conkeyref="setClientRole1/clientrole"/>
             </plentry>
@@ -619,7 +599,7 @@ class ChannelMediaOptions {
             <plentry>
                 <pt>token</pt>
                 <pd>
-                    <p>（可选）在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token" props="native">使用 Token 鉴权</xref>。</p>
+                    <p>（可选）在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token" props="native unreal bp">使用 Token 鉴权</xref>。</p>
                     <note type="caution">
                     <ul>
                     <li>该参数仅在调用 <xref keyref="updateChannelMediaOptions"/> 或 <xref keyref="updateChannelMediaOptionsEx"/> 时生效。</li>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="release_ng">
+    <title/>
+    <topic id="level2">
+        <title>v4.2.0</title>
+        <body><p>该版本于 2023 年 5 月 24 日发布。</p></body>
+        <topic id="level3">
+            <title/>
+            <topic id="compatibility">
+                <title>升级必看</title>
+                <body>
+                    <ol>
+                        <li>第一个升级必看
+                            <ul>
+                            <li>xxx</li>
+                            <li>xxx</li>
+                            </ul></li>
+                        <li>第二个升级必看 
+                            <p>xxx</p>
+                        </li>
+                    </ol>
+                </body>
+            </topic>
+            <topic id="newfeature">
+                <title>新增特性</title>
+                <body>
+                    <ol>
+                        <li><ph><b>AI 降噪</b></ph>
+                            <p>该版本新增AI 降噪功能。开启该功能后，SDK 会智能识别和消除背景噪音，无论是在嘈杂的公共场所，还是在需要保持低延迟的实时竞技场景，都能够确保声音传输的清晰度，为用户提供更高质量的音频体验。你可以通过该版本新增的 <codeph><apiname keyref="setAINSMode"/></codeph> 方法开启 AI 降噪，并根据实际场景，将降噪模式设置为均衡模式、强降噪模式或低延时模式。</p>
+                        </li>
+                        <li><b>增强虚拟背景</b>
+                            <p>为了增加实时视频通话的趣味性、保护用户隐私，该版本增强了虚拟背景功能。你可以在调用 <codeph><apiname keyref="enableVirtualBackground"/></codeph> 方法时，将自定义背景设置为更多类型：<ul>
+                                <li>将背景处理为 alpha 信息，不作替换，仅分割人像和背景，可结合本地合图功能实现人像画中画效果。</li>
+                                <li>将背景替换为多种格式的本地视频。</li></ul></p>
+                        </li>
+                        <li><b>视频场景化设置</b>
+                            <p>该版本新增 <apiname keyref="setVideoScenario"/> 方法用于设置视频业务场景，SDK 会根据不同场景自动启用最佳实践策略，调整关键性能指标，进而优化视频质量，提升用户体验。无论是正式的商务会议还是轻松的在线聚会，该功能都能确保视频质量满足需求。目前，该特性主要为实时视频会议场景提供了以下针对性的优化：<ul>
+                                <li>针对会议场景对小流码率要求较高的情况，自动启用多项抗弱网技术，提升小流的抗弱网能力，确保多路流订阅时接收端的流畅性。</li>
+                                <li>实时监测接收端大小流的订阅人数，根据订阅人数动态调节大流配置、动态开启和关闭小流，以节省上行带宽和消耗。</li></ul></p>
+                        </li>
+                        <li props="cn"><b>本地录制远端音视频（Beta）</b>
+                            <p>该版本新增本地录制远端音视频功能。本地用户可以录制远端用户的音频视频流，便于将来回放、分析或分享，适用于在线教育、企业培训、在线会议等多类场景。为更准确报告录制状态，该版本在 <codeph><apiname keyref="onRecorderStateChanged"/></codeph>、<codeph><apiname keyref="onRecorderInfoUpdated"/></codeph> 中新增 <codeph>channelId</codeph> 和 <codeph>uid</codeph> 参数，用于表示录制的音视频流的具体信息，并新增 <codeph><apiname keyref="createMediaRecorder"/></codeph> 方法，用于创建本地或远端的录制对象。你可以通过如下方法体验本地录制远端音视频功能：<ul>
+                                <li><apiname keyref="createMediaRecorder"/>：创建录制对象。如需同时录制本地和远端的音视频，可以多次调用该方法创建多个录制对象。</li>
+                                <li><apiname keyref="setMediaRecorderObserver"/>：设置录制回调对象。</li>
+                                <li><apiname keyref="startRecording"/>：开始录制。</li>
+                                <li><apiname keyref="stopRecording"/>：停止录制。</li>
+                                <li><apiname keyref="destroyMediaRecorder"/>：销毁录制对象。</li></ul></p>
+                        </li>
+                        <li props="android apple"><b>本地合图</b>
+                            <p>该版本新增本地合图功能，用户可以调用 <apiname keyref="startLocalVideoTranscoder"/> 方法，在本地将多路视频流（例如：摄像头采集的视频、屏幕共享流、视频文件、图片等）混合和渲染，以实现自定义布局和效果。通过这项功能，你可以轻松创建个性化的视频显示效果，满足各种场景需求，如远程会议、直播、在线教育场景，同时支持人像画中画等功能。</p>
+                            <p>另外，SDK 还提供了<apiname keyref="updateLocalTranscoderConfiguration"/> 方法和 <apiname keyref="onLocalVideoTranscoderError"/> 回调。当你在开启本地合图后，可以调用 <apiname keyref="updateLocalTranscoderConfiguration"/> 更新合图的配置；当你在开启本地合图或者更新本地合图配置失败时，可通过 <apiname keyref="onLocalVideoTranscoderError"/> 回调得知合图失败的原因。</p>
+                            <note type="caution">本地合图对 CPU 的消耗较高，声网建议你在性能较高的设备上开启该功能。</note>
+                        </li>
+                        <li props="cpp"><b>本地合图</b>
+                            <p>该版本新增了 <apiname keyref="onLocalVideoTranscoderError"/> 回调，当你在开启本地合图或者更新本地合图配置失败时，SDK 会触发该回调并报告合图失败的原因。</p>
+                        </li>
+                    </ol>
+                </body>
+            </topic>
+            <topic id="improvement">
+                <title>改进</title>
+                <body>
+                    <ol>
+                        <li>第一条改进名称
+                            <ul>
+                            <li>xx</li>
+                            <li>xx</li>
+                            </ul></li>
+                        <li>第二条改进名称 
+                            <p>xx</p>
+                        </li>
+                    </ol>
+                </body>
+            </topic>
+            <topic id="bugfix">
+                <title>问题修复</title>
+                <body>
+                    <ul>
+                        <li/> 
+                        <li/>
+                    </ul>
+                </body>
+            </topic>
+            <topic id="apichange">
+                <title>API 变更</title>
+                <body>
+                    <p><b>新增</b>
+                        <ul>
+                        <li><apiname keyref="joinChannel1"/></li>
+                        </ul></p>
+                    <p><b>修改</b>
+                        <ul>
+                        <li><apiname/></li>
+                        </ul></p>
+                    <p><b>废弃</b>
+                        <ul>
+                        <li><apiname/></li>
+                        </ul></p>
+                    <p><b>删除</b>
+                        <ul>
+                        <li><apiname/></li>
+                        </ul></p>
+                </body>
+            </topic>
+        </topic>
+    </topic>
+</topic>
