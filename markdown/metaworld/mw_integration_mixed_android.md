@@ -4,11 +4,11 @@
 
 声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
 
-## 实现元语聊和元直播的融合场景
+## 实现元语聊和元直播融合场景
 
-完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元直播。
+完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元语聊和元直播的融合场景。
 
-下图展示实现元直播的 API 调用时序：
+下图展示实现元语聊和元直播融合场景的 API 调用时序：
 //TODO: 待更新
 ![](https://web-cdn.agora.io/docs-files/1687684407522)
 
@@ -143,7 +143,7 @@ public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state)
 }
 ```
 
-### 3. 创建元直播场景
+### 3. 创建场景
 
 调用 `IMetaService` 类 [`createScene`](./mw_api_ref_android?platform=All%20Platforms#createscene) 创建 `IMetaScene`，并在 `MetaSceneConfig` 中设置场景配置信息。为增加直播趣味性，声网推荐你开启面部捕捉，使用同步人脸表情的 Avatar 形象。你需要在 `MetaSceneConfig` 中设置 `mEnableFaceCapture` 为 `true`，并在 `mFaceCaptureAppId` 和 `mFaceCaptureCertificate` 中传入面部捕捉插件的 ID 和 Key。
 
@@ -154,7 +154,7 @@ public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state)
 MetaSceneConfig sceneConfig = new MetaSceneConfig();
 sceneConfig.mActivityContext = activityContext;
 // 设置是否开启面部捕捉
-// 元直播场景建议开启面部捕捉
+// 建议开启面部捕捉
 sceneConfig.mEnableFaceCapture = true;
 // 传入面部捕捉插件的 App ID 和 Certificate
 sceneConfig.mFaceCaptureAppId = KeyCenter.FACE_CAP_APP_ID;
@@ -190,7 +190,7 @@ public void onConnectionStateChanged(int state, int reason) {
 
 要完成进入场景的操作，参考如下步骤：
 1. 调用 `ILocalUserAvatar` 类的 [`setUserInfo`](./mw_api_ref_android?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./mw_api_ref_android?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
-2. 调用 `IMetaScene` 类的 [`addEventHandler`](./mw_api_ref_android?platform=All%20Platforms#addeventhandler-1) 添加事件句柄，监听 `IMetaScene` 的事件回调。
+2. 调用 `ILocalUserAvatar` 类的 [`setExtraInfo`](./mw_api_ref_android?platform=All%20Platforms#setextrainfo) 设置用户的捏脸、换装信息。
 3. 调用 `IMetaScene` 类的 [`enterScene`](./mw_api_ref_android?platform=All%20Platforms#enterscene) 进入场景，并通过 `config` 设置配置信息。
 4. 通过 `IMetaSceneEventHandler` 类的 [`onEnterSceneResult`](./mw_api_ref_android?platform=All%20Platforms#onentersceneresult) 回调监听进入场景的结果。
 
@@ -258,7 +258,7 @@ public void onEnterSceneResult(int errorCode) {
 <div class="alert note"><ul><li>本小节展示在<b>进入场景前</b>设置用户和模型信息，如需在<b>进入场景后</b>变更设置，需调用 <code>applyInfo</code> 使设置生效。</li><li>声网 Meta SDK 支持自定义装扮捏脸功能，详见 <a href="https://docportal.shengwang.cn/cn/metaworld/dress_face_customization_android">换装和捏脸</a>。</li></ul></div>
 
 
-### 5. 加入频道并开启元直播
+### 5. 加入频道并开启直播
 
 进入场景后，你需要将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播。参考如下步骤：
 1. 调用 `RtcEngine` 类的 [`setupLocalVideo`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_video_process.html?platform=Android#api_irtcengine_setuplocalvideo) 初始化本地视图，用于摄像头画面本地预览。
@@ -270,10 +270,11 @@ public void onEnterSceneResult(int errorCode) {
 <div class="alert note">发送 Avatar 视频前，请确保 <code>MetaSceneConfig</code> 中已设置开启面部捕捉。</div>
 
 ```java
-// 创建 VideoCanvas 对象，用于设置本地视图的显示属性
+// 创建 VideoCanvas 对象，用于设置本地视频画面的显示属性
 VideoCanvas videoCanvas = new VideoCanvas(mLocalPreviewSurfaceView, VideoCanvas.RENDER_MODE_HIDDEN, 0);
+// 设置显示摄像头采集后的原始画面
 videoCanvas.position = Constants.VideoModulePosition.VIDEO_MODULE_POSITION_POST_CAPTURER_ORIGIN;
-// 初始化本地视图
+// 设置本地视频画面的参数，并开启本地视频预览
 rtcEngine.setupLocalVideo(videoCanvas);
 // 设置用户角色为主播
 rtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER);
@@ -334,7 +335,7 @@ public void onAddSceneViewResult(TextureView view, int errorCode) {
 }
 
 // 开启场景渲染画面捕获
-// 默认为 false，即发送摄像头采集的视频画面，在元直播场景中，建议设置为 true，把场景画面和主播的 Avatar 形象发布到频道
+// 默认为 false，即发送摄像头采集的视频画面，在直播场景中，建议设置为 true，把场景画面和主播的 Avatar 形象发布到频道
 public void enableSceneVideo(TextureView view, boolean enable) {
     if (null != metaScene) {
         metaScene.enableSceneVideoCapture(view, enable);
@@ -345,18 +346,15 @@ public void enableSceneVideo(TextureView view, boolean enable) {
 ### 6. 离开频道并释放资源
 
 离开场景时，参考如下步骤：
-1. 调用 `RtcEngine` 类的 [`leaveChannel`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 离开直播频道。
-2. 调用 `IMetaService` 类的 [`removeSceneView`](./mw_api_ref_android?platform=All%20Platforms#removesceneview) 将 Avatar 直播画面从场景中移除。
-3. 通过 `IMetaSceneEventHandler` 类的 [`onRemoveSceneViewResult`](./mw_api_ref_android?platform=All%20Platforms#onremovesceneviewresult) 回调监听移除场景显示视图的结果。
+1. 调用 `IMetaService` 类的 [`removeSceneView`](./mw_api_ref_android?platform=All%20Platforms#removesceneview) 将 Avatar 直播画面从场景中移除。
+2. 通过 `IMetaSceneEventHandler` 类的 [`onRemoveSceneViewResult`](./mw_api_ref_android?platform=All%20Platforms#onremovesceneviewresult) 回调监听移除场景显示视图的结果。
+3. 调用 `RtcEngine` 类的 [`leaveChannel`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 离开直播频道。
 4. 调用 `IMetaService` 类的 [`leaveScene`](./mw_api_ref_android?platform=All%20Platforms#leavescene) 离开场景。
 5. 通过 `IMetaSceneEventHandler` 类的 [`onLeaveSceneResult`](./mw_api_ref_android?platform=All%20Platforms#onleavesceneresult) 回调得知成功离开场景后，调用 [`release`](./mw_api_ref_android?platform=All%20Platforms#release) 释放 `IMetaScene`。
 6. 通过 `IMetaSceneEventHandler` 类的 [`onReleasedScene`](./mw_api_ref_android?platform=All%20Platforms#onreleasedscene) 回调监听 `IMetaScene` 是否释放成功。
 7. 依次调用 `IMetaService` 和 `RtcEngine` 类的 `destroy` 方法销毁 `IMetaService` 和 `RtcEngine`。
 
 ```java
-// 离开频道
-rtcEngine.leaveChannel();
-
 // 移除场景显示视图，将 Avatar 直播画面从场景中移除
 public void removeSceneView(TextureView view) {
     if (null != metaScene) {
@@ -374,6 +372,7 @@ public void onRemoveSceneViewResult(TextureView view, int errorCode) {
 // 离开场景
 private void leaveScene() {
     if (metaScene != null) {
+        // 离开频道
         rtcEngine.leaveChannel();
         metaScene.leaveScene();
     }

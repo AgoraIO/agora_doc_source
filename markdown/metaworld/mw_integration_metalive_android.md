@@ -1,4 +1,4 @@
-本文介绍如何实现元直播。
+MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实现元直播。
 
 ## 示例项目
 
@@ -190,7 +190,7 @@ public void onConnectionStateChanged(int state, int reason) {
 
 要完成进入场景的操作，参考如下步骤：
 1. 调用 `ILocalUserAvatar` 类的 [`setUserInfo`](./mw_api_ref_android?platform=All%20Platforms#setuserinfo) 和 [`setModelInfo`](./mw_api_ref_android?platform=All%20Platforms#setmodelinfo) 设置用户的基本信息和虚拟形象（Avatar）的模型信息。
-2. 调用 `IMetaScene` 类的 [`addEventHandler`](./mw_api_ref_android?platform=All%20Platforms#addeventhandler-1) 添加事件句柄，监听 `IMetaScene` 的事件回调。
+2. 调用 `ILocalUserAvatar` 类的 [`setExtraInfo`](./mw_api_ref_android?platform=All%20Platforms#setextrainfo) 设置用户的捏脸、换装信息。
 3. 调用 `IMetaScene` 类的 [`enterScene`](./mw_api_ref_android?platform=All%20Platforms#enterscene) 进入场景，并通过 `config` 设置配置信息。
 4. 通过 `IMetaSceneEventHandler` 类的 [`onEnterSceneResult`](./mw_api_ref_android?platform=All%20Platforms#onentersceneresult) 回调监听进入场景的结果。
 
