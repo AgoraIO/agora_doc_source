@@ -1,6 +1,4 @@
-# 跑通 MetaWorld 示例项目 (iOS)
-
-声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。//TODO fragment-1
+声网在 GitHub 上提供一个开源的 [MetaWorld 示例项目](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 供你参考。
 
 本文介绍如何快速跑通该示例项目，体验效果。
 
@@ -98,6 +96,7 @@ git checkout dev_metasdk1.0
 <div class="alert info">MetaWorld 包含元语聊和元直播场景：<ul><li>在元语聊场景中，用户可以在 3D 场景中自由走动，与其他用户或 NPC 进行语音聊天，开始 K 歌等。</li><li>在元直播场景中，用户可以在 3D 场景中直播。声网面部捕捉插件使用户可以通过模拟脸部表情的 Avatar 形象进行直播，增加直播趣味性。</li><li>在融合元语聊和元直播的场景中，用户可以进行在元语聊和元直播场景中支持的所有操作。</li></ul></div>
 
 //TODO: 可以在登录界面切换了，更新一下描述和截图
+// 待替换为进入 app 界面
 
 <video src="https://web-cdn.agora.io/docs-files/1686906669607"  controls width = 100% height = auto></video>
 <p style="text-align: center;">元语聊 + 元直播融合场景</p>
