@@ -31,7 +31,7 @@
 - `userId`：登录声网 RTM 系统的用户 ID。推荐取值详见 [API 参考](./mw_api_ref_ios?platform=All%20Platforms#agorametaserviceconfig)。
 - `rtmToken`：用于登录声网 RTM 系统的动态密钥。开启动态鉴权后可用。详见[生成 Token](https://docportal.shengwang.cn/cn/Real-time-Messaging/messaging_ios?platform=iOS#4-生成-token)。
 - `localDownloadPath`：场景资源下载到本地的保存路径。
-- `delegate``：AgoraMetaServiceKit` 的回调事件。
+- `delegate`：`AgoraMetaServiceKit` 的回调事件。
 
 声网项目有两种 Token 和 UID，请不要搞混淆：
 - RTC UID：用于在实时音视频通讯中标志用户身份的用户 ID。推荐取值详见 [joinChannelByToken 的参数解释](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。
@@ -116,7 +116,7 @@ func onDownloadSceneAssetsProgress(_ sceneId: Int, progress: Int, state: AgoraMe
 
 ### 3. 创建场景
 
-调用 `AgoraMetaServiceKit` 类的 [`createScene`](./mw_api_ref_ios?platform=All%20Platforms#createscene) 创建 `AgoraMetaScene`，并在 `AgoraMetaSceneConfig` 中设置场景配置信息。你需要在 `AgoraMetaSceneConfig` 中设置 `enableFaceCapture` 为 `true`，并在 `faceCaptureAppId` 和 `faceCaptureCertificate` 中传入面部捕捉插件的 ID 和 Key。
+调用 `AgoraMetaServiceKit` 类的 [`createScene`](./mw_api_ref_ios?platform=All%20Platforms#createscene) 创建 `AgoraMetaScene`，并在 `AgoraMetaSceneConfig` 中设置场景配置信息。为增加直播趣味性，声网推荐你开启面部捕捉，使用同步人脸表情的 Avatar 形象。你需要在 `AgoraMetaSceneConfig` 中设置 `enableFaceCapture` 为 `true`，并在 `faceCaptureAppId` 和 `faceCaptureCertificate` 中传入面部捕捉插件的 ID 和 Key。
 
 通过 `AgoraMetaEventDelegate` 类的 [`onCreateSceneResult`](./mw_api_ref_ios?platform=All%20Platforms#oncreatesceneresult) 和 [`onConnectionStateChanged`](./mw_api_ref_ios?platform=All%20Platforms#onconnectionstatechanged) 回调监听创建场景和连接状态的事件。
 
@@ -126,7 +126,7 @@ func createScene(_ delegate: MetaChatSceneViewController) {
     let config = AgoraMetaSceneConfig()
     config.delegate = delegate
     // 设置是否开启面部捕捉
-    // 建议开启面部捕捉
+    // 融合场景中，建议开启面部捕捉
     config.enableFaceCapture = true
     // 传入面部捕捉插件的 App ID 和 Certificate
     config.faceCaptureCertificate = KeyCenter.FACE_CAPTURE_CERTIFICATE
@@ -226,11 +226,11 @@ func metaScene(_ scene: AgoraMetaScene, onEnterSceneResult errorCode: Int) {}
 
 ### 5. 加入频道并开启直播
 
-进入场景后，你需要将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播。参考如下步骤：
+进入场景后，你需要在场景中添加一个视图，将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播。参考如下步骤：
 1. 调用 `AgoraRtcEngineKit` 类的 [`setupLocalVideo`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/ios_ng/API/toc_video_process.html?platform=iOS#api_irtcengine_setuplocalvideo) 初始化本地视图，用于摄像头画面本地预览。
 2. 调用 `AgoraRtcEngineKit` 类的 [`joinChannel`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel) 使主播加入 RTC 频道。
 3. 调用 `AgoraMetaScene` 类的 [`addSceneView`](./mw_api_ref_ios?platform=All%20Platforms#addsceneview) 在场景中添加一个视图，用于在频道内发布主播的 Avatar 形象。
-4. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onAddSceneViewResult`](./mw_api_ref_android?platform=All%20Platforms#onaddsceneviewresult) 回调监听添加场景显示视图的结果。
+4. 通过 `AgoraMetaSceneEventDelegate` 类的 [`onAddSceneViewResult`](./mw_api_ref_ios?platform=All%20Platforms#onaddsceneviewresult) 回调监听添加场景显示视图的结果。
 5. 调用 `AgoraMetaScene` 类的 [`enableSceneVideoCapture`](./mw_api_ref_ios?platform=All%20Platforms#enablescenevideocapture) 并将 `enable` 设置为 `true` 开启场景渲染画面捕获，发布主播的 Avatar 形象到 RTC 频道。
 
 <div class="alert note">发送 Avatar 视频前，请确保 <code>AgoraMetaSceneConfig</code> 中已设置开启面部捕捉。</div>
@@ -276,7 +276,7 @@ func addSceneView() {
     // 场景中添加view
     metaScene?.add(avatarView!, sceneDisplayConfig: config)
     // 开启场景渲染画面捕获
-    // 默认为 false，即发送摄像头采集的视频画面，建议设置为 true，把场景画面和主播的 Avatar 形象发布到频道
+    // 默认为 false，即发送摄像头采集的视频画面，在融合场景中，建议设置为 true，把场景画面和主播的 Avatar 形象发布到频道
     // Swift 中的 enableVideoCapture 对应 Objective-C API 中的 enableSceneVideoCapture
     metaScene?.enableVideoCapture(avatarView!, enable: true)
 }

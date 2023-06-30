@@ -154,7 +154,7 @@ public void onDownloadSceneAssetsProgress(long sceneId, int progress, int state)
 MetaSceneConfig sceneConfig = new MetaSceneConfig();
 sceneConfig.mActivityContext = activityContext;
 // 设置是否开启面部捕捉
-// 建议开启面部捕捉
+// 融合场景中，建议开启面部捕捉
 sceneConfig.mEnableFaceCapture = true;
 // 传入面部捕捉插件的 App ID 和 Certificate
 sceneConfig.mFaceCaptureAppId = KeyCenter.FACE_CAP_APP_ID;
@@ -260,8 +260,8 @@ public void onEnterSceneResult(int errorCode) {
 
 ### 5. 加入频道并开启直播
 
-进入场景后，你需要将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播。参考如下步骤：
-1. 调用 `RtcEngine` 类的 [`setupLocalVideo`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_video_process.html?platform=Android#api_irtcengine_setuplocalvideo) 初始化本地视图，用于摄像头画面本地预览。
+进入场景后，你需要在场景中添加一个视图，将主播端 Avatar 形象的视频流发布到 RTC 频道中，使 3D 场景中的用户都能看到直播。参考如下步骤：
+1. 调用 `RtcEngine` 类的 [`setupLocalVideo`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_video_process.html?platform=Android#api_irtcengine_setuplocalvideo) 初始化本地视图，用于本地预览。
 2. 调用 `RtcEngine` 类的 [`joinChannel`](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel2) 使主播加入 RTC 频道。
 3. 调用 `IMetaScene` 类的 [`addSceneView`](./mw_api_ref_android?platform=All%20Platforms#addsceneview) 在场景中添加一个视图，用于在频道内发布主播的 Avatar 形象。
 4. 通过 `IMetaSceneEventHandler` 类的 [`onAddSceneViewResult`](./mw_api_ref_android?platform=All%20Platforms#onaddsceneviewresult) 回调监听添加场景显示视图的结果。
@@ -335,7 +335,7 @@ public void onAddSceneViewResult(TextureView view, int errorCode) {
 }
 
 // 开启场景渲染画面捕获
-// 默认为 false，即发送摄像头采集的视频画面，在直播场景中，建议设置为 true，把场景画面和主播的 Avatar 形象发布到频道
+// 默认为 false，即发送摄像头采集的视频画面，在融合场景中，建议设置为 true，把场景画面和主播的 Avatar 形象发布到频道
 public void enableSceneVideo(TextureView view, boolean enable) {
     if (null != metaScene) {
         metaScene.enableSceneVideoCapture(view, enable);
