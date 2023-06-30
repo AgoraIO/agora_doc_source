@@ -257,7 +257,7 @@ public void onEnterSceneResult(int errorCode) {
 }
 ```
 
-<div class="alert note"><ul><li>本小节展示在<b>进入场景前</b>设置用户和模型信息，如需在<b>进入场景后</b>变更设置，需调用 <code>applyInfo</code> 使设置生效。</li><li>声网 Meta SDK 支持自定义装扮捏脸功能，详见 <a href="https://docportal.shengwang.cn/cn/metaworld/dress_face_customization_android">换装和捏脸</a>。</li></ul></div>
+<div class="alert note"><ul><li>本小节展示在<b>进入场景前</b>设置用户和模型信息，如需在<b>进入场景后</b>变更设置，需调用 <code>applyInfo</code> 使设置生效。</li><li>声网 Meta SDK 支持自定义装扮捏脸功能，详见 <a href="https://docportal.shengwang.cn/cn/metaworld/mw_dress_face_customization_android">换装和捏脸</a>。</li></ul></div>
 
 
 ### 5. 加入频道并开启元直播
