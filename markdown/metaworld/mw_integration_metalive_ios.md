@@ -280,3 +280,9 @@ func metaScene(_ scene: AgoraMetaScene, onReleasedScene errorCode: Int) {
     rtcEngine = nil
 }
 ```
+
+## 参考信息
+
+### 开发注意事项
+
+使用 3D 场景的过程中，不能销毁调用 [`createRenderView`](./mw_api_ref_ios?platform=All%20Platforms#createrenderview) 创建的视图。该视图只有退出整个 app 时才能销毁。
