@@ -40,12 +40,12 @@ end note
 == 加入频道并开启元直播 ==
 app -> rtc: joinChannel
 app -> scene: enableSceneVideoCapture(view,true)
-== 离开并释放资源 ==
+== 离开频道并释放资源 ==
 app -> rtc: leaveChannel
 app -> scene: leaveScene
 sceneevent -->> app: onLeaveSceneResult
 app -> scene: release
 sceneevent -->> app: onReleasedScene
 app -> service: destroy
-app -> rtc: destroy
+app -> rtc: RtcEngine.destroy
 @enduml
