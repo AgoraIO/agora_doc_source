@@ -104,9 +104,9 @@ conn.addEventHandler('MESSAGES',{
 
 关于撤回消息的逻辑，详见[撤回消息](./agora_chat_send_receive_message_web#撤回消息)。
 
-### 从服务器获取子区消息
+### 从服务器获取单个子区的消息
 
-调用 `getHistoryMessages` 方法从服务器获取子区消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
+调用 `getHistoryMessages` 方法从服务器获取单个子区的消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
 
 ```javascript
 let options = {

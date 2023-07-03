@@ -118,13 +118,11 @@ MessageListener msgListener = new MessageListener() {
 
 从服务器还是本地数据库获取子区消息取决于你的生产环境。
 
-进入单个子区会话后默认展示最早消息，用户可以从服务器获取子区历史消息；若需要合并本地和服务器拉取到的消息（例如有用户撤回子区消息的提示是 SDK 在本地生成的一条消息，可以选择从本地获取子区消息。
+你可以通过 `ChatConversation#isChatThread()` 判断当前会话是否为子区会话。
 
-<div class="alert note">可通过 `ChatConversation#isChatThread()` 判断当前会话是否为子区会话。</div>
+#### 从服务器获取单个子区的消息（消息漫游）
 
-#### 从服务器获取子区消息（消息漫游）
-
-调用 `asyncFetchHistoryMessage` 方法从服务器获取子区消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
+调用 `asyncFetchHistoryMessage` 方法从服务器获取单个子区的消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
 
 ```java
 String chatThreadId = "{your chatThreadId}";
@@ -147,16 +145,14 @@ ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(chatThreadId, ty
 });
 ```
 
-#### 从内存和本地数据库中获取子区消息
+#### 从本地获取单个子区的消息
 
-调用 [`getAllConversations`](./agora_chat_manage_message_android#获取本地所有会话)方法只能获取单聊或群聊会话。你可以调用以下方法从本地数据库中读取指定子区的消息：
+调用 [`getAllConversations`](./agora_chat_manage_message_android#获取本地所有会话)方法只能获取单聊或群聊会话。你可以调用以下方法从本地获取单个子区的消息：
 
 ```java
 // 需设置会话类型为 `ChatConversationType.GroupChat` 和 `isChatThread` 为 `true`
 ChatConversation conversation = ChatClient.getInstance().chatManager().getConversation(chatThreadId, ChatConversationType.GroupChat, createIfNotExists, isChatThread);
-// 获取此会话的所有内存中的消息
-List<ChatMessage> messages = conversation.getAllMessages();
-// 如需处理本地数据库中消息，用以下方法到数据库中获取，SDK 会将这些消息自动存入此会话
+// 如需处理本地数据库中消息，用以下方法到数据库中获取，SDK 会将这些消息自动存入此会话。
 List<ChatMessage> messages = conversation.loadMoreMsgFromDB(startMsgId, pagesize, searchDirection);
 ```
 
