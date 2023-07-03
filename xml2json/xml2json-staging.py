@@ -155,9 +155,9 @@ def main():
     logLines(localLogger.debug, "Hide id list", json_hide_id_list)
 
     # Clean the json_files folder
-    # remove_json_files()
+    remove_json_files()
 
-    # dita_to_json(working_dir, defined_path)
+    dita_to_json(working_dir, defined_path)
 
     # Join all files in the json_files folder
     # List of json files to merge
