@@ -17,7 +17,7 @@
     return getMusicCollectionByMusicChartId(musicChartId, page, pageSize, null);
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)getMusicCollectionWithMusicChartId:(NSInteger)musicChartId page:(NSInteger)page pageSize:(NSInteger)pageSize jsonOption:(NSString * _Nullable)jsonOption NS_SWIFT_NAME(getMusicCollection(musicChartId:page:pageSize:jsonOption:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getMusicCollectionByMusicChartId(agora::util::AString&amp; requestId, int32_t musicChartId, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int getMusicCollectionByMusicChartId(agora::util::AString&amp; requestId, int32_t musicChartId, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getMusicCollectionByMusicChartId(
     musicChartId: number,
     page: number,
@@ -51,12 +51,12 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="cpp unity cs" conkeyref="onMusicChartsResult/id">
+            <plentry props="cpp unreal bp unity cs" conkeyref="onMusicChartsResult/id">
                 <pt/>
                 <pd/>
             </plentry>
             <plentry id="chartid">
-                <pt props="native rn flutter electron">musicChartId</pt>
+                <pt props="native unreal bp rn flutter electron">musicChartId</pt>
                 <pt props="unity cs">musicChartType</pt>
                 <pd>音乐榜单的 ID，可以通过 <xref keyref="onMusicChartsResult"/> 回调获取。你也可以通过 RESTful API 来<xref keyref="song-lists"/>或<xref keyref="new-songs"/>。</pd>
             </plentry>
@@ -75,7 +75,7 @@
             </parml> </section>
         <section>
         <title>返回值</title>
-            <ul props="cpp unity cs">
+            <ul props="cpp unreal bp unity cs">
                 <li>0: 方法调用成功。</li>
                 <li>&lt; 0: 方法调用失败。</li>
             </ul>

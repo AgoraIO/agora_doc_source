@@ -1,8 +1,26 @@
-# v4.2.0
+## v4.2.1
+
+This version was released on June 21, 2023.
+
+#### Improvements
+
+This version improves the network transmission strategy, enhancing the smoothness of audio and video interactions.
+
+#### Issues fixed
+
+This version fixed the following issues:
+
+- Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
+- After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
+- Brief noise occurred while playing media files using the media player.
+- After enabling the screen sharing feature on the sending end, there was high delay until the receiving end could see the shared screen. (macOS)
+- When the sending end mixed and published two streams of video captured by two cameras locally, the video from the second camera was occasionally missing on the receiving end. (Windows)
+
+## v4.2.0
 
 v4.2.0 was released on May xx, 2023.
 
-## Compatibility changes
+#### Compatibility changes
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
 
@@ -59,7 +77,7 @@ Call the setVideoEncoderConfiguration method to set the expected video encoding 
   - `registerAudioFrameObserver` and `unregisterAudioFrameObserver` in `IMediaPlayer`
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
 
-## New features
+#### New features
 
 **1. AI noise reduction**
 
@@ -99,7 +117,7 @@ This release adds the `startMediaRenderingTracing` and `startMediaRenderingTraci
 
 Agora recommends that you use this method in conjunction with the UI settings, such as buttons and sliders, in your app. For example, call this method when the user clicks **Join Channel** button and then get the indicators in the video frame rendering process through the `onVideoRenderingTracingResult` callback. This enables developers to optimize the indicators and improve the user experience.
 
-## Improvements 
+#### Improvements 
 
 **1. Voice changer**
 
@@ -136,7 +154,7 @@ As of this release, the SDK optimizes the `onRenderVideoFrame` callback, and the
 When the video processing mode is `ProcessModeReadOnly`, the return value is reserved for future use.
 When the video processing mode is `ProcessModeReadWrite`, the SDK receives the video frame when the return value is `true`. The video frame is discarded when the return value is `false`.
 
-## Issues fixed
+#### Fixed Issues
 
 This release fixed the following issues:
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
@@ -153,7 +171,7 @@ This release fixed the following issues:
 - When trying to outline the shared window and put it on top, the shared window did not stay on top of other windows.(Windows)
 - When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
 
-## API changes
+#### API changes
 
 **Added**
 
@@ -383,7 +401,7 @@ This release includes the following additional improvements:
 - Enhances the ability to identify different network protocol stacks and improves the SDK's access capabilities in multiple-operator network scenarios.
 
 
-#### Issue fixed
+#### Fixed issues
 
 This release fixed the following issues:
 

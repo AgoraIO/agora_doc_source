@@ -249,7 +249,7 @@
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
 - (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
-      <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
+      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LiveTranscoding {
   int width;
   int height;
   int videoBitrate;
@@ -561,7 +561,7 @@
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
       <parml>
-      <plentry props="android cpp electron rn unity flutter cs">
+      <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>width</pt>
         <pd>
           <p>推流视频的总宽度，默认值 360，单位为像素。</p>
@@ -570,7 +570,7 @@
           <li>如果推音频流，请将 <codeph>width</codeph> 和 <codeph>height</codeph> 设为 0。</li>
           </ul> </pd>
       </plentry>
-      <plentry props="android cpp electron rn unity flutter cs">
+      <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>height</pt>
         <pd>
           <p>推流视频的总高度，默认值 640，单位为像素。</p>
@@ -599,7 +599,7 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>用于旁路直播的输出视频的码率。单位为 Kbps。400 Kbps 为默认值。</p>
-          <p props="native">你可以根据<xref keyref="video-profile-table">视频属性</xref>参考表中的码率值进行设置；如果设置的码率超出合理范围，声网服务器会在合理区间内自动调整码率值。</p>
+          <p props="native unreal bp">你可以根据<xref keyref="video-profile-table">视频属性</xref>参考表中的码率值进行设置；如果设置的码率超出合理范围，声网服务器会在合理区间内自动调整码率值。</p>
         </pd>
       </plentry>
       <plentry>
@@ -644,7 +644,7 @@
         </pd>
       </plentry>
       <plentry>
-        <pt props="ios mac cpp unity electron rn flutter cs">transcodingExtraInfo</pt>
+        <pt props="ios mac cpp unreal bp unity electron rn flutter cs">transcodingExtraInfo</pt>
         <pt props="android">userConfigExtraInfo</pt>
         <pd>
           <p>预留参数：用户自定义的发送到旁路推流客户端的信息，用于填充 H264/H265 视频中 SEI 帧内容。长度限制：4096 字节。关于 SEI 的详细信息，详见 <xref keyref="faq-sei">SEI 帧相关问题</xref>。</p>
@@ -664,7 +664,7 @@
           </ul></p>
         </pd>
       </plentry>
-      <plentry props="android cpp unity electron rn flutter cs">
+      <plentry props="android cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundColor</pt>
         <pd props="android">
           <dl outputclass="deprecated">
@@ -674,11 +674,11 @@
           </dlentry>
           </dl>
         </pd>
-        <pd props="cpp unity electron rn flutter cs">
+        <pd props="cpp unreal bp unity electron rn flutter cs">
           <p>用于旁路直播的输出视频的背景色，格式为 RGB 定义下的十六进制整数，不要带 # 号，如 0xFFB6C1 表示浅粉色。默认0x000000，黑色。</p>
         </pd>
       </plentry>
-      <plentry props="android cpp electron rn unity flutter cs">
+      <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>userCount</pt>
         <pd>
           <dl outputclass="deprecated" props="android">
@@ -690,7 +690,7 @@
           <p>参与合图的用户数量，默认 0。取值范围为 [0,17]。</p>
         </pd>
       </plentry>
-      <plentry props="android cpp unity electron rn flutter cs">
+      <plentry props="android cpp unreal bp unity electron rn flutter cs">
         <pt>metadata</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -702,14 +702,14 @@
           <p>发送给 CDN 客户端的 metadata。</p>
         </pd>
       </plentry>
-      <plentry props="cpp unity flutter electron rn cs">
+      <plentry props="cpp unreal bp unity flutter electron rn cs">
         <pt>watermark</pt>
         <pd>
           <p>直播视频上的水印。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
-          <p>你可以添加一个水印，或使用数组的方式添加多个水印。<ph props="cpp unity electron rn cs">该参数与 <parmname>watermarkCount</parmname>搭配使用。</ph></p>
+          <p>你可以添加一个水印，或使用数组的方式添加多个水印。<ph props="cpp unreal bp unity electron rn cs">该参数与 <parmname>watermarkCount</parmname>搭配使用。</ph></p>
         </pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundImage</pt>
         <pd>
           <p>直播视频上的背景图。图片格式需为 PNG。详见 <xref keyref="RtcImage"/>。</p>
@@ -752,19 +752,19 @@
         <pt>watermarkArray</pt>
         <pd> 直播视频上的水印数组。详见 <xref keyref="RtcImage"/>。你可以使用 <parmname>watermarkArray</parmname> 添加一张或多张水印。图片格式需为 PNG。直播视频上的水印和背景图的总数量需大于等于 0 且小于等于 10。 </pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>watermarkCount</pt>
         <pd>直播视频上的水印的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>watermark</parmname> 搭配使用。</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundImageCount</pt>
         <pd>直播视频上的背景图的数量。水印和背景图的总数量需大于等于 0 且小于等于 10。该参数与 <parmname>backgroundImage</parmname> 搭配使用。</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>advancedFeatures</pt>
         <pd>转码推流的高级功能。详见 <xref keyref="LiveStreamAdvancedFeature"/>。</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>advancedFeatureCount</pt>
         <pd>开启的高级功能数量。默认值为 0。</pd>
       </plentry>

@@ -19,7 +19,7 @@
                                               channel:(NSInteger)channel
                                                  mode:(AgoraAudioRawFrameOperationMode)mode
                                        samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setRecordingAudioFrameParameters(int sampleRate,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setRecordingAudioFrameParameters(int sampleRate,
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
@@ -49,19 +49,19 @@
             <note type="attention">
             <ul>
             <li>该方法需要在加入频道前调用。</li>
-            <li>SDK 会通过该方法中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算出采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不小于 0.01 秒。<ph props="android ios mac cpp unity cs">SDK 会根据该采样间隔触发 <apiname keyref="onRecordAudioFrame" /> 回调。</ph></li>
+            <li>SDK 会通过该方法中的 <parmname>samplesPerCall</parmname>、<parmname>sampleRate</parmname> 和 <parmname>channel</parmname> 参数计算出采样间隔，计算公式为<equation-inline>采样间隔 = <parmname>samplesPerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>。请确保采样间隔不小于 0.01 秒。<ph props="android ios mac cpp unreal bp unity cs">SDK 会根据该采样间隔触发 <apiname keyref="onRecordAudioFrame" /> 回调。</ph></li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd props="native unity flutter rn cs"><apiname keyref="onRecordAudioFrame" /> 中返回数据的采样率，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
+                <pd props="native unreal bp unity flutter rn cs"><apiname keyref="onRecordAudioFrame" /> 中返回数据的采样率，可设置为 8000、 16000、 32000、44100 或 48000。</pd>
                 <pd props="electron">SDK 返回数据的采样率 (Hz)，可设置为 8000、 16000、 32000、 44100 或 48000。</pd>
             </plentry>
             <plentry>
                 <pt>channel</pt>
-                <pd props="native unity flutter rn cs">
+                <pd props="native unreal bp unity flutter rn cs">
                     <p><apiname keyref="onRecordAudioFrame" /> 中返回数据的通道数，可设置为 1 或 2:
                     <ul>
                     <li>1: 单声道。</li>
@@ -79,14 +79,14 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter rn electron cs">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</p>
+                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">音频帧的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                 </pd>
                 <pd props="electron">SDK 返回数据的使用模式，详见 <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />。</pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd props="native unity flutter rn cs"><apiname keyref="onRecordAudioFrame" /> 中返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
+                <pd props="native unreal bp unity flutter rn cs"><apiname keyref="onRecordAudioFrame" /> 中返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
                 <pd props="electron">SDK 返回数据的采样点数，如旁路推流应用中通常为 1024。</pd>
             </plentry>
             </parml> </section>
@@ -94,7 +94,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li props="native unity electron rn cs">0：方法调用成功。</li>
+            <li props="native unreal bp unity electron rn cs">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。</li>
             </ul> </section>
     </refbody>

@@ -21,7 +21,7 @@
                    delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int joinChannelWithUserAccountEx(const char* token, const char* channelId,
                                          const char* userAccount, const ChannelMediaOptions&amp; options,
                                          IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccountEx(
@@ -47,7 +47,7 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p props="native flutter" conkeyref="joinChannelWithUserAccount2/desc1" />
+            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc1" />
             <p props="rn electron" id="desc1">该方法允许本地用户使用 User Account 加入频道。成功加入频道后，会触发以下回调：
 
 
@@ -55,9 +55,9 @@
             <li>本地：<xref keyref="onLocalUserRegistered" />、<xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
             <li>远端：通信场景下的用户和直播场景下的主播加入频道后，远端会分别触发 <xref keyref="onUserJoined" /> 和 <xref keyref="onUserInfoUpdated" /> 回调。</li>
             </ul></p>
-            <p props="native flutter" conkeyref="joinChannelWithUserAccount2/desc2" />
+            <p props="native unreal bp flutter" conkeyref="joinChannelWithUserAccount2/desc2" />
             <p props="rn electron" id="desc2">用户成功加入频道后，默认订阅频道内所有其他用户的音频流和视频流，因此产生用量并影响计费。如果想取消订阅，可以通过调用相应的 <apiname>mute</apiname> 方法实现。</p>
-            <note conkeyref="joinChannelWithUserAccount1/note" props="native flutter unity cs" />
+            <note conkeyref="joinChannelWithUserAccount1/note" props="native unreal bp flutter unity cs" />
             <note type="attention" id="note" props="rn electron">为保证通信质量，请确保频道内使用同一类型的数据标识用户身份。即同一频道内需要统一使用 UID 或 User Account。如果有用户通过 Web SDK 加入频道，请确保 Web 加入的用户也是同样类型。</note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -72,16 +72,16 @@
                     <p conkeyref="joinChannel2/channelID_desc" />
                 </pd>
             </plentry>
-            <plentry props="native flutter unity rn electron cs" conkeyref="joinChannelWithUserAccount2/userAccount">
+            <plentry props="native unreal bp flutter unity rn electron cs" conkeyref="joinChannelWithUserAccount2/userAccount">
                 <pt />
                 <pd />
             </plentry>
             <plentry>
-                <pt props="cpp android unity rn electron flutter cs">options</pt>
+                <pt props="cpp unreal bp android unity rn electron flutter cs">options</pt>
                 <pt props="ios mac">mediaOptions</pt>
                 <pd conkeyref="joinChannel2/options_desc" />
             </plentry>
-            <plentry props="cpp android unity cs" conkeyref="joinChannelEx/event">
+            <plentry props="cpp unreal bp android unity cs" conkeyref="joinChannelEx/event">
                 <pt />
                 <pd />
             </plentry>
@@ -94,7 +94,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li props="native electron rn">0: 方法调用成功。</li>
+            <li props="native unreal bp electron rn">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。</li>
             </ul> </section>
     </refbody>

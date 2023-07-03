@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
                     connectionStateChanged:(AgoraConnectionState)state
                     reason:(AgoraConnectionChangedReason)reason;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onConnectionStateChanged(CONNECTION_STATE_TYPE state, CONNECTION_CHANGED_REASON_TYPE reason) {
      (void)state;
      (void)reason;
      }</codeblock>
@@ -53,7 +53,7 @@
             <plentry id="state">
                 <pt>state</pt>
                 <pd>
-                    <p id="connectionstate">当前网络连接状态。<ph props="ios mac cpp unity flutter electron rn cs">详见 <xref keyref="CONNECTION_STATE_TYPE" />。</ph></p>
+                    <p id="connectionstate">当前网络连接状态。<ph props="ios mac cpp unreal bp unity flutter electron rn cs">详见 <xref keyref="CONNECTION_STATE_TYPE" />。</ph></p>
                     <ul props="android">
                     <li><ph keyref="CONNECTION_STATE_DISCONNECTED" />
                                     (1)：网络连接断开。</li>
@@ -70,7 +70,7 @@
             <plentry id="reason">
                 <pt>reason</pt>
                 <pd>
-                    <p props="ios mac cpp unity flutter electron rn cs">引起当前网络连接状态改变的原因。详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE" />。</p>
+                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">引起当前网络连接状态改变的原因。详见 <xref keyref="CONNECTION_CHANGED_REASON_TYPE" />。</p>
                     <p props="android">
                     <ul>
                     <li><ph keyref="CONNECTION_CHANGED_CONNECTING" /> (0)：建立网络连接中 。</li>
@@ -87,7 +87,7 @@
 
                         <ul id="ul_pf4_kcx_qqb">
                         <li>在控制台上启用了 App Certificate，但加入频道未使用 Token。当启用了 App Certificate，必须使用 Token。</li>
-                        <li>在调用 <xref keyref="joinChannel1" props="native unity" /><xref keyref="joinChannel2" props="electron rn flutter" /> 加入频道时指定的 uid 与生成 Token 时传入的 uid 不一致。</li>
+                        <li>在调用 <xref keyref="joinChannel1" props="native unreal bp unity" /><xref keyref="joinChannel2" props="electron rn flutter" /> 加入频道时指定的 uid 与生成 Token 时传入的 uid 不一致。</li>
                         </ul> </li>
                     <li><ph keyref="CONNECTION_CHANGED_TOKEN_EXPIRED" /> (9)：当前使用的 Token 过期，不再有效，需要重新在你的服务端申请生成 Token 。</li>
                     <li><ph keyref="CONNECTION_CHANGED_REJECTED_BY_SERVER" /> (10)：此用户被服务器禁止 。</li>
