@@ -1,10 +1,12 @@
-本文提供在线 K 歌房歌词打分组件相关 API。
+本文提供在线 K 歌房歌词评分组件相关 API。
 
-<div class="alert note">本文仅适用于歌词打分组件 v1.1.1。</div>
+<div class="alert note">本文仅适用于歌词评分组件 v1.1.1。</div>
 
 ## KaraokeView
 
-歌词打分组件的基础接口类，实现歌词同步、演唱评分的主要功能。请确保在主线程中调用该类下的 API。
+歌词评分组件的基础接口类，实现歌词同步、演唱评分的主要功能。
+
+<div class="alert note">请确保在主线程中调用该类下的 API。</div>
 
 ### KaraokeView
 
@@ -30,11 +32,11 @@ public static LyricsModel parseLyricsData(File file);
 
 **参数**
 
-- `file`：要解析的歌词数据，如 XML 文件、LRC 文件的二进制数据。
+- `file`：要解析的歌词文件，如 XML 文件、LRC 文件的二进制数据。
 
 **返回值**
 
-- 方法调用成功时返回一个 `LyricModel` 对象，包含解析后的歌词数据。
+- 方法调用成功时返回一个 `LyricModel` 对象，包含解析后的歌词数据模型。
 - 方法调用失败时返回 `null`。
 
 ### setLyricsData
@@ -47,40 +49,38 @@ public void setLyricsData(LyricsModel model);
 
 该方法用于设置歌词数据模型，在调用该方法前，你需要先调用 `parseLyricsData` 方法解析歌词数据并获取相应的歌词数据模型对象以便于歌词显示。
 
-请在主线程调用该方法。
-
 **参数**
 
-- `model`：[LyricsModel](#LyricsModel) 对象，表示歌词数据模型，包含歌曲的基本信息、歌词信息等。如果为 `null`，表示当前歌曲为纯音乐，没有对应的歌词信息。
+- `model`：[LyricsModel](#LyricsModel) 对象，表示歌词数据模型，包含歌曲的基本信息、歌词信息等。如果传入 `null`，表示当前歌曲为纯音乐，没有对应的歌词信息。
 
 ### reset
 
-重置歌词及打分设置
+重置歌词及评分设置。
 
 ```java
 public void reset();
 ```
 
-当一首歌曲播放完毕后或是播放过程中切到另外一首歌曲时，需要调用该方法来重置歌词、打分设置。
+当一首歌曲播放完毕，或在播放过程中切到另外一首歌曲时，需要调用该方法来重置歌词、评分设置。
 
 
 **参数**
 
 - `lyrics`：要添加的 `LyricsView` 对象，用于显示歌词。若传入 `null`，表示不添加歌词视图。
-- `scoring`：要添加的 `ScoringView` 对象，用于显示评分。若传入 `null`，表示不添加打分视图。
+- `scoring`：要添加的 `ScoringView` 对象，用于显示评分。若传入 `null`，表示不添加评分视图。
 
 
 ### setProgress
 
-把歌曲当前的播放进度同步给歌词、打分组件。
+把歌曲当前的播放进度同步给歌词、评分组件。
 
 ```java
 public void setProgress(long progress);
 ```
 
-在实现歌词和歌曲播放同步时，你需要调用该方法来将歌曲当前的播放进度设置给 `KaraokeView` 以便 `KaraokeView` 根据当前歌曲的播放位置显示对相应的歌词。
+在实现歌词和歌曲播放同步时，你需要调用该方法来将歌曲当前的播放进度设置给 `KaraokeView`，以便 `KaraokeView` 根据当前歌曲的播放位置显示对相应的歌词。
 
-调用该方法前你需要先通过内置媒体播放器的 [getPlayPosition](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_mediaplayer.html#api_imediaplayer_getplayposition) 方法获取歌曲当前的播放进度。声网建议你每 20 ms 调用一次该方法来把歌曲的播放进度同步给歌词打分组件。
+调用该方法前你需要先通过内置媒体播放器的 [getPlayPosition](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_mediaplayer.html#api_imediaplayer_getplayposition) 方法获取歌曲当前的播放进度。声网建议你每 20 ms 调用一次该方法来把歌曲的播放进度同步给歌词评分组件。
 
 **参数**
 
@@ -88,13 +88,13 @@ public void setProgress(long progress);
 
 ### setPitch
 
-把获取的实时人声音调同步给打分组件。
+把获取的实时人声音调同步给评分组件。
 
 ```java
 public void setPitch(float pitch);
 ```
 
-当你通过 `IRtcEngineEventHandler` 下的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调后，你需要调用该方法把获取到的实时人声音调同步给打分组件用于演唱评分。
+当你通过 `IRtcEngineEventHandler` 下的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/toc_audio_process.html?platform=Android#callback_irtcengineeventhandler_onaudiovolumeindication) 获取本地用户的人声音调后，你需要调用该方法把获取到的实时人声音调同步给评分组件用于演唱评分。
 
 **参数**
 
@@ -102,7 +102,7 @@ public void setPitch(float pitch);
 
 ### setKaraokeEvent
 
-设置歌词打分组件事件回调。
+设置歌词评分组件事件回调。
 
 ```java
 public void setKaraokeEvent(KaraokeEvent event);
@@ -112,35 +112,35 @@ public void setKaraokeEvent(KaraokeEvent event);
 
 **参数**
 
-- `event`：歌词打分组件事件，详见 [KaraokeEvent](#KaraokeEvent)。
+- `event`：歌词评分组件事件，详见 [KaraokeEvent](#KaraokeEvent)。
 
 ### setScoreAlgorithm
 
-自定义打分算法。
+自定义评分算法。
 
 ```java
 public void setScoringAlgorithm(IScoringAlgorithm algorithm);
 ```
 
-如果你不想使用打分组件默认的打分算法，你可以通过该方法来自定义打分算法。你自定义的打分算法对象应实现 `IScoreAlgorithm` 接口。
+如果你不想使用评分组件默认的评分算法，你可以通过该方法来自定义评分算法。你自定义的评分算法对象应实现 `IScoringAlgorithm` 接口。
 
 **参数**
 
-- `algorithm`：实现了 [IScoringAlgorithm](#IScoringAlgorithm) 接口的打分算法对象。
+- `algorithm`：实现了 [IScoringAlgorithm](#IScoringAlgorithm) 接口的评分算法对象。
 
-### setScoreLevel
+### setScoringLevel
 
-设置得分的难易程度。
+设置得分的难易等级。
 
 ```java
 public void setScoringLevel(int level);
 ```
 
-你可以通过该方法来设置演唱者得分的难易程度。
+你可以通过该方法来设置演唱者得分的难易等级。
 
 **参数**
 
-- `level`：难度等级，取值范围为 [0, 100]，默认值为 10。值越小表示难度等级越低，演唱者越容易得分。
+- `level`：难度等级，取值范围为 [0,100]，默认值为 10。值越小表示难度等级越低，演唱者越容易得分。
 
 你可以参考下表来设置不同难度：
 
@@ -154,17 +154,17 @@ public void setScoringLevel(int level);
 
 ### getScoringLevel
 
-获取得分的难易程度。
+获取得分的难易等级。
 
 ```java
 public int getScoringLevel();
 ```
 
-当你调用 `setScoringLevel` 设置得分的难易程度后，可以调用该方法来获取当前你设置的得分难易程度，默认值为 10。
+当你调用 `setScoringLevel` 设置得分的难易程度后，可以调用该方法来获取当前你设置的得分难易程度。
 
 **返回值**
 
-- *≥* 0：方法调用成功，返回当前设置的得分难易程度。
+- *≥* 0：方法调用成功，返回当前设置的得难易值。
 - < 0：方法调用失败。
 
 ### setScoreCompensationOffset
@@ -181,7 +181,7 @@ public void setScoringCompensationOffset(int offset);
 
 - `offset`：额外增加或减少的分数，取值范围为 [-100, 100]，默认值为 0。
 
-声网不建议你同时使用 `setScoreLevel` 和 `setScoreCompensationOffset` 来调整打分机制。
+声网不建议你同时使用 `setScoringLevel` 和 `setScoreCompensationOffset` 来调整评分机制。
 
 ### getScoringCompensationOffset
 
@@ -251,11 +251,11 @@ public void onRefPitchUpdate(float refPitch, int numberOfRefPitches);
 **参数**
 
 - `refPitch`：当前音符的音高值。
-- `numberOfRefPitches`：整首歌歌词中音符的个数。如果你是想要自定义打分算法，你可以通过该参数来在 app 层计算一首歌演唱的平均分。
+- `numberOfRefPitches`：整首歌歌词中音符的个数。如果你是想要自定义评分算法，你可以通过该参数来在 app 层计算一首歌演唱的平均分。
 
 ## ScoringView
 
-该类提供打分组件的核心 API。
+该类提供评分组件的核心 API。
 
 ### setRefPitchStickDefaultColor
 
@@ -343,13 +343,13 @@ public void setLocalPitchIndicator(Bitmap bitmap);
 
 ### reset
 
-重置打分组件。
+重置评分组件。
 
 ```java
 public void reset();
 ```
 
-当一首歌曲播放完毕后或是播放过程中切到另外一首歌曲时，需要调用该方法来重置打分设置。
+当一首歌曲播放完毕后或是播放过程中切到另外一首歌曲时，需要调用该方法来重置评分设置。
 
 ## LyricsView
 
@@ -536,7 +536,7 @@ public void reset();
 ## IScoringAlgorithm
 <a name="IScoringAlgorithm"></a>
 
-该类提供自定义打分相关的 API。
+该类提供自定义评分相关的 API。
 
 ### getLineScore
 
