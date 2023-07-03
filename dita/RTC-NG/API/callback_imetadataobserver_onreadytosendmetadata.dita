@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">public abstract byte[] onReadyToSendMetadata(long timeStampMs, int sourceType);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSData * _Nullable)readyToSendMetadataAtTimestamp:(NSTimeInterval)timestamp
                     sourceType:(AgoraVideoSourceType)sourceType;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata &amp;metadata, VIDEO_SOURCE_TYPE source_type) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onReadyToSendMetadata(Metadata &amp;metadata, VIDEO_SOURCE_TYPE source_type) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnReadyToSendMetadata(ref Metadata metadata, VIDEO_SOURCE_TYPE source_type)
         {
@@ -29,7 +29,7 @@
         <section id="detailed_desc">
             <p>当 SDK 准备好发送 metadata 时，会触发该回调。</p>
             <p props="hide">收到该回调后，你可以调用 <xref keyref="sendMetaData"/> 发送媒体附属信息。</p>
-            <note props="android ios mac cpp" type="attention">请确保在该方法中传入的 metadata 大小不超过 <xref keyref="getMaxMetadataSize"/> 中设定的值。</note> </section>
+            <note props="android ios mac cpp unreal bp" type="attention">请确保在该方法中传入的 metadata 大小不超过 <xref keyref="getMaxMetadataSize"/> 中设定的值。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -40,17 +40,17 @@
             </plentry>
             <plentry>
                 <pt props="android ios mac">sourceType</pt>
-                <pt props="cpp unity cs">source_Type</pt>
+                <pt props="cpp unreal bp unity cs">source_Type</pt>
                 <pd>视频数据类型。详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
             </plentry>
-            <plentry props="cpp unity cs">
+            <plentry props="cpp unreal bp unity cs">
                 <pt>metadata</pt>
                 <pd>用户想要发送的 metadata。详见 <xref keyref="Metadata"/>。</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>返回值</title>
-            <ul props="cpp unity cs">
+            <ul props="cpp unreal bp unity cs">
             <li><codeph><ph keyref="true"/></codeph>: 发送</li>
             <li><codeph><ph keyref="false"/></codeph>: 不发送</li>
             </ul>
