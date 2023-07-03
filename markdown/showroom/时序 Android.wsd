@@ -3,8 +3,8 @@ autonumber
 title 秀场直播 API 时序图
 participant "声网 RTC SDK" as sdk
 participant "秀场直播 App" as app #White
-participant "声网云服务\n(SyncManager)" as cloud
-app -> cloud: 获取房间列表
+participant "声网云服务\n(Service)" as cloud
+app -> cloud: 获取房间列表 \ngetRoomList
 activate cloud
 cloud -->> app: 显示房间列表
 deactivate cloud
@@ -14,41 +14,58 @@ app -> sdk: RtcEngine.create(RtcEngineConfig)
 app -> sdk: registerVideoFrameObserver(sencestimeBeautyObserver)
 app -> sdk: setupLocalVideo
 app -> sdk: startPreview
-app -> cloud: 创建房间
+app -> cloud: 创建房间 \ncreateRoom
 activate cloud
 cloud -->> app: 创建房间成功
 deactivate cloud
 == 加入房间 ==
 app -> app: 进入直播间
-app -> sdk: 主播调用 setupLocalVideoEx\n观众调用  setupRemoteVideoEx
+app -> sdk: 主播调用 setupLocalVideoEx\n观众调用 setupRemoteVideoEx
 app -> sdk: joinChannelEx(ChannelMediaOptions)
 app -> cloud: 加入房间
 activate cloud
 cloud -->> app: 加入房间成功
 deactivate cloud
-app -> cloud: 获取房间内用户列表
+app -> cloud: 获取房间内用户列表 \ngetAllUserList
 activate cloud
 cloud -->> app: 获取用户列表成功
 deactivate cloud
-app -> cloud: 获取房间内的互动状态，如主播 PK 连麦或观众连麦
+app -> cloud: 获取房间内的互动状态，如主播 PK 连麦或观众连麦 \ngetAllInterationList
 activate cloud
 cloud -->> app: 获取房间内互动状态成功
 deactivate cloud
-app -> cloud: 订阅断网重连事件
-app -> cloud: 订阅房间销毁事件
-app -> cloud: 订阅用户进出房间事件
-app -> cloud: 订阅聊天消息事件
-app -> cloud: 订阅 PK 连麦消息事件
-app -> cloud: 订阅观众连麦消息事件
+app -> cloud: 订阅断网重连事件 \nsubscribeReConnectEvent
+app -> cloud: 订阅房间销毁事件 \nsubscribeCurrRoomEvent
+app -> cloud: 订阅用户进出房间事件 \nsubscribeUser
+app -> cloud: 订阅聊天消息事件 \nsubscribeMessage
+app -> cloud: 订阅 PK 连麦消息事件 \nsubscribePKInvitationChanged
+app -> cloud: 订阅观众连麦消息事件 \nsubscribeInteractionChanged
+app -> cloud: 订阅麦位变化事件 \nsusbscribeMicSeatApply
 == 主播 PK 连麦 ==
-app -> cloud: 主播 A 发起 PK 连麦申请
+app -> cloud: 获取可参与 PK 连麦的用户列表 \ngetAllPKUserList
 activate cloud
+cloud --> app: 显示可参与 PK 连麦的用户列表
+deactivate cloud
+app -> cloud: 获取当前 PK 连麦的邀请列表 \ngetAllPKInvitationList
+activate cloud
+cloud --> app: 显示 PK 中状态或者显示可 PK 的用户列表 #TODO
+deactivate cloud
+app -> app: 主播 A 点击选择可参与 PK 连麦的用户
+app -> cloud: 主播 A 发起 PK 连麦申请 \ncreatePKInvitation
+cloud --> app: 主播 B 收到 PK 申请通知 \nsubscribePKInvitationChanged(status=updated)
 cloud -->> app: 主播 B 接受 PK 连麦申请
 note left
 主播 B 也可以选择拒绝 PK 连麦申请
 end note
+cloud --> app: 主播 A 收到主播 B 接受连麦的通知，并知晓主播 B 的 UID 和频道名
+
+
+
+
+app -> cloud: 主播 A 发起 PK 连麦申请
+activate cloud
+
 deactivate cloud
-app -> app: 主播 A 收到主播 B 接受连麦的通知，并知晓主播 B 的 UID 和频道名
 app -> sdk: joinChannelEx
 note right
 房间 A 和 B 的用户都以观众的角色加入对方频道
@@ -121,9 +138,9 @@ app -> cloud: 主播离开房间
 activate cloud
 cloud -> app: 通知所有观众房间已关闭
 deactivate cloud
-app -> cloud: 观众离开房间
+app -> cloud: 观众离开房间 \nleaveRoom
 activate cloud
-cloud -> app: 通知所有用户并刷新用户列表
+cloud --> app: 通知所有用户并刷新用户列表 \nsusbscribeUser(status=updated)
 deactivate cloud
 app -> sdk: leaveChannel
 app -> sdk: RtcEngine.destroy
