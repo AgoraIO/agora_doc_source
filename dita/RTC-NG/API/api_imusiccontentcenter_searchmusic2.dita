@@ -48,7 +48,28 @@
                 </plentry>
             <plentry id="option">
                 <pt>jsonOption</pt>
-                <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。</pd>
+                <pd>扩展 JSON 字段，默认为 <ph keyref="NULL"/>。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+                <simpletable>
+                    <sthead>
+                        <stentry>Key 值</stentry>
+                        <stentry>Value 值</stentry>
+                        <stentry>示例</stentry>
+                    </sthead>
+                    <strow>
+                        <stentry>pitchType</stentry>
+                        <stentry>是否支持打分：
+                            <ul><li>1：支持打分的音乐资源。</li>
+                        <li>2：不支持打分的音乐资源。</li></ul></stentry>
+                        <stentry>{"pitchType":1}</stentry>
+                    </strow>
+                    <strow>
+                        <stentry>needHighPart</stentry>
+                        <stentry>是否需要副歌片段资源：
+                        <ul><li><codeph><ph keyref="true"/></codeph>：需要副歌片段资源。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不需要副歌片段资源。</li></ul></stentry>
+                        <stentry>{"needHighPart":true}</stentry>
+                    </strow>
+                </simpletable></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
