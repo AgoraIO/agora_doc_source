@@ -27,8 +27,10 @@ jobs:
             run: |
               if [[ ${{ matrix.working_dir }} == *en-US* ]]; then
                 echo "::set-output name=language::en"
+                language=en
               else
                 echo "::set-output name=language::cn"
+                language=cn
               fi
           - name: Get branch name
             id: branch-name
@@ -42,7 +44,11 @@ jobs:
             run: |
                 cd xml2json
                 echo "Running for ${{matrix.platform}} NG"
-                python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}}
+                if [[ "${{ matrix.staging_tag }}" == -staging ]]; then
+                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}}
+                else
+                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_$language_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
+                fi
           - name: Validate JSON File
             run: |
               python -m json.tool "${{ matrix.platform }}_${{ steps.matrix_vars.outputs.language }}_ng.json" > /dev/null
