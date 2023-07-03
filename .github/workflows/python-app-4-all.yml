@@ -16,7 +16,7 @@ jobs:
           working_dir: [../dita/RTC-NG, ../en-US/dita/RTC-NG]
           staging_tag: ['', '-staging']
       runs-on: ubuntu-latest
-      name: ${{matrix.platform}}${{matrix.staging_tag}} ${{matrix.working_dir == '*en-US*'  && '(en)' || '(cn)'}}
+      name: ${{matrix.platform}}${{matrix.staging_tag}} ${{matrix.working_dir == '../en-US/dita/RTC-NG' && '(en)' || '(cn)'}}
       steps:
           - uses: actions/checkout@v3
           - name: Set up python 3.8
@@ -46,9 +46,11 @@ jobs:
                 cd xml2json
                 echo "Running for ${{matrix.platform}} NG"
                 if [[ "${{ matrix.staging_tag }}" == -staging ]]; then
-                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}}
+                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}};
                 else
-                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_$language_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
+                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}} \
+                      --json_file ${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}.json \
+                      --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng;
                 fi
           - name: Validate JSON File
             run: |
