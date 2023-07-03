@@ -122,7 +122,7 @@ MessageListener msgListener = new MessageListener() {
 
 #### 从服务器获取单个子区的消息（消息漫游）
 
-调用 `asyncFetchHistoryMessage` 方法从服务器获取子区消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
+调用 `asyncFetchHistoryMessage` 方法从服务器获取单个子区的消息。从服务器获取子区消息与获取群组消息的唯一区别为前者需传入子区 ID，后者需传入群组 ID。
 
 ```java
 String chatThreadId = "{your chatThreadId}";
