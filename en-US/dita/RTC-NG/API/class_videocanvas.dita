@@ -91,16 +91,17 @@
 @property(assign, nonatomic) BOOL enableAlphaMask;
 @end</codeblock>
             <codeblock props="cpp" outputclass="language-cpp">struct VideoCanvas {
-    view_t view;
-    uid_t uid;
-    media::base::RENDER_MODE_TYPE renderMode;
-    VIDEO_MIRROR_MODE_TYPE mirrorMode;
-    VIDEO_VIEW_SETUP_MODE setupMode;
-    VIDEO_SOURCE_TYPE sourceType;
-    int mediaPlayerId;
-    Rectangle cropArea;
-    bool enableAlphaMask;
-
+  view_t view;
+  uid_t uid;
+  uint32_t backgroundColor;
+  media::base::RENDER_MODE_TYPE renderMode;
+  VIDEO_MIRROR_MODE_TYPE mirrorMode;
+  VIDEO_VIEW_SETUP_MODE setupMode;
+  VIDEO_SOURCE_TYPE sourceType;
+  int mediaPlayerId;
+  Rectangle cropArea;
+  bool enableAlphaMask;
+  media::base::VIDEO_MODULE_POSITION position;
   VideoCanvas()
     : view(NULL), uid(0), renderMode(media::base::RENDER_MODE_HIDDEN), mirrorMode(VIDEO_MIRROR_MODE_AUTO),
       setupMode(VIDEO_VIEW_SETUP_REPLACE), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY), cropArea(0, 0, 0, 0), enableAlphaMask(false) {}
