@@ -43,8 +43,12 @@
 @property(assign, nonatomic) BOOL publishScreenCaptureVideo;
 @property(assign, nonatomic) BOOL publishScreenCaptureAudio;
 #elif TARGET_OS_MAC
+@property(assign, nonatomic) BOOL publishThirdCameraTrack;
+@property(assign, nonatomic) BOOL publishFourthCameraTrack;
 @property(assign, nonatomic) BOOL publishScreenTrack;
 @property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
+@property(assign, nonatomic) BOOL publishThirdScreenTrack;
+@property(assign, nonatomic) BOOL publishFourthScreenTrack;
 #endif
 @property(assign, nonatomic) BOOL publishCustomAudioTrack;
 @property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
@@ -76,6 +80,8 @@
             <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
   Optional&lt;bool&gt; publishSecondaryCameraTrack;
+  Optional&lt;bool> publishThirdCameraTrack;
+  Optional&lt;bool> publishFourthCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
 
   #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
@@ -84,6 +90,8 @@
   #else
   Optional&lt;bool&gt; publishScreenTrack;
   Optional&lt;bool&gt; publishSecondaryScreenTrack;
+  Optional&lt;bool> publishThirdScreenTrack;
+  Optional&lt;bool> publishFourthScreenTrack;
   #endif
 
   Optional&lt;bool&gt; publishCustomAudioTrack;
@@ -430,6 +438,23 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布第二个摄像头采集的视频。</li>
                     </ul></pd>
             </plentry>
+            <plentry props="cpp mac unreal bp unity cs flutter">
+                <pt>publishThirdCameraTrack</pt>
+                <pd>设置是否发布第三个摄像头采集的视频：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：发布第三个摄像头采集的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布第三个摄像头采集的视频。</li>
+                    </ul>
+                <p><note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
+            </plentry>
+            <plentry props="cpp mac unreal bp unity cs flutter">
+                <pt>publishFourthCameraTrack</pt>
+                <pd>设置是否发布第四个摄像头采集的视频：
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：发布第四个摄像头采集的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布第四个摄像头采集的视频。</li>
+                    </ul><p><note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
+            </plentry>
             <plentry>
                 <pt props="android ios">publishScreenCaptureVideo</pt>
                 <pt props="mac cpp framework">publishScreenTrack</pt>
@@ -484,6 +509,30 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true"/></codeph>：发布第二个屏幕采集到的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第二个屏幕采集到的视频。</li>
                     </ul>
+                </pd>
+            </plentry>
+             <plentry props="mac cpp unreal bp unity cs flutter">
+                <pt>publishThirdScreenTrack</pt>
+                <pd>设置是否发布第三个屏幕采集的视频：
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：发布第三个屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布第三个屏幕采集到的视频。</li>
+                    </ul>
+                    <p>
+                    <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p>
+                </pd>
+            </plentry>
+            <plentry props="mac cpp unreal bp unity cs flutter">
+                <pt>publishFourthScreenTrack</pt>
+                <pd>设置是否发布第四个屏幕采集的视频：
+
+                    <ul>
+                    <li><codeph><ph keyref="true"/></codeph>：发布第四个屏幕采集到的视频。</li>
+                    <li><codeph><ph keyref="false"/></codeph>：不发布第四个屏幕采集到的视频。</li>
+                    </ul>
+                    <p>
+                    <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p>
                 </pd>
             </plentry>
             <plentry props="cpp unity cs flutter rn electron">
