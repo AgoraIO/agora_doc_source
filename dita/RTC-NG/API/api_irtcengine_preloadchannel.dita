@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadChannelByToken:(NSString * _Nullable)token
                    channelId:(NSString * _Nonnull)channelId
                          uid:(NSUInteger)uid NS_SWIFT_NAME(preloadChannel(byToken:channelId:uid:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">int IRtcEngine::preloadChannel(const char* token, const char* channelId, uid_t uid);</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">int IRtcEngine::preloadChannel(const char* token, const char* channelId, uid_t uid);</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
@@ -51,7 +51,7 @@
                 </pd>
             </plentry>
             <plentry id="channel">
-                <pt props="apple cpp">channelId</pt>
+                <pt props="apple cpp unreal bp">channelId</pt>
                 <pt props="android">channelName</pt>
                 <pd><p>待预加载的频道名。该参数标识用户进行实时音视频互动的频道。App ID 一致的前提下，填入相同频道名的用户会进入同一个频道进行音视频互动。
           该参数为长度在 64 字节以内的字符串。以下为支持的字符集范围（共 89 个字符）:
@@ -72,7 +72,7 @@
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
             <ul>
-            <li props="native unity rn electron cs">0：方法调用成功。</li>
+            <li props="native unreal bp unity rn electron cs">0：方法调用成功。</li>
             <li>&lt; 0：方法调用失败。
                 <ul>
                 <li>-2：传入的参数无效。例如，使用了不合法的 Token。你需要填入有效的参数，重新加入频道。</li>
