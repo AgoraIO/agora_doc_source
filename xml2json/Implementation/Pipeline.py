@@ -25,8 +25,8 @@ array = []
 
 for classItem in list:
     for apiItem in classItem.apiArray:
-        # if apiItem.name != 'setRemoteDefaultVideoStreamType':
-        #     continue
+        print('------------------')
+        print(apiItem.name)
 
         detailParser = APIDetailDitaParser(apiItem.name,
                                            platform,
@@ -37,10 +37,11 @@ for classItem in list:
         if object == None:
             continue
         
+        print(object.id)
+
         dictionary = object.createDictionary()
         array.append(dictionary)
 
-        print('------------------')
         print(dictionary)
 
 with open(outputJsonFile, 'w') as f:

@@ -99,6 +99,7 @@ class APIDetailDitaParser:
 
         return description
 
+    # parameters
     def _private_findParameters(self) -> []:
         array = []
 
@@ -127,6 +128,11 @@ class APIDetailDitaParser:
         # This method does no have any parameters
         if parameters == None:
             return None
+        
+        # Verify if this 'parameters' node belongs to this platform
+        if nodeHasPlatformProps(parameters):
+            if nodeBelongsToPlatform(parameters, self.platform) == False:
+                return None
 
         conkeyref = 'conkeyref'
 
@@ -193,6 +199,7 @@ class APIDetailDitaParser:
 
         return dictionary
 
+    # return
     def _private_findReturnDescription(self) -> str:
         description = ''
 
