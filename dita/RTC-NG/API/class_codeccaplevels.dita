@@ -35,7 +35,17 @@
   hwDecodingLevel?: VideoCodecCapabilityLevel;
   swDecodingLevel?: VideoCodecCapabilityLevel;
 }</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="unity cs" outputclass="language-csharp">public class CodecCapLevels
+    {
+        public VIDEO_CODEC_CAPABILITY_LEVEL hwDecodingLevel;
+        public VIDEO_CODEC_CAPABILITY_LEVEL swDecodingLevel;
+
+        public CodecCapLevels()
+        {
+            hwDecodingLevel = VIDEO_CODEC_CAPABILITY_LEVEL.CODEC_CAPABILITY_LEVEL_UNSPECIFIED;
+            swDecodingLevel = VIDEO_CODEC_CAPABILITY_LEVEL.CODEC_CAPABILITY_LEVEL_UNSPECIFIED;
+        }
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class CodecCapLevels {
   hwDecodingLevel?: VideoCodecCapabilityLevel;
   swDecodingLevel?: VideoCodecCapabilityLevel;
