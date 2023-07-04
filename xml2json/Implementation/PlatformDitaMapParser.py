@@ -56,6 +56,9 @@ class PlatformDitaMapParser:
     # eg:  <topicref href="API/rtc_interface_class.dita" chunk="to-content"> or <topicref keyref="IRtcEngine" chunk="to-content">
     def _private_nodeIsClass(self, 
                              node: ET.Element) -> bool:
+        if self.nodeIsHide(node):
+            return False
+
         keyref = 'keyref'
         chunk = 'chunk'
         href = 'href'
