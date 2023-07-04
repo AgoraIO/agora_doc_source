@@ -38,33 +38,26 @@
             <codeblock props="electron" outputclass="language-typescript">export class CodecCapInfo {
   codecType?: VideoCodecType;
   codecCapMask?: number;
-  codecLevels?: CodecCapLevels;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class CodecCapInfo
     {
         public VIDEO_CODEC_TYPE codecType;
 
         public int codecCapMask;
-
-        public CodecCapLevels codecLevels;
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class CodecCapInfo {
   codecType?: VideoCodecType;
   codecCapMask?: number;
-  codecLevels?: CodecCapLevels;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class CodecCapInfo {
-  const CodecCapInfo({this.codecType, this.codecCapMask, this.codecLevels});
+  const CodecCapInfo({this.codecType, this.codecCapMask});
 
   @JsonKey(name: 'codecType')
   final VideoCodecType? codecType;
 
   @JsonKey(name: 'codecCapMask')
   final int? codecCapMask;
-
-  @JsonKey(name: 'codecLevels')
-  final CodecCapLevels? codecLevels;
 
   factory CodecCapInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$CodecCapInfoFromJson(json);
