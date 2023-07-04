@@ -272,11 +272,15 @@ class ChannelMediaOptions {
   const ChannelMediaOptions(
       {this.publishCameraTrack,
       this.publishSecondaryCameraTrack,
+      this.publishThirdCameraTrack,
+      this.publishFourthCameraTrack,
       this.publishMicrophoneTrack,
       this.publishScreenCaptureVideo,
       this.publishScreenCaptureAudio,
       this.publishScreenTrack,
       this.publishSecondaryScreenTrack,
+      this.publishThirdScreenTrack,
+      this.publishFourthScreenTrack,
       this.publishCustomAudioTrack,
       this.publishCustomAudioTrackId,
       this.publishCustomVideoTrack,
@@ -292,6 +296,7 @@ class ChannelMediaOptions {
       this.audienceLatencyLevel,
       this.defaultVideoStreamType,
       this.channelProfile,
+      this.audioDelayMs,
       this.mediaPlayerAudioDelayMs,
       this.token,
       this.enableBuiltInMediaEncryption,
@@ -305,6 +310,12 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'publishSecondaryCameraTrack')
   final bool? publishSecondaryCameraTrack;
+
+  @JsonKey(name: 'publishThirdCameraTrack')
+  final bool? publishThirdCameraTrack;
+
+  @JsonKey(name: 'publishFourthCameraTrack')
+  final bool? publishFourthCameraTrack;
 
   @JsonKey(name: 'publishMicrophoneTrack')
   final bool? publishMicrophoneTrack;
@@ -320,6 +331,12 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'publishSecondaryScreenTrack')
   final bool? publishSecondaryScreenTrack;
+
+  @JsonKey(name: 'publishThirdScreenTrack')
+  final bool? publishThirdScreenTrack;
+
+  @JsonKey(name: 'publishFourthScreenTrack')
+  final bool? publishFourthScreenTrack;
 
   @JsonKey(name: 'publishCustomAudioTrack')
   final bool? publishCustomAudioTrack;
@@ -365,6 +382,9 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
+  @JsonKey(name: 'audioDelayMs')
+  final int? audioDelayMs;
 
   @JsonKey(name: 'mediaPlayerAudioDelayMs')
   final int? mediaPlayerAudioDelayMs;

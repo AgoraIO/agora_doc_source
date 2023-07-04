@@ -51,13 +51,16 @@
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class CodecCapInfo {
-  const CodecCapInfo({this.codecType, this.codecCapMask});
+  const CodecCapInfo({this.codecType, this.codecCapMask, this.codecLevels});
 
   @JsonKey(name: 'codecType')
   final VideoCodecType? codecType;
 
   @JsonKey(name: 'codecCapMask')
   final int? codecCapMask;
+
+  @JsonKey(name: 'codecLevels')
+  final CodecCapLevels? codecLevels;
 
   factory CodecCapInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$CodecCapInfoFromJson(json);
