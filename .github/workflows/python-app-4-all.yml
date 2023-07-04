@@ -111,10 +111,18 @@ jobs:
           run: |
             python -m json.tool artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json > ${{matrix.platform}}_${{matrix.language}}_new.json
             python -m json.tool ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json > ${{matrix.platform}}_${{matrix.language}}_old.json
-        - name: Compare JSON Files
+        - name: Make Diff Compare File
+          continue-on-error: true
           run: |
-            ls .
-            diff ${{matrix.platform}}_${{matrix.language}}_new.json ${{matrix.platform}}_${{matrix.language}}_old.json > ${{matrix.platform}}_comparison.txt
-            echo "${{matrix.platform}} ${{matrix.language}} Git Diff:"
-            cat ${{matrix.platform}}_comparison.txt
-
+            set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_new.json ${{matrix.platform}}_${{matrix.language}}_old.json -U 3 | tee ${{matrix.platform}}_comparison.txt > /dev/null
+        - name: Output Diff
+          run: |
+            if [[ ! -s ${{matrix.platform}}_comparison.txt ]]; then
+              echo "No differences found." >> $GITHUB_STEP_SUMMARY
+            else
+            echo """
+            \`\`\`txt
+              $(cat ${{matrix.platform}}_comparison.txt)
+            \`\`\`
+            """ >> $GITHUB_STEP_SUMMARY
+            fi
