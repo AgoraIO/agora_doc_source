@@ -67,3 +67,37 @@ jobs:
                 tag: ${{ steps.branch-name.outputs.current_branch }}-build
                 overwrite: true
                 body: "Template file for automatic comment population."
+    compare:
+      name: Compare JSON Files
+      if: github.event_name == 'pull_request' && contains(github.event.pull_request.changed_files, 'xml2json/xml2json.py')
+      needs: build
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          platform: [flutter, ios, macos, electron, unity, rn]
+          language: [en, cn]
+      steps:
+        - name: Set up python 3.9
+          uses: actions/setup-python@v4
+          with:
+              python-version: '3.9'
+        - name: Download DocC Archive ⬇️
+          uses: actions/download-artifact@v3
+          with:
+            name: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
+            path: artifacts
+        - uses: robinraju/release-downloader@v1.8
+          with:
+            tag: "master-build"
+            fileName: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
+        - name: Check Downloads
+          run: |
+            ls -li; li -li artifacts
+            python -m json.tool artifacts/${{matrix.platform}}_ng_json_template_${{matrix.language}}.json > ${{matrix.platform}}_new.json
+            python -m json.tool ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json > ${{matrix.platform}}_old.json
+        - name: Compare JSON Files
+          run: |
+            git diff ${{matrix.platform}}_new.json ${{matrix.platform}}_old.json > ${{matrix.platform}}_comparison.txt
+            echo "${{matrix.platform}} ${{matrix.language}} Git Diff:"
+            cat ${{matrix.platform}}_comparison.txt
+

@@ -18,222 +18,197 @@ import argparse
 # itHub\\doc_source\\en-US\\dita\\RTC --platform-tag=flutter --json-file=flutter_newer.json --sdk-type=sdk --remove-s
 # dk-type=sdk-ng --defined-path=flutter_full_path
 
-working_dir = ''
-platform_tag = ''
-json_file = ''
-sdk_type = ''
-remove_sdk_type = ''
-
-defined_path_text = ''
-
 parser = argparse.ArgumentParser(description="JSON generator")
 
-parser.add_argument("--working_dir",
-                    help="Your working dir, such as C:\\Users\\WL\\Documents\\GitHub\\doc_source\\en-US\\dita\\RTC",
-                    action="store")
-parser.add_argument("--platform_tag", help="Your platform tag, such as flutter", action="store")
-parser.add_argument("--json_file", help="Your json file name, such as flutter_interface_new.json", action="store")
-parser.add_argument("--sdk_type", help="Your SDK type: sdk or sdk-ng", action="store")
-parser.add_argument("--remove_sdk_type", help="Your remove SDK type: sdk or sdk-ng", action="store")
-parser.add_argument("--defined_path", help="Your defined path, such as android, flutter, electron_ng", action="store")
-parser.add_argument("--log_level", help="Log level for outputs. Set to debug, info or warning", default="info", action="store")
+parser.add_argument(
+    "--working_dir",
+    help="Your working dir, such as C:\\Users\\WL\\Documents\\GitHub\\doc_source\\en-US\\dita\\RTC",
+    action="store", required=True
+)
+parser.add_argument(
+    "--platform_tag", help="Your platform tag, such as flutter", action="store",
+    choices=['cpp', 'electron', 'flutter', 'ios', 'java', 'macos', 'rn', 'unity', 'unreal'],
+    required=True
+)
+parser.add_argument(
+    "--json_file", help="Desired output JSON file", action="store", required=False
+)
+parser.add_argument("--old_sdk", help="Uses older SDK (3.x)", action="store_true", required=False)
+parser.add_argument("--log_level", help="Log level for outputs. Set to debug, info or warning", default="info", action="store",
+                    choices=['debug', 'info', 'warning', 'error'])
+parser.add_argument(
+    "--language", help="Override language setting. Choose between 'en' and 'cn'", choices=['en', 'cn'], action="store"
+)
+parser.add_argument(
+    "--defined_path", help="DEPRECATED: Your defined path, such as android, flutter, electron_ng",
+    action="store", required=False
+)
+parser.add_argument(
+    "--sdk_type", help="DEPRECATED: Use platform_tag and --old_sdk. Your SDK type: sdk or sdk-ng",
+    action="store", required=False
+)
+parser.add_argument(
+    "--remove_sdk_type", help="DEPRECATED: Use platform_tag and --old_sdk. Your remove SDK type: sdk or sdk-ng",
+    action="store", required=False
+)
 args = vars(parser.parse_args())
 
-working_dir = args['working_dir']
-platform_tag = args['platform_tag']
-json_file = args['json_file']
-sdk_type = args['sdk_type']
-remove_sdk_type = args['remove_sdk_type']
-
 localLogger = logging
-
-def switchLog(lang):
-    if lang == "debug":
-        logging.Logger.setLevel(logging.root, logging.DEBUG)
-    elif lang == "warning":
-        logging.Logger.setLevel(logging.root, logging.WARNING)
-    else: # including "info"
-        logging.Logger.setLevel(logging.root, logging.INFO)
-
-switchLog(args['log_level'])
-
-def logLines(logType, separator, *msgs) -> str:
-    logType(f'---------------------- {separator} ----------------------------')
-    for msg in msgs: logType(msg)
-    logType(f'---------------------- {separator} ----------------------------')
-
-
-defined_path_text = args['defined_path']
-
-# ------------------------------------------------------
-# CLI for automation purposes
-# ------------------------------------------------------
-
-# ------------------------------------------------------
-# Parse the dita file to get information. Child's play.
-# ------------------------------------------------------
-
-# TODO: !!!!!!!!!!!!!!!!!!!!!!!!!  Set your working path here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# working_dir = 'C:\\Users\\WL\\Documents\\GitHub\\doc_source\\en-US\\dita\\RTC'
-
-# working_dir = 'C:\\Users\\WL\\Documents\\GitHub\\doc_source\\dita\\RTC'
-# file_dir = ''
-
-# TODO: !!!!!!!!!!!!!!!!!!!!!!!!!  Set your PLATFORM TAG here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# platform_tag = "flutter"
-
-# TODO: !!!!!!!!!!!!!!!!!!!!!!!!!  Set your JSON path here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# json_file = "flutter_interface_new.json"
-
-# TODO: !!!!!!!!!!!!!!!!!!!!!!!!!  Set your SDK here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# sdk_type = "rtc-ng"
-# remove_sdk_type = "rtc"
-# sdk_type = "rtc"
-# remove_sdk_type = "rtc-ng"
-# Get path of ditamap files that contain refs
-# These variables are used globally
-# android_path, cpp_path, rust_full_path, electron_path
-android_path = "config/keys-rtc-api-android.ditamap"
-ios_ng_path = "config/keys-rtc-ng-api-ios.ditamap"
-macos_ng_path = "config/keys-rtc-ng-api-macos.ditamap"
-cpp_path = "config/keys-rtc-api-cpp.ditamap"
-cpp_ng_path = "config/keys-rtc-ng-api-cpp.ditamap"
-rust_path = "config/keys-rtc-api-rust.ditamap"
-electron_path = "config/keys-rtc-api-electron.ditamap"
-unity_path = "config/keys-rtc-api-unity.ditamap"
-cs_path = "config/keys-rtc-api-cs.ditamap"
-flutter_path = "config/keys-rtc-api-flutter.ditamap"
-rn_path = "config/keys-rtc-api-rn.ditamap"
-electron_ng_path = "config/keys-rtc-ng-api-electron.ditamap"
-c_sharp_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
-flutter_ng_path = "config/keys-rtc-ng-api-flutter.ditamap"
-rn_ng_path = "config/keys-rtc-ng-api-rn.ditamap"
-unity_ng_path = "config/keys-rtc-ng-api-unity.ditamap"
-
-if sys.platform == 'darwin' or sys.platform == 'linux':
-    localLogger.debug("macOS")
-    android_full_path = path.join(working_dir, android_path)
-    cpp_full_path = path.join(working_dir, cpp_path)
-    cpp_ng_full_path = path.join(working_dir, cpp_ng_path)
-    rust_full_path = path.join(working_dir, rust_path)
-    electron_full_path = path.join(working_dir, electron_path)
-    unity_full_path = path.join(working_dir, unity_path)
-    cs_full_path = path.join(working_dir, cs_path)
-    flutter_full_path = path.join(working_dir, flutter_path)
-
-    rn_full_path = path.join(working_dir, rn_path)
-    electron_ng_full_path = path.join(working_dir, electron_ng_path)
-    c_sharp_ng_full_path = path.join(working_dir, c_sharp_ng_path)
-    flutter_ng_full_path = path.join(working_dir, flutter_ng_path)
-    rn_ng_full_path = path.join(working_dir, rn_ng_path)
-    unity_ng_full_path = path.join(working_dir, unity_ng_path)
-    ios_ng_full_path = path.join(working_dir, ios_ng_path)
-    macos_ng_full_path = path.join(working_dir, macos_ng_path)
-    # Need to add electron??
-elif sys.platform == 'win32':
-    localLogger.debug("Windows")
-    android_full_path = path.join(working_dir, android_path.replace("/", "\\"))
-    ios_full_path = path.join(working_dir, ios_path.replace("/", "\\"))
-    macos_full_path = path.join(working_dir, macos_path.replace("/", "\\"))
-    cpp_full_path = path.join(working_dir, cpp_path.replace("/", "\\"))
-    cpp_ng_full_path = path.join(working_dir, cpp_ng_path.replace("/", "\\"))
-    rust_full_path = path.join(working_dir, rust_path.replace("/", "\\"))
-    electron_full_path = path.join(working_dir, electron_path.replace("/", "\\"))
-    unity_full_path = path.join(working_dir, unity_path.replace("/", "\\"))
-    flutter_full_path = path.join(working_dir, flutter_path.replace("/", "\\"))
-
-    rn_full_path = path.join(working_dir, rn_path.replace("/", "\\"))
-    electron_ng_full_path = path.join(working_dir, electron_ng_path.replace("/", "\\"))
-    c_sharp_ng_full_path = path.join(working_dir, c_sharp_ng_path.replace("/", "\\"))
-    flutter_ng_full_path = path.join(working_dir, flutter_ng_path.replace("/", "\\"))
-    rn_ng_full_path = path.join(working_dir, rn_ng_path.replace("/", "\\"))
-    unity_ng_full_path = path.join(working_dir, unity_ng_path.replace("/", "\\"))
-    # Need to add electron??
-
-# localLogger.debug(android_full_path)
-# localLogger.debug(cpp_full_path)
-# localLogger.debug(cpp_full_path)
-# localLogger.debug(rust_full_path)
-# localLogger.debug(electron_full_path)
-# localLogger.debug(unity_full_path)
-
-# TODO: !!!!!!!!!!!!!!!!!!!!!!!!!  Set your defined path here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-if defined_path_text == "flutter":
-    defined_path = flutter_full_path
-elif defined_path_text == "flutter-ng":
-    defined_path = flutter_ng_full_path
-elif defined_path_text == "electron":
-    defined_path = electron_full_path
-elif defined_path_text == "electron-ng":
-    defined_path = electron_ng_full_path
-elif defined_path_text == "unity":
-    defined_path = unity_full_path
-elif defined_path_text == "unity-ng":
-    defined_path = unity_ng_full_path
-elif defined_path_text == "rn":
-    defined_path = rn_full_path
-elif defined_path_text == "rn-ng":
-    defined_path = rn_ng_full_path
-elif defined_path_text == "cpp":
-    defined_path = cpp_full_path
-elif defined_path_text == "cpp-ng":
-    defined_path = cpp_ng_full_path
-elif defined_path_text == "cs":
-    defined_path = cs_full_path
-elif defined_path_text == "ios-ng":
-    defined_path = ios_ng_full_path
-elif defined_path_text == "macos-ng":
-    defined_path = macos_ng_full_path
-#
-# defined_path = android_full_path
-# defined_path = cpp_full_path
-# defined_path = c_sharp_full_path
-
 
 # rust_full_path
 # cpp_full_path
 # Other types of full path
 rust_topicref_list = []
 json_hide_id_list = []
-try:
-    dita_file_tree = ET.parse(defined_path)
-except Exception as ex:
-    localLogger.error("Woops!\n")
-    localLogger.error("It most likely an error occur when parsing the xml file: {}\n".format(defined_path))
-    localLogger.error("The exception detail show below:\n")
-    localLogger.error(ex)
-    raise ex
 
-dita_file_root = dita_file_tree.getroot()
-for topicref in dita_file_root.iter("keydef"):
-    if topicref.get("href") is not None:
-        path_new = path.basename(topicref.get("href"))
-        localLogger.debug(path_new)
-        rust_topicref_list.append(path_new)
+def main():
+    working_dir = args['working_dir']
+    platform_tag = args['platform_tag']
+    json_file = args['json_file']
+    sdk_type = args['sdk_type']
+    remove_sdk_type = args['remove_sdk_type']
+    defined_path_text = args['defined_path']
+    old_sdk = args['old_sdk']
+    language = args['language']
 
-logLines(localLogger.info, "Topic ref list", rust_topicref_list)
+    if sdk_type:
+        localLogger.warn("Tag --sdk_type is deprecated.")
 
-# Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
-for topichead in dita_file_root.iter("topichead"):
-    is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or topichead.get("props") is not None and topichead.get("props") == "cn" else False
+    if not defined_path_text:
+        defined_path_text = f"{platform_tag}{'' if old_sdk else '-ng'}"
+    if not sdk_type or not remove_sdk_type:
+        sdk_type = 'rtc-ng' if not old_sdk else 'rtc'
+        remove_sdk_type = 'rtc-ng' if old_sdk else 'rtc'
+    if not language:
+        language = 'en' if 'en-US' in working_dir else 'cn'
+    if not json_file:
+        json_file = f"{defined_path_text.replace('-ng', '')}_{language}{'_ng' if '-ng' in defined_path_text else ''}.json"
 
-    for keydef in topichead.iter("keydef"):
-        if keydef.get("href") is not None:
-            dita_id = path.basename(keydef.get("href")).replace(".dita", "")
-            if is_hide_topichead:
-                json_hide_id_list.append(dita_id)
-            elif keydef.get("props") is not None and (keydef.get("props") == "hide" or keydef.get("props") == "cn"):
-                json_hide_id_list.append(dita_id)
+    switchLog(args['log_level'])
+
+        # ------------------------------------------------------
+    # CLI for automation purposes
+    # ------------------------------------------------------
+
+    # ------------------------------------------------------
+    # Parse the dita file to get information. Child's play.
+    # ------------------------------------------------------
+
+    # TODO: !!!!!!!!!!!!!!!!!!!!!!!!!  Set your SDK here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    # Get path of ditamap files that contain refs
+    # These variables are used globally
+    # android_path, cpp_path, rust_full_path, electron_path
+
+    pathname = f"config/keys-rtc{'-ng' if '-ng' in defined_path_text else ''}-api-{defined_path_text.replace('-ng', '')}.ditamap"
+
+    if sys.platform == 'darwin' or sys.platform == 'linux':
+        localLogger.debug("macOS")
+        full_path = path.join(working_dir, pathname)
+        # Need to add electron??
+    elif sys.platform == 'win32':
+        localLogger.debug("Windows")
+        full_path = path.join(working_dir, pathname.replace("/", "\\"))
+
+    # TODO: !!!!!!!!!!!!!!!!!!!!!!!!!  Set your defined path here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    defined_path = full_path
+
+    # defined_path = android_full_path
+    # defined_path = cpp_full_path
+    # defined_path = c_sharp_full_path
 
 
-logLines(localLogger.info, "Hide id list", json_hide_id_list)
+    try:
+        dita_file_tree = ET.parse(defined_path)
+    except Exception as ex:
+        localLogger.error("Woops!\n")
+        localLogger.error("It most likely an error occur when parsing the xml file: {}\n".format(defined_path))
+        localLogger.error("The exception detail show below:\n")
+        localLogger.error(ex)
+        raise ex
 
-# Target platform
+    dita_file_root = dita_file_tree.getroot()
+    for topicref in dita_file_root.iter("keydef"):
+        if topicref.get("href") is not None:
+            path_new = path.basename(topicref.get("href"))
+            localLogger.debug(path_new)
+            rust_topicref_list.append(path_new)
 
-# List of platforms
-props_platform_list = ["windows", "rust", "java", "python", "csharp", "objectivec"]
+    logLines(localLogger.debug, "Topic ref list", rust_topicref_list)
 
+    # Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
+    for topichead in dita_file_root.iter("topichead"):
+        is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or topichead.get("props") is not None and topichead.get("props") == "cn" else False
+
+        for keydef in topichead.iter("keydef"):
+            if keydef.get("href") is not None:
+                dita_id = path.basename(keydef.get("href")).replace(".dita", "")
+                if is_hide_topichead:
+                    json_hide_id_list.append(dita_id)
+                elif keydef.get("props") is not None and (keydef.get("props") == "hide" or (language == "en" and keydef.get("props") == "cn")):
+                    json_hide_id_list.append(dita_id)
+
+
+    logLines(localLogger.debug, "Hide id list", json_hide_id_list)
+
+    # Clean the json_files folder
+    remove_json_files()
+
+    dita_to_json(working_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language)
+
+    # Join all files in the json_files folder
+    # List of json files to merge
+    files = list()
+    for json_name in os.listdir(path.join(path.join(path.dirname(__file__), "json_files"))):
+        if json_name[-5:] == '.json':
+            files.append(path.join(path.dirname(__file__), "json_files", json_name))
+
+    localLogger.debug(f"json files path: {'/'.join(files[0].split('/')[:-1])}")
+    localLogger.debug(f"all json files: {list(map(lambda file: file.split('/')[-1], files))}")
+
+    # Merge the individual JSON files to a single JSON file
+    merge_JsonFiles(files, json_file)
+
+    replace_newline(json_file)
+
+    logLines(localLogger.info, "output file", json_file)
+
+def dita_to_json(working_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language):
+    for file_name in os.listdir(path.join(working_dir, 'API')):
+        if file_name.endswith(
+                ".dita") and file_name != "API-overview.dita" and file_name != "api_data_type.dita" and file_name in rust_topicref_list:
+            create_json_from_xml(working_dir, path.join(working_dir, 'API', file_name), defined_path, platform_tag, sdk_type, remove_sdk_type, language)
+
+def remove_json_files():
+    for root, _, files in os.walk(path.join(path.dirname(__file__), "json_files")):
+        for file in files:
+            if file[-5:] == '.json':
+                os.remove(os.path.join(root, file))
+
+def should_remove(current_platform: str, props: str, remove_sdk_type: str, language: str) -> bool:
+    if not props or current_platform in props: return False
+    return current_platform not in props and "native" not in props and "framework" not in props \
+        and props != "rtc" and props != "rtc-ng" or remove_sdk_type in props or current_platform not in props \
+        and "native" in props and current_platform != "cpp" and current_platform != "macos" and current_platform != "android" \
+        and current_platform != "ios" and props != "rtc" and props != "rtc-ng"
+
+def switchLog(lang):
+    if lang == 'debug':
+        logging.Logger.setLevel(logging.root, logging.DEBUG)
+    elif lang == 'warning':
+        logging.Logger.setLevel(logging.root, logging.WARNING)
+    elif lang == 'error':
+        logging.Logger.setLevel(logging.root, logging.ERROR)
+    elif lang == 'info':
+        logging.Logger.setLevel(logging.root, logging.INFO)
+    else: # including "info"
+        localLogger.error(f"Invalid log level {lang}")
+
+
+def logLines(logType, separator, *msgs) -> str:
+    logType(f'---------------------- {separator} ----------------------------')
+    for msg in msgs: logType(msg)
+    logType(f'---------------------- {separator} ----------------------------')
 
 def combine_text_sections(base_text: str, sections: Generator[str, None, None]) -> str:
     """
@@ -263,7 +238,7 @@ def combine_text_sections(base_text: str, sections: Generator[str, None, None]) 
             base_text += t_strip
     return base_text
 
-def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_path, platform="rust"):
+def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language):
 
     text = ""
 
@@ -279,7 +254,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     with open(file_dir, "w", encoding='utf-8') as f:
         f.write(text)
 
-    logLines(localLogger.info, "Hide id list", json_hide_id_list)
+    logLines(localLogger.debug, "Hide id list", json_hide_id_list)
 
     localLogger.info("------- Parsing file in " + file_dir + " -------")
     tree = ET.parse(file_dir)
@@ -312,24 +287,18 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     # When you update this code, remember copy the code to 02!!!!!!!!!!!!!!!!!!!!!!!
     parent_map = {c: p for p in tree.iter() for c in p}
     for child in root.iter('*'):
-         if child.get("props") is not None:
-             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-            if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                     "props") and "native" in child.get(
-                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
-                
-                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                # child.clear()
-                parent_map[child].remove(child)
-                # child.text = ""
+        if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
+            logLines(localLogger.debug, "Tag to remove1", child, child.text, child.tag, child.get("id"))
+            # clear()
+            # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+            # child.clear()
+            parent_map[child].remove(child)
+            # child.text = ""
 
     # Remove all tables because we cannot afford to add tables to code
     for child in root.iter('*'):
         if child.tag == "table":
-            logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
+            logLines(localLogger.debug, "Tag to remove 2", child, child.text, child.tag, child.get("id"))
             parent_map[child].remove(child)
     #
     # ----------------------------------------------------------------------------
@@ -654,93 +623,20 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             # dita_file_tree = ET.parse(path.join(working_dir, "API", splitted[0]))
             # dita_file_root = dita_file_tree.getroot()
 
-    # Tag filtering 02
-    # Do tag filtering again!!!!!!!!!!
-    parent_map = {c: p for p in tree.iter() for c in p}
-    for child in root.iter('*'):
-         if child.get("props") is not None:
-             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-            if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                     "props") and "native" in child.get(
-                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                # child.clear()
-                parent_map[child].remove(child)
-                # child.text = ""
-
-    # Tag filtering 03
-    # Once a tagged element. So more elements, more processings...
-    # Do tag filtering again!!!!!!!!!!
-    for child in root.iter('*'):
-         if child.get("props") is not None:
-             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-            if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                     "props") and "native" in child.get(
-                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                # child.clear()
-                parent_map[child].remove(child)
-                # child.text = ""
-
-    # Tag filtering 04
-    # Once a tagged element. So more elements, more processings...
-    # Do tag filtering again!!!!!!!!!!
-    parent_map = {c: p for p in tree.iter() for c in p}
-    for child in root.iter('*'):
-         if child.get("props") is not None:
-             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-            if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                     "props") and "native" in child.get(
-                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                # child.clear()
-                parent_map[child].remove(child)
-                # child.text = ""
-
-    # Tag filtering 05
-    # Once a tagged element. So more elements, more processings...
-    # Do tag filtering again!!!!!!!!!!
-    parent_map = {c: p for p in tree.iter() for c in p}
-    for child in root.iter('*'):
-         if child.get("props") is not None:
-             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-            if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                     "props") and "native" in child.get(
-                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                # child.clear()
-                parent_map[child].remove(child)
-                # child.text = ""            
-                    
-    # Tag filtering 06
-    # Once a tagged element. So more elements, more processings...
-    # Do tag filtering again!!!!!!!!!!
-    parent_map = {c: p for p in tree.iter() for c in p}
-    for child in root.iter('*'):
-         if child.get("props") is not None:
-             # if platform_tag not in child.get("props") and "native" not in child.get("props") or remove_sdk_type in child.get("props") or platform_tag not in child.get("props") and "native" in child.get("props") and platform_tag != "windows" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios":
-            if platform_tag not in child.get("props") and "native" not in child.get(
-                    "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
-                     "props") and "native" in child.get(
-                 "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
-                # clear()
-                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                # child.clear()
-                parent_map[child].remove(child)
-                # child.text = ""    
+    # Tag filtering 2
+    # Do tag filtering, 5 times
+    filter = 5
+    while filter > 0:
+        parent_map = {c: p for p in tree.iter() for c in p}
+        for child in root.iter('*'):
+            if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
+                    logLines(localLogger.debug, "Tag to remove 3", child, child.text, child.tag, child.get("props"))
+                    # clear()
+                    # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                    # child.clear()
+                    parent_map[child].remove(child)
+                    # child.text = ""
+        filter -= 1
 
     # Adds newlines at the start of smaller 'li' sections
     for child in root.iter('li'):
@@ -795,7 +691,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
 
     logLines(localLogger.debug, "Detailed desc", detailed_desc)
 
-    if detailed_desc.strip():
+    if short_desc_text and detailed_desc.strip():
         short_desc_text += "\n\n"
     api_desc = short_desc_text + detailed_desc
 
@@ -906,31 +802,11 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     # create_json_from_xml(working_dir, file_dir)
 
 
-# Clean the json_files folder
-for root, dirs, files in os.walk(path.join(path.dirname(__file__), "json_files")):
-    for file in files:
-        os.remove(os.path.join(root, file))
-
-for file_name in os.listdir(path.join(working_dir, 'API')):
-    if file_name.endswith(
-            ".dita") and file_name != "API-overview.dita" and file_name != "api_data_type.dita" and file_name in rust_topicref_list:
-        create_json_from_xml(working_dir, path.join(working_dir, 'API', file_name), android_full_path, cpp_full_path,
-                             rust_full_path)
-
-# Join all files in the json_files folder
-# List of json files to merge
-files = list()
-for json_name in os.listdir(path.join(path.join(path.dirname(__file__), "json_files"))):
-    files.append(path.join(path.dirname(__file__), "json_files", json_name))
-
-localLogger.info(files)
-
-
-def merge_JsonFiles(files):
+def merge_JsonFiles(files, output_json):
     result = list()
 
     for file in files:
-        localLogger.info(file)
+        localLogger.debug(file)
         with open(file, 'r', encoding="utf-8") as infile:
             append_content = json.load(infile)
             result.append(append_content)
@@ -941,39 +817,35 @@ def merge_JsonFiles(files):
 
     result.append(error)
     result.append(warning)
-
-    with open(json_file, 'w', encoding="utf-8") as output_file:
+    with open(output_json, 'w', encoding="utf-8") as output_file:
         json.dump(result, output_file, ensure_ascii=False, indent=4)
 
 
 
 
-def replace_newline():
+def replace_newline(json_file):
 
     input_file = open(json_file, 'r', encoding="utf-8")
     # 2022.1.17 Clean up \n and spaces
     file_text = input_file.read()
 
-    replaced_file_text = re.sub('Themaintain', 'The maintain', file_text)
-    replaced_file_text = re.sub('byx', 'by x', replaced_file_text)
-    replaced_file_text = re.sub('withx', 'with x', replaced_file_text)
-    replaced_file_text = re.sub('case of', 'case of ', replaced_file_text)
-    replaced_file_text = re.sub(' when', ' when ', replaced_file_text)
-    replaced_file_text = re.sub(' set to', ' set to ', replaced_file_text)
-    replaced_file_text = re.sub(' or ', ' or   ', replaced_file_text)
-    replaced_file_text = re.sub(' and ', ' and   ', replaced_file_text)
-    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', replaced_file_text)
+    replaced_file_text = re.sub(r':[\s]{0,100}"[\s]{0,100}\\n[\s]{0,100}', ': "', file_text)
 
+    # Replaces multiple newline and whitespaces as seen with LOCAL_VIDEO_STREAM_STATE_FAILED (java)
     replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}\\n', ' ', replaced_file_text)
     # These two removing double newlines, which are required to separate abstract and long description
     # They were patching bugs from not removing newlines between other sections.
     # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
     # replace 2+ whitespace characters with just one space
-    replaced_file_text = re.sub(r'[ ]{2,}', ' ', replaced_file_text)
+    # Catches ditafile double spaces
+    replaced_file_text = re.sub(r'(?<=\S) {2,}', ' ', replaced_file_text)
 
+    # Catches "See."
     replaced_file_text = re.sub(r' See[\s\\n]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r' For more information[A-Za-z\s\\n,]{0,100}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r' For more details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
+
+    # catches "For details, see." and "For details, see Use RESTful API."
     replaced_file_text = re.sub(r' For details[A-Za-z\s\\n,]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r':[\s]{0,10}"\\n[\s\\n]{0,50}', ':"', replaced_file_text)
 
@@ -1040,7 +912,5 @@ def replace_newline():
     output_file.write(replaced_file_text)
 
 
-# Merge the individual JSON files to a single JSON file
-merge_JsonFiles(files)
-
-replace_newline()
+if __name__ == "__main__":
+    main()
