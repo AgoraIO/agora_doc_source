@@ -8,19 +8,21 @@ Token 需要在你的服务端部署生成。当客户端发送请求时，服�
 
 <div class="alert note">在生成通配 Token 前，请确保你使用的是 AccessToken2。如果你使用的是 AccessToken，请先参考 <a href="https://docportal.shengwang.cn/cn/live-streaming-premium-legacy/token_upgrade?platform=Android#升级至-accesstoken2">AccessToken 升级指南</a>升级至 AccessToken2。</div>
 
-AccessToken2 生成器代码中提供两个 `BuildTokenWithUid` 方法，以 [BuildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/RtcTokenBuilder2.h)[1/2] 为例，通过该方法生成通配 Token 时，你需要可以参考[BuildTokenWithUid API 参考](https://docportal.shengwang.cn/cn/video-call-4.x/token_server_android_ng?platform=Android#buildtokenwithuid-api-参考)填入相关参数信息，并确保：
+AccessToken2 生成器代码中提供两个 `BuildTokenWithUid` 方法，以 [BuildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/RtcTokenBuilder2.h)[1/2] 为例，通过该方法生成通配 Token 时，你需要参考 [BuildTokenWithUid API 参考](https://docportal.shengwang.cn/cn/video-call-4.x/token_server_android_ng?platform=Android#buildtokenwithuid-api-参考)填入相关参数信息，并确保：
 
 -  用户 ID 不设为 0（支持使用 `int`、`String` 型的用户 ID） 
 -  频道名设为 `*`
 
-将对频道名设为通配符 `*` 后，用户使用同一 ID 的和通配 Token 加入任何频道。
+按照上述方式生成通配 Token 后，用户可以通过同一用户 ID 的和通配 Token 加入任何频道。
 
 ## 注意事项
 
-1. 请确保**通配token不具备上麦权限**，即仅限于申请**观众权限**的token。**禁止生成通配的token具备主播权限**，避免token泄露后，有炸房风险。如果用户需要连麦，那么需要指定cname和uid重新申请具备主播权限的token。
-2. 当前cname为"*"和uid为0的情况仅支持二选一，也就是说token可以在指定uid通配任何频道，或者在指定cname的情况下通配任何uid。**不支持申请同时将cname设置为"\*"和uid设置为0的token**。
-3. Web端使用需要配置USE_NEW_TOKEN。
-4. 该方案仅影响通配cname，也就是说token的超时管理等操作仍旧保持不变，比如当token过期后需要继续重新更新token，确保token在有效期内。
+1. 为避免 Token 泄露后非法用户扰乱频道内秩序、炸房捣乱，请确保使用通配 Token 的用户其角色设为观众，用户权限（`role`）设为接收流（`kRoleSubscriber`）。
+
+​      <div class="alert info">如果用户需要连麦，需要调用 `setClientRole` 来将用户角色设为主播（ `BROADCASTER`），并在 `BuildTokenWithUid` 方法中指定频道名和用户 ID，且将用户权限（`role`）设为发流（ `kRolePublisher`），从而生成具有发流权限的 Token。</div>
+
+1. 不支持申请同时将cname设置为"\*"和uid设置为0的token。
+2. 该方案仅影响通配cname，也就是说token的超时管理等操作仍旧保持不变，比如当token过期后需要继续重新更新token，确保token在有效期内。
 
 
 
