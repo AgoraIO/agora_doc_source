@@ -105,13 +105,10 @@ jobs:
         - name: Check Sort by ID
           run: |
             # Sorting and moving newly generated JSON
-            ls .;
-            echo "artifacts"
-            ls artifacts;
             jq 'sort_by(.'id')' "artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_new.json
             # mv artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json ${{matrix.platform}}_${{matrix.language}}_new.json
             # Sorting and moving latest release JSON
-            jq 'sort_by(.'id')' "${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_old.json
+            jq 'sort_by(.'id')' "${{matrix.platform}}_ng_json_template_${{matrix.language}}.json" > ${{matrix.platform}}_${{matrix.language}}_old.json
         - name: Make Diff Compare File
           run: |
             set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_old.json ${{matrix.platform}}_${{matrix.language}}_new.json -U 3 | tee comparison.txt > /dev/null
