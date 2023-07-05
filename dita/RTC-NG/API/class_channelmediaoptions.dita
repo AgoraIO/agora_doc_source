@@ -126,6 +126,10 @@
 
   publishSecondaryCameraTrack?: boolean;
 
+  publishThirdCameraTrack?: boolean;
+
+  publishFourthCameraTrack?: boolean;
+
   publishMicrophoneTrack?: boolean;
 
   publishScreenCaptureVideo?: boolean;
@@ -135,6 +139,10 @@
   publishScreenTrack?: boolean;
 
   publishSecondaryScreenTrack?: boolean;
+
+  publishThirdScreenTrack?: boolean;
+
+  publishFourthScreenTrack?: boolean;
 
   publishCustomAudioTrack?: boolean;
 
@@ -182,11 +190,15 @@
     {
         public Optional&lt;bool> publishCameraTrack = new Optional&lt;bool>();
         public Optional&lt;bool> publishSecondaryCameraTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishThirdCameraTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishFourthCameraTrack = new Optional&lt;bool>();
         public Optional&lt;bool> publishMicrophoneTrack = new Optional&lt;bool>();
         public Optional&lt;bool> publishScreenCaptureVideo = new Optional&lt;bool>();
         public Optional&lt;bool> publishScreenCaptureAudio = new Optional&lt;bool>();
         public Optional&lt;bool> publishScreenTrack = new Optional&lt;bool>();
         public Optional&lt;bool> publishSecondaryScreenTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishThirdScreenTrack = new Optional&lt;bool>();
+        public Optional&lt;bool> publishFourthScreenTrack = new Optional&lt;bool>();
         public Optional&lt;bool> publishCustomAudioTrack = new Optional&lt;bool>();
         public Optional&lt;int> publishCustomAudioTrackId = new Optional&lt;int>();
         public Optional&lt;bool> publishCustomVideoTrack = new Optional&lt;bool>();
@@ -215,6 +227,10 @@
 
   publishSecondaryCameraTrack?: boolean;
 
+  publishThirdCameraTrack?: boolean;
+
+  publishFourthCameraTrack?: boolean;
+
   publishMicrophoneTrack?: boolean;
 
   publishScreenCaptureVideo?: boolean;
@@ -224,6 +240,10 @@
   publishScreenTrack?: boolean;
 
   publishSecondaryScreenTrack?: boolean;
+
+  publishThirdScreenTrack?: boolean;
+
+  publishFourthScreenTrack?: boolean;
 
   publishCustomAudioTrack?: boolean;
 
@@ -272,11 +292,15 @@ class ChannelMediaOptions {
   const ChannelMediaOptions(
       {this.publishCameraTrack,
       this.publishSecondaryCameraTrack,
+      this.publishThirdCameraTrack,
+      this.publishFourthCameraTrack,
       this.publishMicrophoneTrack,
       this.publishScreenCaptureVideo,
       this.publishScreenCaptureAudio,
       this.publishScreenTrack,
       this.publishSecondaryScreenTrack,
+      this.publishThirdScreenTrack,
+      this.publishFourthScreenTrack,
       this.publishCustomAudioTrack,
       this.publishCustomAudioTrackId,
       this.publishCustomVideoTrack,
@@ -292,6 +316,7 @@ class ChannelMediaOptions {
       this.audienceLatencyLevel,
       this.defaultVideoStreamType,
       this.channelProfile,
+      this.audioDelayMs,
       this.mediaPlayerAudioDelayMs,
       this.token,
       this.enableBuiltInMediaEncryption,
@@ -305,6 +330,12 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'publishSecondaryCameraTrack')
   final bool? publishSecondaryCameraTrack;
+
+  @JsonKey(name: 'publishThirdCameraTrack')
+  final bool? publishThirdCameraTrack;
+
+  @JsonKey(name: 'publishFourthCameraTrack')
+  final bool? publishFourthCameraTrack;
 
   @JsonKey(name: 'publishMicrophoneTrack')
   final bool? publishMicrophoneTrack;
@@ -320,6 +351,12 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'publishSecondaryScreenTrack')
   final bool? publishSecondaryScreenTrack;
+
+  @JsonKey(name: 'publishThirdScreenTrack')
+  final bool? publishThirdScreenTrack;
+
+  @JsonKey(name: 'publishFourthScreenTrack')
+  final bool? publishFourthScreenTrack;
 
   @JsonKey(name: 'publishCustomAudioTrack')
   final bool? publishCustomAudioTrack;
@@ -365,6 +402,9 @@ class ChannelMediaOptions {
 
   @JsonKey(name: 'channelProfile')
   final ChannelProfileType? channelProfile;
+
+  @JsonKey(name: 'audioDelayMs')
+  final int? audioDelayMs;
 
   @JsonKey(name: 'mediaPlayerAudioDelayMs')
   final int? mediaPlayerAudioDelayMs;
@@ -430,22 +470,22 @@ class ChannelMediaOptions {
                     <li>如果你想要发布麦克风采集到的音频流，请确保 <parmname>enableAudioRecordingOrPlayout</parmname> 设为 <codeph><ph keyref="true"/></codeph>。</li></ul></note>
                 </pd>
             </plentry>
-            <plentry props="cpp mac unreal bp unity cs flutter">
+            <plentry props="cpp mac unreal bp unity cs flutter electron">
                 <pt>publishThirdCameraTrack</pt>
                 <pd>设置是否发布第三个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第三个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第三个摄像头采集的视频。</li>
                     </ul>
-                <p><note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
+                <p><note type="attention" props="cpp unreal bp unity cs flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
             </plentry>
-            <plentry props="cpp mac unreal bp unity cs flutter">
+            <plentry props="cpp mac unreal bp unity cs flutter electron">
                 <pt>publishFourthCameraTrack</pt>
                 <pd>设置是否发布第四个摄像头采集的视频：
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>：发布第四个摄像头采集的视频。</li>
                     <li><codeph><ph keyref="false"/></codeph>：不发布第四个摄像头采集的视频。</li>
-                    </ul><p><note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
+                    </ul><p><note type="attention" props="cpp unreal bp unity cs flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p></pd>
             </plentry>
             <plentry>
                 <pt props="android ios">publishScreenCaptureVideo</pt>
@@ -491,7 +531,7 @@ class ChannelMediaOptions {
                     </ul>
                 </pd>
             </plentry>
-             <plentry props="mac cpp unreal bp unity cs flutter">
+             <plentry props="mac cpp unreal bp unity cs flutter electron">
                 <pt>publishThirdScreenTrack</pt>
                 <pd>设置是否发布第三个屏幕采集的视频：
 
@@ -500,10 +540,10 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布第三个屏幕采集到的视频。</li>
                     </ul>
                     <p>
-                    <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p>
+                    <note type="attention" props="cpp unreal bp unity cs flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unreal bp unity cs flutter">
+            <plentry props="mac cpp unreal bp unity cs flutter electron">
                 <pt>publishFourthScreenTrack</pt>
                 <pd>设置是否发布第四个屏幕采集的视频：
 
@@ -512,7 +552,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false"/></codeph>：不发布第四个屏幕采集到的视频。</li>
                     </ul>
                     <p>
-                    <note type="attention" props="cpp unreal bp unity flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p>
+                    <note type="attention" props="cpp unreal bp unity cs flutter">该参数仅适用于 Windows 和 macOS 平台。</note></p>
                 </pd>
             </plentry>
             <plentry props="cpp unreal bp unity cs flutter rn electron">
