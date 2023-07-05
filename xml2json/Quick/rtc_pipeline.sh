@@ -9,7 +9,7 @@ lowerlanguage=$(echo ${language} | tr '[:upper:]' '[:lower:]')
 lowerPlatform=$(echo ${platform} | tr '[:upper:]' '[:lower:]')
 
 prefix_path="../../en-US/dita/"
-node_hide_attributes=("hide"
+node_hide_attributes=("hide" 
                       "cn")
 
 if [[ "$lowerlanguage" == "cn" ]]; then
@@ -22,4 +22,4 @@ keys_ditamap_file_path="${prefix_path}/RTC-NG/config/keys-rtc-ng-api-${lowerPlat
 api_dita_folder_path="${prefix_path}/RTC-NG/API"
 output_json_file_path="../Output/RTC_NG_API_${platform}.json"
 
-python3 ../Implementation/Pipeline.py ${api_ditamap_file_path} ${keys_ditamap_file_path} ${api_dita_folder_path} ${lowerPlatform} ${output_json_file_path} ${node_hide_attributes}
+python3 ../Implementation/Pipeline.py ${api_ditamap_file_path} ${keys_ditamap_file_path} ${api_dita_folder_path} ${lowerPlatform} ${output_json_file_path} ${node_hide_attributes[@]}

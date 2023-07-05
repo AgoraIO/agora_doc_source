@@ -11,7 +11,7 @@ keysDitaMapFile = sys.argv[2]
 apiDetailFolder = sys.argv[3]
 platform = sys.argv[4]
 outputJsonFile = sys.argv[5]
-nodeHideAttributes = sys.argv[6]
+nodeHideAttributes = sys.argv[6:]
 
 platformParser = PlatformDitaMapParser(platformDitaMapFile, 
                                        nodeHideAttributes)
