@@ -1,21 +1,15 @@
-## v4.1.1
+# v4.2.1
 
- v4.1.1 was released on January xx, 2023.
+This version was released on June 21, 2023.
 
- #### New features
+## Improvements
 
- **Instant frame rendering**
+This version improves the network transmission strategy, enhancing the smoothness of audio interactions.
 
- This release adds the `enableInstantMediaRendering` method to enable instant rendering mode for audio  frames, which can speed up the first audio frame rendering after the user joins the channel.
+## Fixed Issues
 
- #### Issues fixed
+This version fixed the following issues:
 
-- This release fixed the issue that playing audio files with a sample rate of 48 kHz failed.
-- At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
-
- #### API changes
-
- **Added**
-
-`enableInstantMediaRendering`
-
+- Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
+- After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
+- Brief noise occurred while playing media files using the media player.

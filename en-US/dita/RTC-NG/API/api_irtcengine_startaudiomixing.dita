@@ -19,7 +19,7 @@
                loopback:(BOOL)loopback
                 replace:(BOOL)replace
                   cycle:(NSInteger)cycle;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int startAudioMixing(const char* filePath,
     bool loopback,
     bool replace,
     int cycle) = 0;</codeblock>
@@ -40,7 +40,7 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <dl outputclass="deprecated" props="native">
+            <dl outputclass="deprecated" props="native unreal bp">
             <dlentry>
                 <dt>Deprecated:</dt>
                 <dd>Use <xref keyref="startAudioMixing2" /> instead.</dd>
@@ -51,7 +51,7 @@
             <ul>
             <li>You can call this method either before or after joining a channel. If you need to call <apiname keyref="startAudioMixing" /> multiple times, ensure that the time interval between calling this method is more than 500 ms.</li>
             <li>If the local music file does not exist, the SDK does not support the file format, or the the SDK cannot access the music file URL, the SDK reports 701.</li>
-            <li props="android cpp unity flutter rn" id="principle">On Android, there are following considerations:<ul>
+            <li props="android cpp unreal bp unity flutter rn" id="principle">On Android, there are following considerations:<ul>
                 <li>To use this method, ensure that the Android device is v4.2 or later, and the API version is v16 or later.</li>
                 <li>If you need to play an online music file, Agora does not recommend using the redirected URL address. Some Android devices may fail to open a redirected URL address.</li>
                 <li>If you call this method on an emulator, ensure that the music file is in the <codeph>/sdcard/</codeph> directory and the format is MP3.</li>
@@ -64,7 +64,7 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry props="native">
+            <plentry props="native unreal bp">
                 <pt>filePath</pt>
                 <pd>
                     <p conkeyref="playEffect3/filepath" />
@@ -93,7 +93,7 @@
             <title><ph keyref="return-section-title" /></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native unity rn electron cs">0: Success.</li>
+            <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

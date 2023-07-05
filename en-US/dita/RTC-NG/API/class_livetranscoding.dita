@@ -249,7 +249,7 @@
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
 - (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
-      <codeblock props="cpp" outputclass="language-cpp">struct LiveTranscoding {
+      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LiveTranscoding {
   int width;
   int height;
   int videoBitrate;
@@ -561,7 +561,7 @@
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
       <parml>
-      <plentry props="android cpp electron rn unity flutter cs">
+      <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>width</pt>
         <pd>
           <p>The width of the video in pixels. The default value is 360.</p>
@@ -570,7 +570,7 @@
           <li>When pushing audio streams to the CDN, set <codeph>width</codeph> and <codeph>height</codeph> as 0.</li>
           </ul> </pd>
       </plentry>
-      <plentry props="android cpp electron rn unity flutter cs">
+      <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>height</pt>
         <pd>
           <p>The height of the video in pixels. The default value is 640.</p>
@@ -595,7 +595,7 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
-          <p props="native">Set this member according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
+          <p props="native unreal bp">Set this member according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
         </pd>
       </plentry>
       <plentry>
@@ -640,7 +640,7 @@
         </pd>
       </plentry>
       <plentry>
-        <pt props="ios mac cpp unity electron rn flutter cs">transcodingExtraInfo</pt>
+        <pt props="ios mac cpp unreal bp unity electron rn flutter cs">transcodingExtraInfo</pt>
         <pt props="android">userConfigExtraInfo</pt>
         <pd>
           <p>Reserved property. Extra user-defined information to send SEI for the H.264/H.265 video stream to the CDN live client. Maximum length: 4096 bytes. For more information on SEI, see <xref keyref="faq-sei">SEI-related questions</xref>.</p>
@@ -657,7 +657,7 @@
           </ul></p>
         </pd>
       </plentry>
-      <plentry props="android cpp unity electron rn flutter cs">
+      <plentry props="android cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundColor</pt>
         <pd props="android">
           <dl outputclass="deprecated">
@@ -667,11 +667,11 @@
           </dlentry>
           </dl>
         </pd>
-        <pd props="cpp unity electron rn flutter cs">
+        <pd props="cpp unreal bp unity electron rn flutter cs">
           <p>The background color in RGB hex value. Value only. Do not include a preceeding #. For example, 0xFFB6C1 (light pink). The default value is 0x000000 (black).</p>
         </pd>
       </plentry>
-      <plentry props="android cpp electron rn unity flutter cs">
+      <plentry props="android cpp unreal bp electron rn unity flutter cs">
         <pt>userCount</pt>
         <pd>
           <dl outputclass="deprecated" props="android">
@@ -683,7 +683,7 @@
           <p>The number of users in the Media Push. The value range is [0,17].</p>
         </pd>
       </plentry>
-      <plentry props="android cpp unity electron rn flutter cs">
+      <plentry props="android cpp unreal bp unity electron rn flutter cs">
         <pt>metadata</pt>
         <pd>
           <dl outputclass="deprecated">
@@ -695,14 +695,14 @@
           <p>The metadata sent to the CDN client.</p>
         </pd>
       </plentry>
-      <plentry props="cpp unity flutter electron rn cs">
+      <plentry props="cpp unreal bp unity flutter electron rn cs">
         <pt>watermark</pt>
         <pd>
           <p>The watermark on the live video. The image format needs to be PNG. See <xref keyref="RtcImage" />.</p>
-          <p>You can add one watermark, or add multiple watermarks using an array. <ph props="cpp unity electron rn cs">This parameter is used with <parmname>watermarkCount</parmname>.</ph></p>
+          <p>You can add one watermark, or add multiple watermarks using an array. <ph props="cpp unreal bp unity electron rn cs">This parameter is used with <parmname>watermarkCount</parmname>.</ph></p>
         </pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundImage</pt>
         <pd>
           <p>The number of background images on the live video. The image format needs to be PNG. See <xref keyref="RtcImage" />.</p>
@@ -745,19 +745,19 @@
         <pt>watermarkArray</pt>
         <pd>The array of watermarks on the live video. See <xref keyref="RtcImage" />. You can add one or more <parmname>watermarks</parmname> using <parmname>watermarkArray</parmname>. The image format needs to be PNG. The total number of watermarks and background images on a live video must be greater than or equal to 0 and less than or equal to 10.</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>watermarkCount</pt>
         <pd>The number of watermarks on the live video. The total number of watermarks and background images can range from 0 to 10. This parameter is used with <parmname>watermark</parmname>.</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>backgroundImageCount</pt>
         <pd>The number of background images on the live video. The total number of watermarks and background images can range from 0 to 10. This parameter is used with <parmname>backgroundImage</parmname>.</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>advancedFeatures</pt>
         <pd>Advanced features of the Media Push with transcoding. See <xref keyref="LiveStreamAdvancedFeature" />.</pd>
       </plentry>
-      <plentry props="cpp unity electron rn flutter cs">
+      <plentry props="cpp unreal bp unity electron rn flutter cs">
         <pt>advancedFeatureCount</pt>
         <pd>The number of enabled advanced features. The default value is 0.</pd>
       </plentry>

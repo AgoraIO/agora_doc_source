@@ -20,7 +20,7 @@
                    delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate
                mediaOptions:(AgoraRtcChannelMediaOptions* _Nonnull)mediaOptions
                 joinSuccess:(void(^ _Nullable)(NSString* _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int joinChannelEx(const char* token, const RtcConnection&amp; connection,
                               const ChannelMediaOptions&amp; options,
                               IRtcEngineEventHandler* eventHandler) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannelEx(
@@ -48,7 +48,7 @@
             <li>如果你已经在一个频道内，你不能用相同的用户 UID 再次加入该频道。</li>
             <li>如果你想在不同的设备上加入相同的频道，请确保你在不同设备上使用的用户 UID 都不同。</li>
             <li>请确保生成 Token 时传入的 app ID 和创建 <xref keyref="IRtcEngine"/> 实例时传入的 app ID 一致。</li>
-            <li props="cpp">在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_CAMERA_SECONDARY"/>，以确保第二个摄像头采集正常。</li>
+            <li props="cpp unreal bp">在多摄像头采集场景下，你需要在调用该方法之后调用 <xref keyref="startPreview2"/> 方法设置 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_CAMERA_SECONDARY"/>，以确保第二个摄像头采集正常。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -65,10 +65,10 @@
                 <pt/>
                 <pd/>
             </plentry>
-            <plentry id="event" props="native">
-                <pt props="android cpp">eventHandler</pt>
+            <plentry id="event" props="native unreal bp">
+                <pt props="android cpp unreal bp">eventHandler</pt>
                 <pt props="ios mac">delegate</pt>
-                <pd><ph props="native"><xref keyref="IRtcEngineEx"/> 的回调类，</ph><ph>详见 <xref keyref="IRtcEngineEventHandler"/>。</ph></pd>
+                <pd><ph props="native unreal bp"><xref keyref="IRtcEngineEx"/> 的回调类，</ph><ph>详见 <xref keyref="IRtcEngineEventHandler"/>。</ph></pd>
             </plentry>
             <plentry props="ios mac" conkeyref="joinChannel2/joinsuccessblock">
                 <pt/>

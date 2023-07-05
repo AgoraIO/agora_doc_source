@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannelEx:(AgoraRtcConnection * _Nonnull)connection
               options:(AgoraLeaveChannelOptions * _Nonnull)options
     leaveChannelBlock:(void(^ _Nullable)(AgoraChannelStats* _Nonnull stat))leaveChannelBlock;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract leaveChannelEx(
     connection: RtcConnection,
     options?: LeaveChannelOptions
@@ -36,7 +36,7 @@
             <p>This method lets the user leave the channel, for example, by hanging up or exiting the call.</p>
             <p>After calling <xref keyref="joinChannelEx" /> to join the channel, this method must be called to end the call before starting the next call.</p>
             <p>This method can be called whether or not a call is currently in progress. This method releases all resources related to the session.</p>
-            <p props="native unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback.</p>
+            <p props="native unreal bp unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback.</p>
             <p props="rn">Calling this method does not necessarily mean that the user has left the channel. After you leave the channel, the SDK triggers the <xref keyref="onLeaveChannel" /> callback.</p>
             <p>After actually leaving the channel, the local user triggers the <apiname keyref="onLeaveChannel" /> callback; after the user in the communication scenario and the host in the live streaming scenario leave the channel, the remote user triggers the <xref keyref="onUserOffline" /> callback.</p>
             <note type="attention" id="note">
@@ -72,7 +72,7 @@
             <title><ph keyref="return-section-title" /></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn cs">0: Success.</li>
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

@@ -18,7 +18,7 @@
                 receiveStreamMessageFromUid:(NSUInteger)uid
                 streamId:(NSInteger)streamId
                 data:(NSData * _Nonnull)data;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
                     (void)userId;
                     (void)streamId;
                     (void)data;
@@ -55,7 +55,7 @@
             </plentry>
             <plentry id="uid">
                 <pt props="android ios mac flutter">uid</pt>
-                <pt props="cpp">userId</pt>
+                <pt props="cpp unreal bp">userId</pt>
                 <pt props="unity electron rn flutter cs">remoteUid</pt>
                 <pd>The ID of the remote user sending the message.</pd>
             </plentry>
@@ -67,11 +67,11 @@
                 <pt>data</pt>
                 <pd>The data received.</pd>
             </plentry>
-            <plentry id="length" props="cpp unity electron rn flutter cs">
+            <plentry id="length" props="cpp unreal bp unity electron rn flutter cs">
                 <pt>length</pt>
                 <pd>The data length (byte).</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter cs">
+            <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>sentTs</pt>
                 <pd>The time when the data stream is sent.</pd>
             </plentry>

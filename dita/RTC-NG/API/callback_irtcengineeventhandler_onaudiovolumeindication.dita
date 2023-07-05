@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers
         totalVolume:(NSInteger)totalVolume;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
     unsigned int speakerNumber,
     int totalVolume) {
     (void)speakers;
@@ -54,11 +54,11 @@
                 <pt>connection</pt>
                 <pd>Connection 信息。详见 <xref keyref="RtcConnection" />。</pd>
             </plentry>
-            <plentry props="native unity electron rn flutter cs">
+            <plentry props="native unreal bp unity electron rn flutter cs">
                 <pt>speakers</pt>
                 <pd>用户音量信息，详见 <xref keyref="AudioVolumeInfo" /> 数组。如果 <parmname>speakers</parmname> 为空，则表示远端用户不发流或没有远端用户。</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter cs">
+            <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>speakerNumber</pt>
                 <pd>
                     <p>用户数量。
@@ -69,14 +69,14 @@
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry props="native unity electron rn flutter cs">
+            <plentry props="native unreal bp unity electron rn flutter cs">
                 <pt>totalVolume</pt>
                 <pd>
                     <p>混音后的总音量，取值范围为 [0,255]。
 
                     <ul>
                     <li>在本地用户的回调中，<parmname>totalVolume</parmname> 为本地发流用户的音量。</li>
-                    <li><ph>在远端用户的回调中，<parmname>totalVolume</parmname> 为瞬时音量最高的远端用户（最多 3 位）混音后的总音量。 </ph><ph props="native">如果用户调用了 <xref keyref="startAudioMixing2" />，则 <parmname>totalVolume</parmname> 为音乐文件和用户声音的总音量。</ph></li>
+                    <li><ph>在远端用户的回调中，<parmname>totalVolume</parmname> 为瞬时音量最高的远端用户（最多 3 位）混音后的总音量。 </ph><ph props="native unreal bp">如果用户调用了 <xref keyref="startAudioMixing2" />，则 <parmname>totalVolume</parmname> 为音乐文件和用户声音的总音量。</ph></li>
                     </ul> </p>
                 </pd>
             </plentry>

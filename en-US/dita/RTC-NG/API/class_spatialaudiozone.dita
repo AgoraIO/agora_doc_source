@@ -65,17 +65,17 @@
   }
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraSpatialAudioZone : NSObject
-@property(assign, nonatomic)  NSInteger zoneSetId;
-@property(strong, nonatomic)  NSArray&lt;NSNumber*&gt; * _Nonnull position;
-@property(strong, nonatomic)  NSArray&lt;NSNumber*&gt; * _Nonnull forward;
-@property(strong, nonatomic)  NSArray&lt;NSNumber*&gt; * _Nonnull right;
-@property(strong, nonatomic)  NSArray&lt;NSNumber*&gt; * _Nonnull up;
-@property(assign, nonatomic)  float forwardLength;
-@property(assign, nonatomic)  float rightLength;
-@property(assign, nonatomic)  float upLength;
+@property(assign, nonatomic) NSInteger zoneSetId;
+@property(nonatomic) simd_float3 position;
+@property(nonatomic) simd_float3 forward;
+@property(nonatomic) simd_float3 right;
+@property(nonatomic) simd_float3 up;
+@property(assign, nonatomic) float forwardLength;
+@property(assign, nonatomic) float rightLength;
+@property(assign, nonatomic) float upLength;
 @property(assign, nonatomic) float audioAttenuation;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct SpatialAudioZone {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SpatialAudioZone {
   int zoneSetId;
   float position[3];
   float forward[3];

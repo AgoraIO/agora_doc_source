@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int setAudioEffectPreset(int preset);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEffectPreset:(AgoraAudioEffectPreset)preset;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setAudioEffectPreset(AUDIO_EFFECT_PRESET preset) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetAudioEffectPreset(AUDIO_EFFECT_PRESET preset);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setAudioEffectPreset(preset: AudioEffectPreset): number;</codeblock>
@@ -30,7 +30,7 @@
             <note type="attention">
             <ul>
             <li>You can call this method either before or after joining a channel.</li>
-            <li props="cpp rn electron flutter">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<apiname keyref="AUDIO_PROFILE_IOT" /> or (6), or the method does not take effect.</li>
+            <li props="cpp unreal bp rn electron flutter">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1)<apiname keyref="AUDIO_PROFILE_IOT" /> or (6), or the method does not take effect.</li>
             <li props="android ios mac unity cs">Do not set the <parmname>profile</parmname> parameter in <apiname keyref="setAudioProfile" /> to <apiname keyref="AUDIO_PROFILE_SPEECH_STANDARD" />(1), or the method does not take effect.</li>
             <li>This method has the best effect on human voice processing, and Agora does not recommend calling this method to process audio data containing music.</li>
             <li>If you call <apiname keyref="setAudioEffectPreset" /> and set enumerators except for <apiname keyref="ROOM_ACOUSTICS_3D_VOICE" /> or <apiname keyref="PITCH_CORRECTION" />, do not call <xref keyref="setAudioEffectParameters" />; otherwise, <apiname keyref="setAudioEffectPreset" /> is overridden.</li>
@@ -49,7 +49,7 @@
             <parml>
             <plentry>
                 <pt>preset</pt>
-                <pd props="ios mac cpp unity flutter rn electron cs">The options for SDK preset audio effects. See <xref keyref="AUDIO_EFFECT_PRESET" />.</pd>
+                <pd props="ios mac cpp unreal bp unity flutter rn electron cs">The options for SDK preset audio effects. See <xref keyref="AUDIO_EFFECT_PRESET" />.</pd>
                 <pd props="android">Preset voice effects.<ul>
                     <li><ph keyref="AUDIO_EFFECT_OFF" />: Turn off audio effects and use the original voice.</li>
                     <li><ph keyref="ROOM_ACOUSTICS_KTV" />: The reverberation style typical of a KTV venue.</li>
@@ -80,7 +80,7 @@
             <title><ph keyref="return-section-title" /></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native electron unity rn cs">0: Success.</li>
+            <li props="native unreal bp electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>
