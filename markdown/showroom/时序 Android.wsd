@@ -9,7 +9,7 @@ activate cloud
 cloud -->> app: 显示房间列表
 deactivate cloud
 == 创建房间 ==
-app -> app: 进入直播预览界面
+app -> app: 进入单人直播预览界面
 app -> sdk: RtcEngine.create(RtcEngineConfig)
 app -> sdk: registerVideoFrameObserver(sencestimeBeautyObserver)
 app -> sdk: setupLocalVideo
@@ -22,7 +22,7 @@ deactivate cloud
 app -> app: 进入直播间
 app -> sdk: 主播调用 setupLocalVideoEx\n观众调用 setupRemoteVideoEx
 app -> sdk: joinChannelEx(ChannelMediaOptions)
-app -> cloud: 加入房间
+app -> cloud: 加入房间 \njoinChannel
 activate cloud
 cloud -->> app: 加入房间成功
 deactivate cloud
@@ -52,20 +52,15 @@ cloud --> app: 显示 PK 中状态或者显示可 PK 的用户列表 #TODO
 deactivate cloud
 app -> app: 主播 A 点击选择可参与 PK 连麦的用户
 app -> cloud: 主播 A 发起 PK 连麦申请 \ncreatePKInvitation
-cloud --> app: 主播 B 收到 PK 申请通知 \nsubscribePKInvitationChanged(status=updated)
-cloud -->> app: 主播 B 接受 PK 连麦申请
-note left
-主播 B 也可以选择拒绝 PK 连麦申请
-end note
-cloud --> app: 主播 A 收到主播 B 接受连麦的通知，并知晓主播 B 的 UID 和频道名
-
-
-
-
-app -> cloud: 主播 A 发起 PK 连麦申请
 activate cloud
-
+cloud --> app: 主播 B 收到 PK 申请通知 \nsubscribePKInvitationChanged(status=updated)
+alt 对方主播拒绝 PK 连麦申请
+app -> cloud: 主播 B 拒绝 PK 连麦申请 \nrejectPKInvitation
+end
+alt 对方主播接受 PK 连麦申请
+app -> cloud: 主播 B 接受 PK 连麦申请 \nacceptPKInvitation
 deactivate cloud
+cloud --> app: 主播 A 收到主播 B 接受连麦的通知，并知晓主播 B 的 UID 和频道名 \nsubscribePKInvitationChanged(status=updated)
 app -> sdk: joinChannelEx
 note right
 房间 A 和 B 的用户都以观众的角色加入对方频道
@@ -75,10 +70,11 @@ note right
 进入对方频道后，渲染对方房主的视频
 end note
 app -> app: 切换到主播 A 和 B 在 PK 连麦的界面
+end
 == 结束主播 PK 连麦 ==
-app -> cloud: 结束 PK 连麦
+app -> cloud: 结束 PK 连麦 \nstopInteraction
 activate cloud
-cloud -> app: PK 连麦结束通知
+cloud -->> app: PK 连麦结束通知 \nsubscribePKInvitationChanged(status=deleted)
 deactivate cloud
 app -> sdk:  leaveChannelEx
 note right
@@ -86,20 +82,39 @@ note right
 end note
 app -> app: 切换到主播 A 或 B 单人直播的界面
 == 观众与主播连麦 ==
-alt 主播邀请观众连麦
-app -> cloud: 主播邀请观众连麦
+app -> cloud: 获取在线用户列表 \ngetAllUserList
 activate cloud
-cloud -->> app: 观众拒绝连麦
-cloud -->> app: 观众接受连麦
+cloud -->> app: 用户信息列表
 deactivate cloud
+app -> cloud: 获取当前连麦申请列表 \ngetAllMicSeatApplyList
+activate cloud
+cloud -->> app: 连麦信息列表
+deactivate cloud
+alt 主播邀请观众连麦
+app -> cloud: 主播邀请观众连麦 \ncreateMicSeatInvitation
+activate cloud
+cloud -->> app: 观众收到连麦邀请通知 \nsubscribeUser(status=updated)
+alt 观众拒绝连麦
+app -> cloud: 观众拒绝连麦 \nrejectMicSeatInvitation
+end
+alt 观众接受连麦
+app -> cloud: 观众接受连麦 \nacceptMicSeatInvitation
+deactivate cloud
+cloud -->> app: 主播收到连麦接受通知 #TODO
+end
 end
 alt 观众向主播申请连麦
-app -> cloud: 观众向主播申请连麦
+app -> cloud: 观众向主播申请连麦 \ncreateMicSeatApply
 activate cloud
-cloud -->> app: 主播拒绝连麦
-cloud -->> app: 主播接受连麦
+cloud -->> app: 主播收到连麦邀请通知 \nsubscribeUser(status=updated)
+alt 主播拒绝连麦
+app -> cloud: 主播拒绝连麦 \nrejectMicSeatApply
+end
+alt 主播接受连麦
+app -> cloud: 主播接受连麦 \nacceptMicSeatApply
 deactivate cloud
-app -> app: 连麦观众收到连麦接受通知
+cloud -->> app: 连麦观众收到连麦接受通知 \nsubscribeInteractionChanged(status=updated)
+end
 end
 app -> sdk: updateChannelMediaOptionsEx
 app -> sdk: startPreview
@@ -115,9 +130,15 @@ note right
 end note
 app -> app: 切换到主播和观众的连麦直播界面
 == 结束观众与主播连麦 ==
-app -> cloud: 停止连麦
+alt 主播取消与观众的连麦邀请
+app -> cloud: 主播取消与观众的连麦邀请 \ncancelMicSeatInvitation
 activate cloud
-cloud -->> app: 通知连麦停止
+end
+alt 观众取消与主播的连麦申请
+app -> cloud: 观众取消与主播的连麦申请 \ncancelMicSeatApply
+end
+app -> cloud: 停止连麦
+cloud -->> app: 通知连麦停止 \nsubscribeInteractionChanged(status=deleted)
 deactivate cloud
 app -> app: 连麦观众收到连麦结束通知
 app -> sdk: updateChannelMediaOptionEx
@@ -127,20 +148,26 @@ note right
 end note
 app -> sdk: stopPreview
 app -> sdk: setupLocalVideo(view=null)
-app -> sdk: setupRemoteVideoEx(view=null)
 app -> app: 主播和其他观众收到连麦结束通知
 note right
 主播和其他观众取消渲染连麦观众的视频
 end note
+app -> sdk: setupRemoteVideoEx(view=null)
 app -> app: 切换到房主单人直播的界面
 == 离开并销毁房间 ==
-app -> cloud: 主播离开房间
+app -> app: 判断是否在主播 PK 连麦或观众连麦中
+app -> cloud: 停止连麦 \nstopInteraction
+note left
+如果在连麦中，停止连麦
+如果不在连麦中，直接进行下一步
+end note
+app -> cloud: 主播离开房间 \nleaveRoom
 activate cloud
-cloud -> app: 通知所有观众房间已关闭
+cloud -->> app: 通知所有观众房间已关闭 \nsubscribeCurrRoomEvent(status=deleted)
 deactivate cloud
 app -> cloud: 观众离开房间 \nleaveRoom
 activate cloud
-cloud --> app: 通知所有用户并刷新用户列表 \nsusbscribeUser(status=updated)
+cloud -->> app: 通知所有用户并刷新用户列表 \nsusbscribeUser(status=updated)
 deactivate cloud
 app -> sdk: leaveChannel
 app -> sdk: RtcEngine.destroy
