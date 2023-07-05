@@ -31,13 +31,17 @@ parser.add_argument(
     required=True
 )
 parser.add_argument(
-    "--json_file", help="Desired output JSON file", action="store", required=False
+    "--json_file", help="Desired output JSON file. Default is platform_language_ng.json, ie: flutter_en_ng.json",
+    action="store", required=False
 )
 parser.add_argument("--old_sdk", help="Uses older SDK (3.x)", action="store_true", required=False)
-parser.add_argument("--log_level", help="Log level for outputs. Set to debug, info or warning", default="info", action="store",
-                    choices=['debug', 'info', 'warning', 'error'])
 parser.add_argument(
-    "--language", help="Override language setting. Choose between 'en' and 'cn'", choices=['en', 'cn'], action="store"
+    "--log_level", help="Log level for outputs. Set to debug, info or warning", default="info", action="store",
+    choices=['debug', 'info', 'warning', 'error']
+)
+parser.add_argument(
+    "--language", help="Override language setting. Choose between 'en' and 'cn'. If not supplised, will be 'en' if 'en-US' is in working_dir",
+    choices=['en', 'cn'], action="store", required=False
 )
 parser.add_argument(
     "--defined_path", help="DEPRECATED: Your defined path, such as android, flutter, electron_ng",
@@ -58,21 +62,28 @@ localLogger = logging
 # rust_full_path
 # cpp_full_path
 # Other types of full path
-rust_topicref_list = []
-json_hide_id_list = []
 
 def main():
+    # Required tags
     working_dir = args['working_dir']
     platform_tag = args['platform_tag']
+
+    # Tags with defaults
     json_file = args['json_file']
+    language = args['language']
+    old_sdk = args['old_sdk']
+
+    # Deprecated tags
     sdk_type = args['sdk_type']
     remove_sdk_type = args['remove_sdk_type']
     defined_path_text = args['defined_path']
-    old_sdk = args['old_sdk']
-    language = args['language']
 
     if sdk_type:
         localLogger.warn("Tag --sdk_type is deprecated.")
+    if remove_sdk_type:
+        localLogger.warn("Tag --remove_sdk_type is deprecated. Use platform_tag and --old_sdk. Your remove SDK type: sdk or sdk-ng")
+    if defined_path_text:
+        localLogger.warn("Tag --defined_path is deprecated, use platform_tag and old_sdk.")
 
     if not defined_path_text:
         defined_path_text = f"{platform_tag}{'' if old_sdk else '-ng'}"
@@ -82,11 +93,11 @@ def main():
     if not language:
         language = 'en' if 'en-US' in working_dir else 'cn'
     if not json_file:
-        json_file = f"{defined_path_text.replace('-ng', '')}_{language}{'_ng' if '-ng' in defined_path_text else ''}.json"
+        json_file = f"{platform_tag}_{language}{'_ng' if '-ng' in defined_path_text else ''}.json"
 
     switchLog(args['log_level'])
 
-        # ------------------------------------------------------
+    # ------------------------------------------------------
     # CLI for automation purposes
     # ------------------------------------------------------
 
@@ -128,6 +139,7 @@ def main():
         raise ex
 
     dita_file_root = dita_file_tree.getroot()
+    rust_topicref_list = []
     for topicref in dita_file_root.iter("keydef"):
         if topicref.get("href") is not None:
             path_new = path.basename(topicref.get("href"))
@@ -136,7 +148,7 @@ def main():
 
     logLines(localLogger.debug, "Topic ref list", rust_topicref_list)
 
-
+    json_hide_id_list = []
     # Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
     for topichead in dita_file_root.iter("topichead"):
         is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or (topichead.get("props") is not None and (language == "en" and topichead.get("props") == "cn")) else False
@@ -155,7 +167,7 @@ def main():
     # Clean the json_files folder
     remove_json_files()
 
-    dita_to_json(working_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language)
+    dita_to_json(working_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language, rust_topicref_list, json_hide_id_list)
 
     # Join all files in the json_files folder
     # List of json files to merge
@@ -174,11 +186,11 @@ def main():
 
     logLines(localLogger.info, "output file", json_file)
 
-def dita_to_json(working_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language):
+def dita_to_json(working_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language, rust_topicref_list, hide_id_list):
     for file_name in os.listdir(path.join(working_dir, 'API')):
         if file_name.endswith(
                 ".dita") and file_name != "API-overview.dita" and file_name != "api_data_type.dita" and file_name in rust_topicref_list:
-            create_json_from_xml(working_dir, path.join(working_dir, 'API', file_name), defined_path, platform_tag, sdk_type, remove_sdk_type, language)
+            create_json_from_xml(working_dir, path.join(working_dir, 'API', file_name), defined_path, platform_tag, sdk_type, remove_sdk_type, language, hide_id_list)
 
 def remove_json_files():
     for root, _, files in os.walk(path.join(path.dirname(__file__), "json_files")):
@@ -239,7 +251,7 @@ def combine_text_sections(base_text: str, sections: Generator[str, None, None]) 
             base_text += t_strip
     return base_text
 
-def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language):
+def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_type, remove_sdk_type, language, json_hide_id_list):
 
     text = ""
 

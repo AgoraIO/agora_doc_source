@@ -14,9 +14,8 @@ jobs:
         matrix:
           platform: [flutter, ios, macos, electron, unity, rn]
           working_dir: [../dita/RTC-NG, ../en-US/dita/RTC-NG]
-          staging_tag: ['', '-staging']
       runs-on: ubuntu-latest
-      name: ${{matrix.platform}}${{matrix.staging_tag}} ${{matrix.working_dir == '../en-US/dita/RTC-NG' && '(en)' || '(cn)'}}
+      name: ${{matrix.platform}} ${{matrix.working_dir == '../en-US/dita/RTC-NG' && '(en)' || '(cn)'}}
       steps:
           - uses: actions/checkout@v3
           - name: Set up python 3.8
@@ -28,8 +27,10 @@ jobs:
             run: |
               if [[ ${{ matrix.working_dir }} == *en-US* ]]; then
                 echo "language=en" >> $GITHUB_OUTPUT
-              else
+                echo "filename=${{matrix.platform}}_en_ng.json" >> $GITHUB_OUTPUT
+                else
                 echo "language=cn" >> $GITHUB_OUTPUT
+                echo "filename=${{matrix.platform}}_cn_ng.json" >> $GITHUB_OUTPUT
               fi
           - name: Get branch name
             id: branch-name
@@ -42,29 +43,24 @@ jobs:
           - name: Run ${{steps.matrix_vars.outputs.language}} JSON creation
             run: |
                 cd xml2json
-                echo "Running for ${{matrix.platform}} NG"
-                if [[ "${{ matrix.staging_tag }}" == -staging ]]; then
-                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}};
-                else
-                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}} \
-                      --json_file ${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json \
-                      --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng;
-                fi
-          - name: Validate JSON File
-            run: python -m json.tool "xml2json/${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json" > /dev/null
+                python xml2json.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}}\
+                  --json_file ${{steps.matrix_vars.outputs.filename}}\
+                  --language ${{steps.matrix_vars.outputs.language}}
+          - name: Validate and Order JSON File
+            run: jq 'sort_by(.'id')' "xml2json/${{steps.matrix_vars.outputs.filename}}" > ${{steps.matrix_vars.outputs.filename}}
           - name: Upload ${{matrix.platform}} ${{steps.matrix_vars.outputs.language}} Artifact
             uses: actions/upload-artifact@v3
             with:
-              name: ${{matrix.platform}}_ng_json_template_${{ steps.matrix_vars.outputs.language }}${{matrix.staging_tag}}.json
-              path: xml2json/${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json
+              name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}.json
+              path: ${{steps.matrix_vars.outputs.filename}}
           - name: Upload ${{matrix.platform}} NG ${{steps.matrix_vars.outputs.language}} JSON to release
             if: github.ref_name == github.event.repository.default_branch
             uses: svenstaro/upload-release-action@2.6.0
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
-                file: xml2json/${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json
-                asset_name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}${{matrix.staging_tag}}.json
-                tag: ${{ steps.branch-name.outputs.current_branch }}-build
+                file: ${{steps.matrix_vars.outputs.filename}}
+                asset_name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}.json
+                tag: ${{steps.branch-name.outputs.current_branch}}-build
                 overwrite: true
                 body: "Template file for automatic comment population."
     check_changed_files:
@@ -72,15 +68,14 @@ jobs:
       if: github.event_name == 'pull_request'
       runs-on: ubuntu-latest
       outputs:
-        updated_xml: ${{ steps.xml2json-changed.outputs.updated_xml }}
+        updated_xml: ${{steps.xml2json-changed.outputs.updated_xml}}
       steps:
         - name: Get changed files
           id: changed-files
           uses: tj-actions/changed-files@v37
         - name: Output Bool
           id: xml2json-changed
-          run: |
-            echo "updated_xml=${{contains(steps.changed-files.outputs.all_changed_files, 'xml2json/xml2json.py')}}" >> $GITHUB_OUTPUT
+          run: echo "updated_xml=${{contains(steps.changed-files.outputs.all_changed_files, 'xml2json/xml2json.py')}}" >> $GITHUB_OUTPUT
     compare:
       name: Compare JSON Files
       needs: [check_changed_files, build]
@@ -107,22 +102,27 @@ jobs:
           with:
             tag: "master-build"
             fileName: ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json
-        - name: Check Downloads
+        - name: Check Sort by ID
           run: |
-            python -m json.tool artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json > ${{matrix.platform}}_${{matrix.language}}_new.json
-            python -m json.tool ${{matrix.platform}}_ng_json_template_${{matrix.language}}.json > ${{matrix.platform}}_${{matrix.language}}_old.json
+            # Sorting and moving newly generated JSON
+            ls .;
+            echo "artifacts"
+            ls artifacts;
+            jq 'sort_by(.'id')' "artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_new.json
+            # mv artifacts/${{matrix.platform}}_${{matrix.language}}_ng.json ${{matrix.platform}}_${{matrix.language}}_new.json
+            # Sorting and moving latest release JSON
+            jq 'sort_by(.'id')' "${{matrix.platform}}_${{matrix.language}}_ng.json" > ${{matrix.platform}}_${{matrix.language}}_old.json
         - name: Make Diff Compare File
-          continue-on-error: true
           run: |
-            set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_new.json ${{matrix.platform}}_${{matrix.language}}_old.json -U 3 | tee ${{matrix.platform}}_comparison.txt > /dev/null
+            set -e; diff -u ${{matrix.platform}}_${{matrix.language}}_old.json ${{matrix.platform}}_${{matrix.language}}_new.json -U 3 | tee comparison.txt > /dev/null
         - name: Output Diff
           run: |
-            if [[ ! -s ${{matrix.platform}}_comparison.txt ]]; then
-              echo "No differences found." >> $GITHUB_STEP_SUMMARY
+            if [[ ! -s comparison.txt ]]; then
+              echo "No differences found."
             else
             echo """
             \`\`\`txt
-              $(cat ${{matrix.platform}}_comparison.txt)
+            $(cat comparison.txt)
             \`\`\`
             """ >> $GITHUB_STEP_SUMMARY
             fi
