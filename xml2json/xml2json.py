@@ -136,9 +136,10 @@ def main():
 
     logLines(localLogger.debug, "Topic ref list", rust_topicref_list)
 
+
     # Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
     for topichead in dita_file_root.iter("topichead"):
-        is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or topichead.get("props") is not None and topichead.get("props") == "cn" else False
+        is_hide_topichead: bool = True if topichead.get("props") is not None and topichead.get("props") == "hide" or (topichead.get("props") is not None and (language == "en" and topichead.get("props") == "cn")) else False
 
         for keydef in topichead.iter("keydef"):
             if keydef.get("href") is not None:
@@ -253,8 +254,6 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
 
     with open(file_dir, "w", encoding='utf-8') as f:
         f.write(text)
-
-    logLines(localLogger.debug, "Hide id list", json_hide_id_list)
 
     localLogger.info("------- Parsing file in " + file_dir + " -------")
     tree = ET.parse(file_dir)
