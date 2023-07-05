@@ -43,8 +43,12 @@
 @property(assign, nonatomic) BOOL publishScreenCaptureVideo;
 @property(assign, nonatomic) BOOL publishScreenCaptureAudio;
 #elif TARGET_OS_MAC
+@property(assign, nonatomic) BOOL publishThirdCameraTrack;
+@property(assign, nonatomic) BOOL publishFourthCameraTrack;
 @property(assign, nonatomic) BOOL publishScreenTrack;
 @property(assign, nonatomic) BOOL publishSecondaryScreenTrack;
+@property(assign, nonatomic) BOOL publishThirdScreenTrack;
+@property(assign, nonatomic) BOOL publishFourthScreenTrack;
 #endif
 @property(assign, nonatomic) BOOL publishCustomAudioTrack;
 @property(assign, nonatomic) NSInteger publishCustomAudioTrackId;
@@ -76,6 +80,8 @@
             <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
   Optional&lt;bool&gt; publishSecondaryCameraTrack;
+  Optional&lt;bool&gt; publishThirdCameraTrack;
+  Optional&lt;bool&gt; publishFourthCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
 
   #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
@@ -84,6 +90,8 @@
   #else
   Optional&lt;bool&gt; publishScreenTrack;
   Optional&lt;bool&gt; publishSecondaryScreenTrack;
+  Optional&lt;bool&gt; publishThirdScreenTrack;
+  Optional&lt;bool&gt; publishFourthScreenTrack;
   #endif
 
   Optional&lt;bool&gt; publishCustomAudioTrack;
