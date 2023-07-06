@@ -11,8 +11,8 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元直播。
 
 下图展示实现元直播的 API 调用时序：
-//TODO: 待更新
-![](https://web-cdn.agora.io/docs-files/1687684407522)
+
+![](https://web-cdn.agora.io/docs-files/1688612805695)
 
 实现步骤需用到如下类：
 

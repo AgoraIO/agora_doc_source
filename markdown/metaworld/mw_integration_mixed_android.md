@@ -11,8 +11,8 @@
 完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元语聊和元直播的融合场景。
 
 下图展示实现元语聊和元直播融合场景的 API 调用时序：
-//TODO: 待更新
-![](https://web-cdn.agora.io/docs-files/1687684407522)
+
+![](https://web-cdn.agora.io/docs-files/1688612963554)
 
 实现步骤需用到如下类：
 
