@@ -17,14 +17,16 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSString*)requestId songCode:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl status:(AgoraMusicContentCenterPreloadStatus)status errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
             <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onPreLoadEvent(const char* requestId, int64_t songCode, int percent, const char* lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode errorCode) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onPreLoadEvent?(
+    requestId: string,
     songCode: number,
     percent: number,
     lyricUrl: string,
     status: PreloadStatusCode,
     errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnPreLoadEvent(Int64 songCode, int percent,string lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode error_code);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnPreLoadEvent(string requestId, Int64 songCode, int percent, string lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode errorCode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onPreLoadEvent?(
+    requestId: string,
     songCode: number,
     percent: number,
     lyricUrl: string,
@@ -32,6 +34,7 @@
     errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
+      String requestId,
       int songCode,
       int percent,
       String lyricUrl,
@@ -51,7 +54,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry props="android ios cpp unreal bp unity flutter rn" conkeyref="onMusicChartsResult/id">
+            <plentry props="android ios cpp framework" conkeyref="onMusicChartsResult/id">
                 <pt></pt>
                 <pd></pd>
             </plentry>
