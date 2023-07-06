@@ -1,12 +1,13 @@
-# 使用通配 Token
-
 用户在加入音视频通话或直播时，声网会使用 Token 对用户鉴权。观众如果需要加入多个频道，或在频道间频繁切换，每加入一个新的频道都需要向服务端申请一个 Token，然后通过用户 ID、频道名、以及获取到的 Token 来加入频道。为解决观众在切换频道时需要频繁申请 Token 的问题，声网提供了基于频道通配符的 Token。通过使用通配 Token，观众可以复用同一个 Token 加入不同频道，既可减少频繁获取 Token 所造成的耗时，从而加快切换、加入频道的速度，同时也能减小你的 Token 服务器的压力。
+
+本文以 Android 平台为例，介绍如何生成通配 Token。
 
 ## 生成通配 Token
 
 Token 需要在你的服务端部署生成。当客户端发送请求时，服务端部署的 Token 生成器会生成相应的 Token 并返回给客户端。你可以参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/video-call-4.x/token_server_android_ng?platform=Android)来在服务端部署一个 Token 生成器。
 
-<div class="alert note">在生成通配 Token 前，请确保你使用的是 AccessToken2。如果你使用的是 AccessToken，请先参考 <a href="https://docportal.shengwang.cn/cn/live-streaming-premium-legacy/token_upgrade?platform=Android#升级至-accesstoken2">AccessToken 升级指南</a>升级至 AccessToken2。</div>
+<div class="alert note"><ul><li>在生成通配 Token 前，请确保你使用的是 AccessToken2。如果你使用的是 AccessToken，请先参考 <a href="https://docportal.shengwang.cn/cn/live-streaming-premium-legacy/token_upgrade?platform=Android#升级至-accesstoken2">AccessToken 升级指南</a>升级至 AccessToken2。</li>
+  <li>如果你使用的是 Web 端，需要调用 <code>setParameter</code> 将 <code>USE_NEW_TOKEN</code> 设为 <code>true</code>。</li></ul></div>
 
 AccessToken2 生成器代码中提供两个 `BuildTokenWithUid` 方法，以 [BuildTokenWithUid](https://github.com/AgoraIO/Tools/blob/master/DynamicKey/AgoraDynamicKey/cpp/src/RtcTokenBuilder2.h)[1/2] 为例，通过该方法生成通配 Token 时，你需要参考 [BuildTokenWithUid API 参考](https://docportal.shengwang.cn/cn/video-call-4.x/token_server_android_ng?platform=Android#buildtokenwithuid-api-参考)填入相关参数信息，并确保：
 
