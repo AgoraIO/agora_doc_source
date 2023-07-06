@@ -21,7 +21,12 @@ AccessToken2 生成器代码中提供两个 `BuildTokenWithUid` 方法，以 [Bu
 
 <div class="alert info">如果用户需要连麦，需要调用 <code>setClientRole</code> 来将用户角色设为主播（ <code>BROADCASTER</code>），然后在 <code>BuildTokenWithUid</code> 方法中指定频道名和用户 ID，且将用户权限（<code>role</code>）设为发流（ <code>kRolePublisher</code>），从而生成具有发流权限的 Token。</div>
 
-1. 通配 Token的超时管理等操作仍旧保持不变，比如当token过期后需要继续重新更新token，确保token在有效期内。
+2. 如果通配 Token 过期，你需要重新在服务端重新生成新的通配 Token，然后调用 [renewToken](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_renewtoken) 来传入新的通配 Token。
+
+## 参考文档
+
+- [使用 Token 鉴权](https://docportal.shengwang.cn/cn/video-call-4.x/token_server_android_ng?platform=Android)
+- [AccessToken 升级指南](https://docportal.shengwang.cn/cn/live-streaming-premium-legacy/token_upgrade?platform=Android#升级至-accesstoken2)
 
 
 
