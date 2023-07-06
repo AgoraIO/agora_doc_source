@@ -6,7 +6,7 @@
 
 ## 业务流程图
 
-//TODO fragment
+~464cb0d0-1bd1-11ee-b391-19a59cc2656e~
 
 ## 准备开发环境
 
@@ -56,7 +56,7 @@
     pod 'AgoraRtcEngine_iOS', 'x.y.z'
     end
     ```
-6. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_ios#集成商汤美颜-SDK)。#TODO input needed
+6. 将商汤美颜 SDK 集成到你的项目中。将商汤美颜 SDK 集成到你的项目中。请联系商汤技术支持获取美颜 SDK、测试证书、集成步骤。
 
 7. 在终端内运行 <code>pod install</code> 命令安装声网 SDK。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
 
@@ -65,14 +65,18 @@
 
 ## 实现秀场直播
 
-//TODO fragment
+如下时序图中展示了如何创建直播间、加入直播间、PK 连麦、观众连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图和[示例项目](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/main/iOS/AgoraEntScenarios/Scenes/Show)自行实现。
 
-<pic> //TODO input change
+<div class="alert note">声网云服务为内部自研服务，暂不对外提供。你可以调用声网云服务的 API 用于测试，但是对于正式环境，声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
+
+![](https://web-cdn.agora.io/docs-files/1688633675704)
 
 
 ### 1. 创建房间
 
 创建房间时，你需要初始化 RTC 引擎、注册原始视频数据以设置商汤美颜、为主播设置本地视图并进行预览。本节展示调用 [`sharedEngineWithConfig`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_initialize) 初始化 RTC 引擎的示例代码。
+
+![](https://web-cdn.agora.io/docs-files/1688633685329)
 
 ```swift
 fileprivate(set) lazy var agoraKit: AgoraRtcEngineKit = {
@@ -91,6 +95,7 @@ fileprivate(set) lazy var agoraKit: AgoraRtcEngineKit = {
 - 主播：可以发送和接收音视频流。直播间的房主即为主播。
 - 观众：只可以接收音视频流。
 
+![](https://web-cdn.agora.io/docs-files/1688633724495)
 
 ```swift
 private func joinChannel(needUpdateCavans: Bool = true) {
@@ -250,6 +255,8 @@ kShowLogBaseContext)
 结束 PK 连麦时，房间内用户都需要调用 [`leaveChannelEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_multi_channel.html#api_irtcengineex_leavechannelex) 离开对方频道。
 
 
+![](https://web-cdn.agora.io/docs-files/1688633733256)
+
 ```swift
 // 加入对方频道
 agoraKitManager.joinChannelEx(currentChannelId: roomId,
@@ -343,6 +350,8 @@ kShowLogBaseContext)
 
 本节展示观众连麦和结束连麦时更新频道媒体选项、设置视图的示例代码。通过 [`updateChannelExWithMediaOptions`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_multi_channel.html#api_irtcengineex_updatechannelmediaoptionsex) 方法在观众加入频道后更新频道媒体选项，例如是否开启本地音频采集，是否发布本地音频流等。观众的用户角色为 `audience`，因此无法在频道内发布音频流。如果观众想与主播连麦，需要将用户角色修改为 `broadcaster`。
 
+![](https://web-cdn.agora.io/docs-files/1688633742612)
+
 ```swift
 agoraKitManager.switchRole(role: role,
                            channelId: roomId,
@@ -386,6 +395,8 @@ func updateChannelEx(channelId: String, options: AgoraRtcChannelMediaOptions) {
 直播结束时，主播和观众离开房间，你可以离开频道并销毁 RTC 引擎。
 
 本节展示调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 RTC 引擎的示例代码。
+
+![](https://web-cdn.agora.io/docs-files/1688633750502)
 
 ```swift
 // ShowAgoraKitManager.swift

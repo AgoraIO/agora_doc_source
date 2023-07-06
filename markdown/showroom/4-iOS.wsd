@@ -1,0 +1,80 @@
+@startuml
+autonumber
+title 秀场直播 API 时序图
+participant "声网 RTC SDK" as sdk
+participant "秀场直播 App" as app #White
+participant "声网云服务\n(Service)" as service
+== 观众与主播连麦 ==
+app -> service: 获取在线用户列表 \ngetAllUserList
+activate service
+service -->> app: 用户信息列表
+deactivate service
+app -> service: 获取当前连麦申请列表 \ngetAllMicSeatApplyList
+activate service
+service -->> app: 连麦信息列表
+deactivate service
+alt#LightPink #WhiteSmoke 主播邀请观众连麦
+app -> service: 主播邀请观众连麦 \ncreateMicSeatInvitation
+activate service
+service -->> app: 观众收到连麦邀请通知 \nsubscribeUser(status=updated)
+alt#LightGray 观众拒绝连麦
+app -> service: 观众拒绝连麦 \nrejectMicSeatInvitation
+end
+alt#LightGray 观众接受连麦
+app -> service: 观众接受连麦 \nacceptMicSeatInvitation
+deactivate service
+service -->> app: 主播收到连麦接受通知
+end
+end
+alt#LightSeaGreen #WhiteSmoke 观众向主播申请连麦
+app -> service: 观众向主播申请连麦 \ncreateMicSeatApply
+activate service
+service -->> app: 主播收到连麦邀请通知 \nsubscribeUser(status=updated)
+alt#LightSteelBlue 主播拒绝连麦
+app -> service: 主播拒绝连麦 \nrejectMicSeatApply
+end
+alt#LightSteelBlue 主播接受连麦
+app -> service: 主播接受连麦 \nacceptMicSeatApply
+deactivate service
+service -->> app: 连麦观众收到连麦接受通知 \nsubscribeInteractionChanged(status=updated)
+end
+end
+app -> sdk: updateChannelExWithMediaOptions
+app -> sdk: startPreview
+note right
+连麦观众切换角色为主播
+发布音视频流并设置本地视图
+end note
+app -> sdk: setupLocalVideo
+service -->> app: 主播和其他观众收到连麦观众上麦通知并知晓连麦观众的 UID
+app -> sdk: setupRemoteVideoEx
+note right
+主播和其他观众渲染连麦观众的视频
+end note
+app -> app: 切换到主播和观众的连麦直播界面
+== 结束观众与主播连麦 ==
+alt#LightPink #WhiteSmoke 主播取消与观众的连麦邀请
+app -> service: 主播取消与观众的连麦邀请 \ncancelMicSeatInvitation
+activate service
+end
+alt#LightSeaGreen #WhiteSmoke 观众取消与主播的连麦申请
+app -> service: 观众取消与主播的连麦申请 \ncancelMicSeatApply
+end
+app -> service: 停止连麦
+service -->> app: 通知连麦停止 \nsubscribeInteractionChanged(status=deleted)
+deactivate service
+service -->> app: 连麦观众收到连麦结束通知
+app -> sdk: updateChannelExWithMediaOptions
+note right
+连麦观众切换角色为观众
+取消发布音视频流和本地视图设置
+end note
+app -> sdk: stopPreview
+app -> sdk: setupLocalVideo(view=nil)
+service -->> app: 主播和其他观众收到连麦结束通知
+note left
+主播和其他观众取消渲染连麦观众的视频
+end note
+app -> sdk: setupRemoteVideoEx(view=nil)
+app -> app: 切换到房主单人直播的界面
+@enduml

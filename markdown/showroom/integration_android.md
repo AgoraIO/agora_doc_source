@@ -21,6 +21,7 @@
 - 虚假主播：通过声网输入在线媒体流服务在房间内创建的一路视频流，是伪直播。观众和房主可以观看虚假主播，但是不能与其连麦。
 
 ![](https://web-cdn.agora.io/docs-files/1686563061182)
+
 ### 主播 PK 连麦
 
 下图展示主播 PK 连麦的流程。在这个流程中，房主邀请另一个房间的房主开始 PK 连麦。两个房间内的观众都可以看到两个房主 PK 连麦直播的画面。
@@ -88,7 +89,7 @@
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
    ```
-3. 将商汤美颜 SDK 集成到你的项目中。详见[集成商汤美颜 SDK](./run_github_project_android#集成商汤美颜-SDK)。#TODO input needed
+3. 将商汤美颜 SDK 集成到你的项目中。请联系商汤技术支持获取美颜 SDK、测试证书、集成步骤。
 
 4. 添加网络及设备权限。
 
@@ -119,11 +120,11 @@
 
 ## 实现秀场直播
 
-如下时序图中展示了如何创建直播间、加入直播间、PK 连麦、观众连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图自行实现。
+如下时序图中展示了如何创建直播间、加入直播间、PK 连麦、观众连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图和[示例项目](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/main/Android/scenes/show)自行实现。
 
-<div class="alert note">声网云服务为内部自研服务，暂不对外提供。声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
+<div class="alert note">声网云服务为内部自研服务，暂不对外提供。你可以调用声网云服务的 API 用于测试，但是对于正式环境，声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
-<pic> //TODO input change
+![](https://web-cdn.agora.io/docs-files/1688633286510)
 
 ### 1. 创建房间
 
@@ -131,6 +132,8 @@
 
 你需要调用 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_initialize) 方法创建 RTC 引擎，并在 `config` 参数中配置上下文 Context、项目的 App ID、注册事件回调。调用 [`registerVideoFrameObserver`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_observer.html#api_imediaengine_registervideoframeobserver) 注册原始视频数据 `beautyProcessor`，用于后续设置商汤美颜。再调用 [`enableVideo`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_enablevideo) 开启视频。
 
+
+![](https://web-cdn.agora.io/docs-files/1688633295261)
 
 ```kotlin
 val rtcEngine: RtcEngineEx
@@ -164,6 +167,8 @@ val rtcEngine: RtcEngineEx
 
 - 主播：可以发送和接收音视频流。直播间的房主即为主播。
 - 观众：只可以接收音视频流。
+
+![](https://web-cdn.agora.io/docs-files/1688633303525)
 
 ```kotlin
 private fun joinChannel(eventListener: VideoSwitcher.IChannelEventListener) {
@@ -352,6 +357,7 @@ override fun setupRemoteVideo(
 
 本节展示用户加入对方频道和离开对方频道的示例代码，如需查阅 `setupRemoteVideoEx` 方法调用逻辑，请参考 [GitHub 示例项目](#示例项目)。
 
+![](https://web-cdn.agora.io/docs-files/1688633311661)
 
 ```kotlin
 // 加入对方频道
@@ -438,6 +444,8 @@ override fun leaveChannel(connection: RtcConnection): Boolean {
 
 本节展示观众连麦和结束连麦时更新频道媒体选项的示例代码。通过 [`updateChannelMediaOptionsEx`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_multi_channel.html#api_irtcengineex_updatechannelmediaoptionsex) 方法在观众加入频道后更新频道媒体选项，例如是否开启本地音频采集，是否发布本地音频流等。观众的用户角色为 `CLIENT_ROLE_AUDIENCE`，因此无法在频道内发布音频流。如果观众想与主播连麦，需要将用户角色修改为 `CLIENT_ROLE_BROADCASTER`。
 
+![](https://web-cdn.agora.io/docs-files/1688633319673)
+
 
 ```kotlin
 // 观众上麦时，用户角色从 AUDIENCE 切换成 BROADCASTER
@@ -474,6 +482,8 @@ mRtcEngine.updateChannelMediaOptionsEx(channelMediaOptions, rtcConnection)
 直播结束时，主播和观众离开房间，你可以离开频道并销毁 RTC 引擎。
 
 本节展示调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 RTC 引擎的示例代码。
+
+![](https://web-cdn.agora.io/docs-files/1688633329030)
 
 ```kotlin
 fun destroy() {
