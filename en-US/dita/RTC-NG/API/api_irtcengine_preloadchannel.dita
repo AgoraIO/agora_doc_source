@@ -45,28 +45,27 @@
         <li>You also need to make sure that the channel name, user ID and token passed in for preloading are the same as the values passed in when joinning the channel, otherwise, this method does not take effect.</li>
         <li id="note2">One <xref keyref="IRtcEngine"/> instance supports preloading 20 channels at most. When exceeding this limit, the latest 20 preloaded channels take effect.</li>
        <li id="note3">Failing to preload a channel does not mean that you can't join a channel, nor will it increase the time of joining a channel.</li></ul></note>
-       <p id="desc2">如果当前频道已经成功预加载，观众加入、离开频道后如需再次加入该频道，只要预加载时传入的 Token 仍在有效期内，则无需重新预加载。</p>
+       <p id="desc2">If you join a preloaded channel, leave it and want to rejoin the same channel, you do not need to call this method unless the token for preloading the channel expires.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="token">
                 <pt>token</pt>
-                <pd>The token generated on your server for authentication. See <xref keyref="guide-token"/>.<p>Token 过期后，根据预加载频道的数量，你可以通过不同方式来传入用于预加载频道的新 Token：
-                <ul><li>预加载一个频道时：调用此方法来传入新的 Token。</li>
-                <li>预加载多个频道时：<ul><li>如果你使用了通配的 Token，调用 <xref keyref="updatePreloadChannelToken"/> 来更新所有预加载频道的 Token。</li>
-                <li>如果你使用了不同的 Token：调用此方法并传入你的用户 ID、对应的频道名和更新后的 Token。</li></ul></li></ul></p>
+                <pd>The token generated on your server for authentication. See <xref keyref="guide-token"/>.<p>When the token for preloading channels expires, you can update the token based on the number of channels you preload.<ul><li>When preloading one channel, calling this method to pass in the new token.</li>
+                <li>When preloading more than one channels:<ul><li>If you use a wildcard token for all preloaded channels, call <xref keyref="updatePreloadChannelToken"/> to update the token.</li>
+                <li>If you use different tokens to preload different channels, call this method to pass in your uer ID, channeel name and the new token.</li></ul></li></ul></p>
                 </pd>
             </plentry>
             <plentry id="channel">
                 <pt props="apple cpp framework">channelId</pt>
                 <pt props="android">channelName</pt>
-                <pd><p>待预加载的频道名。 This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul>
+                <pd><p>The channel name that you want to preload. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters (89 characters in total):<ul>
                     <li>All lowercase English letters: a to z.</li>
                     <li>All uppercase English letters: A to Z.</li>
                     <li>All numeric characters: 0 to 9.</li>
                     <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "= ", ".", ">", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                    <li>"!"、"#"、"$"、"%"、"&amp;"、"("、")"、"+"、"-"、":"、";"、"&lt;"、"="、"."、">"、"?"、"@"、"["、"]"、"^"、"_"、"{"、"}"、"|"、"~"、","</li>
                     </ul></p></pd>
             </plentry>
             <plentry conkeyref="joinChannel1/uid">
@@ -82,7 +81,7 @@
             <li>&lt; 0: Failure.<ul>
                 <li>-2: The parameter is invalid. For example, the token is invalid. You need to pass in a valid parameter and join the channel again.</li>
                 <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
-                <li>-102: The channel name is invalid. You need to pass in a valid parameter and join the channel again.</li>
+                <li>-102: The channel name is invalid. You need to pass in a valid channel name and join the channel again.</li>
                 </ul></li>
             </ul> </section>
         </refbody>

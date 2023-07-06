@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameraexposurefactor">
     <title><ph keyref="setCameraExposureFactor" /></title>
-    <shortdesc id="short"><ph id="shortdesc">设置当前摄像头的曝光系数。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the camera exposure value.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,13 +31,13 @@
                 <dd>v4.2.2</dd>
             </dlentry>
             </dl>
-            <p>当拍摄环境光线不足或过于明亮时，会影响视频采集的画质。 为了获得更好的视频效果，你可以使用该方法调节摄像头的曝光系数。</p>
+            <p>Insufficient or excessive lighting in the shooting environment can affect the image quality of video capture. To achieve optimal video quality, you can use this method to adjust the camera's exposure value.</p>
             <note type="attention">
             <ul>
                 <li props="cpp unreal bp flutter unity">This method is for Android and iOS only.</li>
-                <li>该方法必须在 <xref keyref="enableVideo"/> 后调用，设置结果在 <xref keyref="startPreview2"/> 或 <xref keyref="joinChannel2"/> 后生效。</li>
-                <li>建议你在调用该方法前，先调用 <xref keyref="isCameraExposureSupported"/> 查询当前摄像头是否支持调节曝光系数。</li>
-                <li>当你调用该方法时，设置的是当前正在使用的摄像头的曝光系数，即调用 <xref keyref="setCameraCapturerConfiguration"/> 时指定的摄像头。</li>
+                <li>Call this method after <xref keyref="enableVideo"/>. The setting takes effect after calling <xref keyref="startPreview2"/> or <xref keyref="joinChannel2"/>.</li>
+                <li>Before calling this method, Agora recommends calling <xref keyref="isCameraExposureSupported"/> to check whether the current camera supports adjusting the exposure value.</li>
+                <li>By calling this method, you adjust the exposure value of the currently active camera, that is, the camera specified when calling <xref keyref="setCameraCapturerConfiguration"/>.</li>
             </ul></note>
         </section>
         <section id="parameters">
@@ -48,10 +48,10 @@
                 <pt props="ios">exposureFactor</pt>
                 <pt props="cpp unreal bp flutter unity rn">value</pt>
                 <pd>
-                    <p>摄像头的曝光系数。 默认值为 0，表示使用摄像头的默认曝光量。 取值越大，曝光量越大。 视频图像过曝时，你可以降低曝光系数；视频图像欠曝且暗部细节丢失时，你可以增加曝光系数。 如果你指定的曝光系数超出设备支持的范围，SDK 会自动调节为设备实际支持的范围。</p>
-                    <p props="android">The value range is [0, 30].</p>
-                    <p props="ios">The value range is [0.0, 1.0].</p>
-                    <p props="cpp unreal bp flutter unity rn">在 Android 平台上，取值范围为 [-20.0,20.0]；在 iOS 平台上，取值范围为 [-8.0,8.0]。</p>
+                    <p>The camera exposure value. The default value is 0, which means using the default exposure of the camera. The larger the value, the greater the exposure. When the video image is overexposed, you can reduce the exposure value; when the video image is underexposed and the dark details are lost, you can increase the exposure value. If the exposure value you specified is beyond the range supported by the device, the SDK will automatically adjust it to the actual supported range of the device.</p>
+                    <p props="android">The value range is [-20, 20].</p>
+                    <p props="ios">The value range is [-8.0, 8.0].</p>
+                    <p props="cpp unreal bp flutter unity rn">On Android, the value range is [-20.0, 20.0]. On iOS, the value range is [-8.0, 8.0].</p>
                 </pd>
             </plentry>
             </parml> </section>
@@ -62,6 +62,6 @@
             <li props="cpp unreal bp unity rn">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
-            <p props="ios">Reserved for future use.</p></section>
+            <p props="ios">Without practical meaning.</p></section>
     </refbody>
 </reference>

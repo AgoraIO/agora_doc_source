@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setrouteincommunicationmode">
     <title><ph keyref="setRouteInCommunicationMode"/></title>
-    <shortdesc id="short"><ph id="shortdesc">选择通话音量模式下的音频路由。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Selects the audio playback route in communication audio mode.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,31 +29,30 @@
                 <dd>v4.2.2</dd>
             </dlentry>
             </dl>
-            <p>该方法用于在通话音量模式（<xref keyref="communication-audio-mode"/>）下，将音频路由从蓝牙耳机切换为听筒、有线耳机或扬声器。 该方法调用成功后，SDK 会触发 <xref keyref="onAudioRoutingChanged"/> 回调，报告修改后的路由。</p>
-            <note type="attention" props="android">该方法与 <xref keyref="setEnableSpeakerphone"/> 同时使用时可能引起冲突。 声网建议你单独使用 <xref keyref="setRouteInCommunicationMode"/>。</note>
-            <note type="attention" props="cpp unity rn flutter unreal bp"><ul><li>This method is for Android only.</li><li>该方法与 <xref keyref="setEnableSpeakerphone"/> 同时使用时可能引起冲突。 声网建议你单独使用 <xref keyref="setRouteInCommunicationMode"/>。</li></ul></note>
+            <p>This method is used to switch the audio route from Bluetooth headphones to earpiece, wired headphones or speakers in communication audio mode (<xref keyref="communication-audio-mode"/>).  After the method is called successfully, the SDK will trigger the <xref keyref="onAudioRoutingChanged"/> callback to report the modified route.</p>
+            <note type="attention" props="android">Using this method and the <xref keyref="setEnableSpeakerphone"/> method at the same time may cause conflicts . Agora recommends that you use the <xref keyref="setRouteInCommunicationMode"/> method alone.</note>
+            <note type="attention" props="cpp unity rn flutter unreal bp"><ul><li>This method is for Android only.</li><li>Using this method and the <xref keyref="setEnableSpeakerphone"/> method at the same time may cause conflicts . Agora recommends that you use the <xref keyref="setRouteInCommunicationMode"/> method alone.</li></ul></note>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>route</pt>
-                <pd>期望使用的音频路由:
-                    <ul>
+                <pd>The audio playback route you want to use:<ul>
                     <li>-1: The default audio route.</li>
-                    <li>0：带麦克风的耳机。</li>
-                    <li>1：听筒。</li>
-                    <li>2：不带麦克风的耳机。</li>
-                    <li>3：设备自带的扬声器。</li>
-                    <li>4：（暂不支持）外接的扬声器。</li>
-                    <li>5：蓝牙耳机。</li>
-                    <li>6：USB 设备。</li>
+                    <li>0: Headphones with microphone.</li>
+                    <li>1: Handset.</li>
+                    <li>2: Headphones without microphone.</li>
+                    <li>3: Device's built-in speaker.</li>
+                    <li>4: (Not supported yet) External speakers.</li>
+                    <li>5: Bluetooth headphones.</li>
+                    <li>6: USB device.</li>
                     </ul>              
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p>Reserved for future use.</p> </section>
+            <p>Without practical meaning.</p> </section>
         </refbody>
 </reference>

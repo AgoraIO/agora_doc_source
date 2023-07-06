@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_preloadchannel2">
     <title><ph keyref="preloadChannel2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">使用 <parmname>token</parmname>、<parmname props="apple cpp framework">channelId</parmname><parmname props="android">channelName</parmname>、<parmname>userAccount</parmname> 预加载频道。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a channel with <parmname>token</parmname>, <parmname props="apple cpp framework">channelId</parmname><parmname props="android">channelName</parmname>, and <parmname>userAccount</parmname>.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -45,7 +45,7 @@
             <p conkeyref="preloadChannel/desc1"></p>
             <note type="note">
                 <ul><li conkeyref="preloadChannel/note1"></li>
-                <li>请确保预加载频道时传入的频道名、用户 User Account、Token 和后续加入频道时传入的值相同，否则预加载不生效。</li>
+                <li>You also need to make sure that the User Account, user ID and token passed in for preloading are the same as the values passed in when joinning the channel, otherwise, this method does not take effect.</li>
                 <li conkeyref="preloadChannel/note2"></li>
                 <li conkeyref="preloadChannel/note3"></li></ul>
             <p conkeyref="preloadChannel/desc2"></p>
@@ -73,9 +73,9 @@
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-2: The parameter is invalid. 例如，使用了不合法的 Token 或 User Account。 You need to pass in a valid parameter and join the channel again.</li>
+                <li>-2: The parameter is invalid. For example, an invalid token or User Account is used. You need to pass in a valid parameter and join the channel again.</li>
                 <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
-                <li>-102: The channel name is invalid. You need to pass in a valid parameter and join the channel again.</li>
+                <li>-102: The channel name is invalid. You need to pass in a valid channel name and join the channel again.</li>
                 </ul></li>
             </ul> </section>
         </refbody>
