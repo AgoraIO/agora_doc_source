@@ -15,11 +15,15 @@ node_hide_attributes=("hide"
 if [[ "$lowerlanguage" == "cn" ]]; then
     prefix_path="../../dita"
     node_hide_attributes=("hide")
+    output_json_file_path="../Output/RTC_NG_API_${platform}_${lowerlanguage}.json"
+else
+    prefix_path="../../en-US/dita/"
+    node_hide_attributes=("hide" "cn")
+    output_json_file_path="../Output/RTC_NG_API_${platform}.json"
 fi
 
 api_ditamap_file_path="../../dita/RTC-NG/RTC_NG_API_${platform}.ditamap"
 keys_ditamap_file_path="${prefix_path}/RTC-NG/config/keys-rtc-ng-api-${lowerPlatform}.ditamap"
 api_dita_folder_path="${prefix_path}/RTC-NG/API"
-output_json_file_path="../Output/RTC_NG_API_${platform}.json"
 
 python3 ../Implementation/Pipeline.py ${api_ditamap_file_path} ${keys_ditamap_file_path} ${api_dita_folder_path} ${lowerPlatform} ${output_json_file_path} ${node_hide_attributes[@]}
