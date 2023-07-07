@@ -21,11 +21,11 @@
             <codeblock props="rn" outputclass="language-typescript">abstract sendMetaData(metadata: Metadata, sourceType: VideoSourceType): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; sendMetaData(
     {required Metadata metadata, required VideoSourceType sourceType});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p props="native unreal bp">After a successful method call of <xref keyref="registerMediaMetadataObserver" />, the SDK triggers the <xref keyref="onReadyToSendMetadata" /> callback, and then you can call this method to send media metadata.</p>
+            <p>After a successful method call of <xref keyref="registerMediaMetadataObserver" />, the SDK triggers the <xref keyref="onReadyToSendMetadata" /> callback, and then you can call this method to send media metadata.</p>
             <p>If the metadata is sent successfully, the SDK triggers the <xref keyref="onMetadataReceived" /> callback on the receiver.</p>
         </section>
         <section id="parameters">
@@ -33,16 +33,17 @@
             <parml>
             <plentry>
                 <pt>metadata</pt>
-                <pd>Media metadata See <xref keyref="Metadata" />.</pd>
+                <pd>Media metadata See <xref keyref="Metadata"/>.</pd>
             </plentry>
-            <plentry props="electron rn flutter" conkeyref="VideoCanvas/sourcetype">
-                <pt />
-                <pd />
+            <plentry>
+                <pt props="electron rn flutter">sourceType</pt>
+                <pt props="unity">source_type</pt>
+                <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native unreal bp unity electron rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>

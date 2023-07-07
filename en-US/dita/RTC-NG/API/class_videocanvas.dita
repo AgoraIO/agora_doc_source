@@ -82,11 +82,11 @@
 
   VideoCanvas()
     : view(NULL), uid(0), sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
-  
+
   VideoCanvas(view_t v, uid_t u)
     : view(v), uid(u),
       sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY)
-  
+
   VideoCanvas(view_t v, user_id_t)
     : view(v), uid(0),
       sourceType(VIDEO_SOURCE_CAMERA_PRIMARY), mediaPlayerId(-ERR_NOT_READY) {}
@@ -181,27 +181,25 @@ class VideoCanvas {
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc"> </section>
-        <section id="parameters" props="native unreal bp unity cs flutter rn electron">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>view</pt>
-                <pd>Video display window.</pd>
+                <pd props="native flutter unity cs electron rn">The video display window.</pd>
+                <pd props="unreal bp">The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="reserve" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
+    UImage* LocalVideo;
+    videoCanvas.view = LocalVideo;</codeblock></pd>
             </plentry>
-            <plentry>
+            <plentry props="native flutter unity cs electron rn">
                 <pt>renderMode</pt>
-                <pd>
-                    <p props="ios mac cpp  unity electron rn flutter cs">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE" />.</p>
-                    <p props="android">
-                    <ul conkeyref="setLocalRenderMode2/rendermodetype">
-                    <li />
-                    </ul> </p>
-                </pd>
+                <pd props="ios mac cpp unity electron rn flutter cs">The rendering mode of the video. See <xref keyref="RENDER_MODE_TYPE"/>.</pd>
+                <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
             </plentry>
-            <plentry>
+            <plentry props="native flutter unity cs electron rn">
                 <pt>mirrorMode</pt>
                 <pd>
-                    <p props="ios mac cpp  unity electron rn flutter cs">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unity electron rn flutter cs">The mirror mode of the view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>.</p>
                     <p props="android">
                     <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
                     <li />
@@ -224,16 +222,13 @@ class VideoCanvas {
                 <pt>sourceId</pt>
                 <pd>The ID of the video source.</pd>
             </plentry>
-            <plentry props="ios mac cpp framework">
+            <plentry props="native flutter unity cs electron rn">
                 <pt>setupMode</pt>
-                <pd>Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE" />.</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>setupMode</pt>
-                <pd>Setting mode of the view.<ul>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE" />(0): (Default) Replaces a view.</li>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_ADD" />(1): Adds a view.</li>
-                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE" />(2): Deletes a view.</li>
+                <pd props="ios mac cpp flutter unity cs electron rn">Setting mode of the view. See <xref keyref="VIDEO_VIEW_SETUP_MODE"/>.</pd>
+                <pd props="android">Setting mode of the view.<ul>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/>(0): (Default) Replaces a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_ADD"/>(1): Adds a view.</li>
+                    <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/>(2): Deletes a view.</li>
                 </ul></pd>
             </plentry>
             <plentry>
@@ -245,56 +240,31 @@ class VideoCanvas {
               <pt>rect</pt>
               <pd>(Optional) Display area for the video frame. See <xref keyref="rect-link" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
           </plentry>
-          <plentry props="cpp framework">
+          <plentry props="cpp flutter unity cs electron rn">
                 <pt>cropArea</pt>
-                <pd>(Optional) Display area of the video frame, see <xref keyref="Rectangle" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
-             </plentry>
-             <plentry props="apple">
-                <pt>cropArea</pt>
-                <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link" />. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
-            </plentry>
-            <plentry props="cpp  ios mac unity electron flutter cs">
-                <pt>enableAlphaMask</pt>
-                <pd props="cpp  ios mac unity electron flutter">
-                <p>(Optional) Whether the receiver enables alpha mask rendering:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: The receiver enables alpha mask rendering.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (default) The receiver disables alpha mask rendering.</li>
-                  </ul>
-                </p>
-                <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</p>
-                <note type="attention"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link" />.</li></ul></note>
-                </pd>
-                <pd props="cs">Reserved.</pd>
-            </plentry>
-
+                <pd>(Optional) Display area of the video frame, see <xref keyref="Rectangle"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
+          </plentry>
+          <plentry props="apple">
+            <pt>cropArea</pt>
+            <pd>(Optional) Display area of the video frame, see <xref keyref="rect-link"/>. <parmname>width</parmname> and <parmname>height</parmname> represent the video pixel width and height of the area. The default value is null (width or height is 0), which means that the actual resolution of the video frame is displayed.</pd>
+          </plentry>
+          <plentry props="native flutter unity cs electron rn">
+              <pt>backgroundColor</pt>
+              <pd>The background color of the video canvas in RGBA format. The default value is 0x00000000, which represents completely transparent black.</pd>
+          </plentry>
+          <plentry props="cpp ios mac unity electron flutter cs">
+              <pt>enableAlphaMask</pt>
+              <pd props="cpp ios mac unity electron flutter">
+              <p>(Optional) Whether the receiver enables alpha mask rendering:<ul>
+                  <li><codeph><ph keyref="true"/></codeph>: The receiver enables alpha mask rendering.</li>
+                  <li><codeph><ph keyref="false"/></codeph>: (default) The receiver disables alpha mask rendering.</li>
+                </ul>
+              </p>
+              <p>Alpha mask rendering can create images with transparent effects and extract portraits from videos.  When used in combination with other methods, you can implement effects such as picture-in-picture and watermarking.</p>
+              <note type="attention"><ul><li>This property applies to macOS only.</li><li>The receiver can render alpha channel information only when the sender enables alpha transmission.</li><li>To enable alpha transmission, <xref keyref="ticket-link"/>.</li></ul></note>
+              </pd>
+              <pd props="cs">Reserved.</pd>
+          </plentry>
             </parml> </section>
-          <section id="parameters" props="unreal bp">  
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-            <parml>
-            <plentry>
-                <pt>view</pt>
-                <pd>The video image. You need to define a pointer of UImage type and pass in this parameter. The sample code is as follows:<codeblock props="reserve" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
-    UImage* LocalVideo;
-    videoCanvas.view = LocalVideo;</codeblock></pd>
-            </plentry>
-            <plentry>
-                <pt>uid</pt>
-                <pd>The user ID.</pd>
-            </plentry>
-            <plentry id="sourcetype">
-                <pt>sourceType</pt>
-                <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
-            </plentry>
-            <plentry props="android ios mac">
-                <pt>sourceId</pt>
-                <pd>The ID of the video source.</pd>
-            </plentry>
-            <plentry>
-                <pt>mediaPlayerId</pt>
-                <pd>The ID of the media player. You can get the Device ID by calling <xref keyref="getMediaPlayerId" />.</pd>
-                <pd>This parameter is required when <parmname>sourceType</parmname> is <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER" />.</pd>
-            </plentry>
-            </parml> 
-          </section>
     </refbody>
 </reference>
