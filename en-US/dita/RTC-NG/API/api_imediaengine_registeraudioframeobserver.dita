@@ -34,16 +34,16 @@
                 <pt props="ios mac">delegate</pt>
                 <pt props="unity cs">audioFrameObserver</pt>
                 <pd>
-                    <p><ph>The observer object instance. See <xref keyref="IAudioFrameObserver"/>. </ph><ph props="android mac ios unity cpp unreal bp cs">Set the value as <ph keyref="NULL"/> to release the instance. </ph><ph>Agora recommends calling this method after receiving <xref keyref="onLeaveChannel"/> to release the audio observer object.</ph></p>
+                    <p>The <ph> observer instance. See <xref keyref="IAudioFrameObserver"/>. </ph><ph props="android mac ios unity cpp unreal bp cs">Set the value as <ph keyref="NULL"/> to release the instance. </ph><ph>Agora recommends calling this method after receiving <xref keyref="onLeaveChannel"/> to release the audio observer object.</ph></p>
                 </pd>
             </plentry>
             <plentry props="unity cs">
                 <pt>mode</pt>
-                <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
+                <pd>The audio data callback mode. See <xref keyref="OBSERVER_MODE"/>.</pd>
             </plentry>
             <plentry props="unity">
             <pt>position</pt>
-            <pd><ph>The frame position of the video observer.</ph><ul>
+            <pd><ph>The frame position of the audio observer.</ph><ul>
             <li><ph keyref="AUDIO_FRAME_POSITION_PLAYBACK"/>(0x0001): This position can observe the playback audio mixed by all remote users, corresponding to the <apiname keyref="onPlaybackAudioFrame"/> callback.</li>
             <li><ph keyref="AUDIO_FRAME_POSITION_RECORD"/>(0x0002): This position can observe the collected local user's audio, corresponding to the <apiname keyref="onRecordAudioFrame"/> callback.</li>
             <li><ph keyref="AUDIO_FRAME_POSITION_MIXED"/>(0x0004): This position can observe the playback audio mixed by the loacl user and all remote users, corresponding to the <apiname keyref="onMixedAudioFrame"/> callback.</li>
