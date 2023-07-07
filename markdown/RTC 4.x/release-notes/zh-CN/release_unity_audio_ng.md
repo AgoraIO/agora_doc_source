@@ -1,157 +1,116 @@
-## V4.2.0 版
+## v4.2.2
 
-该版本于 2023 年 5 月 23 日发布。
+该版本于 2023 年 7 月 xx 日发布。
 
-#### 升级必看
+### 升级必看
 
-该版本对部分功能的实现方式进行了优化，请在升级到该版本后更新 app 代码。
+**版权音乐**
 
-**1. 媒体发布选项**
+该版本废弃了 `IMusicContentCenter` 类下的 `Preload [1/2]` 方法并新增 `Preload [2/2]` 方法。如果你使用了 `Preload [1/2]` 方法实现预加载音乐资源，请在升级到该版本后更新 app 代码。
 
-- `ChannelMediaOptions` 中的 `PublishCustomAudioTrackEnableAec` 已删除，请改用 `PublishCustomAudioTrack`。
-- `ChannelMediaOptions` 中的成员 `PublishCustomAudioSourceId` 变更为 `PublishCustomAudioTrackId`。
+### 新增特性
 
-**2. 音频录制**
+1. **通配 Token**
 
-- 删除 `GetMediaRecorder` 方法，可通过该版本新增的 `CreateMediaRecorder` 方法来创建录制对象。
-- 删除 `StartRecording` 、`StopRecording`、`SetMediaRecorderObserver` 中的 `connection` 参数。
+   该版本新增通配 Token。生成 Token 时，在用户 ID 不为 0 的情况下，声网支持你将频道名设为通配符，从而生成可以加入任何频道的通配 Token。在需要频繁切换频道及多频道场景下，使用通配 Token 可以避免 Token 的重复配置，有助于提升开发效率，减少你的 Token 服务端的压力。详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All Platforms)。
 
-**3. 其他兼容性变更**
+   <div class="alert info">声网 4.x SDK 均支持使用通配 Token。</div>
 
-- `OnApiCallExecuted` 已删除，请改用相关频道和媒体的事件通知得知 API 的执行结果。
-- `IAudioFrameObserver` 类名变更为 `IAudioPcmFrameSink`，因此下列方法原型也有相应更新：
-  - `OnFrame`
-  - `IMediaPlayer` 下的 `RegisterAudioFrameObserver` [1/2]、`RegisterAudioFrameObserver`[2/2]
-- `StartChannelMediaRelay`、`UpdateChannelMediaRelay`、`StartChannelMediaRelayEx` 和 `UpdateChannelMediaRelayEx` 已废弃，请改用 `StartOrUpdateChannelMediaRelay` 和 `StartOrUpdateChannelMediaRelayEx`。
+2. **预加载频道**
 
-#### 新增特性
+   该版本新增 `PreloadChannel[1/2]` 和 `PreloadChannel[2/2]` 方法，支持角色为观众的用户在加入频道前预先加载一个或多个频道。该方法调用成功后可以减少观众加入频道的时间，从而缩短观众听到主播首帧音频以及看到首帧画面的耗时，提升观众端的音视频体验。
 
-**1. AI 降噪**
+   在同时预加载多个频道时，为避免观众在切换不同频道时需多次申请 Token 从而导致切换频道时间增长，因此声网推荐使用通配 Token 来减少你的业务服务端获取 Token 导致的耗时，进一步加快切换频道的速度，详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All Platforms)。
 
-该版本新增AI 降噪功能。开启该功能后，SDK 会智能识别和消除背景噪音，无论是在嘈杂的公共场所，还是在需要保持低延迟的实时竞技场景，都能够确保声音传输的清晰度，为用户提供更高质量的音频体验。你可以通过该版本新增的 `SetAINSMode` 方法开启 AI 降噪，并根据实际场景，将降噪模式设置为均衡模式、强降噪模式或低延时模式。
+3. **自定义视频画布背景颜色**
 
-**2. 本地录制远端音视频（Beta）**
+   该版本在 `VideoCanvas` 中增加了 `backgroundColor` 成员，支持你在设置本地或远端视频显示属性时，自定义视频画布的背景颜色。
 
-该版本新增本地录制远端音频功能。本地用户可以录制远端用户的音频流，便于将来回放、分析或分享，适用于在线教育、企业培训、在线会议等多类场景。为更准确报告录制状态，该版本在 `OnRecorderStateChanged` 、`OnRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数，用于表示录制的音视频流的具体信息，并新增 `CreateMediaRecorder` 方法，用于创建本地或远端的录制对象。
+4. **发布多源采集的视频流** (Windows, macOS)
 
-你可以通过如下方法体验本地录制远端音频功能：
+   该版本在 `ChannelMediaOptions` 中新增下列成员，支持你发布第三个、第四个摄像头和屏幕采集到的视频流：
 
-- `CreateMediaRecorder`：创建录制对象。如需同时录制本地和远端的音频，可以多次调用该方法创建多个录制对象。
-- `SetMediaRecorderObserver`：设置录制回调对象。
-- `StartRecording`：开始录制。
-- `StopRecording`：停止录制。
-- `DestroyMediaRecorder`：销毁录制对象。
+   - `publishThirdCameraTrack`：发布第三个摄像头采集的视频。
+   - `publishFourthCameraTrack`：发布第四个摄像头采集的视频。
+   - `publishThirdScreenTrack`：发布第三个屏幕采集的视频。
+   - `publishFourthScreenTrack`：发布第四个屏幕采集的视频。
 
-**3. 多端同步**
+   <div class="alert info">目前 SDK 支持在同一时间、同一 <code>RtcConnection</code> 中发布多路音频流、一路视频流。</div>
 
-在实时合唱的场景中，可能会出现网络原因导致各接收端下行链路不一致的情况，该版本新增 `GetNtpWallTimeInMs` 方法获取当前的 NTP (网络时间协议) 时间，用于对齐多个接收端的歌词和音乐，实现合唱同步、歌词进度同步等，为用户提供更佳的协同体验。
+5. **支持仅播放副歌片段** (Android, iOS)
 
- **4. 快速出声**
+   该版本新增 `GetInternalSongCode` 方法，如果你仅需要播放某一音乐资源的副歌片段，在播放前你需要调用该方法来为该副歌片段创建一个内部歌曲编号，作为该资源的唯一标识。你可以查看[在线 K 歌房文档](https://docportal.shengwang.cn/cn/online-ktv/landing-page?platform=Android)了解更多 K 歌场景方案。
 
- 该版本新增 `EnableInstantMediaRendering` 方法，用于开启音频帧的加速渲染模式，可加快用户加入频道后的出声速度。
+### 改进
 
-#### 改进
+1. **摄像头采集效果提升** (Android, iOS)
 
-**1.优化变声** 
+   该版本从以下几个方面提升了摄像头采集效果：
 
-该版本新增了 `SetLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `SetLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
+   1. 支持摄像头采集曝光调节
 
+      新增 `IsCameraExposureSupported` 和 `SetCameraExposureFactor` 方法，用于查询当前设备是否支持曝光调节和设置摄像头的曝光增益。
 
- **2. 提升音频文件类型兼容性（Android）**
+   2. 优化默认摄像头选择 (iOS)
 
-该版本提升了音频文件类型兼容性，你可以通过 `StartAudioMixing`[2/2]、`PlayEffect`[3/3]、`Open`、`OpenWithMediaSource` 方法来打开以 `Content://` 开头的 URI 文件。
+      自该版本起，SDK 的默认摄像头选择对齐 iOS 系统相机行为。如果设备拥有多个后置摄像头，则在视频采集时可以获得更好的拍摄视野、变焦能力、低光性能和深度感应，从而提高视频采集的质量。
 
-**3. 优化版权音乐（Android，iOS）**
+2. **虚拟背景算法升级**
 
-针对在线 K 歌房场景，改版本新增 `GetCaches` 和 `RemoveCache` 方法，用于获取、删除音乐资源缓存，并新增状态码和错误码，可方便用户排查问题。
+   该版本升级了虚拟背景的人像分割算法，全面提升了人像分割的准确度、人像边缘与虚拟背景间的平滑度以及人物移动时边缘的贴合度，同时优化了虚拟背景在会议、办公、居家等场景下，以及逆光、弱光等条件下的人物边缘精度。
 
-**4. 优化跨频道连麦**
+3. **跨频道连麦优化**
 
-该版本新增 `StartOrUpdateChannelMediaRelay` 和 `StartOrUpdateChannelMediaRelayEx` 方法，通过一个方法实现开始跨频道转发和更新转发的目标频道，提升了接口易用性；同时，优化内部交互次数，有效降低调用了延迟。在降低开发难度的同时，为开发者提供更顺畅的使用体验。
+   该版本将跨频道连麦时媒体流转发的目标频道增加至 6 个，在调用 `StartOrUpdateChannelMediaRelay` 和 `StartOrUpdateChannelMediaRelayEx` 时，你可以指定最多 6 个目标频道。
 
+4. **视频编解码查询能力增强**
 
-**5. 多路音频自采集**
+   为提升设备编解码能力查询功能，该版本在 `CodecCapInfo` 中新增 `codecLevels` 成员。当成功调用 `QueryCodecCapability` 后，可通过 `codecLevels` 得知当前设备对于 H.264 和 H.265 格式的视频的硬件和软件解码能力等级。
 
-为更好地满足音频自采集的场景需求，该版本新增了 `CreateCustomAudioTrack` 和 `DestroyCustomAudioTrack` 方法用于创建和销毁自定义音频轨道，并提供了两种音频轨道类型供用户选择，进一步提升了自采集音频处理的灵活性和易用性：
+该版本还进行了如下改进：
 
-- 可混音的音频轨道：支持将多路外部音频源混合发布到同一频道中，适用于多路音频源的自采集场景。
-- 非混音的音频轨道：仅支持将一路外部音频源发布到单个频道中，适用于实时低延迟的自采集场景。
+1. 为了提升多种音频路由之间的切换体验，该版本新增了 `SetRouteInCommunicationMode` 方法，用于在通话音量模式 ([MODE_IN_COMMUNICATION](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)) 下，将音频路由从蓝牙耳机切换为听筒、有线耳机或扬声器。 (Android)
+2. 在屏幕共享场景下，SDK 根据共享的场景自动调节发送端的帧率。尤其是在共享文档场景下，避免发送端的视频码率超出预期的情况，以提高传输效率、减小网络负担。
+3. 为帮助用户了解更多类型的远端视频状态改变的原因，`OnRemoteVideoStateChanged` 回调中新增了 `REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT` 枚举，表示本地的视频解码器不支持对收到的远端视频流进行解码。
+4. 版权音乐新增 `GetSongSimpleInfo` 方法，可用于获取某一指定歌曲的详细信息，你可以通过触发的 `OnSongSimpleInfoResult` 回调来获取歌曲信息。 (Android, iOS)
 
-
-#### 问题修复
+### 问题修复
 
 该版本修复了以下问题：
 
-**Android**
+- 加入频道后，偶现本地用户听自己及远端的声音时出现杂音。 (macOS)
+- 网络异常导致频道连接断开后，频道连接恢复较慢。
+- 在屏幕共享场景下，部分机型偶现屏幕共享画面出图延迟高于预期。
+- 自采集场景下，`SetBeautyEffectOptions`、`SetLowlightEnhanceOptions`、`SetVideoDenoiserOptions` 和 `SetColorEnhanceOptions` 无法自动加载插件。
+- 多设备音频录制场景下，反复插拔或开启/禁用音频录制设备后，偶现调用 `StartRecordingDeviceTest` 进行音频采集设备测试时听不到声音。 (Windows)
 
-- 偶现耳返开启无效。
-- 偶现回声。
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户端状态异常。
-- 合唱模式下，OPPO R11 设备外放加入频道后，对端听到明显杂声和回音。
-- 本地音乐文件结束播放时，未能触发 `OnAudioMixingFinished` 回调。
-
-**iOS**
-
-- 由于 `OnRemoteAudioStateChanged` 回调异常造成客户端状态异常。
-
-**全平台**
-
-- 使用媒体播放器播放采样率超过 48 kHz 的音频时，播放失败。
-- 当快速切换身份角色时，观众端听不到声音。
-
-#### API 变更
+### API 变更
 
 **新增**
 
-- `StartOrUpdateChannelMediaRelay`
-- `StartOrUpdateChannelMediaRelayEx`
-- `GetNtpWallTimeInMs`
-- `SetAINSMode`
-- `CreateAudioCustomTrack`
-- `DestroyAudioCustomTrack`
-- `CreateMediaRecorder`
-- `DestroyMediaRecorder`
-- `IMusicContentCenter` 中新增如下方法：(iOS, Android)
-  - `RemoveCache`
-  - `GetCaches`
-- `AudioTrackConfig`
-- `MusicCacheInfo` (iOS, Android)
-- `RecorderStreamInfo`
-- `AUDIO_AINS_MODE`
-- `AUDIO_TRACK_TYPE`
-- `MUSIC_CACHE_STATUS_TYPE ` (iOS, Android)
-- `RtcEngineContext` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
-- `OnRecorderStateChanged`、`OnRecorderInfoUpdated` 中新增 `channelId` 和 `uid` 参数
-- `OnCaptureVideoFrame` 和 `OnPreEncodeVideoFrame` 中增加 `sourceType` 参数
-- `PreloadStatusCode` 中增加 `KPreloadStatusRemoved` (iOS, Android)
-- `MusicContentCenterStatusCode` 中增加如下枚举：(iOS, Android)
-  - `KMusicContentCenterStatusErrGateway`
-  - `KMusicContentCenterStatusErrPermissionAndResource`
-  - `KMusicContentCenterStatusErrInternalDataParse`
-  - `KMusicContentCenterStatusErrMusicLoading`
-  - `KMusicContentCenterStatusErrMusicDecryption`
-- `MusicContentCenterConfiguration` 中新增 `maxCacheSize ` (iOS, Android)
-- `EnableInstantMediaRendering`
-
-**修改**
-
-- `OnMusicChartsResult` 中的 `status` 修改为 `error_code` (iOS, Android)
-- `OnMusicCollectionResult` 中的 `status` 修改为 `error_code` (iOS, Android)
-- `OnLyricResult` 中的 `status` 修改为 `error_code` (iOS, Android)
-- `OnPreLoadEvent `中的 `msg` 修改为 `error_code` (iOS, Android)
+- `SetCameraExposureFactor` (Android, iOS)
+- `IsCameraExposureSupported` (Android, iOS)
+- `PreloadChannel[1/2]`
+- `PreloadChannel[2/2]`
+- `UpdatePreloadChannelToken`
+- `GetSongSimpleInfo` (Android, iOS)
+- `OnSongSimpleInfoResult` (Android, iOS)
+- `GetInternalSongCode` (Android, iOS)
+- `Preload [2/2]` (Android, iOS)
+- `OnLyricResult` 中增加 `songCode` (Android, iOS)
+- `OnPreLoadEvent` 中增加 `requestId` (Android, iOS)
+- `SetRouteInCommunicationMode` (Android)
+- `ChannelMediaOptions` 中增加下列成员：
+  - `publishThirdCameraTrack`
+  - `publishFourthCameraTrack`
+  - `publishThirdScreenTrack`
+  - `publishFourthScreenTrack`
+- `CodecCapLevels`
+- `VIDEO_CODEC_CAPABILITY_LEVEL`
+- `VideoCanvas` 中增加 `backgroundColor` 成员
+- `CodecCapInfo` 中增加 `codecLevels` 成员
+- `REMOTE_VIDEO_STATE_REASON` 中增加 `REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT` 枚举
 
 **废弃**
 
-- `StartChannelMediaRelay`
-- `StartChannelMediaRelayEx`
-- `UpdateChannelMediaRelay`
-- `UpdateChannelMediaRelayEx`
-- `OnChannelMediaRelayEvent`
-- `CHANNEL_MEDIA_RELAY_EVENT`
-
-**删除**
-
-- `OnApiCallExecuted`
-- `ChannelMediaOptions` 中的 `PublishCustomAudioTrackEnableAec`
-- `GetMediaRecorder`
-- `StartRecording`、`StopRecording`、`SetMediaRecorderObserver` 中删除 `connection` 参数
+- `Preload [1/2]` (Android, iOS)
