@@ -20,9 +20,9 @@
                             <note>The video source type specified in this method must match the video source type set in the <codeph><apiname keyref="VideoCanvas"/></codeph> of the <codeph><apiname keyref="setupLocalVideo"/></codeph> method.</note>
                         </li>
                         <li props="cpp mac unity electron unreal bp flutter"><p><ph><b>Publishing video streams from different sources</b></ph> <ph props="cpp flutter unity unreal bp">(Windows, macOS)</ph></p>
-                            <p>This release add the following members in <codeph><apiname keyref="ChannelMediaOptions"/></codeph> to allow you publish video streams captured from the third and fourth camera or screen:<ul><li><codeph>publishThirdCameraTrack</codeph>: Publishing the video stream captured from the third camera.</li>
+                            <p>This release adds the following members in <codeph><apiname keyref="ChannelMediaOptions"/></codeph> to allow you publish video streams captured from the third and fourth camera or screen:<ul><li><codeph>publishThirdCameraTrack</codeph>: Publishing the video stream captured from the third camera.</li>
                             <li><codeph>publishFourthCameraTrack</codeph>: Publishing the video stream captured from the fourth camera.</li>
-                            <li><codeph>publishThirdScreenTrack</codeph>: Publishing the video stream captured from the thrid screen.</li>
+                            <li><codeph>publishThirdScreenTrack</codeph>: Publishing the video stream captured from the third screen.</li>
                             <li><codeph>publishFourthScreenTrack</codeph>: Publishing the video stream captured from the fourth screen.</li></ul>
                             <note>For one <codeph><apiname keyref="RtcConnection"/></codeph>, Agora supports publishing multiple audio streams and one video stream at the same time.</note></p>
                         </li>
@@ -62,7 +62,7 @@
                 <p>This release fixed the following issues:<ul>
                         <li props="mac flutter electron unity unreal bp"><p><ph>Occasionally, noise occurred when the local user listened to their own and remote audio after joining the channel. </ph><ph props="flutter electron unity unreal bp">(macOS)</ph></p></li>
                         <li>Slow channel reconnection after the connection was interrupted due to network reasons.</li>
-                        <li>In screen sharing scenarios, the delay of seeing the shared screen is occasionally higher than expected on some devices.</li> 
+                        <li>In screen sharing scenarios, the delay of seeing the shared screen was occasionally higher than expected on some devices.</li> 
                         <li>In custom video capturing scenarios, <codeph><apiname keyref="setBeautyEffectOptions"/></codeph>, <codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph>, <codeph><apiname keyref="setVideoDenoiserOptions"/></codeph>, and <codeph><apiname keyref="setColorEnhanceOptions"/></codeph> could not load extensions automatically. </li>
                         <li props="cpp unity cs electron unreal bp flutter"><p><ph>In multi-device audio recording scenarios, after repeatedly plugging and unplugging or enabling/disabling the audio recording device, no sound could be heard occasionally when calling the <codeph><apiname keyref="startRecordingDeviceTest"/></codeph> to start an audio capturing device test. </ph><ph props="unity electron unreal bp flutter">(Windows)</ph></p></li>
                     </ul></p>
