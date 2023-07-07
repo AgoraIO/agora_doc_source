@@ -968,7 +968,8 @@ def replace_newline():
     # These two removing double newlines, which are required to separate abstract and long description
     # They were patching bugs from not removing newlines between other sections.
     # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
-    # replaced_file_text = re.sub(r'[\r\t\f\v ]{2,100}', ' ', replaced_file_text)
+    # replace 2+ whitespace characters with just one space
+    replaced_file_text = re.sub(r'[ ]{2,}', ' ', replaced_file_text)
 
     replaced_file_text = re.sub(r' See[\s\\n]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r' For more information[A-Za-z\s\\n,]{0,100}\.', '', replaced_file_text)
