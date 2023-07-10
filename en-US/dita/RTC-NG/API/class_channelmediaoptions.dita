@@ -132,10 +132,6 @@
 
   publishMicrophoneTrack?: boolean;
 
-  publishScreenCaptureVideo?: boolean;
-
-  publishScreenCaptureAudio?: boolean;
-
   publishScreenTrack?: boolean;
 
   publishSecondaryScreenTrack?: boolean;
@@ -466,27 +462,42 @@ class ChannelMediaOptions {
                     <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true" /></codeph>.</li></ul></note>
                 </pd>
             </plentry>
-            <plentry>
-                <pt props="android ios">publishScreenCaptureVideo</pt>
-                <pt props="mac cpp framework">publishScreenTrack</pt>
+            <plentry props="cpp mac unreal bp unity cs flutter electron">
+                <pt>publishThirdCameraTrack</pt>
+                <pd>Whether to publish the video captured by the second camera:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second camera.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the second camera.</li>
+                    </ul>
+                <p><note type="attention" props="cpp unreal bp unity cs flutter">This method is for Windows and macOS only.</note></p></pd>
+            </plentry>
+            <plentry props="cpp mac unreal bp unity cs flutter electron">
+                <pt>publishFourthCameraTrack</pt>
+                <pd>Whether to publish the video captured by the second camera:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the video captured by the second camera.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured by the second camera.</li>
+                    </ul><p><note type="attention" props="cpp unreal bp unity cs flutter">This method is for Windows and macOS only.</note></p></pd>
+            </plentry>
+            <plentry props="mac cpp flutter unreal bp unity cs electron">
+                <pt>publishScreenTrack</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <p><note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p>
+                    <p><note type="attention" props="cpp unreal bp unity flutter">This method is for Windows and macOS only.</note></p>
                 </pd>
             </plentry>
-            <plentry props="cpp unreal bp unity flutter rn">
+            <plentry props="android ios cpp flutter unreal bp unity rn">
                 <pt>publishScreenCaptureVideo</pt>
                 <pd>
                     <p>Whether to publish the video captured from the screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <p><note type="attention" props="cpp unreal bp unity flutter electron">This parameter applies to Android and iOS only.</note></p> </pd>
+                    <p><note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note></p>
+                    <p><note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p> </pd>
             </plentry>
-            <plentry props="android ios cpp framework">
+            <plentry props="android ios cpp flutter unreal bp unity rn">
                 <pt>publishScreenCaptureAudio</pt>
                 <pd>
                     <p>Whether to publish the audio captured from the screen:<ul>
@@ -494,7 +505,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="false" /></codeph>: Publish the audio captured from the screen.</li>
                     </ul></p>
                     <p>
-                    <note type="attention" props="cpp unreal bp unity flutter electron">This parameter applies to Android and iOS only.</note></p>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note></p>
                 </pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity cs flutter rn electron">
@@ -503,6 +514,26 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the second screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured from the second screen.</li>
                     </ul>
+                </pd>
+            </plentry>
+             <plentry props="mac cpp unreal bp unity cs flutter electron">
+                <pt>publishThirdScreenTrack</pt>
+                <pd>Whether to publish the video captured from the second screen:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the second screen.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the second screen.</li>
+                    </ul>
+                    <p>
+                    <note type="attention" props="cpp unreal bp unity cs flutter">This method is for Windows and macOS only.</note></p>
+                </pd>
+            </plentry>
+            <plentry props="mac cpp unreal bp unity cs flutter electron">
+                <pt>publishFourthScreenTrack</pt>
+                <pd>Whether to publish the video captured from the second screen:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Publish the captured video from the second screen.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not publish the video captured from the second screen.</li>
+                    </ul>
+                    <p>
+                    <note type="attention" props="cpp unreal bp unity cs flutter">This method is for Windows and macOS only.</note></p>
                 </pd>
             </plentry>
             <plentry props="cpp unreal bp unity cs flutter rn electron">
