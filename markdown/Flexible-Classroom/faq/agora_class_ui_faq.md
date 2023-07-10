@@ -8,7 +8,7 @@
 <div className="flex bg-black justify-center items-center h-screen w-screen">
 ```
 
-删除 `bg-black` 即可。更多自定义 UI 信息参考[自定义课堂 UI](agora_class_custom_ui_web#修改教室背景色)。
+删除 `bg-black` 即可。更多自定义 UI 信息参考[自定义课堂 UI](/cn/agora-class/agora_class_custom_ui_web#修改教室背景色)。
 
 ## Web 端如何更改白板背景颜色？
 
@@ -25,7 +25,7 @@ background: #000; /* 这行设置白板颜色背景色为黑色 */
 }
 ```
 
-更多自定义 UI 信息参考[自定义课堂 UI](agora_class_custom_ui_web#修改白板背景色)。
+更多自定义 UI 信息参考[自定义课堂 UI](/cn/agora-class/agora_class_custom_ui_web#修改白板背景色)。
 
 ## Web 端如何更改屏幕共享背景颜色？
 
@@ -38,7 +38,7 @@ div {
 }
 ```
 
-更多自定义 UI 信息参考[自定义课堂 UI](agora_class_custom_ui_web#修改屏幕共享背景颜色)。
+更多自定义 UI 信息参考[自定义课堂 UI](/cn/agora-class/agora_class_custom_ui_web#修改屏幕共享背景颜色)。
 
 ## 如何修改白板宽高比例？
 
@@ -46,7 +46,7 @@ div {
 
 如果你只想修改一对一场景中的白板高度，则可在 `packages/agora-classroom-sdk/src/infra/stores/one-on-one` 目录下新建 `board.ts` 文件。
 
-更多自定义 UI 信息参考[自定义课堂 UI](agora_class_custom_ui_web#修改白板布局比例)。
+更多自定义 UI 信息参考[自定义课堂 UI](/cn/agora-class/agora_class_custom_ui_web#修改白板布局比例)。
 
 ## 如何在 UI 层获取角色信息
 
@@ -88,4 +88,4 @@ export const NavigationBar = visibilityControl(observer(() => {
 ![](https://web-cdn.agora.io/docs-files/1680084369237)
 
 
-如有更多需求，可[下载源码](agora_class_integrate_web)并参照[自定义课堂 UI](agora_class_custom_ui_web)进行修改定制。
+如有更多需求，可[下载源码](/cn/agora-class/agora_class_integrate_web)并参照[自定义课堂 UI](/cn/agora-class/agora_class_custom_ui_web)进行修改定制。

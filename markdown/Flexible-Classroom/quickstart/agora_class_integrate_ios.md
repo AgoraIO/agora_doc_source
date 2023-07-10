@@ -58,14 +58,14 @@ pod --version
    pod 'Whiteboard',                  '2.16.51'
    
    # open-source libs
-   pod 'AgoraClassroomSDK_iOS', '2.8.30'
-   pod 'AgoraEduUI',            '2.8.30'
+   pod 'AgoraClassroomSDK_iOS', '2.8.40'
+   pod 'AgoraEduUI',            '2.8.40'
       
-   pod 'AgoraWidgets',          '2.8.30'
+   pod 'AgoraWidgets',          '2.8.40'
    
    # close-source libs
    pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 	         '2.8.30'
+   pod 'AgoraEduCore', 	         '2.8.40'
    pod 'AgoraWidget',           '2.8.0'
    ```
 
@@ -162,7 +162,7 @@ pod --version
    ```
 
    示例代码中需要传入 `token`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 Token，如何获取测试用途的临时 Token，如何从服务器生成 Token。
-   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
+   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="generate-token">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
 5. （可选）自定义教育场景的灵动课堂界面的显示模式（明亮/暗黑）和语言（中文/英文）。
 
@@ -209,7 +209,7 @@ pod --version
    
    # close-source libs
    pod 'AgoraUIBaseViews',      '2.8.0'
-   pod 'AgoraEduCore', 	         '2.8.30'
+   pod 'AgoraEduCore', 	         '2.8.40'
    pod 'AgoraWidget',           '2.8.0'
    ```
    
@@ -296,7 +296,7 @@ pod --version
    ```
 
    示例代码中需要传入 `token`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 Token，如何获取测试用途的临时 Token，如何从服务器生成 Token。
-   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
+   <div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="generate-token">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
 5. （可选）自定义监考场景的灵动课堂界面的显示模式（明亮/暗黑）和语言（中文/英文）。
 
@@ -357,7 +357,7 @@ pod --version
     
    # close-source libs
    pod 'AgoraUIBaseViews',    '2.8.0'
-   pod 'AgoraEduCore', 			'2.8.30'
+   pod 'AgoraEduCore', 			'2.8.40'
    pod 'AgoraWidget', 			'2.8.0'
    ```
 
@@ -400,7 +400,7 @@ pod --version
     
    # close-source libs
    pod 'AgoraUIBaseViews',    '2.8.0'
-   pod 'AgoraEduCore', 			'2.8.30'
+   pod 'AgoraEduCore', 			'2.8.40'
    pod 'AgoraWidget', 			'2.8.0'
    ```
 4. 在终端中进入到工程目录，执行 `pod install` 命令。

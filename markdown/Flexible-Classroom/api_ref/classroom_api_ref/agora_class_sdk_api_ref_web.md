@@ -83,15 +83,15 @@ export type LaunchOption = {
 
 | 参数                     | 描述                                                                                                                                                                                                |
 | :----------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rtmToken`               | （必填）用于鉴权的 RTM Token。详见[使用 RTM Token 鉴权](https://docs.agora.io/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms)。                                                                                                                                                                      |
-| `userUuid`               | （必填）用户 ID。这是用户的全局唯一标识，**需要与你生成 RTM Token 时使用的 UID 一致**。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                   |
+| `rtmToken`               | （必填）用于鉴权的 Token。详见[使用 Token 鉴权](generate-token)。                                                                                                                                                                      |
+| `userUuid`               | （必填）用户 ID。这是用户的全局唯一标识，需要与你生成 Token 时使用的 UID 一致。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                   |
 | `userName`               | （必填）用户名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
 | `roomUuid`               | （必填）课堂 ID。这是课堂的全局唯一标识。长度在 64 字节以内。~d6d26ba0-cf5b-11eb-9521-2d3265d0c546~                                                                                                 |
 | `roomName`               | （必填）课堂名，用于课堂内显示，长度在 64 字节以内。                                                                                                                                                |
 | `roleType`               | （必填）用户在课堂中的角色，详见 [EduRoleTypeEnum](#eduroletypeenum)。                                                                                                                              |
 | `roomType`               | （必填）课堂类型，详见 [EduRoomTypeEnum](#eduroomtypeenum)。                                                                                                                                        |
 | `roomServiceType`  |（选填）大班课使用的服务类型。详见 [EduRoomServiceTypeEnum](#eduroomservicetypeenum)。  |
-| `listener`               | （必填）课堂启动状态：<li>`ready`: 课堂准备完毕。</li><li>`destroyed`: 课堂已销毁。</li>                                                                                                            |
+| `listener`               | （必填）教室事件监听回调，详见 [ListenerCallback](#listenercallback)。  |
 | `pretest`                | （必填）是否开启课前设备检测：<li>`true`: 开启课前设备检测。开启后，在加入课堂前会弹出设备检测页面，测试终端用户的摄像头、麦克风和扬声器是否能正常工作。</li><li>`false`: 不开启课前设备检测。</li> |
 | `language`               | （必填）课堂界面的语言，详见 [LanguageEnum](#languageenum)。                                                                                                                                        |
 | `startTime`              | （选填）课堂开始时间（毫秒），以第一个进入课堂的用户传入的参数为准。                                                                                                                                |
@@ -130,7 +130,7 @@ export type MediaOptions = {
 | `screenShareEncoderConfiguration` | 屏幕共享视频流编码参数配置，详见 [EduVideoEncoderConfiguration](#eduvideoencoderconfiguration)。   |
 | `encryptionConfig`                | 媒体流加密配置，详见 [MediaEncryptionConfig](#mediaencryptionconfig)。                             |
 | `channelProfile`                | 频道配置，详见 [ChannelProfile](#channelprofile)。                             |
-| `web`   | 用于配置浏览器编码格式和频道场景：<ul><li>`codec`: 浏览器编码格式，可以为如下：<ul><li>`"vp8"`: VP8 编码。</li><li>`"h264"`: H.264 编码。</li></li></ul><li>`mode`: 频道场景，可以为如下：<ul><li>`"rtc"`: 通信模式，一般用于一对多或一对一的小班课。</li><li>`"live"`: 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。</li></ul></li></ul>|
+| `web`   | 用于配置浏览器编码格式和频道场景：<ul><li>`codec`: 浏览器编码格式，可以为如下：<ul><li>`vp8`: VP8 编码。</li><li>`h264`: H.264 编码。</li></li></ul><li>`mode`: 频道场景，可以为如下：<ul><li>`rtc`: 通信模式，一般用于一对多或一对一的小班课。</li><li>`live`: 直播模式，相较于通信模式，更低费用，同时延迟相较于通信模式较大。</li></ul></li></ul>|
 
 ### EduVideoEncoderConfiguration
 
@@ -318,8 +318,8 @@ export type CourseWareList = CourseWareItem[];
 | `size`         | 课件大小，单位为字节。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `updateTime`   | 课件最后被修改的时间。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | `taskUuid`     | 课件转换任务的 uuid。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `conversion`   | 包含以下字段：<ul><li>`type`: String 型，课件转换方式，可设为：<ul><li>`"static"`: 静态转换，是指将 PPT、PPTX、DOC、DOCX、PDF 格式的文件转换成 PNG、JPG/JPEG 或 WEBP 格式的静态图片。转换后的文件不保留源文件的动画效果。</li><li>`"dynamic"`: 动态转换，是指将用 Microsoft Office 编辑的 PPTX 格式的文件转换成 HTML 网页。转换后的文件会保留源文件里的动画效果。</li></ul></li><li>`preview`: Boolean 型，是否需要显示左侧预览。</li><li>`scale`: Number 型，转换缩放比例，取值范围为 [0, 3]。</li><li>`outputFormat`: String 型，课件转换后图片资源的输出格式，可设为 `"png"`。</li></ul>                                                                                                                                                                             |
-| `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `"ppt"`、`"pptx"`、`"doc"`、`"docx"`、`"pdf"` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `conversion`   | 包含以下字段：<ul><li>`type`: String 型，课件转换方式，可设为：<ul><li>`static`: 静态转换，是指将 PPT、PPTX、DOC、DOCX、PDF 格式的文件转换成 PNG、JPG/JPEG 或 WEBP 格式的静态图片。转换后的文件不保留源文件的动画效果。</li><li>`dynamic`: 动态转换，是指将用 Microsoft Office 编辑的 PPTX 格式的文件转换成 HTML 网页。转换后的文件会保留源文件里的动画效果。</li></ul></li><li>`preview`: Boolean 型，是否需要显示左侧预览。</li><li>`scale`: Number 型，转换缩放比例，取值范围为 [0, 3]。</li><li>`outputFormat`: String 型，课件转换后图片资源的输出格式，可设为 `png`。</li></ul>                                                                                                                                                                             |
+| `url`          | 文件访问地址。灵动课堂客户端会对后缀名为 `ppt`、`pptx`、`doc`、`docx`、`pdf` 的文件默认开启文件转换，以用于课堂内白板展示。如果后缀名非上述所列，必须设置 `url`。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | `taskProgress` | 文件转换任务进度对象 `CloudDriveResourceConvertProgress`，包含以下字段：<ul><li>`totalPageSize`: 总页数。</li><li>`convertedPageSize`: 已转换的页数。</li><li>`convertedPercentage`: 转换进度（百分比）。</li><li>`convertedFileList`: 已转换的文档页列表，每页文档对应一条数据，每条数据包含以下字段：<ul><li>`name`: 文档页名称。</li><li>`ppt`: 文档页包含的一个幻灯片的具体信息，包含以下字段：<ul><li>`width`: 幻灯片页面宽度。</li><li>`height`: 幻灯片页面高度。</li><li>`src`: 完成转换的页面的 URL 下载地址。</li><li>`preview`: 缩略图 URL。</li></ul></li></ul></li><li>`currentStep`: 文档转换任务当前的步骤。可为 `extracting`（正在提取资源）、`generatingPreview`（正在生成预览图）、`mediaTranscode`（媒体文件转换）、`packaging`（打包中）。</li></ul> |
 
 ### FcrMultiThemeMode
@@ -403,5 +403,73 @@ export type LanguageEnum = "en" | "zh";
 
 | 参数   | 描述   |
 | :----- | :----- |
-| `"en"` | 英文。 |
-| `"zh"` | 中文。 |
+| `en` | 英文。 |
+| `zh` | 中文。 |
+
+
+### ListenerCallback
+```typescript
+export type ListenerCallback = (evt: AgoraEduClassroomEvent, ...args: unknown[]) => void;
+
+export declare enum AgoraEduClassroomEvent {
+    Ready = 1,
+    Destroyed = 2,
+    KickOut = 101,
+    TeacherTurnOnMyMic = 102,
+    TeacherTurnOffMyMic = 103,
+    TeacherGrantPermission = 104,
+    TeacherRevokePermission = 105,
+    UserAcceptToStage = 106,
+    UserLeaveStage = 107,
+    RewardReceived = 108,
+    TeacherTurnOnMyCam = 109,
+    TeacherTurnOffMyCam = 110,
+    CurrentCamUnplugged = 111,
+    CurrentMicUnplugged = 112,
+    CurrentSpeakerUnplugged = 113,
+    CaptureScreenPermissionDenied = 114,
+    BatchRewardReceived = 117,
+    InvitedToGroup = 118,
+    MoveToOtherGroup = 119,
+    JoinSubRoom = 120,
+    LeaveSubRoom = 121,
+    AcceptedToGroup = 122,
+    UserJoinGroup = 123,
+    UserLeaveGroup = 124,
+    RejectedToGroup = 125,
+    RTCStateChanged = 201,
+    ClassStateChanged = 202
+}
+```
+
+教室事件监听器。在 [LaunchOption](#launchoption) 中设置。
+
+| 参数   | 描述   |
+| :----- | :----- |
+| `Ready` | 教室已准备好。 |
+| `Destroyed` | 教室已销毁。 |
+| `KickOut` | 被踢出房间。 |
+| `TeacherTurnOnMyMic` | 被开启音频发流权限。 |
+| `TeacherTurnOffMyMic` | 被关闭音频发流权限。 |
+| `TeacherGrantPermission` | 被授予白板权限。 |
+| `TeacherRevokePermission` | 白板权限被收回。 |
+| `UserAcceptToStage` | 登上讲台。 |
+| `UserLeaveStage` | 离开讲台。 |
+| `RewardReceived` | 收到奖励。 |
+| `TeacherTurnOnMyCam` | 被开启视频发流权限。 |
+| `TeacherTurnOffMyCam` | 被关闭视频发流权限。 |
+| `CurrentCamUnplugged` | 当前摄像头设备拔出。 |
+| `CurrentMicUnplugged` | 当前麦克风设备拔出。 |
+| `CurrentSpeakerUnplugged` | 当前扬声器拔出。 |
+| `CaptureScreenPermissionDenied` | 无屏幕采集权限。 |
+| `BatchRewardReceived` | 收到批量奖励。 |
+| `InvitedToGroup` | 收到邀请进入分组。 |
+| `MoveToOtherGroup` | 被移动到其他分组。 |
+| `JoinSubRoom` | 加入分组。 |
+| `LeaveSubRoom` | 离开分组。 |
+| `AcceptedToGroup` | 用户接受加入分组。 |
+| `UserJoinGroup` | 其他用户加入分组。 |
+| `UserLeaveGroup` | 其他用户离开分组。 |
+| `RejectedToGroup` | 用户拒绝加入分组。 |
+| `RTCStateChanged` | RTC连接状态变更。 |
+| `ClassStateChanged` | 教室状态变更。 |

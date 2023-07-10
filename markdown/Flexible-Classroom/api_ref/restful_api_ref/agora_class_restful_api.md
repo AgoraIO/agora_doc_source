@@ -15,12 +15,25 @@
 
 ### 认证方式
 
-灵动课堂 RESTful API 支持 Token 认证。你需要在发送 HTTP 请求时在 HTTP 请求头部的 `x-agora-token` 字段和 `x-agora-uid` 字段分别填入：
+在使用灵动课堂 RESTful API 前，你需要通过 HTTP Token 认证。
 
+<div class="alert note">一般情况下，声网建议你在服务端进行 HTTP 基本认证和 Token 认证，减少数据泄露的风险。</div>
+
+灵动课堂同时支持 AccessToken2（推荐）和 AccessToken（兼容）两种方式，你可以选择任意一种。本文的示例请求都使用 AccessToken2。
+
+#### AccessToken2
+
+如果你使用的是 AccessToken2，那么你需要在 HTTP 请求中 header 的 `Authorization: agora token=` 字段填入服务端生成的 Token。
+
+如何生成 Token 并且在服务端使用 Token 鉴权，详见[使用 Token 鉴权](generate-token)。
+
+#### AccessToken
+
+如果你使用的是 AccessToken，那么你需要在发送 HTTP 请求时在 HTTP 请求中 header 的 `x-agora-token` 字段和 `x-agora-uid` 字段分别填入：
 -   服务端生成的 RTM Token。
 -   生成 RTM Token 时使用的 uid。
 
-具体生成 RTM Token 的方法请参考[生成 RTM Token](/cn/Real-time-Messaging/token_upgrade_rtm) 文档。
+如何生成 RTM Token 并且在服务端使用 RTM Token 鉴权，详见[AccessToken 升级指南](/cn/Real-time-Messaging/token_upgrade_rtm) 文档。
 
 ### 区域
 
@@ -138,8 +151,7 @@
 ```json
 curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
     "roomName": "test_class",
     "roomType": 4,
@@ -205,18 +217,17 @@ curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_c
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 #### 响应参数
 
-| 参数   | 类型    | 描述                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| :----- | :------ |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `code` | Integer | 响应状态码，详见[公共响应参数](#公共响应参数)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `msg`  | String  | 接口响应文字信息，详见[公共响应参数](#公共响应参数)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| `ts`   | Number  | 当前服务端的 Unix 时间戳，详见[公共响应参数](#公共响应参数)。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `data` | Object  | 返回数据，为[公共响应参数](#公共响应参数)。包含以下数据：<ul><li>`roomUuid`: String 型，房间ID。</li><li>`roomName`: String 型，房间名。 </li> <li>`createTime`: Integer 型，创建房间时间戳。   <li>`roomProperties`: Object 型，房间属性。 <ul><li>`roomType`: Integer 型，房间类型。 <ul><li>`0`: 1v1。</li> <li> `2`:  大班课。 </li>  <li> `4`:  小班课。 </li>   </ul> </li><li>`schedule`: Object 型，课程计划。 <ul><li>`state`: Integer 型，房间状态。<ul><li>`0`: 未开始。</li><li>`1`: 开始。</li><li>`2`: 结束。</li><li>`3`: 关闭。</li></ul></li> <li> `startTime`:  Integer 型，开始时间。 </li>  <li> `endTime`:  Integer 型，结束时间。 </li>  <li> `closeTime`:  Integer 型，关闭时间。 </li>  </ul> </li><li>`widgets`: Object 型，组件集合。 <ul><li>`netlessBoard`: Object 型，白板组件。 <ul><li> `extra`: Object 型，扩展信息。 <ul><li>`boardAppId`: String型，白板AppId。</li><li>`boardId`: String型，白板房间Id。</li><li>`boardToken`: String型，白板房间Token。</li><li>`boardRegion`: String型，白板区域。</li></ul></li> <li>`state`: Integer型，组件状态。 <ul><li>`0`: Integer型，未激活。</li><li>`1`: Integer型，激活。</li></ul>  </li> </ul>  </li> <li>`easemobIM`: Object 型，聊天室组件。 <ul><li> `extra`: Object 型，扩展信息。 <ul><li>`orgName`: String型，组织名。</li><li>`appName`: String型，app名。</li><li>`chatRoomId`: String型，聊天室id。</li><li>`appKey`: String型，appKey。</li></ul></li> <li>`state`: Integer型，组件状态。 <ul><li>`0`: Integer型，未激活。</li><li>`1`: Integer型，激活。</li></ul>  </li> </ul>  </li>   </ul> </li></ul></li> |
+| 参数   | 类型    | 描述    |
+| :----- | :------ |:----------|
+| `code` | Integer | 响应状态码，详见[公共响应参数](#公共响应参数)。      |
+| `msg`  | String  | 接口响应文字信息，详见[公共响应参数](#公共响应参数)。    |
+| `ts`   | Number  | 当前服务端的 Unix 时间戳，详见[公共响应参数](#公共响应参数)。  |
+| `data` | Object  | 返回数据，为[公共响应参数](#公共响应参数)。包含以下数据：<ul><li>`roomUuid`: String 型，房间ID。</li><li>`roomName`: String 型，房间名。</li> <li>`createTime`: Integer 型，创建房间时间戳。</li><li>`roomProperties`: Object 型，房间属性。 <ul><li>`roomType`: Integer 型，房间类型。<ul><li>`0`: 1v1。</li> <li> `2`: 大班课。</li><li> `4`: 小班课。</li></ul></li><li>`schedule`: Object 型，课程计划。 <ul><li>`state`: Integer 型，房间状态。<ul><li>`0`: 未开始。</li><li>`1`: 开始。</li><li>`2`: 结束。</li><li>`3`: 关闭。</li></ul></li><li> `startTime`: Integer 型，开始时间。 </li><li> `endTime`: Integer 型，结束时间。</li><li>`closeTime`: Integer 型，关闭时间。 </li></ul></li><li>`widgets`: Object 型，组件集合。<ul><li>`netlessBoard`: Object 型，白板组件。 <ul><li>`extra`: Object 型，扩展信息。<ul><li>`boardAppId`: String 型，白板 App ID。</li><li>`boardId`: String 型，白板房间 ID。</li><li>`boardToken`: String 型，白板房间 Token。</li><li>`boardRegion`: String 型，白板区域。</li></ul></li><li>`state`: Integer 型，组件状态。<ul><li>`0`: Integer 型，未激活。</li><li>`1`: Integer 型，激活。</li></ul></li></ul></li><li>`easemobIM`: Object 型，聊天室组件。 <ul><li> `extra`: Object 型，扩展信息。 <ul><li>`orgName`: String 型，组织名。</li><li>`appName`: String 型，app 名。</li><li>`chatRoomId`: String 型，聊天室id。</li><li>`appKey`: String 型，app Key。</li></ul></li> <li>`state`: Integer 型，组件状态。 <ul><li>`0`: Integer 型，未激活。</li><li>`1`: Integer 型，激活。</li></ul></li></ul></li></ul></li></ul></li> |
 
 
 #### 响应示例
@@ -225,7 +236,85 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 {
     "msg": "Success",
     "code": 0,
-    "ts": 1610167740309
+    "ts": 1684231543281,
+    "data": {
+        "roomName": "jasoncai's Room",
+        "roomUuid": "3579768dd1e1eec8522d3ed76992afd04",
+        "scenario": "education",
+        "roleConfig": {
+        ...
+        },
+        "roomProperties": {
+            "reward": {
+            ...
+            },
+            "processes": {
+                "handsUp": {
+                ...
+                },
+                "openCamera": {
+                ...
+                },
+                "remoteControl": {
+                ...
+                },
+                "waveArm": {
+                ...
+                }
+            },
+            "im": {
+                "huanxin": {
+                ...
+                }
+            },
+            "screen": {
+            ...
+            },
+            "groups": {
+            ...
+            },
+            "carousel": {
+            ...
+            },
+            "widgets": {
+                "netlessBoard": {
+                    "extra": {
+                    ...
+                    },
+                    "state": 1
+                },
+                "easemobIM": {
+                    "extra": {
+                    ...
+                    }
+                }
+            },
+            "schedule": {
+                "closeDelay": 600,
+                "duration": 1800
+            },
+            "webhookConfig": {
+            ...
+            },
+            "record": {
+            ...
+            },
+            "state": 0,
+            "board": {
+                "info": {
+                ...
+                }
+            },
+            "roomType": 4
+        },
+        "roomTemplate": "edu_medium_v1",
+        "muteChat": {},
+        "muteVideo": {},
+        "muteAudio": {},
+        "state": 0,
+        "checkState": false,
+        "createTime": 1683884683422
+    }
 }
 ```
 
@@ -262,8 +351,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 
 ```json
 curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/states/1' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 #### 响应参数
@@ -323,8 +411,7 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/properties' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": {
     "key1": "value1",
@@ -389,8 +476,7 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/properties' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": ["key1", "key2"],
   "cause": {}
@@ -447,8 +533,7 @@ curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test
 #### 请求示例
 ```json
 curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/states/1' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
     "groups":[
         {
@@ -506,8 +591,7 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 #### 响应参数
 
@@ -575,8 +659,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user/properties' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": {
     "key1": "value1",
@@ -642,8 +725,7 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user/properties' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": ["key1", "key2"],
   "cause": {}
@@ -704,8 +786,7 @@ curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test
 ```json
 curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/users/test_user/exit' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "dirty": {
     "state": 1,
@@ -772,8 +853,7 @@ curl -X POST 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_c
 ```json
 curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/records/states/1' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
     "mode": "web",
     "webRecordConfig": {
@@ -846,8 +926,7 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X PATCH 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/records/states/1' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
     "webRecordConfig": {
         "onhold": false
@@ -910,8 +989,7 @@ curl -X PATCH 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_
 
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/records' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 #### 响应参数
@@ -1001,8 +1079,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "cause": {}
 }'
@@ -1065,8 +1142,7 @@ curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test
 ```json
 curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": {
     "key1": "value1",
@@ -1131,8 +1207,7 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/extra' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": ["key-path1", "key-path2"],
   "cause": {}
@@ -1195,8 +1270,7 @@ curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test
 ```json
 curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/users/test_user' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": {
     "key1": "value1",
@@ -1261,8 +1335,7 @@ curl -X PUT 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 ```json
 curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/users/test_user' \
 -H 'Content-Type: application/json;charset=UTF-8' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}' \
+-H 'Authorization: agora token={educationToken}' \
 --data-raw '{
   "properties": ["key1","key2"],
   "cause": {}
@@ -1319,8 +1392,7 @@ curl -X DELETE 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test
 
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/polling/apps/{yourAppId}/v2/rooms/sequences' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 #### 响应参数
@@ -1390,8 +1462,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/polling/apps/{yourAppId}/v2/rooms
 
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/sequences?cmd=20' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 #### 响应参数
@@ -1467,8 +1538,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/test_widget/sequences' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 #### 响应参数
@@ -1552,8 +1622,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/popupQuiz/sequences' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 
@@ -1753,8 +1822,7 @@ curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_cl
 
 ```json
 curl -X GET 'https://api.agora.io/{region}/edu/apps/{yourAppId}/v2/rooms/test_class/widgets/popupQuiz/sequences' \
--H 'x-agora-uid: {uid}' \
--H 'x-agora-uid: {rtmToken}'
+-H 'Authorization: agora token={educationToken}' \
 ```
 
 

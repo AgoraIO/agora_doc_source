@@ -142,7 +142,7 @@ externals: {
             roomType: 0, // 房间类型：0 为一对一，2 为大班课，4 为小班课。
             roomName: 'room name',
             pretest: true, // 是否开启课前设备检测。
-            rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
+            rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 Token。
             language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。
             duration: 60 * 30, // 课程时间，单位为秒。
             recordUrl: 'https://solutions-apaas.agora.io/apaas/record/dev/2.8.21/record_page.html',
@@ -160,7 +160,7 @@ externals: {
 ```
 
 示例代码中需要传入 `rtmToken`。你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
-<div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
+<div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="generate-token">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
 其他参数取值详见 [LaunchOption 说明](/cn/agora-class/agora_class_api_ref_web?platform=Web#launchoption)。
 
@@ -280,7 +280,7 @@ externals: {
             roomType: 6, // 房间类型：监考场景的房间类型固定为 6。
             roomName: 'room name',
             pretest: true, // 是否开启课前设备检测。
-            rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 RTM Token。
+            rtmToken: 'rtm token', // 测试环境下，你可以使用临时 RTM Token；生产或安全环境下，强烈建议你使用服务器生成的 Token。
             language: 'zh', // 课堂界面的语言。如需界面为英文，设为 'en' 即可。
             duration: 60 * 30, // 课程时间，单位为秒。
             courseWareList: [],
@@ -298,7 +298,7 @@ externals: {
 示例代码中 `userUuid` 的填写方式：在线监考时，学生需要使用主、副设备接入考试。比如，主设备为 Web 端，用于采集学生视频，并分享学生答题时的屏幕画面；副设备为 Android 或 iOS 设备，用于拍摄学生答题的身姿。监考老师通过三种视角的视频观察学生答题，防止作弊。你需要在不同设备上以 `${用户id}-${设备类型（main/sub）}` 的规则填写 `userUuid`。比如，对学生小明，在 Web 端集成代码 `AgoraProctorSDK.launch` 方法的 `userUuid` 参数中传入 `'xiaoming-main'`，在 Android 或 iOS 端对应的 `userUuid` 参数中传入 `'xiaoming-sub'`。灵动课堂会将 `xiaoming-main` 和 `xiaoming-sub` 识别为用户小明的主、副设备，然后合并主、副设备的视频画面，最终将合并后的视频画面渲染在老师的监考视频窗口中。
 
 示例代码中 `rtmToken` 的填写方式：你可以参考[获取 RTM Token](/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-rtm-token) 了解什么是 RTM Token，如何获取测试用途的临时 RTM Token，如何从服务器生成 RTM Token。
-<div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="/cn/Real-time-Messaging/token_upgrade_rtm?platform=All%20Platforms">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
+<div class="alert note">声网提供的客户端临时 Token 生成器仅适用于运行 app 模块快速测试。在正式环境中，为确保安全，你必须参考<a href="generate-token">使用 Token 鉴权文档</a>，在服务端部署并生成 Token。生成的 token 传入的 <code>userId</code> 需要和 <code>launch</code> 方法中传入的参数 <code>userUuid</code> 保持一致，否则生成的 token 无效。</div>
 
 
 ### 使用自定义 UI 的方式集成
