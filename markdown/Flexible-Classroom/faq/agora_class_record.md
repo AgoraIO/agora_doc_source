@@ -22,6 +22,16 @@
     如果能正常打开，则录制开启成功；如无法打开，可根据报错查找原因。
 
 
+### 录制的内容有电音是什么原因？怎么解决呢?
+录制的课程中如果待录制的页面有分辨率非常高的课件或者动画，渲染的时候消耗cpu，录制的内容可能会有电音。
+此时可以通过修改录制页面配置解决这个问题。
+
+templates/record_page_prod.html
+ 录制页面里面加一下这个参数
+ forceCanvas:true 
+ <image src='./images/record_page_error_0001.png'>
+ <image src='./images/record_page_error_0002.png'>
+
 
 
 
