@@ -48,7 +48,7 @@
 
 ## 技术架构
 
-声网使用声网 RTC SDK、第三方美颜 SDK、声网云服务（SyncManager）、[声网输入在线媒体流服务](https://docportal.shengwang.cn/cn/media-pull/landing-page)共同搭建秀场直播场景：
+声网使用声网 RTC SDK、第三方美颜 SDK、声网云服务（Service）、[声网输入在线媒体流服务](https://docportal.shengwang.cn/cn/media-pull/landing-page)共同搭建秀场直播场景：
 
 - 声网 RTC SDK：提供实时音视频服务。让用户加入 RTC 频道，进行实时音视频互动和 PK 连麦。
 - 第三方美颜 SDK：实现美颜、风格妆、贴纸等功能。
