@@ -300,11 +300,13 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     for child in root.iter('*'):
         if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
             logLines(localLogger.debug, "Tag to remove1", child, child.text, child.tag, child.get("id"))
-            # clear()
-            # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-            # child.clear()
-            parent_map[child].remove(child)
-            # child.text = ""
+            if child.tail:
+                preserved_tail = child.tail
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                child.clear()
+                child.tail = preserved_tail
+            else:
+                parent_map[child].remove(child)
 
     # Remove all tables because we cannot afford to add tables to code
     for child in root.iter('*'):
@@ -407,14 +409,13 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
                 if sys.platform == 'darwin' or sys.platform == 'linux':
                     localLogger.debug("macOS")
                     if href_text:
-                        dir = path.join(working_dir, href_text).replace("../", "")
-                        dir = path.join("..", dir)
+                        dir = path.join(working_dir, href_text.replace("../", ""))
                     else:
                         dir = None
                 elif sys.platform == 'win32':
                     localLogger.debug("Windows")
                     if href_text is not None and href_text != "":
-                        dir = path.join(working_dir, href_text).replace("../", "").replace("/", "\\")
+                        dir = path.join(working_dir, href_text.replace("../", "")).replace("/", "\\")
                     else:
                         dir = None
                 if dir is not None:
@@ -641,12 +642,14 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
         parent_map = {c: p for p in tree.iter() for c in p}
         for child in root.iter('*'):
             if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
-                    logLines(localLogger.debug, "Tag to remove 3", child, child.text, child.tag, child.get("props"))
-                    # clear()
+                logLines(localLogger.debug, "Tag to remove 3", child, child.text, child.tag, child.get("props"))
+                if child.tail:
+                    preserved_tail = child.tail
                     # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                    # child.clear()
+                    child.clear()
+                    child.tail = preserved_tail
+                else:
                     parent_map[child].remove(child)
-                    # child.text = ""
         filter -= 1
 
     # Adds newlines at the start of smaller 'li' sections
