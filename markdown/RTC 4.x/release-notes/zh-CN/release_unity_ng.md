@@ -13,7 +13,7 @@
 - `GetObservedAudioFramePosition`：请改用 `RegisterAudioFrameObserver` 中新增的 `position` 参数。
 - `GetPlaybackAudioParams`：请改用 `SetPlaybackAudioFrameParameters`。
 - `GetRecordAudioParams`：请改用 `SetRecordingAudioFrameParameters`
-- ``GetMixedAudioParams`：请改用 `SetMixedAudioFrameParameters`。
+- `GetMixedAudioParams`：请改用 `SetMixedAudioFrameParameters`。
 - `GetEarMonitoringAudioParams`：请改用 `SetEarMonitoringAudioFrameParameters`。
 
 **视频观测器**
@@ -123,7 +123,7 @@
 - `OnLyricResult` 中增加 `songCode` (Android, iOS)
 - `OnPreLoadEvent` 中增加 `requestId` (Android, iOS)
 - `SetRouteInCommunicationMode` (Android)
-- `ChannelMediaOptions` 中增加下列成员：
+- `ChannelMediaOptions` 中增加下列成员 (Windows, macOS)：
   - `publishThirdCameraTrack`
   - `publishFourthCameraTrack`
   - `publishThirdScreenTrack`
