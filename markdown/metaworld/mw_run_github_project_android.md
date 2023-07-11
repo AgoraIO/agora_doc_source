@@ -7,7 +7,7 @@
 - [Git](https://git-scm.com/downloads)
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html)
 - [Android Studio](https://developer.android.com/studio/) 4.1 及以上
-- Android API 级别 22 及以上。
+- Android API 级别 22 及以上
 - Android 设备，版本 Android 5.1 及以上
     <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
 - 有效的[声网账号](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E5%88%9B%E5%BB%BA%E5%A3%B0%E7%BD%91%E8%B4%A6%E5%8F%B7)

@@ -41,17 +41,17 @@
 1. 联系销售获取该 SDK，下载并解压。
 2. 打开解压文件，将以下文件或文件夹复制到你的项目路径中。
 
-    |  SDK 文件或文件夹      |  项目路径       |
-    |----------|--------|
-    | agora-rtc-sdk.jar 文件       |/app/libs/         |
-    | metakit.jar 文件       | /app/libs/        |
-    | face_capture.jar 文件       | /app/libs/        |
-    | AgoraMetaKit.aar 文件       | /app/libs/        |
-    | FaceCapture.aar 文件       | /app/libs/        |
-    | arm64-v8a 文件夹       | /app/src/main/jniLibs/        |
-    | armeabi-v7a 文件夹       | /app/src/main/jniLibs/        |
-    | x86 文件夹       | /app/src/main/jniLibs/        |
-    | x86_64 文件夹               | /app/src/main/jniLibs/                   |
+  | 文件或子文件夹             | 项目路径     |
+  |:-------------------------|:-----------|
+  | `agora-rtc-sdk.jar` 文件	| `/app/libs/` |
+  | `AgoraMetaKit.aar` 文件 	| `/app/libs/` |
+  | `face_capture.jar` 文件   | `/app/libs/` |
+  | `FaceCapture.aar` 文件    | `/app/libs/` |
+  | `metakit.jar` 文件        | `/app/libs/` |
+  | `arm64-v8a` 文件夹      	| `/app/src/main/jniLibs/` |
+  | `armeabi-v7a` 文件夹	    | `/app/src/main/jniLibs/` |
+  | `x86_64` 文件夹           | `/app/src/main/jniLibs/` |
+  | `x86` 文件夹	            | `/app/src/main/jniLibs/` |
 
 ### 3. 添加第三方库和依赖
 
