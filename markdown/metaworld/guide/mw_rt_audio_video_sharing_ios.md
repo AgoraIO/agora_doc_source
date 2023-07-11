@@ -11,31 +11,33 @@
 
 在一起看电影、听音乐的功能实现中，主播通过媒体播放器控制音视频的播放，并将从媒体播放器获取的视频原始数据推送至 Unity 场景。同时，主播发布麦克风采集的音频和播放器的音乐，受众可以订阅这些音频。主播和受众通过数据流进行播放进度和播放 URL 的信息传递。受众控制媒体播放器对齐主播的播放进度，并把播放器播放的视频原始帧推送至 Unity 场景。
 
-在一起 K 歌的功能实现中，你还需要添加在 Native 界面展示 K 歌房的玩法，并通过一起看电影的逻辑进行视频的同步。K 歌的功能实现详见 [K 歌房](https://docs.agora.io/cn/online-ktv/ktv_overview)。
+在一起 K 歌的功能实现中，你还需要添加在当前平台展示 K 歌房的玩法，并通过一起看电影的逻辑进行视频的同步。K 歌的功能实现详见 [K 歌房](https://docs.agora.io/cn/online-ktv/ktv_overview)。
 
 ## 示例项目
 
-声网在 GitHub 上提供开源 [Agora-MetaChat](https://github.com/AgoraIO-Community/Agora-MetaChat/tree/dev_sdk2) 示例项目供你参考使用。如果你还需了解 Unity 部分的工程文件和功能指南，请联系 sales@agora.io 获取。
+声网在 GitHub 上提供开源 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考。
+
+如果你还需了解 Unity 部分的工程文件和功能指南，请联系 [sales@agora.io](mailto:sales@agora.io) 获取。
 
 
 ## 前提条件
 
-实现实时共赏影音功能前，请确保你已实现基础的元语聊功能，如创建、进入 3D 场景、创建虚拟形象。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_ios?platform=All%20Platforms)。
+实现该进阶功能前，请确保你已实现基础的元语聊或元直播功能，如创建 Meta 服务、获取并下载场景资源、创建场景、设置虚拟形象的信息并进入场景。详见[基础功能](https://docs.agora.io/cn/metaworld/mw_integration_metachat_android?platform=All%20Platforms)。
 
 ## 实现步骤
 
 下图展示 API 调用时序：
 
-![](https://web-cdn.agora.io/docs-files/1682064521515)
+![](https://web-cdn.agora.io/docs-files/1688115367827)
 
 ### 1. 推送视频
 
-调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 [`didReceiveVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_video_observer.html?platform=iOS#callback_ivideoframeobserver_onframe) 回调得到的视频帧赋值给 `AgoraVideoFrame` 并推送其至该视频显示屏。
+调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metaworld/api_ref_ios?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metaworld/api_ref_ios?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 [`didReceiveVideoFrame`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_video_observer.html?platform=iOS#callback_ivideoframeobserver_onframe) 回调得到的视频帧赋值给 `AgoraVideoFrame` 并推送其至该视频显示屏。
 
 ```swift
 // 开启视频显示屏
 // "1" 为指定的 displayID
-metachatScene?.enableVideoDisplay("1", enable: true)
+metaScene?.enableVideoDisplay("1", enable: true)
 
 // vf 为待推送的视频帧
 let vf = AgoraVideoFrame()
@@ -46,7 +48,7 @@ vf.height = Int32(videoFrame.height)
 vf.dataBuf = data
 
 // 将视频帧推送至指定的视频显示屏上
-metachatScene?.pushVideoFrame(toDisplay: "1", frame: vf)
+metaScene?.pushVideoFrame(toDisplay: "1", frame: vf)
 ```
 
 ### 2. 同步视频播放进度

@@ -6,18 +6,20 @@
 
 ## 技术原理
 
-空间音效功能基于声学原理，模拟声音在不同空间环境中的传播、反射、吸收效果。通过在不同位置放置音源和听众，模拟现实中的声音传播效果，使得听众可以听到更真实自然的声音。
+空间音效功能基于声学原理，模拟声音在不 同空间环境中的传播、反射、吸收效果。通过在不同位置放置音源和听众，模拟现实中的声音传播效果，使得听众可以听到更真实自然的声音。
 
-结合 `AgoraMetachatSceneEventDelegate` 提供的用户位置信息回调和 `AgoraLocalSpatialAudioKit` 提供的空间音效系列方法，你可以实现带空间音效的元语聊。
+结合 `AgoraMetaSceneEventDelegate` 提供的用户位置信息回调和 `AgoraLocalSpatialAudioKit` 提供的空间音效系列方法，你可以实现带空间音效的元语聊。
 
 ## 示例项目
 
-声网在 GitHub 上提供开源 [Agora-MetaChat](https://github.com/AgoraIO-Community/Agora-MetaChat/tree/dev_sdk2) 示例项目供你参考使用。如果你还需了解 Unity 部分的工程文件和功能指南，请联系 sales@agora.io 获取。
+声网在 GitHub 上提供开源 [Agora-MetaWorld](https://github.com/AgoraIO-Community/Agora-MetaWorld/tree/dev_metasdk1.0) 示例项目供你参考。
+
+如果你还需了解 Unity 部分的工程文件和功能指南，请联系 [sales@agora.io](mailto:sales@agora.io) 获取。
 
 
 ## 前提条件
 
-实现空间音效前，请确保你已实现基础的元语聊功能，如创建、进入 3D 场景、创建虚拟形象。详见[客户端实现](https://docs.agora.io/cn/metachat/metachat_client_ios?platform=All%20Platforms)。
+实现该进阶功能前，请确保你已实现基础的元语聊或元直播功能，如创建 Meta 服务、获取并下载场景资源、创建场景、设置虚拟形象的信息并进入场景。详见[基础功能](https://docs.agora.io/cn/metaworld/mw_integration_metachat_android?platform=All%20Platforms)。
 
 
 ## 实现步骤
@@ -33,14 +35,16 @@
 
 下图介绍实现用户空间音效的 API 时序：
 
-![](https://web-cdn.agora.io/docs-files/1679996795148)
+![](https://web-cdn.agora.io/docs-files/1688115566630)
 
 
 #### 1. 创建和初始化空间音效引擎
 
 使用空间音效前，你需要调用 [`sharedLocalSpatialAudioWithConfig`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_initialize) 创建和初始化空间音效引擎。
 
-**注意**：请在加入 RTC 频道前调用。
+**注意**：
+- 请在加入 RTC 频道前调用。
+- 当使用空间音效时，请确保在 `AgoraRtcEngineKit` 中停止发布和订阅音频流。
 
 ```swift
 // 创建和初始化空间音效引擎
@@ -54,7 +58,7 @@ agoraLocalSpatialAudioKit = AgoraLocalSpatialAudioKit.sharedLocalSpatialAudio(wi
 
 调用 [`setAudioRecvRange`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ibasespatialaudioengine_setaudiorecvrange) 设置空间音效接收范围，当远端用户相对本地用户的距离超出这个范围，本地用户就会听不到远端用户的声音。
 
-当使用空间音效时，请确保在 `AgoraRtcEngineKit` 中停止发布和订阅音频流。在后续的逻辑中，应由 `AgoraLocalSpatialAudioKit` 处理是否停止发布和订阅音频流。
+你可以通过 `AgoraLocalSpatialAudioKit` 处理是否停止发布和订阅音频流。
 
 ```swift
 // 设置空间音效的音频接收范围
@@ -70,13 +74,13 @@ agoraLocalSpatialAudioKit.muteAllRemoteAudioStreams(false)
 
 #### 3. 处理用户位置变化
 
-通过 [`onUserPositionChanged`](https://docs.agora.io/cn/metachat/metachat_api_ios?platform=All%20Platforms#onuserpositionchanged) 回调监听用户的位置变化。如果当前用户是本地用户，调用 [`updateSelfPosition`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ibasespatialaudioengine_updateselfposition) 更新本地用户位置信息；如果当前用户是远端用户，调用 [`updateRemotePosition`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_updateremoteposition) 更新远端用户的信息位置。
+通过 [`onUserPositionChanged`](https://docs.agora.io/cn/metaworld/api_ref_ios?platform=All%20Platforms#onuserpositionchanged) 回调监听用户的位置变化。如果当前用户是本地用户，调用 [`updateSelfPosition`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ibasespatialaudioengine_updateselfposition) 更新本地用户位置信息；如果当前用户是远端用户，调用 [`updateRemotePosition`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_updateremoteposition) 更新远端用户的信息位置。
 
 **注意**：请在加入 RTC 频道后监听和处理用户位置变化。
 
 ```swift
 // 处理用户位置的变化
-func metachatScene(_ scene: AgoraMetachatScene, onUserPositionChanged uid: String, posInfo: AgoraMetachatPositionInfo) {
+func metaScene(_ scene: AgoraMetaScene, onUserPositionChanged uid: String, posInfo: AgoraMetaPositionInfo) {
     if (uid.compare(KeyCenter.RTM_UID) == .orderedSame) || (uid.compare("") == .orderedSame) {
         // 如果当前用户是本地用户
         // 那么使用 updateSelfPosition 更新本地用户的位置信息
@@ -106,7 +110,7 @@ func metachatScene(_ scene: AgoraMetachatScene, onUserPositionChanged uid: Strin
 
 不需要使用空间音效时，调用 [`destroy`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_release) 销毁空间音效引擎。
 
-**注意**：请在离开 RTC 频道后和销毁 RTC 引擎前调用 destroy。
+**注意**：请在离开 RTC 频道后和销毁 RTC 引擎前调用 `destroy`。
 
 ```swift
 // 销毁空间音效引擎
@@ -121,7 +125,7 @@ if agoraLocalSpatialAudioKit != nil {
 
 下图介绍实现媒体播放器空间音效的 API 时序：
 
-![](https://web-cdn.agora.io/docs-files/1682064675611)
+![](https://web-cdn.agora.io/docs-files/1688115575443)
 
 由于空间音效是基于 NPC 或物体的位置驱动，因此在进入 Unity 场景后，无论 NPC 或物体是否移动，都需要 Unity 脚本主动向 app 发送一次 NPC 或物体的位置信息。这样可以确保空间音效引擎始终基于最新的位置数据提供空间音效。
 
@@ -147,7 +151,7 @@ mediaPlayerKit.play()
 
 ```swift
 // 处理 Unity 场景回调信息
-func metachatScene(_ scene: AgoraMetachatScene, onRecvMessageFromScene message: Data) {
+private func setUpSpatialForMediaPlayer(_ player: AgoraRtcMediaPlayerProtocol?, position: [NSNumber], forward:[NSNumber]) {
     // 解析 message，得到物体在场景里面的位置信息，包含 position 和 forward
     // position 是物体的三维坐标位置
     // forward 是物体朝向
