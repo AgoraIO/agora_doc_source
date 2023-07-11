@@ -100,10 +100,10 @@
 - `onPreLoadEvent` 中增加 `requestId` (Android, iOS)
 - `setRouteInCommunicationMode` (Android)
 - `ChannelMediaOptions` 中增加下列成员：
-  - `publishThirdCameraTrack`
-  - `publishFourthCameraTrack`
-  - `publishThirdScreenTrack`
-  - `publishFourthScreenTrack`
+  - `publishThirdCameraTrack` (Windows, macOS)
+  - `publishFourthCameraTrack` (Windows, macOS)
+  - `publishThirdScreenTrack` (Windows, macOS)
+  - `publishFourthScreenTrack` (Windows, macOS)
 - `CodecCapLevels`
 - `VideoCodecCapabilityLevel`
 - `VideoCanvas` 中增加 `backgroundColor` 成员
