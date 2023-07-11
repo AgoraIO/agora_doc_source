@@ -2,6 +2,8 @@
 
 即时通讯 IM 提供离线推送服务，具有低延迟、高交付、高并发和不侵犯用户个人数据的特点。
 
+当客户端断开连接或应用进程被关闭等原因导致用户离线，即时通讯 IM 会通过 FCM 消息推送服务向该离线用户的设备推送消息通知。当用户再次上线时，会收到离线期间所有消息。注意，用户必须至少在设备上连接成功过一次，该设备才能接收推送。
+
 <div class="alert note">Web SDK 本身不支持离线推送，只支持对移动端离线推送的配置。</div>
 
 ## 技术原理
@@ -24,7 +26,10 @@
 
 ## 实现方法
 
-为优化用户在处理大量推送通知时的体验，即时通讯 IM 在应用和会话级别提供了推送通知和免打扰模式的细粒度选项。
+你可以通过 Web 端设置离线推送：
+
+- 设置推送通知，包含在 app 和会话层面设置推送通知方式和免打扰模式。
+- 配置推送翻译。
 
 **推送通知方式**
 
@@ -93,11 +98,11 @@
 
 对于 app 和 app 中的所有会话，免打扰模式的设置优先于推送通知方式的设置。例如，假设在 app 级别指定了免打扰时间段，并将指定会话的推送通知方式设置为 `ALL`。免打扰模式与推送通知方式的设置无关，即在指定的免打扰时间段内，你不会收到任何推送通知。
 
-或者，假设为会话指定了免打扰时间段，而 app 没有任何免打扰设置，并且其推送通知方式设置为 `ALL`。在指定的免打扰时间段内，你不会收到来自该会话的任何推送通知，而所有其他会话的推送保持不变。
+或者，假设为会话指定了免打扰时长，而 app 没有任何免打扰设置，并且其推送通知方式设置为 `ALL`。在指定的免打扰时长内，你不会收到来自该会话的任何推送通知，而所有其他会话的推送保持不变。
 
 ### 设置 app 的推送通知
 
-你可以调用 `setSilentModeForAll` 方法在 app 级别设置推送通知，并通过指定 `paramType` 字段设置推送通知方式和免打扰模式，如下代码示例所示：
+你可以调用 `setSilentModeForAll` 方法设置 app 级别推送通知，其中通过 `paramType` 字段确定设置推送通知方式、免打扰时长或免打扰时间段，如下代码示例所示：
 
 ```javascript
 /**
@@ -147,8 +152,8 @@ conn.getSilentModeForAll();
 ```javascript
 /**
 	const params = {
-    conversationId: 'conversationId', // 会话 ID：单聊为对方用户 ID，群聊为群组 ID，聊天室会话为聊天室 ID。
-    type: 'singleChat', // 会话类型：singleChat（单聊）、groupChat（群聊）和 chatRoom（聊天室）。
+    conversationId: 'conversationId', // 会话 ID：单聊为对方用户 ID，群聊为群组 ID。
+    type: 'singleChat', // 会话类型：singleChat（单聊）、groupChat（群聊）。
     options: {
       paramType: 0, // 推送通知方式。
       remindType: 'ALL' // 可设置为 `ALL`、`AT` 或 `NONE`。
@@ -197,8 +202,8 @@ conn.setSilentModeForConversation(params);
 
 ```javascript
 const params = {
-  conversationId: "conversationId", // 会话 ID：单聊为对方用户 ID，群聊为群组 ID，聊天室会话为聊天室 ID。
-  type: "singleChat", // 会话类型：singleChat（单聊）、groupChat（群聊）和 chatRoom（聊天室）。
+  conversationId: "conversationId", // 会话 ID：单聊为对方用户 ID，群聊为群组 ID。
+  type: "singleChat", // 会话类型：singleChat（单聊）和 groupChat（群聊）。
 };
 conn.getSilentModeForConversation(params);
 ```
@@ -215,8 +220,8 @@ conn.getSilentModeForConversation(params);
 const params = {
   conversationList: [
     {
-      id: "conversationId", // 会话 ID：单聊为对方用户 ID，群聊为群组 ID，聊天室会话为聊天室 ID。
-      type: "singleChat", // 会话类型：singleChat（单聊）、groupChat（群聊）和 chatRoom（聊天室）。
+      id: "conversationId", // 会话 ID：单聊为对方用户 ID，群聊为群组 ID。
+      type: "singleChat", // 会话类型：singleChat（单聊）和 groupChat（群聊）。
     },
     {
       id: "conversationId",
@@ -235,17 +240,19 @@ conn.getSilentModeForConversations(params);
 
 ```javascript
 const params = {
-  conversationId: "conversationId", // 会话 ID：单聊为对方用户 ID，群聊为群组 ID，聊天室会话为聊天室 ID。
-  type: "groupChat", // 会话类型：singleChat（单聊）、groupChat（群聊）或 chatRoom（聊天室）。
+  conversationId: "conversationId", // 会话 ID：单聊为对方用户 ID，群聊为群组 ID。
+  type: "groupChat", // 会话类型：singleChat（单聊）和 groupChat（群聊）。
 };
 conn.clearRemindTypeForConversation(params);
 ```
 
-### 设置推送翻译
+### 设置推送通知的首选语言
+
+推送通知与翻译功能配合使用。
 
 如果用户启用[自动翻译](./agora_chat_translation_web)功能并发送消息，SDK 会同时发送原始消息和翻译后的消息。
 
-推送通知与翻译功能配合使用。作为接收方，你可以设置你在离线时希望接收的推送通知的首选语言。如果翻译消息的语言符合你的设置，则翻译消息显示在推送通知中；否则，将显示原始消息。
+作为接收方，你可以设置你在离线时希望接收的推送通知的首选语言。如果翻译后消息的语言匹配你的首选语言，则翻译后的消息显示在推送通知中；否则，将显示原始消息。
 
 你可以调用 `setPushPerformLanguage` 方法设置推送通知的首选语言，示例代码如下：
 

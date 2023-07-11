@@ -25,7 +25,6 @@ Before proceeding, ensure that you meet the following requirements:
 
 <div class="alert info">The thread feature is supported by all types of <a href="https://docs.agora.io/en/agora-chat/agora_chat_plan">Pricing Plans</a> and is enabled by default once you have enabled Chat in <a href="https://console.agora.io/">Agora Console</a>.</div>
 
-
 ## Implementation
 
 This section describes how to call the APIs provided by the Agora Chat SDK to implement thread features.
@@ -138,7 +137,7 @@ ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(chatThreadId, ty
         
     }
 
-    @Override
+    @Overrid
     public void onError(int error, String errorMsg) {
 
     }
