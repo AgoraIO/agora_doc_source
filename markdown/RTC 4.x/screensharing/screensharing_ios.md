@@ -186,7 +186,18 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, with
 ```
 ### （可选）设置屏幕共享场景
 
-API example 中无示例代码
+调用 `setScreenCaptureScenario` 方法设置屏幕共享场景，按照实际使用场景，将 `scenarioType` 设置为以下任意一种：
+
+- `AgoraScreenScenarioDocument(1)`：文档场景
+- `AgoraScreenScenarioGaming(2)`：游戏场景
+- `AgoraScreenScenarioVideo(3)`：视频场景
+- `AgoraScreenScenarioRDC(4)`：远程控制场景
+
+示例代码如下：
+```swift
+agoraKit.setScreenCaptureScenario(.video)
+```
+
 
 ### （可选）更新屏幕共享
 如果你要更新屏幕共享的参数，调用 `updateScreenCapture`，重新设置 `parameters` 参数（例如：视频编码分辨率、帧率、码率）。
