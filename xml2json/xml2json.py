@@ -300,7 +300,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
     for child in root.iter('*'):
         if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
             logLines(localLogger.debug, "Tag to remove1", child, child.text, child.tag, child.get("id"))
-            if child.tail:
+            if child.tail and child.tail.strip():
                 preserved_tail = child.tail
                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                 child.clear()
@@ -643,7 +643,7 @@ def create_json_from_xml(working_dir, file_dir, defined_path, platform_tag, sdk_
         for child in root.iter('*'):
             if should_remove(platform_tag, child.get("props"), remove_sdk_type, language):
                 logLines(localLogger.debug, "Tag to remove 3", child, child.text, child.tag, child.get("props"))
-                if child.tail:
+                if child.tail and child.tail.strip():
                     preserved_tail = child.tail
                     # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
                     child.clear()
