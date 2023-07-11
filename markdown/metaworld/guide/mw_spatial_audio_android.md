@@ -42,7 +42,9 @@
 
 使用空间音效前，你需要调用 [`create`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_create) 和 [`initialize`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html#api_ilocalspatialaudioengine_initialize) 创建和初始化空间音效引擎。
 
-**注意**：请在加入 RTC 频道前调用。
+**注意**：
+- 请在加入 RTC 频道前调用。
+- 当使用空间音效时，请确保在 `RtcEngine` 中停止发布和订阅音频流。
 
 ```java
 // 创建和初始化空间音效引擎
@@ -58,7 +60,7 @@ spatialAudioEngine.initialize(config);
 
 调用 [`setAudioRecvRange`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_effect.html?platform=Android#api_ibasespatialaudioengine_setaudiorecvrange) 设置空间音效接收范围，当远端用户相对本地用户的距离超出这个范围，本地用户就会听不到远端用户的声音。
 
-当使用空间音效时，请确保在 `RtcEngine` 中停止发布和订阅音频流。在后续的逻辑中，应由 `ILocalSpatialAudioEngine` 处理是否停止发布和订阅音频流。
+你可以通过 `ILocalSpatialAudioEngine` 处理是否停止发布和订阅音频流。
 
 ```java
 // 设置空间音效的音频接收范围
