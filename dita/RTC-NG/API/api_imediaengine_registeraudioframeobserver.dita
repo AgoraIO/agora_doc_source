@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setAudioFrameDelegate:(id&lt;AgoraAudioFrameDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int registerAudioFrameObserver(IAudioFrameObserver* observer) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerAudioFrameObserver(observer: IAudioFrameObserver): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterAudioFrameObserver(IAudioFrameObserver audioFrameObserver, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterAudioFrameObserver(IAudioFrameObserver audioFrameObserver, AUDIO_FRAME_POSITION position, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerAudioFrameObserver(observer: IAudioFrameObserver): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerAudioFrameObserver(AudioFrameObserver observer);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -40,6 +40,18 @@
             <plentry props="unity cs">
                 <pt>mode</pt>
                 <pd>音频数据回调模式，详见 <xref keyref="OBSERVER_MODE"/>。</pd>
+            </plentry>
+            <plentry props="unity">
+            <pt>position</pt>
+            <pd><ph>音频观测位置。</ph>
+            <ul>
+            <li><ph keyref="AUDIO_FRAME_POSITION_PLAYBACK"/> (0x0001)：该位置可观测所有远端用户混音后的播放音频，对应 <apiname keyref="onPlaybackAudioFrame"/> 回调。</li>
+            <li><ph keyref="AUDIO_FRAME_POSITION_RECORD"/> (0x0002)：该位置可观测采集的本地用户的音频，对应 <apiname keyref="onRecordAudioFrame"/> 回调。</li>
+            <li><ph keyref="AUDIO_FRAME_POSITION_MIXED"/> (0x0004)：该位置可观测本地和所有远端用户混音后的音频，对应 <apiname keyref="onMixedAudioFrame"/> 回调。</li>
+            <li><ph keyref="AUDIO_FRAME_POSITION_BEFORE_MIXING"/> (0x0008)：该位置可观测单个远端用户混音前的音频，对应 <apiname keyref="onPlaybackAudioFrameBeforeMixing"/> 回调。</li>
+            <li><ph keyref="AUDIO_FRAME_POSITION_EAR_MONITORING"/> (0x0010)：该位置可观测单个本地用户耳返的音频，对应 <apiname keyref="onEarMonitoringAudioFrame"/> 回调。</li>
+            </ul>
+            </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
