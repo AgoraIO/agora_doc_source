@@ -1,4 +1,4 @@
-声网在 GitHub 上提供一个开源的秀场直播示例项目 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/main/Android/scenes/show)。本文介绍如何快速跑通该示例项目，体验直播效果。
+声网在 GitHub 上提供一个开源的秀场直播示例项目 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0.1-all-Android/Android/scenes/show)。本文介绍如何快速跑通该示例项目，体验直播效果。
 
 ## 前提条件
 

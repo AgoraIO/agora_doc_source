@@ -2,7 +2,7 @@
 
 ## 示例项目
 
-声网在 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios) 仓库中提供[秀场直播](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/main/iOS/AgoraEntScenarios/Scenes/Show)源代码供你参考。
+声网在 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios) 仓库中提供[秀场直播](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/Show)源代码供你参考。
 
 ## 业务流程图
 
@@ -65,7 +65,7 @@
 
 ## 实现秀场直播
 
-如下时序图中展示了如何创建直播间、加入直播间、PK 连麦、观众连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图和[示例项目](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/main/iOS/AgoraEntScenarios/Scenes/Show)自行实现。
+如下时序图中展示了如何创建直播间、加入直播间、PK 连麦、观众连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图和[示例项目](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/Show)自行实现。
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。你可以调用声网云服务的 API 用于测试，但是对于正式环境，声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
