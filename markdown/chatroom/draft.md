@@ -40,6 +40,101 @@
 
 ### 创建项目
 
+#TODO
+
 
 ## 实现语聊房
 
+语聊房通过ChatRoomServiceProtocol(Service)来实现房间列表的存储和房间生命周期管理，依赖AgoraChat SDK(环信SDK)来实现房间内的信令通信，房间管理的时序图如下
+
+### 1. 登录信令系统
+
+首先在房间列表页需要获取环信的token和userName来进行登录操作
+
+```swift
+@objc public func loginIM(userName: String, token: String, completion: @escaping (String, AgoraChatError?) -> Void) {
+    if AgoraChatClient.shared().isLoggedIn {
+        completion(AgoraChatClient.shared().currentUsername ?? "", nil)
+    } else {
+        AgoraChatClient.shared().login(withUsername: userName, token: token, completion: completion)
+    }
+}
+```
+
+### 2. 获取房间列表
+
+可以通过fetchRoomList来刷新
+
+```swift
+ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
+    self.roomList.refreshControl?.endRefreshing()
+    if error == nil {
+        guard let rooms = rooms else {return}
+        let roomsEntity: VRRoomsEntity = VRRoomsEntity()
+        roomsEntity.rooms = rooms
+        roomsEntity.total = rooms.count
+        self.fillDataSource(rooms: roomsEntity)
+        self.roomList.reloadData()
+        self.empty.isHidden = (rooms.count > 0)
+    } else {
+        self.view.makeToast("\(error?.localizedDescription ?? "")")
+    }
+}
+```
+
+### 3. 创建房间
+
+通过createRoom方法创建
+
+```swift
+ChatRoomServiceImp.getSharedInstance().createRoom(room: entity) { error, room in
+    SVProgressHUD.dismiss()
+    self.view.window?.isUserInteractionEnabled = true
+    if let room = room,error == nil {
+        self.entryRoom(room: room)
+    } else {
+        SVProgressHUD.showError(withStatus: "Create failed!".localized())
+    }
+}
+```
+
+### 4. 加入房间
+
+通过joinRoom方法加入
+
+加入房间后可以通过调用加入RTC频道来实现聊天室音频通话
+
+```swift
+SVProgressHUD.show(withStatus: "Loading".localized())
+NetworkManager.shared.generateToken(channelName: room.channel_id ?? "", uid: VLUserCenter.user.id, tokenType: .token007, type: .rtc) { token in
+    VLUserCenter.user.agoraRTCToken = token ?? ""
+    ChatRoomServiceImp.getSharedInstance().joinRoom(room.room_id ?? "") { error, room_entity in
+        SVProgressHUD.dismiss()
+        if VLUserCenter.user.chat_uid.isEmpty || VLUserCenter.user.im_token.isEmpty || self.initialError != nil {
+            SVProgressHUD.showError(withStatus: "Fetch IMconfig failed!")
+            return
+        }
+        self.mapUser(user: VLUserCenter.user)
+        let info: VRRoomInfo = VRRoomInfo()
+        info.room = room
+        info.mic_info = nil
+        self.isDestory = false
+        let vc = VoiceRoomViewController(info: info)
+        self.navigationController?.pushViewController(vc, animated: true)
+        self.normal.roomList.isUserInteractionEnabled = true
+    }
+}
+```
+
+### 5. 麦位管理
+
+#TODO
+
+### 6. 退出房间
+
+退出房间后需要调用离开RTC频道来结束音频聊通话
+
+```swift
+ChatRoomServiceImp.getSharedInstance().leaveRoom(self.roomInfo?.room?.room_id ?? "") { _, _ in
+}
+```
