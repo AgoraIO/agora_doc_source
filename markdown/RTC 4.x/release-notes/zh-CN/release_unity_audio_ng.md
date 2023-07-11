@@ -36,7 +36,7 @@
 该版本还进行了如下改进：
 
 1. 为了提升多种音频路由之间的切换体验，该版本新增了 `SetRouteInCommunicationMode` 方法，用于在通话音量模式 ([MODE_IN_COMMUNICATION](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)) 下，将音频路由从蓝牙耳机切换为听筒、有线耳机或扬声器。 (Android)
-4. 版权音乐新增 `GetSongSimpleInfo` 方法，可用于获取某一指定歌曲的详细信息，你可以通过触发的 `OnSongSimpleInfoResult` 回调来获取歌曲信息。 (Android, iOS)
+2. 版权音乐新增 `GetSongSimpleInfo` 方法，可用于获取某一指定歌曲的详细信息，你可以通过触发的 `OnSongSimpleInfoResult` 回调来获取歌曲信息。 (Android, iOS)
 
 ### 问题修复
 
