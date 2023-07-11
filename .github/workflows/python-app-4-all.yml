@@ -13,13 +13,24 @@ jobs:
       strategy:
         matrix:
           platform: [flutter, ios, macos, electron, unity, rn]
+          working_dir: [../dita/RTC-NG, ../en-US/dita/RTC-NG]
+          staging_tag: ['', '-staging']
       runs-on: ubuntu-latest
+      name: ${{matrix.platform}}${{matrix.staging_tag}} ${{matrix.working_dir == '../en-US/dita/RTC-NG' && '(en)' || '(cn)'}}
       steps:
           - uses: actions/checkout@v3
           - name: Set up python 3.8
             uses: actions/setup-python@v4
             with:
                 python-version: '3.8'
+          - name: Set Language
+            id: matrix_vars
+            run: |
+              if [[ ${{ matrix.working_dir }} == *en-US* ]]; then
+                echo "language=en" >> $GITHUB_OUTPUT
+              else
+                echo "language=cn" >> $GITHUB_OUTPUT
+              fi
           - name: Get branch name
             id: branch-name
             uses: tj-actions/branch-names@v7
@@ -28,46 +39,31 @@ jobs:
                 cd xml2json
                 python -m pip install --upgrade pip
                 if  [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          - name: Run CN json creation
+          - name: Run ${{steps.matrix_vars.outputs.language}} JSON creation
             run: |
                 cd xml2json
                 echo "Running for ${{matrix.platform}} NG"
-                python xml2json.py --working_dir ../dita/RTC-NG --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
-                python -mjson.tool "${{matrix.platform}}_cn_ng.json" > /dev/null
-          - name: Run EN json creation
-            run: |
-                cd xml2json
-                echo "Running for ${{matrix.platform}} NG"
-                python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag ${{matrix.platform}} --json_file ${{matrix.platform}}_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng
-                python -mjson.tool "${{matrix.platform}}_en_ng.json" > /dev/null
-          - name: Upload CN Artifact
+                if [[ "${{ matrix.staging_tag }}" == -staging ]]; then
+                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}};
+                else
+                  python xml2json${{matrix.staging_tag}}.py --working_dir ${{matrix.working_dir}} --platform_tag ${{matrix.platform}} \
+                      --json_file ${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json \
+                      --sdk_type rtc-ng --remove_sdk_type rtc --defined_path ${{matrix.platform}}-ng;
+                fi
+          - name: Validate JSON File
+            run: python -m json.tool "xml2json/${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json" > /dev/null
+          - name: Upload ${{matrix.platform}} ${{steps.matrix_vars.outputs.language}} Artifact
             uses: actions/upload-artifact@v3
             with:
-              name: ${{matrix.platform}}_ng_json_template_cn.json
-              path: xml2json/${{matrix.platform}}_cn_ng.json
-          - name: Upload EN Artifact
-            uses: actions/upload-artifact@v3
-            with:
-              name: ${{matrix.platform}}_ng_json_template_en.json
-              path: xml2json/${{matrix.platform}}_en_ng.json
-          - name: Upload ${{matrix.platform}} NG CN JSON to release
+              name: ${{matrix.platform}}_ng_json_template_${{ steps.matrix_vars.outputs.language }}${{matrix.staging_tag}}.json
+              path: xml2json/${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json
+          - name: Upload ${{matrix.platform}} NG ${{steps.matrix_vars.outputs.language}} JSON to release
             if: github.ref_name == github.event.repository.default_branch
             uses: svenstaro/upload-release-action@2.6.0
             with:
                 repo_token: ${{ secrets.GITHUB_TOKEN }}
-                file: xml2json/${{matrix.platform}}_cn_ng.json
-                asset_name: ${{matrix.platform}}_ng_json_template_cn.json
+                file: xml2json/${{matrix.platform}}_${{steps.matrix_vars.outputs.language}}_ng.json
+                asset_name: ${{matrix.platform}}_ng_json_template_${{steps.matrix_vars.outputs.language}}${{matrix.staging_tag}}.json
                 tag: ${{ steps.branch-name.outputs.current_branch }}-build
                 overwrite: true
                 body: "Template file for automatic comment population."
-          - name: Upload ${{matrix.platform}} NG EN JSON to release
-            if: github.ref_name == github.event.repository.default_branch
-            uses: svenstaro/upload-release-action@2.6.0
-            with:
-                repo_token: ${{ secrets.GITHUB_TOKEN }}
-                file: xml2json/${{matrix.platform}}_en_ng.json
-                asset_name: ${{matrix.platform}}_ng_json_template_en.json
-                tag: ${{ steps.branch-name.outputs.current_branch }}-build
-                overwrite: true
-                body: "Template file for automatic comment population."
-      
