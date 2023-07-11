@@ -9,8 +9,8 @@
                 <title>Compatibility changes</title>
                 <body>
                     <p><b>DRM-protected music</b></p>
-                    <p props="android ios unreal unity">该版本废弃了 <codeph><apiname keyref="IMusicContentCenter"/></codeph> 类下的 <codeph><apiname keyref="preload"/></codeph> 方法并新增 <codeph><apiname keyref="preload2"/></codeph> 方法。 如果你使用了 <codeph><apiname keyref="preload"/></codeph> 方法实现预加载音乐资源，请在升级到该版本后更新 app 代码。</p>
-                    <p props="flutter electron rn bp">该版本删除了 <codeph><apiname keyref="IMusicContentCenter"/></codeph> 类下的 <codeph><apiname keyref="preload2"/></codeph> 方法中的 <codeph>jsonOption</codeph> 参数，请在升级到该版本后更新 app 代码。</p>
+                    <p props="android ios unreal unity">This version deprecated the method under the class and added the method. <codeph><apiname keyref="IMusicContentCenter"/></codeph><codeph><apiname keyref="preload"/></codeph><codeph><apiname keyref="preload2"/></codeph>If you use the method to preload music resources, please update the app code after upgrading to this version.<codeph><apiname keyref="preload"/></codeph></p>
+                    <p props="flutter electron rn bp">This version deletes the <codeph>jsonOption </codeph>parameter in the method under the class, please update the app code after upgrading to this version.<codeph><apiname keyref="IMusicContentCenter"/></codeph><codeph><apiname keyref="preload2"/></codeph></p>
                 </body>
             </topic>
             <topic id="newfeature">
@@ -35,7 +35,7 @@
                             <note>For one , Agora supports publishing multiple audio streams and one video stream at the same time.<codeph><apiname keyref="RtcConnection"/></codeph></note></p>
                         </li>
                         <li props="android ios unity rn unreal bp flutter"><p><ph><b>NO</b></ph><ph props="unity unreal bp flutter"> DOCS</ph></p>
-                            <p>该版本新增 <codeph><apiname keyref="getInternalSongCode"/></codeph> 方法，如果你仅需要播放某一音乐资源的副歌片段，在播放前你需要调用该方法来为该副歌片段创建一个内部歌曲编号，作为该资源的唯一标识。 你可以查看<xref keyref="ktv-docs"/>了解更多 K 歌场景方案。</p>
+                            <p>The new method is added in this version. If you only need to play the chorus segment of a certain music resource, you need to call this method before playing to create an internal song number for the chorus segment as the unique identifier of the resource. <codeph><apiname keyref="getInternalSongCode"/></codeph>You can check<xref keyref="ktv-docs"/> out more karaoke scenarios.</p>
                         </li>
                     </ol>
                 </body>
@@ -95,8 +95,8 @@
                         <li props="android ios unity rn flutter unreal bp"><ph props="unreal bp flutter unity">(Android, iOS)</ph><codeph><apiname keyref="onSongSimpleInfoResult"/></codeph></li>
                         <li props="android ios unity rn flutter unreal bp"><ph props="unreal bp flutter unity">(Android, iOS)</ph><codeph><apiname keyref="getInternalSongCode"/></codeph></li>
                         <li props="android ios unity unreal bp"><ph props="unreal bp unity">(Android, iOS)</ph><codeph><apiname keyref="preload2"/></codeph></li>
-                        <li props="android ios unity rn flutter unreal bp"><codeph><apiname keyref="onLyricResult"/></codeph>中增加 <codeph>songCode</codeph><ph props="unreal bp flutter unity rn"> (Android, iOS)</ph></li>
-                        <li props="android ios unity rn flutter unreal bp"><codeph><apiname keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></codeph>中增加 <codeph>requestId</codeph><ph props="unreal bp flutter unity rn"> (Android, iOS)</ph></li>
+                        <li props="android ios unity rn flutter unreal bp">Added <codeph>songCode</codeph><ph props="unreal bp flutter unity rn"> (Android, iOS)</ph><codeph><apiname keyref="onLyricResult"/></codeph></li>
+                        <li props="android ios unity rn flutter unreal bp">Added <codeph>requestId</codeph><ph props="unreal bp flutter unity rn"> (Android, iOS)</ph><codeph><apiname keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></codeph></li>
                         <li props="android unity rn flutter unreal bp"><ph props="unity rn flutter unreal bp">(Android)</ph><codeph><apiname keyref="setRouteInCommunicationMode"/></codeph></li>
                         <li><p>The following members in :<codeph><apiname keyref="ChannelMediaOptions"/></codeph><ul>
                         <li><codeph>publishThirdCameraTrack</codeph></li>
@@ -114,7 +114,7 @@
                         <li><ph props="unity unreal">(Android, iOS)</ph><codeph><apiname keyref="preload"/></codeph></li>
                         </ul></p>
                     <p props="rn flutter bp"><b>Delete</b><ul>
-                        <li><codeph><apiname keyref="IMusicContentCenter"/></codeph>类下的 <codeph><apiname keyref="preload2"/></codeph> 方法中的 <codeph>jsonOption</codeph> 参数 <ph props="flutter bp">(Android, iOS)</ph></li>
+                        <li>The <codeph>jsonOption</codeph> parameter in the method under the class<ph props="flutter bp"> (Android, iOS)</ph><codeph><apiname keyref="IMusicContentCenter"/></codeph><codeph><apiname keyref="preload2"/></codeph></li>
                         </ul></p>
                 </body>
             </topic>
