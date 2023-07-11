@@ -1,0 +1,26 @@
+@startuml
+title 房主邀请观众上麦的流程图
+start
+if (角色是否为房主) then (Yes)
+    :房主向观众发起上麦邀请;
+    :房主收到观众对邀请的响应;
+    if (观众同意房主的邀请) then (Yes)
+    :房主收到麦位已更新的通知;
+    else (No)
+    stop
+    endif
+else(No)
+    :观众收到房主的上麦邀请;
+    if (观众是否同意房主的邀请) then (Yes)
+    :观众发起同意邀请的通知;
+    :观众修改麦位信息以上麦;
+    :[RTC] 更新当前用户角色为主播;
+    :[RTC] 发布本地音频流;
+    else (No)
+    :发起拒绝邀请的通知;
+    stop
+    endif
+endif
+:更新麦位 UI 界面;
+stop
+@enduml
