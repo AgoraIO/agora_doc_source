@@ -60,7 +60,7 @@
 
 7. 在终端内运行 <code>pod install</code> 命令安装声网 SDK。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
 
-8. 成功安装后，项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。</ul>
+8. 成功安装后，项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。
 
 
 ## 实现秀场直播
