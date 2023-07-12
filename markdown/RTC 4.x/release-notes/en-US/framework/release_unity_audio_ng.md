@@ -6,7 +6,7 @@ This version was released on July, xx, 2023.
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
 
-**Audio frame observer**
+1. **Audio frame observer**
 
 The following methods in the `IAudioFrameObserver` class are deleted:
 
@@ -16,7 +16,7 @@ The following methods in the `IAudioFrameObserver` class are deleted:
 - `GetMixedAudioParams`: Use `SetMixedAudioFrameParameters` instead.
 - `GetEarMonitoringAudioParams`: Use `SetEarMonitoringAudioFrameParameters` instead.
 
-**Metadata**
+2. **Metadata**
 
 This release deletes `GetMaxMetadataSize` and `OnReadyToSendMetadata` in the `IMetadataObserver` class. You can use the newly-added `SetMaxMetadataSize` and `SendMetadata` methods instead.
 
@@ -64,7 +64,6 @@ This release fixed the following issues:
 - `SetMaxMetadataSize`
 - `SendMetadata`
 - `position` parameter in `RegisterAudioFrameObserver` 
-- `formatPreference` and `position`  parameters in `RegisterVideoFrameObserver`
 
 **Deleted**
 

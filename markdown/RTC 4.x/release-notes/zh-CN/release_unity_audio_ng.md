@@ -4,9 +4,25 @@
 
 ### 升级必看
 
-**版权音乐**
+该版本对部分功能的实现方式进行了优化，请在升级到该版本后更新 app 代码。
 
-该版本废弃了 `IMusicContentCenter` 类下的 `Preload [1/2]` 方法并新增 `Preload [2/2]` 方法。如果你使用了 `Preload [1/2]` 方法实现预加载音乐资源，请在升级到该版本后更新 app 代码。
+1. **音频观测器**
+
+`IAudioFrameObserver` 类中删除了下列方法：
+
+- `GetObservedAudioFramePosition`：请改用 `RegisterAudioFrameObserver` 中新增的 `position` 参数。
+- `GetPlaybackAudioParams`：请改用 `SetPlaybackAudioFrameParameters`。
+- `GetRecordAudioParams`：请改用 `SetRecordingAudioFrameParameters`
+- `GetMixedAudioParams`：请改用 `SetMixedAudioFrameParameters`。
+- `GetEarMonitoringAudioParams`：请改用 `SetEarMonitoringAudioFrameParameters`。
+
+2. **媒体附属信息**
+
+该版本删除了 `IMetadataObserver` 类下的 `GetMaxMetadataSize` 和 `OnReadyToSendMetadata` ，请改用该版本新增的 `SetMaxMetadataSize` 和 `SendMetadata`。
+
+3. **版权音乐**
+
+该版本废弃了 `IMusicContentCenter` 类下的 `Preload [1/2]` 方法并新增 `Preload [2/2]` 方法。
 
 ### 新增特性
 
@@ -63,7 +79,6 @@
 - `SetMaxMetadataSize`
 - `SendMetadata`
 - `RegisterAudioFrameObserver` 新增 `position` 参数
-- `RegisterVideoFrameObserver` 新增 `formatPreference` 和 `position` 参数
 
 **废弃**
 
@@ -76,7 +91,5 @@
 - `GetRecordAudioParams`
 - `GetMixedAudioParams`
 - `GetEarMonitoringAudioParams`
-- `GetVideoFormatPreference`
-- `GetObservedFramePosition`
 - `GetMaxMetadataSize`
 - `OnReadyToSendMetadata`

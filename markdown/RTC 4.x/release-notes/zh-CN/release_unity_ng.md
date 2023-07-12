@@ -6,7 +6,7 @@
 
 该版本对部分功能的实现方式进行了优化，请在升级到该版本后更新 app 代码。
 
-**音频观测器**
+1. **音频观测器**
 
 `IAudioFrameObserver` 类中删除了下列方法：
 
@@ -16,18 +16,18 @@
 - `GetMixedAudioParams`：请改用 `SetMixedAudioFrameParameters`。
 - `GetEarMonitoringAudioParams`：请改用 `SetEarMonitoringAudioFrameParameters`。
 
-**视频观测器**
+2. **视频观测器**
 
 `IVideoFrameObserver` 类中删除了下列方法：
 
 - `GetVideoFormatPreference`：请改用 `RegisterVideoFrameObserver` 新增的 `formatPreference` 参数。
 - `GetObservedFramePosition`：请改用 `RegisterVideoFrameObserver` 新增的 `position` 参数。
 
-**媒体附属信息**
+3. **媒体附属信息**
 
 该版本删除了 `IMetadataObserver` 类下的 `GetMaxMetadataSize` 和 `OnReadyToSendMetadata` ，请改用该版本新增的 `SetMaxMetadataSize` 和 `SendMetadata`。
 
-**版权音乐**
+4. **版权音乐**
 
 该版本废弃了 `IMusicContentCenter` 类下的 `Preload [1/2]` 方法并新增 `Preload [2/2]` 方法。
 
