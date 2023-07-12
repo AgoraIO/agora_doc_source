@@ -137,7 +137,7 @@ ChatClient.getInstance().chatManager().asyncFetchHistoryMessage(chatThreadId, ty
         
     }
 
-    @Overrid
+    @Override
     public void onError(int error, String errorMsg) {
 
     }
