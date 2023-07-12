@@ -24,7 +24,7 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>When the viewers in the live channel want to switch from one channel to another, this method can be called to achieve fast switching.</p>
+            <p>This method allows the audience of an interactive live streaming channel to switch to a different channel.</p>
             <p>After the user successfully switches to another channel, the <xref keyref="onLeaveChannel" /> and <xref keyref="onJoinChannelSuccess" /> callbacks are triggered to indicate that the user has left the original channel and joined a new one.</p>
             <p>Once the user switches to another channel, the user subscribes to the audio and video streams of all the other users in the channel by default, giving rise to usage and billing calculation. To stop subscribing to a specified stream or all remote streams, call the corresponding <apiname>mute</apiname> methods.</p>
         </section>
@@ -38,18 +38,18 @@
                     <li>In scenarios with low security requirements, token is optional and can be set as <ph keyref="NULL" />.</li>
                     <li>In scenarios with high security requirements, set the value to the token generated from your server. If you enable the App Certificate, you must use a token to join the channel.</li>
                     </ul>
-                    <note type="caution">Ensure that the App ID, channel name, and user name used for creating the token are the same ones as those used by the <xref keyref="initialize" /> method for initializing the RTC engine, and those used by the  and  methods for joining the channel.</note> </p>
+                    <note type="caution">Ensure that the App ID used for creating the token is the same App ID used by the <xref keyref="initialize" /> method for initializing the RTC engine.</note> </p>
                 </pd>
             </plentry>
             <plentry>
-                <pt><ph props="android ios mac">channelName</ph><ph props="cpp">channel</ph></pt>
+                <pt><ph props="android ios mac">channelName</ph><ph props="cpp unreal bp">channel</ph></pt>
                 <pd>
-                    <p>The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters:<ul id="ul_lx4_nrc_h4b">
+                    <p>The channel name. This parameter signifies the channel in which users engage in real-time audio and video interaction. Under the premise of the same App ID, users who fill in the same channel ID enter the same channel for audio and video interaction. The string length must be less than 64 bytes. Supported characters (89 characters in total):<ul id="ul_lx4_nrc_h4b">
                     <li>All lowercase English letters: a to z.</li>
                     <li>All uppercase English letters: A to Z.</li>
                     <li>All numeric characters: 0 to 9.</li>
                     <li>Space</li>
-                    <li>"!", "#", "$", "%", "&amp;amp;", "(", ")", "+", "-", ":", ";", "&amp;lt;", "= ", ".", "&amp;gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
+                    <li>"!", "#", "$", "%", "&amp;", "(", ")", "+", "-", ":", ";", "&lt;", "=", ".", "&gt;", "?", "@", "[", "]", "^", "_", "{", "}", "|", "~", ","</li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -61,9 +61,9 @@
             <li>&lt; 0: Failure.<ul>
                 <li>-1: A general error occurs (no specified reason).</li>
                 <li>-2: The parameter is invalid.</li>
-                <li>-5: The request is rejected. Probably because the user is not an audience member.</li>
+                <li>-5: The request is rejected. This is probably because the user is not an audience member.</li>
                 <li>-7: The SDK is not initialized.</li>
-                <li>-102: The channel name is invalid. Please use a valid channel name.</li>
+                <li>-102: The channel name is invalid. Use a valid channel name.</li>
                 <li>-113: The user is not in the channel.</li>
                 </ul></li>
             </ul> </section>
