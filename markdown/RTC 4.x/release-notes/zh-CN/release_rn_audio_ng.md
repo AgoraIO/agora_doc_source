@@ -14,11 +14,11 @@
 
    该版本新增通配 Token。生成 Token 时，在用户 ID 不为 0 的情况下，声网支持你将频道名设为通配符，从而生成可以加入任何频道的通配 Token。在需要频繁切换频道及多频道场景下，使用通配 Token 可以避免 Token 的重复配置，有助于提升开发效率，减少你的 Token 服务端的压力。详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms)。
 
-   **注：** 声网 4.x SDK 均支持使用通配 Token。
+   <div class="alert note">声网 4.x SDK 均支持使用通配 Token。</div>
 
 2. **预加载频道**
 
-   该版本新增 `preloadChannel` 和 `preloadChannelWithUserAccount` 方法，支持角色为观众的用户在加入频道前预先加载一个或多个频道。该方法调用成功后可以减少观众加入频道的时间，从而缩短观众听到主播首帧音频以及看到首帧画面的耗时，提升观众端的音视频体验。
+   该版本新增 `preloadChannel` 和 `preloadChannelWithUserAccount` 方法，支持角色为观众的用户在加入频道前预先加载一个或多个频道。该方法调用成功后可以减少观众加入频道的时间，从而缩短观众听到主播首帧音频的耗时，提升观众端的音频体验。
 
    在同时预加载多个频道时，为避免观众在切换不同频道时需多次申请 Token 从而导致切换频道时间增长，因此声网推荐使用通配 Token 来减少你的业务服务端获取 Token 导致的耗时，进一步加快切换频道的速度，详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms)。
 
@@ -51,14 +51,9 @@
 - `getSongSimpleInfo`
 - `onSongSimpleInfoResult`
 - `getInternalSongCode`
-- `onLyricResult` 中增加 `songCode` (Android, iOS)
-- `onPreLoadEvent` 中增加 `requestId` (Android, iOS)
+- `onLyricResult` 中增加 `songCode` 
+- `onPreLoadEvent` 中增加 `requestId` 
 - `setRouteInCommunicationMode` (Android)
-- `ChannelMediaOptions` 中增加下列成员：
-  - `publishThirdCameraTrack`
-  - `publishFourthCameraTrack`
-  - `publishThirdScreenTrack`
-  - `publishFourthScreenTrack`
 
 **删除**
 
