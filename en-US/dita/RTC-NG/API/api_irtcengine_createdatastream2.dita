@@ -21,17 +21,17 @@
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, DataStreamConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream(DataStreamConfig config);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
-            <p id="diff" props="native unity cs">Compared with <xref keyref="createDataStream1" />, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <p id="diff" props="native unreal bp unity cs">Compared with <xref keyref="createDataStream1" />, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="cpp ios mac unity cs" id="streamId">
+            <plentry props="cpp unreal bp ios mac unity cs" id="streamId">
                 <pt>streamId</pt>
                 <pd>An output parameter; the ID of the data stream created.</pd>
             </plentry>
@@ -43,7 +43,7 @@
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li props="cpp ios mac unity cs">0: The data stream is successfully created.</li>
+            <li props="cpp unreal bp ios mac unity cs">0: The data stream is successfully created.</li>
             <li props="android electron flutter rn">ID of the created data stream, if the method call succeeds.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>

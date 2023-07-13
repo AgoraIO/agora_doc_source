@@ -80,14 +80,14 @@
                 <pt>filePath</pt>
                 <pd>
                     <p>The complete path of the log files. Ensure that the path for the log file exists and is writable. You can use this parameter to rename the log files.</p>
-                    <p props="cpp unity electron rn cs">The default path is:<ul>
-                    <li props="cpp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>.</li>
-                    <li props="cpp unity rn flutter">iOS：<filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>.</li>
-                    <li props="cpp unity electron flutter">macOS:<ul id="mac-path">
+                    <p props="cpp unreal bp unity electron rn cs">The default path is:<ul>
+                    <li props="cpp unreal bp unity rn flutter">Android：<filepath id="android-path">/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>.</li>
+                    <li props="cpp unreal bp unity rn flutter">iOS：<filepath id="ios-path">App Sandbox/Library/caches/agorasdk.log</filepath>.</li>
+                    <li props="cpp unreal bp unity electron flutter">macOS:<ul id="mac-path">
                         <li>If Sandbox is enabled:<filepath> App Sandbox/Library/Logs/agorasdk.log</filepath>. For example, <filepath>/Users/&lt;username&gt;/Library/Containers/&lt;AppBundleIdentifier&gt;/Data/Library/Logs/agorasdk.log</filepath>.</li>
                         <li>If Sandbox is disabled: <filepath>~/Library/Logs/agorasdk.log</filepath></li>
                         </ul></li>
-                    <li props="cpp unity electron flutter cs">Windows: <filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>.</li>
+                    <li props="cpp unreal bp unity electron flutter cs">Windows: <filepath>C:\Users\&lt;user_name&gt;\AppData\Local\Agora\&lt;process_name&gt;\agorasdk.log</filepath>.</li>
                     </ul></p>
                     <p props="android">The default path is <filepath>/storage/emulated/0/Android/data/&lt;packagename&gt;/files/agorasdk.log</filepath>.</p>
                     <p props="ios">The default path is <filepath>AppSandbox/Library/caches/agorasdk.log</filepath>.</p>
@@ -99,7 +99,7 @@
             </plentry>
             <plentry>
                 <pt>fileSizeInKB</pt>
-                <pd>The size (KB) of an <codeph>agorasdk.log</codeph> file. The value range is [128,1024]. The default value is 1,024 KB. If you set <codeph>fileSizeInKByte</codeph> smaller than 128 KB, the SDK automatically adjusts it to 128 KB; if you set <codeph>fileSizeInKByte</codeph> greater than 1,024 KB, the SDK automatically adjusts it to 1,024 KB.</pd>
+                <pd>The size (KB) of an <codeph>agorasdk.log</codeph> file. The value range is [128,20480]. The default value is 2,048 KB. If you set <codeph>fileSizeInKByte</codeph> smaller than 128 KB, the SDK automatically adjusts it to 128 KB; if you set <codeph>fileSizeInKByte</codeph> greater than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.</pd>
                 <pd>
                     <note id="note_vwq_yfm_kqb" type="attention">
                     <p>This method applies to the <codeph>agorasdk.log</codeph> file only and does not take effect for the <codeph>agoraapi.log</codeph> file.</p>
