@@ -1,0 +1,38 @@
+@startuml
+autonumber
+participant "App" as a
+participant "声网云服务\nService" as b #White
+participant "声网 IM SDK" as c
+participant "声网 RTC SDK" as d
+== 获取房间列表 ==
+a -> b: getRoomList
+b -->> a: room list
+== 登录即时通讯系统 ==
+a -> c: login
+c -->> a: login success
+== 创建房间 ==
+a -> b: createRoom
+b -->> a: create room success
+== 进入语聊房 ==
+a -> b: joinRoom
+b -->> a: joinRoom success
+a -> c: joinChatroom
+a -> d: joinChannel
+c -->> a: joinChatroom success
+d -->> a: joinChannel success
+== 麦位管理 ==
+...
+== 离开语聊房 ==
+a -> b: leave room
+a -> d: leaveChannel
+a -> c: leaveChatroom
+a -> c: destroyChatroom
+a -> d: destroy
+b -->> a: leave room success
+d -->> a: leaveChannel success
+c -->> a: leaveChatroom success
+c -->> a: destroyChatroom success
+@enduml
+
+
+
