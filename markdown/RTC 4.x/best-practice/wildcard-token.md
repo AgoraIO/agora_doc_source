@@ -27,12 +27,17 @@ AccessToken2 的[生成器代码](https://docportal.shengwang.cn/cn/video-call-4
 
 ## 注意事项
 
-1. 目前声网仅支持使用任意用户 ID 都可加入频道的 Token（即 `uid` 设为 0，`channelName` 需指定），或指定一个用户 ID 来加入任意频道的通配 Token（即 `uid` 需指定，`channelName` 设为 `*`），不支持同时将 `uid` 设为 0、`channelName` 设为 `*`。
-2. 为避免 Token 泄露后非法用户扰乱频道内秩序、炸房捣乱，请确保使用通配 Token 的用户其角色设为观众，用户权限（`role`）设为接收流（`kRoleSubscriber`）。
+1. 目前声网仅支持使用通过同一用户 ID 来加入频道的 Token（即 `uid` 设为 0，`channelName` 需指定），或指定一个用户 ID 来加入任意频道的通配 Token（即 `uid` 需指定，`channelName` 设为 `*`），不支持同时将 `uid` 设为 0、`channelName` 设为 `*`。
 
-<div class="alert info">如果用户需要连麦，需要调用 <code>setClientRole</code> 来将用户角色设为主播（ <code>BROADCASTER</code>），然后在 <code>BuildTokenWithUid</code> 方法中指定频道名和用户 ID，且将用户权限（<code>role</code>）设为发流（ <code>kRolePublisher</code>），从而生成具有发流权限的 Token。</div>
+2. 为避免 Token 泄露后非法用户扰乱频道内秩序、炸房捣乱，声网建议将使用通配 Token 的用户其角色设为观众，用户权限（`role`）设为接收流（`kRoleSubscriber`）。
 
-2. 如果通配 Token 过期，你需要重新在服务端重新生成新的通配 Token，然后调用 [renewToken](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_renewtoken) 来传入新的通配 Token。
+   如果使用通配 Token 的观众需要连麦，声网建议按照如下步骤来更新 Token：
+
+   1. 调用 <code>setClientRole</code> 来将用户角色设为主播（ <code>BROADCASTER</code>）
+   2. 生成 Token 时，在 <code>BuildTokenWithUid</code> 方法中指定频道名和用户 ID，且将用户权限（<code>role</code>）设为发流（ <code>kRolePublisher</code>），从而生成具有发流权限的 Token。
+   3. 调用 `renewToken` 来更新 Token。
+
+3. 如果通配 Token 过期，你需要重新在服务端重新生成新的通配 Token，然后调用 [renewToken](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_renewtoken) 来传入新的通配 Token。
 
 ## 参考文档
 
