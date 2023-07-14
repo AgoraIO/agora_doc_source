@@ -129,40 +129,61 @@ end
 
 
 ### 开启屏幕共享
-1. 调用 `startScreenCapture`，并在 `parameters` 中设置你预期的视频编码属性。
+1. 调用 `startScreenCapture`，根据你的应用场景进行参数设置：
+    - captureVideo：是否在屏幕共享时采集系统视频。
+    - captureAudio：是否在屏幕共享时采集系统音频。
+    - captureSignalVolume：采集的系统音量。
+    - dimensions：视频编码的分辨率。
+    - frameRate：视频编码帧率 (fps)。
+    - bitrate：视频编码码率 (Kbps)。
+    - contentHint：屏幕共享视频的内容类型。
 
-```swift
-// 设置屏幕共享的参数。
-private lazy var screenParams: AgoraScreenCaptureParameters2 = {
-        let params = AgoraScreenCaptureParameters2()
-        params.captureVideo = true
-        params.captureAudio = true
-        let audioParams = AgoraScreenAudioParameters()
-        // 设置采集的系统音量。
-        audioParams.captureSignalVolume = 50
-        params.audioParams = audioParams
-        let videoParams = AgoraScreenVideoParameters()
-        // 设置共享屏幕的分辨率。
-        videoParams.dimensions = screenShareVideoDimension()
-        // 设置视频编码帧率。
-        videoParams.frameRate = .fps15
-        // 设置视频编码码率。
-        videoParams.bitrate = AgoraVideoBitrateStandard
-        params.videoParams = videoParams
-        return params
-    }()
 
-// 开启屏幕共享
-agoraKit.startScreenCapture(screenParams)
-```
+    ```swift
+    // 设置屏幕共享的参数。
+    private lazy var screenParams: AgoraScreenCaptureParameters2 = {
+            let params = AgoraScreenCaptureParameters2()
+            params.captureVideo = true
+            params.captureAudio = true
+            let audioParams = AgoraScreenAudioParameters()
+            // 设置采集的系统音量。
+            audioParams.captureSignalVolume = 50
+            params.audioParams = audioParams
+            let videoParams = AgoraScreenVideoParameters()
+            // 设置共享屏幕的分辨率。
+            videoParams.dimensions = screenShareVideoDimension()
+            // 设置视频编码帧率。
+            videoParams.frameRate = .fps15
+            // 设置视频编码码率。
+            videoParams.bitrate = AgoraVideoBitrateStandard
+            params.videoParams = videoParams
+            return params
+        }()
+
+    // 开启屏幕共享
+    agoraKit.startScreenCapture(screenParams)
+    ```
 
 1. 结合用户的手动操作，使 app 开启屏幕共享。有两种方式供你参考：
    - 方式一：提示用户在 iOS 系统的控制中心长按**屏幕录制**按钮，并选择用你创建的 Extension 开启录制。
-   - 方式二：使用 Apple 在 iOS 12.0 中新增的 [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)，使 app 界面弹出 “开启屏幕共享” 的按钮，提示用户通过点击该按钮开启录制。
+   - 方式二：使用 Apple 在 iOS 12.0 中新增的 [RPSystemBroadcastPickerView](https://developer.apple.com/documentation/replaykit/rpsystembroadcastpickerview)，使 app 界面弹出 “开启屏幕共享” 的按钮，提示用户通过点击该按钮开启录制，示例代码如下：
    <div class="alert info"><code>RPSystemBroadcastPickerView</code> 存在一些使用限制并可能在后续版本的 iOS 系统中失效。因此，请酌情使用方式二。</div>
+    
+    ```swift
+    let frame = CGRect(x: 0, y:0, width: 60, height: 60)
+    // 创建 RPSystemBroadcastPickerView 对象
+    systemBroadcastPicker = RPSystemBroadcastPickerView(frame: frame)
+    systemBroadcastPicker?.showsMicrophoneButton = false
+    systemBroadcastPicker?.autoresizingMask = [.flexibleTopMargin, .flexibleRightMargin]
+    // 获取主应用程序的 Bundle Identifier
+    let bundleId = Bundle.main.bundleIdentifier ?? ""
+    // 设置 Extension 名称
+    systemBroadcastPicker?.preferredExtension = "\(bundleId).Agora-ScreenShare-Extension"
+    ``` 
 
-### 加入频道并发布屏幕共享视频流
+### 在频道中发布屏幕共享视频流
 
+加入频道后，调用 `updateChannelWithMediaOptions`，发布采集的屏幕共享视频流。示例代码如下：
 ```swift
 // 在进行屏幕视频采集（state 为 capturing，souceType 为 screen）时，定义 rtcEngine 的行为。
 func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStateChangedOf state: AgoraVideoLocalState, error: AgoraLocalVideoStreamError, sourceType: AgoraVideoSourceType) {
@@ -181,8 +202,6 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStateChangedOf state: Agor
     }
 }
 
-//加入频道
-func rtcEngine(_ engine: AgoraRtcEngineKit, didJoinChannel channel: String, withUid uid: UInt, elapsed: Int) {}
 ```
 ### （可选）设置屏幕共享场景
 
@@ -200,7 +219,7 @@ agoraKit.setScreenCaptureScenario(.video)
 
 
 ### （可选）更新屏幕共享
-如果你要更新屏幕共享的参数，调用 `updateScreenCapture`，重新设置 `parameters` 参数（例如：视频编码分辨率、帧率、码率）。
+如果你要更新屏幕共享的参数，调用 `updateScreenCapture`，修改屏幕共享的参数。例如：视频编码分辨率、帧率、码率）。
 ```swift
 agoraKit.updateScreenCapture(screenParams)
 ```
