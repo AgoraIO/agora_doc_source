@@ -8,7 +8,7 @@
 
 ## 实现元语聊和元直播融合场景
 
-完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元语聊和元直播的融合场景。
+完成[集成声网 Meta SDK](./mw_integrate_sdk_android) 后，你可以参考本节实现元语聊和元直播的融合场景。
 
 下图展示实现元语聊和元直播融合场景的 API 调用时序：
 
