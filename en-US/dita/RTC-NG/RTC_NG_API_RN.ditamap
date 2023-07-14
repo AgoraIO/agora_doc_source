@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<!DOCTYPE map [
+    <!ELEMENT map (title|topicmeta|topichead)*>
+    <!ELEMENT title (keyword)*>
+    <!ELEMENT keyword (#PCDATA)>
+    <!ATTLIST keyword
+        keyref CDATA #REQUIRED>
+    <!ELEMENT topicmeta (navtitle)*>
+    <!ELEMENT navtitle (keyword|ph)*>
+    <!ELEMENT topichead (topicref|ditavalref|topicmeta)*>
+    <!ATTLIST topichead
+        navtitle CDATA #IMPLIED
+        toc CDATA #IMPLIED>
+    <!ELEMENT topicref (topicref)*>
+    <!ATTLIST topicref
+        chunk CDATA #IMPLIED
+        format CDATA #IMPLIED
+        href CDATA #IMPLIED
+        keyref CDATA #IMPLIED
+        navtitle CDATA #IMPLIED
+        processing-role CDATA #IMPLIED
+        props CDATA #IMPLIED
+        toc CDATA #IMPLIED
+        type CDATA #IMPLIED>
+    <!ELEMENT ditavalref (#PCDATA)>
+    <!ATTLIST ditavalref
+        href CDATA #REQUIRED
+        processing-role CDATA #REQUIRED>
+    <!ELEMENT ph (#PCDATA)>
+    <!ATTLIST ph
+        keyref CDATA #REQUIRED>
+    ]>
 <map>
     <title><keyword keyref="sdk-name"/> v<keyword keyref="sdk-version"/> for <keyword keyref="platform"/></title>
     <topicmeta>
@@ -91,6 +121,7 @@
             <topicref keyref="getUserInfoByUserAccount" toc="no"/>
             <topicref keyref="isCameraAutoExposureFaceModeSupported" toc="no"/>
             <topicref keyref="isCameraAutoFocusFaceModeSupported" toc="no"/>
+            <topicref keyref="isCameraExposureSupported" toc="no"/>
             <topicref keyref="isCameraExposurePositionSupported" toc="no"/>
             <topicref keyref="isCameraFaceDetectSupported" toc="no"/>
             <topicref keyref="isCameraFocusSupported" toc="no"/>
@@ -116,6 +147,8 @@
             <topicref keyref="pauseEffect" toc="no"/>
             <topicref keyref="playAllEffects" toc="no"/>
             <topicref keyref="playEffect3" toc="no"/>
+            <topicref keyref="preloadChannel" toc="no"/>
+            <topicref keyref="preloadChannel2" toc="no"/>
             <topicref keyref="preloadEffect" toc="no"/>
             <topicref keyref="rate" toc="no"/>
             <topicref keyref="registerAudioEncodedFrameObserver" toc="no"/>
@@ -151,6 +184,7 @@
             <topicref keyref="setCameraAutoExposureFaceModeEnabled" toc="no"/>
             <topicref keyref="setCameraCapturerConfiguration" toc="no"/>
             <topicref keyref="setCameraDeviceOrientation" toc="no"/>
+            <topicref keyref="setCameraExposureFactor" toc="no"/>
             <topicref keyref="setCameraExposurePosition" toc="no"/>
             <topicref keyref="setCameraFocusPositionInPreview" toc="no"/>
             <topicref keyref="setCameraTorchOn" toc="no"/>
@@ -197,6 +231,7 @@
             <topicref keyref="setParameters" toc="no"/>
             <topicref keyref="setRemoteDefaultVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteUserSpatialAudioParams" toc="no"/>
+            <topicref keyref="setRouteInCommunicationMode" toc="no"/>
             <topicref keyref="setupRemoteVideo" toc="no"/>
             <topicref keyref="setRemoteRenderMode2" toc="no"/>
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
@@ -258,6 +293,7 @@
             <topicref keyref="updateChannelMediaOptions" toc="no"/>
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
+            <topicref keyref="updatePreloadChannelToken" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
             <topicref keyref="updateScreenCapture" toc="no"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>

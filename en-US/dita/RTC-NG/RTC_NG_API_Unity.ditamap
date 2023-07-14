@@ -101,6 +101,7 @@
             <topicref keyref="getUserInfoByUserAccount" toc="no"/>
             <topicref keyref="isCameraAutoFocusFaceModeSupported" toc="no"/>
             <topicref keyref="isCameraAutoExposureFaceModeSupported" toc="no"/>
+            <topicref keyref="isCameraExposureSupported" toc="no"/>
             <topicref keyref="isCameraExposurePositionSupported" toc="no"/>
             <topicref keyref="isCameraFaceDetectSupported" toc="no"/>
             <topicref keyref="isCameraFocusSupported" toc="no"/>
@@ -128,6 +129,8 @@
             <topicref keyref="playAllEffects" toc="no"/>
             <topicref keyref="playEffect2" toc="no" processing-role="resource-only"/>
             <topicref keyref="playEffect3" toc="no"/>
+            <topicref keyref="preloadChannel" toc="no"/>
+            <topicref keyref="preloadChannel2" toc="no"/>
             <topicref keyref="preloadEffect" toc="no"/>
             <topicref keyref="pullAudioFrame" toc="no"/>
             <topicref keyref="pushAudioFrame" toc="no"/>
@@ -167,6 +170,7 @@
             <topicref keyref="setCameraAutoFocusFaceModeEnabled" toc="no"/>
             <topicref keyref="setCameraCapturerConfiguration" toc="no"/>
             <topicref keyref="setCameraDeviceOrientation" toc="no"/>
+            <topicref keyref="setCameraExposureFactor" toc="no"/>
             <topicref keyref="setCameraExposurePosition" toc="no"/>
             <topicref keyref="setCameraFocusPositionInPreview" toc="no"/>
             <topicref keyref="setCameraTorchOn" toc="no"/>
@@ -222,6 +226,7 @@
             <topicref keyref="setRemoteSubscribeFallbackOption" toc="no" props="hide"/>
             <topicref keyref="setRemoteVideoStreamType" toc="no"/>
             <topicref keyref="setRemoteVideoSubscriptionOptions" toc="no"/>
+            <topicref keyref="setRouteInCommunicationMode" toc="no"/>
             <topicref keyref="setScreenCaptureContentHint" toc="no"/>
             <topicref keyref="setScreenCaptureScenario" toc="no"/>
             <topicref keyref="setSubscribeAudioBlocklist" toc="no"/>
@@ -293,6 +298,7 @@
             <topicref keyref="updateChannelMediaOptions" toc="no"/>
             <topicref keyref="updateChannelMediaRelay" toc="no"/>
             <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
+            <topicref keyref="updatePreloadChannelToken" toc="no"/>
             <topicref keyref="updateRtmpTranscoding" toc="no"/>
             <topicref keyref="updateScreenCapture" toc="no"/>
             <topicref keyref="updateScreenCaptureParameters" toc="no"/>
@@ -545,11 +551,6 @@
             <topicref keyref="stopRecordingDeviceTest" toc="no"/>
         </topicref>
         <topicref keyref="IAudioFrameObserver" chunk="to-content">
-            <topicref keyref="getEarMonitoringAudioParams" toc="no"/>
-            <topicref keyref="getMixedAudioParams" toc="no"/>
-            <topicref keyref="getObservedAudioFramePosition" toc="no"/>
-            <topicref keyref="getPlaybackAudioParams" toc="no"/>
-            <topicref keyref="getRecordAudioParams" toc="no"/>
             <topicref keyref="isMultipleChannelFrameWanted_IAudioFrameObserver" toc="no" props="hide"/>
             <topicref keyref="onEarMonitoringAudioFrame" toc="no"/>
             <topicref keyref="onMixedAudioFrame" toc="no"/>
@@ -563,9 +564,11 @@
             <topicref keyref="onRemoteAudioSpectrum" toc="no"/>
         </topicref>
         <topicref keyref="IMetadataObserver" chunk="to-content">
-            <topicref keyref="getMaxMetadataSize" toc="no"/>
+            <topicref keyref="sendMetaData" toc="no"/>
+            <topicref keyref="setMaxMetadataSize" toc="no"/>
+            <topicref keyref="getMaxMetadataSize" toc="no" props="hide"/>
             <topicref keyref="onMetadataReceived" toc="no"/>
-            <topicref keyref="onReadyToSendMetadata" toc="no"/>
+            <topicref keyref="onReadyToSendMetadata" toc="no" props="hide"/>
         </topicref>
         <topicref keyref="IVideoDeviceManager" chunk="to-content">
             <topicref keyref="enumerateVideoDevices" toc="no"/>
@@ -580,8 +583,6 @@
             <topicref keyref="onEncodedVideoFrameReceived" toc="no"/>
         </topicref>
         <topicref keyref="IVideoFrameObserver" chunk="to-content">
-            <topicref keyref="getObservedFramePosition" toc="no"/>
-            <topicref keyref="getVideoFormatPreference" toc="no"/>
             <topicref keyref="onCaptureVideoFrame" toc="no"/>
             <topicref keyref="onPreEncodeVideoFrame" toc="no"/>
             <topicref keyref="onRenderVideoFrame" toc="no"/>
