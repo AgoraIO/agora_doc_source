@@ -8,7 +8,7 @@ MetaWorld 解决方案支持元语聊、元直播场景。本文介绍如何实�
 
 ## 实现元直播
 
-完成[集成声网 Meta SDK](./integrate_sdk_android) 后，你可以参考本节实现元直播。
+完成[集成声网 Meta SDK](./mw_integrate_sdk_android) 后，你可以参考本节实现元直播。
 
 下图展示实现元直播的 API 调用时序：
 

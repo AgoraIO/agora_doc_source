@@ -75,7 +75,7 @@ private void setupUI() {
 
 ### 2. 发送换装和捏脸消息
 
-通过 [`sendSceneMessage`](/mw_api_ref_android?platform=All%20Platforms#sendscenemessage) 方法向虚拟场景中发送用户虚拟角色的换装和捏脸消息。
+通过 [`sendSceneMessage`](./mw_api_ref_android?platform=All%20Platforms#sendscenemessage) 方法向虚拟场景中发送用户虚拟角色的换装和捏脸消息。
 
 ```java
 public static final String KEY_UNITY_MESSAGE_UPDATE_DRESS = "updateDress";
