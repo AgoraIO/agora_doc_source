@@ -117,8 +117,8 @@
 ```
 platform :ios, '9.0'
 target 'Your App' do
-// 只集成基础库和屏幕共享动态库
-// 请使用具体的 SDK 版本号替换下面代码中的 x.y.z，可通过发版说明获取最新版本号      
+# 只集成基础库和屏幕共享动态库
+# 请使用具体的 SDK 版本号替换下面代码中的 x.y.z，可通过发版说明获取最新版本号      
 pod 'AgoraRtcEngine_iOS', 'x.y.z', :subspecs => ['RtcBasic', 'ReplayKit']
 end
 ```
