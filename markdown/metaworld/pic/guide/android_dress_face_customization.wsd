@@ -1,0 +1,52 @@
+@startuml
+autonumber
+title 换装捏脸 API 时序图
+participant "App" as app #LightGrey
+participant "RtcEngine" as rtc #White
+participant "IMetaService" as service
+participant "IMetaScene" as scene
+participant "ILocalUserAvatar" as avatar
+participant "IMetaServiceEventHandler" as serviceevent
+participant "IMetaSceneEventHandler" as sceneevent
+== 创建并初始化 IMetaService ==
+app -> rtc: RtcEngine.create
+app -> service: create
+app -> service: initialize
+== 获取并下载场景资源 ==
+app -> service: getSceneAssetsInfo
+serviceevent -->> app: onGetSceneAssetsInfoResult
+app -> service: downloadSceneAssets
+serviceevent -->> app: onDownloadSceneAssetsProgress
+== 创建 IMetaScene ==
+critical #LightYellow
+app -> app: 解压 icon 资源压缩包并设置 UI
+end
+app -> service: createScene
+service -> scene: new
+scene -->> service: return
+service -->> app: IMetaScene
+serviceevent -->> app: onCreateSceneResult
+serviceevent -->> app: onConnectionStateChanged
+== 设置用户信息并进入场景 ==
+app -> scene: getLocalUserAvatar
+app -> avatar: setUserInfo
+app -> avatar: setModelInfo
+app -> avatar: setExtraInfo
+app -> scene: enterScene
+sceneevent -->> app: onEnterSceneResult
+note right
+Android 可以在该回调之前渲染 Texture
+end note
+== 换装和捏脸 ==
+critical #LightYellow
+app -> scene: sendSceneMessage(updateDress)
+app -> scene: sendSceneMessage(updateFace)
+end
+== 离开场景并释放资源 ==
+app -> scene: leaveScene
+sceneevent -->> app: onLeaveSceneResult
+app -> scene: release
+sceneevent -->> app: onReleasedScene
+app -> service: destroy
+app -> rtc: destroy
+@enduml
