@@ -6,34 +6,7 @@
 
 ## 业务流程图
 
-本节展示秀场直播中常见的业务流程。
-
-### 创建房间
-
-下图展示房主预览、创建、进入、退出直播的流程。
-
-![](https://web-cdn.agora.io/docs-files/1686563166145)
-
-### 进入/退出房间
-
-下图展示用户进入房主已创建好的直播间的流程。这里的用户可以有两种角色：
-- 观众：可以观看房主直播或与主播连麦。
-- 虚假主播：通过声网输入在线媒体流服务在房间内创建的一路视频流，是伪直播。观众和房主可以观看虚假主播，但是不能与其连麦。
-
-![](https://web-cdn.agora.io/docs-files/1686563061182)
-
-### 主播 PK 连麦
-
-下图展示主播 PK 连麦的流程。在这个流程中，房主邀请另一个房间的房主开始 PK 连麦。两个房间内的观众都可以看到两个房主 PK 连麦直播的画面。
-
-![](https://web-cdn.agora.io/docs-files/1685528929039)
-### 观众连麦
-
-下图展示观众与主播连麦的流程。观众与主播连麦有两种方式：
-- 主播邀请观众连麦。展示在下图左侧的流程中。
-- 观众申请与主播连麦。展示在下图右侧的流程中。
-
-![](https://web-cdn.agora.io/docs-files/1685528935784)
+~464cb0d0-1bd1-11ee-b391-19a59cc2656e~
 
 ## 准备开发环境
 
@@ -120,11 +93,11 @@
 
 ## 实现秀场直播
 
-如下时序图中展示了如何创建直播间、加入直播间、PK 连麦、观众连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图和[示例项目](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0.1-all-Android/Android/scenes/show)自行实现。
+如下[时序图](#api-时序图)如何创建直播间、加入直播间、PK 连麦、观众连麦、退出直播间。声网 RTC SDK 承担实时音视频的业务，声网云服务承担信令消息和数据存储的业务。本节会详细介绍如何调用 RTC SDK 的 API 完成这些逻辑，但是信令消息的逻辑需要你参考时序图和[示例项目](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0.1-all-Android/Android/scenes/show)自行实现。
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。你可以调用声网云服务的 API 用于测试，但是对于正式环境，声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
-![](https://web-cdn.agora.io/docs-files/1688633286510)
+
 
 ### 1. 创建房间
 
@@ -523,3 +496,9 @@ override fun unloadConnections() {
     ShowLogger.d(tag, "unloadConnections")
 }
 ```
+
+### API 时序图
+
+下图展示实现本文全部流程所需的 API 调用时序。
+
+![](https://web-cdn.agora.io/docs-files/1688633286510)
