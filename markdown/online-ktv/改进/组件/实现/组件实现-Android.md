@@ -77,7 +77,7 @@ public class LiveActivity extends RtcBaseActivity {
 
 ### 创建 `KaraokeView` 对象
 
-在调用 `KaraokeView` 类下的 API 前，你需要确保已创建一个 `KaraokeView` 对象。
+在调用 `KaraokeView` 类下的 API 前，你需要创建一个 `KaraokeView` 对象。
 
 ```java
 mKaraokeView = new KaraokeView(mLyricsView, mScoringView);
@@ -96,6 +96,8 @@ mKaraokeView.setKaraokeEvent(new KaraokeEvent() {
     public void onDragTo(KaraokeView view, long position) {
         // 把拖动后歌曲的播放进度同步给歌词组件，用于歌词同步显示。
         mKaraokeView.setProgress(position);
+        // 调整播放器的播进度至相应的播放位置。
+        mMockRtcWithPlayer.seekTo(position);
     }
 });
 ```
@@ -120,15 +122,15 @@ mKaraokeView.setKaraokeEvent(new KaraokeEvent() {
 
    声网歌词组件还支持歌词拖动，当拖动到指定时间的歌词时，歌曲进度随之改变。当你设置允许歌词拖动后（即 `enableDragging` 设为 `true`），SDK 会触发 `onDragTo` 回调报告歌词拖动后的位置，然后你需要调用 `setProgress` 方法同步此时歌曲的播放位置给歌词组件，从而实现歌词同步。
 
-  <div class="alert info">为保证歌词 UI 界面的流畅性，声网建议调用 <code>setProgress</code> 方法的时间间隔不超过 20 ms。</div>
+    <div class="alert info">为保证歌词 UI 界面的流畅性，声网建议调用 <code>setProgress</code> 方法的时间间隔不超过 20 ms。</div>
 
    ```java
    mMockRtcWithPlayer = new MockRtcEngineWithPlayer(new PlayerEvent() {
-               @Override
-               public void onPlayPosition(long position) {
-                   mKaraokeView.setProgress(position);
-               }
-           });
+       @Override
+       public void onPlayPosition(long position) {
+           mKaraokeView.setProgress(position);
+       }
+   });
    ```
 
 3. **重置**
@@ -160,6 +162,8 @@ mKaraokeView.setKaraokeEvent(new KaraokeEvent() {
     app:textGravity="center"/>
 ```
 
+<div class="alert info">你还可以通过 <a href="https://docportal.shengwang.cn/cn/online-ktv/lyrics_scores_android?platform=Android#lyricsview">LyricsView</a> 类下的 API 来自定义更多界面元素。</div>
+
 ## 实现打分组件
 
 ### 同步人声音调
@@ -176,16 +180,14 @@ mKaraokeView.setPitch(pitch);
 
 ```java
 mKaraokeView.setKaraokeEvent(new KaraokeEvent() {
-            @Override
-            public void onRefPitchUpdate(float refPitch, int numberOfRefPitches) {
-                ...
-            }
+    @Override
+    public void onRefPitchUpdate(float refPitch, int numberOfRefPitches) {
+    }
 
-            @Override
-            public void onLineFinished(KaraokeView view, LyricsLineModel line, int score, int cumulatedScore, int index, int total) {
-                ...
-            }
-        });
+    @Override
+    public void onLineFinished(KaraokeView view, LyricsLineModel line, int score, int cumulatedScore, int index, int total) {
+    }
+});
 ```
 
 ### 自定义打分偏好
@@ -225,7 +227,7 @@ mKaraokeView.setScoringCompensationOffset(0);
 
 **自定义打分算法**
 
-如果你对打分有更高的要求，还可以根据你的业务需求重写打分算法。你需要实现 `IScoreAlgorithm` 接口类并创建一个新的 `ScoreAlgorithm` 分数计算实例。
+你还可以根据你的业务需求自定义打分算法。你需要实现 `IScoreAlgorithm` 接口类并创建一个新的 `ScoreAlgorithm` 分数计算实例。
 
 ```java
 public class MyScoringAlgorithm implements IScoringAlgorithm {
@@ -279,27 +281,29 @@ mScoringView.setParticles(Drawable[] ...);
 ```java
 public class MyScoringView extends ScoringView {
 
-    ...
-
     @Override
     public void initParticleSystem(Drawable[] particles) {
-    // 导入 Leonids 库，该库提供了丰富的配置选项，你可以轻松创建各种粒子效果，包括粒子的形状、颜色、运动轨迹等。
+        // 导入 Leonids 库，该库提供了丰富的配置选项，你可以轻松创建各种粒子效果，包括粒子的形状、颜色、运动轨迹等。
         mParticlesPerSecond = 16;
         particles = {..., ..., ...}
 
         mParticleSystem = new ParticleSystem((ViewGroup) this.getParent(), particles.length * 6, particles, 900);
-        mParticleSystem.setRotationSpeedRange(90, 180).setScaleRange(0.7f, 1.6f)
+        mParticleSystem.setRotationSpeedRange(90, 180)
+                .setScaleRange(0.7f, 1.6f)
                 .setSpeedModuleAndAngleRange(0.10f, 0.20f, 120, 240)
                 .setFadeOut(300, new AccelerateInterpolator());
     }
+
 }
 ```
 
-你也可以调用 `enableParticleEffect` 来关闭组件默认的粒子动画效果，然后实现你自己的动画效果：
+你也可以调用 `enableParticleEffect` 并将 `enable` 设为 `false` 来关闭组件默认的粒子动画效果，然后实现你自己的动画效果：
 
 ```java
 mScoringView.enableParticleEffect(false);
 ```
+
+<div class="alert info">你还可以通过 <a href="https://docportal.shengwang.cn/cn/online-ktv/lyrics_scores_android?platform=Android#scoringview">ScoringView</a> 类下的 API 来自定义更多界面元素。 </div>
 
 ## 相关信息
 
@@ -336,4 +340,4 @@ mScoringView.enableParticleEffect(false);
 
 ### 参考文档
 
-- [歌词打分组件 API 文档](/cn/online-ktv/lyrics_scores_android?platform=Android)
+[歌词打分组件 API 文档](/cn/online-ktv/lyrics_scores_android?platform=Android)

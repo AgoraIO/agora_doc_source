@@ -35,19 +35,6 @@ public static func parseLyricData(data: Data) -> LyricModel?
 
 **参数**
 
-- `data`：要解析的歌词数据，如 XML 文件、LRC 文件的二进制数据。
-
-**返回值**
-
-- 方法调用成功时返回一个一个 `LyricModel` 对象，包含解析后的歌词数据。
-- 方法调用失败时返回 `nil`。
-
-```objective-c
-public static func parseLyricData(data: Data) -> LyricModel?
-```
-
-**参数**
-
 - `data`：需要解析的歌词文件对象。
 
 **返回值**
@@ -63,7 +50,7 @@ public static func parseLyricData(data: Data) -> LyricModel?
 public func setLyricData(data: LyricModel?)
 ```
 
-该方法用于设置歌词数据模型，在调用该方法前，你需要先调用 `parseLyricsData` 方法解析歌词数据并获取相应的歌词数据模型对象以便于歌词显示。
+该方法用于设置歌词数据模型，在调用该方法前，你需要先调用 `parseLyricData` 方法解析歌词数据并获取相应的歌词数据模型对象以便于歌词显示。
 
 请在主线程调用该方法。
 
@@ -91,11 +78,11 @@ public func setProgress(progress: Int)
 
 在实现歌词和歌曲播放同步时，你需要调用该方法来将歌曲当前的播放进度设置给 `KaraokeView` 以便 `KaraokeView` 根据当前歌曲的播放位置显示对相应的歌词。
 
-调用该方法前你需要先通过内置媒体播放器的 [getPosition](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_mediaplayer.html#api_imediaplayer_getplayposition) 方法获取歌曲当前的播放进度。声网建议你每 20 ms 调用一次该方法来把歌曲的播放进度同步给歌词打分组件。
+调用该方法前你需要先通过内置媒体播放器的 [getPosition](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/toc_mediaplayer.html#api_imediaplayer_getplayposition) 方法获取歌曲当前的播放进度。声网建议你每 20 毫秒调用一次该方法来把歌曲的播放进度同步给歌词打分组件。
 
 **参数**
 
-- `progress`：歌曲的播放进度，单位为 ms。
+- `progress`：歌曲的播放进度，单位为毫秒。
 
 ### setPitch[1/2]
 
@@ -126,7 +113,7 @@ public func setPitch(pitch: Double)
 **参数**
 
 - `pitch`：获取到的实时人声音调。
-- `progress`：歌曲当前的播放进度 (ms)。
+- `progress`：歌曲当前的播放进度，单位为毫秒。
 
 ### setScoreLevel
 
@@ -194,7 +181,7 @@ public func setScoreAlgorithm(algorithm: IScoreAlgorithm)
 optional func onKaraokeView(view: KaraokeView, didDragTo position: Int)
 ```
 
-如果你设置允许歌词拖动（将 `draggable` 设为 `true`），当歌词拖动结束后会触发此回调。你可以通过该回调获取歌词拖动后对应的播放位置。
+如果你设置允许歌词拖动（将 `LyricsView` 类下的`draggable` 设为 `true`），当歌词拖动结束后会触发此回调。你可以通过该回调获取歌词拖动后对应的播放位置。
 
 **参数**
 
@@ -361,7 +348,7 @@ public class ScoringView: UIView {
   - < 0：游标向左偏移。
  -  &gt; 0：游标向右偏移。
 
-- `localPitchCursorImage`：自定义游标样式。
+- `localPitchCursorImage`：自定义音高显示器样式。
 
 - `particleEffectHidden`：是否隐藏粒子动画效果：
 
@@ -370,7 +357,7 @@ public class ScoringView: UIView {
 
 - `emitterImages`：自定义粒子动画样式。
 
-- `hitScoreThreshold`：动画效果阈值，取值范围为为 (0, 1]。例如，如果你将该值设为 0.1，则一行歌词得分超过 10 分，就会触发音高线着色和粒子动画。
+- `hitScoreThreshold`：动画效果阈值，取值范围为为 (0, 1]。例如，如果你将该值设为 0.1，则一行歌词得分超过 10 分，就会触发音高线着色和粒子动画效果。
 
 ### LyricToneModel
 

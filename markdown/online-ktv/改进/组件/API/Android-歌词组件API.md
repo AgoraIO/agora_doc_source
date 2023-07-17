@@ -167,7 +167,7 @@ public int getScoringLevel();
 - *≥* 0：方法调用成功，返回当前设置的得难易值。
 - < 0：方法调用失败。
 
-### setScoreCompensationOffset
+### setScoringCompensationOffset
 
 调整演唱评分结果。
 
@@ -291,7 +291,7 @@ public void setRefPitchStickHeight(float height);
 
 **参数**
 
-- `height`：标准音高线的宽度，默认值为 6 dp。
+- `height`：标准音高线的高度，默认值为 6 dp。
 
 ### enableParticleEffect
 
@@ -306,8 +306,8 @@ public void enableParticleEffect(boolean enable);
 **参数**
 
 - `enable`：
-  - `true`：（默认）开启粒子动画。
-  - `false`：关闭粒子动画。
+  - `true`：（默认）开启粒子动画效果。
+  - `false`：关闭粒子动画效果。
 
 <div class="alert info">该方法可能会消耗较多系统性能，声网建议不要频繁调用该方法。</div>
 
@@ -323,23 +323,23 @@ public void setParticles(Drawable[] particles);
 
 **参数**
 
-- `particles`：自定义的粒子动画图片。
+- `particles`：自定义粒子动画样式的对象。
 
 <div class="alert info">该方法可能会消耗较多系统性能，声网建议不要频繁调用该方法。</div>
 
 ### setLocalPitchIndicator
 
-设置本地游标的样式。
+设置本地音高指示器的样式。
 
 ```java
 public void setLocalPitchIndicator(Bitmap bitmap);
 ```
 
-该方法用于设置本地游标的样式，来可视化地表示当前音高值，可显示实时的音高的变化，帮助演唱者对自己的声音进行调准和校正。
+该方法用于设置本地音高指示器的样式，以可视化地表示当前音高值，并显示实时的音高的变化，帮助演唱者对自己的声音进行调准和校正。
 
 **参数**
 
-- `bitmap`：本地游标的位图图像。如果你不想显示本地游标，传入 `null`。
+- `bitmap`：音高指示器的位图图像。如果你不想显示音高指示器，传入 `null`。
 
 ### reset
 
@@ -407,7 +407,7 @@ public void setActiveLinePlayedTextColor(@ColorInt int color) {}
 
 ### setActiveLineUpcomingTextColor
 
-设置当前歌词行中，未播放的歌词的颜色。
+设置当前歌词行中，待播放的歌词的颜色。
 
 ```java
 public void setActiveLineUpcomingTextColor(@ColorInt int color) {}
@@ -473,7 +473,7 @@ public void setLabelShownWhenNoLyricsTextColor(@ColorInt int color);
 public void enableStartOfVerseIndicator(boolean enable);
 ```
 
-等待圆点的作用是在播放器播放前奏时，在歌词视图中显示一个提示，让用户知道何时应该开始唱歌。
+等待圆点是在播放器播放前奏时，歌词视图中显示一个提示，让用户知道何时应该开始唱歌。
 
 **参数**
 
@@ -612,7 +612,7 @@ public class LyricsLineModel {
 - `Tone`：当前音符的信息。
   - `begin`：音符开始的时间，单位为毫秒。
   - `end`：音符结束的时间，单位为毫秒。
-  - `word`：音符对应的字。
+  - `word`：音符对应的文字。
   -  `pitch`：音符对应的音高值。
   - `getDuration`：获取当前音符从开始到结束的时间。
     - 返回值：当前音符从开始到结束的时间，单位为毫秒。

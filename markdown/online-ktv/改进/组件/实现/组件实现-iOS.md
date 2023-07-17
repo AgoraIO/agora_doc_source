@@ -18,6 +18,10 @@
 
 <img src="https://web-cdn.agora.io/docs-files/1687162089264" style="zoom:60%;" />
 
+下图展示歌词打分组件 API 的调用时序：
+
+![](https://web-cdn.agora.io/docs-files/1687165804719)
+
 ## 前提条件
 
 在使用歌词组件前，请确保你已在项目中集成声网视频 SDK v4.x，并实现在线 K 歌功能，详见[客户端实现](https://docs.agora.io/cn/online-ktv/chorus_client_android?platform=iOS)。
@@ -32,7 +36,7 @@
 
    ```ruby
     target 'Your App' do
-            // version 请填写具体的版本号，最新版本为 1.1.1。
+            # version 请填写具体的版本号，最新版本为 1.1.1。
         pod 'AgoraLyricsScore', '~> version'
     end
    ```
@@ -44,10 +48,6 @@
 ## 实现歌词组件
 
 本节介绍如何实现歌词组件。
-
-参考如下歌词打分组件的 API 调用时序图：
-
-![](https://web-cdn.agora.io/docs-files/1687165804719)
 
 ### 创建 `KaraokeView` 对象并初始化
 
@@ -87,7 +87,7 @@ func onKaraokeView(view: KaraokeView, didDragTo position: Int)
 
    当播放器开始播放歌曲后，你可以通过内置媒体播放器的 [getPosition](https://docportal.shengwang.cn/cn/extension_customer/API%20Reference/ios_ng/API/toc_mediaplayer.html?platform=iOS#api_imediaplayer_getplayposition) 获取歌曲当前的播放进度，然后通过 `setProgress` 来把歌词的播放进度设置给歌词组件，从而实现歌词同步。
 
-   声网歌词组件还支持歌词拖动，当拖动到指定时间的歌词时，歌曲进度随之改变。当你设置允许歌词拖动后（即 `draggable` 设为 `true`），SDK 会触发 `onKaraokeView`[1/2] 回调报告歌词拖动后的位置，然后你需要调用 `setProgress` 方法同步此时歌曲的播放位置给歌词组件，从而实现歌词同步。
+   声网歌词组件还支持歌词拖动，当拖动到指定时间的歌词时，歌曲进度随之改变。当你设置允许歌词拖动后（把 `LyricsView` 类下的 `draggable` 设为 `true`），SDK 会触发 `onKaraokeView`[1/2] 回调报告歌词拖动后的位置，然后你需要调用 `setProgress` 方法同步此时歌曲的播放位置给歌词组件，从而实现歌词同步。
 
    <div class="alert info">为保证歌词 UI 界面的流畅性，声网建议调用 <code>setProgress</code> 方法的时间间隔不超过 20 ms。</div>
 
@@ -250,7 +250,7 @@ public class ScoringView: UIView {
     @objc public var particleEffectHidden: Bool = false
     // 使用图片创建粒子动画
     @objc public var emitterImages: [UIImage]?
-    // 设置音高阈值
+    // 设置动画效果阈值
     @objc public var hitScoreThreshold: Float = 0.7
 }
 ```
@@ -265,4 +265,4 @@ public class ScoringView: UIView {
 
 ### 参考文档
 
-- [歌词组件 API 文档](/cn/online-ktv/lyrics_scores_ios?platform=iOS)
+[歌词组件 API 文档](/cn/online-ktv/lyrics_scores_ios?platform=iOS)
