@@ -107,7 +107,7 @@
 
 ### 2. 获取房间列表
 
-调用声网云服务中 ChatRoomServiceImp 类的 fetchRoomList 方法获取房间列表。获取到房间列表后刷新 UI 并将房间列表展示在界面上。
+调用声网云服务中 `ChatRoomServiceImp` 类的 `fetchRoomList` 方法获取房间列表。获取到房间列表后刷新 UI 并将房间列表展示在界面上。
 
 ```swift
 ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
@@ -126,110 +126,119 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
 }
 ```
 
-### 3. 创建房间
+### 3. 创建并进入房间
 
-调用 ChatRoomServiceImp 类中的 createRoom 方法创建一个房间。
+1. 调用 `ChatRoomServiceImp` 类中的 `createRoom` 方法创建一个房间。
 
-```swift
-ChatRoomServiceImp.getSharedInstance().createRoom(room: entity) { error, room in
-    SVProgressHUD.dismiss()
-    self.view.window?.isUserInteractionEnabled = true
-    if let room = room,error == nil {
-        self.entryRoom(room: room)
-    } else {
-        SVProgressHUD.showError(withStatus: "Create failed!".localized())
-    }
-}
-```
-
-### 4. 进入房间
-
-调用 ChatRoomServiceImp 类的 joinRoom 方法进入房间。
-
-```swift
-// 显示加载提示
-SVProgressHUD.show(withStatus: "Loading".localized())
-// 生成声网 RTC Token
-// 不要和声网 Chat Token 搞混淆
-NetworkManager.shared.generateToken(channelName: room.channel_id ?? "", uid: VLUserCenter.user.id, tokenType: .token007, type: .rtc) { token in
-    VLUserCenter.user.agoraRTCToken = token ?? ""
-    // 进入房间
-    ChatRoomServiceImp.getSharedInstance().joinRoom(room.room_id ?? "") { error, room_entity in
+    ```swift
+    ChatRoomServiceImp.getSharedInstance().createRoom(room: entity) { error, room in
         SVProgressHUD.dismiss()
-        if VLUserCenter.user.chat_uid.isEmpty || VLUserCenter.user.im_token.isEmpty || self.initialError != nil {
-            SVProgressHUD.showError(withStatus: "Fetch IMconfig failed!")
-            return
+        self.view.window?.isUserInteractionEnabled = true
+        if let room = room,error == nil {
+            self.entryRoom(room: room)
+        } else {
+            SVProgressHUD.showError(withStatus: "Create failed!".localized())
         }
-        self.mapUser(user: VLUserCenter.user)
-        let info: VRRoomInfo = VRRoomInfo()
-        info.room = room
-        info.mic_info = nil
-        self.isDestory = false
-        let vc = VoiceRoomViewController(info: info)
-        self.navigationController?.pushViewController(vc, animated: true)
-        self.normal.roomList.isUserInteractionEnabled = true
     }
-}
-```
+    ```
 
-### 5. 加入 RTC 频道
+2. 调用 `ChatRoomServiceImp` 类的 `joinRoom` 方法进入房间。
 
-调用声网 RTC SDK 中 AgoraRtcEngineKit 类的 joinChannelByToken 加入 RTC 频道以进行实时音视频通话。
+    ```swift
+    // 显示加载提示
+    SVProgressHUD.show(withStatus: "Loading".localized())
+    // 生成声网 RTC Token
+    // 不要和声网 Chat Token 搞混淆
+    NetworkManager.shared.generateToken(channelName: room.channel_id ?? "", uid: VLUserCenter.user.id, tokenType: .token007, type: .rtc) { token in
+        VLUserCenter.user.agoraRTCToken = token ?? ""
+        // 进入房间
+        ChatRoomServiceImp.getSharedInstance().joinRoom(room.room_id ?? "") { error, room_entity in
+            SVProgressHUD.dismiss()
+            if VLUserCenter.user.chat_uid.isEmpty || VLUserCenter.user.im_token.isEmpty || self.initialError != nil {
+                SVProgressHUD.showError(withStatus: "Fetch IMconfig failed!")
+                return
+            }
+            self.mapUser(user: VLUserCenter.user)
+            let info: VRRoomInfo = VRRoomInfo()
+            info.room = room
+            info.mic_info = nil
+            self.isDestory = false
+            let vc = VoiceRoomViewController(info: info)
+            self.navigationController?.pushViewController(vc, animated: true)
+            self.normal.roomList.isUserInteractionEnabled = true
+        }
+    }
+    ```
 
-```swift
-rtcKit.delegate = self
-rtcKit.enableAudioVolumeIndication(200, smooth: 3, reportVad: true)
-self .setParametersWithMD()
-// 在线 K 歌房和泛娱乐社交场景下推荐设置
-if type == .ktv || type == .social {
-    // 设置频道属性为直播
-    rtcKit.setChannelProfile(.liveBroadcasting)
-    // 设置 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps
-    rtcKit.setAudioProfile(.musicHighQuality)
-    // 设置为高音质场景
-    rtcKit.setAudioScenario(.gameStreaming)
-} else if type == .game {
-    // 1 对 1 通话场景下推荐
-    // 设置频道属性为通信
-    rtcKit.setChannelProfile(.communication)
-} else if type == .anchor {
-    // 直播场景下推荐设置
-    // 设置频道属性为直播
-    rtcKit.setChannelProfile(.liveBroadcasting)
-    // 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps
-    rtcKit.setAudioProfile(.musicHighQualityStereo)
-    // 设置为高音质场景
-    rtcKit.setAudioScenario(.gameStreaming)
-    // 设置私有参数以获得好的实时音频互动体验
-    rtcKit.setParameters("{\"che.audio.custom_payload_type\":73}")
-    rtcKit.setParameters("{\"che.audio.custom_bitrate\":128000}")
-    rtcKit.setParameters("{\"che.audio.input_channels\":2}")
-}
-setAINS(with: .mid)
-rtcKit.setParameters("{\"che.audio.start_debug_recording\":\"all\"}")
-rtcKit.setEnableSpeakerphone(true)
-rtcKit.setDefaultAudioRouteToSpeakerphone(true)
-// 加入 RTC 频道
-// 此处的 Token 为声网 RTC Token
-let code: Int32 = rtcKit.joinChannel(byToken: token, channelId: channelName, info: nil, uid: UInt(rtcUid ?? 0))
-```
+3. 语聊房里有消息聊天和语音聊天。你需要调用声网 IM SDK 中 `joinChatRoom` 实现房间内的消息互动。调用声网 RTC SDK 中 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入 RTC 频道以实现房间内的实时音频通话。
 
-### 6. 麦位管理
+    ```swift
+    // 实现房间内的消息互动
+    @objc func joinedChatRoom(roomId: String, completion: @escaping ((AgoraChatroom?, AgoraChatError?) -> Void)) {
+        AgoraChatClient.shared().roomManager?.joinChatroom(roomId, completion: { room, error in
+            if error == nil, let id = room?.chatroomId {
+                self.currentRoomId = id
+            }
+            completion(room, error)
+        })
+    }
+    ```
+
+    ```swift
+    // 实现房间内的语音互动
+    rtcKit.delegate = self
+    rtcKit.enableAudioVolumeIndication(200, smooth: 3, reportVad: true)
+    self .setParametersWithMD()
+    // 在线 K 歌房和泛娱乐社交场景下推荐设置
+    if type == .ktv || type == .social {
+        // 设置频道属性为直播
+        rtcKit.setChannelProfile(.liveBroadcasting)
+        // 设置 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps
+        rtcKit.setAudioProfile(.musicHighQuality)
+        // 设置为高音质场景
+        rtcKit.setAudioScenario(.gameStreaming)
+    } else if type == .game {
+        // 1 对 1 通话场景下推荐
+        // 设置频道属性为通信
+        rtcKit.setChannelProfile(.communication)
+    } else if type == .anchor {
+        // 直播场景下推荐设置
+        // 设置频道属性为直播
+        rtcKit.setChannelProfile(.liveBroadcasting)
+        // 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps
+        rtcKit.setAudioProfile(.musicHighQualityStereo)
+        // 设置为高音质场景
+        rtcKit.setAudioScenario(.gameStreaming)
+        // 设置私有参数以获得好的实时音频互动体验
+        rtcKit.setParameters("{\"che.audio.custom_payload_type\":73}")
+        rtcKit.setParameters("{\"che.audio.custom_bitrate\":128000}")
+        rtcKit.setParameters("{\"che.audio.input_channels\":2}")
+    }
+    setAINS(with: .mid)
+    rtcKit.setParameters("{\"che.audio.start_debug_recording\":\"all\"}")
+    rtcKit.setEnableSpeakerphone(true)
+    rtcKit.setDefaultAudioRouteToSpeakerphone(true)
+    // 加入 RTC 频道
+    // 此处的 Token 为声网 RTC Token
+    let code: Int32 = rtcKit.joinChannel(byToken: token, channelId: channelName, info: nil, uid: UInt(rtcUid ?? 0))
+    ```
+
+### 4. 麦位管理
 
 具体步骤详见[麦位管理](./chatroom_mic_seat_ios)。
 
-### 7. 退出房间
+### 5. 退出房间
 
-调用 ChatRoomServiceImp 类的 leaveRoom 方法离开房间。
+调用 `ChatRoomServiceImp` 类的 `leaveRoom` 方法离开房间。
 
 ```swift
 ChatRoomServiceImp.getSharedInstance().leaveRoom(self.roomInfo?.room?.room_id ?? "") { _, _ in
 }
 ```
 
-### 8. 离开 RTC 频道
+### 6. 离开 RTC 频道
 
-调用 AgoraRtcEngineKit 类的 leaveChannel 和 destroy 方法以离开频道和销毁 RTC 引擎。
+调用 `AgoraRtcEngineKit` 类的 `leaveChannel` 和 `destroy` 方法以离开频道和销毁 RTC 引擎。
 
 ```swift
 rtcKit.stopPreview()
