@@ -290,8 +290,8 @@
 - `startLocalVideoTranscoder`（Mac）
 - `updateLocalTranscoderConfiguration`（Mac）
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `AudioTrackConfig`

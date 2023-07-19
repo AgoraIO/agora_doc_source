@@ -169,8 +169,8 @@
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `AgoraMusicContentCenter`

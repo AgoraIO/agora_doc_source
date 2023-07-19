@@ -299,8 +299,8 @@ This release fixed the following issues:
 - `queryScreenCaptureCapability` (iOS, Android)
 - `setScreenCaptureScenario` (iOS, Android)
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `AudioTrackConfig`
 - `AudioAinsMode`
 - `AudioTrackType`

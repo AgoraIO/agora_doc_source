@@ -142,8 +142,8 @@ This release fixed the following issues:
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `AudioTrackConfig`
 - `AudioAinsMode`
 - `AudioTrackType`

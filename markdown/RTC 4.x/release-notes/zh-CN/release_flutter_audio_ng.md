@@ -184,8 +184,8 @@
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `MusicContentCenter` 中新增如下方法 (Android, iOS)：
