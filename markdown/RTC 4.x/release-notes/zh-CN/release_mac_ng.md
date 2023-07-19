@@ -263,9 +263,9 @@
 
 - `setAINSMode`
 
-- `createAudioCustomTrack`
+- `createCustomAudioTrack`
 
-- `destroyAudioCustomTrack`
+- `destroyCustomAudioTrack`
 
 - `createMediaRecorder`
 

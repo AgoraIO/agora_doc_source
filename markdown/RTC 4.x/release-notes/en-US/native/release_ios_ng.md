@@ -226,8 +226,8 @@ This release fixed the following issues:
 - `queryScreenCaptureCapability`
 - `setScreenCaptureScenario`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `AudioTrackConfig`
 - `AgoraAudioTrackType`
 - `AgoraApplicationScenarioType`

@@ -308,8 +308,8 @@
 - `queryScreenCaptureCapability`
 - `setScreenCaptureScenario`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `IMusicContentCenter` 中新增如下方法

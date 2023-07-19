@@ -292,8 +292,8 @@
 - `queryScreenCaptureCapability`
 - `setScreenCaptureScenario`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `AgoraMusicContentCenter`

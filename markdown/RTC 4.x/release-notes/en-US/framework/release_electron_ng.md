@@ -188,8 +188,8 @@ This release fixed the following issues:
 - `startLocalVideoTranscoder`(macOS)
 - `updateLocalTranscoderConfiguration`(macOS)
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `AudioTrackConfig`
 - `AudioAinsMode`
 - `AudioTrackType`

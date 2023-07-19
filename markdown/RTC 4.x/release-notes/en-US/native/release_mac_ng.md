@@ -219,8 +219,8 @@ This release fixed the following issues:
 - `startLocalVideoTranscoder`
 - `updateLocalTranscoderConfiguration`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `AudioTrackConfig`
 - `AgoraAudioTrackType`
 - `AgoraApplicationScenarioType`
