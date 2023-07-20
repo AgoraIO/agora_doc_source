@@ -141,6 +141,9 @@ This release optimizes the APIs for camera and screen capture function. As of v4
   - `registerAudioFrameObserver` [1/2] and `registerAudioFrameObserver`[2/2] in `IMediaPlayer`
 - `enableDualStreamMode`[1/2] and `enableDualStreamMode`[2/2] are depredated. Use `setDualStreamMode`[1/2] and `setDualStreamMode`[2/2] instead.
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
+- `OnRecordAudioEncodedFrame` is renamed to `onRecordAudioEncodedFrame` 
+- `OnPlaybackAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame` 
+- `OnMixedAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame` 
 
 #### New features
 
@@ -229,6 +232,12 @@ This release fixed the issue that when the host frequently switching the user ro
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
 - The `sourceType` parameter in `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks
 - The `BACKGROUND_NONE` and `BACKGROUND_VIDEO` enumerators in `BACKGROUND_SOURCE_TYPE`
+
+**Modified**
+
+- `OnRecordAudioEncodedFrame` is renamed to `onRecordAudioEncodedFrame`
+- `OnPlaybackAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame`
+- `OnMixedAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame`
 
 **Deprecated**
 
