@@ -1,33 +1,37 @@
 # 基于 DITA 的文档内容仓库（附带自动化 CI/CD）
 
-[![Awesome JSON CI build](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app.yml)
-
-[![Awesome JSON CI build for NG Flutter SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-ng-flutter.yml)
-
-[![Awesome JSON CI build for NG RN SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-kelu.yml)
-
-[![Awesome JSON CI build for NG Unity SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-framework.yml)
-
-[![Awesome JSON CI build for NG electron SDK](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200-electron-yaxi.yml)
-
-[![Awesome prototype syncs](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml)
-
-[![Awesome DITA API doc prototype validation](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml)
-
-[![OxygenScript for DITA processing](https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml)
-
-[![Awesome OxygenScript for DITA doc building (CG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml)
-
-[![Awesome OxygenScript for DITA doc building (NG SDK)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml/badge.svg)](https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml)
-
-[![(NG SDK Frameworks)Awesome OxygenScript for DITA doc building](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml)
-
-[![Awesome automerge](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml)
-
-[![Awesome prototype from code to DITA (Electron)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml)
-
-[![Awesome script sync](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml/badge.svg)](https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml)
-
+<p align="center">
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-4-all.yml">
+        <img alt="4.x Json Docs" src="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-4-all.yml/badge.svg" />
+    </a><br/>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml">
+        <img alt="Awesome prototype syncs" src="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-sync-proto.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml">
+        <img alt="Awesome DITA API doc prototype validation" src="https://github.com/AgoraDoc/doc_source/actions/workflows/python-app-validate-prototype.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml">
+        <img alt="OxygenScript for DITA processing" src="https://github.com/AgoraDoc/doc_source/actions/workflows/OxygenScript.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.ym">
+        <img alt="Awesome OxygenScript for DITA doc building (CG SDK)" src="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding_CG.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml">
+        <img alt="Awesome OxygenScript for DITA doc building (NG SDK)" src="https://github.com/AgoraDoc/doc_source/actions/workflows/AwesomeOxygenScriptforDITADocBuilding.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml">
+        <img alt="(NG SDK Frameworks)Awesome OxygenScript for DITA doc building" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/NG-SDK-Framework-Doc-Building.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml">
+        <img alt="Awesome automerge" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/automerge.yml/badge.svg"/>
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml">
+        <img alt="Awesome prototype from code to DITA (Electron)" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-fetch-proto-electron.yml/badge.svg" />
+    </a>
+    <a href="https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml">
+        <img alt="Awesome script sync" src="https://github.com/AgoraIO/agora_doc_source/actions/workflows/sync-scripts-across-branches.yml/badge.svg"/>
+    </a>
+</p>
 <!-- TOC -->
 
 - [基于 DITA 的文档内容仓库](#基于-dita-的文档内容仓库)
@@ -631,7 +635,7 @@ def main():
 
 ## 从 API 文档自动构建用于自动化填充代码注释的文档模板
 
-文档模板文件（JSON 文件）会在 https://github.com/AgoraIO/agora_doc_source/releases/tag/main 自动生成。SDK 研发可以通过脚本自动抓取。
+文档模板文件（JSON 文件）会在 https://github.com/AgoraIO/agora_doc_source/releases/tag/master-build 自动生成。SDK 研发可以通过脚本自动抓取。
 
 如果你需要为某分支生成 JSON 文件，你需要在以下文件中添加你的分支：
 
@@ -1378,9 +1382,9 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app.yml
 ```yaml
 # 生成 JSON 文件（中文用于调试，英文用于生产）
 echo "Running for Flutter CG"
-python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter --json_file flutter_newer.json --sdk_type sdk --remove_sdk_type sdk-ng --defined_path flutter
+python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag flutter
 echo "Running for CS CG"
-python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cs --json_file csharp_cg.json --sdk_type rtc --remove_sdk_type rtc-ng --defined_path cs
+python xml2json.py --working_dir ../en-US/dita/RTC --platform_tag cs
 ```
 
 ```yaml
@@ -1423,13 +1427,13 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
   run: |
       cd xml2json
       echo "Running for flutter NG"
-      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter --json_file flutter_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag flutter
 - name: Run EN json creation
   if: always()
   run: |
       cd xml2json
       echo "Running for flutter NG"
-      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter --json_file flutter_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path flutter-ng
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag flutter
 ```
 
 ```yaml
@@ -1437,13 +1441,13 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
   run: |
       cd xml2json
       echo "Running for RN NG"
-      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag rn --json_file rn_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag rn
 - name: Run json creation
   if: always()
   run: |
       cd xml2json
       echo "Running for RN NG"
-      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag rn --json_file rn_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path rn-ng
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag rn
 ```
 
 ```yaml
@@ -1451,12 +1455,12 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
   run: |
       cd xml2json
       echo "Running for unity NG CN (test)"
-      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity --json_file unity_cn_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag unity
 - name: Run EN json creation
   run: |
       cd xml2json
       echo "Running for unity NG EN (test)"
-      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag unity --json_file unity_en_ng.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path unity-ng
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag unity
 ```
       
 ```yaml
@@ -1464,12 +1468,12 @@ https://github.com/AgoraIO/agora_doc_source/actions/workflows/python-app-3.8.200
   run: |
       cd xml2json
       echo "Running for electron NG"
-      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag electron --json_file electron_ng_cn.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
+      python xml2json.py --working_dir ../dita/RTC-NG --platform_tag electron
 - name: Run en json creation
   run: |
       cd xml2json
       echo "Running for electron NG"
-      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron --json_file electron_ng_en.json --sdk_type rtc-ng --remove_sdk_type rtc --defined_path electron-ng
+      python xml2json.py --working_dir ../en-US/dita/RTC-NG --platform_tag electron
 ```
 
 上传的 JSON 文件位于：

@@ -15,9 +15,9 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int registerVideoFrameObserver(IVideoFrameObserver observer);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)setVideoFrameDelegate:(id&lt;AgoraVideoFrameDelegate&gt; _Nullable)delegate;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int registerVideoFrameObserver(IVideoFrameObserver* observer) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterVideoFrameObserver(IVideoFrameObserver videoFrameObserver, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int RegisterVideoFrameObserver(IVideoFrameObserver videoFrameObserver, VIDEO_OBSERVER_FRAME_TYPE formatPreference, VIDEO_OBSERVER_POSITION position, OBSERVER_MODE mode = OBSERVER_MODE.INTPTR);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerVideoFrameObserver(observer: IVideoFrameObserver): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">void registerVideoFrameObserver(VideoFrameObserver observer);</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
@@ -34,8 +34,8 @@
                 <li>When network conditions deteriorate, the video resolution decreases incrementally.</li>
                 <li>If the user adjusts the video profile, the resolution of the video returned in the callbacks also changes.</li>
                 </ul></li>
-            </ul> </note> 
-        <note type="tip" props="android ios cpp unity flutter rn">After registering the raw video observer, you can use the obtained raw video data in various video pre-processing scenarios, such as implementing virtual backgrounds and image enhacement scenarios by yourself, Agora provides some open source sample projects on GitHub for your reference.<ul>
+            </ul> </note>
+        <note type="tip" props="android ios cpp unreal bp unity flutter rn cs">After registering the raw video observer, you can use the obtained raw video data in various video pre-processing scenarios, such as implementing virtual backgrounds and image enhacement scenarios by yourself, Agora provides some open source sample projects on GitHub for your reference.<ul>
             <li><xref keyref="faceunity-link" /></li>
             <li><xref keyref="bytedeffect-link" /></li></ul>
         </note></section>
@@ -43,21 +43,29 @@
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt props="android cpp electron rn flutter">observer</pt>
+                <pt props="android cpp unreal bp electron rn flutter">observer</pt>
                 <pt props="ios mac">delegate</pt>
-                <pt props="unity">videoFrameObserver</pt>
-                <pd><ph>The observer object instance. See <xref keyref="IVideoFrameObserver" />. </ph><ph props="android cpp ios mac unity">To release the instance, set the value as <ph keyref="NULL" />.</ph></pd>
+                <pt props="unity cs">videoFrameObserver</pt>
+                <pd><ph>The observer instance. See <xref keyref="IVideoFrameObserver" />. </ph><ph props="android cpp unreal bp ios mac unity cs">To release the instance, set the value as <ph keyref="NULL" />.</ph></pd>
             </plentry>
-            <plentry props="unity">
+            <plentry props="unity cs">
                 <pt>mode</pt>
                 <pd>The video data callback mode. See <xref keyref="OBSERVER_MODE" />.</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>formatPreference</pt>
+                <pd>The video frame type. See <xref keyref="VIDEO_OBSERVER_FRAME_TYPE" />.</pd>
+            </plentry>
+            <plentry props="unity">
+                <pt>position</pt>
+                <pd>A bit mask that controls the frame position of the video observer. See <xref keyref="VIDEO_MODULE_POSITION" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="android cpp electron rn unity">0: Success.</li>
+            <li props="android cpp unreal bp electron rn unity cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul>
             <ul props="ios mac">

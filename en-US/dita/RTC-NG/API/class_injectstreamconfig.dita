@@ -44,7 +44,7 @@
 @property(assign, nonatomic) NSInteger audioChannels;
 + (AgoraLiveInjectStreamConfig *_Nonnull)defaultConfig;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct InjectStreamConfig {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct InjectStreamConfig {
     int width;
     int height;
     int videoGop;
@@ -146,16 +146,15 @@
             <codeblock props="reserve" outputclass="language-cpp" /></p>
           </section>
         <section id="detailed_desc">
-            <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="cn" />
-        </section>
+            <note conkeyref="addInjectStreamUrl/inject-sunset-note" props="cn" /> </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
-            <plentry props="android cpp unity flutter electron rn">
+            <plentry props="android cpp unreal bp unity flutter electron rn cs">
                 <pt>width</pt>
                 <pd>The width of the external video stream after injecting. The default value is 0, which represents the same width as the original.</pd>
             </plentry>
-            <plentry props="android cpp unity flutter electron rn">
+            <plentry props="android cpp unreal bp unity flutter electron rn cs">
                 <pt>height</pt>
                 <pd>The height of the external video stream after injecting. The default value is 0, which represents the same height as the original.</pd>
             </plentry>
@@ -165,10 +164,10 @@
             </plentry>
             <plentry>
                 <pt>videoGop</pt>
-                <pd>The GOP (in frames) of injecting the external video stream. The default value is 30.</pd>
+                <pd>The GOP (in frames) of injecting the external video stream. The default value is 30 frames.</pd>
             </plentry>
             <plentry>
-                <pt>videoFrameRate</pt>
+                <pt>videoFramerate</pt>
                 <pd>The frame rate (fps) of injecting the external video stream. The default rate is 15 fps.</pd>
             </plentry>
             <plentry>
@@ -194,7 +193,7 @@
                 <pt>audioChannels</pt>
                 <pd>
                     <p>The number of channels of the external audio stream after injecting.<ul>
-                    <li>1: (Default) Mono.</li>
+                    <li>1: Mono (default)</li>
                     <li>2: Stereo.</li>
                     </ul> </p>
                     <note type="attention">Agora recommends using the default value.</note> </pd>

@@ -105,7 +105,7 @@
 @property (copy, nonatomic) NSArray&lt;id&lt;AgoraMediaFilterExtensionDelegate&gt;&gt;* _Nullable mediaFilterExtensions;
 @property (weak, nonatomic) id&lt;AgoraMediaFilterEventDelegate&gt; _Nullable eventDelegate;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct RtcEngineContext {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RtcEngineContext {
   IRtcEngineEventHandler* eventHandler;
   const char* appId;
   void* context;
@@ -224,23 +224,23 @@ class RtcEngineContext {
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
-            <plentry props="cpp android unity">
-                <pt props="cpp unity">eventHandler</pt>
+            <plentry props="cpp unreal bp android unity">
+                <pt props="cpp unreal bp unity">eventHandler</pt>
                 <pt props="android">mEventHandler</pt>
                 <pd id="eventhandler"><xref keyref="IRtcEngine"/> 的事件句柄，详见 <xref keyref="IRtcEngineEventHandler"/>。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity electron rn flutter">appId</pt>
+                <pt props="cpp unreal bp ios mac unity electron rn flutter">appId</pt>
                 <pt props="android">mAppId</pt>
                 <pd id="appid">声网为 app 开发者签发的 App ID。 使用同一个 App ID 的 app 才能进入同一个频道进行通话或直播。一个 App ID 只能用于创建一个 <apiname keyref="IRtcEngine"/>。如需更换 App ID，必须先调用 <xref keyref="release"/> 销毁当前 <apiname keyref="IRtcEngine"/> 再重新创建。</pd>
             </plentry>
-            <plentry props="android cpp unity cs">
-                <pt props="cpp unity cs">context</pt>
+            <plentry props="android cpp unreal bp unity cs">
+                <pt props="cpp unreal bp unity cs">context</pt>
                 <pt props="android">mContext</pt>
                 <pd id="context">
-                    <ul props="cpp unity cs">
+                    <ul props="cpp unreal bp unity cs">
                     <li>Windows 平台上，context 是视窗句柄。如设值，则表示支持设备热插拔。</li>
-                    <li props="cpp unity">Android 平台上，context 是安卓活动上下文。</li>
+                    <li props="cpp unreal bp unity">Android 平台上，context 是安卓活动上下文。</li>
                     </ul>
                     <p props="android">安卓活动上下文。</p>
                 </pd>
@@ -251,7 +251,7 @@ class RtcEngineContext {
                     <p>指定 <codeph>.so</codeph> 文件的存储目录。存储目录必须为有效的 app 的私有目录，可以通过 <codeph>Context.getDir()</codeph> 获取。</p>
                     <ul>
                     <li>如果你设置了该参数，SDK 会在你指定的目录下自动加载 <codeph>.so</codeph> 文件，使 app 在运行时动态加载需要的 <codeph>.so</codeph> 文件，从而减小 app 的包体积。</li>
-                    <li>如果你不设置该参数或将其设置为 null，SDK 会从 app 默认的 <codeph>nativeLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，app 的包体积会增加。</li>
+                    <li>如果你不设置该参数或将其设置为 null，SDK 会从 app 默认的 <codeph>native unreal bpLibraryPath</codeph> 中加载打包所需的 <codeph>.so</codeph> 文件，相对于上一种方式，app 的包体积会增加。</li>
                     </ul>
                     <note type="attention">
                     <ul>
@@ -260,23 +260,23 @@ class RtcEngineContext {
                     </ul></note> </pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity cs electron rn flutter">channelProfile</pt>
+                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">channelProfile</pt>
                 <pt props="android">mChannelProfile</pt>
                 <pd conkeyref="setChannelProfile/channelprofiletype"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity cs electron rn flutter">audioScenario</pt>
+                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">audioScenario</pt>
                 <pt props="android">mAudioScenario</pt>
                 <pd conkeyref="setAudioProfile/scenario-ng"/>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity cs electron rn flutter">areaCode</pt>
+                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">areaCode</pt>
                 <pt props="android">mAreaCode</pt>
                 <pd>服务器的访问区域。该功能为高级设置，适用于有访问安全限制的场景。支持的区域详见 <xref keyref="AREA_CODE"/>。区域码支持位操作。</pd>
                 <pd>指定访问区域后，集成了 SDK 的 app 会连接指定区域内的声网服务器。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp ios mac unity cs electron rn flutter">logConfig</pt>
+                <pt props="cpp unreal bp ios mac unity cs electron rn flutter">logConfig</pt>
                 <pt props="android">mLogConfig</pt>
                 <pd>
                     <p>设置 SDK 输出的日志文件。详见 <xref keyref="LogConfig"/>。</p>
@@ -300,7 +300,7 @@ class RtcEngineContext {
             </plentry>
             <plentry>
                 <pt props="android">mDomainLimit</pt>
-                <pt props="cpp ios mac electron unity cs rn flutter">domainLimit</pt>
+                <pt props="cpp unreal bp ios mac electron unity cs rn flutter">domainLimit</pt>
                 <pd>
                     <p>是否开启域名限制：
                     <ul>
@@ -311,7 +311,7 @@ class RtcEngineContext {
             </plentry>
             <plentry>
               <pt props="android">mAutoRegisterAgoraExtensions</pt>
-              <pt props="cpp ios mac electron unity cs rn flutter">autoRegisterAgoraExtensions</pt>
+              <pt props="cpp unreal bp ios mac electron unity cs rn flutter">autoRegisterAgoraExtensions</pt>
               <pd>
                   <p>是否在初始化 <xref keyref="IRtcEngine"/> 时自动注册声网插件：
                   <ul>

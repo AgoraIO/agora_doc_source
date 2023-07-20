@@ -20,9 +20,7 @@
   }
 
   public void setDestChannelInfo(String channelName, ChannelMediaInfo destInfo) {
-    if (destInfos.size() &lt; Constants.MAX_CROSS_DEST_CHANNEL_SIZE) {
-      destInfos.put(channelName, destInfo);
-    }
+    destInfos.put(channelName, destInfo);
   }
 
   public void removeDestChannelInfo(String channelName) {
@@ -46,7 +44,7 @@
 - (BOOL)setDestinationInfo:(AgoraChannelMediaRelayInfo *_Nonnull)destinationInfo forChannelName:(NSString *_Nonnull)channelName;
 - (BOOL)removeDestinationInfoForChannelName:(NSString *_Nonnull)channelName;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ChannelMediaRelayConfiguration {
 	ChannelMediaInfo *srcInfo;
 	ChannelMediaInfo *destInfos;
 	int destCount;
@@ -166,7 +164,7 @@
             </plentry>
             <plentry props="cpp framework">
                 <pt>destCount</pt>
-                <pd>The number of target channels. The default value is 0, and the value range is from 0 to 4. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo" /> structs you define in <parmname>destInfo</parmname>.</pd>
+                <pd>The number of target channels. The default value is 0, and the value range is from 0 to 6. Ensure that the value of this parameter corresponds to the number of <apiname keyref="ChannelMediaInfo" /> structs you define in <parmname>destInfo</parmname>.</pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>setDestinationInfo</pt>

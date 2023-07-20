@@ -29,57 +29,41 @@
  @property (assign, nonatomic) int framerate;
  @property (assign, nonatomic) CGSize dimensions;
  @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct SimulcastStreamConfig {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SimulcastStreamConfig {
+
   VideoDimensions dimensions;
-  int bitrate;
+
+  int kBitrate;
+
   int framerate;
-  SimulcastStreamConfig() : dimensions(160, 120), bitrate(65), framerate(5) {}
+  SimulcastStreamConfig() : dimensions(160, 120), kBitrate(65), framerate(5) {}
   bool operator==(const SimulcastStreamConfig&amp; rhs) const {
-    return dimensions == rhs.dimensions &amp;&amp; bitrate == rhs.bitrate &amp;&amp; framerate == rhs.framerate;
+    return dimensions == rhs.dimensions &amp;&amp; kBitrate == rhs.kBitrate &amp;&amp; framerate == rhs.framerate;
   }
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
-  
   dimensions?: VideoDimensions;
-  
-  bitrate?: number;
-  
+  kBitrate?: number;
   framerate?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class SimulcastStreamConfig
     {
-        public SimulcastStreamConfig()
-        {
-            dimensions = new VideoDimensions(160, 120);
-            bitrate = 65;
-            framerate = 5;
-        }
-
-        public SimulcastStreamConfig(VideoDimensions dimensions, int bitrate, int framerate)
-        {
-            this.dimensions = dimensions;
-            this.bitrate = bitrate;
-            this.framerate = framerate;
-        }
-        public VideoDimensions dimensions { set; get; }
-        public int bitrate { set; get; }
-        public int framerate { set; get; }
-    }</codeblock>
+        public VideoDimensions dimensions;
+        public int kBitrate;
+        public int framerate;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class SimulcastStreamConfig {
-  
   dimensions?: VideoDimensions;
-  
-  bitrate?: number;
-  
+  kBitrate?: number;
   framerate?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class SimulcastStreamConfig {
-  const SimulcastStreamConfig({this.dimensions, this.bitrate, this.framerate});
+  const SimulcastStreamConfig({this.dimensions, this.kBitrate, this.framerate});
 
   @JsonKey(name: 'dimensions')
   final VideoDimensions? dimensions;
-  @JsonKey(name: 'bitrate')
-  final int? bitrate;
+  @JsonKey(name: 'kBitrate')
+  final int? kBitrate;
   @JsonKey(name: 'framerate')
   final int? framerate;
   factory SimulcastStreamConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -93,15 +77,16 @@
             <parml>
             <plentry>
                 <pt>dimensions</pt>
-                <pd><ph>The video dimension. </ph><ph props="android cpp unity electron rn flutter">See <xref keyref="VideoDimensions" /></ph>. <ph>The default value is 160 × 120.</ph></pd>
+                <pd><ph>The video dimension. </ph><ph props="android cpp unreal bp unity electron rn flutter cs">See <xref keyref="VideoDimensions" />. </ph><ph>The default value is 160 × 120.</ph></pd>
             </plentry>
             <plentry>
-                <pt>bitrate</pt>
-                <pd>Video receive bitrate (Kbps). The default value is 65.</pd>
+                <pt props="android apple">bitrate</pt>
+                <pt props="cpp framework">kBitrate</pt>
+                <pd>Video receive bitrate (Kbps), represented by an instantaneous value. The default value is 65.</pd>
             </plentry>
             <plentry>
-                <pt>framerate</pt>
-                <pd>The capture frame rate (fps) of the local video. The default value is 5.</pd>
+                <pt>frameRate</pt>
+                <pd>The frame rate (fps) of the local video. The default value is 5.</pd>
             </plentry>
             </parml> </section>
     </refbody>

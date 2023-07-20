@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteRemoteVideoStreamEx:(NSUInteger)uid
                           mute:(BOOL)mute
                     connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int muteRemoteVideoStreamEx(uid_t uid, bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int muteRemoteVideoStreamEx(uid_t uid, bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract muteRemoteVideoStreamEx(
     uid: number,
     mute: boolean,
@@ -49,7 +49,7 @@
                 </pd>
             </plentry>
             <plentry>
-                <pt props="ios mac cpp rn unity electron flutter">mute</pt>
+                <pt props="ios mac cpp unreal bp rn unity electron flutter cs">mute</pt>
                 <pt props="android">muted</pt>
                 <pd>
                     <p>Whether to stop receiving the video stream of the specified user:<ul>
@@ -65,9 +65,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native unity rn electron">0: Success.</li>
+            <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

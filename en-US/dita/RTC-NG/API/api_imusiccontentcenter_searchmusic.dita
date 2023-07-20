@@ -17,7 +17,7 @@
     return searchMusic(keyword, page, pageSize, null);
   }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (NSString *)searchMusicWithKeyWord:(NSString *)keyWord page:(NSInteger)page pageSize:(NSInteger)pageSize jsonOption:(NSString * _Nullable)jsonOption NS_SWIFT_NAME(searchMusic(keyWord:page:pageSize:jsonOption:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int searchMusic(agora::util::AString&amp; requestId, const char* keyWord, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int searchMusic(agora::util::AString&amp; requestId, const char* keyWord, int32_t page, int32_t pageSize, const char* jsonOption = nullptr) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract searchMusic(
     requestId: string,
     keyWord: string,
@@ -41,14 +41,13 @@
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
         <section id="detailed_desc">
-            <title>Details</title>
             <dl outputclass="since">
             <dlentry props="native">
                 <dt>Since</dt>
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p id="desc">After calling this method successfully, the SDK triggers the <xref keyref="onMusicCollectionResult" /> callback to report the list of search results.</p>
+            <p id="desc">After calling this method successfully, the SDK triggers the  callback to<xref keyref="onMusicCollectionResult" /> report the list of search results.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -65,7 +64,7 @@
                 <pt>pageSize</pt>
                 <pd>The number of music displayed on each page. The maximum value is 50.</pd>
             </plentry>
-            <plentry id="option" props="apple cpp electron unity rn flutter">
+            <plentry id="option" props="apple cpp framework">
                 <pt>jsonOption</pt>
                 <pd>The json field. The default value is <ph keyref="NULL" />.</pd>
             </plentry>

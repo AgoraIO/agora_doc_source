@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)openWithAgoraCDNSrc:(NSString *)src startPos:(NSInteger)startPos;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int openWithAgoraCDNSrc(const char* src, int64_t startPos) = 0;
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int openWithAgoraCDNSrc(const char* src, int64_t startPos) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract openWithAgoraCDNSrc(src: string, startPos: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int OpenWithAgoraCDNSrc(string src, Int64 startPos);</codeblock>
@@ -29,7 +29,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <note type="attention" conkeyref="open/note" />
-            <p>After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call the <xref keyref="switchAgoraCDNLineByIndex" /> method to switch routes.</p>
+            <p>After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call <xref keyref="switchAgoraCDNLineByIndex" /> to switch routes.</p>
             <p id="auth">If you want to ensure the security of the connection and media files, <xref keyref="ticket-link" /> to determine the <parmname>sign</parmname> and the <parmname>ts</parmname> fields for authentication. Once the fields are determined, use them as the <codeph>query parameter</codeph> of the URL to update the URL of the media resource. For example:<ul>
             <li>The URL of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName</codeph></li>
             <li>The URL updated by the authentication of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
@@ -53,10 +53,11 @@
                 <pd>The starting position (ms) for playback. The default value is 0. This value can be empty if the media resource to be played is live streams.</pd>
             </plentry>
             </parml> </section>
-        <section id="return_values" props="native electron unity rn">
-            <title>Returns</title>
+        <section id="return_values">
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li>0: Success.</li>
+            <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

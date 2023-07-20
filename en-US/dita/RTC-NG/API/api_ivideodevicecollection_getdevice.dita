@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp" outputclass="language-cpp">virtual int getDevice(int index, 
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int getDevice(int index, 
      char deviceName[MAX_DEVICE_ID_LENGTH], 
      char deviceId[MAX_DEVICE_ID_LENGTH]) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getDevice(): string;</codeblock>
@@ -24,12 +24,11 @@
             <codeblock props="flutter" outputclass="language-dart">Future&lt;String&gt; getDevice();</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
-        <section id="parameters">
+        <section id="parameters" props="cpp unreal bp">
             <title>Parameters</title>
             <parml>
             <plentry>
-                <pt>index
-</pt>
+                <pt>index</pt>
                 <pd>The index value of the video device. The value of this parameter must be less than the value returned in <xref keyref="getCount_IVideoDeviceCollection" />.</pd>
             </plentry>
             <plentry>
@@ -43,9 +42,11 @@
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <ul>
+            <ul props="cpp unreal bp">
             <li>0: Success.</li>
             <li>&lt; 0: Failure.</li>
-            </ul> </section>
+            </ul>
+            <p props="unity flutter electron rn cs">The information of the video capturing device.</p>
+        </section>
     </refbody>
 </reference>

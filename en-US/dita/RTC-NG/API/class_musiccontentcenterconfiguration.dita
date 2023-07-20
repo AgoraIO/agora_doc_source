@@ -29,7 +29,7 @@
 @property (nonatomic, assign) NSInteger mccUid;
 @property (nonatomic, assign) NSUInteger maxCacheSize;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct MusicContentCenterConfiguration {
     const char *appId;
     const char *token;
     int64_t mccUid;
@@ -105,16 +105,20 @@ class MusicContentCenterConfiguration {
             </plentry>
             <plentry>
                 <pt>token</pt>
-                <pd>使用音乐内容中心时，用于鉴权的 Agora Token。 When your token is about to expire, you can call <xref keyref="renewToken_IMusicContentCenter" /> to pass in a new token.</pd>
+                <pd>The token used for authentication when using music content center. When your token is about to expire, you can call<xref keyref="renewToken_IMusicContentCenter" />  to pass in a new token.</pd>
             </plentry>
             <plentry>
                 <pt>mccUid</pt>
-                <pd>The ID of the user who uses music content center. This ID can be the same as the <codeph>uid</codeph> used when joining the RTC channel, but cannot be 0. </pd>
+                <pd>The ID of the user who uses music content center. This ID can be the same as the uid used when joining the RTC channel, but cannot be 0.<codeph /></pd>
             </plentry>
             <plentry props="android cpp">
                 <pt>eventHandler</pt>
-                <pd>The event callbacks to be received. See <xref keyref="IMusicContentCenterEventHandler" /> for details.</pd>
+                <pd>The event callbacks to be received. See  for details<xref keyref="IMusicContentCenterEventHandler" />.</pd>
             </plentry>
+             <plentry>
+                 <pt>maxCacheSize</pt>
+                 <pd>可缓存的音乐资源数量，最多不能超过 50。</pd>
+             </plentry>
             </parml> </section>
     </refbody>
 </reference>

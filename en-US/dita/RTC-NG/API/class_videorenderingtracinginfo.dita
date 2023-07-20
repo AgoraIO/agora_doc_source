@@ -23,7 +23,7 @@
 @property (assign, nonatomic) NSInteger remoteJoined2SetView NS_SWIFT_NAME(remoteJoined2SetView);
 @property (assign, nonatomic) NSInteger remoteJoined2UnmuteVideo NS_SWIFT_NAME(remoteJoined2UnmuteVideo);
 @property (assign, nonatomic) NSInteger remoteJoined2PacketReceived NS_SWIFT_NAME(remoteJoined2PacketReceived);</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct VideoRenderingTracingInfo {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoRenderingTracingInfo {
   int elapsedTime;
   int start2JoinChannel;
   int join2JoinSuccess;
@@ -146,7 +146,7 @@ class VideoRenderingTracingInfo {
                     </ul>
                     <note type="note">
                     <ul>
-                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing" /> after setting the remote view, the value is 0 and meaningless.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing" /> after setting the remote view, the value is 0 and has no effect.</li>
                     <li>In order to reduce the time of rendering the first frame for remote users, Agora recommends that the local user sets the remote view before the remote user joins the channel, or sets the remote view immediately after the remote user joins the channel to reduce this value.</li>
                     </ul></note> </pd>
             </plentry>
@@ -159,7 +159,7 @@ class VideoRenderingTracingInfo {
                     </ul>
                     <note type="note">
                         <ul>
-                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing" /> after subscribing to the remote video stream, the value is 0 and meaningless.</li>
+                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing" /> after subscribing to the remote video stream, the value is 0 and has no effect.</li>
                             <li>In order to reduce the time of rendering the first frame for remote users, Agora recommends that after the remote user joins the channel, the local user immediately subscribes to the remote video stream to reduce this value.</li>
                         </ul></note>
                 </pd>
@@ -173,7 +173,7 @@ class VideoRenderingTracingInfo {
                     </ul>
                     <note type="note">
                         <ul>
-                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing" /> after receiving the remote video stream, the value is 0 and meaningless.</li>
+                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing" /> after receiving the remote video stream, the value is 0 and has no effect.</li>
                             <li>In order to reduce the time of rendering the first frame for remote users, Agora recommends that the remote user publishes video streams immediately after joining the channel, and the local user immediately subscribes to remote video streams to reduce this value.</li>
                         </ul></note></pd>
             </plentry>

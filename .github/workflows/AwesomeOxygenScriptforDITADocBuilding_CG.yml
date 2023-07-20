@@ -24,6 +24,9 @@ jobs:
       with:
         java-version: '8.0.332+9'
         distribution: 'temurin'
+    - name: Get branch name
+      id: branch-name
+      uses: tj-actions/branch-names@v7
     - name: DITA doc building
       run: |
           cd scripts/oxygen/scripts
@@ -58,42 +61,75 @@ jobs:
           zip -qq -r cs_cg_en_doc.zip "csharp_cg_en"
           ls
           
-    - name: Upload Flutter CG CN doc to release
-      uses: svenstaro/upload-release-action@v2
+    - name: Upload Flutter CG CN doc Artifact
+      uses: actions/upload-artifact@v3
+      with:
+          path: dita/RTC/out/flutter_cg_cn_doc.zip
+          name: flutter_cg_cn_doc.zip
+    
+    - name: Upload CSharp CG CN doc Artifact
+      uses: actions/upload-artifact@v3
+      with:
+          path: dita/RTC/out/cs_cg_cn_doc.zip
+          name: cs_cg_cn_doc.zip
+    
+    - name: Upload Flutter CG EN doc Artifact
+      uses: actions/upload-artifact@v3
+      with:
+          path: en-US/dita/RTC/out/flutter_cg_en_doc.zip
+          name: flutter_cg_en_doc.zip
+    
+    - name: Upload CSharp CG EN doc Artifact
+      uses: actions/upload-artifact@v3
+      with:
+          path: en-US/dita/RTC/out/cs_cg_en_doc.zip
+          name: cs_cg_en_doc.zip
+    
+    - name: Upload Flutter CG CN doc Artifact
+      if: github.ref_name == github.event.repository.default_branch
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dita/RTC/out/flutter_cg_cn_doc.zip
           asset_name: flutter_cg_cn_doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
+          make_latest: false
           overwrite: true
           body: "DITA docs."
-
+        
     - name: Upload CSharp CG CN doc to release
-      uses: svenstaro/upload-release-action@v2
+      if: github.ref_name == github.event.repository.default_branch
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: dita/RTC/out/cs_cg_cn_doc.zip
           asset_name: cs_cg_cn_doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
+          make_latest: false
           overwrite: true
           body: "DITA docs."
-
+    
     - name: Upload Flutter CG EN doc to release
-      uses: svenstaro/upload-release-action@v2
+      if: github.ref_name == github.event.repository.default_branch
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: en-US/dita/RTC/out/flutter_cg_en_doc.zip
           asset_name: flutter_cg_en_doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
+          make_latest: false
           overwrite: true
           body: "DITA docs."
-
+    
     - name: Upload CSharp CG EN doc to release
-      uses: svenstaro/upload-release-action@v2
+      if: github.ref_name == github.event.repository.default_branch
+      uses: svenstaro/upload-release-action@2.6.0
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: en-US/dita/RTC/out/cs_cg_en_doc.zip
           asset_name: cs_cg_en_doc.zip
-          tag: main
+          tag: ${{ steps.branch-name.outputs.current_branch }}-build
+          make_latest: false
           overwrite: true
           body: "DITA docs."          
+    

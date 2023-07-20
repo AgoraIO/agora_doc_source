@@ -17,33 +17,33 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
     (void)err;
     (void)msg;
   }
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onError?(err: ErrorCodeType, msg: string): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp"> public virtual void OnError(int err, string msg) { }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"> public virtual void OnError(int err, string msg) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onError?(err: ErrorCodeType, msg: string): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(ErrorCodeType err, String msg)? onError;</codeblock></p>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(ErrorCodeType err, String msg)? onError;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p id="desc">This callback indicates that an error (concerning network or media) occurs during SDK runtime. In most cases, the SDK cannot fix the issue and resume running. The SDK requires the application to take action or informs the user about the issue.</p>
         </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
-            <p conkeyref="onJoinChannelSuccess/callback-desc" props="flutter rn" />
             <parml>
             <plentry conkeyref="onJoinChannelSuccess/engine" props="ios mac">
                 <pt />
                 <pd />
             </plentry>
-            <plentry props="apple cpp unity rn flutter electron">
+            <plentry props="apple cpp unreal bp unity rn flutter electron cs">
                 <pt props="apple">errorCode</pt>
-                <pt props="cpp unity rn flutter electron">err</pt>
+                <pt props="cpp unreal bp unity rn flutter electron cs">err</pt>
                 <pd>Error code. See <xref keyref="ERROR_CODE_TYPE"/>.</pd>
             </plentry>
-            <plentry props="cpp electron unity rn flutter">
+            <plentry props="cpp unreal bp electron unity rn flutter cs">
                 <pt>msg</pt>
                 <pd>The error message.</pd>
             </plentry>
@@ -76,12 +76,12 @@
                         <li><ph keyref="ERR_NO_PERMISSION" />(9): Permission to access is not granted. Check whether your app has access to the audio and video device.</li>
                         <li><ph keyref="ERR_TIMEDOUT" />(10): A timeout occurs. Some API calls require the SDK to return the execution result. This error occurs if the SDK takes too long (more than 10 seconds) to return the result.</li>
                         <li><ph keyref="ERR_JOIN_CHANNEL_REJECTED" />(17): The request to join the channel is rejected. Possible reasons include the following:<ul>
-                            <li>The user is already in the channel. Agora recommends using the <xref keyref="onConnectionStateChanged" /> callback to get whether the user is in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
-                            <li>After calling <xref keyref="startEchoTest2" /> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest" /> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest" />.</li>
+                            <li>The user is already in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
+                            <li>After calling <xref keyref="startEchoTest3" /> for the call test, the user tries to join the channel without calling <xref keyref="stopEchoTest" /> to end the current test. To join a channel, the call test must be ended by calling <apiname keyref="stopEchoTest" />.</li>
                             </ul></li>
                         <li><ph keyref="ERR_LEAVE_CHANNEL_REJECTED" />(18): Fails to leave the channel. Possible reasons include the following:<ul>
-                            <li>The user has left the channel before calling the <xref keyref="leaveChannel" /> method. Stop calling this method to clear this error.</li>
-                            <li>The user calls the <apiname keyref="leaveChannel" /> method to leave the channel before joining the channel. In this case, no extra operation is needed.</li>
+                            <li>The user has left the channel before calling the <xref keyref="leaveChannel2" /> method. Stop calling this method to clear this error.</li>
+                            <li>The user calls the <apiname keyref="leaveChannel2" /> method to leave the channel before joining the channel. In this case, no extra operation is needed.</li>
                             </ul></li>
                         <li><ph keyref="ERR_ALREADY_IN_USE" />(19): Resources are already in use.</li>
                         <li><ph keyref="ERR_ABORTED" />(20): The request is abandoned by the SDK, possibly because the request has been sent too frequently.</li>

@@ -18,7 +18,7 @@
 @property(assign, nonatomic) NSUInteger vad;
 @property (assign, nonatomic) double voicePitch;
 @end</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">struct AudioVolumeInfo {
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioVolumeInfo {
                     uid_t uid;
                     unsigned int volume;
                     unsigned int vad;
@@ -93,14 +93,14 @@
                 <pt>uid</pt>
                 <pd>
                     <p>The user ID.<ul id="ul_pfj_4dt_rqb">
-                    <li>In the local user's callback, <parmname>uid</parmname> = 0.</li>
-                    <li>In the remote users' callback, <parmname>uid</parmname> is the user<parmname> ID</parmname> of a remote user whose instantaneous volume is one of the three highest.</li>
+                    <li>In the local user's callback, <parmname>uid</parmname> is 0.</li>
+                    <li>In the remote users' callback, <parmname>uid</parmname> is the user ID of a remote user whose instantaneous volume is the highest.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd><ph>The volume of the user. The value ranges between 0 (lowest volume) and 255 (highest volume). </ph><ph props="native">If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> is the volume after audio mixing.</ph></pd>
+                <pd><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). If the local user enables audio capturing and calls <xref keyref="muteLocalAudioStream" /> and set it as <codeph><ph keyref="true" /></codeph> to mute, the value of <parmname>volume</parmname> indicates the volume of locally captured audio signal. </ph><ph props="native unreal bp">If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> indicates the volume after audio mixing.</ph></pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>

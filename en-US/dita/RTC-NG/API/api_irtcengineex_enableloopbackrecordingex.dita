@@ -17,7 +17,7 @@
             <codeblock props="mac" outputclass="language-objectivec">- (int)enableLoopbackRecordingEx:(BOOL)enabled
                       deviceName:(NSString* _Nullable)deviceName
                       connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(enableLoopbackRecordingEx(_:deviceName:connection:));</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(const RtcConnection&amp; connection, bool enabled, const char* deviceName = NULL) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int enableLoopbackRecordingEx(const RtcConnection&amp; connection, bool enabled, const char* deviceName = NULL) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableLoopbackRecordingEx(
     connection: RtcConnection,
     enabled: boolean,
@@ -40,8 +40,8 @@
             <p>If you enable loopback audio capturing, the output of the sound card is mixed into the audio stream sent to the other end.</p>
             <note id="note_v4j_tbx_jqb" type="attention">
             <ul>
-            <li props="cpp unity electron flutter">This method applies to the macOS and Windows platforms only.</li>
-            <li>macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
+            <li props="cpp unreal bp unity flutter">This method applies to the macOS and Windows only.</li>
+            <li props="cpp unreal bp unity electron flutter">macOS does not support loopback audio capture of the default sound card. If you need to use this function, use a virtual sound card and pass its name to the <parmname>deviceName</parmname> parameter. Agora recommends using AgoraALD as the virtual sound card for audio capturing.</li>
             <li>This method only supports using one sound card for audio capturing.</li>
         </ul></note></section>
         <section id="parameters">
@@ -65,9 +65,9 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_uvd_2cx_jqb">
-            <li props="mac cpp unity rn electron">0: Success.</li>
+            <li props="mac cpp unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

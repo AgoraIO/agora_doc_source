@@ -18,13 +18,13 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onRecordEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void OnRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void OnRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRecordAudioEncodedFrame?(
     frameBuffer: Uint8Array,
     length: number,
     audioEncodedFrameInfo: EncodedAudioFrameInfo
   ): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnRecordAudioEncodedFrame(IntPtr frameBufferPtr, int length,
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRecordAudioEncodedFrame(IntPtr frameBufferPtr, int length,
                                                     EncodedAudioFrameInfo audioEncodedFrameInfo)
         {
 
@@ -35,7 +35,8 @@
     audioEncodedFrameInfo: EncodedAudioFrameInfo
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(Uint8List frameBuffer, int length,
-      EncodedAudioFrameInfo audioEncodedFrameInfo)? onRecordAudioEncodedFrame;</codeblock> </p>
+      EncodedAudioFrameInfo audioEncodedFrameInfo)? onRecordAudioEncodedFrame;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the encoded audio as <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>, you can get the encoded audio data of the local user from this callback.</p>
@@ -46,16 +47,16 @@
             <plentry>
                 <pt props="android">buffer</pt>
                 <pt props="ios mac">frameData</pt>
-                <pt props="cpp electron rn flutter">frameBuffer</pt>
-                <pt props="unity">frameBufferPtr</pt>
+                <pt props="cpp unreal bp electron rn flutter">frameBuffer</pt>
+                <pt props="unity cs">frameBufferPtr</pt>
                 <pd>The audio buffer.</pd>
             </plentry>
-            <plentry props="cpp electron unity rn flutter">
+            <plentry props="cpp unreal bp electron unity rn flutter cs">
                 <pt>length</pt>
                 <pd>The data length (byte).</pd>
             </plentry>
-            <plentry props="ios mac cpp electron unity rn flutter">
-                <pt props="cpp electron unity rn flutter">audioEncodedFrameInfo</pt>
+            <plentry props="ios mac cpp unreal bp electron unity rn flutter cs">
+                <pt props="cpp unreal bp electron unity rn flutter cs">audioEncodedFrameInfo</pt>
                 <pt props="ios mac">info</pt>
                 <pd>Audio information after encoding. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
             </plentry>
