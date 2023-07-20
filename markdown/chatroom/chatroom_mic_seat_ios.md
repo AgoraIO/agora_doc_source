@@ -179,7 +179,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 ### 切换用户角色
 
-不管是房主邀请，还是观众主动申请，在观众成为连麦观众后，你需要调用声网 RTC SDK 中 `setClientRole` 方法将其角色从观众（`audience`）切换成主播（`broadcaster`），以让连麦观众拥有发送音频流的权限。
+不管是房主邀请，还是观众主动申请，在观众成为连麦观众后，你需要调用声网 RTC SDK 中 [`setClientRole`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_setclientrole) 方法将其角色从观众（`audience`）切换成主播（`broadcaster`），以让连麦观众拥有发送音频流的权限。
 
 ```swift
 rtcKit.setClientRole(.broadcaster)
@@ -236,7 +236,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 ### 切换用户角色
 
-不管是连麦观众主动下麦还是被踢下麦，在连麦观众成为普通观众后，你需要调用声网 RTC SDK 中 `setClientRole` 方法将其角色从主播（`broadcaster`）切换成观众（`audience`），以让其失去发送音频流的权限。
+不管是连麦观众主动下麦还是被踢下麦，在连麦观众成为普通观众后，你需要调用声网 RTC SDK 中 [`setClientRole`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_setclientrole) 方法将其角色从主播（`broadcaster`）切换成观众（`audience`），以让其失去发送音频流的权限。
 
 ```swift
 rtcKit.setClientRole(.audience)

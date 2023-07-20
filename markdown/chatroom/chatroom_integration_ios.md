@@ -79,7 +79,7 @@
 
 6. 在终端内运行 <code>pod install</code> 命令安装 SDK。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
 
-## 实现语聊房 //TODO 示例代码缺少 joinChatRoom、leaveChatRoom、destroyChatRoom
+## 实现语聊房 //TODO 示例代码缺少 leaveChatRoom、destroyChatRoom
 
 如下时序图展示了如何登录即时通讯系统、获取房间列表、创建房间、进入房间、加入 RTC 频道、麦位管理、退出房间、离开 RTC 频道。声网云服务（Service）实现了房间列表的存储和房间生命周期的管理，声网即时通讯（IM）SDK 实现房间内的信令通信，声网 RTC SDK 承担实时音视频的业务。本节会详细介绍如何调用声网云服务（ChatRoomServiceProtocol）、IM SDK API、RTC SDK API 完成这些逻辑。
 
@@ -170,7 +170,7 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
     }
     ```
 
-3. 语聊房里有消息聊天和语音聊天。你需要调用声网 IM SDK 中 `joinChatRoom` 实现房间内的消息互动。调用声网 RTC SDK 中 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入 RTC 频道以实现房间内的实时音频通话。
+3. 语聊房里有消息聊天和语音聊天。你需要调用声网 IM SDK 中 [`joinChatRoom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/protocol_i_agora_chatroom_manager-p.html#ad8d19bd36e60c8af8d04c1f8b4daa2f0) 实现房间内的消息互动。调用声网 RTC SDK 中 `AgoraRtcEngineKit` 类的 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel) 加入 RTC 频道以实现房间内的实时音频通话。
 
     ```swift
     // 实现房间内的消息互动
@@ -238,7 +238,7 @@ ChatRoomServiceImp.getSharedInstance().leaveRoom(self.roomInfo?.room?.room_id ??
 
 ### 6. 离开 RTC 频道
 
-调用 `AgoraRtcEngineKit` 类的 `leaveChannel` 和 `destroy` 方法以离开频道和销毁 RTC 引擎。
+调用 `AgoraRtcEngineKit` 类的 [`leaveChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 和 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_release) 方法以离开频道和销毁 RTC 引擎。
 
 ```swift
 rtcKit.stopPreview()
