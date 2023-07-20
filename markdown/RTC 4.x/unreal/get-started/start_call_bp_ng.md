@@ -181,7 +181,7 @@
    2. 创建本地视图。本地视图中，uid 为 0，由 SDK 随机分配，视频源类型为 **VIDEO_SOURCE_CAMERA_PRIMARY** (第一个摄像头)。
    3. 创建远端视图。远端视图中，uid 为远端发送来的 uid，视频源类型为 **VIDEO_SOURCE_REMOTE** (网络获取的远端视频)。
 
-1. 创建并实现 **ReleaseVideoView** 函数，在本地或远端主播离开频道时释放视图。
+2. 创建并实现 **ReleaseVideoView** 函数，在本地或远端主播离开频道时释放视图。
 ![](https://web-cdn.agora.io/docs-files/1689839722484)
 主要步骤如下：
    1. 在该函数中，创建 **SavedUID**、**SavedSourceType** 和 **SavedChannelID** 三个本地变量，分别设置 **Variable Type** 为 **Integer64**、**VIDEO_SOURCE_TYPE** 和 **String**，保存变量在后续加载视图时使用。
