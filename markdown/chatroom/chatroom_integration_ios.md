@@ -34,14 +34,11 @@
 - iOS 设备，版本 13.0 及以上。
 - 有效的苹果开发者账号。
 - 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
-- 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)和声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得以下信息：
-    - App ID：声网随机生成的字符串，用于识别你的项目。
-    - 临时 Token：Token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
-    - 频道名：用于标识频道的字符串。
+- 参考[开始使用声网平台](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)创建声网开发者账号和声网项目。
 
 ### 创建项目
 
-秀场直播用到声网 RTC SDK 和即时通讯 SDK。本节介绍如何在 Xcode 创建项目并集成这两个 SDK：
+秀场直播用到声网 RTC SDK 和即时通讯（IM）SDK。本节介绍如何在 Xcode 创建项目并集成这两个 SDK：
 
 1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 
@@ -90,7 +87,10 @@
 
 ### 1. 登录即时通讯系统
 
-在房间列表页时，你可以调用声网即时通讯 SDK 中 AgoraChatClient 类的 [`loginWithUsername:token:completion:`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/interface_agora_chat_client.html#ad1f4dbc685867ed236fcb57c2d29c2b0) 方法并传入即时通讯服务的用户名和 Token 以登录即时通讯系统。
+1. 根据[前提条件](#前提条件)在声网控制台创建声网项目后，参考[开启和配置即时通讯服务](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms)，在声网控制台为你的声网项目开启并配置即时通讯服务。
+2. 参考[即时通讯集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_ios?platform=iOS#用户登录)，获取登录即时通讯系统所需的用户名（ID）和 Token。
+3. 在房间列表页时，你可以调用声网即时通讯（IM）SDK 中 `AgoraChatClient` 类的 [`loginWithUsername:token:completion:`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/interface_agora_chat_client.html#ad1f4dbc685867ed236fcb57c2d29c2b0) 方法并传入即时通讯服务的用户名和 Token 以登录即时通讯系统。
+
 
 ```swift
 @objc public func loginIM(userName: String, token: String, completion: @escaping (String, AgoraChatError?) -> Void) {
@@ -144,6 +144,8 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
 
 2. 调用 `ChatRoomServiceImp` 类的 `joinRoom` 方法进入房间。
 
+    在这一步里需要填写声网 RTC Token。你可以参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得临时用途的声网 RTC Token。你也可以参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_ios_ng?platform=iOS)获取正式用途的声网 RTC Token。临时 Token 的有效期为 24 小时，建议你仅在测试用途下使用。
+
     ```swift
     // 显示加载提示
     SVProgressHUD.show(withStatus: "Loading".localized())
@@ -170,7 +172,10 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
     }
     ```
 
-3. 语聊房里有消息聊天和语音聊天。你需要调用声网 IM SDK 中 [`joinChatRoom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/protocol_i_agora_chatroom_manager-p.html#ad8d19bd36e60c8af8d04c1f8b4daa2f0) 实现房间内的消息互动。调用声网 RTC SDK 中 `AgoraRtcEngineKit` 类的 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel) 加入 RTC 频道以实现房间内的实时音频通话。
+3. 语聊房里有消息聊天和语音聊天：
+    - 调用声网 IM SDK 中 `joinChatRoom` 实现房间内的消息互动。方法中的参数含义和支持取值请参考 [`joinChatRoom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/protocol_i_agora_chatroom_manager-p.html#ad8d19bd36e60c8af8d04c1f8b4daa2f0)。
+    - 调用声网 RTC SDK 中 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入 RTC 频道以实现房间内的实时音频通话。方法中的参数含义和支持取值请参考 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。
+
 
     ```swift
     // 实现房间内的消息互动
