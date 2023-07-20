@@ -98,6 +98,7 @@ $$
 ![](https://web-cdn.agora.io/docs-files/1689863064982)
 
 其中主要节点如下：
+
    | 序号 | 节点  | 类型  | 描述     |
    | :--- | :------ | :------- | :-------- |
    | 1    | **Set Show Mouse Cursor**    | 原生[1]   | (可选) 设置是否显示鼠标光标，勾选代表显示。<div class="alert note"><ul><li>该节点仅适用于 Windows 和 macOS。</li><li>如果在创建时检索不到该节点，可以取消勾选 <b>Context Sensitive</b>。 <img src="https://web-cdn.agora.io/docs-files/1689863102745"/></li></ul></div> |
@@ -117,7 +118,7 @@ $$
 
 1. 创建 **Token**、**ChannelId** 和 **AppId** 三个变量，选择 **Variable Type** 为 **String**。
 2. 在 **Load Agora Config** 函数中，添加 **Sequence** 节点，然后分别连接 **Set Token**、**Set Channel Id** 和 **Set App Id**，在其中填入从声网控制台获取的 Token、频道名和 App ID，用于后续创建和加入频道时验证用户身份。
-![](https://web-cdn.agora.io/docs-files/1689863082747)
+![](https://web-cdn.agora.io/docs-files/1689863340147)
 
 ### 初始化 RTC 引擎
 

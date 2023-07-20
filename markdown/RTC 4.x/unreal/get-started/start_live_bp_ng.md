@@ -103,6 +103,7 @@ $$
 ![](https://web-cdn.agora.io/docs-files/1689836764960)
 
 其中主要节点如下：
+
    | 序号 | 节点  | 类型  | 描述     |
    | :--- | :------ | :------- | :-------- |
    | 1    | **Set Show Mouse Cursor**    | 原生[1]   | (可选) 设置是否显示鼠标光标，勾选代表显示。<div class="alert note"><ul><li>该节点仅适用于 Windows 和 macOS。</li><li>如果在创建时检索不到该节点，可以取消勾选 <b>Context Sensitive</b>。 <img src="https://web-cdn.agora.io/docs-files/1689863102745"/></li></ul></div> |
@@ -145,7 +146,7 @@ $$
         | `onUserOffline` | 远端观众或主播离开当前频道回调。 | <ul><li>`uid`: (Integer64) 离线观众或主播的用户 ID。</li><li>`reason`: 离线原因。详见 [USER_OFFLINE_REASON_TYPE](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/unreal_ng/API/enum_userofflinereasontype.html)。</li></ul> |
     
       ii. 创建 **Bind Event** 函数，在该函数中，添加 **Sequence** 节点，然后分别绑定 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调事件。
-      ![](https://web-cdn.agora.io/docs-files/1689838501197)
+      ![](https://web-cdn.agora.io/docs-files/1689863944284)
 
    3. 初始化 `IRtcEngine`。
       i. 调用 **initialize** 初始化 RTC 引擎。
