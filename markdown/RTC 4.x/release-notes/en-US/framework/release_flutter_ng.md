@@ -135,12 +135,11 @@ This release optimizes the APIs for camera and screen capture function. As of v6
 **2. Video data acquisition**
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
-
-- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. (Windows)
-    - `onSecondaryPreEncodeCameraVideoFrame`
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+    - `onSecondaryPreEncodeCameraVideoFrame` (Windows)
     - `onScreenCaptureVideoFrame`
     - `onPreEncodeScreenVideoFrame`
-    - `onSecondaryPreEncodeScreenVideoFrame`
+    - `onSecondaryPreEncodeScreenVideoFrame` (Windows)
 
 **3. Channel media options**
 
@@ -278,6 +277,22 @@ This release fixed the following issues:
 - Occasional echo. (Android)
 - Occasional screen jittering during screen sharing. (macOS)
 - Abnormal client status cased by an exception in the `onRemoteAudioStateChanged` callback. (Android, iOS)
+- When using Agora Media Player to play RTSP video streams, the video images sometimes appeared pixelated. (Windows)
+- Playing audio files with a sample rate of 48 kHz failed.
+- Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices. (Android)
+- If the rendering view of the player was set as a `UIViewController`'s view, the video was zoomed from the bottom-left corner to the middle of the screen when entering full-screen mode. (macOS)
+- Adding an alpha channel to an image in PNG or GIF format failed when the local client mixed video streams. (Windows)
+- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. (Android)
+- When the playback of the local music finished, the `onAudioMixingFinished` callback was not properly triggered. (Android)
+- After joining the channel, remotes users saw a watermark even though the watermark was deleted. (Windows)
+- If a watermark was added after starting screen sharing, the watermark did not display the screen. (Windows)
+- When joining a channel and accessing an external camera, calling `setDevice` to specify the video capture device as the external camera did not take effect. (macOS, Windows)
+- When using a video frame observer, the first video frame was occasionally missed on the receiver's end. (Android)
+- When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens. (Android)
+- When trying to outline the shared window and put it on top, the shared window did not stay on top of other windows. (Windows)
+- Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted. (Android)
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
+- At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
 
 
 #### API changes
@@ -309,22 +324,6 @@ This release fixed the following issues:
 - The `domainLimit` and `autoRegisterAgoraExtensions` members in `RtcEngineContext`
 - The `sourceType` parameter in `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks
 - The `backgroundNone` and `backgroundVideo` enumerators in `backgroundSourceType`
-- When using Agora Media Player to play RTSP video streams, the video images sometimes appeared pixelated. (Windows)
-- Playing audio files with a sample rate of 48 kHz failed.
-- Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices. (Android)
-- If the rendering view of the player was set as a `UIViewController`'s view, the video was zoomed from the bottom-left corner to the middle of the screen when entering full-screen mode. (macOS)
-- Adding an alpha channel to an image in PNG or GIF format failed when the local client mixed video streams. (Windows)
-- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. (Android)
-- When the playback of the local music finished, the `onAudioMixingFinished` callback was not properly triggered. (Android)
-- After joining the channel, remotes users saw a watermark even though the watermark was deleted. (Windows)
-- If a watermark was added after starting screen sharing, the watermark did not display the screen. (Windows)
-- When joining a channel and accessing an external camera, calling `setDevice` to specify the video capture device as the external camera did not take effect. (macOS, Windows)
-- When using a video frame observer, the first video frame was occasionally missed on the receiver's end. (Android)
-- When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens. (Android)
-- When trying to outline the shared window and put it on top, the shared window did not stay on top of other windows. (Windows)
-- Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted. (Android)
-- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
-- At the moment when a user left a channel, a request for leaving was not sent to the server and the leaving behavior was incorrectly determined by the server as timed out.
 
 **Deprecated**
 
@@ -352,8 +351,8 @@ This release fixed the following issues:
 - `stopPrimaryCameraCapture` (Windows)
 - `stopSecondaryCameraCapture` (Windows, iOS)
 - `onSecondaryPreEncodeCameraVideoFrame` (Windows)
-- `onScreenCaptureVideoFrame` (Windows)
-- `onPreEncodeScreenVideoFrame` (Windows)
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
 - `onSecondaryPreEncodeScreenVideoFrame` (Windows)
 - `onApiCallExecuted`
 - `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` in `ChannelMediaOptions`

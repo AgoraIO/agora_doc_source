@@ -115,7 +115,10 @@
 
 **1. 视频数据获取**
 
-`onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
+- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
+- 以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中的 `sourceType` 参数得知视频源类型。
+  - `onScreenCaptureVideoFrame`
+  - `onPreEncodeScreenVideoFrame`
 
 **2. 媒体发布选项**
 
@@ -304,6 +307,9 @@
 - `getMediaRecorder`
 - `AgoraMediaRecorder` 类中的 `release`
 - `startRecording`、`stopRecording`、`setMediaRecorderObserver` 中的 `connection`
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
+
 
 
 ## v4.1.1

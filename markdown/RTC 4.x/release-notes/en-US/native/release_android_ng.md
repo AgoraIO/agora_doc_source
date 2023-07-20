@@ -94,7 +94,10 @@ If you use the features mentioned in this section, ensure that you modify the im
 
 **1. Video data acquisition**
 
-The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
+- The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
 
 **2. Channel media options**
 
@@ -236,6 +239,9 @@ This release fixed the following issues:
 
 - `onApiCallExecuted`
 - `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions` in `ChannelMediaOptions`
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
+
 
 
 ## v4.1.1
