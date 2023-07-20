@@ -67,8 +67,8 @@ $$
 参考以下步骤创建上图所示 UI 界面。如果你的项目中已有用户界面，可进行下一步[创建关卡](#创建关卡)。
 
 1. 创建 **Widget Blueprint**。
-    1. 在 **Content Browser** 的 **Content** 文件夹中，右击选择 **User Interface** > **Widget Blueprint** 创建 **Widget Blueprint**，并将其命名为 **BP_AudioWidget**。
-    2. 双击打开 **BP_AudioWidget**。此时可以在 **Hierarchy** 面板中看到 **BP_AudioWidget** > **Canvas Panel**。
+    1. 在 **Content Browser** 的 **Content** 文件夹中，右击选择 **User Interface** > **Widget Blueprint** 创建 **Widget Blueprint**，并将其命名为 **BP_Audio Widget**。
+    2. 双击打开 **BP_Audio Widget**。此时可以在 **Hierarchy** 面板中看到 **BP_Audio Widget** > **Canvas Panel**。
     3. 创建视图背景。在 **Palette** 面板中，选择 **Common** > **Image**，将其拖至 **Canvas Panel** 中，命名为 **background**。通过拖拽调整至画布大小，在 **Details** 面板中调整背景颜色。
 2. 在 **Widget Blueprint** 中创建加入和离开频道的按钮。
     1. 创建加入频道按钮。在 **Palette** 面板中，选择 **Common** > **Button**，将其拖至 **Canvas Panel** 中，重命名为 **Btn_JoinChannel**，并调整其在画布中的位置和大小：
@@ -95,20 +95,20 @@ $$
 
 在 **My Blueprint** 面板中，双击 **Graphs** > **EventGraph** 打开事件图表，其中已有 **Event BeginPlay** (游戏开始) 和 **Event End Play** (游戏结束) 两个事件节点。接下来，创建语音通话相关的事件节点以及对应的函数和变量，并将它们连接起来以实现语音通话的逻辑和交互，如下图所示：
 
-![](https://web-cdn.agora.io/docs-files/1689836764960)
+![](https://web-cdn.agora.io/docs-files/1689863064982)
 
 其中主要节点如下：
-    | 序号 | 节点  | 类型  | 描述     |
-    | :--- | :------ | :------- | :-------- |
-    | 1    | **Set Show Mouse Cursor**    | 原生[1]   | (可选) 设置是否显示鼠标光标，勾选代表显示。<div class="alert note"><ul><li>该节点仅适用于 Windows 和 macOS。</li><li>如果在创建时检索不到该节点，可以取消勾选 <b>Context Sensitive</b>。 <img src="https://web-cdn.agora.io/docs-files/1689836791431"/></li></ul></div> |
-    | 2    | **Load Agora Config**   | 自定义[2] | 加载声网配置。用于后续在创建和加入频道时验证用户身份。       |
-    | 3    | **Create BP Audio Widget Widget** | 原生     | 创建用户界面。步骤如下：<ol><li>创建 **Create Widget** 节点。</li><li>选择该节点的 **Class** 为 **BP_AudioWidget**，将该节点关联至已经创建好的用户界面。</li></ol> |
-    | 4    | **Set Basic Audio Call Widget**   | 自定义   | 设置用户界面。步骤如下：<ol><li>创建 **BP_Audio Widget** 变量。</li><li>选择变量的 **Variable Type** 为 **BP_Audio Widget**，即已经创建好的用户界面，用于在蓝图中存储对用户界面的引用。</li><li>创建 **Set Basic Audio Call Widget** 节点，访问并设置用户界面。</li> |
-    | 5    | **Bind UIEvent**   | 自定义   | 绑定 UI 事件，用于处理点击 **JoinChannel** 和 **LeaveChannel** 按钮后的事件逻辑。 |
-    | 6    | **Add to Viewport**   | 原生  | 将用户界面添加到视口。   |
-    | 7    | **Check Permission**   | 自定义   | (可选) 检查是否已获取语音通话所需的系统权限，如访问摄像头和麦克风等。<div class="alert note">该节点仅适用于 Android 和 iOS。</div> |
-    | 8    | **Init Rtc Engine**     | 自定义   | 创建并初始化 RTC 引擎。  |
-    | 9    | **Un Init Rtc Engine**  | 自定义   | 离开频道并释放资源。     |
+   | 序号 | 节点  | 类型  | 描述     |
+   | :--- | :------ | :------- | :-------- |
+   | 1    | **Set Show Mouse Cursor**    | 原生[1]   | (可选) 设置是否显示鼠标光标，勾选代表显示。<div class="alert note"><ul><li>该节点仅适用于 Windows 和 macOS。</li><li>如果在创建时检索不到该节点，可以取消勾选 <b>Context Sensitive</b>。 <img src="https://web-cdn.agora.io/docs-files/1689863102745"/></li></ul></div> |
+   | 2    | **Load Agora Config**   | 自定义[2] | 加载声网配置。用于后续在创建和加入频道时验证用户身份。       |
+   | 3    | **Create BP Audio Widget Widget** | 原生     | 创建用户界面。步骤如下：<ol><li>创建 **Create Widget** 节点。</li><li>选择该节点的 **Class** 为 **BP_Audio Widget**，将该节点关联至已经创建好的用户界面。</li></ol> |
+   | 4    | **Set Basic Audio Call Widget**   | 自定义   | 设置用户界面。步骤如下：<ol><li>创建 **BasicAudioCallWidget** 变量。</li><li>选择变量的 **Variable Type** 为 **BP_Audio Widget**，即已经创建好的用户界面，用于在蓝图中存储对用户界面的引用。</li><li>创建 **Set Basic Audio Call Widget** 节点，访问并设置用户界面。</li></ol> |
+   | 5    | **Bind UIEvent**   | 自定义   | 绑定 UI 事件，用于处理点击 **JoinChannel** 和 **LeaveChannel** 按钮后的事件逻辑。 |
+   | 6    | **Add to Viewport**   | 原生  | 将用户界面添加到视口。   |
+   | 7    | **Check Permission**   | 自定义   | (可选) 检查是否已获取语音通话所需的系统权限，如访问摄像头和麦克风等。<div class="alert note">该节点仅适用于 Android。</div> |
+   | 8    | **Init Rtc Engine**     | 自定义   | 创建并初始化 RTC 引擎。  |
+   | 9    | **Un Init Rtc Engine**  | 自定义   | 离开频道并释放资源。     |
 
 [1]：原生节点为蓝图自带的节点，可以直接添加调用。
 [2]：自定义节点非蓝图自带，需要在创建自定义函数后才能添加对应节点。
@@ -117,15 +117,15 @@ $$
 
 1. 创建 **Token**、**ChannelId** 和 **AppId** 三个变量，选择 **Variable Type** 为 **String**。
 2. 在 **Load Agora Config** 函数中，添加 **Sequence** 节点，然后分别连接 **Set Token**、**Set Channel Id** 和 **Set App Id**，在其中填入从声网控制台获取的 Token、频道名和 App ID，用于后续创建和加入频道时验证用户身份。
-![](https://web-cdn.agora.io/docs-files/1689836892597)
+![](https://web-cdn.agora.io/docs-files/1689863082747)
 
 ### 初始化 RTC 引擎
 
 1. (可选) 如果你的目标平台是 Android，在初始化 RTC 引擎前，需要检查是否已获取 Android 系统权限。在 **CheckPermission** 函数中，参照下图创建节点用于添加 Android 系统中访问麦克风、访问摄像头等权限。
-![](https://web-cdn.agora.io/docs-files/1689838387857)
+![](https://web-cdn.agora.io/docs-files/1689862339398)
 
 2. 在 **InitRtcEngine** 函数中，参照下图创建并连接节点以初始化 RTC 引擎。
-![](https://web-cdn.agora.io/docs-files/1689838445025)
+![](https://web-cdn.agora.io/docs-files/1689862357748)
 主要步骤如下：
    1. 创建 `IRtcEngine` 和 `IRtcEngineEventHandler`。
       i. 创建 **RtcEngine** 和 **EventHandler** 变量，将 **Variable Type** 分别设置为 **Agora Rtc Engine** 和 **IRtc Engine Event Handler**，即声网 SDK 的基础功能类和事件回调类，用于在蓝图中存储对这两个接口类的引用。
@@ -140,7 +140,7 @@ $$
         | `onUserOffline` | 远端主播离开当前频道回调。 | <ul><li>`uid`: (Integer64) 离线主播的用户 ID。</li><li>`reason`: 离线原因。详见 [USER_OFFLINE_REASON_TYPE](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/unreal_ng/API/enum_userofflinereasontype.html)。</li></ul> |
     
       ii. 创建 **Bind Event** 函数，在该函数中，添加 **Sequence** 节点，然后分别绑定 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调事件。
-      ![](https://web-cdn.agora.io/docs-files/1689838501197)
+      ![](https://web-cdn.agora.io/docs-files/1689862369064)
 
    3. 初始化 `IRtcEngine`。
       i. 调用 **initialize** 初始化 RTC 引擎。
@@ -150,46 +150,44 @@ $$
 ### 绑定 UI 事件
 
 1. 创建并实现 **OnJoinChannelClicked** 事件回调。
-![](https://web-cdn.agora.io/docs-files/1689838863648)
+![](https://web-cdn.agora.io/docs-files/1689861266481)
 主要步骤如下：
-   1. 调用 **Enable Audio** 和 **Enable Audio** 启用音频和音频模块。
+   1. 调用 **Enable Audio** 启用音频模块。
    2. 调用 **Join Channel** 加入频道。
    3. 在 **Make ChannelMediaOptions** 中设置以下参数：
-      - 设置 **Publish Camera Track** 为 **AGORA TRUE VALUE**，发布摄像头采集的音频流。
       - 设置 **Publish Microphone Track** 为 **AGORA TRUE VALUE**，发布麦克风采集的音频流。
-      - 设置 **Auto Subscribe Audio** 为 **AGORA TRUE VALUE**，自动订阅所有音频流。
       - 设置 **Auto Subscribe Audio** 为 **AGORA TRUE VALUE**，自动订阅所有音频流。
       - 勾选 **Client Role Type Set Value** 并设置 **Client Role Type** 为 **CLIENT_ROLE_BROADCASTER**，设置用户角色为主播。
       - 勾选 **Channel Profile Set Value** 并设置 **Channel Profile** 为 **CHANNEL_PROFILE_LIVE_BROADCASTING**，设置频道场景为直播场景。
 
 2. 创建并实现 **OnLeaveChannelClicked** 事件回调。当事件触发时，调用 **Leave Channel** 离开频道。
-![](https://web-cdn.agora.io/docs-files/1689838885320)
+![](https://web-cdn.agora.io/docs-files/1689861284734)
 
-3. 在 **BindUIEvent** 函数中，参考下图将 **OnJoinChannelClicked** 和 **OnLeaveChannelClicked** 回调函数分别绑定 **JoinChannel** 和 **LeaveChannel** 按钮。点击按钮时，会触发对应的事件回调。
-![](https://web-cdn.agora.io/docs-files/1689838906424)
+3. 在 **Bind UIEvent** 函数中，参考下图将 **OnJoinChannelClicked** 和 **OnLeaveChannelClicked** 回调函数分别绑定 **JoinChannel** 和 **LeaveChannel** 按钮。点击按钮时，会触发对应的事件回调。
+![](https://web-cdn.agora.io/docs-files/1689861304018)
 <div class="alert info">你也可以在 UMG 中绑定 UI 事件，本文仅展示使用 <b>BindUIEvent</b> 函数进行绑定。</div>
 
 
 ### 实现回调函数
 
 上述步骤中已经创建了 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调函数，该步骤中会具体实现这些回调。
-1. 成功加入频道后，触发 `onJoinChannelSuccess` 回调，创建本地视图，uid 为 0，由 SDK 随机分配，音频源类型为 **VIDEO_SOURCE_CAMERA_PRIMARY** (第一个摄像头)。
-![](https://web-cdn.agora.io/docs-files/1689839345488)
+1. 本地用户成功加入频道后，触发 `onJoinChannelSuccess` 回调。
+![](https://web-cdn.agora.io/docs-files/1689860677797)
 
-2. 离开频道后，触发 `onLeaveChannel` 回调，释放本地视图。
-![](https://web-cdn.agora.io/docs-files/1689839368946)
+2. 本地用户离开频道后，触发 `onLeaveChannel` 回调。
+![](https://web-cdn.agora.io/docs-files/1689860690896)
 
-3. 远端主播加入频道时，触发 `onUserJoined` 回调，创建远端视图，uid 为远端发送来的 uid，音频源类型为 **VIDEO_SOURCE_REMOTE** (网络获取的远端音频)。
-![](https://web-cdn.agora.io/docs-files/1689839388183)
+3. 远端用户加入频道时，触发 `onUserJoined` 回调。
+![](https://web-cdn.agora.io/docs-files/1689860704441)
 
-4. 远端主播离开频道时，触发 `onUserOffline` 回调，释放远端视图。
-![](https://web-cdn.agora.io/docs-files/1689839447883)
+4. 远端用户离开频道时，触发 `onUserOffline` 回调。
+![](https://web-cdn.agora.io/docs-files/1689860714410)
 
 
 ### 离开频道并释放资源
 
 参考下图实现 **UnInitRtcEngine** 函数。
-![](https://web-cdn.agora.io/docs-files/1689850150302)
+![](https://web-cdn.agora.io/docs-files/1689860658599)
 主要步骤如下：
    1. 离开频道。
    2. 取消注册 RTC 事件回调。
