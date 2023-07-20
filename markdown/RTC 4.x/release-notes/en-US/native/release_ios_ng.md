@@ -124,7 +124,10 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 
 **2. Video data acquisition**
 
-The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
+- The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
 
 **3. Channel media options**
 
@@ -254,6 +257,8 @@ This release fixed the following issues:
 - `stopSecondaryCameraCapture`
 - `didApiCallExecute`
 - `publishCustomAudioTrackEnableAec` in `AgoraRtcChannelMediaOptions` in `AgoraRtcChannelMediaOptions`
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
 
 ## v4.1.1
 
