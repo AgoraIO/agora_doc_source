@@ -30,14 +30,15 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p props="native unreal bp unity cs">In order to ensure that the obtained in-ear audio data meets the expectations, Agora recommends that you choose one of the following two methods to set the in-ear monitoring-ear audio data format:<ul>
+            <p props="native unreal bp cs">In order to ensure that the obtained in-ear audio data meets the expectations, Agora recommends that you choose one of the following two methods to set the in-ear monitoring-ear audio data format:<ul>
             <li>Method 1: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
             <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, set the audio data format in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback. The SDK then calculates the sampling interval according to the return value of the <xref keyref="getEarMonitoringAudioParams"/> callback, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</li>
             </ul> </p>
             <p props="flutter rn electron">In order to ensure that the obtained in-ear audio data meets the expectations, Agora recommends that you set the in-ear monitoring-ear audio data format as follows: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</p>
-            <note type="note" id="attention" props="native unreal bp unity flutter cs"><ul>
-            <li props="native unreal bp unity cs">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</li>
+            <note type="note" id="attention" props="native unreal bp flutter cs"><ul>
+            <li props="native unreal bp cs">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</li>
             <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed audio data back to the SDK.</li></ul></note>
+        <p props="unity">In order to ensure that the obtained in-ear audio data meets the expectations, Agora recommends that you set the in-ear monitoring-ear audio data format as follows: After calling <xref keyref="setEarMonitoringAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onEarMonitoringAudioFrame"/> callback according to the sampling interval.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -89,7 +90,7 @@
             </parml> </section>
         <section id="return_values" props="native unreal bp electron rn unity cs">
             <title>Returns</title>
-            <p>Reserved for future use.</p>
+            <p>Without practical meaning.</p>
         </section>
     </refbody>
 </reference>

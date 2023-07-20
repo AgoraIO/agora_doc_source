@@ -1,0 +1,25 @@
+@startuml
+title 点歌 API 时序图
+autonumber
+skinparam monochrome true
+participant "iOS 应用" as a
+participant "声网 SDK" as b
+== 初始化和创建 ==
+a -> b: **AgoraMusicContentCenter**.sharedContentCenterWithConfig
+a -> b: AgoraMusicContentCenter.createMusicPlayerWithDelegate
+== 获取音乐资源(方式一) ==
+a -> b: AgoraMusicContentCenter.searchMusicWithKeyWord
+b -->> a: AgoraMusicContentCenterEventDelegate.onMusicCollectionResult
+== 获取音乐资源(方式二) ==
+a -> b: AgoraMusicContentCenter.getMusicCollectionWithMusicChartId
+b -->> a: AgoraMusicContentCenterEventDelegate.onMusicCollectionResult
+== 预加载音乐资源 ==
+a -> b: AgoraMusicContentCenter.isPreloadedWithSongCode
+a -> b: AgoraMusicContentCenter.preloadWithSongCode
+b -->> a: AgoraMusicContentCenterEventDelegate.onPreLoadEvent (AgoraMusicContentCenterPreloadStatus = 0)
+== 打开并播放音乐资源 ==
+a -> b: **AgoraMusicPlayerProtocol**.openMediaWithSongCode
+b -->> a: AgoraRtcMediaPlayerDelegate.didChangedToState (AgoraMediaPlayerState = 5)
+a ->b: **AgoraRtcMediaPlayerProtocol**.play
+b -->> a: AgoraRtcMediaPlayerDelegate.didChangedToState (AgoraMediaPlayerState = 3)
+@enduml

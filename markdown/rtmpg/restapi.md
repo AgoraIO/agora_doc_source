@@ -10,7 +10,7 @@
 
 ![](https://web-cdn.agora.io/docs-files/1687156698789)
 
-- 服务器：可以使用声网统一域名，也可以绑定用户自己的域名。
+- 服务器：填写的值为推流域名后加 `/live`。可以使用声网统一域名，也可以绑定用户自己的域名。
   <a id="region"></a>
   - 声网统一域名为 `rtls-ingress-prod-{region}.agoramdn.com`，你需要根据实际区域填写 {region} 字段，支持的区域如下：
     - `cn`：中国大陆
@@ -106,9 +106,14 @@ console.log(`streamkey is ${streamkey}`);
 
 以上示例代码依赖 `msgpack-lite` 模块。如果你还没有安装，在项目根目录执行执行 `npm install msgpack-lite` 后运行 `node app.js` 即可。
 
-## 通过 HMAC HTTP 认证
+## 通过  RESTful API 认证
+声网 RESTful API 要求通过安全认证，支持 Basic HTTP 认证和 HMAC HTTP 认证两种认证方式。其中，HMAC 认证安全性较高，为推荐认证方式；Bacsic 认证则更为易用，但安全性较弱。
 
-声网 RESTful API 要求 HMAC HTTP 认证。在发送 HTTP 请求时，你需要通过 HMAC-SHA256 算法生成一个签名，并在请求头部的 `Authorization` 字段传入签名及相关信息。
+### 通过 Basic HTTP 认证
+每次发送 HTTP 请求时，你都必须在请求头部填入 `Authorization` 字段。关于如何生成该字段的值，请参考 [RESTful API 要求 认证](https://docportal.shengwang.cn/cn/agora-class/faq/restful_authentication)。
+
+### 通过 HMAC HTTP 认证
+在发送 HTTP 请求时，你需要通过 HMAC-SHA256 算法生成一个签名，并在请求头部的 `Authorization` 字段传入签名及相关信息。
 
 在生成认证字段过程中，你需要用到以下声网账号的信息：
 
