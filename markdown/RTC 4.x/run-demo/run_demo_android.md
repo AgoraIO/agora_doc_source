@@ -1,6 +1,6 @@
 声网在 GitHub 上提供开源示例项目 [API-Examples](https://github.com/AgoraIO/API-Examples/tree/main) 演示声网实时音视频 SDK 的 API 使用示例，以帮助开发者更好地理解和运用声网 SDK 的功能。
 
-本文介绍如何快速跑通 Android 示例项目，体验基础的实时音视频功能。
+本文介绍如何快速跑通 Android 示例项目，体验实时音视频功能。
 
 
 ## 前提条件
