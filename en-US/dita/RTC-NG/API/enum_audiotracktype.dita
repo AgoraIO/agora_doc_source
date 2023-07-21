@@ -9,11 +9,13 @@
             <parml>
             <plentry>
                 <pt><ph keyref="AUDIO_TRACK_MIXABLE"/></pt>
-                <pd>0: Mixable audio tracks. You can publish multiple mixable audio tracks in one channel, and SDK will automatically mix these tracks into one. The latency of mixable audio tracks is higher than that of direct audio tracks.</pd>
+                <pd>0: Mixable audio tracks. 支持与其他音频流 (例如：麦克风采集的音频流) 混音后，再在本地播放或发布到频道中。 The latency of mixable audio tracks is higher than that of direct audio tracks.</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="AUDIO_TRACK_DIRECT"/></pt>
-                <pd>1: Direct audio tracks. When creating multiple audio tracks of this type, each direct audio track can only be published in one channel and cannot be mixed with others. The latency of direct audio tracks is lower than that of mixable audio tracks.</pd>
+                <pd>
+                <p>1: Direct audio tracks. 会替代麦克风采集，且不支持与其他音频流混音。 The latency of direct audio tracks is lower than that of mixable audio tracks.</p>
+                <note type="attention">如指定 <apiname keyref="AUDIO_TRACK_DIRECT"/>，则必须在调用 <xref keyref="joinChannel2"/> 加入频道时，将 <xref keyref="ChannelMediaOptions"/> 中的 <codeph>publishMicrophoneTrack</codeph> 设为 <codeph><ph keyref="false"/></codeph>，否则加入频道失败并返回错误码 -2.</note></pd>
             </plentry>
             </parml> </section>
     </refbody>
