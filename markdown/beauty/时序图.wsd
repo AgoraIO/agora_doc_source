@@ -1,0 +1,64 @@
+@startuml 美颜场景化API
+autonumber
+title 美颜场景化 API 时序图
+participant "App" as app
+participant "声网 RTC SDK" as rtc
+participant "BeautyAPI" as api
+participant "第三方美颜 SDK" as beauty
+app -> app: 进入预览/直播间
+app -> rtc: RtcEngine.create
+activate rtc
+rtc -> app: rtcEngine
+deactivate rtc
+app -> beauty: BeautyRender.create
+activate beauty
+beauty -> app: beautyRender实例
+deactivate beauty
+== 初始化 BeautyAPI ==
+app -> api: new BeautyAPI(); \nbeautyAPI.initialize(Config(rtcEngine, beautyRender, eventHandler, **processMode**))
+== 使用 A ==
+alt config.processMode == AGORA
+api -> rtc: registerVideoFrameObserver
+loop 预览
+rtc -> api: onCaptureFrame
+activate api
+api -> api: process(videoFrame)
+api -> beauty: render(nv21, textureId)
+activate beauty
+beauty -> api: textureId
+deactivate beauty
+api -> rtc: 是否处理成功
+deactivate api
+end
+end
+== 调用 BeautyAPI ==
+app -> api: 对默认美颜效果进行最优设置\nbeautyAPI.setOptimizedDefault()
+activate api
+api -> beauty: 调用美颜 SDK 接口
+deactivate api
+== 使用 B ==
+alt config.processMode == CUSTOM
+app -> app: CustomVideoSource
+loop 预览
+app -> api: onFrame(videoFrame)
+activate app
+api -> beauty: beautyRender.process
+beauty --> api: textrueId（Android）\nCVPixelBuffer（iOS）
+api -> app: 是否处理成功
+deactivate api
+app -> rtc: 是否处理成功
+deactivate app
+end
+end
+app -> rtc: startPreview
+app -> rtc: joinChannel
+== 销毁 BeautyAPI ==
+app -> api: beautyAPI.release
+alt config.processMode == AGORA
+api -> rtc: registerVideoFrameObserver(null)
+end
+app -> rtc: stopPreview
+app -> rtc: leaveChannel
+app -> rtc: RtcEngine.destroy
+app -> app: 退出预览和直播间
+@enduml
