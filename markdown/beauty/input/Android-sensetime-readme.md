@@ -1,79 +1,119 @@
-# 美颜场景化API Demo
-
+# 商汤美颜场景化API
 
 ## 前提条件
+- 项目使用Kotlin插件
+- 项目里已经集成了Agora RTC SDK
+- 联系商汤客服拿到商汤的美颜SDK
 
-- 最低兼容 Android 5.0（SDK API Level 21）
-- Android Studio 3.5及以上版本，使用Java 11
-- 联系商汤客服拿到商汤的美颜SDK、美颜资源以及证书
-- 联系字节火山客户拿到火山SDK、美颜资源以及证书
-- 联系相芯客户拿到美颜资源以及证书
+## 快速集成
+1. (可选)解压商汤SDK并将以下aar库、资源文件、证书配置到项目对应目录下
 
-## 快速跑通
-### 配置美颜SDK
+| 商汤SDK文件/目录                                                              | 项目目录                             |
+|-------------------------------------------------------------------------|----------------------------------|
+| Android/models                                                          | assets/beauty_sensetime          |
+| Android/smaple/SenseMeEffects/app/src/main/assets/sticker_face_shape    | assets/beauty_sensetime          |
+| Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly         | assets/beauty_sensetime          |
+| Android/aar/STMobileJNI-release.aar                                     | libs                             |
+| Android/smaple/SenseMeEffects/app/libs/SenseArSourceManager-release.aar | libs                             |
+| Android/smaple/SenseMeEffects/app/libs/HardwareBuffer-release.aar       | libs                             |
+| SenseME.lic                                                             | assets/beauty_sensetime/license  |
 
-> PS：没有配置项目能正常运行，但是对应美颜可能会黑屏
-
-1. 商汤美颜
-解压商汤美颜SDK并复制以下文件/目录到对应路径下
-
-| 商汤SDK文件/目录                                                           | 项目路径                                                     |
-|----------------------------------------------------------------------|----------------------------------------------------------|
-| Android/models                                                       | app/src/main/assets/beauty_sensetime/models              |
-| Android/smaple/SenseMeEffects/app/src/main/assets/sticker_face_shape | app/src/main/assets/beauty_sensetime/sticker_face_shape  |
-| Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly      | app/src/main/assets/beauty_sensetime/style_lightly       |
-| Android/smaple/SenseMeEffects/app/src/main/assets/makeup_lip         | app/src/main/assets/beauty_sensetime/makeup_lip          |
-| SenseME.lic                                                          | app/src/main/assets/beauty_sensetime/license/SenseME.lic |
-
-2. 相芯美颜
-将相芯美颜资源放入对应路径下
-
-| 美颜资源                 | 项目路径                                                  |
-|----------------------|-------------------------------------------------------|
-| 美妆资源(如naicha.bundle) | app/src/main/assets/beauty_faceunity/makeup           |
-| 贴纸资源(如fashi.bundle)  | app/src/main/assets/beauty_faceunity/sticker          |
-| 证书authpack.java      | app/src/main/java/io/agora/beauty/demo/authpack.java  |
-
-3. 字节/火山美颜
-解压字节/火山美颜资源并复制以下文件/目录到对应路径下
-
-| 字节SDK文件/目录                                       | 项目路径                                                  |
-|--------------------------------------------------|-------------------------------------------------------|
-| resource/LicenseBag.bundle                       | app/src/main/assets/beauty_bytedance           |
-| resource/ModelResource.bundle                    | app/src/main/assets/beauty_bytedance           |
-| resource/ComposeMakeup.bundle                    | app/src/main/assets/beauty_bytedance           |
-| resource/StickerResource.bundle                  | app/src/main/assets/beauty_bytedance           |
-| resource/StickerResource.bundle                  | app/src/main/assets/beauty_bytedance           |
-
-修改app/src/main/java/io/agora/beautyapi/demo/ByteDanceActivity.kt文件里LICENSE_NAME为申请到的证书文件名
-
-### 配置声网AppID
-
-> PS：这个demo不支持带证书的AppId
-
-1. 在[agora.io](https://www.shengwang.cn/)创建一个开发者账号
-
-2. 前往后台页面，点击左部导航栏的 项目 > 项目列表 菜单
-
-3. 复制后台的 App Id 并备注，稍后启动应用时会用到它
-
-4. 编辑local.properties，如果不存在则创建一个，并配置上
+2. 复制以下场景化接口及实现到项目里
+> 请保留原有包名目录，以便于代码升级
 ```xml
-AGORA_APP_ID=#YOUR APP ID#
+src/main/java/io/agora/beautyapi/sensetime
+    ├── SenseTimeBeautyAPI.kt
+    ├── SenseTimeBeautyAPIImpl.kt
+    └── utils
 ```
 
-### 运行项目
+3. 初始化
+```kotlin
+private val mSTRenderKit by lazy {
+    STRenderKit(this, "beauty_sensetime")
+}
+private val mSenseTimeApi by lazy {
+    createSenseTimeBeautyAPI()
+}
 
-1. 编辑app/build.gradle， 修改applicationId包名成申请美颜时所用包名
-2. 运行项目
+mSenseTimeApi.initialize(
+    Config(
+        mRtcEngine,
+        mSTRenderKit,
+        captureMode = CaptureMode.Agora,
+        statsEnable = BuildConfig.DEBUG,
+        eventCallback = object: IEventCallback{
+            override fun onBeautyStats(stats: BeautyStats) {
+                Log.d(TAG, "BeautyStats stats = $stats")
+            }
+        }
+    ))
+```
 
+4. 美颜开关(默认关)
+```kotlin
+mSenseTimeApi.enable(true)
+```
 
-## 集成到项目
+5. 本地渲染
+```kotlin
+mSenseTimeApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
+```
 
-每个美颜可以单独集成到自己的项目，详见对应的集成说明文档
+6. 设置推荐美颜参数
+```kotlin
+mSenseTimeApi.setBeautyPreset(BeautyPreset.DEFAULT) // BeautyPreset.CUSTOM：关闭推荐美颜参数
+```
 
-| 美颜  | 集成说明                                  |
-|-----|---------------------------------------|
-| 商汤  | [README](lib_sensetime/README.zh.md)  |
-| 相芯  | [README](lib_faceunity/README.zh.md)  |
-| 字节  | [README](lib_bytedance/README.zh.md)  |
+7. 销毁美颜
+```kotlin
+mRtcEngine.leaveChannel()
+// 必须在leaveChannel后销毁
+mSenseTimeApi.release()
+mSTRenderKit.release()
+```
+
+## 自定义采集模式
+美颜场景API除了能够内部直接使用RTC 祼数据接口进行美颜处理，也支持由外部传入视频帧进行处理，实现步骤如下：
+
+1. 初始化时配置captureMode为CaptureMode.Custom
+```kotlin
+mSenseTimeApi.initialize(
+    Config(
+        mRtcEngine,
+        mSTRenderKit,
+        captureMode = CaptureMode.Custom,
+        statsEnable = BuildConfig.DEBUG,
+        eventCallback = object: IEventCallback{
+            override fun onBeautyStats(stats: BeautyStats) {
+                Log.d(TAG, "BeautyStats stats = $stats")
+            }
+        }
+    ))
+```
+2. 将外部数据帧通过onFrame接口传入，处理成功会替换VideoFrame的buffer数据，即videoFrame参数既为输入也为输出
+```kotlin
+override fun onCaptureVideoFrame(
+    sourceType: Int,
+    videoFrame: VideoFrame?
+) : Boolean {
+    when(mSenseTimeApi.onFrame(videoFrame!!)){
+        ErrorCode.ERROR_OK.value -> {
+            shouldMirror = false
+            return true
+        }
+        ErrorCode.ERROR_FRAME_SKIPPED.value -> {
+            shouldMirror = false
+            return false
+        }
+        else -> {
+            val mirror = videoFrame.sourceType == VideoFrame.SourceType.kFrontCamera
+            if(shouldMirror != mirror){
+                shouldMirror = mirror
+                return false
+            }
+            return true
+        }
+    }
+}
+```
