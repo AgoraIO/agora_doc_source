@@ -33,7 +33,7 @@
 
 ### 1. 推送视频
 
-调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metaworld/api_ref_android?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metaworld/api_ref_android?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 `onFrame` 回调得到的视频帧推送至该视频显示屏。
+调用 [`enableVideoDisplay`](https://docs.agora.io/cn/metaworld/mw_api_ref_android?platform=All%20Platforms#enablevideodisplay) 开启元宇宙中的视频显示屏，再通过 [`pushVideoFrameToDisplay`](https://docs.agora.io/cn/metaworld/mw_api_ref_android?platform=All%20Platforms#pushvideoframetodisplay) 将你从媒体播放器 `onFrame` 回调得到的视频帧推送至该视频显示屏。
 
 ```java
 // 开启视频显示屏

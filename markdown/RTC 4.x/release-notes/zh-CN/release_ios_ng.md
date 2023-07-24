@@ -12,7 +12,7 @@
 
 1. **通配 Token**
 
-   该版本新增通配 Token。生成 Token 时，在用户 ID 不为 0 的情况下，声网支持你将频道名设为通配符，从而生成可以加入任何频道的通配 Token。在需要频繁切换频道及多频道场景下，使用通配 Token 可以避免 Token 的重复配置，有助于提升开发效率，减少你的 Token 服务端的压力。详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All Platforms)。
+   该版本新增通配 Token。生成 Token 时，在用户 ID 不为 0 的情况下，声网支持你将频道名设为通配符，从而生成可以加入任何频道的通配 Token。在需要频繁切换频道及多频道场景下，使用通配 Token 可以避免 Token 的重复配置，有助于提升开发效率，减少你的 Token 服务端的压力。详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms)。
 
    <div class="alert note">声网 4.x SDK 均支持使用通配 Token。</div>
 
@@ -20,7 +20,7 @@
 
    该版本新增 `preloadChannelByToken [1/2]` 和 `preloadChannelByToken [2/2]` 方法，支持角色为观众的用户在加入频道前预先加载一个或多个频道。该方法调用成功后可以减少观众加入频道的时间，从而缩短观众听到主播首帧音频以及看到首帧画面的耗时，提升观众端的音视频体验。
 
-   在同时预加载多个频道时，为避免观众在切换不同频道时需多次申请 Token 从而导致切换频道时间增长，因此声网推荐使用通配 Token 来减少你的业务服务端获取 Token 导致的耗时，进一步加快切换频道的速度，详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All Platforms)。
+   在同时预加载多个频道时，为避免观众在切换不同频道时需多次申请 Token 从而导致切换频道时间增长，因此声网推荐使用通配 Token 来减少你的业务服务端获取 Token 导致的耗时，进一步加快切换频道的速度，详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms)。
 
 3. **自定义视频画布背景颜色**
 
@@ -145,7 +145,11 @@
 
 **2. 视频数据获取**
 
-`onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
+- `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
+- 以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中的 `sourceType` 参数得知视频源类型。
+  - `onScreenCaptureVideoFrame`
+  - `onPreEncodeScreenVideoFrame`
+
 
 **3. 媒体发布选项**
 
@@ -184,7 +188,7 @@
 
 
 
-**3. 视频场景化设置** 
+**3. 视频场景化设置**
 
 该版本新增 `setVideoScenario` 方法用于设置视频业务场景，SDK 会根据不同场景自动启用最佳实践策略，调整关键性能指标，进而优化视频质量，提升用户体验。无论是正式的商务会议还是轻松的在线聚会，该功能都能确保视频质量满足需求。目前，该特性主要为实时视频会议场景提供了以下针对性的优化：
 
@@ -219,7 +223,7 @@
 
 ## 改进
 
-**1. 优化变声** 
+**1. 优化变声**
 
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
 
@@ -238,7 +242,7 @@
 
 
 
-**4. 优化多路摄像头采集** 
+**4. 优化多路摄像头采集**
 
 该版本新增 `startCameraCapture` 方法，通过多次调用并指定 `sourceType` 参数可以同时开启多路摄像头采集的视频流，用于本地合图或多频道发布。适用于如远程医疗、远程教育等连接多个摄像头的场景。
 
@@ -289,22 +293,22 @@
 - `didLocalVideoTranscoderErrorWithStream`
 - `startLocalVideoTranscoder`
 - `updateLocalTranscoderConfiguration`
-- `queryScreenCaptureCapability` 
-- `setScreenCaptureScenario` 
+- `queryScreenCaptureCapability`
+- `setScreenCaptureScenario`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `AgoraMusicContentCenter`
   - `removeCache`
   - `getCaches`
 - `AudioTrackConfig`
-- `AgoraMusicCacheInfo` 
+- `AgoraMusicCacheInfo`
 - `AgoraRecorderStreamInfo`
 - `AUDIO_AINS_MODE`
 - `AgoraAudioTrackType`
-- `AgoraMusicCacheStatusType` 
+- `AgoraMusicCacheStatusType`
 - `AgoraApplicationScenarioType`
 - `AgoraScreenCaptureFrameRateCapability`
 - `AgoraRtcEngineConfig` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
@@ -320,7 +324,7 @@
     - `AgoraMusicContentCenterStatusCodeErrorMusicDecryption`
 - `AgoraMusicContentCenterConfig` 中新增 `maxCacheSize`
 
-**修改** 
+**修改**
 
 - `onMusicChartsResult` 中的 `status` 修改为 `errorCode`
 - `onMusicCollectionResult` 中的 `status` 修改为 `errorCode`
@@ -347,6 +351,9 @@
 - `sharedMediaRecorderWithRtcEngine`
 - `AgoraMediaRecorder` 类中的 `destroy`
 - `startRecording`、`stopRecording`、`setMediaRecorderDelegate` 中删除 `connection` 参数
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
+
 
 ## v4.1.1 版
 

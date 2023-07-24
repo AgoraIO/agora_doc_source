@@ -89,8 +89,8 @@ This release fixed the following issues:
 - `getNtpWallTimeInMs`
 - `getCurrentMonotonicTimeInMs`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `AudioTrackConfig`
 - `AudioAinsMode`
 - `AudioTrackType`

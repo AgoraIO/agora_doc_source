@@ -23,7 +23,7 @@
 
 ### 2. 发送换装和捏脸消息
 
-通过 [`sendSceneMessage`](/mw_api_ref_ios?platform=All%20Platforms#sendscenemessage) 方法向虚拟场景中发送用户虚拟角色的换装和捏脸消息。
+通过 [`sendSceneMessage`](./mw_api_ref_ios?platform=All%20Platforms#sendscenemessage) 方法向虚拟场景中发送用户虚拟角色的换装和捏脸消息。
 
 ```swift
 private let UPDATE_DRESS = "updateDress"

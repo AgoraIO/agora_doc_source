@@ -12,15 +12,15 @@
 
 1. **通配 Token**
 
-   该版本新增通配 Token。生成 Token 时，在用户 ID 不为 0 的情况下，声网支持你将频道名设为通配符，从而生成可以加入任何频道的通配 Token。在需要频繁切换频道及多频道场景下，使用通配 Token 可以避免 Token 的重复配置，有助于提升开发效率，减少你的 Token 服务端的压力。详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All Platforms)。
+   该版本新增通配 Token。生成 Token 时，在用户 ID 不为 0 的情况下，声网支持你将频道名设为通配符，从而生成可以加入任何频道的通配 Token。在需要频繁切换频道及多频道场景下，使用通配 Token 可以避免 Token 的重复配置，有助于提升开发效率，减少你的 Token 服务端的压力。详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms)。
 
    <div class="alert note">声网 4.x SDK 均支持使用通配 Token。</div>
 
 2. **预加载频道**
 
-   该版本新增 `preloadChannelByToken [1/2]` 和 `preloadChannelByToken [2/2]` 方法，支持角色为观众的用户在加入频道前预先加载一个或多个频道。该方法调用成功后可以减少观众加入频道的时间，从而缩短观众听到主播首帧音频以及看到首帧画面的耗时，提升观众端的音频体验。
+   该版本新增 `preloadChannelByToken [1/2]` 和 `preloadChannelByToken [2/2]` 方法，支持角色为观众的用户在加入频道前预先加载一个或多个频道。该方法调用成功后可以减少观众加入频道的时间，从而缩短观众听到主播首帧音频的耗时，提升观众端的音频体验。
 
-   在同时预加载多个频道时，为避免观众在切换不同频道时需多次申请 Token 从而导致切换频道时间增长，因此声网推荐使用通配 Token 来减少你的业务服务端获取 Token 导致的耗时，进一步加快切换频道的速度，详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All Platforms)。
+   在同时预加载多个频道时，为避免观众在切换不同频道时需多次申请 Token 从而导致切换频道时间增长，因此声网推荐使用通配 Token 来减少你的业务服务端获取 Token 导致的耗时，进一步加快切换频道的速度，详见[使用通配 Token](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms)。
 
 3. **支持仅播放副歌片段**
 
@@ -129,7 +129,7 @@
 
 ## 改进
 
-**1. 优化变声** 
+**1. 优化变声**
 
 该版本新增了 `setLocalVoiceFormant` 方法，用于设置共振峰比率以改变语音的音色。该方法还可以和 `setLocalVoicePitch` 方法一起使用，同时调节音调和音色，实现更多样化的变声效果。
 
@@ -169,19 +169,19 @@
 - `startOrUpdateChannelMediaRelayEx`
 - `getNtpWallTimeInMs`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `AgoraMusicContentCenter`
   - `removeCache`
   - `getCaches`
 - `AudioTrackConfig`
-- `AgoraMusicCacheInfo` 
+- `AgoraMusicCacheInfo`
 - `AgoraRecorderStreamInfo`
 - `AUDIO_AINS_MODE`
 - `AgoraAudioTrackType`
-- `AgoraMusicCacheStatusType` 
+- `AgoraMusicCacheStatusType`
 - `AgoraApplicationScenarioType`
 - `AgoraRtcEngineConfig` 中新增 `domainLimit` 和 `autoRegisterAgoraExtensions` 属性
 - `stateDidChanged`、`informationDidUpdated` 中新增 `channelId` 和 `uid` 参数
@@ -194,7 +194,7 @@
     - `AgoraMusicContentCenterStatusCodeErrorMusicDecryption`
 - `AgoraMusicContentCenterConfig` 中新增 `maxCacheSize`
 
-**修改** 
+**修改**
 
 - `onMusicChartsResult` 中的 `status` 修改为 `errorCode`
 - `onMusicCollectionResult` 中的 `status` 修改为 `errorCode`

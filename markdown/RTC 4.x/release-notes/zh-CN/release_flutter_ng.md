@@ -69,7 +69,7 @@
 
 该版本还进行了如下改进：
 
-1. 为了提升多种音频路由之间的切换体验，该版本新增了 `setRouteInCommunicationMode` 方法，用于在通话音量模式 ([MODE_IN_COMMUNICATION](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)) 下，将音频路由从蓝牙耳机切换为听筒、有线耳机或扬声器。 (Android)
+1. 为了提升多种音频路由之间的切换体验，该版本新增了 `setRouteInCommunicationMode` 方法，用于在通话音量模式 ([`MODE_IN_COMMUNICATION`](https://developer.android.google.cn/reference/kotlin/android/media/AudioManager?hl=en#mode_in_communication)) 下，将音频路由从蓝牙耳机切换为听筒、有线耳机或扬声器。 (Android)
 2. 在屏幕共享场景下，SDK 根据共享的场景自动调节发送端的帧率。尤其是在共享文档场景下，避免发送端的视频码率超出预期的情况，以提高传输效率、减小网络负担。
 3. 为帮助用户了解更多类型的远端视频状态改变的原因，`onRemoteVideoStateChanged` 回调中新增了 `remoteVideoStateReasonCodecNotSupport` 枚举，表示本地的视频解码器不支持对收到的远端视频流进行解码。
 4. 版权音乐新增 `getSongSimpleInfo` 方法，可用于获取某一指定歌曲的详细信息，你可以通过触发的 `onSongSimpleInfoResult` 回调来获取歌曲信息。 (Android, iOS)
@@ -100,10 +100,10 @@
 - `onPreLoadEvent` 中增加 `requestId` (Android, iOS)
 - `setRouteInCommunicationMode` (Android)
 - `ChannelMediaOptions` 中增加下列成员：
-  - `publishThirdCameraTrack`
-  - `publishFourthCameraTrack`
-  - `publishThirdScreenTrack`
-  - `publishFourthScreenTrack`
+  - `publishThirdCameraTrack` (Windows, macOS)
+  - `publishFourthCameraTrack` (Windows, macOS)
+  - `publishThirdScreenTrack` (Windows, macOS)
+  - `publishFourthScreenTrack` (Windows, macOS)
 - `CodecCapLevels`
 - `VideoCodecCapabilityLevel`
 - `VideoCanvas` 中增加 `backgroundColor` 成员
@@ -156,11 +156,11 @@
 **2. 视频数据获取**
 
 - `onCaptureVideoFrame` 和 `onPreEncodeVideoFrame` 回调中新增了 `sourceType` 参数，用于表示具体的视频源类型。
-- 以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中的 `sourceType` 参数得知视频源类型。(Windows)
-    - `onSecondaryPreEncodeCameraVideoFrame`
+- 以下回调已删除，请通过 `onPreEncodeVideoFrame` 和 `onCaptureVideoFrame` 中的 `sourceType` 参数得知视频源类型。
+    - `onSecondaryPreEncodeCameraVideoFrame` （Windows）
     - `onScreenCaptureVideoFrame`
     - `onPreEncodeScreenVideoFrame`
-    - `onSecondaryPreEncodeScreenVideoFrame`
+    - `onSecondaryPreEncodeScreenVideoFrame`（Windows）
 
 **3. 媒体发布选项**
 
@@ -359,8 +359,8 @@
 - `queryScreenCaptureCapability` (iOS, Android)
 - `setScreenCaptureScenario` (iOS, Android)
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `createMediaRecorder`
 - `destroyMediaRecorder`
 - `MusicContentCenter` 中新增如下方法 (Android, iOS)：
@@ -420,8 +420,8 @@
 - `stopPrimaryCameraCapture` (Windows)
 - `stopSecondaryCameraCapture` (Windows, iOS)
 - `onSecondaryPreEncodeCameraVideoFrame` (Windows)
-- `onScreenCaptureVideoFrame` (Windows)
-- `onPreEncodeScreenVideoFrame` (Windows)
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
 - `onSecondaryPreEncodeScreenVideoFrame` (Windows)
 - `onApiCallExecuted`
 - `ChannelMediaOptions` 中的 `publishCustomAudioTrackEnableAec`
