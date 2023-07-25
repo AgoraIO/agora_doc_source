@@ -66,6 +66,8 @@ $$  -->
     <img src="https://web-cdn.agora.io/docs-files/1690182273239" width="200"/>
 
 
-6. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `samples/APIExample/APIExample/Common/KeyCenter.swift` 中的 App ID 和临时 Token 一致）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+6. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `samples/APIExample/APIExample/Common/KeyCenter.swift` 中的 App ID 和临时 Token 不变）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+    <img src="https://web-cdn.agora.io/docs-files/1690278567335" width="400"/>
+
 
 
