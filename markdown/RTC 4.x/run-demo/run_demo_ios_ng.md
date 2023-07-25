@@ -42,10 +42,6 @@ $$  -->
 
 
 2. 打开终端，在 `samples/API-Example` 目录下运行 `pod install` 安装 SDK 或相关依赖。安装完成后，终端会显示 `Pod installation complete!`。按照如下提示，使用 Xcode 打开项目文件夹下新生成的 `APIExample.xcworkspace` 文件。
-   <div class="alert info">
-    <li>如果你是通过克隆 Github 仓库获取的示例项目，则在本步骤中安装的是 SDK。</li>
-    <li>如果你是通过下载 SDK 获取的示例项目，则在本步骤安装的是 SDK 的相关依赖，以下提示代码以此为例。</li></ul></div>
-
     ```bash
     [!] Please close any current Xcode sessions and use `APIExample.xcworkspace` for this project from now on.
     Pod installation complete! There are 4 dependencies from the Podfile and 4 total pods installed.
