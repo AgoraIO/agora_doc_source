@@ -12,9 +12,9 @@ $$  -->
 
 
  - 可以访问互联网的计算机。请确保你的网络环境未部署防火墙，否则可能无法正常使用声网服务。
- - Xcode 12.0 或以上版本。
+ - Xcode 13.0 或以上版本。
  - 已安装 Cocoapods。如尚未安装 Cocoapods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
- - 两台 <% if (platform == "ios") { %>iOS 9.0<% } if (platform == "macos") { %>macOS 10.10<% } %> 或以上版本的设备。
+ - 两台 <% if (platform == "ios") { %>iOS 14.0<% } if (platform == "macos") { %>macOS 10.10<% } %> 以上版本的设备。
  - 一个有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)以及声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得以下信息：
    - App ID：声网随机生成的字符串，用于识别你的项目。
    - 临时 Token：Token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
@@ -25,24 +25,23 @@ $$  -->
 
 ### 获取示例项目
 
+- 前往 [SDK 下载页面](./downloads?platform=iOS)，下载最新版的 iOS 视频 SDK，然后解压。
 你可以通过以下两种方式获取示例项目：
-- 前往 [SDK 下载页面](./downloads?platform=iOS)，获取最新版的 iOS 视频 SDK，然后解压。
-- 前往声网在 Github 行提供的[示例项目](https://github.com/AgoraIO/API-Examples/tree/main)，然后将仓库克隆至本地。
+- 前往声网在 Github 上提供的[示例项目](https://github.com/AgoraIO/API-Examples/tree/main)，然后将仓库克隆至本地。
 ### 配置示例项目
 
-1. 打开示例项目文件夹，在 `samples/APIExample/APIExample/Common/KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID 和临时 Token。
+1. 打开示例项目文件夹，在 `samples/APIExample/APIExample/Common/KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID 和 App 证书（如果未开启证书鉴权，该字段可为空）。
     ```swift
     class KeyCenter: NSObject {
         // 把 <#Your App Id#> 替换成你的 App ID，并加引号，如 "xxxxxx"
         static let AppId: String = <#Your App Id#>
-        // 把 #Temp Access Token# 替换成你的临时 Token，并加引号，如 "xxxxxx"；该字段可为空
+        // 把 #YOUR Certificate# 替换成你的 App 证书，并加引号，如 "xxxxxx"；该字段可为空
         static let Certificate: String? = <#YOUR Certificate#>
       }
     ```
 
 
-2. 打开终端，在 `samples/API-Example` 目录下运行 `pod install` 安装 SDK。安装完成后，终端会显示 `Pod installation complete!`, 并按照如下提示，使用 Xcode 打开项目文件夹下新生成的 `APIExample.xcworkspace` 文件。
-
+2. 打开终端，在 `samples/API-Example` 目录下运行 `pod install` 安装 SDK 或相关依赖。安装完成后，终端会显示 `Pod installation complete!`。按照如下提示，使用 Xcode 打开项目文件夹下新生成的 `APIExample.xcworkspace` 文件。
     ```bash
     [!] Please close any current Xcode sessions and use `APIExample.xcworkspace` for this project from now on.
     Pod installation complete! There are 4 dependencies from the Podfile and 4 total pods installed.
@@ -59,7 +58,7 @@ $$  -->
 2. 点击 <img src="https://web-cdn.agora.io/docs-files/1690171362896" height="20"/> 开始编译。
 
 3. 编译成功后，你的 iOS 设备上会出现 <img src="https://web-cdn.agora.io/docs-files/1690171050099" height="30"/> app 图标。
-4. （可选）如果弹出**不受信任的开发者**提示，则点击**取消**，然后在 iOS设备上打开**设置 > 通用 > VPN 与设备管理**，在**开发者 APP** 中选择信任该开发者。
+4. （可选）如果设备上弹出**不受信任的开发者**提示，则首先点击**取消**关闭该提示，然后在 iOS设备上打开**设置 > 通用 > VPN 与设备管理**，在**开发者 APP** 中选择信任该开发者。
 
 5. 打开 **API Example**，选择一个你想要尝试的场景，然后输入频道名（如 `test`），并点击**加入频道**。
 
@@ -67,4 +66,8 @@ $$  -->
     <img src="https://web-cdn.agora.io/docs-files/1690182273239" width="200"/>
 
 
-6. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `samples/APIExample/APIExample/Common/KeyCenter.swift` 中的 App ID 和临时 Token 一致）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+6. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `samples/APIExample/APIExample/Common/KeyCenter.swift` 中的 App ID 和临时 Token 不变）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+    <img src="https://web-cdn.agora.io/docs-files/1690278567335" width="400"/>
+
+
+
