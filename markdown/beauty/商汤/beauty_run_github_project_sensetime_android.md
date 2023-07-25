@@ -1,4 +1,4 @@
-声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。本文介绍如何快速跑通该示例项目，体验字节美颜效果。
+声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。本文介绍如何快速跑通该示例项目，体验商汤美颜效果。
 
 ## 前提条件
 
@@ -26,27 +26,19 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 
 ## 集成第三方美颜 SDK
 
-1. 联系字节技术支持获取最新的美颜 SDK、美颜资源、美颜证书。
+1. 联系商汤技术支持获取最新的美颜 SDK、美颜资源、美颜证书。
 
 2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到美颜示例项目对应的文件路径下：
 
     |SDK 文件    |  项目路径   |
-    |-----|-----|
-    | resource/LicenseBag.bundle                       | app/src/main/assets/beauty_bytedance           |
-    | resource/ModelResource.bundle                    | app/src/main/assets/beauty_bytedance           |
-    | resource/ComposeMakeup.bundle                    | app/src/main/assets/beauty_bytedance           |
-    | resource/StickerResource.bundle                  | app/src/main/assets/beauty_bytedance           |
-    | resource/StickerResource.bundle                    | app/src/main/assets/beauty_bytedance           |
+    | Android/models                                                       | app/src/main/assets/beauty_sensetime/models              |
+    | Android/smaple/SenseMeEffects/app/src/main/assets/sticker_face_shape | app/src/main/assets/beauty_sensetime/sticker_face_shape  |
+    | Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly      | app/src/main/assets/beauty_sensetime/style_lightly       |
+    | Android/smaple/SenseMeEffects/app/src/main/assets/makeup_lip         | app/src/main/assets/beauty_sensetime/makeup_lip          |
+    | SenseME.lic                                                          | app/src/main/assets/beauty_sensetime/license/SenseME.lic |
 
-3. 在 `app/src/main/java/io/agora/beautyapi/demo/ByteDanceActivity.kt` 文件中，将 `LICENSE_NAME` 设置为申请到的证书文件名。
 
-    ```kotlin
-    // 这里的证书文件名只用于声网示例项目测试
-    // 请替换成你的证书文件名
-    private val LICENSE_NAME = "agora_test_20220805_20230815_io.agora.entfull_4.2.3.licbag"
-    ```
-
-4. 在 `app/build.gradle` 文件中，将 `applicationId` 修改为你的包名，例如 `com.example.app`。包名用于在设备上唯一标识应用程序。在开发应用时，你需要设置包名。在此处设置的包名需要与你申请美颜 SDK 时提供的包名一致。
+3. 在 `app/build.gradle` 文件中，将 `applicationId` 修改为你的包名，例如 `com.example.app`。包名用于在设备上唯一标识应用程序。在开发应用时，你需要设置包名。在此处设置的包名需要与你申请美颜 SDK 时提供的包名一致。
 
     ```java
     android {

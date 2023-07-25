@@ -1,4 +1,4 @@
-声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。本文介绍如何快速跑通该示例项目，体验字节美颜效果。
+声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。本文介绍如何快速跑通该示例项目，体验相芯美颜效果。
 
 ## 前提条件
 
@@ -26,15 +26,14 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
 ## 集成第三方美颜 SDK
 
-1. 联系字节技术支持获取最新的美颜 SDK、美颜资源、美颜证书。
+1. 联系相芯技术支持获取最新的美颜资源、美颜证书。
 
-2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到美颜示例项目对应的文件路径下：
+2. 下载并解压美颜资源，然后将资源中如下文件添加到美颜示例项目对应的文件路径下：
 
     |SDK 文件    |  项目路径   |
     |-----|-----|
-    | BytedEffects/app/Resource                       | iOS/ByteEffectLib/Resource           |
-    | byted_effect_ios_static/iossample_static/libeffect-sdk.a                    | iOS/ByteEffectLib/ibeffect-sdk.a           |
-    | byted_effect_ios_static/iossample_static/include/BytedEffectSDK                    | iOS/ByteEffectLib/BytedEffectSDK           |
+    | FaceUnity/Lib/Resources | iOS/FULib         |
+    | 证书authpack.h      | iOS/BeautyAPi/FUBeauty/authpack.h  |
 
 
 ## 配置示例项目
