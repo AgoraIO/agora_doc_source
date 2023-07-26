@@ -68,3 +68,5 @@ $$  -->
    ![image-20230725175932609](/Users/admin/Library/Application Support/typora-user-images/image-20230725175932609.png)
 
 5. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `KeyCenter.swift` 中的 App ID 一致）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+
+   ![image-20230726100931250](/Users/admin/Library/Application Support/typora-user-images/image-20230726100931250.png)
