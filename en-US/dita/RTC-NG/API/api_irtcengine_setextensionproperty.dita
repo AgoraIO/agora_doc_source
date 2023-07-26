@@ -18,9 +18,12 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setExtensionPropertyWithVendor:(NSString * __nonnull)provider extension:(NSString * __nonnull)extension key:(NSString * __nonnull)key value:(NSString * __nonnull)value;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setExtensionProperty(
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExtensionProperty(
       const char* provider, const char* extension,
       const char* key, const char* value, agora::media::MEDIA_SOURCE_TYPE type = agora::media::UNKNOWN_MEDIA_SOURCE) = 0;
+</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
+int SetExtensionProperty(FString provider, FString extension, FString key, FString value, EMEDIA_SOURCE_TYPE type = EMEDIA_SOURCE_TYPE::UNKNOWN_MEDIA_SOURCE);
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setExtensionProperty(
     provider: string,
@@ -43,7 +46,7 @@
     required String key,
     required String value,
     MediaSourceType type = MediaSourceType.unknownMediaSource});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -68,18 +71,14 @@
                 <pt>value</pt>
                 <pd>The value of the extension key.</pd>
             </plentry>
-            <plentry conkeyref="enableExtension/source" props="cpp unreal bp">
+            <plentry conkeyref="enableExtension/source" props="cpp framework">
                 <pt />
                 <pd />
             </plentry>
-            <plentry props="unity flutter rn electron cs" id="type">
-                <pt>type</pt>
-                <pd>The type of the video source, see <xref keyref="MEDIA_SOURCE_TYPE" />.</pd>
-            </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
