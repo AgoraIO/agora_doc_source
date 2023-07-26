@@ -20,10 +20,12 @@
               userAccount:(NSString * _Nonnull)userAccount
              mediaOptions:(AgoraRtcChannelMediaOptions * _Nonnull)mediaOptions
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-                <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
+                <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannelWithUserAccount(const char* token,
                 const char* channelId,
                 const char* userAccount,
                 const ChannelMediaOptions&amp; options) = 0; </codeblock>
+                <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
+int JoinChannelWithUserAccount(FString token, FString channelId, FString userAccount, const FChannelMediaOptions&amp; options);</codeblock>
                 <codeblock props="electron" outputclass="language-typescript">abstract joinChannelWithUserAccount(
     token: string,
     channelId: string,
