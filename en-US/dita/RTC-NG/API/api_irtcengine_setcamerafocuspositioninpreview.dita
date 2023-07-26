@@ -32,16 +32,20 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method must be called after the camera is turned on, such as calling after <xref keyref="startPreview" props="apple" /><xref keyref="startPreview2" props="android cpp framework" /> and <xref keyref="enableVideo" />. After a successful method call, the SDK triggers the <xref keyref="onCameraFocusAreaChanged" /> callback.</p>
-            <note type="attention" props="cpp unity flutter cs">This method is for Android and iOS only.</note> </section>
+            <note type="attention"><ul>
+            <li props="cpp unreal bp unity flutter cs">This method is for Android and iOS only.</li>
+            <li conkeyref="setCameraExposureFactor/sequence" />
+            <li>After a successful method call, the SDK triggers the <xref keyref="onCameraFocusAreaChanged" /> callback.</li>
+            </ul></note>
+         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry props="cpp android flutter unity rn cs">
+            <plentry props="cpp unreal bp android flutter unity rn cs">
                 <pt>positionX</pt>
                 <pd>The horizontal coordinate of the touchpoint in the view.</pd>
             </plentry>
-            <plentry props="cpp android flutter unity rn cs">
+            <plentry props="cpp unreal bp android flutter unity rn cs">
                 <pt>positionY</pt>
                 <pd>The vertical coordinate of the touchpoint in the view.</pd>
             </plentry>
@@ -54,7 +58,7 @@
             <title><ph keyref="return-section-title" /></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul>
-            <li props="native unity rn cs">0: Success.</li>
+            <li props="native unreal bp unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

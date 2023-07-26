@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers
         totalVolume:(NSInteger)totalVolume;</codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
     unsigned int speakerNumber,
     int totalVolume) {
     (void)speakers;
@@ -54,11 +54,11 @@
                 <pt>connection</pt>
                 <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
-            <plentry props="native unity electron rn flutter cs">
+            <plentry props="native unreal bp unity electron rn flutter cs">
                 <pt>speakers</pt>
                 <pd>The volume information of the users. See <xref keyref="AudioVolumeInfo" />. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or is sending a stream.</pd>
             </plentry>
-            <plentry props="cpp unity electron rn flutter cs">
+            <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>speakerNumber</pt>
                 <pd>
                     <p>The total number of users.<ul>
@@ -67,12 +67,12 @@
                     </ul> </p>
                 </pd>
             </plentry>
-            <plentry props="native unity electron rn flutter cs">
+            <plentry props="native unreal bp unity electron rn flutter cs">
                 <pt>totalVolume</pt>
                 <pd>
                     <p>The volume of the speaker. The value range is [0,255].<ul>
                     <li>In the callback for the local user, <parmname>totalVolume</parmname> is the volume of the local user who sends a stream.</li>
-                    <li><ph>In the callback for remote users, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volume is the highest. </ph><ph props="native">If the user calls <xref keyref="startAudioMixing2" />, then <parmname>totalVolume</parmname> is the volume after audio mixing.</ph></li>
+                    <li><ph>In the callback for remote users, <parmname>totalVolume</parmname> is the sum of the volume of all remote users (up to three) whose instantaneous volume is the highest. </ph><ph props="native unreal bp">If the user calls <xref keyref="startAudioMixing2" />, then <parmname>totalVolume</parmname> is the volume after audio mixing.</ph></li>
                     </ul> </p>
                 </pd>
             </plentry>

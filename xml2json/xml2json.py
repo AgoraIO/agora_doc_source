@@ -57,6 +57,12 @@ def switchLog(lang):
 
 switchLog(args['log_level'])
 
+def logLines(logType, separator, *msgs) -> str:
+    logType(f'---------------------- {separator} ----------------------------')
+    for msg in msgs: logType(msg)
+    logType(f'---------------------- {separator} ----------------------------')
+
+
 defined_path_text = args['defined_path']
 
 # ------------------------------------------------------
@@ -206,9 +212,7 @@ for topicref in dita_file_root.iter("keydef"):
         localLogger.debug(path_new)
         rust_topicref_list.append(path_new)
 
-localLogger.info("--------------- Topic ref list ------------------------")
-localLogger.info(rust_topicref_list)
-localLogger.info("--------------- Topic ref list ------------------------")
+logLines(localLogger.info, "Topic ref list", rust_topicref_list)
 
 # Collect the hide API which mark props="hide" or "cn" in <topichead> or <keydef>
 for topichead in dita_file_root.iter("topichead"):
@@ -223,9 +227,7 @@ for topichead in dita_file_root.iter("topichead"):
                 json_hide_id_list.append(dita_id)
 
 
-localLogger.info("--------------- Hide id list ------------------------")
-localLogger.info(json_hide_id_list)
-localLogger.info("--------------- Hide id list ------------------------")
+logLines(localLogger.info, "Hide id list", json_hide_id_list)
 
 # Target platform
 
@@ -277,7 +279,9 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     with open(file_dir, "w", encoding='utf-8') as f:
         f.write(text)
 
-    localLogger.info("-------------Parsing file in " + file_dir + " -----------------------")
+    logLines(localLogger.info, "Hide id list", json_hide_id_list)
+
+    localLogger.info("------- Parsing file in " + file_dir + " -------")
     tree = ET.parse(file_dir)
     root = tree.getroot()
 
@@ -314,27 +318,18 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or child.get("props") == "hide" or child.get("props") == "cn":
-                 localLogger.debug("------------------- Tag to remove ---------------------------")
-                 localLogger.debug(child)
-                 localLogger.debug(child.text)
-                 localLogger.debug(child.tag)
-                 localLogger.debug(child.get("id"))
-                 localLogger.debug("--------------------Tag to remove ---------------------------")
-                 # clear()
-                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                 # child.clear()
-                 parent_map[child].remove(child)
-                 # child.text = ""
+                
+                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
+                # clear()
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                # child.clear()
+                parent_map[child].remove(child)
+                # child.text = ""
 
     # Remove all tables because we cannot afford to add tables to code
     for child in root.iter('*'):
         if child.tag == "table":
-            localLogger.debug("------------------- Tag to remove ---------------------------")
-            localLogger.debug(child)
-            localLogger.debug(child.text)
-            localLogger.debug(child.tag)
-            localLogger.debug(child.get("id"))
-            localLogger.debug("--------------------Tag to remove ---------------------------")
+            logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
             parent_map[child].remove(child)
     #
     # ----------------------------------------------------------------------------
@@ -358,9 +353,8 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             elif sys.platform == 'win32':
                 localLogger.debug("Windows")
                 conref_path = path.join(new_working_dir, str(conref[0]).replace("../", "").replace("/", "\\"))
-            localLogger.debug(" ---------------------- Get the conref path ----------------------------")
-            localLogger.debug(conref_path)
-            localLogger.debug(" ---------------------- Get the conref path ----------------------------")
+
+            logLines(localLogger.debug, "Get the conref path", conref_path)
             # ---------------------------------------------------------------------------------------------------
             # Read the referenced dita file and get the content
             # ---------------------------------------------------------------------------------------------------
@@ -371,9 +365,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             xpath_list = str(conref[1]).split("/")
             last_id = xpath_list[-1]
             # Get the last ID
-            localLogger.debug(" ---------------------- Last ID ----------------------------")
-            localLogger.debug(last_id)
-            localLogger.debug(" ---------------------- Last ID ----------------------------")
+            logLines(localLogger.debug, "Last ID", last_id)
 
             # Find tag by id
             dita_ref_text = ""
@@ -387,15 +379,11 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                             localLogger.debug(tag)
                             dita_ref_text = dita_ref_text + dita_tag.text
 
-            localLogger.debug("------------------- Dita ref text -----------------------")
-            localLogger.debug(dita_ref_text)
-            localLogger.debug("------------------- Dita ref text -----------------------")
+            logLines(localLogger.debug, "Dita ref text", dita_ref_text)
 
             # Inject text to the original conref
             child.text = dita_ref_text
-            localLogger.debug("------------------- Final change -----------------------")
-            localLogger.debug(child.text)
-            localLogger.debug("------------------- Final change -----------------------")
+            logLines(localLogger.debug, "Final change", child.text)
 
     # ----------------------------------------------------------------------------
     #     # Implement all conkeyrefs with the actual content 01, 02, 03 and 04
@@ -425,9 +413,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 for keydef in dita_file_root.iter("keydef"):
                     if keydef.get("keys") == key:
                         href_text = keydef.get("href")
-                localLogger.debug("----------------------href text--------------------")
-                localLogger.debug(href_text)
-                localLogger.debug("----------------------href text--------------------")
+                logLines(localLogger.debug, "href text", href_text)
 
                 final_parent = child
 
@@ -435,6 +421,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 for parent in root.iter('*'):
                     for d in parent.iterfind(child.tag):
                         if d is child:
+                            localLogger.debug("Found child innit")
                             final_parent = parent
 
                 if sys.platform == 'darwin' or sys.platform == 'linux':
@@ -457,16 +444,15 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     # Find the keyref
                     for new_child in new_dita_file_root.iter('*'):
                         if new_child.get("id") == ref:
-                            localLogger.debug("------------ Found a match for conkeyref -----------------")
-                            localLogger.debug(ref)
-                            localLogger.debug("------------ Found a match for conkeyref-----------------")
+                            logLines(localLogger.debug, "Found a match for conkeyref", ref)
+                            try:
+                                final_parent.remove(child)
+                            except:
+                                localLogger.error(f'Could not remove child {child.tag}')
                             # Set the node from new child to old child
                             final_parent.insert(0, new_child)
-                            final_parent.remove(child)
-
-                    localLogger.debug("----------------------conkeyref text--------------------")
-                    localLogger.debug(child)
-                    localLogger.debug("----------------------conkeyref text--------------------")
+                            break
+                    logLines(localLogger.debug, "conkeyref text", child)
         i -= 1
 
     # TODO: Implement API name keyrefs
@@ -513,9 +499,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             for keydef in dita_file_root.iter("keydef"):
                 if keydef.get("keys").strip() == apiname.get("keyref").strip():
                     href_text = "".join(keydef.itertext()).strip()
-            localLogger.debug("----------------------apiname text--------------------")
-            localLogger.debug(href_text.strip())
-            localLogger.debug("----------------------apiname text--------------------")
+                    logLines(localLogger.debug, "apiname text", href_text.strip())
             apiname.text = href_text.strip()
             localLogger.debug(apiname.text)
 
@@ -535,9 +519,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             for keydef in dita_file_root.iter("keydef"):
                 if keydef.get("keys").strip() == apiname.get("keyref").strip():
                     href_text = "".join(keydef.itertext()).strip()
-            localLogger.debug("----------------------parmname text--------------------")
-            localLogger.debug(href_text.strip())
-            localLogger.debug("----------------------parmname text--------------------")
+            logLines(localLogger.debug, "parmname text", href_text.strip())
             apiname.text = href_text.strip()
             localLogger.debug(apiname.text)
 
@@ -557,9 +539,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
             for keydef in dita_file_root.iter("keydef"):
                 if keydef.get("keys").strip() == pt.get("keyref").strip():
                     href_text = "".join(keydef.itertext()).strip()
-            localLogger.debug("----------------------pt text--------------------")
-            localLogger.debug(href_text.strip())
-            localLogger.debug("----------------------pt text--------------------")
+            logLines(localLogger.debug, "pt text", href_text.strip())
             pt.text = href_text.strip()
             localLogger.debug(pt.text)
 
@@ -598,57 +578,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     # TODO: At the right map level, fetch href
                     # keydef.get("href") -> "../API/api_imediaplayercachemanager_getmaxcachefilesize.dita"
                     # open that file, find matching codeblock text for obj-c
-                    for text in keydef.itertext():
-                        href_text = href_text + text.strip()
-                    xref.text = href_text
-                href_text = ""
-
-            if sys.platform == 'darwin' or sys.platform == 'linux':
-                localLogger.debug("macOS")
-                if href_text is not None and href_text != "" and not href_text.startswith("http"):
-                    dir = path.join(working_dir, href_text).replace("../", "")
-                    dir = path.join("..", dir)
-                elif href_text is not None and href_text.startswith("http"):
-                    xref.text = href_text
-                    dir = None
-                    localLogger.debug(xref.text)
-                else:
-                    dir = None
-            elif sys.platform == 'win32':
-                localLogger.debug("Windows")
-                if href_text is not None and href_text != "" and not href_text.startswith("http"):
-                    dir = path.join(working_dir, href_text).replace("../", "").replace("/", "\\")
-                elif href_text is not None and href_text.startswith("http"):
-                    xref.text = href_text
-                    dir = None
-                    localLogger.debug(xref.text)
-                else:
-                    dir = None
-            """
-            if dir is not None:
-                localLogger.debug(dir)
-                dita_file_tree = ET.parse(dir)
-                dita_file_root = dita_file_tree.getroot()
-                # Get title
-                title = dita_file_root.find("./title")
-                title_ph = dita_file_root.find("./title/ph")
-                localLogger.debug(title)
-                if title.text is not None:
-                    title_text = title.text
-                elif title_ph.get("keyref") is not None:
-                    # dita_file_tree = ET.parse(defined_path)
-                    dita_file_tree = ET.parse(defined_path)
-                    dita_file_root = dita_file_tree.getroot()
-                    for keydef in dita_file_root.iter("keydef"):
-                        if keydef.get("keys").strip() == title_ph.get("keyref").strip():
-                            title_text = "".join(keydef.itertext()).strip()
-
-                localLogger.debug("----------------------title text--------------------")
-                localLogger.debug(title_text)
-                localLogger.debug("----------------------title text--------------------")
-                xref.text = title_text
-                localLogger.debug(xref.text)  """
-
+                    xref.text = "".join(text.strip() for text in keydef.itertext())
 
         # xref with href
         # Example:
@@ -667,29 +597,25 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 dita_file_root = dita_file_tree.getroot()
                 plentry_id_list = splitted[1].split("/")
                 plentry_id = plentry_id_list[-1]
-                localLogger.debug("------------WWWWWWWWWWWWWWWWWWWWWWWWWWWWW------------")
-                localLogger.debug(plentry_id)
-                localLogger.debug("------------WWWWWWWWWWWWWWWWWWWWWWWWWWWWW------------")
+                logLines(localLogger.debug, "WWWWWWWWWWWWWW", plentry_id)
                 # Get the element by path
+                href_text = ""
                 for plentry in dita_file_root.findall("./refbody/section/parml/plentry"):
                     if plentry.get("id") == plentry_id:
                         ph_tag = plentry.find("./pt/ph")
                         ph_tag_key = ph_tag.get("keyref")
-                        localLogger.debug("------------WWWWWWWWWWWWWW  PH Tag KEY  WWWWWWWWWWWWWWW------------")
-                        localLogger.debug(ph_tag_key)
-                        localLogger.debug("------------WWWWWWWWWWWWWWWWW PH Tag KEY     WWWWWWWWWWWW------------")
+                        logLines(localLogger.debug, "WWW PH Tag KEY WWW", ph_tag_key)
 
                         dita_file_tree = ET.parse(defined_path)
                         dita_file_root = dita_file_tree.getroot()
-                        for keydef in dita_file_root.iter("keydef"):
-                            if keydef.get("keys") == ph_tag_key:
-                                for text in keydef.itertext():
-                                    if text is not None:
-                                        localLogger.debug(type(text))
-                                        # new_text = text.text
-                                        # localLogger.debug(new_text)
-                                        # if new_text is not None:
-                                        href_text = href_text + text
+                        href_text += ''.join(
+                            text
+                            for keydef in dita_file_root.iter("keydef")
+                            if keydef.get("keys") == ph_tag_key
+                            for text in keydef.itertext()
+                            if text
+                        )
+                        break
 
                 xref.text = href_text
                 # xref.text = href_text
@@ -703,9 +629,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 #                     创建并初始化
                 #                     <xref href="class_irtcengine.dita" />
                 #                     。
-                localLogger.debug("-------- Doom Wheel --------------")
-                localLogger.debug(path.join(working_dir, "API", href))
-                localLogger.debug("-------------Doom Wheel------------")
+                logLines(localLogger.debug, "Doom Wheel", path.join(working_dir, "API", href))
                 dita_file_tree = ET.parse(path.join(working_dir, "API", href))
                 dita_file_root = dita_file_tree.getroot()
 
@@ -740,17 +664,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                 localLogger.debug("------------------- Tag to remove ---------------------------")
-                 localLogger.debug(child)
-                 localLogger.debug(child.text)
-                 localLogger.debug(child.tag)
-                 localLogger.debug(child.get("id"))
-                 localLogger.debug("--------------------Tag to remove ---------------------------")
-                 # clear()
-                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                 # child.clear()
-                 parent_map[child].remove(child)
-                 # child.text = ""
+                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
+                # clear()
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                # child.clear()
+                parent_map[child].remove(child)
+                # child.text = ""
 
     # Tag filtering 03
     # Once a tagged element. So more elements, more processings...
@@ -762,17 +681,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                 localLogger.debug("------------------- Tag to remove ---------------------------")
-                 localLogger.debug(child)
-                 localLogger.debug(child.text)
-                 localLogger.debug(child.tag)
-                 localLogger.debug(child.get("id"))
-                 localLogger.debug("--------------------Tag to remove ---------------------------")
-                 # clear()
-                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                 # child.clear()
-                 parent_map[child].remove(child)
-                 # child.text = ""
+                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
+                # clear()
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                # child.clear()
+                parent_map[child].remove(child)
+                # child.text = ""
 
     # Tag filtering 04
     # Once a tagged element. So more elements, more processings...
@@ -785,17 +699,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                 localLogger.debug("------------------- Tag to remove ---------------------------")
-                 localLogger.debug(child)
-                 localLogger.debug(child.text)
-                 localLogger.debug(child.tag)
-                 localLogger.debug(child.get("id"))
-                 localLogger.debug("--------------------Tag to remove ---------------------------")
-                 # clear()
-                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                 # child.clear()
-                 parent_map[child].remove(child)
-                 # child.text = ""
+                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
+                # clear()
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                # child.clear()
+                parent_map[child].remove(child)
+                # child.text = ""
 
     # Tag filtering 05
     # Once a tagged element. So more elements, more processings...
@@ -808,17 +717,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                 localLogger.debug("------------------- Tag to remove ---------------------------")
-                 localLogger.debug(child)
-                 localLogger.debug(child.text)
-                 localLogger.debug(child.tag)
-                 localLogger.debug(child.get("id"))
-                 localLogger.debug("--------------------Tag to remove ---------------------------")
-                 # clear()
-                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                 # child.clear()
-                 parent_map[child].remove(child)
-                 # child.text = ""            
+                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
+                # clear()
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                # child.clear()
+                parent_map[child].remove(child)
+                # child.text = ""            
                     
     # Tag filtering 06
     # Once a tagged element. So more elements, more processings...
@@ -831,17 +735,12 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                     "props") and "framework" not in child.get("props") and child.get("props") != "rtc" and child.get("props") != "rtc-ng" or remove_sdk_type in child.get("props") or platform_tag not in child.get(
                      "props") and "native" in child.get(
                  "props") and platform_tag != "cpp" and platform_tag != "macos" and platform_tag != "android" and platform_tag != "ios" and child.get("props") != "rtc" and child.get("props") != "rtc-ng":
-                 localLogger.debug("------------------- Tag to remove ---------------------------")
-                 localLogger.debug(child)
-                 localLogger.debug(child.text)
-                 localLogger.debug(child.tag)
-                 localLogger.debug(child.get("id"))
-                 localLogger.debug("--------------------Tag to remove ---------------------------")
-                 # clear()
-                 # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
-                 # child.clear()
-                 parent_map[child].remove(child)
-                 # child.text = ""    
+                logLines(localLogger.debug, "Tag to remove", child, child.text, child.tag, child.get("id"))
+                # clear()
+                # Resets an element. This function removes all subelements, clears all attributes, and sets the text and tail attributes to None.
+                # child.clear()
+                parent_map[child].remove(child)
+                # child.text = ""    
 
     # Adds newlines at the start of smaller 'li' sections
     for child in root.iter('li'):
@@ -861,18 +760,14 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     # Get API ID
     api_id = root.attrib
     api_id = api_id.get("id")
-    localLogger.debug("----------------------- App ID ------------------------")
-    localLogger.debug(api_id)
-    localLogger.debug("----------------------- App ID ------------------------")
+    logLines(localLogger.debug, "App ID", api_id)
 
     # Get API name
     api_name = ""
     api_name_tag = root.find("title")
     for q in api_name_tag.itertext():
         api_name = api_name + q
-    localLogger.debug("----------------------- App Name ------------------------")
-    localLogger.debug(api_name)
-    localLogger.debug("----------------------- App Name ------------------------")
+    logLines(localLogger.debug, "App Name", api_name)
 
     # Get short description
     short_desc_text = ""
@@ -880,9 +775,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     if short_desc is not None:
         short_desc_text = combine_text_sections(short_desc_text, short_desc.itertext())
 
-    localLogger.debug("----------------------- Short desc ------------------------")
-    localLogger.debug(short_desc_text)
-    localLogger.debug("----------------------- Short desc ------------------------")
+    logLines(localLogger.debug, "Short desc", short_desc_text)
 
     # Get detailed description
     # Tables exist in pd and detailed desc. Need to process tables.
@@ -900,9 +793,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
     # for i in detailed_desc:
     # detailed_desc_text = detailed_desc_text + i
 
-    localLogger.debug("----------------------- Detailed desc ------------------------")
-    localLogger.debug(detailed_desc)
-    localLogger.debug("----------------------- Detailed desc ------------------------")
+    logLines(localLogger.debug, "Detailed desc", detailed_desc)
 
     if detailed_desc.strip():
         short_desc_text += "\n\n"
@@ -963,9 +854,7 @@ def create_json_from_xml(working_dir, file_dir, android_path, cpp_path, rust_pat
                 title.clear()
             return_values = combine_text_sections(return_values, section.itertext())
 
-    localLogger.debug("----------------------- Return values ------------------------")
-    localLogger.debug(return_values)
-    localLogger.debug("----------------------- Return values ------------------------")
+    logLines(localLogger.debug, "Return values", return_values)
 
     # ------------------------------------------------------------------
     # Migrate the information to a JSON file.
@@ -1079,7 +968,8 @@ def replace_newline():
     # These two removing double newlines, which are required to separate abstract and long description
     # They were patching bugs from not removing newlines between other sections.
     # replaced_file_text = re.sub(r'[\s]{0,100}\\n[\s]{0,100}\\n[\s]{0,100}', ' ', replaced_file_text)
-    # replaced_file_text = re.sub(r'[\r\t\f\v ]{2,100}', ' ', replaced_file_text)
+    # replace 2+ whitespace characters with just one space
+    replaced_file_text = re.sub(r'[ ]{2,}', ' ', replaced_file_text)
 
     replaced_file_text = re.sub(r' See[\s\\n]{0,50}\.', '', replaced_file_text)
     replaced_file_text = re.sub(r' For more information[A-Za-z\s\\n,]{0,100}\.', '', replaced_file_text)

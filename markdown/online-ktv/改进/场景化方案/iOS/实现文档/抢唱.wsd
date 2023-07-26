@@ -1,0 +1,37 @@
+@startuml
+title 抢唱 API 时序图
+autonumber
+skinparam monochrome true
+participant "独唱者 App" as a
+participant "声网 SDK" as b
+participant "听众 App" as c
+== 加入频道 ==
+a -> b: joinChannelByToken
+c -> b: joinChannelByToken
+== 获取副歌片段编号 ==
+a -> b: getInternalSongCode
+== 加载歌曲歌词并播放 ==
+a -> b: loadMusic()
+note right
+autoPlay 设为 YES，将获取的副歌片段编号传入 songCode 来加载及播放
+end note
+b -->> a: onMusicLoadSuccess
+c -> b: loadMusic()
+note left
+autoPlay 设为 NO，仅加载歌词
+听众不播放歌曲，只是进入播放状态
+end note
+b -->> c: onMusicLoadSuccess
+== 歌曲结束 ==
+a -> b: switchSingerRole(Audience)
+b --> a: onSwitchRoleState
+== 关闭麦克风 ==
+a -> b:adjustRecordingSignalVolume
+== 更新媒体选项 ==
+a -> b: updateChannelMediaOptions
+c -> b: updateChannelMediaOptions
+note left
+主唱和上麦听众发布麦克风，角色为主播
+普通听众不发布麦克风，角色为观众
+end note
+@enduml

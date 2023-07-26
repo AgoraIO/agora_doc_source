@@ -42,9 +42,14 @@ int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">The SDK enables the low-quality video stream auto mode on the sender by default, which is equivalent to calling this method and setting the <parmname>mode</parmname> to <apiname keyref="AUTO_SIMULCAST_STREAM" />. If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM" /> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM" /> (always send low-quality video streams).</p>
-            <p props="native unity cs">The difference between this method and <xref keyref="setDualStreamMode" /> is that this method can also configure the low-quality video stream, and the SDK sends the stream according to the configuration in <parmname>streamConfig</parmname>.</p>
-            <note conkeyref="setDualStreamMode/note" props="native unity cs" /> </section>
+            <p conkeyref="setDualStreamMode/desc" />
+            <p props="native unreal bp unity cs">The difference between this method and <xref keyref="setDualStreamMode" /> is that this method can also configure the low-quality video stream, and the SDK sends the stream according to the configuration in <parmname>streamConfig</parmname>.</p>
+            <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamMode2" /> is as follows:<ul>
+                <li>When calling this method and setting <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM" />, it has the same effect as calling <apiname keyref="enableDualStreamMode2" /> and setting <parmname>enabled</parmname> to <codeph><ph keyref="false" /></codeph>.</li>
+                <li>When calling this method and setting <parmname>mode</parmname> to <apiname keyref="ENABLE_SIMULCAST_STREAM" />, it has the same effect as calling <apiname keyref="enableDualStreamMode2" /> and setting <parmname>enabled</parmname> to <codeph><ph keyref="true" /></codeph>.</li>
+                <li>Both methods can be called before and after joining a channel. If both methods are used, the settings in the method called later takes precedence.</li>
+                </ul></note>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -64,7 +69,7 @@ int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&
             <title><ph keyref="return-section-title" /></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
             <ul id="ul_bpp_x2z_hqb">
-            <li props="native electron rn unity cs">0: Success.</li>
+            <li props="native unreal bp electron rn unity cs">0: Success.</li>
             <li>&lt; 0: Failure.</li>
             </ul> </section>
     </refbody>

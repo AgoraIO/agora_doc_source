@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraVideoFormat)getVideoFormatPreference;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
+            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual VIDEO_PIXEL_FORMAT getVideoFormatPreference() { return VIDEO_PIXEL_DEFAULT; }</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual VIDEO_OBSERVER_FRAME_TYPE GetVideoFormatPreference()
         {
@@ -32,7 +32,7 @@
             <note type="note" props="hide">If you want the video captured by the sender to be the original format, set the original video data format to <apiname keyref="VIDEO_PIXEL_DEFAULT"/> in the return value. The original video pixel format varies based on different platforms. For the actual video pixel format, see <xref keyref="VideoFrame"/>.</note> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p><ph>Sets the video format. </ph><ph props="cpp ios mac unity">See <xref keyref="VIDEO_PIXEL_FORMAT" props="cpp ios mac"/><xref keyref="VIDEO_OBSERVER_FRAME_TYPE" props="unity"/>.</ph></p>  
+            <p><ph>Sets the video format. </ph><ph props="cpp unreal bp ios mac unity">See <xref keyref="VIDEO_PIXEL_FORMAT" props="cpp unreal bp ios mac"/><xref keyref="VIDEO_OBSERVER_FRAME_TYPE" props="unity"/>.</ph></p>  
             <p props="android">
             <note id="default" props="hide">
                     <p>According to different observation locations and collection scenarios, the actual video pixel format corresponding to this enumeration value is different. Agora recommends that you do not use this value. Some common situations are listed below.</p>
@@ -40,17 +40,17 @@
                         <li>When the observation position is <apiname keyref="POSITION_POST_CAPTURER"/>, common scenarios are as follows:<ul>
                             <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
                             <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
-                            <li props="mac cpp">Only video with pixel format I420 is supported.</li>
+                            <li props="mac cpp unreal bp">Only video with pixel format I420 is supported.</li>
                             </ul></li>
                         <li>When the observation position is <apiname keyref="POSITION_PRE_ENCODER"/>, common scenarios are as follows:<ul>
                             <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
                             <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
-                            <li props="mac cpp">Only video with pixel format I420 is supported.</li>
+                            <li props="mac cpp unreal bp">Only video with pixel format I420 is supported.</li>
                             </ul></li>
                         <li>When the observation position is <apiname keyref="POSITION_PRE_RENDERER"/>, common scenarios are as follows:<ul>
                             <li props="ios mac">Video with pixel format CVPixelBufferRef is supported by default.</li>
                             <li props="android">Video with a pixel format of Texture is supported by default.</li>
-                            <li props="cpp">Video with pixel format I420 is supported.</li>
+                            <li props="cpp unreal bp">Video with pixel format I420 is supported.</li>
                             </ul></li>
                     </ul>
                 </note>
