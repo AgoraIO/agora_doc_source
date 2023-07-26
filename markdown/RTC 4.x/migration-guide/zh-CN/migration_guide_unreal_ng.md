@@ -16,4 +16,4 @@
 **其他变更**
 - 接口类 `agora::rtc::ue4::AgoraRtcEngine*` 变更为 `agora::rtc::ue::RtcEngineProxy*`，你需要手动修改项目文件中的代码。
 - 4.x SDK 简化了视频渲染的实现步骤，无需主动调用 `AgoraRtcEngine` 中的 `OnTick` 函数，由 `VideoRenderManager` 自动处理。所以你需要手动删除项目文件中跟 `OnTick` 相关的代码。
-- （可选）修改项目文件夹，增加对头文件 `#include "AgoraPluginInterface.h"` 的引用，以直接导入 v4.x SDK 中的所有基础类。你也可以根据实际需求，在 `AgoraPlugin\Private\AgoraCppPlugin\include\AgoraHeaderBase.h` 中补充所需的类，或者直接 include 所需的文件。
+- 修改项目文件夹，增加对头文件 `#include "AgoraPluginInterface.h"` 的引用，以直接导入 v4.x SDK 中的所有基础类。你也可以根据实际需求，在 `AgoraPlugin\Private\AgoraCppPlugin\include\AgoraHeaderBase.h` 中补充所需的类，或者直接 include 所需的文件。
