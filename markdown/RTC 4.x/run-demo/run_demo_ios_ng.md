@@ -25,8 +25,8 @@ $$  -->
 
 ### 获取示例项目
 
-- 前往 [SDK 下载页面](./downloads?platform=iOS)，下载最新版的 iOS 视频 SDK，然后解压。
 你可以通过以下两种方式获取示例项目：
+- 前往 [SDK 下载页面](./downloads?platform=iOS)，下载最新版的 iOS 视频 SDK，然后解压。
 - 前往声网在 Github 上提供的[示例项目](https://github.com/AgoraIO/API-Examples/tree/main)，然后将仓库克隆至本地。
 ### 配置示例项目
 
