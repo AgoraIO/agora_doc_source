@@ -17,7 +17,6 @@ $$  -->
  - 两台 <% if (platform == "ios") { %>iOS 9.0<% } if (platform == "macos") { %>macOS 10.10<% } %> 或以上版本的设备。
  - 一个有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)以及声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得以下信息：
    - App ID：声网随机生成的字符串，用于识别你的项目。
-   - 临时 Token：Token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
    - 频道名：用于标识频道的字符串。
  - Apple 开发者账号。
 
@@ -39,7 +38,7 @@ $$  -->
 
 ### 配置示例项目
 
-1. 打开示例项目文件夹，在 `KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID 和临时 Token。
+1. 打开示例项目文件夹，在 `KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID。
 
    ```swift
    struct KeyCenter {
