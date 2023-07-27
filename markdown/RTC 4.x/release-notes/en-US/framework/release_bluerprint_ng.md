@@ -1,26 +1,26 @@
-## v4.2.1 Beta-2
+## v4.2.1 Beta
 
-该版本于 2023 年 7 月 xx 日发布，该版本为声网 RTC Blueprint SDK 的首个 Beta 版本。
+v4.2.1 Beta was released on July xx, 2023. 
 
-v4.2.1 Beta-2 was released on January xx, 2023. This release is the first version of RTC Unreal Blueprint SDK.
+This release is the first version of RTC Unreal Blueprint SDK.
 
 
-**功能简介**
+**Features**
 
-该 SDK 由声网为使用 Unreal Blueprint 的开发者而设计，旨在为 Unreal Engine 用户提供简单且用户友好的实时互动解决方案。
 
-SDK 提供可视化界面和一系列直观易用的节点，开发者可在 Unreal 项目中通过节点的拖放、连接以及配置，就可轻松实现具备实时互动功能的游戏或 app，无需深入学习复杂的 C++ 编程知识。
+This SDK, designed by Agora for developers using Unreal Blueprint, aims to provide a simple and user-friendly real-time interactive solution for Unreal Engine users.
 
-声网提供了开源的[示例项目](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example)，你可以前往下载并体验。
+The SDK offers a visual interface and a set of intuitive and easy-to-use nodes, allowing developers to effortlessly implement real-time interactive features in games or apps within the Unreal project. There is no need to delve into learning C++ programming knowledge as functionalities can be achieved through node dragging, connecting, and configuration.
 
-**参考文档**
+Agora provides an open source [example project](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example) on GitHub for your reference.
 
-你可以参考以下文档集成 SDK，实现相应的实时音视频功能：
+**Reference**
 
-- [实现语音通话](https://docportal.shengwang.cn/cn/voice-call-4.x/start_call_audio_blueprint_ng?platform=Unreal-Blueprint)
-- [实现视频通话](https://docportal.shengwang.cn/cn/video-call-4.x/start_call_blueprint_ng?platform=Unreal-Blueprint)
-- [实现互动直播](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/start_live_blueprint_ng?platform=Unreal-Blueprint)
-- [实现极速直播](https://docportal.shengwang.cn/cn/live-streaming-standard-4.x/start_live_standard_blueprint_ng?platform=Unreal-Blueprint)
-- [API 参考](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/blueprint_ng/API/rtc_api_overview_ng.html)
+Refer to the following documentations to integrate the SDK into your project, and add real-time engagement functionalities to the app.
 
-如果你已经集成了 3.x 版本的 SDK、想要升级至该版本，请参考 xxx 了解升级。
+- [Get Started with Voice Calling]()
+- [Get Started with Video Calling]()
+- [Get Started with Interactive Live Streaming Premium]()
+- [Get Started with Interactive Live Streaming Standard]()
+- [API Reference]()
+

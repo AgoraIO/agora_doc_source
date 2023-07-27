@@ -20,5 +20,3 @@ SDK 提供可视化界面和一系列直观易用的节点，开发者可在 Unr
 - [实现互动直播](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/start_live_blueprint_ng?platform=Unreal-Blueprint)
 - [实现极速直播](https://docportal.shengwang.cn/cn/live-streaming-standard-4.x/start_live_standard_blueprint_ng?platform=Unreal-Blueprint)
 - [API 参考](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/blueprint_ng/API/rtc_api_overview_ng.html)
-
-如果你已经集成了 3.x 版本的 SDK、想要升级至该版本，请参考 xxx 了解升级。

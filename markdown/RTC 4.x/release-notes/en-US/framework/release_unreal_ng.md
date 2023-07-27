@@ -1,9 +1,11 @@
-## v4.2.1
+## v4.2.1 Beta
 
 This version was released on July xx, 2023.
 #### Compatibility changes
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
+
+If you have already integrated the 3.x version of the SDK and wish to upgrade to this version, please refer to [Migration Guide]() for upgrade instructions.
 
 **1. Video capture**
 
@@ -132,7 +134,7 @@ To better meet the needs of custom audio capture scenarios, this release adds `c
  - When the video processing mode is `PROCESS_MODE_READ_ONLY`, the return value is reserved for future use.
  - When the video processing mode is `PROCESS_MODE_READ_WRITE`, the SDK receives the video frame when the return value is `true`; the video frame is discarded when the return value is `false`.
 
-Other improvments
+**8. Miscellaneous**
 
 This version improves the network transmission strategy, enhancing the smoothness of audio and video interactions.
 
@@ -168,8 +170,8 @@ This version improves the network transmission strategy, enhancing the smoothnes
 - `getCurrentMonotonicTimeInMs`
 - `onLocalVideoTranscoderError`
 - `setAINSMode`
-- `createAudioCustomTrack`
-- `destroyAudioCustomTrack`
+- `createCustomAudioTrack`
+- `destroyCustomAudioTrack`
 - `AudioTrackConfig`
 - `AUDIO_TRACK_TYPE`
 - `VIDEO_APPLICATION_SCENARIO_TYPE`
