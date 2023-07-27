@@ -1,6 +1,8 @@
-## v4.2.2 Beta
+## v4.2.1 Beta-2
 
 该版本于 2023 年 7 月 xx 日发布，该版本为声网 RTC Blueprint SDK 的首个 Beta 版本。
+
+v4.2.1 Beta-2 was released on January xx, 2023. This release is the first version of RTC Unreal Blueprint SDK.
 
 
 **功能简介**
