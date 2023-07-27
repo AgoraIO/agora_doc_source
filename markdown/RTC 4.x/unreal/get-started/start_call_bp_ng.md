@@ -4,15 +4,15 @@
 ## 前提条件
 
 - [Unreal Engine](https://www.unrealengine.com/zh-CN/download) 4.27 及以上版本
-- 两台设备，不可使用虚拟机。操作系统与编译器要求如下：
-  | 开发平台 | 操作系统版本  | 编译器版本  | 备注    |
-  | :--- | :------ | :--------- | :------------------------------ |
-  | Android  | Android 4.1 或以上 | Android Studio 3.5.3 或以上  | 无    |
-  | iOS | iOS 12.0 或以上 | Xcode 11.0 或以上 | 有效的 Apple 开发者签名。  |
-  | macOS | macOS 10.11 或以上 | Xcode 11.0 或以上 | 有效的 Apple 开发者签名。  |
-  | Windows (64 位) | Windows 7 或以上   | Microsoft Visual Studio 2019 或以上 | 安装编译器和相关工具后至少需要 1.65 GB 的磁盘空间来运行 Unreal Engine。 |
-  | Windows (32 位) | Windows 7 或以上   | Microsoft Visual Studio 2019 或以上 | 32 位 Windows 仅支持 Unreal Engine 4 及以下版本，你需要在 `AgoraPluginLibrary.Build.cs` 文件中将 Windows 32 相关的代码取消注释。 |
-- 计算机可以访问互联网。请确保你的网络环境未部署防火墙，否则可能无法正常使用声网服务。
+- 两台设备，不可使用虚拟机。参考下方列出的 Unreal Engine 官方文档，根据你的目标平台和引擎版本准备开发环境：
+  | 开发平台 | 参考文档  | 备注    |
+  | :--- | :------ | :------------------------------ |
+  | Android  | [Android 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/SharingAndReleasing/Mobile/Android/AndroidSDKRequirements/) | 无    |
+  | iOS | [iOS 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/SharingAndReleasing/Mobile/iOS/SDKRequirements/) | 有效的 Apple 开发者签名。  |
+  | macOS | [macOS 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/Basics/InstallingUnrealEngine/RecommendedSpecifications/) | 有效的 Apple 开发者签名。  |
+  | Windows (64 位) | [Windows 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/Basics/InstallingUnrealEngine/RecommendedSpecifications/) | 无 |
+  | Windows (32 位) | [Windows 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/Basics/InstallingUnrealEngine/RecommendedSpecifications/) | 32 位 Windows 仅支持 Unreal Engine 4 及以下版本，你需要在 `AgoraPluginLibrary.Build.cs` 文件中将 Windows 32 相关的代码取消注释。 |
+- 计算机可以访问互联网。请确保你的网络环境正确部署防火墙，能正常支持声网服务所需的权限和行为。
 - 一个有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)以及声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得以下信息：
   - App ID：声网随机生成的字符串，用于识别你的项目。
   - 临时 token：token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
@@ -21,13 +21,13 @@
 
 ## 创建项目
 
-参考以下步骤或 [Unreal 官方操作指南](https://docs.unrealengine.com/5.1/en-US/onboarding-guide-for-unreal-engine-games-licensees/)创建一个 **Unreal** 项目。如果已有 **Unreal** 项目，可进行下一步[集成 SDK](#集成-sdk)。
+参考以下步骤或 [Unreal 官方操作指南](https://docs.unrealengine.com/4.27/zh-CN/Basics/Projects/Browser/)创建一个 **Unreal** 项目。如果已有 **Unreal** 项目，可进行下一步[集成 SDK](#集成-sdk)。
 1. 打开 **Unreal Engine**，在 **New Project Categories** 下选择 **Games**，点击 **Next**。
 2. 在 **SelectTemplate** 页面，选择 **Blank**，点击 **Next**。
 3. 在 **Project Settings** 页面，进行如下设置：
     1. 选择 **Blueprint** 或 **C++**。
     <div class="alert info">为简化操作，建议你选择 <b>C++</b> 项目；如果选择 <b>Blueprint</b> 项目，则会在后续打包过程中提示<b>找不到 Plugin</b>，需要建一个空的类转成 C++ Project。</div>
-    2. 根据你开发的目标平台选择 **Desktop / Console** 或 **Mobile / Tablet**。
+    2. 根据你开发的目标平台选择 **Desktop/Console** 或 **Mobile/Tablet**。
     3. 选择项目存储路径，并为项目命名。
     4. 点击 **Create Project** 完成创建。
    ![](https://web-cdn.agora.io/docs-files/1689850102339)
@@ -105,10 +105,10 @@
    | 1    | **Set Show Mouse Cursor**    | 原生[1]   | (可选) 设置是否显示鼠标光标，勾选代表显示。<div class="alert note"><ul><li>该节点仅适用于 Windows 和 macOS。</li><li>如果在创建时检索不到该节点，可以取消勾选 <b>Context Sensitive</b>。 <img src="https://web-cdn.agora.io/docs-files/1689863102745"/></li></ul></div> |
    | 2    | **Load Agora Config**   | 自定义[2] | 加载声网配置。用于后续在创建和加入频道时验证用户身份。       |
    | 3    | **Create BP Video Widget Widget** | 原生     | 创建用户界面。步骤如下：<ol><li>创建 **Create Widget** 节点。</li><li>选择该节点的 **Class** 为 **BP_Video Widget**，将该节点关联至已经创建好的用户界面。</li></ol> |
-   | 4    | **Set Basic Video Call Widget**   | 自定义   | 设置用户界面。步骤如下：<ol><li>创建 **BasicVideoCallWidget** 变量。</li><li>选择变量的 **Variable Type** 为 **BP_Video Widget**，即已经创建好的用户界面，用于在蓝图中存储对用户界面的引用。</li><li>创建 **Set Basic Video Call Widget** 节点，访问并设置用户界面。</li></ol> |
+   | 4    | **Set Basic Video Call Widget**   | 自定义   | 设置用户界面。步骤如下：<ol><li>创建 **BasicVideoCallWidget** 变量，选择变量的 **Variable Type** 为 **BP_Video Widget**，即已经创建好的用户界面，用于在蓝图中存储对用户界面的引用。</li><li>拖拽创建好的变量到 **EventGraph** 后，会出现 **Set BasicVideoCallWidget** 和 **Get BasicVideoCallWidget** 两个选项，选择 **Set BasicVideoCallWidget** 创建节点，用于访问并设置用户界面。</li></ol> |
    | 5    | **Bind UIEvent**   | 自定义   | 绑定 UI 事件，用于处理点击 **JoinChannel** 和 **LeaveChannel** 按钮后的事件逻辑。 |
    | 6    | **Add to Viewport**   | 原生  | 将用户界面添加到视口。   |
-   | 7    | **Check Permission**   | 自定义   | (可选) 检查是否已获取视频通话所需的系统权限，如访问摄像头和麦克风等。<div class="alert note">该节点仅适用于 Android。</div> |
+   | 7    | **Check Permission**   | 自定义   | (可选) 检查是否已获取视频通话所需的系统权限，如访问摄像头和麦克风等。<div class="alert note">如果你的目标平台是 Android，需要创建该节点用于检查系统权限。</div> |
    | 8    | **Init Rtc Engine**     | 自定义   | 创建并初始化 RTC 引擎。  |
    | 9    | **Un Init Rtc Engine**  | 自定义   | 离开频道并释放资源。     |
 
@@ -136,10 +136,10 @@
       i. 创建 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调函数。参考下表配置回调的输入参数：
         | 回调函数  | 描述 | 输入参数 |
         | :------- | :--- | :----- |
-        | `onJoinChannelSuccess` | 成功加入频道回调。 |  <ul><li>`channel`: (String) 频道名。</li><li>`uid`: (Integer64) 加入频道的本地主播的用户 ID。</li><li>`elapsed`: (Integer) 从本地调用 `joinChannel` 开始到发生此事件过去的时间（毫秒）。</li></ul>|
+        | `onJoinChannelSuccess` | 成功加入频道回调。 |  <ul><li>`channel`: (String) 频道名。</li><li>`uid`: (Integer64) 加入频道的本地用户的用户 ID。</li><li>`elapsed`: (Integer) 从本地调用 `joinChannel` 开始到发生此事件过去的时间（毫秒）。</li></ul>|
         | `onLeaveChannel` | 离开频道回调。 | `stats`: 通话的统计数据。详见 [RtcStats](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/unreal_ng/API/class_rtcstats.html)。|
-        | `onUserJoined` | 远端主播加入当前频道回调。 | <ul><li>`uid`: (Integer64) 新加入频道的远端主播的用户 ID。</li><li>`elapsed`: (Integer) 从本地调用 `joinChannel` 开始到发生此事件过去的时间（毫秒）。</li></ul> |
-        | `onUserOffline` | 远端主播离开当前频道回调。 | <ul><li>`uid`: (Integer64) 离线主播的用户 ID。</li><li>`reason`: 离线原因。详见 [USER_OFFLINE_REASON_TYPE](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/unreal_ng/API/enum_userofflinereasontype.html)。</li></ul> |
+        | `onUserJoined` | 远端用户加入当前频道回调。 | <ul><li>`uid`: (Integer64) 新加入频道的远端用户的用户 ID。</li><li>`elapsed`: (Integer) 从本地调用 `joinChannel` 开始到发生此事件过去的时间（毫秒）。</li></ul> |
+        | `onUserOffline` | 远端用户离开当前频道回调。 | <ul><li>`uid`: (Integer64) 离线用户的用户 ID。</li><li>`reason`: 离线原因。详见 [USER_OFFLINE_REASON_TYPE](https://docportal.shengwang.cn/cn/video-call-4.x/API%20Reference/unreal_ng/API/enum_userofflinereasontype.html)。</li></ul> |
     
       ii. 创建 **Bind Event** 函数，在该函数中，添加 **Sequence** 节点，然后分别绑定 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调事件。
       ![](https://web-cdn.agora.io/docs-files/1689863944284)
@@ -174,14 +174,14 @@
 
 ### 设置本地和远端视图
 
-1. 创建并实现 **MakeVideoView** 函数，在本地或远端主播加入频道时加载视图。
+1. 创建并实现 **MakeVideoView** 函数，在本地或远端用户加入频道时加载视图。
 ![](https://web-cdn.agora.io/docs-files/1689839685482)
 主要步骤如下：
    1. 在该函数中，创建 **SavedUID**、**SavedSourceType** 和 **SavedChannelID** 三个本地变量，分别设置 **Variable Type** 为 **Integer64**、**VIDEO_SOURCE_TYPE** 和 **String**，保存变量在后续加载视图时使用。
    2. 创建本地视图。本地视图中，uid 为 0，由 SDK 随机分配，视频源类型为 **VIDEO_SOURCE_CAMERA_PRIMARY** (第一个摄像头)。
    3. 创建远端视图。远端视图中，uid 为远端发送来的 uid，视频源类型为 **VIDEO_SOURCE_REMOTE** (网络获取的远端视频)。
 
-2. 创建并实现 **ReleaseVideoView** 函数，在本地或远端主播离开频道时释放视图。
+2. 创建并实现 **ReleaseVideoView** 函数，在本地或远端用户离开频道时释放视图。
 ![](https://web-cdn.agora.io/docs-files/1689839722484)
 主要步骤如下：
    1. 在该函数中，创建 **SavedUID**、**SavedSourceType** 和 **SavedChannelID** 三个本地变量，分别设置 **Variable Type** 为 **Integer64**、**VIDEO_SOURCE_TYPE** 和 **String**，保存变量在后续加载视图时使用。
@@ -191,7 +191,7 @@
 
 ### 实现回调函数
 
-上述步骤中已经创建了 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调函数，该步骤中会具体实现这些回调。
+将之前创建的 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调函数按照以下实现步骤进行配置。
 1. 本地用户成功加入频道后，触发 `onJoinChannelSuccess` 回调，创建本地视图，uid 为 0，由 SDK 随机分配，视频源类型为 **VIDEO_SOURCE_CAMERA_PRIMARY** (第一个摄像头)。
 ![](https://web-cdn.agora.io/docs-files/1689839345488)
 
