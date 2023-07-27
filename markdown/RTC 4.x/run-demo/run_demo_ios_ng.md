@@ -17,7 +17,7 @@ $$  -->
  - 两台 <% if (platform == "ios") { %>iOS 14.0<% } if (platform == "macos") { %>macOS 10.10<% } %> 以上版本的设备。
  - 一个有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)以及声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得以下信息：
    - App ID：声网随机生成的字符串，用于识别你的项目。
-   - 临时 Token：Token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
+   - App 证书（可选）：用于生成 token 的字符串。如果你的项目为“无证书模式”，则不需要获取该字段。
    - 频道名：用于标识频道的字符串。
  - Apple 开发者账号。
 
@@ -30,7 +30,7 @@ $$  -->
 - 前往声网在 Github 上提供的[示例项目](https://github.com/AgoraIO/API-Examples/tree/main)，然后将仓库克隆至本地。
 ### 配置示例项目
 
-1. 打开示例项目文件夹，在 `samples/APIExample/APIExample/Common/KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID 和 App 证书（如果未开启证书鉴权，该字段可为空）。
+1. 打开示例项目文件夹，在 `samples/APIExample/APIExample/Common/KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID 和 App 证书（如果项目为“无证书模式”，该字段留空）。
     ```swift
     class KeyCenter: NSObject {
         // 把 <#Your App Id#> 替换成你的 App ID，并加引号，如 "xxxxxx"
@@ -66,7 +66,7 @@ $$  -->
     <img src="https://web-cdn.agora.io/docs-files/1690182273239" width="200"/>
 
 
-6. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `samples/APIExample/APIExample/Common/KeyCenter.swift` 中的 App ID 和临时 Token 不变）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+6. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `samples/APIExample/APIExample/Common/KeyCenter.swift` 中的 App ID 和 App 证书不变）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
     <img src="https://web-cdn.agora.io/docs-files/1690278567335" width="400"/>
 
 
