@@ -171,21 +171,20 @@ mByteDanceApi.initialize(
 ### 2. 设置是否开启美颜
 
 ```kotlin
-if (beautyEnableDefault) {
-    mByteDanceApi.enable(true)
-}
+mByteDanceApi.enable(true)
 ```
 
-### 3. 设置本地渲染视图
+### 3. 设置本地视图
 
-设置本地渲染视图（View），以让带有美颜特效的本地视频在视图上渲染出来。
+设置本地视图（View），以让带有美颜特效的本地视频在视图上渲染出来。
 
 ```kotlin
 #TODO 是否需要补充这些
-mRtcEngine.setVideoEncoderConfiguration(mVideoEncoderConfiguration)
-mRtcEngine.enableVideo()
-mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
-mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
+// startPreview optional
+mRtcEngine.setVideoEncoderConfiguration(mVideoEncoderConfiguration) //optional
+mRtcEngine.enableVideo() //agora 采集
+mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT) //agora 采集
+mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply { //both
     channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
     clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
     publishCameraTrack = true
@@ -296,3 +295,6 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
     }
 }
 ```
+
+//TODO effect manager 就是 美颜 SDK 本身，我们会封装部分 API 并称为 beauty api
+//TODO 如果需要加贴纸滤镜等更丰富的美颜功能，可以直接调用 Beauty SDK

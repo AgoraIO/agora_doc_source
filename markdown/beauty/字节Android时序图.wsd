@@ -1,0 +1,42 @@
+@startuml 美颜场景化API
+autonumber
+title 美颜场景化 API 时序图
+participant "App" as app
+participant "声网 RTC SDK" as rtc
+participant "声网 Beauty API" as api
+participant "第三方美颜 SDK" as beauty
+app -> app: 进入预览和直播间
+== 初始化资源 ==
+app -> rtc: RtcEngine.create
+app -> beauty: 初始化 EffectManager
+app -> api: createByteDanceBeautyAPI
+alt 声网 RTC SDK 采集
+app -> api: initialize(captureMode.Agora)
+end
+alt #LightYellow 开发者自定义视频采集
+app -> api: initialize(captureMode.Custom)
+end
+== 开启美颜 ==
+app -> api: enable
+== 开启视频采集 ==
+app -> rtc: enableVideo 开启视频模块
+alt 声网 RTC SDK 采集
+app -> rtc: setupLocalVideo 设置本地视图
+end
+alt #LightYellow 开发者自定义视频采集
+app -> rtc: registerVideoFrameObserver
+rtc --> app: onFrame 将外部视频数据传给 SDK
+end
+== 加入频道 ==
+app -> rtc: joinChannel
+== 设置美颜效果 ==
+app -> api: setBeautyPreset(DEFAULT/CUSTOM) 设置是否使用默认（推荐）的美颜参数
+app -> beauty: 如需更多美颜效果，例如贴纸、滤镜，可调用第三方美颜 SDK 的 API
+== 离开频道 ==
+app -> rtc: leaveChannel
+== 销毁资源 ==
+app -> api: release
+app -> beauty: destroy
+app -> rtc: destroy
+app -> app: 退出预览和直播间
+@enduml

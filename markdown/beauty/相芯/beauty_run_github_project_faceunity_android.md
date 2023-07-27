@@ -34,7 +34,7 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
     |-----|-----|
     | 美妆资源：例如 `naicha.bundle` | app/src/main/assets/beauty_faceunity/makeup           |
     | 贴纸资源：例如 `fashi.bundle`  | app/src/main/assets/beauty_faceunity/sticker          |
-    | 证书：`authpack.java` #TODO     | app/src/main/java/io/agora/beauty/demo/authpack.java  |
+    | 证书：`authpack.java`    | app/src/main/java/io/agora/beauty/demo/authpack.java  |
 
 3. 在 `app/build.gradle` 文件中，将 `applicationId` 修改为你的包名，例如 `com.example.app`。包名用于在设备上唯一标识应用程序。在开发应用时，你需要设置包名。在此处设置的包名需要与你申请美颜 SDK 时提供的包名一致。
 
