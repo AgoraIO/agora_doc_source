@@ -1,10 +1,10 @@
-# 字节/火山美颜场景化API
-
+本文介绍如何通过声网场景化 API 集成字节美颜到实时音视频中。
 
 ## 前提条件
+
 - 项目使用Kotlin插件
 - 项目里已经集成了Agora RTC SDK
-- 联系字节客服拿到字节/火山的美颜SDK及其资源文件
+- 联系字节技术支持拿到美颜 SDK、资源、证书
 
 ## 快速集成
 1. (可选)解压字节/火山SDK并将以下aar库、资源文件、证书配置到项目对应目录下
@@ -101,7 +101,6 @@ mByteDanceApi.enable(true)
 设置本地渲染视图（View），以让带有美颜特效的本地视频在视图上渲染出来。
 
 ```kotlin
-#TODO
 mRtcEngine.setVideoEncoderConfiguration(mVideoEncoderConfiguration)
 mRtcEngine.enableVideo()
 mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
