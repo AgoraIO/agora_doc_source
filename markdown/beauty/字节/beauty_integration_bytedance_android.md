@@ -24,7 +24,7 @@
 
    <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。</div>
 
-2. 使用 Maven Central 将声网视频 SDK 集成到你的项目中。
+2. 使用 Maven Central 将声网RTC SDK 集成到你的项目中。
 
    a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，添加 Maven Central 依赖：
 
@@ -47,7 +47,7 @@
 
     <div class="alert note">如果你的 Android 项目设置了 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，添加 Maven Central 依赖的方式可能存在差异。</div>
 
-   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网视频 SDK 集成到你的 Android 项目中：
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网RTC SDK 集成到你的 Android 项目中：
 
    ```java
    ...
@@ -105,13 +105,20 @@
 
 ## 实现美颜
 
-### 1. 初始化
+如下时序图展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，第三方美颜 SDK 承担美颜特效的业务，Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
+
+<pic//TODO>
+
+### 1. 初始化资源
+
+参考如下示例代码初始化 RtcEngine、EffectManager、Beauty API。
 
 ```kotlin
 // 初始化声网 RtcEngine
 private val mRtcEngine by lazy {
     RtcEngine.create(RtcEngineConfig().apply {
         mContext = applicationContext
+        // 传入你从控制台获取的声网项目的 APP ID
         mAppId = BuildConfig.AGORA_APP_ID
         mEventHandler = object : IRtcEngineEventHandler() {}
     }).apply {
@@ -120,12 +127,8 @@ private val mRtcEngine by lazy {
     }
 }
 
-// 创建声网 Beauty API 对象
-private val mByteDanceApi by lazy {
-    createByteDanceBeautyAPI()
-}
 
-// 通过第三方库 beauty_bytedance 创建美颜特效管理器
+// 初始化字节美颜 SDK 提供的 EffectManager
 private val mEffectManager by lazy {
     val resourceHelper =
         AssetsResourcesHelper(this, "beauty_bytedance")
@@ -136,20 +139,28 @@ private val mEffectManager by lazy {
     )
 }
 
-// 初始化声网 Beauty API 对象
+
+// 创建 Beauty API 对象
+private val mByteDanceApi by lazy {
+    createByteDanceBeautyAPI()
+}
+
+
+// 初始化 Beauty API 对象
 mByteDanceApi.initialize(
     Config(
         // RtcEngine
         mRtcEngine,
         // 美颜特效管理器
         mEffectManager,
-        // 视频采集模式
-        // CaptureMode.Agora 意味着使用声网模块采集的视频数据
-        // CaptureMode.Custom 意味着使用开发者自定义采集的视频数据
+        // 设置视频采集模式
+        // CaptureMode.Agora 意味着使用声网模块采集视频
+        // CaptureMode.Custom 意味着使用开发者自定义采集视频
         captureMode = if (isCustomCaptureMode) CaptureMode.Custom else
+        CaptureMode.Agora,
         // 是否开启美颜统计数据
         // 开启后，SDK 会周期性触发 onBeautyStats 回调
-        statsEnable = BuildConfig.BUILD,
+        statsEnable = true,
         // 用于监听 Beauty API 的回调事件
         eventCallback = EventCallback(
             // 美颜统计数据回调
@@ -170,21 +181,35 @@ mByteDanceApi.initialize(
 
 ### 2. 设置是否开启美颜
 
+调用 Beauty API 的 enable 方法开启美颜。
+
 ```kotlin
 mByteDanceApi.enable(true)
 ```
 
-### 3. 设置本地视图
+### 3. 开启视频采集
 
-设置本地视图（View），以让带有美颜特效的本地视频在视图上渲染出来。
+开发者可以使用声网模块采集视频，也可以自定义采集视频。
+
+#### 使用声网模块采集视频
+
 
 ```kotlin
-#TODO 是否需要补充这些
-// startPreview optional
-mRtcEngine.setVideoEncoderConfiguration(mVideoEncoderConfiguration) //optional
-mRtcEngine.enableVideo() //agora 采集
-mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT) //agora 采集
-mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply { //both
+mRtcEngine.enableVideo()
+mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
+```
+
+#### 自定义视频采集
+
+
+
+
+
+### 4. 加入频道
+
+
+```kotlin
+mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
     channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
     clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
     publishCameraTrack = true
@@ -194,32 +219,39 @@ mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply { //bo
 })
 ```
 
-### 4. 设置是否使用默认的美颜参数
+### 5. 设置美颜效果
 
-推荐你使用默认（DEFAULT）的美颜参数，以获得全方面效果均衡的美颜效果。如果你不想使用默认的美颜参数，你可以使用自定义（CUSTOM）的美颜参数。
+调用 Beauty API 中 setBeautyPreset 方法设置是否使用默认（推荐）的美颜效果。
 
 ```kotlin
-// 使用默认的美颜参数设置美颜效果
+// 使用默认的美颜参数
 mByteDanceApi.setBeautyPreset(BeautyPreset.DEFAULT)
 ```
 
 ```kotlin
-// 关闭之前使用默认的美颜参数
 // 使用自定义的美颜参数
 mByteDanceApi.setBeautyPreset(BeautyPreset.CUSTOM)
 ```
 
-### 5. 销毁美颜
+通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
 
-必须在 leaveChannel 后再销毁
+### 6. 离开频道
 
+调用 RTC SDK 中的 leaveChannel 方法离开频道。
 
 ```kotlin
 // 离开 RTC 频道
 mRtcEngine.leaveChannel()
+```
+
+### 7. 销毁资源
+
+参考如下代码销毁 Beauty API、EffectManager、RtcEngine。
+
+```kotlin
 // 销毁 Beauty API 对象
 mByteDanceApi.release()
-// 销毁美颜特效管理器
+// 销毁 EffectManager
 mEffectManager.destroy()
 // 销毁 RtcEngine
 RtcEngine.destroy()
@@ -256,33 +288,32 @@ mByteDanceApi.initialize(
 
 ```kotlin
 // 注册原始视频数据观测器
-// 当 CaptureMode.Custom 时，你需要进行此设置
+// 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
 mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
+
     // 定义镜像变量
     private var shouldMirror = true
-    // 获取本地采集的视频原始数据
-    // 并在返回值中设置是否让 SDK 接收第三方处理后的视频帧
+
+    // 从 onCaptureVideoFrame 中获取本地采集的视频原始数据
     override fun onCaptureVideoFrame(
         sourceType: Int,
-        // 你可以从 VideoFrame 中拿到原始视频数据
-        // 也可以将处理后的视频传入 VideoFrame 中
         videoFrame: VideoFrame?
     ) : Boolean {
         // 将原始视频数据传递给 Beauty API 进行美颜处理
         when(mByteDanceApi.onFrame(videoFrame!!)){
-            // 情况 1，如果处理成功，那么关闭镜像，设置声网 SDK 接收处理后的视频帧
+            // 情况 1，如果处理成功，那么关闭镜像，并通过返回值设置声网 RTC SDK 接收处理后的视频帧
             ErrorCode.ERROR_OK.value -> {
                 shouldMirror = false
                 return true
             }
-            //  情况 2，如果处理失败且需丢弃这一帧，那么关闭镜像，设置声网 SDK 丢弃处理后的视频帧
+            //  情况 2，如果处理失败且需丢弃这一帧，那么关闭镜像，并通过返回值设置声网 RTC SDK 丢弃处理后的视频帧
             ErrorCode.ERROR_FRAME_SKIPPED.value ->{
                 shouldMirror = false
                 return false
             }
             else -> {
                 // 情况 3，如果处理结果是其他情况，那么当视频帧来自前置摄像头时设置镜像，来自后置摄像头时不设置镜像
-                // 如果视频帧的来源变化（比如从前置摄像头切换后置摄像头，或者相反情况），那么设置声网 SDK 丢弃这一帧
+                // 如果视频帧的来源变化（比如从前置摄像头切换后置摄像头，或者相反情况），那么设置声网 RTC SDK 丢弃这一帧
                 // 如果视频帧的来源没有变化，那么设置声网 SDK 接收这一帧
                 val mirror = videoFrame.sourceType == VideoFrame.SourceType.kFrontCamera
                 if(shouldMirror != mirror){
@@ -293,8 +324,14 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
             }
         }
     }
+
+    // 设置是否对原始视频数据作镜像处理
+    override fun getMirrorApplied() = shouldMirror
+
+    // 设置观测本地采集视频数据
+    override fun getObservedFramePosition() = IVideoFrameObserver.POSITION_POST_CAPTURER
+
+    // override 视频观测器中的其他回调函数
+    ......
 }
 ```
-
-//TODO effect manager 就是 美颜 SDK 本身，我们会封装部分 API 并称为 beauty api
-//TODO 如果需要加贴纸滤镜等更丰富的美颜功能，可以直接调用 Beauty SDK
