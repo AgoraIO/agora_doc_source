@@ -106,14 +106,6 @@
                     <stentry><ph conkeyref="setClientRole2/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry><xref keyref="getConnectionState"/></stentry>
-                    <stentry><ph conkeyref="getConnectionState/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="getConnectionStateEx"/></stentry>
-                    <stentry><ph conkeyref="getConnectionStateEx/shortdesc"/></stentry>
-                </strow>
-                <strow>
                 <stentry><xref keyref="onJoinChannelSuccess"/></stentry>
                 <stentry><ph conkeyref="onJoinChannelSuccess/shortdesc"/></stentry>
             </strow>
@@ -1221,7 +1213,7 @@
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="mpk_cache">
             <title>媒体播放器缓存</title>
             <simpletable>
                 <sthead>
@@ -1229,41 +1221,178 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="enableAutoRemoveCache"/></stentry>
+                    <stentry><ph conkeyref="enableAutoRemoveCache/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="removeAllCaches"/></stentry>
+                    <stentry><ph conkeyref="removeAllCaches/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="removeCacheByUri"/></stentry>
+                    <stentry><ph conkeyref="removeCacheByUri/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="removeOldCache"/></stentry>
+                    <stentry><ph conkeyref="removeOldCache/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCacheDir"/></stentry>
+                    <stentry><ph conkeyref="setCacheDir/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setMaxCacheFileCount"/></stentry>
+                    <stentry><ph conkeyref="setMaxCacheFileCount/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setMaxCacheFileSize"/></stentry>
+                    <stentry><ph conkeyref="setMaxCacheFileSize/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCacheDir"/></stentry>
+                    <stentry><ph conkeyref="getCacheDir/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCacheFileCount"/></stentry>
+                    <stentry><ph conkeyref="getCacheFileCount/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getMaxCacheFileCount"/></stentry>
+                    <stentry><ph conkeyref="getMaxCacheFileCount/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getMaxCacheFileSize"/></stentry>
+                    <stentry><ph conkeyref="getMaxCacheFileSize/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="drm" props="android ios cpp unreal bp unity flutter rn">
             <title>版权音乐</title>
-            <simpletable>
+            <p props="cpp unreal bp unity flutter"><ph props="cn">本组方法仅适用于 Android 和 iOS。</ph></p>
+            <simpletable props="cn">
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="initialize_IMusicContentCenter"/></stentry>
+                    <stentry><ph conkeyref="initialize_IMusicContentCenter/shortdesc"/></stentry>
+                </strow>
+                <strow props="android cpp electron flutter rn unreal">
+                    <stentry><xref keyref="release_IMusicContentCenter"/></stentry>
+                    <stentry><ph keyref="release_IMusicContentCenter/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios">
+                    <stentry><xref keyref="destroy_IMusicContentCenter"/></stentry>
+                    <stentry><ph conkeyref="destroy_IMusicContentCenter/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="createMusicPlayer"/></stentry>
+                    <stentry><ph conkeyref="createMusicPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unity cs unreal">
+                    <stentry><xref keyref="preload"/></stentry>
+                    <stentry><ph conkeyref="preload/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="preload2"/></stentry>
+                    <stentry><ph conkeyref="preload2/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isPreloaded"/></stentry>
+                    <stentry><ph conkeyref="isPreloaded/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="open_IMusicPlayer"/></stentry>
+                    <stentry><ph conkeyref="open_IMusicPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="registerEventHandler_IMusicContentCenter"/></stentry>
+                    <stentry><ph conkeyref="registerEventHandler_IMusicContentCenter/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp android unity rn flutter">
+                    <stentry><xref keyref="unregisterEventHandler_IMusicContentCenter"/></stentry>
+                    <stentry><ph conkeyref="unregisterEventHandler_IMusicContentCenter/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCaches"/></stentry>
+                    <stentry><ph conkeyref="getCaches/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="removeCache"/></stentry>
+                    <stentry><ph conkeyref="removeCache/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getMusicCharts"/></stentry>
+                    <stentry><ph conkeyref="getMusicCharts/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getMusicCollectionByMusicChartId"/></stentry>
+                    <stentry><ph conkeyref="getMusicCollectionByMusicChartId/shortdesc"/></stentry>
+                </strow>
+                    <strow props="android">
+                    <stentry><xref keyref="getMusicCollectionByMusicChartId2"/></stentry>
+                    <stentry><ph conkeyref="getMusicCollectionByMusicChartId2/shortdesc"/></stentry>
+                </strow>
+                    <strow>
+                    <stentry><xref keyref="searchMusic"/></stentry>
+                    <stentry><ph conkeyref="searchMusic/shortdesc"/></stentry>
+                </strow>
+                    <strow props="android">
+                    <stentry><xref keyref="searchMusic2"/></stentry>
+                    <stentry><ph conkeyref="searchMusic2/shortdesc"/></stentry>
+                </strow>
+                    <strow>
+                    <stentry><xref keyref="renewToken"/></stentry>
+                    <stentry><ph conkeyref="renewToken/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getLyric"/></stentry>
+                    <stentry><ph conkeyref="getLyric/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getInternalSongCode"/></stentry>
+                    <stentry><ph conkeyref="getInternalSongCode/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getSongSimpleInfo"/></stentry>
+                    <stentry><ph conkeyref="getSongSimpleInfo/shortdesc"/></stentry>
+                </strow>
+                <strow props="android flutter">
+                    <stentry><xref keyref="getPlaySrc"/></stentry>
+                    <stentry><ph conkeyref="getPlaySrc/shortdesc"/></stentry>
+                </strow>
+                <strow props="ios">
+                    <stentry><xref keyref="enableMainQueueDispatch"/></stentry>
+                    <stentry><ph conkeyref="enableMainQueueDispatch/shortdesc"/></stentry>
+                </strow>
+                <strow props="android">
+                    <stentry><xref keyref="stop_IMusicPlayer"/></stentry>
+                    <stentry><ph conkeyref="stop_IMusicPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></stentry>
+                    <stentry><ph conkeyref="onPreLoadEvent_IMusicContentCenterEventHandler/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onLyricResult"/></stentry>
+                    <stentry><ph conkeyref="onLyricResult/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onMusicChartsResult"/></stentry>
+                    <stentry><ph conkeyref="onMusicChartsResult/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onMusicCollectionResult"/></stentry>
+                    <stentry><ph conkeyref="onMusicCollectionResult/shortdesc"/></stentry>
+                </strow>
+                    <strow>
+                    <stentry><xref keyref="onSongSimpleInfoResult"/></stentry>
+                    <stentry><ph conkeyref="onSongSimpleInfoResult/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="media_recorder" props="cn">
             <title>音视频录制</title>
             <simpletable>
                 <sthead>
@@ -1271,20 +1400,60 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="createMediaRecorder"/></stentry>
+                    <stentry><ph conkeyref="createMediaRecorder/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setMediaRecorderObserver"/></stentry>
+                    <stentry><ph conkeyref="setMediaRecorderObserver/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startRecording"/></stentry>
+                    <stentry><ph conkeyref="startRecording/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRecording"/></stentry>
+                    <stentry><ph conkeyref="stopRecording/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unity cs unreal">
+                    <stentry><xref keyref="startAudioRecording1"/></stentry>
+                    <stentry><ph conkeyref="startAudioRecording1/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unity cs unreal">
+                    <stentry><xref keyref="startAudioRecording2"/></stentry>
+                    <stentry><ph conkeyref="startAudioRecording2/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startAudioRecording3"/></stentry>
+                    <stentry><ph conkeyref="startAudioRecording3/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopAudioRecording"/></stentry>
+                    <stentry><ph conkeyref="stopAudioRecording/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="releaseRecorder"/></stentry>
+                    <stentry><ph conkeyref="releaseRecorder/shortdesc"/></stentry>
+                </strow>
+                <strow props="ios mac">
+                    <stentry><xref keyref="enableMainQueueDispatch_IMediaRecorder"/></stentry>
+                    <stentry><ph conkeyref="enableMainQueueDispatch_IMediaRecorder/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="destroyMediaRecorder"/></stentry>
+                    <stentry><ph conkeyref="destroyMediaRecorder/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRecorderStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onRecorderStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRecorderInfoUpdated"/></stentry>
+                    <stentry><ph conkeyref="onRecorderInfoUpdated/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="media_stream_relay_across_channels">
             <title>跨频道媒体流转发</title>
             <simpletable>
                 <sthead>
@@ -1292,20 +1461,40 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="startChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="updateChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="updateChannelMediaRelay/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startOrUpdateChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="startOrUpdateChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="stopChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pauseAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="pauseAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeAllChannelMediaRelay"/></stentry>
+                    <stentry><ph conkeyref="resumeAllChannelMediaRelay/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onChannelMediaRelayStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onChannelMediaRelayStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onChannelMediaRelayEvent"/></stentry>
+                    <stentry><ph conkeyref="onChannelMediaRelayEvent/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="media_push">
             <title>旁路推流</title>
             <simpletable>
                 <sthead>
@@ -1313,20 +1502,36 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startRtmpStreamWithoutTranscoding"/></stentry>
+                    <stentry><ph conkeyref="startRtmpStreamWithoutTranscoding/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startRtmpStreamWithTranscoding"/></stentry>
+                    <stentry><ph conkeyref="startRtmpStreamWithTranscoding/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="updateRtmpTranscoding"/></stentry>
+                    <stentry><ph conkeyref="updateRtmpTranscoding/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRtmpStream"/></stentry>
+                    <stentry><ph conkeyref="stopRtmpStream/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRtmpStreamingEvent"/></stentry>
+                    <stentry><ph conkeyref="onRtmpStreamingEvent/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRtmpStreamingStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onRtmpStreamingStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onTranscodingUpdated"/></stentry>
+                    <stentry><ph conkeyref="onTranscodingUpdated/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="direct_cdn">
             <title>直推 CDN</title>
             <simpletable>
                 <sthead>
@@ -1334,20 +1539,32 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startDirectCdnStreaming"/></stentry>
+                    <stentry><ph conkeyref="startDirectCdnStreaming/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="stopDirectCdnStreaming"/></stentry>
+                    <stentry><ph conkeyref="stopDirectCdnStreaming/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setDirectCdnStreamingAudioConfiguration"/></stentry>
+                    <stentry><ph conkeyref="setDirectCdnStreamingAudioConfiguration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setDirectCdnStreamingVideoConfiguration"/></stentry>
+                    <stentry><ph conkeyref="setDirectCdnStreamingVideoConfiguration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onDirectCdnStreamingStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onDirectCdnStreamingStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onDirectCdnStreamingStats"/></stentry>
+                    <stentry><ph conkeyref="onDirectCdnStreamingStats/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="stream_message">
             <title>数据流</title>
             <simpletable>
                 <sthead>
@@ -1355,20 +1572,24 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="createDataStream2"/></stentry>
+                    <stentry><ph conkeyref="createDataStream2/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="sendStreamMessage"/></stentry>
+                    <stentry><ph conkeyref="sendStreamMessage/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="onStreamMessage"/></stentry>
+                    <stentry><ph conkeyref="onStreamMessage/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onStreamMessageError"/></stentry>
+                    <stentry><ph conkeyref="onStreamMessageError/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="media_metadata">
             <title>Metadata (SEI)</title>
             <simpletable>
                 <sthead>
@@ -1376,104 +1597,336 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="registerMediaMetadataObserver"/></stentry>
+                    <stentry><ph conkeyref="registerMediaMetadataObserver/shortdesc"/></stentry>
+                </strow>
+                <strow props="ios mac">
+                    <stentry><xref keyref="setMediaMetadataDataSource"/></stentry>
+                    <stentry><ph conkeyref="setMediaMetadataDataSource/shortdesc"/></stentry>
+                </strow>
+                <strow props="android cpp framework">
+                    <stentry><xref keyref="unregisterMediaMetadataObserver"/></stentry>
+                    <stentry><ph conkeyref="unregisterMediaMetadataObserver/shortdesc"/></stentry>
+                </strow>
+                <strow props="electron flutter rn unity">
+                    <stentry><xref keyref="setMaxMetadataSize"/></stentry>
+                    <stentry><ph conkeyref="setMaxMetadataSize/shortdesc"/></stentry>
+                </strow>
+                <strow props="electron flutter rn unity">
+                    <stentry><xref keyref="sendMetaData"/></stentry>
+                    <stentry><ph conkeyref="sendMetaData/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp ios mac cs">
+                    <stentry><xref keyref="getMaxMetadataSize"/></stentry>
+                    <stentry><ph conkeyref="getMaxMetadataSize/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp cs">
+                    <stentry><xref keyref="onReadyToSendMetadata"/></stentry>
+                    <stentry><ph conkeyref="onReadyToSendMetadata/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-                <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="onMetadataReceived"/></stentry>
+                    <stentry><ph conkeyref="onMetadataReceived/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="audio_route" props="android ios cpp unreal bp unity flutter rn">
             <title>音频路由</title>
+            <p props="cpp unreal bp flutter">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setDefaultAudioRouteToSpeakerphone"/></stentry>
+                    <stentry><ph conkeyref="setDefaultAudioRouteToSpeakerphone/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setEnableSpeakerphone"/></stentry>
+                    <stentry><ph conkeyref="setEnableSpeakerphone/shortdesc"/></stentry>
+                </strow>
+                <strow props="android cpp unity rn flutter unreal bp">
+                    <stentry><xref keyref="setRouteInCommunicationMode"/></stentry>
+                    <stentry><ph conkeyref="setRouteInCommunicationMode/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios cpp unreal bp flutter rn">
+                    <stentry><xref keyref="isSpeakerphoneEnabled"/></stentry>
+                    <stentry><ph conkeyref="isSpeakerphoneEnabled/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="onAudioRoutingChanged"/></stentry>
+                    <stentry><ph conkeyref="onAudioRoutingChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="mobile_camera_control" "android ios cpp unreal bp unity flutter rn">
             <title>移动端摄像头管理</title>
+            <p props="cpp unreal bp unity flutter">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="enableMultiCamera"/></stentry>
+                    <stentry><ph conkeyref="enableMultiCamera/shortdesc"/><ph>(仅适用于 iOS)</ph></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="switchCamera"/></stentry>
+                    <stentry><ph conkeyref="switchCamera/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setCameraCapturerConfiguration"/></stentry>
+                    <stentry><ph conkeyref="setCameraCapturerConfiguration/shortdesc"/></stentry>
                 </strow>
-            </simpletable>
+                <strow>
+                    <stentry><xref keyref="isCameraZoomSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraZoomSupported/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCameraMaxZoomFactor"/></stentry>
+                    <stentry><ph conkeyref="getCameraMaxZoomFactor/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCameraZoomFactor"/></stentry>
+                    <stentry><ph conkeyref="setCameraZoomFactor/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isCameraTorchSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraTorchSupported/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCameraTorchOn"/></stentry>
+                    <stentry><ph conkeyref="setCameraTorchOn/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isCameraFaceDetectSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraFaceDetectSupported/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isCameraFocusSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraFocusSupported/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCameraFocusPositionInPreview"/></stentry>
+                    <stentry><ph conkeyref="setCameraFocusPositionInPreview/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isCameraAutoFocusFaceModeSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraAutoFocusFaceModeSupported/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCameraAutoFocusFaceModeEnabled"/></stentry>
+                    <stentry><ph conkeyref="setCameraAutoFocusFaceModeEnabled/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isCameraExposurePositionSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraExposurePositionSupported/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="isCameraAutoExposureFaceModeSupported"/></stentry>
+                    <stentry><ph conkeyref="isCameraAutoExposureFaceModeSupported/shortdesc"/><ph>(仅适用于 iOS)</ph></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCameraExposurePosition"/></stentry>
+                    <stentry><ph conkeyref="setCameraExposurePosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCameraAutoExposureFaceModeEnabled"/></stentry>
+                    <stentry><ph conkeyref="setCameraAutoExposureFaceModeEnabled/shortdesc"/><ph>(仅适用于 iOS)</ph></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onCameraFocusAreaChanged"/></stentry>
+                    <stentry><ph conkeyref="onCameraFocusAreaChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onCameraExposureAreaChanged"/></stentry>
+                    <stentry><ph conkeyref="onCameraExposureAreaChanged/shortdesc"/></stentry>
+                </strow>
+             </simpletable>
         </section>
-        <section>
+        <section id="pc_audio_device_management" props="cpp unreal bp unity flutter electron cs">
             <title>桌面端音频设备管理</title>
+            <p props="cpp unreal bp unity flutter cs">该组方法仅适用于 Windows 和 macOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-                <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-                <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
+            <strow>
+                <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
+                <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="enumerateRecordingDevices"/></stentry>
+                <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="followSystemPlaybackDevice"/></stentry>
+                <stentry><ph conkeyref="followSystemPlaybackDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="followSystemRecordingDevice"/></stentry>
+                <stentry><ph conkeyref="followSystemRecordingDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setPlaybackDevice"/></stentry>
+                <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getPlaybackDevice"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setLoopbackDevice"/></stentry>
+                <stentry><ph conkeyref="setLoopbackDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getLoopbackDevice"/></stentry>
+                <stentry><ph conkeyref="getLoopbackDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="followSystemLoopbackDevice"/></stentry>
+                <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/></stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="setPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="getPlaybackDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setRecordingDevice"/></stentry>
+                <stentry><ph conkeyref="setRecordingDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getRecordingDevice"/></stentry>
+                <stentry><ph conkeyref="getRecordingDevice/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
+                <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/></stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
+                <stentry><ph conkeyref="getRecordingDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
+                <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="getPlaybackDeviceMute"/></stentry>
+                <stentry><ph conkeyref="getPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="setRecordingDeviceMute"/></stentry>
+                <stentry><ph conkeyref="setRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow props="hide">
+                <stentry><xref keyref="getRecordingDeviceMute"/></stentry>
+                <stentry><ph conkeyref="getRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="startPlaybackDeviceTest"/></stentry>
+                <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="stopPlaybackDeviceTest"/></stentry>
+                <stentry><ph conkeyref="stopPlaybackDeviceTest/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="startRecordingDeviceTest"/></stentry>
+                <stentry><ph conkeyref="startRecordingDeviceTest/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="stopRecordingDeviceTest"/></stentry>
+                <stentry><ph conkeyref="stopRecordingDeviceTest/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="startAudioDeviceLoopbackTest"/></stentry>
+                <stentry><ph conkeyref="startAudioDeviceLoopbackTest/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="stopAudioDeviceLoopbackTest"/></stentry>
+                <stentry><ph conkeyref="stopAudioDeviceLoopbackTest/shortdesc"/></stentry>
+            </strow>
+            <strow props="cpp unreal bp electron flutter">
+                <stentry><xref keyref="release_IAudioDeviceManager"/></stentry>
+                <stentry><ph conkeyref="release_IAudioDeviceManager/shortdesc"/>（仅适用于 Windows）</stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
+                <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/></stentry>
+            </strow>
+            <strow>
+                <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
+                <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/></stentry>
+            </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="pc_video_device_management" props="cpp unreal bp unity flutter electron cs" >
             <title>桌面端视频设备管理</title>
+            <p props="cpp unreal bp unity flutter cs">该组方法仅适用于 Windows 和 macOS 平台。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="enumerateVideoDevices"/></stentry>
+                    <stentry><ph conkeyref="enumerateVideoDevices/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setDevice_IVideoDeviceManager"/></stentry>
+                    <stentry><ph conkeyref="setDevice_IVideoDeviceManager/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="getDevice_IVideoDeviceManager"/></stentry>
+                    <stentry><ph conkeyref="getDevice_IVideoDeviceManager/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp flutter">
+                    <stentry><xref keyref="release_IVideoDeviceManager"/></stentry>
+                    <stentry><ph conkeyref="release_IVideoDeviceManager/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCount"/></stentry>
+                    <stentry><ph conkeyref="getCount/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="numberOfCapabilities"/></stentry>
+                    <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCapability"/></stentry>
+                    <stentry><ph conkeyref="getCapability/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="queryCodecCapability"/></stentry>
+                    <stentry><ph conkeyref="queryCodecCapability/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCameraDeviceOrientation"/></stentry>
+                    <stentry><ph conkeyref="setCameraDeviceOrientation/shortdesc"/><ph props="cpp unreal bp unity electron flutter">（仅适用于 Windows）</ph></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onVideoDeviceStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onVideoDeviceStateChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="extension">
             <title>插件相关</title>
             <simpletable>
                 <sthead>
@@ -1481,39 +1934,191 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="enableExtension"/></stentry>
+                    <stentry><ph conkeyref="enableExtension/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setExtensionProperty"/></stentry>
+                    <stentry><ph conkeyref="setExtensionProperty/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setExtensionProviderProperty"/></stentry>
+                    <stentry><ph conkeyref="setExtensionProviderProperty/shortdesc"/></stentry>
+                </strow>
+                <strow props="android ios mac">
+                    <stentry><xref keyref="getExtensionProperty"/></stentry>
+                    <stentry><ph conkeyref="getExtensionProperty/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getExtensionProperty2"/></stentry>
+                    <stentry><ph conkeyref="getExtensionProperty2/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp unity electron flutter cs">
+                    <stentry><xref keyref="registerExtension"/></stentry>
+                    <stentry><ph conkeyref="registerExtension/shortdesc"/><ph props="cpp unreal bp unity electron flutter">(仅适用于 Windows)</ph></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onExtensionEvent"/></stentry>
+                    <stentry><ph conkeyref="onExtensionEvent/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onExtensionStarted"/></stentry>
+                    <stentry><ph conkeyref="onExtensionStarted/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onExtensionStopped"/></stentry>
+                    <stentry><ph conkeyref="onExtensionStopped/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp flutter">
+                    <stentry><xref keyref="onExtensionError"/></stentry>
+                    <stentry><ph conkeyref="onExtensionError/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="network_and_others">
             <title>网络及其他</title>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow>
-                    <stentry/>
-                    <stentry/>
+                <strow props="native unreal bp unity cs">
+                    <stentry><xref keyref="startEchoTest1"/></stentry>
+                    <stentry><ph conkeyref="startEchoTest1/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp unity cs">
+                    <stentry><xref keyref="startEchoTest2"/></stentry>
+                    <stentry><ph conkeyref="startEchoTest2/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startEchoTest3"/></stentry>
+                    <stentry><ph conkeyref="startEchoTest3/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="stopEchoTest"/></stentry>
+                    <stentry><ph conkeyref="stopEchoTest/shortdesc"/></stentry>
                 </strow>
-            </simpletable>
+                <strow>
+                    <stentry><xref keyref="startLastmileProbeTest"/></stentry>
+                    <stentry><ph conkeyref="startLastmileProbeTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopLastmileProbeTest"/></stentry>
+                    <stentry><ph conkeyref="stopLastmileProbeTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onLastmileQuality"/></stentry>
+                    <stentry><ph conkeyref="onLastmileQuality/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onLastmileProbeResult"/></stentry>
+                    <stentry><ph conkeyref="onLastmileProbeResult/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCurrentMonotonicTimeInMs"/></stentry>
+                    <stentry><ph conkeyref="getCurrentMonotonicTimeInMs/shortdesc"/></stentry>
+                </strow>
+                <strow props="cn">
+                    <stentry><xref keyref="setAVSyncSource"/></stentry>
+                    <stentry><ph conkeyref="setAVSyncSource/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setCloudProxy"/></stentry>
+                    <stentry><ph conkeyref="setCloudProxy/shortdesc"/></stentry>
+                </strow>
+                <strow props="cn">
+                    <stentry><xref keyref="setLocalAccessPoint"/></stentry>
+                    <stentry><ph conkeyref="setLocalAccessPoint/shortdesc"/></stentry>
+                </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="setEnable"/></stentry>
+                    <stentry><ph conkeyref="setEnable/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setParameters"/></stentry>
+                    <stentry><ph conkeyref="setParameters/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getCallId"/></stentry>
+                    <stentry><ph conkeyref="getCallId/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="rate"/></stentry>
+                    <stentry><ph conkeyref="rate/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="complain"/></stentry>
+                    <stentry><ph conkeyref="complain/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getConnectionState"/></stentry>
+                    <stentry><ph conkeyref="getConnectionState/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getConnectionStateEx"/></stentry>
+                    <stentry><ph conkeyref="getConnectionStateEx/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getVersion"/></stentry>
+                    <stentry><ph conkeyref="getVersion/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getErrorDescription"/></stentry>
+                    <stentry><ph conkeyref="getErrorDescription/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp flutter">
+                    <stentry><xref keyref="queryInterface"/></stentry>
+                    <stentry><ph conkeyref="queryInterface/shortdesc"/></stentry>
+                </strow>
+                <strow props="android electron rn flutter">
+                    <stentry><xref keyref="addHandler"/></stentry>
+                    <stentry><ph conkeyref="addHandler/shortdesc"/></stentry>
+                </strow>
+                <strow props="android electron rn flutter">
+                    <stentry><xref keyref="removeHandler"/></stentry>
+                    <stentry><ph conkeyref="removeHandler/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getNetworkType"/></stentry>
+                    <stentry><ph conkeyref="getNetworkType/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getNtpWallTimeInMs"/></stentry>
+                    <stentry><ph conkeyref="getNtpWallTimeInMs/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setHeadphoneEQPreset"/></stentry>
+                    <stentry><ph conkeyref="setHeadphoneEQPreset/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setHeadphoneEQParameters"/></stentry>
+                    <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableEncryption"/></stentry>
+                    <stentry><ph conkeyref="enableEncryption/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="registerPacketObserver"/></stentry>
+                    <stentry><ph conkeyref="registerPacketObserver/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onEncryptionError"/></stentry>
+                    <stentry><ph conkeyref="onEncryptionError/shortdesc"/></stentry>
+                </strow>
+                <strow props="android cpp framework">
+                    <stentry><xref keyref="onProxyConnected"/></stentry>
+                    <stentry><ph conkeyref="onProxyConnected/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onNetworkQuality"/></stentry>
+                    <stentry><ph conkeyref="onNetworkQuality/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRtcStats"/></stentry>
+                    <stentry><ph conkeyref="onRtcStats/shortdesc"/></stentry>
+                </strow>
+                </simpletable>
         </section>
         
     </body>
