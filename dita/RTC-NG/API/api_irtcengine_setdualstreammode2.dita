@@ -17,8 +17,10 @@
       Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDualStreamMode:(AgoraSimulcastStreamMode)mode
             streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode,
                                  const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
+int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&amp; streamConfig);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDualStreamMode(
     mode: SimulcastStreamMode,
     streamConfig?: SimulcastStreamConfig
@@ -41,7 +43,7 @@
             </dlentry>
             </dl>
             <p conkeyref="setDualStreamMode/desc"/>
-            <p props="native unreal bp unity cs">该方法跟 <xref keyref="setDualStreamMode"/> 的区别在于，该方法还可以进行视频小流的配置，SDK 会根据 <parmname>streamConfig</parmname> 中的配置发送小流。</p>
+            <p props="native unreal unity cs">该方法跟 <xref keyref="setDualStreamMode"/> 的区别在于，该方法还可以进行视频小流的配置，SDK 会根据 <parmname>streamConfig</parmname> 中的配置发送小流。</p>
             <note id="note">该方法和 <xref keyref="enableDualStreamMode2"/> 的区别与联系如下：
                 <ul>
                 <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟调用 <apiname keyref="enableDualStreamMode2"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="false"/></codeph> 的效果相同。</li>
