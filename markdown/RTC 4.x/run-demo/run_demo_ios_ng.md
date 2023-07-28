@@ -27,7 +27,13 @@ $$  -->
 
 你可以通过以下两种方式获取示例项目：
 - 前往 [SDK 下载页面](./downloads?platform=iOS)，下载最新版的 iOS 视频 SDK，然后解压。
-- 前往声网在 Github 上提供的[示例项目](https://github.com/AgoraIO/API-Examples/tree/main)，然后将仓库克隆至本地。
+- 前往声网在 Github 上提供的[示例项目](https://github.com/AgoraIO/API-Examples/tree/main)，然后运行以下命令将仓库克隆至本地。
+    ```shell
+  git clone git@github.com:AgoraIO/API-Examples.git
+  ```
+  <div class="alert info">声网在仓库中为 iOS 平台提供了视频示例项目和音频示例项目，分别位于 <code>/iOS/APIExample</code> 和 <code>/iOS/APIExample-Audio</code> 路径下。</div>
+
+
 ### 配置示例项目
 
 1. 打开示例项目文件夹，在 `samples/APIExample/APIExample/Common/KeyCenter.swift` 文件中填写你从声网控制台获取到的 App ID 和 App 证书（如果项目为“无证书模式”，该字段留空）。
@@ -53,7 +59,7 @@ $$  -->
   <img src="https://web-cdn.agora.io/docs-files/1690165346541" width="400"/>
 
 1. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，然后在每一个 Target 下配置你的苹果开发者账号和 **Bundle Identifier**。
-   	![](https://web-cdn.agora.io/docs-files/1690171627394)
+  ![](https://web-cdn.agora.io/docs-files/1690515622771)
 
 2. 点击 <img src="https://web-cdn.agora.io/docs-files/1690171362896" height="20"/> 开始编译。
 
