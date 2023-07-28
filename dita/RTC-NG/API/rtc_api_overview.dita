@@ -284,12 +284,48 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
+                    <stentry><xref keyref="adjustUserPlaybackSignalVolume"/></stentry>
+                    <stentry><ph conkeyref="adjustUserPlaybackSignalVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustUserPlaybackSignalVolumeEx"/></stentry>
+                    <stentry><ph conkeyref="adjustUserPlaybackSignalVolumeEx/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustCustomAudioPlayoutVolume"/></stentry>
+                    <stentry><ph conkeyref="adjustCustomAudioPlayoutVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustCustomAudioPublishVolume"/></stentry>
+                    <stentry><ph conkeyref="adjustCustomAudioPublishVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustPlaybackSignalVolume"/></stentry>
+                    <stentry><ph conkeyref="adjustPlaybackSignalVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
                     <stentry><xref keyref="enableAudio"/></stentry>
                     <stentry><ph conkeyref="enableAudio/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="disableAudio"/></stentry>
                     <stentry><ph conkeyref="disableAudio/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableAudioVolumeIndication"/></stentry>
+                    <stentry><ph conkeyref="enableAudioVolumeIndication/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enableAudioVolumeIndicationEx"/></stentry>
+                    <stentry><ph conkeyref="enableAudioVolumeIndicationEx/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setHeadphoneEQPreset"/></stentry>
+                    <stentry><ph conkeyref="setHeadphoneEQPreset/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setHeadphoneEQParameters"/></stentry>
+                    <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
                 </strow>
                 <strow props="native unreal bp unity">
                     <stentry><xref keyref="setAudioProfile2"/></stentry>
@@ -306,6 +342,14 @@
                 <strow props="ios cpp unreal bp unity flutter rn">
                     <stentry><xref keyref="setAudioSessionOperationRestriction"/></stentry>
                     <stentry><ph conkeyref="setAudioSessionOperationRestriction/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onAudioVolumeIndication"/></stentry>
+                    <stentry><ph conkeyref="onAudioVolumeIndication/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onActiveSpeaker"/></stentry>
+                    <stentry><ph conkeyref="onActiveSpeaker/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="onLocalAudioStateChanged"/></stentry>
@@ -1045,7 +1089,7 @@
             </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="raw_video_data">
             <title>原始视频数据</title>
             <simpletable>
                 <sthead>
@@ -1053,20 +1097,48 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="registerVideoFrameObserver"/></stentry>
+                    <stentry><ph conkeyref="registerVideoFrameObserver/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="onCaptureVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="onCaptureVideoFrame/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="onPreEncodeVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="onPreEncodeVideoFrame/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRenderVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="onRenderVideoFrame/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="onMediaPlayerVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="onMediaPlayerVideoFrame/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp cs">
+                    <stentry><xref keyref="getObservedFramePosition"/></stentry>
+                    <stentry><ph conkeyref="getObservedFramePosition/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp">
+                    <stentry><xref keyref="getVideoFrameProcessMode"/></stentry>
+                    <stentry><ph conkeyref="getVideoFrameProcessMode/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp">
+                    <stentry><xref keyref="getMirrorApplied"/></stentry>
+                    <stentry><ph conkeyref="getMirrorApplied/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp">
+                    <stentry><xref keyref="getRotationApplied"/></stentry>
+                    <stentry><ph conkeyref="getRotationApplied/shortdesc"/></stentry>
+                </strow>
+                <strow props="native unreal bp cs">
+                    <stentry><xref keyref="getVideoFormatPreference"/></stentry>
+                    <stentry><ph conkeyref="getVideoFormatPreference/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="encode_video_data">
             <title>已编码视频数据</title>
             <simpletable>
                 <sthead>
@@ -1074,20 +1146,16 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="registerVideoEncodedFrameObserver"/></stentry>
+                    <stentry><ph conkeyref="registerVideoEncodedFrameObserver/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-                <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="onEncodedVideoFrameReceived"/></stentry>
+                    <stentry><ph conkeyref="onEncodedVideoFrameReceived/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="video_custom_capturenrendering">
             <title>自定义视频采集和渲染</title>
             <simpletable>
                 <sthead>
@@ -1095,62 +1163,117 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="createCustomVideoTrack"/></stentry>
+                    <stentry><ph conkeyref="createCustomVideoTrack/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="destroyCustomVideoTrack"/></stentry>
+                    <stentry><ph conkeyref="destroyCustomVideoTrack/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setExternalVideoSource"/></stentry>
+                    <stentry><ph conkeyref="setExternalVideoSource/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pushVideoFrame"/></stentry>
+                    <stentry><ph conkeyref="pushVideoFrame/shortdesc"/></stentry>
+                </strow>
+                <strow props="android">
+                    <stentry><xref keyref="pushVideoFrame2"/></stentry>
+                    <stentry><ph conkeyref="pushVideoFrame2/shortdesc"/></stentry>
+                </strow>
+                <strow props="android apple">
+                    <stentry><xref keyref="pushVideoFrameEx"/></stentry>
+                    <stentry><ph conkeyref="pushVideoFrameEx/shortdesc"/></stentry>
+                </strow>
+                <strow props="android">
+                    <stentry><xref keyref="pushVideoFrameEx2"/></stentry>
+                    <stentry><ph conkeyref="pushVideoFrameEx2/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="pushEncodedVideoImage"/></stentry>
+                    <stentry><ph conkeyref="pushEncodedVideoImage/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
-            <title>音量调节</title>
-            <simpletable>
-                <sthead>
-                    <stentry>方法/回调</stentry>
-                    <stentry>描述</stentry>
-                </sthead>
-                <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-                <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-                <strow>
-                    <stentry/>
-                    <stentry/>
-                </strow>
-            </simpletable>
-        </section>
-        <section>
+        <section id="audio_file_playback">
             <title>音乐文件播放</title>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-                <strow>
-                    <stentry/>
-                    <stentry/>
+                <strow props="native unreal bp unity">
+                    <stentry><xref keyref="startAudioMixing"/></stentry>
+                    <stentry><ph conkeyref="startAudioMixing/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startAudioMixing2"/></stentry>
+                    <stentry><ph conkeyref="startAudioMixing2/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="stopAudioMixing"/></stentry>
+                    <stentry><ph conkeyref="stopAudioMixing/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pauseAudioMixing"/></stentry>
+                    <stentry><ph conkeyref="pauseAudioMixing/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeAudioMixing"/></stentry>
+                    <stentry><ph conkeyref="resumeAudioMixing/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustAudioMixingVolume"/></stentry>
+                    <stentry><ph conkeyref="adjustAudioMixingVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustAudioMixingPlayoutVolume"/></stentry>
+                    <stentry><ph conkeyref="adjustAudioMixingPlayoutVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="adjustAudioMixingPublishVolume"/></stentry>
+                    <stentry><ph conkeyref="adjustAudioMixingPublishVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getAudioMixingPlayoutVolume"/></stentry>
+                    <stentry><ph conkeyref="getAudioMixingPlayoutVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getAudioMixingPublishVolume"/></stentry>
+                    <stentry><ph conkeyref="getAudioMixingPublishVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getAudioMixingDuration"/></stentry>
+                    <stentry><ph conkeyref="getAudioMixingDuration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getAudioMixingCurrentPosition"/></stentry>
+                    <stentry><ph conkeyref="getAudioMixingCurrentPosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioMixingPitch"/></stentry>
+                    <stentry><ph conkeyref="setAudioMixingPitch/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioMixingPosition"/></stentry>
+                    <stentry><ph conkeyref="setAudioMixingPosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setAudioMixingDualMonoMode"/></stentry>
+                    <stentry><ph conkeyref="setAudioMixingDualMonoMode/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onAudioMixingStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onAudioMixingStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onAudioMixingPositionChanged"/></stentry>
+                    <stentry><ph conkeyref="onAudioMixingPositionChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="audio_effect_playback">
             <title>音效文件播放</title>
             <simpletable>
                 <sthead>
@@ -1158,58 +1281,147 @@
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="getEffectsVolume"/></stentry>
+                    <stentry><ph conkeyref="getEffectsVolume/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="setEffectsVolume"/></stentry>
+                    <stentry><ph conkeyref="setEffectsVolume/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="getVolumeOfEffect"/></stentry>
+                    <stentry><ph conkeyref="getVolumeOfEffect/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setVolumeOfEffect"/></stentry>
+                    <stentry><ph conkeyref="setVolumeOfEffect/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="preloadEffect"/></stentry>
+                    <stentry><ph conkeyref="preloadEffect/shortdesc"/></stentry>
+                </strow>
+                <strow props="apple">
+                    <stentry><xref keyref="playEffect1"/></stentry>
+                    <stentry><ph conkeyref="playEffect1/shortdesc"/></stentry>
+                </strow>
+                <strow props="android apple unity cs">
+                    <stentry><xref keyref="playEffect2"/></stentry>
+                    <stentry><ph conkeyref="playEffect2/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="playEffect3"/></stentry>
+                    <stentry><ph conkeyref="playEffect3/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp framework">
+                    <stentry><xref keyref="playAllEffects"/></stentry>
+                    <stentry><ph conkeyref="playAllEffects/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pauseEffect"/></stentry>
+                    <stentry><ph conkeyref="pauseEffect/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="pauseAllEffects"/></stentry>
+                    <stentry><ph conkeyref="pauseAllEffects/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeEffect"/></stentry>
+                    <stentry><ph conkeyref="resumeEffect/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="resumeAllEffects"/></stentry>
+                    <stentry><ph conkeyref="resumeAllEffects/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopEffect"/></stentry>
+                    <stentry><ph conkeyref="stopEffect/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopAllEffects"/></stentry>
+                    <stentry><ph conkeyref="stopAllEffects/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="unloadEffect"/></stentry>
+                    <stentry><ph conkeyref="unloadEffect/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp framework">
+                    <stentry><xref keyref="unloadAllEffects"/></stentry>
+                    <stentry><ph conkeyref="unloadAllEffects/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getEffectDuration"/></stentry>
+                    <stentry><ph conkeyref="getEffectDuration/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getEffectCurrentPosition"/></stentry>
+                    <stentry><ph conkeyref="getEffectCurrentPosition/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setEffectPosition"/></stentry>
+                    <stentry><ph conkeyref="setEffectPosition/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="rhythm_player" props="cpp unreal bp android ios rn unity flutter">
             <title>虚拟节拍器</title>
+            <note props="cpp unreal bp unity flutter">
+            <p>本组方法仅适用于 Android 和 iOS。</p>
+            </note>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="startRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="startRhythmPlayer/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="stopRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="stopRhythmPlayer/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="configRhythmPlayer"/></stentry>
+                    <stentry><ph conkeyref="configRhythmPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onRhythmPlayerStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onRhythmPlayerStateChanged/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
-        <section>
+        <section id="media_player">
             <title>媒体播放器</title>
+            <p props="cn">更多有关媒体播放器的方法，详见<xref href="toc_mediaplayer.dita">内置媒体播放器</xref>。</p>
+            <p props="en">更多有关媒体播放器的方法，详见 <xref keyref="IMediaPlayer"/>。</p>
             <simpletable>
                 <sthead>
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="createMediaPlayer"/></stentry>
+                    <stentry><ph conkeyref="createMediaPlayer/shortdesc" props="android cpp framework"/><ph conkeyref="createMediaPlayer/shortdesc1" props="apple"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="getMediaPlayerCacheManager"/></stentry>
+                    <stentry><ph conkeyref="getMediaPlayerCacheManager/shortdesc"/></stentry>
+                </strow>
+                <strow props="unity">
+                    <stentry><xref keyref="dispose_IMediaPlayer"/></stentry>
+                    <stentry><ph conkeyref="dispose_IMediaPlayer/shortdesc"/></stentry>
                 </strow>
                 <strow>
-                    <stentry/>
-                    <stentry/>
+                    <stentry><xref keyref="IMediaPlayer"/></stentry>
+                    <stentry><ph conkeyref="IMediaPlayer/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="IMediaPlayerCacheManager"/></stentry>
+                    <stentry><ph conkeyref="IMediaPlayerCacheManager/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="IMediaPlayerSourceObserver"/></stentry>
+                    <stentry><ph conkeyref="IMediaPlayerSourceObserver/shortdesc"/></stentry>
                 </strow>
             </simpletable>
         </section>
@@ -2170,14 +2382,6 @@
                 <strow>
                     <stentry><xref keyref="getNtpWallTimeInMs"/></stentry>
                     <stentry><ph conkeyref="getNtpWallTimeInMs/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="setHeadphoneEQPreset"/></stentry>
-                    <stentry><ph conkeyref="setHeadphoneEQPreset/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="setHeadphoneEQParameters"/></stentry>
-                    <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="enableEncryption"/></stentry>
