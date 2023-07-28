@@ -34,7 +34,7 @@ $$  -->
   git clone git@github.com:AgoraIO/API-Examples.git
   ```
 
-  该仓库中包含声网实时音频 SDK 和视频 SDK 的 Native 平台示例项目，其中 macOS 的平台视频 SDK 的 API 使用示例位于 `/macOS` 路径下。
+  该仓库中包含声网实时音视频 SDK 的 Native 平台示例项目，其中 macOS 平台的 API 使用示例位于 `/macOS` 路径下。
 
 ### 配置示例项目
 
@@ -56,7 +56,7 @@ $$  -->
 ### 编译并运行示例项目
 
 1. 在 Xcode 中打开 `APIExample.xcworkspace` 文件后，在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，然后在每一个 Target 下配置你的苹果开发者账号和 **Bundle Identifier**。
-   ![image-20230725180900434](/Users/admin/Library/Application Support/typora-user-images/image-20230725180900434.png)
+   ![](https://web-cdn.agora.io/docs-files/1690515719254)
 
 4. 点击 <img src="https://web-cdn.agora.io/docs-files/1690171362896" height="20"/> 开始编译。
 
@@ -64,8 +64,8 @@ $$  -->
 
 7. 选择一个你想要尝试的场景，输入频道名，然后点击**加入频道**。
 
-   ![image-20230725175932609](/Users/admin/Library/Application Support/typora-user-images/image-20230725175932609.png)
+   ![](https://web-cdn.agora.io/docs-files/1690515752444)
 
 5. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `KeyCenter.swift` 中的 App ID 一致）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
 
-   ![image-20230726100931250](/Users/admin/Library/Application Support/typora-user-images/image-20230726100931250.png)
+   ![](https://web-cdn.agora.io/docs-files/1690515855575)
