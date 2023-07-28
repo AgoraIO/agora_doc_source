@@ -1660,7 +1660,32 @@
                 </strow>
             </simpletable>
         </section>
-        <section id="mobile_camera_control" "android ios cpp unreal bp unity flutter rn">
+        <section id="general_device_management" props="mac">
+            <title>通用设备管理</title>
+            <simpletable>
+                <sthead>
+                    <stentry>方法/回调</stentry>
+                    <stentry>描述</stentry>
+                </sthead>
+                <strow>
+                    <stentry><xref keyref="enumerateDevices"/></stentry>
+                    <stentry><ph conkeyref="enumerateDevices/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getDeviceInfo"/></stentry>
+                    <stentry><ph conkeyref="getDeviceInfo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="monitorDeviceChange"/></stentry>
+                    <stentry><ph conkeyref="monitorDeviceChange/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stateChanged"/></stentry>
+                    <stentry><ph conkeyref="stateChanged/shortdesc"/></stentry>
+                </strow>
+             </simpletable>
+        </section>
+        <section id="mobile_camera_control" props="android ios cpp unreal bp unity flutter rn">
             <title>移动端摄像头管理</title>
             <p props="cpp unreal bp unity flutter">该组方法仅适用于 Android 和 iOS 平台。</p>
             <simpletable>
@@ -1746,7 +1771,7 @@
                 </strow>
              </simpletable>
         </section>
-        <section id="pc_audio_device_management" props="cpp unreal bp unity flutter electron cs">
+        <section id="pc_audio_device_management" props="cpp mac unreal bp unity flutter electron cs">
             <title>桌面端音频设备管理</title>
             <p props="cpp unreal bp unity flutter cs">该组方法仅适用于 Windows 和 macOS 平台。</p>
             <simpletable>
@@ -1754,129 +1779,169 @@
                     <stentry>方法/回调</stentry>
                     <stentry>描述</stentry>
                 </sthead>
-            <strow>
-                <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
-                <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="enumerateRecordingDevices"/></stentry>
-                <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="followSystemPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="followSystemPlaybackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="followSystemRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="followSystemRecordingDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="setPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getPlaybackDevice"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="setLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="setLoopbackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="getLoopbackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="followSystemLoopbackDevice"/></stentry>
-                <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/></stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="setPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="getPlaybackDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="setRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="setRecordingDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getRecordingDevice"/></stentry>
-                <stentry><ph conkeyref="getRecordingDevice/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
-                <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/></stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
-                <stentry><ph conkeyref="getRecordingDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
-                <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="getPlaybackDeviceMute"/></stentry>
-                <stentry><ph conkeyref="getPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="setRecordingDeviceMute"/></stentry>
-                <stentry><ph conkeyref="setRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow props="hide">
-                <stentry><xref keyref="getRecordingDeviceMute"/></stentry>
-                <stentry><ph conkeyref="getRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="startPlaybackDeviceTest"/></stentry>
-                <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="stopPlaybackDeviceTest"/></stentry>
-                <stentry><ph conkeyref="stopPlaybackDeviceTest/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="startRecordingDeviceTest"/></stentry>
-                <stentry><ph conkeyref="startRecordingDeviceTest/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="stopRecordingDeviceTest"/></stentry>
-                <stentry><ph conkeyref="stopRecordingDeviceTest/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="startAudioDeviceLoopbackTest"/></stentry>
-                <stentry><ph conkeyref="startAudioDeviceLoopbackTest/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="stopAudioDeviceLoopbackTest"/></stentry>
-                <stentry><ph conkeyref="stopAudioDeviceLoopbackTest/shortdesc"/></stentry>
-            </strow>
-            <strow props="cpp unreal bp electron flutter">
-                <stentry><xref keyref="release_IAudioDeviceManager"/></stentry>
-                <stentry><ph conkeyref="release_IAudioDeviceManager/shortdesc"/>（仅适用于 Windows）</stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
-                <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/></stentry>
-            </strow>
-            <strow>
-                <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
-                <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/></stentry>
-            </strow>
+                <strow>
+                    <stentry><xref keyref="enumeratePlaybackDevices"/></stentry>
+                    <stentry><ph conkeyref="enumeratePlaybackDevices/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="enumerateRecordingDevices"/></stentry>
+                    <stentry><ph conkeyref="enumerateRecordingDevices/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="followSystemPlaybackDevice"/></stentry>
+                    <stentry><ph conkeyref="followSystemPlaybackDevice/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="followSystemRecordingDevice"/></stentry>
+                    <stentry><ph conkeyref="followSystemRecordingDevice/shortdesc"/></stentry>
+                </strow>
+                <strow props="mac">
+                    <stentry><xref keyref="setDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="setDeviceVolume/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setPlaybackDevice"/></stentry>
+                    <stentry><ph conkeyref="setPlaybackDevice/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getPlaybackDevice"/></stentry>
+                    <stentry><ph conkeyref="getPlaybackDevice/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getPlaybackDeviceInfo"/></stentry>
+                    <stentry><ph conkeyref="getPlaybackDeviceInfo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setLoopbackDevice"/></stentry>
+                    <stentry><ph conkeyref="setLoopbackDevice/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getLoopbackDevice"/></stentry>
+                    <stentry><ph conkeyref="getLoopbackDevice/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="followSystemLoopbackDevice"/></stentry>
+                    <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="setPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="getPlaybackDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="getPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setRecordingDevice"/></stentry>
+                    <stentry><ph conkeyref="setRecordingDevice/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getRecordingDevice"/></stentry>
+                    <stentry><ph conkeyref="getRecordingDevice/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="getRecordingDeviceInfo"/></stentry>
+                    <stentry><ph conkeyref="getRecordingDeviceInfo/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/></stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="getRecordingDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="setPlaybackDeviceMute"/></stentry>
+                    <stentry><ph conkeyref="setPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="getPlaybackDeviceMute"/></stentry>
+                    <stentry><ph conkeyref="getPlaybackDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="setRecordingDeviceMute"/></stentry>
+                    <stentry><ph conkeyref="setRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow props="hide">
+                    <stentry><xref keyref="getRecordingDeviceMute"/></stentry>
+                    <stentry><ph conkeyref="getRecordingDeviceMute/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startPlaybackDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="startPlaybackDeviceTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopPlaybackDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="stopPlaybackDeviceTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startRecordingDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="startRecordingDeviceTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopRecordingDeviceTest"/></stentry>
+                    <stentry><ph conkeyref="stopRecordingDeviceTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="startAudioDeviceLoopbackTest"/></stentry>
+                    <stentry><ph conkeyref="startAudioDeviceLoopbackTest/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="stopAudioDeviceLoopbackTest"/></stentry>
+                    <stentry><ph conkeyref="stopAudioDeviceLoopbackTest/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp electron flutter">
+                    <stentry><xref keyref="release_IAudioDeviceManager"/></stentry>
+                    <stentry><ph conkeyref="release_IAudioDeviceManager/shortdesc"/>（仅适用于 Windows）</stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="setDevice_IAudioDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="setDevice_IAudioDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp mac unreal bp">
+                    <stentry><xref keyref="getDefaultDevice_IAudioDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="getDefaultDevice_IAudioDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="getDevice_IAudioDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="getDevice_IAudioDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="getCount_IAudioDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="getCount_IAudioDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="setApplicationVolume"/></stentry>
+                    <stentry><ph conkeyref="setApplicationVolume/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="getApplicationVolume"/></stentry>
+                    <stentry><ph conkeyref="getApplicationVolume/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="setApplicationMute"/></stentry>
+                    <stentry><ph conkeyref="setApplicationMute/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="isApplicationMute"/></stentry>
+                    <stentry><ph conkeyref="isApplicationMute/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="release_IAudioDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="release_IAudioDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onAudioDeviceStateChanged"/></stentry>
+                    <stentry><ph conkeyref="onAudioDeviceStateChanged/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="onAudioDeviceVolumeChanged"/></stentry>
+                    <stentry><ph conkeyref="onAudioDeviceVolumeChanged/shortdesc"/></stentry>
+                </strow>
             </simpletable>
         </section>
-        <section id="pc_video_device_management" props="cpp unreal bp unity flutter electron cs" >
+        <section id="pc_video_device_management" props="cpp mac unreal bp unity flutter electron cs" >
             <title>桌面端视频设备管理</title>
             <p props="cpp unreal bp unity flutter cs">该组方法仅适用于 Windows 和 macOS 平台。</p>
             <simpletable>
@@ -1904,6 +1969,10 @@
                     <stentry><xref keyref="getCount"/></stentry>
                     <stentry><ph conkeyref="getCount/shortdesc"/></stentry>
                 </strow>
+                <strow props="mac">
+                    <stentry><xref keyref="getDeviceVolume"/></stentry>
+                    <stentry><ph conkeyref="getDeviceVolume/shortdesc"/></stentry>
+                </strow>
                 <strow>
                     <stentry><xref keyref="numberOfCapabilities"/></stentry>
                     <stentry><ph conkeyref="numberOfCapabilities/shortdesc"/></stentry>
@@ -1919,6 +1988,22 @@
                 <strow>
                     <stentry><xref keyref="setCameraDeviceOrientation"/></stentry>
                     <stentry><ph conkeyref="setCameraDeviceOrientation/shortdesc"/><ph props="cpp unreal bp unity electron flutter">（仅适用于 Windows）</ph></stentry>
+                </strow>
+                <strow props="cpp mac unreal bp">
+                    <stentry><xref keyref="setDevice_IVideoDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="setDevice_IVideoDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="getDevice_IVideoDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="getDevice_IVideoDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="getCount_IVideoDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="getCount_IVideoDeviceCollection/shortdesc"/></stentry>
+                </strow>
+                <strow props="cpp unreal bp">
+                    <stentry><xref keyref="release_IVideoDeviceCollection"/></stentry>
+                    <stentry><ph conkeyref="release_IVideoDeviceCollection/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="onVideoDeviceStateChanged"/></stentry>
