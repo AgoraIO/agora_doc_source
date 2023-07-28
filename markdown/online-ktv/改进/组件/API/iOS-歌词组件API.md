@@ -234,6 +234,8 @@ func getLineScore(with toneScores: [ToneScoreModel]) -> Int
 
 该协议提供日志相关的 API。
 
+<div class="alert info">默认情况下，储存歌词打分组件日志的沙盒路径为 <code>AppData/Documents/Logs</code>。</div>
+
 ### onLog
 
 `KaraokeView` 的日志回调。
