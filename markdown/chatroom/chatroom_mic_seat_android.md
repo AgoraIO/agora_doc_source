@@ -41,7 +41,7 @@
     })
     ```
 
-2. 房间内其他所有用户都注册 //TODO `onReceiveSeatInvitation` 回调，以获取房主邀请上麦的通知。
+2. 房间内其他所有用户都注册 `onReceiveSeatInvitation` 回调，以获取房主邀请上麦的通知。
 
     ```kotlin
     // 接收到邀请通知
@@ -130,7 +130,7 @@
 rtcEngine?.setClientRole(Constants.CLIENT_ROLE_BROADCASTER)
 ```
 
-## 下麦 //TODO continue
+## 下麦
 
 本节介绍如何让连麦观众下麦并在下麦后无法发送音频流。下麦的方式分为连麦观众主动下麦和被踢下麦。
 
@@ -140,18 +140,9 @@ rtcEngine?.setClientRole(Constants.CLIENT_ROLE_BROADCASTER)
 
 ```kotlin
 // 主动下麦
-func leaveMic(with index: Int) {
-    chatBar.refresh(event: .mic, state: .selected, asCreator: false)
-    ChatRoomServiceImp.getSharedInstance().leaveMic(mic_index: index) { error, mic in
-        if error == nil,let mic = mic {
-            self.rtcView.updateUser(mic)
-            self.rtckit.setClientRole(role: .audience)
-            self.local_index = nil
-            self.chatBar.refresh(event: .handsUp, state: .unSelected, asCreator: self.isOwner)
-            self.chatBar.refresh(event: .mic, state: .selected, asCreator: self.isOwner)
-        }
-    }
-}
+voiceServiceProtocol.leaveMic(micIndex, completion = { error, result ->
+    // ...
+})
 ```
 
 ### 被踢下麦
@@ -160,13 +151,9 @@ func leaveMic(with index: Int) {
 
 ```kotlin
 // 踢连麦观众下麦
-func kickoff(with index: Int) {
-    ChatRoomServiceImp.getSharedInstance().kickOff(mic_index: index) { error, mic in
-        if error == nil,let mic = mic {
-            self.rtcView.updateUser(mic)
-        }
-    }
-}
+voiceServiceProtocol.kickOff(micIndex, completion = { error, result ->
+    // ...
+})
 ```
 
 ### 麦位更新回调
@@ -174,9 +161,7 @@ func kickoff(with index: Int) {
 不管是连麦观众主动下麦还是被踢下麦，在连麦观众成为普通观众后，你需要让房内其他用户都收到麦位更新的通知。
 
 ```kotlin
-func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
-    self.updateMic(mics, fromId: fromId)
-}
+fun onSeatUpdated(roomId: String, attributeMap: Map<String, String>, fromId: String) {}
 ```
 
 ### 切换用户角色
@@ -197,13 +182,9 @@ rtcEngine?.setClientRole(Constants.CLIENT_ROLE_AUDIENCE)
 
 ```kotlin
 // 禁言指定麦位
-func mute(with index: Int) {
-    ChatRoomServiceImp.getSharedInstance().forbidMic(mic_index: index) { error, mic in
-        if error == nil,let mic = mic {
-            self.rtcView.updateUser(mic)
-        }
-    }
-}
+voiceServiceProtocol.forbidMic(micIndex, completion = { error, result ->
+    // ...
+})
 ```
 
 ### 麦位取消静麦
@@ -212,19 +193,9 @@ func mute(with index: Int) {
 
 ```kotlin
 // 取消禁言指定麦位
-func unMute(with index: Int) {
-    if let user = roomInfo?.mic_info?[index] {
-        if user.status == 1 && index != 0 && isOwner { return }
-    }
-    ChatRoomServiceImp.getSharedInstance().unForbidMic(mic_index: index) { error, mic in
-        if error == nil {
-            self.chatBar.refresh(event: .handsUp, state: .unSelected, asCreator: false)
-            if let mic = mic {
-                self.rtcView.updateUser(mic)
-            }
-        }
-    }
-}
+voiceServiceProtocol.unForbidMic(micIndex, completion = { error, result ->
+    // ...
+})
 ```
 
 ### 麦位更新回调
@@ -232,9 +203,7 @@ func unMute(with index: Int) {
 将麦位静音或取消静音后，你需要让房内其他用户收到麦位更新的通知。
 
 ```kotlin
-func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
-    self.updateMic(mics, fromId: fromId)
-}
+fun onSeatUpdated(roomId: String, attributeMap: Map<String, String>, fromId: String) {}
 ```
 
 ### 停止或恢复发送音频流
@@ -244,9 +213,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 ```kotlin
 // 参数 mute 为 true 代表静音
 // 参数 mute 为 false 代表取消静音
-public func muteLocalAudioStream(mute: Bool) -> Int32 {
-    return rtcKit.muteLocalAudioStream(mute)
-}
+rtcEngine?.muteLocalAudioStream(true)
 ```
 
 ## 设置是否锁麦
@@ -259,13 +226,9 @@ public func muteLocalAudioStream(mute: Bool) -> Int32 {
 
 ```kotlin
 // 锁麦
-func lock(with index: Int) {
-    ChatRoomServiceImp.getSharedInstance().lockMic(mic_index: index) { error, mic in
-        if error == nil,let mic = mic {
-            self.rtcView.updateUser(mic)
-        }
-    }
-}
+voiceServiceProtocol.lockMic(micIndex, completion = { error, result ->
+    // ...
+})
 ```
 
 ### 取消锁麦
@@ -275,13 +238,9 @@ func lock(with index: Int) {
 
 ```kotlin
 // 取消锁麦
-func unLock(with index: Int) {
-    ChatRoomServiceImp.getSharedInstance().unLockMic(mic_index: index) { error, mic in
-        if error == nil,let mic = mic {
-            self.rtcView.updateUser(mic)
-        }
-    }
-}
+voiceServiceProtocol.unLockMic(micIndex, completion = { error, result ->
+    // ...
+})
 ```
 
 ### 麦位更新回调
@@ -289,9 +248,7 @@ func unLock(with index: Int) {
 将麦位锁住或解锁后，你需要让房内其他用户收到麦位更新的通知。
 
 ```kotlin
-func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
-    self.updateMic(mics, fromId: fromId)
-}
+fun onSeatUpdated(roomId: String, attributeMap: Map<String, String>, fromId: String) {}
 ```
 
 ## 换麦
@@ -299,34 +256,13 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 1. 换麦指将把连麦观众从当前麦位更换到另一个空闲麦位。你可以调用 `ChatRoomServiceImp` 类的 `changeMic` 方法更换麦位。
 
     ```kotlin
-    func changeMic(from: Int, to: Int) {
-        if let mic: VRRoomMic = roomInfo?.mic_info?[to] {
-            if mic.status == 3 || mic.status == 4 {
-                view.makeToast("Mic Closed".localized())
-                return
-            }
-        }
-
-        ChatRoomServiceImp.getSharedInstance().changeMic(old_index: from, new_index: to) { error, micMap in
-            if error == nil,let old_mic = micMap?[from],let new_mic = micMap?[to] {
-                self.local_index = to
-                self.roomInfo?.mic_info?[from] = old_mic
-                self.roomInfo?.mic_info?[to] = new_mic
-                self.rtcView.updateUser(old_mic)
-                self.rtcView.updateUser(new_mic)
-                guard let mic = ChatRoomServiceImp.getSharedInstance().mics.first(where: {
-                    VoiceRoomUserInfo.shared.user?.chat_uid ?? "" == $0.member?.chat_uid ?? ""
-                }) else { return }
-                self.micMuteManager(mic: mic)
-            }
-        }
-    }
+    voiceServiceProtocol.changeMic(oldIndex, newIndex, completion = { error, result ->
+        // ...
+    })
     ```
 
 2. 如果换麦成功，那么此时你需要让房内其他用户收到麦位更新的通知。
 
     ```kotlin
-    func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
-        self.updateMic(mics, fromId: fromId)
-    }
+    fun onSeatUpdated(roomId: String, attributeMap: Map<String, String>, fromId: String) {}
     ```
