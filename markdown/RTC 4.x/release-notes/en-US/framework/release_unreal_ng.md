@@ -1,6 +1,6 @@
 ## v4.2.1 Beta
 
-This version was released on July xx, 2023.
+This version was released on August xx, 2023.
 #### Compatibility changes
 
 If you use the features mentioned in this section, ensure that you modify the implementation of the relevant features after upgrading the SDK.
