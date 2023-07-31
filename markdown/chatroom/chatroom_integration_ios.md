@@ -131,7 +131,7 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
 参考如下步骤初始化 AgoraRtcEngineKit：
 
 1. 根据[前提条件](#前提条件)在声网控制台创建声网项目后，复制界面的 App ID。
-2. 调用声网 RTC SDK 中的 `sharedEngineWithAppId` 方法初始化 `AgoraRtcEngineKit`。
+2. 调用声网 RTC SDK 中的 [`sharedEngineWithAppId`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_create) 方法初始化 `AgoraRtcEngineKit`。
 
 ```swift
 let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
@@ -271,4 +271,4 @@ let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCen
 
 ### API 时序图
 
-//TODO pic
+![](https://web-cdn.agora.io/docs-files/1690791762341)
