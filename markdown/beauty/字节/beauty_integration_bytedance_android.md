@@ -69,7 +69,7 @@
     | resource/StickerResource.bundle                    | app/src/main/assets/beauty_bytedance           |
     | byted_effect_andr/libs/effectAAR-release.aar  | app/libs   |
 
-4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance 目录](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance)下的文件到项目中，具体文件如下：
+4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance) 目录下的文件到项目中，具体文件如下：
     - `utils` 文件夹
     - `ByteDanceBeautyAPI.kt` 文件
     - `ByteDanceBeautyAPIImpl.kt` 文件
@@ -105,13 +105,13 @@
 
 ## 实现美颜
 
-如下时序图展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，第三方美颜 SDK 承担美颜特效的业务，Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
+如下时序图展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，第三方美颜 SDK 承担美颜特效的业务，Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
 
 <pic//TODO>
 
 ### 1. 初始化资源
 
-参考如下示例代码初始化 RtcEngine、EffectManager、Beauty API。
+参考如下示例代码初始化 `RtcEngine`、`EffectManager`、Beauty API。
 
 ```kotlin
 // 初始化声网 RtcEngine
@@ -181,7 +181,7 @@ mByteDanceApi.initialize(
 
 ### 2. 设置是否开启美颜
 
-调用 Beauty API 的 enable 方法开启美颜。
+调用 Beauty API 的 `enable` 方法开启美颜。
 
 ```kotlin
 mByteDanceApi.enable(true)
@@ -189,104 +189,24 @@ mByteDanceApi.enable(true)
 
 ### 3. 开启视频采集
 
-开发者可以使用声网模块采集视频，也可以自定义采集视频。
+开发者可以使用声网模块采集视频，也可以自定义采集视频。本节介绍在这两种场景下如何开启视频采集。
 
 #### 使用声网模块采集视频
 
 
 ```kotlin
+// 开启视频模块
 mRtcEngine.enableVideo()
 mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
 ```
 
 #### 自定义视频采集
 
-
-
-
-
-### 4. 加入频道
-
+将外部数据帧通过onFrame接口传入，处理成功会替换VideoFrame的buffer数据，即videoFrame参数既为输入也为输出
 
 ```kotlin
-mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
-    channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
-    clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-    publishCameraTrack = true
-    publishMicrophoneTrack = false
-    autoSubscribeAudio = false
-    autoSubscribeVideo = true
-})
-```
-
-### 5. 设置美颜效果
-
-调用 Beauty API 中 setBeautyPreset 方法设置是否使用默认（推荐）的美颜效果。
-
-```kotlin
-// 使用默认的美颜参数
-mByteDanceApi.setBeautyPreset(BeautyPreset.DEFAULT)
-```
-
-```kotlin
-// 使用自定义的美颜参数
-mByteDanceApi.setBeautyPreset(BeautyPreset.CUSTOM)
-```
-
-通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
-
-### 6. 离开频道
-
-调用 RTC SDK 中的 leaveChannel 方法离开频道。
-
-```kotlin
-// 离开 RTC 频道
-mRtcEngine.leaveChannel()
-```
-
-### 7. 销毁资源
-
-参考如下代码销毁 Beauty API、EffectManager、RtcEngine。
-
-```kotlin
-// 销毁 Beauty API 对象
-mByteDanceApi.release()
-// 销毁 EffectManager
-mEffectManager.destroy()
-// 销毁 RtcEngine
-RtcEngine.destroy()
-```
-
-## 视频自采集时实现美颜
-
-美颜场景API除了能够内部直接使用RTC 祼数据接口进行美颜处理，也支持由外部传入视频帧进行处理，实现步骤如下：
-
-1. 初始化时配置captureMode为CaptureMode.Custom
-
-```kotlin
-mByteDanceApi.initialize(
-    Config(
-        mRtcEngine,
-        mEffectManager,
-        captureMode = CaptureMode.Custom,
-        statsEnable = BuildConfig.BUILD,
-        eventCallback = EventCallback(
-            onBeautyStats = {stats ->
-                Log.d(TAG, "BeautyStats stats = $stats")
-            },
-            onEffectInitialized = {
-                Log.d(TAG, "onEffectInitialized")
-            },
-            onEffectDestroyed = {
-                Log.d(TAG, "onEffectInitialized")
-            }
-        )
-    ))
-```
-
-2. 将外部数据帧通过onFrame接口传入，处理成功会替换VideoFrame的buffer数据，即videoFrame参数既为输入也为输出
-
-```kotlin
+// 开启视频模块
+mRtcEngine.enableVideo()
 // 注册原始视频数据观测器
 // 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
 mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
@@ -334,4 +254,57 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
     // override 视频观测器中的其他回调函数
     ......
 }
+```
+
+
+### 4. 加入频道
+
+
+```kotlin
+mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
+    channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
+    clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
+    publishCameraTrack = true
+    publishMicrophoneTrack = false
+    autoSubscribeAudio = false
+    autoSubscribeVideo = true
+})
+```
+
+### 5. 设置美颜效果
+
+调用 Beauty API 中 setBeautyPreset 方法设置是否使用默认（推荐）的美颜效果。
+
+```kotlin
+// 使用默认的美颜参数
+mByteDanceApi.setBeautyPreset(BeautyPreset.DEFAULT)
+```
+
+```kotlin
+// 使用自定义的美颜参数
+mByteDanceApi.setBeautyPreset(BeautyPreset.CUSTOM)
+```
+
+通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
+
+### 6. 离开频道
+
+调用 RTC SDK 中的 `leaveChannel` 方法离开频道。
+
+```kotlin
+// 离开 RTC 频道
+mRtcEngine.leaveChannel()
+```
+
+### 7. 销毁资源
+
+参考如下代码销毁 Beauty API、`EffectManager`、`RtcEngine`。
+
+```kotlin
+// 销毁 Beauty API 对象
+mByteDanceApi.release()
+// 销毁 EffectManager
+mEffectManager.destroy()
+// 销毁 RtcEngine
+RtcEngine.destroy()
 ```
