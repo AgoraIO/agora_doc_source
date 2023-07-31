@@ -1,36 +1,39 @@
 @startuml
 autonumber
 participant "App" as a
-participant "声网云服务\nService" as b #White
+participant "声网云服务\n（Service）" as b #White
 participant "声网 IM SDK" as c
 participant "声网 RTC SDK" as d
 == 获取房间列表 ==
-a -> b: getRoomList
-b -->> a: room list
-== 登录即时通讯系统 ==
-a -> c: login
-c -->> a: login success
+a -> b: 获取房间列表 \ngetRoomList
+b -->> a: 显示房间列表
+== 登录 IM 系统 ==
+a -> c: AgoraChatClient.shared().login(）
+c -->> a: 登录成功
+== 初始化 AgoraRtcEngineKit ==
+a -> d: AgoraRtcEngineKit.sharedEngineWithAppId()
+d -->> a: 初始化成功
 == 创建并进入房间 ==
-a -> b: createRoom
-b -->> a: create room success
-a -> b: joinRoom
-b -->> a: joinRoom success
-a -> c: joinChatroom
-a -> d: joinChannel
-c -->> a: joinChatroom success
-d -->> a: joinChannel success
+a -> b: 创建房间 \ncreateRoom
+b -->> a: 创建房间成功
+a -> b: 加入房间 \njoinRoom
+b -->> a: 加入房间成功
+a -> c: 加入聊天室 \njoinChatroom
+a -> d: 加入频道 \njoinChannel
+c -->> a: 加入聊天室成功
+d -->> a: 加入频道成功
 == 麦位管理 ==
 ...
 == 离开语聊房 ==
-a -> b: leave room
-a -> d: leaveChannel
-a -> c: leaveChatroom
-a -> c: destroyChatroom
-a -> d: destroy
-b -->> a: leave room success
-d -->> a: leaveChannel success
-c -->> a: leaveChatroom success
-c -->> a: destroyChatroom success
+a -> b: 离开房间 \nleaveRoom
+a -> d: 离开频道 \nleaveChannel
+a -> c: 离开聊天室 \nleaveChatroom
+a -> c: 销毁聊天室 \ndestroyChatroom
+a -> d: 销毁 AgoraRtcEngineKit \ndestroy
+b -->> a: 离开房间成功
+d -->> a: 离开频道成功
+c -->> a: 离开聊天室成功
+c -->> a: 销毁聊天室成功
 @enduml
 
 

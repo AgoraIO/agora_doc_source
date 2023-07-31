@@ -30,7 +30,7 @@
 
 ### 前提条件
 
-- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上。
+- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 13.0 及以上。
 - iOS 设备，版本 13.0 及以上。
 - 有效的苹果开发者账号。
 - 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
@@ -76,36 +76,14 @@
 
 6. 在终端内运行 <code>pod install</code> 命令安装 SDK。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
 
-## 实现语聊房     
+## 实现语聊房
 
-如下时序图展示了如何登录即时通讯系统、获取房间列表、创建房间、进入房间、加入 RTC 频道、麦位管理、退出房间、离开 RTC 频道。声网云服务（Service）实现了房间列表的存储和房间生命周期的管理，声网即时通讯（IM）SDK 实现房间内的信令通信，声网 RTC SDK 承担实时音视频的业务。本节会详细介绍如何调用声网云服务（ChatRoomServiceProtocol）、IM SDK API、RTC SDK API 完成这些逻辑。
+如下[时序图](#api-时序图)展示了如何登录即时通讯系统、获取房间列表、创建房间、进入房间、加入 RTC 频道、麦位管理、退出房间、离开 RTC 频道。声网云服务（Service）实现了房间列表的存储和房间生命周期的管理，声网即时通讯（IM）SDK 实现房间内的信令通信，声网 RTC SDK 承担实时音视频的业务。本节会详细介绍如何调用声网云服务（ChatRoomServiceProtocol）、IM SDK API、RTC SDK API 完成这些逻辑。
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。你可以调用声网云服务的 API 用于测试，但是对于正式环境，声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
-![](https://web-cdn.agora.io/docs-files/1689244554700)
 
-
-### 1. 登录即时通讯系统
-
-1. 根据[前提条件](#前提条件)在声网控制台创建声网项目后，参考[开启和配置即时通讯服务](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms)，在声网控制台为你的声网项目开启并配置即时通讯服务。
-2. 参考[即时通讯集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_ios?platform=iOS#用户登录)，获取登录即时通讯系统所需的用户名（ID）和 Token。
-3. 在房间列表页时，你可以调用声网即时通讯（IM）SDK 中 `AgoraChatClient` 类的 [`loginWithUsername:token:completion:`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/interface_agora_chat_client.html#ad1f4dbc685867ed236fcb57c2d29c2b0) 方法并传入即时通讯服务的用户名和 Token 以登录即时通讯系统。
-
-
-```swift
-@objc public func loginIM(userName: String, token: String, completion: @escaping (String, AgoraChatError?) -> Void) {
-    if AgoraChatClient.shared().isLoggedIn {
-        completion(AgoraChatClient.shared().currentUsername ?? "", nil)
-    } else {
-        // 登录即时通讯系统
-        // 此处的 Token 为声网 Chat Token
-        // 不要和声网 RTC Token 混淆
-        AgoraChatClient.shared().login(withUsername: userName, token: token, completion: completion)
-    }
-}
-```
-
-### 2. 获取房间列表
+### 1. 获取房间列表
 
 调用声网云服务中 `ChatRoomServiceImp` 类的 `fetchRoomList` 方法获取房间列表。获取到房间列表后刷新 UI 并将房间列表展示在界面上。
 
@@ -126,7 +104,39 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
 }
 ```
 
-### 3. 创建并进入房间
+### 2. 登录即时通讯系统
+
+参考如下步骤登录即时通讯（IM）系统：
+
+1. 根据[前提条件](#前提条件)在声网控制台创建声网项目后，参考[开启和配置即时通讯服务](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms)，在声网控制台为你的声网项目开启并配置即时通讯服务。
+2. 参考[即时通讯集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_ios?platform=iOS#用户登录)，获取登录即时通讯系统所需的用户名（ID）和 Token。
+3. 调用声网即时通讯（IM）SDK 中 `AgoraChatClient` 类的 [`loginWithUsername:token:completion:`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/interface_agora_chat_client.html#ad1f4dbc685867ed236fcb57c2d29c2b0) 方法并传入即时通讯服务的用户名和 Token 以登录即时通讯系统。
+
+
+```swift
+@objc public func loginIM(userName: String, token: String, completion: @escaping (String, AgoraChatError?) -> Void) {
+    if AgoraChatClient.shared().isLoggedIn {
+        completion(AgoraChatClient.shared().currentUsername ?? "", nil)
+    } else {
+        // 登录即时通讯系统
+        // 此处的 Token 为声网 Chat Token
+        // 不要和声网 RTC Token 混淆
+        AgoraChatClient.shared().login(withUsername: userName, token: token, completion: completion)
+    }
+}
+```
+
+### 3. 初始化 AgoraRtcEngineKit
+
+参考如下步骤初始化 AgoraRtcEngineKit：
+
+1. 根据[前提条件](#前提条件)在声网控制台创建声网项目后，复制界面的 App ID。
+2. 调用声网 RTC SDK 中的 `sharedEngineWithAppId` 方法初始化 `AgoraRtcEngineKit`。
+
+```swift
+let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
+```
+### 4. 创建并进入房间
 
 1. 调用 `ChatRoomServiceImp` 类中的 `createRoom` 方法创建一个房间。
 
@@ -228,11 +238,11 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
     let code: Int32 = rtcKit.joinChannel(byToken: token, channelId: channelName, info: nil, uid: UInt(rtcUid ?? 0))
     ```
 
-### 4. 麦位管理
+### 5. 麦位管理
 
 具体步骤详见[麦位管理](./chatroom_mic_seat_ios)。
 
-### 5. 退出房间
+### 6. 退出房间
 
 1. 调用 `ChatRoomServiceImp` 类的 `leaveRoom` 方法离开房间。
 
@@ -258,3 +268,7 @@ ChatRoomServiceImp.getSharedInstance().fetchRoomList(page: 0) { error, rooms in
     AgoraChatClient.shared().roomManager?.destroyChatroom(currentRoomId)
     AgoraRtcEngineKit.destroy()
     ```
+
+### API 时序图
+
+//TODO pic
