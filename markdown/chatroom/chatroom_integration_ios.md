@@ -14,15 +14,15 @@
 
 ![](https://web-cdn.agora.io/docs-files/1689244560969)
 
-### 房主邀请观众上麦
+### 房主邀请听众上麦
 
-下图展示房主邀请观众上麦的流程。在这个流程中，房主发起上麦邀请，如果观众接受邀请，房主会收到通知。观众上麦并修改麦位，然后发布自己的音频流。
+下图展示房主邀请听众上麦的流程。在这个流程中，房主发起上麦邀请，如果听众接受邀请，房主会收到通知。听众上麦并修改麦位，然后发布自己的音频流。
 
 ![](https://web-cdn.agora.io/docs-files/1689244566441)
 
-### 观众申请上麦
+### 听众申请上麦
 
-下图展示观众向房主申请上麦的流程。在这个流程中，观众主动发起上麦申请，如果房主接受申请，房主修改麦位信息以让观众上麦。观众收到上麦消息后，发布自己的音频流。
+下图展示听众向房主申请上麦的流程。在这个流程中，听众主动发起上麦申请，如果房主接受申请，房主修改麦位信息以让听众上麦。听众收到上麦消息后，发布自己的音频流。
 
 ![](https://web-cdn.agora.io/docs-files/1689244572951)
 
@@ -255,9 +255,7 @@ let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCen
 2. 调用 `AgoraRtcEngineKit` 类的 [`leaveChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 方法离开 RTC 频道。
 
     ```swift
-    rtcKit.stopPreview()
     rtcKit.leaveChannel(nil)
-    rtcKit.delegate = nil
     ```
 
 3. 调用 [`leaveChatroom:completion:`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/protocol_i_agora_chatroom_manager-p.html#ae9b671ece1a36ad8ac26375d91755467) 离开聊天室，调用 [`destroyChatroom:`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_oc/v1.1.0/protocol_i_agora_chatroom_manager-p.html#a1e3a6bacf44a96ff37b34d2068c84386) 销毁聊天室。调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 RTC 引擎。
@@ -267,6 +265,7 @@ let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCen
     })
     AgoraChatClient.shared().roomManager?.destroyChatroom(currentRoomId)
     AgoraRtcEngineKit.destroy()
+    rtcKit.delegate = nil
     ```
 
 ### API 时序图

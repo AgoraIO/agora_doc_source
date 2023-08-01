@@ -1,10 +1,10 @@
 本文如何在语聊房中进行麦位管理麦位管理包含如下操作：
 
-- 上麦：观众与房主连麦，连麦观众可以发言，与房主语音互动。
-- 下麦：连麦观众下麦，成为普通观众，无法发言，无法与房主语音互动。
-- 静音：房主不允许某个连麦观众发言。
+- 上麦：听众与房主连麦，连麦听众可以发言，与房主语音互动。
+- 下麦：连麦听众下麦，成为普通听众，无法发言，无法与房主语音互动。
+- 静音：房主不允许某个连麦听众发言。
 - 锁麦：房主不允许任何用户占据该麦位。
-- 换麦：连麦观众从一个麦位更换到另一个麦位。
+- 换麦：连麦听众从一个麦位更换到另一个麦位。
 
 ![](https://web-cdn.agora.io/docs-files/1689239633856)
 
@@ -14,23 +14,27 @@
 
 ## 前提条件
 
-- 实现该进阶功能前，请确保你已实现基础的语聊房功能，例如登录即时通讯系统、获取房间列表、创建房间、加入房间。详见[基础功能](https://docs.agora.io/cn/chatroom/chatroom_integration_ios?platform=All%20Platforms)。
+### 实现基础功能
 
-- 进行麦位管理时，你需要先通过声网云服务中 `ChatRoomServiceImp` 类的 `subscribeEvent` 方法注册回调事件，监听房间内的回调事件。
+实现该进阶功能前，请确保你已实现基础的语聊房功能，例如登录即时通讯系统、获取房间列表、创建房间、加入房间。详见[基础功能](https://docs.agora.io/cn/chatroom/chatroom_integration_ios?platform=All%20Platforms)。
 
-    ```swift
-    ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
-    ```
+### 注册回调
+
+进行麦位管理时，你需要先通过声网云服务中 `ChatRoomServiceImp` 类的 `subscribeEvent` 方法注册回调事件，监听房间内的回调事件。
+
+```swift
+ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
+```
 
 ## 上麦
 
-本节介绍如何让观众上麦并在麦位上发送音频流。上麦的方式分为房主邀请或观众主动申请。
+本节介绍如何让听众上麦并在麦位上发送音频流。上麦的方式分为房主邀请或听众主动申请。
 
 ### 房主邀请上麦
 
 ![](https://web-cdn.agora.io/docs-files/1689244539769)
 
-1. 房主调用 `ChatRoomServiceImp` 类的 `startMicSeatInvitation` 方法，开始邀请观众上麦。
+1. 房主调用 `ChatRoomServiceImp` 类的 `startMicSeatInvitation` 方法，开始邀请听众上麦。
 
     ```swift
     // 邀请上麦
@@ -44,7 +48,7 @@
     }
     ```
 
-2. 房间内其他所有用户都注册 `onReceiveSeatInvitation` 回调，以获取房主邀请上麦的通知。
+2. 房间内其他所有用户都通过 `subscribeEvent` 注册的 `onReceiveSeatInvitation` 回调获取房主邀请上麦的通知。
 
     ```swift
     // 接收到邀请通知
@@ -53,7 +57,7 @@
     }
     ```
 
-3. 收到房主上麦邀请的观众会看到邀请弹窗，观众可以选择是否接受邀请：
+3. 收到房主上麦邀请的听众会看到邀请弹窗，听众可以选择是否接受邀请：
 
     - 调用 `ChatRoomServiceImp` 类的 `acceptMicSeatInvitation` 方法接受邀请。
     - 调用 `ChatRoomServiceImp` 类的 `refuseInvite` 方法拒绝邀请。
@@ -90,7 +94,7 @@
     }
     ```
 
-4. 如果观众接受上麦邀请，那么你需要让房内其他用户都收到麦位更新的通知。
+4. 如果听众接受上麦邀请，那么你需要让房内其他用户都收到麦位更新的通知。
 
     ```swift
     // 麦位更新
@@ -99,13 +103,13 @@
     }
     ```
 
-    **注意**：房主邀请多个观众上麦时，如果多个观众同时点击接受上麦邀请，那么可能出现观众 A 刚上麦就被后面上麦的用户 B 踢下麦位。因此，为了避免多个观众同时主动修改麦位时造成互踢的冲突，声网推荐你在集成逻辑中控制上麦由房主决定，而不是观众决定。
+    **注意**：房主邀请多个听众上麦时，如果多个听众同时点击接受上麦邀请，那么可能出现听众 A 刚上麦就被后面上麦的用户 B 踢下麦位。因此，为了避免多个听众同时主动修改麦位时造成互踢的冲突，声网推荐你在集成逻辑中控制上麦由房主决定，而不是听众决定。
 
-### 观众申请上麦
+### 听众申请上麦
 
 ![](https://web-cdn.agora.io/docs-files/1689244547406)
 
-1. 观众调用 `ChatRoomServiceImp` 类的 `startMicSeatApply` 方法向房主发送申请上麦的请求。
+1. 听众调用 `ChatRoomServiceImp` 类的 `startMicSeatApply` 方法向房主发送申请上麦的请求。
 
     ```swift
     // 申请上麦
@@ -124,10 +128,10 @@
     }
     ```
 
-2. 如果观众希望取消上麦申请，可以调用 `ChatRoomServiceImp` 类的 `cancelMicSeatApply` 方法。
+2. 如果听众希望取消上麦申请，可以调用 `ChatRoomServiceImp` 类的 `cancelMicSeatApply` 方法。
 
     ```swift
-    // 观众取消自己的上麦申请
+    // 听众取消自己的上麦申请
     func cancelRequestSpeak(index: Int?) {
         ChatRoomServiceImp.getSharedInstance().cancelMicSeatApply(chat_uid: self.roomInfo?.room?.owner?.chat_uid ?? "") { error, flag in
             if error == nil {
@@ -140,7 +144,7 @@
     }
     ```
 
-3. 房主注册 `onReceiveSeatRequest` 回调，以获取观众申请上麦的信息更新，从而刷新上麦申请列表。
+3. 房主通过 `subscribeEvent` 注册的 `onReceiveSeatRequest` 回调获取听众申请上麦的信息更新，从而刷新上麦申请列表。
 
     ```swift
     // 房主收到申请上麦信息
@@ -149,10 +153,10 @@
     }
     ```
 
-4. 房主调用 `ChatRoomServiceImp` 类的 `acceptMicSeatApply` 方法，以同意某个观众的上麦申请。
+4. 房主调用 `ChatRoomServiceImp` 类的 `acceptMicSeatApply` 方法，以同意某个听众的上麦申请。
 
     ```swift
-    // 房主同意观众上麦申请
+    // 房主同意听众上麦申请
     private func agreeUserApply(user: VoiceRoomApply?) {
         SVProgressHUD.show()
         guard let user1 = user?.member else { return }
@@ -168,7 +172,7 @@
     }
     ```
 
-5. 如果房主同意某个观众的上麦申请，那么你需要让房内其他用户都收到麦位更新的通知。
+5. 如果房主同意某个听众的上麦申请，那么你需要让房内其他用户都收到麦位更新的通知。
 
     ```swift
     // 收到同意申请上麦
@@ -179,7 +183,7 @@
 
 ### 切换用户角色
 
-不管是房主邀请，还是观众主动申请，在观众成为连麦观众后，你需要调用声网 RTC SDK 中 [`setClientRole`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_setclientrole) 方法将其角色从观众（`audience`）切换成主播（`broadcaster`），以让连麦观众拥有发送音频流的权限。
+不管是房主邀请，还是听众主动申请，在听众成为连麦听众后，你需要调用声网 RTC SDK 中 [`setClientRole`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_setclientrole) 方法将其角色从听众（`audience`）切换成主播（`broadcaster`），以让连麦听众拥有发送音频流的权限。
 
 ```swift
 rtcKit.setClientRole(.broadcaster)
@@ -187,11 +191,11 @@ rtcKit.setClientRole(.broadcaster)
 
 ## 下麦
 
-本节介绍如何让连麦观众下麦并在下麦后无法发送音频流。下麦的方式分为连麦观众主动下麦和被踢下麦。
+本节介绍如何让连麦听众下麦并在下麦后无法发送音频流。下麦的方式分为连麦听众主动下麦和被踢下麦。
 
 ### 主动下麦
 
-连麦观众调用 `ChatRoomServiceImp` 类的 `leaveMic` 方法可以主动下麦。
+连麦听众调用 `ChatRoomServiceImp` 类的 `leaveMic` 方法可以主动下麦。
 
 ```swift
 // 主动下麦
@@ -211,10 +215,10 @@ func leaveMic(with index: Int) {
 
 ### 被踢下麦
 
-房主调用 `ChatRoomServiceImp` 类的 `kickoff` 方法可以将连麦观众踢下麦。
+房主调用 `ChatRoomServiceImp` 类的 `kickoff` 方法可以将连麦听众踢下麦。
 
 ```swift
-// 踢连麦观众下麦
+// 踢连麦听众下麦
 func kickoff(with index: Int) {
     ChatRoomServiceImp.getSharedInstance().kickOff(mic_index: index) { error, mic in
         if error == nil,let mic = mic {
@@ -226,7 +230,7 @@ func kickoff(with index: Int) {
 
 ### 麦位更新回调
 
-不管是连麦观众主动下麦还是被踢下麦，在连麦观众成为普通观众后，你需要让房内其他用户都收到麦位更新的通知。
+不管是连麦听众主动下麦还是被踢下麦，在连麦听众成为普通听众后，你需要让房内其他用户都收到麦位更新的通知。
 
 ```swift
 func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
@@ -236,7 +240,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 ### 切换用户角色
 
-不管是连麦观众主动下麦还是被踢下麦，在连麦观众成为普通观众后，你需要调用声网 RTC SDK 中 [`setClientRole`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_setclientrole) 方法将其角色从主播（`broadcaster`）切换成观众（`audience`），以让其失去发送音频流的权限。
+不管是连麦听众主动下麦还是被踢下麦，在连麦听众成为普通听众后，你需要调用声网 RTC SDK 中 [`setClientRole`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_setclientrole) 方法将其角色从主播（`broadcaster`）切换成听众（`audience`），以让其失去发送音频流的权限。
 
 ```swift
 rtcKit.setClientRole(.audience)
@@ -244,7 +248,7 @@ rtcKit.setClientRole(.audience)
 
 ## 设置是否静音
 
-观众上麦后，你可以设置麦位是否静音，以达到禁言的目的。将麦位静音意味着不允许该连麦观众发言。将麦位取消静音意味着恢复该连麦观众发言的权限。
+听众上麦后，你可以设置麦位是否静音，以达到禁言的目的。将麦位静音意味着不允许该连麦听众发言。将麦位取消静音意味着恢复该连麦听众发言的权限。
 
 ### 麦位静音
 
@@ -294,7 +298,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 ### 停止或恢复发送音频流
 
-标记麦位静音或取消静音后，通过声网 RTC SDK 中 [`muteLocalAudioStream`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_mutelocalaudiostream) 方法停止发送或恢复发送麦位上的连麦观众的音频流，以达到静音或取消静音的效果。
+标记麦位静音或取消静音后，通过声网 RTC SDK 中 [`muteLocalAudioStream`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_mutelocalaudiostream) 方法停止发送或恢复发送麦位上的连麦听众的音频流，以达到静音或取消静音的效果。
 
 ```swift
 // 参数 mute 为 true 代表静音
@@ -351,7 +355,7 @@ func onSeatUpdated(roomId: String, mics: [VRRoomMic], from fromId: String) {
 
 ## 换麦
 
-1. 换麦指将把连麦观众从当前麦位更换到另一个空闲麦位。你可以调用 `ChatRoomServiceImp` 类的 `changeMic` 方法更换麦位。
+1. 换麦指将把连麦听众从当前麦位更换到另一个空闲麦位。你可以调用 `ChatRoomServiceImp` 类的 `changeMic` 方法更换麦位。
 
     ```swift
     func changeMic(from: Int, to: Int) {

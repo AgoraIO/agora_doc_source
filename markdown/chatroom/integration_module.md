@@ -1,43 +1,43 @@
-//TODO 加到 FAQ
+本文介绍语聊房解决方案中常见的进阶设置。
 
-## 高音质设置
+## 设置高音质
 
-在娱乐交友房中，高音质是一个非常重要的特性。如果主播使用声卡，建议设置以下参数以实现高音质：
+高音质会给语聊房带来更好的用户体验。建议参考如下示例代码，调用声网 RTC SDK 中的 setAudioProfile、setAudioScenarios、setParameters 方法来设置高音质：
 
-### 带声卡
+- 当主播使用声卡采集音频时，设置高音质：
 
-```java
-setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
-setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
-setParameters("{\"che.audio.enable.aec\":false}");
-setParameters("{\"che.audio.enable.ns\":false}");
-setParameters("{\"che.audio.enable.agc\":false}");
-setParameters("{\"che.audio.custom_payload_type\":78}");
-setParameters("{\"che.audio.custom_bitrate\":128000}");
-setRecordingDeviceVolume(128)
-setParameters("{\"che.audio.input_channels\":2}");
-```
+  ```java
+  setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
+  setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
+  setParameters("{\"che.audio.enable.aec\":false}");
+  setParameters("{\"che.audio.enable.ns\":false}");
+  setParameters("{\"che.audio.enable.agc\":false}");
+  setParameters("{\"che.audio.custom_payload_type\":78}");
+  setParameters("{\"che.audio.custom_bitrate\":128000}");
+  setRecordingDeviceVolume(128)
+  setParameters("{\"che.audio.input_channels\":2}");
+  ```
 
-### 不带声卡
+- 当主播未使用声卡采集音频时，设置高音质：
 
-```java
-setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
-setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
-setParameters("{\"che.audio.custom_bitrate\":128000}");
-setParameters("{\"che.audio.custom_payload_type\":78}");
-```
+  ```java
+  setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
+  setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
+  setParameters("{\"che.audio.custom_bitrate\":128000}");
+  setParameters("{\"che.audio.custom_payload_type\":78}");
+  ```
 
-注意：上述配置适用于娱乐房场景的高音质设置。如果在其他场景中需要音质，可以联系声网服务人员进行咨询。
+**注意**：上述高音质设置仅适用于语聊房。如果在其他场景解决方案中需要设置高音质，可以联系声网技术支持进行咨询。
 
-## 背景音乐 & 音效
+## 背景音乐和音效
 
-在语音聊天室中，主播可以选择在线音乐播放，让音乐的声音和自己的声音混合在一起发送到聊天室中，让整个聊天室充满轻松欢快的气氛。
+主播可以通过播放背景音乐和音效活跃语聊房内的气氛。
 
 ### 本地音乐文件或在线音乐文件
 
-如果音乐文件是本地文件或在线音乐文件，播放方式有两种：
+如果主播使用的音乐文件是本地文件或在线文件，播放方式有如下两种：
 
-1. 使用 startAudioMixing 方法 [播放音效或音乐文件](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing)
+- 调用 声网 RTC SDK 中的 [`startAudioMixing`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing) 方法播放文件：
 
 ```objective-c
 - (int)startAudioMixing:(NSString *  _Nonnull)filePath
@@ -46,9 +46,9 @@ setParameters("{\"che.audio.custom_payload_type\":78}");
                   cycle:(NSInteger)cycle;
 ```
 
-2. 使用 SDK 中带的 MediaPlayerKit 播放器播放，详情可以参考 [内置媒体播放器](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_mediaplayer.html)。
+- 使用 声网 RTC SDK 中[内置媒体播放器](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_mediaplayer.html)来播放文件。
 
-### 声网 DRM 音乐
+### 声网 DRM 音乐 //TODO
 
 目前声网和音集协合作提供了数十万首热门歌曲，支持直播间 BGM 版权。我们建议您使用声网 SDK 中自带的 DRM 模块来使用声网版权音乐。具体步骤如下：
 
@@ -64,7 +64,7 @@ setParameters("{\"che.audio.custom_payload_type\":78}");
 
 注意：声网 DRM 版权音乐不仅能用于聊天室中的背景音乐，还可以用于 K 歌等应用。更多关于版权音乐的信息，请参考[声网歌曲内容中心](https://docs.agora.io/cn/online-ktv/ktv_song_rest?platform=All%20Platforms)。
 
-### 第三方版权音乐（例如：AME）
+### 第三方版权音乐（例如：AME）//TODO
 
 版权来源还可以来自第三方版权音乐服务商，例如 AME。一般第三方音乐服务商都会提供一个 SDK，用于音乐播放。
 
@@ -82,7 +82,5 @@ setParameters("{\"che.audio.custom_payload_type\":78}");
 
 ## 音量波纹提示
 
-在语聊房中，房间内的观众一般需要知道谁在说话，通常是使用波纹提示。该功能可以直接使用声网 SDK 中的 [enableAudioVolumeIndication](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_enableaudiovolumeindication) 方法启用音量提示功能，建议设置音量提示时间间隔为 500ms。
-
-在 [onAudioVolumeIndication](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#callback_irtcengineeventhandler_onaudiovolumeindication) 回调中，包含本地和远端讲话者的音量信息，一般在 volume 值大于 20 的时候给到音量提示。
+在语聊房中，房间内的听众一般需要知道谁在说话，通常是使用波纹提示。该功能可以直接使用声网 RTC SDK 中的 [enableAudioVolumeIndication](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_enableaudiovolumeindication) 方法启用音量提示功能，建议你在启用音量提示时设置音量提示时间间隔为 500 毫秒。你可以从 SDK 触发的 [onAudioVolumeIndication](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#callback_irtcengineeventhandler_onaudiovolumeindication) 回调获得本地和远端讲话者的音量信息，一般在 `volume` 值大于 20 的时，你需要给出音量提示。
 

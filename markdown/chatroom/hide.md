@@ -1,4 +1,4 @@
-## CDN观众 
+## CDN听众 
 
 ### rtc房间内的语音流旁路推流到CDN
 
@@ -12,9 +12,9 @@
 
 声网提供服务端旁路推流服务，可以把频道内的所有主播的声音混流成一路推流到第三方CDN，详情请参考 [声网旁路推流服务](https://docs-preprod.agora.io/cn/media-push/streaming_product?platform=All%20Platforms)。
 
-### 观众通过播放器拉CDN流播放 
+### 听众通过播放器拉CDN流播放 
 
-语音聊天室的音频经过声网旁路推流服务推流到CDN之后，观众端可以使用声网SDK中自带的播放器做CDN流播放。 
+语音聊天室的音频经过声网旁路推流服务推流到CDN之后，听众端可以使用声网SDK中自带的播放器做CDN流播放。 
 
 示例代码(iOS)：
 

@@ -8,10 +8,10 @@ participant "声网 RTC SDK" as d
 a -> b: 获取房间列表 \ngetRoomList
 b -->> a: 显示房间列表
 == 登录 IM 系统 ==
-a -> c: AgoraChatClient.shared().login(）
+a -> c: ChatClient.getInstance().loginWithToken()
 c -->> a: 登录成功
 == 初始化 AgoraRtcEngineKit ==
-a -> d: AgoraRtcEngineKit.sharedEngineWithAppId()
+a -> d: RtcEngine.create()
 d -->> a: 初始化成功
 == 创建并进入房间 ==
 a -> b: 创建房间 \ncreateRoom
@@ -29,10 +29,12 @@ a -> b: 离开房间 \nleaveRoom
 a -> d: 离开频道 \nleaveChannel
 a -> c: 离开聊天室 \nleaveChatroom
 a -> c: 销毁聊天室 \ndestroyChatroom
-a -> d: 销毁 AgoraRtcEngineKit \ndestroy
+a -> d: 销毁 RtcEngine \ndestroy
 b -->> a: 离开房间成功
 d -->> a: 离开频道成功
 c -->> a: 离开聊天室成功
 c -->> a: 销毁聊天室成功
 @enduml
+
+
 
