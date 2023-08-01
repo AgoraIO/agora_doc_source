@@ -20,8 +20,7 @@ $$
   | Android  | [Android 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/SharingAndReleasing/Mobile/Android/AndroidSDKRequirements/) | 无    |
   | iOS | [iOS 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/SharingAndReleasing/Mobile/iOS/SDKRequirements/) | 有效的 Apple 开发者签名。  |
   | macOS | [macOS 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/Basics/InstallingUnrealEngine/RecommendedSpecifications/) | 有效的 Apple 开发者签名。  |
-  | Windows (64 位) | [Windows 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/Basics/InstallingUnrealEngine/RecommendedSpecifications/) | 无 |
-  | Windows (32 位) | [Windows 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/Basics/InstallingUnrealEngine/RecommendedSpecifications/) | 32 位 Windows 仅支持 Unreal Engine 4 及以下版本，你需要在 `AgoraPluginLibrary.Build.cs` 文件中将 Windows 32 相关的代码取消注释。 |
+  | Windows | [Windows 开发环境要求](https://docs.unrealengine.com/4.27/zh-CN/Basics/InstallingUnrealEngine/RecommendedSpecifications/) | 32 位 Windows 仅支持 Unreal Engine 4 及以下版本，你需要在 `AgoraPluginLibrary.Build.cs` 文件中将 Windows 32 相关的代码取消注释。 |
 - 计算机可以访问互联网。请确保你的网络环境正确部署防火墙，能正常支持声网服务所需的权限和行为。
 - 一个有效的[声网账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)以及声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得以下信息：
   - App ID：声网随机生成的字符串，用于识别你的项目。
@@ -36,7 +35,6 @@ $$
 2. 在 **SelectTemplate** 页面，选择 **Blank**，点击 **Next**。
 3. 在 **Project Settings** 页面，进行如下设置：
     1. 选择 **Blueprint** 或 **C++**。
-    <div class="alert info">为简化操作，建议你选择 <b>C++</b> 项目；如果选择 <b>Blueprint</b> 项目，则会在后续打包过程中提示<b>找不到 Plugin</b>，需要建一个空的类转成 C++ Project。</div>
     2. 根据你开发的目标平台选择 **Desktop/Console** 或 **Mobile/Tablet**。
     3. 选择项目存储路径，并为项目命名。
     4. 点击 **Create Project** 完成创建。
@@ -67,8 +65,8 @@ $$
 参考以下步骤创建上图所示 UI 界面。如果你的项目中已有用户界面，可进行下一步[创建关卡](#创建关卡)。
 
 1. 创建 **Widget Blueprint**。
-    1. 在 **Content Browser** 的 **Content** 文件夹中，右击选择 **User Interface** > **Widget Blueprint** 创建 **Widget Blueprint**，并将其命名为 **BP_Audio Widget**。
-    2. 双击打开 **BP_Audio Widget**。此时可以在 **Hierarchy** 面板中看到 **BP_Audio Widget** > **Canvas Panel**。
+    1. 在 **Content Browser** 的 **Content** 文件夹中，右击选择 **User Interface** > **Widget Blueprint** 创建 **Widget Blueprint**，并将其命名为 **BP_AudioWidget**。
+    2. 双击打开 **BP_AudioWidget**。此时可以在 **Hierarchy** 面板中看到 **BP_AudioWidget** > **Canvas Panel**。
     3. 创建视图背景。在 **Palette** 面板中，选择 **Common** > **Image**，将其拖至 **Canvas Panel** 中，命名为 **background**。通过拖拽调整至画布大小，在 **Details** 面板中调整背景颜色。
 2. 在 **Widget Blueprint** 中创建加入和离开频道的按钮。
     1. 创建加入频道按钮。在 **Palette** 面板中，选择 **Common** > **Button**，将其拖至 **Canvas Panel** 中，重命名为 **Btn_JoinChannel**，并调整其在画布中的位置和大小：
@@ -101,18 +99,18 @@ $$
 
    | 序号 | 节点  | 类型  | 描述     |
    | :--- | :------ | :------- | :-------- |
-   | 1    | **Set Show Mouse Cursor**    | 原生[1]   | (可选) 设置是否显示鼠标光标，勾选代表显示。<div class="alert note"><ul><li>该节点仅适用于 Windows 和 macOS。</li><li>如果在创建时检索不到该节点，可以取消勾选 <b>Context Sensitive</b>。 <img src="https://web-cdn.agora.io/docs-files/1689863102745"/></li></ul></div> |
-   | 2    | **Load Agora Config**   | 自定义[2] | 加载声网配置。用于后续在创建和加入频道时验证用户身份。       |
-   | 3    | **Create BP Audio Widget Widget** | 原生     | 创建用户界面。步骤如下：<ol><li>创建 **Create Widget** 节点。</li><li>选择该节点的 **Class** 为 **BP_Audio Widget**，将该节点关联至已经创建好的用户界面。</li></ol> |
-   | 4    | **Set Basic Audio Call Widget**   | 自定义   | 设置用户界面。步骤如下：<ol><li>创建 **BasicAudioCallWidget** 变量，选择变量的 **Variable Type** 为 **BP_Audio Widget**，即已经创建好的用户界面，用于在蓝图中存储对用户界面的引用。</li><li>拖拽创建好的变量到 **EventGraph** 后，会出现 **Set BasicAudioCallWidget** 和 **Get BasicAudioCallWidget** 两个选项，选择 **Set BasicAudioCallWidget** 创建节点，用于访问并设置用户界面。</li></ol> |
+   | 1    | **Set Show Mouse Cursor**    | 原生<sup>*</sup>   | (可选) 设置是否显示鼠标光标，勾选代表显示。<div class="alert note"><ul><li>该节点仅适用于 Windows 和 macOS。</li><li>如果在创建时检索不到该节点，可以取消勾选 <b>Context Sensitive</b>。 <img src="https://web-cdn.agora.io/docs-files/1689863102745"/></li></ul></div> |
+   | 2    | **Load Agora Config**   | 自定义<sup>**</sup> | 加载声网配置。用于后续在创建和加入频道时验证用户身份。       |
+   | 3    | **Create BP Audio Widget Widget** | 原生     | 创建用户界面。步骤如下：<ol><li>创建 **Create Widget** 节点。</li><li>选择该节点的 **Class** 为 **BP_AudioWidget**，将该节点关联至已经创建好的用户界面。</li></ol> |
+   | 4    | **Set Basic Audio Call Widget**   | 自定义   | 设置用户界面。步骤如下：<ol><li>创建 **BasicAudioCallWidget** 变量，选择变量的 **Variable Type** 为 **BP_AudioWidget**，即已经创建好的用户界面，用于在蓝图中存储对用户界面的引用。</li><li>拖拽创建好的变量到 **EventGraph** 后，会出现 **Set BasicAudioCallWidget** 和 **Get BasicAudioCallWidget** 两个选项，选择 **Set BasicAudioCallWidget** 创建节点，用于访问并设置用户界面。</li></ol> |
    | 5    | **Bind UIEvent**   | 自定义   | 绑定 UI 事件，用于处理点击 **JoinChannel** 和 **LeaveChannel** 按钮后的事件逻辑。 |
    | 6    | **Add to Viewport**   | 原生  | 将用户界面添加到视口。   |
-   | 7    | **Check Permission**   | 自定义   | (可选) 检查是否已获取语音通话所需的系统权限，如访问摄像头和麦克风等。<div class="alert note">如果你的目标平台是 Android，需要创建该节点用于检查系统权限。</div> |
+   | 7    | **Check Permission**   | 自定义   | (可选) 检查是否已获取语音通话所需的系统权限，如访问麦克风等。<div class="alert note">如果你的目标平台是 Android，需要创建该节点用于检查系统权限。</div> |
    | 8    | **Init Rtc Engine**     | 自定义   | 创建并初始化 RTC 引擎。  |
    | 9    | **Un Init Rtc Engine**  | 自定义   | 离开频道并释放资源。     |
 
-[1]：原生节点为蓝图自带的节点，可以直接添加调用。
-[2]：自定义节点非蓝图自带，需要在创建自定义函数后才能添加对应节点。
+<sup>*</sup>：原生节点为蓝图内置的节点，无需额外配置即可直接添加调用。
+<sup>**</sup>：自定义节点非蓝图内置，需要在创建自定义函数后才能添加对应节点。
 
 ### 加入频道相关变量
 
@@ -122,7 +120,7 @@ $$
 
 ### 初始化 RTC 引擎
 
-1. (可选) 如果你的目标平台是 Android，在初始化 RTC 引擎前，需要检查是否已获取 Android 系统权限。在 **CheckPermission** 函数中，参照下图创建节点用于添加 Android 系统中访问麦克风、访问摄像头等权限。
+1. (可选) 如果你的目标平台是 Android，在初始化 RTC 引擎前，需要检查是否已获取 Android 系统权限。在 **CheckPermission** 函数中，参照下图创建节点，用于添加 Android 系统中访问麦克风等权限。
 ![](https://web-cdn.agora.io/docs-files/1689862339398)
 
 2. 在 **InitRtcEngine** 函数中，参照下图创建并连接节点以初始化 RTC 引擎。
@@ -150,6 +148,8 @@ $$
 
 ### 绑定 UI 事件
 
+<div class="alert info">你也可以在 UMG 中绑定 UI 事件，本文仅展示使用 <b>Bind UIEvent</b> 函数进行绑定。</div>
+
 1. 创建并实现 **OnJoinChannelClicked** 事件回调。
 ![](https://web-cdn.agora.io/docs-files/1689861266481)
 主要步骤如下：
@@ -166,12 +166,11 @@ $$
 
 3. 在 **Bind UIEvent** 函数中，参考下图将 **OnJoinChannelClicked** 和 **OnLeaveChannelClicked** 回调函数分别绑定 **JoinChannel** 和 **LeaveChannel** 按钮。点击按钮时，会触发对应的事件回调。
 ![](https://web-cdn.agora.io/docs-files/1689861304018)
-<div class="alert info">你也可以在 UMG 中绑定 UI 事件，本文仅展示使用 <b>BindUIEvent</b> 函数进行绑定。</div>
 
 
 ### 实现回调函数
 
-将之前创建的 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调函数按照以下实现步骤进行配置。
+将之前创建的 **onJoinChannelSuccess**、**onLeaveChannel**、**onUserJoined** 和 **onUserOffline** 回调函数按照以下实现步骤进行配置：
 1. 本地用户成功加入频道后，触发 `onJoinChannelSuccess` 回调。
 ![](https://web-cdn.agora.io/docs-files/1689860677797)
 
@@ -199,5 +198,5 @@ $$
 
 按照以下步骤来测试你的语音通话项目：
    1. 在 **Load Agora Config** 函数中，分别填入将你的项目的 App ID、频道名以及临时 Token。
-   2. 在 **Unreal Editor** 中，点击播放按钮来运行你的项目，然后点击 **JoinChannel** 加入语音通话。
+   2. 在 **Unreal Editor** 中，点击 <img src="https://web-cdn.agora.io/docs-files/1690867946685" width="25"/> 来运行你的项目，然后点击 **JoinChannel** 加入语音通话。
    3. 邀请一位朋友通过另一台设备来使用相同的 App ID、频道名、Token 加入频道。你们可以听见对方。
