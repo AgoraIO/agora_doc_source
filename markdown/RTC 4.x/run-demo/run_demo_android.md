@@ -9,7 +9,6 @@
 - Android API 级别 21 及以上。
 - 两台运行 Android 5.0 及以上版本的移动设备。
     <div class="alert note">声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。</div>
-- 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
 - 参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms) 创建有效的声网账户和声网项目，并从声网控制台获取以下信息：
     - App ID：声网随机生成的字符串，用于识别你的 app。
     - (可选) App 证书：声网提供的 App 证书，用于在服务器部署并生成 Token，或者使用控制台生成临时的 Token。
@@ -75,7 +74,7 @@ git clone git@github.com:AgoraIO/API-Examples.git
 
 5. 编译成功后，你的 Android 设备上会出现 <img src="https://web-cdn.agora.io/docs-files/1690450345873" width="25"> 应用。
 
-6. 打开 **Agora API Example** 应用，选择一个你想要尝试的场景，然后输入频道名（如 `test`），并点击**加入频道**。
+6. 打开 **Agora API Example** 应用后，你可以任意选择你想体验的场景。以 **视频互动直播** 为例，输入频道名（如 `test`），并点击**加入频道**。
 ![](https://web-cdn.agora.io/docs-files/1690450380432)
 
 7. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 App ID 不变）。以 **视频互动直播** 为例，你们输入相同的频道名并加入频道后，你们会看到彼此，并听到彼此的声音。
