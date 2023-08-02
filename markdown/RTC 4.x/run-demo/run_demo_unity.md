@@ -32,13 +32,12 @@
 
 1. 前往 [SDK 下载页面](./downloads?platform=Unity)，下载最新版的 Unity 视频 SDK，下载完成后你会看到一个 `.unitypackage` 文件。
 
-2.  打开你的 Unity 项目后，点击  `.unitypackage` 文件，会弹出一个 **Import Unity Package** 窗口，点击右下角的 **Import** 按钮把 Unity SDK 导入到你的项目中。导入完成后，你可以在 **Project** 面板看到xxxxx中看到 `API-Example` 文件夹，如下图：
+2.  点击  `.unitypackage` 文件，会弹出一个 **Import Unity Package** 窗口，点击右下角的 **Import** 按钮把 Unity SDK 导入到你的 Unity 项目中。导入完成后，你可以在 **Project** 面板看到 `Agora-RTC-PLUGIN` 文件夹。
 
-   ![image-20230731163101988](/Users/admin/Library/Application Support/typora-user-images/image-20230731163101988.png)
 
 ### 配置示例项目
 
-打开 `API-Example/AppIdInput.cs` 文件，填入你从声网控制台获取到的 App ID、临时 Token 和频道名。
+打开 `Agora-RTC-PLUGIN/API-Example/AppIdInput.cs` 文件，填入你从声网控制台获取到的 App ID、临时 Token 和频道名。
 
 ```csharp
 public class AppIdInput : ScriptableObject
@@ -60,11 +59,14 @@ public class AppIdInput : ScriptableObject
 
 ### 编译并运行示例项目
 
-4. 选择一个你想要尝试的场景，点击
+1.  `API-Example` 文件夹下包含 `Basic` 和 `Advanced` 两个文件，分别包含了声网 Unity SDK 的基础和进阶场景的使用示例（如下图所示）。选择一个你想要尝试的场景，点击 ![](https://web-cdn.agora.io/docs-files/1690958627881) 进行编译。
 
-   ![](https://web-cdn.agora.io/docs-files/1690515752444)
+​      <img src="https://web-cdn.agora.io/docs-files/1690958701166" style="zoom:50%;" />
 
-5. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 `KeyCenter.swift` 中的 App ID 一致）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+2. 以视频通话为例，编译成功后你可以看到自己本地的视频预览。
 
-   ![](https://web-cdn.agora.io/docs-files/1690515855575)
+   ![](https://web-cdn.agora.io/docs-files/1690958780301)
 
+3. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 App ID、临时 Token 和频道名与你配置示例项目时填入的一致）。当你们输入相同的频道名加入频道后，即可在同一频道中体验各种互动场景。
+
+   ![](https://web-cdn.agora.io/docs-files/1690958810176)
