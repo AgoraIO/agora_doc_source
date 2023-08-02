@@ -12,19 +12,19 @@
 
 下图展示创建、进入、退出房间的流程。
 
-![](https://web-cdn.agora.io/docs-files/1689244560969) //TODO change pic everywhere
+![](https://web-cdn.agora.io/docs-files/1690957909911)
 
 ### 房主邀请听众上麦
 
 下图展示房主邀请听众上麦的流程。在这个流程中，房主发起上麦邀请，如果听众接受邀请，房主会收到通知。听众上麦并修改麦位，然后发布自己的音频流。
 
-![](https://web-cdn.agora.io/docs-files/1689244566441)
+![](https://web-cdn.agora.io/docs-files/1690957919691)
 
 ### 听众申请上麦
 
 下图展示听众向房主申请上麦的流程。在这个流程中，听众主动发起上麦申请，如果房主接受申请，房主修改麦位信息以让听众上麦。听众收到上麦消息后，发布自己的音频流。
 
-![](https://web-cdn.agora.io/docs-files/1689244572951)
+![](https://web-cdn.agora.io/docs-files/1690957930139)
 
 ## 准备开发环境
 
@@ -314,4 +314,4 @@ let rtcKit: RtcEngine = RtcEngine.sharedEngine(withAppId: KeyCenter.AppId, deleg
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1690885373743)
+![](https://web-cdn.agora.io/docs-files/1690957970178)
