@@ -52,7 +52,7 @@ git clone git@github.com:AgoraIO/API-Examples.git
 3. 编译成功后，你的 Windows 设备上会弹出以下窗口：
 ![](https://web-cdn.agora.io/docs-files/1690875828817)
 
-4. 你可以任意选择你想体验的场景。以  **Basic Scene** 中的 **LiveBroadcasting** 直播场景为例，在 **Channel Name** 中输入频道名 (如 `test`)，并点击 **JoinChannel** 加入频道。
+4. 你可以任意选择你想体验的场景。以 **Basic Scene** 中的 **LiveBroadcasting** 直播场景为例，在 **Channel Name** 中输入频道名 (如 `test`)，并点击 **JoinChannel** 加入频道。
     <div class="alert note">如果你填写了 <code>APP_TOKEN</code>，则此处必须使用生成临时 token 时的频道名。</div>
 
 5. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 App ID 不变）。你们输入相同的频道名并加入频道后，你们会看到彼此，并听到彼此的声音。
