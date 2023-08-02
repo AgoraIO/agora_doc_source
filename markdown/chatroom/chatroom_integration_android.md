@@ -169,9 +169,15 @@ public void login(String uid,String token,CallBack callBack){
 1. 根据[前提条件](#前提条件)在声网控制台创建声网项目后，复制界面的 App ID。
 2. 调用声网 RTC SDK 中的 `create` 方法创建并初始化 `RtcEngine`。
 
-```kotlin //TODO add code
-let rtcKit: RtcEngine = RtcEngine.sharedEngine(withAppId: KeyCenter.AppId, delegate: nil)
+```kotlin
+// 初始化配置
+val config = RtcEngineConfig()
+// 设置 App ID
+config.mAppId = "YourAppId"
+// 创建 RtcEngine 实例
+val rtcEngine = RtcEngineEx.create(config) as RtcEngineEx
 ```
+
 ### 4. 创建并进入房间
 
 1. 调用 `voiceServiceProtocol` 对象中的 `createRoom` 方法创建一个房间。
@@ -219,64 +225,75 @@ let rtcKit: RtcEngine = RtcEngine.sharedEngine(withAppId: KeyCenter.AppId, deleg
 
 3. 语聊房里需要有消息聊天和语音聊天，因此你还需进行如下操作：
     - 调用声网 IM SDK 中 `joinChatRoom` 实现房间内的消息互动。方法中的参数含义和支持取值请参考 [`joinChatRoom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_java/v1.1.0/classio_1_1agora_1_1chat_1_1_chat_room_manager.html#a895dbd6d0217ba08bcf2dbb6cf441591)。
+
+        ```kotlin
+        // 实现房间内的消息互动
+        public void joinRoom(String chatroomId, ValueCallBack<ChatRoom> callBack){
+            ChatClient.getInstance().chatroomManager()
+                    .joinChatRoom(chatroomId, new ValueCallBack<ChatRoom>() {
+                        @Override
+                        public void onSuccess(ChatRoom value) {
+                            ThreadManager.getInstance().runOnMainThreadDelay(new Runnable() {
+                                @Override
+                                public void run() {
+                                    callBack.onSuccess(value);
+                                }
+                            },200);
+                        }
+
+                        @Override
+                        public void onError(int error, String errorMsg) {
+                            ThreadManager.getInstance().runOnMainThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    callBack.onError(error,errorMsg);
+                                }
+                            });
+                        }
+                    });
+        }
+        ```
+
     - 调用声网 RTC SDK 中 `RtcEngine` 类的 `joinChannel` 加入 RTC 频道以实现房间内的实时音频通话。方法中的参数含义和支持取值请参考 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。在这一步里需要填写声网 RTC Token。你可以参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得临时用途的声网 RTC Token。你也可以参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_ios_ng?platform=iOS)获取正式用途的声网 RTC Token。临时 Token 的有效期为 24 小时，建议你仅在测试用途下使用。
 
-    ```kotlin
-    // 实现房间内的消息互动
-    public void joinRoom(String chatroomId, ValueCallBack<ChatRoom> callBack){
-        ChatClient.getInstance().chatroomManager()
-                .joinChatRoom(chatroomId, new ValueCallBack<ChatRoom>() {
-                    @Override
-                    public void onSuccess(ChatRoom value) {
-                        ThreadManager.getInstance().runOnMainThreadDelay(new Runnable() {
-                            @Override
-                            public void run() {
-                                callBack.onSuccess(value);
-                            }
-                        },200);
-                    }
-
-                    @Override
-                    public void onError(int error, String errorMsg) {
-                        ThreadManager.getInstance().runOnMainThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                callBack.onError(error,errorMsg);
-                            }
-                        });
-                    }
-                });
-    }
-    ```
-
-    ```kotlin
-    // 实现房间内的语音互动 //TODO add comment
-    rtcEngine?.apply {
-        when (soundEffect) {
-            ConfigConstants.SoundSelection.Social_Chat,
-            ConfigConstants.SoundSelection.Karaoke -> { // 社交语聊，ktv
-                setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
-                setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY)
-                setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
-            }
-            ConfigConstants.SoundSelection.Gaming_Buddy -> { // 游戏陪玩
-                setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION)
-            }
-            else -> { //专业主播
-                setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY)
-                setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
-                setParameters("{\"che.audio.custom_payload_type\":73}")
-                setParameters("{\"che.audio.custom_bitrate\":128000}")
-                // setRecordingDeviceVolume(128) 4.0.1上才支持
-                setParameters("{\"che.audio.input_channels\":2}")
+        ```kotlin
+        // 实现房间内的语音互动
+        rtcEngine?.apply {
+            when (soundEffect) {
+                // 在线 K 歌房和泛娱乐社交场景下推荐设置
+                ConfigConstants.SoundSelection.Social_Chat,
+                ConfigConstants.SoundSelection.Karaoke -> {
+                    // 设置频道属性为直播
+                    setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
+                    // 设置 48 kHz 采样率，音乐编码，单声道，编码码率最大值为 96 Kbps
+                    setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY)
+                    // 设置为高音质场景
+                    setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
+                }
+                // 1 对 1 游戏陪玩通话场景下推荐
+                ConfigConstants.SoundSelection.Gaming_Buddy -> {
+                    // 设置频道属性为通信
+                    setChannelProfile(Constants.CHANNEL_PROFILE_COMMUNICATION)
+                }
+                else -> {
+                    // 专业直播场景下推荐设置
+                    // 设置频道属性为直播
+                    setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
+                    // 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps
+                    setAudioProfile(Constants.AUDIO_PROFILE_MUSIC_HIGH_QUALITY)
+                    // 设置为高音质场景
+                    setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
+                    // 设置私有参数以获得好的实时音频互动体验
+                    setParameters("{\"che.audio.custom_payload_type\":73}")
+                    setParameters("{\"che.audio.custom_bitrate\":128000}")
+                    setParameters("{\"che.audio.input_channels\":2}")
+                }
             }
         }
-    }
-    //TODO add comment token
-    val status = rtcEngine?.joinChannel(VoiceBuddyFactory.get().getVoiceBuddy().rtcToken(), channelId, "", rtcUid)
-    // 启用用户音量提示。
-    rtcEngine?.enableAudioVolumeIndication(1000, 3, false)
-    ```
+        // 加入 RTC 频道
+        // 此处的 Token 为声网 RTC Token
+        val status = rtcEngine?.joinChannel(VoiceBuddyFactory.get().getVoiceBuddy().rtcToken(), channelId, "", rtcUid)
+        ```
 
 ### 5. 麦位管理
 

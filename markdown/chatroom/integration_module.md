@@ -1,8 +1,8 @@
-本文介绍语聊房解决方案中常见的进阶设置。
+本文介绍语聊房解决方案中常用的进阶功能。
 
 ## 设置高音质
 
-高音质会给语聊房带来更好的用户体验。建议参考如下示例代码，调用声网 RTC SDK 中的 setAudioProfile、setAudioScenarios、setParameters 方法来设置高音质：
+高音质会给语聊房带来更好的音频体验。你可以参考如下示例代码，调用声网 RTC SDK 中的 [`setAudioProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioprofile2)、[`setAudioScenarios`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioscenario)、[`setParameters`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_network.html#api_irtcengine_setparameters) 方法来设置高音质：
 
 - 当主播使用声卡采集音频时，设置高音质：
 
@@ -29,58 +29,53 @@
 
 **注意**：上述高音质设置仅适用于语聊房。如果在其他场景解决方案中需要设置高音质，可以联系声网技术支持进行咨询。
 
-## 背景音乐和音效
+## 播放背景音乐和音效
 
-主播可以通过播放背景音乐和音效活跃语聊房内的气氛。
+播放背景音乐和音效可以活跃语聊房内的气氛。本节介绍如何在语聊房中播放多种来源的音乐：
+
+- 本地音乐文件或在线音乐文件。
+- 声网提供的版权音乐。
+- 第三方厂商提供的版权音乐。
 
 ### 本地音乐文件或在线音乐文件
 
 如果主播使用的音乐文件是本地文件或在线文件，播放方式有如下两种：
 
-- 调用 声网 RTC SDK 中的 [`startAudioMixing`](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing) 方法播放文件：
+- 调用声网 RTC SDK 中的 [`startAudioMixing`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing) 方法播放文件。
 
-```objective-c
-- (int)startAudioMixing:(NSString *  _Nonnull)filePath
-               loopback:(BOOL)loopback
-                replace:(BOOL)replace
-                  cycle:(NSInteger)cycle;
-```
+- 使用声网 RTC SDK 中[内置媒体播放器](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_mediaplayer.html)来播放文件。
 
-- 使用 声网 RTC SDK 中[内置媒体播放器](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_mediaplayer.html)来播放文件。
+### 声网版权音乐
 
-### 声网 DRM 音乐 //TODO
+声网和音集协合作提供了数十万首热门歌曲。声网支持你在语聊房和直播间播放有版权的背景音乐。你可以参考如下步骤使用声网版权音乐来给语聊房增加趣味性：
 
-目前声网和音集协合作提供了数十万首热门歌曲，支持直播间 BGM 版权。我们建议您使用声网 SDK 中自带的 DRM 模块来使用声网版权音乐。具体步骤如下：
+1. 联系 sales@agora.io 开通声网版权音乐和内容中心服务。
 
-1. 联系声网服务人员，开通版权音乐使用权限。
+2. 在你的业务服务器中，通过 RESTful API 向声网内容中心获取歌曲详细信息，并将信息保存在你的服务端。详见[声网内容中心 RESTful API](https://docportal.shengwang.cn/cn/online-ktv/ktv_song_rest?platform=All%20Platforms)。
 
-2. 自己业务服务器通过 OpenAPI 向声网版权音乐服务获取歌曲信息，保存在自己的服务端。
+3. 在你的业务客户端中，增加歌曲搜索和点歌的功能。当用户点击播放某首歌曲时，你需要获得歌曲的 `SongCode`（标识音乐资源的编号），然后通过声网 RTC SDK 中的[版权音乐 API](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_drm.html)预加载歌曲，通过声网 RTC SDK 中[内置媒体播放器](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_mediaplayer.html)播放歌曲。详见[客户端实现点歌](https://docportal.shengwang.cn/cn/online-ktv/ktv_integration_android?platform=Android)。
 
-3. 做一个客户端歌曲搜索与点歌页面。当用户点击某一首歌曲后，可以获得歌曲的 SongCode，然后通过声网 SDK 进行歌曲预加载和播放。
+4. 如果需要展示歌词，你可以通过版权音乐 API 和 `SongCode` 来获取歌词文件地址，获取后你就可以展示歌词。详见[歌词组件](https://docportal.shengwang.cn/cn/online-ktv/ktv_karaoke_view_android?platform=Android)。
 
-4. 如果需要歌词展示，声网 SDK 还可以直接通过 SongCode 获取具体的歌词文件地址，获取歌词后就可以展示。
 
-5. 在歌曲播放时，需要使用声网 SDK 中的 MediaPlayerKit 播放器，通过 SongCode 播放。
+### 第三方版权音乐
 
-注意：声网 DRM 版权音乐不仅能用于聊天室中的背景音乐，还可以用于 K 歌等应用。更多关于版权音乐的信息，请参考[声网歌曲内容中心](https://docs.agora.io/cn/online-ktv/ktv_song_rest?platform=All%20Platforms)。
+你还可以在语聊房中使用第三方厂商提供的版权音乐，例如[腾讯正版曲库直通车（AME）](https://cloud.tencent.com/product/ame)。参考如下步骤在语聊房中播放第三方版权音乐：
 
-### 第三方版权音乐（例如：AME）//TODO
+1. 在你的业务客户端中，通过第三方版权音乐 SDK 实现歌曲搜索、点歌功能。当用户选中歌曲播放时，你需要使用第三方版权音乐 SDK 对歌曲进行解码，同时禁止播放歌曲声。
 
-版权来源还可以来自第三方版权音乐服务商，例如 AME。一般第三方音乐服务商都会提供一个 SDK，用于音乐播放。
+2. 通过第三方版权音乐 SDK 的原始音频数据 API，获取 PCM 格式的原始音频数据。
 
-声网 SDK 可以很好地适配第三方版权音乐。具体流程如下（以 AME 为例）：
+3. 通过[声网音频自采集功能](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/custom_audio_src_android_ng?platform=Android)将你之前获取的原始音频数据发送给声网 RTC SDK。声网 RTC SDK 内部会自动将麦克风采集到的声音和第三方版权音乐的歌曲声混合，并发送到声网 RTC 频道中，频道内的听众都可以听到这个混音。
 
-1. 歌曲搜索、点歌等逻辑都与 APP 业务逻辑及第三方版权音乐相关。
+**注意**：声网建议你在自采集音频时，将 [`setExternalAudioSource`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_imediaengine_setexternalaudiosource2) 方法中的 `localPlayback` 参数设置为 `true`，以使第三方音频可以在本地播放。
 
-2. 用户确认歌曲后，只需要 AME SDK 对音乐进行解码，禁止声音播放。
 
-3. 从 AME SDK 的音乐裸数据回调中，获取 PCM 裸数据，然后使用声网自采集相关 API 将其发送给声网 SDK，声网 SDK 内部自动将麦克风声音和 AME 音乐声音混合后发送到声网频道中。音频裸数据的使用请参考[声网自定义音频采集](https://docs.agora.io/cn/live-streaming-premium-4.x/custom_audio_src_apple_ng?platform=iOS)。
+## 增加音量波纹提示
 
-4. 声网 SDK 启用 localPlayback 模式，以使 AME 解码出来的 PCM 数据能够用声网 SDK 播放。
+语聊房中的音量波纹提示功能可以让房间的听众看到谁正在发言。该功能的实现流程如下：
 
-5. 总结来说就是：音频自采集 + localPlayback。
+1. 调用声网 RTC SDK 中的 [enableAudioVolumeIndication](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_enableaudiovolumeindication) 方法启用音量提示功能，建议你在启用音量提示时设置音量提示时间间隔为 500 毫秒。
 
-## 音量波纹提示
-
-在语聊房中，房间内的听众一般需要知道谁在说话，通常是使用波纹提示。该功能可以直接使用声网 RTC SDK 中的 [enableAudioVolumeIndication](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_enableaudiovolumeindication) 方法启用音量提示功能，建议你在启用音量提示时设置音量提示时间间隔为 500 毫秒。你可以从 SDK 触发的 [onAudioVolumeIndication](https://docs.agora.io/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#callback_irtcengineeventhandler_onaudiovolumeindication) 回调获得本地和远端讲话者的音量信息，一般在 `volume` 值大于 20 的时，你需要给出音量提示。
+2. 你可以从 SDK 触发的 [onAudioVolumeIndication](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#callback_irtcengineeventhandler_onaudiovolumeindication) 回调获得本地和远端讲话者的音量信息。建议你在 `volume` 值大于 20 的时给出音量提示并在 UI 上制作音量对应的波纹效果。
 

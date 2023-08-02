@@ -4,21 +4,21 @@
 
 ### 问题
 
-如何实现某用户调用 `startAudioMixing` 播放背景音乐，不想让频道内其他人听到自己说话的声音，只想让别人听到自己播放的背景音乐？
+如何实现某用户调用 [`startAudioMixing`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing) 播放背景音乐时，不想让频道内其他人听到自己说话的声音，只想让别人听到自己播放的背景音乐？
 
 ### 解决方法
 
-该用户可以调用 `adjustRecordingSignalVolume` 将音量设置为 0。
+该用户可以调用 [`adjustRecordingSignalVolume`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_adjustrecordingsignalvolume) 将音量设置为 0。
 
 ## 禁止人声和背景音乐
 
 ### 问题
 
-如何实现某用户调用 `startAudioMixing` 播放背景音乐，但不想让自己说话的声音和背景音乐被频道内其他人听到？
+如何实现某用户调用 [`startAudioMixing`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing) 播放背景音乐时，不想让自己说话的声音和背景音乐被频道内其他人听到？
 
 ### 解决方法
 
-该用户可以调用 `muteLocalAudioStream`。
+该用户可以调用 [`muteLocalAudioStream`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_mutelocalaudiostream) 取消发布本地音频流。
 
 ## 不听说话者声音
 
@@ -28,7 +28,7 @@
 
 ### 解决方法
 
-该用户可以调用 `adjustUserPlaybackSignalVolume` 设置某个说话者的播放音量为 0，或者调用 `adjustPlaybackSignalVolume` 设置频道内所有人的播放音量为 0。
+该用户可以调用 [`adjustUserPlaybackSignalVolume`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_adjustuserplaybacksignalvolume) 设置某个说话者的播放音量为 0，或者调用 [`adjustPlaybackSignalVolume`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_adjustplaybacksignalvolume) 设置频道内所有人的播放音量为 0。
 
 
 ## 处理第三方应用音频
@@ -81,4 +81,4 @@ setParameters("{\"che.audio.keep.audiosession\":true}");
     - 可以使用声网即时通讯（IM）SDK 判断用户失联的时间。比如，当用户失联超过 30 秒时，业务服务器会将该用户标记为已离线。
     - 可以使用声网消息通知服务。当用户快断线时，该服务会提前 20 秒告知用户即将离线。此时业务服务器可以做已离线标记。
 
-2. 当用户的网络再次连接时，业务服务器会与之同步该用户的状态。如果业务服务器标记该用户为已离线，该就可以调用 `leaveChannel` 让该用户离开原来的频道。从而，避免“鬼麦”现象。
+2. 当用户的网络再次连接时，业务服务器会与之同步该用户的状态。如果业务服务器标记该用户为已离线，该就可以调用 [`leaveChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_leavechannel) 让该用户离开原来的频道。从而，避免“鬼麦”现象。
