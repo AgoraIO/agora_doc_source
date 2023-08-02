@@ -17,8 +17,10 @@
       Constants.SimulcastStreamMode mode, SimulcastStreamConfig streamConfig);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setDualStreamMode:(AgoraSimulcastStreamMode)mode
             streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setDualStreamMode(SIMULCAST_STREAM_MODE mode,
                                  const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
+int SetDualStreamMode(ESIMULCAST_STREAM_MODE mode, const FSimulcastStreamConfig&amp; streamConfig);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setDualStreamMode(
     mode: SimulcastStreamMode,
     streamConfig?: SimulcastStreamConfig
@@ -40,9 +42,15 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">SDK 默认在发送端开启小流 auto 模式，效果等同于调用该方法并将 <parmname>mode</parmname> 设置为 <apiname keyref="AUTO_SIMULCAST_STREAM"/>。如果你想修改此行为，可以调用该方法并修改 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/>（始终不发送小流）或 <apiname keyref="ENABLE_SIMULCAST_STREAM"/>（始终发送小流）。</p>
-            <p props="native unreal bp unity cs">该方法跟 <xref keyref="setDualStreamMode"/> 的区别在于，该方法还可以进行视频小流的配置，SDK 会根据 <parmname>streamConfig</parmname> 中的配置发送小流。</p>
-            <note conkeyref="setDualStreamMode/note" props="native unreal bp unity cs"/> </section>
+            <p conkeyref="setDualStreamMode/desc"/>
+            <p props="native unreal unity cs">该方法跟 <xref keyref="setDualStreamMode"/> 的区别在于，该方法还可以进行视频小流的配置，SDK 会根据 <parmname>streamConfig</parmname> 中的配置发送小流。</p>
+            <note id="note">该方法和 <xref keyref="enableDualStreamMode2"/> 的区别与联系如下：
+                <ul>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="DISABLE_SIMULCAST_STREAM"/> 时，跟调用 <apiname keyref="enableDualStreamMode2"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="false"/></codeph> 的效果相同。</li>
+                <li>调用该方法并设置 <parmname>mode</parmname> 为 <apiname keyref="ENABLE_SIMULCAST_STREAM"/> 时，跟调用 <apiname keyref="enableDualStreamMode2"/> 并设置 <parmname>enabled</parmname> 为 <codeph><ph keyref="true"/></codeph> 的效果相同。</li>
+                <li>两种方法均可在加入频道前后调用，若同时使用，则以后调用的方法中的设置为准。</li>
+                </ul></note>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>

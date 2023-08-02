@@ -39,10 +39,10 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
 - The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
-  - `onSecondaryPreEncodeCameraVideoFrame`
+  - `onSecondaryPreEncodeCameraVideoFrame` (Windows)
   - `onScreenCaptureVideoFrame`
   - `onPreEncodeScreenVideoFrame`
-  - `onSecondaryPreEncodeScreenVideoFrame`
+  - `onSecondaryPreEncodeScreenVideoFrame` (Windows)
 
 **3. Channel media options**
 
@@ -219,8 +219,8 @@ This release fixed the following issues:
 - `stopPrimaryCameraCapture`
 - `stopSecondaryCameraCapture`
 - `onSecondaryPreEncodeCameraVideoFrame`(Windows)
-- `onScreenCaptureVideoFrame`(Windows)
-- `onPreEncodeScreenVideoFrame`(Windows)
+- `onScreenCaptureVideoFrame`
+- `onPreEncodeScreenVideoFrame`
 - `onSecondaryPreEncodeScreenVideoFrame`(Windows)
 - `onApiCallExecuted`
 - `publishCustomAudioTrackEnableAec` in `ChannelMediaOptions`
