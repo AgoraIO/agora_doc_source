@@ -18,12 +18,12 @@
 | 功能    | 描述    |
 |-----|-------------------------|
 | 多人实时语音    | 语聊房内多位用户实时连麦语聊。    |
-| 麦位管理    | 上麦、下麦、静音、锁麦、换麦。详见[麦位管理](./chatroom_mic_seat_andrid)。    |
+| 麦位管理    | 上麦、下麦、静音、锁麦、换麦。详见[麦位管理](./chatroom_mic_seat_android)。    |
 | 多种场景音效    | 房主为不同业务场景设置语聊房的最佳音效：包括语聊社交、KTV、游戏陪玩、专业音频直播的语音场景。    |
 | 用户个人音效    | 用户自定义个人音效：<li>AI 降噪（NS）：降低语聊时的噪音。<li>AI 回声消除（AEC）：消除语聊时的回声。<li>语音自动增益（AGC）：自动调整唱歌的人声音量。    |
 | 空间音效    | 使用户听到的音频具有 3D 空间立体感，让用户感觉更身临其境。用户可以调节麦位在空间中的位置，以选择更好的方位和距离来收听其他用户的发言。详见[空间音效](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/spatial_audio_android_ng?platform=Android)。    |
-| 播放背景音乐    | 房主可以播放本地音乐文件、在线音乐文件、声网内容中心的版权音乐、第三方厂商的版权音乐。    |
-| 音量波纹提示    | 监听用户声音的音量并创造与音量高低相对应的波纹效果。    |
+| 播放背景音乐    | 房主可以播放本地音乐文件、在线音乐文件、声网内容中心的版权音乐、第三方厂商的版权音乐。详见[进阶功能](./chatroom_set_audio)。    |
+| 音量波纹提示    | 监听用户声音的音量并创造与音量高低相对应的波纹效果。详见[进阶功能](./chatroom_set_audio)。    |
 | 录制    | 通过声网[本地服务端录制](https://docportal.shengwang.cn/cn/Recording/product_recording?platform=Linux)或[云端录制](https://docportal.shengwang.cn/cn/cloud-recording/product_cloud_recording?platform=All%20Platforms)服务对语聊房进行录制。    |
 | 语音审核    |通过声网云市场丰富的插件实现语音审核，例如使用[依图](https://docportal.shengwang.cn/cn/extension_customer/quickstart_yitu_moderation_audio?platform=All%20Platforms)、[数美](https://docportal.shengwang.cn/cn/extension_customer/quickstart_shumei_moderation_audio?platform=All%20Platforms)、[图普](https://docportal.shengwang.cn/cn/extension_customer/quickstart_tupu_moderation_audio?platform=All%20Platforms)语音审核插件。     |
 | 防止炸房捣乱现象    | 预防和应对炸房捣乱现象的有效措施，帮助维护房间秩序，提高业务安全性。详见[预防和应对炸房捣乱现象最佳实践](https://docportal.shengwang.cn/cn/live-streaming-premium-legacy/prevent_stream_bombing?platform=Android)。    |

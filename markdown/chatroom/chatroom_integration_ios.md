@@ -218,7 +218,7 @@ let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCen
             // 设置频道属性为通信
             rtcKit.setChannelProfile(.communication)
         } else if type == .anchor {
-            // 专业直播场景下推荐设置
+            // 专业音频直播场景下推荐设置
             // 设置频道属性为直播
             rtcKit.setChannelProfile(.liveBroadcasting)
             // 指定 48 kHz 采样率，音乐编码，双声道，编码码率最大值为 128 Kbps
