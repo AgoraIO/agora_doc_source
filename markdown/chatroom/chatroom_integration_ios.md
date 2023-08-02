@@ -154,8 +154,6 @@ let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCen
 
 2. 调用 `ChatRoomServiceImp` 类的 `joinRoom` 方法进入房间。
 
-    在这一步里需要填写声网 RTC Token。你可以参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得临时用途的声网 RTC Token。你也可以参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_ios_ng?platform=iOS)获取正式用途的声网 RTC Token。临时 Token 的有效期为 24 小时，建议你仅在测试用途下使用。
-
     ```swift
     // 显示加载提示
     SVProgressHUD.show(withStatus: "Loading".localized())
@@ -198,7 +196,8 @@ let rtcKit: AgoraRtcEngineKit = AgoraRtcEngineKit.sharedEngine(withAppId: KeyCen
         }
         ```
 
-    - 调用声网 RTC SDK 中 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入 RTC 频道以实现房间内的实时音频通话。方法中的参数含义和支持取值请参考 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。
+    - 调用声网 RTC SDK 中 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入 RTC 频道以实现房间内的实时音频通话。方法中的参数含义和支持取值请参考 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。在这一步里需要填写声网 RTC Token。你可以参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得临时用途的声网 RTC Token。你也可以参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_ios_ng?platform=iOS)获取正式用途的声网 RTC Token。临时 Token 的有效期为 24 小时，建议你仅在测试用途下使用。
+    你还可以调用 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile)、[`setAudioProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_setaudioprofile2)、[`setAudioScenario`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_audio_process.html#api_irtcengine_setaudioscenario)、[`setParameters`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/ios_ng/API/toc_network.html#api_irtcengine_setparameters) 来为不同业务场景（语聊社交、KTV、游戏陪玩、专业音频直播场景）设置语聊房的最佳音效。
 
         ```swift
         // 实现房间内的语音互动
