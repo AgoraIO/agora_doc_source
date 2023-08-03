@@ -7,7 +7,7 @@
 
 - Unity 2017.4.35 或以上版本
 
-- 一个 Unity 项目
+- 一个 Unity 项目，你可以参考 [Unity 官方文档](https://docs.unity3d.com/2018.2/Documentation/Manual/GettingStarted.html)来创建一个项目。
 
 - 操作系统与编译器要求：
 
@@ -20,7 +20,7 @@
 
 - 计算机可以访问互联网。请确保你的网络环境未部署防火墙，否则可能无法正常使用声网服务。
 
-- 一个有效的[声网账号](https://docs.agora.io/cn/Agora Platform/sign_in_and_sign_up)以及声网项目。请参考 [开始使用声网平台](https://docs.agora.io/cn/Agora Platform/get_appid_token?platform=All Platforms) 从声网控制台获得以下信息：
+- 一个有效的[声网账号](https://docs.agora.io/cn/Agora Platform/sign_in_and_sign_up)以及声网项目。请参考[开始使用声网平台](https://docs.agora.io/cn/Agora Platform/get_appid_token?platform=All Platforms)从声网控制台获得以下信息：
 
   - App ID：声网随机生成的字符串，用于识别你的项目。
   - 临时 token：token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
@@ -32,7 +32,9 @@
 
 1. 前往 [SDK 下载页面](./downloads?platform=Unity)，下载最新版的 Unity 视频 SDK，下载完成后你会看到一个 `.unitypackage` 文件。
 
-2.  点击  `.unitypackage` 文件，会弹出一个 **Import Unity Package** 窗口，点击右下角的 **Import** 按钮把 Unity SDK 导入到你的 Unity 项目中。导入完成后，你可以在 **Project** 面板看到 `Agora-RTC-PLUGIN` 文件夹。
+2. 点击 `.unitypackage` 文件，会弹出一个 **Import Unity Package** 窗口，点击右下角的 **Import** 按钮把 Unity SDK 导入到你的 Unity 项目中。导入完成后，你可以在 **Project** 面板看到 `Agora-RTC-PLUGIN` 文件夹。
+
+   ![](https://web-cdn.agora.io/docs-files/1691052920319)
 
 
 ### 配置示例项目
@@ -61,7 +63,7 @@ public class AppIdInput : ScriptableObject
 
 1.  `API-Example` 文件夹下包含 `Basic` 和 `Advanced` 两个文件，分别包含了声网 Unity SDK 的基础和进阶场景的使用示例（如下图所示）。选择一个你想要尝试的场景，点击 ![](https://web-cdn.agora.io/docs-files/1690958627881) 进行编译。
 
-​      <img src="https://web-cdn.agora.io/docs-files/1690958701166" style="zoom:50%;" />
+​      <img src="https://web-cdn.agora.io/docs-files/1691054049527" style="zoom:50%;" />
 
 2. 以视频通话为例，编译成功后你可以看到自己本地的视频预览。
 
