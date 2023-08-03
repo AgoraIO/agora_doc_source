@@ -1,4 +1,4 @@
-声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。本文介绍如何快速跑通该示例项目，体验字节美颜效果。
+声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。本文介绍如何快速跑通该示例项目，体验字节火山美颜效果。
 
 ## 前提条件
 

@@ -8,29 +8,30 @@ participant "第三方美颜 SDK" as beauty
 app -> app: 进入预览和直播间
 == 初始化资源 ==
 app -> rtc: RtcEngine.create
-app -> beauty: 初始化 EffectManager
+app -> beauty: 初始化 EffectManager 对象
 app -> api: createByteDanceBeautyAPI
-alt 使用声网模块采集视频
-app -> api: initialize(captureMode.Agora)
+alt #WhiteSmoke 使用声网模块采集视频
+app -> api: initialize(captureMode.**Agora**) \n初始化 Beauty API
 end
-alt #LightYellow 自定义视频采集
-app -> api: initialize(captureMode.Custom)
+alt #AntiqueWhite 自定义视频采集
+app -> api: initialize(captureMode.**Custom**) \n初始化 Beauty API
 end
 == 开启美颜 ==
 app -> api: enable
 == 开启视频采集 ==
-app -> rtc: enableVideo 开启视频模块
-alt 使用声网模块采集视频
-app -> rtc: setupLocalVideo 设置本地视图
+app -> rtc: enableVideo \n开启视频模块
+alt #WhiteSmoke 使用声网模块采集视频
+app -> rtc: setupLocalVideo \n设置本地视图
 end
-alt #LightYellow 开发者自定义视频采集
-app -> rtc: registerVideoFrameObserver
-rtc --> app: onFrame 将外部视频数据传给 SDK
+alt #AntiqueWhite 开发者自定义视频采集
+app -> rtc: registerVideoFrameObserver \n注册原始视频数据观测器
+api -->> rtc: onFrame \n传递原始视频数据
+rtc -->> app: onCaptureVideoFrame \n传递原始视频数据
 end
 == 加入频道 ==
 app -> rtc: joinChannel
 == 设置美颜效果 ==
-app -> api: setBeautyPreset(DEFAULT/CUSTOM) 设置是否使用默认（推荐）的美颜参数
+app -> api: setBeautyPreset(DEFAULT/CUSTOM) \n设置使用默认（推荐）或自定义的美颜参数
 app -> beauty: 如需更多美颜效果，例如贴纸、滤镜，可调用第三方美颜 SDK 的 API
 == 离开频道 ==
 app -> rtc: leaveChannel

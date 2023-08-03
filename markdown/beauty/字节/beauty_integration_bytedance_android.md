@@ -1,4 +1,4 @@
-本文介绍如何通过声网场景化 API 集成字节美颜到实时音视频中。
+本文介绍如何通过声网场景化 API 集成字节火山美颜到实时音视频中。
 
 ## 示例项目
 
@@ -24,7 +24,7 @@
 
    <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。</div>
 
-2. 使用 Maven Central 将声网RTC SDK 集成到你的项目中。
+2. 使用 Maven Central 将声网 RTC SDK 集成到你的项目中。
 
    a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，添加 Maven Central 依赖：
 
@@ -47,7 +47,7 @@
 
     <div class="alert note">如果你的 Android 项目设置了 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，添加 Maven Central 依赖的方式可能存在差异。</div>
 
-   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网RTC SDK 集成到你的 Android 项目中：
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网 RTC SDK 集成到你的 Android 项目中：
 
    ```java
    ...
@@ -58,7 +58,7 @@
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
    ```
-3. 将字节美颜 SDK 集成到你的项目中。请联系字节技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
+3. 将字节火山美颜 SDK 集成到你的项目中。请联系字节技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
 
     | 文件    |  项目路径   |
     |-----|-----|
@@ -111,73 +111,90 @@
 
 ### 1. 初始化资源
 
-参考如下示例代码初始化 `RtcEngine`、`EffectManager`、Beauty API。
+本节介绍如何初始化 `RtcEngine`、`EffectManager`、Beauty API 对象。
 
-```kotlin
-// 初始化声网 RtcEngine
-private val mRtcEngine by lazy {
-    RtcEngine.create(RtcEngineConfig().apply {
-        mContext = applicationContext
-        // 传入你从控制台获取的声网项目的 APP ID
-        mAppId = BuildConfig.AGORA_APP_ID
-        mEventHandler = object : IRtcEngineEventHandler() {}
-    }).apply {
-        // 开启声网 clear_vision 视频插件
-        enableExtension("agora_video_filters_clear_vision", "clear_vision", true)
+1. 调用声网 RTC SDK 中的 create 创建并初始化 RtcEngine 对象。
+
+    ```kotlin
+    // 初始化声网 RtcEngine
+    private val mRtcEngine by lazy {
+        RtcEngine.create(RtcEngineConfig().apply {
+            mContext = applicationContext
+            // 传入你从控制台获取的声网项目的 APP ID
+            mAppId = BuildConfig.AGORA_APP_ID
+            mEventHandler = object : IRtcEngineEventHandler() {}
+        }).apply {
+            // 开启声网 clear_vision 视频插件
+            enableExtension("agora_video_filters_clear_vision", "clear_vision", true)
+        }
     }
-}
 
+2. 初始化美颜 SDK 的 EffectManager 对象。
 
-// 初始化字节美颜 SDK 提供的 EffectManager
-private val mEffectManager by lazy {
-    val resourceHelper =
-        AssetsResourcesHelper(this, "beauty_bytedance")
-    EffectManager(
-        this,
-        resourceHelper,
-        resourceHelper.getLicensePath(LICENSE_NAME)
-    )
-}
-
-
-// 创建 Beauty API 对象
-private val mByteDanceApi by lazy {
-    createByteDanceBeautyAPI()
-}
-
-
-// 初始化 Beauty API 对象
-mByteDanceApi.initialize(
-    Config(
-        // RtcEngine
-        mRtcEngine,
-        // 美颜特效管理器
-        mEffectManager,
-        // 设置视频采集模式
-        // CaptureMode.Agora 意味着使用声网模块采集视频
-        // CaptureMode.Custom 意味着使用开发者自定义采集视频
-        captureMode = if (isCustomCaptureMode) CaptureMode.Custom else
-        CaptureMode.Agora,
-        // 是否开启美颜统计数据
-        // 开启后，SDK 会周期性触发 onBeautyStats 回调
-        statsEnable = true,
-        // 用于监听 Beauty API 的回调事件
-        eventCallback = EventCallback(
-            // 美颜统计数据回调
-            onBeautyStats = {stats ->
-                Log.d(TAG, "BeautyStats stats = $stats")
-            },
-            // 美颜特效初始化完成回调
-            onEffectInitialized = {
-                Log.d(TAG, "onEffectInitialized")
-            },
-            // 美颜特效销毁回调
-            onEffectDestroyed = {
-                Log.d(TAG, "onEffectInitialized")
-            }
+    ```kotlin
+    // 初始化字节火山美颜 SDK 提供的 EffectManager
+    private val mEffectManager by lazy {
+        val resourceHelper =
+            AssetsResourcesHelper(this, "beauty_bytedance")
+        EffectManager(
+            this,
+            resourceHelper,
+            resourceHelper.getLicensePath(LICENSE_NAME)
         )
-    ))
-```
+    }
+
+
+3. 调用 createByteDanceBeautyAPI 创建 Beauty API 对象。Beauty API 对象是基于 EffectManager 对象封装。
+
+    ```kotlin
+    // 创建 Beauty API 对象
+    private val mByteDanceApi by lazy {
+        createByteDanceBeautyAPI()
+    }
+
+4. 调用 initialize 初始化 Beauty API 对象。你需要在 config 参数中传入如下字段：
+
+    - mRtcEngine：之前初始化的 RtcEngine 对象。
+    - mEffectManager：之前初始化的 EffectManager 对象。
+    - captureMode：视频的采集模式：
+        - 如果你使用声网模块采集视频，请传入 CaptureMode.Agora。
+        - 如果自定义采集视频，请传入 CaptureMode.CUSTOM。
+    - statsEnable：是否开启美颜统计数据回调。true 代表开启，false 代表不开启。开启后，SDK 会周期性触发回调。
+    - eventCallback：你希望监听的回调事件。
+
+    ```kotlin
+    // 初始化 Beauty API 对象
+    mByteDanceApi.initialize(
+        Config(
+            // RtcEngine
+            mRtcEngine,
+            // 美颜特效管理器
+            mEffectManager,
+            // 设置视频采集模式
+            // CaptureMode.Agora 意味着使用声网模块采集视频
+            // CaptureMode.Custom 意味着使用开发者自定义采集视频
+            captureMode = if (isCustomCaptureMode) CaptureMode.Custom else
+            CaptureMode.Agora,
+            // 是否开启美颜统计数据
+            // 开启后，SDK 会周期性触发 onBeautyStats 回调
+            statsEnable = true,
+            // 用于监听 Beauty API 的回调事件
+            eventCallback = EventCallback(
+                // 美颜统计数据回调
+                onBeautyStats = {stats ->
+                    Log.d(TAG, "BeautyStats stats = $stats")
+                },
+                // 美颜特效初始化完成回调
+                onEffectInitialized = {
+                    Log.d(TAG, "onEffectInitialized")
+                },
+                // 美颜特效销毁回调
+                onEffectDestroyed = {
+                    Log.d(TAG, "onEffectInitialized")
+                }
+            )
+        ))
+    ```
 
 ### 2. 设置是否开启美颜
 
@@ -193,16 +210,21 @@ mByteDanceApi.enable(true)
 
 #### 使用声网模块采集视频
 
+使用声网模块采集视频视频时，你需要先调用 enableVideo 开启声网 SDK 的视频模块，然后调用 Beauty API 的 setupLocalVideo 开启本地视图。
 
 ```kotlin
 // 开启视频模块
 mRtcEngine.enableVideo()
+// 设置本地视图
 mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
 ```
 
-#### 自定义视频采集
+#### 自定义视频采集 //TODO 研发 review
 
-将外部数据帧通过onFrame接口传入，处理成功会替换VideoFrame的buffer数据，即videoFrame参数既为输入也为输出
+自定义视频采集时，你需要先调用 enableVideo 开启声网 SDK 的视频模块，然后通过 registerVideoFrameObserver 注册原始视频数据观测器并在其中实现 onCaptureVideoFrame 函数。
+
+通过 Beauty API 的 onFrame 函数，你可以将自采集的视频数据传入并进行处理。当处理成功时，用自采集的视频数据替代 onCaptureVideoFrame 函数中的 VideoFrame，并传入声网 SDK。
+
 
 ```kotlin
 // 开启视频模块
@@ -211,15 +233,15 @@ mRtcEngine.enableVideo()
 // 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
 mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
-    // 定义镜像变量
     private var shouldMirror = true
 
-    // 从 onCaptureVideoFrame 中获取本地采集的视频原始数据
+
     override fun onCaptureVideoFrame(
         sourceType: Int,
         videoFrame: VideoFrame?
     ) : Boolean {
-        // 将原始视频数据传递给 Beauty API 进行美颜处理
+
+        // 将原始视频数据传递给 Beauty API 并进行处理
         when(mByteDanceApi.onFrame(videoFrame!!)){
             // 情况 1，如果处理成功，那么关闭镜像，并通过返回值设置声网 RTC SDK 接收处理后的视频帧
             ErrorCode.ERROR_OK.value -> {
@@ -248,7 +270,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
     // 设置是否对原始视频数据作镜像处理
     override fun getMirrorApplied() = shouldMirror
 
-    // 设置观测本地采集视频数据
+    // 设置观测点为本地采集时的视频数据
     override fun getObservedFramePosition() = IVideoFrameObserver.POSITION_POST_CAPTURER
 
     // override 视频观测器中的其他回调函数
