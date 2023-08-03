@@ -319,8 +319,6 @@ curl -X PUT -H 'Content-Type: application/json' -H 'Accept: application/json' -H
 
 In addition to removing the custom attributes set by the current user, this method can also be used to remove custom attributes set by others.
 
-You can remove a maximum of 10 custom attributes at each call of this API.
-
 ### HTTP request
 
 ```http

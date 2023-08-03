@@ -230,9 +230,9 @@ This group of methods enable you to join a thread and remove members from the th
 
 | Name      | Method   | Request          | Description       | Rate Limits |
 | :----------------- | :----- | :------------- | :------------------- |:------------------- |
-| 获取子区成员 | GET    | /{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&cursor={cursor}  | 获取指定子区中的所有成员。 | 100/second |
-| 批量加入子区       | POST   | /{org_name}/{app_name}/thread/{thread_id}/users  | 将多个用户添加到指定子区。 | 100/second  |
-| 批量删除子区成员   | DELETE | /{org_name}/{app_name}/threads/{thread_id}/users | 从指定子区中删除多个用户。 | 100/second |
+| Retrieving thread members | GET    | /{org_name}/{app_name}/thread/{thread_id}/users?limit={N}&cursor={cursor}  | Retrieves all the members in the specified thread. | 100/second |
+| Adding multiple users to a thread   | POST   | /{org_name}/{app_name}/thread/{thread_id}/users  | Adds multiple users to the specified thread. | 100/second  |
+| Removing multiple thread members   | DELETE | /{org_name}/{app_name}/threads/{thread_id}/users |Removes multiple users from the specified thread.  | 100/second |
 
 
 ## Request structure

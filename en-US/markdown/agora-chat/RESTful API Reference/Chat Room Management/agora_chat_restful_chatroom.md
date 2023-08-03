@@ -66,8 +66,8 @@ The request body is a JSON object, which contains the following fields:
 | Field | Type | Description | Required |
 | :------------ | :--------- | :--------------------------------------- | :------- |
 | `groupid` | String | The custom group ID. It cannot exceed 18 digits and cannot start with zero (0). This field is disabled by default. To enable this field, contact [support@agora.io](mailto:support@agora.io).  | No |
-| `name` | String | The chat room name which can contain a maximum of 128 characters. It cannot contain slashes (/). | Yes |
-| `description` | String | The chat room description which can contain a maximum of 512 characters. It cannot contain slashes (/). | Yes |
+| `name` | String | The chat room name which can contain a maximum of 128 characters. | Yes |
+| `description` | String | The chat room description which can contain a maximum of 512 characters. | Yes |
 | `maxusers` | Int | The maximum number of members (including the chat room creator) that can join a chat room. | No |
 | `owner` | String | The username of the chat room creator. | Yes |
 | `members` | JSONArray | The members in the chat room. This parameter cannot be empty. | No |
@@ -421,8 +421,8 @@ The request body is a JSON object which only contains the following fields:
 
 | Field | Type | Description | Required |
 | :------------ | :----- | :------------------------------------------------- | :------- |
-| `name` | String | The chat room name. It cannot contain slashes (/). | No |
-| `description` | String | The chat room description. It cannot contain slashes (/). | No |
+| `name` | String | The chat room name. | No |
+| `description` | String | The chat room description. | No |
 | `maxusers` | Number | The maximum number of chat room members (including the chat room creator). | No |
 
 ### HTTP response
