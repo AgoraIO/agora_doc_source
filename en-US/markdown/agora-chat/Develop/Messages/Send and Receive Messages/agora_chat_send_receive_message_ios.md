@@ -43,7 +43,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                       body:textMessageBody
                                                        ext:messageExt];
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message
                                                progress:nil
@@ -108,7 +108,7 @@ You can also use `messagesDidRecall` to listen for the message recall state:
 /**
  * Occurs when a received message is recalled.
  */
-- (void)messagesDidRecall:(NSArray *)aMessages;
+- (void)messagesInfoDidRecall:(NSArray<EMRecallMessageInfo *> * _Nonnull)aRecallMessagesInfo;
 ```
 
 ### Send and receive an attachment message
@@ -132,7 +132,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:nil];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
   											                       progress:nil
@@ -166,7 +166,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
   											                       progress:nil
@@ -208,7 +208,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message 
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
   											                       progress:nil
@@ -249,7 +249,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
   											                       progress:nil
@@ -290,7 +290,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
   											                       progress:nil
@@ -313,7 +313,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
   											                       progress:nil
@@ -340,7 +340,7 @@ The following code example shows how to create and send a customized message:
 
 ```objective-c
 // Set event as the custom message event, for example "userCard".
-// Set ext as the extension field of the event, for example as uid, nichname, and avator.
+// Set ext as the extension field of the event, for example as uid, nickname, and avatar.
 AgoraChatCustomMessageBody* body = [[AgoraChatCustomMessageBody alloc] initWithEvent:@"userCard" ext:@{@"uid":aUid ,@"nickname":aNickName,@"avatar":aUrl}];
 AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toChatUsername
                                                       from:fromChatUsername 
@@ -349,7 +349,7 @@ AgoraChatMessage *message = [[AgoraChatMessage alloc] initWithConversationID:toC
                                                        ext:messageExt];
 message.chatType = AgoraChatTypeChat;
 // Set the chat type as Group chat. You can also set is as chat (one-to-one chat) or chat room.
-message.chatType = AgoraChatTypeGroupChat;
+// message.chatType = AgoraChatTypeGroupChat;
 // Sends the message.
 [[AgoraChatClient sharedClient].chatManager sendMessage:message 
   											   progress:nil

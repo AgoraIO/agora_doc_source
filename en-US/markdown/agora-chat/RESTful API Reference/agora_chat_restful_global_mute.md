@@ -211,7 +211,7 @@ GET https://{host}/{orgName}/{appName}/mutes
 
 #### Path parameter
 
-For parameters and the detailed descriptions, see [Commom parameters](#param).
+For parameters and the detailed descriptions, see [Common parameters](#param).
 
 #### Request header
 
@@ -220,12 +220,12 @@ For parameters and the detailed descriptions, see [Commom parameters](#param).
 | `Content-Type` | String | The content type. Set is as `application/json`. |
 | `Authorization` | String | The authentication token of the user or admin, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. |
 
-#### Request body
+#### Query parameter
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-| `pageNum` | Number | Yes | The number of pages for querying the globally muted users in the app. |
-| `pageSize` | Number | Yes | The number of data entries on each page. |
+| `pageNum` | Number | No | The number of pages for querying the globally muted users in the app. |
+| `pageSize` | Number | No | The number of data entries on each page. The value range is [1,50]. |
 
 ### HTTP response
 

@@ -77,10 +77,7 @@ This sections introduces how to create an app and add the Chat UIKit to the proj
 
 ## Implementation
 
-The Web Chat UIKit has two components:
-
-- `EaseApp`, which contains the conversation list and applies to use cases where you want to quickly launch a real-time chat app.
-- `EaseChat`, which contains a conversation box and applies to most chat use cases such as sending and receiving messages, displaying the message on the UI, and managing unread messages. 
+The Web Chat UIKit contains the `EaseApp` component, which contains the conversation list and applies to use cases where you want to quickly launch a real-time chat app.
 
 This section introduces the steps you need to take to quickly implement one-to-one messaging with `EaseApp`.
 
@@ -92,7 +89,7 @@ This section introduces the steps you need to take to quickly implement one-to-o
     // App.js
     import React, {Component} from 'react';
     import { EaseApp } from "agora-chat-uikit"
-    import './App.scss';
+    import './App.css';
 
     class App extends Component {
     render() {
@@ -140,48 +137,6 @@ You can see the app launch in your browser. Before you can send a message, refer
 
 This section includes more advanced features you can implement in your project.
 
-### Applicable use cases
-
-As a conversation component, `EaseChat` can be applied in a wide range of use cases, for example, by popping up the dialogue box for a click event, or adding callback events after the user is logged in.
-
-```javascript
-import React, { useState } from "react";
-import { EaseChat } from "agora-chat-uikit";
-	const addListen = (res) => {
-    if(res.isLogin){
-       	const WebIM = EaseChat.getSdk()
-        WebIM.conn.addEventHandler('testListen',{
-          onTextMessage:()=>{},
-          onError:()=>{},
-          ...
-        })
-     }
-  }
-	const chat = () => {
-		return (
-		<div>
-      <EaseChat
-        appkey={'xxx'}
-        username={'xxx'}
-        agoraToken={'xxx'}
-        to={'xxx'}
-				successLoginCallback={addListener}
-      />
-     <div/>
-		)
-	}
-	const app = () =>{
-	const [showSession, setShowSession] = useState(false);
-	return(
-	<div>
-		{ showSession && chat()}
-		<button onClick={()=>setShowSession(true)}>Launch the session</button>
-		<button onClick={()=>setShowSession(false)}>Close the session</button>
-	<div/>
-	)
-	}
-```
-
 ### Customizable attributes
 
 `EaseChat` provides the following attributes for customization. You can customize the features and layout by setting these attributes. To ensure the functionality of `EaseChat`, ensure that you set all the required parameters.
@@ -192,7 +147,7 @@ import { EaseChat } from "agora-chat-uikit";
 | `username`   |String| Yes  | The user ID.                                                     |
 | `agoraToken` |String| Yes  | The Agora token.      |
 | `to`         |String| Yes  | In one-to-one messaging, it is the user ID of the recipient; in group chat, it is the group ID.|
-| `showByselfAvatar`|Bool| No  | Whether to display the avatar of the current user.<ul><li>`true`: Yes</li><li>(Default) `false`: No</li></ul>     |
+| `showByselfAvatar`|Boolean| No  | Whether to display the avatar of the current user.<ul><li>`true`: Yes</li><li>(Default) `false`: No</li></ul>     |
 | `easeInputMenu`|String| No | The mode of the input menu.<ul><li>(Default) `all`: The complete mode.</li><li>`noAudio`: No audio.</li><li>`noEmoji`: No emoji.</li><li>`noAudioAndEmoji`: No audio or emoji.</li><li>`onlyText`: Only text.</li></ul>
 |`menuList`|Array| No  |The extensions of the input box on the right panel.<br/>(Default) `menuList`: `[ {name:'Send a pic', value:'img'},{name:'Send a file', value:'file'}]`  |
 |`handleMenuItem`|function({item, key}) | No | The callback event triggered by clicking on the right panel of the input box.|
@@ -206,7 +161,7 @@ In scenarios where you want to add your own business logic, you can use the vari
 1. Get the SDK instance
 
     ```javascript
-    const WebIM = EaseChat.getSdk({ appkey: 'xxxx' })
+    const WebIM = EaseApp.getSdk({ appkey: 'xxxx' })
     ```
 
 2. Add callback events

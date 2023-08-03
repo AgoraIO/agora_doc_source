@@ -39,7 +39,7 @@ Only the chat room owner can disband a chat room. Once a chat room is disbanded,
 ```objective-c
 // The super admin can call createChatroomWithSubject to create a chat room.
 AgoraChatError *error = nil;
-AgoraChatroom *retChatroom = [[AgoraChatClient sharedClient].roomManager createChatroomWithSubject:@"aSubject" description:@"aDescription" invitees:@[@"user1",@[user2]]message:@"aMessage" maxMembersCount:aMaxMembersCount error:&error];
+AgoraChatroom *retChatroom = [[AgoraChatClient sharedClient].roomManager createChatroomWithSubject:@"aSubject" description:@"aDescription" invitees:@[@"user1",@"user2"]message:@"aMessage" maxMembersCount:aMaxMembersCount error:&error];
 
 // The chat room owner can call destroyChatroom to disband a chat room.
 AgoraChatError *error = nil;
@@ -60,7 +60,7 @@ AgoraChatError *error = nil;
 
 // All chat room members can call leaveChatroom to leave the specified chat room.
 AgoraChatError *error = nil;
-[AgoraChatClient sharedClient].roomManager leaveChatroom:@"aChatroomId" error:&error];
+[[AgoraChatClient sharedClient].roomManager leaveChatroom:@"aChatroomId" error:&error];
 ```
 
 

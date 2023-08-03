@@ -40,7 +40,7 @@ For details about these advanced features, see the following:
 
 Agora Console assigns the following information to each project that enables the Agora Chat service:
 
-- **Data Center**: Agora provides several data centers for the service in different regions, including Beijing1 (China), Beijing VIP (China),  Singapore, Frankfurt (Germany), and Virginia (USA). After the plan is changed, the data center remains unchanged.
+- **Data Center**: Agora provides several data centers for the service in different regions, including Singapore, Frankfurt (Germany), and Virginia (USA). After the plan is changed, the data center remains unchanged.
 - **AppKey**: The unique identifier that the Agora Chat service assigns to each app. The rule is `${OrgName}#{AppName}`.
 - **OrgName**: The unique identifier that the Agora Chat service assigns to each enterprise (organization).
 - **AppName**: The name that the Agora Chat service assigns to each app. Each app under the same enterprise (organization) must have a unique App Name.

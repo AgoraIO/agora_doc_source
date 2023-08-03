@@ -20,6 +20,7 @@ The SDK provides the following APIs to implement reaction functionalities:
 - `deleteReaction`: Removes the reaction from the specified message.
 - `getReactionList`: Retrieves a list of reactions from the server.
 - `getReactionDetail`: Retrieves the details of the reaction from the server.
+- `getHistoryMessages`：Retrieves the reactions in historical messages from the server.
 
 ## Prerequisites
 
@@ -93,12 +94,12 @@ conn
   });
 ```
 
-### Retrieve the reaction in the roaming message
+### Retrieve the reaction in the historical message from the server
 
-When calling `fetchHistoryMessages` to retrieve historical messages from the server, if the message has a reaction attached to it, the retrieved message body also contains the information of the reaction.
+When calling `getHistoryMessages` to retrieve historical messages from the server, if the message has a reaction attached to it, the retrieved message body also contains the information of the reaction.
 
 ```javascript
-conn.fetchHistoryMessages({ queue: "user", count: 20 }).then((messages) => {
+conn.getHistoryMessages({ targetId:'targetId',chatType:'groupChat', pageSize: 20 }).then((messages) => {
   console.log(messages);
 });
 ```

@@ -53,33 +53,29 @@ Call `addContact` to add the specified user as a contact:
 
 Use `ContactListener` to add the following callback events. When a user receives a contact invitation, you can accept or decline the invitation.
 
-```objective-c
-/*
- *  Adds a contact manager delegate
- */
+```objectivec
+// Adds a contact manager delegate.
 [[AgoraChatClient sharedClient].contactManager addDelegate:self delegateQueue:nil];
-/*
- * Removes the contact manager delegate
- */
+// Removes the contact manager delegate.
 [[AgoraChatClient sharedClient].contactManager removeDelegate:self];
-```
-
-```objective-c
-/*
- *  Occurs when a contact invitation is received.
- *
- *  @param aUsername   The username that sends the contact invitation.
- *  @param aMessage    The invitation message.
- */
+	@@ -57,11 +57,20 @@
 - (void)friendRequestDidReceiveFromUser:(NSString *)aUsername
                                 message:(NSString *)aMessage
 { }
-                                
+// The peer user accepts the contact invitation.
+- (void)friendRequestDidApproveByUser:(NSString *)aUsername
+{ }
+// The peer user declines the contact invitation.
+- (void)friendRequestDidDeclineByUser:(NSString *)aUsername
+{ }
+// The contact is deleted.
+- (void)friendshipDidRemoveByUser:(NSString *)aUsername
+{ }
 ```
 
 #### Accept or decline the contact invitation
 
-After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFromUser` or `declineFriendRequestFromUser` to accept or decline the invitation.
+After receiving `friendRequestDidReceiveFromUser`, call `approveFriendRequestFromUser` or `declineFriendRequestFromUser` to accept or decline the invitation. The peer user receives the `friendRequestDidApprove` or `friendRequestDidDecline` callback.
 
 ```objective-c
 /*
@@ -184,9 +180,7 @@ NSArray *userlist = [[AgoraChatClient sharedClient].contactManager getContacts];
 
 ### Manage the block list
 
-You can add a specified user to your block list. Once you do that, you can still send chat messages to that user, but you cannot receive messages from them. 
-
-<div class="note alert">Users can add any other chat user to their block list, regardless of whether this other user is a contact or not. A contact added to the block list remains in the contact list.</div>
+You can add any other users to the block list, regardless of whether they are on the contact list or not. Contacts are still displayed on the contact list even if they are added to the block list. After adding users to the block list,  you can still send messages to them, but will not receive messages from them as they cannot send messages or friend requests to you.
 
 #### Add a user to the block list
 
