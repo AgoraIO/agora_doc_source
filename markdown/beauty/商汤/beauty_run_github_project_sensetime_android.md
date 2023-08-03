@@ -30,12 +30,13 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 
 2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到美颜示例项目对应的文件路径下：
 
-    |SDK 文件    |  项目路径   |
-    | Android/models                                                       | app/src/main/assets/beauty_sensetime/models              |
-    | Android/smaple/SenseMeEffects/app/src/main/assets/sticker_face_shape | app/src/main/assets/beauty_sensetime/sticker_face_shape  |
-    | Android/smaple/SenseMeEffects/app/src/main/assets/style_lightly      | app/src/main/assets/beauty_sensetime/style_lightly       |
-    | Android/smaple/SenseMeEffects/app/src/main/assets/makeup_lip         | app/src/main/assets/beauty_sensetime/makeup_lip          |
-    | SenseME.lic                                                          | app/src/main/assets/beauty_sensetime/license/SenseME.lic |
+    | SDK 文件                                                            | 项目路径                                             |
+    |--------------------------------------------------------------------|------------------------------------------------------|
+    | Android/models                                                      | app/src/main/assets/beauty_sensetime/models         |
+    | Android/sample/SenseMeEffects/app/src/main/assets/sticker_face_shape | app/src/main/assets/beauty_sensetime/sticker_face_shape |
+    | Android/sample/SenseMeEffects/app/src/main/assets/style_lightly      | app/src/main/assets/beauty_sensetime/style_lightly      |
+    | Android/sample/SenseMeEffects/app/src/main/assets/makeup_lip         | app/src/main/assets/beauty_sensetime/makeup_lip         |
+    | SenseME.lic                                                         | app/src/main/assets/beauty_sensetime/license/SenseME.lic |
 
 
 3. 在 `app/build.gradle` 文件中，将 `applicationId` 修改为你的包名，例如 `com.example.app`。包名用于在设备上唯一标识应用程序。在开发应用时，你需要设置包名。在此处设置的包名需要与你申请美颜 SDK 时提供的包名一致。

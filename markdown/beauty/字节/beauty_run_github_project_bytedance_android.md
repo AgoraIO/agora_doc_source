@@ -32,7 +32,7 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到美颜示例项目对应的文件路径下：
 
     |SDK 文件    |  项目路径   |
-    |-----|-----|
+    |---|-----|
     | resource/LicenseBag.bundle                       | app/src/main/assets/beauty_bytedance           |
     | resource/ModelResource.bundle                    | app/src/main/assets/beauty_bytedance           |
     | resource/ComposeMakeup.bundle                    | app/src/main/assets/beauty_bytedance           |
