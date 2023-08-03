@@ -93,7 +93,7 @@ Follow the steps to create the environment necessary to integrate Agora Chat int
    }
    ```
 	 
-	 <div class="alert note">The way to add the Maven Central dependency can be different if you set  <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a> in your Android project.</div>
+	 <div class="alert note">After the project is created, <b>Android Studio</b> will automatically start gradle synchronization. Ensure that you proceed to the following operations only after the synchronization is successful.</div>
 		
 	b. In `/Gradle Scripts/build.gradle(Module: <projectname>.app)`, add the following lines to integrate the Agora Chat SDK into your Android project:
 

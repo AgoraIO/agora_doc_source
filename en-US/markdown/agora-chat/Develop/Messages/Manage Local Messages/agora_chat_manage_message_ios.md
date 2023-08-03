@@ -38,7 +38,7 @@ Refer to the following code sample to retrieve the messages in the specified con
 
 ```objective-c
 // Retrieves the conversation ID
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // Only one message is loaded during SDK initialization. Call loadMessagesStartFromId to retrieve more messages.
 NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesStartFromId:startMsgId count:count searchDirection:MessageSearchDirectionUp];
 ```
@@ -49,7 +49,7 @@ Refer to the following code example to retrieve the count of unread messages:
 
 ```objective-c
 // Retrieves the ID of the specified conversation.
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // Retrieves the count of unread messages.
 NSInteger unreadCount = conversation.unreadMessagesCount;
 ```
@@ -62,7 +62,7 @@ Refer to the following code example to retrieve the count of all unread messages
 ```objective-c
 NSArray *conversations = [[AgoraChatClient sharedClient].chatManager getAllConversations];
 NSInteger unreadCount = 0;
-for (AgoraConversation *conversation in conversations) {
+for (AgoraChatConversation *conversation in conversations) {
   unreadCount += conversation.unreadMessagesCount;
 }
 ```
@@ -73,11 +73,11 @@ for (AgoraConversation *conversation in conversations) {
 Refer to the following code example to mark the specified messages as read:
 
 ```objective-c
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 // Marks all messages of the specified conversation as read.
 [conversation markAllMessagesAsRead:nil];
 // Marks the specified message as read.
-[onversation markMessageAsReadWithId:messageId error:nil];
+[conversation markMessageAsReadWithId:messageId error:nil];
 ```
 
 ### Delete conversations and historical messages
@@ -93,7 +93,7 @@ To delete them on the local device, call `deleteConversation` and `removeMessage
 NSArray *conversations = @{@"conversationID1",@"conversationID2"};
 [[AgoraChatClient sharedClient].chatManager deleteConversations:conversations isDeleteMessages:YES completion:nil];
 // Deletes the specified message of the current conversation.
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation deleteMessageWithId:.messageId error:nil];
 ```
 
@@ -119,7 +119,7 @@ If you want to insert a message to the current conversation without actually sen
 
 ```objective-c
 // Inserts a message to the specified conversation.
-AgoraConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
+AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
 [conversation insertMessage:message error:nil];
 ```
 

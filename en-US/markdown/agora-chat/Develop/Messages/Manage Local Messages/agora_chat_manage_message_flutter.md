@@ -57,6 +57,7 @@ ChatConversation? conversation =
   conversationType,
   true,
 );
+List<ChatMessage>? list = await conversation?.loadMessages();   
 ```
 
 ### Retrieve the count of unread messages in the specified conversation

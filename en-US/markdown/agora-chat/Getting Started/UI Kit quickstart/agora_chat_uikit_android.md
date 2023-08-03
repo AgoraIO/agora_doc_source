@@ -24,7 +24,7 @@ In order to follow the procedure in this page, you must have:
 
 Follow the steps to create the environment necessary to add video call into your app.
 
-1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**.
+1. For new projects, in **Android Studio**, create a **Phone and Tablet** [Android project](https://developer.android.com/studio/projects/create-project) with an **Empty Activity**. 
    <div class="alert note">After creating the project, <b>Android Studio</b> automatically starts gradle sync. Ensure that the sync succeeds before you continue.</div>
 
 2. Integrate the Agora Chat SDK into your project with Maven Central. 
@@ -53,8 +53,8 @@ Follow the steps to create the environment necessary to add video call into your
    ```java
    android {
        defaultConfig {
-               // The Android OS version should be 19 or higher.
-               minSdkVersion 19
+               // The Android OS version should be 21 or higher.
+               minSdkVersion 21
        }
        compileOptions {
            sourceCompatibility JavaVersion.VERSION_1_8
@@ -81,6 +81,8 @@ Follow the steps to create the environment necessary to add video call into your
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <!-- For Android 12, you need to add the following line to apply for the alarm clock permission. For Agora Chat 1.0.9 or later, this permission is optional.--> 
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 	```
 	
 	These are the minimum permissions you need to add to start Agora Chat. You can also add other permissions according to your use case.
@@ -493,7 +495,7 @@ To enable your app to send and receive messages between individual users, do the
                 return;
             }
             // 1: single chat; 2: group chat; 3: chat room
-            EaseChatFragment fragment = new EaseChatFragment.Builder(toChatUsername, 1)
+            EaseChatFragment fragment = new EaseChatFragment.Builder(toChatUsername, EaseChatType.SINGLE_CHAT)
                     .useHeader(false)
                     .setOnChatExtendMenuItemClickListener(new OnChatExtendMenuItemClickListener() {
                         @Override

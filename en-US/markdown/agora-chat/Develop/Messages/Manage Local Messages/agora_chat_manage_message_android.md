@@ -6,7 +6,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 
 SQLCipher is used to encrypt the database that stores local messages. The Agora Chat SDK uses `ChatManager` to manage local messages. Followings are the core methods:
 
-- `loadAllConversations`: Loads the conversation list on the local device.
+- `getAllConversations`: Loads the conversation list on the local device.
 - `deleteConversation`: Deletes the specified conversation.
 - `Conversation.getUnreadMsgCount`: Retrieves the count of unread messages in the specified conversation.
 - `getUnreadMessageCount`: Retrieves the count of all unread messages.
@@ -39,7 +39,7 @@ Map<String, Conversation> conversations = ChatClient.getInstance().chatManager()
 Refer to the following code sample to retrieve the messages in the specified conversation:
 
 ```java
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 // Gets all the messages in the current conversation.
 List<ChatMessage> messages = conversation.getAllMessages();
 // Only one message is loaded during SDK initilization. Call loadMoreMsgFromDB to retrieve more messages.
@@ -51,7 +51,7 @@ List<ChatMessage> messages = conversation.loadMoreMsgFromDB(startMsgId, pagesize
 Refer to the following code example to retrieve the count of unread messages:
 
 ```java
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.getUnreadMsgCount();
 ```
 
@@ -68,7 +68,7 @@ ChatClient.getInstance().chatManager().getUnreadMessageCount();
 Refer to the following code example to mark the specified messages as read:
 
 ```java
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 // Mark all the messages in the current conversation as read.
 conversation.markAllMessagesAsRead();
 // Mark the specified message as read.
@@ -85,9 +85,9 @@ To delete them on the local device, call `deleteConversation` and `removeMessage
 
 ```java
 // true indicates to keep the historical messages while deleting the conversation. To remove the historical messages as well, set it as false.
-ChatClient.getInstance().chatManager().deleteConversation(username, true);
+ChatClient.getInstance().chatManager().deleteConversation(conversationId, deleteMessages);
 // Delete the specified message in the current conversaiton.
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.removeMessage(deleteMsg.msgId);
 ```
 
@@ -113,10 +113,10 @@ If you want to insert a message to the current conversation without actually sen
 
 ```java
 // Insert a message to the specified conversation.
-Conversation conversation = ChatClient.getInstance().chatManager().getConversation(username);
+Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
 conversation.insertMessage(message);
 // Insert a message.
-ChatClient.getInstance().chatManager().saveMessage(message);
+// ChatClient.getInstance().chatManager().saveMessage(message);
 ```
 
 ## Next steps
