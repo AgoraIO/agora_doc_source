@@ -3,18 +3,17 @@ This page introduces the main steps to upgrade the [Unreal C++ SDK](https://gith
 
 ### 1. Integrate the SDK
 
-See [Project setup]() for more information about integrating the v4.0.0 SDK into your project.
-
+To integrate Video SDK for Unreal Engine v4.2.1 into your project, see [Project setup]().
 
 ### 2. Update the Agora code in your app
 
-This section introduces the main changes between v3.x and v4.2.1. In order to retain Agora functionality in your app, update the code in your app according to your scenarios.
+This section explains the main changes between Video SDK for Unreal Engine v3.x and v4.x. Use this information to upgrade your app.
 
 **Basic changes**
 
-The Unreal C++ SDK is built on top of the Native C++ SDK, it includes all the changes from Native SDK v3.x to v4.x. For specific details about these changes, see [Migrate from Video SDK 3.x]().
+Video SDK for Unreal Engine v4.x is based on Video SDK for C++ v4.x. First follow the steps in [Migrate from Video SDK 3.x]().
 
 **Other changes**
-- The `agora::rtc::ue4::AgoraRtcEngine*` interface class is changed to `agora::rtc::ue::RtcEngineProxy*`, you need to update the code in the  project files.
-- The v4.x SDK simplifies the implementation steps for video rendering, eliminating the need to actively call the `OnTick` function in `AgoraRtcEngine`. Instead, it is automatically handled by the `VideoRenderManager` function. Therefore, you need to manually remove any code related to `OnTick` from your project files.
-- Modify the project folder and add a reference to the header file `#include "AgoraPluginInterface.h"` to directly import all the basic classes from the v4.x SDK. Depending on your specific needs, you can also supplement the required classes in `AgoraPlugin\Private\AgoraCppPlugin\include\AgoraHeaderBase.h`, or directly include the necessary files.
+- The `agora::rtc::ue4::AgoraRtcEngine*` interface class is renamed to `agora::rtc::ue::RtcEngineProxy*`. Rename `agora::rtc::ue4::AgoraRtcEngine*` to `agora::rtc::ue::RtcEngineProxy*` in your app.
+- The v4.x SDK simplifies the implementation steps for video rendering. The `OnTick` function is handled by the `VideoRenderingManager`. Remove all code related to `OnTick` from your project files.
+- To directly import Video SDK for Unreal Engine v4.x objects, include `AgoraPluginInterface.h` into all your classes. You may also need `AgoraPlugin\Private\AgoraCppPlugin\include\AgoraHeaderBase.h`.
