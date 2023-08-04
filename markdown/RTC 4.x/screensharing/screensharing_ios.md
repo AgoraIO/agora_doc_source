@@ -39,82 +39,56 @@
 
    - 如果你只需使用声网提供的 `AgoraReplayKitExtension.xcframework` 中的功能，修改方式为：选中 **Target** 为刚刚创建的 Extension，在 **Info** 中将 **NSExtension > NSExtensionPrincipalClass** 所对应的 **Value** 从 **SampleHandler** 改为 **AgoraReplayKitHandler**。
   ![](https://web-cdn.agora.io/docs-files/1648112619203)
-   - 如果你还需要自定义一些业务逻辑，可将如下代码替换到 `SampleHandler.h` 文件中。
+   - 如果你还需要自定义一些业务逻辑，可将如下代码替换到 `SampleHandler.swift` 文件中。
   
-        ```objective-c
-        // Objective-C
-        #import "SampleHandler.h"
-        #import "AgoraReplayKitExt.h"
-        #import <sys/time.h
-        @interface SampleHandler ()<AgoraReplayKitExtDelegate
-        @en
-        @implementation SampleHandle
-        - (void)broadcastStartedWithSetupInfo:(NSDictionary<NSString *,NSObject *> *)setupInfo {
-            // User has requested to start the broadcast. Setup info from the UI extension can be supplied but optional.
-            [[AgoraReplayKitExt shareInstance] start:self]
+        ```swift
+        import ReplayKit
 
-        - (void)broadcastPaused {
-            // User has requested to pause the broadcast. Samples will stop being delivered.
-            NSLog(@"broadcastPaused");
-            [[AgoraReplayKitExt shareInstance] pause];
-
-        - (void)broadcastResumed {
-            // User has requested to resume the broadcast. Samples delivery will resume.
-            NSLog(@"broadcastResumed");
-            [[AgoraReplayKitExt shareInstance] resume]
-
-        - (void)broadcastFinished {
-            // User has requested to finish the broadcast.
-            NSLog(@"broadcastFinished");
-            [[AgoraReplayKitExt shareInstance] stop]
-
-        - (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer withType:(RPSampleBufferType)sampleBufferType {
-            [[AgoraReplayKitExt shareInstance] pushSampleBuffer:sampleBuffer withType:sampleBufferType];
-
-        #pragma mark - AgoraReplayKitExtDelegat
-        - (void)broadcastFinished:(AgoraReplayKitExt *_Nonnull)broadcast reason:(AgoraReplayKitExtReason)reason {
-            switch (reason) {
-                case AgoraReplayKitExtReasonInitiativeStop:
-                    {
-        //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Host app stop srceen capture"};
-        //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
-        //                [self finishBroadcastWithError:error];
-                        NSLog(@"AgoraReplayKitExtReasonInitiativeStop");
-                    }
-                    break;
-                case AgoraReplayKitExtReasonConnectFail:
-                    {
-        //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"Connect host app fail need startScreenCapture in host app"};
-        //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
-        //                [self finishBroadcastWithError:error];
-                        NSLog(@"AgoraReplayKitExReasonConnectFail");
-                    }
-                    break
-                case AgoraReplayKitExtReasonDisconnect:
-                    {
-        //                NSDictionary *userInfo = @{NSLocalizedDescriptionKey : @"disconnect with host app"};
-        //                NSError *error = [NSError errorWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
-        //                [self finishBroadcastWithError:error];
-                        NSLog(@"AgoraReplayKitExReasonDisconnect");
-                    }
-                    break;
-                default:
-                    break;
+        class SampleHandler: AgoraReplayKitHandler, AgoraReplayKitExtDelegate {
+            override func broadcastStarted(withSetupInfo setupInfo: [String : NSObject]?) {
+                // User has requested to start the broadcast. Setup info from the UI extension can be supplied but optional.
+                AgoraReplayKitExt.shareInstance().start(self)
+            }
+            override func broadcastPaused() {
+                // User has requested to pause the broadcast. Samples will stop being delivered.
+                AgoraReplayKitExt.shareInstance().pause()
             }
 
-        @end
+            override func broadcastResumed() {
+                // User has requested to resume the broadcast. Samples delivery will resume.
+                AgoraReplayKitExt.shareInstance().resume()
+            }
+
+            override func broadcastFinished() {
+                // User has requested to finish the broadcast.
+                AgoraReplayKitExt.shareInstance().stop()
+            }
+
+            override func processSampleBuffer(_ sampleBuffer: CMSampleBuffer, with sampleBufferType: RPSampleBufferType) {
+                AgoraReplayKitExt.shareInstance().push(sampleBuffer, with: sampleBufferType)
+            }
+
+            func broadcastFinished(_ broadcast: AgoraReplayKitExt, reason: AgoraReplayKitExtReason) {
+                switch reason {
+                case AgoraReplayKitExtReasonInitiativeStop:
+                    print("AgoraReplayKitExtReasonInitiativeStop")
+
+                case AgoraReplayKitExtReasonConnectFail:
+                    print("AgoraReplayKitExReasonConnectFail")
+
+                case AgoraReplayKitExtReasonDisconnect:
+                    print("AgoraReplayKitExReasonDisconnect")
+
+                default: break
+                }
+            }
+        }
         ```
-
-## 实现屏幕共享
-
-本节介绍如何在你的项目中实现屏幕共享，API 调用时序如下图所示。
-
-
-### 自动集成插件
+## 自动集成插件
 
 通过 Cocoapods 集成 SDK 时，你需要在 `Podfile` 文件中添加如下内容，指定集成屏幕共享动态库 `AgoraReplayKitExtension.xcframework`，示例代码如下：
 
-```
+```bash
 platform :ios, '9.0'
 target 'Your App' do
 # 只集成基础库和屏幕共享动态库
@@ -126,6 +100,11 @@ end
 <li>使用 Apple ReplayKit 进行屏幕录制。
 <li>使用 SDK 采集功能获取系统录屏数据，并发送给频道中其他用户。
 </div>
+
+## 实现屏幕共享
+
+本节介绍如何在你的项目中实现屏幕共享，API 调用时序如下图所示。
+
 
 
 ### 开启屏幕共享
