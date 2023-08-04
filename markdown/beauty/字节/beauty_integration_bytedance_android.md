@@ -6,7 +6,7 @@
 
 ## 准备开发环境
 
-### 前提条件 //TODO 是否需要 certificate 和 token？
+### 前提条件
 
 - [Git](https://git-scm.com/downloads)
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html) 11
@@ -16,7 +16,13 @@
 - 已联系字节技术获取最新的美颜 SDK、美颜资源、美颜证书
 - 已在项目中添加 Kotlin 插件
 
-### 创建项目
+## 创建声网项目
+
+~f42d44d0-2ac7-11ee-b391-19a59cc2656e~
+
+跑通示例项目时，你需要将**鉴权机制**设置为**调试模式：APP ID**。从头搭建 Android 项目集成美颜功能时，声网推荐你将**鉴权机制**设置为**安全模式：APP ID + Token**，以保障安全性。
+
+### 创建 Android 项目
 
 按照以下步骤准备开发环境：
 
@@ -281,16 +287,16 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
 调用 `RtcEngine` 类的 `joinChannel` 加入频道，同时传入如下参数：
 
-- `token`：用于保障安全的 Token。如果你在控制台创建声网项目时选择了 xx 则传 null 即可。如果你在控制台创建声网项目时选择了 xx 则需要传入 Token 值。取值分为 xx //TODO
-- `channelName`：频道名。
-- `mediaOptions`：频道媒体选项，即，加入频道的用户的发流和收流等音视频行为。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用调试模式，那么 token 传空；如果启用安全模式，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
+- `channelId`：频道名。
+- `options`：频道媒体设置选项。
 
 
 ```kotlin
 mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
     channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
     clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-    publishCameraTrack = true //TODO 自采集的时候是 publishCustomVideoTrack 吗
+    publishCameraTrack = true //TODO 自采集的时候应该是 publishCustomVideoTrack 吗
     publishMicrophoneTrack = false
     autoSubscribeAudio = false
     autoSubscribeVideo = true
@@ -342,4 +348,4 @@ RtcEngine.destroy()
 
 ### API 时序图
 
-//TODO
+![](https://web-cdn.agora.io/docs-files/1691130923832)
