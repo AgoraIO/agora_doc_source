@@ -14,9 +14,8 @@
 
 ## 注意事项
 - 在开启屏幕共享后，声网以屏幕共享视频流的分辨率作为计费标准，详见[计费说明](./billing_rtc_ng)。默认分辨率为 1280 × 720，你也可以根据你的业务需求进行调整。
-- 为提高屏幕共享时采集系统音频的成功率，声网推荐你在加入频道前通过 `setAudioScenario` 方法设置音频场景为  `AgoraAudioScenarioGameStreaming`。
-- 受系统限制，屏幕共享只支持 iOS 12.0 及以上版本。</li>
-- 该功能对设备性能要求较高，声网推荐你使用 iPhone X 及以上设备。</li>
+- 受系统限制，屏幕共享只支持 iOS 12.0 及以上版本。
+- 该功能对设备性能要求较高，声网推荐你使用 iPhone X 及以上设备。
 - 用户在 iOS 设备上开启屏幕共享后，因系统限制，音频路由会自动切换为听筒。如果当前使用通话音量，则你可以手动切换音频路由，例如，你可以根据实际需求将音频路由切换成扬声器。如果当前使用媒体音量，由于系统限制，你在这种场景下无法手动切换音频路由。如果你不了解使用的是通话还是媒体音量，请参考[如何区分媒体音量和通话音量](https://docs.agora.io/cn/live-streaming-premium-legacy/faq/system_volume)。
 
 ## 前提条件
@@ -84,11 +83,12 @@
             }
         }
         ```
+
 ## 自动集成插件
 
 通过 Cocoapods 集成 SDK 时，你需要在 `Podfile` 文件中添加如下内容，指定集成屏幕共享动态库 `AgoraReplayKitExtension.xcframework`，示例代码如下：
 
-```bash
+```shell
 platform :ios, '9.0'
 target 'Your App' do
 # 只集成基础库和屏幕共享动态库
@@ -105,21 +105,25 @@ end
 
 本节介绍如何在你的项目中实现屏幕共享，API 调用时序如下图所示。
 
+![](https://web-cdn.agora.io/docs-files/1691135750721)
 
+### 设置音频场景
 
-### 开启屏幕共享
-1. 调用 `startScreenCapture`，根据你的应用场景进行参数设置：
-    - captureVideo：是否在屏幕共享时采集系统视频。
-    - captureAudio：是否在屏幕共享时采集系统音频。
-    - captureSignalVolume：采集的系统音量。
-    - dimensions：视频编码的分辨率。
-    - frameRate：视频编码帧率 (fps)。
-    - bitrate：视频编码码率 (Kbps)。
-    - contentHint：屏幕共享视频的内容类型。
+调用 `setAudioScenario` 方法，并设置音频场景为  `AgoraAudioScenarioGameStreaming`（高音质场景），以提高屏幕共享时采集系统音频的成功率。
 
+### 开启屏幕采集
+
+1. 调用 `startScreenCapture` 开启屏幕采集，并根据你的应用场景进行参数设置：
+   - `captureVideo`：是否在屏幕共享时采集系统视频。
+   - `captureAudio`：是否在屏幕共享时采集系统音频。
+   - `captureSignalVolume`：采集的系统音量。
+   - `dimensions`：视频编码的分辨率。
+   - `frameRate`：视频编码帧率 (fps)。
+   - `bitrate`：视频编码码率 (Kbps)。
+   - `contentHint`：屏幕共享视频的内容类型。
 
     ```swift
-    // 设置屏幕共享的参数。
+    // 设置屏幕采集的参数。
     private lazy var screenParams: AgoraScreenCaptureParameters2 = {
             let params = AgoraScreenCaptureParameters2()
             params.captureVideo = true
@@ -138,8 +142,7 @@ end
             params.videoParams = videoParams
             return params
         }()
-
-    // 开启屏幕共享
+    // 开启屏幕采集
     agoraKit.startScreenCapture(screenParams)
     ```
 
@@ -163,6 +166,7 @@ end
 ### 在频道中发布屏幕共享视频流
 
 加入频道后，调用 `updateChannelWithMediaOptions`，发布采集的屏幕共享视频流。示例代码如下：
+
 ```swift
 // 在进行屏幕视频采集（state 为 capturing，souceType 为 screen）时，定义 rtcEngine 的行为。
 func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStateChangedOf state: AgoraVideoLocalState, error: AgoraLocalVideoStreamError, sourceType: AgoraVideoSourceType) {
@@ -180,7 +184,6 @@ func rtcEngine(_ engine: AgoraRtcEngineKit, localVideoStateChangedOf state: Agor
     default: break
     }
 }
-
 ```
 ### （可选）设置屏幕共享场景
 
