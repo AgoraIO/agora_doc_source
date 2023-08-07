@@ -10,7 +10,7 @@
 
 ![](https://docimg5.docs.qq.com/image/AgAACiNGFGPHrQbz9fFBZ418uV0dvsQN.png?w=1056&h=352)
 
-声网提供服务端旁路推流服务，可以把频道内的所有主播的声音混流成一路推流到第三方CDN，详情请参考 [声网旁路推流服务](https://docs-preprod.agora.io/cn/media-push/streaming_product?platform=All%20Platforms)。
+声网在 GitHub 上提供开源示例项目服务端旁路推流服务，可以把频道内的所有主播的声音混流成一路推流到第三方CDN，详情请参考 [声网旁路推流服务](https://docs-preprod.agora.io/cn/media-push/streaming_product?platform=All%20Platforms)。
 
 ### 听众通过播放器拉CDN流播放 
 

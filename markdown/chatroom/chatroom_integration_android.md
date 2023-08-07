@@ -2,7 +2,7 @@
 
 ## 示例项目
 
-声网在 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios) 仓库中提供[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-Android/Android/scenes/voice)供你参考。
+声网在 GitHub 上提供开源示例项目[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-Android/Android/scenes/voice)供你参考。
 
 ## 业务流程图
 
@@ -41,9 +41,9 @@
 
 1. 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
-   <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。</div>
+   <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle，稍等片刻至同步成功后再进行下一步操作。</div>
 
-2. 使用 Maven Central 将声网 RTC SDK 集成到你的项目中。
+2. 使用 Maven Central 将声网 RTC SDK 和 IM SDK 集成到你的项目中。
 
    a. 在 `/Gradle Scripts/build.gradle(Project: <projectname>)` 文件中添加如下代码，添加 Maven Central 依赖：
 
@@ -66,7 +66,7 @@
 
     <div class="alert note">如果你的 Android 项目设置了 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，添加 Maven Central 依赖的方式可能存在差异。</div>
 
-   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网 RTC SDK 集成到你的 Android 项目中：
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网 RTC SDK 和 IM SDK 集成到你的 Android 项目中：
 
    ```java
    ...
@@ -110,7 +110,7 @@
 
 ## 实现语聊房
 
-如下[时序图](#api-时序图)展示了如何登录即时通讯系统、获取房间列表、创建房间、进入房间、加入 RTC 频道、麦位管理、退出房间、离开 RTC 频道。声网云服务（Service）实现了房间列表的存储和房间生命周期的管理，声网即时通讯（IM）SDK 实现房间内的信令通信，声网 RTC SDK 承担实时音频的业务。本节会详细介绍如何调用声网云服务（voiceServiceProtocol）、IM SDK API、RTC SDK API 完成这些逻辑。
+如下[时序图](#api-时序图)展示了如何登录即时通讯系统、获取房间列表、创建房间、进入房间、加入 RTC 频道、麦位管理、退出房间、离开 RTC 频道。声网云服务（Service）实现了房间列表的存储和房间生命周期的管理，声网即时通讯（IM）SDK 实现房间内的信令通信，声网 RTC SDK 承担实时音频的业务。本节会详细介绍如何调用声网云服务（`voiceServiceProtocol`）、IM SDK API、RTC SDK API 完成这些逻辑。
 
 <div class="alert note">声网云服务为内部自研服务，暂不对外提供。你可以调用声网云服务的 API 用于测试，但是对于正式环境，声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
 
@@ -121,7 +121,7 @@
 
 ```kotlin
 voiceServiceProtocol.fetchRoomList(page, completion = { error, result ->
-    // ...
+    ...
 })
 ```
 
@@ -167,7 +167,7 @@ public void login(String uid,String token,CallBack callBack){
 参考如下步骤初始化 RtcEngine：
 
 1. 根据[前提条件](#前提条件)在声网控制台创建声网项目后，复制界面的 App ID。
-2. 调用声网 RTC SDK 中的 `create` 方法创建并初始化 `RtcEngine`。
+2. 调用声网 RTC SDK 中的 [`create`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_initialize) 方法创建并初始化 `RtcEngine`。
 
 ```kotlin
 // 初始化配置
@@ -255,7 +255,7 @@ val rtcEngine = RtcEngineEx.create(config) as RtcEngineEx
         }
         ```
 
-    - 调用声网 RTC SDK 中 `RtcEngine` 类的 `joinChannel` 加入 RTC 频道以实现房间内的实时音频通话。方法中的参数含义和支持取值请参考 [`joinChannelByToken`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。在这一步里需要填写声网 RTC Token。你可以参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得临时用途的声网 RTC Token。你也可以参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)获取正式用途的声网 RTC Token。临时 Token 的有效期为 24 小时，建议你仅在测试用途下使用。
+    - 调用声网 RTC SDK 中 `RtcEngine` 类的 `joinChannel` 加入 RTC 频道以实现房间内的实时音频通话。方法中的参数含义和支持取值请参考 [`joinChannel`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_joinchannel)。在这一步里需要填写声网 RTC Token。你可以参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)从声网控制台获得临时用途的声网 RTC Token。你也可以参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)获取正式用途的声网 RTC Token。临时 Token 的有效期为 24 小时，建议你仅在测试用途下使用。
     你还可以调用 [`setChannelProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_setchannelprofile)、[`setAudioProfile`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioprofile2)、[`setAudioScenario`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_setaudioscenario)、[`setParameters`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_network.html#api_irtcengine_setparameters) 来为不同业务场景（语聊社交、KTV、游戏陪玩、专业音频直播场景）设置语聊房的最佳音效。
 
         ```kotlin
@@ -307,7 +307,7 @@ val rtcEngine = RtcEngineEx.create(config) as RtcEngineEx
 
     ```kotlin
     voiceServiceProtocol.leaveRoom(roomId, isRoomOwnerLeave, completion = { error, result ->
-        // ...
+        ...
     })
     ```
 
@@ -318,7 +318,7 @@ val rtcEngine = RtcEngineEx.create(config) as RtcEngineEx
     rtcEngine?.leaveChannel()
     ```
 
-3. 调用 [`leaveChatRoom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_java/v1.1.0/classio_1_1agora_1_1chat_1_1_chat_room_manager.html#a4f2c430782206971480c73a49311b1437) 离开聊天室，调用 [`destroyChatroom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_java/v1.1.0/classio_1_1agora_1_1chat_1_1_chat_room_manager.html?transId=194274c0-bee4-11ed-b167-a39cc89dc96e#a0d50d2e34d9992fc3f8ea1c82e2db1a7) 销毁聊天室。调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 RTC 引擎。
+3. 调用 [`leaveChatRoom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_java/v1.1.0/classio_1_1agora_1_1chat_1_1_chat_room_manager.html#a4f2c430782206971480c73a49311b1437) 离开聊天室，调用 [`asyncDestroyChatRoom`](https://docs-preprod.agora.io/cn/agora-chat/API%20Reference/im_java/v1.1.0/classio_1_1agora_1_1chat_1_1_chat_room_manager.html?transId=194274c0-bee4-11ed-b167-a39cc89dc96e#a0d50d2e34d9992fc3f8ea1c82e2db1a) 销毁聊天室。调用 [`destroy`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_core_method.html#api_irtcengine_release) 销毁 RTC 引擎。
 
     ```kotlin
     ChatroomIMManager.getInstance().leaveChatRoom(roomKitBean.chatroomId)
@@ -333,4 +333,4 @@ val rtcEngine = RtcEngineEx.create(config) as RtcEngineEx
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1690957970178)
+![](https://web-cdn.agora.io/docs-files/1691399288269)

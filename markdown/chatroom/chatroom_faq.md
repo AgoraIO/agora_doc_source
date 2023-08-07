@@ -4,7 +4,7 @@
 
 ### 问题
 
-如何实现某用户调用 [`startAudioMixing`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing) 播放背景音乐时，不想让频道内其他人听到自己说话的声音，只想让别人听到自己播放的背景音乐？
+如何实现某用户调用 [`startAudioMixing`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing2) 播放背景音乐时，不想让频道内其他人听到自己说话的声音，只想让别人听到自己播放的背景音乐？
 
 ### 解决方法
 
@@ -14,7 +14,7 @@
 
 ### 问题
 
-如何实现某用户调用 [`startAudioMixing`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing) 播放背景音乐时，不想让自己说话的声音和背景音乐被频道内其他人听到？
+如何实现某用户调用 [`startAudioMixing`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_audio_process.html#api_irtcengine_startaudiomixing2) 播放背景音乐时，不想让自己说话的声音和背景音乐被频道内其他人听到？
 
 ### 解决方法
 

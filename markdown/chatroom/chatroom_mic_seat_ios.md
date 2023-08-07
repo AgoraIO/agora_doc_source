@@ -1,7 +1,7 @@
-本文如何在语聊房中进行麦位管理麦位管理包含如下操作：
+本文介绍如何在语聊房中进行麦位管理麦位管理包含如下操作：
 
 - 上麦：听众与房主连麦，连麦听众可以发言，与房主语音互动。
-- 下麦：连麦听众下麦，成为普通听众，无法发言，无法与房主语音互动。
+- 下麦：连麦听众下麦后成为普通听众，无法发言也无法与房主语音互动。
 - 静音：房主不允许某个连麦听众发言。
 - 锁麦：房主不允许任何用户占据该麦位。
 - 换麦：连麦听众从一个麦位更换到另一个麦位。
@@ -10,7 +10,7 @@
 
 ## 示例项目
 
-声网在 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios) 仓库中提供[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/VoiceChatRoom)供你参考。
+声网在 GitHub 上提供开源示例项目[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/VoiceChatRoom)供你参考。
 
 ## 前提条件
 
@@ -20,7 +20,7 @@
 
 ### 注册回调
 
-进行麦位管理时，你需要先通过声网云服务中 `ChatRoomServiceImp` 类的 `subscribeEvent` 方法注册回调事件，监听房间内的回调事件。
+进行麦位管理前，你需要通过声网云服务中 `ChatRoomServiceImp` 类的 `subscribeEvent` 方法注册回调事件，监听房间内的回调事件。
 
 ```swift
 ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
@@ -62,7 +62,6 @@ ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
     - 调用 `ChatRoomServiceImp` 类的 `acceptMicSeatInvitation` 方法接受邀请。
     - 调用 `ChatRoomServiceImp` 类的 `refuseInvite` 方法拒绝邀请。
 
-
     ```swift
     // 接受邀请
     func agreeInvite(index: Int?) {
@@ -103,7 +102,7 @@ ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
     }
     ```
 
-    **注意**：房主邀请多个听众上麦时，如果多个听众同时点击接受上麦邀请，那么可能出现听众 A 刚上麦就被后面上麦的用户 B 踢下麦位。因此，为了避免多个听众同时主动修改麦位时造成互踢的冲突，声网推荐你在集成逻辑中控制上麦由房主决定，而不是听众决定。
+    <div class="alert note">房主邀请多个听众上麦时，如果多个听众同时点击接受上麦邀请，那么可能出现听众 A 刚上麦就被后面上麦的用户 B 踢下麦位。因此，为了避免多个听众同时主动修改麦位时造成互踢的冲突，声网推荐你在集成逻辑中控制上麦由房主决定，而不是听众决定。</div>
 
 ### 听众申请上麦
 
@@ -128,7 +127,7 @@ ChatRoomServiceImp.getSharedInstance().subscribeEvent(with: self)
     }
     ```
 
-2. 如果听众希望取消上麦申请，可以调用 `ChatRoomServiceImp` 类的 `cancelMicSeatApply` 方法。
+2. （可选）如果听众希望取消上麦申请，可以调用 `ChatRoomServiceImp` 类的 `cancelMicSeatApply` 方法。
 
     ```swift
     // 听众取消自己的上麦申请
@@ -248,7 +247,7 @@ rtcKit.setClientRole(.audience)
 
 ## 设置是否静音
 
-听众上麦后，你可以设置麦位是否静音，以达到禁言的目的。将麦位静音意味着不允许该连麦听众发言。将麦位取消静音意味着恢复该连麦听众发言的权限。
+听众上麦后，你可以设置麦位是否静音，以达到禁言的目的。将麦位静音意味着不允许该连麦听众发言；将麦位取消静音意味着恢复该连麦听众发言的权限。
 
 ### 麦位静音
 

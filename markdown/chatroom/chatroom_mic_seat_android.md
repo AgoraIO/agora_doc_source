@@ -1,7 +1,7 @@
-本文如何在语聊房中进行麦位管理麦位管理包含如下操作：
+本文介绍如何在语聊房中进行麦位管理麦位管理包含如下操作：
 
 - 上麦：听众与房主连麦，连麦听众可以发言，与房主语音互动。
-- 下麦：连麦听众下麦，成为普通听众，无法发言，无法与房主语音互动。
+- 下麦：连麦听众下麦后成为普通听众，无法发言也无法与房主语音互动。
 - 静音：房主不允许某个连麦听众发言。
 - 锁麦：房主不允许任何用户占据该麦位。
 - 换麦：连麦听众从一个麦位更换到另一个麦位。
@@ -10,21 +10,21 @@
 
 ## 示例项目
 
-声网在 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios) 仓库中提供[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/VoiceChatRoom)供你参考。
+声网在 GitHub 上提供开源示例项目[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/VoiceChatRoom)供你参考。
 
 ## 前提条件
 
 ### 实现基础功能
 
-实现该进阶功能前，请确保你已实现基础的语聊房功能，例如登录即时通讯系统、获取房间列表、创建房间、加入房间。详见[基础功能](https://docs.agora.io/cn/chatroom/chatroom_integration_ios?platform=All%20Platforms)。
+实现该进阶功能前，请确保你已实现基础的语聊房功能，例如登录即时通讯系统、获取房间列表、创建房间、加入房间。详见[基础功能](https://docs.agora.io/cn/chatroom/chatroom_integration_android?platform=All%20Platforms)。
 
 ### 注册回调
 
-进行麦位管理时，你需要先通过声网云服务中 `voiceServiceProtocol` 类的 `subscribeEvent` 方法注册回调事件，监听房间内的回调事件。
+进行麦位管理前，你需要通过声网云服务中 `voiceServiceProtocol` 类的 `subscribeEvent` 方法注册回调事件，监听房间内的回调事件。
 
 ```kotlin
 voiceServiceProtocol.subscribeEvent(object : VoiceRoomSubscribeDelegate{
-    // ...
+    ...
 })
 ```
 
@@ -41,7 +41,7 @@ voiceServiceProtocol.subscribeEvent(object : VoiceRoomSubscribeDelegate{
     ```kotlin
     // 邀请上麦
     voiceServiceProtocol.startMicSeatInvitation(chatUid, micIndex, completion = { error, result ->
-        // ...
+        ...
     })
     ```
 
@@ -57,18 +57,17 @@ voiceServiceProtocol.subscribeEvent(object : VoiceRoomSubscribeDelegate{
     - 调用 `voiceServiceProtocol` 对象的 `acceptMicSeatInvitation` 方法接受邀请。
     - 调用 `voiceServiceProtocol` 对象的 `refuseInvite` 方法拒绝邀请。
 
-
     ```kotlin
     // 接受邀请
     voiceServiceProtocol.acceptMicSeatInvitation(micIndex, completion = { error, result ->
-        // ...
+        ...
     })
     ```
 
     ```kotlin
     // 拒绝邀请
     fun refuseInvite(completion: (error: Int, result: Boolean) -> Unit) {
-        // ...
+        ...
     }
     ```
 
@@ -79,7 +78,7 @@ voiceServiceProtocol.subscribeEvent(object : VoiceRoomSubscribeDelegate{
     fun onSeatUpdated(roomId: String, attributeMap: Map<String, String>, fromId: String) {}
     ```
 
-    **注意**：房主邀请多个听众上麦时，如果多个听众同时点击接受上麦邀请，那么可能出现听众 A 刚上麦就被后面上麦的用户 B 踢下麦位。因此，为了避免多个听众同时主动修改麦位时造成互踢的冲突，声网推荐你在集成逻辑中控制上麦由房主决定，而不是听众决定。
+    <div class="alert note">房主邀请多个听众上麦时，如果多个听众同时点击接受上麦邀请，那么可能出现听众 A 刚上麦就被后面上麦的用户 B 踢下麦位。因此，为了避免多个听众同时主动修改麦位时造成互踢的冲突，声网推荐你在集成逻辑中控制上麦由房主决定，而不是听众决定。</div>
 
 ### 听众申请上麦
 
@@ -90,16 +89,16 @@ voiceServiceProtocol.subscribeEvent(object : VoiceRoomSubscribeDelegate{
     ```kotlin
     // 申请上麦
     voiceServiceProtocol.startMicSeatApply(micIndex, completion = { error, result ->
-        // ...
+        ...
     })
     ```
 
-2. 如果听众希望取消上麦申请，可以调用 `voiceServiceProtocol` 对象的 `cancelMicSeatApply` 方法。
+2. （可选）如果听众希望取消上麦申请，可以调用 `voiceServiceProtocol` 对象的 `cancelMicSeatApply` 方法。
 
     ```kotlin
     // 听众取消自己的上麦申请
     voiceServiceProtocol.cancelMicSeatApply(chatroomId, chatUid, completion = { error, result ->
-        // ...
+        ...
     })
     ```
 
@@ -115,7 +114,7 @@ voiceServiceProtocol.subscribeEvent(object : VoiceRoomSubscribeDelegate{
     ```kotlin
     // 房主同意听众上麦申请
     voiceServiceProtocol.acceptMicSeatApply(micIndex, chatUid, completion = { error, result ->
-        // ...
+        ...
     })
     ```
 
@@ -145,7 +144,7 @@ rtcEngine?.setClientRole(Constants.CLIENT_ROLE_BROADCASTER)
 ```kotlin
 // 主动下麦
 voiceServiceProtocol.leaveMic(micIndex, completion = { error, result ->
-    // ...
+    ...
 })
 ```
 
@@ -156,7 +155,7 @@ voiceServiceProtocol.leaveMic(micIndex, completion = { error, result ->
 ```kotlin
 // 踢连麦听众下麦
 voiceServiceProtocol.kickOff(micIndex, completion = { error, result ->
-    // ...
+    ...
 })
 ```
 
@@ -178,7 +177,7 @@ rtcEngine?.setClientRole(Constants.CLIENT_ROLE_AUDIENCE)
 
 ## 设置是否静音
 
-听众上麦后，你可以设置麦位是否静音，以达到禁言的目的。将麦位静音意味着不允许该连麦听众发言。将麦位取消静音意味着恢复该连麦听众发言的权限。
+听众上麦后，你可以设置麦位是否静音，以达到禁言的目的。将麦位静音意味着不允许该连麦听众发言；将麦位取消静音意味着恢复该连麦听众发言的权限。
 
 ### 麦位静音
 
@@ -187,7 +186,7 @@ rtcEngine?.setClientRole(Constants.CLIENT_ROLE_AUDIENCE)
 ```kotlin
 // 禁言指定麦位
 voiceServiceProtocol.forbidMic(micIndex, completion = { error, result ->
-    // ...
+    ...
 })
 ```
 
@@ -198,7 +197,7 @@ voiceServiceProtocol.forbidMic(micIndex, completion = { error, result ->
 ```kotlin
 // 取消禁言指定麦位
 voiceServiceProtocol.unForbidMic(micIndex, completion = { error, result ->
-    // ...
+    ...
 })
 ```
 
@@ -231,7 +230,7 @@ rtcEngine?.muteLocalAudioStream(true)
 ```kotlin
 // 锁麦
 voiceServiceProtocol.lockMic(micIndex, completion = { error, result ->
-    // ...
+    ...
 })
 ```
 
@@ -243,7 +242,7 @@ voiceServiceProtocol.lockMic(micIndex, completion = { error, result ->
 ```kotlin
 // 取消锁麦
 voiceServiceProtocol.unLockMic(micIndex, completion = { error, result ->
-    // ...
+    ...
 })
 ```
 
@@ -261,7 +260,7 @@ fun onSeatUpdated(roomId: String, attributeMap: Map<String, String>, fromId: Str
 
     ```kotlin
     voiceServiceProtocol.changeMic(oldIndex, newIndex, completion = { error, result ->
-        // ...
+        ...
     })
     ```
 
