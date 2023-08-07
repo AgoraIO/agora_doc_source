@@ -1,6 +1,6 @@
 ## v4.2.2
 
-This version was released on July, xx, 2023.
+This version was released on August 1, 2023.
 
 #### Compatibility changes
 
@@ -20,7 +20,7 @@ The following methods in the `IAudioFrameObserver` class are deleted:
 
 The following methods in the `IVideoFrameObserver` class are deleted:
 
-- `GetVideoFormatPreference`: Use the newly-added `formatPreference` parameter in  `RegisterVideoFrameObserver`. 
+- `GetVideoFormatPreference`: Use the newly-added `formatPreference` parameter in  `RegisterVideoFrameObserver`.
 - `GetObservedFramePosition`: Use the newly-added `position` parameter in  `RegisterVideoFrameObserver`.
 
 3. **Metadata**
@@ -31,7 +31,7 @@ This release deletes `GetMaxMetadataSize` and `OnReadyToSendMetadata` in the `IM
 
 1. **Wildcard token**
 
-   This release introduces wildcard tokens. Agora supports setting the channel name used for generating a token as a wildcard character. The token generated can be used to join any channel if you use the same user id. In scenarios involving multiple channels, such as switching between different channels, using a wildcard token can avoid repeated application of tokens every time users joining a new channel, which reduces the pressure on your token server. See [Wildcard Tokens](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/wildcard_token?platform=All%20Platforms).
+   This release introduces wildcard tokens. Agora supports setting the channel name used for generating a token as a wildcard character. The token generated can be used to join any channel if you use the same user id. In scenarios involving multiple channels, such as switching between different channels, using a wildcard token can avoid repeated application of tokens every time users joining a new channel, which reduces the pressure on your token server. See [Secure authentication with tokens](/en/video-calling/get-started/authentication-workflow).
 
    <div class="alert info">All 4.x SDKs support using wildcard tokens.</div>
 
@@ -95,7 +95,7 @@ This release fixed the following issues:
 - Occasionally, noise occurred when the local user listened to their own and remote audio after joining the channel. (macOS)
 - Slow channel reconnection after the connection was interrupted due to network reasons.
 - In screen sharing scenarios, the delay of seeing the shared screen was occasionally higher than expected on some devices.
-- In custom video capturing scenarios, `SetBeautyEffectOptions`, `SetLowlightEnhanceOptions`, `SetVideoDenoiserOptions`, and `SetColorEnhanceOptions` could not load extensions automatically. 
+- In custom video capturing scenarios, `SetBeautyEffectOptions`, `SetLowlightEnhanceOptions`, `SetVideoDenoiserOptions`, and `SetColorEnhanceOptions` could not load extensions automatically.
 - In multi-device audio recording scenarios, after repeatedly plugging and unplugging or enabling/disabling the audio recording device, no sound could be heard occasionally when calling the `StartRecordingDeviceTest` to start an audio capturing device test. (Windows)
 
 #### API changes
@@ -120,7 +120,7 @@ This release fixed the following issues:
 - `REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT` in `REMOTE_VIDEO_STATE_REASON`
 - `SetMaxMetadataSize`
 - `SendMetadata`
-- `position` parameter in `RegisterAudioFrameObserver` 
+- `position` parameter in `RegisterAudioFrameObserver`
 - `formatPreference` and `position`  parameters in `RegisterVideoFrameObserver`
 
 **Deleted**
@@ -322,8 +322,8 @@ This release fixed the following issues:
 
 **Windows**
 
-- When using Agora Media Player to play RTSP video streams, the video images sometimes appeared pixelated. 
-- Adding an alpha channel to an image in PNG or GIF format failed when the local client mixed video streams. 
+- When using Agora Media Player to play RTSP video streams, the video images sometimes appeared pixelated.
+- Adding an alpha channel to an image in PNG or GIF format failed when the local client mixed video streams.
 - After joining the channel, remote users saw a watermark even though the watermark was deleted.
 - If a watermark was added after starting screen sharing, the watermark did not display the screen.
 - When joining a channel and accessing an external camera, calling `SetDevice` to specify the video capture device as the external camera did not take effect.
@@ -331,29 +331,29 @@ This release fixed the following issues:
 
 **Android**
 
-- Occasional crashes occur on Android devices when users joining or leaving a channel. 
-- Occational failure when enabling in-ear monitoring. 
-- Occational echo. 
-- Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices. 
-- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode. 
-- When the playback of the local music finished, the `OnAudioMixingFinished` callback was not properly triggered. 
-- When using a video frame observer, the first video frame was occasionally missed on the receiver's end. 
-- When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens. 
-- Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted. 
-- Abnormal client status caused by an exception in the `OnRemoteAudioStateChanged` callback. 
+- Occasional crashes occur on Android devices when users joining or leaving a channel.
+- Occational failure when enabling in-ear monitoring.
+- Occational echo.
+- Crashes occurred after users set the video resolution as 3840 × 2160 and started CDN streaming on Xiaomi Redmi 9A devices.
+- In real-time chorus scenarios, remote users heard noises and echoes when an OPPO R11 device joined the channel in loudspeaker mode.
+- When the playback of the local music finished, the `OnAudioMixingFinished` callback was not properly triggered.
+- When using a video frame observer, the first video frame was occasionally missed on the receiver's end.
+- When sharing screens in scenarios involving multiple channels, remote users occasionally saw black screens.
+- Switching to the rear camera with the virtual background enabled occasionally caused the background to be inverted.
+- Abnormal client status caused by an exception in the `OnRemoteAudioStateChanged` callback.
 
 **iOS**
 
-- Occasional loss of the `OnFirstRemoteVideoFrame` callback during channel media relay. 
-- The receiver actively subscribed to the high-quality stream but unexpectedly received a low-quality stream. 
+- Occasional loss of the `OnFirstRemoteVideoFrame` callback during channel media relay.
+- The receiver actively subscribed to the high-quality stream but unexpectedly received a low-quality stream.
 - Abnormal client status cased by an exception in the `OnRemoteAudioStateChanged` callback.
 
 **macOS**
 
-- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds. 
-- Occasional screen jittering during screen sharing. 
-- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds. 
-- Occasional screen jittering during screen sharing. 
+- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds.
+- Occasional screen jittering during screen sharing.
+- The receiver was receiving the low-quality stream originally, and automatically switched to high-quality stream after a few seconds.
+- Occasional screen jittering during screen sharing.
 - If the rendering view of the player was set as a UIViewController's view, the video was zoomed from the bottom-left corner to the middle of the screen when entering full-screen mode.
 - When joining a channel and accessing an external camera, calling `SetDevice` to specify the video capture device as the external camera did not take effect.
 
@@ -361,13 +361,13 @@ This release fixed the following issues:
 
 - When the host frequently switching the user role between broadcaster and audience in a short period of time, the audience members cannot hear the audio of the host.
 - Playing audio files with a sample rate of 48 kHz failed.
-- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed. 
+- When there were multiple video streams in a channel, calling some video enhancement APIs occasionally failed.
 
 #### API changes
 
 **Added**
 
-- `StartCameraCapture` 
+- `StartCameraCapture`
 - `StopCameraCapture`
 - `StartScreenCapture`[2/2]  (Windows,macOS)
 - `StopScreenCapture`[2/2]  (Windows,macOS)
@@ -421,4 +421,4 @@ This release fixed the following issues:
 - `OnApiCallExecuted`
 - `PublishCustomAudioTrackEnableAec ` in` ChannelMediaOptions`
 - `EnableRemoteSuperResolution`
-- `superResolutionType` in `RemoteVideoStats` 
+- `superResolutionType` in `RemoteVideoStats`
