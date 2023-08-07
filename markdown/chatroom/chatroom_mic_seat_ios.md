@@ -10,7 +10,7 @@
 
 ## 示例项目
 
-声网在 GitHub 上提供开源示例项目[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/VoiceChatRoom)供你参考。
+声网在 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios) 仓库中提供[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.1.0-voice-iOS/iOS/AgoraEntScenarios/Scenes/VoiceChatRoom)源代码供你参考。
 
 ## 前提条件
 
