@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_fcrmediapacketstats">
+    <title><ph keyref="FcrMediaPacketStats"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Statistics of the media packet.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">data class FcrMediaPacketStats(
+    var lastMileDelay: Int = 0,
+    var txPacketLossRate: Int = 0,
+    var rxPacketLossRate: Int = 0
+)</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">@objcMembers public class FcrMediaPacketStats: NSObject {
+    public let lastMileDelay: Int
+    public let txPacketLossRate: Int
+    public let rxPacketLossRate: Int
+    
+    public init(lastMileDelay: Int,
+                txPacketLossRate: Int,
+                rxPacketLossRate: Int) {
+        self.lastMileDelay = lastMileDelay
+        self.txPacketLossRate = txPacketLossRate
+        self.rxPacketLossRate = rxPacketLossRate
+    }
+}</codeblock>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <dl outputclass="since">
+            <dlentry>
+                <dt>Since</dt>
+                <dd>v2.8.60</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>lastMileDelay</pt>
+                <pd>The client-to-server delay (milliseconds).</pd>
+            </plentry>
+            <plentry>
+                <pt>txPacketLossRate</pt>
+                <pd>The packet loss rate (%) from the client to the Agora server.</pd>
+            </plentry>
+            <plentry>
+                <pt>rxPacketLossRate</pt>
+                <pd>The packet loss rate (%) from the Agora server to the client.</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
