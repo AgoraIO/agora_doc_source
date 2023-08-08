@@ -200,6 +200,7 @@
                 <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters" toc="no"/>
                 <topicref keyref="setPlaybackAudioFrameParameters" toc="no"/>
                 <topicref keyref="setRecordingAudioFrameParameters" toc="no"/>
+                <topicref keyref="unregisterAudioFrameObserver" toc="no"/>
                 <topicref keyref="onPlaybackAudioFrameBeforeMixing" toc="no"/>
                 <topicref keyref="onPlaybackAudioFrame" toc="no"/>
                 <topicref keyref="onRecordAudioFrame" toc="no"/>
@@ -266,7 +267,6 @@
             <topicref href="API/toc_screenshare.dita" chunk="to-content">
                 <topicref keyref="getScreenCaptureSources" toc="no"/>
                 <topicref keyref="queryScreenCaptureCapability" toc="no"/>
-                <topicref keyref="release_IScreenCaptureSourceList" toc="no"/>
                 <topicref keyref="setScreenCaptureContentHint" toc="no"/>
                 <topicref keyref="setScreenCaptureScenario" toc="no"/>
                 <topicref keyref="startScreenCapture" toc="no"/>
@@ -279,7 +279,6 @@
                 <topicref keyref="updateScreenCapture" toc="no"/>
                 <topicref keyref="updateScreenCaptureParameters" toc="no"/>
                 <topicref keyref="updateScreenCaptureRegion1" toc="no"/>
-                <topicref keyref="updateScreenCaptureRegion2" toc="no"/>
             </topicref>
             <topicref href="API/toc_video_prenpro.dita" chunk="to-content">
                 <topicref href="API/toc_snapshot.dita" chunk="to-content">
@@ -352,17 +351,10 @@
                 <topicref keyref="onVideoRenderingTracingResult" toc="no"/>
             </topicref>
             <topicref href="API/toc_video_raw.dita" chunk="to-content">
-                <topicref keyref="getMirrorApplied" toc="no"/>
-                <topicref keyref="getObservedFramePosition" toc="no"/>
-                <topicref keyref="getRotationApplied" toc="no"/>
-                <topicref keyref="getVideoFormatPreference" toc="no"/>
-                <topicref keyref="getVideoFrameProcessMode" toc="no"/>
                 <topicref keyref="registerVideoFrameObserver" toc="no"/>
                 <topicref keyref="unregisterVideoEncodedFrameObserver" toc="no"/>
                 <topicref keyref="unregisterVideoFrameObserver_IMediaEngine" toc="no"/>
                 <topicref keyref="onCaptureVideoFrame" toc="no"/>
-                <topicref keyref="onFrame_IVideoFrameObserver" toc="no"/>
-                <topicref keyref="onMediaPlayerVideoFrame" toc="no" props="hide"/>
                 <topicref keyref="onPreEncodeVideoFrame" toc="no"/>
                 <topicref keyref="onRenderVideoFrame" toc="no"/>
             </topicref>
@@ -373,9 +365,8 @@
             <topicref href="API/toc_video_custom_capturenrendering.dita" chunk="to-content">
                 <topicref keyref="createCustomVideoTrack" toc="no"/>
                 <topicref keyref="destroyCustomVideoTrack" toc="no"/>
-                <topicref keyref="pushEncodedVideoImage" toc="no"/>
+                <topicref keyref="pushEncodedVideoImage" toc="no" props="hide"/>
                 <topicref keyref="pushVideoFrame" toc="no"/>
-                <topicref keyref="pushVideoFrameEx" toc="no"/>
                 <topicref keyref="setExternalVideoSource" toc="no"/>
             </topicref>
         </topicref>
@@ -411,7 +402,7 @@
                 <topicref keyref="pauseAllEffects" toc="no"/>
                 <topicref keyref="pauseEffect" toc="no"/>
                 <topicref keyref="playAllEffects" toc="no"/>
-                <topicref keyref="playEffect2" toc="no"/>
+                <topicref keyref="playEffect2" toc="no" processing-role="resource-only"/>
                 <topicref keyref="playEffect3" toc="no"/>
                 <topicref keyref="preloadEffect" toc="no"/>
                 <topicref keyref="resumeAllEffects" toc="no"/>
@@ -485,11 +476,7 @@
                 <topicref href="API/toc_mediaplayer_observer.dita" chunk="to-content">
                     <topicref keyref="registerAudioFrameObserver1_IMediaPlayer" toc="no"/>
                     <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" toc="no"/>
-                    <topicref keyref="registerPlayerSourceObserver" toc="no"/>
-                    <topicref keyref="registerVideoFrameObserver_IMediaPlayer" toc="no"/>
                     <topicref keyref="unregisterAudioFrameObserver_IMediaPlayer" toc="no"/>
-                    <topicref keyref="unregisterPlayerSourceObserver" toc="no"/>
-                    <topicref keyref="unregisterVideoFrameObserver_IMediaPlayer" toc="no"/>
                     <topicref keyref="onAudioVolumeIndication_IMediaPlayerSourceObserver" toc="no"/>
                     <topicref keyref="onMetaData" toc="no"/>
                     <topicref keyref="onPlayBufferUpdated" toc="no"/>
@@ -515,7 +502,7 @@
                 <topicref keyref="setMaxCacheFileCount" toc="no"/>
                 <topicref keyref="setMaxCacheFileSize" toc="no"/>
             </topicref>
-            <topicref href="API/toc_drm.dita" chunk="to-content">
+            <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
                 <topicref keyref="createMusicPlayer" toc="no"/>
                 <topicref keyref="getCaches" toc="no"/>
                 <topicref keyref="getInternalSongCode" toc="no"/>
@@ -575,9 +562,7 @@
                 <topicref keyref="setLiveTranscoding" toc="no" processing-role="resource-only"/>
                 <topicref keyref="startRtmpStreamWithoutTranscoding" toc="no"/>
                 <topicref keyref="startRtmpStreamWithoutTranscodingEx" toc="no"/>
-                <topicref keyref="startRtmpStreamWithoutTranscodingEx" toc="no"/>
                 <topicref keyref="startRtmpStreamWithTranscoding" toc="no"/>
-                <topicref keyref="startRtmpStreamWithTranscodingEx" toc="no"/>
                 <topicref keyref="startRtmpStreamWithTranscodingEx" toc="no"/>
                 <topicref keyref="stopRtmpStream" toc="no"/>
                 <topicref keyref="stopRtmpStreamEx" toc="no"/>
@@ -619,11 +604,10 @@
                 <topicref keyref="onStreamMessageError" toc="no"/>
             </topicref>
             <topicref href="API/toc_metadata_observer.dita" chunk="to-content">
-                <topicref keyref="getMaxMetadataSize" toc="no"/>
+                <topicref keyref="getMaxMetadataSize" toc="no" props="hide"/>
                 <topicref keyref="registerMediaMetadataObserver" toc="no"/>
                 <topicref keyref="unregisterMediaMetadataObserver" toc="no"/>
                 <topicref keyref="onMetadataReceived" toc="no"/>
-                <topicref keyref="onReadyToSendMetadata" toc="no"/>
             </topicref>
         </topicref>
         <topicref href="API/toc_device_management.dita" chunk="to-content">
@@ -670,19 +654,17 @@
          <topicref keyref="getPlaybackDefaultDevice" toc="no"/>
          <topicref keyref="getPlaybackDevice" toc="no"/>
          <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
-         <topicref keyref="getPlaybackDeviceMute" toc="no"/>
-         <topicref keyref="getPlaybackDeviceVolume" toc="no"/>
          <topicref keyref="getRecordingDefaultDevice" toc="no"/>
          <topicref keyref="getRecordingDevice" toc="no"/>
          <topicref keyref="getRecordingDeviceInfo" toc="no"/>
-         <topicref keyref="getRecordingDeviceMute" toc="no"/>
-         <topicref keyref="getRecordingDeviceVolume" toc="no"/>
+         <topicref keyref="getRecordingDeviceMute" toc="no" props="hide"/>
+         <topicref keyref="getRecordingDeviceVolume" toc="no" props="hide"/>
          <topicref keyref="setLoopbackDevice" toc="no"/>
          <topicref keyref="setPlaybackDevice" toc="no"/>
-         <topicref keyref="setPlaybackDeviceMute" toc="no"/>
-         <topicref keyref="setPlaybackDeviceVolume" toc="no"/>
+         <topicref keyref="setPlaybackDeviceMute" toc="no" props="hide"/>
+         <topicref keyref="setPlaybackDeviceVolume" toc="no" props="hide"/>
          <topicref keyref="setRecordingDevice" toc="no"/>
-         <topicref keyref="setRecordingDeviceMute" toc="no"/>
+         <topicref keyref="setRecordingDeviceMute" toc="no" props="hide"/>
          <topicref keyref="setRecordingDeviceVolume" toc="no"/>
          <topicref keyref="startAudioDeviceLoopbackTest" toc="no"/>
          <topicref keyref="startPlaybackDeviceTest" toc="no"/>
@@ -696,13 +678,15 @@
         <topicref href="API/toc_pc_video_device_management" chunk="to-content">
             <topicref keyref="enumerateVideoDevices" toc="no"/>
             <topicref keyref="getCapability" toc="no"/>
+            <topicref keyref="getDevice_IVideoDeviceManager" toc="no"/>
             <topicref keyref="getVideoDeviceManager" toc="no"/>
             <topicref keyref="onVideoDeviceStateChanged" toc="no"/>
             <topicref keyref="numberOfCapabilities" toc="no"/>
             <topicref keyref="queryCodecCapability" toc="no"/>
             <topicref keyref="setCameraDeviceOrientation" toc="no"/>
-            <topicref keyref="startDeviceTest" toc="no"/>
-            <topicref keyref="stopDeviceTest" toc="no"/>
+            <topicref keyref="setDevice_IVideoDeviceManager" toc="no"/>
+            <topicref keyref="startDeviceTest" toc="no" props="hide"/>
+            <topicref keyref="stopDeviceTest" toc="no" props="hide"/>
         </topicref>
         </topicref>
         <topicref href="API/toc_extension.dita" chunk="to-content">
