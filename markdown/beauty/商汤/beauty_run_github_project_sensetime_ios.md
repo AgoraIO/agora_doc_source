@@ -28,9 +28,9 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
 1. 联系商汤技术支持获取最新的美颜 SDK、美颜资源、美颜证书。
 
-2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到美颜示例项目对应的文件路径下：
+2. 下载并解压美颜 SDK 等文件，然后将如下文件添加到美颜示例项目对应的文件路径下：
 
-    |SDK 文件    |  项目路径   |
+    | 文件    |  项目路径   |
     |-----|-----|
     | SenseMe/remoteSourcesLib    | iOS/SenseLib/remoteSourcesLib              |
     | SenseMe/st_mobil_sdk | iOS/SenseLib/st_mobile_sdk  |
@@ -50,7 +50,7 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
     | 参数 | 描述   | 获取方式 |
     |----|----|----|
-    | AppId    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
+    | `AppId`    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
 
 
 2. 在 `BeautyAPI/iOS` 目录下运行 `pod install`，然后等待依赖库安装完成。

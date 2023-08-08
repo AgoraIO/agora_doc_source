@@ -49,7 +49,7 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 
 ## 配置示例项目
 
-运行美颜项目前，你需要在 `gradle.properties` 文件中添加并设置如下参数：
+运行美颜项目前，你需要在 `local.properties` 文件中添加并设置如下参数：
 
 ```shell
 AGORA_APP_ID = "YOUR_APP_ID"
