@@ -32,7 +32,7 @@ git clone git@github.com:AgoraIO/API-Examples.git
 
 运行 `/APIExample/installThirdParty.bat` 即可自动集成 SDK、下载依赖并配置环境。
 
-2. 设置 App ID 和 App 证书
+2. 设置 App ID 和 Token
 
 打开 `/APIExample/APIExample/stdafx.h` 文件，在 `enter your app id` 和 `enter your temporary token` 中填入你从声网控制台获取的 App ID 和临时 token。
 
