@@ -133,7 +133,7 @@
         }
     }
 
-2. 初始化美颜 SDK 的 `EffectManager` 对象。
+2. 初始化美颜 SDK 的 `EffectManager` 对象。//TODO delete
 
     ```kotlin
     // 初始化字节火山美颜 SDK 提供的 EffectManager
@@ -170,10 +170,12 @@
     // 初始化 Beauty API 对象
     mByteDanceApi.initialize(
         Config(
+            // Android Context（上下文）
+            applicationContext,
             // RtcEngine
             mRtcEngine,
             // 美颜特效管理器
-            mEffectManager,
+            renderManager,
             // 设置视频采集模式
             // CaptureMode.Agora 意味着使用声网模块采集视频
             // CaptureMode.Custom 意味着使用开发者自定义采集视频
@@ -182,6 +184,8 @@
             // 是否开启美颜统计数据
             // 开启后，会有周期性的 onBeautyStats 回调事件
             statsEnable = true,
+            // 配置前后摄像头的视频镜像模式
+            cameraConfig = cameraConfig,
             // 用于监听 Beauty API 的回调事件
             eventCallback = EventCallback(
                 // 美颜统计数据回调
@@ -190,10 +194,12 @@
                 },
                 // 美颜特效初始化完成回调
                 onEffectInitialized = {
+                    ByteDanceBeautySDK.initEffect(applicationContext)
                     Log.d(TAG, "onEffectInitialized")
                 },
                 // 美颜特效销毁回调
                 onEffectDestroyed = {
+                    ByteDanceBeautySDK.unInitEffect()
                     Log.d(TAG, "onEffectInitialized")
                 }
             )
@@ -227,7 +233,7 @@ mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT
 
 自定义视频采集时，你需要先调用 `RtcEngine` 类的 `enableVideo` 开启声网 SDK 的视频模块，然后通过 `RtcEngine` 类的 `registerVideoFrameObserver` 注册原始视频数据观测器并在其中实现 `onCaptureVideoFrame` 函数。
 
-通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。当处理成功时，用自采集的视频数据替代 `onCaptureVideoFrame` 函数中的 `VideoFrame`，并传入声网 SDK。
+通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。当处理结果不为 `SKIPPED`（忽略）时，用自采集的视频数据替代 `onCaptureVideoFrame` 函数中的 `VideoFrame`，并传入声网 SDK。
 
 
 ```kotlin
@@ -237,41 +243,18 @@ mRtcEngine.enableVideo()
 // 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
 mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
-    private var shouldMirror = true
-
     override fun onCaptureVideoFrame(
         sourceType: Int,
         videoFrame: VideoFrame?
-    ) : Boolean {
-
-        // 将原始视频数据传递给 Beauty API 并进行处理
-        when(mByteDanceApi.onFrame(videoFrame!!)){
-            // 情况 1，如果处理成功，那么关闭镜像，并通过返回值设置声网 RTC SDK 接收处理后的视频帧
-            ErrorCode.ERROR_OK.value -> {
-                shouldMirror = false
-                return true
-            }
-            //  情况 2，如果处理失败且需丢弃这一帧，那么关闭镜像，并通过返回值设置声网 RTC SDK 丢弃处理后的视频帧
-            ErrorCode.ERROR_FRAME_SKIPPED.value ->{
-                shouldMirror = false
-                return false
-            }
-            else -> {
-                // 情况 3，如果处理结果是其他情况，那么当视频帧来自前置摄像头时设置镜像，来自后置摄像头时不设置镜像
-                // 如果视频帧的来源变化（比如从前置摄像头切换后置摄像头，或者相反情况），那么设置声网 RTC SDK 丢弃这一帧
-                // 如果视频帧的来源没有变化，那么设置声网 SDK 接收这一帧
-                val mirror = videoFrame.sourceType == VideoFrame.SourceType.kFrontCamera
-                if(shouldMirror != mirror){
-                    shouldMirror = mirror
-                    return false
-                }
-                return true
-            }
+        ) = when (mByteDanceApi.onFrame(videoFrame!!)) {
+            // 当处理结果为忽略时，外部自采集的视频数据不传入声网 SDK
+            // 当处理结果为其他时，外部自采集的视频数据传入声网 SDK
+            ErrorCode.ERROR_FRAME_SKIPPED.value -> false
+            else -> true
         }
-    }
 
     // 设置是否对原始视频数据作镜像处理
-    override fun getMirrorApplied() = shouldMirror
+    override fun getMirrorApplied() = mByteDanceApi.getMirrorApplied()
 
     // 设置观测点为本地采集时的视频数据
     override fun getObservedFramePosition() = IVideoFrameObserver.POSITION_POST_CAPTURER
@@ -312,16 +295,15 @@ mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
 不同的美颜参数会带来不同的美颜效果。如果你没有特殊偏好，推荐你使用 `DEFAULT`。
 
 ```kotlin
-// 使用默认的美颜参数
-mByteDanceApi.setBeautyPreset(BeautyPreset.DEFAULT)
+mByteDanceApi.setBeautyPreset(
+    if (enable) BeautyPreset.DEFAULT else BeautyPreset.CUSTOM,
+    ByteDanceBeautySDK.beautyNodePath, //TODO 是什么
+    ByteDanceBeautySDK.beauty4ItemsNodePath,
+    ByteDanceBeautySDK.reSharpNodePath
+)
 ```
 
-```kotlin
-// 使用自定义的美颜参数
-mByteDanceApi.setBeautyPreset(BeautyPreset.CUSTOM)
-```
-
-**注意**：通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等进阶美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
+**注意**：通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等进阶美颜效果，你可以直接调用第三方美颜 SDK 中的 API。//TODO 需要删除吗
 
 ### 6. 离开频道
 
@@ -334,17 +316,15 @@ mRtcEngine.leaveChannel()
 
 ### 7. 销毁资源
 
-调用 Beauty API 的 `release`、`EffectManager` 的 `destroy`、`RtcEngine` 的 `destroy` 销毁 Beauty API、`EffectManager`、`RtcEngine` 对象，释放资源。
+调用 Beauty API 的 `release`、`EffectManager` 的 `destroy`、`RtcEngine` 的 `destroy` 销毁 Beauty API、`EffectManager`、`RtcEngine` 对象，释放资源。//TODO delete EffectManager
 
 ```kotlin
 // 销毁 Beauty API 对象
 mByteDanceApi.release()
-// 销毁 EffectManager
-mEffectManager.destroy()
 // 销毁 RtcEngine
 RtcEngine.destroy()
 ```
-
+//TODO line358
 ### API 时序图
 
 ![](https://web-cdn.agora.io/docs-files/1691130923832)
