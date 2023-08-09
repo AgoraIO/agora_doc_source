@@ -234,6 +234,7 @@
         <topicref href="API/toc_video.dita" chunk="to-content">
             <topicref href="API/toc_video_basic.dita" chunk="to-content">
                 <topicref keyref="disableVideo" toc="no"/>
+                <topicref keyref="enableLocalVideo" toc="no"/>
                 <topicref keyref="enableVideo" toc="no"/>
                 <topicref keyref="queryCodecCapability" toc="no"/>
                 <topicref keyref="setVideoEncoderConfiguration" toc="no"/>
@@ -252,19 +253,18 @@
                 <topicref keyref="onRemoteVideoStateChanged" toc="no"/>
                 <topicref keyref="onRemoteVideoStats" toc="no"/>
                 <topicref keyref="onRemoteVideoTransportStats" toc="no"/>
+                <topicref keyref="onUserEnableLocalVideo" toc="no"/>
                 <topicref keyref="onUserEnableVideo" toc="no"/>
                 <topicref keyref="onUserMuteVideo" toc="no"/>
                 <topicref keyref="onVideoPublishStateChanged" toc="no"/>
                 <topicref keyref="onVideoSizeChanged" toc="no"/>
                 <topicref keyref="onVideoStopped" toc="no"/>
             </topicref>
-            <topicref href="API/toc_video_capture.dita" chunk="to-content">
-                <topicref keyref="enableLocalVideo" toc="no"/>
+            <topicref href="API/toc_camera_capture.dita" chunk="to-content">
                 <topicref keyref="startCameraCapture" toc="no"/>
                 <topicref keyref="stopCameraCapture" toc="no"/>
-                <topicref keyref="onUserEnableLocalVideo" toc="no"/>
             </topicref>
-            <topicref href="API/toc_screenshare.dita" chunk="to-content">
+            <topicref href="API/toc_screencapture.dita" chunk="to-content">
                 <topicref keyref="getScreenCaptureSources" toc="no"/>
                 <topicref keyref="queryScreenCaptureCapability" toc="no"/>
                 <topicref keyref="setScreenCaptureContentHint" toc="no"/>
@@ -642,52 +642,52 @@
                 <topicref keyref="onCameraFocusAreaChanged" toc="no"/>
                 <topicref keyref="onCameraReady" toc="no"/>
             </topicref>
-        <topicref href="API/toc_pc_audio_device_management" chunk="to-content">
-         <topicref keyref="enumeratePlaybackDevices" toc="no"/>
-         <topicref keyref="enumerateRecordingDevices" toc="no"/>
-         <topicref keyref="followSystemLoopbackDevice" toc="no"/>
-         <topicref keyref="followSystemPlaybackDevice" toc="no"/>
-         <topicref keyref="followSystemRecordingDevice" toc="no"/>
-         <topicref keyref="getAudioDeviceInfo" toc="no"/>
-         <topicref keyref="getAudioDeviceManager" toc="no"/>
-         <topicref keyref="getLoopbackDevice" toc="no"/>
-         <topicref keyref="getPlaybackDefaultDevice" toc="no"/>
-         <topicref keyref="getPlaybackDevice" toc="no"/>
-         <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
-         <topicref keyref="getRecordingDefaultDevice" toc="no"/>
-         <topicref keyref="getRecordingDevice" toc="no"/>
-         <topicref keyref="getRecordingDeviceInfo" toc="no"/>
-         <topicref keyref="getRecordingDeviceMute" toc="no" props="hide"/>
-         <topicref keyref="getRecordingDeviceVolume" toc="no" props="hide"/>
-         <topicref keyref="setLoopbackDevice" toc="no"/>
-         <topicref keyref="setPlaybackDevice" toc="no"/>
-         <topicref keyref="setPlaybackDeviceMute" toc="no" props="hide"/>
-         <topicref keyref="setPlaybackDeviceVolume" toc="no" props="hide"/>
-         <topicref keyref="setRecordingDevice" toc="no"/>
-         <topicref keyref="setRecordingDeviceMute" toc="no" props="hide"/>
-         <topicref keyref="setRecordingDeviceVolume" toc="no"/>
-         <topicref keyref="startAudioDeviceLoopbackTest" toc="no"/>
-         <topicref keyref="startPlaybackDeviceTest" toc="no"/>
-         <topicref keyref="startRecordingDeviceTest" toc="no"/>
-         <topicref keyref="stopAudioDeviceLoopbackTest" toc="no"/>
-         <topicref keyref="stopPlaybackDeviceTest" toc="no"/>
-         <topicref keyref="stopRecordingDeviceTest" toc="no"/>
-         <topicref keyref="onAudioDeviceStateChanged" toc="no"/>
-         <topicref keyref="onAudioDeviceVolumeChanged" toc="no"/>
-        </topicref>
-        <topicref href="API/toc_pc_video_device_management" chunk="to-content">
-            <topicref keyref="enumerateVideoDevices" toc="no"/>
-            <topicref keyref="getCapability" toc="no"/>
-            <topicref keyref="getDevice_IVideoDeviceManager" toc="no"/>
-            <topicref keyref="getVideoDeviceManager" toc="no"/>
-            <topicref keyref="onVideoDeviceStateChanged" toc="no"/>
-            <topicref keyref="numberOfCapabilities" toc="no"/>
-            <topicref keyref="queryCodecCapability" toc="no"/>
-            <topicref keyref="setCameraDeviceOrientation" toc="no"/>
-            <topicref keyref="setDevice_IVideoDeviceManager" toc="no"/>
-            <topicref keyref="startDeviceTest" toc="no" props="hide"/>
-            <topicref keyref="stopDeviceTest" toc="no" props="hide"/>
-        </topicref>
+            <topicref href="API/toc_pc_audio_device_management" chunk="to-content">
+                <topicref keyref="enumeratePlaybackDevices" toc="no"/>
+                <topicref keyref="enumerateRecordingDevices" toc="no"/>
+                <topicref keyref="followSystemLoopbackDevice" toc="no"/>
+                <topicref keyref="followSystemPlaybackDevice" toc="no"/>
+                <topicref keyref="followSystemRecordingDevice" toc="no"/>
+                <topicref keyref="getAudioDeviceInfo" toc="no"/>
+                <topicref keyref="getAudioDeviceManager" toc="no"/>
+                <topicref keyref="getLoopbackDevice" toc="no"/>
+                <topicref keyref="getPlaybackDefaultDevice" toc="no"/>
+                <topicref keyref="getPlaybackDevice" toc="no"/>
+                <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
+                <topicref keyref="getRecordingDefaultDevice" toc="no"/>
+                <topicref keyref="getRecordingDevice" toc="no"/>
+                <topicref keyref="getRecordingDeviceInfo" toc="no"/>
+                <topicref keyref="getRecordingDeviceMute" toc="no" props="hide"/>
+                <topicref keyref="getRecordingDeviceVolume" toc="no" props="hide"/>
+                <topicref keyref="setLoopbackDevice" toc="no"/>
+                <topicref keyref="setPlaybackDevice" toc="no"/>
+                <topicref keyref="setPlaybackDeviceMute" toc="no" props="hide"/>
+                <topicref keyref="setPlaybackDeviceVolume" toc="no" props="hide"/>
+                <topicref keyref="setRecordingDevice" toc="no"/>
+                <topicref keyref="setRecordingDeviceMute" toc="no" props="hide"/>
+                <topicref keyref="setRecordingDeviceVolume" toc="no"/>
+                <topicref keyref="startAudioDeviceLoopbackTest" toc="no"/>
+                <topicref keyref="startPlaybackDeviceTest" toc="no"/>
+                <topicref keyref="startRecordingDeviceTest" toc="no"/>
+                <topicref keyref="stopAudioDeviceLoopbackTest" toc="no"/>
+                <topicref keyref="stopPlaybackDeviceTest" toc="no"/>
+                <topicref keyref="stopRecordingDeviceTest" toc="no"/>
+                <topicref keyref="onAudioDeviceStateChanged" toc="no"/>
+                <topicref keyref="onAudioDeviceVolumeChanged" toc="no"/>
+            </topicref>
+            <topicref href="API/toc_pc_video_device_management" chunk="to-content">
+                <topicref keyref="enumerateVideoDevices" toc="no"/>
+                <topicref keyref="getCapability" toc="no"/>
+                <topicref keyref="getDevice_IVideoDeviceManager" toc="no"/>
+                <topicref keyref="getVideoDeviceManager" toc="no"/>
+                <topicref keyref="onVideoDeviceStateChanged" toc="no"/>
+                <topicref keyref="numberOfCapabilities" toc="no"/>
+                <topicref keyref="queryCodecCapability" toc="no"/>
+                <topicref keyref="setCameraDeviceOrientation" toc="no"/>
+                <topicref keyref="setDevice_IVideoDeviceManager" toc="no"/>
+                <topicref keyref="startDeviceTest" toc="no" props="hide"/>
+                <topicref keyref="stopDeviceTest" toc="no" props="hide"/>
+            </topicref>
         </topicref>
         <topicref href="API/toc_extension.dita" chunk="to-content">
             <topicref keyref="enableExtension" toc="no"/>
