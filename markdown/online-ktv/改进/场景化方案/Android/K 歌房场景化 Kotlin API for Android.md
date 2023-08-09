@@ -1,4 +1,4 @@
-本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v2.3.1-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
+本文提供在线 K 歌房场景定制化 Kotlin API。你可以在 GitHub 上查看源码文件 [KTVApi.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v3.0.0-all-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApi.kt) 和 [KTVApiImpl.kt](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v3.0.0-all-Android/Android/scenes/ktv/src/main/java/io/agora/scene/ktv/live/KTVApiImpl.kt)。
 
 <div class="alert note">本文适用于 K 歌场景化 API v3.0.0。</div>
 
@@ -139,7 +139,15 @@ fun searchMusicByMusicChartId(
 - `musicChartId`：歌曲榜单 ID，可通过 `fetchMusicCharts` 获取。
 - `page`：当前页面编号，默认从 1 开始。
 - `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
-- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
+- `jsonOption`：扩展 JSON 字段，默认为 `NULL`。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+
+  | **Key 值**   | **Value 值**                                                 | **示例**              |
+  | ------------ | ------------------------------------------------------------ | --------------------- |
+  | pitchType    | 是否支持打分：<ul><li>1：支持打分的音乐资源。</li><li> 2：不支持打分的音乐资源。</li></ul> | {"pitchType":1}       |
+  | needHighPart | 是否需要副歌片段资源：<ul><li>`true`：需要副歌片段资源。</li><li>`false`：不需要副歌片段资源。</li></ul> | {"needHighPart":true} |
+
+
+
 - `onMusicCollectionResultListener`：获取歌曲资源列表回调，包含以下参数：
   - `requestId`：请求 ID。本次请求的唯一标识。
   - `status`：请求状态。
@@ -184,9 +192,19 @@ fun searchMusicByKeyword(
 #### 参数
 
 - `keyword`：搜索关键词，支持歌曲名、歌手搜索。
+
 - `page`：想要获取的音乐资源列表的目标页编号。
+
 - `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
-- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `NULL`。
+
+- `jsonOption`：扩展 JSON 字段，默认为 `NULL`。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+
+  | **Key 值**   | **Value 值**                                                 | **示例**              |
+  | ------------ | ------------------------------------------------------------ | --------------------- |
+  | pitchType    | 是否支持打分：<ul><li>1：支持打分的音乐资源。</li><li> 2：不支持打分的音乐资源。</li></ul> | {"pitchType":1}       |
+  | needHighPart | 是否需要副歌片段资源：<ul><li>`true`：需要副歌片段资源。</li><li>`false`：不需要副歌片段资源。</li></ul> | {"needHighPart":true} |
+
+
 - `onMusicCollectionResultListener`：获取歌曲资源列表回调，包含以下参数：
   - `requestId`：请求 ID。本次请求的唯一标识。
   - `status`：请求状态。
@@ -198,12 +216,6 @@ fun searchMusicByKeyword(
       - 网络错误。请检查你的网络。
     - 3：权限错误或歌曲不存在。请确保你的项目已开通声网音乐内容中心权限。
     - 4：内部数据解析错误。
-    - 5：歌曲加载时出错。
-    - 6：歌曲解密时出错。
-  - `page`：当前页面编号，默认从 1 开始。
-  - `pageSize`：当前歌曲资源列表的总页面数量，最大值为 50。
-  - `total`：列表内歌曲资源的总数量。
-  - `list`：[`Music`](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/class_music.html) 对象数组，包含歌曲的详细信息。
 
 ### loadMusic [1/2]
 
@@ -414,6 +426,7 @@ fun renewInnerDataStreamId()
 <div class="alert info">由于每个频道中最多只能创建 5 个数据流，因此请勿再一个频道内多次调用该方法。  
 </div>
 
+
 ## ILrcView 
 
 该类提供歌词组件的相关回调。在调用 `setLrcView` 设置歌词控制视图时，你需要继承此接口类并实现其下的方法。
@@ -426,7 +439,7 @@ fun onUpdatePitch(pitch: Float?)
 
 人声音调更新回调。
 
-你需要实现该回调来获取实时的人声音调传递给 KTV API 内部，便于打分组件使用。
+当人声音调更新时，会触发该回调将音调值同步给歌词评分组件。
 
 #### 参数
 
@@ -438,7 +451,7 @@ fun onUpdatePitch(pitch: Float?)
 fun onUpdateProgress(progress: Long?)
 ```
 
-当歌曲播放进度更新时，会触发该回调报告歌曲的实时播放进度。该回调每 50 ms 触发一次。
+当歌曲播放进度更新时，会触发该回调将歌曲的实时进度同步给歌词评分组件。该回调每 50 ms 触发一次。
 
 #### 参数
 
@@ -459,6 +472,7 @@ fun onDownloadLrcData(url: String?)
 #### 参数
 
 - `url`：歌词的下载地址。
+
 
 ## IMusicLoadStateListener 
 
@@ -662,6 +676,7 @@ enum class KTVLoadSongFailReason(val value: Int) {
 - `CANCELED`：(2) 歌曲加载因出现错误而终止。
 
 ### KTVSwitchRoleFailReason
+
 <a name="SwitchRoleFailReason"/>
 
 ```kotlin

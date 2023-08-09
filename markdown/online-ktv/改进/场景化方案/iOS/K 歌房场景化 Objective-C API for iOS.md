@@ -1,4 +1,4 @@
-本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApiDelegate](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/feat/scene/ktv_2.3.1_ios/iOS/AgoraEntScenarios/Scenes/KTV/KTVAPI/KTVApiDelegate.swift) 和 [KTVApiImpl](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/feat/scene/ktv_2.3.1_ios/iOS/AgoraEntScenarios/Scenes/KTV/KTVAPI/KTVApiImpl.swift)。
+本文提供在线 K 歌房场景定制化 Objective-C API。你可以在 GitHub 上查看源码文件 [KTVApi](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/KTV/KTVAPI/KTVApi.swift) 和 [KTVApiImpl](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/blob/v3.0.0-all-iOS/iOS/AgoraEntScenarios/Scenes/KTV/KTVAPI/KTVApiImpl.swift)。
 
 ## KTVApiDelegate
 
@@ -121,7 +121,15 @@ func searchMusic(musicChartId: Int,
 - `musicChartId`：歌曲榜单 ID，可通过 `fetchMusicCharts` 获取。
 - `page`：当前页面编号，默认从 1 开始。
 - `pageSize`：当前音乐资源列表的总页面数量，最大值为 50。
-- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `Nil`。
+- `jsonOption`：扩展 JSON 字段，默认为 `Nil`。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+
+  | **Key 值**   | **Value 值**                                                 | **示例**              |
+  | ------------ | ------------------------------------------------------------ | --------------------- |
+  | pitchType    | 是否支持打分：<ul><li>1：支持打分的音乐资源。</li><li> 2：不支持打分的音乐资源。</li></ul> | {"pitchType":1}       |
+  | needHighPart | 是否需要副歌片段资源：<ul><li>`true`：需要副歌片段资源。</li><li>`false`：不需要副歌片段资源。</li></ul> | {"needHighPart":true} |
+
+
+
 - `completion`：获取指定榜单的歌曲列表回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲列表。
 
 ### searchMusic [2/2]
@@ -140,7 +148,15 @@ func searchMusic(keyword: String,
 - `keyword`：搜索关键词，支持歌曲名、歌手搜索。
 - `page`：想要获取的音乐资源列表的目标页编号。
 - `pageSize`：每页所展示的音乐资源的最大数量，最大值为 50。
-- `jsonOption`：扩展 JSON 字段，可依据特殊需要进行定制，默认为 `Nil`。
+- `jsonOption`：扩展 JSON 字段，默认为 `Nil`。你可以通过该字段来筛选出你需要的音乐资源，目前支持筛选可打分的音乐资源及音乐资源的副歌片段：
+
+  | **Key 值**   | **Value 值**                                                 | **示例**              |
+  | ------------ | ------------------------------------------------------------ | --------------------- |
+  | pitchType    | 是否支持打分：<ul><li>1：支持打分的音乐资源。</li><li> 2：不支持打分的音乐资源。</li></ul> | {"pitchType":1}       |
+  | needHighPart | 是否需要副歌片段资源：<ul><li>`true`：需要副歌片段资源。</li><li>`false`：不需要副歌片段资源。</li></ul> | {"needHighPart":true} |
+
+
+
 - `completion`：获取指定歌曲的回调。该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `MusicResultCallBacks` 对象作为参数，用于获取歌曲资源。
 
 ### loadMusic [1/2]
@@ -275,7 +291,7 @@ func setMicStatus(isOnMicOpen: Bool)
 
 - `isOnMicOpen`：当前麦克风的开关状态：
   - `true`：麦克风开启。
-  - `false`：麦克风关闭。
+  - `false`：（默认）麦克风关闭。
 
 ### setLrcView
 
@@ -353,7 +369,7 @@ func onUpdatePitch(pitch: Float)
 func onUpdateProgress(progress: Int)
 ```
 
-当歌曲播放进度更新时，会触发该回调报告歌曲的实时播放进度。该回调每 50 ms 触发一次。
+当歌曲播放进度更新时，会触发该回调将歌曲的实时进度同步给歌词评分组件。该回调每 50 ms 触发一次。
 
 #### 参数
 
@@ -377,7 +393,7 @@ func onDownloadLrcData(url: String)
 
 ## IMusicLoadStateListener
 
-<a id="IMusicLoadStateListener"/>
+<a name="IMusicLoadStateListener"></a>
 
 该接口类提供歌曲加载状态的相关回调。
 
@@ -431,7 +447,7 @@ func onMusicLoadProgress(songCode: Int, percent: Int, status: AgoraMusicContentC
 
 ## KTVApiEventHandlerDelegate
 
-<a id="KTVApiEventHandlerDelegate"/>
+<a name="KTVApiEventHandlerDelegate"></a>
 
 该协议提供 K 歌场景的核心回调。
 
@@ -474,13 +490,6 @@ func onSingerRoleChanged(oldRole: KTVSingRole, newRole: KTVSingRole)
 - `oldRole`：切换前的用户角色，详见 [KTVSingRole](#KTVSingRole)。
 - `newRole`：切换后的用户角色，详见 [KTVSingRole](#KTVSingRole)。
 
-### onSingingScoreResult
-
-```objective-c
-func onSingingScoreResult(score: Float)
-```
-
-//TODO
 
 ### onTokenPrivilegeWillExpire
 
@@ -517,7 +526,7 @@ func onChorusChannelAudioVolumeIndication(
 
 ### KTVSingRole
 
-<a id="KTVSingRole"/>
+<a name="KTVSingRole"></a>
 
 ```objc
 public enum KTVSingRole: Int {
@@ -527,6 +536,7 @@ public enum KTVSingRole: Int {
     case audience 
 }
 ```
+
 K 歌用户角色类型：
 
 - `SoloSinger`：独唱者。
@@ -536,7 +546,7 @@ K 歌用户角色类型：
 
 ### KTVLoadSongFailReason
 
-<a id="KTVLoadSongFailReason"/>
+<a name="KTVLoadSongFailReason"></a>
 
 ```objective-c
 public enum KTVLoadSongFailReason: Int {
@@ -570,7 +580,7 @@ public enum KTVSwitchRoleFailReason: Int {
 
 ### KTVLoadMusicMode
 
-<a id="KTVLoadMusicMode"/>
+<a name="KTVLoadMusicMode"></a>
 
 ```objective-c
 public enum KTVLoadMusicMode: Int {
@@ -599,14 +609,32 @@ public enum KTVLoadSongState: Int {
 ```
 
 歌曲加载的状态：
+
 - `idle`: 空闲状态，未加载歌曲。
 - `ok`: 加载成功。
 - `failed`: 加载失败。
 - `inProgress`: 正在加载中。
 
+### KTVType
+
+<a name="KTVType"></a>
+
+```objective-c
+@objc public enum KTVType: Int {
+    case normal
+    case singbattle
+}
+```
+
+K 歌的场景：
+
+- `Normal`：独唱、合唱场景。
+- `SingBattle`：抢唱场景。
+
+
 ## Class
 
-<a id="KTVApiConfig"/>
+<a name="KTVApiConfig"></a>
 
 ### KTVApiConfig
 
@@ -619,6 +647,7 @@ public enum KTVLoadSongState: Int {
     var localUid: Int = 0
     var chorusChannelName: String
     var chorusChannelToken: String
+    var type: KTVType = .normal
     var maxCacheSize: Int = 10
     @objc public
     init(appId: String,
@@ -628,6 +657,7 @@ public enum KTVLoadSongState: Int {
          localUid: Int,
          chorusChannelName: String,
          chorusChannelToken: String,
+         type: KTVType,
          maxCacheSize: Int
     ) {
         self.appId = appId
@@ -637,10 +667,10 @@ public enum KTVLoadSongState: Int {
         self.localUid = localUid
         self.chorusChannelName = chorusChannelName
         self.chorusChannelToken = chorusChannelToken
+        self.type = type
         self.maxCacheSize = maxCacheSize
     }
 }
-
 ```
 
 K 歌配置：
@@ -661,11 +691,13 @@ K 歌配置：
 
 - `chorusChannelToken`：合唱场景下，根据频道 2 的名称和用户 ID 生成的 Token，用于加入频道 2 时进行鉴权。在独唱场景下，该参数可以为空。
 
+- `type`：K 歌场景，详见 [KTVType](#KTVType)。
+
 - `maxCacheSize`：可缓存的音乐资源数量，最多不能超过 50。
 
 ### KTVSongConfiguration
 
-<a id="KTVSongConfiguration"/>
+<a name="KTVSongConfiguration"></a>
 
 ```objective-c
 open class KTVSongConfiguration: NSObject {
