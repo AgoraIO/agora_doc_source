@@ -6,11 +6,11 @@
 在阅读本文前，你可以参考以下文档，了解云端录制支持的几大功能，以及各功能涉及的重点步骤。
 
 - [单流录制](./cloud_recording_individual_mode?platform=RESTful)：分开录制每个 UID 的音频和视频。录制服务会实时将 M3U8 和 TS/WebM 文件上传至第三方云存储。如果开启延时转码，录制服务会在录制结束后 24 小时内对录制文件进行转码生成 MP4 文件，并将 MP4 文件上传至你指定的第三方云存储，频道内每个 UID 均会生成一个 MP4 文件。
-- [合流录制](./cloud_recording_composite_mode?platform=RESTful)：将频道内所有 UID 的音视频混合录制为一个音视频文件，并将录制文件上传至第三方云存储。合流模式支持同时生成 HLS 和 MP4 两种录制文件。
-- [视频截图](./cloud_recording_screen_capture?platform=RESTful)：单流录制模式下，对频道内的视频流进行截图，并将图片文件上传至第三方云存储。进行视频截图的同时可同时录制音视频文件。
-- [页面录制](./cloud_recording_webpage_mode?platform=RESTful)：将指定网页的页面内容和音频混合录制为一个音视频文件，并将录制文件上传至第三方云存储。进行录制的同时支持转推音视频流到 CDN。
+- [合流录制](./cloud_recording_composite_mode?platform=RESTful)：将频道内所有 UID 的音视频混合录制为一个音视频文件，并将录制文件上传至第三方云存储。合流模式支持同时生成 HLS 和 MP4 格式的录制文件。
+- [视频截图](./cloud_recording_screen_capture?platform=RESTful)：单流录制模式下，对频道内的视频流进行截图，并将图片文件上传至第三方云存储。视频截图时也支持录制音视频文件。
+- [页面录制](./cloud_recording_webpage_mode?platform=RESTful)：将指定网页的页面内容和音频混合录制为一个音视频文件，并将录制文件上传至第三方云存储。页面录制时也支持转推音视频流到 CDN。
 
-<div class="alert note">云端录制不支持在一路录制中完成多个任务。例如，如果你需要同时对某个频道进行单流录制和合流录制，那么需要起两路录制，即使用两个不同的 <code>uid</code> 调用 <code>acquire</code>，获取两个 <code>resourceId</code>，然后再分别调用 <code>start</code> 启动两路录制任务。两路录制均会产生费用。</div>
+<div class="alert note">云端录制不支持在一路录制中完成多个任务。例如，如果你需要同时对某个频道进行单流录制和合流录制，那么需要起两路录制。即，使用两个不同的 <code>uid</code> 分别调用 <code>acquire</code>，获取两个 <code>resourceId</code>，再分别调用 <code>start</code> 启动两路录制任务。两路录制均会产生费用。</div>
 
 ## 前提条件
 
@@ -21,10 +21,11 @@
 一般进行云端录制的步骤如下：
 
 1. 通过 [`acquire`](./cloud_recording_api_acquire?platform=RESTful) 请求获取一个 resource ID 用于开启云端录制。
-2. 获取 resource ID 后在 5 分钟内调用 [`start`](./cloud_recording_api_start?platform=RESTful) 开始云端录制。
+2. 在获取到 resource ID 的 5 分钟内调用 [`start`](./cloud_recording_api_start?platform=RESTful) 开始云端录制。开始录制后，你可以按需进行如下操作：
+    - 调用 [`query`](./cloud_recording_api_query?platform=RESTful) 请求查询云端录制的状态。
+    - 调用 [`update`](./cloud_recording_api_update?platform=RESTful) 更新录制配置。
+    - 调用 [`updateLayout`](./cloud_recording_api_update?platform=RESTful) 更新合流布局。
 3. 调用 [`stop`](./cloud_recording_api_stop?platform=RESTful) 离开频道，停止录制。
-
-开始录制后，你可以调用 [`query`](./cloud_recording_api_query?platform=RESTful) 请求查询云端录制的状态，调用 [`update`](./cloud_recording_api_update?platform=RESTful) 更新录制配置，调用 [`updateLayout`](./cloud_recording_api_update?platform=RESTful) 更新合流布局。
 
 
 ## 请求结构
