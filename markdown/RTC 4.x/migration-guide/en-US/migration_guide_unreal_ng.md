@@ -3,7 +3,7 @@ This page introduces the main steps to upgrade the [Unreal C++ SDK](https://gith
 
 ### 1. Integrate the SDK
 
-To integrate Video SDK for Unreal Engine v4.2.1 into your project, see [Project setup]().
+To integrate Video SDK for Unreal Engine v4.2.1 into your project, see [Project setup](https://docs-beta.agora.io/en/interactive-live-streaming/get-started/get-started-sdk?platform=unreal#project-setup).
 
 ### 2. Update the Agora code in your app
 
