@@ -229,7 +229,7 @@ mRtcEngine.enableVideo()
 mByteDanceApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
 ```
 
-#### 自定义视频采集 //TODO 研发 review
+#### 自定义视频采集
 
 自定义视频采集时，你需要先调用 `RtcEngine` 类的 `enableVideo` 开启声网 SDK 的视频模块，然后通过 `RtcEngine` 类的 `registerVideoFrameObserver` 注册原始视频数据观测器并在其中实现 `onCaptureVideoFrame` 函数。
 
@@ -247,7 +247,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
         sourceType: Int,
         videoFrame: VideoFrame?
         ) = when (mByteDanceApi.onFrame(videoFrame!!)) {
-            // 当处理结果为忽略时，外部自采集的视频数据不传入声网 SDK
+            // 当处理结果为忽略时，外部自采集的视频数据不传入声网 SDK //TODO丢帧
             // 当处理结果为其他时，外部自采集的视频数据传入声网 SDK
             ErrorCode.ERROR_FRAME_SKIPPED.value -> false
             else -> true
@@ -278,7 +278,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
     channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
     clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-    publishCameraTrack = true //TODO 自采集的时候应该是 publishCustomVideoTrack 吗
+    publishCameraTrack = true //TODO 自采集的时候应该是 publishCustomVideoTrack 吗：push + customVideo
     publishMicrophoneTrack = false
     autoSubscribeAudio = false
     autoSubscribeVideo = true
@@ -297,13 +297,13 @@ mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
 ```kotlin
 mByteDanceApi.setBeautyPreset(
     if (enable) BeautyPreset.DEFAULT else BeautyPreset.CUSTOM,
-    ByteDanceBeautySDK.beautyNodePath, //TODO 是什么
+    ByteDanceBeautySDK.beautyNodePath, //TODO 节点路径（美颜资源、位点、美妆），在初始化时需要传入具体路径
     ByteDanceBeautySDK.beauty4ItemsNodePath,
     ByteDanceBeautySDK.reSharpNodePath
 )
 ```
 
-**注意**：通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等进阶美颜效果，你可以直接调用第三方美颜 SDK 中的 API。//TODO 需要删除吗
+**注意**：通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等进阶美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
 
 ### 6. 离开频道
 
@@ -324,7 +324,10 @@ mByteDanceApi.release()
 // 销毁 RtcEngine
 RtcEngine.destroy()
 ```
-//TODO line358
+//TODO Line 358：补充到《初始化》，这里是封装了美颜 SDK 进行初始化。在主线程中。
+//TODO Line 411：补充到《初始化》，SDK 中有多个对象，对于美颜业务来收，我们只用初始化 renderManager 对象即可。在 GL 线程中。
+//TODO Line 426：补充到《销毁》
+
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1691130923832)
+![](https://web-cdn.agora.io/docs-files/1691130923832)//TODO 怎么更新：初始化、销毁、BeautyPrest
