@@ -24,7 +24,7 @@
 git clone git@github.com:AgoraIO/API-Examples.git
 ```
 
-2. 该仓库中包含声网实时音频 SDK 和视频 SDK 的 Native 平台示例项目，其中 Android 平台的示例项目如下：
+2. 该仓库中包含声网实时音视频 SDK 所有 Native 平台的示例项目，其中 Android 平台的 API 使用示例位于 `/Android` 路径下。
 
 | 路径                        | 描述                           |
 |:---------------------------|:-------------------------------|

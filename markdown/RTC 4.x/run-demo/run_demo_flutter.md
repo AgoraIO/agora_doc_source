@@ -31,7 +31,7 @@
 git clone git@github.com:AgoraIO-Extensions/Agora-Flutter-SDK.git
 ```
 
-2. 其中基础功能和进阶功能的示例项目路径如下：
+2. 声网实时音视频 Flutter SDK 的 API 使用示例位于 `/example` 路径下。
 
 | 路径                        | 描述                           |
 |:---------------------------|:-------------------------------|
@@ -45,13 +45,13 @@ git clone git@github.com:AgoraIO-Extensions/Agora-Flutter-SDK.git
 
 在仓库的本地目录下，运行以下命令集成 SDK 并安装依赖项：
 
-```dart
+```shell
 flutter pub get
 ```
 
 2. 设置 App ID 和临时 Token
 
-打开 `/example/lib/config/agora.config.dart` 文件，在 `<TEST_APP_ID>`、`<TEST_TOKEN>` 和 `<TEST_CHANNEL_ID>` 中分别填入你从控制台获取的 App ID、临时 Token 以及生成 Token 时使用的频道名。
+打开 `/example/lib/config/agora.config.dart` 文件，将 `<TEST_APP_ID>`、`<TEST_TOKEN>` 和 `<TEST_CHANNEL_ID>` 分别替换为你从控制台获取的 App ID、临时 Token 以及生成 Token 时使用的频道名。
 
 ```dart
 /// Get your own App ID at https://dashboard.agora.io/
@@ -81,19 +81,28 @@ String get channelId {
 
 ### 编译并运行示例项目
 
-1. 用 Android Studio 打开 `/API-Examples/Android/APIExample` 文件夹。
+1. 将目标设备连接到电脑。
 
-2. 开启 Android 设备的开发者选项，打开 USB 调试，通过 USB 连接线将 Android 设备接入电脑，并在 Android 设备选项中勾选你的 Android 设备。
-![](https://web-cdn.agora.io/docs-files/1690450282833)
+2. 打开终端，导航到 `/examples` 目录。
 
-3. 在 Android Studio 中，点击 <img src="https://web-cdn.agora.io/docs-files/1689672727614" width="25"/> 进行 Gradle 同步。
+3. 运行以下命令查看当前可用的设备列表。该命令会显示所有已连接的设备，每个设备有唯一的设备 ID。
 
-4. 待同步成功后，点击 <img src="https://web-cdn.agora.io/docs-files/1687670569781" width="25"/> 开始编译。
+```shell
+flutter devices
+```
 
-5. 编译成功后，你的 Android 设备上会出现 <img src="https://web-cdn.agora.io/docs-files/1690450345873" width="25"> 应用。
+4. 运行以下命令在指定的设备上运行 Flutter 示例项目。将 `<device_id>` 替换为的目标设备的设备 ID。
 
-6. 打开 **Agora API Example** 应用后，你可以任意选择你想体验的场景。以 **视频互动直播** 为例，输入频道名（如 `test`），并点击**加入频道**。
-![](https://web-cdn.agora.io/docs-files/1690450380432)
+```shell
+flutter run -d '<device_id>'
+```
 
-7. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 App ID 不变）。以 **视频互动直播** 为例，你们输入相同的频道名并加入频道后，你们会看到彼此，并听到彼此的声音。
-![](https://web-cdn.agora.io/docs-files/1690450398617)
+5. 以 macOS 为例，编译完成后，你的设备上会弹出以下应用。
+
+![](https://web-cdn.agora.io/docs-files/1692001262062)
+
+6. 你可以任意选择你想体验的场景。以 **Basic** 中的 **JoinChannelVideo** 为例，在 **Channel ID** 中输入生成临时 token 时指定的频道名，并点击 **Join channel** 加入频道。
+
+7. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目，使用相同的 App ID、Token 和频道名加入频道，你们会看到并听到彼此。
+
+![](https://web-cdn.agora.io/docs-files/1692001319323)

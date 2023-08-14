@@ -9,8 +9,9 @@
     <div class="alert note">该示例项目基于 MFC。在运行项目前，请确保你的 Visual Studio 已安装<b>适用于最新 v142 生成工具的 C++ MFC (x86 和 x64)</b> 组件。</div>
 - 两台运行 Windows 7 及以上版本的设备。
 - 参考[开始使用声网平台](https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms) 创建有效的声网账户和声网项目，并从声网控制台获取以下信息：
-    - App ID：声网随机生成的字符串，用于识别你的 app。
-    - (可选) 临时 token：token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
+  - App ID：声网随机生成的字符串，用于识别你的项目。
+  - 临时 token：token 也称为动态密钥，在客户端加入频道时对用户鉴权。临时 token 的有效期为 24 小时。
+  - 频道名：用于标识频道的字符串。
 
 
 ## 操作步骤
@@ -23,7 +24,7 @@
 git clone git@github.com:AgoraIO/API-Examples.git
 ```
 
-2. 该仓库中包含声网实时音视频 SDK 的 Native 平台示例项目，其中 Windows 平台的 API 使用示例位于 `/windows` 路径下。
+2. 该仓库中包含声网实时音视频 SDK 所有 Native 平台的示例项目，其中 Windows 平台的 API 使用示例位于 `/windows` 路径下。
 
 
 ### 配置示例项目
@@ -38,7 +39,6 @@ git clone git@github.com:AgoraIO/API-Examples.git
 
 ```cpp
 #define APP_ID     "enter your app id"
-// 注意：APP_TOKEN 字段为选填，如果项目没有开启证书鉴权，则该字段留空。
 #define APP_TOKEN  "enter your temporary token"   
 ```
 
@@ -52,8 +52,7 @@ git clone git@github.com:AgoraIO/API-Examples.git
 3. 编译成功后，你的 Windows 设备上会弹出以下窗口：
 ![](https://web-cdn.agora.io/docs-files/1690875828817)
 
-4. 你可以任意选择你想体验的场景。以 **Basic Scene** 中的 **LiveBroadcasting** 直播场景为例，在 **Channel Name** 中输入频道名 (如 `test`)，并点击 **JoinChannel** 加入频道。
-    <div class="alert note">如果你填写了 <code>APP_TOKEN</code>，则此处必须使用生成临时 token 时的频道名。</div>
+4. 你可以任意选择你想体验的场景。以 **Basic Scene** 中的 **LiveBroadcasting** 直播场景为例，在 **Channel Name** 中输入生成临时 token 时指定的频道名，并点击 **JoinChannel** 加入频道。
 
-5. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目（需确保 App ID 不变）。你们输入相同的频道名并加入频道后，你们会看到彼此，并听到彼此的声音。
+5. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目，使用相同的 App ID、Token 和频道名加入频道，你们会看到并听到彼此。
 ![](https://web-cdn.agora.io/docs-files/1690875862097)
