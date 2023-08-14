@@ -24,7 +24,7 @@
 2. 在获取到 resource ID 的 5 分钟内调用 [`start`](./cloud_recording_api_start?platform=RESTful) 开始云端录制。开始录制后，你可以按需进行如下操作：
     - 调用 [`query`](./cloud_recording_api_query?platform=RESTful) 请求查询云端录制的状态。
     - 调用 [`update`](./cloud_recording_api_update?platform=RESTful) 更新录制配置。
-    - 调用 [`updateLayout`](./cloud_recording_api_update?platform=RESTful) 更新合流布局。
+    - 调用 [`updateLayout`](./cloud_recording_api_update_layout?platform=RESTful) 更新合流布局。
 3. 调用 [`stop`](./cloud_recording_api_stop?platform=RESTful) 离开频道，停止录制。
 
 
