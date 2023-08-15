@@ -247,7 +247,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
         sourceType: Int,
         videoFrame: VideoFrame?
         ) = when (mByteDanceApi.onFrame(videoFrame!!)) {
-            // 当处理结果为忽略时，外部自采集的视频数据不传入声网 SDK //TODO丢帧
+            // 当处理结果为 SKIPPED（忽略）时，代表你丢帧，即外部自采集的视频数据不传入声网 SDK
             // 当处理结果为其他时，外部自采集的视频数据传入声网 SDK
             ErrorCode.ERROR_FRAME_SKIPPED.value -> false
             else -> true
@@ -269,7 +269,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
 调用 `RtcEngine` 类的 `joinChannel` 加入频道，同时传入如下参数：
 
-- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用调试模式，那么 token 传空；如果启用安全模式，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 token 传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
 - `channelId`：频道名。
 - `options`：频道媒体设置选项。
 
@@ -278,9 +278,15 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
     channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
     clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-    publishCameraTrack = true //TODO 自采集的时候应该是 publishCustomVideoTrack 吗：push + customVideo
+    // 设置是否发布摄像头采集的视频流（适用于使用声网模块采集视频的情况）
+    publishCameraTrack = true
+    // 设置是否发布自定义采集的视频流（适用于自定义采集视频的情况）
+    publishCustomVideoTrack = false
+    // 设置是否发布麦克风采集的音频流
     publishMicrophoneTrack = false
+    // 设置进入频道时是否自动订阅频道内其他用户的音频流
     autoSubscribeAudio = false
+    // 设置进入频道时是否自动订阅频道内其他用户的视频流
     autoSubscribeVideo = true
 })
 ```
@@ -296,8 +302,11 @@ mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
 
 ```kotlin
 mByteDanceApi.setBeautyPreset(
+    // 设置是否使用默认且推荐的美颜参数
     if (enable) BeautyPreset.DEFAULT else BeautyPreset.CUSTOM,
-    ByteDanceBeautySDK.beautyNodePath, //TODO 节点路径（美颜资源、位点、美妆），在初始化时需要传入具体路径
+    // 设置美颜、图像识别位点、美妆资源的节点路径
+    // 请确保节点路径在你初始化时已填写
+    ByteDanceBeautySDK.beautyNodePath,
     ByteDanceBeautySDK.beauty4ItemsNodePath,
     ByteDanceBeautySDK.reSharpNodePath
 )
@@ -330,4 +339,4 @@ RtcEngine.destroy()
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1691130923832)//TODO 怎么更新：初始化、销毁、BeautyPrest
+![](https://web-cdn.agora.io/docs-files/1692094742700)
