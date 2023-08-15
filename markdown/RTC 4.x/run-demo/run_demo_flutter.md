@@ -54,23 +54,17 @@ flutter pub get
 打开 `/example/lib/config/agora.config.dart` 文件，将 `<TEST_APP_ID>`、`<TEST_TOKEN>` 和 `<TEST_CHANNEL_ID>` 分别替换为你从控制台获取的 App ID、临时 Token 以及生成 Token 时使用的频道名。
 
 ```dart
-/// Get your own App ID at https://dashboard.agora.io/
 String get appId {
-  // Allow pass an `appId` as an environment variable with name `TEST_APP_ID` by using --dart-define
   return const String.fromEnvironment('TEST_APP_ID',
       defaultValue: '<TEST_APP_ID>');
 }
 
-/// Please refer to https://docs.agora.io/en/Agora%20Platform/token
 String get token {
-  // Allow pass a `token` as an environment variable with name `TEST_TOKEN` by using --dart-define
   return const String.fromEnvironment('TEST_TOKEN',
       defaultValue: '<TEST_TOKEN>');
 }
 
-/// Your channel ID
 String get channelId {
-  // Allow pass a `channelId` as an environment variable with name `TEST_CHANNEL_ID` by using --dart-define
   return const String.fromEnvironment(
     'TEST_CHANNEL_ID',
     defaultValue: '<TEST_CHANNEL_ID>',
@@ -85,24 +79,18 @@ String get channelId {
 
 2. 打开终端，导航到 `/examples` 目录。
 
-3. 运行以下命令查看当前可用的设备列表。该命令会显示所有已连接的设备，每个设备有唯一的设备 ID。
+3. 运行以下命令在可用设备上运行 Flutter 示例项目。
 
 ```shell
-flutter devices
+flutter run
 ```
 
-4. 运行以下命令在指定的设备上运行 Flutter 示例项目。将 `<device_id>` 替换为的目标设备的设备 ID。
-
-```shell
-flutter run -d '<device_id>'
-```
-
-5. 以 macOS 为例，编译完成后，你的设备上会弹出以下应用。
+4. 以 macOS 为例，编译完成后，你的设备上会弹出以下应用。
 
 ![](https://web-cdn.agora.io/docs-files/1692001262062)
 
-6. 你可以任意选择你想体验的场景。以 **Basic** 中的 **JoinChannelVideo** 为例，在 **Channel ID** 中输入生成临时 token 时指定的频道名，并点击 **Join channel** 加入频道。
+5. 你可以任意选择你想体验的场景。以 **Basic** 中的 **JoinChannelVideo** 为例，在 **Channel ID** 中输入生成临时 token 时指定的频道名，并点击 **Join channel** 加入频道。
 
-7. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目，使用相同的 App ID、Token 和频道名加入频道，你们会看到并听到彼此。
+6. 为更好地体验各种音视频互动场景，你可以邀请一位朋友使用另一台设备运行该示例项目，使用相同的 App ID、Token 和频道名加入频道，你们会看到并听到彼此。
 
 ![](https://web-cdn.agora.io/docs-files/1692001319323)

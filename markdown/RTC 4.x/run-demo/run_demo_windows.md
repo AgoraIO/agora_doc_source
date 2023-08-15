@@ -47,7 +47,7 @@ git clone git@github.com:AgoraIO/API-Examples.git
 
 1. 用 Visual Studio 打开 `/APIExample/APIExample.sln` 文件。
 
-2. 点击 <src img="https://web-cdn.agora.io/docs-files/1690875789361" width="25"/> 开始编译。
+2. 点击 <img src="https://web-cdn.agora.io/docs-files/1690875789361" width="25"/> 开始编译。
 
 3. 编译成功后，你的 Windows 设备上会弹出以下窗口：
 ![](https://web-cdn.agora.io/docs-files/1690875828817)

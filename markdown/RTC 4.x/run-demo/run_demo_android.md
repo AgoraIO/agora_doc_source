@@ -73,7 +73,7 @@ git clone git@github.com:AgoraIO/API-Examples.git
 
 4. 待同步成功后，点击 <img src="https://web-cdn.agora.io/docs-files/1687670569781" width="25"/> 开始编译。
 
-5. 编译成功后，你的 Android 设备上会出现 <img src="https://web-cdn.agora.io/docs-files/1690450345873" width="25"> 应用。
+5. 编译成功后，你的 Android 设备上会出现 <img src="https://web-cdn.agora.io/docs-files/1690450345873" width="25"/> 应用。
 
 6. 打开 **Agora API Example** 应用后，你可以任意选择你想体验的场景。以 **视频互动直播** 为例，输入频道名（如 `test`），并点击**加入频道**。
 ![](https://web-cdn.agora.io/docs-files/1690450380432)
