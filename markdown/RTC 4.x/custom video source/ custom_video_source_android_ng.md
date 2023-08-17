@@ -219,7 +219,7 @@ if ("NV21".equals(selectedItem)) {
 // 获取 SDK 当前的 Monotonic Time
 long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
 // 创建 VideoFrame，并将 SDK 当前的 Monotonic Time 赋值到 VideoFrame 的时间戳参数
-VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs);
+VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs * 1000000);
 
 // 通过视频轨道推送视频帧到 SDK
 int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
