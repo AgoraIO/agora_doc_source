@@ -54,7 +54,7 @@
 
     <div class="alert note">如果你的 Android 项目设置了 <a href="https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:centralized-repository-declaration">dependencyResolutionManagement</a>，添加 Maven Central 依赖的方式可能存在差异。</div>
 
-   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网 RTC SDK 集成到你的 Android 项目中：//TODO
+   b. 在 `/Gradle Scripts/build.gradle(Module: <projectname>.app)` 文件中添加如下代码，将声网 RTC SDK 集成到你的 Android 项目中：
 
    ```java
    // 配置相芯依赖库
@@ -77,7 +77,7 @@
         implementation 'com.faceunity:model:8.3.0'
      }
    ```
-3. 将字节火山美颜 SDK 集成到你的项目中。请联系字节技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
+3. 将相芯美颜 SDK 集成到你的项目中。请联系相芯技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
 
     | 文件    |  项目路径   |
     |-----|-----|
@@ -86,7 +86,7 @@
     | 证书：`authpack.java`    | app/src/main/java/io/agora/beauty/demo/authpack.java  |
 
 
-4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance) //TODO目录下的文件到项目中，具体文件如下：
+4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_faceunity/src/main/java/io/agora/beautyapi/faceunity](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_faceunity/src/main/java/io/agora/beautyapi/faceunity) 目录下的文件到项目中，具体文件如下：
     - `utils` 文件夹
     - `FaceUnityBeautyAPI.kt` 文件
     - `FaceUnityBeautyAPIImpl` 文件
@@ -122,50 +122,78 @@
 
 ## 实现美颜
 
-如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，第三方美颜 SDK 承担美颜特效的业务，Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现第三方的基础美颜，但是如果你需要更丰富的贴纸滤镜等美颜效果，你可以直接调用第三方美颜 SDK 中的 API。
+如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，相芯美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
 
-### 1. 初始化资源
 
-本节介绍如何初始化 `RtcEngine`、`EffectManager`、Beauty API 对象。
+### 1. 初始化 RtcEngine
 
-1. 调用声网 RTC SDK 中的 create 创建并初始化 RtcEngine 对象。
+调用声网 RTC SDK 中的 `create` 创建并初始化 `RtcEngine` 对象。
 
-2. 初始化美颜 SDK 的 `EffectManager` 对象。
+```kotlin
+// 初始化声网 RtcEngine
+private val mRtcEngine by lazy {
+    RtcEngine.create(RtcEngineConfig().apply {
+        mContext = applicationContext
+        // 传入你从控制台获取的声网项目的 APP ID
+        mAppId = BuildConfig.AGORA_APP_ID
+        mEventHandler = object : IRtcEngineEventHandler() {}
+    }).apply {
+        // 开启声网 clear_vision 视频插件
+        enableExtension
+        ("agora_video_filters_clear_vision", "clear_vision", true)
+    }
+}
+```
 
-3. 调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `EffectManager` 对象封装。
+### 2. 初始化 FURenderManager
 
-4. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
+```kotlin
+    fun initBeauty(context: Context){
+        FURenderManager.setKitDebug(FULogger.LogLevel.TRACE)
+        FURenderManager.setCoreDebug(FULogger.LogLevel.ERROR)
+        FURenderManager.registerFURender(context, getAuth(), object : OperateCallback {
+            override fun onSuccess(code: Int, msg: String) {
+                Log.i(TAG, "FURenderManager onSuccess -- code=$code, msg=$msg")
+                if (code == OPERATE_SUCCESS_AUTH) {
+                    faceunity.fuSetUseTexAsync(1)
+                    workerThread.submit {
+                        fuAIKit.loadAIProcessor(BUNDLE_AI_FACE, FUAITypeEnum.FUAITYPE_FACEPROCESSOR)
+                        fuAIKit.loadAIProcessor(BUNDLE_AI_HUMAN, FUAITypeEnum.FUAITYPE_HUMAN_PROCESSOR)
+                    }
+                }
+            }
 
+            override fun onFail(errCode: Int, errMsg: String) {
+                Log.e(TAG, "FURenderManager onFail -- code=$errCode, msg=$errMsg")
+            }
+        })
+    }
+```
+
+### 3. 初始化 Beauty API
+
+1. 调用 `createFaceUnityBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `FURenderManager` 对象封装。
+
+
+    ```kotlin
+    private val mFaceUnityApi by lazy {
+        createFaceUnityBeautyAPI()
+    }
+    ```
+
+2. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
+
+    - `applicationContext`：传入 Android Context（上下文）。
     - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `mEffectManager`：传入之前初始化的 `EffectManager` 对象。
+    - `renderManager`：传入之前初始化的 `renderManager` 对象。
     - `captureMode`：视频的采集模式：
         - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
         - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
-    - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件
-    - `eventCallback`：你希望监听的回调事件。 //TODO
+    - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
+    - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
+    - `eventCallback`：你希望监听的回调事件。
 
-```kotlin
-private val mFaceUnityApi by lazy {
-    createFaceUnityBeautyAPI()
-}
-private val mFuRenderKit by lazy {
-    FURenderer.getInstance().setup(this, authpack.A())
-    FURenderKit.getInstance()
-}
-
-mFaceUnityApi.initialize(
-    Config(
-        mRtcEngine,
-        mFuRenderKit,
-        captureMode = CaptureMode.Agora, //TODO
-        statsEnable = true,
-        eventCallback = object: IEventCallback{
-            override fun onBeautyStats(stats: BeautyStats) {
-                Log.d(TAG, "BeautyStats stats = $stats")
-            }
-        }
-    ))
-```
+//TODO continue
 
 ### 2. 设置是否开启美颜
 
