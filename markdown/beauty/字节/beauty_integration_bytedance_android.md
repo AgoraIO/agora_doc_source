@@ -132,7 +132,7 @@ private val mRtcEngine by lazy {
 }
 ```
 
-### 2. 初始化 renderManager
+### 2. 初始化 RenderManager
 
 1. 初始化美颜 SDK，复制美颜 SDK 所需的资源到 `sdcard` 存储中。
 
@@ -174,11 +174,11 @@ private val mRtcEngine by lazy {
     }
     ```
 
-2. 在 GL 线程中初始化美颜 SDK 中的 `renderManager` 实例。
+2. 在 GL 线程中初始化美颜 SDK 中的 `RenderManager` 实例。
 
     ```kotlin
     // GL 线程中
-    // 初始化美颜 SDK 中的 renderManager 实例
+    // 初始化美颜 SDK 中的 RenderManager 实例
     fun initEffect(context: Context){
         val ret = renderManager.init(
             context,
@@ -197,7 +197,7 @@ private val mRtcEngine by lazy {
 
 ### 3. 初始化 Beauty API
 
-1. 调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `renderManager` 对象封装。
+1. 调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `RenderManager` 对象封装。
 
     ```kotlin
     // 创建 Beauty API 对象
@@ -210,7 +210,7 @@ private val mRtcEngine by lazy {
 
     - `applicationContext`：传入 Android Context（上下文）。
     - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `renderManager`：传入之前初始化的 `renderManager` 对象。
+    - `renderManager`：传入之前初始化的 `RenderManager` 对象。
     - `captureMode`：视频的采集模式：
         - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
         - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
@@ -330,7 +330,9 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
 ```kotlin
 mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
+    // 设置频道场景为直播
     channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
+    // 设置用户角色为主播，主播可以在频道里发布和订阅音视频流
     clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
     // 设置是否发布摄像头采集的视频流（适用于使用声网模块采集视频的情况）
     publishCameraTrack = true
@@ -385,7 +387,7 @@ mRtcEngine.leaveChannel()
     mByteDanceApi.release()
     ```
 
-2. 在 GL 线程中调用美颜 SDK 的 `unInitEffect` 销毁 `renderManager`。
+2. 在 GL 线程中调用美颜 SDK 的 `unInitEffect` 销毁 `RenderManager`。
 
     ```kotlin
     fun unInitEffect(){

@@ -145,17 +145,35 @@ private val mRtcEngine by lazy {
 }
 ```
 
-### 2. 初始化 FURenderManager
+### 2. 初始化美颜 SDK
+
+调用相芯美颜 SDK 中的方法初始化 FURenderKit 对象，加载 AI 道具。示例代码如下：
 
 ```kotlin
+object FaceUnityBeautySDK {
+    private val TAG = "FaceUnityBeautySDK"
+
+    private val fuAIKit = FUAIKit.getInstance()
+    val fuRenderKit = FURenderKit.getInstance()
+
+    // AI 道具
+    private val BUNDLE_AI_FACE = "model" + File.separator + "ai_face_processor.bundle"
+    private val BUNDLE_AI_HUMAN = "model" + File.separator + "ai_human_processor.bundle"
+
+    private val workerThread = Executors.newSingleThreadExecutor()
+
     fun initBeauty(context: Context){
+        // 设置美颜 SDK 日志
         FURenderManager.setKitDebug(FULogger.LogLevel.TRACE)
         FURenderManager.setCoreDebug(FULogger.LogLevel.ERROR)
+        // 初始化美颜 SDK
+        // 需传入美颜 SDK 鉴权字段并设置美颜 SDK 事件监听
         FURenderManager.registerFURender(context, getAuth(), object : OperateCallback {
             override fun onSuccess(code: Int, msg: String) {
                 Log.i(TAG, "FURenderManager onSuccess -- code=$code, msg=$msg")
                 if (code == OPERATE_SUCCESS_AUTH) {
                     faceunity.fuSetUseTexAsync(1)
+                    // 如果初始化美颜 SDK 成果，在新线程中加载 AI 道具
                     workerThread.submit {
                         fuAIKit.loadAIProcessor(BUNDLE_AI_FACE, FUAITypeEnum.FUAITYPE_FACEPROCESSOR)
                         fuAIKit.loadAIProcessor(BUNDLE_AI_HUMAN, FUAITypeEnum.FUAITYPE_HUMAN_PROCESSOR)
@@ -168,14 +186,25 @@ private val mRtcEngine by lazy {
             }
         })
     }
+
+    // 获取美颜 SDK 鉴权字段
+    private fun getAuth(): ByteArray{
+        val authpack = Class.forName("io.agora.beautyapi.demo.authpack")
+        val aMethod = authpack.getDeclaredMethod("A")
+        aMethod.isAccessible = true
+        val authValue = aMethod.invoke(null) as? ByteArray
+        return authValue ?: ByteArray(0)
+    }
+}
 ```
 
 ### 3. 初始化 Beauty API
 
-1. 调用 `createFaceUnityBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `FURenderManager` 对象封装。
+1. 调用 `createFaceUnityBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `FuRenderKit` 对象封装。
 
 
     ```kotlin
+    // 创建 Beauty API 对象
     private val mFaceUnityApi by lazy {
         createFaceUnityBeautyAPI()
     }
@@ -185,7 +214,7 @@ private val mRtcEngine by lazy {
 
     - `applicationContext`：传入 Android Context（上下文）。
     - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `renderManager`：传入之前初始化的 `renderManager` 对象。
+    - `fuRenderKit`：传入之前初始化的 `FuRenderKit` 对象。
     - `captureMode`：视频的采集模式：
         - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
         - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
@@ -193,9 +222,36 @@ private val mRtcEngine by lazy {
     - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
     - `eventCallback`：你希望监听的回调事件。
 
-//TODO continue
+    ```kotlin
+    // 初始化 Beauty API 对象
+    mFaceUnityApi.initialize(
+        Config(
+            // Android Context（上下文）
+            applicationContext,
+            // RtcEngine
+            mRtcEngine,
+            // 美颜特效管理器
+            fuRenderKit,
+            // 设置视频采集模式
+            // CaptureMode.Agora 意味着使用声网模块采集视频
+            // CaptureMode.Custom 意味着使用开发者自定义采集视频
+            captureMode = if(isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
+            // 配置视频镜像模式
+            cameraConfig = this.cameraConfig,
+            // 是否开启美颜统计数据
+            // 开启后，会有周期性的 onBeautyStats 回调事件
+            statsEnable = true,
+            // 用于监听 Beauty API 的回调事件
+            eventCallback = object: IEventCallback{
+                override fun onBeautyStats(stats: BeautyStats) {
+                    Log.d(TAG, "BeautyStats stats = $stats")
+                }
+            }
+        )
+    )
+    ```
 
-### 2. 设置是否开启美颜
+### 4. 设置是否开启美颜
 
 调用 Beauty API 的 `enable` 方法开启美颜。
 
@@ -203,7 +259,7 @@ private val mRtcEngine by lazy {
 mFaceUnityApi.enable(true)
 ```
 
-### 3. 开启视频采集
+### 5. 开启视频采集
 
 开发者可以使用声网模块采集视频，也可以自定义采集视频。本节介绍在这两种场景下如何开启视频采集。
 
@@ -213,61 +269,77 @@ mFaceUnityApi.enable(true)
 
 
 ```kotlin
+// 开启视频模块
+mRtcEngine.enableVideo()
+// 设置本地视图
 mFaceUnityApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
 ```
 
-
-//TODO
-
-#### 自定义视频采集 //TODO 研发 review
+#### 自定义视频采集
 
 自定义视频采集时，你需要先调用 `RtcEngine` 类的 `enableVideo` 开启声网 SDK 的视频模块，然后通过 `RtcEngine` 类的 `registerVideoFrameObserver` 注册原始视频数据观测器并在其中实现 `onCaptureVideoFrame` 函数。
 
-通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。当处理成功时，用自采集的视频数据替代 `onCaptureVideoFrame` 函数中的 `VideoFrame`，并传入声网 SDK。
+通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。当处理结果不为 `SKIPPED`（忽略）时，用自采集的视频数据替代 `onCaptureVideoFrame` 函数中的 `VideoFrame`，并传入声网 SDK。
 
 
-```kotlin //TODO
+```kotlin
 // 开启视频模块
 mRtcEngine.enableVideo()
+// 注册原始视频数据观测器
+// 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
+mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
-override fun onCaptureVideoFrame(
-    sourceType: Int,
-    videoFrame: VideoFrame?
-) : Boolean{
-    when(mFaceUnityApi.onFrame(videoFrame!!)){
-        ErrorCode.ERROR_OK.value -> {
-            shouldMirror = false
-            return true
-        }
-        ErrorCode.ERROR_FRAME_SKIPPED.value ->{
-            shouldMirror = false
-            return false
-        }
-        else -> {
-            val mirror = videoFrame.sourceType == VideoFrame.SourceType.kFrontCamera
-            if(shouldMirror != mirror){
-                shouldMirror = mirror
-                return false
-            }
-            return true
-        }
+    override fun onCaptureVideoFrame(
+        sourceType: Int,
+        videoFrame: VideoFrame?
+    ) = when (mFaceUnityApi.onFrame(videoFrame!!)) {
+        // 当处理结果为 SKIPPED（忽略）时，代表你丢帧，即外部自采集的视频数据不传入声网 SDK
+        // 当处理结果为其他时，外部自采集的视频数据传入声网 SDK
+        ErrorCode.ERROR_FRAME_SKIPPED.value -> false
+        else -> true
     }
-}
+
+    // 设置是否对原始视频数据作镜像处理
+    override fun getMirrorApplied() = mFaceUnityApi.getMirrorApplied()
+
+    // 设置观测点为本地采集时的视频数据
+    override fun getObservedFramePosition() = IVideoFrameObserver.POSITION_POST_CAPTURER
+
+    // override 视频观测器中的其他回调函数
+    ...
+})
 ```
 
 
-### 4. 加入频道
+### 6. 加入频道
 
 调用 `RtcEngine` 类的 `joinChannel` 加入频道，同时传入如下参数：
 
-- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用调试模式，那么 token 传空；如果启用安全模式，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 token 传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
 - `channelId`：频道名。
 - `options`：频道媒体设置选项。
 
-//TODO
+```kotlin
+mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
+    // 设置频道场景为直播
+    channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
+    // 设置用户角色为主播，主播可以在频道里发布和订阅音视频流
+    clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
+    // 设置是否发布摄像头采集的视频流（适用于使用声网模块采集视频的情况）
+    publishCameraTrack = true
+    // 设置是否发布自定义采集的视频流（适用于自定义采集视频的情况）
+    publishCustomVideoTrack = false
+    // 设置是否发布麦克风采集的音频流
+    publishMicrophoneTrack = false
+    // 设置进入频道时是否自动订阅频道内其他用户的音频流
+    autoSubscribeAudio = false
+    // 设置进入频道时是否自动订阅频道内其他用户的视频流
+    autoSubscribeVideo = true
+})
+```
 
 
-### 5. 设置美颜效果
+### 7. 设置美颜效果
 
 调用 Beauty API 中 `setBeautyPreset` 方法设置使用的美颜参数的类型：
 
@@ -277,26 +349,39 @@ override fun onCaptureVideoFrame(
 不同的美颜参数会带来不同的美颜效果。如果你没有特殊偏好，推荐你使用 `DEFAULT`。
 
 ```kotlin
-mFaceUnityApi.setBeautyPreset(BeautyPreset.DEFAULT) // BeautyPreset.CUSTOM：关闭推荐美颜参数 //TODO
+mFaceUnityApi.setBeautyPreset(if (enable) BeautyPreset.DEFAULT else BeautyPreset.CUSTOM)
 ```
+<div class="alert note">通过 Beauty API 的 <code>setBeautyPreset</code> 方法，你可以实现基础美颜功能。但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。</div>
 
-### 6. 离开频道
+### 8. 离开频道
 
 调用 `RtcEngine` 类的 `leaveChannel` 离开频道。
 
-//TODO
-
-### 7. 销毁资源
-
-调用 Beauty API 的 `release`、`EffectManager` 的 `destroy`、`RtcEngine` 的 `destroy` 销毁 Beauty API、`EffectManager`、`RtcEngine` 对象，释放资源。
-
 ```kotlin
+// 离开 RTC 频道
 mRtcEngine.leaveChannel()
-// 必须在leaveChannel后销毁
-mFaceUnityApi.release()
-FURenderer.getInstance().release()
-mFuRenderKit.release()
 ```
+
+### 9. 销毁资源
+
+1. 调用 Beauty API 的 `release` 销毁 Beauty API。
+
+    ```kotlin
+    mFaceUnityApi.release()
+    ```
+
+2. 美颜 SDK 的 `destroy` 销毁 `FURenderKit`。
+
+    ```kotlin
+    FURenderKit.destroy()
+    ```
+
+3. 调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
+
+    ```kotlin
+    RtcEngine.destroy()
+    ```
+
 
 ### API 时序图
 
