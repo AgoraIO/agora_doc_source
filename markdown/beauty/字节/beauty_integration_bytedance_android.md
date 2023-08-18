@@ -315,7 +315,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
     // override 视频观测器中的其他回调函数
     ...
-}
+})
 ```
 
 
