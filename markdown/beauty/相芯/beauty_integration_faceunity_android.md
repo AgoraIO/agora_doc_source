@@ -385,4 +385,4 @@ mRtcEngine.leaveChannel()
 
 ### API 时序图
 
-//TODO
+![](https://web-cdn.agora.io/docs-files/1692606503301)

@@ -404,4 +404,4 @@ mRtcEngine.leaveChannel()
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1692094742700)
+![](https://web-cdn.agora.io/docs-files/1692606491371)
