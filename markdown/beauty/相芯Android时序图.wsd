@@ -4,15 +4,15 @@ title 美颜场景化 API (Beauty API) 时序图
 participant "App" as app
 participant "声网 RTC SDK" as rtc
 participant "Beauty API" as api
-participant "字节火山美颜 SDK" as beauty
+participant "相芯美颜 SDK" as beauty
 app -> app: 进入预览和直播间
 == 初始化 RtcEngine ==
 app -> rtc: RtcEngine.create \n创建并初始化 RtcEngine 对象
-== 初始化 RenderManager ==
-app -> beauty: initBeautySDK \n初始化美颜 SDK
-app -> beauty: initEffect \n初始化 RenderManager 美颜特效对象
+== 初始化美颜 SDK ==
+app -> beauty: registerFURender \n初始化 FURenderKit
+app -> beauty: loadAIProcessor \n加载 AI 道具
 == 初始化 Beauty API ==
-app -> api: createByteDanceBeautyAPI \n创建 Beauty API 对象
+app -> api: createFaceUnityBeautyAPI \n创建 Beauty API 对象
 alt #WhiteSmoke 使用声网模块采集视频
 app -> api: initialize(captureMode.**Agora**) \n初始化 Beauty API 对象
 end
@@ -40,7 +40,7 @@ app -> beauty: 如需更多美颜效果，例如贴纸、美妆风格，可直�
 app -> rtc: leaveChannel
 == 销毁资源 ==
 app -> api: release \n销毁 Beauty API 对象
-app -> beauty: unInitEffect \n销毁 RenderManager 美颜特效对象
+app -> beauty: destroy \n销毁 FURenderKit 对象
 app -> rtc: destroy \n销毁 RtcEngine 对象
 app -> app: 退出预览和直播间
 @enduml
