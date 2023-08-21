@@ -65,6 +65,7 @@
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
    ```
+
 3. 将字节火山美颜 SDK 集成到你的项目中。请联系字节技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
 
     | 文件                                                            | 项目路径                                             |
@@ -114,53 +115,143 @@
 
 如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，字节火山美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
 
+### 1. 初始化 RtcEngine
+
+调用声网 RTC SDK 中的 `create` 创建并初始化 `RtcEngine` 对象。
+
+```kotlin
+private val mRtcEngine by lazy {
+    RtcEngine.create(RtcEngineConfig().apply {
+        mContext = applicationContext
+        mAppId = BuildConfig.AGORA_APP_ID
+        mEventHandler = object : IRtcEngineEventHandler() {}
+    }).apply {
+        enableExtension("agora_video_filters_clear_vision", "clear_vision", true)
+    }
+}
+```
+
+### 2. 初始化 RenderManager
 
 
-### 1. 初始化资源
 
-本节介绍如何初始化 `RtcEngine`、`EffectManager`、Beauty API 对象。
+1. 初始化美颜 SDK，复制美颜 SDK 所需的资源到 `sdcard` 存储中。
 
-1. 调用声网 RTC SDK 中的 create 创建并初始化 RtcEngine 对象。
+```kotlin
+private val workerThread = Executors.newSingleThreadExecutor()
 
-2. 初始化美颜 SDK 的 `EffectManager` 对象。
+// 通过在新线程中调用验证证书和初始化人物动作识别对象来初始化美颜 SDK
+fun initBeautySDK(context: Context){
+    workerThread.submit {
+        checkLicense(context)
+        initHumanAction(context)
+    }
+}
+```
 
-3. 调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `EffectManager` 对象封装。
+```kotlin
+// 传入 SenseME.lic 文件，通过 generate 方法生成 activeCode 并对其进行验证
+private fun checkLicense(context: Context) {
+    val license = io.agora.beautyapi.demo.utils.FileUtils.getAssetsString(
+        context,
+        "$resourcePath/license/SenseME.lic"
+    )
+    val activeCode = STMobileAuthentificationNative.generateActiveCodeFromBuffer(
+        context,
+        license,
+        license.length
+    )
+    val success = activeCode.isNotEmpty()
+    if (success) {
+        Log.d(TAG, "SenseTime >> checkLicense successfully!")
+    } else {
+        Log.e(TAG, "SenseTime >> checkLicense failed!")
+    }
+}
+```
 
-4. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
+```kotlin
+// 创建 STMobileHumanActionNative 对象，用于进行人物动作识别、躯干分割、人脸网格化识别等
+private fun initHumanAction(context: Context){
+    val assets = context.assets
+    val result = humanActionNative.createInstanceFromAssetFile(
+        "$resourcePath/$MODEL_106",
+        humanActionCreateConfig,
+        assets
+    )
+    Log.d(TAG, "SenseTime >> STMobileHumanActionNative create result : $result")
 
+    if(result != 0){
+        return
+    }
+
+    // 添加一些子模型，用于进行更精细的识别
+    humanActionNative.addSubModelFromAssetFile("$resourcePath/$MODEL_HAND", assets)
+    ...
+
+    // 对背景虚化、人脸网格化识别、躯干分割等功能进行参数配置
+    humanActionNative.setParam(STHumanActionParamsType.ST_HUMAN_ACTION_PARAM_BACKGROUND_BLUR_STRENGTH, 0.35f)
+    ...
+}
+```
+
+2. 在 GL 线程中初始化美颜 SDK 中的 `RenderManager` 实例。
+
+```kotlin
+// 初始化 STMobileEffectNative 对象，用于管理视频特效
+// STMobileEffectNative 不能全局使用，只能在一个 GL 环境里使用
+// 切换 GL 环境时需要重新创建一个 STMobileEffectNative
+fun initMobileEffect(context: Context){
+    val result =
+        mobileEffectNative.createInstance(context, STMobileEffectNative.EFFECT_CONFIG_NONE)
+    // 设置视频特效渲染的平滑处理参数
+    mobileEffectNative.setParam(STMobileEffectParams.EFFECT_PARAM_QUATERNION_SMOOTH_FRAME, 5f)
+    Log.d(TAG, "SenseTime >> STMobileEffectNative create result : $result")
+}
+```
+
+
+### 3. 初始化 Beauty API
+
+1. 调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `RenderManager` 对象封装。
+
+    ```kotlin
+    // 创建 Beauty API 对象
+    private val mSenseTimeApi by lazy {
+        createSenseTimeBeautyAPI()
+    }
+    ```
+
+2. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
+
+    - `applicationContext`：传入 Android Context（上下文）。
     - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `mEffectManager`：传入之前初始化的 `EffectManager` 对象。
+    - `renderManager`：传入之前初始化的 `RenderManager` 对象。
     - `captureMode`：视频的采集模式：
         - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
         - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
-    - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件
+    - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
+    - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
     - `eventCallback`：你希望监听的回调事件。
 
-//TODO
-
-```kotlin
-private val mSTRenderKit by lazy {
-    STRenderKit(this, "beauty_sensetime")
-}
-private val mSenseTimeApi by lazy {
-    createSenseTimeBeautyAPI()
-}
-
-mSenseTimeApi.initialize(
-    Config(
-        mRtcEngine,
-        mSTRenderKit,
-        captureMode = CaptureMode.Agora,
-        statsEnable = BuildConfig.DEBUG,
-        eventCallback = object: IEventCallback{
-            override fun onBeautyStats(stats: BeautyStats) {
-                Log.d(TAG, "BeautyStats stats = $stats")
+    ```kotlin
+    mSenseTimeApi.initialize(
+        Config(
+            application,
+            mRtcEngine,
+            STHandlers(SenseTimeBeautySDK.mobileEffectNative, SenseTimeBeautySDK.humanActionNative),
+            captureMode = if (isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
+            statsEnable = true,
+            eventCallback = object: IEventCallback{
+                override fun onBeautyStats(stats: BeautyStats) {
+                    Log.d(TAG, "BeautyStats stats = $stats")
+                }
             }
-        }
-    ))
-```
+        )
+    )
+    ```
 
-### 2. 设置是否开启美颜
+### 4. 设置是否开启美颜
 
 调用 Beauty API 的 `enable` 方法开启美颜。
 
@@ -168,7 +259,7 @@ mSenseTimeApi.initialize(
 mSenseTimeApi.enable(true)
 ```
 
-### 3. 开启视频采集
+### 5. 开启视频采集
 
 开发者可以使用声网模块采集视频，也可以自定义采集视频。本节介绍在这两种场景下如何开启视频采集。
 
@@ -177,60 +268,73 @@ mSenseTimeApi.enable(true)
 使用声网模块采集视频视频时，你需要先调用 `RtcEngine` 类的 `enableVideo` 开启声网 SDK 的视频模块，然后调用 Beauty API 的 `setupLocalVideo` 开启本地视图。
 
 ```kotlin
+// 开启视频模块
+mRtcEngine.enableVideo()
+// 设置本地视图
 mSenseTimeApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
 ```
 
-//TODO
-
-#### 自定义视频采集 //TODO 研发 review
+#### 自定义视频采集
 
 自定义视频采集时，你需要先调用 `RtcEngine` 类的 `enableVideo` 开启声网 SDK 的视频模块，然后通过 `RtcEngine` 类的 `registerVideoFrameObserver` 注册原始视频数据观测器并在其中实现 `onCaptureVideoFrame` 函数。
 
-通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。当处理成功时，用自采集的视频数据替代 `onCaptureVideoFrame` 函数中的 `VideoFrame`，并传入声网 SDK。
+通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。当处理结果不为 `SKIPPED`（忽略）时，用自采集的视频数据替代 `onCaptureVideoFrame` 函数中的 `VideoFrame`，并传入声网 SDK。
 
-//TODO
 
-将外部数据帧通过onFrame接口传入，处理成功会替换VideoFrame的buffer数据，即videoFrame参数既为输入也为输出
 ```kotlin
-override fun onCaptureVideoFrame(
-    sourceType: Int,
-    videoFrame: VideoFrame?
-) : Boolean {
-    when(mSenseTimeApi.onFrame(videoFrame!!)){
-        ErrorCode.ERROR_OK.value -> {
-            shouldMirror = false
-            return true
-        }
-        ErrorCode.ERROR_FRAME_SKIPPED.value -> {
-            shouldMirror = false
-            return false
-        }
-        else -> {
-            val mirror = videoFrame.sourceType == VideoFrame.SourceType.kFrontCamera
-            if(shouldMirror != mirror){
-                shouldMirror = mirror
-                return false
-            }
-            return true
+// 开启视频模块
+mRtcEngine.enableVideo()
+
+mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
+
+    override fun onCaptureVideoFrame(
+        sourceType: Int,
+        videoFrame: VideoFrame?
+    ) : Boolean {
+        return when(mSenseTimeApi.onFrame(videoFrame!!)){
+            ErrorCode.ERROR_FRAME_SKIPPED.value -> false
+            else -> true
         }
     }
-}
+
+    override fun getMirrorApplied() = mSenseTimeApi.getMirrorApplied()
+
+    override fun getObservedFramePosition() = IVideoFrameObserver.POSITION_POST_CAPTURER
+
+    ...
+})
 ```
 
 
-### 4. 加入频道
+### 6. 加入频道
 
 调用 `RtcEngine` 类的 `joinChannel` 加入频道，同时传入如下参数：
 
-- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用调试模式，那么 token 传空；如果启用安全模式，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 token 传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
 - `channelId`：频道名。
 - `options`：频道媒体设置选项。
 
-//TODO
 
+```kotlin
+mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
+    // 设置频道场景为直播
+    channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
+    // 设置用户角色为主播，主播可以在频道里发布和订阅音视频流
+    clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
+    // 设置是否发布摄像头采集的视频流（适用于使用声网模块采集视频的情况）
+    publishCameraTrack = true
+    // 设置是否发布自定义采集的视频流（适用于自定义采集视频的情况）
+    publishCustomVideoTrack = false
+    // 设置是否发布麦克风采集的音频流
+    publishMicrophoneTrack = false
+    // 设置进入频道时是否自动订阅频道内其他用户的音频流
+    autoSubscribeAudio = false
+    // 设置进入频道时是否自动订阅频道内其他用户的视频流
+    autoSubscribeVideo = true
+})
+```
 
-
-### 5. 设置美颜效果
+### 7. 设置美颜效果
 
 调用 Beauty API 中 `setBeautyPreset` 方法设置使用的美颜参数的类型：
 
@@ -239,30 +343,42 @@ override fun onCaptureVideoFrame(
 
 不同的美颜参数会带来不同的美颜效果。如果你没有特殊偏好，推荐你使用 `DEFAULT`。
 
-
 ```kotlin
-mSenseTimeApi.setBeautyPreset(BeautyPreset.DEFAULT) // BeautyPreset.CUSTOM：关闭推荐美颜参数 //TODO
+mSenseTimeApi.setBeautyPreset(if (enable) BeautyPreset.DEFAULT else BeautyPreset.CUSTOM)
 ```
 
-### 6. 离开频道
+<div class="alert note">通过 Beauty API 的 <code>setBeautyPreset</code> 方法，你可以实现基础美颜功能。但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。</div>
 
-调用 `RtcEngine` 类的 `leaveChannel` 离开频道。//TODO
+### 8. 离开频道
 
-
-
-### 7. 销毁资源
-
-调用 Beauty API 的 `release`、`EffectManager` 的 `destroy`、`RtcEngine` 的 `destroy` 销毁 Beauty API、`EffectManager`、`RtcEngine` 对象，释放资源。
+调用 `RtcEngine` 类的 `leaveChannel` 离开频道。
 
 ```kotlin
+// 离开 RTC 频道
 mRtcEngine.leaveChannel()
-// 必须在leaveChannel后销毁
-mSenseTimeApi.release()
-mSTRenderKit.release()
 ```
+
+### 9. 销毁资源
+
+1. 调用 Beauty API 的 `release` 销毁 Beauty API。
+
+    ```kotlin
+    mSenseTimeApi.release()
+    ```
+
+2. 在 GL 线程中调用美颜 SDK 的 `unInitEffect` 销毁 `RenderManager`。
+
+    ```kotlin
+    SenseTimeBeautySDK.unInitMobileEffect()
+    ```
+
+3. 调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
+
+    ```kotlin
+    RtcEngine.destroy()
+    ```
+
 
 ### API 时序图
 
-//TODO
-
-
+![](https://web-cdn.agora.io/docs-files/1692606491371)
