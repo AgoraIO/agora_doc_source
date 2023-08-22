@@ -66,7 +66,7 @@
      }
    ```
 
-3. 将字节火山美颜 SDK 集成到你的项目中。请联系字节技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
+3. 将商汤美颜 SDK 集成到你的项目中。请联系商汤技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
 
     | 文件                                                            | 项目路径                                             |
     |--------------------------------------------------------------------|------------------------------------------------------|
@@ -77,7 +77,7 @@
     | SenseME.lic                                                         | app/src/main/assets/beauty_sensetime/license/SenseME.lic |
 
 
-4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance) //TODO 目录下的文件到项目中，具体文件如下：
+4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime) 目录下的文件到项目中，具体文件如下：
     - `utils` 文件夹
     - `SenseTimeBeautyAPI.kt` 文件
     - `SenseTimeBeautyAPIImpl.kt` 文件
@@ -120,27 +120,26 @@
 调用声网 RTC SDK 中的 `create` 创建并初始化 `RtcEngine` 对象。
 
 ```kotlin
+// 初始化声网 RtcEngine
 private val mRtcEngine by lazy {
     RtcEngine.create(RtcEngineConfig().apply {
         mContext = applicationContext
+        // 传入你从控制台获取的声网项目的 APP ID
         mAppId = BuildConfig.AGORA_APP_ID
         mEventHandler = object : IRtcEngineEventHandler() {}
     }).apply {
+        // 开启声网 clear_vision 视频插件
         enableExtension("agora_video_filters_clear_vision", "clear_vision", true)
     }
 }
 ```
 
-### 2. 初始化 RenderManager
-
-
-
-1. 初始化美颜 SDK，复制美颜 SDK 所需的资源到 `sdcard` 存储中。
+### 2. 初始化美颜 SDK
 
 ```kotlin
 private val workerThread = Executors.newSingleThreadExecutor()
 
-// 通过在新线程中调用验证证书和初始化人物动作识别对象来初始化美颜 SDK
+// 通过在新线程中调用 checkLicense 和 initHumanAction 来初始化美颜 SDK
 fun initBeautySDK(context: Context){
     workerThread.submit {
         checkLicense(context)
@@ -195,7 +194,6 @@ private fun initHumanAction(context: Context){
 }
 ```
 
-2. 在 GL 线程中初始化美颜 SDK 中的 `RenderManager` 实例。
 
 ```kotlin
 // 初始化 STMobileEffectNative 对象，用于管理视频特效
@@ -213,7 +211,7 @@ fun initMobileEffect(context: Context){
 
 ### 3. 初始化 Beauty API
 
-1. 调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `RenderManager` 对象封装。
+1. 调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `STMobileEffectNative` 对象封装。
 
     ```kotlin
     // 创建 Beauty API 对象
@@ -224,14 +222,14 @@ fun initMobileEffect(context: Context){
 
 2. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
 
-    - `applicationContext`：传入 Android Context（上下文）。
+    - `application`：传入 Android Context（上下文）。
     - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `renderManager`：传入之前初始化的 `RenderManager` 对象。
+    - `renderManager`：传入之前初始化的 `RenderManager` 对象。//TODO
     - `captureMode`：视频的采集模式：
         - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
         - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
     - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
-    - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
+    - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。//TODO
     - `eventCallback`：你希望监听的回调事件。
 
     ```kotlin
@@ -284,7 +282,8 @@ mSenseTimeApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT
 ```kotlin
 // 开启视频模块
 mRtcEngine.enableVideo()
-
+// 注册原始视频数据观测器
+// 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
 mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
     override fun onCaptureVideoFrame(
@@ -292,15 +291,20 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
         videoFrame: VideoFrame?
     ) : Boolean {
         return when(mSenseTimeApi.onFrame(videoFrame!!)){
+            // 当处理结果为 SKIPPED（忽略）时，代表你丢帧，即外部自采集的视频数据不传入声网 SDK
+            // 当处理结果为其他时，外部自采集的视频数据传入声网 SDK
             ErrorCode.ERROR_FRAME_SKIPPED.value -> false
             else -> true
         }
     }
 
+    // 设置是否对原始视频数据作镜像处理
     override fun getMirrorApplied() = mSenseTimeApi.getMirrorApplied()
 
+    // 设置观测点为本地采集时的视频数据
     override fun getObservedFramePosition() = IVideoFrameObserver.POSITION_POST_CAPTURER
 
+    // override 视频观测器中的其他回调函数
     ...
 })
 ```
@@ -366,7 +370,7 @@ mRtcEngine.leaveChannel()
     mSenseTimeApi.release()
     ```
 
-2. 在 GL 线程中调用美颜 SDK 的 `unInitEffect` 销毁 `RenderManager`。
+2. 调用美颜 SDK 的 `unInitMobileEffect` 销毁 `STMobileEffectNative`。
 
     ```kotlin
     SenseTimeBeautySDK.unInitMobileEffect()
