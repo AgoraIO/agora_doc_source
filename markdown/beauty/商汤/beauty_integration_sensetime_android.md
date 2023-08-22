@@ -136,6 +136,11 @@ private val mRtcEngine by lazy {
 
 ### 2. 初始化美颜 SDK
 
+在新线程中调用美颜 SDK 的 `initBeautySDK` 初始化美颜。其中包含如下方法：
+
+- `checkLicense`：读取本地 `SenseMe.lic` 证书文件，并通过 `generateActiveCodeFromBuffer` 方法生成 `activeCode`。通过 `activeCode` 进行验证，验证成功后才可以使用商汤美颜 SDK。
+- `initHumanAction`：初始化 `STMobileHumanActionNative` 实例，用于人物识别。`STMobileHumanActionNative` 句柄可以全局使用。
+
 ```kotlin
 private val workerThread = Executors.newSingleThreadExecutor()
 
@@ -170,7 +175,7 @@ private fun checkLicense(context: Context) {
 ```
 
 ```kotlin
-// 创建 STMobileHumanActionNative 对象，用于进行人物动作识别、躯干分割、人脸网格化识别等
+// 初始化 STMobileHumanActionNative，用于进行人物动作识别、躯干分割、人脸网格化识别等
 private fun initHumanAction(context: Context){
     val assets = context.assets
     val result = humanActionNative.createInstanceFromAssetFile(
@@ -194,9 +199,13 @@ private fun initHumanAction(context: Context){
 }
 ```
 
+调用美颜 SDK 的 `initMobileEffect` 初始化 `STMobileEffectNative` 实例，用于管理视频特效。
+
+`STMobileEffectNative` 句柄不能在全局使用，只能在一个 GL 环境里使用。如果切换 GL 环境，你需要在新环境里重新创建一个 `STMobileEffectNative` 实例。
+
 
 ```kotlin
-// 初始化 STMobileEffectNative 对象，用于管理视频特效
+// 初始化 STMobileEffectNative，用于管理视频特效
 // STMobileEffectNative 不能全局使用，只能在一个 GL 环境里使用
 // 切换 GL 环境时需要重新创建一个 STMobileEffectNative
 fun initMobileEffect(context: Context){
@@ -208,46 +217,57 @@ fun initMobileEffect(context: Context){
 }
 ```
 
-
 ### 3. 初始化 Beauty API
 
-1. 调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `STMobileEffectNative` 对象封装。
+调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `STMobileHumanActionNative` 和 `STMobileEffectNative` 对象封装。
 
-    ```kotlin
-    // 创建 Beauty API 对象
-    private val mSenseTimeApi by lazy {
-        createSenseTimeBeautyAPI()
-    }
-    ```
+```kotlin
+// 创建 Beauty API 对象
+private val mSenseTimeApi by lazy {
+    createSenseTimeBeautyAPI()
+}
+```
 
-2. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
+调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
 
-    - `application`：传入 Android Context（上下文）。
-    - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `renderManager`：传入之前初始化的 `RenderManager` 对象。//TODO
-    - `captureMode`：视频的采集模式：
-        - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
-        - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
-    - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
-    - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。//TODO
-    - `eventCallback`：你希望监听的回调事件。
+- `application`：传入 Android Context（上下文）。
+- `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
+- `STHandlers`：商汤美颜 SDK 的句柄，需要传入之前初始化的 `STMobileHumanActionNative` 和 `STMobileEffectNative` 对象。
+- `captureMode`：视频的采集模式：
+    - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
+    - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
+- `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
+- `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。//TODO
+- `eventCallback`：你希望监听的回调事件。
 
-    ```kotlin
-    mSenseTimeApi.initialize(
-        Config(
-            application,
-            mRtcEngine,
-            STHandlers(SenseTimeBeautySDK.mobileEffectNative, SenseTimeBeautySDK.humanActionNative),
-            captureMode = if (isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
-            statsEnable = true,
-            eventCallback = object: IEventCallback{
-                override fun onBeautyStats(stats: BeautyStats) {
-                    Log.d(TAG, "BeautyStats stats = $stats")
-                }
+```kotlin
+// 初始化 Beauty API 对象
+mSenseTimeApi.initialize(
+    Config(
+        // Android Context（上下文）
+        application,
+        // RtcEngine
+        mRtcEngine,
+        // 商汤美颜 SDK 的句柄
+        STHandlers(SenseTimeBeautySDK.mobileEffectNative, SenseTimeBeautySDK.humanActionNative),
+        // 设置视频采集模式
+        // CaptureMode.Agora 意味着使用声网模块采集视频
+        // CaptureMode.Custom 意味着使用开发者自定义采集视频
+        captureMode = if (isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
+        // 配置视频镜像模式
+        cameraConfig = this.cameraConfig, //TODO 代码待修改
+        // 是否开启美颜统计数据
+        // 开启后，会有周期性的 onBeautyStats 回调事件
+        statsEnable = true,
+        // 用于监听 Beauty API 的回调事件
+        eventCallback = object: IEventCallback{
+            override fun onBeautyStats(stats: BeautyStats) {
+                Log.d(TAG, "BeautyStats stats = $stats")
             }
-        )
+        }
     )
-    ```
+)
+```
 
 ### 4. 设置是否开启美颜
 
@@ -364,23 +384,23 @@ mRtcEngine.leaveChannel()
 
 ### 9. 销毁资源
 
-1. 调用 Beauty API 的 `release` 销毁 Beauty API。
+调用 Beauty API 的 `release` 销毁 Beauty API。
 
-    ```kotlin
-    mSenseTimeApi.release()
-    ```
+```kotlin
+mSenseTimeApi.release()
+```
 
-2. 调用美颜 SDK 的 `unInitMobileEffect` 销毁 `STMobileEffectNative`。
+调用美颜 SDK 的 `unInitMobileEffect` 销毁 `STMobileEffectNative`。
 
-    ```kotlin
-    SenseTimeBeautySDK.unInitMobileEffect()
-    ```
+```kotlin
+SenseTimeBeautySDK.unInitMobileEffect()
+```
 
-3. 调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
+调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
 
-    ```kotlin
-    RtcEngine.destroy()
-    ```
+```kotlin
+RtcEngine.destroy()
+```
 
 
 ### API 时序图

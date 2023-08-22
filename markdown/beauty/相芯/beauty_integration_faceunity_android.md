@@ -148,7 +148,13 @@ private val mRtcEngine by lazy {
 
 ### 2. 初始化美颜 SDK
 
-调用相芯美颜 SDK 中的方法初始化 FURenderKit 对象，加载 AI 道具。示例代码如下：
+调用相芯美颜 SDK 的 `registerFURender` 初始化 `FURenderKit` 对象，同时传入如下参数：
+
+- `context`：Android Context（上下文）。
+- `getAuth()`：`getAuth` 方法返回的鉴权字段，格式为 ByteArray。鉴权字段与本地 `authpack.java` 证书文件相关，只有验证通过后，你才能使用相芯美颜 SDK。
+- `object`：事件回调。
+
+初始化美颜 SDK 成功后，在新线程中通过 `loadAIProcessor` 加载 AI 道具。
 
 ```kotlin
 object FaceUnityBeautySDK {
@@ -174,7 +180,7 @@ object FaceUnityBeautySDK {
                 Log.i(TAG, "FURenderManager onSuccess -- code=$code, msg=$msg")
                 if (code == OPERATE_SUCCESS_AUTH) {
                     faceunity.fuSetUseTexAsync(1)
-                    // 如果初始化美颜 SDK 成果，在新线程中加载 AI 道具
+                    // 如果初始化美颜 SDK 成功，在新线程中加载 AI 道具
                     workerThread.submit {
                         fuAIKit.loadAIProcessor(BUNDLE_AI_FACE, FUAITypeEnum.FUAITYPE_FACEPROCESSOR)
                         fuAIKit.loadAIProcessor(BUNDLE_AI_HUMAN, FUAITypeEnum.FUAITYPE_HUMAN_PROCESSOR)
@@ -201,56 +207,56 @@ object FaceUnityBeautySDK {
 
 ### 3. 初始化 Beauty API
 
-1. 调用 `createFaceUnityBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `FuRenderKit` 对象封装。
+调用 `createFaceUnityBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `FuRenderKit` 对象封装。
 
 
-    ```kotlin
-    // 创建 Beauty API 对象
-    private val mFaceUnityApi by lazy {
-        createFaceUnityBeautyAPI()
-    }
-    ```
+```kotlin
+// 创建 Beauty API 对象
+private val mFaceUnityApi by lazy {
+    createFaceUnityBeautyAPI()
+}
+```
 
-2. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
+调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
 
-    - `applicationContext`：传入 Android Context（上下文）。
-    - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `fuRenderKit`：传入之前初始化的 `FuRenderKit` 对象。
-    - `captureMode`：视频的采集模式：
-        - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
-        - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
-    - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
-    - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
-    - `eventCallback`：你希望监听的回调事件。
+- `applicationContext`：传入 Android Context（上下文）。
+- `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
+- `fuRenderKit`：传入之前初始化的 `FuRenderKit` 对象。
+- `captureMode`：视频的采集模式：
+    - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
+    - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
+- `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
+- `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
+- `eventCallback`：你希望监听的回调事件。
 
-    ```kotlin
-    // 初始化 Beauty API 对象
-    mFaceUnityApi.initialize(
-        Config(
-            // Android Context（上下文）
-            applicationContext,
-            // RtcEngine
-            mRtcEngine,
-            // 美颜特效管理器
-            fuRenderKit,
-            // 设置视频采集模式
-            // CaptureMode.Agora 意味着使用声网模块采集视频
-            // CaptureMode.Custom 意味着使用开发者自定义采集视频
-            captureMode = if(isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
-            // 配置视频镜像模式
-            cameraConfig = this.cameraConfig,
-            // 是否开启美颜统计数据
-            // 开启后，会有周期性的 onBeautyStats 回调事件
-            statsEnable = true,
-            // 用于监听 Beauty API 的回调事件
-            eventCallback = object: IEventCallback{
-                override fun onBeautyStats(stats: BeautyStats) {
-                    Log.d(TAG, "BeautyStats stats = $stats")
-                }
+```kotlin
+// 初始化 Beauty API 对象
+mFaceUnityApi.initialize(
+    Config(
+        // Android Context（上下文）
+        applicationContext,
+        // RtcEngine
+        mRtcEngine,
+        // 美颜特效管理器
+        fuRenderKit,
+        // 设置视频采集模式
+        // CaptureMode.Agora 意味着使用声网模块采集视频
+        // CaptureMode.Custom 意味着使用开发者自定义采集视频
+        captureMode = if(isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
+        // 配置视频镜像模式
+        cameraConfig = this.cameraConfig,
+        // 是否开启美颜统计数据
+        // 开启后，会有周期性的 onBeautyStats 回调事件
+        statsEnable = true,
+        // 用于监听 Beauty API 的回调事件
+        eventCallback = object: IEventCallback{
+            override fun onBeautyStats(stats: BeautyStats) {
+                Log.d(TAG, "BeautyStats stats = $stats")
             }
-        )
+        }
     )
-    ```
+)
+```
 
 ### 4. 设置是否开启美颜
 
@@ -365,23 +371,23 @@ mRtcEngine.leaveChannel()
 
 ### 9. 销毁资源
 
-1. 调用 Beauty API 的 `release` 销毁 Beauty API。
+调用 Beauty API 的 `release` 销毁 Beauty API。
 
-    ```kotlin
-    mFaceUnityApi.release()
-    ```
+```kotlin
+mFaceUnityApi.release()
+```
 
-2. 美颜 SDK 的 `destroy` 销毁 `FURenderKit`。
+调用美颜 SDK 的 `destroy` 销毁 `FURenderKit`。
 
-    ```kotlin
-    FURenderKit.destroy()
-    ```
+```kotlin
+FURenderKit.destroy()
+```
 
-3. 调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
+调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
 
-    ```kotlin
-    RtcEngine.destroy()
-    ```
+```kotlin
+RtcEngine.destroy()
+```
 
 
 ### API 时序图

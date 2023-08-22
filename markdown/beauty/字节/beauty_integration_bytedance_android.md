@@ -136,131 +136,131 @@ private val mRtcEngine by lazy {
 
 ### 2. 初始化 RenderManager
 
-1. 初始化美颜 SDK，复制美颜 SDK 所需的资源到 `sdcard` 存储中。
+复制美颜证书、美颜资源到 `sdcard` 存储中。
 
-    ```kotlin
-    // 初始化美颜 SDK
-    fun initBeautySDK(context: Context){
-        val storagePath = context.getExternalFilesDir("")?.absolutePath ?: return
-        val assetsPath = "beauty_bytedance"
+```kotlin
+// 初始化美颜 SDK
+fun initBeautySDK(context: Context){
+    val storagePath = context.getExternalFilesDir("")?.absolutePath ?: return
+    val assetsPath = "beauty_bytedance"
 
-        workerThread.execute {
-            // copy license
-            licensePath = "$storagePath/beauty_bytedance/LicenseBag.bundle/$LICENSE_NAME"
-            FileUtils.copyAssets(context, "$assetsPath/LicenseBag.bundle/$LICENSE_NAME", licensePath)
+    workerThread.execute {
+        // copy license
+        licensePath = "$storagePath/beauty_bytedance/LicenseBag.bundle/$LICENSE_NAME"
+        FileUtils.copyAssets(context, "$assetsPath/LicenseBag.bundle/$LICENSE_NAME", licensePath)
 
-            // copy models
-            modelsPath = "$storagePath/beauty_bytedance/ModelResource.bundle"
-            FileUtils.copyAssets(context, "$assetsPath/ModelResource.bundle", modelsPath)
+        // copy models
+        modelsPath = "$storagePath/beauty_bytedance/ModelResource.bundle"
+        FileUtils.copyAssets(context, "$assetsPath/ModelResource.bundle", modelsPath)
 
-            // copy beauty node
-            beautyNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/beauty_Android_lite"
-            FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/beauty_Android_lite", beautyNodePath)
+        // copy beauty node
+        beautyNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/beauty_Android_lite"
+        FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/beauty_Android_lite", beautyNodePath)
 
-            // copy beauty 4items node
-            beauty4ItemsNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/beauty_4Items"
-            FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/beauty_4Items", beauty4ItemsNodePath)
+        // copy beauty 4items node
+        beauty4ItemsNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/beauty_4Items"
+        FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/beauty_4Items", beauty4ItemsNodePath)
 
-            // copy resharp node
-            reSharpNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/reshape_lite"
-            FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/reshape_lite", reSharpNodePath)
+        // copy resharp node
+        reSharpNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/reshape_lite"
+        FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/reshape_lite", reSharpNodePath)
 
-            // copy makeup node
-            makeupTianmeiNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/style_makeup/tianmei"
-            FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/style_makeup/tianmei", makeupTianmeiNodePath)
+        // copy makeup node
+        makeupTianmeiNodePath = "$storagePath/beauty_bytedance/ComposeMakeup.bundle/ComposeMakeup/style_makeup/tianmei"
+        FileUtils.copyAssets(context, "$assetsPath/ComposeMakeup.bundle/ComposeMakeup/style_makeup/tianmei", makeupTianmeiNodePath)
 
-            // copy stickers
-            stickerPath = "$storagePath/beauty_bytedance/StickerResource.bundle/stickers"
-            FileUtils.copyAssets(context, "$assetsPath/StickerResource.bundle/stickers", stickerPath)
-        }
+        // copy stickers
+        stickerPath = "$storagePath/beauty_bytedance/StickerResource.bundle/stickers"
+        FileUtils.copyAssets(context, "$assetsPath/StickerResource.bundle/stickers", stickerPath)
     }
-    ```
+}
+```
 
-2. 在 GL 线程中初始化美颜 SDK 中的 `RenderManager` 实例。
+在 GL 线程中通过美颜 SDK 的 initEffect 方法初始化 `RenderManager` 实例。
 
-    ```kotlin
-    // GL 线程中
-    // 初始化美颜 SDK 中的 RenderManager 实例
-    fun initEffect(context: Context){
-        val ret = renderManager.init(
-            context,
-            modelsPath, licensePath, false, false, 0
-        )
-        if(!checkResult("RenderManager init ", ret)){
-            return
-        }
-        renderManager.useBuiltinSensor(true)
-        renderManager.set3Buffer(false)
-        renderManager.appendComposerNodes(arrayOf(beautyNodePath, beauty4ItemsNodePath, reSharpNodePath))
-        renderManager.loadResourceWithTimeout(-1)
+```kotlin
+// GL 线程中
+// 初始化美颜 SDK 中的 RenderManager 实例
+fun initEffect(context: Context){
+    val ret = renderManager.init(
+        context,
+        modelsPath, licensePath, false, false, 0
+    )
+    if(!checkResult("RenderManager init ", ret)){
+        return
     }
-    ```
+    renderManager.useBuiltinSensor(true)
+    renderManager.set3Buffer(false)
+    renderManager.appendComposerNodes(arrayOf(beautyNodePath, beauty4ItemsNodePath, reSharpNodePath))
+    renderManager.loadResourceWithTimeout(-1)
+}
+```
 
 
 ### 3. 初始化 Beauty API
 
-1. 调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `RenderManager` 对象封装。
+调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `RenderManager` 对象封装。
 
-    ```kotlin
-    // 创建 Beauty API 对象
-    private val mByteDanceApi by lazy {
-        createByteDanceBeautyAPI()
-    }
-    ```
+```kotlin
+// 创建 Beauty API 对象
+private val mByteDanceApi by lazy {
+    createByteDanceBeautyAPI()
+}
+```
 
-2. 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
+调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
 
-    - `applicationContext`：传入 Android Context（上下文）。
-    - `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-    - `renderManager`：传入之前初始化的 `RenderManager` 对象。
-    - `captureMode`：视频的采集模式：
-        - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
-        - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
-    - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
-    - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
-    - `eventCallback`：你希望监听的回调事件。
+- `applicationContext`：传入 Android Context（上下文）。
+- `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
+- `renderManager`：传入之前初始化的 `RenderManager` 对象。
+- `captureMode`：视频的采集模式：
+    - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
+    - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
+- `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
+- `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
+- `eventCallback`：你希望监听的回调事件。
 
-    ```kotlin
-    // 初始化 Beauty API 对象
-    mByteDanceApi.initialize(
-        Config(
-            // Android Context（上下文）
-            applicationContext,
-            // RtcEngine
-            mRtcEngine,
-            // 美颜特效管理器
-            renderManager,
-            // 设置视频采集模式
-            // CaptureMode.Agora 意味着使用声网模块采集视频
-            // CaptureMode.Custom 意味着使用开发者自定义采集视频
-            captureMode = if (isCustomCaptureMode) CaptureMode.Custom else
-            CaptureMode.Agora,
-            // 是否开启美颜统计数据
-            // 开启后，会有周期性的 onBeautyStats 回调事件
-            statsEnable = true,
-            // 配置视频镜像模式
-            cameraConfig = cameraConfig,
-            // 用于监听 Beauty API 的回调事件
-            eventCallback = EventCallback(
-                // 美颜统计数据回调
-                onBeautyStats = {stats ->
-                    Log.d(TAG, "BeautyStats stats = $stats")
-                },
-                // GL 线程中
-                // 美颜特效初始化完成回调
-                onEffectInitialized = {
-                    ByteDanceBeautySDK.initEffect(applicationContext)
-                    Log.d(TAG, "onEffectInitialized")
-                },
-                // GL 线程中
-                // 美颜特效销毁回调
-                onEffectDestroyed = {
-                    ByteDanceBeautySDK.unInitEffect()
-                    Log.d(TAG, "onEffectInitialized")
-                }
-            )
-        ))
-    ```
+```kotlin
+// 初始化 Beauty API 对象
+mByteDanceApi.initialize(
+    Config(
+        // Android Context（上下文）
+        applicationContext,
+        // RtcEngine
+        mRtcEngine,
+        // 美颜特效管理器
+        renderManager,
+        // 设置视频采集模式
+        // CaptureMode.Agora 意味着使用声网模块采集视频
+        // CaptureMode.Custom 意味着使用开发者自定义采集视频
+        captureMode = if (isCustomCaptureMode) CaptureMode.Custom else
+        CaptureMode.Agora,
+        // 是否开启美颜统计数据
+        // 开启后，会有周期性的 onBeautyStats 回调事件
+        statsEnable = true,
+        // 配置视频镜像模式
+        cameraConfig = cameraConfig,
+        // 用于监听 Beauty API 的回调事件
+        eventCallback = EventCallback(
+            // 美颜统计数据回调
+            onBeautyStats = {stats ->
+                Log.d(TAG, "BeautyStats stats = $stats")
+            },
+            // GL 线程中
+            // 美颜特效初始化完成回调
+            onEffectInitialized = {
+                ByteDanceBeautySDK.initEffect(applicationContext)
+                Log.d(TAG, "onEffectInitialized")
+            },
+            // GL 线程中
+            // 美颜特效销毁回调
+            onEffectDestroyed = {
+                ByteDanceBeautySDK.unInitEffect()
+                Log.d(TAG, "onEffectInitialized")
+            }
+        )
+    ))
+```
 
 ### 4. 设置是否开启美颜
 
@@ -383,25 +383,25 @@ mRtcEngine.leaveChannel()
 
 ### 9. 销毁资源
 
-1. 调用 Beauty API 的 `release` 销毁 Beauty API。
+调用 Beauty API 的 `release` 销毁 Beauty API。
 
-    ```kotlin
-    mByteDanceApi.release()
-    ```
+```kotlin
+mByteDanceApi.release()
+```
 
-2. 在 GL 线程中调用美颜 SDK 的 `unInitEffect` 销毁 `RenderManager`。
+在 GL 线程中调用美颜 SDK 的 `unInitEffect` 销毁 `RenderManager`。
 
-    ```kotlin
-    fun unInitEffect(){
-        renderManager.release()
-    }
-    ```
+```kotlin
+fun unInitEffect(){
+    renderManager.release()
+}
+```
 
-3. 调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
+调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
 
-    ```kotlin
-    RtcEngine.destroy()
-    ```
+```kotlin
+RtcEngine.destroy()
+```
 
 
 ### API 时序图
