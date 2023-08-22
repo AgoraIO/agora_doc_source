@@ -65,7 +65,7 @@
      }
    ```
 
-3. 将商汤美颜 SDK 集成到你的项目中。请联系商汤技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
+3. 将字节火山美颜 SDK 集成到你的项目中。请联系字节技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
 
     | 文件    |  项目路径   |
     |-------------------------------------------------------------------------|----------------------------------|
@@ -77,10 +77,10 @@
     | Android/aar/STMobileJNI-release.aar                                     | libs                             |
     | SenseME.lic                                                             | assets/beauty_sensetime/license  |
 
-4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime) 目录下的文件到项目中，具体文件如下：
+4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_bytedance/src/main/java/io/agora/beautyapi/bytedance) 目录下的文件到项目中，具体文件如下：
     - `utils` 文件夹
-    - `SenseTimeBeautyAPI.kt` 文件
-    - `SenseTimeBeautyAPIImpl.kt` 文件
+    - `ByteDanceBeautyAPI.kt` 文件
+    - `ByteDanceBeautyAPIImpl.kt` 文件
 
     为方便后续代码升级，请不要修改你添加的这些文件的名称。
 
