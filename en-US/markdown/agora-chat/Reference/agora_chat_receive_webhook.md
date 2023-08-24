@@ -36,7 +36,7 @@ When a user logs in to the Agora Chat app, the Agora Chat server sends a callbac
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
-| `reason` | String | The reason that triggers the callback. `login` indicates that a user logs in to the app. |
+| `reason` | String | The reason `login` that triggers the callback. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
 | `ip` | String | The IP address of the user who logs in to the app. |
@@ -70,7 +70,7 @@ When a user logs out of the Agora Chat app, the Agora Chat server sends a callba
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
-| `reason` | String | The reason that triggers the callback. `logout` indicates that a user logs out of the app. |
+| `reason` | String | The reason `logout` that triggers the callback. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
 | `ip` | String | The IP address of the user who logs out of the app. |
@@ -83,7 +83,7 @@ When a user logs out of the Agora Chat app, the Agora Chat server sends a callba
 
 ### Log out of the app passively
 
-When a user logs out of the Agora Chat app due to being kicked out by another device, the Agora Chat server sends a callback to your app server, notifying the user's offline state and the reason `replaced`. The sample code is as follows:
+When a user is forced by the developer to go offline on the device or due to being kicked out by another device as the maximum number of login devices is reached, the Agora Chat server sends a callback to your app server, notifying the user's offline state and the reason `replaced`. The sample code is as follows:
 
 ```json
 {
@@ -103,7 +103,7 @@ When a user logs out of the Agora Chat app due to being kicked out by another de
 | Field | Data Type | Description |
 | --- | --- | --- |
 | `callId` | String | The ID of the callback. The unique identifier assigned to each callback, in the format of `{appKey}_{file_uuid}`, where the value of `file_uuid` is randomly generated. |
-| `reason` | String | The reason that triggers the callback. `replaced` indicates that a user is forced by the developer to go offline on the device or due to being kicked out by another device as the maximum number of login devices is reached. |
+| `reason` | String | The reason `replaced` that triggers the callback. |
 | `security` | String | The signature in the callback request used to confirm whether this callback is sent from the Agora Chat server. The signature is the MD5 hash of the `{callId} + {secret} + {timestamp}` string, where the value of `secret` can be found on [Agora Console](https://console.agora.io/).|
 | `os` | String | The operating system of the device. Valid values: `ios`, `android`, `linux`, `win`, and `other.` |
 | `ip` | String | The IP address of the user. |
