@@ -631,6 +631,22 @@ K 歌的场景：
 - `Normal`：独唱、合唱场景。
 - `SingBattle`：抢唱场景。
 
+<a name="loadMusicType"></a>
+
+#### loadMusicType
+
+```objective-c
+@objc public enum loadMusicType: Int {
+    case mcc
+    case local
+}
+```
+
+音乐资源类型：
+
+- `mcc`：（默认）声网内容中心提供的版权音乐。
+- `local`：本地音乐。
+
 
 ## Class
 
@@ -649,27 +665,8 @@ K 歌的场景：
     var chorusChannelToken: String
     var type: KTVType = .normal
     var maxCacheSize: Int = 10
-    @objc public
-    init(appId: String,
-         rtmToken: String,
-         engine: AgoraRtcEngineKit,
-         channelName: String,
-         localUid: Int,
-         chorusChannelName: String,
-         chorusChannelToken: String,
-         type: KTVType,
-         maxCacheSize: Int
-    ) {
-        self.appId = appId
-        self.rtmToken = rtmToken
-        self.engine = engine
-        self.channelName = channelName
-        self.localUid = localUid
-        self.chorusChannelName = chorusChannelName
-        self.chorusChannelToken = chorusChannelToken
-        self.type = type
-        self.maxCacheSize = maxCacheSize
-    }
+    var musicType: loadMusicType = .mcc
+    var isDebugMode: Bool = false
 }
 ```
 
@@ -694,6 +691,13 @@ K 歌配置：
 - `type`：K 歌场景，详见 [KTVType](#KTVType)。
 
 - `maxCacheSize`：可缓存的音乐资源数量，最多不能超过 50。
+
+- `musicType`：音乐资源类型，详见 [loadMusicType](#loadMusicType)。
+
+- `isDebugMode`：是否开启调试模式：
+
+  - `true`：开启调试模式。
+  - `false`：（默认）关闭调试模式。
 
 ### KTVSongConfiguration
 

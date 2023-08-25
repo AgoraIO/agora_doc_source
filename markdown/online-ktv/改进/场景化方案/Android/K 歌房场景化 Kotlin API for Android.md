@@ -787,7 +787,7 @@ data class KTVApiConfig constructor(
     val chorusChannelToken: String,
     val maxCacheSize: Int = 10,
     val type: KTVType = KTVType.Normal,
-    val musicType: KTVSongType = KTVSongType.SONG_CODE
+    val musicType: KTVMusicType = KTVMusicType.SONG_CODE
 )
 ```
 
@@ -813,7 +813,7 @@ K 歌配置：
 
 - `type`：K 歌场景，详见 [KTVType](#KTVType)。
 
-- `musicType`：音乐资源类型，详见 [KTVSongType](#KTVSongType)。
+- `musicType`：音乐资源类型，详见 [KTVMusicType](#KTVMusicType)。
 
 ### KTVLoadMusicConfiguration
 
