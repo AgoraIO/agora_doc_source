@@ -405,4 +405,4 @@ RtcEngine.destroy()
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1692606491371)
+![](https://web-cdn.agora.io/docs-files/1692947832362)

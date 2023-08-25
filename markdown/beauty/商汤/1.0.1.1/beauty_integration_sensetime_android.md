@@ -136,7 +136,7 @@ private val mRtcEngine by lazy {
 
 ### 2. 初始化美颜 SDK
 
-创建来自美颜 SDK 的 STRenderKit 实例。//TODO
+创建来自美颜 SDK 的 `STRenderKit` 实例。
 
 ```kotlin
 private val mSTRenderKit by lazy {
@@ -341,6 +341,6 @@ RtcEngine.destroy()
 ```
 
 
-### API 时序图 //TODO
+### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1692606491371)
+![](https://web-cdn.agora.io/docs-files/1692947841205)
