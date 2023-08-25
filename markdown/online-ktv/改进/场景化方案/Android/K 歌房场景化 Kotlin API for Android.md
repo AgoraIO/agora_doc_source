@@ -7,6 +7,16 @@
 
 该类提供实现 K 歌场景的核心方法。
 
+### create
+
+```kotlin
+fun createKTVApi(): KTVApi = KTVApiImpl()
+```
+
+创建 KTV API 实例。
+
+请确保在调用本方法成功创建 KTV API 实例后，再调用 `initialize` 进行初始化。
+
 ### initialize
 
 ```kotlin
@@ -637,6 +647,22 @@ open fun onChorusChannelAudioVolumeIndication(
 
 ## Enum class
 
+### KTVMusicType
+
+<a name="KTVMusicType"></a>
+
+```kotlin
+enum class KTVMusicType(val value: Int) {
+    SONG_CODE(0),
+    SONG_URL(1)
+}
+```
+
+音乐资源类型：
+
+- `SONG_CODE`：（默认）声网内容中心提供的版权音乐。
+- `SONG_URL`：本地歌曲。
+
 ### KTVSingRole
 
 <a name="KTVSingRole"></a>
@@ -751,7 +777,7 @@ K 歌的场景：
 ### KTVApiConfig
 
 ```kotlin
-data class KTVApiConfig(
+data class KTVApiConfig constructor(
     val appId: String,
     val rtmToken: String,
     val engine: RtcEngine,
@@ -759,8 +785,9 @@ data class KTVApiConfig(
     val localUid: Int,
     val chorusChannelName: String,
     val chorusChannelToken: String,
-	  val maxCacheSize: Int = 10,
-    val type: KTVType = KTVType.Normal
+    val maxCacheSize: Int = 10,
+    val type: KTVType = KTVType.Normal,
+    val musicType: KTVSongType = KTVSongType.SONG_CODE
 )
 ```
 
@@ -785,6 +812,8 @@ K 歌配置：
 - `maxCacheSize`：可缓存的音乐资源数量，最多不能超过 50。
 
 - `type`：K 歌场景，详见 [KTVType](#KTVType)。
+
+- `musicType`：音乐资源类型，详见 [KTVSongType](#KTVSongType)。
 
 ### KTVLoadMusicConfiguration
 
