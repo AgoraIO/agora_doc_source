@@ -1,6 +1,8 @@
-# AUIKitKaraoke API 参考
+# AUIKitKaraoke Kotlin API (Android)
 
 本文介绍 AUIKitKaraoke 组件的 API。
+
+源码文件？
 
 ## KaraokeUIKit
 
@@ -23,7 +25,7 @@ fun setup(
 
 **参数**
 
-- `config`：`AUICommonConfig` 这个里面包含了哪些东西？input里面写的是用户信息和appid等。没找到这个commonconfig的类型定义
+- `config`：初始化设置，详见 [AUICommonConfig](#AUICommonConfig)。
 - `ktvApi`：[场景化 API](https://docportal.shengwang.cn/cn/online-ktv/ktv_api_kotlin?platform=Android) 实例。如果你的项目中还未集成场景化 API，请传入 `null`，`scenekit` 内部会自行创建场景化 API 实例。
 - `rtcEngineEx`：[RtcEngineEx](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_irtcengineex) 实例。如果的你的项目中还未集成声网 RTC SDK，请传入 `null`，`scenekit` 内部会自行创建 `RtcEngineEx` 实例。
 - `rtmClient`：[RtmClient](https://doc.shengwang.cn/doc/rtm2/java/landing-page) 实例。如果的你的项目中还未集成声网 RTM SDK，请传入 `null`，`scenekit` 内部会自行创建 `RtmClient` 实例。
@@ -44,7 +46,7 @@ fun createRoom(
 
 **参数**
 
-- `createRoomInfo`：需要创建的房间信息，详见 `AUICreateRoomInfo`。//TODO
+- `createRoomInfo`：房间信息，详见 [AUICreateRoomInfo](#AUICreateRoomInfo)。
 - `success`：回调函数，当房间创建成功时调用。接受一个 `AUIRoomInfo` 参数，表示成功创建的房间信息，无返回值。//TODO
 - `failure`：回调函数，当房间创建失败时调用。接受一个 `AUIException` 参数表示房间创建失败的异常，             无返回值。
 
@@ -110,17 +112,23 @@ fun release()
 
 释放 `scenekit` 资源。
 
-//TODO 和destroyRoom 方法之间是否有调用先后时许要求。
+//TODO 和destroyRoom 方法之间是否有调用先后时序要求。
 
 ## 数据模型
 
-### AUICommonConfig
+### <h3 className="anchor" id="AUICommonConfig"> AUICommonConfig</h3>
 
 ```kotlin
-
+public class AUICommonConfig {
+    public @NonNull Context context;
+    public @NonNull String appId = "";
+    public @NonNull String userId = "";
+    public @NonNull String userName = "";
+    public @NonNull String userAvatar = "";
+}
 ```
 
-房间相关设置。//TODO 这个shortdesc有点怪
+通用设置。
 
 **参数**
 
@@ -130,10 +138,15 @@ fun release()
 - `userName`：用户名。
 - `userAvatar`：用户头像。
 
-### AUIRoomInfo
+### <h3 className="anchor" id="AUIRoomInfo">AUIRoomInfo</h3>
 
 ```kotlin
-
+public class AUIRoomInfo extends AUICreateRoomInfo implements Serializable {
+    public @NonNull String roomId = ""; 
+    public @Nullable AUIUserThumbnailInfo roomOwner; 
+    public int onlineUsers = 0;
+    public long createTime = 0;
+}
 ```
 
 K 歌房间的相关信息。
@@ -145,13 +158,19 @@ K 歌房间的相关信息。
 - `onlineUsers`：房间内的人数。
 - `createTime`：房间创建的时间（单位？//TODO）
 
-### AUIUserThumbnailInfo
+### <h3 className="anchor" id="AUIUserThumbnailInfo">AUIUserThumbnailInfo</h3>
 
 ```kotlin
+public class AUIUserThumbnailInfo implements Serializable {
 
+    public @NonNull String userId = "";
+    public @NonNull String userName = "";
+    public @NonNull String userAvatar = "";
+
+}
 ```
 
-K 歌房主相关信息。
+K 歌中房主的相关信息。
 
 **参数**
 
@@ -159,10 +178,10 @@ K 歌房主相关信息。
 - `userName`：房主的用户名。
 - `userAvatar`：房主的头像。
 
-### AUIException
+### <h3 className="anchor" id="AUIException">AUIException</h3>
 
 ```kotlin
-
+public AUIException(int code, String message)
 ```
 
 错误码及信息。
@@ -172,18 +191,59 @@ K 歌房主相关信息。
 - `code`：错误码// TODO 有哪些？
 - `message`：错误信息。
 
-### AUIRoomConfig
+### <h3 className="anchor" id="AUIRoomConfig">AUIRoomConfig</h3>
 
 K 歌房间设置。
 
 ```kotlin
+public class AUIRoomConfig {
 
+    @NonNull public String channelName = "";     //正常rtm使用的频道
+    @NonNull public String rtmToken = "";     //rtm login用，只能007
+    @NonNull public String rtcToken = "";     //rtm join用
+    @NonNull public String rtcChannelName = "";  //rtc使用的频道
+    @NonNull public String rtcRtcToken = "";  //rtc join使用
+    @NonNull public String rtcRtmToken = "";  //rtc mcc使用，只能006
+    @NonNull public String rtcChorusChannelName = "";  //rtc 合唱使用的频道
+    @NonNull public String rtcChorusRtcToken = "";  //rtc 合唱join使用
+
+    public AUIRoomConfig(@NonNull String roomId) {
+        channelName = roomId;
+        rtcChannelName = roomId + "_rtc";
+        rtcChorusChannelName = roomId + "_rtc_ex";
+    }
+}
 ```
 
 **参数**
 
-- `channelName`：主频道名（是指主唱所在的频道吗？），一般为 `roomId`。
-- 
+- `channelName`：主频道名，一般为 `roomId`。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。
+
+- `rtmToken`：加入主频道时的 RTM Token。//TODO 这个 token 是用于什么鉴权？
+
+  <Admonition type="caution" title="注意">
+
+  请确保你使用的 RTM Token 是 AccessToken2。
+
+  </Admonition>
+
+- `rtcToken`：加入主频道时用于鉴权的 RTC Token。
+
+- `rtcChannelName`：音视频频道名，一般为{roomId}_rtc。//TODO 音视频频道和主频道之间有什么区别？
+
+- `rtcRtcToken`：
+
+- `rtcRtmToken`：用于音乐内容中心鉴权的 RTM Token。
+
+  <Admonition type="caution" title="注意">
+
+  请确保你使用的 RTM Token 是 AccessToken。//rtc mcc 使用是啥意思？
+
+  </Admonition>
+
+- `rtcChorusChannelName`：合唱频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。//TODO 独唱场景下，这个参数为空？
+
+- `rtcChorusRtcToken`：根据合唱频道名和用户 ID 生成的 RTC Token，用于加入合唱频道时进行鉴权。//TODO 在独唱场景下，该参数可以为空？
 
 
 
