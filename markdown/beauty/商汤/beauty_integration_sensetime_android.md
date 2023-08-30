@@ -237,7 +237,7 @@ private val mSenseTimeApi by lazy {
     - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
     - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
 - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
-- `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。//TODO
+- `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
 - `eventCallback`：你希望监听的回调事件。
 
 ```kotlin
@@ -255,7 +255,7 @@ mSenseTimeApi.initialize(
         // CaptureMode.Custom 意味着使用开发者自定义采集视频
         captureMode = if (isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
         // 配置视频镜像模式
-        cameraConfig = this.cameraConfig, //TODO 代码待修改
+        cameraConfig = CameraConfig,
         // 是否开启美颜统计数据
         // 开启后，会有周期性的 onBeautyStats 回调事件
         statsEnable = true,
