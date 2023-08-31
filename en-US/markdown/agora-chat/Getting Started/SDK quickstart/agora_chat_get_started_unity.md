@@ -283,7 +283,7 @@ SDKClient.Instance.Logout(true, callback: new CallBack(
 
 In Unity Editor, select the **Project** tab, select **Assets** > **Scenes**, double-click the `SampleScene.cs` file, and click the **Play** icon at the top of the Unity Editor to run the project.
 
-<div class="alert info">If you have not installed iOS Build Support, remove the <code>iOSBuildSetting.cs</code> file (Path: <code>Assets/ChatSDK/Scripts/Editor</code>) from the project folder before running the project.</div>
+<div class="alert info">If you have not installed iOS Build Support, remove the <code>iOSBuildSetting.cs</code> file (Path: <code>Assets/AgoraChat/Scripts/Editor</code>) from the project folder before running the project.</div>
 
 If the sample project runs properly, the following user interface appears:
 
