@@ -2,13 +2,27 @@
 
 4.初始化
 
+
+
 ```swift
+private lazy var rtcEngine: AgoraRtcEngineKit = {
+    let config = AgoraRtcEngineConfig()
+    config.appId = KeyCenter.AppId
+    config.channelProfile = .liveBroadcasting
+    let rtc = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+    rtc.setClientRole(.broadcaster)
+    rtc.enableAudio()
+    rtc.enableVideo()
+    rtc.setDefaultAudioRouteToSpeakerphone(true)
+    return rtc
+}()
+
 private lazy var beautyAPI = BeautyAPI()
 private lazy var senseRender = SenseBeautyRender()
 
 let config = BeautyConfig()
 config.rtcEngine = rtcEngine
-config.captureMode = .agora
+config.captureMode = capture == "Custom" ? .custom : .agora
 config.beautyRender = senseRender
 config.statsEnable = false
 config.statsDuration = 1
@@ -33,7 +47,6 @@ beautyAPI.enable(true)
 
 ```swift
 beautyAPI.setupLocalVideo(localView, renderMode: .hidden)
-rtcEngine.startPreview()
 ```
 
 7.设置推荐美颜参数

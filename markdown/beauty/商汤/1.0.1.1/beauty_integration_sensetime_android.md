@@ -77,7 +77,7 @@
     | SenseME.lic                                                         | app/src/main/assets/beauty_sensetime/license/SenseME.lic |
 
 
-4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime) 目录下的文件到项目中，具体文件如下：
+4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1/Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime) 目录下的文件到项目中，具体文件如下：
     - `utils` 文件夹
     - `SenseTimeBeautyAPI.kt` 文件
     - `SenseTimeBeautyAPIImpl.kt` 文件
