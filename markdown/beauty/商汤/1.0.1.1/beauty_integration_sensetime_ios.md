@@ -88,232 +88,226 @@
 
 如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，商汤美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
 
-### 1. 初始化 RtcEngine
+### 1. 初始化 AgoraRtcEngineKit
 
-调用声网 RTC SDK 中的 `create` 创建并初始化 `RtcEngine` 对象。
+调用声网 RTC SDK 中的 `sharedEngineWithConfig` 创建并初始化 `AgoraRtcEngineKit` 对象。同时调用 `enableVideo` 开启声网 SDK 的视频模块。
 
-```kotlin
+```swift
 // 初始化声网 RtcEngine
-private val mRtcEngine by lazy {
-    RtcEngine.create(RtcEngineConfig().apply {
-        mContext = applicationContext
-        // 传入你从控制台获取的声网项目的 APP ID
-        mAppId = BuildConfig.AGORA_APP_ID
-        mEventHandler = object : IRtcEngineEventHandler() {}
-    }).apply {
-        // 开启声网 clear_vision 视频插件
-        enableExtension("agora_video_filters_clear_vision", "clear_vision", true)
-    }
-}
+private lazy var rtcEngine: AgoraRtcEngineKit = {
+    let config = AgoraRtcEngineConfig()
+    // 传入你从控制台获取的声网项目的 APP ID
+    config.appId = KeyCenter.AppId
+    config.channelProfile = .liveBroadcasting
+    let rtc = AgoraRtcEngineKit.sharedEngine(with: config, delegate: self)
+    // 设置用户角色为主播，主播可以发送音视频流也可以接收音视频流
+    rtc.setClientRole(.broadcaster)
+    // 开启 SDK 音频模块
+    rtc.enableAudio()
+    // 开启 SDK 视频模块
+    rtc.enableVideo()
+    // 设置默认音频路由为扬声器
+    rtc.setDefaultAudioRouteToSpeakerphone(true)
+    return rtc
+}()
 ```
 
-### 2. 初始化美颜 SDK
+### 2. 初始化美颜和 Beauty API
 
-创建来自美颜 SDK 的 `STRenderKit` 实例。
+创建 SenseBeautyRender 和 Beauty API 对象。Beauty API 对象是基于 `SenseBeautyRender` 对象封装。
 
-```kotlin
-private val mSTRenderKit by lazy {
-    STRenderKit(
-        this,
-        "beauty_sensetime"
-    )
-}
+
+```swift
+private lazy var senseRender = SenseBeautyRender()
+private lazy var beautyAPI = BeautyAPI()
 ```
 
-### 3. 初始化 Beauty API
-
-调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `STRenderKit` 对象封装。
-
-```kotlin
-// 创建 Beauty API 对象
-private val mSenseTimeApi by lazy {
-    createSenseTimeBeautyAPI()
-}
-```
 
 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
 
-- `mRtcEngine`：传入之前初始化的 `RtcEngine` 对象。
-- `mSTRenderKit`：传入之前初始化的 `STRenderKit` 对象。
+- `AgoraRtcEngineKit`：传入之前初始化的 `AgoraRtcEngineKit` 对象。
+- `beautyRender`：传入之前初始化的 `SenseBeautyRender` 对象。
 - `captureMode`：视频的采集模式：
     - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
-    - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
-- `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
-- `eventCallback`：你希望监听的回调事件。
+    - 如果自定义采集视频，请传入 `CaptureMode.Custom`。
+- `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性回调事件。
+- `statsDuration`：美颜统计数据回调的周期。单位为秒。
+- `eventCallback`：监听的美颜统计数据回调事件。
 
-```kotlin
+
+```swift
+let config = BeautyConfig()
+// AgoraRtcEngineKit
+config.rtcEngine = rtcEngine
+// 设置视频采集模式
+// .agora 意味着使用声网模块采集视频
+// .custom 意味着使用开发者自定义采集视频
+config.captureMode = capture == "Custom" ? .custom : .agora
+// SenseBeautyRender
+config.beautyRender = senseRender
+// 是否开启美颜统计数据
+// 开启后，会有周期性回调事件
+config.statsEnable = false
+// 设置美颜统计数据的统计区间为 1 秒（默认）
+config.statsDuration = 1
+// Beauty API 的回调事件
+config.eventCallback = { stats in
+    print("min == \(stats.minCostMs)")
+    print("max == \(stats.maxCostMs)")
+    print("averageCostMs == \(stats.averageCostMs)")
+}
+
 // 初始化 Beauty API 对象
-mSenseTimeApi.initialize(
-    Config(
-        // RtcEngine
-        mRtcEngine,
-        // STRenderKit
-        mSTRenderKit,
-        // 设置视频采集模式
-        // CaptureMode.Agora 意味着使用声网模块采集视频
-        // CaptureMode.Custom 意味着使用开发者自定义采集视频
-        captureMode = if (isCustomCaptureMode) CaptureMode.Custom else CaptureMode.Agora,
-        // 是否开启美颜统计数据
-        // 开启后，会有周期性的 onBeautyStats 回调事件
-        statsEnable = true,
-        // 用于监听 Beauty API 的回调事件
-        eventCallback = object: IEventCallback{
-            override fun onBeautyStats(stats: BeautyStats) {
-                Log.d(TAG, "BeautyStats stats = $stats")
-            }
-        }
-    )
-)
+let result = beautyAPI.initialize(config)
+if result != 0 {
+    print("initialize error == \(result)")
+}
 ```
 
-### 4. 设置是否开启美颜
+
+### 3. 设置是否开启美颜
 
 调用 Beauty API 的 `enable` 方法开启美颜。
 
 ```kotlin
-mSenseTimeApi.enable(true)
+beautyAPI.enable(true)
 ```
 
-### 5. 开启视频采集
+### 4. 开启视频采集
 
 开发者可以使用声网模块采集视频，也可以自定义采集视频。本节介绍在这两种场景下如何开启视频采集。
 
 #### 使用声网模块采集视频
 
-使用声网模块采集视频视频时，你需要先调用 `RtcEngine` 类的 `enableVideo` 开启声网 SDK 的视频模块，然后调用 Beauty API 的 `setupLocalVideo` 开启本地视图。
+使用声网模块采集视频视频时，调用 Beauty API 的 `setupLocalVideo` 开启本地视图。
 
-```kotlin
-// 开启视频模块
-mRtcEngine.enableVideo()
+```swift
 // 设置本地视图
-mSenseTimeApi.setupLocalVideo(mBinding.localVideoView, Constants.RENDER_MODE_FIT)
+beautyAPI.setupLocalVideo(localView, renderMode: .hidden)
 ```
+
 
 #### 自定义视频采集
 
-自定义视频采集时，你需要先调用 `RtcEngine` 类的 `enableVideo` 开启声网 SDK 的视频模块，然后通过 `RtcEngine` 类的 `registerVideoFrameObserver` 注册原始视频数据观测器并在其中实现 `onCaptureVideoFrame` 函数。
+自定义视频采集时，你需要通过 `AgoraRtcEngineKit` 类的 `setVideoFrameDelegate` 注册原始视频数据观测器并在其中实现 `onCaptureVideoFrame` 函数。
 
-通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。当处理结果不为 `SKIPPED`（忽略）时，用自采集的视频数据替代 `onCaptureVideoFrame` 函数中的 `VideoFrame`，并传入声网 SDK。
+通过 Beauty API 的 `onFrame` 函数，你可以将外部自采集的视频数据传入并进行处理。
 
-```kotlin
-// 开启视频模块
-mRtcEngine.enableVideo()
-// 注册原始视频数据观测器
-// 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
-mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
-    private var shouldMirror = true
 
-    override fun onCaptureVideoFrame(
-        sourceType: Int,
-        videoFrame: VideoFrame?
-    ) : Boolean {
-        when(mSenseTimeApi.onFrame(videoFrame!!)){
-            // 当处理结果为 SKIPPED（忽略）时，代表你丢帧，即外部自采集的视频数据不传入声网 SDK
-            // 当处理结果为其他时，外部自采集的视频数据传入声网 SDK
-            ErrorCode.ERROR_OK.value -> {
-                shouldMirror = false
-                return true
-            }
-            ErrorCode.ERROR_FRAME_SKIPPED.value -> {
-                shouldMirror = false
-                return false
-            }
-            else -> {
-                val mirror = videoFrame.sourceType == VideoFrame.SourceType.kFrontCamera
-                if(shouldMirror != mirror){
-                    shouldMirror = mirror
-                    return false
-                }
-                return true
-            }
+```swift
+
+if capture == "Custom" {
+    // 注册原始视频数据观测器
+    // 自定义视频采集时，即 CaptureMode 为 Custom 时，你需要注册原始视频观测器
+    rtcEngine.setVideoFrameDelegate(self)
+}
+
+extension BeautyViewController: AgoraVideoFrameDelegate {
+    func onCapture(_ videoFrame: AgoraOutputVideoFrame, sourceType: AgoraVideoSourceType) -> Bool {
+        // 将外部自采集的视频数据传入声网 SDK
+        guard let pixelBuffer = videoFrame.pixelBuffer else { return true }
+        beautyAPI.onFrame(pixelBuffer) { pixelBuffer in
+            videoFrame.pixelBuffer = pixelBuffer
         }
+
+        return true
     }
 
     // 设置是否对原始视频数据作镜像处理
-    override fun getMirrorApplied() = shouldMirror
+    func getMirrorApplied() -> Bool {
+        beautyAPI.isFrontCamera
+    }
 
     // 设置观测点为本地采集时的视频数据
-    override fun getObservedFramePosition() = IVideoFrameObserver.POSITION_POST_CAPTURER
+    func getObservedFramePosition() -> AgoraVideoFramePosition {
+        .postCapture
+    }
 
-    // override 视频观测器中的其他回调函数
+    // 实现视频观测器中的其他回调函数
     ...
-})
+}
 ```
 
 
-### 6. 加入频道
 
-调用 `RtcEngine` 类的 `joinChannel` 加入频道，同时传入如下参数：
+### 5. 加入频道
+
+调用 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入频道，同时传入如下参数：
 
 - `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 token 传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
 - `channelId`：频道名。
-- `options`：频道媒体设置选项。
+- `mediaOptions`：频道媒体设置选项。
 
 
-```kotlin
-mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
-    // 设置频道场景为直播
-    channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
-    // 设置用户角色为主播，主播可以在频道里发布和订阅音视频流
-    clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-    // 设置是否发布摄像头采集的视频流（适用于使用声网模块采集视频的情况）
-    publishCameraTrack = true
-    // 设置是否发布自定义采集的视频流（适用于自定义采集视频的情况）
-    publishCustomVideoTrack = false
-    // 设置是否发布麦克风采集的音频流
-    publishMicrophoneTrack = false
-    // 设置进入频道时是否自动订阅频道内其他用户的音频流
-    autoSubscribeAudio = false
-    // 设置进入频道时是否自动订阅频道内其他用户的视频流
-    autoSubscribeVideo = true
-})
+
+```swift
+let mediaOption = AgoraRtcChannelMediaOptions()
+mediaOption.clientRoleType = isBroadcast ? .broadcaster : .audience
+// 设置进入频道时是否自动订阅频道内其他用户的音频流
+mediaOption.autoSubscribeAudio = true
+// 设置进入频道时是否自动订阅频道内其他用户的视频流
+mediaOption.autoSubscribeVideo = true
+// 设置是否发布摄像头采集的视频流（适用于使用声网模块采集视频的情况）
+// 用户角色为主播时，设置发布
+// 用户角色为观众时，设置不发布
+mediaOption.publishCameraTrack = mediaOption.clientRoleType == .broadcaster
+// 设置是否发布自定义采集的视频流（适用于自定义采集视频的情况）
+mediaOption.publishCustomVideoTrack = false
+// 设置是否发布麦克风采集的音频流
+// 用户角色为主播时，设置发布
+// 用户角色为观众时，设置不发布
+mediaOption.publishMicrophoneTrack = mediaOption.clientRoleType == .broadcaster
+
+// 加入频道
+let result = rtcEngine.joinChannel(byToken: nil, channelId: channelName ?? "", uid: 0, mediaOptions: mediaOption)
+if result != 0 {
+    print("join failed")
+}
 ```
 
-### 7. 设置美颜效果
+
+### 6. 设置美颜效果
 
 调用 Beauty API 中 `setBeautyPreset` 方法设置使用的美颜参数的类型：
 
-- `DEFAULT`：默认且推荐的美颜参数。
-- `CUSTOM`：开发者自定义的美颜参数。
+- `BeautyPresetModeDefault`：默认且推荐的美颜参数。
+- `BeautyPresetModeCustom`：开发者自定义的美颜参数。
 
-不同的美颜参数会带来不同的美颜效果。如果你没有特殊偏好，推荐你使用 `DEFAULT`。
+不同的美颜参数会带来不同的美颜效果。如果你没有特殊偏好，推荐你使用 `BeautyPresetModeDefault`。
 
 ```kotlin
-mSenseTimeApi.setBeautyPreset(if (enable) BeautyPreset.DEFAULT else BeautyPreset.CUSTOM)
+beautyAPI.setBeautyPreset(.default)
 ```
 
 <div class="alert note">通过 Beauty API 的 <code>setBeautyPreset</code> 方法，你可以实现基础美颜功能。但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。</div>
 
-### 8. 离开频道
+### 7. 离开频道
 
-调用 `RtcEngine` 类的 `leaveChannel` 离开频道。
+调用 `AgoraRtcEngineKit` 类的 `leaveChannel` 离开频道。
 
 ```kotlin
 // 离开 RTC 频道
-mRtcEngine.leaveChannel()
+rtcEngine.leaveChannel()
 ```
 
-### 9. 销毁资源
 
-调用 Beauty API 的 `release` 销毁 Beauty API。
+### 8. 销毁资源
+
+调用 Beauty API 的 `destory` 销毁 Beauty API。
 
 ```kotlin
-mSenseTimeApi.release()
+beautyAPI.destory()
 ```
 
-调用美颜 SDK 的 `release` 销毁 `STRenderKit`。
+注意：`destory` 方法的命名存在笔误，会在后续版本修正。
+
+调用 `AgoraRtcEngineKit` 的 `destroy` 销毁 `AgoraRtcEngineKit`。
 
 ```kotlin
-mSTRenderKit.release()
-```
-
-调用 `RtcEngine` 的 `destroy` 销毁 `RtcEngine`。
-
-```kotlin
-RtcEngine.destroy()
+AgoraRtcEngineKit.destroy()
 ```
 
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1692947841205)
+![](https://web-cdn.agora.io/docs-files/1693553315915)

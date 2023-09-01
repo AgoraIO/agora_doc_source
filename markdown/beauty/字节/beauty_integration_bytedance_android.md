@@ -215,7 +215,7 @@ private val mByteDanceApi by lazy {
 - `renderManager`：传入之前初始化的 `RenderManager` 对象。
 - `captureMode`：视频的采集模式：
     - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
-    - 如果自定义采集视频，请传入 `CaptureMode.CUSTOM`。
+    - 如果自定义采集视频，请传入 `CaptureMode.Custom`。
 - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
 - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
 - `eventCallback`：你希望监听的回调事件。
