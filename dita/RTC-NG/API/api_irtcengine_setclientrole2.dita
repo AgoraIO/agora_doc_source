@@ -22,7 +22,7 @@ int SetClientRole(ECLIENT_ROLE_TYPE clientroletype, const FClientRoleOptions&amp
     role: ClientRoleType,
     options?: ClientRoleOptions
   ): number;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role, ref ClientRoleOptions options);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract int SetClientRole(CLIENT_ROLE_TYPE role, ClientRoleOptions options);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract setClientRole(
     role: ClientRoleType,
     options?: ClientRoleOptions
@@ -36,7 +36,7 @@ int SetClientRole(ECLIENT_ROLE_TYPE clientroletype, const FClientRoleOptions&amp
             <p>直播场景下，SDK 会默认设置用户角色为观众，你可以调用该方法设置用户角色为主播。</p>
             <p>该方法在加入频道前后均可调用。</p>
             <p id="preview" props="native unreal bp electron flutter">如果你在加入频道前调用该方法设置用户角色为主播、并且通过 <xref keyref="setupLocalVideo" /> 方法设置了本地视频属性，则用户加入频道时会自动开启本地视频预览。</p>
-            <p>如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动进行如下操作：            
+            <p>如果你在加入频道后调用该方法切换用户角色，调用成功后，SDK 会自动进行如下操作：
             <ul>
             <li>调用 <xref keyref="muteLocalAudioStream" /> 和 <xref keyref="muteLocalVideoStream" /> 修改发布状态。</li>
             <li>本地触发 <xref keyref="onClientRoleChanged" /> 回调。</li>
