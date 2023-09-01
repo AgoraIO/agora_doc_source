@@ -138,6 +138,28 @@ public class AUICommonConfig {
 - `userName`：用户名。
 - `userAvatar`：用户头像。
 
+### <h3 className="anchor" id="AUICreateRoomInfo">AUICreateRoomInfo</h3>
+
+```kotlin
+public class AUICreateRoomInfo implements Serializable {
+    public @NonNull String roomName = "";       //房间名称
+    public @NonNull String thumbnail = "";      //房间列表上的缩略图
+    public int micSeatCount = 8;                   //麦位个数
+    public @Nullable String password;           //房间密码
+    public String micSeatStyle = "";            //麦位样式
+}
+```
+
+需要创建的 K 歌房间的相关信息。
+
+**参数**
+
+- `roomName`：房间名。
+- `thumbnail`：房间列表上的缩略图？是指用户头像图片的url吗？
+- `micSeatCount`：房间中的麦位数量。//TODO 是否有取值范围？
+- `password`：房间密码。
+- `micSeatStyle`：麦位样式//TODO 什么样式？
+
 ### <h3 className="anchor" id="AUIRoomInfo">AUIRoomInfo</h3>
 
 ```kotlin
@@ -149,7 +171,7 @@ public class AUIRoomInfo extends AUICreateRoomInfo implements Serializable {
 }
 ```
 
-K 歌房间的相关信息。
+已创建的 K 歌房间的相关信息。
 
 **参数**
 
