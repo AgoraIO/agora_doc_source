@@ -214,7 +214,7 @@ extension BeautyViewController: AgoraVideoFrameDelegate {
 
     // 设置是否对原始视频数据作镜像处理
     func getMirrorApplied() -> Bool {
-        beautyAPI.isFrontCamera
+        beautyAPI.getMirrorApplied()
     }
 
     // 设置观测点为本地采集时的视频数据
@@ -292,18 +292,18 @@ rtcEngine.leaveChannel()
 
 ### 8. 销毁资源
 
-调用 Beauty API 的 `destory` 销毁 Beauty API。
+调用 Beauty API 的 `destroy` 销毁 Beauty API。
 
 ```kotlin
-beautyAPI.destory()
+beautyAPI.destroy()
 ```
 
-注意：`destory` 方法的命名存在笔误，会在后续版本修正。
+注意：Beauty API 1.0.2 和之后版本已将 `destory` 方法名修正为 `destroy`。
 
 调用 `AgoraRtcEngineKit` 的 `destroy` 销毁 `AgoraRtcEngineKit`。
 
 ```kotlin
-AgoraRtcEngineKit.destroy()
+AgoraRtcEngineKit.destroy() //TODO
 ```
 
 
