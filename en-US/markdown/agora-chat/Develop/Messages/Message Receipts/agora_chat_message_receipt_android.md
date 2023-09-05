@@ -122,7 +122,7 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
     ```java
     // The message receiver calls ackMessageRead to send the conversation read receipt.
     try {
-        ChatClient.getInstance().chatManager().ackMessageRead(conversationId);
+        ChatClient.getInstance().chatManager().ackConversationRead(conversationId);
     }catch (ChatException e) {
         e.printStackTrace();
     }
@@ -189,11 +189,11 @@ Follow the steps to implement chat message read receipts.
 
     ```java
     // Set setIsNeedGroupAck as true when sending the group message
-    ChatMessage message = ChatMessage.createTxtSendMessage(content, to);
+    ChatMessage message = ChatMessage.createTextSendMessage(content, to);
     message.setIsNeedGroupAck(true);
     ```
 
-2. After the group member reads the chat group message, call `sendAckMessage` from the group member's client to send a message read receipt:
+2. After the group member reads the chat group message, call `ackGroupMessageRead` from the group member's client to send a message read receipt:
 
     ```java
     // Send the group message read receipt.
