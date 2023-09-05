@@ -1,23 +1,19 @@
 在秀场直播中，观众希望观看高清的直播视频。实现高清视频需要考虑用户设备和网络环境等因素。本文介绍声网自适应高清策略在秀场直播解决方案中的最佳实践。
 
 
-秀场直播解决方案支持[多种场景](./showroom_overview?platform=All%20Platforms)，不同场景下你需要为不同角色进行高清设置：
+## 单人直播场景
 
-- 单人直播：为主播、观众设置。
-- 观众与房主连麦：为主播、上麦观众、普通观众设置。
-- 房主跨直播间 PK 连麦：为多个房间的主播、观众设置。
-- 伪直播：为视频源、观众设置。
-
-
-## 单人直播
+单人直播场景下，你需要为主播和观众进行设置，以获得高清视频体验。
 
 ### 主播设置
 
-- 调用 `enableDualStreamMode` 在开启双流模式。
+- 调用 `queryDeviceScore` 查询主播的用户设备等级：高端、中端、低端。在后续步骤中，你需要为不同等级的设备进行不同的视频配置。
 
-- 调用 `setCameraCapturerConfiguration` 并将 `config` 参数中的 `followEncodeDimensionRatio` 字段设为 `true`，设置本地采集的视频宽高比跟随编码的视频宽高比。
+- 调用 [`setCameraAutoFocusFaceModeEnabled`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_device_management.html#api_irtcengine_setcameraautofocusfacemodeenabled) 开启摄像头自动对焦人脸的功能。
 
-- 调用 `queryDeviceScore` 查询主播的用户设备等级，根据不同等级为主播设置不同的编码视频属性。编码视频属性包含编码视频分辨率、视频帧率、码率，可以通过 `setVideoEncoderConfiguration` 方法中 `config` 参数中的 `dimensions`、`frameRate`、`bitrate` 字段设置。
+- 调用 [`setCameraCapturerConfiguration`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_device_management.html#api_irtcengine_setcameracapturerconfiguration) 并将 `config` 参数中的 `followEncodeDimensionRatio` 字段设为 `true`，设置本地采集的视频宽高比跟随编码的视频宽高比。
+
+- 编码视频属性包含编码视频分辨率、视频帧率、码率。你可以通过 [`setVideoEncoderConfiguration`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_video_process.html#api_irtcengine_setvideoencoderconfiguration) 方法中 `config` 参数中的 `dimensions`、`frameRate`、`bitrate` 字段设置主播端的编码视频属性。
 
     | 设备等级 | 视频分辨率  | 视频帧率 (fps)   | 视频码率  |
     | ---- | ----- | ------ | ------------------- |
@@ -25,14 +21,23 @@
     | 中端   | 720P  | 24 | `STANDARD_BITRATE(0)` |
     | 低端   | 720P  | 15 | `STANDARD_BITRATE(0)` |
 
+- 调用 [`enableDualStreamMode`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_enabledualstreammode3) 在主播端开启双流模式。视频大流更加高清，视频小流更加流畅。你可以在 `streamConfig` 参数中将主播发送的视频小流设置为如下值：
+
+    | 设备等级 | 视频分辨率  | 视频帧率 (fps)   | 视频码率 (Kbps)  |
+    | ---- |----- | ------ | -------|
+    | 高端  |540P | 15 | 1100 |
+    | 中端  |360P  | 15 | 680 |
+    | 低端  |360P  | 15 | 680 |
 
 
 ### 观众设置
 
-主播开启双流模式后，观众端可以设置接受视频大流或视频小流。视频大流更加高清，视频小流更加流畅，你可以根据观众的设备性能和网络环境进行选择和切换。
+主播开启双流模式后，观众端可以通过 [`setRemoteVideoStreamType`](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/API%20Reference/java_ng/API/toc_stream_management.html#api_irtcengine_setremotevideostreamtype) 方法设置接收视频大流或视频小流。视频大流更加高清，视频小流更加流畅，你可以根据观众的设备性能和网络环境进行选择和切换。
 
 
-## 观众连麦
+## 观众连麦场景
+
+观众与主播连麦的场景下，你需要为主播、上麦观众、普通观众进行设置，以获得高清视频体验。
 
 ### 主播设置
 
@@ -40,13 +45,50 @@
 
 ### 上麦观众设置
 
+调用 `setVideoEncoderConfiguration` 并通过 `config` 参数中如下字段设置编码视频属性：
+
+- `dimensions`：设置分辨率为 180 x 360。
+- `frameRate`：设置帧率为 15 fps。
+- `bitrate`：设置码率为 `STANDARD_BITRATE(0)`。
 
 
 ### 普通观众设置
 
-## PK 连麦
+普通观众会接收到主播和上麦观众的视频流。当某个主播（主播或上麦观众）的视频画面在 App 观众端的 UI 界面上占据更大的区域时，可以为这个主播（俗称主屏主播）开启超分功能。详见[注意事项](#注意事项)。
 
-## 伪直播
+## PK 连麦场景
+
+主播跨房间 PK 连麦的场景下，你需要为多个房间的主播和观众进行设置，以获得高清视频体验。
+
+### 主播设置
+
+- 调用 `queryDeviceScore` 查询主播的用户设备等级：高端、中端、低端。在后续步骤中，你需要为不同等级的设备进行不同的视频配置。
+
+- 编码视频属性包含编码视频分辨率、视频帧率、码率。你可以通过 `setVideoEncoderConfiguration` 方法中 `config` 参数中的 `dimensions`、`frameRate`、`bitrate` 字段设置主播端的编码视频属性。
+
+    | 设备等级 | 视频分辨率  | 视频帧率 (fps)   | 视频码率  |
+    | ---- | ----- | ------ | ------------------- |
+    | 高端   | 720P | 15 | `STANDARD_BITRATE(0)` |
+    | 中端   | 540P  | 15 | `STANDARD_BITRATE(0)` |
+    | 低端   | 540P  | 15 | `STANDARD_BITRATE(0)` |
+
+- 调用 `enableDualStreamMode` 在主播端开启双流模式。视频大流更加高清，视频小流更加流畅。你可以在 `streamConfig` 参数中将主播发送的视频小流设置为如下值：
+
+    | 设备等级 | 视频分辨率  | 视频帧率 (fps)   | 视频码率 (Kbps)  |
+    | ---- |----- | ------ | -------|
+    | 高端  |360P | 15 | 680 |
+    | 中端  |360P  | 15 | 680 |
+    | 低端  |360P  | 15 | 680 |
+
+### 观众设置
+
+主播开启双流模式后，观众端可以通过 `setRemoteVideoStreamType` 方法设置接收视频大流或视频小流。视频大流更加高清，视频小流更加流畅，你可以根据观众的设备性能和网络环境进行选择和切换。
+
+## 伪直播场景
+
+伪直播场景下，你需要为视频源和观众进行设置，以获得高清视频体验。
+
+//TODO 本期不写
 
 ## 注意事项
 
