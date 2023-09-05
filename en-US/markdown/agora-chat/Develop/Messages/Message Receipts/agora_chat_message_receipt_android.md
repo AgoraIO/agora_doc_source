@@ -120,7 +120,7 @@ In one-to-one chats, the SDK supports sending both the conversation read receipt
     1. Send a conversation read receipt when the recipient enters the conversation.
 
     ```java
-    // The message receiver calls ackMessageRead to send the conversation read receipt.
+    // The message receiver calls ackConversationRead to send the conversation read receipt.
     try {
         ChatClient.getInstance().chatManager().ackConversationRead(conversationId);
     }catch (ChatException e) {
