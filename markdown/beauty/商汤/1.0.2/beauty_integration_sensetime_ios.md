@@ -2,7 +2,7 @@
 
 ## 示例项目
 
-声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。//TODO link
+声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。
 
 ## 准备开发环境
 
@@ -215,7 +215,7 @@ extension BeautyViewController: AgoraVideoFrameDelegate {
 
     // 设置是否对原始视频数据作镜像处理
     func getMirrorApplied() -> Bool {
-        beautyAPI.isFrontCamera
+        beautyAPI.getMirrorApplied()
     }
 
     // 设置观测点为本地采集时的视频数据
@@ -293,13 +293,13 @@ rtcEngine.leaveChannel()
 
 ### 8. 销毁资源
 
-调用 Beauty API 的 `destory` 销毁 Beauty API。
+调用 Beauty API 的 `destroy` 销毁 Beauty API。
 
 ```kotlin
-beautyAPI.destory()
+beautyAPI.destroy()
 ```
 
-<div class="alert note">Beauty API 1.0.1.1 版中 <code>destory</code>方法的命名存在笔误，会在 1.0.2 版本修正。</div>
+<div class="alert note">Beauty API 自 1.0.2 版起，已将存在笔误的 `destory` 方法名修正为 `destroy`。</div>
 
 调用 `AgoraRtcEngineKit` 的 `destroy` 销毁 `AgoraRtcEngineKit`。
 
@@ -310,4 +310,4 @@ AgoraRtcEngineKit.destroy()
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1693553315915)
+![](https://web-cdn.agora.io/docs-files/1693990504343)

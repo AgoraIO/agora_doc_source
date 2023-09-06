@@ -1,4 +1,4 @@
-本文介绍如何通过声网场景化 API 集成商汤美颜到实时音视频中。
+本文介绍如何通过声网场景化 API 集成商汤美颜到实时音视频中。//TODO
 
 ## 示例项目
 
@@ -70,6 +70,7 @@
 
     ```shell
     platform :ios, '9.0'
+    # 替换成你的 target 名称
     target 'Your App' do
     # x.y.z 请填写具体的 SDK 版本号，如 4.0.1 或 4.0.0.4
     # 可通过互动直播发版说明获取最新版本号
@@ -298,15 +299,15 @@ rtcEngine.leaveChannel()
 beautyAPI.destroy()
 ```
 
-注意：Beauty API 1.0.2 和之后版本已将 `destory` 方法名修正为 `destroy`。
+<div class="alert note">Beauty API 自 1.0.2 版起，已将存在笔误的 `destory` 方法名修正为 `destroy`。</div>
 
 调用 `AgoraRtcEngineKit` 的 `destroy` 销毁 `AgoraRtcEngineKit`。
 
 ```kotlin
-AgoraRtcEngineKit.destroy() //TODO
+AgoraRtcEngineKit.destroy()
 ```
 
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1693553315915)
+![](https://web-cdn.agora.io/docs-files/1693990504343)

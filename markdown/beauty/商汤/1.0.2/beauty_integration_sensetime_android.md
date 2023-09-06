@@ -405,4 +405,4 @@ RtcEngine.destroy()
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1692947832362)
+![](https://web-cdn.agora.io/docs-files/1692947832362) //TODO 根据 1.0.1.1 画一个 wsd
