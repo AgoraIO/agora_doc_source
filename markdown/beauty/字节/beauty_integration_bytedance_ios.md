@@ -1,4 +1,4 @@
-本文介绍如何通过声网场景化 API 集成商汤美颜到实时音视频中。//TODO
+本文介绍如何通过声网场景化 API 集成字节火山美颜到实时音视频中。//TODO
 
 ## 示例项目
 
@@ -14,7 +14,7 @@
 - iOS 设备，版本 13.0 及以上。
 - 有效的苹果开发者账号。
 - 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)
-- 已联系商汤技术获取最新的美颜 SDK、美颜资源、美颜证书
+- 已联系字节火山技术获取最新的美颜 SDK、美颜资源、美颜证书
 
 
 ## 创建声网项目
@@ -45,7 +45,7 @@
 
     <div class="alert note"><ul><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 <b>Hardened Runtime</b> > <b>Runtime Exceptions</b> 中的 <b>Disable Library Validation</b>。</li><li>更多注意事项，可以参考 <a href="https://developer.apple.com/documentation/xcode/preparing_your_app_for_distribution">Preparing Your App for Distribution</a >。</li></ul></div>
 
-5. 将商汤美颜 SDK 集成到你的项目中。请联系商汤技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
+5. 将字节火山美颜 SDK 集成到你的项目中。请联系字节火山技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：//TODO
 
     | 文件   | 项目路径      |
     |------------------|----------------|
@@ -63,7 +63,7 @@
 
     为方便后续代码升级，请不要修改你添加的这些文件的名称。
 
-7. 将声网 RTC SDK 和商汤美颜依赖库集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+7. 将声网 RTC SDK 和字节火山美颜依赖库集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。//TODO
 
     1. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
     2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
@@ -75,19 +75,19 @@
     # x.y.z 请填写具体的 SDK 版本号，如 4.0.1 或 4.0.0.4
     # 可通过互动直播发版说明获取最新版本号
     pod 'AgoraRtcEngine_iOS', 'x.y.z'
-    # 配置商汤美颜的依赖库
-    pod 'SenseLib', :path => 'sense.podspec'
+    # 配置字节火山美颜的依赖库
+    pod 'SenseLib', :path => 'sense.podspec' //TODO
     end
     ```
 
 
-8. 在终端内运行 <code>pod install</code> 命令安装声网 RTC SDK 和商汤美颜依赖。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
+8. 在终端内运行 <code>pod install</code> 命令安装声网 RTC SDK 和字节火山美颜依赖。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。//TODO
 
 9. 成功安装后，项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。
 
 ## 实现美颜
 
-如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，商汤美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
+如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，字节火山美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
 
 ### 1. 初始化 AgoraRtcEngineKit
 
@@ -115,7 +115,7 @@ private lazy var rtcEngine: AgoraRtcEngineKit = {
 
 ### 2. 初始化美颜和 Beauty API
 
-创建 SenseBeautyRender 和 Beauty API 对象。Beauty API 对象是基于 `SenseBeautyRender` 对象封装。
+创建 SenseBeautyRender 和 Beauty API 对象。Beauty API 对象是基于 `SenseBeautyRender` 对象封装。//TODO
 
 
 ```swift
@@ -127,7 +127,7 @@ private lazy var beautyAPI = BeautyAPI()
 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
 
 - `AgoraRtcEngineKit`：传入之前初始化的 `AgoraRtcEngineKit` 对象。
-- `beautyRender`：传入之前初始化的 `SenseBeautyRender` 对象。
+- `beautyRender`：传入之前初始化的 `SenseBeautyRender` 对象。//TODO
 - `captureMode`：视频的采集模式：
     - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
     - 如果自定义采集视频，请传入 `CaptureMode.Custom`。
@@ -145,7 +145,7 @@ config.rtcEngine = rtcEngine
 // .custom 意味着使用开发者自定义采集视频
 config.captureMode = capture == "Custom" ? .custom : .agora
 // SenseBeautyRender
-config.beautyRender = senseRender
+config.beautyRender = senseRender //TODO
 // 是否开启美颜统计数据
 // 开启后，会有周期性回调事件
 config.statsEnable = false
