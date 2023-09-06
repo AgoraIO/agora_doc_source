@@ -1,4 +1,4 @@
-本文介绍如何通过声网场景化 API 集成相芯美颜到实时音视频中。//TODO
+本文介绍如何通过声网场景化 API 集成相芯美颜到实时音视频中。
 
 ## 示例项目
 
@@ -115,11 +115,11 @@ private lazy var rtcEngine: AgoraRtcEngineKit = {
 
 ### 2. 初始化美颜和 Beauty API
 
-创建 SenseBeautyRender 和 Beauty API 对象。Beauty API 对象是基于 `SenseBeautyRender` 对象封装。//TODO
+创建 `FUBeautyRender` 和 Beauty API 对象。Beauty API 对象是基于 `FUBeautyRender` 对象封装。
 
 
 ```swift
-private lazy var senseRender = SenseBeautyRender()
+private lazy var fuRender = FUBeautyRender()
 private lazy var beautyAPI = BeautyAPI()
 ```
 
@@ -127,7 +127,7 @@ private lazy var beautyAPI = BeautyAPI()
 调用 `initialize` 初始化 Beauty API 对象。你需要在 `config` 参数中传入如下字段：
 
 - `AgoraRtcEngineKit`：传入之前初始化的 `AgoraRtcEngineKit` 对象。
-- `beautyRender`：传入之前初始化的 `SenseBeautyRender` 对象。//TODO
+- `beautyRender`：传入之前初始化的 `FUBeautyRender` 对象。
 - `captureMode`：视频的采集模式：
     - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
     - 如果自定义采集视频，请传入 `CaptureMode.Custom`。
@@ -144,8 +144,8 @@ config.rtcEngine = rtcEngine
 // .agora 意味着使用声网模块采集视频
 // .custom 意味着使用开发者自定义采集视频
 config.captureMode = capture == "Custom" ? .custom : .agora
-// SenseBeautyRender
-config.beautyRender = senseRender //TODO
+// FUBeautyRender
+config.beautyRender = fuRender
 // 是否开启美颜统计数据
 // 开启后，会有周期性回调事件
 config.statsEnable = false
@@ -310,4 +310,4 @@ AgoraRtcEngineKit.destroy()
 
 ### API 时序图
 
-![](https://web-cdn.agora.io/docs-files/1693990504343)
+![](https://web-cdn.agora.io/docs-files/1693995863450)
