@@ -1,6 +1,6 @@
 # 实现在线 K 歌房
 
-本文介绍如何通过 [AUIKitKaraoke 组件](#)快速搭建一个含 UI 界面的在线 K 歌房。
+本文介绍如何通过 [AUIKitKaraoke 组件](#link-to-description)快速搭建一个含 UI 界面的在线 K 歌房。
 
 下图展示搭建 K 歌房间的完整流程：
 
