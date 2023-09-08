@@ -2,7 +2,7 @@
 
 ## 示例项目
 
-声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。//TODO link
+声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1) 示例项目供你参考。
 
 ## 准备开发环境
 
@@ -10,9 +10,9 @@
 
 - [Git](https://git-scm.com/downloads)
 - [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
-- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上。
-- iOS 设备，版本 13.0 及以上。
-- 有效的苹果开发者账号。
+- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上
+- iOS 设备，版本 13.0 及以上
+- 有效的苹果开发者账号
 - 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)
 - 已联系商汤技术获取最新的美颜 SDK、美颜资源、美颜证书
 

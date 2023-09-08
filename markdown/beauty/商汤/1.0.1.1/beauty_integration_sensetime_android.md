@@ -2,7 +2,7 @@
 
 ## 示例项目
 
-声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main) 示例项目供你参考。//TODO link
+声网在 GitHub 上提供开源 [BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1) 示例项目供你参考。
 
 ## 准备开发环境
 

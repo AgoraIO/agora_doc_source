@@ -10,9 +10,9 @@
 
 - [Git](https://git-scm.com/downloads)
 - [CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started)
-- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上。
-- iOS 设备，版本 13.0 及以上。
-- 有效的苹果开发者账号。
+- [Xcode](https://apps.apple.com/cn/app/xcode/id497799835?mt=12) 12.0 及以上
+- iOS 设备，版本 13.0 及以上
+- 有效的苹果开发者账号
 - 有效的声网[开发者账号](https://docs.agora.io/cn/Agora%20Platform/sign_in_and_sign_up)
 - 已联系相芯技术获取最新的美颜 SDK、美颜资源、美颜证书
 
@@ -45,17 +45,17 @@
 
     <div class="alert note"><ul><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 <b>Hardened Runtime</b> > <b>Runtime Exceptions</b> 中的 <b>Disable Library Validation</b>。</li><li>更多注意事项，可以参考 <a href="https://developer.apple.com/documentation/xcode/preparing_your_app_for_distribution">Preparing Your App for Distribution</a >。</li></ul></div>
 
-5. 将相芯美颜 SDK 集成到你的项目中。请联系相芯技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：//TODO
+5. 将相芯美颜 SDK 集成到你的项目中。请联系相芯技术支持获取美颜 SDK、美颜资源、证书等文件。下载并解压文件，然后添加到美颜项目对应的文件路径下：
 
     | 文件   | 项目路径      |
     |------------------|----------------|
-    | SenseMe/remoteSourcesLib    | iOS/SenseLib/remoteSourcesLib              |
-    | SenseMe/st_mobil_sdk | iOS/SenseLib/st_mobile_sdk  |
-    |SenseMe/st_mobil_sdk/license/SENSEME.lic   | iOS/SenseLib/SENSEME.lic |
+    | FaceUnity/Lib/Resources | iOS/FULib         |
+    | 证书：authpack.h      | iOS/BeautyAPi/FUBeauty/authpack.h  |
 
-6. 将声网场景化 API 集成到你的项目中。添加 [iOS/BeautyAPi/BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1/iOS/BeautyAPi/BeautyAPI) 目录下的文件到项目中，具体文件如下：
+6. 将声网场景化 API 集成到你的项目中。添加 [iOS/BeautyAPi/BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/iOS/BeautyAPi/BeautyAPI) 目录下的文件到项目中，具体文件如下：
 
-    - `Render/FURender` 文件
+    - `Render/FURender` 文件夹
+    - `FURender` 文件夹
     - `BeautyAPI.h` 文件
     - `BeautyAPI.m` 文件
     - `BeautyConfig.h` 文件
@@ -63,7 +63,7 @@
 
     为方便后续代码升级，请不要修改你添加的这些文件的名称。
 
-7. 将声网 RTC SDK 和商汤美颜依赖库集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。//TODO
+7. 将声网 RTC SDK 和相芯美颜依赖库集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 
     1. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
     2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
@@ -75,13 +75,13 @@
     # x.y.z 请填写具体的 SDK 版本号，如 4.0.1 或 4.0.0.4
     # 可通过互动直播发版说明获取最新版本号
     pod 'AgoraRtcEngine_iOS', 'x.y.z'
-    # 配置商汤美颜的依赖库 //TODO
-    pod 'SenseLib', :path => 'sense.podspec'
+    # 配置相芯美颜的依赖库
+    pod 'fuLib', :path => 'fu.podspec'
     end
     ```
 
 
-8. 在终端内运行 <code>pod install</code> 命令安装声网 RTC SDK 和商汤美颜依赖。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。//TODO
+8. 在终端内运行 <code>pod install</code> 命令安装声网 RTC SDK 和相芯美颜依赖。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
 
 9. 成功安装后，项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。
 
