@@ -20,8 +20,10 @@
                       uid:(NSUInteger)uid
              mediaOptions:(AgoraRtcChannelMediaOptions * _Nonnull)mediaOptions
               joinSuccess:(void(^ _Nullable)(NSString * _Nonnull channel, NSUInteger uid, NSInteger elapsed))joinSuccessBlock;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int joinChannel(const char* token, const char* channelId, uid_t uid,
                           const ChannelMediaOptions&amp; options) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
+int JoinChannel(FString token, FString channelId, int64 uid, const FChannelMediaOptions&amp; options);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract joinChannel(
     token: string,
     channelId: string,
@@ -47,17 +49,12 @@
             <title>详情</title>
             <p id="desc1">该方法让用户加入通话频道，在同一个频道内的用户可以互相通话，多个用户加入同一个频道，可以群聊。 使用不同 App ID 的 app 不能互通。</p>
             <p id="desc2">成功调用该方法加入频道后会触发以下回调：
-
-
-
-
-
             <ul>
             <li>本地会触发 <xref keyref="onJoinChannelSuccess" /> 和 <xref keyref="onConnectionStateChanged" /> 回调。</li>
             <li>通信场景下的用户和直播场景下的主播加入频道后，远端会触发 <xref keyref="onUserJoined" /> 回调。</li>
             </ul></p>
             <p id="desc3">在网络状况不理想的情况下，客户端可能会与声网服务器失去连接；SDK 会自动尝试重连，重连成功后，本地会触发 <xref keyref="onRejoinChannelSuccess" /> 回调。</p>
-            <p props="native unreal bp unity cs">相比 <xref keyref="joinChannel1" />，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
+            <p props="native unreal unity cs">相比 <xref keyref="joinChannel1" />，该方法增加了 <parmname>options</parmname> 参数，用于配置用户加入频道时是否自动订阅频道内所有远端音视频流。默认情况下，用户订阅频道内所有其他用户的音频流和视频流，因此会产生用量并影响计费。如果想取消订阅，可以通过设置 <parmname>options</parmname> 参数或相应的 <apiname>mute</apiname> 方法实现。</p>
             <note id="note_cyz_w1l_mqb" type="attention">
             <ul id="ul_sz1_y1l_mqb">
             <li>该方法允许用户一次加入仅一个频道。</li>
@@ -68,7 +65,8 @@
             <parml>
             <plentry id="token">
                 <pt>token</pt>
-                <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"/>。</pd>
+                <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"/>。
+                <note type="note">如果你需要同时加入多个频道或在频道间频繁切换，声网推荐你使用通配 Token 以避免每加入一个新的频道都需向服务端申请一个新的 Token，详见 <xref keyref="wildcard-token"/>。</note></pd>
             </plentry>
             <plentry id="channelID">
                 <pt>channelId</pt>

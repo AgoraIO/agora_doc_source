@@ -24,7 +24,7 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After initializing the SDK, the default channel profile is the live streaming profile. You can call this method to set the usage scenario of the channel. For example, it prioritizes smoothness and low latency for a video call, and prioritizes video quality for the interactive live video streaming.</p>
+            <p>After initializing the SDK, the default channel profile is the live streaming profile. You can call this method to set the channel profile. The Agora SDK differentiates channel profiles and applies optimization algorithms accordingly. For example, it prioritizes smoothness and low latency for a video call and prioritizes video quality for interactive live video streaming.</p>
             <note type="attention">
             <ul id="ul_mgd_h2l_b4b">
             <li>To ensure the quality of real-time communication, Agora recommends that all users in a channel use the same channel profile.</li>
@@ -42,8 +42,18 @@
                     <p props="android">The channel profile.<ul>
                     <li><ph keyref="CHANNEL_PROFILE_COMMUNICATION" />(0): Communication. Use this profile when there are only two users in the channel.</li>
                     <li><ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" />(1): Live streaming. Use this profile when there are more than two users in the channel.</li>
-                    <li><ph keyref="CHANNEL_PROFILE_GAME" />(2): This profile is deprecated.</li>
-                    <li><ph keyref="CHANNEL_PROFILE_CLOUD_GAMING" />(3): Interaction. The scenario is optimized for latency. Use this profile if the use case requires frequent interactions between users.</li>
+                    <li><ph keyref="CHANNEL_PROFILE_GAME" />(2): Gaming.<dl outputclass="deprecated">
+                    <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Use <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" /> instead.</dd>
+                    </dlentry></dl>
+                    </li>  
+                    <li><ph keyref="CHANNEL_PROFILE_CLOUD_GAMING" />(3): Interaction. The scenario is optimized for latency. Use this profile if the use case requires frequent interactions between users.<dl outputclass="deprecated">
+                    <dlentry>
+                    <dt>Deprecated:</dt>
+                    <dd>Use <ph keyref="CHANNEL_PROFILE_LIVE_BROADCASTING" /> instead.</dd>
+                    </dlentry></dl>
+                    </li>
                     </ul> </p>
                 </pd>
             </plentry>

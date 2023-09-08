@@ -17,7 +17,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)leaveChannelEx:(AgoraRtcConnection * _Nonnull)connection
               options:(AgoraLeaveChannelOptions * _Nonnull)options
     leaveChannelBlock:(void(^ _Nullable)(AgoraChannelStats* _Nonnull stat))leaveChannelBlock;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int leaveChannelEx(const RtcConnection&amp; connection, const LeaveChannelOptions&amp; options) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
+int LeaveChannelEx(const FRtcConnection&amp; connection, const FLeaveChannelOptions&amp; options);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract leaveChannelEx(
     connection: RtcConnection,
     options?: LeaveChannelOptions
@@ -42,7 +44,7 @@
             <note type="attention" id="note">
             <ul>
             <li>If you call <xref keyref="release" /> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel" /> callback.</li>
-            <li>Calling <xref keyref="leaveChannel2" /> will leave the channels when calling <xref keyref="joinChannel2" /> and <xref keyref="joinChannelEx" /> at the same time.</li>
+            <li>If you want to leave the channels that you joined by calling <xref keyref="joinChannel2" /> and <xref keyref="joinChannelEx" />, call the <xref keyref="leaveChannel2" /> method.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
