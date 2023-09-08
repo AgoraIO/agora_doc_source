@@ -24,9 +24,9 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method needs to be called after the camera is started (for example, by calling <xref keyref="startPreview" props="native unreal bp unity" /> <xref keyref="startPreview2" props="rn electron flutter" /> or <xref keyref="joinChannel2" />).</p>
-            <p props="cpp unreal bp unity flutter cs">
-            <note type="attention">This method is for Android and iOS only.</note></p>
+            <note type="attention">
+            <ul><li props="cpp unreal bp flutter unity">This method is for Android and iOS only.</li>
+            <li>This method must be called after the camera is successfully enabled, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING" /> (1).</li></ul></note>
         </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>

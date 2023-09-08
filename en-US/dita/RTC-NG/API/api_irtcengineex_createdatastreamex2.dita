@@ -15,8 +15,12 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int createDataStreamEx(DataStreamConfig config, RtcConnection connection);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int createDataStreamEx(int* streamId, DataStreamConfig&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStreamEx:(NSInteger * _Nonnull)streamId
+                   config:(AgoraDataStreamConfig * _Nonnull)config
+               connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(createDataStreamEx(_:config:connection:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStreamEx(int* streamId, DataStreamConfig&amp; config, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
+	int CreateDataStreamEx(int&amp; streamId, const FDataStreamConfig&amp; config, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createDataStreamEx(
     config: DataStreamConfig,
     connection: RtcConnection
@@ -33,7 +37,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
-            <p id="diff">Compared with <xref keyref="createDataStreamEx1" props="native unreal bp unity" /> <xref keyref="createDataStreamEx2" props="rn electron flutter" />, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <p id="diff" props="native unreal unity">Compared with <xref keyref="createDataStreamEx1" />, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>

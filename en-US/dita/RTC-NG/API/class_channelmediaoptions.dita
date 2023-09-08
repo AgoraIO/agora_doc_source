@@ -77,7 +77,7 @@
 @property(assign, nonatomic) BOOL isAudioFilterable;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ChannelMediaOptions {
+            <codeblock props="cpp" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
   Optional&lt;bool&gt; publishSecondaryCameraTrack;
   Optional&lt;bool&gt; publishThirdCameraTrack;
@@ -92,6 +92,45 @@
   Optional&lt;bool&gt; publishSecondaryScreenTrack;
   Optional&lt;bool&gt; publishThirdScreenTrack;
   Optional&lt;bool&gt; publishFourthScreenTrack;
+  #endif
+
+  Optional&lt;bool&gt; publishCustomAudioTrack;
+  Optional&lt;int&gt; publishCustomAudioTrackId;
+  Optional&lt;bool&gt; publishCustomVideoTrack;
+  Optional&lt;bool&gt; publishEncodedVideoTrack;
+  Optional&lt;bool&gt; publishMediaPlayerAudioTrack;
+  Optional&lt;bool&gt; publishMediaPlayerVideoTrack;
+  Optional&lt;bool&gt; publishTranscodedVideoTrack;
+  Optional&lt;bool&gt; autoSubscribeAudio;
+  Optional&lt;bool&gt; autoSubscribeVideo;
+  Optional&lt;bool&gt; enableAudioRecordingOrPlayout;
+  Optional&lt;int&gt; publishMediaPlayerId;
+  Optional&lt;CLIENT_ROLE_TYPE&gt; clientRoleType;
+  Optional&lt;AUDIENCE_LATENCY_LEVEL_TYPE&gt; audienceLatencyLevel;
+  Optional&lt;VIDEO_STREAM_TYPE&gt; defaultVideoStreamType;
+  Optional&lt;CHANNEL_PROFILE_TYPE&gt; channelProfile;
+  Optional&lt;const char*&gt; token;
+  Optional&lt;bool&gt; enableBuiltInMediaEncryption;
+  Optional&lt;bool&gt; publishRhythmPlayerTrack;
+  Optional&lt;bool&gt; isInteractiveAudience;
+
+  Optional&lt;video_track_id_t&gt; customVideoTrackId;
+
+  Optional&lt;bool&gt; isAudioFilterable;
+
+  ChannelMediaOptions() {}
+  ~ChannelMediaOptions() {}</codeblock>
+            <codeblock props="unreal bp" outputclass="language-cpp">struct ChannelMediaOptions {
+  Optional&lt;bool&gt; publishCameraTrack;
+  Optional&lt;bool&gt; publishSecondaryCameraTrack;
+  Optional&lt;bool&gt; publishMicrophoneTrack;
+
+  #if defined(__ANDROID__) || (defined(TARGET_OS_IPHONE) &amp;&amp; TARGET_OS_IPHONE)
+  Optional&lt;bool&gt; publishScreenCaptureVideo;
+  Optional&lt;bool&gt; publishScreenCaptureAudio;
+  #else
+  Optional&lt;bool&gt; publishScreenTrack;
+  Optional&lt;bool&gt; publishSecondaryScreenTrack;
   #endif
 
   Optional&lt;bool&gt; publishCustomAudioTrack;
@@ -430,7 +469,7 @@ class ChannelMediaOptions {
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
-        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishAudioTrack</parmname>, publishCustomAudioTrack, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios cpp unreal bp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp unreal bp flutter unity electron">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
+        <section id="detailed_desc">Agora supports publishing multiple audio streams and one video stream at the same time and in the same <xref keyref="RtcConnection" />. For example, <parmname>publishMicrophoneTrack</parmname>, <parmname>publishCustomAudioTrack</parmname>, and <parmname>publishMediaPlayerAudioTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph> at the same time, but only one of <parmname>publishCameraTrack</parmname>, <parmname props="android ios cpp unreal bp flutter unity rn">publishScreenCaptureVideo</parmname><parmname props="mac cpp unreal bp flutter unity electron">publishScreenTrack</parmname>, <parmname>publishCustomVideoTrack</parmname>, or <parmname>publishEncodedVideoTrack</parmname> can be set as <codeph><ph keyref="true" /></codeph>.<note type="attention" id="note">Agora recommends that you set member parameter values yourself according to your business scenario, otherwise the SDK will automatically assign values to member parameters.</note>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -457,12 +496,12 @@ class ChannelMediaOptions {
                 </ul></pd>
                 <pd>
                     <note type="note">
-                    <ul><li props="native unreal bp unity rn electron">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
+                    <ul><li props="native unity rn electron">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
                     <li props="flutter">As of v6.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
                     <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true" /></codeph>.</li></ul></note>
                 </pd>
             </plentry>
-            <plentry props="cpp mac unreal bp unity cs flutter electron">
+            <plentry props="cpp mac unity cs flutter electron">
                 <pt>publishThirdCameraTrack</pt>
                 <pd>Whether to publish the video captured by the third camera:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured by the third camera.</li>
@@ -470,7 +509,7 @@ class ChannelMediaOptions {
                     </ul>
                 <p><note type="attention" props="cpp unreal bp unity cs flutter">This method is for Windows and macOS only.</note></p></pd>
             </plentry>
-            <plentry props="cpp mac unreal bp unity cs flutter electron">
+            <plentry props="cpp mac unity cs flutter electron">
                 <pt>publishFourthCameraTrack</pt>
                 <pd>Whether to publish the video captured by the fourth camera:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured by the fourth camera.</li>
@@ -516,7 +555,7 @@ class ChannelMediaOptions {
                     </ul>
                 </pd>
             </plentry>
-             <plentry props="mac cpp unreal bp unity cs flutter electron">
+             <plentry props="mac cpp unity cs flutter electron">
                 <pt>publishThirdScreenTrack</pt>
                 <pd>Whether to publish the video captured from the third screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from the third screen.</li>
@@ -526,7 +565,7 @@ class ChannelMediaOptions {
                     <note type="attention" props="cpp unreal bp unity cs flutter">This method is for Windows and macOS only.</note></p>
                 </pd>
             </plentry>
-            <plentry props="mac cpp unreal bp unity cs flutter electron">
+            <plentry props="mac cpp unity cs flutter electron">
                 <pt>publishFourthScreenTrack</pt>
                 <pd>Whether to publish the video captured from the fourth screen:<ul>
                     <li><codeph><ph keyref="true" /></codeph>: Publish the captured video from the fourth screen.</li>
@@ -542,7 +581,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true" /></codeph>: Publish the local transcoded video.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the local transcoded video.</li>
                     </ul>
-                    <p><note type="note" props="native unreal bp">As of v4.2.0, the parameter name is corrected from <parmname>publishTrancodedVideoTrack</parmname> to <parmname>publishTranscodedVideoTrack</parmname>.</note></p>
+                    <p><note type="note" props="native">As of v4.2.0, the parameter name is corrected from <parmname>publishTrancodedVideoTrack</parmname> to <parmname>publishTranscodedVideoTrack</parmname>.</note></p>
                 </pd>
             </plentry>
             <plentry>
