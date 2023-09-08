@@ -260,10 +260,10 @@
   @JsonKey(name: 'qualityChangedReason')
   final int? qualityChangedReason;
 
-  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory RemoteAudioStats.fromJson(Map&lt;String, dynamic> json) =>
       _$RemoteAudioStatsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$RemoteAudioStatsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$RemoteAudioStatsToJson(this);
 }
 </codeblock>
             </p>
@@ -278,7 +278,7 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>The quality of the audio stream sent by the user. <ph props="ios mac cpp unreal bp electron rn unity flutter cs">See <xref keyref="QUALITY_TYPE" />.</ph></p>
+                    <p>The quality of the audio stream sent by the user. <ph props="ios mac cpp unreal bp electron rn unity flutter cs">ensure the user ID is not set as 0.<xref keyref="QUALITY_TYPE" /></ph></p>
                     <p props="android">
                     <ul id="qualitytype">
                     <li><ph keyref="QUALITY_UNKNOWN" />(0): The quality is unknown.</li>
