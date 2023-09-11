@@ -2,16 +2,16 @@
 
 ## 获取资源
 
-声网目前已与商汤美颜、字节火山美颜、相芯美颜合作，提供了多套 Beauty API，开发者可以根据自己的需求选择不同厂商进行集成。集成过程中，你可以参考如下资料：//TODO add link list
+声网目前已与商汤美颜、字节火山美颜、相芯美颜合作，提供美颜场景化 API，开发者可以根据自己的需求选择不同厂商进行集成。集成过程中，你可以参考如下文档：
 
 
-|厂商 | GitHub 示例项目 | 跑通示例项目 | 实现美颜功能 | Beauty API 参考|
-|-----|---------------|------------|------------|---------------|
-| 商汤     |                |            |           |               |
-| 字节火山     |                |            |           |               |
-| 相芯     |                |            |           |               |
+|厂商 | Beauty API 版本号 |GitHub 示例项目 | 参考文档 |
+|-----|-----------|---------------|------------|
+| 商汤     | 1.0.1.1| <li>[Android 项目](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1/Android)</li><li>[iOS 项目](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1/iOS)</li>            | <li>[跑通项目 (Android)](./beauty_run_github_project_sensetime_android.md)</li><li>[跑通项目 (iOS)](./beauty_run_github_project_sensetime_ios.md)</li><li>[实现美颜 (Android)](/商汤/1.0.1.1/beauty_integration_sensetime_android.md)</li><li>[实现美颜 (iOS)](/商汤/1.0.1.1/beauty_integration_sensetime_android.md)</li>         |
+| 字节火山     |1.0.2|                |            |
+| 相芯     |1.0.2|                |            |
 
 
 ## 版本说明
 
-Beauty API 封装的 SDK 版本请参考 [README](https://github.com/AgoraIO-Community/BeautyAPI/blob/main/README.zh.md)。
+Beauty API 封装的声网 RTC SDK 和第三方厂商美颜 SDK 版本请参考 [README](https://github.com/AgoraIO-Community/BeautyAPI/blob/main/README.zh.md)。#TODO
