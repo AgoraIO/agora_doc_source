@@ -2,6 +2,8 @@
 
 本文介绍如何通过 [AUIKitKaraoke 组件](#link-to-description)快速搭建一个含 UI 界面的在线 K 歌房。
 
+AUIKitKaraoke 是一个
+
 下图展示搭建 K 歌房间的完整流程：
 
 <img src="/Users/admin/Library/Application Support/typora-user-images/image-20230830103826589.png" alt="image-20230830103826589" style="zoom:50%;" />
@@ -40,51 +42,51 @@
 2. 集成 asceneskit。
 
    1. 将 [asceneskit 文件夹](https://github.com/AgoraIO-Community/AUIKitKaraoke/tree/main/Android/asceneskit)复制到你的项目中。
-   
+
    2. 在 `settings.gradle` 文件中添加 asceneskit 库：
-   
+
       ```java
       include ':asceneskit'
       ```
-   
+
    3. 在 `build.grade` 文件中添加以下依赖：
-   
+
       ```java
       dependencies {
           implementation project(':asceneskit')
       }
       ```
-   
+
    4. 添加权限并设置主题。在你的 `AndroidManifest.xml` 文件中添加下列内容：
-   
+
       ```java
       <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:tools="http://schemas.android.com/tools">
-      
+
           <uses-permission android:name="android.permission.INTERNET" />
           <uses-permission android:name="android.permission.RECORD_AUDIO" />
           <uses-permission android:name="android.permission.CAMERA" />
           <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
           <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-          <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> 
+          <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
           <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
           <uses-permission android:name="android.permission.CALL_PHONE" />
-      
+
           <application
               android:theme="@style/Theme.AKaraoke"
               tools:replace="android:theme">
-              
+
               ...
-      
+
           </application>
-      
+
       </manifest>
       ```
-   
+
    5. 配置你的业务服务器域名。在你的项目的 `local.properties` 文件中添加你的业务服务器域名。你可以参考[后台服务](https://github.com/AgoraIO-Community/AUIKitKaraoke/blob/main/backend/README_zh.md)来搭建你的业务服务器，也可以使用声网用于测试的域名来体验：https://service.agora.io/uikit-karaoke
-   
+
       ![image-20230830113539829](/Users/admin/Library/Application Support/typora-user-images/image-20230830113539829.png)
-   
+
       ```java
       SERVER_HOST=你的业务服务器域名
       ```
@@ -118,7 +120,7 @@ KaraokeUiKit.setup(
     // RtmClient 实例。如果的你的项目中还未集成声网 RTM SDK，请传入 null，KaraokeUiKit 内部会自行创建
     rtmClient = null,
     // RtcEngineEx 实例。如果的你的项目中还未集成声网 RTC SDK，请传入 null，KaraokeUiKit 内部会自行创建
-    rtcEngineEx = null, 
+    rtcEngineEx = null,
     // KtvApi 实例。如果你的项目中还未集成 KtvApi，请传入 null，KaraokeUiKit 内部会自行创建
     ktvApi = null
 )
@@ -153,10 +155,10 @@ KaraokeUiKit.getRoomList(lastCreateTime, 10,
     // 房间创建成功时调用
     success = { roomList ->
         runOnUiThread {
-            
+
         }
     },
-   // 房间创建失败时调用  
+   // 房间创建失败时调用
     failure = { error ->
         runOnUiThread {
             // update ui
@@ -167,7 +169,7 @@ KaraokeUiKit.getRoomList(lastCreateTime, 10,
 
 ### 4. 拉起房间
 
-调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个自带 UI 界面的在线 K 歌房间。
+调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间。
 
 <Abmonition tpye="caution" title="注意">在调用该方法前，你需要先调用 <code>getRoomList</code> 获取房间列表及相关房间信息。</Abmonition>
 
@@ -188,7 +190,7 @@ config.rtcChorusRtcToken = ""
 // 拉起房间
 KaraokeUiKit.launchRoom(
     roomInfo,
-    config, 
+    config,
     karaokeRoomView
 )
 
