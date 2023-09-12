@@ -136,7 +136,6 @@
   public static final int DEFAULT_MIN_BITRATE_EQUAL_TO_TARGET_BITRATE = -2;
   public VideoDimensions dimensions;
   public int frameRate;
-  public int minFrameRate;
   public int bitrate;
   public int minBitrate;
   public ORIENTATION_MODE orientationMode;
@@ -146,7 +145,6 @@
   public VideoEncoderConfiguration() {
     this.dimensions = new VideoDimensions(640, 480);
     this.frameRate = FRAME_RATE.FRAME_RATE_FPS_15.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
     this.bitrate = STANDARD_BITRATE;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE;
@@ -159,7 +157,6 @@
       ORIENTATION_MODE orientationMode) {
     this.dimensions = dimensions;
     this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
@@ -172,7 +169,6 @@
       ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
     this.dimensions = dimensions;
     this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
@@ -185,7 +181,6 @@
       int width, int height, FRAME_RATE frameRate, int bitrate, ORIENTATION_MODE orientationMode) {
     this.dimensions = new VideoDimensions(width, height);
     this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
@@ -198,7 +193,6 @@
       ORIENTATION_MODE orientationMode, MIRROR_MODE_TYPE mirrorMode) {
     this.dimensions = new VideoDimensions(width, height);
     this.frameRate = frameRate.getValue();
-    this.minFrameRate = DEFAULT_MIN_FRAMERATE;
     this.bitrate = bitrate;
     this.minBitrate = DEFAULT_MIN_BITRATE;
     this.orientationMode = orientationMode;
@@ -480,10 +474,6 @@
             <plentry>
                 <pt>frameRate</pt>
                 <pd>视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
-            </plentry>
-            <plentry props="native unreal bp">
-                <pt>minFramerate</pt>
-                <pd>视频的最小帧率。默认值为 -1。</pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>
