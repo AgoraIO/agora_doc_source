@@ -26,7 +26,7 @@
 
 ### 创建 iOS 项目
 
-在 Xcode 中进行以下操作，在你的 app 中实现秀场直播功能：
+在 Xcode 中进行以下操作，在你的 app 中实现场景化美颜功能：
 
 1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 

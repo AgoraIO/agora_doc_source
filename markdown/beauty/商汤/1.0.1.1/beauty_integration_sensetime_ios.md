@@ -26,7 +26,7 @@
 
 ### 创建 iOS 项目
 
-在 Xcode 中进行以下操作，在你的 app 中实现秀场直播功能：
+在 Xcode 中进行以下操作，在你的 app 中实现场景化美颜功能：
 
 1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 
@@ -55,7 +55,8 @@
 
 6. 将声网场景化 API 集成到你的项目中。添加 [iOS/BeautyAPi/BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1/iOS/BeautyAPi/BeautyAPI) 目录下的文件到项目中，具体文件如下：
 
-    - `Render/FURender` 文件
+    - `Render/SenseRender` 文件夹
+    - `SenseRender` 文件夹
     - `BeautyAPI.h` 文件
     - `BeautyAPI.m` 文件
     - `BeautyConfig.h` 文件
