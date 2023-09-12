@@ -50,49 +50,54 @@
 @property(assign, nonatomic) int rotation;
 @end</codeblock>
             <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ExternalVideoFrame {
-                    ExternalVideoFrame()
-                    : type(VIDEO_BUFFER_RAW_DATA),
-                    format(VIDEO_PIXEL_DEFAULT),
-                    buffer(NULL),
-                    stride(0),
-                    height(0),
-                    cropLeft(0),
-                    cropTop(0),
-                    cropRight(0),
-                    cropBottom(0),
-                    rotation(0),
-                    timestamp(0),
-                    eglContext(NULL),
-                    eglType(EGL_CONTEXT10),
-                    textureId(0),
-                    metadata_buffer(NULL),
-                    metadata_size(0){}
-                    enum EGL_CONTEXT_TYPE {
-                    EGL_CONTEXT10 = 0,
-                    EGL_CONTEXT14 = 1,
-                    };
-                    enum VIDEO_BUFFER_TYPE {
-                    VIDEO_BUFFER_RAW_DATA = 1,
-                    VIDEO_BUFFER_ARRAY = 2,
-                    VIDEO_BUFFER_TEXTURE = 3,
-                    };
-                    VIDEO_BUFFER_TYPE type;
-                    VIDEO_PIXEL_FORMAT format;
-                    void* buffer;
-                    int stride;
-                    int height;
-                    int cropLeft;
-                    int cropTop;
-                    int cropRight;
-                    int cropBottom;
-                    int rotation;
-                    long long timestamp;
-                    void *eglContext;
-                    EGL_CONTEXT_TYPE eglType;
-                    int textureId;
-                    uint8_t* metadata_buffer;
-                    int metadata_size;
-                    };</codeblock>
+  ExternalVideoFrame()
+      : type(VIDEO_BUFFER_RAW_DATA),
+        format(VIDEO_PIXEL_DEFAULT),
+        buffer(NULL),
+        stride(0),
+        height(0),
+        cropLeft(0),
+        cropTop(0),
+        cropRight(0),
+        cropBottom(0),
+        rotation(0),
+        timestamp(0),
+        eglContext(NULL),
+        eglType(EGL_CONTEXT10),
+        textureId(0),
+        metadata_buffer(NULL),
+        metadata_size(0),
+        d3d11_texture_2d(NULL),
+        texture_slice_index(0){}
+  enum EGL_CONTEXT_TYPE {
+    EGL_CONTEXT10 = 0,
+    EGL_CONTEXT14 = 1,
+  };
+  enum VIDEO_BUFFER_TYPE {
+    VIDEO_BUFFER_RAW_DATA = 1,
+    VIDEO_BUFFER_ARRAY = 2,
+    VIDEO_BUFFER_TEXTURE = 3,
+  };
+  VIDEO_BUFFER_TYPE type;
+  VIDEO_PIXEL_FORMAT format;
+  void* buffer;
+  int stride;
+  int height;
+  int cropLeft;
+  int cropTop;
+  int cropRight;
+  int cropBottom;
+  int rotation;
+  long long timestamp;
+  void *eglContext;
+  EGL_CONTEXT_TYPE eglType;
+  int textureId;
+  float matrix[16];
+  uint8_t* metadata_buffer;
+  int metadata_size;
+  void *d3d11_texture_2d;
+  int texture_slice_index;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
   format?: VideoPixelFormat;
@@ -401,6 +406,14 @@
            <pt props="flutter">metadataSize</pt>
            <pd>该参数仅适用于 Texture 格式的视频数据。指 MetaData 的大小，默认值为 <codeph>0</codeph>。</pd>
        </plentry>
+       <plentry props="cpp unity electron">
+        <pt>*d3d11_texture_2d</pt>
+        <pd>该参数仅适用于 Windows Texture 格式的视频数据。为一个指向 <codeph>ID3D11Texture2D</codeph> 类型对象的指针，该类型对象被视频帧所使用。</pd>
+       </plentry>
+       <plentry props="cpp unity electron">
+        <pt>texture_slice_index</pt>
+        <pd>该参数仅适用于 Windows Texture 格式的视频数据。表示在 <codeph>ID3D11Texture2D</codeph> 数组中，被视频帧使用的某一个 <codeph>ID3D11Texture2D</codeph> 纹理对象的索引。</pd>
+       </plentry>
        <plentry>
   <pt>cropLeft</pt>
   <pd>原始数据相关字段。指定左边裁剪掉的像素数量。默认为 0。</pd>
@@ -415,7 +428,7 @@
        </plentry>
        <plentry>
   <pt>cropRight</pt>
-  <pd> 原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。</pd>
+  <pd>原始数据相关字段。指定右边裁剪掉的像素数量。默认为 0。</pd>
            <pd props="android">该参数仅适用于非 Texture 格式的视频数据。</pd>
            <pd props="cpp unreal bp unity electron rn flutter cs">该参数仅适用于原始视频数据。</pd>
        </plentry>
