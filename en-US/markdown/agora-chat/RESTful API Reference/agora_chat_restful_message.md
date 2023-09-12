@@ -1128,7 +1128,7 @@ This method retrieves historical messages sent and received by the user.
 - Messages cannot be retrieved in real time. For example, at 9 a.m., you can retrieve messages that are sent or received at 8 a.m.
 - The default storage time of historical messages differs by plan version. For details, see [package details](./agora_chat_plan?platform=RESTful).
 
-For each App Key, the call frequency limit of this method is 100 per second.
+For each App Key, the call frequency limit of this method is 10 per minute.
 
 ### HTTP request
 
