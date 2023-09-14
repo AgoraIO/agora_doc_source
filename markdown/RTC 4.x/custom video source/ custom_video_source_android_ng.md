@@ -209,6 +209,7 @@ private void pushVideoFrameByTexture(int textureId, VideoFrame.TextureBuffer.Typ
 
    // 获取 SDK 当前的 Monotonic Time
    long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
+   // 创建一个 VideoFrame 对象，传入要推送的 Texture 视频帧和视频帧的 Monotonic Time (单位为纳秒)
    VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs * 1000000);
    
    // 通过视频轨道将视频帧推送到 SDK
