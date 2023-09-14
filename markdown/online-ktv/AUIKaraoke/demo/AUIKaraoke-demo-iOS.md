@@ -97,4 +97,4 @@ can't modify frozen string: "[Xcodeproject] unknown object version (56).
    pod cache clean --all
    ```
 
-3. 在 `AUIKitKaraoke/iOS/Example` 目录下运行 `pod install` 命令来安装 SDK 和相关依赖。安装完成后，终端会显示 `Pod installation complete!`。
+3. 在 `AUIKitKaraoke/iOS/Example` 目录下运行重新 `pod install` 命令来安装 SDK 和相关依赖。安装完成后，终端会显示 `Pod installation complete!`。

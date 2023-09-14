@@ -1,8 +1,14 @@
 # 实现在线 K 歌房
 
-本文介绍如何通过 [AUIKitKaraoke 组件](#link-to-description)快速搭建一个含 UI 界面的在线 K 歌房。
+AUIKitKaraoke 是一个基于 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/blob/main/Android/README.zh.md) 搭建的、针对 K 歌场景的开源  UI 组件，提供 K 歌房间相关功能。asceneskit 是 K 歌房的容器组件，你可以通过 asceneskit 自定义 K 歌房间的用户界面逻辑、实现房间管理等。
 
-AUIKitKaraoke 是一个
+下图展示组件之间的关系图：
+
+
+
+- AUIKit 是一个基础库，包含 Service 和 UI 两部分，为上层提供麦位管理、音乐播放、歌曲管理、合唱管理等能力及对应的 UI 模块。
+
+本文介绍如何通过 [AUIKitKaraoke 组件](#link-to-description)快速搭建一个含 UI 界面的在线 K 歌房。
 
 下图展示搭建 K 歌房间的完整流程：
 
@@ -31,13 +37,13 @@ AUIKitKaraoke 是一个
 
 ### 创建项目
 
-按照以下步骤来准备开发环境：
+如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。如果你已有 Android 项目，可跳过这一步骤。
 
-1. 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
+<Admonition type="info" title="信息">创建项目后，**Android Studio** 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。
 
-   <Admonition type="info" title="信息">创建项目后，**Android Studio** 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。
+</Admonition>
 
-   </Admonition>
+### 集成组件
 
 2. 集成 asceneskit。
 
@@ -209,6 +215,9 @@ K 歌结束后，调用 `destroyRoom` 销毁房间。
 ```kotlin
 KaraokeUiKit.destroyRoom(roomId)
 // 取消订阅房间事件
-KaraokeUiKit.unbindRespDelegate(this@RoomActivity)
+KaraokeUiKit.unbindRespDelegate(this@RoomActivity) // auikit的接口
 ```
 
+## 示例项目
+
+声网在 GitHub 上提供一个开源的示例项目 [AUIKitKaraoke](https://github.com/AgoraIO-Community/AUIKitKaraoke/tree/main/Android) 供你参考。
