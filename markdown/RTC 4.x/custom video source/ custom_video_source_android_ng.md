@@ -127,104 +127,96 @@ int res = engine.joinChannelEx(accessToken, connection, option, new IRtcEngineEv
 
 ### 4. 通过视频轨道推送视频数据到 SDK
 
-将采集到的视频帧发送至 SDK 之前，通过设置 `VideoFrame` 集成你的视频模块。你可以参考以下代码，将采集到的 YUV 视频数据转换为不同类型的 `VideoFrame`。为确保音视频同步，声网建议你调用 `getCurrentMonotonicTimeInMs` 获取 SDK 当前的 Monotonic Time 后，将该值传入采集的 `VideoFrame` 的时间戳参数。
+将采集到的视频帧发送至 SDK 之前，通过设置 `VideoFrame` 集成你的视频模块。你可以参考以下代码，推送不同类型的自采集视频数据。为确保音视频同步，声网建议你调用 `getCurrentMonotonicTimeInMs` 获取 SDK 当前的 Monotonic Time 后，将该值传入采集的 `VideoFrame` 的时间戳参数。
 
 调用 `pushExternalVideoFrameEx` 将采集到的视频帧通过视频轨道推送至 SDK。其中， `videoTrackId` 要与步骤 2 加入频道时指定视频轨道 ID 一致，`VideoFrame` 中可以设置视频帧的像素格式、数据类型和时间戳等参数。
 
-<div class="alert info"><ul><li>以下代码演示将 YUV 格式转换为 NV21、NV12、Texture 和 I420 格式的视频数据。</a>。</li><li>为确保音视频同步，声网建议你将 <code>VideoFrame</code> 的时间戳参数设置为系统 Monotonic Time。你可以调用 <code>getCurrentMonotonicTimeInMs</code> 获取当前的 Monotonic Time。</li></ul></div>
+<div class="alert info"><ul><li>以下代码演示推送 I420、NV21、NV12 和 Texture 格式的视频数据。</a>。</li><li>为确保音视频同步，声网建议你将 <code>VideoFrame</code> 的时间戳参数设置为系统 Monotonic Time。你可以调用 <code>getCurrentMonotonicTimeInMs</code> 获取当前的 Monotonic Time。</li></ul></div>
 
 ```java
-// 创建不同类型的 VideoFrame
-VideoFrame.Buffer frameBuffer;
-// 将 YUV 视频数据转换为 NV21 格式
-if ("NV21".equals(selectedItem)) {
-   int srcStrideY = width;
-   int srcHeightY = height;
-   int srcSizeY = srcStrideY * srcHeightY;
-   ByteBuffer srcY = ByteBuffer.allocateDirect(srcSizeY);
-   srcY.put(yuv, 0, srcSizeY);
+private void pushVideoFrameByI420(byte[] yuv, int width, int height){
+   // 创建一个 i420Buffer 对象，将原始的 YUV 数据存储到 I420 格式的缓冲区中
+   JavaI420Buffer i420Buffer = JavaI420Buffer.allocate(width, height);
+   i420Buffer.getDataY().put(yuv, 0, i420Buffer.getDataY().limit());
+   i420Buffer.getDataU().put(yuv, i420Buffer.getDataY().limit(), i420Buffer.getDataU().limit());
+   i420Buffer.getDataV().put(yuv, i420Buffer.getDataY().limit() + i420Buffer.getDataU().limit(), i420Buffer.getDataV().limit());
 
-   int srcStrideU = width / 2;
-   int srcHeightU = height / 2;
-   int srcSizeU = srcStrideU * srcHeightU;
-   ByteBuffer srcU = ByteBuffer.allocateDirect(srcSizeU);
-   srcU.put(yuv, srcSizeY, srcSizeU);
+   // 获取 SDK 当前的 Monotonic Time
+   long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
+   // 创建一个 VideoFrame 对象，传入要推送的 I420 视频帧和视频帧的 Monotonic Time (单位为纳秒)
+   VideoFrame videoFrame = new VideoFrame(i420Buffer, 0, currentMonotonicTimeInMs * 1000000);
 
-   int srcStrideV = width / 2;
-   int srcHeightV = height / 2;
-   int srcSizeV = srcStrideV * srcHeightV;
-   ByteBuffer srcV = ByteBuffer.allocateDirect(srcSizeV);
-   srcV.put(yuv, srcSizeY + srcSizeU, srcSizeV);
+   // 通过视频轨道将视频帧推送到 SDK
+   int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
+   // 推送成功后，释放 i420Buffer 对象占用的内存资源
+   i420Buffer.release();
 
-   int desSize = srcSizeY + srcSizeU + srcSizeV;
-   ByteBuffer des = ByteBuffer.allocateDirect(desSize);
-   YuvHelper.I420ToNV12(srcY, srcStrideY, srcV, srcStrideV, srcU, srcStrideU, des, width, height);
-
-   byte[] nv21 = new byte[desSize];
-   des.position(0);
-   des.get(nv21);
-
-   frameBuffer = new NV21Buffer(nv21, width, height, null);
+   if (!success) {
+      Log.w(TAG, "pushExternalVideoFrame error");
+   }
 }
-   // 将 YUV 视频数据转换为 NV12 格式
-   else if ("NV12".equals(selectedItem)) {
-      int srcStrideY = width;
-      int srcHeightY = height;
-      int srcSizeY = srcStrideY * srcHeightY;
-      ByteBuffer srcY = ByteBuffer.allocateDirect(srcSizeY);
-      srcY.put(yuv, 0, srcSizeY);
 
-      int srcStrideU = width / 2;
-      int srcHeightU = height / 2;
-      int srcSizeU = srcStrideU * srcHeightU;
-      ByteBuffer srcU = ByteBuffer.allocateDirect(srcSizeU);
-      srcU.put(yuv, srcSizeY, srcSizeU);
 
-      int srcStrideV = width / 2;
-      int srcHeightV = height / 2;
-      int srcSizeV = srcStrideV * srcHeightV;
-      ByteBuffer srcV = ByteBuffer.allocateDirect(srcSizeV);
-      srcV.put(yuv, srcSizeY + srcSizeU, srcSizeV);
+private void pushVideoFrameByNV21(byte[] nv21, int width, int height){
+   // 创建一个 frameBuffer 对象，将原始的 YUV 数据存储到 NV21 格式的缓冲区中
+   VideoFrame.Buffer frameBuffer = new NV21Buffer(nv21, width, height, null);
 
-      int desSize = srcSizeY + srcSizeU + srcSizeV;
-      ByteBuffer des = ByteBuffer.allocateDirect(desSize);
-      YuvHelper.I420ToNV12(srcY, srcStrideY, srcU, srcStrideU, srcV, srcStrideV, des, width, height);
+   // 获取 SDK 当前的 Monotonic Time
+   long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
+   // 创建一个 VideoFrame 对象，传入要推送的 NV21 视频帧和视频帧的 Monotonic Time (单位为纳秒)
+   VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs * 1000000);
 
-      frameBuffer = new NV12Buffer(width, height, width, height, des, null);
+   // 通过视频轨道将视频帧推送到 SDK
+   int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
+
+   if (!success) {
+      Log.w(TAG, "pushExternalVideoFrame error");
    }
-   // 将 YUV 视频数据转换为 Texture 格式
-   else if ("Texture2D".equals(selectedItem)) {
-      if (textureBufferHelper == null) {
-            textureBufferHelper = TextureBufferHelper.create("PushExternalVideoYUV", EglBaseProvider.instance().getRootEglBase().getEglBaseContext());
-      }
-      if (yuvFboProgram == null) {
-            textureBufferHelper.invoke((Callable<Void>) () -> {
-               yuvFboProgram = new YuvFboProgram();
-               return null;
-      });
-      }
-      Integer textureId = textureBufferHelper.invoke(() -> yuvFboProgram.drawYuv(yuv, width, height));
-      frameBuffer = textureBufferHelper.wrapTextureBuffer(width, height, VideoFrame.TextureBuffer.Type.RGB, textureId, new Matrix());
-   }
-   // 将 YUV 视频数据转换为 I420 格式
-   else if("I420".equals(selectedItem))
-   {
-      JavaI420Buffer i420Buffer = JavaI420Buffer.allocate(width, height);
-      i420Buffer.getDataY().put(yuv, 0, i420Buffer.getDataY().limit());
-      i420Buffer.getDataU().put(yuv, i420Buffer.getDataY().limit(), i420Buffer.getDataU().limit());
-      i420Buffer.getDataV().put(yuv, i420Buffer.getDataY().limit() + i420Buffer.getDataU().limit(), i420Buffer.getDataV().limit());
-      frameBuffer = i420Buffer;
-   }
+}
 
-// 获取 SDK 当前的 Monotonic Time
-long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
-// 创建 VideoFrame，并将 SDK 当前的 Monotonic Time 赋值到 VideoFrame 的时间戳参数
-VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs * 1000000);
 
-// 通过视频轨道推送视频帧到 SDK
-int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
-if (ret < 0) {
-    Log.w(TAG, "pushExternalVideoFrameEx error code=" + ret);
+private void pushVideoFrameByNV12(ByteBuffer nv12, int width, int height){
+   // 创建一个 frameBuffer 对象，将原始的 YUV 数据存储到 NV12 格式的缓冲区中
+   VideoFrame.Buffer frameBuffer = new NV12Buffer(width, height, width, height, nv12, null);
+
+   // 获取 SDK 当前的 Monotonic Time
+   long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
+   // 创建一个 VideoFrame 对象，传入要推送的 NV12 视频帧和视频帧的 Monotonic Time (单位为纳秒)
+   VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs * 1000000);
+
+   // 通过视频轨道将视频帧推送到 SDK
+   int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
+
+   if (!success) {
+      Log.w(TAG, "pushExternalVideoFrame error");
+   }
+}
+
+
+private void pushVideoFrameByTexture(int textureId, VideoFrame.TextureBuffer.Type textureType, int width, int height){
+   // 创建一个 frameBuffer 对象，用于存储 Texture 格式的视频帧
+   VideoFrame.Buffer frameBuffer = new TextureBuffer(
+            EglBaseProvider.getCurrentEglContext(),
+            width,
+            height,
+            textureType,
+            textureId,
+            new Matrix(),
+            null,
+            null,
+            null
+   );
+
+   // 获取 SDK 当前的 Monotonic Time
+   long currentMonotonicTimeInMs = engine.getCurrentMonotonicTimeInMs();
+   VideoFrame videoFrame = new VideoFrame(frameBuffer, 0, currentMonotonicTimeInMs * 1000000);
+   
+   // 通过视频轨道将视频帧推送到 SDK
+   int ret = engine.pushExternalVideoFrameEx(videoFrame, videoTrack);
+
+   if (!success) {
+      Log.w(TAG, "pushExternalVideoFrame error");
+   }
 }
 ```
 
