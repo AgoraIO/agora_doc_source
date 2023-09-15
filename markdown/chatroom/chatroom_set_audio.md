@@ -11,21 +11,40 @@
   ```kotlin
   setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
   setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
-  setParameters("{\"che.audio.enable.aec\":false}");
-  setParameters("{\"che.audio.enable.ns\":false}");
-  setParameters("{\"che.audio.enable.agc\":false}");
-  setParameters("{\"che.audio.custom_payload_type\":78}");
-  setParameters("{\"che.audio.custom_bitrate\":128000}");
-  setParameters("{\"che.audio.input_channels\":2}");
+  setParameters("{\"che.audio.enable.aec\":false}")
+  setParameters("{\"che.audio.enable.ns\":false}")
+  setParameters("{\"che.audio.enable.agc\":false}")
+  setParameters("{\"che.audio.custom_payload_type\":78}")
+  setParameters("{\"che.audio.custom_bitrate\":128000}")
+  setParameters("{\"che.audio.input_channels\":2}")
   ```
+
+  ```swift
+  rtcKit.setAudioProfile(.musicHighQualityStereo)
+  rtcKit.setAudioScenario(.gameStreaming)
+  rtcKit.setParameters("{\"che.audio.enable.aec\":false}")
+  rtcKit.setParameters("{\"che.audio.enable.ns\":false}")
+  rtcKit.setParameters("{\"che.audio.enable.agc\":false}")
+  rtcKit.setParameters("{\"che.audio.custom_payload_type\":78}")
+  rtcKit.setParameters("{\"che.audio.custom_bitrate\":128000}")
+  rtcKit.setParameters("{\"che.audio.input_channels\":2}")
+  ```
+
 
 - （普通直播）当主播未使用声卡采集音频时，设置高音质：
 
   ```kotlin
   setAudioProfile(Constants.MUSIC_HIGH_QUALITY_STEREO)
   setAudioScenario(Constants.AUDIO_SCENARIO_GAME_STREAMING)
-  setParameters("{\"che.audio.custom_bitrate\":128000}");
-  setParameters("{\"che.audio.custom_payload_type\":78}");
+  setParameters("{\"che.audio.custom_bitrate\":128000}")
+  setParameters("{\"che.audio.custom_payload_type\":78}")
+  ```
+
+  ```swift
+  rtcKit.setAudioProfile(.musicHighQualityStereo)
+  rtcKit.setAudioScenario(.gameStreaming)
+  rtcKit.setParameters("{\"che.audio.custom_bitrate\":128000}")
+  rtcKit.setParameters("{\"che.audio.custom_payload_type\":78}")
   ```
 
 <div class="alert note">上述高音质设置仅适用于语聊房。如果在其他场景解决方案中需要设置高音质，可以联系<a href="/cn/Agora%20Platform/ticket?platform=All%20Platforms">声网技术支持</a>进行咨询。</div>
