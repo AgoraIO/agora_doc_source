@@ -14,30 +14,31 @@ To enable Chat, make sure that you have the following:
 
 1. Log in to the [Agora Console](https://console.agora.io/).
 
-2. In the left navigation bar, click **Project Management** and click **Config** for the project that you want to use.
+2. In the left navigation bar, click **Project Management** and click **Configure** for the project that you want to use.
 
-3. In the **Features** section of the **Edit Project** page, click **Enable** next to **Chat** to enable Chat.
+3. In the **Features** section of the **Edit Project** page, click **Enable/Configure** next to **Chat** to enable the service.
 
-   If this is your first Chat project, select and subscribe to a Chat package:
+[/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/enable_chat.png]
 
-   ![img](https://docs.agora.io/en/assets/images/subscribe-be8b6d8b9d74ea01c8839bc040b162fc.png)
+If this is your first Agora project, you need to first enable **Primary Certificate** and delete **No Certificate** in the **Security** section.
+
+[/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/enable_primary_certificate.png]
 
 4. Select a data center closest to where most of your end users are located.
 
-   ![img](https://web-cdn.agora.io/docs-files/1665386519450)
+  Once selected, the data center cannot be changed.
 
-   Once Chat is enabled, you are redirected to the Chat config page.
+  [/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/select_data_center.png]
 
 5. Enable the advanced Chat features based on your business requirements.
 
-    
+  [/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/enable_advanced features.png]   
 
 For details about these advanced features, see the following:
 
 - [Message Callback](https://docs.agora.io/en/agora-chat/develop/setup-webhooks)
 - [Message Thread](https://docs.agora.io/en/agora-chat/client-api/threading/thread-management)
 - [Reaction](https://docs.agora.io/en/agora-chat/client-api/reaction)
-- [Offline Message Push (Advanced)](https://docs.agora.io/en/agora-chat/develop/offline-push)
 - [Presence](https://docs.agora.io/en/agora-chat/client-api/presence)
 - [Translation](https://docs.agora.io/en/agora-chat/client-api/messages/translate-messages)
 - [Moderation](https://docs.agora.io/en/agora-chat/develop/content-moderation)
@@ -46,7 +47,7 @@ For details about these advanced features, see the following:
 
 Agora Console assigns the following information to each project that enables Chat:
 
-- **Data Center**: Agora provides several data centers for the service in different regions, including Beijing1 (China), Beijing VIP (China), Singapore, Frankfurt (Germany), and Virginia (USA). After the plan is changed, the data center remains unchanged.
+- **Data Center**: Agora provides several data centers for the service in different regions, including Singapore, Frankfurt (Germany), and Virginia (USA). After the plan is changed, the data center remains unchanged.
 - **AppKey**: The unique identifier that Chat assigns to each app. The **AppKey** is of the form `${OrgName}#{AppName}`.
 - **OrgName**: The unique identifier that Chat assigns to each enterprise (organization).
 - **AppName**: The name that Chat assigns to each app. Each app under the same enterprise (organization) must have a unique App Name.
@@ -54,8 +55,8 @@ Agora Console assigns the following information to each project that enables Cha
 
 Follow these steps to get the project information:
 
-1. Find your Chat-enabled project on the [Project management](https://console.agora.io/projects) page at Agora Console and click **Config**.
-2. On the project edit page, find **Chat** and click **Config**.
+1. Find your Chat-enabled project on the [Project management](https://console.agora.io/projects) page at Agora Console and click **Configure**.
+2. On the project edit page, find **Chat** and click **Enable/Configure**.
 3. On the Chat config page, get the values of **Data Center**, **AppKey**, **OrgName**, **AppName**, **WebSocket Address**, and **REST API**.
 
 ## [Manage users and generate tokens](https://docs.agora.io/en/agora-chat/get-started/enable?platform=android#manage-users-and-generate-tokens)
@@ -68,13 +69,13 @@ This section shows you how to register Chat users and generate temporary tokens 
 
 To register a user, do the following:
 
-1. On the **Project Management** page, click **Config** for the project that you want to use.
+1. On the **Project Management** page, click **Configure** for the project that you want to use.
 
-   ![img](https://web-cdn.agora.io/docs-files/1664531061644)
+   [/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/configure_project.png]
 
-2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+2. On the **Edit Project** page, click **Enable/Configure** next to **Chat** in the **Features** section.
 
-   ![img](https://web-cdn.agora.io/docs-files/1664531091562)
+  [/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/enable_chat.png]
 
 3. In the left-navigation pane, select **Operation Management** > **User** and click **Create User**.
 
@@ -90,11 +91,11 @@ To ensure communication security, Agora recommends using tokens to authenticate 
 
 For testing purposes, Agora Console supports generating temporary tokens for Chat. To generate a user token, do the following:
 
-1. On the **Project Management** page, click **Config** for the project that you want to use.
+1. On the **Project Management** page, click **Configure** for the project that you want to use.
 
-   ![img](https://web-cdn.agora.io/docs-files/1664531061644)
+   [/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/configure_project.png]
 
-2. On the **Edit Project** page, click **Config** next to **Chat** below **Features**.
+2. On the **Edit Project** page, click **Enable/Configure** next to **Chat** in the **Features** section.
 
    ![img](https://web-cdn.agora.io/docs-files/1664531091562)
 
@@ -110,7 +111,7 @@ For testing purposes, Agora Console supports generating temporary tokens for Cha
 
 3. On the **Subscribe** tab, you can change your Chat plan by clicking **Subscribe** next to the desired plan.
 
-   ![img](https://web-cdn.agora.io/docs-files/1665389469534)
+   [/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/subscribe_chat.png]
 
    **Note:**
 
@@ -121,7 +122,7 @@ For testing purposes, Agora Console supports generating temporary tokens for Cha
 
 1. Log in to the [Agora Console](https://console.agora.io/).
 
-2. In the left navigation bar, click **Project Management** and click **Config** for the project that you want to use.
+2. In the left navigation bar, click **Project Management** and click **Configure** for the project that you want to use.
 
 3. In the **Features** section of the **Edit Project** page, click **Enable/Configure** next to **Chat**.
 
@@ -141,7 +142,7 @@ Before unsubscribing Chat, disable all projects that have Chat enabled.
 
 3. On the **Subscribe** tab, scroll down to the bottom and click **Unsubscribe**.
 
-   ![img](https://web-cdn.agora.io/docs-files/1665389814916)
+   [/agora_doc_source/en-US/markdown/agora-chat/images/enablechat/unsubscribe_chat.png]
 
    **Note:**
 
