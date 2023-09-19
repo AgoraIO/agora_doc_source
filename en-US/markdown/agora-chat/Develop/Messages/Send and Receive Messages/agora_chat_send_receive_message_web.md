@@ -45,7 +45,7 @@ function sendPrivateText() {
         chatType: "singleChat",
     };
     // Create a text message.
-    let msg = AC.message.create(option);
+    let msg = WebIM.message.create(option);
     // Call send to send the message
      conn.send(msg).then((res)=>{
       console.log("Send message success",res);
@@ -68,7 +68,7 @@ function sendTextMessage() {
         to: "chat room ID",
         chatType: "chatRoom",
     };
-    let msg = AC.message.create(opt);
+    let msg = WebIM.message.create(opt);
     conn.send(msg).then(()=>{
         console.log("Send message success");
     }).catch((e)=>{
@@ -85,7 +85,7 @@ When a message arrives, the recipient receives an `onXXXMessage` callback. Each 
 
 ```javascript
 // Use `addEventHandler` to listen for callback events.
-connection.addEventHandler("eventName",{
+WebIM.conn.addEventHandler("eventName",{
     // Occurs when the app is connected.
     onOpened: function (message) {},
     // Occurs when the connection is lost.
@@ -163,7 +163,7 @@ connection.recallMessage(option).then((res) => {
 You can also use `onRecallMessage` to listen for the message recall state:
 
 ```javascript
-connection.addEventHandler('MESSAGES',{
+WebIM.conn.addEventHandler('MESSAGES',{
    onRecallMessage: => (msg) {
        // You can insert a message here, for example, XXX has recalled a message.
    	   console.log('Recalling the message succeeds'，msg) 
@@ -196,11 +196,11 @@ Refer to the following code example to create and send a voice message:
 ```javascript
   var sendPrivateAudio = function () {
       // Create a voice message.
-      var msg = new AC.message('audio');
+      var msg = new WebIM.message('audio');
       // Select the local audio file.
       var input = document.getElementById('audio');
       // Turn the audio file to a binary file.
-      var file = AC.utils.getFileUrl(input);
+      var file = WebIM.utils.getFileUrl(input);
       var allowType = {
           'mp3': true,
           'amr': true,
@@ -232,7 +232,7 @@ Refer to the following code example to create and send a voice message:
               ext: {file_length: file.data.size}
           };
           // Create a voice message.
-          var msg = AC.message.create(option);
+          var msg = WebIM.message.create(option);
           // Call send to send the voice message.
           conn.send(msg).then((res)=>{
               // Occurs when the audio file is successfully sent.
@@ -254,7 +254,7 @@ Refer to the following code example to create and send an image message:
       // Select the local image file.
       var input = document.getElementById("image");
       // Turn the image to a binary file.
-      var file = AC.utils.getFileUrl(input);
+      var file = WebIM.utils.getFileUrl(input);
       var allowType = {
           jpg: true,
           gif: true,
@@ -288,7 +288,7 @@ Refer to the following code example to create and send an image message:
               },
           };
           // Create a voice message.
-          var msg = AC.message.create(option);
+          var msg = WebIM.message.create(option);
           // Call send to send the voice message.
           conn.send(msg).then((res)=>{
               // Occurs when the audio file is successfully sent.
@@ -318,7 +318,7 @@ To send a URL image message, make sure you set `useOwnUploadFun` as `true`.
           to: "username",
       };
       // Create an image message.
-      var msg = AC.message.create(option);
+      var msg = WebIM.message.create(option);
       // Call send to send to image file.
       conn.send(msg);
   };
@@ -336,7 +336,7 @@ Refer to the following code example to create and send a video message:
       // Select the local video file.
       var input = document.getElementById("video");
       // Turn the video to a binary file.
-      var file = AC.utils.getFileUrl(input);
+      var file = WebIM.utils.getFileUrl(input);
       var allowType = {
           mp4: true,
           wmv: true,
@@ -368,7 +368,7 @@ Refer to the following code example to create and send a video message:
               ext: {file_length: file.data.size},
           };
           // Create a video message.
-          var msg = AC.message.create(option);
+          var msg = WebIM.message.create(option);
           // Call send to send the video message.
           conn.send(msg).then((res)=>{
               // Occurs when the message is sent.
@@ -390,7 +390,7 @@ Refer to the following code example to create, send, and receive a file message:
       // Select the local file.
       var input = document.getElementById("file");
       // Turn the file message to a binary file.
-      var file = AC.utils.getFileUrl(input);
+      var file = WebIM.utils.getFileUrl(input);
       var allowType = {
           jpg: true,
           gif: true,
@@ -425,7 +425,7 @@ Refer to the following code example to create, send, and receive a file message:
               ext: {file_length: file.data.size},
           };
           // Create a file message.
-          var msg = AC.message.create(option);
+          var msg = WebIM.message.create(option);
           // Call send to send the file message.
           conn.send(msg).then((res) => {
               // Occurs when the file message is sent.
@@ -457,7 +457,7 @@ const sendLocMsg = () => {
         lat: Math.round(coords.latitude),
         lng: Math.round(coords.longitude),
       };
-      let msg = AC.message.create(option);
+      let msg = WebIM.message.create(option);
       conn.send(msg).then((res)=>{
         console.log("Send message success", res);
       }).catch((e)=>{
@@ -488,7 +488,7 @@ var options = {
   ext :{'extmsg':'extends messages'}
 }
 // Create a CMD message.
-var msg = AC.message.create(options);
+var msg = WebIM.message.create(options);
 // Call send to send the CMD message.
 conn.send(msg).then((res)=>{
     // Occurs when the message is sent.
@@ -526,7 +526,7 @@ var sendCustomMsg = function () {
         ext: {},
     }
     // Create a custom message.
-    var msg = AC.message.create(options);
+    var msg = WebIM.message.create(options);
     // Call send to send the custom message.
     conn.send(msg).then((res)=>{
         // Occurs when the message is sent.
@@ -557,7 +557,7 @@ function sendPrivateText() {
             },
         }
     }
-    let msg = AC.message.create(options);
+    let msg = WebIM.message.create(options);
     // Call send to send the extended message.
     conn.send(msg).then((res)=>{
         console.log("send private text Success");
@@ -573,5 +573,3 @@ After implementing sending and receiving messages, you can refer to the followin
 
 - [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_web?platform=Web)
 - [Message receipts](./agora_chat_message_receipt_web?platform=Web)
-
-
