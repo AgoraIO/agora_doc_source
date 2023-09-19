@@ -114,19 +114,19 @@ class ContentInspectConfig {
             <parml>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
-                <pd>（默认）无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
+                <pd>0：（默认）无实际功能。请不要将 <parmname>type</parmname> 设为该值。</pd>
             </plentry>
             <plentry props="hide">
                 <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
-                <pd>视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
+                <pd>1：视频鉴黄。SDK 会对本地用户发送的视频进行截图、鉴黄，并将截图和审核结果上传。</pd>
             </plentry>
             <plentry props="android">
-                <pt>CONTENT_INSPECT_SUPERVISE</pt>
-                <pd>视频截图上传。SDK 会对本地用户发送的视频进行截图并上传。</pd>
+                <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
+                <pd>2：使用声网自研插件截图上传。SDK 会对本地用户发送的视频进行截图并上传。</pd>
             </plentry>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
-                <pd>云市场截图上传。SDK 会使用云市场视频审核插件对视频流进行截图并上传。</pd>
+                <pd>3：使用云市场插件截图上传。SDK 会使用云市场视频审核插件对视频流进行截图并上传。</pd>
             </plentry>
             <plentry props="native unreal bp electron rn flutter">
                 <pt>extraInfo</pt>
@@ -138,7 +138,7 @@ class ContentInspectConfig {
             </plentry>
             <plentry props="native rn flutter unity">
                 <pt>serverConfig</pt>
-                <pd>云市场视频截图上传相关服务端配置，仅功能模块类型选择云市场视频截图上传时支持传入。如需使用，请<xref keyref="ticket-link" />。</pd>
+                <pd>（可选）云市场视频截图上传相关服务端配置，该参数仅在 <xref keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 设置为 <ph keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 时支持传入。如需使用，请<xref keyref="ticket-link" />。</pd>
             </plentry>
             <plentry>
                 <pt>modules</pt>
