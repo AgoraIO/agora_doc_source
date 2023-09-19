@@ -2,6 +2,10 @@
 
 v4.2.2 was released on July xx, 2023.
 
+#### Compatibility changes
+
+In this version, some constructors have been removed from the `VideoCanvas` class.
+
 #### New features
 
 1. **Wildcard token**
@@ -67,6 +71,10 @@ This release fixed the following issues:
 - `backgroundColor` in `VideoCanvas`
 - `codecLevels` in `CodecCapInfo`
 - `REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT`
+
+**Deleted**
+
+- Some constructors in `VideoCanvas`
 
 ## v4.2.1
 
@@ -464,18 +472,6 @@ This release fixed the following issues:
 - `newRoleOptions` in `onClientRoleChanged`
 
 - `adjustUserPlaybackSignalVolumeEx`
-
-- `IAgoraMusicContentCenter` interface class and methods in it
-
-- `IAgoraMusicPlayer` interface class and methods in it
-
-- `IMusicContentCenterEventHandler` interface class and callbacks in it
-
-- `Music` class
-
-- `MusicChartInfo` class
-
-- `MusicContentCenterConfiguration` class
 
 - `MvProperty` class
 

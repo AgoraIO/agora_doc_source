@@ -8,6 +8,10 @@
 
 该版本废弃了 `IAgoraMusicContentCenter` 类下的 `preload [1/2]` 方法并新增 `preload [2/2]` 方法。如果你使用了 `preload [1/2]` 方法实现预加载音乐资源，请在升级到该版本后更新 app 代码。
 
+**视频画布属性**
+
+该版本的 `VideoCanvas` 类中删除了部分构造函数。
+
 #### 新增特性
 
 1. **通配 Token**
@@ -309,7 +313,7 @@
 - `startRecording`、`stopRecording`、`setMediaRecorderObserver` 中的 `connection`
 - `onScreenCaptureVideoFrame`
 - `onPreEncodeScreenVideoFrame`
-
+- `VideoCanvas` 的部分构造函数
 
 
 ## v4.1.1
