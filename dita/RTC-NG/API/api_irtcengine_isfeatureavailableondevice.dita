@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_isfeatureavailableondevice">
     <title><ph keyref="isFeatureAvailableOnDevice"/></title>
-    <shortdesc id="short"><ph id="shortdesc">查询设备是否支持指定高级功能。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">查询设备是否支持指定进阶功能。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,20 +29,20 @@
                 <dd>v4.2.3</dd>
             </dlentry>
             </dl>
-            <p>查询当前设备是否满足虚拟背景、美颜等高级功能的使用要求，例如性能要求。</p>
+            <p>查询当前设备能力是否满足虚拟背景、美颜等进阶功能的要求。</p>
         </section>
         <section id="scenario">
             <title>适用场景</title>
-            <p/>
+            <p>在使用进阶音视频功能前，你可以根据查询结果判断当前设备是否支持这些功能，从而避免在低端设备上开启进阶功能导致性能下降或功能不可用的问题。开发者可以根据 <apiname keyref="isFeatureAvailableOnDevice"/> 的返回值，决定是否显示或启用相应的功能按钮，或者提示用户不支持指定功能。</p>
         </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd props="cpp apple framework">高级功能类型，详见 <xref keyref="FeatureType"/>。</pd>
+                <pd props="cpp apple framework">进阶功能类型，详见 <xref keyref="FeatureType"/>。</pd>
                 <pd props="android">
-                    <p>高级功能类型：
+                    <p>进阶功能类型：
                     <ul>
                     <li><ph keyref="VIDEO_VIRTUAL_BACKGROUND" /> (1)：虚拟背景功能。</li>
                     <li><ph keyref="VIDEO_BEAUTY_EFFECT" /> (2)：美颜功能。</li>
@@ -53,8 +53,8 @@
         <section id="return_values">
             <title>返回值</title>
             <ul>
-            <li><codeph><ph keyref="true" /></codeph>: 设备支持指定高级功能。</li>
-            <li><codeph><ph keyref="false" /></codeph>: 设备不支持指定高级功能。</li>
+            <li><codeph><ph keyref="true" /></codeph>: 设备支持指定进阶功能。</li>
+            <li><codeph><ph keyref="false" /></codeph>: 设备不支持指定进阶功能。</li>
             </ul> </section>
     </refbody>
 </reference>
