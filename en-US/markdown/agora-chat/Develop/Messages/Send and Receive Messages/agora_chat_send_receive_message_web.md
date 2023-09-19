@@ -573,5 +573,3 @@ After implementing sending and receiving messages, you can refer to the followin
 
 - [Retrieve conversations and messages from the server](./agora_chat_retrieve_message_web?platform=Web)
 - [Message receipts](./agora_chat_message_receipt_web?platform=Web)
-
-
