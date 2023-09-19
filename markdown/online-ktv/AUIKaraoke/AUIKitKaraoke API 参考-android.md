@@ -2,7 +2,7 @@
 
 本文介绍 AUIKitKaraoke 组件的 API。
 
-源码文件？
+源码文件？//TODO https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/Android/asceneskit/src/main/java/io/agora/asceneskit/karaoke/KaraokeUiKit.kt
 
 ## KaraokeUIKit
 
@@ -42,13 +42,13 @@ fun createRoom(
 
 创建 K 歌房间。
 
-在 K 歌场景下，创建房间的人自动成为房主。成功创建房间后，会返回创建的房间信息。//TODO
+在 K 歌场景下，创建房间的人自动成为房主。成功创建房间后，会返回创建的房间信息。//TODO input里面是这么写的，但是这个方法应该没有返回值..？
 
 **参数**
 
 - `createRoomInfo`：房间信息，详见 [AUICreateRoomInfo](#AUICreateRoomInfo)。
 - `success`：回调函数，当房间创建成功时调用。接受一个 `AUIRoomInfo` 参数，表示成功创建的房间信息，无返回值。//TODO
-- `failure`：回调函数，当房间创建失败时调用。接受一个 `AUIException` 参数表示房间创建失败的异常，             无返回值。
+- `failure`：回调函数，当房间创建失败时调用。接受一个 `AUIException` 参数表示房间创建失败的异常，无返回值。
 
 ### getRoomList
 
@@ -164,8 +164,8 @@ public class AUICreateRoomInfo implements Serializable {
 
 ```kotlin
 public class AUIRoomInfo extends AUICreateRoomInfo implements Serializable {
-    public @NonNull String roomId = ""; 
-    public @Nullable AUIUserThumbnailInfo roomOwner; 
+    public @NonNull String roomId = "";
+    public @Nullable AUIUserThumbnailInfo roomOwner;
     public int onlineUsers = 0;
     public long createTime = 0;
 }
@@ -178,7 +178,7 @@ public class AUIRoomInfo extends AUICreateRoomInfo implements Serializable {
 - `roomId`：房间 ID。
 - `roomOwner`：房主信息，详见 [AUIUserThumbnailInfo](#AUIUserThumbnailInfo)。
 - `onlineUsers`：房间内的人数。
-- `createTime`：房间创建的时间（单位？//TODO）
+- `createTime`：房间创建的时间（单位 ms？//TODO）
 
 ### <h3 className="anchor" id="AUIUserThumbnailInfo">AUIUserThumbnailInfo</h3>
 
@@ -269,4 +269,3 @@ public class AUIRoomConfig {
 
 
 
- 
