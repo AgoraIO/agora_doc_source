@@ -31,13 +31,28 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 
 2. 下载并解压美颜 SDK，然后将 SDK 中如下文件添加到美颜示例项目对应的文件路径下：
 
-    |SDK 文件    |  项目路径   |
-    |---|-----|
-    | resource/LicenseBag.bundle                       | app/src/main/assets/beauty_bytedance           |
-    | resource/ModelResource.bundle                    | app/src/main/assets/beauty_bytedance           |
-    | resource/ComposeMakeup.bundle                    | app/src/main/assets/beauty_bytedance           |
-    | resource/StickerResource.bundle                  | app/src/main/assets/beauty_bytedance           |
-    | resource/StickerResource.bundle                    | app/src/main/assets/beauty_bytedance           |
+    <table>
+      <tr>
+        <th>SDK 文件</th>
+        <th>项目路径</th>
+      </tr>
+      <tr>
+        <td>resource/LicenseBag.bundle</td>
+        <td rowspan="5">app/src/main/assets/beauty_bytedance</td>
+      </tr>
+      <tr>
+        <td>resource/ModelResource.bundle</td>
+      </tr>
+      <tr>
+        <td>resource/ComposeMakeup.bundle</td>
+      </tr>
+      <tr>
+        <td>resource/StickerResource.bundle</td>
+      </tr>
+      <tr>
+        <td>resource/StickerResource.bundle</td>
+      </tr>
+    </table>
 
 3. 在 `app/src/main/java/io/agora/beautyapi/demo/ByteDanceActivity.kt` 文件中，将 `LICENSE_NAME` 设置为申请到的证书文件名。
 
@@ -79,7 +94,7 @@ AGORA_APP_ID = "YOUR_APP_ID"
 
 2. 用 Android Studio 打开 `BeautyAPI/Android` 文件夹。
 
-3. 在 Android Studio 中，点击 **Sync Project with Gradle Files** 按钮，以让项目与 Gradle 文件同步。
+3. 在 Android Studio 中，点击 **Sync Project with Gradle Files** 按钮，让项目与 Gradle 文件同步。
 
 4. 待同步成功后，点击 `Run 'app'`。片刻后，美颜应用便会安装到你的 Android 设备上。
 

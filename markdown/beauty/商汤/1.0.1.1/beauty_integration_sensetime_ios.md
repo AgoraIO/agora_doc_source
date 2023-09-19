@@ -1,4 +1,4 @@
-本文介绍如何通过声网场景化 API 集成商汤美颜到实时音视频中。
+本文介绍如何通过声网美颜场景化 API 集成商汤美颜到实时音视频中。
 
 ## 示例项目
 
@@ -17,7 +17,7 @@
 - 已联系商汤技术获取最新的美颜 SDK、美颜资源、美颜证书
 
 
-## 创建声网项目
+### 创建声网项目
 
 ~f42d44d0-2ac7-11ee-b391-19a59cc2656e~
 
@@ -53,7 +53,7 @@
     | SenseMe/st_mobil_sdk | iOS/SenseLib/st_mobile_sdk  |
     |SenseMe/st_mobil_sdk/license/SENSEME.lic   | iOS/SenseLib/SENSEME.lic |
 
-6. 将声网场景化 API 集成到你的项目中。添加 [iOS/BeautyAPi/BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1/iOS/BeautyAPi/BeautyAPI) 目录下的文件到项目中，具体文件如下：
+6. 将声网美颜场景化 API 集成到你的项目中。添加 [iOS/BeautyAPi/BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/1.0.1.1/iOS/BeautyAPi/BeautyAPI) 目录下的文件到项目中对应的目录下，具体文件如下：
 
     - `Render/SenseRender` 文件夹
     - `SenseRender` 文件夹
@@ -62,9 +62,9 @@
     - `BeautyConfig.h` 文件
     - `BeautyConfig.m` 文件
 
-    为方便后续代码升级，请不要修改你添加的这些文件的名称。
+    <div class="alert note">为方便后续代码升级，请不要修改你添加的这些文件的名称。</div>
 
-7. 将声网 RTC SDK 和商汤美颜依赖库集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+7. 将声网 RTC SDK 和商汤美颜依赖库集成到你的项目。
 
     1. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
     2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
@@ -82,20 +82,20 @@
     ```
 
 
-8. 在终端内运行 <code>pod install</code> 命令安装声网 RTC SDK 和商汤美颜依赖。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
+8. 在终端内运行 <code>pod install</code> 命令安装声网 RTC SDK 和商汤美颜依赖。
 
-9. 成功安装后，项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。
+9. 成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。项目文件夹下会生成一个后缀为 <code>.xcworkspace</code> 的文件，通过 Xcode 打开该文件进行后续操作。
 
 ## 实现美颜
 
-如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，商汤美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
+本节展示如何在直播间内实现美颜功能，参考 [API 时序图](#api-时序图)可查看总览。声网 RTC SDK 承担实时音视频的业务，商汤美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你还需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
 
 ### 1. 初始化 AgoraRtcEngineKit
 
 调用声网 RTC SDK 中的 `sharedEngineWithConfig` 创建并初始化 `AgoraRtcEngineKit` 对象。同时调用 `enableVideo` 开启声网 SDK 的视频模块。
 
 ```swift
-// 初始化声网 RtcEngine
+// 初始化 AgoraRtcEngineKit
 private lazy var rtcEngine: AgoraRtcEngineKit = {
     let config = AgoraRtcEngineConfig()
     // 传入你从控制台获取的声网项目的 APP ID
@@ -116,7 +116,7 @@ private lazy var rtcEngine: AgoraRtcEngineKit = {
 
 ### 2. 初始化美颜和 Beauty API
 
-创建 SenseBeautyRender 和 Beauty API 对象。Beauty API 对象是基于 `SenseBeautyRender` 对象封装。
+创建 SenseBeautyRender 和 Beauty API 对象。Beauty API 对象是声网基于 `SenseBeautyRender` 对象封装。
 
 
 ```swift
@@ -171,7 +171,7 @@ if result != 0 {
 
 调用 Beauty API 的 `enable` 方法开启美颜。
 
-```kotlin
+```swift
 beautyAPI.enable(true)
 ```
 
@@ -184,7 +184,6 @@ beautyAPI.enable(true)
 使用声网模块采集视频视频时，调用 Beauty API 的 `setupLocalVideo` 开启本地视图。
 
 ```swift
-// 设置本地视图
 beautyAPI.setupLocalVideo(localView, renderMode: .hidden)
 ```
 
@@ -235,7 +234,7 @@ extension BeautyViewController: AgoraVideoFrameDelegate {
 
 调用 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入频道，同时传入如下参数：
 
-- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 token 传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 将 `token` 参数传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后将生成的 Token 传入该参数。
 - `channelId`：频道名。
 - `mediaOptions`：频道媒体设置选项。
 
@@ -274,20 +273,19 @@ if result != 0 {
 - `BeautyPresetModeDefault`：默认且推荐的美颜参数。
 - `BeautyPresetModeCustom`：开发者自定义的美颜参数。
 
-不同的美颜参数会带来不同的美颜效果。如果你没有特殊偏好，推荐你使用 `BeautyPresetModeDefault`。
+不同的美颜参数会带来不同的美颜效果。如果你没有特殊美颜要求，推荐你使用 `BeautyPresetModeDefault`。
 
-```kotlin
+```swift
 beautyAPI.setBeautyPreset(.default)
 ```
 
-<div class="alert note">通过 Beauty API 的 <code>setBeautyPreset</code> 方法，你可以实现基础美颜功能。但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。</div>
+<div class="alert note">通过 Beauty API 的 <code>setBeautyPreset</code> 方法，你可以实现基础美颜功能。但是如果你还需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。</div>
 
 ### 7. 离开频道
 
 调用 `AgoraRtcEngineKit` 类的 `leaveChannel` 离开频道。
 
-```kotlin
-// 离开 RTC 频道
+```swift
 rtcEngine.leaveChannel()
 ```
 
@@ -296,7 +294,7 @@ rtcEngine.leaveChannel()
 
 调用 Beauty API 的 `destory` 销毁 Beauty API。
 
-```kotlin
+```swift
 beautyAPI.destory()
 ```
 
@@ -304,7 +302,7 @@ beautyAPI.destory()
 
 调用 `AgoraRtcEngineKit` 的 `destroy` 销毁 `AgoraRtcEngineKit`。
 
-```kotlin
+```swift
 AgoraRtcEngineKit.destroy()
 ```
 

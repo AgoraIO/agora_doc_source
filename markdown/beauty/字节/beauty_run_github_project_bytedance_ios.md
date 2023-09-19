@@ -61,7 +61,7 @@ git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
 
 1. 连接上 iOS 设备后，点击 `BeautyAPi.xcodeproj` 文件以通过 Xcode 打开项目，并在 **iOS Device** 选项中勾选上你的 iOS 设备。
 
-2. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 用于在设备上唯一标识应用程序。在开发应用时，你需要设置 Bundle ID。在此处设置的 Bundle ID 需要与你申请商汤美颜 SDK 时提供的 Bundle ID 一致。
+2. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 是设备上应用程序的唯一标识。在开发应用时，你需要设置 Bundle ID。在此处设置的 Bundle ID 需要与你申请字节火山美颜 SDK 时提供的 Bundle ID 一致。
 
 3. 点击 <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25"/> 开始编译。
 

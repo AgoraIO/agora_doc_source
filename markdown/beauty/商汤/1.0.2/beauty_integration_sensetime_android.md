@@ -1,4 +1,4 @@
-本文介绍如何通过声网场景化 API 集成商汤美颜到实时音视频中。
+本文介绍如何通过声网美颜场景化 API 集成商汤美颜到实时音视频中。
 
 ## 示例项目
 
@@ -16,7 +16,7 @@
 - 已联系商汤技术获取最新的美颜 SDK、美颜资源、美颜证书
 - 已在项目中添加 Kotlin 插件
 
-## 创建声网项目
+### 创建声网项目
 
 ~f42d44d0-2ac7-11ee-b391-19a59cc2656e~
 
@@ -77,12 +77,12 @@
     | SenseME.lic                                                         | app/src/main/assets/beauty_sensetime/license/SenseME.lic |
 
 
-4. 将声网场景化 API 集成到你的项目中。添加 [Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime) 目录下的文件到项目中，具体文件如下：
+4. 将声网美颜场景化 API 集成到你的项目中。添加 [Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_sensetime/src/main/java/io/agora/beautyapi/sensetime) 目录下的文件到项目中对应的目录下，具体文件如下：
     - `utils` 文件夹
     - `SenseTimeBeautyAPI.kt` 文件
     - `SenseTimeBeautyAPIImpl.kt` 文件
 
-    为方便后续代码升级，请不要修改你添加的这些文件的名称。
+    <div class="alert note">为方便后续代码升级，请不要修改你添加的这些文件的名称。</div>
 
 5. 添加网络及设备权限。
 
@@ -113,7 +113,7 @@
 
 ## 实现美颜
 
-如下[时序图](#api-时序图)展示如何在直播间内实现美颜功能。声网 RTC SDK 承担实时音视频的业务，商汤美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
+本节展示如何在直播间内实现美颜功能，参考 [API 时序图](#api-时序图)可查看总览。声网 RTC SDK 承担实时音视频的业务，商汤美颜 SDK 提供美颜功能，声网 Beauty API 封装了两个 SDK 中的 API 调用逻辑以简化你需要实现的代码逻辑。通过 Beauty API，你可以实现基础美颜功能，但是如果你还需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。
 
 ### 1. 初始化 RtcEngine
 
@@ -219,7 +219,7 @@ fun initMobileEffect(context: Context){
 
 ### 3. 初始化 Beauty API
 
-调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是基于 `STMobileHumanActionNative` 和 `STMobileEffectNative` 对象封装。
+调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是声网基于 `STMobileHumanActionNative` 和 `STMobileEffectNative` 对象封装。
 
 ```kotlin
 // 创建 Beauty API 对象
@@ -237,6 +237,7 @@ private val mSenseTimeApi by lazy {
     - 如果你使用声网模块采集视频，请传入 `CaptureMode.Agora`。
     - 如果自定义采集视频，请传入 `CaptureMode.Custom`。
 - `statsEnable`：是否开启美颜统计数据回调。`true` 代表开启，`false` 代表不开启。开启后，会有周期性的 `onBeautyStats` 回调事件。
+- `statsDuration`：美颜统计数据回调的周期。单位为毫秒。
 - `cameraConfig`：设置视频镜像模式。如果在初始化 Beauty API 后你想修改镜像模式，可以调用 Beauty API 的 `updateCameraConfig`。
 - `eventCallback`：你希望监听的回调事件。
 
@@ -259,6 +260,8 @@ mSenseTimeApi.initialize(
         // 是否开启美颜统计数据
         // 开启后，会有周期性的 onBeautyStats 回调事件
         statsEnable = true,
+        // 设置美颜统计数据的统计区间为 1000 毫秒（默认）
+        statsDuration = 1000,
         // 用于监听 Beauty API 的回调事件
         eventCallback = object: IEventCallback{
             override fun onBeautyStats(stats: BeautyStats) {
@@ -334,7 +337,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
 调用 `RtcEngine` 类的 `joinChannel` 加入频道，同时传入如下参数：
 
-- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 token 传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后在这个参数中传入。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 将 `token` 参数传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后将生成的 Token 传入该参数。
 - `channelId`：频道名。
 - `options`：频道媒体设置选项。
 
@@ -365,20 +368,19 @@ mRtcEngine.joinChannel(null, mChannelName, 0, ChannelMediaOptions().apply {
 - `DEFAULT`：默认且推荐的美颜参数。
 - `CUSTOM`：开发者自定义的美颜参数。
 
-不同的美颜参数会带来不同的美颜效果。如果你没有特殊偏好，推荐你使用 `DEFAULT`。
+不同的美颜参数会带来不同的美颜效果。如果你没有特殊美颜要求，推荐你使用 `DEFAULT`。
 
 ```kotlin
 mSenseTimeApi.setBeautyPreset(if (enable) BeautyPreset.DEFAULT else BeautyPreset.CUSTOM)
 ```
 
-<div class="alert note">通过 Beauty API 的 <code>setBeautyPreset</code> 方法，你可以实现基础美颜功能。但是如果你需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。</div>
+<div class="alert note">通过 Beauty API 的 <code>setBeautyPreset</code> 方法，你可以实现基础美颜功能。但是如果你还需要更丰富的美颜效果，例如贴纸、美妆风格，你可以直接调用美颜 SDK 中的 API。</div>
 
 ### 8. 离开频道
 
 调用 `RtcEngine` 类的 `leaveChannel` 离开频道。
 
 ```kotlin
-// 离开 RTC 频道
 mRtcEngine.leaveChannel()
 ```
 

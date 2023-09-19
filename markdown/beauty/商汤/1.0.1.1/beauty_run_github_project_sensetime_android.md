@@ -71,7 +71,7 @@ AGORA_APP_ID = "YOUR_APP_ID"
 
 2. 用 Android Studio 打开 `BeautyAPI/Android` 文件夹。
 
-3. 在 Android Studio 中，点击 **Sync Project with Gradle Files** 按钮，以让项目与 Gradle 文件同步。
+3. 在 Android Studio 中，点击 **Sync Project with Gradle Files** 按钮，让项目与 Gradle 文件同步。
 
 4. 待同步成功后，点击 `Run 'app'`。片刻后，美颜应用便会安装到你的 Android 设备上。
 
