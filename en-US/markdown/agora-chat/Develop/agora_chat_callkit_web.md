@@ -26,7 +26,7 @@ Take the following steps to download and import AgoraChatCallKit into your proje
 1. In your terminal, run the following command to install the call kit:
 
    ```bash
-   npm install AgoraChatCallKit
+   npm install chat-callkit
    ```
 
 2. Add the following line to import the callkit:
@@ -120,7 +120,7 @@ The following screenshot gives an example of the user interface after sending a 
 
 ### Receive the invitation
 
-Once a call invitaion is sent, if the callee is online and available for a call, the callee receives the invitation in the `onInvite` callback. You can pop out a user interface that allows the callee to accept or decline the invitation in this callback.
+Once a call invitation is sent, if the callee is online and available for a call, the callee receives the invitation in the `onInvite` callback. You can pop out a user interface that allows the callee to accept or decline the invitation in this callback.
 
 ```javascript
 /**
@@ -224,7 +224,8 @@ Attributes
 | Attribute | Description |
 | --- | --- |
 | contactAvatar | The avatar displayed during one-to-one calls. |
-| groupAvatar | The avatar displayed during group calls.
+| groupAvatar | The avatar displayed during group calls.|
+| ringingSource | The ringtone file.                |
 
 ### Sample project
 
