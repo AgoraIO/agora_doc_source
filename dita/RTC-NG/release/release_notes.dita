@@ -28,8 +28,15 @@
                 <title>新增特性</title>
                 <body>
                     <ol>
-                        <li><ph><b>新增特性名称</b></ph>
-                            <p><?oxy-placeholder content="用段落描述"?></p>
+                        <li><ph><b><b>视频截图上传更新</b></b></ph>
+                            <p><ph>为方便接入声网云市场提供的第三方视频审核服务，该版本有以下改动：</ph>
+                                <ul>
+                                    <li props="cpp apple unity rn flutter"><apiname keyref="CONTENT_INSPECT_TYPE"/> 中新增 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 枚举值，代表使用声网云市场视频审核插件对视频截图并上传。</li>
+                                    <li props="android"><apiname keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 新增 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> 枚举值，代表使用声网云市场视频审核插件对视频截图并上传。</li>
+                                    <li><apiname keyref="ContentInspectConfig"/> 中新增的 <codeph>serverConfig</codeph> 可选参数用于云市场视频截图上传相关服务端配置，配置后可同时接入多个云市场审核插件并实现灵活控制插件开关等功能，详情请<ph keyref="ticket-link"/>。</li>
+                                </ul>
+                                <ph>此外，该版本还新增了 <apiname keyref="enableContentInspectEx"/> 方法，支持同时对多条视频流截图并上传。</ph>
+                            </p>
                         </li>
                         <li props="cpp"><ph><b>支持 ID3D11Texture2D 渲染</b></ph>
                             <p>自该版本起，SDK 支持 ID3D11Texture2D 类型的视频格式，提升了游戏场景中视频帧的渲染效果。你可以在调用 <apiname keyref="pushVideoFrame"/> 方法将外部原始视频帧推送到 SDK 时，设置 <parmname>format</parmname> 为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>；并通过设置 <parmname>*d3d11_texture_2d</parmname> 和 <parmname>texture_slice_index</parmname> 属性，来确定要使用的 ID3D11Texture2D 纹理对象。</p>
@@ -51,11 +58,9 @@
                 <title>改进</title>
                 <body>
                     <ol>
-                        <li><ph><b>改进名称</b></ph>
-                            <ul>
-                            <li><?oxy-placeholder content="用 list 描述"?></li>
-                            <li><?oxy-placeholder content="用 list 描述"?></li>
-                            </ul></li>
+                        <li><ph><b>优化虚拟背景内存占用</b></ph>
+                            <p>该版本升级了虚拟背景算法，降低了虚拟背景功能的内存占用。相比之前的版本，在低端机上使用虚拟背景功能时 App 运行占用的内存降低了约 4%~10%（具体数值取决于设备型号和平台）。</p>
+                        </li>
                         <li props="cpp android"><ph><b>屏幕共享场景优化</b></ph>
                             <p props="cpp">该版本优化了在超高清（4K，60 fps）游戏共享场景下的性能和编码效率，有效降低了屏幕共享时系统资源占用率。</p>
                             <p props="android">该版本优化了屏幕共享场景下的视频编码配置。当用户自定义视频的 <codeph>width</codeph> 和 <codeph>height</codeph> 属性时，SDK 会在保持视频与屏幕的宽高比一致的前提下，对实际的编码分辨率进行向下取整，确保最终编码分辨率不超过用户自定义的编码分辨率，从而提升了对屏幕共享流的计费准确性。</p>
@@ -77,13 +82,15 @@
                     <ul>
                         <li props="cpp">在屏幕共享场景下偶现崩溃、掉帧。</li>
                         <li props="android">在采用 H.265 编码模式时，如果 Web 端加入互动，会导致 Native 端出现冗余的  <apiname keyref="onUserEnableLocalVideo"/> 回调：当主播调用 <codeph><apiname keyref="enableLocalVideo"/>(true)</codeph>时，接收端在收到 <apiname keyref="onUserEnableLocalVideo"/> (<codeph>enabled</codeph> 为 <codeph>true</codeph>) 回调之前，会先收到一个 <apiname keyref="onUserEnableLocalVideo"/> (<codeph>enabled</codeph> 为 <codeph>false</codeph>) 回调。</li>
-                        <li props="mac unity flutter electron"><p><ph>加入频道偶现的崩溃。</ph><ph>(macOS)</ph></p></li>
+                        <li props="mac unity flutter"><p><ph>加入频道偶现的崩溃。</ph><ph>(macOS)</ph></p></li>
                         <li>本地系统时间不正确时，偶现加入频道失败。</li>
                         <li>调用 playEffect 使用相同的 soundId 播放两个不同的音效文件，偶现第一个音效文件播放完毕后会重复播放。</li>
                         <li props="android unity flutter rn"><p><ph>主播调用 <apiname keyref="startAudioMixing2"/> 播放音乐文件时，偶现主播本地无法听见音乐，远端用户可以正常听见。</ph><ph props="unity flutter rn">(Android)</ph></p></li>
                         <li props="android ios unity flutter rn"><p><ph>合唱场景下，调用 <apiname keyref="preload"/> 加载音乐，偶现加载失败。</ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
                         <li props="android unity flutter rn"><p><ph>在特定机型上开启 AI 降噪偶现崩溃。</ph><ph props="unity flutter rn">(Android)</ph></p></li>
                         <li props="android ios unity flutter rn"><p><ph>当本地系统时间不准确时，歌曲榜单加载失败。</ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
+                        <li>调用一次 takeSnapshotEx 获取视频截图会收到多次 onSnapshotTaken 视频截图结果回调。</li>
+                        <li props="android unity flutter rn"><p><ph>在仅调用 <apiname keyref="joinChannelEx"/> 加入的频道中，调用 <apiname keyref="setEnableSpeakerphone"/> 无法将音频路由从扬声器切换至听筒。</ph><ph props="unity flutter rn">(Android)</ph></p></li>
                     </ul>
                 </body>
             </topic>
@@ -103,6 +110,12 @@
                             </ul></li>
                         <li><apiname keyref="ExternalVideoFrame"/> 中新增 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员</li>
                         <li><apiname keyref="VIDEO_PIXEL_FORMAT"/> 中新增 <apiname keyref="VIDEO_TEXTURE_ID3D11TEXTURE2D"/> 枚举</li>
+                        <li><apiname keyref="enableContentInspectEx"/></li>
+                        <li props="cpp apple rn unity flutter"><apiname keyref="CONTENT_INSPECT_TYPE"/> 新增 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> </li>
+                        <li props="android"><apiname keyref="ContentInspectModule"/> 中的 <codeph>type</codeph> 新增 <apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/> </li>
+                        <li><apiname keyref="ContentInspectConfig"/> 中新增 <codeph>serverConfig</codeph> 可选参数</li>
+                        <li><apiname keyref="isFeatureAvailableOnDevice"/></li>
+                        <li><apiname keyref="FeatureType"/></li>
                         </ul></p>
                     <p><b>修改</b>
                         <ul>
