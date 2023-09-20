@@ -32,16 +32,16 @@
                             <p><?oxy-placeholder content="用段落描述"?></p>
                         </li>
                         <li props="cpp"><ph><b>支持 ID3D11Texture2D 渲染</b></ph>
-                            <p>自该版本起，SDK 支持 ID3D11Texture2D 类型的视频格式，使用户推送游戏场景中的视频帧具备良好的渲染效果。你可以在调用 <apiname keyref="pushVideoFrame"/> 方法将外部原始视频帧推送到 SDK 时，设置 <parmname>format</parmname> 为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>；并通过设置 <parmname>*d3d11_texture_2d</parmname> 和 <parmname>texture_slice_index</parmname> 属性，来确定要使用的具体 ID3D11Texture2D 纹理对象。</p>
+                            <p>自该版本起，SDK 支持 ID3D11Texture2D 类型的视频格式，提升了游戏场景中视频帧的渲染效果。你可以在调用 <apiname keyref="pushVideoFrame"/> 方法将外部原始视频帧推送到 SDK 时，设置 <parmname>format</parmname> 为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>；并通过设置 <parmname>*d3d11_texture_2d</parmname> 和 <parmname>texture_slice_index</parmname> 属性，来确定要使用的 ID3D11Texture2D 纹理对象。</p>
                         </li>
                         <li props="cpp"><ph><b>本地视频状态错误码更新</b></ph>
                             <p>为了帮助用户在屏幕共享场景下了解本地视频出错的准确原因，<apiname keyref="onLocalVideoStateChanged"/> 回调中新增了如下几组枚举：
                             <ul>
-                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/>：屏幕采集已暂停。可能该屏幕已切换到安全桌面，例如 UAC 对话框，或者 Winlogon 桌面。</li>
-                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/>：屏幕采集已从暂停状态中恢复。</li>
-                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/>：当前屏幕采集的窗口处于隐藏状态，并且在当前屏幕上不可见。</li>
-                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/>：进行屏幕采集的窗口已经从隐藏状态中恢复。</li>
-                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/>：进行屏幕采集的窗口已经从最小化状态中恢复。</li>
+                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/>(23)：屏幕采集已暂停。当前屏幕可能已切换到安全桌面，例如 UAC 对话框或者 Winlogon 桌面。</li>
+                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/>(24)：屏幕采集已从暂停状态中恢复。</li>
+                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/>(25)：当前屏幕采集的窗口处于隐藏状态，并且在当前屏幕上不可见。</li>
+                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/>(26)：进行屏幕采集的窗口已经从隐藏状态中恢复。</li>
+                            <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/>(27)：进行屏幕采集的窗口已经从最小化状态中恢复。</li>
                             </ul></p>
                         </li>
                     </ol>
@@ -57,14 +57,14 @@
                             <li><?oxy-placeholder content="用 list 描述"?></li>
                             </ul></li>
                         <li props="cpp android"><ph><b>屏幕共享场景优化</b></ph>
-                            <p props="cpp">该版本优化了屏幕共享游戏场景下的性能和编码效率，在超高清（4K 60 fps）游戏共享场景下，有效降低了屏幕共享时系统资源占用率。</p>
-                            <p props="android">该版本优化了屏幕共享场景下的视频编码配置，当用户自定义视频的 <codeph>width</codeph> 和 <codeph>height</codeph> 属性时，SDK 会在保持视频跟屏幕的宽高比一致的前提下，对实际的编码分辨率进行向下取整，即：最终编码分辨率不超过用户自定义的编码分辨率，提升了对屏幕共享流的计费准确性。</p>
+                            <p props="cpp">该版本优化了在超高清（4K，60 fps）游戏共享场景下的性能和编码效率，有效降低了屏幕共享时系统资源占用率。</p>
+                            <p props="android">该版本优化了屏幕共享场景下的视频编码配置。当用户自定义视频的 <codeph>width</codeph> 和 <codeph>height</codeph> 属性时，SDK 会在保持视频与屏幕的宽高比一致的前提下，对实际的编码分辨率进行向下取整，确保最终编码分辨率不超过用户自定义的编码分辨率，从而提升了对屏幕共享流的计费准确性。</p>
                         </li>
                     </ol>
                     <p><b>其他改进</b></p>
                     <p>该版本还进行了如下改进：
                         <ul>
-                        <li props="android">优化了 SDK 采集和自定义视频采集场景下的 Texture Buffer 的管理方式，有效消除丢帧和崩溃隐患。</li>
+                        <li props="android">优化了 SDK 采集和自定义视频采集场景下 Texture Buffer 的管理方式，有效消除丢帧和崩溃隐患。</li>
                          <li>当调用 <apiname keyref="setPlaybackSpeed"/> 设置音频文件的播放进度时，传入非法参数后会返回错误码 -2，表示方法中设置了无效的参数，需要重新设置参数。</li>
                          <li>优化了 Token 解析时的逻辑，避免传入非法 Token 后 App 发生崩溃。</li>
                         </ul></p>
@@ -101,7 +101,7 @@
                             <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></li>
                             <li><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></li>
                             </ul></li>
-                        <li><apiname keyref="ExternalVideoFrame"/> 中新增 <codeph>*d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员</li>
+                        <li><apiname keyref="ExternalVideoFrame"/> 中新增 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员</li>
                         <li><apiname keyref="VIDEO_PIXEL_FORMAT"/> 中新增 <apiname keyref="VIDEO_TEXTURE_ID3D11TEXTURE2D"/> 枚举</li>
                         </ul></p>
                     <p><b>修改</b>
