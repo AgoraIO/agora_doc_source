@@ -26,7 +26,7 @@
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; updateChannelMediaRelay(
       ChannelMediaRelayConfiguration configuration);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -38,7 +38,7 @@
             </dl>
             <p id="desc">After the media relay starts, if you want to relay the media stream to more channels, or leave the current relay channel, you can call this method.</p>
             <p>After a successful method call, the SDK triggers the <xref keyref="onChannelMediaRelayEvent" /> callback with the <apiname keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL" /> (7) state code.</p>
-            <note type="attention">Call the method after successfully calling the <xref keyref="startChannelMediaRelay" /> method and receiving <codeph><xref keyref="onChannelMediaRelayStateChanged" />(<ph keyref="RELAY_STATE_RUNNING" />, <ph keyref="RELAY_OK" />)</codeph>; otherwise, the method call fails.</note> </section>
+            <note type="attention">Call the method after successfully calling<xref keyref="startChannelMediaRelay" /> the  method and receiving <xref keyref="onChannelMediaRelayStateChanged" /><codeph>(<ph keyref="RELAY_STATE_RUNNING" />, <ph keyref="RELAY_OK" />)</codeph>; otherwise, the method call fails.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -50,11 +50,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>
