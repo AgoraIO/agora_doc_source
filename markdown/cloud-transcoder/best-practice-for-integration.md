@@ -42,10 +42,14 @@
 |`"serviceAbnormal"`	|服务异常退出。|
 |`"serviceUnknown"`	|服务未知状态。|
 
-<div class="alert note">
-<li>每个 App ID 每秒钟的请求数（QPS）限制默认为 10 次。请根据你的同时最大并发任务数（PCW）和查询间隔，预估所需的 QPS，并通过<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>的方式申请调整 QPS 限制。</li>
-<li>国内 PCW 限制为 100，其他地区 PCW 限制为 30。如需提升 PCW 限制，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">联系技术支持</a>。</li>
-</div>
+### 检查 PCW 和 QPS
+
+请检查你的 App ID 下使用云端转码服务的最大并发任务数（PCW）和每秒钟的请求数（QPS）没有超出声网限制：
+
+- PCW：20。
+- QPS：10。
+
+请根据你的 PCW 和查询间隔，预估所需的 QPS。如果需要提升 QPS 和 PCW，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">联系技术支持</a>。
 
 ### 检查转码服务是否成功启动
 
@@ -55,11 +59,11 @@
 
 如果 `Create` 请求响应的 HTTP 状态码为 `200`，则请求成功。如果 `Create` 请求响应的 HTTP 状态码非 `200`，则需要根据状态码采取相应措施：
 
--   如果返回的 HTTP 状态码为 `201`，则表示转码任务已成功启动并在进行中。
--   如果返回的 HTTP 状态码为 `206`，则表示请求超时，建议使用退避策略，如第一次等待 3 秒后重试、第二次等待 6 秒后重试、第三次等待 9 秒后重试，以免超过 QPS 限制导致失败。如果三次重试均失败，建议更换 UID 再次调用 `Acquire`， 获得一个新的 `tokenName`，并用该 `tokenName` 再次调用 `Create` 方法。
--   如果返回的 HTTP 状态码为 `40x`，则表示请求参数错误，需要进行排查。
--   如果返回的 HTTP 状态码为 `50x`，可使用相同的参数重试多次，直到成功返回 `taskId` 为止。建议使用退避策略，如第一次等待 3 秒后重试、第二次等待 6 秒后重试、第三次等待 9 秒后重试，以免超过 QPS 限制导致失败。如果三次重试均失败，建议更换 UID 再次调用 `Acquire`， 获得一个新的 `tokenName`，并用该 `tokenName` 再次调用 `Create` 方法。
--   如果收到错误码 `65`，需要使用相同的参数再次调用 `Create`。建议使用退避策略重试两次，如第一次等待 3 秒后重试、第二次等待 6 秒后重试。
+- 如果返回的 HTTP 状态码为 `206`，则表示请求超时，建议使用退避策略，如第一次等待 3 秒后重试、第二次等待 6 秒后重试、第三次等待 9 秒后重试，以免超过 QPS 限制导致失败。如果三次重试均失败，建议更换 UID 再次调用 `Acquire`， 获得一个新的 `tokenName`，并用该 `tokenName` 再次调用 `Create` 方法。
+- 如果返回的 HTTP 状态码为 `409`，则表示转码任务已成功启动并在进行中。
+- 如果返回的 HTTP 状态码为 `40x`（`409` 除外），则表示请求参数错误，需要进行排查。
+- 如果返回的 HTTP 状态码为 `50x`，可使用相同的参数重试多次，直到成功返回 `taskId` 为止。建议使用退避策略，如第一次等待 3 秒后重试、第二次等待 6 秒后重试、第三次等待 9 秒后重试，以免超过 QPS 限制导致失败。如果三次重试均失败，建议更换 UID 再次调用 `Acquire`， 获得一个新的 `tokenName`，并用该 `tokenName` 再次调用 `Create` 方法。
+- 如果收到错误码 `65`，需要使用相同的参数再次调用 `Create`。建议使用退避策略重试两次，如第一次等待 3 秒后重试、第二次等待 6 秒后重试。
 
 #### 2. 检查 cloud transcoder 是否成功启动
 

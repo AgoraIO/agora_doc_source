@@ -29,7 +29,7 @@
 ### HTTP 请求
 
 ```http
-POST https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/builderTokens
+POST https://api.sd-rtn.com/v1/projects/{appId}/rtsc/cloud-transcoder/builderTokens
 ```
 
 `appId`: String 型必填参数。声网为每个开发者提供的 App ID。在声网控制台创建一个项目后即可得到一个 App ID。一个 App ID 是一个项目的唯一标识。
@@ -86,8 +86,8 @@ POST https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/builderToken
 
 ### HTTP 请求
 
-```http
-POST https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks?builderToken={tokenName}
+```
+POST https://api.sd-rtn.com/v1/projects/{appId}/rtsc/cloud-transcoder/tasks?builderToken={tokenName}
 ```
 
 #### 路径参数
@@ -441,8 +441,8 @@ POST https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks?builde
 
 ### HTTP 请求
 
-```http
-DELETE https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName}
+```
+DELETE https://api.sd-rtn.com/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName}
 ```
 
 #### 路径参数
@@ -529,7 +529,7 @@ DELETE https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{tas
 ### HTTP 请求
 
 ```http
-PATCH https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName}&sequenceId={sequenceId}&updateMask=services.cloudTranscoder.config
+PATCH https://api.sd-rtn.com/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName}&sequenceId={sequenceId}&updateMask=services.cloudTranscoder.config
 ```
 
 #### 路径参数
@@ -545,7 +545,7 @@ PATCH https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{task
 >声网推荐你在第一次调用 `Update` 时，将 `sequence` 设置为 `0`。在第二次调用 `Update` 时，将 `sequence` 填 `1`。在第三次调用 `Update` 时，将 `sequence` 填 `2`。依次类推。声网服务器会按照最新 `Update` 请求（即最大的序列号）更新 cloud transcoder。
 
 ```http
-PATCH https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName}&sequenceId={sequenceId}&updateMask=services.cloudTranscoder.config
+PATCH https://api.sd-rtn.com/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName}&sequenceId={sequenceId}&updateMask=services.cloudTranscoder.config
 ```
 
 #### 请求头
@@ -693,8 +693,8 @@ PATCH https://api.agora.io/v1/projects/{appId}/rtsc/cloud-transcoder/tasks/{task
 
 ### HTTP 请求
 
-```http
-GET https://api.agora.io/v1/projects/{appid}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName>
+```
+GET https://api.sd-rtn.com/v1/projects/{appid}/rtsc/cloud-transcoder/tasks/{taskId}?builderToken={tokenName>
 ```
 
 ### 路径参数
@@ -784,7 +784,7 @@ GET https://api.agora.io/v1/projects/{appid}/rtsc/cloud-transcoder/tasks/{taskId
 | 状态码                  | 含义                                                         |
 | :---------------------- | :----------------------------------------------------------- |
 | 200 OK                  | 请求成功。                                                   |
-| 201 Created             | 任务已经在进行中 ，请勿用同一个 builderToken 重复开启任务。  |
+| **废弃** 201 Created             | 任务已经在进行中，请勿用同一个 builderToken 重复开启任务。  |
 | 202 Accepted            | 服务端已经收到任务请求，但未执行完成。请通过 `Query` 方法查询执行状态。 |
 | 400 Bad Request         | 请求的语法错误（如参数错误）。如果你填入的 `appid` 没有开通云端录制权限，也会返回 `400`，请结合响应报文的 `message` 字段进行处理。 |
 | 401 Unauthorized        | Authorization 无效。                                         |
@@ -793,7 +793,7 @@ GET https://api.agora.io/v1/projects/{appid}/rtsc/cloud-transcoder/tasks/{taskId
 | 409 Conflict            | 已经存在使用相同 `instanceId` 的 cloud transcoder 任务。如果你想创建新的 cloud transcoder，请先将旧的 cloud transcoder 删除。 |
 | 429 Too Many Requests   | 请求速率超过上限。                                           |
 | 500 Unknown             |声网服务器内部错误，请联系我们。                           |
-| 501 Not Implemented     |该方法未实现。                                               |
+| 501 Not Implemented     | 该方法未实现。                                               |
 | 503 Service Unavailable |声网服务器暂时超载或在临时维护中。请使用重试机制或联系我们。 |
 | 504 Gateway Timeout     |声网服务器内部错误，充当网关或代理的服务器未从上游服务器获取请求，上游服务器已关闭。请联系我们。 |
 
