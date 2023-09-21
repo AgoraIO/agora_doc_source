@@ -9,8 +9,10 @@
             <codeblock props="android">public class ContentInspectConfig {
   public final static int CONTENT_INSPECT_TYPE_INVALID = 0;
   public final static int CONTENT_INSPECT_TYPE_SUPERVISE = 2;
+  public final static int CONTENT_INSPECT_TYPE_IMAGE_MODERATION = 3;
   public static final int MAX_CONTENT_INSPECT_MODULE_COUNT = 32;
   public String extraInfo;
+  public String serverConfig;
   public ContentInspectModule[] modules;
   public int moduleCount;
 
@@ -22,29 +24,41 @@
       type = CONTENT_INSPECT_TYPE_INVALID;
       interval = 0;
     }
-  }&gt;</codeblock>
+  }
+
+  public ContentInspectConfig() {
+    modules = new ContentInspectModule[MAX_CONTENT_INSPECT_MODULE_COUNT];
+    for (int i = 0; i &lt; MAX_CONTENT_INSPECT_MODULE_COUNT; i++) {
+      modules[i] = new ContentInspectModule();
+    }
+    moduleCount = 0;
+  }
+}</codeblock>
             <codeblock props="ios mac">__attribute__((visibility("default"))) @interface AgoraContentInspectConfig: NSObject
 @property (nonatomic, copy) NSString* _Nullable extraInfo;
+@property (nonatomic, copy) NSString* _Nullable serverConfig;
 @property(copy, nonatomic) NSArray&lt;AgoraContentInspectModule*&gt;* _Nullable modules;
 @end</codeblock>
             <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ContentInspectConfig {
   const char* extraInfo;
-
+  const char* serverConfig;
+    
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
    ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
 	{
         extraInfo = rth.extraInfo;
+        serverConfig = rth.serverConfig;
         moduleCount = rth.moduleCount;
 		memcpy(&amp;modules, &amp;rth.modules,  MAX_CONTENT_INSPECT_MODULE_COUNT * sizeof(ContentInspectModule));
 		return *this;
 	}
-  ContentInspectConfig() :extraInfo(NULL), moduleCount(0){}
+  ContentInspectConfig() :extraInfo(NULL), serverConfig(NULL), moduleCount(0){}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
   
   extraInfo?: string;
-  
+    
   modules?: ContentInspectModule[];
   
   moduleCount?: number;
@@ -65,15 +79,22 @@
   
   extraInfo?: string;
   
+  serverConfig?: string;
+
   modules?: ContentInspectModule[];
   
   moduleCount?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class ContentInspectConfig {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ContentInspectConfig {
+  const ContentInspectConfig(
+      {this.extraInfo, this.serverConfig, this.modules, this.moduleCount});
 
-  const ContentInspectConfig({this.extraInfo, this.modules, this.moduleCount});
   @JsonKey(name: 'extraInfo')
   final String? extraInfo;
+
+  @JsonKey(name: 'serverConfig')
+  final String? serverConfig;
 
   @JsonKey(name: 'modules')
   final List&lt;ContentInspectModule&gt;? modules;
