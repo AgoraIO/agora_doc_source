@@ -38,7 +38,7 @@
             </dl>
             <p id="desc">成功开始跨频道转发媒体流后，如果你希望将流转发到多个目标频道，或退出当前的转发频道，可以调用该方法。</p>
             <p>成功调用该方法后，SDK 会触发 <xref keyref="onChannelMediaRelayEvent" /> 回调， 并在回调中报告状态码 <apiname keyref="RELAY_EVENT_PACKET_UPDATE_DEST_CHANNEL" /> (7)。</p>
-            <note type="attention">请在成功调用 <xref keyref="startChannelMediaRelay" /> 方法并收到 <codeph><xref keyref="onChannelMediaRelayStateChanged" />(<ph keyref="RELAY_STATE_RUNNING" />, <ph keyref="RELAY_OK" />)</codeph> 后调用该方法；否则，方法调用会失败。</note> </section>
+            <note type="attention">请在成功调用 <xref keyref="startChannelMediaRelay" /> 方法并收到 <xref keyref="onChannelMediaRelayStateChanged" /><codeph>(<ph keyref="RELAY_STATE_RUNNING" />, <ph keyref="RELAY_OK" />)</codeph> 后调用该方法；否则，方法调用会失败。</note> </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
@@ -51,10 +51,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <ul>
-            <li props="native unreal bp electron unity rn cs">0：方法调用成功</li>
-            <li>&lt; 0：方法调用失败</li>
+            <li props="native unreal bp electron unity rn cs">0：方法调用成功。</li>
+            <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>
 </reference>

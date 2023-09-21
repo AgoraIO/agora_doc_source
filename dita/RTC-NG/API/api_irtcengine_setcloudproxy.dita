@@ -27,8 +27,8 @@
             <p>当用户的网络访问受到防火墙限制时，你需要将声网提供的 IP 和端口号添加到防火墙白名单，然后调用该方法开启云代理，并通过 <parmname>proxyType</parmname> 参数设置云代理类型。</p>
             <p>成功连接云代理后，SDK 会触发 <xref keyref="onConnectionStateChanged" /> (<ph keyref="CONNECTION_STATE_CONNECTING" />, <ph keyref="CONNECTION_CHANGED_SETTING_PROXY_SERVER" />) 回调。
             </p>
-            <p>如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 <codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph>。</p>
-            <p>如果你想更改已设置的云代理类型，请先调用 <codeph><apiname keyref="setCloudProxy" /> (<apiname keyref="NONE_PROXY" />)</codeph>，再调用 <apiname keyref="setCloudProxy" /> 并传入你期望的 <parmname>proxyType</parmname> 值。
+            <p>如果你想关闭已设置的 Force UDP 或 Force TCP 云代理，请调用 <apiname keyref="setCloudProxy" /><codeph>(<ph keyref="NONE_PROXY" />)</codeph>。</p>
+            <p>如果你想更改已设置的云代理类型，请先调用 <apiname keyref="setCloudProxy" /><codeph>(<ph keyref="NONE_PROXY" />)</codeph>，再调用 <apiname keyref="setCloudProxy" /> 并传入你期望的 <parmname>proxyType</parmname> 值。
             </p>
             <note type="attention">
             <ul>
@@ -55,7 +55,7 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
             <li> &lt; 0: 方法调用失败。
