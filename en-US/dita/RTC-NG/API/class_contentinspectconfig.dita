@@ -42,7 +42,7 @@
             <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ContentInspectConfig {
   const char* extraInfo;
   const char* serverConfig;
-    
+
   ContentInspectModule modules[MAX_CONTENT_INSPECT_MODULE_COUNT];
   int moduleCount;
    ContentInspectConfig&amp; operator=(const ContentInspectConfig&amp; rth)
@@ -56,33 +56,36 @@
   ContentInspectConfig() :extraInfo(NULL), serverConfig(NULL), moduleCount(0){}
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
-  
+
   extraInfo?: string;
-    
+
   modules?: ContentInspectModule[];
-  
+
   moduleCount?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ContentInspectConfig
-    {
-        public ContentInspectModule[] modules { set; get; }
+                {
+                    public string extraInfo;
+                    public string serverConfig;
+                    public ContentInspectModule[] modules;
+                    public int moduleCount;
 
-        public int moduleCount { set; get; }
-
-        public ContentInspectConfig()
-        {
-            modules = null;
-            moduleCount = 0;
-        }
-    };</codeblock>
+                    public ContentInspectConfig()
+                    {
+                        extraInfo = "";
+                        serverConfig = "";
+                        modules = null;
+                        moduleCount = 0;
+                    }
+                };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ContentInspectConfig {
-  
+
   extraInfo?: string;
-  
+
   serverConfig?: string;
 
   modules?: ContentInspectModule[];
-  
+
   moduleCount?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
