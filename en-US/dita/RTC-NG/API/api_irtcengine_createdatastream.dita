@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createdatastream">
     <title><ph keyref="createDataStream1" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,20 +17,20 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStream:(NSInteger * _Nonnull)streamId
                reliable:(BOOL)reliable
                 ordered:(BOOL)ordered;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStream(int* streamId, bool reliable, bool ordered) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, bool reliable, bool ordered);</codeblock>
             <codeblock props="rn" outputclass="language-typescript" />
             <codeblock props="flutter" outputclass="language-dart">Future&lt;int&gt; createDataStream(DataStreamConfig config);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="desc">Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine" />. The data stream will be destroyed when leaving the channel, and the data stream needs to be recreated if needed.</p>
+            <p id="desc"><xref keyref="IRtcEngine" />Each user can create up to five data streams during the lifecycle of <xref keyref="IRtcEngine" />. The data stream will be destroyed when leaving the channel, and the data stream needs to be recreated if needed.</p>
             <note type="attention" id="note">
             <ul>
             <li>Call this method after joining a channel.</li>
-            <li>Agora does not support setting <parmname>reliable</parmname> as <codeph><ph keyref="true" /></codeph> and <parmname>ordered</parmname> as <codeph><ph keyref="false" /></codeph>.</li>
+            <li><ph keyref="true" /><ph keyref="false"/>Agora does not support setting <parmname>reliable</parmname> as <codeph><ph keyref="true" /></codeph> and <parmname>ordered</parmname> as <codeph><ph keyref="false"/></codeph>.<parmname></parmname><codeph></codeph><parmname></parmname><codeph></codeph></li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -43,8 +43,8 @@
                 <pt>reliable</pt>
                 <pd>
                     <p>Whether or not the data stream is reliable:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="onStreamMessageError" /> callback and returns an error code.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.</li>
+                    <li><ph keyref="true" /><xref keyref="onStreamMessageError" /><codeph><ph keyref="true" /></codeph>: The recipients receive the data from the sender within five seconds. If the recipient does not receive the data within five seconds, the SDK triggers the <xref keyref="onStreamMessageError" /> callback and returns an error code.<codeph></codeph></li>
+                    <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: There is no guarantee that the recipients receive the data stream within five seconds and no error message is reported for any delay or missing data stream.<codeph></codeph></li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -52,8 +52,8 @@
                 <pt>ordered</pt>
                 <pd>
                     <p>Whether or not the recipients receive the data stream in the sent order: <ul>
-                    <li><codeph><ph keyref="true" /></codeph>: The recipients receive the data in the sent order.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: The recipients do not receive the data in the sent order.</li>
+                    <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: The recipients receive the data in the sent order.<codeph></codeph></li>
+                    <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: The recipients do not receive the data in the sent order.<codeph></codeph></li>
                     </ul></p>
                 </pd>
             </plentry>

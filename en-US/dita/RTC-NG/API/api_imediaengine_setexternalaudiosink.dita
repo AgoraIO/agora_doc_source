@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_setexternalaudiosink">
     <title><ph keyref="setExternalAudioSink" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the external audio sink.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the external audio sink.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)enableExternalAudioSink:(BOOL)enabled
                      sampleRate:(NSUInteger)sampleRate
                        channels:(NSUInteger)channels;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setExternalAudioSink(bool enabled, int sampleRate, int channels) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setExternalAudioSink(
     enabled: boolean,
     sampleRate: number,
@@ -35,12 +35,12 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method applies to scenarios where you want to use external audio data for playback. After you set the external audio sink, you can call <xref keyref="pullAudioFrame" /> to pull remote audio frames. The app can process the remote audio and play it with the audio effects that you want.</p>
+            <p><xref keyref="pullAudioFrame" />This method applies to scenarios where you want to use external audio data for playback. After you set the external audio sink, you can call <xref keyref="pullAudioFrame" /> to pull remote audio frames. The app can process the remote audio and play it with the audio effects that you want.</p>
             <note props="hide">
             <ul>
-            <li>Before using this method, you need to set <parmname>enableAudioDevice</parmname> to <codeph><ph keyref="false" /></codeph> in <xref keyref="RtcEngineConfig" />.</li>
+            <li><xref keyref="RtcEngineConfig" /><ph keyref="false" />Before using this method, you need to set <parmname>enableAudioDevice</parmname> to <codeph><ph keyref="false" /></codeph> in <xref keyref="RtcEngineConfig" />.<parmname></parmname><codeph></codeph></li>
             <li>Ensure that you call this method before joining a channel.</li>
-            <li>Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
+            <li><xref keyref="onPlaybackAudioFrame" />Once you enable the external audio sink, the app does not retrieve any audio data from the <xref keyref="onPlaybackAudioFrame" /> callback.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -49,8 +49,8 @@
                 <pt>enabled</pt>
                 <pd>
                     <p>Whether to enable or disable the external audio sink:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enables the external audio sink.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disables the external audio sink.</li>
+                    <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Enables the external audio sink.<codeph></codeph></li>
+                    <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: (Default) Disables the external audio sink.<codeph></codeph></li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -70,10 +70,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="android cpp unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayercustomdataprovider_onreaddata">
     <title><ph keyref="onReadData" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK reads the media resource data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK reads the media resource data.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">typedef int(^AgoraRtcMediaPlayerCustomSourceOnReadCallback)(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull playerKit, unsigned char * _Nullable buffer, int bufferSize);
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int onReadData(unsigned char *buffer, int bufferSize) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript" />
             <codeblock props="unity cs" outputclass="language-csharp">public virtual int OnReadData(IntPtr bufferPtr, int bufferSize)
@@ -35,12 +35,12 @@
             <parml>
             <plentry props="ios mac">
                 <pt>playerKit</pt>
-                <pd>Media player protocol. See <xref keyref="IMediaPlayer" />.</pd>
+                <pd><xref keyref="IMediaPlayer" />Media player protocol. See <xref keyref="IMediaPlayer" />.</pd>
             </plentry>
             <plentry>
                 <pt props="native unreal bp">buffer</pt>
                 <pt props="unity cs">bufferPtr</pt>
-                <pd>An input parameter. Data buffer (bytes). Write the <parmname>bufferSize</parmname> data reported by the SDK into this parameter.</pd>
+                <pd>An input parameter. Data buffer (bytes). Write the <parmname>bufferSize</parmname> data reported by the SDK into this parameter.<parmname></parmname></pd>
             </plentry>
             <plentry>
                 <pt>bufferSize</pt>

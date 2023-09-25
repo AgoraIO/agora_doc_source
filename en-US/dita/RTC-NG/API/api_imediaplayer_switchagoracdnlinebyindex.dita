@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_switchagoracdnlinebyindex">
     <title><ph keyref="switchAgoraCDNLineByIndex" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Changes the CDN route for playing the media resource.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Changes the CDN route for playing the media resource.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)switchAgoraCDNLineByIndex:(int)index;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int switchAgoraCDNLineByIndex(int index) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int switchAgoraCDNLineByIndex(int index) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract switchAgoraCDNLineByIndex(index: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int SwitchAgoraCDNLineByIndex(int index);</codeblock>
@@ -27,10 +27,10 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After calling <xref keyref="openWithAgoraCDNSrc" /> to open the media resource, you can call this method if you want to change the CDN routes for playing the media resource.<note type="note">
+            <p><xref keyref="openWithAgoraCDNSrc" />After calling <xref keyref="openWithAgoraCDNSrc" /> to open the media resource, you can call this method if you want to change the CDN routes for playing the media resource.<note type="note">
             <ul>
-            <li>Call this method after calling <xref keyref="openWithAgoraCDNSrc" />.</li>
-            <li>You can call this method either before or after <xref keyref="play" />. If you call this method before <apiname keyref="play" />, the switch does not take effect immediately. The SDK waits for the playback to complete before switching the CDN line of the media resource.</li>
+            <li><xref keyref="openWithAgoraCDNSrc" />Call this method after calling <xref keyref="openWithAgoraCDNSrc" />.</li>
+            <li><xref keyref="play" /><apiname keyref="play" />You can call this method either before or after <xref keyref="play" />. If you call this method before <apiname keyref="play" />, the switch does not take effect immediately. The SDK waits for the playback to complete before switching the CDN line of the media resource.</li>
             </ul> </note></p>
         </section>
         <section id="parameters">
@@ -43,10 +43,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

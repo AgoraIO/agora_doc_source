@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_addhandler">
     <title><ph keyref="addHandler"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Adds event handlers</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Adds event handlers</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
     mInstance.addHandler(handler);
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp"/>
+            <codeblock props="cpp unreal" outputclass="language-cpp"/>
             <codeblock props="electron" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int InitEventHandler(IRtcEngineEventHandler engineEventHandler);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract registerEventHandler(eventHandler: IRtcEngineEventHandler): boolean;</codeblock>
@@ -26,7 +26,7 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>The SDK uses the <xref keyref="IRtcEngineEventHandler"/> class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this class have default (empty) implementations. Therefore, apps only need to inherits callbacks according to the scenarios. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the <ph keyref="sendStreamMessage"/> method.
+            <p><xref keyref="IRtcEngineEventHandler"/><ph keyref="sendStreamMessage"/>The SDK uses the <xref keyref="IRtcEngineEventHandler"/> class to send callbacks to the app. The app inherits the methods of this class to receive these callbacks. All methods in this class have default (empty) implementations. Therefore, apps only need to inherits callbacks according to the scenarios. In the callbacks, avoid time-consuming tasks or calling APIs that can block the thread, such as the <ph keyref="sendStreamMessage"/> method.
 Otherwise, the SDK may not work properly.</p>
         </section>
         <section id="parameters">
@@ -36,19 +36,19 @@ Otherwise, the SDK may not work properly.</p>
                 <pt props="android">handler</pt>
                 <pt props="unity cs">engineEventHandler</pt>
                 <pt props="rn electron flutter">eventHandler</pt>
-                <pd>Callback events to be added. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
+                <pd><xref keyref="IRtcEngineEventHandler"/>Callback events to be added. See <xref keyref="IRtcEngineEventHandler"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
         <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul props="unity flutter cs">
             <li props="unity cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul>
             <ul props="electron rn">
-            <li><codeph><ph keyref="true"/></codeph>: Success.</li>
-            <li><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Success.<codeph></codeph></li>
+            <li><ph keyref="false"/><xref keyref="error-code-link"/><codeph><ph keyref="false"/></codeph>: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><codeph></codeph><ph props="cn"></ph></li>
             </ul>
     </section>
     </refbody>

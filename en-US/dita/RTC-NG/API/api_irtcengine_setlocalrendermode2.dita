@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlocalrendermode2">
     <title><ph keyref="setLocalRenderMode2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Updates the display mode of the local video view.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Updates the display mode of the local video view.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,8 +17,6 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setLocalRenderMode:(AgoraVideoRenderMode)mode
                    mirror:(AgoraVideoMirrorMode)mirror;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setLocalRenderMode(media::base::RENDER_MODE_TYPE renderMode, VIDEO_MIRROR_MODE_TYPE mirrorMode) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int SetLocalRenderMode(ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mirrorMode  = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_AUTO);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setLocalRenderMode(
     renderMode: RenderModeType,
     mirrorMode?: VideoMirrorModeType
@@ -39,7 +37,7 @@ int SetLocalRenderMode(ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mir
             <p>After initializing the local video view, you can call this method to update its rendering and mirror modes. It affects only the video view that the local user sees, not the published local video stream.</p>
             <note type="attention">
             <ul>
-            <li props="native unreal bp electron flutter unity cs">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
+            <li props="native unreal bp electron flutter unity cs"><xref keyref="setupLocalVideo" />Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -49,11 +47,11 @@ int SetLocalRenderMode(ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mir
                 <pt props="android cpp unreal bp unity flutter rn electron cs">renderMode</pt>
                 <pt props="ios mac">mode</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">The local video display mode. See <xref keyref="RENDER_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unreal bp unity flutter rn electron cs"><xref keyref="RENDER_MODE_TYPE" />The local video display mode. See <xref keyref="RENDER_MODE_TYPE" />.</p>
                     <p props="android">The local video display mode.<ul id="rendermodetype">
-                    <li><ph keyref="RENDER_MODE_HIDDEN" />(1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
-                    <li><ph keyref="RENDER_MODE_FIT" />(2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
-                    <li><ph keyref="RENDER_MODE_ADAPTIVE" />(3): This mode is deprecated.</li>
+                    <li><ph keyref="RENDER_MODE_HIDDEN" /><ph keyref="RENDER_MODE_HIDDEN" />(1): Hidden mode. Uniformly scale the video until it fills the visible boundaries (cropped). One dimension of the video may have clipped contents.</li>
+                    <li><ph keyref="RENDER_MODE_FIT" /><ph keyref="RENDER_MODE_FIT" />(2): Fit mode. Uniformly scale the video until one of its dimension fits the boundary (zoomed to fit). Areas that are not filled due to the disparity in the aspect ratio are filled with black.</li>
+                    <li><ph keyref="RENDER_MODE_ADAPTIVE" /><ph keyref="RENDER_MODE_ADAPTIVE" />(3): This mode is deprecated.</li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -61,21 +59,21 @@ int SetLocalRenderMode(ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mir
                 <pt props="android cpp unreal bp unity flutter rn electron cs">mirrorMode</pt>
                 <pt props="ios mac">mirror</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter rn electron cs">The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention" props="unity cs">This parameter is only effective when rendering custom videos. If you want to mirror the video view, set the scaleX of the GameObject attached to the video view as <codeph>-1</codeph> or <codeph>+1</codeph>.</note></p>
+                    <p props="ios mac cpp unreal bp unity flutter rn electron cs"><xref keyref="VIDEO_MIRROR_MODE_TYPE" />The mirror mode of the local video view. See <xref keyref="VIDEO_MIRROR_MODE_TYPE" />.<note type="attention" props="unity cs">This parameter is only effective when rendering custom videos. If you want to mirror the video view, set the scaleX of the GameObject attached to the video view as <codeph>-1</codeph> or <codeph>+1</codeph>.<codeph></codeph><codeph></codeph></note></p>
                     <p props="android">For the local user:<ul id="videomirrormodetype">
-                    <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirroring mode of the local view.</li>
-                    <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disable the mirroring mode of the local view.</li>
+                    <li><ph keyref="VIDEO_MIRROR_MODE_AUTO" /><ph keyref="VIDEO_MIRROR_MODE_AUTO" />(0): The SDK determines whether to enable the mirror mode. If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</li>
+                    <li><ph keyref="VIDEO_MIRROR_MODE_ENABLED" /><ph keyref="VIDEO_MIRROR_MODE_ENABLED" />(1): Enable the mirroring mode of the local view.</li>
+                    <li><ph keyref="VIDEO_MIRROR_MODE_DISABLED" /><ph keyref="VIDEO_MIRROR_MODE_DISABLED" />(2): Disable the mirroring mode of the local view.</li>
                     </ul> </p>
                     <note type="attention">If you use a front camera, the SDK enables the mirror mode by default; if you use a rear camera, the SDK disables the mirror mode by default.</note> </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li> &lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li> <xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

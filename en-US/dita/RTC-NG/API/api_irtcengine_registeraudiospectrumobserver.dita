@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registeraudiospectrumobserver">
     <title><ph keyref="registerAudioSpectrumObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Register an audio spectrum observer.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Register an audio spectrum observer.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int registerAudioSpectrumObserver(IAudioSpectrumObserver observer);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)registerAudioSpectrumDelegate:(id&lt;AgoraAudioSpectrumDelegate&gt; _Nullable )delegate;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerAudioSpectrumObserver(agora::media::IAudioSpectrumObserver * observer) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerAudioSpectrumObserver(
     observer: IAudioSpectrumObserver
@@ -29,7 +29,7 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After successfully registering the audio spectrum observer and calling
+            <p><xref keyref="enableAudioSpectrumMonitor" /><xref keyref="IAudioSpectrumObserver" />After successfully registering the audio spectrum observer and calling
  <xref keyref="enableAudioSpectrumMonitor" /> to enable the audio spectrum monitoring, the SDK reports the callback that you implement in the <xref keyref="IAudioSpectrumObserver" /> class according to the time interval you set.</p>
             <note type="attention" id="note_qwk_mjf_3qb">You can call this method either before or after joining a channel.</note> </section>
         <section id="parameters">
@@ -39,18 +39,18 @@
                 <pt props="android cpp unreal bp unity electron rn flutter cs">observer</pt>
                 <pt props="ios mac">delegate</pt>
                 <pd>
-                    <p>The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" />.</p>
+                    <p><xref keyref="IAudioSpectrumObserver" />The audio spectrum observer. See <xref keyref="IAudioSpectrumObserver" />.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul id="ul_jzc_zjf_3qb" props="native unreal bp unity cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul>
-            <p props="rn electron">One <xref keyref="IAudioSpectrumObserver"/> object.</p>
+            <p props="rn electron"><xref keyref="IAudioSpectrumObserver"/>One <xref keyref="IAudioSpectrumObserver"/> object.</p>
         </section>
     </refbody>
 </reference>

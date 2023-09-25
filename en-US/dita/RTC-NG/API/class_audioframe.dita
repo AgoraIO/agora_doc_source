@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audioframe">
     <title><ph keyref="AudioFrame" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Raw audio data.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Raw audio data.</ph><ph id="shortdesc"></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -64,7 +64,7 @@
  @property (assign, nonatomic) int64_t renderTimeMs;
  @property (assign, nonatomic) NSInteger avSyncType;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioFrame {
     AUDIO_FRAME_TYPE type;
     int samplesPerChannel;
     agora::rtc::BYTES_PER_SAMPLE bytesPerSample;
@@ -157,7 +157,7 @@
             <plentry props="cpp unreal bp unity rn electron flutter cs">
                 <pt>type</pt>
                 <pd>
-                    <p>The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE" />.</p>
+                    <p><xref keyref="AUDIO_FRAME_TYPE" />The type of the audio frame. See <xref keyref="AUDIO_FRAME_TYPE" />.</p>
                 </pd>
             </plentry>
             <plentry>
@@ -169,7 +169,7 @@
                 <pd>The number of bytes per sample. The number of bytes per audio sample, which is usually 16-bit (2-byte).</pd>
             </plentry>
             <plentry>
-                <pt><ph props="cpp unreal bp ios mac unity electron rn flutter cs">channels</ph><ph props="android">channelNums</ph></pt>
+                <pt><ph props="cpp unreal bp ios mac unity electron rn flutter cs">channels</ph><ph props="android">channelNums</ph><ph props="cpp unreal bp ios mac unity electron rn flutter cs"></ph><ph props="android"></ph></pt>
                 <pd>
                     <p>The number of audio channels (the data are interleaved if it is stereo).<ul id="ul_zxz_2wt_r4b">
                     <li>1: Mono.</li>
@@ -188,7 +188,7 @@
                 <pt props="unity cs">RawBuffer</pt>
                 <pd>
                     <p>The data buffer of the audio frame. When the audio frame uses a stereo channel, the data buffer is interleaved.</p>
-                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.</p>
+                    <p>The size of the data buffer is as follows: <codeph>buffer</codeph> = <codeph>samples</codeph> × <codeph>channels</codeph> × <codeph>bytesPerSample</codeph>.<codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph></p>
                 </pd>
             </plentry>
             <plentry props="cpp unreal bp unity ios mac rn electron flutter cs">
@@ -199,7 +199,7 @@
                 </pd>
             </plentry>
             <plentry props="ios mac cpp unreal bp unity flutter electron rn cs">
-                <pt><ph props="ios mac flutter">avsyncType</ph><ph props="cpp unreal bp unity electron rn cs">avsync_type</ph></pt>
+                <pt><ph props="ios mac flutter">avsyncType</ph><ph props="cpp unreal bp unity electron rn cs">avsync_type</ph><ph props="ios mac flutter"></ph><ph props="cpp unreal bp unity electron rn cs"></ph></pt>
                 <pd>Reserved for future use.</pd>
             </plentry>
             <plentry props="android">

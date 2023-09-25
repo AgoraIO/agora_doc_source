@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_mutelocalvideostreamex">
     <title><ph keyref="muteLocalVideoStreamEx"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Stops or resumes publishing the local video stream.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int muteLocalVideoStreamEx(boolean muted, RtcConnection connection);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)muteLocalVideoStreamEx:(BOOL)mute connection:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(muteLocalVideoStreamEx(_:connection:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int muteLocalVideoStreamEx(bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int muteLocalVideoStreamEx(bool mute, const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract muteLocalVideoStreamEx(
     mute: boolean,
     connection: RtcConnection
@@ -36,7 +36,7 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p>A successful call of this method triggers the <xref keyref="onUserMuteVideo" /> callback on the remote client.</p>
+            <p><xref keyref="onUserMuteVideo" />A successful call of this method triggers the <xref keyref="onUserMuteVideo" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
             <li>This method does not affect any ongoing video recording, because it does not disable the camera.</li>
@@ -56,10 +56,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
              <ul id="ul_gkv_dxc_f4b">
                 <li props="native unreal bp unity rn electron cs">0: Success.</li>
-                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+                <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul>
         </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_externalvideoframe">
     <title><ph keyref="ExternalVideoFrame" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The external video frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The external video frame.</ph><ph id="shortdesc"></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -49,7 +49,7 @@
 @property(assign, nonatomic) int cropBottom;
 @property(assign, nonatomic) int rotation;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ExternalVideoFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ExternalVideoFrame {
   ExternalVideoFrame()
       : type(VIDEO_BUFFER_RAW_DATA),
         format(VIDEO_PIXEL_DEFAULT),
@@ -237,7 +237,6 @@ class ExternalVideoFrame {
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ExternalVideoFrameToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
-
         </section>
         <section id="detailed_desc" props="android">
             <dl outputclass="deprecated">
@@ -253,12 +252,12 @@ class ExternalVideoFrame {
         <plentry props="cpp unreal bp unity rn electron flutter cs">
             <pt>type</pt>
             <pd>
-                <p>The video type. See <xref keyref="VIDEO_BUFFER_TYPE" />.</p>
+                <p><xref keyref="VIDEO_BUFFER_TYPE" />The video type. See <xref keyref="VIDEO_BUFFER_TYPE" />.</p>
             </pd>
         </plentry>
         <plentry>
             <pt>format</pt>
-            <pd props="cpp unreal bp unity rn electron flutter cs" id="windows-format">The pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT" />.</pd>
+            <pd props="cpp unreal bp unity rn electron flutter cs" id="windows-format"><xref keyref="VIDEO_PIXEL_FORMAT" />The pixel format. See <xref keyref="VIDEO_PIXEL_FORMAT" />.</pd>
             <pd props="ios mac" id="oc-format">The format of the incoming video frame. This parameter must be specified as one of the following values:<ul>
                     <li>1: I420</li>
                     <li>2: BGRA</li>
@@ -299,7 +298,7 @@ class ExternalVideoFrame {
                     <dl outputclass="deprecated">
                         <dlentry>
                             <dt>Deprecated:</dt>
-                            <dd>Use <parmname>strideInPixels</parmname> instead.</dd>
+                            <dd>Use <parmname>strideInPixels</parmname> instead.<parmname></parmname></dd>
                         </dlentry>
                     </dl>
                 </p>
@@ -326,8 +325,8 @@ class ExternalVideoFrame {
         <plentry props="android">
             <pt>syncMode</pt>
             <pd>Set whether to enable the synchronization mode. After enabling, the SDK waits while Texture processing. This parameter only applies to video data in Texture format.<ul id="ul_oxx_wmy_4qb">
-                <li><codeph><ph keyref="true" /></codeph>: Enable sync mode.</li>
-                <li><codeph><ph keyref="false" /></codeph>: Disable sync mode.</li>
+                <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Enable sync mode.<codeph></codeph></li>
+                <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: Disable sync mode.<codeph></codeph></li>
                 </ul></pd>
         </plentry>
         <plentry props="android">
@@ -364,21 +363,21 @@ class ExternalVideoFrame {
        <plentry>
            <pt props="cpp unreal bp unity electron rn cs">metadata_buffer</pt>
            <pt props="flutter">metadataBuffer</pt>
-           <pd>This parameter only applies to video data in Texture format. The MetaData buffer. The default value is <codeph>NULL</codeph>.</pd>
+           <pd>This parameter only applies to video data in Texture format. The MetaData buffer. The default value is <codeph>NULL</codeph>.<codeph></codeph></pd>
        </plentry>
        <plentry>
             <pt props="cpp unreal bp unity electron rn cs">metadata_size</pt>
            <pt props="flutter">metadataSize</pt>
-           <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.</pd>
+           <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.<codeph></codeph></pd>
        </plentry>
        <plentry props="cpp unity electron">
         <pt>d3d11_texture_2d</pt>
-        <pd>This parameter only applies to video data in Windows Texture format. It represents a pointer to an object of type <codeph>ID3D11Texture2D</codeph>, which is used by a video frame.</pd>
+        <pd>This parameter only applies to video data in Windows Texture format. It represents a pointer to an object of type <codeph>ID3D11Texture2D</codeph>, which is used by a video frame.<codeph></codeph></pd>
        </plentry>
        <plentry props="cpp unity electron flutter">
         <pt props="cpp unity electron">texture_slice_index</pt>
         <pt props="flutter">textureSliceIndex</pt>
-        <pd>This parameter only applies to video data in Windows Texture format. It represents an index of an <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
+        <pd>This parameter only applies to video data in Windows Texture format. It represents an index of an <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.<codeph></codeph><codeph></codeph></pd>
        </plentry>
        <plentry>
   <pt>cropLeft</pt>

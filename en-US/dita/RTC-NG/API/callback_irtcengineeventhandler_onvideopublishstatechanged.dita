@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onvideopublishstatechanged">
     <title> <ph keyref="onVideoPublishStateChanged" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the video publishing state changes.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the video publishing state changes.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,7 +22,7 @@
            newState:(AgoraStreamPublishState)newState
 elapseSinceLastState:(int)elapseSinceLastState;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onVideoPublishStateChanged(VIDEO_SOURCE_TYPE source, const char* channel, STREAM_PUBLISH_STATE oldState, STREAM_PUBLISH_STATE newState, int elapseSinceLastState) {
     (void)source;
     (void)channel;
     (void)oldState;
@@ -70,15 +70,15 @@ elapseSinceLastState:(int)elapseSinceLastState;
             <plentry id="source">
                     <pt props="apple">sourceType</pt>
                     <pt props="android cpp unreal bp unity electron rn flutter cs">source</pt>
-                    <pd>The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                    <pd><xref keyref="VIDEO_SOURCE_TYPE" />The type of the video source. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
                 </plentry>
                 <plentry>
                 <pt>oldState</pt>
-                <pd>The previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE" />.</pd>
+                <pd><xref keyref="STREAM_PUBLISH_STATE" />The previous publishing state. See <xref keyref="STREAM_PUBLISH_STATE" />.</pd>
             </plentry>
             <plentry>
                 <pt>newState</pt>
-                <pd>The current publishing stat. See <apiname keyref="STREAM_PUBLISH_STATE" />.</pd>
+                <pd><apiname keyref="STREAM_PUBLISH_STATE" />The current publishing stat. See <apiname keyref="STREAM_PUBLISH_STATE" />.</pd>
             </plentry>
             <plentry>
                 <pt>elapseSinceLastState</pt>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioframeobserverbase_onrecordaudioframe">
     <title><ph keyref="onRecordAudioFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the captured audio frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the captured audio frame.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
       int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs,
       int avsync_type);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRecordAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onRecordAudioFrame(_:channelId:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRecordAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnRecordAudioFrame(string channelId, AudioFrame audioFrame)
         {
@@ -30,23 +30,23 @@
         </section>
         <section id="detailed_desc">
             <p props="native unreal bp cs">To ensure that the format of the cpatured audio frame is as expected, you can choose one of the following two methods to set the audio data format:<ul>
-            <li>Method 1: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
-            <li>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, set the audio data format in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback. The SDK then calculates the sampling interval according to the return value of the <xref keyref="getRecordAudioParams"/> callback, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
+            <li><xref keyref="setRecordingAudioFrameParameters"/><xref keyref="registerAudioFrameObserver"/><apiname keyref="onRecordAudioFrame"/>Method 1: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format and <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, the SDK calculates the sampling interval according to the parameters set in the methods, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
+            <li><xref keyref="registerAudioFrameObserver"/><xref keyref="getObservedAudioFramePosition"/><xref keyref="getRecordAudioParams"/><apiname keyref="onRecordAudioFrame"/>Method 2: After calling <xref keyref="registerAudioFrameObserver"/> to register the audio frame observer object, set the audio data format in the return value of the <xref keyref="getObservedAudioFramePosition"/> callback. The SDK then calculates the sampling interval according to the return value of the <xref keyref="getRecordAudioParams"/> callback, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</li>
             </ul> </p>
-            <p props="flutter electron rn">To ensure that the data format of captured audio frame is as expected, Agora recommends that you set the audio data format as follows: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK will calculate the sampling interval according to the parameters set in this method, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</p>
+            <p props="flutter electron rn"><xref keyref="setRecordingAudioFrameParameters"/><xref keyref="registerAudioFrameObserver"/><apiname keyref="onRecordAudioFrame"/>To ensure that the data format of captured audio frame is as expected, Agora recommends that you set the audio data format as follows: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK will calculate the sampling interval according to the parameters set in this method, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</p>
             <note type="note" id="attention" props="native unreal bp flutter cs">
             <ul>
             <li props="native unreal bp cs">The priority of method 1 is higher than that of method 2. If method 1 is used to set the audio data format, the setting of method 2 is invalid.</li>
             <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed audio data back to the SDK.</li>
             </ul></note>
-        <p props="unity">To ensure that the data format of captured audio frame is as expected, Agora recommends that you set the audio data format as follows: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK will calculate the sampling interval according to the parameters set in this method, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</p></section>
+        <p props="unity"><xref keyref="setRecordingAudioFrameParameters"/><xref keyref="registerAudioFrameObserver"/><apiname keyref="onRecordAudioFrame"/>To ensure that the data format of captured audio frame is as expected, Agora recommends that you set the audio data format as follows: After calling <xref keyref="setRecordingAudioFrameParameters"/> to set the audio data format, call <xref keyref="registerAudioFrameObserver"/> to register the audio observer object, the SDK will calculate the sampling interval according to the parameters set in this method, and triggers the <apiname keyref="onRecordAudioFrame"/> callback according to the sampling interval.</p></section>
         <section id="parameters">
             <title>Parameters</title>
             <parml props="apple cpp framework">
             <plentry>
                 <pt props="cpp framework">audioFrame</pt>
                 <pt props="apple">frame</pt>
-                <pd>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
+                <pd><xref keyref="AudioFrame"/>The raw audio data. See <xref keyref="AudioFrame"/>.</pd>
             </plentry>
             <plentry id="id">
                 <pt>channelId</pt>

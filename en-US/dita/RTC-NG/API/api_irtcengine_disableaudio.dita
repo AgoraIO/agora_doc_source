@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_disableaudio">
     <title><ph keyref="disableAudio" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Disables the audio module.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Disables the audio module.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int disableAudio();</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)disableAudio;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int disableAudio() = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract disableAudio(): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int DisableAudio();</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract disableAudio(): number;</codeblock>
@@ -28,18 +28,18 @@
             <ul>
             <li>This method disables the internal engine and can be called anytime after initialization. It is still valid after one leaves channel.</li>
             <li>This method resets the internal engine and takes some time to take effect. Agora recommends using the following API methods to control the audio modules separately:<ul>
-                <li><xref keyref="enableLocalAudio" />: Whether to enable the microphone to create the local audio stream.</li>
-                <li><xref keyref="muteLocalAudioStream" />: Whether to publish the local audio stream.</li>
-                <li><xref keyref="muteRemoteAudioStream" />: Whether to subscribe and play the remote audio stream.</li>
-                <li><xref keyref="muteAllRemoteAudioStreams" />: Whether to subscribe to and play all remote audio streams.</li>
+                <li><xref keyref="enableLocalAudio" /><xref keyref="enableLocalAudio" />: Whether to enable the microphone to create the local audio stream.</li>
+                <li><xref keyref="muteLocalAudioStream" /><xref keyref="muteLocalAudioStream" />: Whether to publish the local audio stream.</li>
+                <li><xref keyref="muteRemoteAudioStream" /><xref keyref="muteRemoteAudioStream" />: Whether to subscribe and play the remote audio stream.</li>
+                <li><xref keyref="muteAllRemoteAudioStreams" /><xref keyref="muteAllRemoteAudioStreams" />: Whether to subscribe to and play all remote audio streams.</li>
                 </ul></li>
             </ul></note> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

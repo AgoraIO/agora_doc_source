@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onstreammessage">
     <title> <ph keyref="onStreamMessage" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user receives the data stream from the remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user receives the data stream from the remote user.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,7 +18,7 @@
                 receiveStreamMessageFromUid:(NSUInteger)uid
                 streamId:(NSInteger)streamId
                 data:(NSData * _Nonnull)data;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
                     (void)userId;
                     (void)streamId;
                     (void)data;
@@ -40,7 +40,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>The SDK triggers this callback when the local user receives the stream message that the remote user sends by calling the <xref keyref="sendStreamMessage" /> method.</p>
+            <p><xref keyref="sendStreamMessage" />The SDK triggers this callback when the local user receives the stream message that the remote user sends by calling the <xref keyref="sendStreamMessage" /> method.</p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title" /> </title>

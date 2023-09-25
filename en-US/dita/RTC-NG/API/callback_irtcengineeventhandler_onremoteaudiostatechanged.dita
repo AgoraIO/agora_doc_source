@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremoteaudiostatechanged">
      <title> <ph keyref="onRemoteAudioStateChanged" /> </title>
-     <shortdesc id="short"><ph id="shortdesc">Occurs when the remote audio state changes.</ph></shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">Occurs when the remote audio state changes.</ph><ph id="shortdesc"></ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -16,7 +16,7 @@
                <codeblock props="android" outputclass="language-java">public void onRemoteAudioStateChanged(int uid, int state, int reason, int elapsed) {}</codeblock>
                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
      remoteAudioStateChangedOfUid:(NSUInteger)uid state:(AgoraAudioRemoteState)state reason:(AgoraAudioRemoteReason)reason elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid,
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRemoteAudioStateChanged(uid_t uid,
      REMOTE_AUDIO_STATE state,
      REMOTE_AUDIO_STATE_REASON reason,
      int elapsed) {
@@ -60,7 +60,7 @@
                </plentry>
                <plentry props="unity flutter rn electron cs">
                     <pt>connection</pt>
-                    <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
+                    <pd><xref keyref="RtcConnection" />The connection information. See <xref keyref="RtcConnection" />.</pd>
                </plentry>
                <plentry id="uid">
                     <pt props="native unreal bp">uid</pt>
@@ -69,32 +69,32 @@
                </plentry>
                <plentry id="state">
                     <pt>state</pt>
-                    <pd props="ios mac cpp unreal bp unity electron rn flutter cs">The state of the remote audio. See <xref keyref="REMOTE_AUDIO_STATE" />.</pd>
+                    <pd props="ios mac cpp unreal bp unity electron rn flutter cs"><xref keyref="REMOTE_AUDIO_STATE" />The state of the remote audio. See <xref keyref="REMOTE_AUDIO_STATE" />.</pd>
                     <pd props="android">Remote audio states.<ul>
-                         <li><ph keyref="REMOTE_AUDIO_STATE_STOPPED" />(0): The remote audo is in the initial state. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_REASON_LOCAL_MUTED" />, <apiname keyref="REMOTE_AUDIO_REASON_REMOTE_MUTED" />, or <apiname keyref="REMOTE_AUDIO_REASON_REMOTE_OFFLINE" />.</li>
-                         <li><ph keyref="REMOTE_AUDIO_STATE_STARTING" />(1): The first remote audio packet is received.</li>
-                         <li><ph keyref="REMOTE_AUDIO_STATE_DECODING" />(2): The remote audio stream is decoded and plays normally. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" />, <apiname keyref="REMOTE_AUDIO_REASON_LOCAL_UNMUTED" /> or <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>.</li>
-                         <li><ph keyref="REMOTE_AUDIO_STATE_FROZEN" />(3): The remote audio is frozen. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_REASON_NETWORK_CONGESTION" />.</li>
-                         <li><ph keyref="REMOTE_AUDIO_STATE_FAILED" />(4): The remote audio fails to start. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" />.</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_STOPPED" /><apiname keyref="REMOTE_AUDIO_REASON_LOCAL_MUTED" /><apiname keyref="REMOTE_AUDIO_REASON_REMOTE_MUTED" /><apiname keyref="REMOTE_AUDIO_REASON_REMOTE_OFFLINE" /><ph keyref="REMOTE_AUDIO_STATE_STOPPED" />(0): The remote audo is in the initial state. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_REASON_LOCAL_MUTED" />, <apiname keyref="REMOTE_AUDIO_REASON_REMOTE_MUTED" />, or <apiname keyref="REMOTE_AUDIO_REASON_REMOTE_OFFLINE" />.</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_STARTING" /><ph keyref="REMOTE_AUDIO_STATE_STARTING" />(1): The first remote audio packet is received.</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_DECODING" /><apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" /><apiname keyref="REMOTE_AUDIO_REASON_LOCAL_UNMUTED" /><apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/><ph keyref="REMOTE_AUDIO_STATE_DECODING" />(2): The remote audio stream is decoded and plays normally. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" />, <apiname keyref="REMOTE_AUDIO_REASON_LOCAL_UNMUTED" /> or <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/>.</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_FROZEN" /><apiname keyref="REMOTE_AUDIO_REASON_NETWORK_CONGESTION" /><ph keyref="REMOTE_AUDIO_STATE_FROZEN" />(3): The remote audio is frozen. The SDK reports this state in the case of <apiname keyref="REMOTE_AUDIO_REASON_NETWORK_CONGESTION" />.</li>
+                         <li><ph keyref="REMOTE_AUDIO_STATE_FAILED" /><apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" /><ph keyref="REMOTE_AUDIO_STATE_FAILED" />(4): The remote audio fails to start. The SDK reports this state in the case of <apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" />.</li>
                          </ul></pd>
                </plentry>
                <plentry id="reason">
                     <pt>reason</pt>
-                    <pd props="ios mac cpp unreal bp unity electron rn flutter cs">The reason of the remote audio state change. See <xref keyref="REMOTE_AUDIO_STATE_REASON" />.</pd>
+                    <pd props="ios mac cpp unreal bp unity electron rn flutter cs"><xref keyref="REMOTE_AUDIO_STATE_REASON" />The reason of the remote audio state change. See <xref keyref="REMOTE_AUDIO_STATE_REASON" />.</pd>
                     <pd props="android">Remote audio state reasons.<ul>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_INTERNAL" />(0): The SDK reports this reason when the audio state changes.</li>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_NETWORK_CONGESTION" />(1): Network congestion.</li>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_NETWORK_RECOVERY" />(2): Network recovery.</li>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_LOCAL_MUTED" />(3): The local user stops receiving the remote audio stream or disables the audio module.</li>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_LOCAL_UNMUTED" />(4): The local user resumes receiving the remote audio stream or enables the audio module.</li>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_REMOTE_MUTED" />(5): The remote user stops sending the audio stream or disables the audio module.</li>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_REMOTE_UNMUTED" />(6): The remote user resumes sending the audio stream or enables the audio module.</li>
-                         <li><ph keyref="REMOTE_AUDIO_REASON_REMOTE_OFFLINE" />(7): The remote user leaves the channel.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_INTERNAL" /><ph keyref="REMOTE_AUDIO_REASON_INTERNAL" />(0): The SDK reports this reason when the audio state changes.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_NETWORK_CONGESTION" /><ph keyref="REMOTE_AUDIO_REASON_NETWORK_CONGESTION" />(1): Network congestion.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_NETWORK_RECOVERY" /><ph keyref="REMOTE_AUDIO_REASON_NETWORK_RECOVERY" />(2): Network recovery.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_LOCAL_MUTED" /><ph keyref="REMOTE_AUDIO_REASON_LOCAL_MUTED" />(3): The local user stops receiving the remote audio stream or disables the audio module.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_LOCAL_UNMUTED" /><ph keyref="REMOTE_AUDIO_REASON_LOCAL_UNMUTED" />(4): The local user resumes receiving the remote audio stream or enables the audio module.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_REMOTE_MUTED" /><ph keyref="REMOTE_AUDIO_REASON_REMOTE_MUTED" />(5): The remote user stops sending the audio stream or disables the audio module.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_REMOTE_UNMUTED" /><ph keyref="REMOTE_AUDIO_REASON_REMOTE_UNMUTED" />(6): The remote user resumes sending the audio stream or enables the audio module.</li>
+                         <li><ph keyref="REMOTE_AUDIO_REASON_REMOTE_OFFLINE" /><ph keyref="REMOTE_AUDIO_REASON_REMOTE_OFFLINE" />(7): The remote user leaves the channel.</li>
                          </ul> </pd>
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd>Time elapsed (ms) from the local user calling the <apiname keyref="joinChannel2" /> method until the SDK triggers this callback.</pd>
+                    <pd><apiname keyref="joinChannel2" />Time elapsed (ms) from the local user calling the <apiname keyref="joinChannel2" /> method until the SDK triggers this callback.</pd>
                </plentry>
                </parml> </section>
      </refbody>

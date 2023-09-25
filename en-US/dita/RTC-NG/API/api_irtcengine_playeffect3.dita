@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_playeffect3">
     <title><ph keyref="playEffect3" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Plays the specified local or online audio effect file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Plays the specified local or online audio effect file.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -25,7 +25,7 @@
           publish:(BOOL)publish
          startPos:(int)startPos;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int playEffect(int soundId,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int playEffect(int soundId,
     const char* filePath,
     int loopCount,
     double pitch,
@@ -67,8 +67,8 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <note type="attention" id="note">If you use this method to play an online audio effect file, Agora recommends that you cache the online audio effect file to your local device, call <xref keyref="preloadEffect"/> to preload the cached audio effect file into memory, and then call this method to play the audio effect. Otherwise, you might encounter playback failures or no sound during playback due to loading timeouts or failures.</note>
-            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished"/> callback.</p>
+            <note type="attention" id="note"><xref keyref="preloadEffect"/>If you use this method to play an online audio effect file, Agora recommends that you cache the online audio effect file to your local device, call <xref keyref="preloadEffect"/> to preload the cached audio effect file into memory, and then call this method to play the audio effect. Otherwise, you might encounter playback failures or no sound during playback due to loading timeouts or failures.</note>
+            <p id="playEffect-desc"><apiname keyref="onAudioEffectFinished"/>To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished"/> callback.<parmname></parmname><parmname></parmname></p>
         <p conkeyref="startAudioMixing2/uri" props="android"></p>
         </section>
         <section id="parameters">
@@ -76,13 +76,13 @@
             <parml>
             <plentry id="soundid">
                 <pt>soundId</pt>
-                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
+                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention"><xref keyref="preloadEffect" /><apiname keyref="preloadEffect" />If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect" />.<parmname></parmname></note> </pd>
             </plentry>
             <plentry>
                 <pt>filePath</pt>
                 <pd>
-                    <p id="filepath">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example, <codeph><ph keyref="filePath-example" /></codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">supported audio formats</xref>.</p>
-                    <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
+                    <p id="filepath"><ph keyref="filePath-example" />The absolute path or URL address (including the suffixes of the filename) of the audio effect file. For example, <codeph><ph keyref="filePath-example" /></codeph>. Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">supported audio formats</xref>.<codeph></codeph><xref keyref="filePath-link"></xref></p>
+                    <note type="attention"><xref keyref="preloadEffect" /><apiname keyref="preloadEffect" />If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.<parmname></parmname></note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
@@ -115,8 +115,8 @@
                 <pt>publish</pt>
                 <pd>
                     <p>Whether to publish the audio effect to the remote users:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li>
+                    <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.<codeph></codeph></li>
+                    <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.<codeph></codeph></li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -129,10 +129,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

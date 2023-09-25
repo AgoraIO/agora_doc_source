@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createdatastream2">
     <title><ph keyref="createDataStream2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Creates a data stream.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,8 +17,6 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)createDataStream:(NSInteger * _Nonnull)streamId
                   config:(AgoraDataStreamConfig * _Nonnull)config;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int createDataStream(int* streamId, DataStreamConfig&amp; config) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int CreateDataStream(int&amp; streamId, const FDataStreamConfig&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int CreateDataStream(ref int streamId, DataStreamConfig config);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract createDataStream(config: DataStreamConfig): number;</codeblock>
@@ -28,7 +26,7 @@ int CreateDataStream(int&amp; streamId, const FDataStreamConfig&amp; config);</c
         <section id="detailed_desc">
             <title>Details</title>
             <p id="desc">Creates a data stream. Each user can create up to five data streams in a single channel.</p>
-            <p id="diff" props="native unreal unity cs">Compared with <xref keyref="createDataStream1" />, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
+            <p id="diff" props="native unreal unity cs"><xref keyref="createDataStream1" />Compared with <xref keyref="createDataStream1" />, this method does not support data reliability. If a data packet is not received five seconds after it was sent, the SDK directly discards the data.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -39,7 +37,7 @@ int CreateDataStream(int&amp; streamId, const FDataStreamConfig&amp; config);</c
             </plentry>
             <plentry id="config">
                 <pt>config</pt>
-                <pd>The configurations for the data stream. See <xref keyref="DataStreamConfig" />.</pd>
+                <pd><xref keyref="DataStreamConfig" />The configurations for the data stream. See <xref keyref="DataStreamConfig" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
@@ -47,7 +45,7 @@ int CreateDataStream(int&amp; streamId, const FDataStreamConfig&amp; config);</c
             <ul>
             <li props="cpp unreal bp ios mac unity cs">0: The data stream is successfully created.</li>
             <li props="android electron flutter rn">ID of the created data stream, if the method call succeeds.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

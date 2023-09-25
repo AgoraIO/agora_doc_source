@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_seek">
     <title><ph keyref="seek" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Seeks to a new playback position.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Seeks to a new playback position.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)seekToPosition:(NSInteger)position;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int seek(int64_t newPos) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int seek(int64_t newPos) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract seek(newPos: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Seek(Int64 newPos);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract seek(newPos: number): number;</codeblock>
@@ -26,10 +26,10 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>After successfully calling this method, you will receive the <xref keyref="onPlayerEvent" /> callback, reporting the result of the seek operation to the new playback position.</p>
+            <p><xref keyref="onPlayerEvent" />After successfully calling this method, you will receive the <xref keyref="onPlayerEvent" /> callback, reporting the result of the seek operation to the new playback position.</p>
             <p>To play the media file from a specific position, do the following:<ul>
             <li>Call this method to seek to the position you want to begin playback.</li>
-            <li>Call the <xref keyref="play" /> method to play the media file.</li>
+            <li><xref keyref="play" />Call the <xref keyref="play" /> method to play the media file.</li>
             </ul></p>
         </section>
         <section id="parameters">
@@ -43,10 +43,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul id="ul_uns_l2y_hqb">
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

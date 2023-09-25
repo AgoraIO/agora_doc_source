@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfirstlocalvideoframepublished">
     <title><ph keyref="onFirstLocalVideoFramePublished" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the first video frame is published.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the first video frame is published.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,7 +19,7 @@
                  firstLocalVideoFramePublishedWithElapsed:(NSInteger)elapsed
                  sourceType:(AgoraVideoSourceType)sourceType;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">  virtual void onFirstLocalVideoFramePublished(VIDEO_SOURCE_TYPE source, int elapsed) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">  virtual void onFirstLocalVideoFramePublished(VIDEO_SOURCE_TYPE source, int elapsed) {
     (void)source;
     (void)elapsed;
     }</codeblock>
@@ -38,10 +38,10 @@
         </section>
         <section id="detailed_desc">
             <p>The SDK triggers this callback under one of the following circumstances:<ul>
-            <li>The local client enables the video module and calls <apiname keyref="joinChannel2" /> successfully.</li>
-            <li>The local client calls <xref keyref="muteLocalVideoStream" />(<codeph><ph keyref="true" /></codeph>) and <apiname keyref="muteLocalVideoStream" />(<codeph><ph keyref="false" /></codeph>) in sequence.</li>
-            <li>The local client calls <xref keyref="disableVideo" /> and <xref keyref="enableVideo" /> in sequence.</li>
-            <li props="android ios mac cpp unreal bp">The local client calls <xref keyref="pushVideoFrame" /> to successfully push the video frame to the SDK.</li>
+            <li><apiname keyref="joinChannel2" />The local client enables the video module and calls <apiname keyref="joinChannel2" /> successfully.</li>
+            <li><xref keyref="muteLocalVideoStream" /><ph keyref="true" /><apiname keyref="muteLocalVideoStream" /><ph keyref="false" />The local client calls <xref keyref="muteLocalVideoStream" />(<codeph><ph keyref="true" /></codeph>) and <apiname keyref="muteLocalVideoStream" />(<codeph><ph keyref="false" /></codeph>) in sequence.<codeph></codeph><codeph></codeph></li>
+            <li><xref keyref="disableVideo" /><xref keyref="enableVideo" />The local client calls <xref keyref="disableVideo" /> and <xref keyref="enableVideo" /> in sequence.</li>
+            <li props="android ios mac cpp unreal bp"><xref keyref="pushVideoFrame" />The local client calls <xref keyref="pushVideoFrame" /> to successfully push the video frame to the SDK.</li>
             </ul> </p>
         </section>
         <section id="parameters">
@@ -53,7 +53,7 @@
             </plentry>
             <plentry props="unity electron rn flutter cs">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
+                <pd><xref keyref="RtcConnection" />The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
                 <plentry conkeyref="onLocalVideoStateChanged/source" props="native unreal bp">
                     <pt />
@@ -61,7 +61,7 @@
                 </plentry>
             <plentry>
                 <pt>elapsed</pt>
-                <pd>Time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
+                <pd><apiname keyref="joinChannel2" />Time elapsed (ms) from the local user calling <apiname keyref="joinChannel2" /> until the SDK triggers this callback.</pd>
             </plentry>
             </parml> </section>
     </refbody>

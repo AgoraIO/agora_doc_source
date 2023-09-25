@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_rate">
     <title><ph keyref="rate" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Allows a user to rate a call after the call ends.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Allows a user to rate a call after the call ends.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)rate:(NSString * _Nonnull)callId
      rating:(NSInteger)rating
 description:(NSString * _Nullable)description;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int rate(const char* callId,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int rate(const char* callId,
      int rating,
      const char* description) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract rate(callId: string, rating: number, description: string): number;</codeblock>
@@ -37,25 +37,25 @@ description:(NSString * _Nullable)description;</codeblock>
             <parml>
             <plentry>
                 <pt>callId</pt>
-                <pd>The current call ID. You can get the call ID by calling <xref keyref="getCallId" />.</pd>
+                <pd><xref keyref="getCallId" />The current call ID. You can get the call ID by calling <xref keyref="getCallId" />.</pd>
             </plentry>
             <plentry>
                 <pt>rating</pt>
-                <pd>The rating of the call. The value is between 1 (the lowest score) and 5 (the highest score). If you set a value out of this range, the SDK returns the -2 (<codeph>ERR_INVALID_ARGUMENT</codeph>) error.</pd>
+                <pd>The rating of the call. The value is between 1 (the lowest score) and 5 (the highest score). If you set a value out of this range, the SDK returns the -2 (<codeph>ERR_INVALID_ARGUMENT</codeph>) error.<codeph></codeph></pd>
             </plentry>
             <plentry>
                 <pt>description</pt>
-                <pd><ph props="native unreal bp unity cs">(Optional) </ph><ph>A description of the call. The string length should be less than 800 bytes.</ph></pd>
+                <pd><ph></ph><ph props="native unreal bp unity cs">(Optional) </ph><ph>A description of the call. The string length should be less than 800 bytes.</ph><ph props="native unreal bp unity cs"></ph></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
-                <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>).</li>
-                <li>-3 (<codeph>ERR_NOT_READY</codeph>).</li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph><ul>
+                <li>-2 (<codeph>ERR_INVALID_ARGUMENT</codeph>).<codeph></codeph></li>
+                <li>-3 (<codeph>ERR_NOT_READY</codeph>).<codeph></codeph></li>
                 </ul></li>
             </ul> </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudiopcmframesink_onframe">
     <title><ph keyref="onFrame_IAudioPcmFrameSink"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the player receives an audio frame.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the player receives an audio frame.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -16,7 +16,7 @@
             <codeblock props="android" outputclass="language-java">AudioFrame onFrame(AudioFrame frame);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
        didReceiveAudioFrame:(AgoraAudioFrame* _Nonnull)audioFrame NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didReceiveAudioFrame:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onFrame(agora::media::base::AudioPcmFrame* frame) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFrame(agora::media::base::AudioPcmFrame* frame) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onFrame?(frame: AudioPcmFrame): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnFrame(AudioPcmFrame frame)
         {
@@ -35,17 +35,17 @@
             <plentry>
                 <pt props="android cpp unreal bp electron unity cs rn flutter">frame</pt>
                 <pt props="apple">audioFrame</pt>
-                <pd><ph>The audio frame information. </ph><ph props="android apple">See <ph keyref="AudioFrame"/></ph>. <ph props="cpp unreal bp unity cs electron rn flutter">See <ph keyref="AudioPcmFrame"/></ph>.</pd>
+                <pd><ph keyref="AudioFrame"/><ph keyref="AudioPcmFrame"/><ph>The audio frame information. </ph><ph props="android apple">See <ph keyref="AudioFrame"/></ph>. <ph props="cpp unreal bp unity cs electron rn flutter">See <ph keyref="AudioPcmFrame"/></ph>.<ph></ph><ph props="android apple"></ph><ph props="cpp unreal bp unity cs electron rn flutter"></ph></pd>
             </plentry>
             <plentry props="ios mac">
                 <pt>playerKit</pt>
-                <pd>See <xref keyref="IMediaPlayer"/>.</pd>
+                <pd><xref keyref="IMediaPlayer"/>See <xref keyref="IMediaPlayer"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="android unity cs">
             <title>Returns</title>
 
-            <p props="android">Passes in the audio data after setting the <parmname>mode</parmname> parameter in <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> for handling audio data.</p>
+            <p props="android"><xref keyref="registerAudioFrameObserver2_IMediaPlayer"/>Passes in the audio data after setting the <parmname>mode</parmname> parameter in <xref keyref="registerAudioFrameObserver2_IMediaPlayer"/> for handling audio data.<parmname></parmname></p>
             <p props="unity cs">Without practical meaning.</p>
         </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enabledualstreammode3">
     <title><ph keyref="enableDualStreamMode3"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables or disables the dual-stream mode on the sender and sets the low-quality video stream.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables the dual-stream mode on the sender and sets the low-quality video stream.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,8 +17,6 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)enableDualStreamMode:(BOOL)enabled
                         streamConfig:(AgoraSimulcastStreamConfig* _Nonnull)streamConfig;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int enableDualStreamMode(bool enabled, const SimulcastStreamConfig&amp; streamConfig) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int EnableDualStreamMode(bool enabled, const FSimulcastStreamConfig&amp; streamConfig);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract enableDualStreamMode(
     enabled: boolean,
     streamConfig?: SimulcastStreamConfig
@@ -40,24 +38,24 @@ int EnableDualStreamMode(bool enabled, const FSimulcastStreamConfig&amp; streamC
                 <pt>enabled</pt>
                 <pd>
                     <p>Whether to enable dual-stream mode:<ul>
-                    <li><codeph><ph keyref="true"/></codeph>: Enable dual-stream mode.</li>
-                    <li><codeph><ph keyref="false"/></codeph>: (Default) Disable dual-stream mode.</li>
+                    <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Enable dual-stream mode.<codeph></codeph></li>
+                    <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: (Default) Disable dual-stream mode.<codeph></codeph></li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry id="streamconfig">
                 <pt>streamConfig</pt>
                 <pd>
-                    <p>The configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/>.</p>
+                    <p><xref keyref="SimulcastStreamConfig"/>The configuration of the low-quality video stream. See <xref keyref="SimulcastStreamConfig"/>.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

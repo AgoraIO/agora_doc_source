@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_imagetrackoptions">
     <title><ph keyref="ImageTrackOptions" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Image configurations.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Image configurations.</ph><ph id="shortdesc"></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -21,7 +21,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImageTrackOptions : NSObject
 @property(copy, nonatomic) NSString *_Nullable imageUrl;
 @property(assign, nonatomic) int fps;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ImageTrackOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ImageTrackOptions {
   const char* imageUrl;
   int fps;
   ImageTrackOptions() : imageUrl(NULL), fps(1) {}
@@ -58,19 +58,19 @@
   @JsonKey(name: 'fps')
   final int? fps;
 
-  factory ImageTrackOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory ImageTrackOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$ImageTrackOptionsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$ImageTrackOptionsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$ImageTrackOptionsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
                 <pt>imageUrl</pt>
-                <pd>The image URL. Supported formats of images include JPEG, JPG, PNG and GIF. This method supports adding an image from the local absolute or relative file path.<note props="cpp unreal bp android rn unity flutter">On the Android platform, adding images from <codeph>/assets/</codeph> is not supported.</note>
+                <pd>The image URL. Supported formats of images include JPEG, JPG, PNG and GIF. This method supports adding an image from the local absolute or relative file path.<note props="cpp unreal bp android rn unity flutter">On the Android platform, adding images from <codeph>/assets/</codeph> is not supported.<codeph></codeph></note>
                 </pd>
             </plentry>
                 <plentry>

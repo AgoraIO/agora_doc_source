@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ivideodevicemanager_getcapability">
     <title><ph keyref="getCapability" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the detailed video frame information of the video capture device in the specified video format.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the detailed video frame information of the video capture device in the specified video format.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java" />
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int getCapability(const char* deviceIdUTF8, const uint32_t deviceCapabilityNumber, VideoFormat&amp; capability) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int getCapability(const char* deviceIdUTF8, const uint32_t deviceCapabilityNumber, VideoFormat&amp; capability) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract getCapability(
     deviceIdUTF8: string,
@@ -33,7 +33,7 @@
         <section id="detailed_desc">
             <title>Details</title>
             <note type="attention" props="cpp unreal bp unity flutter">This method is for Windows and macOS only.</note>
-            <p>After calling <xref keyref="numberOfCapabilities" /> to get the number of video formats supported by the video capture device, you can call this method to get the specific video frame information supported by the specified index number.</p>
+            <p><xref keyref="numberOfCapabilities" />After calling <xref keyref="numberOfCapabilities" /> to get the number of video formats supported by the video capture device, you can call this method to get the specific video frame information supported by the specified index number.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -44,18 +44,18 @@
             </plentry>
             <plentry>
                 <pt>deviceCapabilityNumber</pt>
-                <pd>The index number of the video format. If the return value of <apiname keyref="numberOfCapabilities" /> is i, the value range of this parameter is [0,i).</pd>
+                <pd><apiname keyref="numberOfCapabilities" />The index number of the video format. If the return value of <apiname keyref="numberOfCapabilities" /> is i, the value range of this parameter is [0,i).</pd>
             </plentry>
             <plentry props="cpp unreal bp unity cs">
                 <pt>capability</pt>
-                <pd>An output parameter. Indicates the specific information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat" />.</pd>
+                <pd><xref keyref="VideoFormat" />An output parameter. Indicates the specific information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul props="cpp unreal bp unity cs">
             <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li></ul>
-            <p props="electron rn flutter">The specific information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat" />.</p></section>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li></ul>
+            <p props="electron rn flutter"><xref keyref="VideoFormat" />The specific information of the specified video format, including width (px), height (px), and frame rate (fps). See <xref keyref="VideoFormat" />.</p></section>
     </refbody>
 </reference>

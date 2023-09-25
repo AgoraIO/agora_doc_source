@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onaudioquality">
     <title><ph keyref="onAudioQuality" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the audio stream sent by each remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the statistics of the audio stream sent by each remote user.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -15,7 +15,7 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)audioQualityBlock:(void (^_Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
   (void)uid;
   (void)quality;
   (void)delay;
@@ -45,7 +45,7 @@
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd>Use <xref keyref="onRemoteAudioStats" /> instead.</dd>
+                <dd><xref keyref="onRemoteAudioStats" />Use <xref keyref="onRemoteAudioStats" /> instead.</dd>
             </dlentry>
             </dl>
             </p>
@@ -60,16 +60,16 @@
             </plentry>
             <plentry props="unity flutter electron rn cs">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
+                <pd><xref keyref="RtcConnection" />The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
             <plentry>
                 <pt props="native unreal bp">uid</pt>
-                <pt props="unity flutter electron rn cs"><ph>remoteUid</ph></pt>
+                <pt props="unity flutter electron rn cs"><ph>remoteUid</ph><ph></ph></pt>
                 <pd>The user ID of the remote user sending the audio stream.</pd>
             </plentry>
             <plentry>
                 <pt>quality</pt>
-                <pd>Audio quality of the user. <ph props="ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="QUALITY_TYPE" />.</ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                <pd><xref keyref="QUALITY_TYPE" />Audio quality of the user. <ph props="ios mac cpp unreal bp unity flutter electron rn cs">See <xref keyref="QUALITY_TYPE" />.</ph><ph props="ios mac cpp unreal bp unity flutter electron rn cs"></ph><ul conkeyref="RemoteAudioStats/qualitytype" props="android">
                     <li />
                     </ul> </pd>
             </plentry>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudioencodedframeobserver_onrecordaudioencodedframe">
     <title><ph keyref="onRecordAudioEncodedFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the encoded audio data of the local user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the encoded audio data of the local user.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,7 +18,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onRecordEncodedAudioFrame:(NSData* _Nonnull)frameData info:(AgoraEncodedAudioFrameInfo* _Nonnull) info;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRecordAudioEncodedFrame(const uint8_t* frameBuffer,  int length, const EncodedAudioFrameInfo&amp; audioEncodedFrameInfo) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRecordAudioEncodedFrame?(
     frameBuffer: Uint8Array,
     length: number,
@@ -39,7 +39,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the encoded audio as <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>, you can get the encoded audio data of the local user from this callback.</p>
+            <p><xref keyref="registerAudioEncodedFrameObserver"/><ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>After calling <xref keyref="registerAudioEncodedFrameObserver"/> and setting the encoded audio as <ph keyref="AUDIO_ENCODED_FRAME_OBSERVER_POSITION_RECORD"/>, you can get the encoded audio data of the local user from this callback.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -58,7 +58,7 @@
             <plentry props="ios mac cpp unreal bp electron unity rn flutter cs">
                 <pt props="cpp unreal bp electron unity rn flutter cs">audioEncodedFrameInfo</pt>
                 <pt props="ios mac">info</pt>
-                <pd>Audio information after encoding. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
+                <pd><xref keyref="EncodedAudioFrameInfo"/>Audio information after encoding. See <xref keyref="EncodedAudioFrameInfo"/>.</pd>
             </plentry>
             <plentry conkeyref="onMixedAudioFrame/samplesPerChannel" props="android">
                 <pt/>
@@ -75,10 +75,10 @@
             <plentry props="android" id="codecType">
                 <pt>codecType</pt>
                 <pd>Audio encoding type:<ul>
-                    <li><ph keyref="AUDIO_CODEC_OPUS"/>(1): OPUS.</li>
-                    <li><ph keyref="AUDIO_CODEC_AACLC"/>(8): LC-AAC.</li>
-                    <li><ph keyref="AUDIO_CODEC_HEAAC"/>(9): HE-AAC.</li>
-                    <li><ph keyref="AUDIO_CODEC_HEAAC2"/>(11): HE-AAC v2.</li>
+                    <li><ph keyref="AUDIO_CODEC_OPUS"/><ph keyref="AUDIO_CODEC_OPUS"/>(1): OPUS.</li>
+                    <li><ph keyref="AUDIO_CODEC_AACLC"/><ph keyref="AUDIO_CODEC_AACLC"/>(8): LC-AAC.</li>
+                    <li><ph keyref="AUDIO_CODEC_HEAAC"/><ph keyref="AUDIO_CODEC_HEAAC"/>(9): HE-AAC.</li>
+                    <li><ph keyref="AUDIO_CODEC_HEAAC2"/><ph keyref="AUDIO_CODEC_HEAAC2"/>(11): HE-AAC v2.</li>
                     </ul></pd>
             </plentry>
             </parml> </section>

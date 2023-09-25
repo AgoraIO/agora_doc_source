@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setplaybackaudioframeparameters">
     <title><ph keyref="setPlaybackAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format for playback.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format for playback.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -19,7 +19,7 @@
                                              channel:(NSInteger)channel
                                                 mode:(AgoraAudioRawFrameOperationMode)mode
                                       samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setPlaybackAudioFrameParameters(int sampleRate,
     int channel,
     RAW_AUDIO_FRAME_OP_MODE_TYPE mode,
     int samplesPerCall) = 0;</codeblock>
@@ -46,23 +46,23 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>Sets the data format for the <xref keyref="onPlaybackAudioFrame" /> callback.</p>
+            <p><xref keyref="onPlaybackAudioFrame" />Sets the data format for the <xref keyref="onPlaybackAudioFrame" /> callback.</p>
             <note type="attention">
             <ul id="ul_t13_lnz_r4b">
             <li>Ensure that you call this method before joining a channel.</li>
-            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)</equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onPlaybackAudioFrame" /> callback according to the sampling interval.</li>
+            <li>The SDK calculates the sampling interval based on the <parmname>samplesPerCall</parmname>, <parmname>sampleRate</parmname> and <parmname>channel</parmname> parameters set in this method.<parmname></parmname><parmname></parmname><parmname></parmname><equation-inline>Sample interval (sec) = <parmname>samplePerCall</parmname>/(<parmname>sampleRate</parmname> × <parmname>channel</parmname>)<parmname></parmname><parmname></parmname><parmname></parmname></equation-inline>. Ensure that the sample interval ≥ 0.01 (s). The SDK triggers the <apiname keyref="onPlaybackAudioFrame" /> callback according to the sampling interval.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>sampleRate</pt>
-                <pd>The sample rate returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
+                <pd><apiname keyref="onPlaybackAudioFrame" />The sample rate returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, which can be set as 8000, 16000, 32000, 44100, or 48000 Hz.</pd>
             </plentry>
             <plentry>
                 <pt>channel</pt>
                 <pd>
-                    <p>The number of channels returned in the <apiname keyref="onPlaybackAudioFrame" /> callback:<ul id="ul_xg2_cnz_r4b">
+                    <p><apiname keyref="onPlaybackAudioFrame" />The number of channels returned in the <apiname keyref="onPlaybackAudioFrame" /> callback:<ul id="ul_xg2_cnz_r4b">
                     <li>1: Mono.</li>
                     <li>2: Stereo.</li>
                     </ul></p>
@@ -71,21 +71,21 @@
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
+                    <p props="ios mac cpp unreal bp unity flutter electron rn cs"><xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
                     <p conkeyref="registerAudioFrameObserver2_IMediaPlayer/mode" props="android" />
                 </pd>
             </plentry>
             <plentry>
                 <pt>samplesPerCall</pt>
-                <pd>The number of data samples returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, such as 1024 for the Media Push.</pd>
+                <pd><apiname keyref="onPlaybackAudioFrame" />The number of data samples returned in the <apiname keyref="onPlaybackAudioFrame" /> callback, such as 1024 for the Media Push.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp unity electron rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

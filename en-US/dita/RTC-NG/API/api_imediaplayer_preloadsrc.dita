@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_preloadsrc">
     <title><ph keyref="preloadSrc" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Preloads a media resource.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Preloads a media resource.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadSrc:(NSString *)src startPos:(int)startPos;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int preloadSrc(const char* src, int64_t startPos) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int preloadSrc(const char* src, int64_t startPos) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract preloadSrc(src: string, startPos: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int PreloadSrc(string src, Int64 startPos);</codeblock>
@@ -28,8 +28,8 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p>You can call this method to preload a media resource into the playlist. If you need to preload multiple media resources, you can call this method multiple times.</p>
-            <p props="native unreal bp rn electron">After calling this method, if you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload is successful; If you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload fails.</p>
-            <p>If the preload is successful and you want to play the media resource, call <xref keyref="playPreloadedSrc" />; if you want to clear the playlist, call <xref keyref="stop" />.</p>
+            <p props="native unreal bp rn electron"><xref keyref="onPreloadEvent" /><apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" /><xref keyref="onPreloadEvent" /><apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" />After calling this method, if you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_COMPLETE" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload is successful; If you receive the <apiname keyref="PLAYER_PRELOAD_EVENT_ERROR" /> event in the <xref keyref="onPreloadEvent" /> callback, the preload fails.</p>
+            <p><xref keyref="playPreloadedSrc" /><xref keyref="stop" />If the preload is successful and you want to play the media resource, call <xref keyref="playPreloadedSrc" />; if you want to clear the playlist, call <xref keyref="stop" />.</p>
             <note type="note">
             <p>Agora does not support preloading duplicate media resources to the playlist. However, you can preload the media resources that are being played to the playlist again.</p>
             </note> </section>
@@ -47,10 +47,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

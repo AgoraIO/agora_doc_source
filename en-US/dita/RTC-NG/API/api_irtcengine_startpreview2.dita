@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startpreview2">
     <title><ph keyref="startPreview2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables the local video preview and specifies the video source for the preview.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables the local video preview and specifies the video source for the preview.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,8 +17,6 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)startPreview: (AgoraVideoSourceType)sourceType NS_SWIFT_NAME(startPreview(_:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startPreview(VIDEO_SOURCE_TYPE sourceType) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-	int StartPreview(EVIDEO_SOURCE_TYPE sourceType  = EVIDEO_SOURCE_TYPE::VIDEO_SOURCE_CAMERA_PRIMARY);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startPreview(sourceType?: VideoSourceType): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StartPreview(VIDEO_SOURCE_TYPE sourceType);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract startPreview(sourceType?: VideoSourceType): number;</codeblock>
@@ -38,8 +36,8 @@
             <note type="attention">
             <ul>
             <li>The local preview enables the mirror mode by default.</li>
-            <li>After the local video preview is enabled, if you call <xref keyref="leaveChannel2" /> to exit the channel, the local preview remains until you call <xref keyref="stopPreview2" /> to disable it.</li>
-            <li props="native unity cs electron flutter unreal bp">The video source type set in this method needs to be consistent with the video source type of <xref keyref="VideoCanvas" /> you set in <xref keyref="setupLocalVideo" />.</li>
+            <li><xref keyref="leaveChannel2" /><xref keyref="stopPreview2" />After the local video preview is enabled, if you call <xref keyref="leaveChannel2" /> to exit the channel, the local preview remains until you call <xref keyref="stopPreview2" /> to disable it.</li>
+            <li props="native unity cs electron flutter unreal bp"><xref keyref="setupLocalVideo" /><xref keyref="VideoCanvas" />The video source type set in this method needs to be consistent with the video source type of <xref keyref="VideoCanvas" /> you set in <xref keyref="setupLocalVideo" />.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -51,10 +49,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

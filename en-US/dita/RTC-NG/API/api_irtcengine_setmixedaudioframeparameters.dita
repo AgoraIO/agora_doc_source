@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setmixedaudioframeparameters">
     <title><ph keyref="setMixedAudioFrameParameters" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the audio data format reported by <xref keyref="onMixedAudioFrame" />.</ph></shortdesc>
+    <shortdesc id="short"><xref keyref="onMixedAudioFrame" /><ph id="shortdesc">Sets the audio data format reported by <xref keyref="onMixedAudioFrame" />.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setMixedAudioFrameParametersWithSampleRate:(NSInteger)sampleRate
                                           channel:(NSInteger)channel
                                    samplesPerCall:(NSInteger)samplesPerCall;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setMixedAudioFrameParameters(int sampleRate, int channel, int samplesPerCall) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setMixedAudioFrameParameters(int sampleRate, int channel, int samplesPerCall) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setMixedAudioFrameParameters(
     sampleRate: number,
     channel: number,
@@ -41,7 +41,7 @@
             <plentry>
                 <pt>sampleRate</pt>
                 <pd>
-                    <p>The sample rate (Hz) of the audio data, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.</p>
+                    <p>The sample rate (Hz) of the audio data, which can be set as <codeph>8000</codeph>, <codeph>16000</codeph>, <codeph>32000</codeph>, <codeph>44100</codeph>, or <codeph>48000</codeph>.<codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph></p>
                 </pd>
             </plentry>
             </parml>
@@ -49,7 +49,7 @@
             <plentry>
                 <pt>channel</pt>
                 <pd>
-                    <p>The number of channels of the audio data, which can be set as <codeph>1(Mono)</codeph> or <codeph>2(Stereo)</codeph>.</p>
+                    <p>The number of channels of the audio data, which can be set as <codeph>1(Mono)</codeph> or <codeph>2(Stereo)</codeph>.<codeph></codeph><codeph></codeph></p>
                 </pd>
             </plentry>
             </parml>
@@ -57,19 +57,19 @@
             <plentry>
                 <pt>samplesPerCall</pt>
                 <pd>
-                    <p>Sets the number of samples. In Media Push scenarios, set it as <codeph>1024</codeph>.</p>
+                    <p>Sets the number of samples. In Media Push scenarios, set it as <codeph>1024</codeph>.<codeph></codeph></p>
                 </pd>
             </plentry>
             </parml>
             <note id="note_n1y_cgg_3qb">
-            <p>The SDK triggers the <apiname keyref="onMixedAudioFrame" /> callback according to the sample interval. Sampleinterval (sec) = <codeph>samplePerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>) Ensure that the value of sample interval more than or equal to 0.01.</p>
+            <p><apiname keyref="onMixedAudioFrame" />The SDK triggers the <apiname keyref="onMixedAudioFrame" /> callback according to the sample interval. Sampleinterval (sec) = <codeph>samplePerCall</codeph>/(<codeph>sampleRate</codeph> × <codeph>channel</codeph>) Ensure that the value of sample interval more than or equal to 0.01.<codeph></codeph><codeph></codeph><codeph></codeph></p>
             </note> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul id="ul_ahk_23f_3qb">
             <li props="native unreal bp unity electron rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

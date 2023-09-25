@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayersourceobserver_onplayerevent">
     <title><ph keyref="onPlayerEvent" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the player events.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the player events.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,7 +20,7 @@
                 elapsedTime:(NSInteger)elapsedTime
                     message:(NSString *_Nullable)message;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerEvent(media::base::MEDIA_PLAYER_EVENT eventCode, int64_t elapsedTime, const char* message) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlayerEvent?(
     eventCode: MediaPlayerEvent,
@@ -40,19 +40,19 @@
         </section>
         <section id="detailed_desc">
             <ul>
-            <li>After calling the <xref keyref="seek" /> method, the SDK triggers the callback to report the results of the seek operation.</li>
-            <li props="hide">After calling the <xref keyref="selectAudioTrack" /> method, the SDK triggers the callback to report that the audio track changes.</li>
+            <li><xref keyref="seek" />After calling the <xref keyref="seek" /> method, the SDK triggers the callback to report the results of the seek operation.</li>
+            <li props="hide"><xref keyref="selectAudioTrack" />After calling the <xref keyref="selectAudioTrack" /> method, the SDK triggers the callback to report that the audio track changes.</li>
             </ul> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry props="ios mac" id="playerkit">
                 <pt>playerKit</pt>
-                <pd>See <xref keyref="IMediaPlayer" />.</pd>
+                <pd><xref keyref="IMediaPlayer" />See <xref keyref="IMediaPlayer" />.</pd>
             </plentry>
             <plentry props="native unreal bp unity flutter electron rn cs">
                 <pt>eventCode</pt>
-                <pd>The player events. See <xref keyref="MEDIA_PLAYER_EVENT" />.</pd>
+                <pd><xref keyref="MEDIA_PLAYER_EVENT" />The player events. See <xref keyref="MEDIA_PLAYER_EVENT" />.</pd>
             </plentry>
             <plentry>
                 <pt>elapsedTime</pt>

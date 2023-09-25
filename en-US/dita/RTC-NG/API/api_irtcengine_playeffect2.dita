@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_playeffect2">
     <title><ph keyref="playEffect2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Plays the specified local or online audio effect file.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Plays the specified local or online audio effect file.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,7 +24,7 @@
              gain:(NSInteger)gain
           publish:(BOOL)publish;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int playEffect(int soundId,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int playEffect(int soundId,
     const char* filePath,
     int loopCount,
     double pitch,
@@ -39,21 +39,21 @@
         <section id="detailed_desc">
             <title>Details</title>
         <note conkeyref="playEffect3/note"/>
-        <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.<note type="note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Audio Formats</xref>.</note></p>
+        <p id="playEffect-desc"><apiname keyref="onAudioEffectFinished" />To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.<parmname></parmname><parmname></parmname><note type="note">Supported audio formats include MP3, AAC, M4A, MP4, WAV, and 3GP. See <xref keyref="filePath-link">Supported Audio Formats</xref>.<xref keyref="filePath-link"></xref></note></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="soundid">
                 <pt>soundId</pt>
-                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect" />.</note></pd>
+                <pd>The audio effect ID. The ID of each audio effect file is unique.<note type="attention"><xref keyref="preloadEffect" /><apiname keyref="preloadEffect" />If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>soundId</parmname> in <apiname keyref="preloadEffect" />.<parmname></parmname></note></pd>
             </plentry>
             <plentry id="filepath">
                 <pt>filePath</pt>
                 <pd>
-                    <p props="cpp unreal bp">Agora supports URL addresses, absolute paths, or file paths that start with <codeph>/assets/</codeph>. For example, <codeph><ph keyref="filePath-example" /></codeph>.</p>
-                    <p props="android">The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example, <codeph><ph keyref="filePath-example" /></codeph>.</p>
-                    <note type="attention">If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.</note> </pd>
+                    <p props="cpp unreal bp"><ph keyref="filePath-example" />Agora supports URL addresses, absolute paths, or file paths that start with <codeph>/assets/</codeph>. For example, <codeph><ph keyref="filePath-example" /></codeph>.<codeph></codeph><codeph></codeph></p>
+                    <p props="android"><ph keyref="filePath-example" />The absolute path or URL address (including the suffixes of the filename) of the audio effect file. You might encounter permission issues if you use an absolute path to access a local file, so Agora recommends using a URI address instead. For example, <codeph><ph keyref="filePath-example" /></codeph>.<codeph></codeph></p>
+                    <note type="attention"><xref keyref="preloadEffect" /><apiname keyref="preloadEffect" />If you have preloaded an audio effect into memory by calling <xref keyref="preloadEffect" />, ensure that the value of this parameter is the same as that of <parmname>filePath</parmname> in <apiname keyref="preloadEffect" />.<parmname></parmname></note> </pd>
             </plentry>
             <plentry id="loopcount">
                 <pt>loopCount</pt>
@@ -86,8 +86,8 @@
                 <pt>publish</pt>
                 <pd>
                     <p>Whether to publish the audio effect to the remote users.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.</li>
+                    <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Publish the audio effect to the remote users. Both the local user and remote users can hear the audio effect.<codeph></codeph></li>
+                    <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: Do not publish the audio effect to the remote users. Only the local user can hear the audio effect.<codeph></codeph></li>
                     </ul></p>
                 </pd>
             </plentry>
@@ -96,7 +96,7 @@
             <title>Returns</title>
             <ul>
             <li>0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

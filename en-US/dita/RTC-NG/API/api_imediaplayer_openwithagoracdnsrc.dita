@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_openwithagoracdnsrc">
     <title> <ph keyref="openWithAgoraCDNSrc" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Opens a media resource and requests all the CDN routes of the media resources through the self-developed scheduling center.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Opens a media resource and requests all the CDN routes of the media resources through the self-developed scheduling center.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)openWithAgoraCDNSrc:(NSString *)src startPos:(NSInteger)startPos;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int openWithAgoraCDNSrc(const char* src, int64_t startPos) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int openWithAgoraCDNSrc(const char* src, int64_t startPos) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract openWithAgoraCDNSrc(src: string, startPos: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int OpenWithAgoraCDNSrc(string src, Int64 startPos);</codeblock>
@@ -29,15 +29,15 @@
         <section id="detailed_desc">
             <title>Details</title>
             <note type="attention" conkeyref="open/note" />
-            <p>After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call <xref keyref="switchAgoraCDNLineByIndex" /> to switch routes.</p>
-            <p id="auth">If you want to ensure the security of the connection and media files, <xref keyref="ticket-link" /> to determine the <parmname>sign</parmname> and the <parmname>ts</parmname> fields for authentication. Once the fields are determined, use them as the <codeph>query parameter</codeph> of the URL to update the URL of the media resource. For example:<ul>
-            <li>The URL of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName</codeph></li>
-            <li>The URL updated by the authentication of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph></li>
+            <p><xref keyref="switchAgoraCDNLineByIndex" />After you call this method, Agora opens the media resources and tries to obtain all the CDN routes for playing the media resource. By default, Agora uses the first CDN route for playing, and you can call <xref keyref="switchAgoraCDNLineByIndex" /> to switch routes.</p>
+            <p id="auth"><xref keyref="ticket-link" />If you want to ensure the security of the connection and media files, <xref keyref="ticket-link" /> to determine the <parmname>sign</parmname> and the <parmname>ts</parmname> fields for authentication. Once the fields are determined, use them as the <codeph>query parameter</codeph> of the URL to update the URL of the media resource. For example:<parmname></parmname><parmname></parmname><codeph></codeph><ul>
+            <li>The URL of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName</codeph><codeph></codeph></li>
+            <li>The URL updated by the authentication of the media file to be opened: <codeph>rtmp://$domain/$appName/$streamName?ts=$ts&amp;sign=$sign</codeph><codeph></codeph></li>
             </ul>
             <note>
             <p>Authentication information:<ul>
-            <li><parmname>sign</parmname>: An encrypted string calculated according to the MD5 algorithm based on <codeph>authKey</codeph>, <codeph>appName</codeph>, <codeph>streamName</codeph>, and <codeph>ts</codeph>. You need to <xref keyref="ticket-link" /> for your <codeph>authKey</codeph>.</li>
-            <li><parmname>ts</parmname>: The timestamp when the authentication information expires. You can set the validity period of the authentication information according to your scenarios. For example, <codeph>24h</codeph> or <codeph>1h30m20s</codeph>.</li>
+            <li><xref keyref="ticket-link" /><parmname>sign</parmname>: An encrypted string calculated according to the MD5 algorithm based on <codeph>authKey</codeph>, <codeph>appName</codeph>, <codeph>streamName</codeph>, and <codeph>ts</codeph>. You need to <xref keyref="ticket-link" /> for your <codeph>authKey</codeph>.<parmname></parmname><codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph></li>
+            <li><parmname>ts</parmname>: The timestamp when the authentication information expires. You can set the validity period of the authentication information according to your scenarios. For example, <codeph>24h</codeph> or <codeph>1h30m20s</codeph>.<parmname></parmname><codeph></codeph><codeph></codeph></li>
             </ul></p>
             </note></p>
         </section>
@@ -55,10 +55,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>

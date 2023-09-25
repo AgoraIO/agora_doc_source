@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onstreammessageerror">
     <title> <ph keyref="onStreamMessageError" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user does not receive the data stream from the remote user.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the local user does not receive the data stream from the remote user.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -20,7 +20,7 @@
             error:(NSInteger)error
             missed:(NSInteger)missed
             cached:(NSInteger)cached;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
                 (void)userId;
                 (void)streamId;
                 (void)code;
@@ -50,7 +50,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>The SDK triggers this callback when the local user fails to receive the stream message that the remote user sends by calling the <xref keyref="sendStreamMessage" /> method.</p>
+            <p><xref keyref="sendStreamMessage" />The SDK triggers this callback when the local user fails to receive the stream message that the remote user sends by calling the <xref keyref="sendStreamMessage" /> method.</p>
         </section>
         <section id="parameters">
             <title> <ph keyref="callback-section-title" /> </title>
@@ -61,7 +61,7 @@
             </plentry>
             <plentry props="unity flutter rn electron cs">
                 <pt>connection</pt>
-                <pd>The connection information. See <xref keyref="RtcConnection" />.</pd>
+                <pd><xref keyref="RtcConnection" />The connection information. See <xref keyref="RtcConnection" />.</pd>
             </plentry>
             <plentry id="uid">
                 <pt props="ios mac android electron">uid</pt>

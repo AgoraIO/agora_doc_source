@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_renewagoracdnsrctoken">
     <title><ph keyref="renewAgoraCDNSrcToken" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Renew the authentication information for the URL of the media resource to be played.</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Renew the authentication information for the URL of the media resource to be played.</ph><ph id="shortdesc"></ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -17,7 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)renewAgoraCDNSrcToken:(NSString *)token ts:(NSInteger)ts;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int renewAgoraCDNSrcToken(const char* token, int64_t ts) = 0;
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int renewAgoraCDNSrcToken(const char* token, int64_t ts) = 0;
 </codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract renewAgoraCDNSrcToken(token: string, ts: number): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int RenewAgoraCDNSrcToken(string token, Int64 ts);</codeblock>
@@ -27,29 +27,29 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>When the authentication information expires (exceeds the <parmname>ts</parmname> field), you can call the <xref keyref="openWithAgoraCDNSrc" /> method to reopen the media resource or the <xref keyref="switchAgoraCDNSrc" /> method to switch the media resource, and then pass in the authenticated URL (with the <parmname>ts</parmname> field updated) of the media resource.</p>
-            <p>If your authentication information expires when you call the <xref keyref="switchAgoraCDNLineByIndex" /> to switch the CDN route for playing the media resource, you need to call this method to pass in the updated authentication information to update the authentication information of the media resource URL. After updating the authentication information, you need to call <xref keyref="switchAgoraCDNLineByIndex" /> to complete the route switching.</p>
+            <p><xref keyref="openWithAgoraCDNSrc" /><xref keyref="switchAgoraCDNSrc" />When the authentication information expires (exceeds the <parmname>ts</parmname> field), you can call the <xref keyref="openWithAgoraCDNSrc" /> method to reopen the media resource or the <xref keyref="switchAgoraCDNSrc" /> method to switch the media resource, and then pass in the authenticated URL (with the <parmname>ts</parmname> field updated) of the media resource.<parmname></parmname><parmname></parmname></p>
+            <p><xref keyref="switchAgoraCDNLineByIndex" /><xref keyref="switchAgoraCDNLineByIndex" />If your authentication information expires when you call the <xref keyref="switchAgoraCDNLineByIndex" /> to switch the CDN route for playing the media resource, you need to call this method to pass in the updated authentication information to update the authentication information of the media resource URL. After updating the authentication information, you need to call <xref keyref="switchAgoraCDNLineByIndex" /> to complete the route switching.</p>
             <note type="attention">
-            <p>To avoid frequent expiration of authentication information, ensure that you set the <parmname>ts</parmname> field appropriately or <xref keyref="ticket-link" /> according to the scenario requirements.</p>
+            <p><xref keyref="ticket-link" />To avoid frequent expiration of authentication information, ensure that you set the <parmname>ts</parmname> field appropriately or <xref keyref="ticket-link" /> according to the scenario requirements.<parmname></parmname></p>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>token</pt>
-                <pd>The authentication field. See the <parmname>sign</parmname> field of the authentication information.</pd>
+                <pd>The authentication field. See the <parmname>sign</parmname> field of the authentication information.<parmname></parmname></pd>
             </plentry>
             <plentry>
                 <pt>ts</pt>
-                <pd>The timestamp when the authentication information expires. See the <parmname>ts</parmname> field of the authentication information.</pd>
+                <pd>The timestamp when the authentication information expires. See the <parmname>ts</parmname> field of the authentication information.<parmname></parmname></pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
+            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
             </ul> </section>
     </refbody>
 </reference>
