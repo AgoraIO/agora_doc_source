@@ -38,12 +38,12 @@
             </plentry>
             <plentry props="ios cpp unreal bp rn unity flutter cs">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_INBACKGROUND"/></pt>
-                    <pd props="ios cpp unreal bp rn unity flutter"><ph>6:</ph><ph props="cpp unreal bp rn flutter unity"> (For iOS only) </ph><ph>The app is in the background. Remind the user that video capture cannot be performed normally when the app is in the background.</ph></pd>
+                    <pd props="ios cpp unreal bp rn unity flutter"><ph>6:</ph><ph props="cpp unreal bp rn flutter unity"> (iOS only) </ph><ph>The app is in the background. Remind the user that video capture cannot be performed normally when the app is in the background.</ph></pd>
                     <pd props="cs">6: Reserved.</pd>
                 </plentry>
             <plentry props="ios cpp unreal bp rn unity flutter cs">
                     <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_CAPTURE_MULTIPLE_FOREGROUND_APPS"/></pt>
-                    <pd props="ios cpp unreal bp rn unity flutter"><ph>7:</ph><ph props="cpp unreal bp rn flutter unity"> (For iOS only)</ph><ph> The current application window is running in Slide Over, Split View, or Picture in Picture mode, and another app is occupying the camera. Remind the user that the application cannot capture video properly when the app is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</ph></pd>
+                    <pd props="ios cpp unreal bp rn unity flutter"><ph>7:</ph><ph props="cpp unreal bp rn flutter unity"> (iOS only)</ph><ph> The current application window is running in Slide Over, Split View, or Picture in Picture mode, and another app is occupying the camera. Remind the user that the application cannot capture video properly when the app is running in Slide Over, Split View, or Picture in Picture mode and another app is occupying the camera.</ph></pd>
                     <pd props="cs">7: Reserved.</pd>
                 </plentry>
             <plentry props="android cpp unreal bp unity electron flutter rn cs">
@@ -52,23 +52,23 @@
             </plentry>
             <plentry props="cpp unreal bp mac unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_DISCONNECTED"/></pt>
-                <pd props="mac cpp unreal bp electron unity flutter"><ph>9:</ph><ph props="cpp unreal bp unity electron flutter">(For macOS only)</ph><ph> The video capture device currently in use is disconnected (such as being unplugged).</ph></pd>
+                <pd props="mac cpp unreal bp electron unity flutter"><ph>9:</ph><ph props="cpp unreal bp unity electron flutter">(macOS only)</ph><ph> The video capture device currently in use is disconnected (such as being unplugged).</ph></pd>
                 <pd props="cs">9: Reserved.</pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_INVALID_ID"/></pt>
-                <pd><ph>10:</ph><ph props="cpp unreal bp flutter unity electron"> (For macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
+                <pd><ph>10:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The SDK cannot find the video device in the video device list. Check whether the ID of the video device is valid.</ph></pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_MINIMIZED"/></pt>
-                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity electron"> (For macOS only)</ph><ph> The shared window is minimized when you call <xref keyref="startScreenCaptureByWindowId"/> to share a window. The SDK cannot share a minimized window. You can cancel the minimization of this window at the application layer, for example by maximizing this window.</ph></pd>
+                <pd props="cpp unreal bp mac flutter unity electron"><ph>11:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS only)</ph><ph> The shared window is minimized when you call <xref keyref="startScreenCaptureByWindowId"/> to share a window. The SDK cannot share a minimized window. You can cancel the minimization of this window at the application layer, for example by maximizing this window.</ph></pd>
                 <pd props="cs">11: Reserved.</pd>
             </plentry>
             <plentry props="cpp unreal bp mac flutter unity electron cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_CLOSED"/></pt>
                 <pd>
-                    <p><ph>12:</ph><ph props="cpp unreal bp flutter unity electron"> (For macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
-                    <p>Common scenarios for reporting this error code:<ul>
+                    <p><ph>12:</ph><ph props="cpp unreal bp flutter unity electron"> (macOS and Windows only)</ph><ph> The error code indicates that a window shared by the window ID has been closed or a full-screen window shared by the window ID has exited full-screen mode. After exiting full-screen mode, remote users cannot see the shared window. To prevent remote users from seeing a black screen, Agora recommends that you immediately stop screen sharing.</ph></p>
+                    <p>Common scenarios reporting this error code:<ul>
                     <li>When the local user closes the shared window, the SDK reports this error code.</li>
                     <li>The local user shows some slides in full-screen mode first, and then shares the windows of the slides. After the user exits full-screen mode, the SDK reports this error code.</li>
                     <li>The local user watches a web video or reads a web document in full-screen mode first, and then shares the window of the web video or document. After the user exits full-screen mode, the SDK reports this error code.</li>
@@ -77,16 +77,40 @@
             </plentry>
             <plentry props="cpp unreal bp unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED"/></pt>
-                <pd>13: (For Windows only) The window being shared is overlapped by another window, so the overlapped area is blacked out by the SDK during window sharing.</pd>
+                <pd>13: (Windows only) The window being shared is overlapped by another window, so the overlapped area is blacked out by the SDK during window sharing.</pd>
             </plentry>
             <plentry props="hide">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED"/></pt>
-                <pd>20: (For Windows only) The SDK does not support sharing this type of window.</pd>
+                <pd>20: (Windows only) The SDK does not support sharing this type of window.</pd>
             </plentry>
             <plentry props="cpp unreal bp">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_FAILURE"/></pt>
-                <pd>21: (For Windows only) The screen has not captured any data available for window sharing.</pd>
+                <pd>21: (Windows only) The screen has not captured any data available for window sharing.</pd>
             </plentry>
+                <plentry props="cpp flutter unity">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_NO_PERMISSION"/></pt>
+                    <pd>22: (Windows and macOS only) No permission for screen capture.</pd>
+                </plentry>
+                <plentry props="cpp flutter unity">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></pt>
+                <pd>23: (Windows only) Screen capture has been paused. Common scenarios reporting this error code: The current screen may have been switched to a secure desktop, such as a UAC dialog box or Winlogon desktop.</pd>
+            </plentry>
+            <plentry props="cpp flutter unity">
+                <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></pt>
+                    <pd>24: (Windows only) Screen capture has resumed from paused state.</pd>
+                </plentry>
+                <plentry props="cpp flutter unity">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></pt>
+                    <pd>25: (Windows only) The window for the current screen capture is hidden and not visible on the current screen.</pd>
+                </plentry>
+                <plentry props="cpp flutter unity">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></pt>
+                    <pd>26: (Windows only) The window for screen capture has been restored from hidden state.</pd>
+                </plentry>
+                <plentry props="cpp flutter unity">
+                    <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></pt>
+                    <pd>27: (Windows only) The window for screen capture has been restored from minimized state.</pd>
+                </plentry>
             <plentry props="cpp unreal bp unity electron flutter cs">
                 <pt><ph keyref="LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE"/></pt>
                 <pd>101: The current video capture device is unavailable due to excessive system pressure.</pd>

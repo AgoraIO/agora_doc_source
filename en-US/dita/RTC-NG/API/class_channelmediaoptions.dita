@@ -120,7 +120,7 @@
 
   ChannelMediaOptions() {}
   ~ChannelMediaOptions() {}</codeblock>
-            <codeblock props="unreal bp" outputclass="language-cpp">struct ChannelMediaOptions {
+            <codeblock props="unreal" outputclass="language-cpp">struct ChannelMediaOptions {
   Optional&lt;bool&gt; publishCameraTrack;
   Optional&lt;bool&gt; publishSecondaryCameraTrack;
   Optional&lt;bool&gt; publishMicrophoneTrack;
@@ -498,7 +498,9 @@ class ChannelMediaOptions {
                     <note type="note">
                     <ul><li props="native unity rn electron">As of v4.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
                     <li props="flutter">As of v6.0.0, the parameter name is changed from <parmname>publishAudioTrack</parmname> to <parmname>publishMicrophoneTrack</parmname>.</li>
-                    <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true" /></codeph>.</li></ul></note>
+                    <li>If you set this parameter as <codeph><ph keyref="false" /></codeph>, SDK turns off microphone capturing.</li>
+                        <li>If you want to publish the audio streams captured by your microphone, ensure <parmname>enableAudioRecordingOrPlayout</parmname> is set as <codeph><ph keyref="true" /></codeph>.</li>
+                    </ul></note>
                 </pd>
             </plentry>
             <plentry props="cpp mac unity cs flutter electron">
@@ -523,7 +525,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <p><note type="attention" props="cpp unreal bp unity flutter">This method is for Windows and macOS only.</note></p>
+                    <note type="attention" props="cpp unreal bp unity flutter">This method is for Windows and macOS only.</note>
                 </pd>
             </plentry>
             <plentry props="android ios cpp flutter unreal bp unity rn">
@@ -533,8 +535,8 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true" /></codeph>: Publish the video captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not publish the video captured from the screen.</li>
                     </ul></p>
-                    <p><note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note></p>
-                    <p><note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note></p> </pd>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note>
+                    <note type="note" props="android ios">As of v4.0.0, the parameter name is changed from <parmname>publishScreenTrack</parmname> to <parmname>publishScreenCaptureVideo</parmname>.</note> </pd>
             </plentry>
             <plentry props="android ios cpp flutter unreal bp unity rn">
                 <pt>publishScreenCaptureAudio</pt>
@@ -543,8 +545,7 @@ class ChannelMediaOptions {
                     <li><codeph><ph keyref="true" /></codeph>: Publish the audio captured from the screen.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Publish the audio captured from the screen.</li>
                     </ul></p>
-                    <p>
-                    <note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note></p>
+                    <note type="attention" props="cpp unreal bp unity flutter">This parameter applies to Android and iOS only.</note>
                 </pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity cs flutter rn electron">

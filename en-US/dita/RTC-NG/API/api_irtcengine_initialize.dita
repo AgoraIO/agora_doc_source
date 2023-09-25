@@ -18,8 +18,6 @@
             <codeblock props="ios mac" outputclass="language-objectivec">+ (instancetype _Nonnull)sharedEngineWithConfig:(AgoraRtcEngineConfig * _Nonnull)config
                                        delegate:(id&lt;AgoraRtcEngineDelegate&gt; _Nullable)delegate;</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int initialize(const RtcEngineContext&amp; context) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int Initialize(const FRtcEngineContext&amp; context);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract initialize(context: RtcEngineContext): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int Initialize(RtcEngineContext context);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract initialize(context: RtcEngineContext): number;</codeblock>
@@ -53,11 +51,11 @@ int Initialize(const FRtcEngineContext&amp; context);</codeblock>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="android apple">The <apiname keyref="IRtcEngine" /> instance, if the method call succeeds.</li>
             <li props="cpp unreal bp unity rn electron cs">0: Success.</li>
-            <li props="android">The method call fails and an exception is thrown, you need to catch the exception and handle it.</li>         
+            <li props="android">The method call fails and an exception is thrown, you need to catch the exception and handle it. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></li>         
             <li props="ios mac cpp framework">&lt; 0: Failure.<ul>
                 <li>-1: A general error occurs (no specified reason).</li>
                 <li>-2: The parameter is invalid.</li>

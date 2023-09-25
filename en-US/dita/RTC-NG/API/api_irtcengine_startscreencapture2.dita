@@ -17,8 +17,6 @@
             <codeblock props="ios mac" outputclass="language-objectivec">
 - (int)startScreenCapture:(AgoraVideoSourceType)sourceType config:(AgoraScreenCaptureConfiguration * _Nullable)config NS_SWIFT_NAME(startScreenCapture(_:config:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int startScreenCapture(VIDEO_SOURCE_TYPE sourceType, const ScreenCaptureConfiguration&amp; config) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|RtcEngineProxy")
-int StartScreenCaptureBySourceType(EVIDEO_SOURCE_TYPE sourceType, const FScreenCaptureConfiguration&amp; config);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract startScreenCaptureBySourceType(
     sourceType: VideoSourceType,
     config: ScreenCaptureConfiguration
@@ -67,12 +65,12 @@ int StartScreenCaptureBySourceType(EVIDEO_SOURCE_TYPE sourceType, const FScreenC
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></p>
         </section>
         <section>
             <ul>
             <li props="native unreal bp electron unity cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>
