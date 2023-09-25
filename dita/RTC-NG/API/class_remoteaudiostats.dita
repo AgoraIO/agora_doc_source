@@ -75,6 +75,42 @@
     qoeQuality(0) {}
     qualityChangedReason(0){}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRemoteAudioStats
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int quality;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int networkTransportDelay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int jitterBufferDelay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int audioLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int numChannels;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int receivedSampleRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int receivedBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int totalFrozenTime;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int frozenRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int mosValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int totalActiveTime;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int publishDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qoeQuality;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qualityChangedReason;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
   
   uid?: number;

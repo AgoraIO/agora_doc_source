@@ -55,6 +55,18 @@
 	}
   ContentInspectConfig() :extraInfo(NULL), serverConfig(NULL), moduleCount(0){}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FContentInspectConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	FString extraInfo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	TArray&lt;FContentInspectModule&gt; modules;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ContentInspectConfig&quot;)
+	int moduleCount;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ContentInspectConfig {
 
   extraInfo?: string;
