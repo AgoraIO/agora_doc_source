@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_contentinspectconfig">
-    <title><ph keyref="ContentInspectConfig" /></title>
+    <title><ph keyref="ContentInspectConfig"/></title>
     <shortdesc id="short"><ph id="shortdesc">Configuration of video screenshot and upload.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -93,16 +93,16 @@ class ContentInspectConfig {
   const ContentInspectConfig(
       {this.extraInfo, this.serverConfig, this.modules, this.moduleCount});
 
-  @JsonKey(name: 'extraInfo')
+  @JsonKey(name: &#x27;extraInfo&#x27;)
   final String? extraInfo;
 
-  @JsonKey(name: 'serverConfig')
+  @JsonKey(name: &#x27;serverConfig&#x27;)
   final String? serverConfig;
 
-  @JsonKey(name: 'modules')
+  @JsonKey(name: &#x27;modules&#x27;)
   final List&lt;ContentInspectModule&gt;? modules;
 
-  @JsonKey(name: 'moduleCount')
+  @JsonKey(name: &#x27;moduleCount&#x27;)
   final int? moduleCount;
 
   factory ContentInspectConfig.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
@@ -110,24 +110,28 @@ class ContentInspectConfig {
 
   Map&lt;String, dynamic&gt; toJson() =&gt; _$ContentInspectConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry props="android">
                 <pt>CONTENT_INSPECT_TYPE_INVALID</pt>
-                <pd>(Default) No actual function. Do not set <parmname>type</parmname> to this value.</pd>
+                <pd>0: (Default) No actual function. Do not set <parmname>type</parmname> to this value.</pd>
             </plentry>
             <plentry props="hide">
                 <pt>CONTENT_INSPECT_TYPE_MODERATION</pt>
-                <pd>Video content moderation. The SDK takes screenshots and inspect videos sent by local users, and uploads the screenshots and moderation results.</pd>
+                <pd>1: Video content moderation. The SDK takes screenshots and inspect videos sent by local users, and uploads the screenshots and moderation results.</pd>
             </plentry>
             <plentry props="android">
-                <pt>CONTENT_INSPECT_SUPERVISE</pt>
-                <pd>Video screenshot and upload. The SDK takes screenshots of videos sent by local users and upload them.</pd>
+                <pt>CONTENT_INSPECT_TYPE_SUPERVISE</pt>
+                <pd>2: Video screenshot and upload via Agora self-developed extension.  The SDK takes screenshots of videos sent by local users and upload them.</pd>
             </plentry>
-            <plentry props="native unreal bp electron rn flutter">
+            <plentry props="android">
+                <pt>CONTENT_INSPECT_TYPE_IMAGE_MODERATION</pt>
+                <pd>3: Video screenshot and upload via extensions from Agora Extensions Marketplace. SDK uses video moderation extensions from Agora Extensions Marketplace to take screenshots of the video stream in the channel and uploads them.</pd>
+            </plentry>
+            <plentry>
                 <pt>extraInfo</pt>
                 <pd>
                     <p>Additional information on the video content (maximum length: 1024 Bytes).</p>
@@ -135,17 +139,21 @@ class ContentInspectConfig {
                     <p props="hide">The SDK sends the screenshots and additional information on the video content to the Agora content moderation server. Once the content moderation process is completed, the Agora content moderation server sends the additional information and the content moderation results to your server.</p>
                 </pd>
             </plentry>
+            <plentry props="native rn flutter unity">
+                <pt>serverConfig</pt>
+                <pd>(Optional) Server configuration related to uploading video screenshots via extensions from Agora Extensions Marketplace. This parameter only takes effect when <codeph>type</codeph> in <xref keyref="ContentInspectModule"/> is set to <ph keyref="CONTENT_INSPECT_IMAGE_MODERATION"/>. If you want to use it, contact <xref keyref="ticket-link" />.</pd>
+            </plentry>
             <plentry>
                 <pt>modules</pt>
                 <pd>
-                    <p>Functional module. See <xref keyref="ContentInspectModule" />.</p>
-                    <p>A maximum of 32 <apiname keyref="ContentInspectModule" /> instances can be configured, and the value range of <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
+                    <p>Functional module. See <xref keyref="ContentInspectModule"/>.</p>
+                    <p>A maximum of 32 <apiname keyref="ContentInspectModule"/> instances can be configured, and the value range of <parmname>MAX_CONTENT_INSPECT_MODULE_COUNT</parmname> is an integer in [1,32].</p>
                     <note type="attention">A function module can only be configured with one instance at most. Currently only the video screenshot and upload function is supported.</note>
                 </pd>
             </plentry>
             <plentry>
                 <pt>moduleCount</pt>
-                <pd>The number of functional modules, that is,the number of configured <apiname keyref="ContentInspectModule" /> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
+                <pd>The number of functional modules, that is,the number of configured <apiname keyref="ContentInspectModule"/> instances, must be the same as the number of instances configured in <parmname>modules</parmname>. The maximum number is 32.</pd>
             </plentry>
             </parml> </section>
     </refbody>

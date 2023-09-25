@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setvideoencoderconfiguration">
-    <title><ph keyref="setVideoEncoderConfiguration" /></title>
+    <title><ph keyref="setVideoEncoderConfiguration"/></title>
     <shortdesc id="short"><ph id="shortdesc">Sets the video encoder configuration.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="setVideoEncoderConfiguration" />
+                <indexterm keyref="setVideoEncoderConfiguration"/>
             </keywords>
         </metadata>
     </prolog>
@@ -24,32 +24,32 @@
     config: VideoEncoderConfiguration
   ): number;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setVideoEncoderConfiguration(VideoEncoderConfiguration config);</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
             <p id="desc">Sets the encoder configuration for the local video.</p>
             <note type="attention" props="native unreal bp">
             <ul>
-            <li>You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo" /> to reduce the time to render the first video frame.</li>
-            <li>Both this method and the <xref keyref="getMirrorApplied" /> method support setting the mirroring effect. Agora recommends that you only choose one method to set it up. Using both methods at the same time causes the mirroring effect to overlap, which causes the mirroring settings to fail.</li>
+            <li>You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</li>
+            <li>Both this method and the <xref keyref="getMirrorApplied"/> method support setting the mirroring effect. Agora recommends that you only choose one method to set it up. Using both methods at the same time causes the mirroring effect to overlap, which causes the mirroring settings to fail.</li>
             </ul></note>
-            <note type="attention" props="electron unity flutter cs">You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo" /> to reduce the time to render the first video frame.</note>
-            <note type="attention" props="rn">Call this method before joining a channel. Agora recommends calling this method before <xref keyref="enableVideo" /> to reduce the time to render the first video frame.</note> </section>
+            <note type="attention" props="electron unity flutter cs">You can call this method either before or after joining a channel. If the user does not need to reset the video encoding properties after joining the channel, Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</note>
+            <note type="attention" props="rn">Call this method before joining a channel. Agora recommends calling this method before <xref keyref="enableVideo"/> to reduce the time to render the first video frame.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="config">
                 <pt>config</pt>
-                <pd>Video profile. See <xref keyref="VideoEncoderConfiguration" />.</pd>
+                <pd>Video profile. See <xref keyref="VideoEncoderConfiguration"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>
