@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_addlistener">
     <title><ph keyref="addListener_IMediaEngine"/></title>
-    <shortdesc id="short"><xref keyref="IMediaEngineEvent"/><ph id="shortdesc">Adds one <xref keyref="IMediaEngineEvent"/> listener.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Adds one <xref keyref="IMediaEngineEvent"/> listener.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -30,18 +30,18 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p><apiname keyref="IMediaEngineEvent"/><xref keyref="IMediaEngine"/>After calling this method, you can listen for the corresponding events in the <xref keyref="IMediaEngine"/> object and obtain data through <apiname keyref="IMediaEngineEvent"/>. Depending on your project needs, you can add multiple listeners for the same event.</p>
+            <p>After calling this method, you can listen for the corresponding events in the <xref keyref="IMediaEngine"/> object and obtain data through <apiname keyref="IMediaEngineEvent"/>. Depending on your project needs, you can add multiple listeners for the same event.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="eventType">
                 <pt>eventType</pt>
-                <pd><apiname keyref="IMediaEngineEvent"/>The name of the target event to listen for. See <apiname keyref="IMediaEngineEvent"/>.</pd>
+                <pd>The name of the target event to listen for. See <apiname keyref="IMediaEngineEvent"/>.</pd>
             </plentry>
             <plentry id="listener">
                 <pt>listener</pt>
-                <pd><xref keyref="onPlaybackAudioFrameBeforeMixing"/>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onPlaybackAudioFrameBeforeMixing"/> as an example:<parmname></parmname><codeblock outputclass="language-typescript">const onPlaybackAudioFrameBeforeMixing = (channelId: string, uid: number, audioFrame: AudioFrame) => {};
+                <pd>The callback function for <parmname>eventType</parmname>. Take adding a listener for <xref keyref="onPlaybackAudioFrameBeforeMixing"/> as an example:<codeblock outputclass="language-typescript">const onPlaybackAudioFrameBeforeMixing = (channelId: string, uid: number, audioFrame: AudioFrame) => {};
 engine.addListener('onPlaybackAudioFrameBeforeMixing', onPlaybackAudioFrameBeforeMixing);</codeblock></pd>
             </plentry>
             </parml> </section>

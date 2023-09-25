@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onfacepositionchanged">
     <title><ph keyref="onFacePositionChanged" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Reports the face detection result of the local user.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Reports the face detection result of the local user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -45,7 +45,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p><xref keyref="enableFaceDetection" /><ph keyref="true" />Once you enable face detection by calling <xref keyref="enableFaceDetection" /><codeph>(<ph keyref="true" />)</codeph>, you can get the following information on the local user in real-time:<codeph></codeph><ul>
+            <p>Once you enable face detection by calling <xref keyref="enableFaceDetection" /><codeph>(<ph keyref="true" />)</codeph>, you can get the following information on the local user in real-time:<ul>
             <li>The width and height of the local video.</li>
             <li>The position of the human face in the local view.</li>
             <li>The distance between the human face and the screen.</li>
@@ -56,7 +56,7 @@
             <li props="cpp unreal bp unity flutter cs">This callback is for Android and iOS only.</li>
             <li>When it is detected that the face in front of the camera disappears, the callback will be triggered immediately. When no human face is detected, the frequency of this callback to be triggered wil be decreased to reduce power consumption on the local device.</li>
             <li>The SDK stops triggering this callback when a human face is in close proximity to the screen.</li>
-            <li props="cpp unreal bp android flutter">On Android, the value of distance reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation.<parmname></parmname></li>
+            <li props="cpp unreal bp android flutter">On Android, the value of distance reported in this callback may be slightly different from the actual <parmname>distance</parmname>. Therefore, Agora does not recommend using it for accurate calculation.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title><ph keyref="callback-section-title" /></title>
@@ -78,23 +78,23 @@
             <plentry props="android ios mac">
                 <pt props="android">faceRectArr</pt>
                 <pt props="ios mac">faces</pt>
-                <pd><xref keyref="AgoraFacePositionInfo" /><apiname keyref="AgoraFacePositionInfo" />Information of the detected face. See <xref keyref="AgoraFacePositionInfo" />. The number of <apiname keyref="AgoraFacePositionInfo" /> array reported in this callback is based on the faces detected. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
+                <pd>Information of the detected face. See <xref keyref="AgoraFacePositionInfo" />. The number of <apiname keyref="AgoraFacePositionInfo" /> array reported in this callback is based on the faces detected. The length of the array can be 0, which means that no human face is detected in front of the camera.</pd>
             </plentry>
             <plentry props="cpp unreal bp unity flutter rn electron cs">
                 <pt>vecRectangle</pt>
                 <pd props="cpp unreal bp">
-                    <p>An array of <parmname>numFaces</parmname>, representing the detected face information:<parmname></parmname><ul>
-                    <li><codeph>x</codeph>: The x-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the x-coordinate represents the horizontal position of the human face relative to the origin.<codeph></codeph></li>
-                    <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the y-coordinate represents the vertical position of the human face relative to the origin.<codeph></codeph></li>
-                    <li><codeph>width</codeph>: The width (px) of the human face in the captured view.<codeph></codeph></li>
-                    <li><codeph>height</codeph>: The height (px) of the human face in the captured view.<codeph></codeph></li>
+                    <p>An array of <parmname>numFaces</parmname>, representing the detected face information:<ul>
+                    <li><codeph>x</codeph>: The x-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the x-coordinate represents the horizontal position of the human face relative to the origin.</li>
+                    <li><codeph>y</codeph>: The y-coordinate (px) of the human face in the local view. Taking the top left corner of the view as the origin, the y-coordinate represents the vertical position of the human face relative to the origin.</li>
+                    <li><codeph>width</codeph>: The width (px) of the human face in the captured view.</li>
+                    <li><codeph>height</codeph>: The height (px) of the human face in the captured view.</li>
                     </ul> </p>
                 </pd>
-                <pd props="unity flutter rn electron cs"><xref keyref="Rectangle" />The information of the detected human face. See <xref keyref="Rectangle" />.</pd>
+                <pd props="unity flutter rn electron cs">The information of the detected human face. See <xref keyref="Rectangle" />.</pd>
             </plentry>
             <plentry props="cpp unreal bp unity flutter rn electron cs">
                 <pt>vecDistance</pt>
-                <pd props="cpp unreal bp">An array of <parmname>numFaces</parmname>, representing the distance (cm) between a face and the device screen.<parmname></parmname></pd>
+                <pd props="cpp unreal bp">An array of <parmname>numFaces</parmname>, representing the distance (cm) between a face and the device screen.</pd>
                 <pd props="unity flutter rn electron cs">The distance between the human face and the device screen (cm).</pd>
             </plentry>
             <plentry props="cpp unreal bp unity flutter rn electron cs">

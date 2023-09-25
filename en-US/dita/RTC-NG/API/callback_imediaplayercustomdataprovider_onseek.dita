@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imediaplayercustomdataprovider_onseek">
     <title><ph keyref="onSeek" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK seeks the media resource data.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK seeks the media resource data.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,15 +28,15 @@
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p props="android ios"><xref keyref="openWithMediaSource" />When you call the <xref keyref="openWithMediaSource" /> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
-            <p props="cpp unreal bp mac"><xref keyref="openWithCustomSource" />When you call the <xref keyref="openWithCustomSource" /> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
+            <p props="android ios">When you call the <xref keyref="openWithMediaSource" /> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
+            <p props="cpp unreal bp mac">When you call the <xref keyref="openWithCustomSource" /> method to open a custom media resource, the SDK triggers this callback to request the specified location in the media resource.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry props="ios mac">
                 <pt>playerKit</pt>
-                <pd><xref keyref="IMediaPlayer" />Media player protocol. See <xref keyref="IMediaPlayer" />.</pd>
+                <pd>Media player protocol. See <xref keyref="IMediaPlayer" />.</pd>
             </plentry>
             <plentry>
                 <pt>offset</pt>
@@ -45,9 +45,9 @@
             <plentry>
                 <pt>whence</pt>
                 <pd>An input parameter. The starting point. You can set it as one of the following values:<ul>
-                    <li>0: The starting point is the head of the data, and the actual data offset after seeking is <parmname>offset</parmname>.<parmname></parmname></li>
-                    <li>1: The starting point is the current position, and the actual data offset after seeking is the current position plus <parmname>offset</parmname>.<parmname></parmname></li>
-                    <li>2: The starting point is the end of the data, and the actual data offset after seeking is the whole data length plus <parmname>offset</parmname>.<parmname></parmname></li>
+                    <li>0: The starting point is the head of the data, and the actual data offset after seeking is <parmname>offset</parmname>.</li>
+                    <li>1: The starting point is the current position, and the actual data offset after seeking is the current position plus <parmname>offset</parmname>.</li>
+                    <li>2: The starting point is the end of the data, and the actual data offset after seeking is the whole data length plus <parmname>offset</parmname>.</li>
                     <li>65536: Do not perform position seeking, return the file size. Agora recommends that you use this parameter value when playing pure audio files such as MP3 and WAV.</li>
                     </ul></pd>
             </plentry>
@@ -55,8 +55,8 @@
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li>When <parmname>whence</parmname> is <parmname>65536</parmname>, the media file size is returned.<parmname></parmname><parmname></parmname></li>
-            <li>When <parmname>whence</parmname> is <parmname>0</parmname>, <parmname>1</parmname>, or <parmname>2</parmname>, the actual data offset after the seeking is returned.<parmname></parmname><parmname></parmname><parmname></parmname><parmname></parmname></li>
+            <li>When <parmname>whence</parmname> is <parmname>65536</parmname>, the media file size is returned.</li>
+            <li>When <parmname>whence</parmname> is <parmname>0</parmname>, <parmname>1</parmname>, or <parmname>2</parmname>, the actual data offset after the seeking is returned.</li>
             <li>-1: Seeking failed.</li>
             </ul> </section>
     </refbody>

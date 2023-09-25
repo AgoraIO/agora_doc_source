@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onremotevideostatechanged">
      <title> <ph keyref="onRemoteVideoStateChanged" /> </title>
-     <shortdesc id="short"><ph id="shortdesc">Occurs when the remote video stream state changes.</ph><ph id="shortdesc"></ph></shortdesc>
+     <shortdesc id="short"><ph id="shortdesc">Occurs when the remote video stream state changes.</ph></shortdesc>
      <prolog>
           <metadata>
                <keywords>
@@ -59,7 +59,7 @@
                </plentry>
                <plentry props="rn unity electron flutter cs">
                          <pt>connection</pt>
-                         <pd><xref keyref="RtcConnection"/>The connection information. See <xref keyref="RtcConnection"/>.</pd>
+                         <pd>The connection information. See <xref keyref="RtcConnection"/>.</pd>
                     </plentry>
                <plentry id="uid">
                     <pt props="native unreal bp">uid</pt>
@@ -69,38 +69,38 @@
                <plentry id="state">
                     <pt>state</pt>
                     <pd>
-                         <p props="ios mac cpp unreal bp unity flutter electron rn cs"><xref keyref="REMOTE_VIDEO_STATE" />The state of the remote video. See <xref keyref="REMOTE_VIDEO_STATE" />.</p>
+                         <p props="ios mac cpp unreal bp unity flutter electron rn cs">The state of the remote video. See <xref keyref="REMOTE_VIDEO_STATE" />.</p>
                          <p props="android">The state of the remote video:<ul>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0): The remote video is in the initial state. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph>.<codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph></li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_STARTING"/><ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1): The first remote video packet is received.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2): The remote audio stream is decoded and plays normally. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph>.<codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph></li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3): The remote video is frozen. This state is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph>.<codeph></codeph></li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4): The remote video fails to start. The remote video fails to start, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)</codeph>.<codeph></codeph></li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0): The remote video is in the initial state. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1): The first remote video packet is received.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2): The remote audio stream is decoded and plays normally. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3): The remote video is frozen. This state is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4): The remote video fails to start. The remote video fails to start, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)</codeph>.</li>
                          </ul> </p>
                     </pd>
                </plentry>
                <plentry id="reason">
                     <pt>reason</pt>
                     <pd>
-                         <p props="ios mac cpp unreal bp unity flutter electron rn cs"><xref keyref="REMOTE_VIDEO_STATE_REASON" />The reason for the remote video state change. See <xref keyref="REMOTE_VIDEO_STATE_REASON" />.</p>
+                         <p props="ios mac cpp unreal bp unity flutter electron rn cs">The reason for the remote video state change. See <xref keyref="REMOTE_VIDEO_STATE_REASON" />.</p>
                          <p props="android">Remote audio state reasons:<ul>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" /><ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" />(0): Internal reasons.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" /><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" />(1): Network congestion.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" /><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" />(2): Network recovery.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" /><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" />(3): The local user stops receiving the remote video stream or disables the video module.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" /><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" />(4): The local user resumes receiving the remote video stream or enables the video module.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" /><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5): The remote user stops sending the video stream or disables the video module.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" /><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6): The remote user resumes sending the video stream or enables the video module.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" /><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" />(7): The remote user leaves the channel.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" /><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" />(8): The remote media stream falls back to the audio-only stream due to poor network conditions.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" /><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" />(9): The remote media stream switches back to the video stream after the network conditions improve.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT" /><ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT" />(13): The local video decoder does not support decoding the remote video stream.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL" />(0): Internal reasons.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION" />(1): Network congestion.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY" />(2): Network recovery.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED" />(3): The local user stops receiving the remote video stream or disables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED" />(4): The local user resumes receiving the remote video stream or enables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED" />(5): The remote user stops sending the video stream or disables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED" />(6): The remote user resumes sending the video stream or enables the video module.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE" />(7): The remote user leaves the channel.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK" />(8): The remote media stream falls back to the audio-only stream due to poor network conditions.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY" />(9): The remote media stream switches back to the video stream after the network conditions improve.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT" />(13): The local video decoder does not support decoding the remote video stream.</li>
                          </ul> </p>
                     </pd>
                </plentry>
                <plentry>
                     <pt>elapsed</pt>
-                    <pd><apiname keyref="joinChannel2" />Time elapsed (ms) from the local user calling the <apiname keyref="joinChannel2" /> method until the SDK triggers this callback.</pd>
+                    <pd>Time elapsed (ms) from the local user calling the <apiname keyref="joinChannel2" /> method until the SDK triggers this callback.</pd>
                </plentry>
                </parml> </section>
      </refbody>

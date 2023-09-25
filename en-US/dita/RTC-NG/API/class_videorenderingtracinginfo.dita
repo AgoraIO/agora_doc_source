@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_videorenderingtracinginfo">
     <title><ph keyref="VideoRenderingTracingInfo"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Indicators during video frame rendering progress.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Indicators during video frame rendering progress.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -113,26 +113,26 @@ class VideoRenderingTracingInfo {
             <parml>
             <plentry>
                 <pt>elapsedTime</pt>
-                <pd><xref keyref="startMediaRenderingTracing"/><xref keyref="onVideoRenderingTracingResult"/><apiname keyref="startMediaRenderingTracing"/>The time interval from calling the <xref keyref="startMediaRenderingTracing"/> method to SDK triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. The unit is milliseconds. Agora recommends you call <apiname keyref="startMediaRenderingTracing"/> before joining a channel.</pd>
+                <pd>The time interval from calling the <xref keyref="startMediaRenderingTracing"/> method to SDK triggering the <xref keyref="onVideoRenderingTracingResult"/> callback. The unit is milliseconds. Agora recommends you call <apiname keyref="startMediaRenderingTracing"/> before joining a channel.</pd>
             </plentry>
             <plentry>
                 <pt>start2JoinChannel</pt>
-                <pd><apiname keyref="startMediaRenderingTracing"/><xref keyref="joinChannel2"/><apiname keyref="joinChannel2"/><apiname keyref="startMediaRenderingTracing"/>The time interval from calling <apiname keyref="startMediaRenderingTracing"/> to calling <xref keyref="joinChannel2"/>. The unit is milliseconds. A negative number means to call <apiname keyref="joinChannel2"/> after calling <apiname keyref="startMediaRenderingTracing"/>.</pd>
+                <pd>The time interval from calling <apiname keyref="startMediaRenderingTracing"/> to calling <xref keyref="joinChannel2"/>. The unit is milliseconds. A negative number means to call <apiname keyref="joinChannel2"/> after calling <apiname keyref="startMediaRenderingTracing"/>.</pd>
             </plentry>
             <plentry>
                 <pt>join2JoinSuccess</pt>
-                <pd><apiname keyref="joinChannel2"/>Time interval from calling <apiname keyref="joinChannel2"/> to successfully joining the channel. The unit is milliseconds.</pd>
+                <pd>Time interval from calling <apiname keyref="joinChannel2"/> to successfully joining the channel. The unit is milliseconds.</pd>
             </plentry>
             <plentry>
                 <pt>joinSuccess2RemoteJoined</pt>
                 <pd>
                     <ul>
-                    <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before successfully joining the channel, this value is the time interval from the local user successfully joining the channel to the remote user joining the channel. The unit is milliseconds.</li>
-                    <li><apiname keyref="startMediaRenderingTracing"/><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after successfully joining the channel, the value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to when the remote user joins the channel. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before successfully joining the channel, this value is the time interval from the local user successfully joining the channel to the remote user joining the channel. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after successfully joining the channel, the value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to when the remote user joins the channel. The unit is milliseconds.</li>
                     </ul>
                     <note type="note">
                         <ul>
-                            <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, the value is 0 and meaningless.</li>
+                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, the value is 0 and meaningless.</li>
                             <li>In order to reduce the time of rendering the first frame for remote users, Agora recommends that the local user joins the channel when the remote user is in the channel to reduce this value.</li>
                         </ul></note>
                 </pd>
@@ -141,12 +141,12 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2SetView</pt>
                 <pd>
                     <ul>
-                    <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user sets the remote view. The unit is milliseconds.</li>
-                    <li><apiname keyref="startMediaRenderingTracing"/><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to setting the remote view. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user sets the remote view. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to setting the remote view. The unit is milliseconds.</li>
                     </ul>
                     <note type="note">
                     <ul>
-                    <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after setting the remote view, the value is 0 and has no effect.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after setting the remote view, the value is 0 and has no effect.</li>
                     <li>In order to reduce the time of rendering the first frame for remote users, Agora recommends that the local user sets the remote view before the remote user joins the channel, or sets the remote view immediately after the remote user joins the channel to reduce this value.</li>
                     </ul></note> </pd>
             </plentry>
@@ -154,12 +154,12 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2UnmuteVideo</pt>
                 <pd>
                     <ul>
-                    <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from the remote user joining the channel to subscribing to the remote video stream. The unit is milliseconds.</li>
-                    <li><apiname keyref="startMediaRenderingTracing"/><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from the remote user joining the channel to subscribing to the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to subscribing to the remote video stream. The unit is milliseconds.</li>
                     </ul>
                     <note type="note">
                         <ul>
-                            <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after subscribing to the remote video stream, the value is 0 and has no effect.</li>
+                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after subscribing to the remote video stream, the value is 0 and has no effect.</li>
                             <li>In order to reduce the time of rendering the first frame for remote users, Agora recommends that after the remote user joins the channel, the local user immediately subscribes to the remote video stream to reduce this value.</li>
                         </ul></note>
                 </pd>
@@ -168,12 +168,12 @@ class VideoRenderingTracingInfo {
                 <pt>remoteJoined2PacketReceived</pt>
                 <pd>
                     <ul>
-                    <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream. The unit is milliseconds.</li>
-                    <li><apiname keyref="startMediaRenderingTracing"/><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to receiving the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> before the remote user joins the channel, this value is the time interval from when the remote user joins the channel to when the local user receives the remote video stream. The unit is milliseconds.</li>
+                    <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after the remote user joins the channel, this value is the time interval from calling <apiname keyref="startMediaRenderingTracing"/> to receiving the remote video stream. The unit is milliseconds.</li>
                     </ul>
                     <note type="note">
                         <ul>
-                            <li><apiname keyref="startMediaRenderingTracing"/>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after receiving the remote video stream, the value is 0 and has no effect.</li>
+                            <li>If the local user calls <apiname keyref="startMediaRenderingTracing"/> after receiving the remote video stream, the value is 0 and has no effect.</li>
                             <li>In order to reduce the time of rendering the first frame for remote users, Agora recommends that the remote user publishes video streams immediately after joining the channel, and the local user immediately subscribes to remote video streams to reduce this value.</li>
                         </ul></note></pd>
             </plentry>

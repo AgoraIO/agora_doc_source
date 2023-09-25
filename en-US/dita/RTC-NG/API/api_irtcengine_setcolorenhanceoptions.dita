@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcolorenhanceoptions">
     <title> <ph keyref="setColorEnhanceOptions" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Sets color enhancement.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets color enhancement.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -42,13 +42,13 @@
             <p>You can call this method to enable the color enhancement feature and set the options of the color enhancement effect.</p>
             <note type="attention">
             <ul>
-            <li><xref keyref="enableVideo" />Call this method after calling <xref keyref="enableVideo" />.</li>
+            <li>Call this method after calling <xref keyref="enableVideo" />.</li>
             <li>The color enhancement feature has certain performance requirements on devices. With color enhancement turned on, Agora recommends that you change the color enhancement level to one that consumes less performance or turn off color enhancement if your device is experiencing severe heat problems.</li>
-            <li><xref keyref="setExtensionProperty" />Both this method and <xref keyref="setExtensionProperty" /> can enable color enhancement:<ul>
+            <li>Both this method and <xref keyref="setExtensionProperty" /> can enable color enhancement:<ul>
                     <li>When you use the SDK to capture video, Agora recommends this method (this method only works for video captured by the SDK).</li>
-                    <li><apiname keyref="setExtensionProperty" />When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty" />.</li>
+                    <li>When you use an external video source to implement custom video capture, or send an external video source to the SDK, Agora recommends using <apiname keyref="setExtensionProperty" />.</li>
                 </ul></li>
-            <li><ph keyref="clearvision"/>This method relies on the video enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.<codeph></codeph></li>
+            <li>This method relies on the video enhancement dynamic library <codeph><ph keyref="clearvision"/></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -57,13 +57,13 @@
                 <pt props="android cpp unreal bp unity electron rn flutter cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable color enhancement:<ul>
-                    <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph> Enable color enhancement.<codeph></codeph></li>
-                    <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: (Default) Disable color enhancement.<codeph></codeph></li>
+                    <li><codeph><ph keyref="true" /></codeph> Enable color enhancement.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable color enhancement.</li>
                     </ul></pd>
             </plentry>
             <plentry>
                 <pt>options</pt>
-                <pd><xref keyref="ColorEnhanceOptions" />The color enhancement options. See <xref keyref="ColorEnhanceOptions" />.</pd>
+                <pd>The color enhancement options. See <xref keyref="ColorEnhanceOptions" />.</pd>
             </plentry>
                 <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp unreal bp rn unity electron flutter cs">
                     <pt/>
@@ -72,10 +72,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

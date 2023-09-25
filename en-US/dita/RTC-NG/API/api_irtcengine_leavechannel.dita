@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_leavechannel">
     <title><ph keyref="leaveChannel"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Leaves a channel.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,16 +27,16 @@
             <p>This method releases all resources related to the session.</p>
             <p props="native unreal bp unity electron flutter cs">This method call is asynchronous. When this method returns, it does not necessarily mean that the user has left the channel.</p>
             <p props="rn">Calling this method does not necessarily mean that the user has left the channel.</p>
-            <p><apiname keyref="leaveChannel2"/>After joining the channel, you must call this method or <apiname keyref="leaveChannel2"/> to end the call, otherwise, the next call cannot be started.</p>
+            <p>After joining the channel, you must call this method or <apiname keyref="leaveChannel2"/> to end the call, otherwise, the next call cannot be started.</p>
             <p>If you successfully call this method and leave the channel, the following callbacks are triggered:<ul id="ul_enf_q2p_lpb">
-            <li><xref keyref="onLeaveChannel"/>The local client: <xref keyref="onLeaveChannel"/>.</li>
-            <li><xref keyref="onUserOffline"/>The remote client: <xref keyref="onUserOffline"/>, if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
+            <li>The local client: <xref keyref="onLeaveChannel"/>.</li>
+            <li>The remote client: <xref keyref="onUserOffline"/>, if the user joining the channel is in the Communication profile, or is a host in the Live-broadcasting profile.</li>
             </ul></p>
             <note type="attention" id="note">
             <ul>
-            <li><xref keyref="release"/><apiname keyref="onLeaveChannel"/>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</li>
-            <li><xref keyref="joinChannelEx"/><xref keyref="joinChannel2"/><apiname keyref="joinChannelEx"/>If you have called <xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave the channels when calling <xref keyref="joinChannel2"/> and <apiname keyref="joinChannelEx"/> at the same time.</li>
-            <li props="hide"><xref keyref="removePublishStreamUrl"/>If you call this method during a Media Push, the SDK automatically calls the <xref keyref="removePublishStreamUrl"/> method.</li>
+            <li>If you call <xref keyref="release"/> immediately after calling this method, the SDK does not trigger the <apiname keyref="onLeaveChannel"/> callback.</li>
+            <li>If you have called <xref keyref="joinChannelEx"/> to join multiple channels, calling this method will leave the channels when calling <xref keyref="joinChannel2"/> and <apiname keyref="joinChannelEx"/> at the same time.</li>
+            <li props="hide">If you call this method during a Media Push, the SDK automatically calls the <xref keyref="removePublishStreamUrl"/> method.</li>
             </ul> </note> </section>
         <section props="ios mac" id="parameters">
             <title>Parameters</title>
@@ -48,10 +48,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph><ul>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
                 <li>-1: A general error occurs (no specified reason).</li>
                 <li>-2: The parameter is invalid.</li>
                 <li>-7: The SDK is not initialized.</li>

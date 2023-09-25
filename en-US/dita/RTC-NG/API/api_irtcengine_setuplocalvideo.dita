@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setuplocalvideo">
     <title><ph keyref="setupLocalVideo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Initializes the local video view.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Initializes the local video view.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,13 +24,13 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p>This method initializes the video view of a local stream on the local device. It affects only the video view that the local user sees, not the published local video stream. Call this method to bind the local video stream to a video view (<parmname>view</parmname>) and to set the rendering and mirror modes of the video view.<parmname></parmname></p>
-            <p><ph keyref="NULL" />After initialization, call this method to set the local video and then join the channel. The local video still binds to the view after you leave the channel. To unbind the local video from the view, set the <parmname>view</parmname> parameter as <ph keyref="NULL" />.<parmname></parmname></p>
+            <p>This method initializes the video view of a local stream on the local device. It affects only the video view that the local user sees, not the published local video stream. Call this method to bind the local video stream to a video view (<parmname>view</parmname>) and to set the rendering and mirror modes of the video view.</p>
+            <p>After initialization, call this method to set the local video and then join the channel. The local video still binds to the view after you leave the channel. To unbind the local video from the view, set the <parmname>view</parmname> parameter as <ph keyref="NULL" />.</p>
             <note type="attention">
             <ul>
-            <li props="unity cs"><xref keyref="AgoraVideoSurface"/>If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface"/> class instead.</li>
+            <li props="unity cs">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface"/> class instead.</li>
             <li>You can call this method either before or after joining a channel.</li>
-            <li props="native unreal bp unity rn flutter cs"><xref keyref="setLocalRenderMode2" />To update the rendering or mirror mode of the local video view during a call, use the <xref keyref="setLocalRenderMode2" /> method.</li>
+            <li props="native unreal bp unity rn flutter cs">To update the rendering or mirror mode of the local video view during a call, use the <xref keyref="setLocalRenderMode2" /> method.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -38,15 +38,15 @@
             <plentry>
                 <pt props="cpp unreal bp unity rn electron flutter cs">canvas</pt>
                 <pt props="android ios mac">local</pt>
-                <pd><xref keyref="VideoCanvas"/>The local video view and settings. See <xref keyref="VideoCanvas"/>.</pd>
+                <pd>The local video view and settings. See <xref keyref="VideoCanvas"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

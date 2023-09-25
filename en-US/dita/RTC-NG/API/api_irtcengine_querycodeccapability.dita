@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_querycodeccapability">
     <title><ph keyref="queryCodecCapability"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Queries the current device's supported video codec capabilities.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Queries the current device's supported video codec capabilities.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -38,36 +38,36 @@
             <plentry props="cpp unreal bp unity cs">
                 <pt>codecInfo</pt>
                 <pd>
-                        <p><xref keyref="CodecCapInfo"/>Input and output parameter. An array representing the video codec capabilities of the device. See <xref keyref="CodecCapInfo"/>.</p>
+                        <p>Input and output parameter. An array representing the video codec capabilities of the device. See <xref keyref="CodecCapInfo"/>.</p>
                         <ul>
-                            <li><apiname keyref="CodecCapInfo"/>Input value: One <apiname keyref="CodecCapInfo"/> defined by the user when executing this method, representing the video codec capability to be queried.</li>
-                            <li><apiname keyref="CodecCapInfo"/>Output value: The <apiname keyref="CodecCapInfo"/> after the method is executed, representing the actual video codec capabilities supported by the device.</li>
+                            <li>Input value: One <apiname keyref="CodecCapInfo"/> defined by the user when executing this method, representing the video codec capability to be queried.</li>
+                            <li>Output value: The <apiname keyref="CodecCapInfo"/> after the method is executed, representing the actual video codec capabilities supported by the device.</li>
                         </ul>
                     </pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>size</pt>
-                <pd props="cpp unreal bp unity cs"><apiname keyref="CodecCapInfo"/>Input and output parameter, represent the size of the <apiname keyref="CodecCapInfo"/> array.<ul>
-                        <li><apiname keyref="CodecCapInfo"/>Input value: Size of the <apiname keyref="CodecCapInfo"/> defined by the user when executing the method.</li>
-                        <li><apiname keyref="CodecCapInfo"/>Output value: Size of the output <apiname keyref="CodecCapInfo"/> after this method is executed.</li>
+                <pd props="cpp unreal bp unity cs">Input and output parameter, represent the size of the <apiname keyref="CodecCapInfo"/> array.<ul>
+                        <li>Input value: Size of the <apiname keyref="CodecCapInfo"/> defined by the user when executing the method.</li>
+                        <li>Output value: Size of the output <apiname keyref="CodecCapInfo"/> after this method is executed.</li>
                         </ul> </pd>
-                <pd props="flutter"><apiname keyref="CodecCapInfo"/>The size of <apiname keyref="CodecCapInfo"/>.</pd>
+                <pd props="flutter">The size of <apiname keyref="CodecCapInfo"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul props="electron rn">
             <li>If the call is successful, an object containing the following attributes is returned:<ul>
-                <li><xref keyref="CodecCapInfo"/><codeph>codecInfo</codeph>: The <xref keyref="CodecCapInfo"/> array, indicating the video codec capabillity of the device.<codeph></codeph></li>
-                <li><apiname keyref="CodecCapInfo"/><codeph>size</codeph>: The size of the <apiname keyref="CodecCapInfo"/> array.<codeph></codeph></li></ul></li>
+                <li><codeph>codecInfo</codeph>: The <xref keyref="CodecCapInfo"/> array, indicating the video codec capabillity of the device.</li>
+                <li><codeph>size</codeph>: The size of the <apiname keyref="CodecCapInfo"/> array.</li></ul></li>
             <li>If the call timeouts, please modify the call logic and do not invoke the method in the main thread.</li>
             </ul>
             <ul props="cpp unreal bp unity cs">
             <li>0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
             <ul props="android apple flutter">
-            <li><apiname keyref="CodecCapInfo"/>One <apiname keyref="CodecCapInfo"/> array indicating the video encoding capability of the device, if the method call succeeds.</li>
+            <li>One <apiname keyref="CodecCapInfo"/> array indicating the video encoding capability of the device, if the method call succeeds.</li>
             <li>If the call timeouts, please modify the call logic and do not invoke the method in the main thread.</li>
             </ul> </section>
     </refbody>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_getmirrorapplied">
     <title><ph keyref="getMirrorApplied" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame and prompts you whether or not to mirror the captured video.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame and prompts you whether or not to mirror the captured video.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -22,18 +22,18 @@
             <codeblock props="flutter" outputclass="language-dart" /> </p>
         </section>
         <section id="detailed_desc">
-            <p><xref keyref="registerVideoFrameObserver" />If the video data you want to obtain is a mirror image of the original video, you need to register this callback when calling <xref keyref="registerVideoFrameObserver" />. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether or not to mirror the video frame in the return value of this callback.</p>
+            <p>If the video data you want to obtain is a mirror image of the original video, you need to register this callback when calling <xref keyref="registerVideoFrameObserver" />. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set whether or not to mirror the video frame in the return value of this callback.</p>
             <note type="attention">
                 <ul>
                     <li>This function only supports video data in RGBA and YUV420.</li>
-                    <li><xref keyref="setVideoEncoderConfiguration"/>Both this method and the <xref keyref="setVideoEncoderConfiguration"/> method support setting the mirroring effect. Agora recommends that you only choose one method to set it up. Using both methods at the same time causes the mirroring effect to overlap, which causes the mirroring settings to fail.</li>
+                    <li>Both this method and the <xref keyref="setVideoEncoderConfiguration"/> method support setting the mirroring effect. Agora recommends that you only choose one method to set it up. Using both methods at the same time causes the mirroring effect to overlap, which causes the mirroring settings to fail.</li>
                 </ul>
             </note> </section>
         <section id="return_values">
             <title>Returns</title>
             <p>Sets whether or not to mirror the captured video:<ul>
-            <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Mirror the captured video.<codeph></codeph></li>
-            <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: (Default) Do not mirror the captured video.<codeph></codeph></li>
+            <li><codeph><ph keyref="true" /></codeph>: Mirror the captured video.</li>
+            <li><codeph><ph keyref="false" /></codeph>: (Default) Do not mirror the captured video.</li>
             </ul></p>
         </section>
     </refbody>

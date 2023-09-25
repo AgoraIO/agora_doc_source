@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_switchsrc">
     <title><ph keyref="switchSrc" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Switches the media resource being played.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Switches the media resource being played.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,14 +31,14 @@
             <li>When the network is poor, the media resource to be played is switched to a media resource address with a lower bitrate.</li>
             <li>When the network is good, the media resource to be played is switched to a media resource address with a higher bitrate.</li>
             </ul></p>
-            <p><xref keyref="onPlayerEvent" /><apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE" /><xref keyref="onPlayerEvent" /><apiname keyref="PLAYER_EVENT_SWITCH_ERROR" />After calling this method, if you receive the <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch is successful; If you receive the <apiname keyref="PLAYER_EVENT_SWITCH_ERROR" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch fails.</p>
-            <p props="hide"><xref keyref="switchAgoraCDNSrc" /><xref keyref="switchSrc" />If you want to customize CDN routes for playing the media resource, call the <xref keyref="switchAgoraCDNSrc" /> method to switch media resources. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you do not need to customize CDN routes for playing the media resource, call the <xref keyref="switchSrc" /> method to switch media resources.</p>
+            <p>After calling this method, if you receive the <apiname keyref="PLAYER_EVENT_SWITCH_COMPLETE" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch is successful; If you receive the <apiname keyref="PLAYER_EVENT_SWITCH_ERROR" /> event in the <xref keyref="onPlayerEvent" /> callback, the switch fails.</p>
+            <p props="hide">If you want to customize CDN routes for playing the media resource, call the <xref keyref="switchAgoraCDNSrc" /> method to switch media resources. Agora changes the CDN route through the self-developed scheduling center to improve the viewing user experience. If you do not need to customize CDN routes for playing the media resource, call the <xref keyref="switchSrc" /> method to switch media resources.</p>
             <note type="attention">
             <ul>
-            <li><xref keyref="open" />Ensure that you call this method after <xref keyref="open" />.</li>
+            <li>Ensure that you call this method after <xref keyref="open" />.</li>
             <li>To ensure normal playback, pay attention to the following when calling this method:<ul>
                 <li>Do not call this method when playback is paused.</li>
-                <li><xref keyref="seek" />Do not call the <xref keyref="seek" /> method during switching.</li>
+                <li>Do not call the <xref keyref="seek" /> method during switching.</li>
                 <li>Before switching the media resource, make sure that the playback position does not exceed the total duration of the media resource to be switched.</li>
                 </ul></li>
             </ul> </note> </section>
@@ -52,19 +52,19 @@
       <plentry id="syncPts">
         <pt>syncPts</pt>
         <pd>Whether to synchronize the playback position (ms) before and after the switch:<ul>
-          <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Synchronize the playback position before and after the switch.<codeph></codeph></li>
-          <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: (Default) Do not synchronize the playback position before and after the switch.<codeph></codeph></li>
+          <li><codeph><ph keyref="true" /></codeph>: Synchronize the playback position before and after the switch.</li>
+          <li><codeph><ph keyref="false" /></codeph>: (Default) Do not synchronize the playback position before and after the switch.</li>
           </ul>
-          <p><ph keyref="false" />Make sure to set this parameter as <codeph><ph keyref="false" /></codeph> if you need to play live streams, or the switch fails. If you need to play on-demand streams, you can set the value of this parameter according to your scenarios.<codeph></codeph></p>
+          <p>Make sure to set this parameter as <codeph><ph keyref="false" /></codeph> if you need to play live streams, or the switch fails. If you need to play on-demand streams, you can set the value of this parameter according to your scenarios.</p>
         </pd>
       </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

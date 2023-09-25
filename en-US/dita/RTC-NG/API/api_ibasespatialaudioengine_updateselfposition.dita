@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_ibasespatialaudioengine_updateselfposition">
     <title><ph keyref="updateSelfPosition" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Updates the spatial position of the local user.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Updates the spatial position of the local user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -39,14 +39,14 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p id="effect"><ph props="hide">When this method is called under different classes, the effect is different:</ph><ph props="hide"></ph><ul>
-            <li props="hide"><xref keyref="ICloudSpatialAudioEngine" />When this method is called under the <xref keyref="ICloudSpatialAudioEngine" /> class, the SDK updates the spatial position of the local user to the Agora Spatial Audio Server. The Agora Spatial Audio Server calculates the user's spatial audio effect parameters according to the world coordinates and audio reception range of the local and remote users.</li>
-            <li><xref keyref="ILocalSpatialAudioEngine" /><xref keyref="updateRemotePosition" /><apiname keyref="updateRemotePosition" />Under the <xref keyref="ILocalSpatialAudioEngine" /> class, this method needs to be used with <xref keyref="updateRemotePosition" />. The SDK calculates the relative position between the local and remote users according to this method and the parameter settings in <apiname keyref="updateRemotePosition" />, and then calculates the user's spatial audio effect parameters.</li>
+            <p id="effect"><ph props="hide">When this method is called under different classes, the effect is different:</ph><ul>
+            <li props="hide">When this method is called under the <xref keyref="ICloudSpatialAudioEngine" /> class, the SDK updates the spatial position of the local user to the Agora Spatial Audio Server. The Agora Spatial Audio Server calculates the user's spatial audio effect parameters according to the world coordinates and audio reception range of the local and remote users.</li>
+            <li>Under the <xref keyref="ILocalSpatialAudioEngine" /> class, this method needs to be used with <xref keyref="updateRemotePosition" />. The SDK calculates the relative position between the local and remote users according to this method and the parameter settings in <apiname keyref="updateRemotePosition" />, and then calculates the user's spatial audio effect parameters.</li>
             </ul></p>
             <note type="note" id="note" props="hide">
                 <ul>
-                    <li><xref keyref="enterRoom" />Call this method after <xref keyref="enterRoom" />.</li>
-                    <li><apiname keyref="ICloudSpatialAudioEngine" />If you call this method under the <apiname keyref="ICloudSpatialAudioEngine" /> class, note the following:<ul>
+                    <li>Call this method after <xref keyref="enterRoom" />.</li>
+                    <li>If you call this method under the <apiname keyref="ICloudSpatialAudioEngine" /> class, note the following:<ul>
                         <li>When calling this method multiple times, Agora recommends a call interval between [120,7000) milliseconds, otherwise, the SDK and the spatial audio server will lose synchronization.</li>
                         <li>If the distance between the current spatial position and the last position is less than 0.2 meters or the rotation angle in each direction is less than 15 degrees, the SDK does not update the current spatial position.</li>
                         </ul></li>
@@ -74,10 +74,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaengine_pushvideoframe">
     <title><ph keyref="pushVideoFrame" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Pushes the external raw video frame to the SDK.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Pushes the external raw video frame to the SDK.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,15 +34,15 @@
             <dl outputclass="deprecated">
             <dlentry props="android">
                 <dt>Deprecated:</dt>
-                <dd><xref keyref="pushVideoFrame2"/>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame2"/> instead.</dd>
+                <dd>If you need to push video frames in I422 format, you need to use this method; otherwise, use <xref keyref="pushVideoFrame2"/> instead.</dd>
             </dlentry>
             </dl>
-            <p id="desc1"><xref keyref="setExternalVideoSource"/><ph keyref="true"/><ph keyref="false"/><xref keyref="createCustomVideoTrack"/><xref keyref="ChannelMediaOptions"/><ph keyref="true"/><ph props="android ios mac">If you call <xref keyref="setExternalVideoSource"/> and set the <parmname>enabled</parmname> parameter as <codeph><ph keyref="true"/></codeph> and the <parmname>encodedFrame</parmname> parameter as <codeph><ph keyref="false"/></codeph>, you can call this method to push the external raw video frame to the SDK. </ph><ph props="unity cpp unreal bp flutter rn electron cs">If you call <xref keyref="createCustomVideoTrack"/> method to get the video track ID, set the <parmname>customVideoTrackId</parmname> parameter to the video track ID you want to publish in the <xref keyref="ChannelMediaOptions"/> of each channel, and set the <parmname>publishCustomVideoTrack</parmname> parameter to <codeph><ph keyref="true"/></codeph>, you can call this method to push the unencoded external video frame to the SDK.</ph><ph props="android ios mac"><parmname></parmname><codeph></codeph><parmname></parmname><codeph></codeph></ph><ph props="unity cpp unreal bp flutter rn electron cs"><parmname></parmname><parmname></parmname><codeph></codeph></ph></p>
-            <p props="android"><xref keyref="pushVideoFrame2"/><apiname keyref="pushVideoFrame"/>You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that the <apiname keyref="pushVideoFrame"/> method does not support video data in texture format.</p>
+            <p id="desc1"><ph props="android ios mac">If you call <xref keyref="setExternalVideoSource"/> and set the <parmname>enabled</parmname> parameter as <codeph><ph keyref="true"/></codeph> and the <parmname>encodedFrame</parmname> parameter as <codeph><ph keyref="false"/></codeph>, you can call this method to push the external raw video frame to the SDK. </ph><ph props="unity cpp unreal bp flutter rn electron cs">If you call <xref keyref="createCustomVideoTrack"/> method to get the video track ID, set the <parmname>customVideoTrackId</parmname> parameter to the video track ID you want to publish in the <xref keyref="ChannelMediaOptions"/> of each channel, and set the <parmname>publishCustomVideoTrack</parmname> parameter to <codeph><ph keyref="true"/></codeph>, you can call this method to push the unencoded external video frame to the SDK.</ph></p>
+            <p props="android">You can push the video frame either by calling this method or by calling <xref keyref="pushVideoFrame2"/>. The difference is that the <apiname keyref="pushVideoFrame"/> method does not support video data in texture format.</p>
         </section>
         <section props="cpp">
             <title>Applicable scenarios</title>
-            <p>As of v4.2.3, the SDK supports the ID3D11Texture2D video format since , which is widely used in game scenarios. When you need to push this type of video frame to the SDK, call this method and set the <parmname>format</parmname> in the <parmname>frame</parmname> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>, set the <parmname>d3d11_texture_2d</parmname> and <parmname>texture_slice_index</parmname> members, and set the format of the video frame to ID3D11Texture2D.<parmname></parmname><parmname></parmname><codeph></codeph><parmname></parmname><parmname></parmname></p>
+            <p>As of v4.2.3, the SDK supports the ID3D11Texture2D video format since , which is widely used in game scenarios. When you need to push this type of video frame to the SDK, call this method and set the <parmname>format</parmname> in the <parmname>frame</parmname> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>, set the <parmname>d3d11_texture_2d</parmname> and <parmname>texture_slice_index</parmname> members, and set the format of the video frame to ID3D11Texture2D.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -50,24 +50,24 @@
             <plentry id="frame">
                 <pt>frame</pt>
                 <pd>
-                    <p><xref keyref="ExternalVideoFrame" />The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame" />.</p>
+                    <p>The external raw video frame to be pushed. See <xref keyref="ExternalVideoFrame" />.</p>
                 </pd>
             </plentry>
             <plentry id="videotrackid" props="cpp unreal bp electron unity rn flutter cs">
                 <pt>videoTrackId</pt>
-                <pd><xref keyref="createCustomVideoTrack"/>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
+                <pd>The video track ID returned by calling the <xref keyref="createCustomVideoTrack"/> method. The default value is 0.</pd>
             </plentry>    
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="cpp unreal bp unity rn electron cs">
             <li>0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
             <ul props="android ios mac">
-            <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Pushes the external raw video frame to the SDK successfully.<codeph></codeph></li>
-            <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: Fails to push external raw video frame to the SDK.<codeph></codeph></li>
+            <li><codeph><ph keyref="true"/></codeph>: Pushes the external raw video frame to the SDK successfully.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Fails to push external raw video frame to the SDK.</li>
             </ul> </section>
     </refbody>
 </reference>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameradeviceorientation">
     <title><ph keyref="setCameraDeviceOrientation" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the rotation angle of the captured video.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the rotation angle of the captured video.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -34,7 +34,7 @@
             <title>Details</title>
             <note type="attention"><ul>
             <li props="cpp unreal bp electron unity flutter">This method applies to Windows only.</li>
-            <li><xref keyref="enableVideo"/><xref keyref="onLocalVideoStateChanged" /><apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>You must call this method after <xref keyref="enableVideo"/>. The setting result will take effect after the camera is successfully turned on, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</li>
+            <li>You must call this method after <xref keyref="enableVideo"/>. The setting result will take effect after the camera is successfully turned on, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</li>
             <li>When the video capture device does not have the gravity sensing function, you can call this method to manually adjust the rotation angle of the captured video.</li>
             </ul></note>
         </section>
@@ -43,21 +43,21 @@
             <parml>
             <plentry>
                 <pt>type</pt>
-                <pd><xref keyref="VIDEO_SOURCE_TYPE" />The video source type. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
+                <pd>The video source type. See <xref keyref="VIDEO_SOURCE_TYPE" />.</pd>
             </plentry>
             </parml>
             <parml id="parml_ejw_j4f_3qb">
             <plentry>
                 <pt>orientation</pt>
-                <pd><xref keyref="VIDEO_ORIENTATION" />The clockwise rotation angle. See <xref keyref="VIDEO_ORIENTATION" />.</pd>
+                <pd>The clockwise rotation angle. See <xref keyref="VIDEO_ORIENTATION" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul id="ul_ahk_23f_3qb">
             <li props="cpp unreal bp unity rn electron cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

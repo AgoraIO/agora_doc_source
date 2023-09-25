@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_spatialaudioparams">
   <title><ph keyref="SpatialAudioParams"/></title>
-  <shortdesc id="short"><ph id="shortdesc">The spatial audio parameters.</ph><ph id="shortdesc"></ph></shortdesc>
+  <shortdesc id="short"><ph id="shortdesc">The spatial audio parameters.</ph></shortdesc>
   <refbody>
     <section id="prototype">
       <p outputclass="codeblock">
@@ -192,36 +192,36 @@
       <plentry>
         <pt>enable_blur</pt>
         <pd>Whether to enable audio blurring:<ul>
-          <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Enable audio blurring.<codeph></codeph></li>
-          <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: (Default) Disable audio blurring.<codeph></codeph></li>
+          <li><codeph><ph keyref="true"/></codeph>: Enable audio blurring.</li>
+          <li><codeph><ph keyref="false"/></codeph>: (Default) Disable audio blurring.</li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>enable_air_absorb</pt>
         <pd>Whether to enable air absorption, that is, to simulate the sound attenuation effect of sound transmitting in the air; under a certain transmission distance, the attenuation speed of high-frequency sound is fast, and the attenuation speed of low-frequency sound is slow.<ul>
-          <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: (Default) Enable air absorption. Make sure that the value of <parmname>speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.<codeph></codeph><parmname></parmname><codeph></codeph></li>
-          <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: Disable air absorption.<codeph></codeph></li>
+          <li><codeph><ph keyref="true"/></codeph>: (Default) Enable air absorption. Make sure that the value of <parmname>speaker_attenuation</parmname> is not <codeph>0</codeph>; otherwise, this setting does not take effect.</li>
+          <li><codeph><ph keyref="false"/></codeph>: Disable air absorption.</li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>speaker_attenuation</pt>
         <pd>The sound attenuation coefficient of the remote user or media player. The value range is [0,1]. The values are as follows:<ul>
           <li>0: Broadcast mode, where the volume and timbre are not attenuated with distance, and the volume and timbre heard by local users do not change regardless of distance.</li>
-          <li>(0,0.5): Weak attenuation mode, where the volume and timbre only have a weak attenuation during the propagation, and the sound can travel farther than that in a real environment. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. <parmname></parmname></li>
-          <li>0.5: (Default) Simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>speaker_attenuation</parmname> parameter.<parmname></parmname></li>
-          <li>(0.5,1]: Strong attenuation mode, where volume and timbre attenuate rapidly during the propagation. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. <parmname></parmname></li>
+          <li>(0,0.5): Weak attenuation mode, where the volume and timbre only have a weak attenuation during the propagation, and the sound can travel farther than that in a real environment. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. </li>
+          <li>0.5: (Default) Simulates the attenuation of the volume in the real environment; the effect is equivalent to not setting the <parmname>speaker_attenuation</parmname> parameter.</li>
+          <li>(0.5,1]: Strong attenuation mode, where volume and timbre attenuate rapidly during the propagation. <parmname>enable_air_absorb</parmname> needs to be enabled at the same time. </li>
           </ul></pd>
       </plentry>
       <plentry>
         <pt>enable_doppler</pt>
         <pd>Whether to enable the Doppler effect: When there is a relative displacement between the sound source and the receiver of the sound source, the tone heard by the receiver changes.<ul>
-          <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Enable the Doppler effect.<codeph></codeph></li>
-          <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: (Default) Disable the Doppler effect.<codeph></codeph></li>
+          <li><codeph><ph keyref="true"/></codeph>: Enable the Doppler effect.</li>
+          <li><codeph><ph keyref="false"/></codeph>: (Default) Disable the Doppler effect.</li>
           </ul>
           <note type="caution">
           <ul>
           <li>This parameter is suitable for scenarios where the sound source is moving at high speed (for example, racing games). It is not recommended for common audio and video interactive scenarios (for example, voice chat, cohosting, or online KTV).</li>
-          <li><xref keyref="updatePlayerPositionInfo"/><xref keyref="updateSelfPosition"/><xref keyref="updateRemotePosition"/>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref keyref="updatePlayerPositionInfo"/>, <xref keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"/> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
+          <li>When this parameter is enabled, Agora recommends that you set a regular period (such as 30 ms), and then call the <xref keyref="updatePlayerPositionInfo"/>, <xref keyref="updateSelfPosition"/>, and <xref keyref="updateRemotePosition"/> methods to continuously update the relative distance between the sound source and the receiver. The following factors can cause the Doppler effect to be unpredictable or the sound to be jittery: the period of updating the distance is too long, the updating period is irregular, or the distance information is lost due to network packet loss or delay.</li>
           </ul> </note></pd>
       </plentry>
       </parml> </section>

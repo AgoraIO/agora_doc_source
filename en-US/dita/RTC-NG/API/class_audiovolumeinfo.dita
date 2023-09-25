@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_audiovolumeinfo">
     <title><ph keyref="AudioVolumeInfo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">The volume information of users.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">The volume information of users.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -93,14 +93,14 @@
                 <pt>uid</pt>
                 <pd>
                     <p>The user ID.<ul id="ul_pfj_4dt_rqb">
-                    <li>In the local user's callback, <parmname>uid</parmname> is 0.<parmname></parmname></li>
-                    <li>In the remote users' callback, <parmname>uid</parmname> is the user ID of a remote user whose instantaneous volume is the highest.<parmname></parmname></li>
+                    <li>In the local user's callback, <parmname>uid</parmname> is 0.</li>
+                    <li>In the remote users' callback, <parmname>uid</parmname> is the user ID of a remote user whose instantaneous volume is the highest.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>volume</pt>
-                <pd><ph><xref keyref="muteLocalAudioStream"/><ph keyref="true"/></ph><xref keyref="startAudioMixing2" /><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). If the local user enables audio capturing and calls <xref keyref="muteLocalAudioStream"/> and set it as <codeph><ph keyref="true"/></codeph> to mute, the value of <parmname>volume</parmname> indicates the volume of locally captured audio signal. </ph><ph props="native unreal bp">If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> indicates the volume after audio mixing.</ph><codeph></codeph><parmname></parmname><ph props="native unreal bp"><parmname></parmname></ph></pd>
+                <pd><ph>The volume of the user. The value ranges between 0 (the lowest volume) and 255 (the highest volume). If the local user enables audio capturing and calls <xref keyref="muteLocalAudioStream"/> and set it as <codeph><ph keyref="true"/></codeph> to mute, the value of <parmname>volume</parmname> indicates the volume of locally captured audio signal. </ph><ph props="native unreal bp">If the user calls <xref keyref="startAudioMixing2" />, the value of <parmname>volume</parmname> indicates the volume after audio mixing.</ph></pd>
             </plentry>
             <plentry>
                 <pt>vad</pt>
@@ -111,15 +111,15 @@
                     </ul> </p>
                     <note type="attention">
                     <ul>
-                    <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In a remote user's callback, the value of <parmname>vad</parmname> is always 1.<parmname></parmname><parmname></parmname></li>
-                    <li><xref keyref="enableAudioVolumeIndication" /><ph keyref="true" />To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.<parmname></parmname><codeph></codeph></li>
+                    <li>The <parmname>vad</parmname> parameter does not report the voice activity status of remote users. In a remote user's callback, the value of <parmname>vad</parmname> is always 1.</li>
+                    <li>To use this parameter, you must set <parmname>reportVad</parmname> to <codeph><ph keyref="true" /></codeph> when calling <xref keyref="enableAudioVolumeIndication" />.</li>
                     </ul> </note> </pd>
             </plentry>
             <plentry>
                 <pt>voicePitch</pt>
                 <pd>
                     <p>The voice pitch of the local user. The value ranges between 0.0 and 4000.0.</p>
-                    <note type="attention">The <parmname>voicePitch</parmname> parameter does not report the voice pitch of remote users. In the remote users' callback, the value of <parmname>voicePitch</parmname> is always 0.0.<parmname></parmname><parmname></parmname></note>
+                    <note type="attention">The <parmname>voicePitch</parmname> parameter does not report the voice pitch of remote users. In the remote users' callback, the value of <parmname>voicePitch</parmname> is always 0.0.</note>
                 </pd>
             </plentry>
             </parml> </section>

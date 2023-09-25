@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setcameraexposurefactor">
     <title><ph keyref="setCameraExposureFactor" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the camera exposure value.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the camera exposure value.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -35,9 +35,9 @@
             <note type="attention">
             <ul>
                 <li props="cpp unreal bp flutter unity">This method is for Android and iOS only.</li>
-                <li id="sequence"><xref keyref="enableVideo"/><xref keyref="onLocalVideoStateChanged" /><apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/>You must call this method after <xref keyref="enableVideo"/>. The setting result will take effect after the camera is successfully turned on, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</li>
-                <li><xref keyref="isCameraExposureSupported"/>Before calling this method, Agora recommends calling <xref keyref="isCameraExposureSupported"/> to check whether the current camera supports adjusting the exposure value.</li>
-                <li><xref keyref="setCameraCapturerConfiguration"/>By calling this method, you adjust the exposure value of the currently active camera, that is, the camera specified when calling <xref keyref="setCameraCapturerConfiguration"/>.</li>
+                <li id="sequence">You must call this method after <xref keyref="enableVideo"/>. The setting result will take effect after the camera is successfully turned on, that is, after the SDK triggers the <xref keyref="onLocalVideoStateChanged" /> callback and returns the local video state as <apiname keyref="LOCAL_VIDEO_STREAM_STATE_CAPTURING"/> (1).</li>
+                <li>Before calling this method, Agora recommends calling <xref keyref="isCameraExposureSupported"/> to check whether the current camera supports adjusting the exposure value.</li>
+                <li>By calling this method, you adjust the exposure value of the currently active camera, that is, the camera specified when calling <xref keyref="setCameraCapturerConfiguration"/>.</li>
             </ul></note>
         </section>
         <section id="parameters">
@@ -56,10 +56,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul props="cpp framework">
             <li props="cpp unreal bp unity rn">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
             <p props="ios">Without practical meaning.</p></section>
     </refbody>

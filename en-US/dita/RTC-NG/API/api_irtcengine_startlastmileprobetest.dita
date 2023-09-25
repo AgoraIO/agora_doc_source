@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_startlastmileprobetest">
     <title> <ph keyref="startLastmileProbeTest" /> </title>
-    <shortdesc id="short"><ph id="shortdesc">Starts the last mile network probe test.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Starts the last mile network probe test.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,8 +26,8 @@
             <title>Details</title>
             <p>This method starts the last-mile network probe test before joining a channel to get the uplink and downlink last mile network statistics, including the bandwidth, packet loss, jitter, and round-trip time (RTT).</p>
             <p>Once this method is enabled, the SDK returns the following callbacks:<ul>
-            <li><xref keyref="onLastmileQuality" /><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.</li>
-            <li><xref keyref="onLastmileProbeResult" /><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.</li>
+            <li><xref keyref="onLastmileQuality" />: The SDK triggers this callback within two seconds depending on the network conditions. This callback rates the network conditions and is more closely linked to the user experience.</li>
+            <li><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.</li>
             </ul> </p>
             <p>This method applies to the following scenarios:<ul>
             <li>Before a user joins a channel, call this method to check the uplink network quality.</li>
@@ -35,7 +35,7 @@
             </ul> </p>
             <note type="attention">
             <ul>
-            <li><apiname keyref="onLastmileQuality" /><apiname keyref="onLastmileProbeResult" />Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted.</li>
+            <li>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" /> callbacks. Otherwise, the callbacks may be interrupted.</li>
             <li>A host should not call this method after joining a channel (when in a call).</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -43,15 +43,15 @@
             <parml>
             <plentry>
                 <pt>config</pt>
-                <pd><xref keyref="LastmileProbeConfig" />The configurations of the last-mile network probe test. See <xref keyref="LastmileProbeConfig" />.</pd>
+                <pd>The configurations of the last-mile network probe test. See <xref keyref="LastmileProbeConfig" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

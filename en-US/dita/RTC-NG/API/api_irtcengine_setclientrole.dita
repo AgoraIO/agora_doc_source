@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setclientrole">
     <title><ph keyref="setClientRole1" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the client role.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the client role.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,8 +32,8 @@
             <p id="desc">You can call this method either before or after joining the channel to set the user role as audience or host.</p>
             <p conkeyref="setClientRole2/preview" props="native unreal bp electron flutter"/>
             <p>If you call this method to switch the user role after joining the channel, the SDK triggers the following callbacks:<ul>
-            <li><xref keyref="onClientRoleChanged" />The local client: <xref keyref="onClientRoleChanged" />.</li>
-            <li><xref keyref="onUserJoined" /><xref keyref="onUserOffline" /><ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />The remote client: <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /><codeph>(<ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />)</codeph>.<codeph></codeph></li>
+            <li>The local client: <xref keyref="onClientRoleChanged" />.</li>
+            <li>The remote client: <xref keyref="onUserJoined" /> or <xref keyref="onUserOffline" /><codeph>(<ph keyref="USER_OFFLINE_BECOME_AUDIENCE" />)</codeph>.</li>
             </ul></p>
             </section>
         <section id="parameters">
@@ -42,10 +42,10 @@
             <plentry>
                 <pt>role</pt>
                 <pd id="clientrole">
-                    <p props="ios mac cpp unreal bp electron unity rn cs"><xref keyref="CLIENT_ROLE_TYPE" />The user role. See <xref keyref="CLIENT_ROLE_TYPE" />.</p>
+                    <p props="ios mac cpp unreal bp electron unity rn cs">The user role. See <xref keyref="CLIENT_ROLE_TYPE" />.</p>
                     <p props="android">The user role:<ul id="clientroletype">
-                    <li><ph keyref="CLIENT_ROLE_BROADCASTER" /><ph keyref="CLIENT_ROLE_BROADCASTER" />(1): Host.</li>
-                    <li><ph keyref="CLIENT_ROLE_AUDIENCE" /><ph keyref="CLIENT_ROLE_AUDIENCE" />(2): Audience.</li>
+                    <li><ph keyref="CLIENT_ROLE_BROADCASTER" />(1): Host.</li>
+                    <li><ph keyref="CLIENT_ROLE_AUDIENCE" />(2): Audience.</li>
                     </ul> </p>
                     <note type="note">If you set the user role as an audience member, you cannot publish audio and video streams in the channel. If you want to publish media streams in a channel during live streaming, ensure you set the user role as broadcaster.</note>
                 </pd>

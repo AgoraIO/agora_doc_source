@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_imetadataobserver_onreadytosendmetadata">
     <title><ph keyref="onReadyToSendMetadata"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to send metadata.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the SDK is ready to send metadata.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,8 +28,8 @@
         </section>
         <section id="detailed_desc">
             <p>This callback is triggered when the SDK is ready to send metadata.</p>
-            <p props="hide"><xref keyref="sendMetaData"/>After receiving this callback, you can call <xref keyref="sendMetaData"/> to send the media metadata.</p>
-            <note props="android ios mac cpp unreal bp" type="attention"><xref keyref="getMaxMetadataSize"/>Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note> </section>
+            <p props="hide">After receiving this callback, you can call <xref keyref="sendMetaData"/> to send the media metadata.</p>
+            <note props="android ios mac cpp unreal bp" type="attention">Ensure that the size of the metadata does not exceed the value set in the <xref keyref="getMaxMetadataSize"/> callback.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
@@ -41,24 +41,24 @@
             <plentry>
                 <pt props="android ios mac">sourceType</pt>
                 <pt props="cpp unreal bp unity cs">source_type</pt>
-                <pd><xref keyref="VIDEO_SOURCE_TYPE"/>Video data type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                <pd>Video data type. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
             </plentry>
             <plentry props="cpp unreal bp unity cs">
                 <pt>metadata</pt>
-                <pd><xref keyref="Metadata"/>The metadata that the user wants to send. See <xref keyref="Metadata"/>.</pd>
+                <pd>The metadata that the user wants to send. See <xref keyref="Metadata"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul props="cpp unreal bp unity cs">
-            <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Send the video frame.<codeph></codeph></li>
-            <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: Do not send the video frame.<codeph></codeph></li>
+            <li><codeph><ph keyref="true"/></codeph>: Send the video frame.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Do not send the video frame.</li>
             </ul>
             <p props="ios mac">The metadata that you want to send in the format of NSData, which includes the following parameters:<ul>
-            <li><codeph>uid</codeph>: The ID of the remote user who sends the metadata.<codeph></codeph></li>
-            <li><codeph>size</codeph>: The size of the metadata.<codeph></codeph></li>
-            <li><codeph>buffer</codeph>: The metadata data.<codeph></codeph></li>
-            <li><codeph>timeStampMs</codeph>: The NTP timestamp (ms) when the metadata is sent.<codeph></codeph></li>
+            <li><codeph>uid</codeph>: The ID of the remote user who sends the metadata.</li>
+            <li><codeph>size</codeph>: The size of the metadata.</li>
+            <li><codeph>buffer</codeph>: The metadata data.</li>
+            <li><codeph>timeStampMs</codeph>: The NTP timestamp (ms) when the metadata is sent.</li>
             </ul> </p>
             <p props="android">The metadata that you want to send in the format of byte. Ensure that you set the return value.</p>
         </section>

@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_irtcengineeventhandler_onactivespeaker">
     <title><ph keyref="onActiveSpeaker" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs when the most active remote speaker is detected.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs when the most active remote speaker is detected.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -23,10 +23,10 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p><xref keyref="enableAudioVolumeIndication" />After a successful call of <xref keyref="enableAudioVolumeIndication" />, the SDK continuously detects which remote user has the loudest volume. During the current period, the remote user whose volume is detected as the loudest for the most times, is the most active user.</p>
-            <p>When the number of users is no less than two and an active remote speaker exists, the SDK triggers this callback and reports the <parmname>uid</parmname> of the most active remote speaker.<parmname></parmname><ul>
-            <li><apiname keyref="onActiveSpeaker" />If the most active remote speaker is always the same user, the SDK triggers the <apiname keyref="onActiveSpeaker" /> callback only once.</li>
-            <li>If the most active remote speaker changes to another user, the SDK triggers this callback again and reports the <parmname>uid</parmname> of the new active remote speaker.<parmname></parmname></li>
+            <p>After a successful call of <xref keyref="enableAudioVolumeIndication" />, the SDK continuously detects which remote user has the loudest volume. During the current period, the remote user whose volume is detected as the loudest for the most times, is the most active user.</p>
+            <p>When the number of users is no less than two and an active remote speaker exists, the SDK triggers this callback and reports the <parmname>uid</parmname> of the most active remote speaker.<ul>
+            <li>If the most active remote speaker is always the same user, the SDK triggers the <apiname keyref="onActiveSpeaker" /> callback only once.</li>
+            <li>If the most active remote speaker changes to another user, the SDK triggers this callback again and reports the <parmname>uid</parmname> of the new active remote speaker.</li>
             </ul> </p>
             <p />
         </section>

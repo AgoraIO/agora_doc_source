@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_ivideoframeobserver_oncapturevideoframe">
     <title><ph keyref="onCaptureVideoFrame"/></title>
-    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame captured by local devices.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Occurs each time the SDK receives a video frame captured by local devices.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -31,7 +31,7 @@
         </section>
         <section id="detailed_desc">
             <p>After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. In this callback, you can get the video data captured by local devices. You can then pre-process the data according to your scenarios.</p>
-            <p props="native unreal bp unity electron rn cs"><ph keyref="true"/>Once the pre-processing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.<parmname></parmname><codeph></codeph></p>
+            <p props="native unreal bp unity electron rn cs">Once the pre-processing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
             <note type="attention" id="note">
             <ul>
             <li>The video data that this callback gets has not been pre-processed, and is not watermarked, cropped, rotated or beautified.</li>
@@ -43,11 +43,11 @@
             <parml>
                 <plentry>
                     <pt>sourceType</pt>
-                    <pd><xref keyref="VIDEO_SOURCE_TYPE"/>Video source types, including cameras, screens, or media player. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
+                    <pd>Video source types, including cameras, screens, or media player. See <xref keyref="VIDEO_SOURCE_TYPE"/>.</pd>
                 </plentry>
             <plentry id="videoframe">
                 <pt>videoFrame</pt>
-                <pd><xref keyref="VideoFrame"/>The video frame. See <xref keyref="VideoFrame"/>.<note>The default value of the video frame data format obtained through this callback is as follows:<ul>
+                <pd>The video frame. See <xref keyref="VideoFrame"/>.<note>The default value of the video frame data format obtained through this callback is as follows:<ul>
                         <li props="android cpp unreal bp rn unity flutter">Android: texture</li>
                         <li props="ios cpp unreal bp rn unity flutter">iOS: cvPixelBuffer</li>
                         <li props="mac cpp unreal bp electron unity flutter">macOS: YUV 420</li>
@@ -58,18 +58,18 @@
             <title>Returns</title>
             <p id="return">
             <ul>
-            <li props="native unreal bp electron rn"><apiname keyref="PROCESS_MODE_READ_ONLY"/>When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
-                <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Reserved for future use.<codeph></codeph></li>
-                <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: Reserved for future use.<codeph></codeph></li>
+            <li props="native unreal bp electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_ONLY"/>:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Reserved for future use.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Reserved for future use.</li>
                 </ul></li>
-            <li props="native unreal bp electron rn"><apiname keyref="PROCESS_MODE_READ_WRITE"/>When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
-                <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.<codeph></codeph></li>
-                <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.<codeph></codeph></li>
+            <li props="native unreal bp electron rn">When the video processing mode is <apiname keyref="PROCESS_MODE_READ_WRITE"/>:<ul>
+                <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+                <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
                 </ul></li>
             </ul>
             <ul props="unity cs">
-            <li><ph keyref="true"/><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.<codeph></codeph></li>
-            <li><ph keyref="false"/><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.<codeph></codeph></li>
+            <li><codeph><ph keyref="true"/></codeph>: Sets the SDK to receive the video frame.</li>
+            <li><codeph><ph keyref="false"/></codeph>: Sets the SDK to discard the video frame.</li>
             </ul> </p>
         </section>
     </refbody>

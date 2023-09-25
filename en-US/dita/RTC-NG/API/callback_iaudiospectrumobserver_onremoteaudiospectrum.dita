@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="callback_iaudiospectrumobserver_onremoteaudiospectrum">
     <title><ph keyref="onRemoteAudioSpectrum" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Gets the remote audio spectrum.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Gets the remote audio spectrum.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -36,7 +36,7 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p><xref keyref="registerAudioSpectrumObserver" /><xref keyref="IAudioSpectrumObserver" /><apiname keyref="onRemoteAudioSpectrum" /><xref keyref="enableAudioSpectrumMonitor" />After successfully calling <xref keyref="registerAudioSpectrumObserver" /> to implement the <apiname keyref="onRemoteAudioSpectrum" /> callback in the <xref keyref="IAudioSpectrumObserver" /> and calling <xref keyref="enableAudioSpectrumMonitor" /> to enable audio spectrum monitoring, the SDK will trigger the callback as the time interval you set to report the received remote audio data spectrum.</p>
+            <p>After successfully calling <xref keyref="registerAudioSpectrumObserver" /> to implement the <apiname keyref="onRemoteAudioSpectrum" /> callback in the <xref keyref="IAudioSpectrumObserver" /> and calling <xref keyref="enableAudioSpectrumMonitor" /> to enable audio spectrum monitoring, the SDK will trigger the callback as the time interval you set to report the received remote audio data spectrum.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -45,7 +45,7 @@
                 <pt props="android">userAudioSpectrumInfos</pt>
                 <pt props="ios mac">AudioSpectrumInfo</pt>
                 <pt props="cpp unreal bp unity rn electron flutter cs">spectrums</pt>
-                <pd><xref keyref="UserAudioSpectrumInfo" />The audio spectrum information of the remote user, see <xref keyref="UserAudioSpectrumInfo" />. The number of arrays is the number of remote users monitored by the SDK. If the array is null, it means that no audio spectrum of remote users is detected.</pd>
+                <pd>The audio spectrum information of the remote user, see <xref keyref="UserAudioSpectrumInfo" />. The number of arrays is the number of remote users monitored by the SDK. If the array is null, it means that no audio spectrum of remote users is detected.</pd>
             </plentry>
             <plentry props="android cpp unreal bp unity rn electron flutter cs">
                 <pt>spectrumNumber</pt>
@@ -55,8 +55,8 @@
         <section id="return_values" props="native unreal bp rn electron unity cs">
             <title>Returns</title>
             <p>Whether the spectrum data is received:<ul>
-            <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Spectrum data is received.<codeph></codeph></li>
-            <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: No spectrum data is received.<codeph></codeph></li>
+            <li><codeph><ph keyref="true" /></codeph>: Spectrum data is received.</li>
+            <li><codeph><ph keyref="false" /></codeph>: No spectrum data is received.</li>
             </ul></p>
         </section>
     </refbody>

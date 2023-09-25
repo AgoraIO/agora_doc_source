@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevideo">
     <title><ph keyref="enableVideo" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables the video module.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables the video module.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -24,25 +24,25 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p><xref keyref="disableVideo" />Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode; if called during a call, the audio call switches to a video call. Call <xref keyref="disableVideo" /> to disable the video mode.</p>
-            <p><xref keyref="onRemoteVideoStateChanged" />A successful call of this method triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p>
+            <p>Call this method either before joining a channel or during a call. If this method is called before joining a channel, the call starts in the video mode; if called during a call, the audio call switches to a video call. Call <xref keyref="disableVideo" /> to disable the video mode.</p>
+            <p>A successful call of this method triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
             <li>This method enables the internal engine and is valid after leaving the channel.</li>
             <li>Calling this method will reset the entire engine, resulting in a slow response time. Instead of callling this method, you can independently control a specific video module based on your actual needs using the following methods:<ul>
-                <li><xref keyref="enableLocalVideo" /><xref keyref="enableLocalVideo" />: Whether to enable the camera to create the local video stream.</li>
-                <li><xref keyref="muteLocalVideoStream" /><xref keyref="muteLocalVideoStream" />: Whether to publish the local video stream.</li>
-                <li><xref keyref="muteRemoteVideoStream" /><xref keyref="muteRemoteVideoStream" />: Whether to subscribe to and play the remote video stream.</li>
-                <li><xref keyref="muteAllRemoteVideoStreams" /><xref keyref="muteAllRemoteVideoStreams" />: Whether to subscribe to and play all remote video streams.</li>
+                <li><xref keyref="enableLocalVideo" />: Whether to enable the camera to create the local video stream.</li>
+                <li><xref keyref="muteLocalVideoStream" />: Whether to publish the local video stream.</li>
+                <li><xref keyref="muteRemoteVideoStream" />: Whether to subscribe to and play the remote video stream.</li>
+                <li><xref keyref="muteAllRemoteVideoStreams" />: Whether to subscribe to and play all remote video streams.</li>
                 </ul></li>
-            <li><apiname keyref="enableLocalVideo" /><apiname keyref="muteRemoteVideoStream" /><apiname keyref="muteAllRemoteVideoStreams" />A successful call of this method resets <apiname keyref="enableLocalVideo" />, <apiname keyref="muteRemoteVideoStream" />, and <apiname keyref="muteAllRemoteVideoStreams" />. Proceed it with caution.</li>
+            <li>A successful call of this method resets <apiname keyref="enableLocalVideo" />, <apiname keyref="muteRemoteVideoStream" />, and <apiname keyref="muteAllRemoteVideoStreams" />. Proceed it with caution.</li>
             </ul> </note> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

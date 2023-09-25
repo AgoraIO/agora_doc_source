@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setlogfilesize">
     <title><ph keyref="setLogFileSize" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Sets the log file size.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Sets the log file size.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,41 +27,41 @@
             <dl outputclass="deprecated">
             <dlentry>
                 <dt>Deprecated:</dt>
-                <dd><xref keyref="initialize" />Use the <codeph>logConfig</codeph> parameter in <xref keyref="initialize" /> instead.<codeph></codeph></dd>
+                <dd>Use the <codeph>logConfig</codeph> parameter in <xref keyref="initialize" /> instead.</dd>
             </dlentry>
             </dl>
             <p>By default, the SDK generates five SDK log files and five API call log files with the following rules:</p>
             <ul id="logprinciple">
-            <li>The SDK log files are: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, and <codeph>agorasdk.4.log</codeph>.<codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph></li>
-            <li>The API call log files are: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, and <codeph>agoraapi.4.log</codeph>.<codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph><codeph></codeph></li>
+            <li>The SDK log files are: <codeph>agorasdk.log</codeph>, <codeph>agorasdk.1.log</codeph>, <codeph>agorasdk.2.log</codeph>, <codeph>agorasdk.3.log</codeph>, and <codeph>agorasdk.4.log</codeph>.</li>
+            <li>The API call log files are: <codeph>agoraapi.log</codeph>, <codeph>agoraapi.1.log</codeph>, <codeph>agoraapi.2.log</codeph>, <codeph>agoraapi.3.log</codeph>, and <codeph>agoraapi.4.log</codeph>.</li>
             <li>The default size for each SDK log file is 1,024 KB; the default size for each API call log file is 2,048 KB. These log files are encoded in UTF-8.</li>
-            <li>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.<codeph></codeph><codeph></codeph></li>
-            <li>When <codeph>agorasdk.log</codeph> is full, the SDK processes the log files in the following order:<codeph></codeph><ol>
-                <li>Delete the <codeph>agorasdk.4.log</codeph> file (if any).<codeph></codeph></li>
-                <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.<codeph></codeph><codeph></codeph></li>
-                <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.<codeph></codeph><codeph></codeph></li>
-                <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.<codeph></codeph><codeph></codeph></li>
-                <li>Create a new <codeph>agorasdk.log</codeph> file.<codeph></codeph></li>
+            <li>The SDK writes the latest logs in <codeph>agorasdk.log</codeph> or <codeph>agoraapi.log</codeph>.</li>
+            <li>When <codeph>agorasdk.log</codeph> is full, the SDK processes the log files in the following order:<ol>
+                <li>Delete the <codeph>agorasdk.4.log</codeph> file (if any).</li>
+                <li>Rename <codeph>agorasdk.3.log</codeph> to <codeph>agorasdk.4.log</codeph>.</li>
+                <li>Rename <codeph>agorasdk.2.log</codeph> to <codeph>agorasdk.3.log</codeph>.</li>
+                <li>Rename <codeph>agorasdk.1.log</codeph> to <codeph>agorasdk.2.log</codeph>.</li>
+                <li>Create a new <codeph>agorasdk.log</codeph> file.</li>
                 </ol></li>
-            <li>The overwrite rules for the <codeph>agoraapi.log</codeph> file are the same as for <codeph>agorasdk.log</codeph>.<codeph></codeph><codeph></codeph></li>
+            <li>The overwrite rules for the <codeph>agoraapi.log</codeph> file are the same as for <codeph>agorasdk.log</codeph>.</li>
             </ul>
             <note id="note_qwq_w2g_3qb">
-            <p>This method is used to set the size of the <codeph>agorasdk.log</codeph> file only and does not effect the <codeph>agoraapi.log file</codeph>.<codeph></codeph><codeph></codeph></p>
+            <p>This method is used to set the size of the <codeph>agorasdk.log</codeph> file only and does not effect the <codeph>agoraapi.log file</codeph>.</p>
             </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>fileSizeInKBytes</pt>
-                <pd>The size (KB) of an <codeph>agorasdk.log</codeph> file. The value range is [128,20480]. The default value is 2,048 KB. If you set <codeph>fileSizeInKByte</codeph> smaller than 128 KB, the SDK automatically adjusts it to 128 KB; if you set <codeph>fileSizeInKByte</codeph> greater than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.<codeph></codeph><codeph></codeph><codeph></codeph></pd>
+                <pd>The size (KB) of an <codeph>agorasdk.log</codeph> file. The value range is [128,20480]. The default value is 2,048 KB. If you set <codeph>fileSizeInKByte</codeph> smaller than 128 KB, the SDK automatically adjusts it to 128 KB; if you set <codeph>fileSizeInKByte</codeph> greater than 20,480 KB, the SDK automatically adjusts it to 20,480 KB.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul id="ul_ahk_23f_3qb">
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

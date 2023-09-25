@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_registermediametadataobserver">
     <title><ph keyref="registerMediaMetadataObserver" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Registers the metadata observer.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Registers the metadata observer.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -32,30 +32,30 @@
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <p><xref keyref="IMetadataObserver" />You need to implement the <xref keyref="IMetadataObserver" /> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
+            <p>You need to implement the <xref keyref="IMetadataObserver" /> class and specify the metadata type in this method. This method enables you to add synchronized metadata in the video stream for more diversified
  live interactive streaming, such as sending shopping links, digital coupons, and online quizzes.</p>
-            <p props="native unreal bp cs"><xref keyref="getMaxMetadataSize" />A successful call of this method triggers the <xref keyref="getMaxMetadataSize" /> callback.</p>
-            <note type="attention"><apiname keyref="joinChannel2" />Call this method before <apiname keyref="joinChannel2" />.</note> </section>
+            <p props="native unreal bp cs">A successful call of this method triggers the <xref keyref="getMaxMetadataSize" /> callback.</p>
+            <note type="attention">Call this method before <apiname keyref="joinChannel2" />.</note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>observer</pt>
-                <pd><xref keyref="IMetadataObserver" />The metadata observer. See <xref keyref="IMetadataObserver" />.</pd>
+                <pd>The metadata observer. See <xref keyref="IMetadataObserver" />.</pd>
             </plentry>
             <plentry id="metadatatype">
                 <pt>type</pt>
                 <pd>
-                    <p><apiname keyref="VIDEO_METADATA" /><xref keyref="METADATA_TYPE" />The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA" />. <ph props="ios mac cpp unreal bp unity rn electron cs">See <xref keyref="METADATA_TYPE" /></ph>.<ph props="ios mac cpp unreal bp unity rn electron cs"></ph></p>
+                    <p>The metadata type. The SDK currently only supports <apiname keyref="VIDEO_METADATA" />. <ph props="ios mac cpp unreal bp unity rn electron cs">See <xref keyref="METADATA_TYPE" /></ph>.</p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
                 <li props="native unreal bp rn unity electron cs">0: Success.</li>
-                <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
         </section>
     </refbody>

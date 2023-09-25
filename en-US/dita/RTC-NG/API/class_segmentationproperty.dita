@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
     <title><ph keyref="SegmentationProperty" /></title>
-    <shortdesc id="short">Processing properties for background images.<ph id="shortdesc"></ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short">Processing properties for background images.<ph id="shortdesc"></ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -83,9 +83,9 @@
             <parml>
             <plentry>
                 <pt>modelType</pt>
-                <pd><xref keyref="SEG_MODEL_TYPE" /><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp unreal bp electron flutter unity rn cs">See <xref keyref="SEG_MODEL_TYPE" />.</ph><ph></ph><ph props="ios mac cpp unreal bp electron flutter unity rn cs"></ph><ul props="android">
-                    <li><ph keyref="SEG_MODEL_AI" /><ph keyref="SEG_MODEL_AI" />(1): (Default) Use the algorithm suitable for all scenarios.</li>
-                    <li><ph keyref="SEG_MODEL_GREEN" /><ph keyref="SEG_MODEL_GREEN" />(2): Use the algorithm designed specifically for scenarios with a green screen background.</li>
+                <pd><ph>The type of algorithms to user for background processing. </ph><ph props="ios mac cpp unreal bp electron flutter unity rn cs">See <xref keyref="SEG_MODEL_TYPE" />.</ph><ul props="android">
+                    <li><ph keyref="SEG_MODEL_AI" />(1): (Default) Use the algorithm suitable for all scenarios.</li>
+                    <li><ph keyref="SEG_MODEL_GREEN" />(2): Use the algorithm designed specifically for scenarios with a green screen background.</li>
                     </ul></pd>
             </plentry>
             <plentry props="hide">
@@ -94,13 +94,13 @@
                     <li>0: Disable bilateral filtering.</li>
                     <li>1: (Default) Enable bilateral filtering. This improves the virtual background effect in green screen background scenarios.</li>
                     </ul>
-                    <note type="note"><apiname keyref="SEG_MODEL_GREEN" />This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.<parmname></parmname></note></pd>
+                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.</note></pd>
             </plentry>
             <plentry>
                 <pt>greenCapacity</pt>
                 <pd>
                     <p>The range of accuracy for identifying green colors (different shades of green) in the view. The value range is [0,1], and the default value is 0.5. The larger the value, the wider the range of identifiable shades of green. When the value of this parameter is too large, the edge of the portrait and the green color in the portrait range are also detected. Agora recommends that you dynamically adjust the value of this parameter according to the actual effect.</p>
-                    <note type="note"><apiname keyref="SEG_MODEL_GREEN" />This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.<parmname></parmname></note> </pd>
+                    <note type="note">This parameter only takes effect when <parmname>modelType</parmname> is set to <apiname keyref="SEG_MODEL_GREEN" />.</note> </pd>
             </plentry>
             </parml> </section>
     </refbody>

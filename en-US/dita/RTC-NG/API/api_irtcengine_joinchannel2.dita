@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_joinchannel2">
     <title><ph keyref="joinChannel2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Joins a channel with media options.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Joins a channel with media options.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -47,22 +47,22 @@
             <title>Details</title>
             <p id="desc1">This method enables users to join a channel. Users in the same channel can talk to each other, and multiple users in the same channel can start a group chat. Users with different App IDs cannot call each other.</p>
             <p id="desc2">A successful call of this method triggers the following callbacks:<ul>
-            <li><xref keyref="onJoinChannelSuccess" /><xref keyref="onConnectionStateChanged" />The local client: The <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
-            <li><xref keyref="onUserJoined" />The remote client: <xref keyref="onUserJoined" />, if the user joining the channel is in the Communication profile or is a host in the Live-broadcasting profile.</li>
+            <li>The local client: The <xref keyref="onJoinChannelSuccess" /> and <xref keyref="onConnectionStateChanged" /> callbacks.</li>
+            <li>The remote client: <xref keyref="onUserJoined" />, if the user joining the channel is in the Communication profile or is a host in the Live-broadcasting profile.</li>
             </ul></p>
-            <p id="desc3"><xref keyref="onRejoinChannelSuccess" />When the connection between the client and Agora's server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the <xref keyref="onRejoinChannelSuccess" /> callback on the local client.</p>
-            <p props="native unreal unity cs"><xref keyref="joinChannel1" />Compared to <xref keyref="joinChannel1" />, this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and billings. To unsubscribe, set the <parmname>options</parmname> parameter or call the <apiname>mute</apiname> methods accordingly.<parmname></parmname><parmname></parmname><apiname></apiname></p>
+            <p id="desc3">When the connection between the client and Agora's server is interrupted due to poor network conditions, the SDK tries reconnecting to the server. When the local client successfully rejoins the channel, the SDK triggers the <xref keyref="onRejoinChannelSuccess" /> callback on the local client.</p>
+            <p props="native unreal unity cs">Compared to <xref keyref="joinChannel1" />, this method adds the <parmname>options</parmname> parameter to configure whether to automatically subscribe to all remote audio and video streams in the channel when the user joins the channel. By default, the user subscribes to the audio and video streams of all the other users in the channel, giving rise to usage and billings. To unsubscribe, set the <parmname>options</parmname> parameter or call the <apiname>mute</apiname> methods accordingly.</p>
             <note id="note_cyz_w1l_mqb" type="attention">
             <ul id="ul_sz1_y1l_mqb">
             <li>This method allows users to join only one channel at a time.</li>
-            <li><xref keyref="initialize" />Ensure that the app ID you use to generate the token is the same app ID that you pass in the <xref keyref="initialize" /> method; otherwise, you may fail to join the channel by token.</li>
+            <li>Ensure that the app ID you use to generate the token is the same app ID that you pass in the <xref keyref="initialize" /> method; otherwise, you may fail to join the channel by token.</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry id="token">
                 <pt>token</pt>
-                <pd><xref keyref="guide-token"/>The token generated on your server for authentication. See <xref keyref="guide-token"/>.<note type="note"><xref keyref="wildcard-token"/>If you need to join different channels at the same time or switch between channels, Agora recommends using a wildcard token so that you don't need to apply for a new token every time joining a channel. See <xref keyref="wildcard-token"/>.</note></pd>
+                <pd>The token generated on your server for authentication. See <xref keyref="guide-token"/>.<note type="note">If you need to join different channels at the same time or switch between channels, Agora recommends using a wildcard token so that you don't need to apply for a new token every time joining a channel. See <xref keyref="wildcard-token"/>.</note></pd>
             </plentry>
             <plentry id="channelID">
                 <pt>channelId</pt>
@@ -78,31 +78,31 @@
             </plentry>
             <plentry id="uid">
                 <pt>uid</pt>
-                <pd><apiname keyref="onJoinChannelSuccess" />The user ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer. The value range is 1 to 2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns a random user ID and returns it in the <apiname keyref="onJoinChannelSuccess" /> callback. Your application must record and maintain the returned user ID, because the SDK does not do so.<sup></sup></pd>
+                <pd>The user ID. This parameter is used to identify the user in the channel for real-time audio and video interaction. You need to set and manage user IDs yourself, and ensure that each user ID in the same channel is unique. This parameter is a 32-bit unsigned integer. The value range is 1 to 2<sup>32</sup>-1. If the user ID is not assigned (or set to 0), the SDK assigns a random user ID and returns it in the <apiname keyref="onJoinChannelSuccess" /> callback. Your application must record and maintain the returned user ID, because the SDK does not do so.</pd>
             </plentry>
             <plentry id="options">
                 <pt props="android cpp unreal bp electron unity rn flutter cs">options</pt>
                 <pt props="ios mac">mediaOptions</pt>
-                <pd id="options_desc"><xref keyref="ChannelMediaOptions" />The channel media options. See <xref keyref="ChannelMediaOptions" />.</pd>
+                <pd id="options_desc">The channel media options. See <xref keyref="ChannelMediaOptions" />.</pd>
             </plentry>
             <plentry props="ios mac" id="joinsuccessblock">
                 <pt>joinSuccessBlock</pt>
-                <pd><xref keyref="onJoinChannelSuccess" /><apiname keyref="onJoinChannelSuccess" /><apiname keyref="onJoinChannelSuccess" />Occurs when a user joins a channel. <codeph>joinSuccessBlock</codeph> takes higher priority than <xref keyref="onJoinChannelSuccess" />. When both are implemented, <apiname keyref="onJoinChannelSuccess" /> does not take effect. Agora recommends setting <codeph>joinSuccessBlock</codeph> as <codeph>nil</codeph> to use <apiname keyref="onJoinChannelSuccess" />.<codeph></codeph><codeph></codeph><codeph></codeph></pd>
+                <pd>Occurs when a user joins a channel. <codeph>joinSuccessBlock</codeph> takes higher priority than <xref keyref="onJoinChannelSuccess" />. When both are implemented, <apiname keyref="onJoinChannelSuccess" /> does not take effect. Agora recommends setting <codeph>joinSuccessBlock</codeph> as <codeph>nil</codeph> to use <apiname keyref="onJoinChannelSuccess" />.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li><xref keyref="ChannelMediaOptions" />-2: The parameter is invalid. For example, the token is invalid, the <parmname>uid</parmname> parameter is not set to an integer, or the value of a member in <xref keyref="ChannelMediaOptions" /> is invalid. You need to pass in a valid parameter and join the channel again.<parmname></parmname></li>
-                <li><xref keyref="IRtcEngine" /><apiname keyref="IRtcEngine" />-3: Failes to initialize the <xref keyref="IRtcEngine" /> object. You need to reinitialize the <apiname keyref="IRtcEngine" /> object.</li>
-                <li><apiname keyref="IRtcEngine" /><apiname keyref="IRtcEngine" />-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
-                <li><apiname keyref="IRtcEngine" /><xref keyref="startEchoTest3" /><xref keyref="stopEchoTest" /><apiname keyref="stopEchoTest" />-8: The internal state of the <apiname keyref="IRtcEngine" /> object is wrong. The typical cause is that you call this method to join the channel without calling <xref keyref="startEchoTest3" /> to stop the test after calling <xref keyref="stopEchoTest" /> to start a call loop test. You need to call <apiname keyref="stopEchoTest" /> before calling this method.</li>
-                <li><xref keyref="onConnectionStateChanged" /><apiname keyref="CONNECTION_STATE_DISCONNECTED" />-17: The request to join the channel is rejected. The typical cause is that the user is in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
-                <li>-102: The channel name is invalid. You need to pass in a valid channelname in <parmname>channelId</parmname> to rejoin the channel.<parmname></parmname></li>
-                <li>-121: The user ID is invalid. You need to pass in a valid user ID in <parmname>uid</parmname> to rejoin the channel.<parmname></parmname></li>
+                <li>-2: The parameter is invalid. For example, the token is invalid, the <parmname>uid</parmname> parameter is not set to an integer, or the value of a member in <xref keyref="ChannelMediaOptions" /> is invalid. You need to pass in a valid parameter and join the channel again.</li>
+                <li>-3: Failes to initialize the <xref keyref="IRtcEngine" /> object. You need to reinitialize the <apiname keyref="IRtcEngine" /> object.</li>
+                <li>-7: The <apiname keyref="IRtcEngine" /> object has not been initialized. You need to initialize the <apiname keyref="IRtcEngine" /> object before calling this method.</li>
+                <li>-8: The internal state of the <apiname keyref="IRtcEngine" /> object is wrong. The typical cause is that you call this method to join the channel without calling <xref keyref="startEchoTest3" /> to stop the test after calling <xref keyref="stopEchoTest" /> to start a call loop test. You need to call <apiname keyref="stopEchoTest" /> before calling this method.</li>
+                <li>-17: The request to join the channel is rejected. The typical cause is that the user is in the channel. Agora recommends that you use the <xref keyref="onConnectionStateChanged" /> callback to determine whether the user exists in the channel. Do not call this method to join the channel unless you receive the <apiname keyref="CONNECTION_STATE_DISCONNECTED" />(1) state.</li>
+                <li>-102: The channel name is invalid. You need to pass in a valid channelname in <parmname>channelId</parmname> to rejoin the channel.</li>
+                <li>-121: The user ID is invalid. You need to pass in a valid user ID in <parmname>uid</parmname> to rejoin the channel.</li>
                 </ul></li>
             </ul> </section>
     </refbody>

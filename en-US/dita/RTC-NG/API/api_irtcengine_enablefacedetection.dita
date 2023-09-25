@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablefacedetection">
     <title><ph keyref="enableFaceDetection" /></title>
-    <shortdesc id="short"><ph id="shortdesc">Enables or disables face detection for the local user.</ph><ph id="shortdesc"></ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Enables or disables face detection for the local user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -26,12 +26,12 @@
             <title>Details</title>
             <p>You can call this method either before or after joining a channel.</p>
             <note type="attention" props="cpp unreal bp unity flutter">This method is for Android and iOS only.</note>
-            <p><xref keyref="onFacePositionChanged" />Once face detection is enabled, the SDK triggers the <xref keyref="onFacePositionChanged" /> callback to report the face information of the local user, which includes the following:<ul>
+            <p>Once face detection is enabled, the SDK triggers the <xref keyref="onFacePositionChanged" /> callback to report the face information of the local user, which includes the following:<ul>
             <li>The width and height of the local video.</li>
             <li>The position of the human face in the local view.</li>
             <li>The distance between the human face and the screen.</li>
             </ul> </p>
-            <p><apiname keyref="startPreview2" /><apiname keyref="enableVideo" />This method needs to be called after the camera is started (for example, by calling <apiname keyref="startPreview2" /> or<apiname keyref="enableVideo" /> ).</p>
+            <p>This method needs to be called after the camera is started (for example, by calling <apiname keyref="startPreview2" /> or<apiname keyref="enableVideo" /> ).</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -40,17 +40,17 @@
                 <pt props="android ios mac ">enable</pt>
                 <pt props="cpp unreal bp unity flutter electron rn cs">enabled</pt>
                 <pd>Whether to enable face detection for the local user:<ul>
-                    <li><ph keyref="true" /><codeph><ph keyref="true" /></codeph>: Enable face detection.<codeph></codeph></li>
-                    <li><ph keyref="false" /><codeph><ph keyref="false" /></codeph>: (Default) Disable face detection.<codeph></codeph></li>
+                    <li><codeph><ph keyref="true" /></codeph>: Enable face detection.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: (Default) Disable face detection.</li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter"><xref keyref="AgoraRtcException"/><xref keyref="error-code-link"/>When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0: Success.</li>
-            <li><xref keyref="error-code-link"/>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ph props="cn"></ph></li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>
