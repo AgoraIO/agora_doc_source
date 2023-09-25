@@ -254,7 +254,7 @@ public class AUIRoomConfig {
 
 - `rtcChannelName`：主频道的频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。
 
-- `rtcRtcToken`：加入主频道的 RTC Token。
+- `rtcRtcToken`：加入主频道的 RTC Token。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。
 
   <Admonition type="caution" title="注意">
 
@@ -266,7 +266,7 @@ public class AUIRoomConfig {
 
   <Admonition type="caution" title="注意">
 
-  请确保你使用的 RTM Token 是 AccessToken。详见 <a href="https://docportal.shengwang.cn/cn/Real-time-Messaging/token_upgrade_rtm#参考">使用 RTM Token 鉴权</a>
+  请确保你使用的 RTM Token 是 AccessToken。详见 <a href="https://docportal.shengwang.cn/cn/Real-time-Messaging/token_upgrade_rtm#参考">使用 RTM Token 鉴权</a>。
 
   </Admonition>
 

@@ -1,8 +1,6 @@
 # AUIKitKaraoke swift API（iOS）
 
-本文介绍 AUIKitKaraoke 组件的 API。
-
-源码文件？
+本文介绍 AUIKaraoke 组件的 API。你可以在 GitHub 上查看[源码文件](https://github.com/AgoraIO-Community/AUIKaraoke/tree/main/iOS)。
 
 ## KaraokeUIKit
 
@@ -38,7 +36,7 @@ func createRoom(roomInfo: AUICreateRoomInfo,
 
 创建 K 歌房间。
 
-在 K 歌场景下，创建房间的人自动成为房主。成功创建房间后，会返回创建的房间信息。//TODO
+在 K 歌场景下，创建房间的人自动成为房主。成功创建房间后，会返回创建的房间信息。
 
 **参数**
 
@@ -60,8 +58,8 @@ func getRoomInfoList(lastCreateTime: Int64?,
 
 **参数**
 
-- `lastCreateTime`：（可选）开始时间 //TODO 是指获取某一特定时间之后创建的房间列表吗？
-- `pageSize`：房间列表页数，默认从 0 还是从 1开始？//TODO
+- `lastCreateTime`：（可选）房间创建的时间。
+- `pageSize`：每一页房间列表所展示的房间数量。
 - `callback`：用于处理获取房间列表结果的回调闭包，该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `AUIRoomListCallback` 对象作为参数。//TODO
 
 ### launchRoom
@@ -138,7 +136,7 @@ K 歌房间的相关信息。
 - `roomId`：房间 ID。
 - `roomOwner`：房主信息，详见 [AUIUserThumbnailInfo](#AUIUserThumbnailInfo)。
 - `onlineUsers`：房间内的人数。
-- `createTime`：房间创建的时间（单位？//TODO）
+- `createTime`：房间创建的时间，单位为毫秒。
 
 ### <h3 className="anchor" id="AUIUserThumbnailInfo">AUIUserThumbnailInfo</h3>
 
@@ -149,13 +147,13 @@ open class AUIUserThumbnailInfo: NSObject,AUIUserCellUserDataProtocol {
     public var userName: String = ""    //用户名
     public var userAvatar: String = ""  //用户头像
     public var seatIndex: Int = -1 //用户是否在麦上
-    public var isOwner: Bool = false //是否是owner
+    public var isOwner: Bool = false //是否是owner TODO owner是指房主吗？但是这个本来就是房主相关信息了
 
     public func isEmpty() -> Bool {
         guard userId.count > 0, userName.count > 0 else {return true}
         
         return false
-    }
+    } //TODO 
 }
 ```
 
@@ -166,10 +164,8 @@ K 歌中房主的相关信息。//TODO 原型和input给的参数不一致
 - `userId`：房主的 ID。
 - `userName`：房主的用户名。
 - `userAvatar`：房主的头像。
-
-### <h3 className="anchor" id="AUIException">AUIException</h3>
-
-//TODO iOS没有这个
+- `seatIndex`：int 类型参数，有哪些取值？
+- `isOwner`：
 
 ### <h3 className="anchor" id="AUIRoomConfig">AUIRoomConfig</h3>
 
@@ -190,33 +186,39 @@ open class AUIRoomConfig: NSObject {
 
 **参数**
 
-- `channelName`：主频道名，一般为 `roomId`。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。
+- `channelName`：RTM 频道的频道名，该频道用于同步数据信息、传输信令。
 
-- `rtmToken007`：加入主频道时的 RTM Token。//TODO 这个 token 是用于什么鉴权？
+- `rtmToken007`：登陆 RTM 系统时用的 RTM Token。
 
   <Admonition type="caution" title="注意">
 
   请确保你使用的 RTM Token 是 AccessToken2。
 
+- `rtcToken007`：（rtm login 用）加入主频道的 RTC Token。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。// 这个token和下面的 rtcrtctoken 可以为同一个吗？
+
+- `rtcChannelName`：主频道的频道名。
+
+- `rtcRtcToken`：加入主频道的 RTC Token。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。
+
+  <Admonition type="caution" title="注意">
+
+  请确保你使用的 RTC Token 是 AccessToken2。//TODO 搬到新站后加相应的文档链接
+
   </Admonition>
-
-- `rtcToken007`：加入主频道时用于鉴权的 RTC Token。
-
-- `rtcChannelName`：音视频频道名，一般为{roomId}_rtc。//TODO 音视频频道和主频道之间有什么区别？
-
-- `rtcRtcToken`：
 
 - `rtcRtmToken`：用于音乐内容中心鉴权的 RTM Token。
 
   <Admonition type="caution" title="注意">
 
-  请确保你使用的 RTM Token 是 AccessToken。//rtc mcc 使用是啥意思？
+  请确保你使用的 RTM Token 是 AccessToken。详见 <a href="https://docportal.shengwang.cn/cn/Real-time-Messaging/token_upgrade_rtm#参考">使用 RTM Token 鉴权</a>。
 
   </Admonition>
 
-- `rtcChorusChannelName`：合唱频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。//TODO 独唱场景下，这个参数为空？
+- `rtcChorusChannelName`：合唱频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。独唱场景下，该参数可为空。
 
-- `rtcChorusRtcToken`：根据合唱频道名和用户 ID 生成的 RTC Token，用于加入合唱频道时进行鉴权。//TODO 在独唱场景下，该参数可以为空？
+- `rtcChorusRtcToken`：根据合唱频道名和用户 ID 生成的 RTC Token，用于加入合唱频道时进行鉴权。独唱场景下，该参数可为空。
+
+//TODO Java 有 aui exception 表述错误码和错误信息，ios 有类似的 api 吗？
 
 
 

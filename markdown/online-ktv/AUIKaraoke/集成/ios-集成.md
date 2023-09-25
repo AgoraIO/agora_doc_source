@@ -6,7 +6,7 @@
 
 ## 准备开发环境
 
-//todo https://github.com/AgoraIO-Community/AUIKitKaraoke/blob/main/iOS/doc/KaraokeUIKit_zh.md input里面的前提条件是已经跑通demo
+//todo h ttps://github.com/AgoraIO-Community/AUIKitKaraoke/blob/main/iOS/doc/KaraokeUIKit_zh.md input 里面的前提条件是已经跑通demo，新建一个空项目不可以吗？
 
 ### 前提条件
 
@@ -57,7 +57,7 @@
    ![image-20230911163222007](/Users/admin/Library/Application Support/typora-user-images/image-20230911163222007.png)
 
 ​       <Admonition type="info" title="信息">
-       <ul><li><code>Value</code> 值填写使用麦克风或摄像头的目的即可。</li><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 Hardened Runtime > Runtime Exceptions 中的 Disable Library Validation。</li><li>更多注意事项，可参考 <a href="https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution">Preparing Your App for Distribution</a>。</li></ul>
+​       <ul><li><code>Value</code> 值填写使用麦克风或摄像头的目的即可。</li><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 Hardened Runtime > Runtime Exceptions 中的 Disable Library Validation。</li><li>更多注意事项，可参考 <a href="https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution">Preparing Your App for Distribution</a>。</li></ul>
 ​       </Admonition>
 
 ### 集成组件
@@ -79,15 +79,19 @@
 
 ### 1. 初始化 KaraokeUiKit
 
-创建 `AUiCommonConfig` 对象。//TODO 不用调setup吗❓
+创建 `AUiCommonConfig` 对象。//TODO 这一步已经做了初始化了吗？
 
 ```swift
 let commonConfig = AUICommonConfig()
+// 你的业务服务器域名
 commonConfig.host = KeyCenter.HostUrl
+// 用户 ID
 commonConfig.userId = userInfo.userId  
+// 用户名
 commonConfig.userName = userInfo.userName
+// 用户头像
 commonConfig.userAvatar = userInfo.userAvatar
-//rtmClient可空
+// rtmClient 可为空
 let roomManager = AUIRoomManagerImpl(commonConfig: roomConfig, rtmClient: rtmClient)
 ```
 
@@ -99,12 +103,70 @@ let roomManager = AUIRoomManagerImpl(commonConfig: roomConfig, rtmClient: rtmCli
 let room = AUICreateRoomInfo()
 // 房间名称
 room.roomName = text
-//
+// 房主信息
 room.thumbnail = userInfo.userAvatar
+// 麦位数量
 room.seatCount = 8
 roomManager.createRoom(room: roomInfo) { error, info in
 }
 ```
 
+### 3. 获取房间列表
 
+调用 `getRoomList` 获取已创建房间的列表。你可以通过 `lastCreateTime` 指定房间创建的时间，从而筛选出某一时间之后创建的房间列表，还可以通过 `pageSize` 参数设置每一页展示的房间数量。
 
+```swift
+roomManager.getRoomInfoList(lastCreateTime: lastCreateTime, pageSize: pageSize, callback: callback)
+```
+
+### 4. 拉起房间
+
+调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间。
+
+<Abmonition tpye="caution" title="注意">在调用该方法前，你需要先调用 <code>getRoomList</code> 获取房间列表及相关房间信息。</Abmonition>
+
+```swift
+let uid = KaraokeUIKit.shared.roomConfig?.userId ?? ""
+// 创建房间容器
+let karaokeView = AUIKaraokeRoomView(frame: self.view.bounds)
+// 通过 generateToken 方法获取到必须的token和appid //TODO 这里生成的 token 是 rtc token还是 rtm token？
+generateToken { roomConfig, appId in
+    KaraokeUIKit.shared.launchRoom(roomInfo: self.roomInfo!,
+                                   appId: appId,
+                                   config: roomConfig,
+                                   karaokeView: karaokeView) 
+}
+```
+
+### 5. 销毁房间
+
+K 歌结束后，你可以调用 `destroyRoom` 销毁当前房间。
+
+```swift
+//AUIKaraokeRoomView 提供了 onClickOffButton 点击返回的 clousure TODO
+karaokeView.onClickOffButton = { [weak self] in
+    self.navigationController?.popViewController(animated: true)
+    KaraokeUIKit.shared.destoryRoom(roomId: self.roomInfo?.roomId ?? "") 
+}
+```
+
+### 6. token 过期处理 //TODO 这个回调需要写文档吗
+
+```swift
+//在KaraokeUIKit.shared.launchRoom之后订阅AUIRtmErrorProxyDelegate的回调
+KaraokeUIKit.shared.subscribeError(roomId: self.roomInfo?.roomId ?? "", delegate: self)
+
+//在退出房间时取消订阅
+KaraokeUIKit.shared.unsubscribeError(roomId: self.roomInfo?.roomId ?? "", delegate: self)
+
+//然后通过AUIRtmErrorProxyDelegate回调方法中的onTokenPrivilegeWillExpire来renew所有的token
+@objc func onTokenPrivilegeWillExpire(channelName: String?) {
+    generatorToken { config, _ in
+        KaraokeUIKit.shared.renew(config: config)
+    }
+}
+```
+
+## 示例项目
+
+声网在 GitHub 上提供一个开源的示例项目 [AUIKitKaraoke](https://github.com/AgoraIO-Community/AUIKaraoke/tree/main/iOS) 供你参考。

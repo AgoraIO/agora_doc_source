@@ -633,7 +633,7 @@ K 歌的场景：
 
 <a name="loadMusicType"></a>
 
-#### loadMusicType
+### loadMusicType
 
 ```objective-c
 @objc public enum loadMusicType: Int {
