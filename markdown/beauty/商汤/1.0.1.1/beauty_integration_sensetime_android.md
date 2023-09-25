@@ -60,7 +60,7 @@
    ...
     dependencies {
         ...
-        // x.y.z，请填写具体的 SDK 版本号，如：4.0.0 或 4.1.0-1。
+        // x.y.z，请填写具体的 RTC SDK 版本号，如：4.0.0 或 4.1.0-1。
         // 通过互动直播产品发版说明获取最新版本号。
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
@@ -149,7 +149,7 @@ private val mSTRenderKit by lazy {
 
 ### 3. 初始化 Beauty API
 
-调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是声网基于 `STRenderKit` 对象封装。
+调用 `createSenseTimeBeautyAPI` 创建 Beauty API 对象。Beauty API 对象基于 `STRenderKit` 对象封装。
 
 ```kotlin
 // 创建 Beauty API 对象
@@ -275,7 +275,7 @@ mRtcEngine.registerVideoFrameObserver(object : IVideoFrameObserver {
 
 调用 `RtcEngine` 类的 `joinChannel` 加入频道，同时传入如下参数：
 
-- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 将 `token` 参数传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后将生成的 Token 传入该参数。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么将 `token` 参数传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后将生成的 Token 传入该参数。
 - `channelId`：频道名。
 - `options`：频道媒体设置选项。
 

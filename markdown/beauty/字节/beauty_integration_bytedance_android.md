@@ -59,7 +59,7 @@
    ...
     dependencies {
         ...
-        // x.y.z，请填写具体的 SDK 版本号，如：4.0.0 或 4.1.0-1。
+        // x.y.z，请填写具体的 RTC SDK 版本号，如：4.0.0 或 4.1.0-1。
         // 通过互动直播产品发版说明获取最新版本号。
         implementation 'io.agora.rtc:full-sdk:x.y.z'
      }
@@ -199,7 +199,7 @@ fun initEffect(context: Context){
 
 ### 3. 初始化 Beauty API
 
-调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象是声网基于 `RenderManager` 对象封装。
+调用 `createByteDanceBeautyAPI` 创建 Beauty API 对象。Beauty API 对象基于 `RenderManager` 对象封装。
 
 ```kotlin
 // 创建 Beauty API 对象

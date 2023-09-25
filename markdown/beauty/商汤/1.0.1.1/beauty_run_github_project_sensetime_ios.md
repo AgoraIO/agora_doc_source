@@ -21,7 +21,7 @@
 运行以下命令克隆仓库到本地：
 
 ```shell
-git clone git@github.com:AgoraIO-Usecase/agora-ent-scenarios.git
+git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 ```
 
 ## 集成第三方美颜 SDK

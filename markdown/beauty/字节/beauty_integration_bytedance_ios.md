@@ -73,7 +73,7 @@
     platform :ios, '9.0'
     # 替换成你的 target 名称
     target 'Your App' do
-    # x.y.z 请填写具体的 SDK 版本号，如 4.0.1 或 4.0.0.4
+    # x.y.z 请填写具体的 RTC SDK 版本号，如 4.0.1 或 4.0.0.4
     # 可通过互动直播发版说明获取最新版本号
     pod 'AgoraRtcEngine_iOS', 'x.y.z'
     # 配置字节火山美颜的依赖库
@@ -91,7 +91,7 @@
 
 ### 1. 初始化 AgoraRtcEngineKit
 
-调用声网 RTC SDK 中的 `sharedEngineWithConfig` 创建并初始化 `AgoraRtcEngineKit` 对象。同时调用 `enableVideo` 开启声网 SDK 的视频模块。
+调用声网 RTC SDK 中的 `sharedEngineWithConfig` 创建并初始化 `AgoraRtcEngineKit` 对象。调用 `enableVideo` 开启声网 SDK 的视频模块。
 
 ```swift
 // 初始化 AgoraRtcEngineKit
@@ -115,7 +115,7 @@ private lazy var rtcEngine: AgoraRtcEngineKit = {
 
 ### 2. 初始化美颜和 Beauty API
 
-创建 `BytesBeautyRender` 和 Beauty API 对象。Beauty API 对象是声网基于 `BytesBeautyRender` 对象封装。
+创建 `BytesBeautyRender` 和 Beauty API 对象。Beauty API 对象基于 `BytesBeautyRender` 对象封装。
 
 
 ```swift
@@ -233,7 +233,7 @@ extension BeautyViewController: AgoraVideoFrameDelegate {
 
 调用 `AgoraRtcEngineKit` 类的 `joinChannelByToken` 加入频道，同时传入如下参数：
 
-- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么 将 `token` 参数传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_android_ng?platform=Android)在你的业务服务端生成 Token，然后将生成的 Token 传入该参数。
+- `token`：用于鉴权的动态密钥。如果在[创建声网项目](#创建声网项目)时启用**调试模式**，那么将 `token` 参数传空。如果启用**安全模式**，那么你先参考[使用 Token 鉴权](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/token_server_ios_ng?platform=iOS)在你的业务服务端生成 Token，然后将生成的 Token 传入该参数。
 - `channelId`：频道名。
 - `mediaOptions`：频道媒体设置选项。
 
