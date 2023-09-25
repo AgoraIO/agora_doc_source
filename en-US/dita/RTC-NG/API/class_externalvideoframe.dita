@@ -49,7 +49,7 @@
 @property(assign, nonatomic) int cropBottom;
 @property(assign, nonatomic) int rotation;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ExternalVideoFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ExternalVideoFrame {
   ExternalVideoFrame()
       : type(VIDEO_BUFFER_RAW_DATA),
         format(VIDEO_PIXEL_DEFAULT),
@@ -348,7 +348,7 @@ class ExternalVideoFrame {
                             <li>When using the OpenGL interface (android.opengl.*) defined by Android, set eglContext to this field.</li>
                         </ul></pd>
        </plentry>
-       <plentry props="cpp unreal bp unity c'selectron rn flutter cs">
+       <plentry props="cpp unreal bp unity electron rn flutter cs">
            <pt>eglType</pt>
            <pd>This parameter only applies to video data in Texture format. Texture ID of the video frame.</pd>
        </plentry>
@@ -369,6 +369,15 @@ class ExternalVideoFrame {
             <pt props="cpp unreal bp unity electron rn cs">metadata_size</pt>
            <pt props="flutter">metadataSize</pt>
            <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.</pd>
+       </plentry>
+       <plentry props="cpp unity electron">
+        <pt>d3d11_texture_2d</pt>
+        <pd>This parameter only applies to video data in Windows Texture format. It represents a pointer to an object of type <codeph>ID3D11Texture2D</codeph>, which is used by a video frame.</pd>
+       </plentry>
+       <plentry props="cpp unity electron flutter">
+        <pt props="cpp unity electron">texture_slice_index</pt>
+        <pt props="flutter">textureSliceIndex</pt>
+        <pd>This parameter only applies to video data in Windows Texture format. It represents an index of an <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
        </plentry>
        <plentry>
   <pt>cropLeft</pt>
