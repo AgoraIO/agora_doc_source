@@ -26,7 +26,7 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 
 ## 集成第三方美颜 SDK
 
-1. 联系相芯技术支持获取最新的美颜资源、美颜证书。
+1. 联系相芯技术支持获取最新的美颜 SDK、美颜资源、美颜证书。
 
 2. 下载并解压美颜资源，然后将资源中如下文件添加到美颜示例项目对应的文件路径下：
 

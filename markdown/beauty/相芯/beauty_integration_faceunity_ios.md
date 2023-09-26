@@ -1,4 +1,4 @@
-本文介绍如何通过声网美颜场景化 API 集成相芯美颜到实时音视频中。
+本文介绍如何通过声网美颜场景化 API (Beauty API) 集成相芯美颜到实时音视频互动中。
 
 ## 示例项目
 
@@ -52,7 +52,7 @@
     | FaceUnity/Lib/Resources | iOS/FULib         |
     | 证书：authpack.h      | iOS/BeautyAPi/FUBeauty/authpack.h  |
 
-6. 将声网美颜场景化 API 集成到你的项目中。添加 [iOS/BeautyAPi/BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/iOS/BeautyAPi/BeautyAPI) 目录下的文件到项目中对应的目录下，具体文件如下：
+6. 将声网美颜场景化 API 集成到你的项目中。添加 [iOS/BeautyAPi/BeautyAPI](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/iOS/BeautyAPi/BeautyAPI) 目录下的文件到项目中，具体文件如下：
 
     - `Render/FURender` 文件夹
     - `FURender` 文件夹
@@ -61,7 +61,7 @@
     - `BeautyConfig.h` 文件
     - `BeautyConfig.m` 文件
 
-    <div class="alert note">为方便后续代码升级，请不要修改你添加的这些文件的名称。</div>
+    <div class="alert note">为方便后续代码升级，请不要修改你添加的这些文件的名称和路径。</div>
 
 7. 将声网 RTC SDK 和相芯美颜依赖库集成到你的项目。
 
@@ -166,9 +166,9 @@ if result != 0 {
 ```
 
 
-### 3. 设置是否开启美颜
+### 3. 开启美颜
 
-调用 Beauty API 的 `enable` 方法开启美颜。
+调用 Beauty API 的 `enable` 方法并将参数设为 `true` 开启美颜。
 
 ```swift
 beautyAPI.enable(true)

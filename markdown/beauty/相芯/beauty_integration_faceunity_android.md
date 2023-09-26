@@ -1,4 +1,4 @@
-本文介绍如何通过声网美颜场景化 API 集成相芯美颜到实时音视频中。
+本文介绍如何通过声网美颜场景化 API (Beauty API) 集成相芯美颜到实时音视频互动中。
 
 ## 示例项目
 
@@ -87,12 +87,12 @@
     | 证书：`authpack.java`    | app/src/main/java/io/agora/beauty/demo/authpack.java  |
 
 
-4. 将声网美颜场景化 API 集成到你的项目中。添加 [Android/lib_faceunity/src/main/java/io/agora/beautyapi/faceunity](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_faceunity/src/main/java/io/agora/beautyapi/faceunity) 目录下的文件到项目中对应的目录下，具体文件如下：
+4. 将声网美颜场景化 API 集成到你的项目中。添加 [Android/lib_faceunity/src/main/java/io/agora/beautyapi/faceunity](https://github.com/AgoraIO-Community/BeautyAPI/tree/main/Android/lib_faceunity/src/main/java/io/agora/beautyapi/faceunity) 目录下的文件到项目中，具体文件如下：
     - `utils` 文件夹
     - `FaceUnityBeautyAPI.kt` 文件
     - `FaceUnityBeautyAPIImpl` 文件
 
-    <div class="alert note">为方便后续代码升级，请不要修改你添加的这些文件的名称。</div>
+    <div class="alert note">为方便后续代码升级，请不要修改你添加的这些文件的名称和路径。</div>
 
 5. 添加网络及设备权限。
 
@@ -139,7 +139,7 @@ private val mRtcEngine by lazy {
         mAppId = BuildConfig.AGORA_APP_ID
         mEventHandler = object : IRtcEngineEventHandler() {}
     }).apply {
-        // 开启声网 clear_vision 视频插件
+        // 开启声网 clear_vision 高清视频插件
         enableExtension
         ("agora_video_filters_clear_vision", "clear_vision", true)
     }
@@ -261,9 +261,9 @@ mFaceUnityApi.initialize(
 )
 ```
 
-### 4. 设置是否开启美颜
+### 4. 开启美颜
 
-调用 Beauty API 的 `enable` 方法开启美颜。
+调用 Beauty API 的 `enable` 方法并将参数设为 `true` 开启美颜。
 
 ```kotlin
 mFaceUnityApi.enable(true)

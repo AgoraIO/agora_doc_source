@@ -52,7 +52,7 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
     | `AppId`    | 声网项目的 App ID     | [获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)  |
 
 
-2. 在 `BeautyAPI/iOS` 目录下运行 `pod install`，然后等待依赖库安装完成。
+2. 在 `iOS/` 目录下运行 `pod install`，然后等待依赖库安装完成。
 
 
 ## 编译并运行示例项目
@@ -63,7 +63,7 @@ git clone git@github.com:AgoraIO-Community/BeautyAPI.git
 
 2. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 是设备上应用程序的唯一标识。在开发应用时，你需要设置 Bundle ID。在此处设置的 Bundle ID 需要与你申请字节火山美颜 SDK 时提供的 Bundle ID 一致。
 
-3. 点击 <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25"/> 开始编译。
+3. 点击 <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25" style="display: inline;" /> 开始编译。
 
 4. 编译成功后，你的 iOS 设备上会出现美颜应用。在 iOS 系统设置中将该应用设为信任开发者后你才能打开应用。
 
