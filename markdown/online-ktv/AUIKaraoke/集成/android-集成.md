@@ -115,11 +115,11 @@ config.userAvatar = "User Avatar"
 KaraokeUiKit.setup(
     // AUiCommonConfig 对象
     config = config,
-    // RtmClient 实例。如果的你的项目中还未集成声网 RTM SDK，请传入 null，KaraokeUiKit 内部会自行创建
+    // RtmClient 实例。如果的你的项目中还未集成声网 RTM SDK，请传入 null，AUIKaraoke 内部会自行创建
     rtmClient = null,
-    // RtcEngineEx 实例。如果的你的项目中还未集成声网 RTC SDK，请传入 null，KaraokeUiKit 内部会自行创建
+    // RtcEngineEx 实例。如果的你的项目中还未集成声网 RTC SDK，请传入 null，AUIKaraoke 内部会自行创建
     rtcEngineEx = null,
-    // KtvApi 实例。如果你的项目中还未集成 KtvApi，请传入 null，KaraokeUiKit 内部会自行创建
+    // KtvApi 实例。如果你的项目中还未集成 KtvApi，请传入 null，AUIKaraoke 内部会自行创建
     ktvApi = null
 )
 ```

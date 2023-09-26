@@ -6,8 +6,6 @@
 
 ## 准备开发环境
 
-//todo h ttps://github.com/AgoraIO-Community/AUIKitKaraoke/blob/main/iOS/doc/KaraokeUIKit_zh.md input 里面的前提条件是已经跑通demo，新建一个空项目不可以吗？
-
 ### 前提条件
 
 - [Git](https://git-scm.com/downloads)
@@ -29,9 +27,8 @@
 
   - App ID：声网随机生成的字符串，用于识别你的 app。
   - 临时 Token：你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。临时 Token 的有效期为 24 小时。
-  - rtm Token：
 
-### 创建并配置项目 
+### 创建并配置项目
 
 按照下列步骤来创建并配置你的项目。
 
@@ -43,12 +40,11 @@
 
 3. 设置部署你的 app 的[目标设备](https://help.apple.com/xcode/mac/current/#/deve69552ee5)。
 
-4. 在 `KeyCenter.swift` 文件中添加你的业务服务器域名，你也可以直接使用声网测试域名来进行体验：https://service.agora.io/uikit-karaoke。//TODO 这里的测试域名跟demo里面的不一致，要确认下
+4. 在 `KeyCenter.swift` 文件中添加你的业务服务器域名，你也可以直接使用声网测试域名来进行体验：https://service.agora.io/uikit-karaoke。
 
    ```swift
    struct KeyCenter {
-       static var HostUrl: String = "https://test-uikit-karaoke.bj2.agoralab.co"
-   //    static var HostUrl: String = "https://service.agora.io/uikit-karaoke"  //该域名仅限体验使用，请勿用户正式商用环境
+       static var HostUrl: String = "https://service.agora.io/uikit-karaoke"
    }
    ```
 
@@ -64,9 +60,10 @@
 
 1. 将下列源码复制到你的项目中：
 
-   - [AUIKit](https://github.com/AgoraIO-Community/AUIKit/tree/main/iOS)
+   - [KaraokeUIKit](https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/iOS/Example/AUIKaraoke/KaraokeUIKit.swift)
+   加上 karaokeuikit
    - [AScenesKit](https://github.com/AgoraIO-Community/AUIKitKaraoke/tree/main/iOS/AScenesKit)
-   - [KeyCenter.swift](https://github.com/AgoraIO-Community/AUIKitKaraoke/blob/main/iOS/Example/AUIKitKaraoke/KeyCenter.swift)// TODO 为什么这个也要复制？
+   - [KeyCenter.swift](https://github.com/AgoraIO-Community/AUIKitKaraoke/blob/main/iOS/Example/AUIKitKaraoke/KeyCenter.swift)
 
 2. 在 Podfile 文件里添加依赖。
 
@@ -77,22 +74,29 @@
 
 ## 实现在线 K 歌房
 
-### 1. 初始化 KaraokeUiKit
+### 1. 初始化 AUIKaraoke
 
-创建 `AUiCommonConfig` 对象。//TODO 这一步已经做了初始化了吗？
+创建 `AUiCommonConfig` 对象，调用 `setup` 初始化 AUIKaraoke。
 
 ```swift
+// 创建 AUiCommonConfig 对象
 let commonConfig = AUICommonConfig()
 // 你的业务服务器域名
 commonConfig.host = KeyCenter.HostUrl
 // 用户 ID
-commonConfig.userId = userInfo.userId  
+commonConfig.userId = userInfo.userId
 // 用户名
 commonConfig.userName = userInfo.userName
 // 用户头像
 commonConfig.userAvatar = userInfo.userAvatar
-// rtmClient 可为空
-let roomManager = AUIRoomManagerImpl(commonConfig: roomConfig, rtmClient: rtmClient)
+// 初始化
+KaraokeUIKit.shared.setup(roomConfig: commonConfig,
+                          // KtvApi 对象。如果你的项目中还未集成 KtvApi，请传入 nil， AUIKaraoke 内部会自行创建
+                          ktvApi: nil,
+                           // RtcEngine 对象。如果的你的项目中还未集成声网实时互动 SDK，请传入 AUIKaraoke 内部会自行创建
+                          rtcEngine: nil,
+                          // RtmClient 对象。如果的你的项目中还未集成声网 RTM SDK，请传入 nil，AUIKaraoke 内部会自行创建
+                          rtmClient: nil)
 ```
 
 ### 2. 创建房间
@@ -101,13 +105,18 @@ let roomManager = AUIRoomManagerImpl(commonConfig: roomConfig, rtmClient: rtmCli
 
 ```swift
 let room = AUICreateRoomInfo()
-// 房间名称
+// 房间名
 room.roomName = text
 // 房主信息
-room.thumbnail = userInfo.userAvatar
+room.thumbnail = self.userInfo.userAvatar
 // 麦位数量
 room.seatCount = 8
-roomManager.createRoom(room: roomInfo) { error, info in
+KaraokeUIKit.shared.createRoom(roomInfo: room) { roomInfo in
+    let vc = RoomViewController()
+    vc.roomInfo = roomInfo
+    self.navigationController?.pushViewController(vc, animated: true)
+} failure: { error in
+    //错误提示
 }
 ```
 
@@ -116,12 +125,15 @@ roomManager.createRoom(room: roomInfo) { error, info in
 调用 `getRoomList` 获取已创建房间的列表。你可以通过 `lastCreateTime` 指定房间创建的时间，从而筛选出某一时间之后创建的房间列表，还可以通过 `pageSize` 参数设置每一页展示的房间数量。
 
 ```swift
-roomManager.getRoomInfoList(lastCreateTime: lastCreateTime, pageSize: pageSize, callback: callback)
+KaraokeUIKit.shared.getRoomInfoList(lastCreateTime: nil,
+                                    pageSize: kListCountPerPage,
+                                    callback: { error, list in
+})
 ```
 
 ### 4. 拉起房间
 
-调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间。
+调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间，你可以
 
 <Abmonition tpye="caution" title="注意">在调用该方法前，你需要先调用 <code>getRoomList</code> 获取房间列表及相关房间信息。</Abmonition>
 
@@ -129,12 +141,12 @@ roomManager.getRoomInfoList(lastCreateTime: lastCreateTime, pageSize: pageSize, 
 let uid = KaraokeUIKit.shared.roomConfig?.userId ?? ""
 // 创建房间容器
 let karaokeView = AUIKaraokeRoomView(frame: self.view.bounds)
-// 通过 generateToken 方法获取到必须的token和appid //TODO 这里生成的 token 是 rtc token还是 rtm token？
+// 通过 generateToken 方法获取到 rtc 和 rtmtoken 以及 appid
 generateToken { roomConfig, appId in
     KaraokeUIKit.shared.launchRoom(roomInfo: self.roomInfo!,
                                    appId: appId,
                                    config: roomConfig,
-                                   karaokeView: karaokeView) 
+                                   karaokeView: karaokeView)
 }
 ```
 
@@ -146,11 +158,11 @@ K 歌结束后，你可以调用 `destroyRoom` 销毁当前房间。
 //AUIKaraokeRoomView 提供了 onClickOffButton 点击返回的 clousure TODO
 karaokeView.onClickOffButton = { [weak self] in
     self.navigationController?.popViewController(animated: true)
-    KaraokeUIKit.shared.destoryRoom(roomId: self.roomInfo?.roomId ?? "") 
+    KaraokeUIKit.shared.destoryRoom(roomId: self.roomInfo?.roomId ?? "")
 }
 ```
 
-### 6. token 过期处理 //TODO 这个回调需要写文档吗
+### 6. token 过期处理 //TODO 这个回调需要写文档吗 之后跟chunzhen确认一下是否要一起加
 
 ```swift
 //在KaraokeUIKit.shared.launchRoom之后订阅AUIRtmErrorProxyDelegate的回调

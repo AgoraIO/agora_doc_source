@@ -1,4 +1,4 @@
-声网在 GitHub 上提供一个开源的 [AUIKaraoke 示例项目](https://github.com/AgoraIO-Community/AUIKitKaraoke/tree/main)。本文介绍如何快速跑通该示例项目，体验在线 K 歌场景。//TODO 和生动互娱的demo的描述之间的差异
+声网在 GitHub 上提供一个开源的 [AUIKaraoke 示例项目](https://github.com/AgoraIO-Community/AUIKitKaraoke/tree/main)。本文介绍如何快速跑通该示例项目，体验在线 K 歌场景。
 
 ## 前提条件
 
@@ -68,7 +68,7 @@ git clone git@github.com:AgoraIO-Community/AUIKitKaraoke.git
 
    <img src="/Users/admin/Library/Application Support/typora-user-images/image-20230821174751911.png" alt="image-20230821174751911" style="zoom:50%;" />
 
-   
+
 
 ## 常见问题
 

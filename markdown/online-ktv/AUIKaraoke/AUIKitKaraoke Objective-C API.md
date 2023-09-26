@@ -12,7 +12,7 @@
 func setup(roomConfig: AUICommonConfig,
            ktvApi: KTVApiDelegate? = nil,
            rtcEngine: AgoraRtcEngineKit? = nil,
-           rtmClient: AgoraRtmClientKit? = nil) 
+           rtmClient: AgoraRtmClientKit? = nil)
 ```
 
 初始化 `scenekit`。
@@ -47,8 +47,8 @@ func createRoom(roomInfo: AUICreateRoomInfo,
 ### getRoomList
 
 ```swift
-func getRoomInfoList(lastCreateTime: Int64?, 
-                     pageSize: Int, 
+func getRoomInfoList(lastCreateTime: Int64?,
+                     pageSize: Int,
                      callback: @escaping AUIRoomListCallback)
 ```
 
@@ -60,7 +60,7 @@ func getRoomInfoList(lastCreateTime: Int64?,
 
 - `lastCreateTime`：（可选）房间创建的时间。
 - `pageSize`：每一页房间列表所展示的房间数量。
-- `callback`：用于处理获取房间列表结果的回调闭包，该闭包在函数执行完成后仍然可以被调用。回调闭包接受一个 `AUIRoomListCallback` 对象作为参数。//TODO
+- `callback`：用于处理获取房间列表结果的回调闭包，在成功获取房间列表结果后会被调用。回调闭包接受一个 `AUIRoomListCallback` 对象作为参数。
 
 ### launchRoom
 
@@ -68,7 +68,7 @@ func getRoomInfoList(lastCreateTime: Int64?,
 func launchRoom(roomInfo: AUIRoomInfo,
                 appId: String? = nil,
                 config: AUIRoomConfig,
-                karaokeView: AUIKaraokeRoomView) 
+                karaokeView: AUIKaraokeRoomView)
 ```
 
 拉起 K 歌房间。
@@ -122,10 +122,10 @@ open class AUICommonConfig: NSObject {
 
 ```kotlin
 open class AUIRoomInfo: AUICreateRoomInfo {
-    public var roomId: String = "" 
-    public var owner: AUIUserThumbnailInfo? 
-    public var memberCount: UInt = 0 
-    public var createTime: Int64 = 0 
+    public var roomId: String = ""
+    public var owner: AUIUserThumbnailInfo?
+    public var memberCount: UInt = 0
+    public var createTime: Int64 = 0
 }
 ```
 
@@ -142,30 +142,28 @@ K 歌房间的相关信息。
 
 ```swift
 open class AUIUserThumbnailInfo: NSObject,AUIUserCellUserDataProtocol {
-    
+
     public var userId: String = ""      //用户Id
     public var userName: String = ""    //用户名
     public var userAvatar: String = ""  //用户头像
     public var seatIndex: Int = -1 //用户是否在麦上
-    public var isOwner: Bool = false //是否是owner TODO owner是指房主吗？但是这个本来就是房主相关信息了
+    public var isOwner: Bool = false //是否是owner TODO owner是指房主吗？但是这个本来就是房主相关信息了 后面两个删掉
 
     public func isEmpty() -> Bool {
         guard userId.count > 0, userName.count > 0 else {return true}
-        
+
         return false
-    } //TODO 
+    }
 }
 ```
 
-K 歌中房主的相关信息。//TODO 原型和input给的参数不一致
+K 歌中房主的相关信息。//TODO 原型和input给的参数不一致，研发说之后会删掉后两个参数，明天确认下
 
 **参数**
 
 - `userId`：房主的 ID。
 - `userName`：房主的用户名。
 - `userAvatar`：房主的头像。
-- `seatIndex`：int 类型参数，有哪些取值？
-- `isOwner`：
 
 ### <h3 className="anchor" id="AUIRoomConfig">AUIRoomConfig</h3>
 
@@ -194,7 +192,7 @@ open class AUIRoomConfig: NSObject {
 
   请确保你使用的 RTM Token 是 AccessToken2。
 
-- `rtcToken007`：（rtm login 用）加入主频道的 RTC Token。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。// 这个token和下面的 rtcrtctoken 可以为同一个吗？
+- `rtcToken007`：（rtm login 用）加入主频道的 RTC Token。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。
 
 - `rtcChannelName`：主频道的频道名。
 
@@ -208,20 +206,13 @@ open class AUIRoomConfig: NSObject {
 
 - `rtcRtmToken`：用于音乐内容中心鉴权的 RTM Token。
 
-  <Admonition type="caution" title="注意">
-
-  请确保你使用的 RTM Token 是 AccessToken。详见 <a href="https://docportal.shengwang.cn/cn/Real-time-Messaging/token_upgrade_rtm#参考">使用 RTM Token 鉴权</a>。
-
-  </Admonition>
-
 - `rtcChorusChannelName`：合唱频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。独唱场景下，该参数可为空。
 
 - `rtcChorusRtcToken`：根据合唱频道名和用户 ID 生成的 RTC Token，用于加入合唱频道时进行鉴权。独唱场景下，该参数可为空。
 
-//TODO Java 有 aui exception 表述错误码和错误信息，ios 有类似的 api 吗？
 
 
 
 
 
- 
+
