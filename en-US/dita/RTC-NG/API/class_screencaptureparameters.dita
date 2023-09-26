@@ -19,7 +19,7 @@
 @property(assign, nonatomic) NSUInteger highLightWidth;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ScreenCaptureParameters {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureParameters {
     VideoDimensions dimensions;
     int frameRate;
     int bitrate;
@@ -256,6 +256,7 @@
                     <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
                     <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
                     </ul></p>
+                    <note props="cpp mac unity flutter electron">Due to macOS system restrictions, setting this parameter to <codeph><ph keyref="false" /></codeph> is ineffective during screen sharing (it has no impact when sharing a window).</note>
                 </pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity electron rn flutter cs">

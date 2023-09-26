@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_adjustuserplaybacksignalvolumeex">
     <title><ph keyref="adjustUserPlaybackSignalVolumeEx" /></title>
-    <shortdesc id="short" conkeyref="adjustUserPlaybackSignalVolume/short" />
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the playback signal volume of a specified remote user.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -18,7 +18,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)adjustUserPlaybackSignalVolumeEx:(NSUInteger)uid
                               volume:(NSInteger)volume
                           connection:(AgoraRtcConnection* _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolumeEx(unsigned int uid, int volume, const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int adjustUserPlaybackSignalVolumeEx(unsigned int uid, int volume, const RtcConnection&amp; connection) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract adjustUserPlaybackSignalVolumeEx(
     uid: number,
     volume: number,
@@ -68,10 +68,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>
