@@ -34,6 +34,11 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph>(27)：进行屏幕采集的窗口已经从最小化状态中恢复。</li>
                         </ul></p>
                     </li>
+                    <li><ph><b>进阶功能查询</b></ph>
+                        <p>该版本新增了 <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> 方法，用于查询设备能力是否满足虚拟背景、美颜等进阶功能的使用要求。</p>
+                        <p>在使用进阶功能前，你可以根据查询结果判断当前设备是否支持这些功能，从而避免在低端设备上开启进阶功能导致性能下降或功能不可用的问题。你可以根据该方法的返回值，决定是否显示或启用相应的功能按钮，或者在设备能力不足时，为用户提示相应信息。</p>
+                        <p>此外，自该版本起，启用进阶功能时（例如调用 <codeph><apiname keyref="enableVirtualBackground"/></codeph> 启用虚拟背景时）将自动调用 <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> 方法，如果当前设备能力不满足进阶功能的使用要求将返回 <codeph>-4: <apiname keyref="ERR_NOT_SUPPORTED"/></codeph>，表示设备不支持该功能。</p>
+                    </li>
                 </ol>
             </body>
         </topic>
@@ -65,7 +70,7 @@
                 <ul>
                     <li props="cpp">在屏幕共享场景下偶现崩溃、掉帧。</li>
                     <li props="android">在采用 H.265 编码模式时，如果 Web 端加入互动，会导致 Native 端出现冗余的  <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> 回调：当主播调用 <codeph><apiname keyref="enableLocalVideo"/>(true)</codeph>时，接收端在收到 <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> (<codeph>enabled</codeph> 为 <codeph>true</codeph>) 回调之前，会先收到一个 <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> (<codeph>enabled</codeph> 为 <codeph>false</codeph>) 回调。</li>
-                    <li props="mac unity flutter"><p><ph>加入频道偶现的崩溃。</ph><ph>(macOS)</ph></p></li>
+                    <li props="mac unity flutter electron"><p><ph>加入频道偶现的崩溃。</ph><ph>(macOS)</ph></p></li>
                     <li>本地系统时间不正确时，偶现加入频道失败。</li>
                     <li>调用 <codeph><apiname keyref="playEffect3"></apiname></codeph> 使用相同的 <codeph>soundId</codeph> 播放两个不同的音效文件，偶现第一个音效文件播放完毕后会重复播放。</li>
                     <li props="android unity flutter rn"><p><ph>主播调用 <codeph><apiname keyref="startAudioMixing2"/></codeph> 播放音乐文件时，偶现主播本地无法听见音乐，远端用户可以正常听见。</ph><ph props="unity flutter rn">(Android)</ph></p></li>
