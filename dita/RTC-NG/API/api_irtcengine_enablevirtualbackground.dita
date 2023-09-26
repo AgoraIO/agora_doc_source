@@ -45,7 +45,7 @@
             <p>请在 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 之后调用该方法。</p>
             <note type="attention">
             <ul>
-            <li>该功能对设备性能要求较高，建议你在搭载如下芯片的设备上使用：
+            <li>该功能对设备性能要求较高，调用该方法时 SDK 会自动对当前设备能力进行检查。建议你在搭载如下芯片的设备上使用：
                 
                 
                 <ul>
@@ -74,7 +74,6 @@
                 <li>摄像画面中，物件较少，用户的人像为半身人像且基本无遮挡，背景色较单一且与用户着装颜色不同。</li>
                 </ul></li>
             <li>该方法依赖于虚拟背景动态库 <codeph><ph keyref="segmentation"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
-            <li>调用该方法时 SDK 会自动对当前设备能力进行检查，并在设备能力不足时，通过返回错误码 <codeph>-4：<ph keyref="ERR_NOT_SUPPORTED"/></codeph> 表示该设备不支持开启该功能。</li>
             </ul></note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -126,7 +125,7 @@
                 <li>-1：自定义的背景图不存在。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>source</parmname> 的值。</li>
                 <li>-2：自定义的背景图颜色格式出错。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>color</parmname> 的值。</li>
                 <li>-3：设备不支持使用虚拟背景。</li>
-                <li>-4：设备能力不满足虚拟背景的使用要求。</li>
+                <li>-4：设备能力不满足虚拟背景的使用要求，建议更换性能更高的设备。。</li>
                 </ul></li>
             </ul> </section>
     </refbody>
