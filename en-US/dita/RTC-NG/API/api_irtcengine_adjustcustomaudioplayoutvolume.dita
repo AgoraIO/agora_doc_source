@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_adjustcustomaudioplayoutvolume">
-    <title>adjustCustomAudioPlayoutVolume</title>
-    <shortdesc id="short"><ph id="shortdesc" /></shortdesc>
+  <title><ph keyref="adjustCustomAudioPlayoutVolume" /></title>
+    <shortdesc id="short"><ph id="shortdesc">Adjusts the volume of the custom audio track played locally.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -29,16 +29,30 @@
       {required int trackId, required int volume});</codeblock>
             <codeblock props="reserve" outputclass="language-cpp" /></p>
         </section>
+        <section id="detailed_desc">
+            <title>Details</title>
+            <note type="attention">Ensure you have called the <xref keyref="createCustomAudioTrack" /> method to create a custom audio track before calling this method.</note>
+            <p>If you want to change the volume of the audio to be played locally, you need to call this method again.</p>
+        </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry conkeyref="adjustCustomAudioPublishVolume/trackid">
+                <pt />
+                <pd />
+            </plentry>
+            <plentry conkeyref="adjustCustomAudioPublishVolume/volume">
                 <pt />
                 <pd />
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title>Returns</title>
+            <title><ph keyref="return-section-title" /></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></p>
+            <ul>
+            <li props="native unreal bp rn electron unity cs">0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></li>
+            </ul>
         </section>
     </refbody>
 </reference>

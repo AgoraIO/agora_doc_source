@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="release_ng">
+        <title>v4.2.2</title>
+        <body><p>v4.2.2 was released on July xx, 2023.</p></body>
+        <topic id="level3">
+            <title/>
+            <topic id="compatibility" props="android ios unity rn unreal bp flutter">
+                <title>Compatibility changes</title>
+                <body>
+                    <p><b>DRM-protected music</b></p>
+                    <p props="android ios unreal unity">该版本废弃了  类下的  方法并新增  方法。 <codeph><apiname keyref="IMusicContentCenter"/></codeph><codeph><apiname keyref="preload"/></codeph><codeph><apiname keyref="preload2"/></codeph>如果你使用了  方法实现预加载音乐资源，请在升级到该版本后更新 app 代码。<codeph><apiname keyref="preload"/></codeph></p>
+                    <p props="flutter electron rn bp">该版本删除了  类下的  方法中的 <codeph>jsonOption</codeph> 参数，请在升级到该版本后更新 app 代码。<codeph><apiname keyref="IMusicContentCenter"/></codeph><codeph><apiname keyref="preload2"/></codeph></p>
+                </body>
+            </topic>
+            <topic id="newfeature">
+                <title>New features</title>
+                <body>
+                    <ol>
+                        <li><ph><b>Wildcard token</b></ph><p>This release introduces wildcard tokens. Agora supports setting the channel name used for generating a token as a wildcard character. The token generated can be used to join any channel if you use the same user id. In scenarios involving multiple channels, such as switching between different channels, using a wildcard token can avoid repeated application of tokens every time users joining a new channel, which reduces the pressure on your token server. See <xref keyref="wildcard-token"/>.<note type="note">All 4.x SDKs support using wildcard tokens.</note></p>
+                        </li>
+                        <li><ph><b>Preloading channels</b></ph><p>This release adds  and  methods, which allows a user whose role is set as audience to preload channels before joining one. <codeph><apiname keyref="preloadChannel"/></codeph><codeph><apiname keyref="preloadChannel2"/></codeph>Calling the method can help shortening the time of joining a channel, thus reducing the time it takes for audience members to hear and see the host.</p>
+                            <p>When preloading more than one channels, Agora recommends that you use a wildcard token for preloading to avoid repeated application of tokens every time you joining a new channel, thus saving the time for switching between channels. See <xref keyref="wildcard-token"/>.</p>
+                        </li>
+                        <li><ph><b>Customized background color of video canvas</b></ph><p>In this release, the backgroundColor member has been added to , which allows you to customize the<codeph> background</codeph> color of the video canvas when setting the properties of local or remote video display.<codeph><apiname keyref="VideoCanvas"/></codeph></p>
+                        </li>
+                        <li props="apple"><ph><b>Video source types for local preview</b></ph><p>To allow users in selecting different types of video sources for local video preview, this release introduces  and . <codeph><apiname keyref="startPreview2"/></codeph><codeph><apiname keyref="stopPreview2"/></codeph>You can call  and specify the type of video source to be previewed by setting the<codeph> sourceType</codeph> parameter, and call  to stop the video preview.<codeph><apiname keyref="startPreview2"/></codeph><codeph><apiname keyref="stopPreview2"/></codeph></p>
+                            <note>The video source type specified in this method must match the video source type set in the  of the  method.<codeph><apiname keyref="setupLocalVideo"/></codeph><codeph><apiname keyref="VideoCanvas"/></codeph></note>
+                        </li>
+                        <li props="cpp mac unity electron unreal bp flutter"><p><ph><b>Publishing video streams from different sources</b></ph><ph props="cpp flutter unity unreal bp"> (Windows, macOS)</ph></p>
+                            <p>This release adds the following members in  to allow you publish video streams captured from the third and fourth camera or screen:<codeph><apiname keyref="ChannelMediaOptions"/></codeph><ul><li><codeph>publishThirdCameraTrack</codeph>: Publishing the video stream captured from the third camera.</li>
+                            <li><codeph>publishFourthCameraTrack</codeph>: Publishing the video stream captured from the fourth camera.</li>
+                            <li><codeph>publishThirdScreenTrack</codeph>: Publishing the video stream captured from the third screen.</li>
+                            <li><codeph>publishFourthScreenTrack</codeph>: Publishing the video stream captured from the fourth screen.</li></ul>
+                            <note>For one , Agora supports publishing multiple audio streams and one video stream at the same time.<codeph><apiname keyref="RtcConnection"/></codeph></note></p>
+                        </li>
+                        <li props="android ios unity rn unreal bp flutter"><p><ph><b>NO</b></ph><ph props="unity unreal bp flutter"> DOCS</ph></p>
+                            <p>该版本新增 <codeph><apiname keyref="getInternalSongCode"/></codeph> 方法，如果你仅需要播放某一音乐资源的副歌片段，在播放前你需要调用该方法来为该副歌片段创建一个内部歌曲编号，作为该资源的唯一标识。 你可以查看<xref keyref="ktv-docs"/>了解更多 K 歌场景方案。</p>
+                        </li>
+                    </ol>
+                </body>
+            </topic>
+            <topic id="improvement">
+                <title>Improvements</title>
+                <body>
+                    <ol>
+                        <li props="android ios unreal bp flutter unity rn"><p><ph><b>Improved camera capture effect</b></ph><ph props="unreal bp flutter unity"> (Android, iOS)</ph></p>
+                            <p props="ios unreal bp flutter unity rn">This release has improved camera capture effect in the following aspects:<ol>
+                                <li><ph>Support for camera exposure adjustment</ph><p>This release adds  to query whether the device supports exposure adjustment and  to set the exposure ratio of the camera.<codeph><apiname keyref="isCameraExposureSupported"/></codeph><codeph><apiname keyref="setCameraExposureFactor"/></codeph></p></li>
+                                <li><p><ph>Optimization of default camera selection </ph><ph props="unreal bp flutter unity rn">(iOS)</ph></p>
+                                    <p>Since this release, the default camera selection behavior of the SDK is aligned with that of the iOS system camera. If the device has multiple rear cameras, better shooting perspectives, zooming capabilities, low-light performance, and depth sensing can be achieved during video capture, thereby improving the quality of video capture.</p></li>
+                            </ol></p>
+                            <p props="android">Since this release, camera exposure adjustment is supported. This release adds  to query whether the device supports exposure adjustment and  to set the exposure ratio of the camera.<codeph><apiname keyref="isCameraExposureSupported"/></codeph><codeph><apiname keyref="setCameraExposureFactor"/></codeph></p>
+                        </li>
+                        <li><ph><b>Virtual Background Algorithm Upgrade</b></ph><p>This version has upgraded the portrait segmentation algorithm of the virtual background, which comprehensively improves the accuracy of portrait segmentation, the smoothness of the portrait edge with the virtual background, and the fit of the edge when the person moves. In addition, it optimizes the precision of the person's edge in scenarios such as meetings, offices, homes, and under backlight or weak light conditions.</p>
+                        </li>
+                        <li><ph><b>Channel media relay</b></ph><p>The number of target channels for media relay has been increased to 6. When calling  and , you can specify up to 6 target channels.<codeph><apiname keyref="startOrUpdateChannelMediaRelay"/></codeph><codeph><apiname keyref="startOrUpdateChannelMediaRelayEx"/></codeph></p>
+                        </li>
+                        <li><ph><b>Enhancement in video codec query capability</b></ph><p>To improve the video codec query capability, this release adds the <codeph>codecLevels</codeph> member in . <codeph><apiname keyref="CodecCapInfo"/></codeph>After successfully calling , you can obtain the hardware and software decoding capability levels of the device for H.264 and H.265 video formats through<codeph> codecLevels</codeph>.<codeph><apiname keyref="queryCodecCapability"/></codeph></p>
+                        </li>
+                    </ol>
+                    <p>This release includes the following additional improvements:<ol>
+                        <li props="android unity rn unreal bp flutter"><p><ph>To improve the switching experience between multiple audio routes, this release adds the  method. This method can<xref keyref="communication-audio-mode"/> switch the audio route from a Bluetooth headphone to the earpiece, wired headphone or speaker in communication volume mode (). </ph><codeph><apiname keyref="setRouteInCommunicationMode"/></codeph><ph props="unity rn unreal bp flutter">(Android)</ph></p></li>
+                        <li>The SDK automacially adjusts the frame rate of the sending end based on the screen sharing scenario. Especially in document sharing scenarios, this feature avoids exceeding the expected video bitrate on the sending end to improve transmission efficiency and reduce network burden.</li>
+                        <li>To help users understand the reasons for more types of remote video state changes, the  enumeration has been added to the  callback, indicating that the local video decoder does not support decoding the received remote video stream.<codeph><apiname keyref="onRemoteVideoStateChanged"/></codeph><codeph><ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT"/></codeph></li>
+                        <li props="android ios unity rn unreal bp flutter"><p><ph>NO DOCS <codeph><apiname keyref="getSongSimpleInfo"/></codeph><codeph><apiname keyref="onSongSimpleInfoResult"/></codeph></ph><ph props="unity rn flutter unreal bp">(Android, iOS)</ph></p></li>
+                        </ol></p>
+                </body>
+            </topic>
+            <topic id="bugfix">
+                <title>Issues fixed</title>
+                <body>
+                <p>This release fixed the following issues:<ul>
+                        <li props="mac flutter electron unity unreal bp"><p><ph>Occasionally, noise occurred when the local user listened to their own and remote audio after joining the channel. </ph><ph props="flutter electron unity unreal bp">(macOS)</ph></p></li>
+                        <li>Slow channel reconnection after the connection was interrupted due to network reasons.</li>
+                        <li>In screen sharing scenarios, the delay of seeing the shared screen was occasionally higher than expected on some devices.</li> 
+                        <li>In custom video capturing scenarios, , , , and  could not load extensions automatically.<codeph><apiname keyref="setBeautyEffectOptions"/></codeph><codeph><apiname keyref="setLowlightEnhanceOptions"/></codeph><codeph><apiname keyref="setVideoDenoiserOptions"/></codeph><codeph><apiname keyref="setColorEnhanceOptions"/></codeph></li>
+                        <li props="cpp unity cs electron unreal bp flutter"><p><ph>In multi-device audio recording scenarios, after repeatedly plugging and unplugging or enabling/disabling the audio recording device, no sound could be heard occasionally when calling the  to start an audio capturing device test. </ph><codeph><apiname keyref="startRecordingDeviceTest"/></codeph><ph props="unity electron unreal bp flutter">(Windows)</ph></p></li>
+                        
+                    </ul></p>
+                </body>
+            </topic>
+            <topic id="apichange">
+                <title>API changes</title>
+                <body>
+                    <p><b>Added</b><ul>
+                        <li props="apple"><codeph><apiname keyref="startPreview2"/></codeph></li>
+                        <li props="apple"><codeph><apiname keyref="stopPreview2"/></codeph></li>
+                        <li props="android ios unreal bp flutter unity rn"><ph props="unreal bp flutter unity">(Android, iOS)</ph><codeph><apiname keyref="setCameraExposureFactor"/></codeph></li>
+                        <li props="android ios unreal bp flutter unity rn"><ph props="unreal bp flutter unity">(Android, iOS)</ph><codeph><apiname keyref="isCameraExposureSupported"/></codeph></li>
+                        <li><codeph><apiname keyref="preloadChannel"/></codeph></li>
+                        <li><codeph><apiname keyref="preloadChannel2"/></codeph></li>
+                        <li><codeph><apiname keyref="updatePreloadChannelToken"/></codeph></li>
+                        <li props="android ios unity rn flutter unreal bp"><ph props="unreal bp flutter unity">(Android, iOS)</ph><codeph><apiname keyref="getSongSimpleInfo"/></codeph></li>
+                        <li props="android ios unity rn flutter unreal bp"><ph props="unreal bp flutter unity">(Android, iOS)</ph><codeph><apiname keyref="onSongSimpleInfoResult"/></codeph></li>
+                        <li props="android ios unity rn flutter unreal bp"><ph props="unreal bp flutter unity">(Android, iOS)</ph><codeph><apiname keyref="getInternalSongCode"/></codeph></li>
+                        <li props="android ios unity unreal bp"><ph props="unreal bp unity">(Android, iOS)</ph><codeph><apiname keyref="preload2"/></codeph></li>
+                        <li props="android ios unity rn flutter unreal bp">中增加 <codeph>songCode</codeph><ph props="unreal bp flutter unity rn"> (Android, iOS)</ph><codeph><apiname keyref="onLyricResult"/></codeph></li>
+                        <li props="android ios unity rn flutter unreal bp">中增加 <codeph>requestId</codeph><ph props="unreal bp flutter unity rn"> (Android, iOS)</ph><codeph><apiname keyref="onPreLoadEvent_IMusicContentCenterEventHandler"/></codeph></li>
+                        <li props="android unity rn flutter unreal bp"><ph props="unity rn flutter unreal bp">(Android)</ph><codeph><apiname keyref="setRouteInCommunicationMode"/></codeph></li>
+                        <li><p>The following members in :<codeph><apiname keyref="ChannelMediaOptions"/></codeph><ul>
+                        <li><codeph>publishThirdCameraTrack</codeph></li>
+                        <li><codeph>publishFourthCameraTrack</codeph></li>
+                        <li><codeph>publishThirdScreenTrack</codeph></li>
+                        <li><codeph>publishFourthScreenTrack</codeph></li></ul></p></li>
+                        <li><codeph><apiname keyref="CodecCapLevels"/></codeph></li>
+                        <li><codeph><apiname keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/></codeph></li>
+                        <li><codeph>backgroundColor</codeph> in<codeph><apiname keyref="VideoCanvas"/></codeph></li>
+                        <li><codeph>codecLevels</codeph> in<codeph><apiname keyref="CodecCapInfo"/></codeph></li>
+                        <li props="cpp apple framework"> in<codeph><apiname keyref="REMOTE_VIDEO_STATE_REASON"/></codeph><codeph><ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT"/></codeph></li>
+                        <li props="android"><codeph><ph keyref="REMOTE_VIDEO_STATE_REASON_CODEC_NOT_SUPPORT"/></codeph></li>
+                        </ul></p>
+
+                    <p props="android ios unity unreal"><b>Deprecated</b><ul>
+                        <li><ph props="unity unreal">(Android, iOS)</ph><codeph><apiname keyref="preload"/></codeph></li>
+                        </ul></p>
+                    <p props="rn flutter bp"><b>Deleted</b><ul>
+                        <li>类下的  方法中的 <codeph>jsonOption</codeph> 参数<ph props="flutter bp"> (Android, iOS)</ph><codeph><apiname keyref="IMusicContentCenter"/></codeph><codeph><apiname keyref="preload2"/></codeph></li>
+                        </ul></p>
+                </body>
+            </topic>
+        </topic>
+</topic>
