@@ -27,10 +27,9 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph>(27): The window for screen capture has been restored from the minimized state.</li>
                         </ul></p>
                     </li>
-                    <li><ph><b>进阶功能查询</b></ph>
-                        <p>该版本新增了 <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> 方法，用于查询设备能力是否满足虚拟背景、美颜等进阶功能的使用要求。</p>
+                    <li><ph><b>Check device support for advanced features</b></ph><p>This version adds the <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> method to check whether the capability of the current device meet the requirenments of the specified advanced feature, such as virtual background and video enhancement. </p>
                         <p>Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.</p>
-                        <p>此外，自该版本起，启用进阶功能时（例如调用 <codeph><apiname keyref="enableVirtualBackground"/></codeph> 启用虚拟背景时）SDK 会自动对当前设备能力进行检查，并在设备能力不足时，通过返回错误码 <codeph>-4: <ph keyref="ERR_NOT_SUPPORTED"/></codeph> 表示该设备不支持开启该功能。</p>
+                        <p>In addition, since this version, enabling advanced features (such as calling ) automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code<codeph> -4:<ph keyref="ERR_NOT_SUPPORTED"/></codeph>  is returned, indicating the device does not support the feature.<codeph><apiname keyref="enableVirtualBackground"/></codeph><codeph><apiname keyref="setBeautyEffectOptions"/></codeph></p>
                     </li>
                 </ol>
             </body>
