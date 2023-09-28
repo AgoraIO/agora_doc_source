@@ -448,6 +448,220 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppT
 }
 ```
 
+## Setting custom attributes of a group member
+
+Sets the custom attributes of a group member, such as adding a nickname or avatar. Each custom attribute should be in key-value format.
+
+The group owner can modify custom attributes of all group members and other members in the group can only modify their own custom attributes.
+
+### HTTP request
+
+```http
+PUT https://{host}/{org_name}/{app_name}/metadata/chatgroup/{group_id}/user/{username}
+```
+ 
+#### Path parameter
+
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :------- | :----------- |
+| `username`  | String | The user ID of a group member for which custom attributes are set. | Yes   |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :------- | :----------- |
+| `Content-Type`  | String | The parameter type. Set it as `application/json`. | Yes   |
+| `Accept`        | String | The parameter type. Set it as `application/json`.| Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by a space and then the obtained token value. | Yes       | 
+
+#### Response body
+
+| Parameter | Type | Description | Required |
+| :--------- | :--- | :------- | :-------------- |
+| `metaData` | JSON | Custom attributes of a group member to set. Each attribute is represented as a key-value pair: <ul><li> The key indicates the attribute name and cannot exceed 16 bytes. </li><li> The value indicates the attribute value and cannot exceed 512 bytes. Passing an empty string to the value means to delete the attribute. </li></ul> For a single group member, the total length of custom attributes cannot exceed 4 KB.    | Yes       | 
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is 200, the request succeeds and the response body contains the following parameters.
+
+| Field | Type | Description |
+| :----- | :--- | :----------------------- |
+| `data` | JSON | Custom attributes of a group member that are set. |
+
+For other fields and descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](https://docs.agora.io/en/agora-chat/reference/http-status-codes?platform=android) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+curl --location --request PUT 'https://XXXX/XXXX/XXXX/metadata/chatgroup/207059303858177/user/test2' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json'
+-H 'Authorization: Bearer YWMtozZwfsFFEe2oQTE6aob5eQAAAAAAAAAAAAAAAAAAAAExCXvf5bRGAJBgXNYFJVQ9AQMAAAGG2MUClwBPGgDsI1GYg1QtapTEdGyrm29Eu6L8qx60lDZ9TJRDOQjEsw' \
+-d '{
+    "metaData": {
+          "key1": "value1"
+    }
+}'
+```
+
+#### Response example
+
+```json
+{
+  "timestamp": 1678674135533,
+  "data": {
+    "key1": "value1"
+  },
+  "duration": 53
+}
+```
+
+## Retrieving all custom attributes of a group member
+
+Retrieves all custom attributes of a group member.
+
+### HTTP request
+
+```http
+GET https://{host}/{org_name}/{app_name}/metadata/chatgroup/{group_id}/user/{username}
+```
+
+#### Path parameter
+
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :------- | :----------- |
+| `username`  | String | The user ID of a group member whose custom attributes are to be retrieved. | Yes   |
+
+For other parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :------- | :----------- |
+| `Content-Type`  | String | The parameter type. Set it as `application/json`. | Yes   |
+| `Accept`        | String | The parameter type. Set it as `application/json`.| Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       | 
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is 200, the request succeeds and the response body will contain the following parameters.
+
+| Field | Type | Description |
+| :----- | :--- | :----------------------- |
+| `data` | JSON | All custom attributes of a group member that are retrieved. |
+
+For other fields and descriptions, see [Common parameters](#common-parameters).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](https://docs.agora.io/en/agora-chat/reference/http-status-codes?platform=android) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+curl --location --request GET 'https://XXXX/XXXX/XXXX/metadata/chatgroup/207059303858177/user/test2' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json'
+-H 'Authorization: Bearer <YourAppToken>' \
+-d ''
+```
+
+#### Response example
+
+```json
+{
+  "timestamp": 1678674211840,
+  "data": {
+    "key1": "value1"
+  },
+  "duration": 6
+}
+```
+
+## Retrieving custom attributes of multiple group members by attribute key
+
+Retrieves custom attributes of multiple group members by attribute key. You can retrieve custom attributes of at most 10 group members each time.
+
+### HTTP request
+
+```http
+POST https://{host}/{org_name}/{app_name}/metadata/chatgroup/{group_id}/get
+```
+
+#### Path parameter
+
+For the parameters and detailed descriptions, see [Common parameters](#param).
+
+#### Request header
+
+| Parameter | Type | Description | Required |
+| :-------------- | :----- | :------- | :----------- |
+| `Content-Type`  | String | The parameter type. Set it as `application/json`. | Yes   |
+| `Accept`        | String | The parameter type. Set it as `application/json`.| Yes       | 
+| `Authorization` | String | The authentication token of the user or administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes       | 
+
+#### Request body
+
+| Parameter | Type | Description | Required |
+| :----------- | :--------- | :------- | :------------- |
+| `targets`    | JSON Array | The user IDs of group members whose custom attributes are to be retrieved. You can pass in at most 10 user IDs.   | Yes       | 
+| `properties` | JSON Array | The array of keys of custom attributes to retrieve. If you pass in an empty string or no value to the parameter, all custom attributes of the group members will be returned. | Yes      | 
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is 200, the request succeeds and the response body will contain the following parameters.
+
+| Field | Type | Description                                                                                           |
+| :----- | :--- | :------------------------------------------------------------------------------------------------ |
+| `data` | JSON | The custom attributes of the group members that are retrieved. As shown in the following response example, `test1` and `test2` are user IDs of group members to which the retrieved custom attributes belong.  |
+
+For other fields and descriptions, see [Common parameters](#common-parameters).
+
+If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](https://docs.agora.io/en/agora-chat/reference/http-status-codes?platform=android) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+curl --location --request POST 'https://XXXX/XXXX/XXXX/metadata/chatgroup/207059303858177/get' \
+-H 'Content-Type: application/json' \
+-H 'Accept: application/json'
+-H 'Authorization: Bearer <YourAppToken>' \
+-d '{
+    "targets":["test1","test2"],
+    "properties":["key1","key2"]
+}'
+```
+
+#### Response example
+
+```json
+{
+  "timestamp": 1678674292783,
+  "data": {
+    "test1": {
+      "key1": "value1"
+    },
+    "test2": {
+      "key1": "value1"
+    }
+  },
+  "duration": 2
+}
+```
 
 ## Retrieving group admin list
 
