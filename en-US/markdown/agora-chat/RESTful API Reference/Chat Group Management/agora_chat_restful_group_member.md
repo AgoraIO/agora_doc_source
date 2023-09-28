@@ -560,7 +560,7 @@ If the returned HTTP status code is 200, the request succeeds and the response b
 | :----- | :--- | :----------------------- |
 | `data` | JSON | All custom attributes of a group member that are retrieved. |
 
-For other fields and descriptions, see [Common parameters](#common-parameters).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](https://docs.agora.io/en/agora-chat/reference/http-status-codes?platform=android) for possible causes.
 
@@ -627,7 +627,7 @@ If the returned HTTP status code is 200, the request succeeds and the response b
 | :----- | :--- | :------------------------------------------------------------------------------------------------ |
 | `data` | JSON | The custom attributes of the group members that are retrieved. As shown in the following response example, `test1` and `test2` are user IDs of group members to which the retrieved custom attributes belong.  |
 
-For other fields and descriptions, see [Common parameters](#common-parameters).
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](https://docs.agora.io/en/agora-chat/reference/http-status-codes?platform=android) for possible causes.
 
