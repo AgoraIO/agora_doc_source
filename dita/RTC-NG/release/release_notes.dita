@@ -21,10 +21,10 @@
                             <ph>此外，该版本还新增了 <codeph><apiname keyref="enableContentInspectEx"/></codeph> 方法，支持同时对多条视频流截图并上传。</ph>
                         </p>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>支持 ID3D11Texture2D 渲染</b></ph>
-                        <p>自该版本起，SDK 支持 ID3D11Texture2D 类型的视频格式，提升了游戏场景中视频帧的渲染效果。你可以在调用 <codeph><apiname keyref="pushVideoFrame"/></codeph> 方法将外部原始视频帧推送到 SDK 时，设置 <parmname>format</parmname> 为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>；并通过设置 <parmname>d3d11_texture_2d</parmname> 和 <parmname>texture_slice_index</parmname> 属性，来确定要使用的 ID3D11Texture2D 纹理对象。</p>
+                    <li props="cpp unity flutter electron"><ph><b>支持 ID3D11Texture2D 渲染</b></ph> (Windows)
+                        <p>自该版本起，SDK 支持 ID3D11Texture2D 类型的视频格式，提升了游戏场景中视频帧的渲染效果。你可以在调用 <codeph><apiname keyref="pushVideoFrame"/></codeph> 方法将外部原始视频帧推送到 SDK 时，设置 <codeph>format</codeph> 为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>；并通过设置 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 属性，来确定要使用的 ID3D11Texture2D 纹理对象。</p>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>本地视频状态错误码更新</b></ph>
+                    <li props="cpp unity flutter electron"><ph><b>本地视频状态错误码更新</b></ph> (Windows, macOS)
                         <p>为了帮助用户在屏幕共享场景下了解本地视频出错的准确原因，<codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 回调中新增了如下几组枚举：
                         <ul>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph>(23)：屏幕采集已暂停。当前屏幕可能已切换到安全桌面，例如 UAC 对话框或者 Winlogon 桌面。</li>
@@ -68,7 +68,7 @@
             <body>
                 <p>该版本修复了以下问题：</p>
                 <ul>
-                    <li props="cpp unity flutter electron">在屏幕共享场景下偶现崩溃、掉帧。</li>
+                    <li props="cpp unity flutter electron">在屏幕共享场景下偶现崩溃、掉帧。(Windows)</li>
                     <li props="android">在采用 H.265 编码模式时，如果 Web 端加入互动，会导致 Native 端出现冗余的  <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> 回调：当主播调用 <codeph><apiname keyref="enableLocalVideo"/>(true)</codeph>时，接收端在收到 <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> (<codeph>enabled</codeph> 为 <codeph>true</codeph>) 回调之前，会先收到一个 <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> (<codeph>enabled</codeph> 为 <codeph>false</codeph>) 回调。</li>
                     <li props="mac unity flutter electron"><p><ph>加入频道偶现的崩溃。</ph><ph>(macOS)</ph></p></li>
                     <li>本地系统时间不正确时，偶现加入频道失败。</li>
@@ -87,7 +87,7 @@
             <body>
                 <p><b>新增</b>
                     <ul>
-                    <li props="cpp unity flutter electron"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 中新增如下枚举：
+                    <li props="cpp unity flutter electron"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 中新增如下枚举：(Windows, macOS)
                         <ul>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph></li>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph></li>
@@ -95,8 +95,8 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></codeph></li>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
                         </ul></li>
-                    <li  props="cpp unity flutter electron"><codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员</li>
-                    <li  props="cpp unity flutter electron"><codeph><apiname keyref="VIDEO_PIXEL_FORMAT"/></codeph> 中新增 <codeph><apiname keyref="VIDEO_TEXTURE_ID3D11TEXTURE2D"/></codeph> 枚举</li>
+                    <li  props="cpp unity flutter electron"><codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员</li> (Windows)
+                    <li  props="cpp unity flutter electron"><codeph><apiname keyref="VIDEO_PIXEL_FORMAT"/></codeph> 中新增 <codeph><apiname keyref="VIDEO_TEXTURE_ID3D11TEXTURE2D"/></codeph> 枚举</li> (Windows)
                     <li><codeph><apiname keyref="enableContentInspectEx"/></codeph></li>
                     <li props="cpp apple rn unity flutter"><codeph><apiname keyref="CONTENT_INSPECT_TYPE"/></codeph> 新增 <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> </li>
                     <li props="android"><codeph><apiname keyref="ContentInspectModule"/></codeph> 中的 <codeph>type</codeph> 新增 <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> </li>
