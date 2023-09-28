@@ -57,7 +57,7 @@ This release fixed the following issues:
 
 - Occasional crashes and dropped frames occured in screen sharing scenarios. (macOS)
 - Occasional crashes when joining a channel. (macOS)
-- When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was somtimes played repeatedly.
+- When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
 - Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
 
 #### API changes
