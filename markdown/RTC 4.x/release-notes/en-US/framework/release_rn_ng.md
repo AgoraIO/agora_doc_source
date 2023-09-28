@@ -89,9 +89,7 @@ This release fixed the following issues:
 - When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was somtimes played repeatedly.
 - Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
 - When the host called the `startAudioMixing` method to play music, sometimes the host couldn't hear the music while the remote users could hear it. (Android)
-- In a chorus scenario, calling the `preload` method to load music sometimes failed.
 - Occasional crashes occured on certain Android devices. (Android)
-- Loading music lists failed when the local system time was not correct.
 - In channels joined by calling `joinChannelEx` exclusively, calling `setEnableSpeakerphone` is unable to switch audio route from the speaker to the headphone. (Android)
 - Occasionally, noise occurred when the local user listened to their own and remote audio after joining the channel. (macOS)
 - Slow channel reconnection after the connection was interrupted due to network reasons.
