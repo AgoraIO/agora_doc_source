@@ -27,6 +27,10 @@
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph>(27): The window for screen capture has been restored from the minimized state.</li>
                         </ul></p>
                     </li>
+                    <li><ph><b>Check device support for advanced features</b></ph><p>This version adds the <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> method to check whether the capability of the current device meets the requirements of the specified advanced feature, such as virtual background and image enhancement. </p>
+                        <p>Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.</p>
+                        <p>In addition, since this version, calling <codeph><apiname keyref="enableVirtualBackground"/></codeph> and <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code <codeph> -4:<ph keyref="ERR_NOT_SUPPORTED"/></codeph> is returned, indicating the device does not support the feature.</p>
+                    </li>
                 </ol>
             </body>
         </topic>
@@ -55,7 +59,7 @@
                 <ul>
                     <li props="cpp">Occasional crashes and dropped frames occured in screen sharing scenarios.</li>
                     <li props="android">When using the H.265 encoding mode, when a Web client joined the interactivity, it caused a redundant <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback on the native side: when the host called <codeph><apiname keyref="enableLocalVideo"/> (true)</codeph>, the receiving end first received a <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback (with <codeph>enabled</codeph> as <codeph>false</codeph>) before receiving a <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> callback (with <codeph>enabled</codeph> as <codeph>true</codeph>).</li>
-                    <li props="mac unity flutter"><p><ph>Occasional crashes when joining a channel. </ph><ph>(macOS)</ph></p></li>
+                    <li props="mac unity flutter electron"><p><ph>Occasional crashes when joining a channel. </ph><ph>(macOS)</ph></p></li>
                     <li>Occasional failure of joining a channel when the local system time was not set correctly.</li>
                     <li>When calling the <codeph><apiname keyref="playEffect3"></apiname></codeph> method to play two audio files using the same <codeph>soundId</codeph>, the first audio file was somtimes played repeatedly.</li>
                     <li props="android unity flutter rn"><p><ph>When the host called the <codeph><apiname keyref="startAudioMixing2"/></codeph> method to play music, sometimes the host couldn't hear the music while the remote users could hear it. </ph><ph props="unity flutter rn">(Android)</ph></p></li>
