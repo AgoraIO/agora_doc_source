@@ -478,9 +478,9 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 #### Response body
 
-| Parameter | Type | Description | Required |
-| :--------- | :--- | :------- | :-------------- |
-| `metaData` | JSON | Custom attributes of a group member to set. Each attribute is represented as a key-value pair: <ul><li> The key indicates the attribute name and cannot exceed 16 bytes. </li><li> The value indicates the attribute value and cannot exceed 512 bytes. Passing an empty string to the value means to delete the attribute. </li></ul> For a single group member, the total length of custom attributes cannot exceed 4 KB.    | Yes       | 
+| Parameter | Type | Description | 
+| :--------- | :--- | :------- | 
+| `metaData` | JSON | Custom attributes of a group member to set. Each attribute is represented as a key-value pair: <ul><li> The key indicates the attribute name and cannot exceed 16 bytes. </li><li> The value indicates the attribute value and cannot exceed 512 bytes. Passing an empty string to the value means to delete the attribute. </li></ul> For a single group member, the total length of custom attributes cannot exceed 4 KB.    |
 
 ### HTTP response
 
