@@ -29,7 +29,7 @@ v4.2.3 was released on October xx, 2023.
 
 4. **Check device support for advanced features**
 
-   This version adds the `isFeatureAvailableOnDevice` method to check whether the capability of the current device meets the requirements of the specified advanced feature, such as virtual background and image enhancement. 
+   This version adds the `isFeatureAvailableOnDevice` method to check whether the capability of the current device meets the requirements of the specified advanced feature, such as virtual background and image enhancement.
 
    Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.
 
@@ -56,16 +56,16 @@ This release includes the following additional improvements:
 
 This release fixed the following issues:
 
-- Occasional crashes and dropped frames occured in screen sharing scenarios. 
+- Occasional crashes and dropped frames occurred in screen sharing scenarios.
 - Occasional failure of joining a channel when the local system time was not set correctly.
-- When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was somtimes played repeatedly.
-- Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times. 
+- When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
+- Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
 
 #### API changes
 
 **Added**
 
-- The following enumerations in `onLocalVideoStateChanged`: 
+- The following enumerations in `onLocalVideoStateChanged`:
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED`
   - `LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN`
@@ -101,7 +101,7 @@ v4.2.2 was released on July xx, 2023.
 
    In this release, the `backgroundColor` member has been added to `VideoCanvas`, which allows you to customize the background color of the video canvas when setting the properties of local or remote video display.
 
-4. **Publishing video streams from different sources** 
+4. **Publishing video streams from different sources**
 
    This release adds the following members in `ChannelMediaOptions` to allow you publish video streams captured from the third and fourth camera or screen:
 
@@ -137,8 +137,8 @@ This release fixed the following issues:
 
 - Slow channel reconnection after the connection was interrupted due to network reasons.
 - In screen sharing scenarios, the delay of seeing the shared screen was occasionally higher than expected on some devices.
-- In custom video capturing scenarios, `setBeautyEffectOptions`, `setLowlightEnhanceOptions`, `setVideoDenoiserOptions`, and `setColorEnhanceOptions` could not load extensions automatically. 
-- In multi-device audio recording scenarios, after repeatedly plugging and unplugging or enabling/disabling the audio recording device, no sound could be heard occasionally when calling the `startRecordingDeviceTest` to start an audio capturing device test. 
+- In custom video capturing scenarios, `setBeautyEffectOptions`, `setLowlightEnhanceOptions`, `setVideoDenoiserOptions`, and `setColorEnhanceOptions` could not load extensions automatically.
+- In multi-device audio recording scenarios, after repeatedly plugging and unplugging or enabling/disabling the audio recording device, no sound could be heard occasionally when calling the `startRecordingDeviceTest` to start an audio capturing device test.
 
 #### API changes
 
@@ -173,7 +173,7 @@ This version fixed the following issues:
 - Inability to join channels caused by SDK's incompatibility with some older versions of AccessToken.
 - After the sending end called `setAINSMode` to activate AI noise reduction, occasional echo was observed by the receiving end.
 - Brief noise occurred while playing media files using the media player.
-- When the sending end mixed and published two streams of video captured by two cameras locally, the video from the second camera was occasionally missing on the receiving end. 
+- When the sending end mixed and published two streams of video captured by two cameras locally, the video from the second camera was occasionally missing on the receiving end.
 
 ## v4.2.0
 
@@ -222,9 +222,9 @@ This release optimizes the APIs for camera and screen capture function. As of v4
   - `registerAudioFrameObserver` [1/2] and `registerAudioFrameObserver`[2/2] in `IMediaPlayer`
 - `enableDualStreamMode`[1/2] and `enableDualStreamMode`[2/2] are depredated. Use `setDualStreamMode`[1/2] and `setDualStreamMode`[2/2] instead.
 - `startChannelMediaRelay`, `updateChannelMediaRelay`, `startChannelMediaRelayEx` and `updateChannelMediaRelayEx` are deprecated. Use `startOrUpdateChannelMediaRelay` and `startOrUpdateChannelMediaRelayEx` instead.
-- `OnRecordAudioEncodedFrame` is renamed to `onRecordAudioEncodedFrame` 
-- `OnPlaybackAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame` 
-- `OnMixedAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame` 
+- `OnRecordAudioEncodedFrame` is renamed to `onRecordAudioEncodedFrame`
+- `OnPlaybackAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame`
+- `OnMixedAudioEncodedFrame` is renamed to `onPlaybackAudioEncodedFrame`
 
 #### New features
 
