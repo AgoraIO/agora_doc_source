@@ -45,9 +45,7 @@
             <p>请在 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 之后调用该方法。</p>
             <note type="attention">
             <ul>
-            <li>该功能对设备性能要求较高，建议你在搭载如下芯片的设备上使用：
-                
-                
+            <li>该功能对设备性能要求较高，调用该方法时 SDK 会自动对当前设备能力进行检查。建议你在搭载如下芯片的设备上使用：
                 <ul>
                 <li props="android unity cpp unreal bp rn flutter cs">骁龙 700 系列 750G 及以上</li>
                 <li props="android unity cpp unreal bp rn flutter cs">骁龙 800 系列 835 及以上</li>
@@ -56,8 +54,6 @@
                 <li props="android unity cpp unreal bp rn flutter cs">麒麟 900 系列 980 及以上</li>
                 <li props="mac cpp unreal bp unity electron cs">CPU 为 i5 及更好的设备</li>
                 <li props="ios cpp unreal bp unity rn flutter cs">搭载 A9 及以上芯片的如下设备：
-                    
-                    
                     <ul>
                     <li>iPhone 6S 及以上</li>
                     <li>iPad Air 第三代及以上</li>
@@ -67,8 +63,6 @@
                     </ul></li>
                 </ul></li>
             <li>建议你在满足如下条件的场景中使用该功能：
-                
-                
                 <ul>
                 <li>使用高清摄像设备、摄像环境光照均匀。</li>
                 <li>摄像画面中，物件较少，用户的人像为半身人像且基本无遮挡，背景色较单一且与用户着装颜色不同。</li>
@@ -82,8 +76,6 @@
                 <pt props="cpp unreal bp android unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启虚拟背景：
-                    
-                    
                     <ul>
                     <li><codeph><ph keyref="true"/></codeph>: 开启虚拟背景。</li>
                     <li><codeph><ph keyref="false"/></codeph>: 关闭虚拟背景。</li>
@@ -102,11 +94,7 @@
             <plentry props="cpp unreal bp unity rn electron flutter cs">
                 <pt>type</pt>
                 <pd>视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
-                    
-                    
                     <note type="attention">在该方法中，该参数仅支持以下两种设置：
-                    
-                    
                     <ul>
                     <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
                     <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE"/>。</li>
@@ -119,12 +107,8 @@
             <ul>
             <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。
-                
-                
                 <ul>
-                <li>-1：自定义的背景图不存在。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>source</parmname> 的值。</li>
-                <li>-2：自定义的背景图颜色格式出错。请检查 <xref keyref="VirtualBackgroundSource"/> 中 <parmname>color</parmname> 的值。</li>
-                <li>-3：设备不支持使用虚拟背景。</li>
+                <li>-4：设备能力不满足虚拟背景的使用要求，建议更换性能更高的设备。</li>
                 </ul></li>
             </ul> </section>
     </refbody>
