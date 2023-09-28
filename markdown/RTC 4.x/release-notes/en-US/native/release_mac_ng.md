@@ -2,7 +2,7 @@
 
 v4.2.3 was released on September xx, 2023.
 
-### 
+###
 
 #### New features
 
@@ -40,9 +40,9 @@ This release includes the following additional improvements:
 
 This release fixed the following issues:
 
-- Occasional crashes when joining a channel. 
+- Occasional crashes when joining a channel.
 - Occasional failure of joining a channel when the local system time was not set correctly.
-- When calling the `playEffect [3/3]` method to play two audio files using the same `soundId`, the first audio file was somtimes played repeatedly.
+- When calling the `playEffect [3/3]` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
 - Calling `takeSnapshotEx` once receives the `snapshotTaken` callback for multiple times.
 
 #### API changes
@@ -54,7 +54,7 @@ This release fixed the following issues:
 - `serverConfig` in `AgoraContentInspectConfig`
 - `isFeatureAvailableOnDevice`
 - `AgoraFeatureType`
-  
+
 ## v4.2.2
 
 v4.2.2 was released on July xx, 2023.
@@ -171,7 +171,7 @@ If you use the features mentioned in this section, ensure that you modify the im
 **1. Video data acquisition**
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
-- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
   - `onScreenCaptureVideoFrame`
   - `onPreEncodeScreenVideoFrame`
 

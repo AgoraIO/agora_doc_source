@@ -32,7 +32,7 @@ v4.2.3 was released on September xx, 2023.
 
    Before using advanced features, you can check whether the current device supports these features based on the call result. This helps to avoid performance degradation or unavailable features when enabling advanced features on low-end devices. Based on the return value of this method, you can decide whether to display or enable the corresponding feature button, or notify the user when the device's capabilities are insufficient.
 
-   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4: ErrNotSupported` is returned, indicating the device does not support the feature.  
+   In addition, since this version, calling `enableVirtualBackground` and `setBeautyEffectOptions` automatically triggers a test on the capability of the current device. When the device is considered underperformed, the error code `-4: ErrNotSupported` is returned, indicating the device does not support the feature.
 
 #### Improvements
 
@@ -55,7 +55,7 @@ This release includes the following additional improvements:
 
 This release fixed the following issues:
 
-- Occasional crashes and dropped frames occured in screen sharing scenarios. (macOS)
+- Occasional crashes and dropped frames occurred in screen sharing scenarios. (macOS)
 - Occasional crashes when joining a channel. (macOS)
 - When calling the `playEffect` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
 - Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
@@ -66,7 +66,7 @@ This release fixed the following issues:
 
 - `enableContentInspectEx`
 - `contentInspectImageModeration` in `ContentInspectType`
-- `serverConfig` in `ContentInspectConfig` 
+- `serverConfig` in `ContentInspectConfig`
 - `onLocalVideoStateChanged` adds the following enumerations:
 
   - `LocalVideoStreamErrorScreenCapturePaused`
@@ -75,9 +75,9 @@ This release fixed the following issues:
   - `LocalVideoStreamErrorScreenCaptureWindowRecoverFromHidden`
   - `LocalVideoStreamErrorScreenCaptureWindowRecoverFromMinimized`
 
-- `d3d11_texture_2d` and `texture_slice_index` in `ExternalVideoFrame` 
+- `d3d11_texture_2d` and `texture_slice_index` in `ExternalVideoFrame`
 
-- `VideoTextureId3d11texture2d` in `VideoPixelFormat` 
+- `VideoTextureId3d11texture2d` in `VideoPixelFormat`
 - `isFeatureAvailableOnDevice`
 - `FeatureType`
 
@@ -219,7 +219,7 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 - The `VideoInputStreams` in `LocalTranscoderConfiguration` is changed to `videoInputStreams`.
 - The `MediaSourceType` in `TranscodingVideoStream` is changed to `VideoSourceType`.
 
-**5. Virtual sound card (macOS)** 
+**5. Virtual sound card (macOS)**
 
 As of v4.2.0, Agora supports third-party virtual sound cards. You can use a third-party virtual sound card as the audio input or output device for the SDK. You can use the `stateChanged` callback to see whether the current input or output device selected by the SDK is a virtual sound card.
 
@@ -281,7 +281,7 @@ This release adds the `startMediaRenderingTracing` and `startMediaRenderingTraci
 
 Agora recommends that you use this method in conjunction with the UI settings, such as buttons and sliders, in your app. For example, call this method when the user clicks **Join Channel** button and then get the indicators in the video frame rendering process through the `onVideoRenderingTracingResult` callback. This enables developers to optimize the indicators and improve the user experience.
 
-#### Improvements 
+#### Improvements
 
 **1. Voice changer**
 
