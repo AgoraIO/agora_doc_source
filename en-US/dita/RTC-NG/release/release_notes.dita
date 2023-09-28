@@ -17,11 +17,9 @@
                                 <li>An optional parameter <codeph>serverConfig</codeph> is added in <codeph><apiname keyref="ContentInspectConfig"/></codeph>, which is for server-side configuration related to video screenshot and upload via extensions from Agora Extensions Marketplace. By configuring this parameter, you can integrate multiple third-party moderation extensions and achieve flexible control over extension switches and other features. For more details, please contact <ph keyref="ticket-link"/>.</li>
                             </ul><ph>In addition, this version also introduces the <codeph><apiname keyref="enableContentInspectEx"/></codeph> method, which supports taking screenshots for multiple video streams and uploading them.</ph></p>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>支持 ID3D11Texture2D 渲染</b></ph> (Windows)
-                        <p>As of this release, the SDK supports video formats of type ID3D11Texture2D, improving the rendering effect of video frames in game scenarios. You can set <codeph>format</codeph> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph> when pushing external raw video frames to the SDK by calling <codeph><apiname keyref="pushVideoFrame"/></codeph>. By setting the <codeph>d3d11_texture_2d</codeph> and <codeph>texture_slice_index</codeph> properties, you can determine the ID3D11Texture2D texture object to use.</p>
+                    <li props="cpp unity flutter electron"><ph><b>ID3D11Texture2D Rendering</b></ph> (Windows)<p>As of this release, the SDK supports video formats of type ID3D11Texture2D, improving the rendering effect of video frames in game scenarios. You can set <codeph>format</codeph> to <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph> when pushing external raw video frames to the SDK by calling <codeph><apiname keyref="pushVideoFrame"/></codeph>. By setting the <codeph>d3d11_texture_2d</codeph> and <codeph>texture_slice_index</codeph> properties, you can determine the ID3D11Texture2D texture object to use.</p>
                     </li>
-                    <li props="cpp unity flutter electron"><ph><b>本地视频状态错误码更新</b></ph> (Windows, macOS)
-                        <p>In order to help users understand the exact reasons for local video errors in screen sharing scenarios, the following sets of enumerations have been added to the <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback:<ul>
+                    <li props="cpp unity flutter electron"><ph><b>Local video status error code update</b></ph> (Windows, macOS)<p>In order to help users understand the exact reasons for local video errors in screen sharing scenarios, the following sets of enumerations have been added to the <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> callback:<ul>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph>(23): Screen capture has been paused. Common scenarios for reporting this error code: The current screen may have been switched to a secure desktop, such as a UAC dialog box or Winlogon desktop.</li>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph>(24): Screen capture has resumed from the paused state.</li>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph>(25): The window being captured on the current screen is in a hidden state and is not visible on the current screen.</li>
@@ -77,8 +75,7 @@
             <title>API changes</title>
             <body>
                 <p><b>Added</b><ul>
-                    <li props="cpp unity flutter electron"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph>中新增如下枚举：(Windows, macOS)
-                        <ul>
+                    <li props="cpp unity flutter electron">The following enumerations in <codeph><apiname keyref="onLocalVideoStateChanged"/></codeph>: (Windows, macOS)<ul>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph></li>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph></li>
                         <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph></li>
