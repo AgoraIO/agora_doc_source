@@ -40,9 +40,7 @@ This release includes the following additional improvements:
 This release fixed the following issues:
 
 - Occasional failure of joining a channel when the local system time was not set correctly.
-- When calling the `playEffect [3/3]` method to play two audio files using the same `soundId`, the first audio file was somtimes played repeatedly.
-- In a chorus scenario, calling the `preloadWithSongCode` method to load music sometimes failed.
-- Loading music lists failed when the local system time was not correct.
+- When calling the `playEffect [3/3]` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
 - Calling `takeSnapshotEx` once receives the `snapshotTaken` callback for multiple times.
 
 #### API changes
@@ -181,7 +179,7 @@ This release optimizes the APIs for camera and screen capture function. As of v4
 **2. Video data acquisition**
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
-- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
   - `onScreenCaptureVideoFrame`
   - `onPreEncodeScreenVideoFrame`
 
