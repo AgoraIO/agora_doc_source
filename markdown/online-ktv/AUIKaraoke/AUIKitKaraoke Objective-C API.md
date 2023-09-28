@@ -84,7 +84,7 @@ func launchRoom(roomInfo: AUIRoomInfo,
 
 ### destroyRoom
 
-```kotlin
+```swift
 func destoryRoom(roomId: String)
 ```
 
@@ -93,6 +93,56 @@ func destoryRoom(roomId: String)
 **参数**
 
 - `roomId`：要销毁的房间的 ID。
+
+### subscribeError
+
+```swift
+fun subscribeError(roomId: String, delegate: AUIRtmErrorProxyDelegate) {
+        mRoomManager?.rtmManager?.proxy?.subscribeError(roomId, delegate)
+    }
+```
+
+订阅房间相关的错误事件。
+
+你可以通过该方法订阅与指定 `roomId` 相关的房间的错误事件，如 Token 过期、网络连接等问题。
+
+**参数**
+
+- `roomId`：房间 ID。
+- `delegate`：[AUIRtmErrorProxyDelegate]() 对象，用于处理错误事件。
+
+### unsubscribeError
+
+```swift
+fun unsubscribeError(roomId: String, delegate: AUIRtmErrorProxyDelegate) {
+        mRoomManager?.rtmManager?.proxy?.unsubscribeError(roomId, delegate)
+    }
+```
+
+取消订阅房间相关的错误事件。
+
+你可以调用该方法取消订阅与指定 `roomId` 相关的房间的错误事件。取消订阅后，不再接收与该房间相关的任何错误。
+
+<Admonition type="info" title="信息">
+
+要成功取消订阅，请确保传入的 `roomId` 和你调用 `subscribeError` 时传入的 `roomId` 一致。//TODO
+
+</Admonition>
+
+**参数**
+
+- `roomId`：房间 ID。
+- `delegate`：[AUIRtmErrorProxyDelegate]() 对象，用于处理错误事件。
+
+### bindRespDelegate
+
+```swift
+fun bindRespDelegate(delegate: AUIRoomManagerRespDelegate) {
+        mRoomManager?.bindRespDelegate(delegate)
+    }
+```
+
+
 
 ## 数据模型
 
