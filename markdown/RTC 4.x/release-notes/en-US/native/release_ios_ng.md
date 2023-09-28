@@ -41,8 +41,6 @@ This release fixed the following issues:
 
 - Occasional failure of joining a channel when the local system time was not set correctly.
 - When calling the `playEffect [3/3]` method to play two audio files using the same `soundId`, the first audio file was somtimes played repeatedly.
-- In a chorus scenario, calling the `preloadWithSongCode` method to load music sometimes failed.
-- Loading music lists failed when the local system time was not correct.
 - Calling `takeSnapshotEx` once receives the `snapshotTaken` callback for multiple times.
 
 #### API changes
