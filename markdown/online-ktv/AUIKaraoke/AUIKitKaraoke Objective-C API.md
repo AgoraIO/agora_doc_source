@@ -109,7 +109,7 @@ fun subscribeError(roomId: String, delegate: AUIRtmErrorProxyDelegate) {
 **参数**
 
 - `roomId`：房间 ID。
-- `delegate`：[AUIRtmErrorProxyDelegate]() 对象，用于处理错误事件。
+- `delegate`：[AUIRtmErrorProxyDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auirtmerrorproxydelegate) 对象，用于处理错误事件。
 
 ### unsubscribeError
 
@@ -125,14 +125,14 @@ fun unsubscribeError(roomId: String, delegate: AUIRtmErrorProxyDelegate) {
 
 <Admonition type="info" title="信息">
 
-要成功取消订阅，请确保传入的 `roomId` 和你调用 `subscribeError` 时传入的 `roomId` 一致。//TODO
+要成功取消订阅，请确保传入的 `roomId` 和你调用 `subscribeError` 时传入的 `roomId` 一致。
 
 </Admonition>
 
 **参数**
 
 - `roomId`：房间 ID。
-- `delegate`：[AUIRtmErrorProxyDelegate]() 对象，用于处理错误事件。
+- `delegate`：[AUIRtmErrorProxyDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auirtmerrorproxydelegate) 对象，用于处理错误事件。
 
 ### bindRespDelegate
 
@@ -143,6 +143,31 @@ fun bindRespDelegate(delegate: AUIRoomManagerRespDelegate) {
 ```
 
 
+绑定对应房间的响应。
+
+你可以调用该方法将实现了 `AUIRoomManagerRespDelegate` 的对象绑定到当前事件，以便在事件完成时，回调或通知这个对象以处理相应的结果或响应，例如房间被销毁、用户被踢出、房间的信息更新等。
+
+请确保你的 `AUIRoomManagerRespDelegate` 对象实现了 `AUIRoomManagerRespDelegate` 中的方法，以便能够正确处理响应。
+
+**参数**
+
+- `delegate`：[AUIRoomManagerRespDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auiroommanagerrespdelegate) 对象，用于处理与房间操作相关的各种响应事件。你可以根据你的业务需求选择性实现该协议中的方法。
+
+### unbindRespDelegate
+
+```swift
+fun unbindRespDelegate(delegate: AUIRoomManagerRespDelegate) {
+        mRoomManager?.unbindRespDelegate(delegate)
+    }
+```
+
+取消绑定对应房间的响应。
+
+你可以调用该方法取消已绑定到当前操作或事件的 `AUIRoomManagerRespDelegate` 对象。解除绑定后，将不再通知 `AUIRoomManagerRespDelegate` 对象与房间管理操作相关的结果或响应。
+
+**参数**
+
+`delegate`：[AUIRoomManagerRespDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auiroommanagerrespdelegate) 对象，用于处理与房间操作相关的各种响应事件。你可以根据你的业务需求选择性实现该协议中的方法。
 
 ## 数据模型
 
@@ -193,21 +218,13 @@ K 歌房间的相关信息。
 ```swift
 open class AUIUserThumbnailInfo: NSObject,AUIUserCellUserDataProtocol {
 
-    public var userId: String = ""      //用户Id
-    public var userName: String = ""    //用户名
-    public var userAvatar: String = ""  //用户头像
-    public var seatIndex: Int = -1 //用户是否在麦上
-    public var isOwner: Bool = false //是否是owner TODO owner是指房主吗？但是这个本来就是房主相关信息了 后面两个删掉
-
-    public func isEmpty() -> Bool {
-        guard userId.count > 0, userName.count > 0 else {return true}
-
-        return false
-    }
+    public var userId: String = ""
+    public var userName: String = ""
+    public var userAvatar: String = ""
 }
 ```
 
-K 歌中房主的相关信息。//TODO 原型和input给的参数不一致，研发说之后会删掉后两个参数，明天确认下
+K 歌中房主的相关信息。
 
 **参数**
 
