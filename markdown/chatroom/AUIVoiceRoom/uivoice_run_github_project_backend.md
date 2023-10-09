@@ -1,78 +1,154 @@
-# UIKit 语聊房场景后台服务
-
+本文介绍如何使用语聊 UI Kit 的后端服务。源代码你可参考 [AUIVoiceRoom/backend](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/backend)。
 
 ## 项目简介
 
-- 本项目基于Spring Boot框架开发, 依赖Redis/MongoDB/RTM/NCS/环信IM组件
-    - Redis, 主要用于在线人数定时刷新/分布式锁方式保证数据更新的一致性
-    - MongoDB, 主要用于维护房间列表
-    - RTM, 存储场景数据, 消息传输通道
-    - NCS, RTC频道事件回调通知, 处理人员进出/房间销毁逻辑
-    - 环信 IM, 用于语聊房聊天服务
+本项目基于 Spring Boot 框架开发，依赖以下组件或服务：//TODO 不需要 RTC 吗
+
+- Redis：用于定时刷新在线人数并通过分布式锁方式保证数据更新的一致性。
+- MongoDB：用于维护房间列表。
+- 声网实时消息（RTM）：提供场景数据存储和消息传输通道。
+- 声网即时通讯（IM）：用于提供聊天服务功能。
+- 声网消息通知服务：用于处理人员进出和房间销毁逻辑，并通过声网 RTC 频道事件回调通知相关操作。
 
 ## 服务部署
 
-### 快速体验
+### 1. 快速体验
 
-- > 采用Docker部署服务, 服务安装环境需要提前安装好Docker环境, 并安装最新版[docker-compose](https://docs.docker.com/compose/)部署工具
-    - 可以下载安装[Docker Desktop](https://www.docker.com/products/docker-desktop/), 并已默认安装docker-compose
-- 本地部署
-    - > 本地启动服务前, 需要在项目根目录创建`.env`文件, 并且填入以下字段：
-        - TOKEN_APPID=< Your TOKEN_APPID >
-        - TOKEN_APPCERTIFICATE=< Your TOKEN_APPCERTIFICATE >
-        - TOKEN_BASICAUTH_USERNAME=< Your TOKEN_BASICAUTH_USERNAME >
-        - TOKEN_BASICAUTH_PASSWORD=< Your TOKEN_BASICAUTH_PASSWORD >
-        - NCS_SECRET=< Your NCS_SECRET >
-        - EM_AUTH_APPKEY=< Your EM_AUTH_APPKEY >
-        - EM_AUTH_CLIENTID=< Your EM_AUTH_CLIENTID >
-        - EM_AUTH_CLIENTSECRET=< YourEM_AUTH_CLIENTSECRET >
+本节介绍如何快速体验示例项目中已经搭建好的后端服务。
 
-    字段说明如下：
+#### 前提条件
 
-| 字段名 | 字段说明                                     | 相关文档地址 |
-|--|------------------------------------------|-|
-| TOKEN_APPID | 声网 AppID，用于登录 RTC、RTM                    |https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96-app-id|
-| TOKEN_APPCERTIFICATE | 声网App证书 用于登录 RTC、RTM                     |https://docs.agora.io/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#%E8%8E%B7%E5%8F%96-app-id |
-| TOKEN_BASICAUTH_USERNAME | 声网 RESTfulAPI Basic Auth Username，用于踢人服务 |https://docportal.shengwang.cn/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms |
-| TOKEN_BASICAUTH_PASSWORD | 声网 RESTfulAPI Basic Auth Password，用于踢人服务 |https://docportal.shengwang.cn/cn/Agora%20Platform/agora_console_restapi?platform=All%20Platforms |
-| NCS_SECRET | 消息通知服务签名密钥，用于检验 NCS事件回调内容                |https://docportal.shengwang.cn/cn/Agora%20Platform/ncs?platform=All%20Platforms |
-| EM_AUTH_APPKEY | 环信 IM AppKey，用于创建环信 IM 聊天室               |https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html |
-| EM_AUTH_CLIENTID | 环信 IM ClientID，用于创建环信 IM 聊天室             |https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html |
-| EM_AUTH_CLIENTSECRET | 环信 IM ClientSecret，用于创建环信聊天室             |https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html |
+请确保已经安装如下环境或工具：
 
-    - 在当前项目根目录下执行 `docker compose up -d --build`, 会拉取相关镜像并启动Redis/MongoDB/Web服务. 如镜像拉取失败, 可配置国内镜像源解决
-    - 服务启动后, 可使用 `curl http://localhost:8080/health/check` 测试
-    - 如果使用App调试本地服务, 需要在App上替换对应后端服务域名为http://服务机器IP:8080, 替换域名后可以使用App体验相关服务
-    - 停止服务, 执行 `docker compose down`
+- Docker 环境
+- 最新版 [docker-compose](https://docs.docker.com/compose/) 工具
 
-  > 注意! 未开启NCS消息通知, 不能自动处理人员进出和房间销毁逻辑, 如果需要开启此功能, 需开通NCS服务.
+你可以直接下载安装 [Docker Desktop](https://www.docker.com/products/docker-desktop/) 工具，它已默认安装 docker-compose。
 
-  > RTM和环信 IM 未开通, 功能体验会受限, 如需完整体验功能, 可以参考[上线部署权限开通说明](#上线部署)
 
-### 本地开发
+#### 运行步骤
 
-- Java版本推荐>=11
-- 编辑器可采用 [Visual Studio Code](https://code.visualstudio.com/), 安装以下插件
-    - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) (已提供本地容器开发[Dockerfile](Dockerfile_dev)文件)
-    - [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
-  > RTM运行依赖Linux环境
-- vscode打开项目目录, 进入容器开发
-- 修改配置文件[application.yml](src/main/resources/application.yml)
-    - spring.data.mongodb.uri
-    - spring.redis.host
-    - spring.redis.password
-    - ncs.secret
-    - token.appId
-    - token.appCertificate
-    - token.basicAuth.username
-    - token.basicAuth.password
-    - em.auth.appKey
-    - em.auth.clientId
-    - em.auth.clientSecret
+以下是运行服务的步骤：
 
-### 上线部署
+1. 在项目根目录创建 `.env` 文件，并填入以下字段：
 
-- 正式上线前, 需要调整Redis/MongoDB等配置, 并将服务部署在网关后, 网关可提供鉴权/限流等能力, 本服务不带网关能力
+    ```
+    TOKEN_APPID=<Your_App_ID>
+    TOKEN_APPCERTIFICATE=<Your_App_Certificate>
+    TOKEN_BASICAUTH_USERNAME=<Your_BasicAuth_Username>
+    TOKEN_BASICAUTH_PASSWORD=<Your_BasicAuth_Password>
+    NCS_SECRET=<Your_NCS_Secret>
+    EM_AUTH_APPKEY=<Your_IM_Auth_AppKey>
+    EM_AUTH_CLIENTID=<Your_IM_Auth_ClientID>
+    EM_AUTH_CLIENTSECRET=<Your_IM_Auth_ClientSecret>
+    ```
+
+    你可以在[开通声网服务](//TODO)后，获取这些字段的值，详情如下：
+
+
+    | 字段名                   | 字段描述         | 获取方式    |
+    |----------------------|-----------------------|----------------------------------|
+    | `TOKEN_APPID`          | 声网项目的 App ID，用于登录 RTC 和 RTM 系统。                 |[获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) |
+    | `TOKEN_APPCERTIFICATE` | 声网项目的 App 证书，用于登录 RTC 和 RTM 系统。                            | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书) |
+    | `TOKEN_BASICAUTH_USERNAME` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户 ID，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
+    | `TOKEN_BASICAUTH_PASSWORD` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户密钥，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
+    | `NCS_SECRET`           | 消息通知服务的密钥，用于保障消息通知服务安全性。                     | [验证签名](https://doc.shengwang.cn/doc/rtc/restful/advanced-features/webhook#验证签名) |
+    | `EM_AUTH_APPKEY`       | IM 服务的应用标识，用于创建 IM 聊天室。                          | [获取即时通讯项目信息](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms#获取即时通讯项目信息) |
+    | `EM_AUTH_CLIENTID`     | IM 服务的用户 ID，用于创建 IM 聊天室。                        | [IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
+    | `EM_AUTH_CLIENTSECRET` | IM 服务的 Token（还是密码 //TODO），用于创建 IM 聊天室。                      | [IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
+
+    在体验阶段，你可以根据需求选择是否开通声网消息通知、RTM、IM 服务。如果未开通这些服务，你会受到如下影响：
+
+    - 如果未开启声网消息通知服务，将无法自动处理用户进出房间和房间销毁的逻辑。
+    - 如果未开启 RTM 和 IM 服务，功能体验会受限。
+
+2. 在项目根目录下执行以下命令启动服务：
+
+    ```shell
+    docker compose up -d --build
+    ```
+
+    该命令会拉取所需的镜像并启动 Redis、MongoDB 和 Web 服务。如果遇到镜像拉取失败的问题，你可以通过配置国内镜像源解决。
+
+3. 服务启动后，继续输入如下命令进行测试：
+
+    ```shell
+    curl http://localhost:8080/health/check
+    ```
+
+4. 如果你需要使用移动端 App 调试本地服务，你需要将移动端 App 上对应的后端服务域名替换成如下：
+
+    ```http
+    http://{your_ip}:8080
+    ```
+
+    `your_ip` 为本地运行服务的机器 IP 地址。
+
+5. 如果你需要停止服务，执行如下命令：
+
+    ```shell
+    docker compose down
+    ```
+
+
+### 2. 本地开发
+
+本节介绍如何通过 Visual Studio Code（简称 VS Code）工具在本地开发语聊后端服务。如果你使用其他工具，你也可以参考本节步骤进行相应操作。
+
+#### 前提条件
+
+除了满足[体验阶段的前提条件](#前提条件)外，还需确保已经安装如下环境或工具：
+
+- Java 11 或之后
+- VS Code 和如下插件：
+    - Dev Containers
+    - Extension Pack for Java
+
+Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发。因为 RTM 服务的运行依赖于 Linux 环境，所以使用 VS Code 工具开发时建议你安装 Dev Containers。
+
+#### 开发步骤
+
+以下是本地开发的步骤：
+
+1. 使用 VS Code 中打开项目目录，并进入容器开发模式。
+
+    在 Docker 容器中开发时可以使用示例项目中的 [Dockerfile](https://github.com/AgoraIO-Community/AUIVoiceRoom/blob/main/backend/Dockerfile_Dev)，相关配置项已经在该文件中设置。
+
+2. 修改 [application.yml](https://github.com/AgoraIO-Community/AUIVoiceRoom/blob/main/backend/src/main/resources/application.yml) 配置文件中的以下内容：
+
+   - `spring.data.mongodb.uri`：将应用连接到数据库。
+   - `spring.redis.host`：配置 Redis 缓存。
+   - `spring.redis.password`：配置 Redis 缓存。
+   - `ncs.secret`
+   - `token.appId`
+   - `token.appCertificate`
+   - `token.basicAuth.username`
+   - `token.basicAuth.password`
+   - `em.auth.appKey`
+   - `em.auth.clientId`
+   - `em.auth.clientSecret`
+
+    `spring.*` 之外的内容含义详见[字段描述](#运行步骤)。
+
+3. 构建并运行 Spring Boot 应用。
+
+
+### 3. 上线部署
+
+完成本地开发后，你还需要进行以下操作才能将服务部署上线：
+
+1. 确保已[开通所有声网服务](//TODO)，并检查 `application.yml` 中字段内容填写无误。
+
+2. 调整 Redis 和 MongoDB 配置。
+
+3. 将服务部署在网关。网关可提供鉴权和限流等能力。本示例项目中展示的服务暂时未包含网关能力。
+
+4. 设置指标收集。通过 `https://{your_domain}:9090/metrics/prometheus` 收集指标进行服务监控。
+
+5. 将服务部署在云平台，例如[阿里云容器服务（ACK）](https://www.alibabacloud.com/zh/product/kubernetes)。
+
+
+//TODO
 - 同时还需要开通以下服务
     - RTM, [联系客服人员开通](https://www.shengwang.cn)
     - NCS, RTC频道事件回调通知, 处理人员进出/房间销毁逻辑
@@ -90,10 +166,11 @@
         - [频道事件回调
           ](https://docs.agora.io/cn/video-call-4.x/rtc_channel_event?platform=All%20Platforms)
     - 环信 IM，在环信 Console 控制台进行配置 [开通配置环信即时通讯 IM 服务](https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html)
-- 指标收集, https://您的域名:9090/metrics/prometheus, 可根据需要收集相应指标监控服务
-- 服务可以部署在云平台, 比如[阿里云容器服务ACK](https://www.alibabacloud.com/zh/product/kubernetes)
+
 
 ## 目录结构
+
+本节提供示例项目中 [backend](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/backend) 文件夹的目录结构和文件说明。
 
 ```
 ├── Dockerfile
@@ -127,7 +204,7 @@
     │         │                     │         ├── EmServiceConfig.java                          // 环信配置
     │         │                     │         ├── GlobalExceptionHandler.java                   // 全局异常处理
     │         │                     │         ├── RedisConfig.java                              // Redis 配置
-    │         │                     │         ├── RtcChannelAPIClient.java                      // RTC Channel API 客户端
+    │         │                     │         ├── RtcChannelAPIClient.java                      // RTC 频道 API 客户端
     │         │                     │         └── WebMvcConfig.java                             // Web MVC 配置
     │         │                     ├── controller
     │         │                     │         ├── ApplicationController.java                    // 申请控制器
@@ -137,10 +214,10 @@
     │         │                     │         ├── HealthController.java                         // 健康检查控制器
     │         │                     │         ├── InvitationController.java                     // 邀请控制器
     │         │                     │         ├── MicSeatController.java                        // 麦位控制器
-    │         │                     │         ├── NcsController.java                            // NCS 控制器
+    │         │                     │         ├── NcsController.java                            // 消息通知服务（NCS）控制器
     │         │                     │         ├── RoomController.java                           // 房间控制器
     │         │                     │         ├── SongController.java                           // 歌曲控制器
-    │         │                     │         ├── TokenController.java                          // token 控制器
+    │         │                     │         ├── TokenController.java                          // Token 控制器
     │         │                     │         └── UserController.java                           // 用户控制器
     │         │                     ├── interceptor                                             // 拦截器
     │         │                     │         ├── PrometheusMetricInterceptor.java              // 指标拦截器
@@ -154,17 +231,17 @@
     │         │                     │         ├── IChatRoomService.java                         // 聊天室服务
     │         │                     │         ├── IChorusService.java                           // 合唱服务
     │         │                     │         ├── IGiftService.java                             // 礼物服务
-    │         │                     │         ├── IIMService.java                               // IM服务
+    │         │                     │         ├── IIMService.java                               // IM 服务
     │         │                     │         ├── IInvitationService.java                       // 邀请服务
     │         │                     │         ├── IMicSeatService.java                          // 麦位服务
-    │         │                     │         ├── INcsService.java                              // NCS服务
+    │         │                     │         ├── INcsService.java                              // 消息通知服务（NCS）服务
     │         │                     │         ├── IProcessService.java                          // 申请、邀请业务处理服务
     │         │                     │         ├── IRoomService.java                             // 房间服务
-    │         │                     │         ├── IRtcChannelAPIService.java                    // RTC频道管理服务
-    │         │                     │         ├── IRtcChannelService.java                       // RTC频道服务
+    │         │                     │         ├── IRtcChannelAPIService.java                    // RTC 频道管理服务
+    │         │                     │         ├── IRtcChannelService.java                       // RTC 频道服务
     │         │                     │         ├── IService.java
     │         │                     │         ├── ISongService.java                             // 歌曲服务
-    │         │                     │         ├── ITokenService.java                            // token服务
+    │         │                     │         ├── ITokenService.java                            // Token 服务
     │         │                     │         ├── IUserService.java                             // 用户服务
     │         │                     │         └── impl
     │         │                     │             ├── ApplicationServiceImpl.java
