@@ -24,7 +24,7 @@ AUIKaraoke 是一个基于 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/
 
 </Admonition>
 
-- 有效的声网[开发者账号](https://docs.agora.io/cn/Agora Platform/sign_in_and_sign_up)和声网项目，请参考[开始使用声网平台](https://docs.agora.io/cn/Agora Platform/get_appid_token?platform=All Platforms)，从声网控制台获取以下信息：
+- 有效的声网开发者账号和声网项目，请参考[开通服务](https://doc.shengwang.cn/doc/rtc/ios/get-started/enable-service)，从声网控制台获取以下信息：
   - App ID：声网随机生成的字符串，用于识别你的 app。
   - RTC Token：在你的业务服务器上生成的 RTC Token。你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。
   - RTM Token（refer 到 rtm token 文档）
@@ -93,7 +93,7 @@ AUIKaraoke 是一个基于 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/
 
 下图展示了创建一个在线 K 歌房的 API 调用时序：（这个是时序图里面的KaraokeUiKit 后续都会统一改为 AUIKaraoke）
 
-<img src="/Users/admin/Library/Application Support/typora-user-images/image-20230830161719228.png" alt="image-20230830161719228" style="zoom:50%;"/>
+<img src="https://web-cdn.agora.io/docs-files/1696845470355" style="zoom:50%;" />
 
 ### 1. 初始化 AUIKaraoke
 
@@ -167,9 +167,13 @@ KaraokeUiKit.getRoomList(startTime, 10,
 
 ### 4. 拉起房间
 
-调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间。
+调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间。你可以快速体验在线 K 歌场景。
 
-<Abmonition tpye="caution" title="注意">在调用该方法前，你需要先调用 <code>getRoomList</code> 获取房间列表及相关房间信息。</Abmonition>
+<Abmonition tpye="caution" title="注意">
+
+在调用该方法前，你需要先调用 <code>getRoomList</code> 获取房间列表及相关房间信息。
+
+</Abmonition>
 
 ```kotlin
 // 房间信息，通过 getRoomList 获取

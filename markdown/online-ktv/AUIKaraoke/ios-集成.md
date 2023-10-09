@@ -1,8 +1,8 @@
-本文介绍如何通过 [AUIKitKaraoke 组件](#link-to-description)快速搭建一个含 UI 界面的在线 K 歌房。
+本文介绍如何通过 [AUIKaraoke 组件](#link-to-description)快速搭建一个含 UI 界面的在线 K 歌房。
 
 下图展示搭建 K 歌房间的完整流程：
 
-<img src="/Users/admin/Library/Application Support/typora-user-images/image-20230830103826589.png" alt="image-20230830103826589" style="zoom:50%;" />
+<img src="https://web-cdn.agora.io/docs-files/1696839290642" style="zoom:50%;" />
 
 ## 准备开发环境
 
@@ -34,7 +34,7 @@
 
 1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 
-   如果你没有添加过开发团队信息，会看到 **Add account…** 按钮。点击该按钮并按照屏幕提示登入 Apple ID，点击 **Next**，完成后即可选择你的 Apple 账户作为开发团队。
+   如果你没有添加过开发团队信息，会看到 **Add account…** 按钮。点击该按钮并按照屏幕提示登录 Apple ID，点击 **Next**，完成后即可选择你的 Apple 账户作为开发团队。
 
 2. 为你的项目设置[自动签名](https://help.apple.com/xcode/mac/current/#/dev23aab79b4)。
 
@@ -50,10 +50,10 @@
 
 5. 添加项目的设备权限。在项目导航栏中打开 `info.plist` 文件，配置麦克风和摄像头权限，如下图所示：
 
-   ![image-20230911163222007](/Users/admin/Library/Application Support/typora-user-images/image-20230911163222007.png)
+   ![](https://web-cdn.agora.io/docs-files/1696838612771)
 
 ​       <Admonition type="info" title="信息">
-​       <ul><li><code>Value</code> 值填写使用麦克风或摄像头的目的即可。</li><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 Hardened Runtime > Runtime Exceptions 中的 Disable Library Validation。</li><li>更多注意事项，可参考 <a href="https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution">Preparing Your App for Distribution</a>。</li></ul>
+​       <ul><li><code>Value</code> 值填写使用麦克风或摄像头的目的即可。</li><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 **Hardened Runtime** > **Runtime Exceptions** 中的 **Disable Library Validation**。</li><li>更多注意事项，可参考 <a href="https://developer.apple.com/documentation/xcode/preparing-your-app-for-distribution">Preparing Your App for Distribution</a>。</li></ul>
 ​       </Admonition>
 
 ### 集成组件
@@ -61,18 +61,21 @@
 1. 将下列源码复制到你的项目中：
 
    - [KaraokeUIKit](https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/iOS/Example/AUIKaraoke/KaraokeUIKit.swift)
-   加上 karaokeuikit
    - [AScenesKit](https://github.com/AgoraIO-Community/AUIKitKaraoke/tree/main/iOS/AScenesKit)
-   - [KeyCenter.swift](https://github.com/AgoraIO-Community/AUIKitKaraoke/blob/main/iOS/Example/AUIKitKaraoke/KeyCenter.swift)
-
-2. 在 Podfile 文件里添加依赖。
+   - [KeyCenter.swift](https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/iOS/Example/AUIKaraoke/KeyCenter.swift)
+   
+2. 在 Podfile 文件里添加依赖。下列示例把 `AScenesKit` 放置在与 Podfile 同一级目录下。
 
    ```ruby
    pod 'AScenesKit', :path => './AScenesKit'
-   pod 'AUIKit', :path => './AUIKit'
+   pod 'AUIKitCore'
    ```
 
 ## 实现在线 K 歌房
+
+下图展示了创建一个在线 K 歌房的 API 调用时序：
+
+<img src="https://web-cdn.agora.io/docs-files/1696845821143" style="zoom:50%;" />
 
 ### 1. 初始化 AUIKaraoke
 
@@ -91,11 +94,11 @@ commonConfig.userName = userInfo.userName
 commonConfig.userAvatar = userInfo.userAvatar
 // 初始化
 KaraokeUIKit.shared.setup(roomConfig: commonConfig,
-                          // KtvApi 对象。如果你的项目中还未集成 KtvApi，请传入 nil， AUIKaraoke 内部会自行创建
+                          // KtvApi 对象。如果你的项目中还未使用 KtvApi，请传入 nil， AUIKaraoke 内部会自行创建
                           ktvApi: nil,
-                           // RtcEngine 对象。如果的你的项目中还未集成声网实时互动 SDK，请传入 AUIKaraoke 内部会自行创建
+                           // RtcEngine 对象。如果的你的项目中还未使用声网实时互动 SDK，请传入 nil，AUIKaraoke 内部会自行创建
                           rtcEngine: nil,
-                          // RtmClient 对象。如果的你的项目中还未集成声网 RTM SDK，请传入 nil，AUIKaraoke 内部会自行创建
+                          // RtmClient 对象。如果的你的项目中还未使用声网 RTM SDK，请传入 nil，AUIKaraoke 内部会自行创建
                           rtmClient: nil)
 ```
 
@@ -122,7 +125,7 @@ KaraokeUIKit.shared.createRoom(roomInfo: room) { roomInfo in
 
 ### 3. 获取房间列表
 
-调用 `getRoomList` 获取已创建房间的列表。你可以通过 `lastCreateTime` 指定房间创建的时间，从而筛选出某一时间之后创建的房间列表，还可以通过 `pageSize` 参数设置每一页展示的房间数量。
+调用 `getRoomInfoList` 获取已创建房间的列表。你可以通过 `lastCreateTime` 指定房间创建的时间，从而筛选出某一时间之后创建的房间列表，还可以通过 `pageSize` 参数设置每一页展示的房间数量。
 
 ```swift
 KaraokeUIKit.shared.getRoomInfoList(lastCreateTime: nil,
@@ -133,15 +136,19 @@ KaraokeUIKit.shared.getRoomInfoList(lastCreateTime: nil,
 
 ### 4. 拉起房间
 
-调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间，你可以
+调用 `launchRooom` 拉起房间。至此，你已经成功搭建一个带有 UI 界面的在线 K 歌房间，你可以快速体验在线 K 歌场景。
 
-<Abmonition tpye="caution" title="注意">在调用该方法前，你需要先调用 <code>getRoomList</code> 获取房间列表及相关房间信息。</Abmonition>
+<Abmonition tpye="caution" title="注意">
+
+在调用该方法前，你需要先调用 <code>getRoomInfoList</code> 获取房间列表及相关房间信息。
+
+</Abmonition>
 
 ```swift
 let uid = KaraokeUIKit.shared.roomConfig?.userId ?? ""
 // 创建房间容器
 let karaokeView = AUIKaraokeRoomView(frame: self.view.bounds)
-// 通过 generateToken 方法获取到 rtc 和 rtmtoken 以及 appid
+// 获取 token 以及 appId
 generateToken { roomConfig, appId in
     KaraokeUIKit.shared.launchRoom(roomInfo: self.roomInfo!,
                                    appId: appId,
@@ -152,33 +159,40 @@ generateToken { roomConfig, appId in
 
 ### 5. 销毁房间
 
-K 歌结束后，你可以调用 `destroyRoom` 销毁当前房间。
+K 歌结束后，你可以主动调用 `destroyRoom` 销毁当前房间。
 
 ```swift
-//AUIKaraokeRoomView 提供了 onClickOffButton 点击返回的 clousure TODO
 karaokeView.onClickOffButton = { [weak self] in
     self.navigationController?.popViewController(animated: true)
+    // 销毁房间
     KaraokeUIKit.shared.destoryRoom(roomId: self.roomInfo?.roomId ?? "")
 }
 ```
 
-### 6. token 过期处理 //TODO 这个回调需要写文档吗 之后跟chunzhen确认一下是否要一起加
+### 6. 异常处理
+
+调用 `subscribeError` 来订阅房间相关的异常回调，如 Token 过期。调用 `bindRespDelegate` 绑定对应房间的响应，如房间被销毁、用户被踢出等。
+
+在退出房间时调用 `unsubscribeError` 和 `unbindRespDelegate` 来取消订阅和绑定。
 
 ```swift
-//在KaraokeUIKit.shared.launchRoom之后订阅AUIRtmErrorProxyDelegate的回调
+//在K拉起房间后订阅房间相关的异常回调
 KaraokeUIKit.shared.subscribeError(roomId: self.roomInfo?.roomId ?? "", delegate: self)
 
 //在退出房间时取消订阅
 KaraokeUIKit.shared.unsubscribeError(roomId: self.roomInfo?.roomId ?? "", delegate: self)
 
-//然后通过AUIRtmErrorProxyDelegate回调方法中的onTokenPrivilegeWillExpire来renew所有的token
-@objc func onTokenPrivilegeWillExpire(channelName: String?) {
-    generatorToken { config, _ in
-        KaraokeUIKit.shared.renew(config: config)
-    }
-}
+//在拉起房间后绑定房间的响应
+KaraokeUIKit.shared.bindRespDelegate(delegate: self)
+
+//在退出房间时取消绑定
+KaraokeUIKit.shared.unbindRespDelegate(delegate: self)
 ```
 
 ## 示例项目
 
-声网在 GitHub 上提供一个开源的示例项目 [AUIKitKaraoke](https://github.com/AgoraIO-Community/AUIKaraoke/tree/main/iOS) 供你参考。
+声网在 GitHub 上提供一个开源的示例项目 [AUIKaraoke](https://github.com/AgoraIO-Community/AUIKaraoke/tree/main/iOS) 供你参考。
+
+## API 参考
+
+- [AUIKaraoke API]()

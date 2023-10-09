@@ -17,16 +17,16 @@ fun setup(
 )
 ```
 
-初始化 `scenekit`。
+初始化 AUIKaraoke。
 
 在调用 `KaraokeUIKit` 类下的其他 API 前，你需要先调用该方法进行初始化。
 
 **参数**
 
 - `config`：初始化设置，详见 [AUICommonConfig](#AUICommonConfig)。
-- `ktvApi`：[场景化 API](https://docportal.shengwang.cn/cn/online-ktv/ktv_api_kotlin?platform=Android) 实例。如果你的项目中还未集成场景化 API，请传入 `null`，`scenekit` 内部会自行创建场景化 API 实例。
-- `rtcEngineEx`：[RtcEngineEx](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_irtcengineex) 实例。如果的你的项目中还未集成声网 RTC SDK，请传入 `null`，`scenekit` 内部会自行创建 `RtcEngineEx` 实例。
-- `rtmClient`：[RtmClient](https://doc.shengwang.cn/doc/rtm2/java/landing-page) 实例。如果的你的项目中还未集成声网 RTM SDK，请传入 `null`，`scenekit` 内部会自行创建 `RtmClient` 实例。
+- `ktvApi`：K 歌房[场景化 API](https://docportal.shengwang.cn/cn/online-ktv/ktv_api_kotlin?platform=Android) 实例。如果你的项目中还未使用场景化 API，请传入 `null`，AUIKaraoke 内部会自行创建场景化 API 实例。
+- `rtcEngineEx`：[RtcEngineEx](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/java_ng/API/rtc_interface_class.html#class_irtcengineex) 实例。如果的你的项目中还未使用声网 RTC SDK，请传入 `null`，AUIKaraoke 内部会自行创建 `RtcEngineEx` 实例。
+- `rtmClient`：[RtmClient](https://doc.shengwang.cn/doc/rtm2/java/landing-page) 实例。如果的你的项目中还未使用声网 RTM SDK，请传入 `null`，AUIKaraoke 内部会自行创建 `RtmClient` 实例。
 
 ### createRoom
 
@@ -134,28 +134,6 @@ public class AUICommonConfig {
 - `userName`：用户名。
 - `userAvatar`：用户头像。
 
-### <h3 className="anchor" id="AUICreateRoomInfo">AUICreateRoomInfo</h3>
-
-```kotlin
-public class AUICreateRoomInfo implements Serializable {
-    public @NonNull String roomName = "";
-    public @NonNull String thumbnail = "";
-    public int micSeatCount = 8;
-    public @Nullable String password;
-    public String micSeatStyle = "";
-}
-```
-
-需要创建的 K 歌房间的相关信息。
-
-**参数**
-
-- `roomName`：房间名。
-- `thumbnail`：房间列表上指用户头像的 URL。
-- `micSeatCount`：房间中的麦位数量，取值范围 [1-8]。
-- `password`：房间密码。
-- `micSeatStyle`：房间中麦位的排列样式。
-
 ### <h3 className="anchor" id="AUIRoomInfo">AUIRoomInfo</h3>
 
 ```kotlin
@@ -180,7 +158,6 @@ public class AUIRoomInfo extends AUICreateRoomInfo implements Serializable {
 
 ```kotlin
 public class AUIUserThumbnailInfo implements Serializable {
-
     public @NonNull String userId = "";
     public @NonNull String userName = "";
     public @NonNull String userAvatar = "";
