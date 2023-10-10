@@ -45,7 +45,7 @@
             <p>Call this method before calling <xref keyref="enableVideo" /> or <xref keyref="startPreview2" />.</p>
             <note type="attention">
             <ul>
-            <li>This feature requires high performance devices. Agora recommends that you implement it on devices equipped with the following chips:<ul>
+            <li>This feature has high requirements on device performance. When calling this method, the SDK automatically checks the capabilities of the current device. Agora recommends you use virtual background on devices with the following processors:<ul>
                 <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 700 series 750G and later</li>
                 <li props="android unity cpp unreal bp rn flutter cs">Snapdragon 800 series 835 and later</li>
                 <li props="android unity cpp unreal bp rn flutter cs">Dimensity 700 series 720 and later</li>
@@ -101,9 +101,7 @@
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
             <li>&lt; 0: Failure.<ul>
-                <li>-1: The custom background image does not exist. Check the value of <parmname>source</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>
-                <li>-2: The color format of the custom background image is invalid. Check the value of <parmname>color</parmname> in <xref keyref="VirtualBackgroundSource" />.</li>
-                <li>-3: The device does not support virtual background.</li>
+                <li>-4: The device capabilities do not meet the requirements for the virtual background feature. Agora recommends you try it on devices with higher performance.</li>
                 </ul></li>
             </ul> </section>
     </refbody>

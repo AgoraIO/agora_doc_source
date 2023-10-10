@@ -40,7 +40,8 @@
                 <ul>
                     <li>Call this method before calling <xref keyref="enableVideo" /> or <xref keyref="startPreview2" />.</li>
                     <li props="android">This method only applies to Android 5.0 or later.</li>
-                    <li>This method relies on the video enhancement dynamic library <codeph><ph keyref="clearvision" /></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+                    <li>This method relies on the image enhancement dynamic library <codeph><ph keyref="clearvision" /></codeph>. If the dynamic library is deleted, the function cannot be enabled normally.</li>
+                    <li>This feature has high requirements on device performance. When calling this method, the SDK automatically checks the capabilities of the current device.</li>
                 </ul>
             </note> </section>
         <section id="parameters">
@@ -68,9 +69,15 @@
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link" /> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.<ul props="android rn unity flutter cs">
-                <li><ph keyref="ERR_NOT_SUPPORTED" />(4): The current device version is below Android 5.0, and this operation is not supported.</li>
-                </ul></li>
-            </ul> </section>
+            <li>&lt; 0: Failure.<ul>
+                    <li>-4: The current device does not support this feature. Possible reasons include:<ul>
+                            <li>The current device capabilities do not meet the requirements for image enhancement. Agora recommends you replace it with a high-performance device.</li>
+                            <li props="android rn unity flutter cs">The current device version is lower than Android 5.0 and does not support this feature. Agora recommends you replace the device or upgrade the operating system.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            </ul>
+        </section>
     </refbody>
 </reference>
