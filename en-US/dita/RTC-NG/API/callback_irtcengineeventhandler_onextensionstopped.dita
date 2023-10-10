@@ -17,15 +17,15 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onExtensionStopped:(NSString * __nullable)provider
                  extension:(NSString * __nullable)extension;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionStopped(const char* provider, const char* extension) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionStopped(const char* provider, const char* extension) {
     (void)provider;
     (void)extension;
   }</codeblock>
-            <codeblock props="electron" outputclass="language-typescript">onExtensionStopped?(provider: string, extName: string): void;</codeblock>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionStopped(string provider, string ext_name) { }</codeblock>
-            <codeblock props="rn" outputclass="language-typescript">onExtensionStopped?(provider: string, extName: string): void;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStopped;
-</codeblock> </p>
+            <codeblock props="electron" outputclass="language-typescript">  onExtensionStopped?(provider: string, extension: string): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionStopped(string provider, string extension) { }</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">  onExtensionStopped?(provider: string, extension: string): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(String provider, String extName)? onExtensionStopped;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>After a successful call of <codeph><xref keyref="enableExtension"/>(<q><ph keyref="false"/></q>)</codeph>, this callback is triggered.</p>
