@@ -19,7 +19,7 @@
                      error:(int)error
                    message:(NSString * __nullable)message;
 </codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
+            <codeblock props="cpp" outputclass="language-cpp">virtual void onExtensionError(const char* provider, const char* extension, int error, const char* message) {
     (void)provider;
     (void)extension;
     (void)error;
@@ -31,7 +31,7 @@
     error: number,
     message: string
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnExtensionError(string provider, string extension, int error, string message) { }</codeblock>
+            <codeblock props="unity" outputclass="language-csharp">public virtual void OnExtensionError(string provider, string extension, int error, string message) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onExtensionError?(
     provider: string,
     extension: string,
@@ -40,8 +40,8 @@
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
           String provider, String extension, int error, String message)?
-      onExtensionError;</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
+      onExtensionError;
+</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <p>When calling <codeph><xref keyref="enableExtension" />(<q><ph keyref="true" /></q>)</codeph> fails or the extension runs in error, the extension triggers this callback and reports the error code and reason.</p>
