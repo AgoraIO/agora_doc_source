@@ -59,14 +59,14 @@
 @property(assign, nonatomic) BOOL enable_doppler;
 @end</codeblock>
       <codeblock props="cpp unreal" outputclass="language-cpp">struct SpatialAudioParams {
-  Optional&lt;double&gt; speaker_azimuth;
-  Optional&lt;double&gt; speaker_elevation;
-  Optional&lt;double&gt; speaker_distance;
-  Optional&lt;int&gt; speaker_orientation;
-  Optional&lt;bool&gt; enable_blur;
-  Optional&lt;bool&gt; enable_air_absorb;
-  Optional&lt;double&gt; speaker_attenuation;
-  Optional&lt;bool&gt; enable_doppler;
+  Optional&lt;double> speaker_azimuth;
+  Optional&lt;double> speaker_elevation;
+  Optional&lt;double> speaker_distance;
+  Optional&lt;int> speaker_orientation;
+  Optional&lt;bool> enable_blur;
+  Optional&lt;bool> enable_air_absorb;
+  Optional&lt;double> speaker_attenuation;
+  Optional&lt;bool> enable_doppler;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class SpatialAudioParams {
   
@@ -94,8 +94,8 @@
         public Optional&lt;int&gt; speaker_orientation = new Optional&lt;int&gt;();
         public Optional&lt;bool&gt; enable_blur = new Optional&lt;bool&gt;();
         public Optional&lt;bool&gt; enable_air_absorb = new Optional&lt;bool&gt;();
-        public Optional&lt;double&gt; speaker_attenuation = new Optional&lt;double&gt;();
-        public Optional&lt;bool&gt; enable_doppler = new Optional&lt;bool&gt;();
+        public Optional&lt;double> speaker_attenuation = new Optional&lt;double>();
+        public Optional&lt;bool> enable_doppler = new Optional&lt;bool>();
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class SpatialAudioParams {
   
@@ -150,12 +150,12 @@
   @JsonKey(name: 'enable_doppler')
   final bool? enableDoppler;
 
-  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory SpatialAudioParams.fromJson(Map&lt;String, dynamic> json) =>
       _$SpatialAudioParamsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$SpatialAudioParamsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$SpatialAudioParamsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
