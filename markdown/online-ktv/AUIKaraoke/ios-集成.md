@@ -169,9 +169,13 @@ karaokeView.onClickOffButton = { [weak self] in
 }
 ```
 
-### 6. 异常处理
+## 后续步骤
 
-调用 `subscribeError` 来订阅房间相关的异常回调，如 Token 过期。调用 `bindRespDelegate` 绑定对应房间的响应，如房间被销毁、用户被踢出等。
+成功搭建一个在线 K 歌房间后，你还可以参考本节对房间的异常状态进行处理。
+
+### 异常处理
+
+调用 `subscribeError` 来订阅房间相关的异常回调，如 Token 过期、房间被销毁等。调用 `bindRespDelegate` 绑定对应房间的响应，如房间被销毁、用户被踢出等。
 
 在退出房间时调用 `unsubscribeError` 和 `unbindRespDelegate` 来取消订阅和绑定。
 
@@ -182,11 +186,23 @@ KaraokeUIKit.shared.subscribeError(roomId: self.roomInfo?.roomId ?? "", delegate
 //在退出房间时取消订阅
 KaraokeUIKit.shared.unsubscribeError(roomId: self.roomInfo?.roomId ?? "", delegate: self)
 
-//在拉起房间后绑定房间的响应
+//Token 即将过期回调，更新 Token
+@objc func onTokenPrivilegeWillExpire(channelName: String?) {
+    generatorToken { config, _ in
+        KaraokeUIKit.shared.renew(config: config)
+    }
+}
+
+//在拉起房间后绑定对应房间的响应
 KaraokeUIKit.shared.bindRespDelegate(delegate: self)
 
 //在退出房间时取消绑定
 KaraokeUIKit.shared.unbindRespDelegate(delegate: self)
+
+// 通过 onRoomDestroy 来处理房间销毁
+func onRoomDestroy(roomId: String) {
+    //处理房间被销毁
+}
 ```
 
 ## 示例项目
@@ -195,4 +211,4 @@ KaraokeUIKit.shared.unbindRespDelegate(delegate: self)
 
 ## API 参考
 
-- [AUIKaraoke API]()
+- [AUIKaraoke Swift API]()

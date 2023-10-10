@@ -243,14 +243,14 @@ K 歌房间设置。
 
 ```swift
 open class AUIRoomConfig: NSObject {
-    public var channelName: String = ""     //正常rtm使用的频道
-    public var rtmToken007: String = ""     //rtm login用，只能007
-    public var rtcToken007: String = ""     //rtm join用
-    public var rtcChannelName: String = ""  //rtc使用的频道
-    public var rtcRtcToken: String = ""  //rtc join使用
-    public var rtcRtmToken: String = ""  //rtc mcc使用
-    public var rtcChorusChannelName: String = ""  //rtc 合唱使用的频道
-    public var rtcChorusRtcToken: String = ""  //rtc 合唱join使用
+    public var channelName: String = ""  
+    public var rtmToken007: String = ""  
+    public var rtcToken007: String = "" 
+    public var rtcChannelName: String = ""
+    public var rtcRtcToken: String = "" 
+    public var rtcRtmToken: String = ""
+    public var rtcChorusChannelName: String = ""
+    public var rtcChorusRtcToken: String = "" 
 }
 ```
 
@@ -274,17 +274,11 @@ open class AUIRoomConfig: NSObject {
 
   </Admonition>
 
-- `rtcChannelName`：主频道的频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。
+- `rtcChannelName`：主频道的频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。伴唱需要加入合唱频道来同步领唱的人声。
 
 - `rtcRtcToken`：加入主频道的 RTC Token。
 
-  <Admonition type="caution" title="注意">
-
-  请确保你使用的 RTC Token 是 AccessToken2，详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/ios/basic-features/token-authentication)。
-
-  </Admonition>
-
-- `rtcRtmToken`：用于音乐内容中心鉴权的 RTM Token。
+- `rtcRtmToken`：RTM Token，用于音乐内容中鉴权。
 
 - `rtcChorusChannelName`：合唱频道名。独唱场景下，该参数可为空。
 

@@ -13,27 +13,41 @@ AUIKaraoke 是一个基于 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/
 ### 前提条件
 
 - [Git](https://git-scm.com/downloads)
+
 - Android API Level 24 及以上
+
 - Android Studio 3.5 及以上
+
 - Android 设备，版本 Android 7.0 及以上
+
+  <Admonition type="caution" title="注意">
+
+  声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。
+
+  </Admonition>
+
 - [Java Development Kit](https://www.oracle.com/java/technologies/javase-downloads.html) 17 及以上
 
-<Admonition type="caution" title="注意">
-
-声网推荐使用真机运行项目。部分模拟机可能存在功能缺失或者性能问题。
-
-</Admonition>
-
 - 有效的声网开发者账号和声网项目，请参考[开通服务](https://doc.shengwang.cn/doc/rtc/ios/get-started/enable-service)，从声网控制台获取以下信息：
-  - App ID：声网随机生成的字符串，用于识别你的 app。
-  - RTC Token：在你的业务服务器上生成的 RTC Token。你的 app 客户端加入频道时会使用 Token 对用户进行鉴权。
-  - RTM Token（refer 到 rtm token 文档）
+  - App ID：声网随机生成的字符串，用于识别你的 App。
+  
+  - RTC 临时 Token：在声网控制台获取，用于客户端加入频道时对用户鉴权，有效期为 24 小时。
+  
+  - RTM 临时 Token：在声网控制台获取，有效期为 24 小时。
+  
+    <Admonition type="caution" title="注意">
+  
+    在生产环境中，为保证通信安全，声网推荐你部署业务服务器生成 Token，详情请参考[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/android/basic-features/token-authentication) 。
+  
+    </Admonition>
 
 ### 创建项目
 
 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。如果你已有 Android 项目，可跳过这一步骤。
 
-<Admonition type="info" title="信息">创建项目后，**Android Studio** 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。
+<Admonition type="info" title="信息">
+
+创建项目后，**Android Studio** 会自动开始同步 gradle, 稍等片刻至同步成功后再进行下一步操作。
 
 </Admonition>
 
@@ -57,7 +71,7 @@ AUIKaraoke 是一个基于 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/
 
 4. 添加权限并设置主题。在你的 `AndroidManifest.xml` 文件中添加下列内容：
 
-   ```java
+   ```xml
    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools">
 
@@ -99,12 +113,12 @@ AUIKaraoke 是一个基于 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/
 
 创建 `AUiCommonConfig` 对象，调用 `setup` 初始化 AUIKaraoke。
 
-```java
+```kotlin
 // 创建 AUiCommonConfig 对象
 val config = AUiCommonConfig()
 config.context = application
-// 获取你在声网控制台获取的 app ID
-config.appId = "Agora APP ID"
+// 获取你在声网控制台获取的 App ID
+config.appId = "APP ID"
 // 用户 ID
 config.userId = "User ID"
 // 用户名
@@ -205,9 +219,63 @@ K 歌结束后，调用 `destroyRoom` 销毁房间。
 ```kotlin
 // 销毁房间
 KaraokeUiKit.destroyRoom(roomId)
+// 取消订阅房间相关的异常回调
+KaraokeUiKit.unsubscribeError(roomId, errorDelegate)
+// 取消绑定对应房间的响应
+KaraokeUiKit.unbindRespDelegate(respDelegate)
+```
+
+## 后续步骤
+
+成功搭建一个在线 K 歌房间后，你还可以参考本节对房间的异常状态进行处理。
+
+### 异常处理
+
+成功拉起房间后，你可以调用 `subscribeError` 来订阅房间相关的异常回调，如 Token 过期等。调用 `bindRespDelegate` 绑定对应房间的响应，如房间被销毁、用户被踢出等。
+
+在退出房间时调用 `unsubscribeError` 和 `unbindRespDelegate` 来取消订阅和绑定。
+
+```swift
+// 订阅房间相关的异常回调
+val errorDelegate = object: AUIRtmErrorProxyDelegate{
+  override fun onTokenPrivilegeWillExpire(channelName: String?) {
+      // Token过期时回调
+  }
+}
+KaraokeUiKit.subscribeError(roomInfo.roomId, errorDelegate)
+
+// 绑定响应
+val respDelegate = object: AUIRoomManagerRespDelegate{
+  override fun onRoomDestroy(roomId: String){
+    // 房间被销毁
+  }
+}
+KaraokeUiKit.bindRespDelegate(respDelegate)
+```
+
+当你的 Token 过期后，你需要调用 `renewToken` 来传入新的 Token。关于 Token 的详细解释请参考 [AUiRoomConfig](#)。
+
+```kotlin
+val config = AUiRoomConfig(roomInfo.roomId)
+// 登陆 RTM 系统时用的 RTM Token
+config.rtmToken = ""
+// 登陆 RTM 系统时用的 RTC Token
+config.rtcToken = ""
+// RTM Token，用于音乐内容中鉴权
+config.rtcRtmToken = ""
+// 加入主频道的 RTC Token
+config.rtcRtcToken = ""
+// 根据合唱频道名和用户 ID 生成的 RTC Token，用于加入合唱频道时进行鉴权。
+config.rtcChorusRtcToken = ""
+// 更新 Token
+KaraokeUiKit.renewToken(config)
 ```
 
 ## 示例项目
 
 声网在 GitHub 上提供一个开源的示例项目 [AUIKitKaraoke](https://github.com/AgoraIO-Community/AUIKitKaraoke/tree/main/Android) 供你参考。
+
+## API 参考
+
+- [AUIKaraoke Kotlin API]()
 

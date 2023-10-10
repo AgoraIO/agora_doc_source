@@ -65,10 +65,10 @@ fun getRoomList(
 
 **参数**
 
-- `startTime`：房间创建的时间。
+- `startTime`：房间创建的时间，用于筛选在该时间之后创建的房间。
 - `pageSize`：每一页房间列表所展示的房间数量。
 - `success`：回调函数，当成功获取到 K 歌房间列表时调用，会返回一个房间信息列表，详见 [AUIRoomInfo](#AUIRoomInfo)。
-- `failure`：回调函数，当房间创建失败时调用。接受一个 `AUIException` 参数表示房间创建失败的异常， 无返回值。
+- `failure`：回调函数，当房间创建失败时调用，接受一个 `AUIException` 参数表示房间创建失败的异常，无返回值。
 
 ### launchRoom
 
@@ -109,6 +109,69 @@ fun release()
 ```
 
 释放 AUIKaraoke 的所有资源。
+
+### subscribeError
+
+```kotlin
+fun subscribeError(roomId: String, delegate: AUIRtmErrorProxyDelegate)
+```
+
+订阅房间相关的异常回调。
+
+你可以通过该方法订阅房间相关的异常回调，如 Token 过期、网络连接等问题。
+
+**参数**
+
+- `roomId`：房间 ID。
+
+- `delegate`：[AUIRtmErrorProxyDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/Android/README.zh.md#auirtmerrorproxydelegate) 实例，用于处理异常回调。
+
+### unsubscribeError
+
+```kotlin
+fun unsubscribeError(roomId: String, delegate: AUIRtmErrorProxyDelegate)
+```
+
+取消订阅房间相关的异常回调。
+
+你可以调用该方法取消订阅与指定 `roomId` 相关的房间的异常回调。取消订阅后，不再接收与该房间相关的任何异常回调。
+
+**参数**
+
+- `roomId`：房间 ID。
+
+- `delegate`：[AUIRtmErrorProxyDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/Android/README.zh.md#auirtmerrorproxydelegate) 实例，用于处理异常回调。
+
+### bindRespDelegate
+
+```kotlin
+fun bindRespDelegate(delegate: AUIRoomManagerRespDelegate)
+```
+
+
+绑定对应房间的响应。
+
+你可以调用该方法将实现了 `AUIRoomManagerRespDelegate` 的对象绑定到当前事件，以便在事件完成时，回调或通知这个对象以处理相应的结果或响应，例如房间被销毁、用户被踢出、房间的信息更新等。
+
+请确保你的 `AUIRoomManagerRespDelegate` 对象实现了 `AUIRoomManagerRespDelegate` 中的方法，以便能够正确处理响应。
+
+**参数**
+
+- `delegate`：[AUIRoomManagerRespDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/Android/README.zh.md#auiroommanagerrespdelegate) 实例，用于处理与房间操作相关的各种响应事件。你可以根据你的业务需求选择性实现该接口类中的方法。
+
+### unbindRespDelegate
+
+```kotlin
+fun unbindRespDelegate(delegate: AUIRoomManagerRespDelegate)
+```
+
+取消绑定对应房间的响应。
+
+你可以调用该方法取消已绑定到当前操作或事件的 `AUIRoomManagerRespDelegate` 对象。解除绑定后，将不再通知 `AUIRoomManagerRespDelegate` 对象与房间管理操作相关的结果或响应。
+
+**参数**
+
+`delegate`：[AUIRoomManagerRespDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/main/Android/README.zh.md#auiroommanagerrespdelegate) 实例，用于处理与房间操作相关的各种响应事件。你可以根据你的业务需求选择性实现该接口类中的方法。
 
 ## 数据模型
 
@@ -188,8 +251,6 @@ public AUIException(int code, String message)
 
 ### <h3 className="anchor" id="AUIRoomConfig">AUIRoomConfig</h3>
 
-K 歌房间设置。
-
 ```kotlin
 public class AUIRoomConfig {
 
@@ -210,6 +271,8 @@ public class AUIRoomConfig {
 }
 ```
 
+K 歌房间设置。
+
 **参数**
 
 - `channelName`：RTM 频道的频道名，该频道用于同步数据信息、传输信令。
@@ -218,30 +281,24 @@ public class AUIRoomConfig {
 
   <Admonition type="caution" title="注意">
 
-  请确保你使用的 RTM Token 是 AccessToken2。//TODO 搬到新站后加相应的文档链接
+  请确保你使用的 RTM Token 是 AccessToken2。
 
   </Admonition>
 
 - `rtcToken`：加入 RTM 频道时使用的 RTC Token。
   <Admonition type="caution" title="注意">
 
-  请确保你使用的 RTC Token 是 AccessToken2。//TODO 搬到新站后加相应的文档链接
+  请确保你使用的 RTC Token 是 AccessToken2。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/ios/basic-features/token-authentication)。
 
   </Admonition>
 
-- `rtcChannelName`：主频道的频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。
+- `rtcChannelName`：主频道的频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。伴唱需要加入合唱频道来同步领唱的人声。
 
-- `rtcRtcToken`：加入主频道的 RTC Token。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。
-
-  <Admonition type="caution" title="注意">
-
-  请确保你使用的 RTC Token 是 AccessToken2。//TODO 搬到新站后加相应的文档链接
-
-  </Admonition>
+- `rtcRtcToken`：加入主频道的 RTC Token。
 
 - `rtcRtmToken`：RTM Token，用于音乐内容中鉴权。
 
-- `rtcChorusChannelName`：合唱频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流，伴唱需要加入合唱频道来同步领唱的人声。独唱场景下，该参数可为空。
+- `rtcChorusChannelName`：合唱频道名。独唱场景下，该参数可为空。
 
 - `rtcChorusRtcToken`：根据合唱频道名和用户 ID 生成的 RTC Token，用于加入合唱频道时进行鉴权。独唱场景下，该参数可为空。
 
