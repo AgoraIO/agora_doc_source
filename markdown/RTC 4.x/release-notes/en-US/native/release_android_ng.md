@@ -1,3 +1,7 @@
+## Known issues and limitations
+
+Due to the change in screen sharing behavior in Android 14 system, if you switch between landscape and portrait modes during screen sharing using a device with this version, the current screen sharing process will be interrupted, and a popup will appear on the device asking if you want to start screen recording. Once confirmed, you can resume screen sharing.
+
 ## v4.2.3
 
 v4.2.3 was released on September xx, 2023.
