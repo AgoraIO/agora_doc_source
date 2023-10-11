@@ -143,7 +143,7 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
 
 3. 将服务部署在网关。网关可提供鉴权和限流等能力。本示例项目中展示的服务暂时未包含网关能力。
 
-4. 设置指标收集。通过 `https://{your_domain}:9090/metrics/prometheus` 收集指标进行服务监控。
+4. 设置指标收集。通过 `https://{your_hostname}:9090/metrics/prometheus` 收集指标进行服务监控。
 
 5. 将服务部署在云平台，例如[阿里云容器服务（ACK）](https://www.alibabacloud.com/zh/product/kubernetes)。
 
