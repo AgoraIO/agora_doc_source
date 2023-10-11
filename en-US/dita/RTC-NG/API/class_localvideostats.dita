@@ -82,6 +82,56 @@
     int hwEncoderAccelerating;
 
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalVideoStats
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int sentBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int sentFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int captureFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int captureFrameWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int captureFrameHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int regulatedCaptureFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int regulatedCaptureFrameWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int regulatedCaptureFrameHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encoderOutputFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encodedFrameWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encodedFrameHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int rendererOutputFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int targetBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int targetFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	EQUALITY_ADAPT_INDICATION qualityAdaptIndication;
+	int encodedBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int encodedFrameCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	EVIDEO_CODEC_TYPE codecType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int64 txPacketLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	FENUMWRAP_CAPTURE_BRIGHTNESS_LEVEL_TYPE  captureBrightnessLevel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	bool dualStreamEnabled;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalVideoStats&quot;)
+	int hwEncoderAccelerating;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalVideoStats {
   
   uid?: number;

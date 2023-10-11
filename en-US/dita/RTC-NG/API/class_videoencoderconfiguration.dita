@@ -277,6 +277,32 @@
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
         advanceOptions(PREFER_AUTO) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoEncoderConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_GENERIC_H264;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	FVideoDimensions dimensions;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	int frameRate = 15;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	int bitrate = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	int minBitrate = -1;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EORIENTATION_MODE orientationMode = EORIENTATION_MODE::ORIENTATION_MODE_ADAPTIVE;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EDEGRADATION_PREFERENCE degradationPreference = EDEGRADATION_PREFERENCE::MAINTAIN_QUALITY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_DISABLED;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	ECOMPRESSION_PREFERENCE compressionPreference = ECOMPRESSION_PREFERENCE::PREFER_LOW_LATENCY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	FAdvanceOptions advanceOptions;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
   codecType?: VideoCodecType;

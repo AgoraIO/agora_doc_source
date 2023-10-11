@@ -24,6 +24,14 @@
   ClientRoleOptions()
     : audienceLatencyLevel(AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY),
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FClientRoleOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ClientRoleOptions&quot;)
+	EAUDIENCE_LATENCY_LEVEL_TYPE audienceLatencyLevel = EAUDIENCE_LATENCY_LEVEL_TYPE::AUDIENCE_LATENCY_LEVEL_ULTRA_LOW_LATENCY;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ClientRoleOptions {
   
   audienceLatencyLevel?: AudienceLatencyLevelType;

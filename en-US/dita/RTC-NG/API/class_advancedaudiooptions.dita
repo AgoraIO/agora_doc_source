@@ -35,6 +35,15 @@
   AUDIO_PROCESSING_CHANNELS audioProcessingChannels;
   AdvancedAudioOptions(): audioProcessingChannels(AUDIO_PROCESSING_MONO) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAdvancedAudioOptions
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedAudioOptions&quot;)
+	bool audioProcessingChannels_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvancedAudioOptions&quot;)
+	int audioProcessingChannels;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AdvancedAudioOptions {
   
   audioProcessingChannels?: number;
