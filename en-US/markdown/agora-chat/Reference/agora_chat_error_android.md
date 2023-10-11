@@ -33,7 +33,7 @@ The error codes and error messages might be returned in the following ways:
 | 207        | `USER_REMOVED`                   | The user account is deleted on the [Agora Console](https://console.agora.io/). |
 | 209        | `PUSH_UPDATECONFIGS_FAILED`      | Fails to update the push configurations. For example, a failure of changing the nickname displayed for message push or updating do-not-disturb settings. |
 | 210        | `USER_PERMISSION_DENIED`         | The user has no permission to perform this operation. For example, a user that is banned attempts to send a message. |
-| 213        | `USER_BIND_ANOTHER_DEVICE`       | The user has logged in to another device. This error occurs when a user has logged in on one device and try to log in on another one with the same account, if the app is configured to persist the login state on the current device while preventing the login on another device in a single-device login scenario. |
+| 213        | `USER_BIND_ANOTHER_DEVICE`       | The user has logged in to another device. This error occurs when a user has logged in on one device and try to log in on another one with the same account, if the app is configured to persist the login state on the current device while preventing the login on another device in a single-device login scenario. This error code is deprecated. |
 | 214        | `USER_LOGIN_TOO_MANY_DEVICES`    | The user has reached the maximum number of devices on which he or she can log in with the same user account. This error occurs on a device with auto login enabled in a multi-device login scenario if the app turns on the switch of login on another device never kicking the user off on a current login device when the maximum number of login devices is exceeded. For example, a user can log in on at most four devices. At first, the user stays logged in on four devices, A (with auto login enabled), B, C, D. Then, the user gets logged out on device A due to network disruption and logs in on device E manually. After the network is available, auto login is performed on device A and fails due to the limit of login devices, triggering this error. |
 | 215        | `USER_MUTED`                     | The user is muted and not allowed to send messages in a chat group or chat room. |
 | 216        | `USER_KICKED_BY_CHANGE_PASSWORD` | The user has changed the login password. Once the login password is changed, the current login session ends and the user must log in again with the new password. |
@@ -55,7 +55,7 @@ The error codes and error messages might be returned in the following ways:
 | 404        | `FILE_DELETE_FAILED` | Fails to delete the existing log file. When a user retrieves a new log file, the existing log file, if any, will be deleted before a new one is generated. |
 | 405        | `FILE_TOO_LARGE`  | The file is too large. For example, the message attachment or shared group file that a user attempts to upload exceeds the file size limit for upload. |
 | 406    | `FILE_CONTENT_IMPROPER`           | The file content is inappropriate. For example, a message attachment or shared group file fails to be uploaded because the file contains inappropriate contents.                |
-| 500        | `MESSAGE_INVALID`  | The message is invalid. For example, the message object or message ID is empty, or the user ID of the message sender is inconsistent with the user ID of the current login session.  |
+| 500        | `MESSAGE_INVALID`  | The message is invalid. For example, during message sending, the message object or message ID is empty, or the user ID of the message sender is inconsistent with the user ID of the current login session. |
 | 501        | `MESSAGE_INCLUDE_ILLEGAL_CONTENT`  | The message contains inappropriate content. This error occurs when a message is found by the filtering system to contain inappropriate content. |
 | 502        | `MESSAGE_SEND_TRAFFIC_LIMIT`              | Messages are too large or sent too frequently. It is recommended that the user reduce the message sending frequency or the message size. |
 | 504        | `MESSAGE_RECALL_TIME_LIMIT` | The message recall timeout. This error occurs when a message fails to be recalled because the timeout period expires. |
@@ -65,7 +65,7 @@ The error codes and error messages might be returned in the following ways:
 | 508        | `MESSAGE_EXTERNAL_LOGIC_BLOCKED`  | During the pre-sending callback, the message that the user is attempting to send is blocked by a message filtering rule defined in the app server. |
 | 510        | `MESSAGE_SIZE_LIMIT`          | The body of the message to send exceeds the upper limit. |
 | 511        | `MESSAGE_EDIT_FAILED`          | Fails to modify a message. |
-| 600        | `GROUP_INVALID_ID`                   | Invalid group ID. For a group-related API, the chat group ID is an empty string. |
+| 600        | `GROUP_INVALID_ID`                   | Invalid group ID. For a group-related API, the chat group ID is an empty string or invalid. |
 | 601        | `GROUP_ALREADY_JOINED`                | The user is already in this chat group. For example, the error occurs when a user attempts to join a chat group that he or she is already in.|
 | 602        | `GROUP_NOT_JOINED`                    | The user hasn't joined this chat group. This error occurs when a user attempts to send a message or perform operations in a chat group that he or she is not in. |
 | 603        | `GROUP_PERMISSION_DENIED`               | The user does not have the permission to perform the operation to a chat group. For example, a chat group member does not have permission to add or remove a chat group admin. |
@@ -84,7 +84,7 @@ The error codes and error messages might be returned in the following ways:
 | 703        | `CHATROOM_PERMISSION_DENIED`  | The user does not have the permission to perform the operation to a chat room. For example, a chat room member does not have permission to add or remove a chat room admin. |
 | 704        | `CHATROOM_MEMBERS_FULL`    | The number of members in the chat room has reached the upper limit specified during chat room creation. |
 | 705        | `CHATROOM_NOT_EXIST`  | The chat room to which the user is requesting to perform operations does not exist.  |
-| 900    | `USERINFO_USERCOUNT_EXCEED`     |  The number of users whose user attributes are to be retrieved exceeds 100.|
+| 900    | `USERINFO_USERCOUNT_EXCEED`     | The number of users whose user attributes are to be retrieved exceeds 100.|
 | 901    | `USERINFO_DATALENGTH_EXCEED`    | The user attributes are too long. The total length of all user attributes cannot exceed 2 KB for a user or 10 GB for an app.|
 | 1000   | `CONTACT_ADD_FAILED`                | Fails to add a contact. |
 | 1001   | `CONTACT_REACH_LIMIT`       | The inviter has reached the maximum number of contacts that can be added. |

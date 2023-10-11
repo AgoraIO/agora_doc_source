@@ -274,12 +274,14 @@ String? thumbnailLocalPath = imgBody.thumbnailLocalPath;
 
 ### Recall a message
 
-Two minutes after a user sends a message, this user can withdraw it. Contact support@agora.io if you want to adjust the time limit.
+After a message is sent, you can recall it. The `recallMessage` method recalls a message that is saved both locally and on the server, whether it is a historical message, offline message or a roaming message on the server, or a message in the memory or local database of the message sender or recipient.
+
+You can recall a message sent within two minutes by default. If you want to adjust the time limit, contact [support@agora.io](mailto:support@agora.io).
 
 ```dart
 try {
   await ChatClient.getInstance.chatManager.recallMessage(msgId);
-} on ChatError catch (e) {
+} on ChatError catch (e) {}
 ```
 
 You can also use `ChatEventHandler` to listen for the state of recalling the message:

@@ -30,7 +30,7 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 | 207 | `AgoraChatErrorUserRemoved` | The user account is deleted on the [Agora Console](https://console.agora.io/).|
 | 209 | `AgoraChatErrorUpdateApnsConfigsFailed` | Fails to update the push configurations. For example, a failure of changing the nickname displayed for message push or updating do-not-disturb settings. |
 | 210 | `AgoraChatErrorUserPermissionDenied` | The user has no permission to perform this operation. For example, a user that is banned attempts to send a message. |
-| 213 | `AgoraChatErrorUserBindAnotherDevice`  | The user has logged in to another device. This error occurs when a user has logged in on one device and try to log in on another one with the same account, if the app is configured to persist the login state on the current device while preventing the login on another device in a single-device login scenario. |
+| 213 | `AgoraChatErrorUserBindAnotherDevice`  | The user has logged in to another device. This error occurs when a user has logged in on one device and try to log in on another one with the same account, if the app is configured to persist the login state on the current device while preventing the login on another device in a single-device login scenario. This error code is deprecated. |
 | 214 | `AgoraChatErrorUserLoginTooManyDevices` | The user has reached the maximum number of devices on which he or she can log in with the same user account. This error occurs on a device with auto login enabled in a multi-device login scenario if the app turns on the switch of login on another device never kicking the user off on a current login device when the maximum number of login devices is exceeded. For example, a user can log in on at most four devices. At first, the user stays logged in on four devices, A (with auto login enabled), B, C, D. Then, the user gets logged out on device A due to network disruption and logs in on device E manually. After the network is available, auto login is performed on device A and fails due to the limit of login devices, triggering this error. |
 | 215 | `AgoraChatErrorUserMuted` | The user is muted and not allowed to send messages in a chat group or chat room. |
 | 216 | `AgoraChatErrorUserKickedByChangePassword`  | The user has changed the login password. Once the login password is changed, the current login session ends and the user must log in again with the new password. |
@@ -52,7 +52,7 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 | 404 | `AgoraChatErrorFileDeleteFailed` | Fails to delete the existing log file. When a user retrieves a new log file, the existing log file, if any, will be deleted before a new one is generated. |
 | 405 | `AgoraChatErrorFileTooLarge` | The file is too large. For example, the message attachment or shared group file that a user attempts to upload exceeds the file size limit for upload. |
 | 406 | `AgoraChatErrorFileContentImproper` | The file content is inappropriate. For example, a message attachment or shared group file fails to be uploaded because the file contains inappropriate contents. |
-| 500 | `AgoraChatErrorMessageInvalid` | The message is invalid. For example, the message object or message ID is empty, or the user ID of the message sender is inconsistent with the user ID of the current login session. |
+| 500 | `AgoraChatErrorMessageInvalid` | The message is invalid. For example, during message sending, the message object or message ID is empty, or the user ID of the message sender is inconsistent with the user ID of the current login session. |
 | 502 | `AgoraChatErrorMessageTrafficLimit` | Messages are too large or sent too frequently. It is recommended that the user reduce the message sending frequency or the message size. |
 | 504 | `AgoraChatErrorMessageRecallTimeLimit` | The message recall timeout. This error occurs when a message fails to be recalled because the timeout period expires. |
 | 505 | `AgoraChatErrorServiceNotEnable` | The feature that the user is attempting to use is not enabled. This feature needs to be enabled on the [Agora Console](https://console.agora.io/) or by contacting [support@agora.io](mailto:support@agora.io) before it is ready to use. |
@@ -61,13 +61,13 @@ During the run time of the Agora Chat SDK, if the method call succeeds, the SDK 
 | 508 | `AgoraChatErrorMessageExternalLogicBlocked` | During the pre-sending callback, the message that the user is attempting to send is blocked by a message filtering rule defined in the app server. |
 | 510        | `AgoraChatErrorMessageSizeLimit`          | The body of the message to send exceeds the upper limit. |
 | 511        | `AgoraChatErrorEditFailed`          | Fails to modify a message. |
-| 600 | `AgoraChatErrorGroupInvalidId` | Invalid group ID. For a group-related API, the chat group ID is an empty string. |
+| 600 | `AgoraChatErrorGroupInvalidId` | Invalid group ID. For a group-related API, the chat group ID is an empty string or invalid. |
 | 601 | `AgoraChatErrorGroupAlreadyJoined` | The user is already in this chat group. For example, the error occurs when a user attempts to join a chat group that he or she is already in. |
 | 602 | `AgoraChatErrorGroupNotJoined` | The user hasn't joined this chat group. This error occurs when a user attempts to send a message or perform operations in a chat group that he or she is not in. |
 | 603 | `AgoraChatErrorGroupPermissionDenied` | The user does not have the permission to perform the operation to a chat group. For example, a chat group member does not have permission to add or remove a chat group admin. |
 | 604 | `AgoraChatErrorGroupMembersFull` | The number of members in the chat group has reached the upper limit specified during group creation. |
 | 605 | `AgoraChatErrorGroupSharedFileInvalidId` | The group shared file ID is empty and the group shared file cannot be uploaded or downloaded. |
-| 606 | `AgoraChatErrorGroupNotExist` | The ID of the shared file in the chat group is invalid. |
+| 606 | `AgoraChatErrorGroupNotExist` | The chat group to which the user is requesting to perform operations does not exist.|
 | 607    | `AgoraChatErrorGroupDisabled`       | The chat group is disabled.       |
 | 608    | `AgoraChatErrorGroupNameViolation`        | The chat group name is invalid. |
 | 609    | `AgoraChatErrorGroupMemberAttributesReachLimit`   | The number of custom attributes has reached the upper limit for a chat group member. |
