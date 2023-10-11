@@ -69,6 +69,24 @@
       quality(rhs.quality),
       recordingChannel(rhs.recordingChannel) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioRecordingConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	FString filePath;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	bool encode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	int sampleRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	EAUDIO_FILE_RECORDING_TYPE fileRecordingType = EAUDIO_FILE_RECORDING_TYPE::AUDIO_FILE_RECORDING_MIXED;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	EAUDIO_RECORDING_QUALITY_TYPE quality = EAUDIO_RECORDING_QUALITY_TYPE::AUDIO_RECORDING_QUALITY_LOW;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	int recordingChannel;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
 
   filePath?: string;

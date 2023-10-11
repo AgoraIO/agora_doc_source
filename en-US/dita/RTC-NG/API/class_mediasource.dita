@@ -50,6 +50,28 @@
                   provider(NULL){
   }
 };</codeblock>
+        <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAgoraMediaSource
+{
+        GENERATED_BODY()
+
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        FString url;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        FString uri;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        int startPos;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        bool autoPlay;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        bool enableCache;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        AGORAOPTIONAL isAgoraSource;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        AGORAOPTIONAL isLiveSource;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|MediaSource&quot;)
+        UIMediaPlayerCustomDataProvider* provider;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class MediaSource {
 
   url?: string;

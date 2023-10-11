@@ -53,6 +53,17 @@
 
     VideoSubscriptionOptions() {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoSubscriptionOptions
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool type_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
+	EVIDEO_STREAM_TYPE type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
+	AGORAOPTIONAL encodedFrameOnly;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
   type?: VideoStreamType;

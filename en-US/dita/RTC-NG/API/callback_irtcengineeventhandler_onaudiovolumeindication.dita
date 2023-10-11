@@ -24,6 +24,7 @@
     (void)speakerNumber;
     (void)totalVolume;
     }</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAudioVolumeIndication, const TArray&lt;FAudioVolumeInfo&gt;&amp;, speakers, int, totalVolume);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(connection: RtcConnection, speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(
@@ -58,7 +59,7 @@
                 <pt>speakers</pt>
                 <pd>The volume information of the users. See <xref keyref="AudioVolumeInfo" />. An empty <parmname>speakers</parmname> array in the callback indicates that no remote user is in the channel or is sending a stream.</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
+            <plentry props="cpp unreal unity electron rn flutter cs">
                 <pt>speakerNumber</pt>
                 <pd>
                     <p>The total number of users.<ul>

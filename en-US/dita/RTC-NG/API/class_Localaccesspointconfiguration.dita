@@ -83,6 +83,24 @@
   AdvancedConfigInfo advancedConfig;
   LocalAccessPointConfiguration() : ipList(NULL), ipListSize(0), domainList(NULL), domainListSize(0), verifyDomainName(NULL), mode(ConnectivityFirst) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalAccessPointConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	FString ipList;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	int ipListSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	FString domainList;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	int domainListSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	FString verifyDomainName;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAccessPointConfiguration&quot;)
+	ELOCAL_PROXY_MODE mode = ELOCAL_PROXY_MODE::ConnectivityFirst;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAccessPointConfiguration {
   
   ipList?: string[];

@@ -20,6 +20,14 @@
 
   DeviceInfo() : isLowLatencyAudioSupported(false) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FDeviceInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DeviceInfo&quot;)
+	bool isLowLatencyAudioSupported;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DeviceInfo {
 
   isLowLatencyAudioSupported?: boolean;
@@ -41,7 +49,7 @@
       _$DeviceInfoFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$DeviceInfoToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <note type="attention" props="cpp unreal bp unity cs rn flutter">This class is for Android only.</note> </section>

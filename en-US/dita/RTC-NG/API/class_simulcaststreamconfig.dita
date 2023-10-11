@@ -41,6 +41,18 @@
     return dimensions == rhs.dimensions &amp;&amp; kBitrate == rhs.kBitrate &amp;&amp; framerate == rhs.framerate;
   }
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSimulcastStreamConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	FVideoDimensions dimensions;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	int bitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	int framerate;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
   dimensions?: VideoDimensions;
   kBitrate?: number;
