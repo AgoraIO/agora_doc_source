@@ -23,6 +23,18 @@
   LOG_LEVEL level;
   LogConfig() : filePath(NULL), fileSizeInKB(DEFAULT_LOG_SIZE_IN_KB), level(OPTIONAL_LOG_LEVEL_SPECIFIER LOG_LEVEL_INFO) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLogConfig {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
+	FString filePath;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
+	int64 fileSizeInKB = 1024;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LogConfig&quot;)
+	TEnumAsByte&lt;ELOG_LEVEL&gt;	level = ELOG_LEVEL::LOG_LEVEL_INFO;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LogConfig {
   
   filePath?: string;

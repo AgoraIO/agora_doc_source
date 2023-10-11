@@ -42,6 +42,30 @@
   ~DirectCdnStreamingMediaOptions() {}
 
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FDirectCdnStreamingMediaOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	AGORAOPTIONAL publishCameraTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	AGORAOPTIONAL publishMicrophoneTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	AGORAOPTIONAL publishCustomAudioTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	AGORAOPTIONAL publishCustomVideoTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	AGORAOPTIONAL publishMediaPlayerAudioTrack;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	bool publishMediaPlayerId_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	int publishMediaPlayerId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	bool customVideoTrackId_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DirectCdnStreamingMediaOptions&quot;)
+	int64 customVideoTrackId;
+};</codeblock>
 <codeblock props="electron" outputclass="language-typescript">export class DirectCdnStreamingMediaOptions {
   publishCameraTrack?: boolean;
   publishMicrophoneTrack?: boolean;

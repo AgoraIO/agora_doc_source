@@ -30,6 +30,24 @@
                 int16_t data_[kMaxDataSizeSamples];
               };
             </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioPcmFrame {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int64 capture_timestamp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int64 samples_per_channel_;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int sample_rate_hz_;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int64 num_channels_;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	EBYTES_PER_SAMPLE bytes_per_sample = EBYTES_PER_SAMPLE::TWO_BYTES_PER_SAMPLE;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	/*3840 * sizeof(int16_t)*/
+	TArray&lt;int64&gt; data_;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioPcmFrame {
   capture_timestamp?: number;
   samples_per_channel_?: number;
