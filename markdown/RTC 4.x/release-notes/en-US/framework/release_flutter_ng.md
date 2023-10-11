@@ -1,5 +1,7 @@
 ## Known issues and limitations
 
+**Android 14 screen sharing issue**
+
 Due to changes in the screen sharing behavior of Android 14 system, using devices with this version for screen sharing may encounter the following issues:
 
 - Switching between landscape and portrait mode during screen sharing can interrupt the current screen sharing process and a window will pop up asking if you want to start recording the screen. Once confirmed, screen sharing can be restarted.
