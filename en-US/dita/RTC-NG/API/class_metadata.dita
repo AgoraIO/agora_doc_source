@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_metadata">
     <title><ph keyref="Metadata" /></title>
-    <shortdesc id="short">Media metadata.<ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Media metadata</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -14,6 +14,19 @@
     unsigned char *buffer;
     long long timeStampMs;
     };</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAgoraMetadata
+{
+        GENERATED_BODY()
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        int64 uid;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        int64 size;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        TArray&lt;int64&gt; buffer;
+        UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraMetadata&quot;)
+        int64 timeStampMs;
+};</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class Metadata
     {
         public uint uid;
@@ -70,7 +83,7 @@
       _$MetadataFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$MetadataToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -79,22 +92,22 @@
                 <pt>uid</pt>
                 <pd>
                     <p>The user ID.<ul id="ul_c1t_3wg_s4b">
-                    <li>For the recipient:the ID of the remote user who sent the <apiname keyref="Metadata" />.</li>
-                    <li>Ignore it for sender.</li>
+                    <li>For the receiver:<apiname keyref="Metadata" /> The user ID of the user who sent the .</li>
+                    <li>For the sender: ignore it.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>size</pt>
-                <pd>Buffer size for received or sent <apiname keyref="Metadata" />.</pd>
+                <pd>The buffer size of the sent or received <apiname keyref="Metadata" />.</pd>
             </plentry>
             <plentry>
                 <pt>buffer</pt>
-                <pd>The buffer address of the received or sent <apiname keyref="Metadata" />.</pd>
+                <pd>The buffer address of the sent or received<apiname keyref="Metadata" /> .</pd>
             </plentry>
             <plentry>
                 <pt>timeStampMs</pt>
-                <pd>The timestamp (ms) of <apiname keyref="Metadata" />.</pd>
+                <pd><apiname keyref="Metadata" />The timestamp (ms) of the .</pd>
             </plentry>
             </parml> </section>
     </refbody>

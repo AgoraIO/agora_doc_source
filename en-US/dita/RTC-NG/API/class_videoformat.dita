@@ -18,6 +18,17 @@
                 int height;
                 int fps;
               }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoFormat {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFormat&quot;)
+	int width = 640;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFormat&quot;)
+	int height = 360;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFormat&quot;)
+	int fps = 15;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFormat {
   
   width?: number;
@@ -64,7 +75,7 @@
       _$VideoFormatFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoFormatToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -79,7 +90,7 @@
             </plentry>
             <plentry>
                 <pt>fps</pt>
-                <pd>The video frame rate (fps).</pd>
+                <pd>The frame rate (fps) of the low-quality video stream frame.</pd>
             </plentry>
             </parml> </section>
     </refbody>

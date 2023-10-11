@@ -62,6 +62,16 @@
   RtcConnection(const char* channel_id, uid_t local_uid)
       : channelId(channel_id), localUid(local_uid) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRtcConnection
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
+	FString channelId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RtcConnection&quot;)
+	int64 localUid;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class RtcConnection {
   
   channelId?: string;
@@ -116,7 +126,7 @@
       </plentry>
       <plentry props="android">
         <pt>localUserAccount</pt>
-        <pd>The user account of the local user.</pd>
+        <pd>The name of the local user.</pd>
       </plentry>
       </parml> </section>
   </refbody>

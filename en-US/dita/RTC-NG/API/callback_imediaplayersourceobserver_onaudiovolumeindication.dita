@@ -14,14 +14,16 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onAudioVolumeIndication(int volume);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
              volumeIndicationDidReceive:(NSInteger)volume;
 </codeblock>
-            <codeblock props="cpp" outputclass="language-cpp">virtual void onAudioVolumeIndication(int volume) = 0;</codeblock>
-            <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(int volume) {}</codeblock>
-            <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/></p>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioVolumeIndication(int volume) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAudioVolumeIndicationSource, int, volume);</codeblock>
+            <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(volume: number): void;</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(int volume) {}</codeblock>
+            <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(volume: number): void;</codeblock>
+            <codeblock props="flutter" outputclass="language-dart">final void Function(int volume)? onAudioVolumeIndication;</codeblock>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>The SDK triggers this callback every 200 milliseconds to report the current volume of the media player.</p>

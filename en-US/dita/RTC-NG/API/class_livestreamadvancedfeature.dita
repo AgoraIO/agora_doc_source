@@ -19,6 +19,16 @@
   const char* featureName;
   bool opened;
 } ;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLiveStreamAdvancedFeature {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveStreamAdvancedFeature&quot;)
+	FString featureName;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveStreamAdvancedFeature&quot;)
+	bool opened;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LiveStreamAdvancedFeature {
   
   featureName?: string;
@@ -58,7 +68,7 @@
       _$LiveStreamAdvancedFeatureFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveStreamAdvancedFeatureToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>If you want to enable the advanced features of streaming with transcoding, contact <xref keyref="mailto-link" />.</p>
@@ -73,8 +83,8 @@
             <plentry>
                 <pt>opened</pt>
                 <pd>Whether to enable the advanced features of streaming with transcoding:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Enable the advanced features.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not enable the advanced features.</li>
+                    <li>: Enable the advanced features.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: (Default) Do not enable the advanced features.<codeph><ph keyref="false" /></codeph></li>
                     </ul></pd>
             </plentry>
             </parml></section>

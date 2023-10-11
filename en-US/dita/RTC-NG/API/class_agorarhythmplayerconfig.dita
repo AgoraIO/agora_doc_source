@@ -36,6 +36,16 @@
 
   AgoraRhythmPlayerConfig() : beatsPerMeasure(4), beatsPerMinute(60) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAgoraRhythmPlayerConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
+	int beatsPerMeasure = 4;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
+	int beatsPerMinute = 60;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AgoraRhythmPlayerConfig {
   
   beatsPerMeasure?: number;
@@ -69,18 +79,18 @@
       _$AgoraRhythmPlayerConfigFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$AgoraRhythmPlayerConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>
             <parml>
             <plentry>
                 <pt>beatsPerMeasure</pt>
-                <pd>The number of beats per measure, which ranges from 1 to 9. The default value is 4, which means that each measure contains one downbeat and three upbeats.</pd>
+                <pd>The number of beats per measure, which range from 1 to 9. The default value is 4, which means that each measure contains one downbeat and three upbeats.</pd>
             </plentry>
             <plentry>
                 <pt>beatsPerMinute</pt>
-                <pd>The beat speed (beats/minute), which ranges from 60 to 360. The default value is 60, which means that the metronome plays 60 beats in one minute.</pd>
+                <pd>The beat speed (beats/minute), which range from 60 to 360. The default value is 60, which means that the metronome plays 60 beats in one minute.</pd>
             </plentry>
             </parml> </section>
     </refbody>

@@ -26,6 +26,20 @@
     unsigned int expectedUplinkBitrate;
     unsigned int expectedDownlinkBitrate;
     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLastmileProbeConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	bool probeUplink;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	bool probeDownlink;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	int expectedUplinkBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LastmileProbeConfig&quot;)
+	int expectedDownlinkBitrate;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LastmileProbeConfig {
   
   probeUplink?: boolean;
@@ -84,7 +98,7 @@
       _$LastmileProbeConfigFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LastmileProbeConfigToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -93,8 +107,8 @@
                 <pt>probeUplink</pt>
                 <pd>
                     <p>Sets whether to test the uplink network. Some users, for example, the audience members in a LIVE_BROADCASTING channel, do not need such a test.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Test the uplink network.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not test the uplink network.</li>
+                    <li>: Test the uplink network.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: Do not test the uplink network.<codeph><ph keyref="false" /></codeph></li>
                     </ul> </p>
                 </pd>
             </plentry>
@@ -102,14 +116,14 @@
                 <pt>probeDownlink</pt>
                 <pd>
                     <p>Sets whether to test the downlink network:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Test the downlink network.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not test the downlink network.</li>
+                    <li>: Test the downlink network.<codeph><ph keyref="true" /></codeph></li>
+                    <li>: Do not test the downlink network.<codeph><ph keyref="false" /></codeph></li>
                     </ul> </p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>expectedUplinkBitrate</pt>
-                <pd>The expected maximum uplink bitrate (bps) of the local user. The value range is [100000, 5000000]. Agora recommends referring to <xref keyref="setVideoEncoderConfiguration" /> to set the value.</pd>
+                <pd>The expected maximum uplink bitrate (bps) of the local user. The value range is [100000, 5000000]. 建议参考 <xref keyref="setVideoEncoderConfiguration" /> 中的码率值设置该参数的值。</pd>
             </plentry>
             <plentry>
                 <pt>expectedDownlinkBitrate</pt>

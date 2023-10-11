@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_loguploadserverinfo">
-    <title><ph keyref="LogUploadServerInfo" /></title>
+    <title><ph keyref="LogUploadServerInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">Configuration information of the log server.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public static class LogUploadServerInfo {
+            <codeblock props="android" outputclass="language-java">public static class UploadServerInfo {
   public String serverDomain = null;
  
   public String serverPath = null;
  
   public int serverPort = 0;
   public boolean serverHttps = true;
-  public LogUploadServerInfo() {
+  public UploadServerInfo() {
   serverDomain = null;
   serverPath = null;
   serverPort = 0;
   serverHttps = true;
   }
  
-  public LogUploadServerInfo(String domain, String path, int port, boolean https){
+  public UploadServerInfo(String domain, String path, int port, boolean https){
    serverDomain =  domain;
    serverPath = path;
    serverPort = port;
    serverHttps = https;
   }
 };</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface LogUploadServerInfo : NSObject
+            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface UploadServerInfo : NSObject
 @property(copy, nonatomic) NSString* _Nullable serverDomain;
  
 @property(copy, nonatomic) NSString* _Nullable serverPath;
@@ -36,7 +36,7 @@
  
 @property(assign, nonatomic) BOOL serverHttps;
 @end</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">struct LogUploadServerInfo {
+            <codeblock props="cpp" outputclass="language-cpp">struct UploadServerInfo {
   const char* serverDomain;
  
   const char* serverPath;
@@ -45,18 +45,19 @@
  
   bool serverHttps;
  
-  LogUploadServerInfo() : serverDomain(nullptr), serverPath(nullptr), serverPort(0), serverHttps(true) {}
+  UploadServerInfo() : serverDomain(nullptr), serverPath(nullptr), serverPort(0), serverHttps(true) {}
  
-  LogUploadServerInfo(const char* domain, const char* path, int port, bool https) : serverDomain(domain),
+  UploadServerInfo(const char* domain, const char* path, int port, bool https) : serverDomain(domain),
 serverPath(path), serverPort(port), serverHttps(https) {}
 };</codeblock>
+            <codeblock props="cs" outputclass="language-csharp"/>
             <codeblock props="electron" outputclass="language-typescript">export class LogUploadServerInfo {
   serverDomain?: string;
   serverPath?: string;
   serverPort?: number;
   serverHttps?: boolean;
 }</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp" />
+            <codeblock props="unity" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript">export class LogUploadServerInfo {
   serverDomain?: string;
   serverPath?: string;
@@ -79,12 +80,11 @@ serverPath(path), serverPort(port), serverHttps(https) {}
   @JsonKey(name: 'serverHttps')
   final bool? serverHttps;
 
-  factory LogUploadServerInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LogUploadServerInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$LogUploadServerInfoFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LogUploadServerInfoToJson(this);
-}</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+  Map&lt;String, dynamic> toJson() => _$LogUploadServerInfoToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
@@ -93,10 +93,12 @@ serverPath(path), serverPort(port), serverHttps(https) {}
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p />
+            <p/>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text
+            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
+            /></title>
             <parml>
             <plentry>
                 <pt>serverDomain</pt>
@@ -113,8 +115,8 @@ serverPath(path), serverPort(port), serverHttps(https) {}
             <plentry>
                 <pt>serverHttps</pt>
                 <pd>Whether the log server uses the HTTPS protocol:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Uses HTTPS protocol.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not use HTTPS protocol. Uses the HTTP protocol.</li>
+                    <li>: Uses HTTPS protocol.<codeph><ph keyref="true"/></codeph></li>
+                    <li>: Do not use HTTPS protocol. Uses the HTTP protocol.<codeph><ph keyref="false"/></codeph></li>
                     </ul> </pd>
             </plentry>
             </parml> </section>
