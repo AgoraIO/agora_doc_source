@@ -277,6 +277,32 @@
         mirrorMode(VIDEO_MIRROR_MODE_DISABLED),
         advanceOptions(PREFER_AUTO) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoEncoderConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EVIDEO_CODEC_TYPE codecType = EVIDEO_CODEC_TYPE::VIDEO_CODEC_GENERIC_H264;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	FVideoDimensions dimensions;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	int frameRate = 15;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	int bitrate = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	int minBitrate = -1;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EORIENTATION_MODE orientationMode = EORIENTATION_MODE::ORIENTATION_MODE_ADAPTIVE;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EDEGRADATION_PREFERENCE degradationPreference = EDEGRADATION_PREFERENCE::MAINTAIN_QUALITY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	EVIDEO_MIRROR_MODE_TYPE mirrorMode = EVIDEO_MIRROR_MODE_TYPE::VIDEO_MIRROR_MODE_DISABLED;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	ECOMPRESSION_PREFERENCE compressionPreference = ECOMPRESSION_PREFERENCE::PREFER_LOW_LATENCY;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoEncoderConfiguration&quot;)
+	FAdvanceOptions advanceOptions;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoEncoderConfiguration {
   
   codecType?: VideoCodecType;
@@ -473,7 +499,17 @@
             </plentry>
             <plentry>
                 <pt>frameRate</pt>
-                <pd>视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                <pd props="native unreal flutter unity cs electron rn">视频编码的帧率(fps)，默认值为 15。详见 <xref keyref="FRAME_RATE"/>。</pd>
+                <pd props="bp">视频编码的帧率(fps)，默认值为 15。<ul>
+                  <li><ph keyref="FRAME_RATE_FPS_1"/>(1): 1 fps。</li>
+                  <li><ph keyref="FRAME_RATE_FPS_7"/>(7): 7 fps。</li>
+                  <li><ph keyref="FRAME_RATE_FPS_10"/>(10): 10 fps。</li>
+                  <li><ph keyref="FRAME_RATE_FPS_15"/>(15): 15 fps。</li>
+                  <li><ph keyref="FRAME_RATE_FPS_24"/>(24): 24 fps。</li>
+                  <li><ph keyref="FRAME_RATE_FPS_30"/>(30): 30 fps。</li>
+                  <li><ph keyref="FRAME_RATE_FPS_60"/>(60): 60 fps。
+                  <note type="attention">仅适用于 Windows 和 macOS 平台。</note></li>
+                </ul></pd>
             </plentry>
             <plentry>
                 <pt>bitrate</pt>

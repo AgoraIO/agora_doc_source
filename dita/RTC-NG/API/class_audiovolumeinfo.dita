@@ -25,6 +25,20 @@
                     double voicePitch;
                     AudioVolumeInfo() : uid(0), volume(0), vad(0), voicePitch(0.0) {}
                     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioVolumeInfo {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	int64 volume;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	int64 vad;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioVolumeInfo&quot;)
+	float voicePitch;
+
+};</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class AudioVolumeInfo
     {
         public AudioVolumeInfo()
