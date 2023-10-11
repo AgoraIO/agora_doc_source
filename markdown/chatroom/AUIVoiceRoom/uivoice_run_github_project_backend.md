@@ -97,7 +97,7 @@
 
 #### 前提条件
 
-除了满足[体验阶段的前提条件](#前提条件)外，还需确保已经安装如下环境或工具：
+除了满足[上一步的前提条件](#前提条件)外，还需确保已经安装如下环境或工具：
 
 - Java 11 或之后
 - VS Code 和如下插件：
@@ -137,7 +137,7 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
 
 完成本地开发后，你还需要进行以下操作才能将服务部署上线：
 
-1. 确保已[开通所有声网服务](//TODO)，并检查 `application.yml` 中字段内容填写无误。
+1. 确保已[开通所有声网服务](//TODO)，并根据[本地开发步骤 2](#开发步骤) 检查 `application.yml` 中字段内容填写无误。
 
 2. 调整 Redis 和 MongoDB 配置。
 
@@ -148,29 +148,9 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
 5. 将服务部署在云平台，例如[阿里云容器服务（ACK）](https://www.alibabacloud.com/zh/product/kubernetes)。
 
 
-//TODO
-- 同时还需要开通以下服务
-    - RTM, [联系客服人员开通](https://www.shengwang.cn)
-    - NCS, RTC频道事件回调通知, 处理人员进出/房间销毁逻辑
-        - [开通消息通知服务
-          ](https://docs.agora.io/cn/video-call-4.x/enable_webhook_ncs?platform=All%20Platforms)
-            - 选择以下事件类型
-                - channel create, 101
-                - channel destroy, 102
-                - broadcaster join channel, 103
-                - broadcaster leave channel, 104
-            - 回调地址
-                - https://你的域名/v1/ncs/callback
-            - 修改Secret
-                - 根据配置界面提供的Secret值, 修改项目配置文件application.yml的ncs.secret
-        - [频道事件回调
-          ](https://docs.agora.io/cn/video-call-4.x/rtc_channel_event?platform=All%20Platforms)
-    - 环信 IM，在环信 Console 控制台进行配置 [开通配置环信即时通讯 IM 服务](https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html)
-
-
 ## 目录结构
 
-本节提供示例项目中 [backend](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/backend) 文件夹的目录结构和文件说明。
+本节介绍示例项目中 [backend](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/backend) 文件夹下目录结构和各文件用途。
 
 ```
 ├── Dockerfile
@@ -277,3 +257,7 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
     │             └── logback-spring.xml                                        // 日志配置
     └── test                                                                    // 单元测试
 ```
+
+## 下一步
+
+//TODO
