@@ -76,12 +76,12 @@ struct FDataStreamConfig
                     <row>
                         <entry><codeph><ph keyref="false" /></codeph></entry>
                         <entry><codeph><ph keyref="false" /></codeph></entry>
-                        <entry>The SDK triggers the  callback immediately after the receiver receives a data packet<xref keyref="onStreamMessage" />.</entry>
+                        <entry>The SDK triggers the <xref keyref="onStreamMessage" /> callback immediately after the receiver receives a data packet.</entry>
                     </row>
                     <row>
                         <entry><codeph><ph keyref="true" /></codeph></entry>
                         <entry><codeph><ph keyref="false" /></codeph></entry>
-                        <entry>If the data packet delay is within the audio delay, the SDK triggers the  callback when the synchronized audio packet is played out<ph keyref="onStreamMessage" />. If the data packet delay exceeds the audio delay, the SDK triggers the  callback as soon as the<ph keyref="onStreamMessage" /> data packet is received.</entry>
+                        <entry>If the data packet delay is within the audio delay, the SDK triggers the <ph keyref="onStreamMessage" /> callback when the synchronized audio packet is played out. If the data packet delay exceeds the audio delay, the SDK triggers the <ph keyref="onStreamMessage" /> callback as soon as the data packet is received.</entry>
                     </row>
                     <row>
                         <entry><codeph><ph keyref="false" /></codeph></entry>
@@ -103,18 +103,18 @@ struct FDataStreamConfig
                 <pt>syncWithAudio</pt>
                 <pd>
                     <p>Whether to synchronize the data packet with the published audio packet.<ul>
-                    <li>: Synchronize the data packet with the audio packet. <codeph><ph keyref="true" /></codeph>该设置适用于歌词同步等特殊场景。</li>
-                    <li>: Do not synchronize the data packet with the audio packet. <codeph><ph keyref="false" /></codeph>该设置适用于需要数据包立刻到达接收端的场景。</li>
-                    </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the   callback when the synchronized audio packet is played out<xref keyref="onStreamMessage" />.</p>
+                    <li><codeph><ph keyref="true" /></codeph>: Synchronize the data packet with the audio packet. This setting is suitable for special scenarios such as lyrics synchronization.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not synchronize the data packet with the audio packet. This setting is suitable for scenarios where data packets need to arrive at the receiving end immediately.</li>
+                    </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the <xref keyref="onStreamMessage" /> callback when the synchronized audio packet is played out.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>ordered</pt>
                 <pd>
                     <p>Whether the SDK guarantees that the receiver receives the data in the sent order.<ul>
-                    <li>: Guarantee that the receiver receives the data in the sent order.<codeph><ph keyref="true" /></codeph></li>
-                    <li>: Do not guarantee that the receiver receives the data in the sent order.<codeph><ph keyref="false" /></codeph></li>
-                    </ul>Do not set this parameter as  if you need the receiver to receive the data packet immediately.<codeph><ph keyref="true" /></codeph></p>
+                    <li><codeph><ph keyref="true" /></codeph>: Guarantee that the receiver receives the data in the sent order.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not guarantee that the receiver receives the data in the sent order.</li>
+                    </ul>Do not set this parameter as <codeph><ph keyref="true" /></codeph> if you need the receiver to receive the data packet immediately.</p>
                 </pd>
             </plentry>
             </parml> </section>
