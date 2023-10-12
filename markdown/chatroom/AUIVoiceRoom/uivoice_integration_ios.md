@@ -2,30 +2,14 @@
 
 ## 示例项目
 
-声网在 [agora-ent-scenarios](https://github.com/AgoraIO-Usecase/agora-ent-scenarios) 仓库中提供[语聊房（普通版）](https://github.com/AgoraIO-Usecase/agora-ent-scenarios/tree/v3.1.0-voice-iOS/iOS/AgoraEntScenarios/Scenes/VoiceChatRoom)源代码供你参考。
+声网提供 [AUIVoiceRoom](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main) 示例项目供你参考。
 
 
 ## 业务流程图
 
 本节展示语聊房中常见的业务流程。
 
-### 进出房间
-
-下图展示创建、进入、退出房间的流程。
-
-![](https://web-cdn.agora.io/docs-files/1690957909911)
-
-### 房主邀请听众上麦
-
-下图展示房主邀请听众上麦的流程。在这个流程中，房主发起上麦邀请，如果听众接受邀请，房主会收到通知。听众上麦并修改麦位，然后发布自己的音频流。
-
-![](https://web-cdn.agora.io/docs-files/1690957919691)
-
-### 听众申请上麦
-
-下图展示听众向房主申请上麦的流程。在这个流程中，听众主动发起上麦申请，如果房主接受申请，房主修改麦位信息以让听众上麦。听众收到上麦消息后，发布自己的音频流。
-
-![](https://web-cdn.agora.io/docs-files/1690957930139)
+![](https://web-cdn.agora.io/docs-files/1697095578162)
 
 ## 准备开发环境
 
@@ -39,7 +23,7 @@
 
 ### 创建项目
 
-语聊房用到声网 RTC SDK 和即时通讯（IM）SDK。本节介绍如何在 Xcode 创建项目并集成这两个 SDK：
+本节介绍如何在 Xcode 创建项目并集成语聊项目所需依赖：
 
 1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 
@@ -58,26 +42,40 @@
 
     <div class="alert note"><ul><li>如果你的项目中需要添加第三方插件或库（例如第三方摄像头），且该插件或库的签名与项目的签名不一致，你还需勾选 <b>Hardened Runtime</b> > <b>Runtime Exceptions</b> 中的 <b>Disable Library Validation</b>。</li><li>更多注意事项，可以参考 <a href="https://developer.apple.com/documentation/xcode/preparing_your_app_for_distribution">Preparing Your App for Distribution</a >。</li></ul></div>
 
-5. 将声网 RTC 和即时通讯 SDK 集成到你的项目。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
+5. 集成语聊项目所需的 AScenesKit 和 AUIKit。开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 
-    1. 在终端里进入项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
+    1. 在示例项目中，通过 submodule 获得 AUIKit 文件。详见[克隆仓库](//TODO)。
+
+    2. 将示例项目中如下文件复制到你的项目中：
+
+        - `AUIVoiceRoom/iOS/AUIKit` 文件夹
+        - `AUIVoiceRoom/AScenesKit` 文件夹
+        - `AUIVoiceRoom/iOS/AScenesKit/Example/AScenesKit/VoiceRoomUIKit.swift`
+        - `AUIVoiceRoom/iOS/AUIVoiceRoom/AUIVoiceRoom/VoiceChatUIKit.swift`
+        - `AUIVoiceRoomKeyCenter.swift`
+
+        文件存放路径建议与示例项目中路径保持一致。
+
+    3. 在终端里进入你的项目根目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
+
     2. 打开 `Podfile` 文件，修改文件为如下内容。注意将 `Your App` 替换为你的 Target 名称。
 
         ```shell
-        platform :ios, '11.0'
+        platform :ios, '13.0'
         target 'Your App' do
-        # 集成 RTC SDK
-        # x.y.z 请填写具体的 SDK 版本号，如 4.0.1 或 4.0.0.4。
-        # 可通过互动直播发版说明获取最新版本号。
-        pod 'AgoraRtcEngine_iOS', 'x.y.z'
-        # 集成即时通讯 SDK
-        pod 'Agora_Chat_iOS'
+        # path 与依赖的实际路径一致即可
+        pod 'AScenesKit', :path => './AScenesKit'
+        pod 'AUIKit', :path => './AUIKit'
         end
         ```
 
-6. 在终端内运行 <code>pod install</code> 命令安装 SDK。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
+6. 在终端内运行 <code>pod install</code> 命令安装依赖。成功安装后，Terminal 中会显示 <code>Pod installation complete!</code>。
 
-## 实现语聊房
+### 配置后端
+
+参考[配置示例项目](//TODO)部署后端并将后端地址设置到你的项目中。
+
+## 实现语聊房 //TODO
 
 如下[时序图](#api-时序图)展示了如何登录即时通讯系统、获取房间列表、创建房间、进入房间、加入 RTC 频道、麦位管理、退出房间、离开 RTC 频道。声网云服务（Service）实现了房间列表的存储和房间生命周期的管理，声网即时通讯（IM）SDK 实现房间内的信令通信，声网 RTC SDK 承担实时音频的业务。本节会详细介绍如何调用声网云服务（`ChatRoomServiceProtocol`）、IM SDK API、RTC SDK API 完成这些逻辑。
 

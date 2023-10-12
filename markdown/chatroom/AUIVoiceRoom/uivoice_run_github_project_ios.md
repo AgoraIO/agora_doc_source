@@ -39,7 +39,7 @@
     git clone git@github.com:AgoraIO-Community/AUIVoiceRoom.git
     ```
 
-2. 继续运行以下命令将 `AUIVoiceRoom` 所依赖的 `AScenesKit` 和 `AUIKit` 拉取到本地：//TODO 是否是根目录下运行，试了没有用
+2. 继续运行以下命令将 `AUIVoiceRoom` 所依赖的 `AUIKit` 拉取到本地：//TODO 是否是根目录下运行，试了没有用；在 AUIVoiceRoom 下？ git pull --recurse-submodules 呢？
 
     ```shell
     git submodule init
@@ -58,16 +58,16 @@
 
     如果你暂无意部署后端服务，可以使用 `KeyCenter.swift` 里默认的地址。默认地址仅用于测试体验，请你不要商用。
 
-3. 在 `AUIVoiceRoom/iOS/AUIVoiceRoom` 目录下运行 `pod install`，然后等待依赖库安装完成。
-
 ## 编译并运行示例项目
 
-1. 连接上 iOS 设备后，点击 `AUIVoiceRoom.xcworkspace` 文件以通过 Xcode 打开项目，并在 **iOS Device** 选项中勾选上你的 iOS 设备。
+1. 在 `AUIVoiceRoom/iOS/AUIVoiceRoom` 目录下运行 `pod install`，然后等待依赖库安装完成。
 
-2. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 用于在设备上唯一标识应用程序。在开发应用时，你需要设置 Bundle ID。
+2. 连接上 iOS 设备，点击 `AUIVoiceRoom.xcworkspace` 文件以通过 Xcode 打开项目，并在 **iOS Device** 选项中勾选上你的 iOS 设备。
 
-3. 点击 <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25" style="display: inline;"/> 开始编译。
+3. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 用于在设备上唯一标识应用程序。在开发应用时，你需要设置 Bundle ID。
 
-4. 编译成功后，你的 iOS 设备上会出现语聊应用。在 iOS 系统设置中将该应用设为信任开发者后你才能打开应用。
+4. 点击 <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25" style="display: inline;"/> 开始编译。
 
-5. 打开应用，即可进行体验。房主可以创建语聊房；观众可以加入语聊房。
+5. 编译成功后，你的 iOS 设备上会出现语聊应用。在 iOS 系统设置中将该应用设为信任开发者后你才能打开应用。
+
+6. 打开应用，即可进行体验。房主可以创建语聊房；观众可以加入语聊房。
