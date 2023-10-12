@@ -50,7 +50,7 @@
 
         - `AUIVoiceRoom/iOS/AUIKit` 文件夹
         - `AUIVoiceRoom/AScenesKit` 文件夹
-        - `AUIVoiceRoom/iOS/AScenesKit/Example/AScenesKit/VoiceRoomUIKit.swift`
+        - `AUIVoiceRoom/iOS/AScenesKit/Example/AScenesKit/VoiceRoomUIKit.swift` //TODO 是否需要
         - `AUIVoiceRoom/iOS/AUIVoiceRoom/AUIVoiceRoom/VoiceChatUIKit.swift`
         - `AUIVoiceRoomKeyCenter.swift`
 
