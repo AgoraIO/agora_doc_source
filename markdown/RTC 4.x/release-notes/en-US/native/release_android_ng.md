@@ -1,3 +1,13 @@
+## Known issues and limitations
+
+**Android 14 screen sharing issue**
+
+Due to changes in the screen sharing behavior of Android 14 system, using devices with this version for screen sharing may encounter the following issues:
+
+- Switching between landscape and portrait mode during screen sharing can interrupt the current screen sharing process and a window will pop up asking if you want to start recording the screen. Once confirmed, screen sharing can be restarted.
+
+- When integrating the SDK, setting the Android `targetSdkVersion` to 34 may cause the screen sharing feature to be unavailable or even cause the application to crash.
+
 ## v4.2.3
 
 v4.2.3 was released on September xx, 2023.
@@ -45,10 +55,9 @@ This release fixed the following issues:
 
 - When using the H.265 encoding mode, when a Web client joined the interactivity, it caused a redundant `onUserEnableLocalVideo` callback on the native side: when the host called `enableLocalVideo (true)`, the receiving end first received a `onUserEnableLocalVideo` callback (with `enabled` as `false`) before receiving a `onUserEnableLocalVideo` callback (with `enabled` as `true`).
 - Occasional failure of joining a channel when the local system time was not set correctly.
-- When calling the `playEffect [2/2]` method to play two audio files using the same `soundId`, the first audio file was somtimes played repeatedly.
+- When calling the `playEffect [2/2]` method to play two audio files using the same `soundId`, the first audio file was sometimes played repeatedly.
 - When the host called the `startAudioMixing [2/2]` method to play music, sometimes the host couldn't hear the music while the remote users could hear it.
-- Occasional crashes occured on certain Android devices.
-- Loading music lists failed when the local system time was not correct.
+- Occasional crashes occurred on certain Android devices.
 - Calling `takeSnapshotEx` once receives the `onSnapshotTaken` callback for multiple times.
 - In channels joined by calling `joinChannelEx` exclusively, calling `setEnableSpeakerphone` is unable to switch audio route from the speaker to the headphone.
 
@@ -168,7 +177,7 @@ If you use the features mentioned in this section, ensure that you modify the im
 **1. Video data acquisition**
 
 - The `onCaptureVideoFrame` and `onPreEncodeVideoFrame` callbacks are added with a new parameter called `sourceType`, which is used to indicate the specific video source type.
-- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks. 
+- The following callbacks are deleted. Get the video source type through the `sourceType` parameter in the `onPreEncodeVideoFrame` and `onCaptureVideoFrame` callbacks.
 - `onScreenCaptureVideoFrame`
 - `onPreEncodeScreenVideoFrame`
 

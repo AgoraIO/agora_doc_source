@@ -41,6 +41,17 @@
            compressionPreference == rhs.compressionPreference;
   }
 }；</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAdvanceOptions {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
+	FENUMWRAP_ENCODING_PREFERENCE encodingPreference = EENUMCUSTOM_ENCODING_PREFERENCE::PREFER_AUTO;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AdvanceOptions&quot;)
+	ECOMPRESSION_PREFERENCE compressionPreference;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AdvanceOptions {
   encodingPreference?: EncodingPreference;
   compressionPreference?: CompressionPreference;

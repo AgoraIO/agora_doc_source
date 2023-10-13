@@ -19,6 +19,15 @@
   AudioSpectrumData(const float *data, int length) :
     audioSpectrumData(data), dataLength(length) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioSpectrumData {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioSpectrumData&quot;)
+	TArray&lt;float&gt; audioSpectrumData;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioSpectrumData&quot;)
+	int dataLength;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioSpectrumData {
   
   audioSpectrumData?: number[];
