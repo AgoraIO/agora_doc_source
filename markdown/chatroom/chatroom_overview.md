@@ -34,7 +34,7 @@
 
 声动语聊目前支持 Android 和 iOS 平台。
 
-## 技术架构 //TODO 是否适用于UI方案
+## 技术架构 //TODO yf是否适用于UI方案
 
 声网使用[声网 RTC SDK](https://docportal.shengwang.cn/cn/live-streaming-premium-4.x/product_live_ng?platform=Android)、[声网即时通讯（IM）SDK](https://docs-preprod.agora.io/cn/agora-chat/agora_chat_overview?platform=All%20Platforms)、声网云服务（Service）共同搭建声动语聊场景：
 

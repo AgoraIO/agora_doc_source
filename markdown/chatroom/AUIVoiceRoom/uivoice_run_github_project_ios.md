@@ -2,13 +2,13 @@
 
 如需更深入了解项目代码，请参考 [AUIScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/iOS/AScenesKit) 和 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/blob/main/iOS/README_zh.md)。
 
-## 项目架构 //TODO 用哪张图
+## 项目架构 //TODO yf用哪张图
 
 ![](https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/readme/uikit_structure_chart_voicechat_0.3.0.png)
 
 ![](https://web-cdn.agora.io/docs-files/1697008782148)
 
-含义说明：//TODO 用图二的话还需要提供 Controller、Container 等含义解释
+含义说明：//TODO yf用图二的话还需要提供 Controller、Container 等含义解释
 
 - AUIVoiceRoom：提供 VoiceRoom 的集成页面。
 - AScenesKit：场景业务组装模块。目前只包含 VoiceRoom（语聊）场景。
@@ -39,12 +39,7 @@
     git clone git@github.com:AgoraIO-Community/AUIVoiceRoom.git
     ```
 
-2. 继续运行以下命令将 `AUIVoiceRoom` 所依赖的 `AUIKit` 拉取到本地：//TODO 是否是根目录下运行，试了没有用；在 AUIVoiceRoom 下？ git pull --recurse-submodules 呢？
-
-    ```shell
-    git submodule init
-    git submodule update
-    ```
+2. 在 `AUIVoiceRoom/iOS/AUIVoiceRoom` 目录下运行 `pod install`，然后等待依赖库安装完成。
 
 ## 配置示例项目
 
@@ -60,14 +55,12 @@
 
 ## 编译并运行示例项目
 
-1. 在 `AUIVoiceRoom/iOS/AUIVoiceRoom` 目录下运行 `pod install`，然后等待依赖库安装完成。
+1. 连接上 iOS 设备，点击 `AUIVoiceRoom.xcworkspace` 文件以通过 Xcode 打开项目，并在 **iOS Device** 选项中勾选上你的 iOS 设备。
 
-2. 连接上 iOS 设备，点击 `AUIVoiceRoom.xcworkspace` 文件以通过 Xcode 打开项目，并在 **iOS Device** 选项中勾选上你的 iOS 设备。
+2. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 用于在设备上唯一标识应用程序。在开发应用时，你需要设置 Bundle ID。
 
-3. 在项目 **TARGETS** 下的 **Signing & Capabilities** 界面勾选 **Automatically manage signing**，配置你的苹果开发者账号和 **Bundle Identifier**。Bundle ID 用于在设备上唯一标识应用程序。在开发应用时，你需要设置 Bundle ID。
+3. 点击 <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25" style="display: inline;"/> 开始编译。
 
-4. 点击 <img src="https://web-cdn.agora.io/docs-files/1639710560035" width="25" style="display: inline;"/> 开始编译。
+4. 编译成功后，你的 iOS 设备上会出现语聊应用。在 iOS 系统设置中将该应用设为信任开发者后你才能打开应用。
 
-5. 编译成功后，你的 iOS 设备上会出现语聊应用。在 iOS 系统设置中将该应用设为信任开发者后你才能打开应用。
-
-6. 打开应用，即可进行体验。房主可以创建语聊房；观众可以加入语聊房。
+5. 打开应用，即可进行体验。房主可以创建语聊房；观众可以加入语聊房。

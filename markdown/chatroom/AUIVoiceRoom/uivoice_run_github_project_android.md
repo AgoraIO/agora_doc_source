@@ -42,9 +42,10 @@
     git clone git@github.com:AgoraIO-Community/AUIVoiceRoom.git
     ```
 
-2. 继续运行以下命令将 `AUIVoiceRoom` 所依赖的 `AUIKit` 拉取到本地：//TODO 是否是根目录下运行，试了没有用
+2. 在 `AUIVoiceRoom` 目录下将 `AUIVoiceRoom` 所依赖的 `AUIKit` 拉取到本地：//TODO yf待删除 submodule，全局搜索；补充 maven
 
     ```shell
+    cd ./AUIVoiceRoom
     git submodule init
     git submodule update
     ```

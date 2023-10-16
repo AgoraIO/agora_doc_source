@@ -2,7 +2,7 @@
 
 ## 项目简介
 
-本项目基于 Spring Boot 框架开发，依赖以下组件或服务：//TODO 不需要 RTC 吗
+本项目基于 Spring Boot 框架开发，依赖以下组件或服务：
 
 - Redis：用于定时刷新在线人数并通过分布式锁方式保证数据更新的一致性。
 - MongoDB：用于维护房间列表。
@@ -55,7 +55,7 @@
     | `NCS_SECRET`           | 消息通知服务的密钥，用于保障消息通知服务安全性。                     | [验证签名](https://doc.shengwang.cn/doc/rtc/restful/advanced-features/webhook#验证签名) |
     | `EM_AUTH_APPKEY`       | IM 服务的应用标识，用于创建 IM 聊天室。                          | [获取即时通讯项目信息](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms#获取即时通讯项目信息) |
     | `EM_AUTH_CLIENTID`     | IM 服务的用户 ID，用于创建 IM 聊天室。                        | [IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
-    | `EM_AUTH_CLIENTSECRET` | IM 服务的 Token（还是密码 //TODO），用于创建 IM 聊天室。                      | [IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
+    | `EM_AUTH_CLIENTSECRET` | IM 服务的 Token（//TODO 更新成环信和对应链接），用于创建 IM 聊天室。                      | [IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
 
     在体验阶段，你可以根据需求选择是否开通声网消息通知、RTM、IM 服务。如果未开通这些服务，你会受到如下影响：
 

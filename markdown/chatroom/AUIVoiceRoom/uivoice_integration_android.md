@@ -57,11 +57,10 @@
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
         <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-        <!-- 录音及摄像头权限 //TODO 为什么需要摄像头权限 -->
+        <!-- 录音权限 -->
         <uses-permission android:name="android.permission.RECORD_AUDIO" />
         <uses-permission android:name="android.permission.CALL_PHONE" />
         <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-        <uses-permission android:name="android.permission.CAMERA" />
         <!-- 存储权限 -->
         <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
         <!-- 手机状态权限 -->
@@ -77,9 +76,9 @@
     </manifest>
     ```
 
-### 配置后端
+### 部署后端
 
-参考[配置示例项目](//TODO)部署后端并将后端地址设置到你的项目中。
+参考[配置示例项目](//TODO)进行部署。
 
 ## 实现语聊房 //TODO
 
