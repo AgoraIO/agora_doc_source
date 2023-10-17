@@ -2,23 +2,23 @@
 
 如需更深入了解项目代码，请参考 [AUIScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/iOS/AScenesKit) 和 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/blob/main/iOS/README_zh.md)。
 
-## 项目架构 //TODO yf用哪张图
+## 项目技术架构
 
-![](https://fullapp.oss-cn-beijing.aliyuncs.com/uikit/readme/uikit_structure_chart_voicechat_0.3.0.png)
+![](https://web-cdn.agora.io/docs-files/1697538180703)
 
-![](https://web-cdn.agora.io/docs-files/1697008782148)
+架构解释：
 
-含义说明：//TODO yf用图二的话还需要提供 Controller、Container 等含义解释
+- `AUIVoiceRoom`：代表语聊房 App。
+    - Controller：用于管理语聊 App 中房间列表页面和单个房间的详情页面。
+- `AScenesKit`：为语聊场景提供业务逻辑的组装模块。
+    - `VoiceChatUIKit`：负责统一调度 `VoiceChatRoomView` 和 `VoiceChatRoomService`，并管理房间。
+    - `VoiceChatRoomView`：语聊房的容器 View。用于管理 AUIKit 提供的 UI。
+    - `VoiceChatRoomService`：语聊房的 Service。用于管理 AUIKit 提供的 Service。
+    - ViewBinder：用于将 `VoiceChatRoomView` 和 `VoiceChatRoomService` 绑定。
+- `AUIKit`：基础库。
+    - UI：基础 UI 组件。
+    - Service：上麦、聊天、送礼物等业务能力。
 
-- AUIVoiceRoom：提供 VoiceRoom 的集成页面。
-- AScenesKit：场景业务组装模块。目前只包含 VoiceRoom（语聊）场景。
-    - AUIVoiceRoomRoomView：VoiceRoom 房间容器 View，用于拼接各个基础组件并将基础组件与 Service 绑定。
-    - AUIVoiceRoomRoomService：VoiceRoom 房间 Service，用于创建各个基础 Service 并初始化 RTC、RTM 和 IM。
-    - Binder：把 UI Component 和 Service 关联起来的业务绑定模块。
-- AUIKit：包含基础组件和基础服务。
-    - UI Widget：基础 UI 组件。支持通过配置文件进行一键换肤。
-    - UI Component：基础业务 UI 模块，包括麦位、申请邀请、聊天、送礼物等。这些 UI 模块不包含任何业务逻辑，是纯 UI 模块。
-    - Service：基础组件服务类，包括麦位、申请或邀请上麦、点歌器、消息聊天、送礼物、用户管理、合唱等。
 
 ## 前提条件
 

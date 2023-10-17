@@ -1,6 +1,6 @@
 声动语聊解决方案提供了同时支持含 UI 和无 UI 组件的集成方案。
 
-声网语聊 UI 组件（AUIVoiceRoom）是声网为语聊场景开发的开源 UI 组件。该组件已集成声网实时互动（RTC）、实时消息（RTM）、即时通讯（IM）等产品，提供房间管理、麦位控制、聊天打赏、音频特效等核心功能。
+声网语聊 UI 组件（AUIVoiceRoom）是声网为语聊场景开发的开源 UI 组件。该组件已集成声网的[实时互动（RTC）](https://doc.shengwang.cn/doc/rtc/homepage)、[实时消息（RTM）](https://doc.shengwang.cn/doc/rtm2/homepage)和[环信 IM](http://docs-im-beta.easemob.com/product/introduction.html) 等产品，提供房间管理、麦位控制、聊天打赏、音频特效等核心功能。
 
 相较于无 UI 组件的集成方案，含 UI 组件的语聊集成方案具有以下特点和优势：
 

@@ -2,13 +2,15 @@
 
 ## 项目简介
 
-本项目基于 Spring Boot 框架开发，依赖以下组件或服务：
+`AUIVoiceRoom/backend` 项目基于 Spring Boot 框架开发，依赖以下组件或服务：
 
 - Redis：用于定时刷新在线人数并通过分布式锁方式保证数据更新的一致性。
 - MongoDB：用于维护房间列表。
 - 声网实时消息（RTM）：提供场景数据存储和消息传输通道。
-- 声网即时通讯（IM）：用于提供聊天服务功能。
+- 环信 IM：用于提供聊天服务功能。
 - 声网消息通知服务：用于处理人员进出和房间销毁逻辑，并通过声网 RTC 频道事件回调通知相关操作。
+
+如果你想深入了解项目源代码，可以参考[项目文件介绍](#项目文件介绍)。 //TODO yf有用到 libagora_rtc_sdk.so 包，但是不依赖 RTC SDK 吗？
 
 ## 服务部署
 
@@ -53,9 +55,9 @@
     | `TOKEN_BASICAUTH_USERNAME` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户 ID，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
     | `TOKEN_BASICAUTH_PASSWORD` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户密钥，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
     | `NCS_SECRET`           | 消息通知服务的密钥，用于保障消息通知服务安全性。                     | [验证签名](https://doc.shengwang.cn/doc/rtc/restful/advanced-features/webhook#验证签名) |
-    | `EM_AUTH_APPKEY`       | IM 服务的应用标识，用于创建 IM 聊天室。                          | [获取即时通讯项目信息](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms#获取即时通讯项目信息) |
-    | `EM_AUTH_CLIENTID`     | IM 服务的用户 ID，用于创建 IM 聊天室。                        | [IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
-    | `EM_AUTH_CLIENTSECRET` | IM 服务的 Token（//TODO 更新成环信和对应链接），用于创建 IM 聊天室。                      | [IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
+    | `EM_AUTH_APPKEY`       | IM 服务的应用标识，用于创建 IM 聊天室。                          | //TODO[获取即时通讯项目信息](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms#获取即时通讯项目信息) |
+    | `EM_AUTH_CLIENTID`     | IM 服务的用户 ID，用于创建 IM 聊天室。                        | //TODO[IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
+    | `EM_AUTH_CLIENTSECRET` | IM 服务的 Token（//TODO 更新成环信和对应链接），用于创建 IM 聊天室。                      | //TODO[IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
 
     在体验阶段，你可以根据需求选择是否开通声网消息通知、RTM、IM 服务。如果未开通这些服务，你会受到如下影响：
 
@@ -148,9 +150,9 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
 5. 将服务部署在云平台，例如[阿里云容器服务（ACK）](https://www.alibabacloud.com/zh/product/kubernetes)。
 
 
-## 目录结构
+## 项目文件介绍
 
-本节介绍示例项目中 [backend](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/backend) 文件夹下目录结构和各文件用途。
+本节介绍 `AUIVoiceRoom/backend` 下目录结构和各文件用途。
 
 ```
 ├── Dockerfile
@@ -181,7 +183,7 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
     │         │                     │         ├── req                                           // 请求对象
     │         │                     │         └── valid                                         // 参数校验
     │         │                     ├── config
-    │         │                     │         ├── EmServiceConfig.java                          // 环信配置
+    │         │                     │         ├── EmServiceConfig.java                          // 环信 IM 配置
     │         │                     │         ├── GlobalExceptionHandler.java                   // 全局异常处理
     │         │                     │         ├── RedisConfig.java                              // Redis 配置
     │         │                     │         ├── RtcChannelAPIClient.java                      // RTC 频道 API 客户端
@@ -247,7 +249,7 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
     │         │                         └── TokenUtil.java                      // Token 工具
     │         └── resources
     │             ├── application.yml                                           // 默认配置文件
-    │             ├── lib                                                       // 声网 RTM SDK
+    │             ├── lib                                                       // RTC 和 RTM SDK 文件
     │             │         ├── agora-rtm-sdk.jar
     │             │         ├── libagora-fdkaac.so
     │             │         ├── libagora-ffmpeg.so
@@ -257,7 +259,3 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
     │             └── logback-spring.xml                                        // 日志配置
     └── test                                                                    // 单元测试
 ```
-
-## 下一步
-
-//TODO

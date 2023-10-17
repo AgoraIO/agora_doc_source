@@ -52,10 +52,9 @@
 
 3. 将示例项目中如下文件复制到你的项目中：
 
-    - `AUIVoiceRoom/iOS/AUIKit` 文件夹
+    - `AUIVoiceRoom/iOS/AUIKit` 文件夹 //TODO yf确认删除
     - `AUIVoiceRoom/AScenesKit` 文件夹
-    - `AUIVoiceRoom/iOS/AUIVoiceRoom/AUIVoiceRoom/VoiceChatUIKit.swift`
-    - `AUIVoiceRoomKeyCenter.swift`
+    - `AUIVoiceRoom/iOS/AUIVoiceRoom/AUIVoiceRoomKeyCenter.swift`
 
     文件存放路径建议与示例项目中路径保持一致。
 
@@ -68,7 +67,6 @@
     target 'Your App' do
     # path 与依赖库所在的实际路径一致即可
     pod 'AScenesKit', :path => './AScenesKit'
-    pod 'AUIKit', :path => './AUIKit'
     end
     ```
 
@@ -155,18 +153,17 @@ So in summary, the createRoom method on VoiceChatUIKit provides an easy way to c
 
 ```swift
 let room = AUICreateRoomInfo()
-room.roomName = text
+room.roomName = "room name"
 room.thumbnail = self.userInfo.userAvatar
 room.micSeatCount = UInt(AUIRoomContext.shared.seatCount)
 room.micSeatStyle = UInt(AUIRoomContext.shared.seatType.rawValue)
 VoiceChatUIKit.shared.createRoom(roomInfo: room) { roomInfo in
     let vc = RoomViewController()
-    roomInfo?.micSeatCount = UInt(AUIRoomContext.shared.seatCount)
-    roomInfo?.micSeatStyle = UInt(AUIRoomContext.shared.seatType.rawValue)
     vc.roomInfo = roomInfo
     self.navigationController?.pushViewController(vc, animated: true)
 } failure: { error in
-    AUIToast.show(text: error.localizedDescription)
+    // 错误提示
+    ...
 }
 ```
 
