@@ -10,7 +10,7 @@
 - 环信 IM：用于提供聊天服务功能。
 - 声网消息通知服务：用于处理人员进出和房间销毁逻辑，并通过声网 RTC 频道事件回调通知相关操作。
 
-如果你想深入了解项目源代码，可以参考[项目文件介绍](#项目文件介绍)。 //TODO yf有用到 libagora_rtc_sdk.so 包，但是不依赖 RTC SDK 吗？
+如果你想深入了解项目源代码，可以参考[项目文件介绍](#项目文件介绍)。
 
 ## 服务部署
 
@@ -54,12 +54,12 @@
     | `TOKEN_APPCERTIFICATE` | 声网项目的 App 证书，用于登录 RTC 和 RTM 系统。                            | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书) |
     | `TOKEN_BASICAUTH_USERNAME` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户 ID，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
     | `TOKEN_BASICAUTH_PASSWORD` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户密钥，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
-    | `NCS_SECRET`           | 消息通知服务的密钥，用于保障消息通知服务安全性。                     | [验证签名](https://doc.shengwang.cn/doc/rtc/restful/advanced-features/webhook#验证签名) |
-    | `EM_AUTH_APPKEY`       | IM 服务的应用标识，用于创建 IM 聊天室。                          | //TODO[获取即时通讯项目信息](https://docs-preprod.agora.io/cn/agora-chat/enable_agora_chat?platform=All%20Platforms#获取即时通讯项目信息) |
-    | `EM_AUTH_CLIENTID`     | IM 服务的用户 ID，用于创建 IM 聊天室。                        | //TODO[IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
-    | `EM_AUTH_CLIENTSECRET` | IM 服务的 Token（//TODO 更新成环信和对应链接），用于创建 IM 聊天室。                      | //TODO[IM 集成概述](https://docs-preprod.agora.io/cn/agora-chat/integration_overview_android?platform=Android#用户登录) |
+    | `NCS_SECRET`           | 声网消息通知服务的密钥，用于保障消息通知服务安全性。                     | [验证签名](https://doc.shengwang.cn/doc/rtc/restful/advanced-features/webhook#验证签名) |
+    | `EM_AUTH_APPKEY`       | 环信 IM 服务的 App Key，用于创建 IM 聊天室。                          | [获取 IM 信息](https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html#获取环信即时通讯-im-的信息) |
+    | `EM_AUTH_CLIENTID`     | 环信 IM 服务的 Client ID，用于创建 IM 聊天室。                        | 登录[环信管理后台](https://console.easemob.com/user/login)到**应用列表** > **查看** 获取 |
+    | `EM_AUTH_CLIENTSECRET` | 环信 IM 服务的 Client Secret，用于创建 IM 聊天室。                      | 登录[环信管理后台](https://console.easemob.com/user/login)到**应用列表** > **查看** 获取 |
 
-    在体验阶段，你可以根据需求选择是否开通声网消息通知、RTM、IM 服务。如果未开通这些服务，你会受到如下影响：
+    在体验阶段，你可以根据需求选择是否开通声网消息通知、声网 RTM、环信 IM 服务。如果未开通这些服务，你会受到如下影响：
 
     - 如果未开启声网消息通知服务，将无法自动处理用户进出房间和房间销毁的逻辑。
     - 如果未开启 RTM 和 IM 服务，功能体验会受限。
@@ -139,7 +139,7 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
 
 完成本地开发后，你还需要进行以下操作才能将服务部署上线：
 
-1. 确保已[开通所有声网服务](//TODO)，并根据[本地开发步骤 2](#开发步骤) 检查 `application.yml` 中字段内容填写无误。
+1. 确保已[开通所有声网服务](//TODO)，并根据[本地开发中的步骤 2](#开发步骤) 检查 `application.yml` 中字段内容填写无误。
 
 2. 调整 Redis 和 MongoDB 配置。
 
@@ -249,7 +249,7 @@ Dev Containers 插件允许你在 Linux 环境的 Docker 容器中进行开发�
     │         │                         └── TokenUtil.java                      // Token 工具
     │         └── resources
     │             ├── application.yml                                           // 默认配置文件
-    │             ├── lib                                                       // RTC 和 RTM SDK 文件
+    │             ├── lib                                                       // RTM SDK 文件
     │             │         ├── agora-rtm-sdk.jar
     │             │         ├── libagora-fdkaac.so
     │             │         ├── libagora-ffmpeg.so

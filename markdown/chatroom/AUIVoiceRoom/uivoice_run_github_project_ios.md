@@ -39,7 +39,7 @@
     git clone git@github.com:AgoraIO-Community/AUIVoiceRoom.git
     ```
 
-2. 在 `AUIVoiceRoom/iOS/AUIVoiceRoom` 目录下运行 `pod install`，然后等待依赖库安装完成。
+2. 在 `AUIVoiceRoom/iOS/AUIVoiceRoom` 目录下运行 `pod update`，然后等待依赖库安装完成。
 
 ## 配置示例项目
 
