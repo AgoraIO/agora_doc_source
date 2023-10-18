@@ -12,8 +12,6 @@ Video SDK for Unreal Blueprint provides a simple and user-friendly real-time int
 
 Video SDK for Unreal Blueprint offers a visual interface and a set of intuitive and easy-to-use nodes. This enables developers to effortlessly implement real-time interactive features in games or apps within the Unreal project. You don't need to know C++, just drag, connect and configure nodes.
 
-Agora provides the open source [example project](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example) on GitHub for your reference.
-
 **Reference**
 
 To integrate real-time engagement functionality into your app using Video SDK for Unreal Engine, see:
@@ -24,3 +22,4 @@ To integrate real-time engagement functionality into your app using Video SDK fo
 - [Get Started with Interactive Live Streaming Standard]()
 - [API Reference]()
 
+Agora provides the open source [example project](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example) on GitHub for your reference.
