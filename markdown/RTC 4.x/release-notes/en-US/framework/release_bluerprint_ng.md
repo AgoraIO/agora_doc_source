@@ -21,4 +21,4 @@ To integrate real-time engagement functionality into your app using Video SDK fo
 - [Get Started with Interactive Live Streaming Standard]()
 - [API Reference]()
 
-Agora provides the open source [example project](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-CPP-Example) on GitHub for your reference.
+Agora provides the open source [example project](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example) on GitHub for your reference.
