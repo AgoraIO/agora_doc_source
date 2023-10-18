@@ -1,6 +1,6 @@
 本文介绍如何快速跑通 [AUIVoiceRoom/iOS](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/iOS) 示例项目，体验在线语聊房。
 
-如需更深入了解项目代码，请参考 [AUIScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/iOS/AScenesKit) 和 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/blob/main/iOS/README_zh.md)。
+如需更深入了解项目代码，请参考 [AScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/iOS/AScenesKit) 和 [AUIKit](https://github.com/AgoraIO-Community/AUIKit/blob/main/iOS/README_zh.md)。
 
 ## 项目技术架构
 
