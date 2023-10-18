@@ -1,15 +1,9 @@
-本文介绍如何实现语聊房。
+本文介绍如何集成语聊 UIKit 来实现房间的创建、进入、和销毁。
 
 ## 示例项目
 
 声网提供 [AUIVoiceRoom](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main) 示例项目供你参考。
 
-
-## 业务流程图
-
-本节展示语聊房中常见的业务流程。
-
-![](https://web-cdn.agora.io/docs-files/1697095578162)
 
 ## 准备开发环境
 
@@ -171,3 +165,9 @@ VoiceChatUIKit.shared.createRoom(roomInfo: room) { roomInfo in
 
 ```swift
 ```
+
+## 下一步
+
+在创建、进入房间后，你可以参考如下业务流程图开发后续的麦位管理、聊天、礼物等功能模块。
+
+![](https://web-cdn.agora.io/docs-files/1697095578162)
