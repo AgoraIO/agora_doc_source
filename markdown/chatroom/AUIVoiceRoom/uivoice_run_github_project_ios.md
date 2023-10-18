@@ -6,7 +6,7 @@
 
 ![](https://web-cdn.agora.io/docs-files/1697538180703)
 
-架构解释：
+架构图含义如下：
 
 - `AUIVoiceRoom`：代表语聊房 App。
     - Controller：用于管理语聊 App 中房间列表页面和单个房间的详情页面。
