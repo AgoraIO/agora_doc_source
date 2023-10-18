@@ -50,14 +50,14 @@
 
     | 字段名                   | 字段描述         | 获取方式    |
     |----------------------|-----------------------|----------------------------------|
-    | `TOKEN_APPID`          | 声网项目的 App ID，用于登录 RTC 和 RTM 系统。                 |[获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) |
-    | `TOKEN_APPCERTIFICATE` | 声网项目的 App 证书，用于登录 RTC 和 RTM 系统。                            | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书) |
-    | `TOKEN_BASICAUTH_USERNAME` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户 ID，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
-    | `TOKEN_BASICAUTH_PASSWORD` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户密钥，用于实现封禁 RTC 频道内的用户权限。               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
-    | `NCS_SECRET`           | 声网消息通知服务的密钥，用于保障消息通知服务安全性。                     | [验证签名](https://doc.shengwang.cn/doc/rtc/restful/advanced-features/webhook#验证签名) |
-    | `EM_AUTH_APPKEY`       | 环信 IM 服务的 App Key，用于创建 IM 聊天室。                          | [获取 IM 信息](https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html#获取环信即时通讯-im-的信息) |
-    | `EM_AUTH_CLIENTID`     | 环信 IM 服务的 Client ID，用于创建 IM 聊天室。                        | 登录[环信管理后台](https://console.easemob.com/user/login)到**应用列表** > **查看** 获取 |
-    | `EM_AUTH_CLIENTSECRET` | 环信 IM 服务的 Client Secret，用于创建 IM 聊天室。                      | 登录[环信管理后台](https://console.easemob.com/user/login)到**应用列表** > **查看** 获取 |
+    | `TOKEN_APPID`          | 声网项目的 App ID，用于登录 RTC 和 RTM 系统                 |[获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id) |
+    | `TOKEN_APPCERTIFICATE` | 声网项目的 App 证书，用于登录 RTC 和 RTM 系统                            | [获取 App 证书](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-证书) |
+    | `TOKEN_BASICAUTH_USERNAME` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户 ID，用于实现封禁 RTC 频道内的用户权限              | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
+    | `TOKEN_BASICAUTH_PASSWORD` | [声网频道管理 RESTful 服务](https://doc.shengwang.cn/doc/rtc/restful/best-practice/user-privilege)所需的客户密钥，用于实现封禁 RTC 频道内的用户权限               | [生成客户 ID 和密钥](https://doc.shengwang.cn/doc/rtc/restful/get-started/enable-service#获取客户-id-和客户密钥) |
+    | `NCS_SECRET`           | 声网消息通知服务的密钥，用于保障消息通知服务安全性                     | [验证签名](https://doc.shengwang.cn/doc/rtc/restful/advanced-features/webhook#验证签名) |
+    | `EM_AUTH_APPKEY`       | 环信 IM 服务的 App Key，用于创建 IM 聊天室                        | [获取 IM 信息](https://docs-im-beta.easemob.com/document/server-side/enable_and_configure_IM.html#获取环信即时通讯-im-的信息) |
+    | `EM_AUTH_CLIENTID`     | 环信 IM 服务的 Client ID，用于创建 IM 聊天室                        | 登录[环信管理后台](https://console.easemob.com/user/login)到**应用列表** > **查看**获取 |
+    | `EM_AUTH_CLIENTSECRET` | 环信 IM 服务的 Client Secret，用于创建 IM 聊天室                     | 登录[环信管理后台](https://console.easemob.com/user/login)到**应用列表** > **查看**获取 |
 
     在体验阶段，你可以根据需求选择是否开通声网消息通知、声网 RTM、环信 IM 服务。如果未开通这些服务，你会受到如下影响：
 
