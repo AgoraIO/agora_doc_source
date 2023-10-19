@@ -176,50 +176,50 @@ override func viewDidLoad() {
     }
     ```
 
-2. 主动退出。在上一步创建VoiceChatView时设置回调，即可主动退出房间
+#### 主动退出
 
-    ```swift
-    //AUIVoiceChatRoomView提供了onClickOffButton点击返回的clousure
-    VoiceChatView.onClickOffButton = { [weak self] in
-        //点击退出
-        self?.destroyRoom()
-    }
-    ```
+在上一步创建VoiceChatView时设置回调，即可主动退出房间
 
-3. 被动退出。在加入房间之后订阅AUIRoomManagerRespDelegate的回调
+```swift
+//AUIVoiceChatRoomView提供了onClickOffButton点击返回的clousure
+VoiceChatView.onClickOffButton = { [weak self] in
+    //点击退出
+    self?.destroyRoom()
+}
+```
+
+#### 被动退出
+
+1. 在加入房间之后订阅AUIRoomManagerRespDelegate的回调
 
     ```swift
     VoiceChatUIKit.shared.bindRespDelegate(delegate: self)
     ```
 
-#### 取消订阅
+2. 在退出房间时取消订阅
 
-在退出房间时取消订阅
+    ```swift
+    VoiceChatUIKit.shared.unbindRespDelegate(delegate: self)
+    ```
 
-```swift
-VoiceChatUIKit.shared.unbindRespDelegate(delegate: self)
-```
+3. 然后通过AUIRoomManagerRespDelegate回调方法中的onRoomDestroy来处理房间销毁
 
-#### 处理房间销毁
+    ```swift
+    extension ViewController: AUIRoomManagerRespDelegate {
+        //房间销毁
+        func onRoomDestroy(roomId: String) {
+            self.destroyRoom()
+        }
 
-然后通过AUIRoomManagerRespDelegate回调方法中的onRoomDestroy来处理房间销毁
+        func onRoomInfoChange(roomId: String, roomInfo: AUIKitCore.AUIRoomInfo) {
+        }
 
-```swift
-extension ViewController: AUIRoomManagerRespDelegate {
-    //房间销毁
-    func onRoomDestroy(roomId: String) {
-        self.destroyRoom()
+        func onRoomAnnouncementChange(roomId: String, announcement: String) {
+        }
+
+        //被房主踢出
+        func onRoomUserBeKicked(roomId: String, userId: String) {
+            self.destroyRoom()
+        }
     }
-
-    func onRoomInfoChange(roomId: String, roomInfo: AUIKitCore.AUIRoomInfo) {
-    }
-
-    func onRoomAnnouncementChange(roomId: String, announcement: String) {
-    }
-
-    //被房主踢出
-    func onRoomUserBeKicked(roomId: String, userId: String) {
-        self.destroyRoom()
-    }
-}
-```
+    ```
