@@ -1,6 +1,6 @@
 ## v4.2.1 
 
-v4.2.1 was released on October xx, 2023. 
+This version was released on October xx, 2023. 
 
 This is the first release of Video SDK for Unreal Blueprint.
 
