@@ -38,18 +38,13 @@
     | -------------------------------------- | ------ | ------------------------------------------------------------ |
     | Privacy - Microphone Usage Description | String | 使用麦克风的目的，例如 for a live interactive streaming |
 
-### （可选）部署后端
-
-
-
-
 ### 集成依赖
 
-本节介绍如何集成语聊项目所需的 AScenesKit 和 AUIKit 依赖：
+本节介绍如何集成语聊项目所需的依赖库：
 
 1. 开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 
-2. 下载声网提供的 [AUIVoiceRoom/iOS/AScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/dev/0.3.2/iOS/AScenesKit) 文件夹，并将该文件夹复制到与你的 `*.xcodeproj` 文件所在的同一级目录下。
+2. 下载声网提供的 [AUIVoiceRoom/iOS/AScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/blob/main/iOS/AScenesKit) 文件夹，并将该文件夹复制到与你的 `*.xcodeproj` 文件所在的同一级目录下。
 
 3. 在终端里进入 `*.xcodeproj` 文件的上一级目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
 
@@ -81,12 +76,13 @@
     ```shell
     pod update --verbose
     ```
+    ![](https://web-cdn.agora.io/docs-files/1697696810206)
+    ![](https://web-cdn.agora.io/docs-files/1697696820778)
+    ![](https://web-cdn.agora.io/docs-files/1697696829568)
 
-    安装成功后，与 `*.xcodeproj` 文件所在的同一级目录下会出现一个 `*.xcworkspace` 文件。打开该文件即可体验安装了 AScenesKit 和 AUIKit 依赖的项目。
+    安装成功后，与 `*.xcodeproj` 文件所在的同一级目录下会出现一个 `*.xcworkspace` 文件。打开该文件即可体验安装了 AScenesKit 和 AUIKit 等依赖的项目。
 
-集成后，项目文件结构应如下：//TODO
-
-![](https://web-cdn.agora.io/docs-files/1697685865359)
+    ![](https://web-cdn.agora.io/docs-files/1697696837811)
 
 
 ## 实现语聊房 //TODO
