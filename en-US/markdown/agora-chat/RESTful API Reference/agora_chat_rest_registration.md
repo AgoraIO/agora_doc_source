@@ -98,7 +98,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
       "username": "user1",
-      "password": "123",
+      "password": "123"
     }'
 ```
 
@@ -117,7 +117,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
             "created": 1542795196504,
             "modified": 1542795196504,
             "username": "user1",
-            "activated": true,
+            "activated": true
         }
     ],
     "timestamp": 1542795196515,
