@@ -78,7 +78,6 @@ The request body is a JSON object, which contains the following fields:
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  | Yes |
 | `password` | String | The user's login password. The length cannot exceed 64 characters. | Yes |
-| `nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. The length cannot exceed 100 characters. The default value is null. <br>This field is used to set the user nickname displayed in the message push, not the user nickname in the user attributes. | No |
 
 ### HTTP response
 
@@ -86,11 +85,7 @@ The request body is a JSON object, which contains the following fields:
 
 If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| Field | Type | Description |
-| :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
-| `entities.nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. <br>This field is not the user nickname of the user attributes. |
-
-For other fields and detailed descriptions, see [Common parameters](#param).
+For the fields and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -103,8 +98,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '
     {
       "username": "user1",
-      "password": "123",
-      "nickname": "testuser"
+      "password": "123"
     }'
 ```
 
@@ -123,8 +117,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
             "created": 1542795196504,
             "modified": 1542795196504,
             "username": "user1",
-            "activated": true,
-            "nickname": "testuser"
+            "activated": true
         }
     ],
     "timestamp": 1542795196515,
@@ -165,7 +158,6 @@ The request body is a JSONArray object, which contains the following fields:
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
 | `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  | Yes |
 | `password` | String | The user's login password. The length cannot exceed 64 characters. | Yes |
-| `nickname` | String | The nickname that is displayed in the push notification bar of the recipient's client when a message from the user is pushed. The length of the nickname cannot exceed 100 characters, and the following character sets are supported:<li>26 lowercase English letters (a-z)<li>26 uppercase English letters (A-Z)<li>10 numbers (0-9)<li>Chinese characters<li>Special characters <br/>If no nickname is set, when a message from this user is pushed, the user ID of the message sender, instead of the nickname, is indicated in the notification details (`notification_display_style` is set to 1). <div class="alert note">The nickname can be different from the nickname in user attributes. However, Agora recommends that you use the same nickname for both. Therefore, if either nickname is updated, the other should be changed at the same time. To update the nickname in user attributes, see <a href="https://docs.agora.io/en/agora-chat/agora_chat_restful_user_attributes?platform=RESTful#setting-user-attributes">Setting user attributes</a>.</div>  | No  |
 
 ### HTTP response
 
@@ -175,7 +167,6 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Field | Type | Description |
 | :------------------ | :--------- | :------------------------------------------------------------------------------------------- |
-| `entities.nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. <br>This field is not the user nickname of the user attributes. |
 | `data` | JSONArray | The details of the response. In this `data` array, the username and reason for the registration failure is displayed. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
@@ -193,13 +184,11 @@ Registering 2 users:
 curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '[
     {
         "username":"user1",
-        "password":"123",
-        "nickname":"testuser1"
+        "password":"123"
     },
     {
         "username":"user2",
-        "password":"456",
-        "nickname":"testuser2"
+        "password":"456"
     }
 ]'    
 ```
@@ -219,8 +208,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourA
             "created": 1541587920710,
             "modified": 1541587920710,
             "username": "user1",
-            "activated": true,
-            "nickname": "testuser1"
+            "activated": true
         },
         {
             "uuid": "278bac80-XXXX-XXXX-b192-73e4cd5078a5",
@@ -228,8 +216,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourA
             "created": 1541587920712,
             "modified": 1541587920712,
             "username": "user2",
-            "activated": true,
-            "nickname": "testuser2"
+            "activated": true
         }
     ],
     "timestamp": 1541587920714,
@@ -249,18 +236,15 @@ If the request body contains a user3 that has previously been registered, the re
 curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourAppToken}' -i "https://XXXX/XXXX/XXXX/users" -d '[
     {
         "username":"user1",
-        "password":"123",
-        "nickname":"testuser1"
+        "password":"123"
     },
     {
         "username":"user2",
-        "password":"456",
-        "nickname":"testuser2"
+        "password":"456"
     },
     {
         "username":"user3",
-        "password":"789",
-        "nickname":"testuser3"
+        "password":"789"
     }
 ]'
 ```
@@ -280,8 +264,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourA
             "created": 1541587920710,
             "modified": 1541587920710,
             "username": "user1",
-            "activated": true,
-            "nickname": "testuser1"
+            "activated": true
         },
         {
             "uuid": "278bac80-XXXX-XXXX-b192-73e4cd5078a5",
@@ -289,8 +272,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Authorization:Bearer {YourA
             "created": 1541587920712,
             "modified": 1541587920712,
             "username": "user2",
-            "activated": true,
-            "nickname": "testuser2"
+            "activated": true
         }
     ],
     "timestamp": 1541587920714,
