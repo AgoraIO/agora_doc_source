@@ -504,7 +504,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 curl --location --request PUT 'https://XXXX/XXXX/XXXX/metadata/chatgroup/207059303858177/user/test2' \
 -H 'Content-Type: application/json' \
 -H 'Accept: application/json'
--H 'Authorization: Bearer YWMtozZwfsFFEe2oQTE6aob5eQAAAAAAAAAAAAAAAAAAAAExCXvf5bRGAJBgXNYFJVQ9AQMAAAGG2MUClwBPGgDsI1GYg1QtapTEdGyrm29Eu6L8qx60lDZ9TJRDOQjEsw' \
+-H 'Authorization: Bearer <YourAppToken>' \
 -d '{
     "metaData": {
           "key1": "value1"

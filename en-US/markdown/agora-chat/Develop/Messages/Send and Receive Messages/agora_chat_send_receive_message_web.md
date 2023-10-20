@@ -140,24 +140,29 @@ connection.addEventHandler("eventName",{
 
 ### Recall a message
 
-Two minutes after a user sends a message, this user can withdraw it. Contact support@agora.io if you want to adjust the time limit.
+After a message is sent, you can recall it. The `recallMessage` method recalls a message saved on the server, whether it is a historical message, offline message or a roaming message. 
+
+You can recall a message sent within two minutes by default. If you want to adjust the time limit, contact [support@agora.io](mailto:support@agora.io).
+
 
 ```javascript
-/**
- * @param {Object} option.mid -  The message ID that you want to recall.
- * @param {Object} option.to -   The recipient of the message.
- * @param {Object} option.type - The message type: chat (one-to-one chat), group chat or chat room.
- */
 let option = {
-    mid: 'msgId',
-    to: 'userID',
-    chatType: 'singleChat'
+  // The ID of the message to recall.   
+  mid: "msgId",
+  // The message recipient.
+  to: "userID",
+  // The message type: singleChat, groupChat, and chatRoom respectively indicate one-to-one chat, group chat, and room chat.
+  chatType: "singleChat",
 };
-connection.recallMessage(option).then((res) => {
-    console.log('success', res)
-}).catch((error) => {
+connection
+  .recallMessage(option)
+  .then((res) => {
+    console.log("success", res);
+  })
+  .catch((error) => {
     // Recalling the message fails, probably because the time limit for recalling the message is exceeded.
-    console.log('fail', error)
+    console.log("fail", error);
+  });
 ```
 
 You can also use `onRecallMessage` to listen for the message recall state:
