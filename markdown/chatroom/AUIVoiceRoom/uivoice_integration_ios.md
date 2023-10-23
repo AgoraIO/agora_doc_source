@@ -214,7 +214,11 @@ class ViewController: UIViewController {
 
 调用 `VoiceChatUIKit` 类的 `launchRoom` 方法，并传入以下参数，以启动语聊房：
 
-- `roomInfo`：房间信息。
+- `roomInfo`：房间信息。包含如下：
+  - `roomId`：房间 ID。
+  - `owner`：房主信息。
+  - `memberCount`：房间内的人数。
+  - `createTime`：房间创建的时间（毫秒）。
 - `voiceChatView`：房间的 UI View。
 
 
@@ -273,8 +277,8 @@ override func viewDidLoad() {
 
 在 `ViewController` 类中，调用 `VoiceChatUIKit` 类的 `getRoomInfoList` 方法并传入如下参数，以获取语聊房间列表：
 
-- `lastCreateTime`：房间列表的起始时间。
-- `pageSize`：房间列表的数量。
+- `lastCreateTime`：房间列表的起始时间（毫秒）。例如，1681879844085。
+- `pageSize`：每一页房间列表所展示的房间数量。
 
 如果在房间列表中找到匹配的房间名，那么执行 `enterRoom` 函数。通过[此前步骤](//TODO)中已添加的 `enterRoom` 函数即可实现加入房间。
 
