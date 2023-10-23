@@ -8,6 +8,12 @@ Due to changes in the screen sharing behavior of Android 14 system, using device
 
 - When integrating the SDK, setting the Android `targetSdkVersion` to 34 may cause the screen sharing feature to be unavailable or even cause the application to crash.
 
+## v4.2.4
+
+v4.2.4 was released on October xx, 2023.
+
+This version fixes the incorrect `CFBundleShortVersionString` version number in `AgoraRtcWrapper` which caused the app to be unable to be submitted to the App Store. (iOS)
+
 ## v4.2.3
 
 v4.2.3 was released on September xx, 2023.
