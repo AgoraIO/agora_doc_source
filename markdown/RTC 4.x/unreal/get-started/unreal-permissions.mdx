@@ -1,95 +1,138 @@
 ---
-title: 跑通 API 示例项目
+title:  如何为 Unreal Engine 项目添加实时互动所需的权限？
+products:
+  - rtc
+platforms:
+  - unreal-cpp
+  - unreal-blueprint
+categories:
+  - integration-issues
 ---
-
-import Pre from '@doc-shared/rtc/quick-start-preq-unreal.mdx'
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 
-声网在 GitHub 上提供开源示例项目 [API-Examples](https://github.com/AgoraIO-Extensions/Agora-Unreal-RTC-SDK/tree/main/Agora-Unreal-SDK-Blueprint-Example) 演示声网实时互动 SDK 的 API 使用示例，以帮助开发者更好地理解和运用声网 SDK 的功能。
 
-本文介绍如何快速跑通 Unreal Blueprint 示例项目，体验实时音视频功能。
-
-
-
-## 前提条件
-
-<Pre ag_product={frontMatter.ag_product} ag_platform={frontMatter.ag_platform} />
+本文介绍根据不同的目标平台，为你的 Unreal Engine 项目添加实时互动所需的权限。
 
 
 
-## 操作步骤
+## iOS
 
-### 获取示例项目
+如果目标平台是 iOS，参考以下步骤为你的 UE 项目添加实时互动所需的摄像头和麦克风权限：
 
-1. 运行以下命令克隆仓库到本地：
+1. 在 **Unreal Editor** 中，点击 **Edit > Project Settings > Platforms > iOS** 打包项目，粘贴以下代码到 **Additional Plist Data** 输入框中：
 
-    ```shell
-    git clone git@github.com:AgoraIO-Extensions/Agora-Unreal-RTC-SDK.git
+    ```xml
+    <key>NSCameraUsageDescription</key><string>AgoraVideoCall</string><key>NSMicrophoneUsageDescription</key><string>AgoraVideoCall</string>
     ```
 
-2. 声网实时互动 Unreal SDK 的 Blueprint 使用示例位于 `/Agora-Unreal-SDK-Blueprint-Example` 路径下，其中包含：
+2. 在 `Project/Source/Project.Target.cs` 中，添加如下代码：
 
-    | 路径                        | 描述                           |
-    |:---------------------------|:-------------------------------|
-    | `/Agora-Unreal-SDK-Blueprint-Example/Content/API-Example/Basic`     | 基础功能 API 示例。 |
-    | `/Agora-Unreal-SDK-Blueprint-Example/Content/API-Example/Advance`   | 进阶功能 API 示例。 |
+    ```cpp
+    public class AgoraExampleTarget : TargetRules
+    {
+      public AgoraExampleTarget( TargetInfo Target) : base(Target)
+      {
+        Type = TargetType.Game;
+        DefaultBuildSettings = BuildSettingsVersion.V2;
+        if (Target.Platform == UnrealTargetPlatform.IOS)
+        {
+          bOverrideBuildEnvironment = true;
+          GlobalDefinitions.Add("FORCE_ANSI_ALLOCATOR=1");
+        }
+        ExtraModuleNames.AddRange( new string[] { "AgoraExample" } );
+      }
+    }
+    ```
 
 
-### 配置示例项目
 
-参考以下步骤集成声网实时互动 Unreal SDK：
+## macOS
 
-    1. 前往[资源获取](../resources)，下载最新版本的 Unreal 视频 SDK，并解压缩。
-    2. 在你的项目根目录文件夹下，创建名为 `Plugins` 的文件夹。
-    3. 将 Unreal SDK 文件夹中的 `AgoraPlugin` 拷贝到 `Plugins` 中。
+如果目标平台是 macOS，参考以下步骤为你的 UE 项目添加实时互动所需的摄像头和麦克风权限：
 
-<Image src="https://web-cdn.agora.io/docs-files/1689830211462" alt="" />
+1. 在 **Unreal Editor** 中，点击 **Edit > Project Settings > Platforms > Mac** 打包项目。右击编译生成的应用程序文件 (`.app`)，选择 **Show Package Contents** 显示包内容。
+
+    <Image src="/img/rtc/ue-showcontentpackages.png" width="60%"/>  
+
+2. 用 **Xcode** 打开后缀为 `.xcworkspace` 的项目文件，选择 **TARGETS > Build Settings > Packaging**，设置 **Generate Info.plist File** 为 **Yes**，生成 `Info.plist` 文件。
+
+    <Image src="/img/rtc/ue-generate-infoplist.png" width="80%"/>  
+
+3. (可选) 如果你使用的是搭载 M1 或 M2 芯片的 Mac 设备，你需要[安装 Rosetta](https://support.apple.com/zh-cn/HT211861)，并选择 **Product > Destination > Destination Architecture** 为 **Show Both**。
+
+    <Image src="/img/rtc/ue-arch-showboth.gif" width="80%"/>  
+
+4. 在 `Info.plist` 文件的 **Information Property List** 中添加如下摄像头和麦克风隐私权限：
+
+    - Privacy - Camera Usage Description：摄像头使用权限
+    - Privacy - Microphone Usage Description：麦克风使用权限
+
+    <Tabs>
+      <TabItem value="method1" label="方式一">
+        在 **Xcode** 中双击打开 `Info.plist` 文件，在 **Information Property List** 下添加摄像头和麦克风隐私权限：
+
+          <Image src="/img/rtc/ue-infoplist.gif" width="80%"/>  
+
+      </TabItem>
+      <TabItem value="method2" label="方式二">
+        使用文本编辑器打开 `Info.plist` 文件，添加以下 XML 片段：
+
+            ```xml
+            <key>NSCameraUsageDescription</key>
+            <string>Use camera</string>
+            <key>NSMicrophoneUsageDescription</key>
+            <string>Use mic</string>
+            ```
+
+      </TabItem>
+    </Tabs>
+
+5. 把声网 UE 插件 `/AgoraPlugin/Source/ThirdParty/AgoraPluginLibrary/Mac/Release` 路径下的库 (`.framework`) 全部复制到打包项目的 `/MacNoEditor/xxx/Contents/MacOS` 路径下。
+
+    <Image src="/img/rtc/ue-add-framework.png" width="80%"/>  
 
 
 
-### 编译并运行示例项目
+## Android
 
-在 **Unreal Editor** 中，你可以在主关卡或任意子关卡中编译并运行示例项目。
+如果目标平台是 Android，参考以下步骤为你的 UE 项目添加如下实时互动所需的权限：
 
-<Tabs groupId="operating-systems">
-  <TabItem value="mainlevel" label="主关卡">
+    - `android.permission.RECORD_AUDIO`：录音权限。
+    - `android.permission.CAMERA`：相机权限。
+    - `android.permission.READ_PHONE_STATE`：读取电话状态权限。
+    - `android.permission.WRITE_EXTERNAL_STORAGE`：写入外部存储权限。
 
-    1. 在 Blueprint 使用示例的路径下，双击 `AgoraBPExample.uproject` 打开项目。
+    <Tabs>
+      <TabItem value="cpp" label="C++">
 
-    2. 双击 **MainLevel**，然后点击 <Image src="https://web-cdn.agora.io/docs-files/1690867946685" width="25" inline/> 编译并运行示例项目。
+        在你的项目文件中添加如下代码，在初始化 RTC 引擎前，检查是否已获取实时互动所需的 Android 系统权限。
 
-    3. 以 Windows 为例，运行成功后，你会看到如下界面，在文本框中填入你从控制台获取的 App ID、临时 Token 以及生成 Token 时使用的频道名。
+          ```cpp
+          void UAgoraVideoWidget::CheckAndroidPermission()
+          {
+          #if PLATFORM_ANDROID
+            FString pathfromName = UGameplayStatics::GetPlatformName();
+            if (pathfromName == "Android")
+            {
+              TArray<FString> AndroidPermission;
+              AndroidPermission.Add(FString("android.permission.CAMERA"));
+              AndroidPermission.Add(FString("android.permission.RECORD_AUDIO"));
+              AndroidPermission.Add(FString("android.permission.READ_PHONE_STATE"));
+              AndroidPermission.Add(FString("android.permission.WRITE_EXTERNAL_STORAGE"));
+              UAndroidPermissionFunctionLibrary::AcquirePermissions(AndroidPermission);
+            }
+          #endif
+          }
+          ```
 
-        <Image src="/img/rtc/unreal-bp-demo-main-level-01.png"/>
+      </TabItem>
+      <TabItem value="bp" label="Blueprint">
+        
+        在初始化 RTC 引擎前，需要检查是否已获取实现实时互动所需的 Android 系统权限。你可以参照下图创建节点，用于添加 Android 系统中访问麦克风、访问摄像头等权限。
 
-    4. 此时，你可以点击左侧按钮，从主关卡导航到 API 示例的子关卡体验指定场景。以 **BasicVideoCallScene** 为例，点击 **JoinChannel** 加入频道，你会在本地视图中看到自己。
+          <Image src="https://web-cdn.agora.io/docs-files/1689838387857" alt="" />
 
-        <Image src="/img/rtc/unreal-bp-demo-main-level-02.png"/>
-
-    5. 邀请一位朋友通过另一台设备来使用相同的 App ID、频道名和 Token 加入频道。你们会看到彼此，并听到彼此的声音。
-
-  </TabItem>
-  <TabItem value="sublevel" label="子关卡">
-
-    1. 在 Blueprint 使用示例的路径下，双击 `AgoraBPExample.uproject` 打开项目。
-
-    2. 以 **BasicVideoCallScene** 为例，在 **Content Browser** 中双击子关卡，点击编辑器上方的 **Blueprints > Open Level Blueprint** 打开对应的关卡蓝图。
-
-        <Image src="/img/rtc/unreal-bp-demo-sub-level-01.png"/>
-
-    3. 在 **Appid**、**ChannelId** 和 **Token** 变量的 **Default Value** 字段分别填入你项目的 App ID、频道名以及临时 Token。
-
-        <Image src="/img/rtc/unreal-bp-demo-sub-level-02.png"/>
-
-    4. 点击 <Image src="https://web-cdn.agora.io/docs-files/1690867946685" width="25" inline/> 在子关卡编译并运行示例项目。
-    
-    5. 编译成功过后，你会看到如下界面，点击 **JoinChannel** 加入频道，你会在本地视图中看到自己。
-
-        <Image src="/img/rtc/unreal-bp-demo-main-level-02.png"/>
-
-    6. 邀请一位朋友通过另一台设备来使用相同的 App ID、频道名和 Token 加入频道。你们会看到彼此，并听到彼此的声音。
-
-  </TabItem>
-</Tabs>
+      </TabItem>
+    </Tabs>
