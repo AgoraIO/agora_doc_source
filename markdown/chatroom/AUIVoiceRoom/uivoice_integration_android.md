@@ -1,53 +1,76 @@
-本文介绍如何实现语聊房。
+---
+title: 实现语聊房
+---
+
+本文介绍如何集成语聊 UIKit 来实现房间的创建、用户进房、退房和销毁等功能。
 
 ## 示例项目
 
-声网提供 [AUIVoiceRoom](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main) 示例项目供你参考。
+声网提供 [API-Examples-AUIKit/Android/VoiceRoomApp](https://github.com/AgoraIO-Community/API-Examples-AUIKit/tree/dev/voiceroom-android/Android/VoiceRoomApp) 示例项目供你参考本文提到的集成步骤和代码逻辑。
 
-
-## 业务流程图
-
-本节展示语聊房中常见的业务流程。
-
-![](https://web-cdn.agora.io/docs-files/1697095578162)
 
 ## 准备开发环境
 
 ### 前提条件
 
-- [Android Studio](https://developer.android.com/studio/) 3.5 及以上。
+- [Android Studio](https://developer.android.com/studio/) 3.5 及以上。本文以 [Android Studio Giraffe | 2022.3.1](https://developer.android.google.cn/studio/releases?hl=zh-cn) 和 JBR 17.0.6 为例。
 - Android 手机，版本 Android 5.0（API Level 21）及以上。
 - 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
-- 参考[开始使用声网平台](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)创建声网开发者账号和声网项目。
+- [开通服务](./enable-service)。
+
 
 ### 创建项目
 
-本节介绍如何在 Android Studio 创建项目并集成语聊项目所需依赖：
+如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
 
-1. 如需创建新项目，在 **Android Studio** 里，依次选择 **Phone and Tablet > Empty Activity**，创建 [Android 项目](https://developer.android.com/studio/projects/create-project)。
+<Admonition type="caution" title="注意">
+创建项目后，<b>Android Studio</b> 会自动开始同步 gradle，稍等片刻至同步成功后再进行下一步操作。
+</Admonition>
 
-   <div class="alert note">创建项目后，<b>Android Studio</b> 会自动开始同步 gradle，稍等片刻至同步成功后再进行下一步操作。</div>
+### 集成依赖
 
-2. 集成语聊项目所需的 AScenesKit 和 AUIKit。AUIKit 已包含在 AScenesKit 依赖库中，因此集成步骤如下：
+本节介绍如何集成语聊项目所需的依赖库：
 
-    1. 将示例项目中 `AUIVoiceRoom/Android/asceneskit` 文件夹复制到你的项目中。
+1. 下载声网提供的 [AUIVoiceRoom/Android/asceneskit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/Android/asceneskit) 文件夹，并将该文件夹复制到与你的 `app` 文件夹所在的同一级目录下。
 
-    2. 在 `settings.gradle` 中添加如下行：
+2. 在 <your_app>/setting.gradle.kts 文件中添加如下行：
 
-        ```java
-        include ':asceneskit'
-        ```
-
-    3. 在 `build.gradle` 中添加如下行：
-
-        ```java
-        dependencies {
-            ...
-            implementation project(':asceneskit')
+    ```kotlin
+    dependencyResolutionManagement {
+        repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+        repositories {
+            google()
+            mavenCentral()
+            // 添加 jitpack 仓库，拉取 auikit 库
+            maven { url = java.net.URI.create("https://www.jitpack.io") }
         }
-        ```
+    }
 
-3. 在 `/app/Manifests/AndroidManifest.xml` 文件中添加权限和主题：
+    // 项目名需为你的 Android Studio 项目的真实名称
+    rootProject.name = "VoiceRoomApp"
+    include(":app")
+    // 添加 asceneskit 库到项目里
+    include(":asceneskit")
+    ```
+
+3. 在 <your_app>/app/build.gradle.kts 文件中添加如下行：
+
+    ```kotlin
+    dependencies {
+        ...
+
+        // 添加 asceneskit 依赖
+        implementation(project(":asceneskit"))
+    }
+    ```
+
+4. 点击 **Sync Now** 按钮，等待 gradle 同步完成。//TODO 图
+
+### 配置权限
+
+本节介绍如何配置项目所需权限：
+
+1. 在 `<your_app>/app/Manifests/AndroidManifest.xml` 文件中添加如下行，配置网络、录音等权限：
 
     ```xml
     <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -61,31 +84,86 @@
         <uses-permission android:name="android.permission.RECORD_AUDIO" />
         <uses-permission android:name="android.permission.CALL_PHONE" />
         <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-        <!-- 存储权限 -->
-        <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-        <!-- 手机状态权限 -->
-        <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-        <!-- 应用主题 -->
-        <application
-            android:theme="@style/Theme.VoiceRoom.Voice"
-            tools:replace="android:theme">
-            ...
-        </application>
+        ...
 
     </manifest>
     ```
 
-### 部署后端
+2. 如果你的后端服务 host url 不是 https 开头，那么你需要在 `<your_app>/app/Manifests/AndroidManifest.xml` 文件中添加如下高亮行：//TODO 后端 link
 
-参考[配置示例项目](//TODO)进行部署。
+    ```xml
+    <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
-## 实现语聊房 //TODO
+        <!-- 网络权限 -->
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+        <!-- 录音权限 -->
+        <uses-permission android:name="android.permission.RECORD_AUDIO" />
+        <uses-permission android:name="android.permission.CALL_PHONE" />
+        <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
-如下[时序图](#api-时序图)展示了如何登录即时通讯系统、获取房间列表、创建房间、进入房间、加入 RTC 频道、麦位管理、退出房间、离开 RTC 频道。声网云服务（Service）实现了房间列表的存储和房间生命周期的管理，声网即时通讯（IM）SDK 实现房间内的信令通信，声网 RTC SDK 承担实时音频的业务。本节会详细介绍如何调用声网云服务（`voiceServiceProtocol`）、IM SDK API、RTC SDK API 完成这些逻辑。
+        <!-- highlight-start -->
+        <application
+            android:usesCleartextTraffic="true">
+            ...
+        </application>
+        <!-- highlight-end -->
 
-<div class="alert note">声网云服务为内部自研服务，暂不对外提供。你可以调用声网云服务的 API 用于测试，但是对于正式环境，声网建议你参考文档自行实现相似的一套服务。如需协助，请<a href="https://docs.agora.io/cn/Agora%20Platform/ticket?platform=All%20Platforms">提交工单</a>。</div>
+        ...
+
+    </manifest>
+    ```
+
+### 配置主题
+
+在 `<your_app>/app/src/main/res/values/themes.xml` 文件中添加如下行配置语聊房 UI 主题：
+
+```xml
+<resources>
+    <!-- 将 VoiceRoomApp 改成你实际的项目名 -->
+    <style name="Theme.VoiceRoomApp" parent="Theme.VoiceRoom" />
+</resources>
+```
+
+### （可选）防止代码混淆
+
+在 `<your_app>/app/proguard-rules.pro` 文件中添加如下行，以防止声网 SDK 的代码被混淆：
+
+```kotlin
+-keep class io.agora.**{*;}
+-dontwarn javax.**
+-dontwarn com.google.devtools.build.android.**
+```
+
+## 实现语聊房
+
+### 1. 初始化 AUIVoiceRoomUiKit
+
+### 2. 房主创建房间
+
+#### 2.1 添加按钮：创建房间
+
+#### 2.2 创建语聊房
+
+### 3. 房主加入房间
+
+#### 3.1 创建房间详情页
+
+#### 3.2 启动房间
+
+### 4. （可选）观众加入房间
+
+#### 4.1 添加按钮：加入房间
+
+#### 4.2 获取房间列表
+
+### 5. （可选）退出或销毁房间
 
 
-### 1. 获取房间列表
+## 下一步
 
+在创建、进入房间后，你可以参考如下业务流程图开发后续的麦位管理、聊天、礼物等功能。
+
+![](https://web-cdn.agora.io/docs-files/1697095578162)

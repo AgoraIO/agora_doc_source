@@ -1,9 +1,12 @@
+---
+title: 实现语聊房
+---
+
 本文介绍如何集成语聊 UIKit 来实现房间的创建、用户进房、退房和销毁等功能。
 
 ## 示例项目
 
 声网提供 [API-Examples-AUIKit/iOS/VoiceChatApp](https://github.com/AgoraIO-Community/API-Examples-AUIKit/tree/dev/ios/iOS/VoiceChatApp) 示例项目供你参考本文提到的集成步骤和代码逻辑。
-
 
 ## 准备开发环境
 
@@ -13,7 +16,7 @@
 - iOS 设备，版本 13.0 及以上。
 - 有效的苹果开发者账号。
 - 可以访问互联网的计算机。确保你的网络环境没有部署防火墙，否则无法正常使用声网服务。
-- 参考[开始使用声网平台](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms)创建声网开发者账号和声网项目。//TODO
+- [开通服务](./enable-service)。
 
 ### 创建项目
 
@@ -21,7 +24,9 @@
 
 1. [创建一个新的项目](https://help.apple.com/xcode/mac/current/#/dev07db0e578)，**Application** 选择 **App**，**Interface** 选择 **Storyboard**，**Language** 选择 **Swift**。
 
-    <div class="alert note">如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，点击 <b>Next</b>，完成后即可选择你的 Apple 账户作为开发团队。</div>
+    <Admonition type="caution" title="注意">
+    如果你没有添加过开发团队信息，会看到 <b>Add account…</b> 按钮。点击该按钮并按照屏幕提示登入 Apple ID，点击 <b>Next</b>，完成后即可选择你的 Apple 账户作为开发团队。
+    </Admonition>
 
 2. 为你的项目设置[自动签名](https://help.apple.com/xcode/mac/current/#/dev23aab79b4)。
 
@@ -44,7 +49,9 @@
 
 1. 开始前请确保你已安装 CocoaPods，如尚未安装 CocoaPods，参考 [Getting Started with CocoaPods](https://guides.cocoapods.org/using/getting-started.html#getting-started) 安装说明。
 
-2. 下载声网提供的 [AUIVoiceRoom/iOS/AScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/blob/main/iOS/AScenesKit) 文件夹，并将该文件夹复制到与你的 `*.xcodeproj` 文件所在的同一级目录下。
+2. 下载声网提供的 [AUIVoiceRoom/iOS/AScenesKit/AScenesKit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/iOS/AScenesKit/AScenesKit) 文件夹，并将该文件夹复制到与你的 `*.xcodeproj` 文件所在的同一级目录下。
+
+    <Image alt="" src="/img/chatroom/ascenskit.png" />
 
 3. 在终端里进入 `*.xcodeproj` 文件的上一级目录，并运行 `pod init` 命令。项目文件夹下会生成一个 `Podfile` 文本文件。
 
@@ -60,6 +67,8 @@
 
       # path 需为 AScenesKit 依赖库的实际路径
       pod 'AScenesKit', :path => './AScenesKit'
+      # 推荐你指定 RTC SDK 版本为 4.1.1.17
+      pod 'AgoraRtcEngine_Special_iOS', '4.1.1.17'
     end
 
     post_install do |installer|
@@ -76,11 +85,14 @@
     ```shell
     pod update --verbose
     ```
+
+    <Detail title="安装过程截图">
     ![](https://web-cdn.agora.io/docs-files/1697696810206)
     ![](https://web-cdn.agora.io/docs-files/1697696820778)
     ![](https://web-cdn.agora.io/docs-files/1697696829568)
+    </Detail>
 
-    安装成功后，与 `*.xcodeproj` 文件所在的同一级目录下会出现一个 `*.xcworkspace` 文件。打开该文件即可体验安装了 AScenesKit 和 AUIKit 等依赖的项目。
+    如果等待安装的时间太久，请参考[加速 Pod](#加速-pod)。依赖库安装成功后，与 `*.xcodeproj` 文件所在的同一级目录下会出现一个 `*.xcworkspace` 文件。打开该文件即可体验安装了 AScenesKit 和 AUIKit 等依赖的项目。
 
     ![](https://web-cdn.agora.io/docs-files/1697696837811)
 
@@ -117,7 +129,7 @@
         let commonConfig = AUICommonConfig()
 
         // 设置 AUICommonConfig 的属性值
-        commonConfig.host = "https://service.agora.io/uikit-voiceroom" // 设置主机地址
+        commonConfig.host = "https://service.agora.io/uikit-voiceroom" // 设置 host url
         commonConfig.userId = "\(uid)" // 设置用户 ID
         commonConfig.userName = "user_\(uid)" // 设置用户名
         commonConfig.userAvatar = "https://accktvpic.oss-cn-beijing.aliyuncs.com/pic/sample_avatar/sample_avatar_1.png" // 设置用户头像
@@ -138,7 +150,7 @@
 
 本节展示如何让房主创建语聊房。
 
-#### 添加按钮：创建房间
+#### 2.1 添加按钮：创建房间
 
 在 `ViewController.swift` 文件里导入依赖库：
 
@@ -162,7 +174,7 @@ override func viewDidLoad() {
 }
 ```
 
-#### 创建语聊房
+#### 2.2 创建语聊房
 
 在 `ViewController` 类中，调用 `VoiceChatUIKit` 类的 `createRoom` 并传入 `roomInfo` 参数以创建语聊房。`roomInfo` 里需传入房间信息。
 
@@ -197,7 +209,7 @@ override func viewDidLoad() {
 
 本节展示如何让房主加入语聊房。
 
-#### 声明属性
+#### 3.1 声明属性
 
 在 `ViewController` 类中声明了一个可选属性，用于存储 `AUIVoiceChatRoomView` 实例以显示语聊房的详情界面。
 
@@ -208,7 +220,7 @@ class ViewController: UIViewController {
 }
 ```
 
-#### 创建房间详情页并启动房间
+#### 3.2 创建房间详情页并启动房间
 
 在 `ViewController` 中，创建一个 `AUIVoiceChatRoomView` 实例，并将它设置为 `voiceChatView` 属性，用于显示语聊房的详情界面。
 
@@ -246,7 +258,7 @@ func enterRoom(roomInfo: AUIRoomInfo) {
 
 本节展示如何让听众加入已存在的房间。
 
-#### 添加按钮：加入房间
+#### 4.1 添加按钮：加入房间
 
 在 `ViewController` 类中，通过 iOS 原生方法增加一个「加入房间」按钮，用于让听众点击加入。
 
@@ -273,14 +285,14 @@ override func viewDidLoad() {
 ```
 
 
-#### 获取房间列表
+#### 4.2 获取房间列表
 
 在 `ViewController` 类中，调用 `VoiceChatUIKit` 类的 `getRoomInfoList` 方法并传入如下参数，以获取语聊房间列表：
 
 - `lastCreateTime`：房间列表的起始时间（毫秒）。例如，1681879844085。
 - `pageSize`：每一页房间列表所展示的房间数量。
 
-如果在房间列表中找到匹配的房间名，那么执行 `enterRoom` 函数。通过[此前步骤](//TODO)中已添加的 `enterRoom` 函数即可实现加入房间。
+如果在房间列表中找到匹配的房间名，那么执行 `enterRoom` 函数。通过[此前步骤](#创建房间详情页并启动房间)中已添加的 `enterRoom` 函数即可实现加入房间。
 
 ```swift
 @objc func onJoinAction() {
@@ -330,7 +342,7 @@ override func viewDidLoad() {
 在语聊房中，房主可以主动销毁房间，房间销毁时听众会被动退出房间。房间存在时，听众也可以主动退出房间。
 
 
-#### 主动退出或销毁房间
+#### 5.1 主动退出或销毁房间
 
 在 `enterRoom` 函数中添加如下高亮的几行代码，即可实现通过点击按钮主动退出房间（听众）或销毁房间（房主）。
 
@@ -362,7 +374,7 @@ func enterRoom(roomInfo: AUIRoomInfo) {
 ```
 
 
-#### 被动退出房间
+#### 5.2 被动退出房间
 
 听众被动退出房间的代码逻辑如下：
 
@@ -397,23 +409,22 @@ func enterRoom(roomInfo: AUIRoomInfo) {
     }
     ```
 
-2. 在 `ViewController` 文件中，通过 `AUIRoomManagerRespDelegate` 中的 `onRoomDestroy` 回调来监听房间销毁事件。当监听到房间被销毁时，执行 `destroyRoom` 函数。
+2. 在 `ViewController` 文件中，通过 `AUIRoomManagerRespDelegate` 监听如下事件：
+
+    - `onRoomDestroy`：房间被房主销毁事件。
+    - `onRoomUserBeKicked`：听众被房主踢出房间时间。
+
+    当监听到这些事件时，执行 `destroyRoom` 函数。
 
     ```swift
     extension ViewController: AUIRoomManagerRespDelegate {
         // 房间销毁回调
-        func onRoomDestroy(roomId: String) {
-            self.destroyRoom()
-        }
-        // 房间信息更新回调
-        func onRoomInfoChange(roomId: String, roomInfo: AUIKitCore.AUIRoomInfo) {
-        }
-         // 房间成员列表更新回调
-        func onRoomAnnouncementChange(roomId: String, announcement: String) {
+        @objc func onRoomDestroy(roomId: String) {
+            self.destroyRoom(roomId: roomId)
         }
         // 听众被房主踢出房间回调
-        func onRoomUserBeKicked(roomId: String, userId: String) {
-            self.destroyRoom()
+        @objc func onRoomUserBeKicked(roomId: String,userId: String) {
+            self.destroyRoom(roomId: roomId)
         }
     }
     ```
@@ -427,7 +438,7 @@ func enterRoom(roomInfo: AUIRoomInfo) {
     }
     ```
 
-#### 添加销毁逻辑
+#### 5.3 添加销毁逻辑
 
 在 `destroyRoom` 函数中，添加如下高亮的几行代码。调用 `VoiceChatUIKit` 类的 `destoryRoom` 方法并传入房间 ID，以销毁房间。至此，`destroyRoom` 函数的代码补充完成。
 
@@ -451,6 +462,22 @@ func destroyRoom(roomId: String) {
 
 ## 注意事项
 
+### 加速 Pod
+
+为加速 Pod 命令的执行结果，建议你使用国内镜像源，步骤如下：
+
+1. 打开 `Podfile` 文件，更改 source 为国内镜像源
+
+    ```shell
+    # 移除官方源
+    # source 'https://github.com/CocoaPods/Specs.git'
+
+    # 使用国内镜像源
+    source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+    ```
+
+2. 保存并退出 `Podfile`，重新执行 Pod 命令安装依赖库。
+
 ### 问题排查
 
 如果在 Xcode 15 编译项目时遇到 `Sandbox: rsync.samba(47334) deny(1) file-write-create...` 报错信息，你可以依次进行如下操作：
@@ -464,9 +491,9 @@ func destroyRoom(roomId: String) {
 
 为方便你快速集成语聊房，声网已经帮你部署好后端，无需你进行操作。
 
-声网在示例项目中提供的后端服务主机地址 `https://service.agora.io/uikit-voiceroom` 仅用于测试体验，请你不要商用。
+声网在示例项目中提供的后端服务 host url（`https://service.agora.io/uikit-voiceroom`）仅用于测试体验，请你不要商用。
 
-如需将项目商用，请参考[配置示例项目](//TODO)部署后端并在项目中配置你的后端服务主机地址。
+如需将项目商用，请参考[配置示例项目](../get-started/run-github-project#配置示例项目)部署后端并在项目中配置你的后端服务 host url。
 
 ## 下一步
 
