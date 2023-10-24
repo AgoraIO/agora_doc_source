@@ -33,7 +33,7 @@ title: 实现语聊房
 
 1. 下载声网提供的 [AUIVoiceRoom/Android/asceneskit](https://github.com/AgoraIO-Community/AUIVoiceRoom/tree/main/Android/asceneskit) 文件夹，并将该文件夹复制到与你的 `app` 文件夹所在的同一级目录下。
 
-2. 在 <your_app>/setting.gradle.kts 文件中添加如下行：
+2. 在 `<your_app>/setting.gradle.kts` 文件中添加如下行：
 
     ```kotlin
     dependencyResolutionManagement {
@@ -53,7 +53,7 @@ title: 实现语聊房
     include(":asceneskit")
     ```
 
-3. 在 <your_app>/app/build.gradle.kts 文件中添加如下行：
+3. 在 `<your_app>/app/build.gradle.kts` 文件中添加如下行：
 
     ```kotlin
     dependencies {
