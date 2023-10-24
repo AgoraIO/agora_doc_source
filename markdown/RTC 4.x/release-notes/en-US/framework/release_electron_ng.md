@@ -1,3 +1,9 @@
+## v4.2.4
+
+v4.2.4 was released on October xx, 2023.
+
+This version fixes the incorrect `CFBundleShortVersionString` version number in `AgoraRtcWrapper` which caused the app to be unable to be submitted to the App Store. (macOS)
+
 ## v4.2.3
 
 v4.2.3 was released on September xx, 2023.
