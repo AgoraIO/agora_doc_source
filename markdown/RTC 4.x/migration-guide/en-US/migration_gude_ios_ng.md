@@ -189,7 +189,7 @@ There are differences in the behavior of the SDK when setting channel media opti
 
 #### Video information change event
 
-If the video capture device is adjusted to landscape or portrait mode during video capture, in v3.7.0 and v4.0.0, there are the following differences in the video information change events reported by the SDK:
+If the video capture device is adjusted to landscape or portrait mode during video capture, in v3.7.0 and v4.0.0, the following differences exit in the video information change events reported by the SDK:
 
 - In v3.7.0, the `rotation` parameter in the `videoSizeChangedOfUid` callback displays the current device rotation information.
 - In v4.0.0, the `rotation` parameter in the `videoSizeChangedOfSourceType` callback is always `0`.
