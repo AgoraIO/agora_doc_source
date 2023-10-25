@@ -187,7 +187,14 @@ The behavior differences of Agora SDK between v3.7.0 and v4.0.0 are listed as fo
 - In v3.7.0, the local user receives the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, which reports the status changes of the remote host's audio or video streams.
 - In v4.0.0, instead of the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, the local user receives the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's publishing status.
 
-#### Video information change event
+#### Media options
+
+There are differences in the behavior of the SDK when setting channel media options while joining a channel between v3.7.0 and v4.0.0:
+
+- In v3.7.0, if you set `publishLocalAudio` in `ChannelMediaOptions` to `false`, it will stop publishing the local audio stream within the channel.
+- In v4.0.0, if you set `publishMicrophoneTrack` in `ChannelMediaOptions` to `false`, it will not only stop publishing the local audio stream within the channel but also stop local microphone capture.
+
+#### Video information change event (iOS)
 
 If the video capture device is adjusted to landscape or portrait mode during video capture, in v3.7.0 and v4.0.0, the following differences exit in the video information change events reported by the SDK:
 
@@ -213,31 +220,19 @@ v4.0.0 reconstructs the audio application scenarios, which can replace most of t
 | `AUDIO_SCENARIO_IOT`                    | `AUDIO_SCENARIO_DEFAULT`                                     |
 | `AUDIO_SCENARIO_MEETING`                | `AUDIO_SCENARIO_MEETING`                                     |
 
-
-
 #### Unsupported functions
-
-
 
 Compared to v3.7.0, some features are not supported or only partially supported in v4.0.0. This section shows the APIs currently unsupported but for which support is planned in a future release.
 
-
-
 Remote video stream fallback:
 
-
-
 - `setRemoteUserPriority`
-
-
 
 Screen sharing:
 
 - `onScreenCaptureInfoUpdated`
 
 ### Removed APIs
-
-
 
 The v4.0.0 removes deprecated or unrecommended APIs. Alternatives to the removed API or reasons for their removal are shown as follows:
 
@@ -266,15 +261,9 @@ The v4.0.0 removes deprecated or unrecommended APIs. Alternatives to the removed
 
 ### Naming changes
 
-
-
 The naming changes in v4.0.0 cause error messages in the IDE when you compile your project, and you need to update the code of your app according to each error message.
 
-
-
 The main API and parameter name changes are as follows:
-
-
 
 - `adjustLoopbackRecordingSignalVolume` is changed to `adjustLoopbackRecordingVolume`.
 - `onFirstLocalAudioFrame` is changed to `onFirstLocalAudioFramePublished.`
