@@ -187,6 +187,13 @@ The behavior differences of Agora SDK between v3.7.0 and v4.0.0 are listed as fo
 - In v3.7.0, the local user receives the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, which reports the status changes of the remote host's audio or video streams.
 - In v4.0.0, instead of the `onRemoteAudioStateChanged` or `onRemoteVideoStateChanged` callback, the local user receives the `onUserMuteAudio` or `onUserMuteVideo` callback, which reports the changes in the remote host's publishing status.
 
+#### Video information change event
+
+If the video capture device is adjusted to landscape or portrait mode during video capture, in v3.7.0 and v4.0.0, the following differences exit in the video information change events reported by the SDK:
+
+- In v3.7.0, the `rotation` parameter in the `onVideoSizeChanged` callback displays the current device rotation information.
+- In v4.0.0, the `rotation` parameter in the `onVideoSizeChanged` callback is always `0`.
+
 ### Function gaps
 
 This section introduces functions that were supported in v3.7.0 but are no longer supported or behave inconsistently in v4.0.0. Plans exist to support them or make them consistent in a future release, however.

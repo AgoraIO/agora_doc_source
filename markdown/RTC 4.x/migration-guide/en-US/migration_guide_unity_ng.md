@@ -122,6 +122,13 @@ In v3.x, you need to call `SwitchChannel` to quickly switch a channel.
 
 In v4.0.0, you can achieve the same switching speed as `SwitchChannel` in v3.x by switching a channel through `LeaveChannel` and `JoinChannel`. Therefore, v4.0.0 removes `SwitchChannel`. If you call `SwitchChannel` to quickly switch a channel in v3.x, you need to call `LeaveChannel` to leave the current channel in v4.0.0 and `JoinChannel` to join the second channel instead.
 
+#### Video information change event
+
+If the video capture device is adjusted to landscape or portrait mode during video capture, in v3.7.0 and v4.0.0, the following differences exit in the video information change events reported by the SDK:
+
+- In v3.7.0, the `rotation` parameter in the `OnVideoSizeChanged` callback displays the current device rotation information.
+- In v4.0.0, the `rotation` parameter in the `OnVideoSizeChanged` callback is always `0`.
+
 **Agora self-developed extensions**
 
 v4.0.0 adds the feature of automatically loading self-developed dynamic libraries based on v4.0.0 Beta. As of this release, when using an Agora self-developed extension, you do not need to manually integrate the dynamic library in the project. The SDK automatically loads the dynamic library during the initialization phase of `IRtcEngine`. You can directly call the corresponding method of the extension to enable this feature.
