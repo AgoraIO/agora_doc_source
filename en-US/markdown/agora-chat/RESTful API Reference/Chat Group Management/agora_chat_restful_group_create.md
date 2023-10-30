@@ -68,16 +68,16 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 
 | Parameter | Type | Description | Required |
 | :------------- | :------ | :----------------------------------------------------------- | :------- |
-| `groupname` | String | The group name. It cannot exceed 128 characters. | Yes |
-| `desc` | String | The group description. It cannot exceed 512 characters. | Yes |
+| `groupname` | String | The group name. It cannot exceed 128 characters. | No |
+| `description` | String | The group description. It cannot exceed 512 characters. | No |
 | `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`false`: No</li></ul> | Yes |
 | `scale`           | String | The group scale. The parameter value depends on the setting of `maxusers`. <ul><li>(Default) `normal`: Normal group that has a maximum of 3000 members. </li><li>`large`: Large group that has more than 3000 members. You must set this parameter when you create a large group. Large groups do not support offline push. | No |
-| `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is 200. The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
+| `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is `200` for a normal group and `1000` for a large group. The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
 | `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 | `invite_need_confirm` | Boolean | Whether the invitee needs to confirm the received group invitation before joining the group:<ul><li>`true`: Yes. </li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> | No|
 | `owner` | String | The chat group owner. | Yes |
-| `members` | Array | Regular chat group members. This chat group member array does not contain the group owner. If you want to set this field, you can enter 1 to 100 elements in this array. | No |
+| `members` | Array | The array of user IDs of regular chat group members and admins, excluding the group owner. The number of user IDs in the array cannot exceed the value of `maxusers`. | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
 
 ### HTTP response
@@ -259,7 +259,62 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 }
 ```
 
+## Checking whether a user has joined a group
 
+Checks whether a user has joined a group.
+
+### HTTP request
+
+```http
+GET https://{host}/{org_name}/{app_name}/chatgroups/{group_id}/user/{username}/is_joined
+```
+
+#### Path parameter
+
+For the descriptions of path parameters, see [Common Parameters](#param).
+
+#### Request header
+
+| Parameter    | Type   | Description     | Required |
+| :-------------- | :----- | :------- | :------------------ |
+| `Accept`        | String | The content type. Set it as `application/json`. | Yes |
+| `Authorization` | String  | The authentication token of the app administrator, in the format of `Bearer ${YourAppToken}`, where `Bearer` is a fixed character, followed by an English space, and then the obtained token value. | Yes   |   
+
+### HTTP response
+
+#### Response body
+
+If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following parameters:
+
+| Parameter | Type | Descriptions |
+| :------------- | :----- | :-------- |
+| `data` | Boolean | Whether the user has joined the group: <ul><li>`true`: Yes. The user has joined the group.</li><li>`false`: No. The user has not joined the group.</li></ul> |
+
+For other fields and descriptions, see [Common parameters](#param).
+
+If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](#code) for possible causes.
+
+### Example
+
+#### Request example
+
+```shell
+# Replace {YourAppToken} with the app token generated in your server.
+curl -X GET -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'https://XXXX/XXXX/XXXX/chatgroups/XXXX/user/XXXX/is_joined'
+```
+
+#### Response example
+
+```json
+{
+    "action": "get",
+    "application": "8bXXXX02",
+    "data": false,
+    "duration": 0,
+    "organization": "XXXX",
+    "timestamp": 1691547476492
+}
+```
 
 ## Retrieving group details
 
@@ -551,7 +606,7 @@ For other parameters and detailed descriptions, see [Common parameters](#param).
 
 | Parameter | Type   | Description   | Required |
 | :------- | :----- | :------------------------ | :------- |
-| `limit`  | Number |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,100].   | No  |
+| `limit`  | Number |  The number of chat groups to retrieve per page. The default value is `10`. The value range is [1,1000].   | No  |
 | `cursor` | String |  The start position for the next query.  | No  |
 
 <div class="alert info">If neither the <code>limit</code> nor <code>cursor</code> parameter is specified, the server returns the latest 10 groups by creation time.<div>
@@ -640,7 +695,7 @@ Retrieves all the chat groups that a user joins.
 ### HTTP request
 
 ```http
-GET https://{host}/{org_name}/{app_name}/users/{username}/joined_chatgroups?pagesize={}&pagenum={}
+GET https://{host}/{org_name}/{app_name}/user/{username}/joined_chatgroups?pagesize={}&pagenum={}
 ```
 
 #### Path parameter
@@ -651,7 +706,7 @@ For the descriptions of path parameters of this method, see [Common parameters](
 
 | Parameter | Type   | Description   | Required |
 | :------- | :----- | :------------------------ | :------- |
-| `pagesize`  | String |  The number of chat groups to retrieve per page. The value range is [1,1000] and the default value is `1000`.   | No  |
+| `pagesize`  | String |  The number of chat groups to retrieve per page. The value range is [1,1000] and the default value is `5`.   | No  |
 | `pagenum` | String | The current page number. The query starts from the first page by default.  | No  |
 
  <div class="alert info">If neither `pagesize` nor `pagenum` is specified, the server returns the top 500 groups in the descending order of when the user joined the groups.</div>

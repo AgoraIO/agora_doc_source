@@ -24,90 +24,32 @@ Before proceeding, ensure that you meet the following requirements:
 
 ## Implementation
 
-To optimize user experience when dealing with an influx of push notifications, Agora Chat provides fine-grained options for the push notification and do-not-disturb (DND) modes at both the app and conversation levels, as shown in the following table:
-
-<table class="" cellspacing=0 border=1>
-<tbody>
-    <tr>
-        <th style="font-family:Helvetica Neue">
-            <nobr>Mode</nobr>
-        </th>
-        <th style="font-family:Helvetica Neue">
-            <nobr>Option</nobr>
-        </th>
-        <th style="font-family:Helvetica Neue">
-            <nobr>App</nobr>
-        </th>
-        <th style="font-family:Helvetica Neue">
-            <nobr>Conversation</nobr>
-        </th>
-    </tr>
-    <tr>
-        <td rowspan=3>
-            <nobr>Push notification mode</nobr>
-        </td>
-        <td>
-            <nobr><code>ALL</code>: Receives push notifications for all offline messages.</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <nobr><code>AT</code>: Only receives push notifications for mentioned messages.</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <nobr><code>NONE</code>: Do not receive push notifications for offline messages.</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-    </tr>
-    <tr>
-        <td rowspan=2>
-            <nobr>Do-not-disturb mode</nobr>
-        </td>
-        <td>
-            <nobr><code>duration</code>: Do not receive push notifications for the specified duration.</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <nobr><code>startTime</code> & <code>endTime</code>: Do not receive push notifications in the specified time frame.</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✓</nobr>
-        </td>
-        <td style="text-align:center">
-            <nobr>✗</nobr>
-        </td>
-    </tr>
-</tbody>
-</table>
-
+To optimize user experience when dealing with an influx of push notifications, Agora Chat provides fine-grained options for the push notification and do-not-disturb (DND) modes at both the app and conversation levels.
 
 **Push notification mode**
+
+<table width="781" height="300" border="1">
+  <tbody>
+    <tr>
+      <td width="192"><strong>Push Notification Mode</strong></td>
+      <td width="379"><strong>Description </strong></td>
+      <td width="188"><strong>Application Scope</strong></td>
+    </tr>
+    <tr>
+      <td>ALL</td>
+      <td>Receives push notifications for all offline messages.</td>
+      <td rowspan="3">Application and one-to-one and group chat conversations</td>
+    </tr>
+    <tr>
+      <td>AT</td>
+      <td>Only receives push notifications for mentioned messages.</td>
+    </tr>
+    <tr>
+      <td>NONE</td>
+      <td>Do not receive push notifications for offline messages.</td>
+    </tr>
+  </tbody>
+</table>
 
 The setting of the push notification mode at the conversation level takes precedence over that at the app level, and those conversations that do not have specific settings for the push notification mode inherit the app setting by default.
 
@@ -115,7 +57,37 @@ For example, assume that the push notification mode of the app is set to `AT`, w
 
 **Do-not-disturb mode**
 
-<div class="alert note"><ol><li>You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.<li>Conversations only support the DND duration setting; the setting of the DND time frame does not take effect.</ol></div>
+You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.
+
+<table width="726" border="1">
+  <tbody>
+    <tr>
+      <td width="196" height="32"><strong>Do-not-disturb Parameter</strong></td>
+      <td width="83"><strong>Type</strong></td>
+      <td width="272"><strong> Description</strong></td>
+      <td width="147"><strong> Application Scope</strong></td>
+    </tr>
+    <tr>
+      <td height="65">startTime&amp;endTime</td>
+      <td>String</td>
+      <td><p>The time frame during which the DND mode is scheduled everyday. The value is in the format of {HH:MM-HH:MM}, for example, 08:30-10:00, where HH ranges from `00` to `23` in hour and MM from `00` to `59` in minute. </p><li>The DND mode is enabled everyday in the specified time frame. For example, if you set the start time to 08:00 and end time to 10:00, the app stays in DND mode during 8:00-10:00; if you set the same period at 9:00, the DND mode works during 9:00-10:00 on the current day and 8:00-10:00 in subsequent days.</li>
+        <li>If the start time is set to the same time spot as the end time, the app enters the permanent DND mode.</li>
+        <li>If the start time is later than the end time, the app remains in DND mode from the start time on the current day until the end time next day. For example, if the start time is 10:00 and end time is 08:00, the DND mode lasts from 10:00 until 08:00 the next day. </li>
+        <li> Currently, only one DND time frame is allowed, with the new setting overwriting the old.</li>
+        <li>If this parameter is not specified, pass in an empty string.</li>
+        <li>If both `startTime` and `endTime` and `duration` are set, the DND mode works in both periods. For example, at 8:00, you set  `startTime` and `endTime` to 8:00-10:00 and `duration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></td>
+      <td>App</td>
+    </tr>
+    <tr>
+      <td height="108">duration</td>
+      <td>Number</td>
+      <td><p>The DND duration in milliseconds. The value range is [0,10080], where `0` indicates that this parameter is invalid and `10080` indicates that the DND mode lasts for 7 days. </p>
+        <li>Unlike `startTime` and `endTime` set as a daily period, this parameter specifies that the DND mode works only for the given duration starting from the current time. For example, if this parameter is set to 240 (4 hours) for the app at 8:00, the DND mode lasts only during 8:00-12:00 on the current day.</li>
+      <li> If both  `startTime` and `endTime` and `duration` are set, the DND mode works in both periods. For example, at 8:00, you set `startTime` and `endTime` to 8:00-10:00 and `duration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li>        </p></td>
+      <td>App and one-to-one and group chat conversations in it </td>
+    </tr>
+  </tbody>
+</table>
 
 For both the app and all the conversations in the app, the setting of the DND mode takes precedence over the setting of the push notification mode.
 

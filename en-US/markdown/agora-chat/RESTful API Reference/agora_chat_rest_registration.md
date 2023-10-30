@@ -156,7 +156,7 @@ The request body is a JSONArray object, which contains the following fields:
 
 | Field | Type | Description | Required |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  | Yes |
+| `username` | String | The unique user ID of the user. The user ID must be 64 characters or less and cannot be empty. You can pass in at most 60 user IDs. | Yes |
 | `password` | String | The user's login password. The length cannot exceed 64 characters. | Yes |
 
 ### HTTP response
@@ -571,7 +571,9 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## Deleting multiple users
 
-This method deletes all the users in the app. If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
+This method deletes multiple users in the app. You can delete a maximum of 100 users each time.
+
+If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
 
 For each App Key, the call frequency limit of this method is 30 per second.
 

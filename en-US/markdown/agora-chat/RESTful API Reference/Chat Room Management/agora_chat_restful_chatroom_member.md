@@ -125,7 +125,7 @@ POST https://{host}/{org_name}/{app_name}/chatrooms/{chatroomid}/users
 
 For the parameters and detailed descriptions, see [Common parameters ](#param).
 
-<div class="alert note">You can add at most 60 users at one time.</div>
+<div class="alert note">You can add at most 60 users each time.</div>
 
 #### Request header
 
@@ -355,7 +355,7 @@ DELETE https://{host} /{org_name}/{app_name}/chatrooms/{chatroomid}/users/{usern
 
 | Parameter | Type | Description | Required |
 | :---------- | :----- | :----------------------------------------------------------------------------------------------------- | :------- |
-| `usernames` | String | One or more usernames separated with the comma (,). In the URL, "," needs to be represented by "%2C". A maximum of 100 usernames can be passed in at one time. | Yes |
+| `usernames` | String | One or more usernames separated with the comma (,). In the URL, "," needs to be represented by "%2C". A maximum of 100 usernames can be passed in each time. | Yes |
 
 For other parameters and detailed descriptions, see [Common parameters](#param).
 

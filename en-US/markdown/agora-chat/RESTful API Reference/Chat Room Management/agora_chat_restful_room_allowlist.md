@@ -171,7 +171,7 @@ curl -X POST -H 'Accept: application/json' -H 'Authorization: Bearer YWMt4LqJIul
 
 ## Adding multiple members to the chat room allow list
 
-Adds multiple users to the chat room allow list. You can add a maximum of 60 users to the chat room allow list at one time.
+Adds multiple users to the chat room allow list. You can add a maximum of 60 users to the chat room allow list each time.
 
 ### HTTP request
 
@@ -251,7 +251,7 @@ curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -
 
 ## Removing users from the chat room allow list
 
-Removes the specified users from the chat room allow list. You can remove a maximum of 60 group members from the chat room allow list at one time.
+Removes the specified users from the chat room allow list. You can remove a maximum of 60 members from the chat room allow list each time.
 
 ### HTTP request
 
@@ -261,7 +261,7 @@ DELETE https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}/white/users/
 
 #### Path parameter
 
-For the parameters and detailed descriptions, see [Common parameters](#param).                                        |
+For the parameters and detailed descriptions, see [Common parameters](#param).                                        
 
 #### Request header
 

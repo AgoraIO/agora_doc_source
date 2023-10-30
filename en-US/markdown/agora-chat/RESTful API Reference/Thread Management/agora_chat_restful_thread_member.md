@@ -61,6 +61,8 @@ For the descriptions of the other path parameters, see [Common Parameters](#requ
 
 #### Query parameter
 
+| Parameter | Type | Description | Required |
+|:------------|:-------|:-----|:-----------|
 | `limit` | String | The maximum number of threads to retrieve per page. The range is [1, 50]. The default value is 50. | No |
 | `cursor` | String | The page from which to start retrieving threads. Pass in `null` or an empty string at the first query. | No |
 
@@ -140,7 +142,7 @@ For the descriptions of the request headers, see [Authorization](#auth).
 
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
-| `usernames` | List | The usernames of the members in the thread. | Yes |
+| `usernames` | List | The user IDs of users to add to the thread. You can pass in up to 10 user IDs. | Yes |
 
 ### HTTP response
 
@@ -160,13 +162,13 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 #### Request example
 
-```json
-curl -X POST http://XXXX.com/XXXX/testapp/thread/177916702949377/users -d '{
+```shell
+curl -X POST http://XXXX.com/XXXX/testapp/thread/177916702949377/users -H 'Authorization: Bearer <YourAppToken>'-d '{
 "usernames": [
 "test2",
 "test3"
 ]
-}' -H 'Authorization: Bearer <YourAppToken>'
+}' 
 ```
 
 #### Response example
@@ -213,7 +215,7 @@ For the descriptions of the request headers, see [Authorization](#auth).
 
 | Parameter | Type | Description | Required |
 |:------------|:-------|:-----|:-----------|
-| `usernames` | List | The usernames of the members in the thread. | Yes |
+| `usernames` | List | The user IDs of members to remove from the thread. You can pass in up to 10 user IDs. | Yes |
 
 ### HTTP response
 

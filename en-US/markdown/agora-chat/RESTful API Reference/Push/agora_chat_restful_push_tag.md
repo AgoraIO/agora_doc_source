@@ -343,7 +343,7 @@ For the descriptions of the other path parameters, see [Common parameters](#para
 
 | Parameter       |Type| Description                        | Required |
 | :---------- | :------- | :--- | :---------------------------- |
-| `usernames` | List | The IDs of the users to be added to the push label. You can pass a maximum of 100 users for each request. | Yes     |
+| `usernames` | List | The IDs of the users to be added to the push label. You can pass in a maximum of 100 user IDs each time. | Yes     |
 
 ### HTTP response
 
@@ -553,6 +553,8 @@ For the descriptions of the other path parameters, see [Common parameters](#para
 
 #### Request body
 
+| Parameter           | Type | Description             | Required | 
+| :-------------- | :----- | :------- | :----------- |
 | `usernames` | List | The IDs of the users to be removed from the push label. You can pass a maximum of 100 users for each request. | Yes     |
 
 ### HTTP response

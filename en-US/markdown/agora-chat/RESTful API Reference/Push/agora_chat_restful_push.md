@@ -229,14 +229,14 @@ For each App Key, the call frequency limit of this method is 100 per second.
 ### HTTP request
 
 ```http
-PUT https://{host}/{org}/{app}/users/{username}/notification/{type}/{key}
+PUT https://{host}/{org}/{app}/users/{username}/notification/{chattype}/{key}
 ```
 
 #### Path parameter
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `type` | String | The type of the chat:<li>`user`: one-to-one chats.<li>`chatgroup`: Group chats.  | Yes |
+| `chattype` | String | The type of the chat:<li>`user`: one-to-one chats.<li>`chatgroup`: Group chats.  | Yes |
 | `key` | String | The identifier of the chat:<li>If `type` is set to `user`, `key` indicates the user ID of the peer user.<li>If `type` is set to `chatgroup`, `key` indicates the ID of the chat group. | Yes |
 
 <div class="alert info">To set up push notifications at the app level, you can set <code>type</code> to <code>user</code> and <code>key</code> to the user ID of the current user.</div>
@@ -254,9 +254,12 @@ For the descriptions of other path parameters, see [Common Parameters](#request)
 
 | Parameter | Type | Description | Required |
 | :----- | :----- | :------- | -------- |
-| `type` | String | The push notification mode:<li>`DEFAULT`: Inherits the setting at the app level.<li>`ALL`: Receives push notifications for all offline messages.<li>`AT`: Only receives push notifications for mentioned messages.<li>`NONE`: Do not receive push notifications for offline messages.  | No |
-| `ignoreInterval` | String | The DND time frame in the format of {HH:MM-HH:MM}, for example, 08:30-10:00. The range of HH is [00,23] in hours, while the range of MM is [00,59].<div class="alert info">This parameter is valid only when `type` is set to `user` and `key` is set to the user ID of the current user in the request header, meaning the DND time frame only takes effect on an app rather than a specific conversation.</div>  | No |
-| `ignoreDuration` | Long   | The DND duration in milliseconds. The range is [0,604800000], where `0` indicates that this parameter is invalid and `604800000` indicates that the DND mode lasts for 7 days.  | No  |
+| `type` | String | The push notification mode:<li>`DEFAULT`: A specific conversation uses the setting at the app level. This parameter is valid only for one-to-one and group chat conversations, but not for the app level. <li>`ALL`: Receives push notifications for all offline messages.<li>`AT`: Only receives push notifications for mentioned messages.<li>`NONE`: Do not receive push notifications for offline messages.  | No |
+| `ignoreInterval` | String | The time frame during which the DND mode is scheduled everyday. The value is in the format of {HH:MM-HH:MM}, for example, 08:30-10:00, where HH ranges from `00` to `23` in hour and MM from `00` to `59` in minute. <ul><li>This parameter works only when `chattype` is set to `user` and `key` to the current user ID in the request header, meaning that the DND time frame is valid only for the entire app rather than specific one-to-one or group chat conversations.</li><li>The DND mode is enabled everyday in the specified time frame. For example, if you set this parameter to 08:00-10:00, the app stays in DND mode during 8:00-10:00; if you set the same period at 9:00, the DND mode works during 9:00-10:00 on the current day and 8:00-10:00 in later days.</li><li>If the start time is set to the same time spot as the end time, the app enters the permanent DND mode.</li><li>If the start time is later than the end time, the app remains in DND mode from the start time on the current day until the end time next day. For example, if you set 10:00-08:00, the DND mode lasts from 10:00 until 08:00 the next day. </li><li> Currently, only one DND time frame is allowed, with the new setting overwriting the old.</li><li>If this parameter is not specified, pass in an empty string.</li><li> If both `ignoreInterval` and `ignoreDuration` are set, the DND mode works in both periods. For example, at 8:00, you set `ignoreInterval` to 8:00-10:00 and `ignoreDuration` to 14400000 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></ul>  | No |
+| `ignoreDuration` | Number   | The DND duration in milliseconds. The value range is [0,604800000], where `0` indicates that this parameter is invalid and `604800000` indicates that the DND mode lasts for 7 days. <ul><li>This parameter works for both the app and one-to-one and group chat conversations in it. </li><li> Unlike `ignoreInterval` set as a daily period, this parameter specifies that the DND mode works only for the given duration starting from the current time. For example, if this parameter is set to 14400000 (4 hours) for the app at 8:00, the DND mode lasts only during 8:00-12:00 on the current day.</li><li> If both `ignoreInterval` and `ignoreDuration` are set, the DND mode remains in both periods. For example, at 8:00, you set `ignoreInterval` to 8:00-10:00 and `ignoreDuration` to 14400000 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></ul> | No  |
+
+<div class="alert note">For both the app and all the conversations in the app, the DNS mode setting (`ignoreInterval` or `ignoreDuration`) takes precedence over the setting of the push notification mode (`type`). For example, assume that `ignoreInterval` or `ignoreDuration` is specified at the app level and `type` is set to `ALL` for a specific conversation. The app enters the DND mode during the designated period and you do not receive any push notifications during the period.</div>
+
 
 ### HTTP response
 
