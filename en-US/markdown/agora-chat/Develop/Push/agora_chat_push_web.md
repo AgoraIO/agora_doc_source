@@ -57,7 +57,7 @@ For example, assume that the push notification mode of the app is set to `AT`, w
 
 **Do-not-disturb mode**
 
-You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.
+You can specify both the DND duration and DND interval at the app level. During the specified DND time periods, you do not receive any push notifications.
 
 <table width="726" border="1">
   <tbody>
@@ -68,22 +68,22 @@ You can specify both the DND duration and DND time frame at the app level. Durin
       <td width="147"><strong> Application Scope</strong></td>
     </tr>
     <tr>
-      <td height="65">startTime&amp;endTime</td>
-      <td>String</td>
-      <td><p>The time frame during which the DND mode is scheduled everyday. The value is in the format of {HH:MM-HH:MM}, for example, 08:30-10:00, where HH ranges from `00` to `23` in hour and MM from `00` to `59` in minute. </p><li>The DND mode is enabled everyday in the specified time frame. For example, if you set the start time to 08:00 and end time to 10:00, the app stays in DND mode during 8:00-10:00; if you set the same period at 9:00, the DND mode works during 9:00-10:00 on the current day and 8:00-10:00 in subsequent days.</li>
-        <li>If the start time is set to the same time spot as the end time, the app enters the permanent DND mode.</li>
-        <li>If the start time is later than the end time, the app remains in DND mode from the start time on the current day until the end time next day. For example, if the start time is 10:00 and end time is 08:00, the DND mode lasts from 10:00 until 08:00 the next day. </li>
-        <li> Currently, only one DND time frame is allowed, with the new setting overwriting the old.</li>
+      <td height="65">startTime - endTime</td>
+      <td>Number</td>
+      <td><p>The interval during which the DND mode is scheduled everyday. The time is represented in the 24-hour notation in the form of H:M, for example, 8:30-10:00, where H ranges from `0` to `23` in hour and M from `0` to `59` in minute. </p><li>The DND mode is enabled everyday in the specified interval. For example, if you set the start time to 8:0 and end time to 10:0, the app stays in DND mode during 8:00-10:00; if you set the same period at 9:00, the DND mode works during 9:00-10:00 on the current day and 8:00-10:00 in subsequent days.</li>
+        <li>If the start time is set to the same time spot as the end time, the app enters the permanent DND mode. However, the value 0:0-0:0 means to disable the DND mode.</li>
+        <li>If the start time is later than the end time, the app remains in DND mode from the start time on the current day until the end time next day. For example, if you set the interval as 10:0-8:0, the DND mode lasts from 10:00 until 08:00 the next day. </li>
+        <li> Currently, only one DND interval is allowed, with the new setting overwriting the old.</li>
         <li>If this parameter is not specified, pass in an empty string.</li>
-        <li>If both `startTime` and `endTime` and `duration` are set, the DND mode works in both periods. For example, at 8:00, you set  `startTime` and `endTime` to 8:00-10:00 and `duration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></td>
+        <li>If both `startTime` and `endTime` and `duration` are set, the DND mode works in both periods. For example, at 8:00, you set  `startTime` and `endTime` to 8:0-10:0 and `duration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></td>
       <td>App</td>
     </tr>
     <tr>
       <td height="108">duration</td>
       <td>Number</td>
-      <td><p>The DND duration in milliseconds. The value range is [0,10080], where `0` indicates that this parameter is invalid and `10080` indicates that the DND mode lasts for 7 days. </p>
+      <td><p>The DND duration in minutes. The value range is [0,10080], where `0` indicates that this parameter is invalid and `10080` indicates that the DND mode lasts for 7 days. </p>
         <li>Unlike `startTime` and `endTime` set as a daily period, this parameter specifies that the DND mode works only for the given duration starting from the current time. For example, if this parameter is set to 240 (4 hours) for the app at 8:00, the DND mode lasts only during 8:00-12:00 on the current day.</li>
-      <li> If both  `startTime` and `endTime` and `duration` are set, the DND mode works in both periods. For example, at 8:00, you set `startTime` and `endTime` to 8:00-10:00 and `duration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li>        </p></td>
+      <li> If both  `startTime` and `endTime` and `duration` are set, the DND mode works in both periods. For example, at 8:00, you set `startTime` and `endTime` to 8:0-10:0 and `duration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li>        </p></td>
       <td>App and one-to-one and group chat conversations in it </td>
     </tr>
   </tbody>
@@ -111,7 +111,7 @@ You can call `setSilentModeForAll` to set the push notifications at the app leve
     duration: 7200000 // Sets the DND duration to `7200000` in milliseconds.
   }
   options: {
-    paramType: 2, // The DND time frame.
+    paramType: 2, // The DND interval.
     startTime: {
     	hours: 8, // Sets the start hour to `8`.
     	minutes: 0 // Sets the start minute to `0`.
@@ -167,7 +167,7 @@ You can call `setSilentModeForConversation` to set the push notifications for th
     conversationId: '121231233',
     type: 'chatRoom',
     options: {
-      paramType: 2, // The DND time frame.
+      paramType: 2, // The DND interval.
       startTime: {
         hours: 8, // Sets the start hour to `8`.
         minutes: 0 // Sets the start minute to `0`.

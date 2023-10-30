@@ -159,7 +159,7 @@ For example, assume that the push notification mode of the app is set to `Mentio
 
 **Do-not-disturb mode**
 
-You can specify both the DND duration and DND time frame at the app level. During the specified DND time periods, you do not receive any push notifications.
+You can specify both the DND duration and DND interval at the app level. During the specified DND time periods, you do not receive any push notifications.
 
 <table width="726" border="1">
   <tbody>
@@ -170,22 +170,22 @@ You can specify both the DND duration and DND time frame at the app level. Durin
       <td width="147"><strong> Application Scope</strong></td>
     </tr>
     <tr>
-      <td height="65">silentModeStartTime - silentModeEndTime</td>
+      <td height="65">AgoraChatSilentModeParamTypeInterval</td>
       <td>String</td>
-      <td><p>The time frame during which the DND mode is scheduled everyday. The value is in the format of {HH:MM-HH:MM}, for example, 08:30-10:00, where HH ranges from `00` to `23` in hour and MM from `00` to `59` in minute. </p><li>The DND mode is enabled everyday in the specified time frame. For example, if you set the start time to 08:00 and end time to 10:00, the app stays in DND mode during 8:00-10:00; if you set the same period at 9:00, the DND mode works during 9:00-10:00 on the current day and 8:00-10:00 in the later days.</li>
-        <li>If the start time is set to the same time spot as the end time, the app enters the permanent DND mode.</li>
-        <li>If the start time is later than the end time, the app remains in DND mode from the start time on the current day until the end time next day. For example, if the start time is 10:00 and end time is 08:00, the DND mode lasts from 10:00 until 08:00 the next day. </li>
-        <li>Currently, only one DND time frame is allowed, with the new setting overwriting the old.</li>
+      <td><p>The interval during which the DND mode is scheduled everyday. The time is represented in the 24-hour notation in the form of H:M, for example, 8:30-10:00, where H ranges from `0` to `23` in hour and M from `0` to `59` in minute. </p><li>The DND mode is enabled everyday in the specified interval. For example, if you set the interval to 8:0-10:0, the app stays in DND mode during 8:00-10:00; if you set the same period at 9:00, the DND mode works during 9:00-10:00 on the current day and 8:00-10:00 in the later days.</li>
+        <li>If the start time is set to the same time spot as the end time, the app enters the permanent DND mode. However, the value 0:0-0:0 means to disable the DND mode.</li>
+        <li>If the start time is later than the end time, the app remains in DND mode from the start time on the current day until the end time next day. For example, if you set the interval as 10:0-8:0, the DND mode lasts from 10:00 until 08:00 the next day. </li>
+        <li>Currently, only one DND interval is allowed, with the new setting overwriting the old.</li>
         <li>If this parameter is not specified, pass in an empty string.</li>
-        <li>If both this time frame and `silentModeDuration` are set, the DND mode works in both periods. For example, at 8:00, if you set `silentModeStartTime` and `silentModeEndTime` to 8:00 and 10:00 and `silentModeDuration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></td>
+        <li>If both this interval and `silentModeDuration` are set, the DND mode works in both periods. For example, at 8:00, if you set `AgoraChatSilentModeParamTypeInterval` to 8:0-10:0 and `AgoraChatSilentModeParamTypeDuration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></td>
       <td>App</td>
     </tr>
     <tr>
-      <td height="108">silentModeDuration</td>
+      <td height="108">AgoraChatSilentModeParamTypeDuration</td>
       <td>Number</td>
       <td><p>The DND duration in minutes. The value range is [0,10080], where `0` indicates that this parameter is invalid and `10080` indicates that the DND mode lasts for 7 days. </p>
-        <li>Unlike `silentModeStartTime` and `silentModeEndTime` set as a daily period, this parameter specifies that the DND mode works only for the given duration starting from the current time. For example, if this parameter is set to 240 (4 hours) for the app at 8:00, the DND mode lasts only during 8:00-12:00 on the current day.</li>
-        <li>If both `silentModeStartTime` and `silentModeEndTime` and `silentModeDuration` are set, the DND mode works in both periods.  For example, at 8:00, if you set `silentModeStartTime` and `silentModeEndTime` to 8:00 and 10:00 and `silentModeDuration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></td>
+        <li>Unlike `AgoraChatSilentModeParamTypeInterval` set as a daily period, this parameter specifies that the DND mode works only for the given duration starting from the current time. For example, if this parameter is set to 240 (4 hours) for the app at 8:00, the DND mode lasts only during 8:00-12:00 on the current day.</li>
+        <li>If both `AgoraChatSilentModeParamTypeInterval` and `AgoraChatSilentModeParamTypeDuration` are set, the DND mode works in both periods. For example, at 8:00, if you set `AgoraChatSilentModeParamTypeInterval` to 8:0-10:0 and `AgoraChatSilentModeParamTypeDuration` to 240 (4 hours) for the app, the app stays in DND mode during 8:00-12:00 on the current day and 8:00-10:00 in the later days.</li></td>
       <td>App and one-to-one and group chat conversations in it </td>
     </tr>
   </tbody>
@@ -215,7 +215,7 @@ AgoraChatSilentModeParam *param = [[AgoraChatSilentModeParam alloc]initWithParam
 // Sets the DND duration to 15 minutes.
 AgoraChatSilentModeParam *param = [[AgoraChatSilentModeParam alloc]initWithParamType:AgoraChatSilentModeParamTypeDuration];
     param.silentModeDuration = 15;
-// Sets the DND time frame from 8:30 to 15:00.
+// Sets the DND interval from 8:30 to 15:00.
 AgoraChatSilentModeParam *param = [[AgoraChatSilentModeParam alloc]initWithParamType:AgoraChatSilentModeParamTypeInterval];
     param.silentModeStartTime = [[AgoraChatSilentModeTime alloc]initWithHours:8 minutes:30];
     param.silentModeEndTime = [[AgoraChatSilentModeTime alloc]initWithHours:15 minutes:0];
@@ -233,9 +233,9 @@ You can call `getSilentModeForAllWithCompletion` to retrieve the push notificati
                 AgoraChatPushRemindType remindType = aResult.remindType;
                 // Retrieves the Unix timestamp when the DND duration of an app expires.
                 NSTimeInterval ex = aResult.expireTimestamp;
-                // Retrieves the start time specified in the DND time frame at the app level.
+                // Retrieves the start time specified in the DND interval at the app level.
                 AgoraChatSilentModeTime *startTime = aResult.silentModeStartTime;
-                // Retrieves the end time specified in the DND time frame at the app level.
+                // Retrieves the end time specified in the DND interval at the app level.
                 AgoraChatSilentModeTime *endTime = aResult.silentModeEndTime;
             }else{
                 NSLog(@"getSilentModeForAll error---%@",aError.errorDescription);
