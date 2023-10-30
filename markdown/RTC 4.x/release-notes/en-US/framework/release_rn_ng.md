@@ -8,6 +8,14 @@ Due to changes in the screen sharing behavior of Android 14 system, using device
 
 - When integrating the SDK, setting the Android `targetSdkVersion` to 34 may cause the screen sharing feature to be unavailable or even cause the application to crash.
 
+## v4.2.5
+
+v4.2.5 was released on October xx, 2023.
+
+#### Issues fixed
+
+This release fixed an incorrect path in the `types` filed in `package.json` which causes the error `Could not find a declaration file for module 'react-native-agora'` when integrating the SDK into a TypeScript project.
+
 ## v4.2.4
 
 v4.2.4 was released on October xx, 2023.
