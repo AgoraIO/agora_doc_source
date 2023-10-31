@@ -101,7 +101,7 @@ If the returned HTTP status code is not 200, the request fails. You can refer to
 ```shell
 curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' -d '{
     "groupname": "testgroup",
-    "desc": "test",
+    "description": "test",
     "public": true,
     "maxusers": 300,
     "owner": "testuser",
