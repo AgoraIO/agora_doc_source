@@ -18,7 +18,7 @@
         <topicmeta>
             <navtitle><ph keyref="sdk-name"/> for <ph keyref="platform"/></navtitle>
         </topicmeta>
-        <topicref href="API/rtc_api_overview_ng.dita"/>
+        <topicref href="API/rtc_api_overview.dita"/>
         <topicref keyref="IRtcEngine" chunk="to-content">
             <topicref keyref="addVideoWatermark1" toc="no"/>
             <topicref keyref="addVideoWatermark2" toc="no"/>
@@ -35,7 +35,6 @@
             <topicref keyref="configRhythmPlayer" toc="no"/>
             <topicref keyref="create" toc="no" processing-role="resource-only"/>
             <topicref keyref="initialize" toc="no"/>
-            <topicref keyref="createAgoraRtcEngine" toc="no"/>
             <topicref keyref="createDataStream1" toc="no"/>
             <topicref keyref="createDataStream2" toc="no"/>
             <topicref keyref="createMediaPlayer" toc="no"/>
@@ -203,7 +202,6 @@
             <topicref keyref="setLowlightEnhanceOptions" toc="no"/>
             <topicref keyref="setMixedAudioFrameParameters" toc="no"/>
             <topicref keyref="setParameters" toc="no"/>
-            <topicref keyref="setParameters_IAgoraParameter" toc="no"/>
             <topicref keyref="setPlaybackAudioFrameBeforeMixingParameters" toc="no"/>
             <topicref keyref="setPlaybackAudioFrameParameters" toc="no"/>
             <topicref keyref="setRecordingAudioFrameParameters" toc="no"/>
@@ -438,7 +436,6 @@
             <topicref keyref="getAgoraCDNLineCount" toc="no" props="cn"/>
             <topicref keyref="getCurrentAgoraCDNIndex" toc="no" props="cn"/>
             <topicref keyref="getDuration" toc="no"/>
-            <topicref keyref="getMediaPlayerCacheManager" toc="no"/>
             <topicref keyref="getMediaPlayerId" toc="no"/>
             <topicref keyref="getMute" toc="no"/>
             <topicref keyref="getPlayoutVolume" toc="no"/>
@@ -490,10 +487,10 @@
         <topicref keyref="IAudioDeviceManager" chunk="to-content">
             <topicref keyref="enumeratePlaybackDevices" toc="no"/>
             <topicref keyref="enumerateRecordingDevices" toc="no"/>
-            <topicref keyref="followSystemLoopbackDevice" toc="no"/>
+            <topicref keyref="followSystemLoopbackDevice" toc="no" props="hide"/>
             <topicref keyref="followSystemPlaybackDevice" toc="no"/>
             <topicref keyref="followSystemRecordingDevice" toc="no"/>
-            <topicref keyref="getLoopbackDevice" toc="no"/>
+            <topicref keyref="getLoopbackDevice" toc="no" props="hide"/>
             <topicref keyref="getPlaybackDevice" toc="no"/>
             <topicref keyref="getPlaybackDeviceInfo" toc="no"/>
             <topicref keyref="getPlaybackDeviceMute" toc="no" props="hide"/>
@@ -503,7 +500,7 @@
             <topicref keyref="getRecordingDeviceMute" toc="no" props="hide"/>
             <topicref keyref="getRecordingDeviceVolume" toc="no" props="hide"/>
             <topicref keyref="release_IAudioDeviceManager" toc="no"/>
-            <topicref keyref="setLoopbackDevice" toc="no"/>
+            <topicref keyref="setLoopbackDevice" toc="no" props="hide"/>
             <topicref keyref="setPlaybackDevice" toc="no"/>
             <topicref keyref="setPlaybackDeviceMute" toc="no" props="hide"/>
             <topicref keyref="setPlaybackDeviceVolume" toc="no" props="hide"/>
@@ -544,21 +541,21 @@
             <topicref keyref="release_IVideoDeviceCollection" toc="no"/>
             <topicref keyref="setDevice_IVideoDeviceCollection" toc="no"/>
         </topicref>
-        <topicref keyref="IMediaEngine" chunk="to-content">
-            <topicref keyref="createCustomAudioTrack" toc="no"/>
-            <topicref keyref="destroyCustomAudioTrack" toc="no"/>
-            <topicref keyref="pullAudioFrame" toc="no"/>
-            <topicref keyref="pushAudioFrame" toc="no"/>
+        <topicref keyref="IMediaEngine" chunk="to-content" props="hide">
+            <topicref keyref="createCustomAudioTrack" toc="no" processing-role="resource-only"/>
+            <topicref keyref="destroyCustomAudioTrack" toc="no" props="hide"/>
+            <topicref keyref="pullAudioFrame" toc="no" props="hide"/>
+            <topicref keyref="pushAudioFrame" toc="no" processing-role="resource-only"/>
             <topicref keyref="pushEncodedVideoImage" toc="no" props="hide"/>
             <topicref keyref="pushEncodedVideoImageEx" toc="no" props="hide"/>
-            <topicref keyref="pushVideoFrame" toc="no"/>
+            <topicref keyref="pushVideoFrame" toc="no" processing-role="resource-only"/>
             <topicref keyref="pushVideoFrameEx" toc="no" props="hide"/>
-            <topicref keyref="registerAudioFrameObserver" toc="no"/>
-            <topicref keyref="registerVideoEncodedFrameObserver" toc="no"/>
-            <topicref keyref="registerVideoFrameObserver" toc="no"/>
-            <topicref keyref="setExternalAudioSink" toc="no"/>
-            <topicref keyref="setExternalAudioSource2" toc="no"/>
-            <topicref keyref="setExternalVideoSource" toc="no"/>
+            <topicref keyref="registerAudioFrameObserver" toc="no" processing-role="resource-only"/>
+            <topicref keyref="registerVideoEncodedFrameObserver" toc="no" processing-role="resource-only"/>
+            <topicref keyref="registerVideoFrameObserver" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setExternalAudioSink" toc="no" props="hide"/>
+            <topicref keyref="setExternalAudioSource2" toc="no" processing-role="resource-only"/>
+            <topicref keyref="setExternalVideoSource" toc="no" props="hide"/>
         </topicref>
         <topicref keyref="IMediaPlayerCacheManager" chunk="to-content">
             <topicref keyref="enableAutoRemoveCache" toc="no"/>
@@ -596,7 +593,7 @@
         <topicref keyref="IAudioFrameObserverBase" chunk="to-content">
             <topicref keyref="AUDIO_FRAME_TYPE" toc="no"/>
             <topicref keyref="AudioFrame" toc="no"/>
-            <topicref keyref="onEarMonitoringAudioFrame" toc="no"/>
+            <topicref keyref="onEarMonitoringAudioFrame" toc="no" processing-role="resource-only"/>
             <topicref keyref="onMixedAudioFrame" toc="no"/>
             <topicref keyref="onPlaybackAudioFrame" toc="no"/>
             <topicref keyref="onRecordAudioFrame" toc="no"/>
@@ -604,7 +601,7 @@
             <topicref keyref="getRecordAudioParams" toc="no"/>
             <topicref keyref="getMixedAudioParams" toc="no"/>
             <topicref keyref="getPlaybackAudioParams" toc="no"/>
-            <topicref keyref="getEarMonitoringAudioParams" toc="no"/>
+            <topicref keyref="getEarMonitoringAudioParams" toc="no" processing-role="resource-only"/>
         </topicref>
         <topicref keyref="IDirectCdnStreamingEventHandler" chunk="to-content" props="cn">
             <topicref keyref="onDirectCdnStreamingStateChanged" toc="no"/>
