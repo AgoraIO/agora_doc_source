@@ -16,9 +16,18 @@
 @property(assign, nonatomic) int bitrateInKbps;
 @property(copy, nonatomic) NSString *_Nullable name;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SrcInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SrcInfo {
   int bitrateInKbps;
   const char* name;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSrcInfo {
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SrcInfo&quot;)
+	int bitrateInKbps;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SrcInfo&quot;)
+	FString name;
+
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SrcInfo {
   

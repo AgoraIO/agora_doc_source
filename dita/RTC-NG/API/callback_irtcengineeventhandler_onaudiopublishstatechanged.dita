@@ -20,7 +20,7 @@
            oldState:(AgoraStreamPublishState)oldState
            newState:(AgoraStreamPublishState)newState
 elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioPublishStateChanged(const char* channel,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioPublishStateChanged(const char* channel,
      STREAM_PUBLISH_STATE oldState,
      STREAM_PUBLISH_STATE newState,
      int elapseSinceLastState) {
@@ -29,6 +29,7 @@ elapseSinceLastState:(int)elapseSinceLastState;</codeblock>
      (void)newState;
      (void)elapseSinceLastState;
      }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAudioPublishStateChanged, FString, channel, ESTREAM_PUBLISH_STATE, oldState, ESTREAM_PUBLISH_STATE, newState, int, elapseSinceLastState);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioPublishStateChanged?(
     channel: string,
     oldState: StreamPublishState,

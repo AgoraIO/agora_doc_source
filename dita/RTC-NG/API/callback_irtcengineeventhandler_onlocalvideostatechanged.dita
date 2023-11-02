@@ -22,12 +22,13 @@
  error:(AgoraLocalVideoStreamError)error
  sourceType:(AgoraVideoSourceType)sourceType;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR error) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR error) {
     (void)source;
     (void)state;
     (void)error;
   }
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnLocalVideoStateChanged, EVIDEO_SOURCE_TYPE, source, ELOCAL_VIDEO_STREAM_STATE, state, ELOCAL_VIDEO_STREAM_ERROR, error);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(
     source: VideoSourceType,
     state: LocalVideoStreamState,

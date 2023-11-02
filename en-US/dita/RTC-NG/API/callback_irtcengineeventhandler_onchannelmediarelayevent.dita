@@ -16,9 +16,10 @@
             <codeblock props="android" outputclass="language-java">public void onChannelMediaRelayEvent(int code) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
 didReceiveChannelMediaRelayEvent:(AgoraChannelMediaRelayEvent)event;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(int code) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onChannelMediaRelayEvent(int code) {
   (void)code;
 }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnChannelMediaRelayEvent, int, code);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp"> public virtual void OnChannelMediaRelayEvent(int code) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onChannelMediaRelayEvent?(code: ChannelMediaRelayEvent): void;</codeblock>
@@ -44,8 +45,8 @@ didReceiveChannelMediaRelayEvent:(AgoraChannelMediaRelayEvent)event;</codeblock>
                 <pt props="android cpp unreal bp unity flutter electron rn cs">code</pt>
                 <pt props="ios mac">event</pt>
                 <pd>
-                    <p props="ios mac cpp unreal bp unity flutter electron rn cs">The event code of channel media relay. See <xref keyref="CHANNEL_MEDIA_RELAY_EVENT"/>.</p>
-                    <p props="android">The event code of channel media relay:<ul>
+                    <p props="ios mac cpp unreal unity flutter electron rn cs">The event code of channel media relay. See <xref keyref="CHANNEL_MEDIA_RELAY_EVENT"/>.</p>
+                    <p props="android bp">The event code of channel media relay:<ul>
                     <li><ph keyref="RELAY_EVENT_NETWORK_DISCONNECTED"/>(0): The user disconnects from the server due to a poor network connection.</li>
                     <li><ph keyref="RELAY_EVENT_NETWORK_CONNECTED"/>(1): The user is connected to the server.</li>
                     <li><ph keyref="RELAY_EVENT_PACKET_JOINED_SRC_CHANNEL"/>(2): The user joins the source channel.</li>

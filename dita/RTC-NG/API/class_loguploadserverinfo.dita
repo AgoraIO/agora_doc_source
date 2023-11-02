@@ -36,7 +36,7 @@
  
 @property(assign, nonatomic) BOOL serverHttps;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LogUploadServerInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LogUploadServerInfo {
   const char* serverDomain;
  
   const char* serverPath;
@@ -49,6 +49,19 @@
  
   LogUploadServerInfo(const char* domain, const char* path, int port, bool https) : serverDomain(domain),
 serverPath(path), serverPort(port), serverHttps(https) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLogUploadServerInfo {
+
+	GENERATED_BODY()
+
+	FString serverDomain;
+
+	FString serverPath;
+
+	int serverPort = 0;
+
+	bool serverHttps = true;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LogUploadServerInfo {
   serverDomain?: string;
@@ -96,9 +109,7 @@ serverPath(path), serverPort(port), serverHttps(https) {}
             <p/>
         </section>
         <section id="parameters">
-            <title><text
-            conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"
-            /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>serverDomain</pt>

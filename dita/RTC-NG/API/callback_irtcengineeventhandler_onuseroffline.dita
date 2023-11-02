@@ -17,10 +17,11 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
     didOfflineOfUid:(NSUInteger)uid
     reason:(AgoraUserOfflineReason)reason;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onUserOffline(uid_t uid, USER_OFFLINE_REASON_TYPE reason) {
     (void)uid;
     (void)reason;
     }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnUserOffline, int64, uid, EUSER_OFFLINE_REASON_TYPE, reason);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onUserOffline?(
     connection: RtcConnection,
     remoteUid: number,

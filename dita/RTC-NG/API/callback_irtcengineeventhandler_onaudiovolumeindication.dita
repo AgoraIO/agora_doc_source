@@ -17,13 +17,14 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
         reportAudioVolumeIndicationOfSpeakers:(NSArray&lt;AgoraRtcAudioVolumeInfo *&gt; * _Nonnull)speakers
         totalVolume:(NSInteger)totalVolume;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioVolumeIndication(const AudioVolumeInfo* speakers,
     unsigned int speakerNumber,
     int totalVolume) {
     (void)speakers;
     (void)speakerNumber;
     (void)totalVolume;
     }</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAudioVolumeIndication, const TArray&lt;FAudioVolumeInfo&gt;&amp;, speakers, int, totalVolume);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(connection: RtcConnection, speakers: AudioVolumeInfo[], speakerNumber: number, totalVolume: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(RtcConnection connection, AudioVolumeInfo[] speakers, uint speakerNumber, int totalVolume) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(
@@ -58,7 +59,7 @@
                 <pt>speakers</pt>
                 <pd>用户音量信息，详见 <xref keyref="AudioVolumeInfo" /> 数组。如果 <parmname>speakers</parmname> 为空，则表示远端用户不发流或没有远端用户。</pd>
             </plentry>
-            <plentry props="cpp unreal bp unity electron rn flutter cs">
+            <plentry props="cpp unreal unity electron rn flutter cs">
                 <pt>speakerNumber</pt>
                 <pd>
                     <p>用户数量。

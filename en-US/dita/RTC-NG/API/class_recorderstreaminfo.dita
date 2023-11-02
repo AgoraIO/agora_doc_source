@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_recorderstreaminfo">
-    <title><ph keyref="RecorderStreamInfo" /></title>
+    <title><ph keyref="RecorderStreamInfo"/></title>
     <shortdesc id="short"><ph id="shortdesc">The information about the media streams to be recorded.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -16,10 +16,21 @@
 @property (nonatomic, nonatomic) NSUInteger uid;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RecorderStreamInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RecorderStreamInfo {
     const char* channelId;
     uid_t uid;
     RecorderStreamInfo() : channelId(NULL), uid(0) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRecorderStreamInfo {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderStreamInfo&quot;)
+	FString channelId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RecorderStreamInfo&quot;)
+	int64 uid;
+
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RecorderStreamInfo {
   channelId?: string;
@@ -45,10 +56,10 @@ class RecorderStreamInfo {
   @JsonKey(name: 'uid')
   final int? uid;
 
-  factory RecorderStreamInfo.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory RecorderStreamInfo.fromJson(Map&lt;String, dynamic> json) =>
       _$RecorderStreamInfoFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$RecorderStreamInfoToJson(this);
+  Map&lt;String, dynamic> toJson() => _$RecorderStreamInfoToJson(this);
 }</codeblock> </p>
         </section>
         <section id="detailed_desc">
@@ -60,7 +71,7 @@ class RecorderStreamInfo {
             </dl>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
                 <pt>channelId</pt>

@@ -17,7 +17,9 @@
       AudioEncodedFrameObserverConfig config, IAudioEncodedFrameObserver observer);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setAudioEncodedFrameDelegate:(id&lt;AgoraAudioEncodedFrameDelegate&gt; _Nonnull)delegate
                     config:(AgoraAudioEncodedFrameDelegateConfig * _Nonnull) config;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerAudioEncodedFrameObserver(const AudioEncodedFrameObserverConfig&amp; config,  IAudioEncodedFrameObserver *observer) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int RegisterAudioEncodedFrameObserver(const FAudioEncodedFrameObserverConfig&amp; config, UIAudioEncodedFrameObserver* observer);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerAudioEncodedFrameObserver(
     config: AudioEncodedFrameObserverConfig,
     observer: IAudioEncodedFrameObserver
@@ -58,10 +60,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <ul id="ul_ahk_23f_3qb" props="native unreal bp unity cs">
-            <li>0: 方法调用成功</li>
-            <li>&lt; 0: 方法调用失败</li>
+            <li>0: 方法调用成功。</li>
+            <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
         <p props="rn electron">一个 <xref keyref="IAudioEncodedFrameObserver"/> 对象。</p></section>
     </refbody>

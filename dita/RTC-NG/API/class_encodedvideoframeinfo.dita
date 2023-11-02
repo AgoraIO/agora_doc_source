@@ -120,7 +120,7 @@
 @property (assign, nonatomic) AgoraVideoStreamType streamType;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct EncodedVideoFrameInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct EncodedVideoFrameInfo {
   EncodedVideoFrameInfo()
     : codecType(VIDEO_CODEC_H264),
       width(0),
@@ -162,6 +162,33 @@
     streamType = rhs.streamType;
     return *this;
   }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FEncodedVideoFrameInfo {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	EVIDEO_CODEC_TYPE codecType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	int framesPerSecond;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	EVIDEO_FRAME_TYPE frameType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	FENUMWRAP_VIDEO_ORIENTATION	rotation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	int trackId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	int64 captureTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	int64 decodeTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncodedVideoFrameInfo&quot;)
+	EVIDEO_STREAM_TYPE streamType;
+};</codeblock>
 <codeblock props="electron" outputclass="language-typescript">export class EncodedVideoFrameInfo {
 
   codecType?: VideoCodecType;

@@ -30,11 +30,21 @@
 @property (assign, nonatomic) int beatsPerMinute;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AgoraRhythmPlayerConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AgoraRhythmPlayerConfig {
   int beatsPerMeasure;
   int beatsPerMinute;
 
   AgoraRhythmPlayerConfig() : beatsPerMeasure(4), beatsPerMinute(60) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAgoraRhythmPlayerConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
+	int beatsPerMeasure = 4;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AgoraRhythmPlayerConfig&quot;)
+	int beatsPerMinute = 60;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AgoraRhythmPlayerConfig {
   

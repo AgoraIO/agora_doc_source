@@ -29,7 +29,7 @@
 @property (assign, nonatomic) AgoraAudioRecordingQuality quality;
 @property (assign, nonatomic) NSInteger recordingChannel;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioRecordingConfiguration {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioRecordingConfiguration {
   const char* filePath;
   bool encode;
   int sampleRate;
@@ -68,6 +68,24 @@
       fileRecordingType(rhs.fileRecordingType),
       quality(rhs.quality),
       recordingChannel(rhs.recordingChannel) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioRecordingConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	FString filePath;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	bool encode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	int sampleRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	EAUDIO_FILE_RECORDING_TYPE fileRecordingType = EAUDIO_FILE_RECORDING_TYPE::AUDIO_FILE_RECORDING_MIXED;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	EAUDIO_RECORDING_QUALITY_TYPE quality = EAUDIO_RECORDING_QUALITY_TYPE::AUDIO_RECORDING_QUALITY_LOW;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioRecordingConfiguration&quot;)
+	int recordingChannel;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioRecordingConfiguration {
 
@@ -164,19 +182,19 @@
   @JsonKey(name: 'recordingChannel')
   final int? recordingChannel;
 
-  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory AudioRecordingConfiguration.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioRecordingConfigurationFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioRecordingConfigurationToJson(this);
+  Map&lt;String, dynamic> toJson() => _$AudioRecordingConfigurationToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry id="filepath">
                 <pt>filePath</pt>
-                <pd>The absolute path (including the filename extensions) of the recording file. For example: <codeph><ph keyref="filePath-example" /></codeph>.<note id="note_scm_klz_mqb" type="attention">
+                <pd>The absolute path (including the filename extensions) of the recording file. For example: <codeph><ph keyref="recordingPath-example" /></codeph>.<note id="note_scm_klz_mqb" type="attention">
                     <p>Ensure that the directory for the log files exists and is writable.</p>
                     </note> </pd>
             </plentry>

@@ -23,7 +23,7 @@
 @property(assign, nonatomic) NSUInteger audioDeviceDelay;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LocalAudioStats
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalAudioStats
 {
   int numChannels;
   int sentSampleRate;
@@ -31,6 +31,23 @@
   int internalCodec;
   unsigned short txPacketLossRate;
   int audioDeviceDelay;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalAudioStats
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int numChannels;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int sentSampleRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int sentBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int internalCodec;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int64 txPacketLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalAudioStats&quot;)
+	int audioDeviceDelay;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalAudioStats {
   

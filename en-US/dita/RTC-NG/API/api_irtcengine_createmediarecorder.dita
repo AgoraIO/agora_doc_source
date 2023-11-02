@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_createmediarecorder">
-    <title><ph keyref="createMediaRecorder" /></title>
+    <title><ph keyref="createMediaRecorder"/></title>
     <shortdesc id="short"><ph id="shortdesc">Creates a recording object for audio and video recording.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="createMediaRecorder" />
+                <indexterm keyref="createMediaRecorder"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,11 +15,13 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract AgoraMediaRecorder createMediaRecorder(RecorderStreamInfo info);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (AgoraMediaRecorder * _Nullable)createMediaRecorder:(AgoraRecorderStreamInfo * _Nonnull)info NS_SWIFT_NAME(createMediaRecorder(withInfo:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual agora_refptr&lt;IMediaRecorder&gt; createMediaRecorder(const RecorderStreamInfo&amp; info) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual agora_refptr&lt;IMediaRecorder> createMediaRecorder(const RecorderStreamInfo&amp; info) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	UIMediaRecorder* CreateMediaRecorder(FRecorderStreamInfo info);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract createMediaRecorder(info: RecorderStreamInfo): IMediaRecorder;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp"> public abstract IMediaRecorder CreateMediaRecorder(RecorderStreamInfo info);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract createMediaRecorder(info: RecorderStreamInfo): IMediaRecorder;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart"> Future&lt;MediaRecorder?&gt; createMediaRecorder(RecorderStreamInfo info);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart"> Future&lt;MediaRecorder?> createMediaRecorder(RecorderStreamInfo info);</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
@@ -30,21 +32,21 @@
             </dlentry>
             </dl>
             <p>Before you start recording, you need to call this method to create a recording object. Agora SDKs support recording the audio and video streams of both local and remote users. You can call this method as needed to create muitiple recording objects and specify the streams that you want to record through the <parmname>info</parmname> parameter.</p>
-            <p>After successfully creating a recording object, you need to call <xref keyref="setMediaRecorderObserver" /> to register a recording observer to listen for recording callbacks, and then call <xref keyref="startRecording" /> to start recording.</p>
+            <p>After successfully creating a recording object, you need to call <xref keyref="setMediaRecorderObserver"/> to register a recording observer to listen for recording callbacks, and then call <xref keyref="startRecording"/> to start recording.</p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
             <plentry>
                 <pt>info</pt>
-                <pd>The information about the media streams you want to record. See <xref keyref="RecorderStreamInfo" />.</pd>
+                <pd>The information about the media streams you want to record. See <xref keyref="RecorderStreamInfo"/>.</pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
             <ul>
-            <li props="cpp unreal bp apple rn electron unity flutter cs">The <xref keyref="IMediaRecorder" /> object, if the method call succeeds.</li>
-            <li props="android">The <xref keyref="IMediaRecorder" /> instance, if the method call succeeds.</li>
+            <li props="cpp unreal bp apple rn electron unity flutter cs">The <xref keyref="IMediaRecorder"/> object, if the method call succeeds.</li>
+            <li props="android">The <xref keyref="IMediaRecorder"/> instance, if the method call succeeds.</li>
             <li>An empty pointer, if the method call fails.</li>
             </ul>
         </section>

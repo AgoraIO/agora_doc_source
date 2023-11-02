@@ -41,7 +41,7 @@
 @property(assign, nonatomic) double alpha;
 @property(assign, nonatomic) BOOL mirror;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct TranscodingVideoStream {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct TranscodingVideoStream {
   VIDEO_SOURCE_TYPE sourceType;
   uid_t remoteUserUid;
   const char* imageUrl;
@@ -64,6 +64,32 @@
       zOrder(0),
       alpha(1.0),
       mirror(false) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FTranscodingVideoStream {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	EMEDIA_SOURCE_TYPE sourceType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int64 remoteUserUid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	FString imageUrl;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int x;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int y;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	int zOrder;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	float alpha;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|TranscodingVideoStream&quot;)
+	bool mirror;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class TranscodingVideoStream {
 

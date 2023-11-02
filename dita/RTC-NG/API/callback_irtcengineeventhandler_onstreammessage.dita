@@ -18,13 +18,14 @@
                 receiveStreamMessageFromUid:(NSUInteger)uid
                 streamId:(NSInteger)streamId
                 data:(NSData * _Nonnull)data;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessage(uid_t userId, int streamId, const char* data, size_t length, uint64_t sentTs) {
                     (void)userId;
                     (void)streamId;
                     (void)data;
                     (void)length;
                     (void)sentTs;
                   }</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStreamMessage, int64, userId, int, streamId, FString, data, int64, length, int, sentTs);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onStreamMessage?(connection: RtcConnection, remoteUid: number, streamId: number, data: Uint8Array, length: number, sentTs: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnStreamMessage(RtcConnection connection, uint remoteUid, int streamId, byte[] data, uint length, UInt64 sentTs) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onStreamMessage?(

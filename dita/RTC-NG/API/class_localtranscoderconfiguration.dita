@@ -23,7 +23,7 @@
 @property (strong, nonatomic) AgoraVideoEncoderConfiguration *_Nonnull videoOutputConfiguration;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LocalTranscoderConfiguration {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalTranscoderConfiguration {
   unsigned int streamCount;
   TranscodingVideoStream* videoInputStreams;
   VideoEncoderConfiguration videoOutputConfiguration;
@@ -33,6 +33,20 @@
       videoOutputConfiguration() {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalTranscoderConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	int streamCount;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	TArray&lt;FTranscodingVideoStream&gt; VideoInputStreams;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	FVideoEncoderConfiguration videoOutputConfiguration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalTranscoderConfiguration&quot;)
+	bool syncWithPrimaryCamera = true;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalTranscoderConfiguration {
 
   streamCount?: number;

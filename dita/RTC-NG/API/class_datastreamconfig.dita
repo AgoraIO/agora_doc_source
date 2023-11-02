@@ -14,10 +14,20 @@
 @property (assign, nonatomic) BOOL ordered;
 @property (assign, nonatomic) BOOL syncWithAudio;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct DataStreamConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct DataStreamConfig {
     bool syncWithAudio;
     bool ordered;
     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FDataStreamConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DataStreamConfig&quot;)
+	bool syncWithAudio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DataStreamConfig&quot;)
+	bool ordered;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DataStreamConfig {
   
   syncWithAudio?: boolean;

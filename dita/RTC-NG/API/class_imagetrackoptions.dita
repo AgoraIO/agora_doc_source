@@ -21,15 +21,25 @@
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraImageTrackOptions : NSObject
 @property(copy, nonatomic) NSString *_Nullable imageUrl;
 @property(assign, nonatomic) int fps;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ImageTrackOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ImageTrackOptions {
   const char* imageUrl;
   int fps;
   ImageTrackOptions() : imageUrl(NULL), fps(1) {}
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FImageTrackOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ImageTrackOptions&quot;)
+	FString imageUrl;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ImageTrackOptions&quot;)
+	int fps = 1;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ImageTrackOptions {
-  
+
   imageUrl?: string;
-  
+
   fps?: number;
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ImageTrackOptions
@@ -44,9 +54,9 @@
         }
     };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ImageTrackOptions {
-  
+
   imageUrl?: string;
-  
+
   fps?: number;
 }</codeblock>
             <codeblock props="flutter" outputclass="language-dart">class ImageTrackOptions {
@@ -62,7 +72,7 @@
       _$ImageTrackOptionsFromJson(json);
 
   Map&lt;String, dynamic> toJson() => _$ImageTrackOptionsToJson(this);
-}</codeblock>            
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
@@ -70,7 +80,7 @@
             <parml>
             <plentry>
                 <pt>imageUrl</pt>
-                <pd>垫片图片的 URL，目前仅支持本地 PNG 格式的图片。支持从本地绝对路径或相对路径添加垫片图片。
+                <pd>垫片图片的 URL，目前支持 JPEG、JPG、PNG、GIF 格式的图片。支持从本地绝对路径或相对路径添加垫片图片。
                   <note props="cpp unreal bp android rn unity flutter">在 Android 平台上，不支持从 <codeph>/assets/</codeph> 中添加垫片图片。</note>
                 </pd>
             </plentry>

@@ -15,10 +15,18 @@
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraLocalSpatialAudioConfig : NSObject
 @property(assign, nonatomic) AgoraRtcEngineKit* _Nullable rtcEngine;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LocalSpatialAudioConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalSpatialAudioConfig {
   agora::rtc::IRtcEngine* rtcEngine;
 
   LocalSpatialAudioConfig() : rtcEngine(NULL) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLocalSpatialAudioConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LocalSpatialAudioConfig&quot;)
+	UAgoraRtcEngine* rtcEngine;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LocalSpatialAudioConfig {
   rtcEngine?: IRtcEngine

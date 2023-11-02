@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengineex_stopchannelmediarelayex">
-    <title><ph keyref="stopChannelMediaRelayEx" /></title>
+    <title><ph keyref="stopChannelMediaRelayEx"/></title>
     <shortdesc id="short"><ph id="shortdesc">Stops the media stream relay. Once the relay stops, the host quits all the target channels.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="stopChannelMediaRelayEx" />
+                <indexterm keyref="stopChannelMediaRelayEx"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,11 +15,13 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public abstract int stopChannelMediaRelayEx(RtcConnection connection);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)stopChannelMediaRelayEx:(AgoraRtcConnection * _Nonnull)connection NS_SWIFT_NAME(stopChannelMediaRelayEx(_:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int stopChannelMediaRelayEx(const RtcConnection&amp; connection) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int stopChannelMediaRelayEx(const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int StopChannelMediaRelayEx(const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract stopChannelMediaRelayEx(connection: RtcConnection): number;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public abstract int StopChannelMediaRelayEx(RtcConnection connection);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">abstract stopChannelMediaRelayEx(connection: RtcConnection): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; stopChannelMediaRelayEx(RtcConnection connection);</codeblock> </p>
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> stopChannelMediaRelayEx(RtcConnection connection);</codeblock> </p>
         </section>
         <section id="detailed_desc" conkeyref="stopChannelMediaRelay/detailed_desc">
             <dl outputclass="since">
@@ -28,23 +30,23 @@
                 <dd>v4.1.0</dd>
             </dlentry>
             </dl>
-            <p />
+            <p/>
         </section>
         <section id="parameters">
             <title>Parameters</title>
             <parml>
                 <plentry conkeyref="joinChannelEx/connection">
-                    <pt />
-                    <pd />
+                    <pt/>
+                    <pd/>
                 </plentry>
             </parml>
         </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

@@ -16,7 +16,7 @@
                 @property (assign, nonatomic) BytesPerSampleType bytesPerSample;
                @end
             </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioPcmFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioPcmFrame {
                 OPTIONAL_ENUM_SIZE_T {
                   kMaxDataSizeSamples = 3840,
                   kMaxDataSizeBytes = kMaxDataSizeSamples * sizeof(int16_t),
@@ -30,6 +30,24 @@
                 int16_t data_[kMaxDataSizeSamples];
               };
             </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioPcmFrame {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int64 capture_timestamp;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int64 samples_per_channel_;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int sample_rate_hz_;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	int64 num_channels_;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	EBYTES_PER_SAMPLE bytes_per_sample = EBYTES_PER_SAMPLE::TWO_BYTES_PER_SAMPLE;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioPcmFrame&quot;)
+	/*3840 * sizeof(int16_t)*/
+	TArray&lt;int64&gt; data_;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioPcmFrame {
   capture_timestamp?: number;
   samples_per_channel_?: number;
@@ -80,14 +98,14 @@
   final BytesPerSample? bytesPerSample;
 
   @JsonKey(name: 'data_')
-  final List&lt;int&gt;? data;
+  final List&lt;int>? data;
 
-  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory AudioPcmFrame.fromJson(Map&lt;String, dynamic> json) =>
       _$AudioPcmFrameFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$AudioPcmFrameToJson(this);
+  Map&lt;String, dynamic> toJson() => _$AudioPcmFrameToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title> <text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /> </title>

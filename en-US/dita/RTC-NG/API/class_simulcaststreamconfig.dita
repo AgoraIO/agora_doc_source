@@ -29,7 +29,7 @@
  @property (assign, nonatomic) int framerate;
  @property (assign, nonatomic) CGSize dimensions;
  @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SimulcastStreamConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SimulcastStreamConfig {
 
   VideoDimensions dimensions;
 
@@ -40,6 +40,18 @@
   bool operator==(const SimulcastStreamConfig&amp; rhs) const {
     return dimensions == rhs.dimensions &amp;&amp; kBitrate == rhs.kBitrate &amp;&amp; framerate == rhs.framerate;
   }
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSimulcastStreamConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	FVideoDimensions dimensions;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	int bitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SimulcastStreamConfig&quot;)
+	int framerate;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SimulcastStreamConfig {
   dimensions?: VideoDimensions;

@@ -17,7 +17,8 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol&gt; _Nonnull)playerKit
              volumeIndicationDidReceive:(NSInteger)volume;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioVolumeIndication(int volume) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioVolumeIndication(int volume) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAudioVolumeIndicationSource, int, volume);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onAudioVolumeIndication?(volume: number): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnAudioVolumeIndication(int volume) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onAudioVolumeIndication?(volume: number): void;</codeblock>

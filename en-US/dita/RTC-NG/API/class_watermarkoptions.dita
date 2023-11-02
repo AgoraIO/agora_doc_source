@@ -36,7 +36,7 @@
 @property(assign, nonatomic) CGRect positionInPortraitMode;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct WatermarkOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct WatermarkOptions {
   bool visibleInPreview;
   Rectangle positionInLandscapeMode;
   Rectangle positionInPortraitMode;
@@ -49,6 +49,22 @@
       mode(FIT_MODE_COVER_POSITION) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FWatermarkOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	bool visibleInPreview;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FRectangle positionInLandscapeMode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FRectangle positionInPortraitMode;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	FWatermarkRatio watermarkRatio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|WatermarkOptions&quot;)
+	EWATERMARK_FIT_MODE mode = EWATERMARK_FIT_MODE::FIT_MODE_COVER_POSITION;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class WatermarkOptions {
   
   visibleInPreview?: boolean;
@@ -121,7 +137,7 @@
       _$WatermarkOptionsFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p />

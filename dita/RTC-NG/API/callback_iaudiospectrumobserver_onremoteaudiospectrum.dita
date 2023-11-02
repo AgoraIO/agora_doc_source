@@ -17,7 +17,8 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRemoteAudioSpectrum:(NSArray&lt;AgoraAudioSpectrumInfo *&gt; * _Nullable)AudioSpectrumInfo;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onRemoteAudioSpectrum(const UserAudioSpectrumInfo * spectrums, unsigned int spectrumNumber) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onRemoteAudioSpectrum(const UserAudioSpectrumInfo * spectrums, unsigned int spectrumNumber) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRemoteAudioSpectrum, const TArray&lt;FUserAudioSpectrumInfo&gt;, spectrums, int, spectrumNumber);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRemoteAudioSpectrum?(
     spectrums: UserAudioSpectrumInfo[],
     spectrumNumber: number

@@ -19,12 +19,22 @@
 @property (assign, nonatomic) AgoraAudioEncodedFrameDelegatePosition postionType;
 @property (assign, nonatomic) AgoraAudioEncodingType encodingType;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioEncodedFrameObserverConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioEncodedFrameObserverConfig {
     AUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType;
     AUDIO_ENCODING_TYPE encodingType;
     AudioEncodedFrameObserverConfig()
     : postionType(AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK),
       encodingType(AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM){}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioEncodedFrameObserverConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioEncodedFrameObserverConfig&quot;)
+	EAUDIO_ENCODED_FRAME_OBSERVER_POSITION postionType = EAUDIO_ENCODED_FRAME_OBSERVER_POSITION::AUDIO_ENCODED_FRAME_OBSERVER_POSITION_PLAYBACK;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioEncodedFrameObserverConfig&quot;)
+	FENUMWRAP_AUDIO_ENCODING_TYPE encodingType = EENUMCUSTOM_AUDIO_ENCODING_TYPE::AUDIO_ENCODING_TYPE_OPUS_48000_MEDIUM;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioEncodedFrameObserverConfig {
   

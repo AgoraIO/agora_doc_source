@@ -20,11 +20,13 @@
                          event:(NSString * _Nullable)event
                          label:(NSString * _Nullable)label
                          value:(NSInteger)value;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int sendCustomReportMessage(const char *id,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int sendCustomReportMessage(const char *id,
     const char* category,
     const char* event,
     const char* label,
     int value) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SendCustomReportMessage(FString id, FString category, FString event, FString label, int value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract sendCustomReportMessage(
     id: string,
     category: string,
@@ -46,7 +48,7 @@
     required String event,
     required String label,
     required int value});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>

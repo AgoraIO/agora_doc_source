@@ -18,11 +18,12 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onDirectCdnStreamingStateChanged:(AgoraDirectCdnStreamingState)state
                                    error:(AgoraDirectCdnStreamingError)error
                                  message:(NSString *_Nullable)message;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, const char* message)  {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, const char* message)  {
   (void)state;
   (void)error;
   (void)message;
 };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnDirectCdnStreamingStateChanged, EDIRECT_CDN_STREAMING_STATE, state, EDIRECT_CDN_STREAMING_ERROR, error, FString, message);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onDirectCdnStreamingStateChanged?(
     state: DirectCdnStreamingState,
     error: DirectCdnStreamingError,

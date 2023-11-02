@@ -20,7 +20,7 @@
             error:(NSInteger)error
             missed:(NSInteger)missed
             cached:(NSInteger)cached;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onStreamMessageError(uid_t userId, int streamId, int code, int missed, int cached) {
                 (void)userId;
                 (void)streamId;
                 (void)code;
@@ -28,6 +28,7 @@
                 (void)cached;
               }
             </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FiveParams(FOnStreamMessageError, int64, userId, int, streamId, int, code, int, missed, int, cached);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onStreamMessageError?(
     connection: RtcConnection,
     remoteUid: number,

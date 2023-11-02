@@ -249,7 +249,7 @@
 - (void)setAdvancedFeatures:(NSString* _Nonnull)featureName opened:(BOOL)opened;
 - (NSArray&lt;AgoraLiveStreamAdvancedFeature*&gt;* _Nullable)getAdvancedFeatures;
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LiveTranscoding {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct LiveTranscoding {
   int width;
   int height;
   int videoBitrate;
@@ -274,6 +274,58 @@
   LiveStreamAdvancedFeature* advancedFeatures;
   unsigned int advancedFeatureCount;
   LiveTranscoding() : width(360), height(640), videoBitrate(400), videoFramerate(15), lowLatency(false), videoGop(30), videoCodecProfile(VIDEO_CODEC_PROFILE_HIGH), backgroundColor(0x000000), videoCodecType(VIDEO_CODEC_H264_FOR_STREAM), userCount(0), transcodingUsers(NULL), transcodingExtraInfo(NULL), metadata(NULL), watermark(NULL), watermarkCount(0), backgroundImage(NULL), backgroundImageCount(0), audioSampleRate(AUDIO_SAMPLE_RATE_48000), audioBitrate(48), audioChannels(1), audioCodecProfile(AUDIO_CODEC_PROFILE_LC_AAC), advancedFeatures(NULL), advancedFeatureCount(0) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLiveTranscoding
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int width = 360;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int height = 640;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoBitrate = 400;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoFramerate = 15;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	bool lowLatency = false;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int videoGop = 30;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EVIDEO_CODEC_PROFILE_TYPE videoCodecProfile = EVIDEO_CODEC_PROFILE_TYPE::VIDEO_CODEC_PROFILE_HIGH;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int64 backgroundColor = 0x000000;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EVIDEO_CODEC_TYPE_FOR_STREAM videoCodecType = EVIDEO_CODEC_TYPE_FOR_STREAM::VIDEO_CODEC_H264_FOR_STREAM;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int userCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FTranscodingUser&gt; transcodingUsers;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	FString transcodingExtraInfo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	FString metadata;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray &lt;FRtcImage&gt; watermark;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int watermarkCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FRtcImage&gt; backgroundImage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int backgroundImageCount = 0;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TEnumAsByte&lt;EAUDIO_SAMPLE_RATE_TYPE&gt; audioSampleRate = EAUDIO_SAMPLE_RATE_TYPE::AUDIO_SAMPLE_RATE_48000;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int audioBitrate = 48;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int audioChannels = 1;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	EAUDIO_CODEC_PROFILE_TYPE audioCodecProfile = EAUDIO_CODEC_PROFILE_TYPE::AUDIO_CODEC_PROFILE_LC_AAC;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	TArray&lt;FLiveStreamAdvancedFeature&gt; advancedFeatures;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LiveTranscoding&quot;)
+	int advancedFeatureCount = 0;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class LiveTranscoding {
   
@@ -513,7 +565,7 @@
   final int? userCount;
 
   @JsonKey(name: 'transcodingUsers')
-  final List&lt;TranscodingUser&gt;? transcodingUsers;
+  final List&lt;TranscodingUser>? transcodingUsers;
 
   @JsonKey(name: 'transcodingExtraInfo')
   final String? transcodingExtraInfo;
@@ -522,13 +574,13 @@
   final String? metadata;
 
   @JsonKey(name: 'watermark')
-  final List&lt;RtcImage&gt;? watermark;
+  final List&lt;RtcImage>? watermark;
 
   @JsonKey(name: 'watermarkCount')
   final int? watermarkCount;
 
   @JsonKey(name: 'backgroundImage')
-  final List&lt;RtcImage&gt;? backgroundImage;
+  final List&lt;RtcImage>? backgroundImage;
 
   @JsonKey(name: 'backgroundImageCount')
   final int? backgroundImageCount;
@@ -546,17 +598,17 @@
   final AudioCodecProfileType? audioCodecProfile;
 
   @JsonKey(name: 'advancedFeatures')
-  final List&lt;LiveStreamAdvancedFeature&gt;? advancedFeatures;
+  final List&lt;LiveStreamAdvancedFeature>? advancedFeatures;
 
   @JsonKey(name: 'advancedFeatureCount')
   final int? advancedFeatureCount;
 
-  factory LiveTranscoding.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory LiveTranscoding.fromJson(Map&lt;String, dynamic> json) =>
       _$LiveTranscodingFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$LiveTranscodingToJson(this);
+  Map&lt;String, dynamic> toJson() => _$LiveTranscodingToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
     </section>
     <section id="parameters">
       <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
@@ -595,7 +647,7 @@
         <pt>videoBitrate</pt>
         <pd>
           <p>Bitrate of the output video stream for Media Push in Kbps. The default value is 400 Kbps.</p>
-          <p props="native unreal bp">Set this member according to the <xref keyref="video-profile-table">Video profile</xref> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
+          <p>Set this member according to the <xref keyref="video-profile-table" /> table. If you set a bitrate beyond the proper range, the SDK automatically adapts it to a value within the range.</p>
         </pd>
       </plentry>
       <plentry>

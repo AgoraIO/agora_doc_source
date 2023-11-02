@@ -64,7 +64,7 @@
  @property (assign, nonatomic) int64_t renderTimeMs;
  @property (assign, nonatomic) NSInteger avSyncType;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioFrame {
     AUDIO_FRAME_TYPE type;
     int samplesPerChannel;
     agora::rtc::BYTES_PER_SAMPLE bytesPerSample;
@@ -83,6 +83,27 @@
                    avsync_type(0) {}
   };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioFrame {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	EAUDIO_FRAME_TYPE type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	int samplesPerChannel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	EBYTES_PER_SAMPLE bytesPerSample;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	int channels;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	int samplesPerSec;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	int64 buffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	int64 renderTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioFrame&quot;)
+	int avsync_type;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioFrame {
   type?: AudioFrameType;
   samplesPerChannel?: number;

@@ -31,7 +31,7 @@
 @property(nonatomic, assign) AgoraVideoDenoiserLevel level;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoDenoiserOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoDenoiserOptions {
     enum VIDEO_DENOISER_MODE {
         VIDEO_DENOISER_AUTO = 0,
         VIDEO_DENOISER_MANUAL = 1,
@@ -48,6 +48,16 @@
   VideoDenoiserOptions() : mode(VIDEO_DENOISER_AUTO), level(VIDEO_DENOISER_LEVEL_HIGH_QUALITY) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoDenoiserOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
+	EVIDEO_DENOISER_MODE mode = EVIDEO_DENOISER_MODE::VIDEO_DENOISER_AUTO;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoDenoiserOptions&quot;)
+	EVIDEO_DENOISER_LEVEL level = EVIDEO_DENOISER_LEVEL::VIDEO_DENOISER_LEVEL_HIGH_QUALITY;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoDenoiserOptions {
   
   mode?: VideoDenoiserMode;

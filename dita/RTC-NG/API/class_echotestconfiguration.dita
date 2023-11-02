@@ -49,7 +49,7 @@ __attribute__((visibility("default"))) @interface AgoraEchoTestConfiguration : N
 @property(copy, nonatomic) NSString* _Nonnull channelId NS_SWIFT_NAME(channelId);
 @property(assign, nonatomic) NSInteger intervalInSeconds NS_SWIFT_NAME(intervalInSeconds);
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">
+            <codeblock props="cpp unreal" outputclass="language-cpp">
 struct EchoTestConfiguration {
   view_t view;
   bool enableAudio;
@@ -63,6 +63,24 @@ struct EchoTestConfiguration {
 
   EchoTestConfiguration()
    : view(OPTIONAL_NULLPTR), enableAudio(true), enableVideo(true), token(OPTIONAL_NULLPTR), channelId(OPTIONAL_NULLPTR), intervalInSeconds(2) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FEchoTestConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	UImage* view;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	bool enableAudio = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	bool enableVideo = true;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	FString token;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	FString channelId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EchoTestConfiguration&quot;)
+	int intervalInSeconds = 2;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class EchoTestConfiguration {
 

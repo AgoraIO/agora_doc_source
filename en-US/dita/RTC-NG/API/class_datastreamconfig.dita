@@ -14,10 +14,20 @@
 @property (assign, nonatomic) BOOL ordered;
 @property (assign, nonatomic) BOOL syncWithAudio;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct DataStreamConfig {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct DataStreamConfig {
     bool syncWithAudio;
     bool ordered;
     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FDataStreamConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DataStreamConfig&quot;)
+	bool syncWithAudio;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|DataStreamConfig&quot;)
+	bool ordered;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class DataStreamConfig {
   
   syncWithAudio?: boolean;
@@ -46,7 +56,7 @@
       _$DataStreamConfigFromJson(json);
   Map&lt;String, dynamic&gt; toJson() =&gt; _$DataStreamConfigToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p>The following table shows the SDK behaviors under different parameter settings:</p>
@@ -93,9 +103,9 @@
                 <pt>syncWithAudio</pt>
                 <pd>
                     <p>Whether to synchronize the data packet with the published audio packet.<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Synchronize the data packet with the audio packet.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not synchronize the data packet with the audio packet.</li>
-                    </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the <xref keyref="onStreamMessage" />  callback when the synchronized audio packet is played out.  Do not set this parameter as <ph keyref="true" /> if you need the receiver to receive the data packet immediately. Agora recommends that you set this parameter to true only when you need to implement specific functions, for example, lyric synchronization.</p>
+                    <li><codeph><ph keyref="true" /></codeph>: Synchronize the data packet with the audio packet. This setting is suitable for special scenarios such as lyrics synchronization.</li>
+                    <li><codeph><ph keyref="false" /></codeph>: Do not synchronize the data packet with the audio packet. This setting is suitable for scenarios where data packets need to arrive at the receiving end immediately.</li>
+                    </ul>When you set the data packet to synchronize with the audio, then if the data packet delay is within the audio delay, the SDK triggers the <xref keyref="onStreamMessage" /> callback when the synchronized audio packet is played out.</p>
                 </pd>
             </plentry>
             <plentry>

@@ -17,7 +17,8 @@
       int bytesPerSample, int channels, int samplesPerSec, ByteBuffer buffer, long renderTimeMs,
       int avsync_type);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (BOOL)onRecordAudioFrame:(AgoraAudioFrame* _Nonnull)frame channelId:(NSString * _Nonnull)channelId  NS_SWIFT_NAME(onRecordAudioFrame(_:channelId:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual bool onRecordAudioFrame(const char* channelId, AudioFrame&amp; audioFrame) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnRecordAudioFrame, const FString, channelId, const FAudioFrame&amp;, audioFrame);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onRecordAudioFrame?(channelId: string, audioFrame: AudioFrame): boolean;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public virtual bool OnRecordAudioFrame(string channelId, AudioFrame audioFrame)
         {

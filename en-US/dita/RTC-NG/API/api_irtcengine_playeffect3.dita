@@ -25,7 +25,7 @@
           publish:(BOOL)publish
          startPos:(int)startPos;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int playEffect(int soundId,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int playEffect(int soundId,
     const char* filePath,
     int loopCount,
     double pitch,
@@ -33,6 +33,8 @@
     int gain,
     bool publish,
     int startPos) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int PlayEffect(int soundId, FString filePath, int loopCount, float pitch, float pan, int gain, bool publish, int startPos);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract playEffect(
     soundId: number,
     filePath: string,
@@ -63,13 +65,13 @@
     required int gain,
     bool publish = false,
     int startPos = 0});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <title>Details</title>
-            <note type="attention" id="note">If you use this method to play an online audio effect file, Agora recommends that you cache the online audio effect file to your local device, call <xref keyref="preloadEffect" /> to preload the cached audio effect file into memory, and then call this method to play the audio effect. Otherwise, you might encounter playback failures or no sound during playback due to loading timeouts or failures.</note>
-            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished" /> callback.</p>
-        <p conkeyref="startAudioMixing2/uri" props="android" />
+            <note type="attention" id="note">If you use this method to play an online audio effect file, Agora recommends that you cache the online audio effect file to your local device, call <xref keyref="preloadEffect"/> to preload the cached audio effect file into memory, and then call this method to play the audio effect. Otherwise, you might encounter playback failures or no sound during playback due to loading timeouts or failures.</note>
+            <p id="playEffect-desc">To play multiple audio effect files at the same time, call this method multiple times with different <parmname>soundId</parmname> and <parmname>filePath</parmname>. To achieve the optimal user experience, Agora recommends that do not playing more than three audio files at the same time. After the playback of an audio effect file completes, the SDK triggers the <apiname keyref="onAudioEffectFinished"/> callback.</p>
+        <p conkeyref="startAudioMixing2/uri" props="android"></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -128,11 +130,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="native unreal bp electron unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

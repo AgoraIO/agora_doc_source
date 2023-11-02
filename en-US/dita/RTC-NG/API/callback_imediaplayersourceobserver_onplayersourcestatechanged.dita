@@ -18,8 +18,9 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)AgoraRtcMediaPlayer:(id&lt;AgoraRtcMediaPlayerProtocol> _Nonnull)playerKit
           didChangedToState:(AgoraMediaPlayerState)state
                       error:(AgoraMediaPlayerError)error NS_SWIFT_NAME(AgoraRtcMediaPlayer(_:didChangedTo:error:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPlayerSourceStateChanged(media::base::MEDIA_PLAYER_STATE state,
                                         media::base::MEDIA_PLAYER_ERROR ec) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnPlayerSourceStateChanged, EMEDIA_PLAYER_STATE, state, FENUMWRAP_MEDIA_PLAYER_ERROR, ec);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onPlayerSourceStateChanged?(
     state: MediaPlayerState,
     ec: MediaPlayerError

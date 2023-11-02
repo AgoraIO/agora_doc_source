@@ -33,7 +33,7 @@
  @property (copy, nonatomic) NSString * _Nullable encryptionKey;
  @property (strong, nonatomic) NSData * _Nullable encryptionKdfSalt;
  @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct EncryptionConfig {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct EncryptionConfig {
   ENCRYPTION_MODE encryptionMode;
   const char* encryptionKey;
   uint8_t encryptionKdfSalt[32];
@@ -69,6 +69,18 @@
     return "aes-128-gcm-2";
   }
 };    </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FEncryptionConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	ENCRYPTION_MODE encryptionMode = ENCRYPTION_MODE::AES_128_GCM;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	FString encryptionKey;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|EncryptionConfig&quot;)
+	FString encryptionKdfSalt;
+};</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
   
   encryptionMode?: EncryptionMode;

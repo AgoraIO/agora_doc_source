@@ -55,7 +55,7 @@
 
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ScreenVideoParameters {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenVideoParameters {
     VideoDimensions dimensions;
     int frameRate = 15;
      int bitrate;
@@ -64,6 +64,20 @@
   ScreenVideoParameters() : dimensions(1280, 720) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FScreenVideoParameters {
+
+	GENERATED_BODY()
+
+	FVideoDimensions dimensions;
+
+	int frameRate = 15;
+
+	int bitrate;
+
+	EVIDEO_CONTENT_HINT contentHint = EVIDEO_CONTENT_HINT::CONTENT_HINT_MOTION;
+
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenVideoParameters {
   
   dimensions?: VideoDimensions;
@@ -155,7 +169,7 @@
             </plentry>
             <plentry props="android">
                 <pt>height</pt>
-                <pd>视频编码分辨率中的高 (px)。默认值为 720。如果 width 和 height 的宽高比与屏幕像素值 的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 width × height 是 1280 × 720 为例：
+                <pd>视频编码分辨率中的高 (px)。默认值为 720。如果 width 和 height 的宽高比与屏幕像素值的宽高比不一致，SDK 会按照如下规则调节视频编码分辨率，以 width × height 是 1280 × 720 为例：
                     <ul>
                     <li>当屏幕宽和高的像素值均小于 width 和 height 时，例如屏幕像素值为 640 × 360，SDK 以 640 × 360 编码。</li>
                     <li>当屏幕宽或高的像素值大于 width 或 height 时，例如屏幕像素值为 2000 × 1500，SDK 以屏幕像素值的宽高比，即 4:3，取 width × height 内最大分辨率进行编码，即 960 × 720。</li>

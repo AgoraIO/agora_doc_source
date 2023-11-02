@@ -17,13 +17,22 @@
 @property(nonatomic, strong) NSArray&lt;NSNumber *&gt; * _Nullable audioSpectrumData;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct UserAudioSpectrumInfo  {
   agora::rtc::uid_t uid;
   struct AudioSpectrumData spectrumData;
 
   UserAudioSpectrumInfo () : uid(0), spectrumData() {}
   UserAudioSpectrumInfo(agora::rtc::uid_t _uid, const float *data, int length) :
     uid(_uid) { spectrumData.audioSpectrumData = data; spectrumData.dataLength = length; }
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FUserAudioSpectrumInfo {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserAudioSpectrumInfo&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|UserAudioSpectrumInfo&quot;)
+	FAudioSpectrumData spectrumData;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class UserAudioSpectrumInfo {
   

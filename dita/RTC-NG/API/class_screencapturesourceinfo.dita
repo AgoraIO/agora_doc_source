@@ -20,7 +20,7 @@
 
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureSourceInfo {
     ScreenCaptureSourceType type;
     view_t sourceId;
     const char* sourceName;
@@ -38,6 +38,29 @@
 #else
   ScreenCaptureSourceInfo() : type(ScreenCaptureSourceType_Unknown), sourceId(nullptr), sourceName(nullptr), processPath(nullptr), sourceTitle(nullptr), primaryMonitor(false), isOccluded(false) {}
 #endif
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FScreenCaptureSourceInfo {
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	FENUMWRAP_ScreenCaptureSourceType type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	int64 sourceId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	FString sourceName;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	FThumbImageBuffer thumbImage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	FThumbImageBuffer iconImage;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	FString processPath;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	FString sourceTitle;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	bool primaryMonitor;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|FScreenCaptureSourceInfo&quot;)
+	bool isOccluded;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureSourceInfo {
   

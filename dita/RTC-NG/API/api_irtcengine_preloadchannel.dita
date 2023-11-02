@@ -17,7 +17,7 @@
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)preloadChannelByToken:(NSString * _Nullable)token
                    channelId:(NSString * _Nonnull)channelId
                          uid:(NSUInteger)uid NS_SWIFT_NAME(preloadChannel(byToken:channelId:uid:));</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp"> virtual int preloadChannel(const char* token, const char* channelId, uid_t uid) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp"> virtual int preloadChannel(const char* token, const char* channelId, uid_t uid) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract preloadChannel(
     token: string,
     channelId: string,
@@ -55,7 +55,8 @@
                 <pd>在服务端生成的用于鉴权的动态密钥。详见<xref keyref="guide-token"/>。
                 <p>Token 过期后，根据预加载频道的数量，你可以通过不同方式来传入用于预加载频道的新 Token：
                 <ul><li>预加载一个频道时：调用此方法来传入新的 Token。</li>
-                <li>预加载多个频道时：<ul><li>如果你使用了通配的 Token，调用 <xref keyref="updatePreloadChannelToken"/> 来更新所有预加载频道的 Token。</li>
+                <li>预加载多个频道时：<ul><li>如果你使用了通配的 Token，调用 <xref keyref="updatePreloadChannelToken"/> 来更新所有预加载频道的 Token。
+                <note type="note" id="uid">生成通配 Token 时，用户 ID 不得设为 0。详见 <xref keyref="wildcard-token"/>。</note></li>
                 <li>如果你使用了不同的 Token：调用此方法并传入你的用户 ID、对应的频道名和更新后的 Token。</li></ul></li></ul></p>
                 </pd>
             </plentry>
@@ -79,10 +80,10 @@
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
-            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
             <ul>
             <li props="native unreal bp unity rn electron cs">0：方法调用成功。</li>
-            <li>&lt; 0：方法调用失败。
+            <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
                 <ul>
                 <li>-7：<apiname keyref="IRtcEngine" /> 对象尚未初始化。你需要在调用该方法前成功初始化 <apiname keyref="IRtcEngine" /> 对象。</li>
                 <li>-102：频道名无效。你需要填入有效的频道名，重新加入频道。</li>

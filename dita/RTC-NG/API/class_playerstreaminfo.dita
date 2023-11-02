@@ -39,7 +39,7 @@
 @property(nonatomic, assign) NSInteger rotation;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct PlayerStreamInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct PlayerStreamInfo {
   int streamIndex;
   MEDIA_STREAM_TYPE streamType;
   char codecName[kMaxCharBufferLength];
@@ -66,6 +66,38 @@
                        duration(0) {
     memset(codecName, 0, sizeof(codecName));
     memset(language, 0, sizeof(language));</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FPlayerStreamInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int streamIndex;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	EMEDIA_STREAM_TYPE streamType;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	FString codecName;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	FString language;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoFrameRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoBitRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoWidth;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoHeight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int videoRotation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int audioSampleRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int audioChannels;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int audioBitsPerSample;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|PlayerStreamInfo&quot;)
+	int duration;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class PlayerStreamInfo {
 
   streamIndex?: number;

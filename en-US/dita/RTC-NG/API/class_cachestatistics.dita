@@ -22,10 +22,20 @@
 @property(assign, nonatomic) NSInteger cacheSize;
 @property(assign, nonatomic) NSInteger downloadSize;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct CacheStatistics {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct CacheStatistics {
   int64_t fileSize;
   int64_t cacheSize;
   int64_t downloadSize;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FCacheStatistics {
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
+	int64 fileSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
+	int64 cacheSize;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|CacheStatistics&quot;)
+	int64 downloadSize;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class CacheStatistics {
 
@@ -61,12 +71,12 @@
   @JsonKey(name: 'downloadSize')
   final int? downloadSize;
 
-  factory CacheStatistics.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory CacheStatistics.fromJson(Map&lt;String, dynamic> json) =>
       _$CacheStatisticsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$CacheStatisticsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$CacheStatisticsToJson(this);
 }</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p></section>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p></section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>

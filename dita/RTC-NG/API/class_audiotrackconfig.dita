@@ -18,12 +18,20 @@
 @property (assign, nonatomic) BOOL enableLocalPlayback NS_SWIFT_NAME(enableLocalPlayback);
  
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioTrackConfig {
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioTrackConfig {
   bool enableLocalPlayback;
  
  
   AudioTrackConfig()
     : enableLocalPlayback(true) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioTrackConfig
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioTrackConfig&quot;)
+	bool enableLocalPlayback = true;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class AudioTrackConfig {
   enableLocalPlayback?: boolean;

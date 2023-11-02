@@ -11,13 +11,22 @@
   private int dataLength;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec" />
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct AudioSpectrumData {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioSpectrumData {
   const float *audioSpectrumData;
   int dataLength;
 
   AudioSpectrumData() : audioSpectrumData(NULL), dataLength(0) {}
   AudioSpectrumData(const float *data, int length) :
     audioSpectrumData(data), dataLength(length) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FAudioSpectrumData {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioSpectrumData&quot;)
+	TArray&lt;float&gt; audioSpectrumData;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|AudioSpectrumData&quot;)
+	int dataLength;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class AudioSpectrumData {
   

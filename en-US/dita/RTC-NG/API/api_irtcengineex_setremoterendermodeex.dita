@@ -19,8 +19,10 @@
                         mode:(AgoraVideoRenderMode)mode
                       mirror:(AgoraVideoMirrorMode)mirror
                   connection:(AgoraRtcConnection * _Nonnull)connection;</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual int setRemoteRenderModeEx(uid_t uid, media::base::RENDER_MODE_TYPE renderMode,
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setRemoteRenderModeEx(uid_t uid, media::base::RENDER_MODE_TYPE renderMode,
        VIDEO_MIRROR_MODE_TYPE mirrorMode, const RtcConnection&amp; connection) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
+	int SetRemoteRenderModeEx(int64 uid, ERENDER_MODE_TYPE renderMode, EVIDEO_MIRROR_MODE_TYPE mirrorMode, const FRtcConnection&amp; connection);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setRemoteRenderModeEx(
     uid: number,
     renderMode: RenderModeType,
@@ -34,7 +36,7 @@
     mirrorMode: VideoMirrorModeType,
     connection: RtcConnection
   ): number;</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">Future&lt;void&gt; setRemoteRenderModeEx(
+            <codeblock props="flutter" outputclass="language-dart">Future&lt;void> setRemoteRenderModeEx(
       {required int uid,
       required RenderModeType renderMode,
       required VideoMirrorModeType mirrorMode,
@@ -45,7 +47,7 @@
             <p>After initializing the video view of a remote user, you can call this method to update its rendering and mirror modes. This method affects only the video view that the local user sees.<note id="note_dpq_mtr_mqb" type="attention">
             <ul id="ul_ft3_ntr_mqb">
             <li props="native unreal bp flutter electron">Call this method after initializing the remote view by calling the <xref keyref="setupRemoteVideo" /> method.</li>
-            <li props="rn">Call this method after rendering the <xref keyref="RtcSurfaceView" /> or <xref keyref="RtcTextureView" /> component corresponding to the remote user ID.</li>
+            <li props="rn">Call this method after rendering the <xref keyref="RtcSurfaceView"/> or <xref keyref="RtcTextureView"/> component corresponding to the remote user ID.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the video view of a remote user.</li>
             </ul> </note></p>
         </section>
@@ -80,11 +82,11 @@
             </plentry>
             </parml> </section>
         <section id="return_values">
-            <title><ph keyref="return-section-title" /></title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul>
             <li props="mac cpp unreal bp unity electron rn">0: Success.</li>
-            <li>&lt; 0: Failure.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
 </reference>

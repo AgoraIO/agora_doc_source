@@ -49,50 +49,55 @@
 @property(assign, nonatomic) int cropBottom;
 @property(assign, nonatomic) int rotation;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ExternalVideoFrame {
-                    ExternalVideoFrame()
-                    : type(VIDEO_BUFFER_RAW_DATA),
-                    format(VIDEO_PIXEL_DEFAULT),
-                    buffer(NULL),
-                    stride(0),
-                    height(0),
-                    cropLeft(0),
-                    cropTop(0),
-                    cropRight(0),
-                    cropBottom(0),
-                    rotation(0),
-                    timestamp(0),
-                    eglContext(NULL),
-                    eglType(EGL_CONTEXT10),
-                    textureId(0),
-                    metadata_buffer(NULL),
-                    metadata_size(0){}
-                    enum EGL_CONTEXT_TYPE {
-                    EGL_CONTEXT10 = 0,
-                    EGL_CONTEXT14 = 1,
-                    };
-                    enum VIDEO_BUFFER_TYPE {
-                    VIDEO_BUFFER_RAW_DATA = 1,
-                    VIDEO_BUFFER_ARRAY = 2,
-                    VIDEO_BUFFER_TEXTURE = 3,
-                    };
-                    VIDEO_BUFFER_TYPE type;
-                    VIDEO_PIXEL_FORMAT format;
-                    void* buffer;
-                    int stride;
-                    int height;
-                    int cropLeft;
-                    int cropTop;
-                    int cropRight;
-                    int cropBottom;
-                    int rotation;
-                    long long timestamp;
-                    void *eglContext;
-                    EGL_CONTEXT_TYPE eglType;
-                    int textureId;
-                    uint8_t* metadata_buffer;
-                    int metadata_size;
-                    };</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ExternalVideoFrame {
+  ExternalVideoFrame()
+      : type(VIDEO_BUFFER_RAW_DATA),
+        format(VIDEO_PIXEL_DEFAULT),
+        buffer(NULL),
+        stride(0),
+        height(0),
+        cropLeft(0),
+        cropTop(0),
+        cropRight(0),
+        cropBottom(0),
+        rotation(0),
+        timestamp(0),
+        eglContext(NULL),
+        eglType(EGL_CONTEXT10),
+        textureId(0),
+        metadata_buffer(NULL),
+        metadata_size(0),
+        d3d11_texture_2d(NULL),
+        texture_slice_index(0){}
+  enum EGL_CONTEXT_TYPE {
+    EGL_CONTEXT10 = 0,
+    EGL_CONTEXT14 = 1,
+  };
+  enum VIDEO_BUFFER_TYPE {
+    VIDEO_BUFFER_RAW_DATA = 1,
+    VIDEO_BUFFER_ARRAY = 2,
+    VIDEO_BUFFER_TEXTURE = 3,
+  };
+  VIDEO_BUFFER_TYPE type;
+  VIDEO_PIXEL_FORMAT format;
+  void* buffer;
+  int stride;
+  int height;
+  int cropLeft;
+  int cropTop;
+  int cropRight;
+  int cropBottom;
+  int rotation;
+  long long timestamp;
+  void *eglContext;
+  EGL_CONTEXT_TYPE eglType;
+  int textureId;
+  float matrix[16];
+  uint8_t* metadata_buffer;
+  int metadata_size;
+  void *d3d11_texture_2d;
+  int texture_slice_index;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
   format?: VideoPixelFormat;
@@ -113,65 +118,25 @@
 }</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp">public class ExternalVideoFrame
     {
-        public ExternalVideoFrame()
-        {
-            this.type = VIDEO_BUFFER_TYPE.VIDEO_BUFFER_RAW_DATA;
-            this.format = VIDEO_PIXEL_FORMAT.VIDEO_PIXEL_UNKNOWN;
-            this.buffer = null;
-            this.stride = 0;
-            this.height = 0;
-            this.cropLeft = 0;
-            this.cropTop = 0;
-            this.cropRight = 0;
-            this.cropBottom = 0;
-            this.rotation = 0;
-            this.timestamp = 0;
-            this.eglContext = null;
-            this.eglType = EGL_CONTEXT_TYPE.EGL_CONTEXT10;
-            this.textureId = 0;
-            this.metadata_buffer = null;
-            this.metadata_size = 0;
-        }
-
-        public ExternalVideoFrame(VIDEO_BUFFER_TYPE type, VIDEO_PIXEL_FORMAT format, byte[] buffer, int stride,
-            int height, long timestamp, byte[] eglContext, EGL_CONTEXT_TYPE eglType, int textureId, byte[] metadata_buffer,
-            int metadata_size, int cropLeft = 0, int cropTop = 0, int cropRight = 0, int cropBottom = 0,
-            int rotation = 0)
-        {
-            this.type = type;
-            this.format = format;
-            this.buffer = buffer;
-            this.stride = stride;
-            this.height = height;
-            this.cropLeft = cropLeft;
-            this.cropTop = cropTop;
-            this.cropRight = cropRight;
-            this.cropBottom = cropBottom;
-            this.rotation = rotation;
-            this.timestamp = timestamp;
-            this.eglContext = eglContext;
-            this.eglType = eglType;
-            this.textureId = textureId;
-            this.metadata_buffer = metadata_buffer;
-            this.metadata_size = metadata_size;
-        }
-        public VIDEO_BUFFER_TYPE type { set; get; }
-        public VIDEO_PIXEL_FORMAT format { set; get; }
-        public byte[] buffer { set; get; }
-        public int stride { set; get; }
-        public int height { set; get; }
-        public int cropLeft { set; get; }
-        public int cropTop { set; get; }
-        public int cropRight { set; get; }
-        public int cropBottom { set; get; }
-        public int rotation { set; get; }
-        public long timestamp { set; get; }
-        public byte[] eglContext { set; get; }
-        public EGL_CONTEXT_TYPE eglType { set; get; }
-        public int textureId { set; get; }
-        public byte[] metadata_buffer { set; get; }
-        public int metadata_size { set; get; }
-    }</codeblock>
+        public VIDEO_BUFFER_TYPE type;
+        public VIDEO_PIXEL_FORMAT format;
+        public byte[] buffer;
+        public int stride;
+        public int height;
+        public int cropLeft;
+        public int cropTop;
+        public int cropRight;
+        public int cropBottom;
+        public int rotation;
+        public long timestamp;
+        public byte[] eglContext;
+        public EGL_CONTEXT_TYPE eglType;
+        public int textureId;
+        public byte[] metadata_buffer;
+        public int metadata_size;
+        public IntPtr d3d11_texture_2d;
+        public int texture_slice_index;
+    };</codeblock>
             <codeblock props="rn" outputclass="language-typescript">export class ExternalVideoFrame {
   type?: VideoBufferType;
   format?: VideoPixelFormat;
@@ -190,8 +155,8 @@
   metadata_buffer?: Uint8Array;
   metadata_size?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class ExternalVideoFrame {
-
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class ExternalVideoFrame {
   const ExternalVideoFrame(
       {this.type,
       this.format,
@@ -208,61 +173,69 @@
       this.textureId,
       this.matrix,
       this.metadataBuffer,
-      this.metadataSize});
+      this.metadataSize,
+      this.alphaBuffer,
+      this.textureSliceIndex});
 
-  @JsonKey(name: 'type')
+  @JsonKey(name: &#x27;type&#x27;)
   final VideoBufferType? type;
 
-  @JsonKey(name: 'format')
+  @JsonKey(name: &#x27;format&#x27;)
   final VideoPixelFormat? format;
 
-  @JsonKey(name: 'buffer', ignore: true)
+  @JsonKey(name: &#x27;buffer&#x27;, ignore: true)
   final Uint8List? buffer;
 
-  @JsonKey(name: 'stride')
+  @JsonKey(name: &#x27;stride&#x27;)
   final int? stride;
 
-  @JsonKey(name: 'height')
+  @JsonKey(name: &#x27;height&#x27;)
   final int? height;
 
-  @JsonKey(name: 'cropLeft')
+  @JsonKey(name: &#x27;cropLeft&#x27;)
   final int? cropLeft;
 
-  @JsonKey(name: 'cropTop')
+  @JsonKey(name: &#x27;cropTop&#x27;)
   final int? cropTop;
 
-  @JsonKey(name: 'cropRight')
+  @JsonKey(name: &#x27;cropRight&#x27;)
   final int? cropRight;
 
-  @JsonKey(name: 'cropBottom')
+  @JsonKey(name: &#x27;cropBottom&#x27;)
   final int? cropBottom;
 
-  @JsonKey(name: 'rotation')
+  @JsonKey(name: &#x27;rotation&#x27;)
   final int? rotation;
 
-  @JsonKey(name: 'timestamp')
+  @JsonKey(name: &#x27;timestamp&#x27;)
   final int? timestamp;
 
-  @JsonKey(name: 'eglType')
+  @JsonKey(name: &#x27;eglType&#x27;)
   final EglContextType? eglType;
 
-  @JsonKey(name: 'textureId')
+  @JsonKey(name: &#x27;textureId&#x27;)
   final int? textureId;
 
-  @JsonKey(name: 'matrix')
-  final List&lt;double>? matrix;
+  @JsonKey(name: &#x27;matrix&#x27;)
+  final List&lt;double&gt;? matrix;
 
-  @JsonKey(name: 'metadata_buffer', ignore: true)
+  @JsonKey(name: &#x27;metadata_buffer&#x27;, ignore: true)
   final Uint8List? metadataBuffer;
 
-  @JsonKey(name: 'metadata_size')
+  @JsonKey(name: &#x27;metadata_size&#x27;)
   final int? metadataSize;
 
-  factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic> json) =>
+  @JsonKey(name: &#x27;alphaBuffer&#x27;, ignore: true)
+  final Uint8List? alphaBuffer;
+
+  @JsonKey(name: &#x27;texture_slice_index&#x27;)
+  final int? textureSliceIndex;
+
+  factory ExternalVideoFrame.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$ExternalVideoFrameFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$ExternalVideoFrameToJson(this);
-}</codeblock>            
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$ExternalVideoFrameToJson(this);
+}</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc" props="android">
@@ -375,7 +348,7 @@
                             <li>When using the OpenGL interface (android.opengl.*) defined by Android, set eglContext to this field.</li>
                         </ul></pd>
        </plentry>
-       <plentry props="cpp unreal bp unity c'selectron rn flutter cs">
+       <plentry props="cpp unreal bp unity electron rn flutter cs">
            <pt>eglType</pt>
            <pd>This parameter only applies to video data in Texture format. Texture ID of the video frame.</pd>
        </plentry>
@@ -396,6 +369,15 @@
             <pt props="cpp unreal bp unity electron rn cs">metadata_size</pt>
            <pt props="flutter">metadataSize</pt>
            <pd>This parameter only applies to video data in Texture format. The MetaData size. The default value is <codeph>0</codeph>.</pd>
+       </plentry>
+       <plentry props="cpp unity electron">
+        <pt>d3d11_texture_2d</pt>
+        <pd>This parameter only applies to video data in Windows Texture format. It represents a pointer to an object of type <codeph>ID3D11Texture2D</codeph>, which is used by a video frame.</pd>
+       </plentry>
+       <plentry props="cpp unity electron flutter">
+        <pt props="cpp unity electron">texture_slice_index</pt>
+        <pt props="flutter">textureSliceIndex</pt>
+        <pd>This parameter only applies to video data in Windows Texture format. It represents an index of an <codeph>ID3D11Texture2D</codeph> texture object used by the video frame in the <codeph>ID3D11Texture2D</codeph> array.</pd>
        </plentry>
        <plentry>
   <pt>cropLeft</pt>

@@ -23,7 +23,7 @@
 @property (assign, nonatomic) NSInteger remoteJoined2SetView NS_SWIFT_NAME(remoteJoined2SetView);
 @property (assign, nonatomic) NSInteger remoteJoined2UnmuteVideo NS_SWIFT_NAME(remoteJoined2UnmuteVideo);
 @property (assign, nonatomic) NSInteger remoteJoined2PacketReceived NS_SWIFT_NAME(remoteJoined2PacketReceived);</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoRenderingTracingInfo {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoRenderingTracingInfo {
   int elapsedTime;
   int start2JoinChannel;
   int join2JoinSuccess;
@@ -31,6 +31,26 @@
   int remoteJoined2SetView;
   int remoteJoined2UnmuteVideo;
   int remoteJoined2PacketReceived;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoRenderingTracingInfo {
+
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
+	int elapsedTime;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
+	int start2JoinChannel;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
+	int join2JoinSuccess;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
+	int joinSuccess2RemoteJoined;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
+	int remoteJoined2SetView;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
+	int remoteJoined2UnmuteVideo;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoRenderingTracingInfo&quot;)
+	int remoteJoined2PacketReceived;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoRenderingTracingInfo {
   elapsedTime?: number;

@@ -17,11 +17,12 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didOccurError:(AgoraErrorCode)errorCode;
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onError(int err, const char* msg) {
     (void)err;
     (void)msg;
   }
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnError, int, err, FString, msg);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onError?(err: ErrorCodeType, msg: string): void;</codeblock>
             <codeblock props="unity cs" outputclass="language-csharp"> public virtual void OnError(int err, string msg) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onError?(err: ErrorCodeType, msg: string): void;</codeblock>
@@ -38,7 +39,7 @@
                 <pt />
                 <pd />
             </plentry>
-            <plentry props="apple cpp unreal bp unity rn flutter electron cs">
+            <plentry props="apple cpp unreal unity rn flutter electron cs">
                 <pt props="apple">errorCode</pt>
                 <pt props="cpp unreal bp unity rn flutter electron cs">err</pt>
                 <pd>错误码。详见 <xref keyref="ERROR_CODE_TYPE"/>。</pd>
@@ -47,7 +48,7 @@
                 <pt>msg</pt>
                 <pd>错误描述。</pd>
             </plentry>
-            <plentry props="android">
+            <plentry props="android bp">
                 <pt>err</pt>
                 <pd>错误码。</pd>
                 <pd>

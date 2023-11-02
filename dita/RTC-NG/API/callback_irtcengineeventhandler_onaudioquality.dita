@@ -15,12 +15,13 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public void onAudioQuality(int uid, int quality, short delay, short lost) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)audioQualityBlock:(void (^_Nullable)(NSUInteger uid, AgoraNetworkQuality quality, NSUInteger delay, NSUInteger lost))audioQualityBlock</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onAudioQuality(uid_t uid, int quality, unsigned short delay, unsigned short lost) {
   (void)uid;
   (void)quality;
   (void)delay;
   (void)lost;
 }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnAudioQuality, int64, uid, int, quality, int, delay, int, lost);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onAudioQuality?(
     connection: RtcConnection,
     remoteUid: number,
@@ -69,8 +70,8 @@
             </plentry>
             <plentry>
                 <pt>quality</pt>
-                <pd>语音质量。<ph props="ios mac cpp unreal bp unity flutter electron rn cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
-                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android">
+                <pd>语音质量。<ph props="ios mac cpp unreal unity flutter electron rn cs">详见 <xref keyref="QUALITY_TYPE" />。</ph>
+                    <ul conkeyref="RemoteAudioStats/qualitytype" props="android bp">
                     <li />
                     </ul> </pd>
             </plentry>

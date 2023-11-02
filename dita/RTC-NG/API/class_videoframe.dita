@@ -257,7 +257,7 @@
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
   VideoFrame():
   type(VIDEO_PIXEL_DEFAULT),
   width(0),
@@ -296,6 +296,49 @@
   int textureId;
   float matrix[16];
   void* pixelBuffer;
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoFrame {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	EVIDEO_PIXEL_FORMAT type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int width;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int height;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int yStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int uStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int vStride;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int rotation;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; yBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; uBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; vBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int64 renderTimeMs;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int avsync_type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; metadata_buffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int metadata_size;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int64 sharedContext;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	int textureId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;float&gt; matrix;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;int64&gt; alphaBuffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoFrame&quot;)
+	TArray&lt;float&gt; pixelBuffer;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class VideoFrame {
 

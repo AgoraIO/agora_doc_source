@@ -500,13 +500,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="getPlaySrc" href="../API/api_imediaplayer_getplaysrc.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getPlaySrc</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
             <keydef keys="createMediaPlayer" href="../API/api_irtcengine_createmediaplayer.dita">
                 <topicmeta>
                     <keywords>
@@ -3099,6 +3092,20 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="setPlaybackDeviceMute" href="../API/api_iaudiodevicemanager_setplaybackdevicemute.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>setPlaybackDeviceMute</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="getPlaybackDeviceMute" href="../API/api_iaudiodevicemanager_getplaybackdevicemute.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>getPlaybackDeviceMute</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
             <keydef keys="release_IAudioDeviceManager" href="../API/api_iaudiodevicemanager_release.dita">
                 <topicmeta>
                     <keywords>
@@ -3301,20 +3308,6 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="getInternalSongCode" href="../API/api_imusiccontentcenter_getinternalsongcode.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getInternalSongCode</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="getSongSimpleInfo" href="../API/api_imusiccontentcenter_getsongsimpleinfo.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>getSongSimpleInfo</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
             <keydef keys="MUSIC_CACHE_STATUS_TYPE" href="../API/enum_musiccachestatustype.dita" props="cn">
             <topicmeta>
                 <keywords>
@@ -3417,13 +3410,6 @@
                 <topicmeta>
                     <keywords>
                         <keyword>onPreLoadEvent</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="onSongSimpleInfoResult" href="../API/callback_imusiccontentcentereventhandler_onsongsimpleinforesult.dita">
-                <topicmeta>
-                    <keywords>
-                        <keyword>onSongSimpleInfoResult</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -3596,6 +3582,13 @@
                     </keywords>
                 </topicmeta>
             </keydef>
+            <keydef keys="enableContentInspectEx" href="../API/api_irtcengineex_enablecontentinspectex.dita">
+                <topicmeta>
+                    <keywords>
+                        <keyword>enableContentInspectEx</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
         </topichead>
         <topichead navtitle="其他方法">
             <keydef keys="enableVideoImageSource" href="../API/api_irtcengine_enablevideoimagesource.dita">
@@ -3731,10 +3724,10 @@
                     </keywords>
                 </topicmeta>
             </keydef>
-            <keydef keys="queryInterface" href="../API/api_irtcengine_queryinterface.dita">
+            <keydef keys="isFeatureAvailableOnDevice" href="../API/api_irtcengine_isfeatureavailableondevice.dita">
                 <topicmeta>
                     <keywords>
-                        <keyword>queryInterface</keyword>
+                        <keyword>isFeatureAvailableOnDevice</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>
@@ -5787,10 +5780,17 @@
                 </keywords>
             </topicmeta>
         </keydef>
-        <keydef keys="CONTENT_INSPECT_SUPERVISE">
+        <keydef keys="CONTENT_INSPECT_SUPERVISION">
             <topicmeta>
                 <keywords>
                     <keyword>contentInspectSupervision</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="CONTENT_INSPECT_IMAGE_MODERATION">
+            <topicmeta>
+                <keywords>
+                    <keyword>contentInspectImageModeration</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -7978,6 +7978,27 @@
                 </keywords>
             </topicmeta>
         </keydef>
+        <keydef keys="FeatureType" href="../API/enum_featuretype.dita">
+            <topicmeta>
+                <keywords>
+                    <keyword>FeatureType</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_VIRTUAL_BACKGROUND">
+            <topicmeta>
+                <keywords>
+                    <keyword>videoVirtualBackground</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="VIDEO_BEAUTY_EFFECT">
+            <topicmeta>
+                <keywords>
+                    <keyword>videoBeautyEffect</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="FRAME_RATE" href="../API/enum_framerate.dita">
             <topicmeta>
                 <keywords>
@@ -8385,26 +8406,68 @@
             </topicmeta>
         </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_OCCLUDED">
-                <topicmeta>
-                    <keywords>
-                        <keyword>localVideoStreamErrorScreenCaptureWindowOccluded</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
-            <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED">
-                <topicmeta>
-                    <keywords>
-                        <keyword>localVideoStreamErrorScreenCaptureWindowNotSupported</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCaptureWindowOccluded</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_NOT_SUPPORTED">
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCaptureWindowNotSupported</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_ERROR_DEVICE_SYSTEM_PRESSURE">
-                <topicmeta>
-                    <keywords>
-                        <keyword>localVideoStreamErrorDeviceSystemPressure</keyword>
-                    </keywords>
-                </topicmeta>
-            </keydef>
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorDeviceSystemPressure</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_NO_PERMISSION">
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCaptureNoPermission</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED">
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCapturePaused</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED">
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCaptureResumed</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN">
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCaptureWindowHidden</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN">
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCaptureWindowRecoverFromHidden</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED">
+            <topicmeta>
+                <keywords>
+                    <keyword>localVideoStreamErrorScreenCaptureWindowRecoverFromMinimized</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
         <keydef keys="LOCAL_VIDEO_STREAM_STATE" href="../API/enum_localvideostreamstate.dita">
             <topicmeta>
                 <keywords>
@@ -9214,6 +9277,13 @@
             <topicmeta>
                 <keywords>
                     <keyword>networkTypeMobile4g</keyword>
+                </keywords>
+            </topicmeta>
+        </keydef>
+        <keydef keys="NETWORK_TYPE_MOBILE_5G">
+            <topicmeta>
+                <keywords>
+                    <keyword>networkTypeMobile5g</keyword>
                 </keywords>
             </topicmeta>
         </keydef>
@@ -11048,6 +11118,13 @@
                 <topicmeta>
                     <keywords>
                         <keyword>videoTextureOes</keyword>
+                    </keywords>
+                </topicmeta>
+            </keydef>
+            <keydef keys="VIDEO_TEXTURE_ID3D11TEXTURE2D">
+                <topicmeta>
+                    <keywords>
+                        <keyword>videoTextureId3d11texture2d</keyword>
                     </keywords>
                 </topicmeta>
             </keydef>

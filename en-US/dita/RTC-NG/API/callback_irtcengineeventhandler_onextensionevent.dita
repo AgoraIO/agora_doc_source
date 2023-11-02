@@ -20,13 +20,14 @@
           value:(NSString * __nullable)value;
 @end
 </codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider, const char* extension, const char* key, const char* value) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onExtensionEvent(const char* provider, const char* extension, const char* key, const char* value) {
  (void)provider;
   (void)extension;
   (void)key;
   (void)value;
   }
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnExtensionEvent, FString, provider, FString, extension, FString, key, FString, value);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onExtensionEvent?(
     provider: string,
     extension: string,

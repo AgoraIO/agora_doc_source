@@ -23,7 +23,7 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
 
 @end
 #endif</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct ScreenCaptureConfiguration {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct ScreenCaptureConfiguration {
   bool isCaptureWindow;
   uint32_t displayId;
   Rectangle screenRect;
@@ -32,6 +32,24 @@ __attribute__((visibility("default"))) @interface AgoraScreenCaptureConfiguratio
   Rectangle regionRect;
 
   ScreenCaptureConfiguration() : isCaptureWindow(false), displayId(0) {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FScreenCaptureConfiguration
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
+	bool isCaptureWindow;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
+	int displayId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
+	FRectangle screenRect;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
+	int64 windowId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
+	FScreenCaptureParameters params;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ScreenCaptureConfiguration&quot;)
+	FRectangle regionRect;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class ScreenCaptureConfiguration {
   

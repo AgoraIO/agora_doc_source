@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_imediaplayer_registeraudioframeobserver2">
-    <title><ph keyref="registerAudioFrameObserver2_IMediaPlayer" /></title>
+    <title><ph keyref="registerAudioFrameObserver2_IMediaPlayer"/></title>
     <shortdesc id="short"><ph id="shortdesc">Registers an audio frame observer object.</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
-                <indexterm keyref="registerAudioFrameObserver2_IMediaPlayer" />
+                <indexterm keyref="registerAudioFrameObserver2_IMediaPlayer"/>
             </keywords>
         </metadata>
     </prolog>
@@ -15,11 +15,11 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">int registerAudioFrameObserver(IMediaPlayerAudioFrameObserver audioFrameObserver, int mode);
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec" />
+            <codeblock props="ios mac" outputclass="language-objectivec"/>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual int registerAudioFrameObserver(media::IAudioPcmFrameSink* observer,
                                          RAW_AUDIO_FRAME_OP_MODE_TYPE mode) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = "Agora|IMediaPlayer")
-int RegisterAudioFrameObserver(UIAudioPcmFrameSink* observer, ERAW_AUDIO_FRAME_OP_MODE_TYPE mode = ERAW_AUDIO_FRAME_OP_MODE_TYPE::RAW_AUDIO_FRAME_OP_MODE_READ_ONLY);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|IMediaPlayer&quot;)
+	int RegisterAudioFrameObserver(UIAudioPcmFrameSink* observer, ERAW_AUDIO_FRAME_OP_MODE_TYPE mode = ERAW_AUDIO_FRAME_OP_MODE_TYPE::RAW_AUDIO_FRAME_OP_MODE_READ_ONLY);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract registerAudioFrameObserver(
     observer: IAudioPcmFrameSink,
     mode?: RawAudioFrameOpModeType
@@ -33,7 +33,7 @@ int RegisterAudioFrameObserver(UIAudioPcmFrameSink* observer, ERAW_AUDIO_FRAME_O
       {required AudioPcmFrameSink observer,
       RawAudioFrameOpModeType mode =
           RawAudioFrameOpModeType.rawAudioFrameOpModeReadOnly});</codeblock>
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -42,27 +42,27 @@ int RegisterAudioFrameObserver(UIAudioPcmFrameSink* observer, ERAW_AUDIO_FRAME_O
                 <pt props="android">audioFrameObserver</pt>
                 <pt props="cpp unreal bp unity cs electron rn flutter">observer</pt>
                 <pd>
-                    <p props="android">The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IMediaPlayerAudioFrameObserver" />.</p>
-                    <p props="cpp unreal bp electron unity cs rn flutter">The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IAudioPcmFrameSink" />.</p>
+                    <p props="android">The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IMediaPlayerAudioFrameObserver"/>.</p>
+                    <p props="cpp unreal bp electron unity cs rn flutter">The audio frame observer, reporting the reception of each audio frame. See <xref keyref="IAudioPcmFrameSink"/>.</p>
                 </pd>
             </plentry>
             <plentry>
                 <pt>mode</pt>
                 <pd>
-                    <p props="cpp unreal bp electron unity cs rn flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE" />.</p>
+                    <p props="cpp unreal bp electron unity cs rn flutter">The use mode of the audio frame. See <xref keyref="RAW_AUDIO_FRAME_OP_MODE_TYPE"/>.</p>
                     <p props="android" id="mode">The use mode of the audio frame:<ul>
-                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY" />(0): (Default) Read only mode. For example, when users acquire the data with the Agora SDK, then push the RTMP or RTMPS streams.</li>
-                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE" />(2): Read and write mode: Users read the data from AudioFrame, modify it, and then play it. For example, when users have their own audio-effect processing module and perform some voice pre-processing, such as a voice change.</li>
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_ONLY"/>(0): (Default) Read only mode. For example, when users acquire the data with the Agora SDK, then push the RTMP or RTMPS streams.</li>
+                    <li><ph keyref="RAW_AUDIO_FRAME_OP_MODE_READ_WRITE"/>(2): Read and write mode: Users read the data from AudioFrame, modify it, and then play it. For example, when users have their own audio-effect processing module and perform some voice pre-processing, such as a voice change.</li>
                     </ul> </p>
                 </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>
-            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException" /> exception is thrown; and you need to catch the exception and handle it accordingly.</p>
+            <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
             <ul id="ul_uns_l2y_hqb" props="native unreal bp electron unity cs rn">
                 <li>0: Success.</li>
-                <li>&lt; 0: Failure.</li>
+                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul>
         </section>
     </refbody>

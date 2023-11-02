@@ -47,11 +47,22 @@
 @property (nonatomic, assign) bool encodedFrameOnly;
 
 @end</codeblock>
-      <codeblock props="cpp unreal bp" outputclass="language-cpp">struct VideoSubscriptionOptions {
-        Optional&lt;VIDEO_STREAM_TYPE&gt; type;
-        Optional&lt;bool&gt; encodedFrameOnly;
+      <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoSubscriptionOptions {
+        Optional&lt;VIDEO_STREAM_TYPE> type;
+        Optional&lt;bool> encodedFrameOnly;
 
     VideoSubscriptionOptions() {}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FVideoSubscriptionOptions
+{
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|ChannelMediaOptions&quot;)
+	bool type_SetValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
+	EVIDEO_STREAM_TYPE type;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|VideoSubscriptionOptions&quot;)
+	AGORAOPTIONAL encodedFrameOnly;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
@@ -61,9 +72,9 @@
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class VideoSubscriptionOptions:OptionalJsonParse
     {
-        public Optional&lt;VIDEO_STREAM_TYPE&gt; type = new Optional&lt;VIDEO_STREAM_TYPE&gt;();
+        public Optional&lt;VIDEO_STREAM_TYPE> type = new Optional&lt;VIDEO_STREAM_TYPE>();
 
-        public Optional&lt;bool&gt; encodedFrameOnly = new Optional&lt;bool&gt;();
+        public Optional&lt;bool> encodedFrameOnly = new Optional&lt;bool>();
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class VideoSubscriptionOptions {
   
@@ -80,12 +91,12 @@
   @JsonKey(name: 'encodedFrameOnly')
   final bool? encodedFrameOnly;
 
-  factory VideoSubscriptionOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory VideoSubscriptionOptions.fromJson(Map&lt;String, dynamic> json) =>
       _$VideoSubscriptionOptionsFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoSubscriptionOptionsToJson(this);
+  Map&lt;String, dynamic> toJson() => _$VideoSubscriptionOptionsToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>

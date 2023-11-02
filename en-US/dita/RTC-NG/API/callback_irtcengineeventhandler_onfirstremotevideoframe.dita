@@ -16,12 +16,13 @@
                <codeblock props="android" outputclass="language-java">public void onFirstRemoteVideoFrame(int uid, int width, int height, int elapsed) {}</codeblock>
                <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine
          firstRemoteVideoFrameOfUid:(NSUInteger)uid size:(CGSize)size elapsed:(NSInteger)elapsed;</codeblock>
-               <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t userId, int width, int height, int elapsed) {
+               <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onFirstRemoteVideoFrame(uid_t userId, int width, int height, int elapsed) {
                     (void)userId;
                     (void)width;
                     (void)height;
                     (void)elapsed;
                     }</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnFirstRemoteVideoFrame, int64, userId, int, width, int, height, int, elapsed);</codeblock>
                <codeblock props="electron" outputclass="language-typescript">  onFirstRemoteVideoFrame?(
     connection: RtcConnection,
     remoteUid: number,

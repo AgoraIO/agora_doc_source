@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_segmentationproperty">
     <title><ph keyref="SegmentationProperty" /></title>
-    <shortdesc id="short">Processing properties for background images.<ph id="shortdesc" /></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">Processing properties for background images.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
@@ -25,7 +25,7 @@
 @property(nonatomic, assign) SegModelType modelType;
 @property(nonatomic, assign) float greenCapacity;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct SegmentationProperty {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct SegmentationProperty {
     enum SEG_MODEL_TYPE {
     SEG_MODEL_AI = 1,
     SEG_MODEL_GREEN = 2
@@ -35,6 +35,16 @@
   SegmentationProperty() : modelType(SEG_MODEL_AI), greenCapacity(0.5){}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FSegmentationProperty
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	ESEG_MODEL_TYPE modelType = ESEG_MODEL_TYPE::SEG_MODEL_AI;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|SegmentationProperty&quot;)
+	float greenCapacity = 0.5;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class SegmentationProperty {
 
   modelType?: SegModelType;
@@ -68,12 +78,12 @@
   @JsonKey(name: 'greenCapacity')
   final double? greenCapacity;
 
-  factory SegmentationProperty.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+  factory SegmentationProperty.fromJson(Map&lt;String, dynamic> json) =>
       _$SegmentationPropertyFromJson(json);
 
-  Map&lt;String, dynamic&gt; toJson() =&gt; _$SegmentationPropertyToJson(this);
+  Map&lt;String, dynamic> toJson() => _$SegmentationPropertyToJson(this);
 }</codeblock>            
-            <codeblock props="reserve" outputclass="language-cpp" /></p>
+            <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
             <p />

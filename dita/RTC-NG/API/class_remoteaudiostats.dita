@@ -40,7 +40,7 @@
 @property(assign, nonatomic) NSInteger qoeQuality;
 @property(assign, nonatomic) AgoraExperiencePoorReason qualityChangedReason;
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct RemoteAudioStats
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct RemoteAudioStats
 {
   uid_t uid;
   int quality;
@@ -74,6 +74,42 @@
     publishDuration(0),
     qoeQuality(0) {}
     qualityChangedReason(0){}
+};</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FRemoteAudioStats
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int64 uid;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int quality;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int networkTransportDelay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int jitterBufferDelay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int audioLossRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int numChannels;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int receivedSampleRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int receivedBitrate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int totalFrozenTime;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int frozenRate;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int mosValue;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int totalActiveTime;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int publishDuration;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qoeQuality;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|RemoteAudioStats&quot;)
+	int qualityChangedReason;
 };</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class RemoteAudioStats {
   
@@ -278,8 +314,8 @@
             <plentry>
                 <pt>quality</pt>
                 <pd>
-                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp unreal bp electron rn unity flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph></p>
-                    <p props="android">
+                    <p>远端用户发送的音频流质量。<ph props="ios mac cpp unreal electron rn unity flutter cs">详见 <xref keyref="QUALITY_TYPE" />。</ph></p>
+                    <p props="android bp">
                     <ul id="qualitytype">
                     <li><ph keyref="QUALITY_UNKNOWN" /> (0)：质量未知。</li>
                     <li><ph keyref="QUALITY_EXCELLENT" /> (1)：质量极好。</li>
@@ -345,8 +381,8 @@
             <plentry>
                 <pt>qoeQuality</pt>
                 <pd>
-                    <p><ph>接收远端音频时，本地用户的主观体验质量。</ph><ph props="ios mac cpp unreal bp electron rn unity cs">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE" />。</ph>
-                    <ul props="android">
+                    <p><ph>接收远端音频时，本地用户的主观体验质量。</ph><ph props="ios mac cpp unreal electron rn unity cs">详见 <xref keyref="EXPERIENCE_QUALITY_TYPE" />。</ph>
+                    <ul props="android bp">
                     <li><ph keyref="EXPERIENCE_QUALITY_GOOD" /> (0)：主观体验质量较好。</li>
                     <li><ph keyref="EXPERIENCE_QUALITY_BAD" /> (1)：主观体验质量较差。</li>
                     </ul></p>
@@ -355,8 +391,8 @@
             <plentry>
                 <pt>qualityChangedReason</pt>
                 <pd>
-                    <p><ph>接收远端音频时，本地用户主观体验质量较差的原因。</ph><ph props="ios mac cpp unreal bp unity rn electron flutter cs">详见 <xref keyref="EXPERIENCE_POOR_REASON" />。</ph>
-                    <ul props="android">
+                    <p><ph>接收远端音频时，本地用户主观体验质量较差的原因。</ph><ph props="ios mac cpp unreal unity rn electron flutter cs">详见 <xref keyref="EXPERIENCE_POOR_REASON" />。</ph>
+                    <ul props="android bp">
                     <li><ph keyref="EXPERIENCE_REASON_NONE" /> (0): 无原因，说明主观体验质量较好。</li>
                     <li><ph keyref="REMOTE_NETWORK_QUALITY_POOR" /> (1): 远端用户的网络较差。</li>
                     <li><ph keyref="LOCAL_NETWORK_QUALITY_POOR" /> (2): 本地用户的网络较差。</li>

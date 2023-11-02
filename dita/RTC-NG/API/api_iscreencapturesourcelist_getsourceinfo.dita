@@ -15,9 +15,11 @@
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java"/>
             <codeblock props="ios mac" outputclass="language-objectivec"/>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">virtual ScreenCaptureSourceInfo getSourceInfo(unsigned int index) = 0;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual ScreenCaptureSourceInfo getSourceInfo(unsigned int index) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|ScreenCaptureSourceList&quot;)
+	FScreenCaptureSourceInfo GetSourceInfo(int64 index);</codeblock>
             <codeblock props="electron" outputclass="language-typescript"/>
-            <codeblock props="unity cs" outputclass="language-csharp">public ScreenCaptureSourceInfo getSourceInfo(uint index) { return null; }</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
            <codeblock props="flutter" outputclass="language-dart"/> 
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
@@ -25,6 +27,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <p>获取到 <xref keyref="IScreenCaptureSourceList"/> 后，你可以传入指定的可共享窗口或屏幕的索引值，以获取到该窗口或屏幕的信息 <apiname keyref="ScreenCaptureSourceInfo"/>。</p>
+            <note type="note">该方法仅适用于 macOS 和 Windows。</note> 
         </section>
         <section id="parameters">
             <title>参数</title>

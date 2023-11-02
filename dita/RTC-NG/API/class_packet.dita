@@ -6,12 +6,21 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct Packet {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct Packet {
                     const unsigned char* buffer;
                     unsigned int size;
 
                     Packet() : buffer(NULL), size(0) {}
                     };</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FPacket {
+
+	GENERATED_BODY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|Packet&quot;)
+	TArray&lt;int64&gt; buffer;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|Packet&quot;)
+	int64 size;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class Packet {
   buffer?: Uint8Array
   size?: number

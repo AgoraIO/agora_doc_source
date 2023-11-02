@@ -17,13 +17,25 @@
 @property(nonatomic, assign) BOOL stopMicrophoneRecording;
 
 @end</codeblock>
-            <codeblock props="cpp unreal bp" outputclass="language-cpp">struct LeaveChannelOptions {
+            <codeblock props="cpp unreal" outputclass="language-cpp">struct LeaveChannelOptions {
   bool stopAudioMixing;
   bool stopAllEffect;
   bool stopMicrophoneRecording;
   LeaveChannelOptions() : stopAudioMixing(true), stopAllEffect(true), stopMicrophoneRecording(true) {}
 };
 </codeblock>
+         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
+struct FLeaveChannelOptions
+{
+	GENERATED_BODY()
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
+	AGORAOPTIONAL stopAudioMixing;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
+	AGORAOPTIONAL stopAllEffect;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = &quot;Agora|LeaveChannelOptions&quot;)
+	AGORAOPTIONAL stopMicrophoneRecording;
+};</codeblock>
             <codeblock props="electron" outputclass="language-typescript">export class LeaveChannelOptions {
   
   stopAudioMixing?: boolean;
