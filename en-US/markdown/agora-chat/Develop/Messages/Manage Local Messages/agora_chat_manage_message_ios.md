@@ -7,6 +7,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 SQLCipher is used to encrypt the database that stores local messages. The Agora Chat SDK uses `ChatManager` to manage local messages. Followings are the core methods:
 
 - `getAllConversations`: Loads the conversation list on the local device.
+- `loadMessagesStartFromId`: Loads messages of a conversation.
 - `deleteConversations`: Deletes the specified conversation.
 - `AgoraChatConversation.unreadMessagesCount`: Retrieves the count of unread messages in the specified conversation.
 - `deleteConversation`: Deletes the conversation from the server.
@@ -39,7 +40,8 @@ Refer to the following code sample to retrieve the messages in the specified con
 ```objective-c
 // Retrieves the conversation ID
 AgoraChatConversation *conversation = [[AgoraChatClient sharedClient].chatManager getConversation:conversationId type:type createIfNotExist:YES];
-// Only one message is loaded during SDK initialization. Call loadMessagesStartFromId to retrieve more messages.
+// startMsgId: Starting message ID for query; count: Number of messages to retrieve.
+// searchDirection: Message search direction. The value `MessageSearchDirectionUp` indicates that messages are retrieved in the descending order of the message timestamp; `MessageSearchDirectionDown` indicates that messages are retrieved in the ascending order of message timestamp.
 NSArray<AgoraChatMessage *> *messages = [conversation loadMessagesStartFromId:startMsgId count:count searchDirection:MessageSearchDirectionUp];
 ```
 

@@ -7,6 +7,7 @@ This page introduces how to use the Agora Chat SDK to implement these functional
 SQLCipher is used to encrypt the database that stores local messages. The Agora Chat SDK uses `ChatManager` to manage local messages. Followings are the core methods:
 
 - `getAllConversations`: Loads the conversation list on the local device.
+- `getAllMessages`/`loadMoreMsgFromDB`: Loads messages of a conversation.
 - `deleteConversation`: Deletes the specified conversation.
 - `Conversation.getUnreadMsgCount`: Retrieves the count of unread messages in the specified conversation.
 - `getUnreadMessageCount`: Retrieves the count of all unread messages.
@@ -36,13 +37,13 @@ Map<String, Conversation> conversations = ChatClient.getInstance().chatManager()
 
 ### Retrieve messages in the specified conversation
 
-Refer to the following code sample to retrieve the messages in the specified conversation:
+Call `getAllMessages` to retrieve all the messages of this conversation in the message. Alternatively, you can call `loadMoreMsgFromDB` to load messages from the local database. The loaded message will be placed in the memory based on the timestamp of the messages.
 
 ```java
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);
-// Gets all the messages in the current conversation.
 List<ChatMessage> messages = conversation.getAllMessages();
-// Only one message is loaded during SDK initilization. Call loadMoreMsgFromDB to retrieve more messages.
+// startMsgId: Starting message ID for query. The SDK loads messages, starting from the specified one, in the descending order of the timestamp included in the messages.
+// pageSize: Number of message to load on each page. The value range is [1,400].
 List<ChatMessage> messages = conversation.loadMoreMsgFromDB(startMsgId, pagesize);
 ```
 
