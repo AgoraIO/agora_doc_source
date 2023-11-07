@@ -570,7 +570,7 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## Deleting multiple users
 
-This method deletes multiple users in the app in the chronological order of their creation. Upon the first request, the API delete users, starting from the first created one. A maximum of 100 users can be deleted each time. It should be noted that this method specifies the number of users to delete, instead of which users to delete.
+This method deletes multiple users in the app in the chronological order of their creation. For the first request, the API deletes users, starting from the first created one. A maximum of 100 users can be deleted each time. It should be noted that this method specifies the number of users to delete, instead of which users to delete.
 
 If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
 
@@ -591,7 +591,7 @@ For the parameters and detailed descriptions, see [Common parameters ](#param).
 | Parameter | Type | Description | Required |
 | :------- | :----- | :------------------------ | :------- |
 | `limit` | Number | The number of users to delete. The value range is [1,100] with `10` as the default. | No |
-| `cursor` | String | The position where to start deleting users. <br/> The cursor is included in the the response body to indicate where to start next time. If the `cursor` field is no longer returned, all the users in the app have been deleted. | No |
+| `cursor` | String | The position where to start deleting users. <br/> The cursor is included in the the response body to indicate the starting position for the next round of deletion. Therefore, no cursor is required for the first request. If the `cursor` field is no longer returned, all the users in the app have been deleted. | No |
 
 #### Request header
 
