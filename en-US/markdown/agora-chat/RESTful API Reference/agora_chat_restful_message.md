@@ -116,8 +116,8 @@ The request body is a JSON object, which contains the following parameters:
   | Parameter | Type | Description | Required |
   | --- | --- | --- | --- |
   | `filename` | String | The name of the image file. | Yes |
-  | `secret` | String | The secret for accessing the image file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `resctrict-access` as `true` in the request header of `upload` when uploading the image file, ensure that you set this parameter. | No |
-  | `size` | JSON | The size of the image (in pixels). This parameter contains two fields:<ul><li>height: The image height.</li><li>width: The image width.</li></ul> | Yes |
+  | `secret` | String | The secret for accessing the image file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `restrict-access` as `true` in the request header of `upload` when uploading the image file, ensure that you set this parameter. | No |
+  | `size` | JSON | The size of the image (in pixels). This parameter contains two fields:<ul><li>height: The image height.</li><li>width: The image width.</li></ul> | No |
   | `url` | String | The URL address of the image file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
 
 - Voice message
@@ -125,18 +125,19 @@ The request body is a JSON object, which contains the following parameters:
   | Parameter | Type | Description | Required |
   | --- | --- | --- | --- |
   | `filename` | String | The name of the audio file. | Yes |
-  | `secret` | String | The secret for accessing the audio file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `resctrict-access` as `true` in the request header of `upload` when uploading the audio file, ensure that you set this parameter. | No |
-  | `length` | Int | The length of the audio file (in seconds). | Yes |
+  | `secret` | String | The secret for accessing the audio file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `restrict-access` as `true` in the request header of `upload` when uploading the audio file, ensure that you set this parameter. | No |
+  | `length` | Int | The length of the audio file (in seconds). | No |
   | `url` | String | The URL address of the audio file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
 
 - Video message
 
   | Parameter | Type | Description | Required |
   | --- | --- | --- | --- |
-  | `thumbnail` | String | The URL address of the video thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
-  | `length` | Int | The length of the video file (in seconds). | Yes |
-  | `secret` | String | The secret for accessing the video file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `resctrict-access` as `true` in the request header of `upload` when uploading the video file, ensure that you set this parameter. | No |
-  | `file_length` | Long | The data length of the video file (in bytes). | Yes |
+  | `filename` | String | The name of the video file. | Yes |
+  | `thumbnail` | String | The URL address of the video thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | No |
+  | `length` | Int | The length of the video file (in seconds). | No |
+  | `secret` | String | The secret for accessing the video file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `restrict-access` as `true` in the request header of `upload` when uploading the video file, ensure that you set this parameter. | No |
+  | `file_length` | Long | The data length of the video file (in bytes). | No |
   | `thumb_secret` | String | The secret for accessing the video thumbnail. You can obtain the value of `thumb_secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `restrict-access` as `true` in the request header of `upload` when uploading the thumbnail, ensure that you set this parameter. | No |
   | `url` | String | The URL address of the video file, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | Yes |
 
@@ -221,7 +222,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
     ```shell
     # Replace {YourToken} with the app token generated on your server
-    curl -X POST -i 'https://XXXX/XXXX/XXXX/messages/users' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d  '{"from": "user1","to": ["user2"],"type": "video","body": {"thumb" : "https://XXXX/XXXX/XXXX/chatfiles/67279b20-7f69-11e4-8eee-21d3334b3a97","length" : 0,"secret":"VfXXXXNb_","file_length" : 58103,"thumb_secret" : "ZyXXXX2I","url" : "https://XXXX/XXXX/XXXX/chatfiles/671dfe30-XXXX-XXXX-ba67-8fef0d502f46"}}'
+    curl -X POST -i 'https://XXXX/XXXX/XXXX/messages/users' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d  '{"from": "user1","to": ["user2"],"type": "video","body": {"filename":"testvideo.avi","thumb" : "https://XXXX/XXXX/XXXX/chatfiles/67279b20-7f69-11e4-8eee-21d3334b3a97","length" : 0,"secret":"VfXXXXNb_","file_length" : 58103,"thumb_secret" : "ZyXXXX2I","url" : "https://XXXX/XXXX/XXXX/chatfiles/671dfe30-XXXX-XXXX-ba67-8fef0d502f46"}}'
     ```
 
 - Send a file message
@@ -472,7 +473,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
     ```shell
     # Replace {YourToken} with the app token generated on your server
-    curl -X POST -i 'https://XXXX/XXXX/XXXX/messages/chatgroups' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d  '{"from": "user1","to": ["184524748161025"],"type": "video","body": {"thumb" : "https://XXXX/XXXX/XXXX/chatfiles/67279b20-7f69-11e4-8eee-21d3334b3a97","length" : 0,"secret":"VfXXXXNb_","file_length" : 58103,"thumb_secret" : "ZyXXXX2I","url" : "https://XXXX/XXXX/XXXX/chatfiles/671dfe30-XXXX-XXXX-ba67-8fef0d502f46"}}'
+    curl -X POST -i 'https://XXXX/XXXX/XXXX/messages/chatgroups' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d  '{"from": "user1","to": ["184524748161025"],"type": "video","body": {"filename" : "testvideo.avi","thumb" : "https://XXXX/XXXX/XXXX/chatfiles/67279b20-7f69-11e4-8eee-21d3334b3a97","length" : 0,"secret":"VfXXXXNb_","file_length" : 58103,"thumb_secret" : "ZyXXXX2I","url" : "https://XXXX/XXXX/XXXX/chatfiles/671dfe30-XXXX-XXXX-ba67-8fef0d502f46"}}'
     ```
 
 - Send a file message
@@ -729,7 +730,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
     ```shell
     # Replace {YourToken} with the app token generated on your server
-    curl -X POST -i 'https://XXXX/XXXX/XXXX/messages/chatrooms' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d  '{"from": "user1","to": ["185145305923585"],"type": "video","body": {"thumb" : "https://XXXX/XXXX/XXXX/chatfiles/67279b20-7f69-11e4-8eee-21d3334b3a97","length" : 0,"secret":"VfXXXXNb_","file_length" : 58103,"thumb_secret" : "ZyXXXX2I","url" : "https://XXXX/XXXX/XXXX/chatfiles/671dfe30-XXXX-XXXX-ba67-8fef0d502f46"}}'
+    curl -X POST -i 'https://XXXX/XXXX/XXXX/messages/chatrooms' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Authorization: Bearer {YourToken}' -d  '{"from": "user1","to": ["185145305923585"],"type": "video","body": {"filename":"testvideo.avi","thumb" : "https://XXXX/XXXX/XXXX/chatfiles/67279b20-7f69-11e4-8eee-21d3334b3a97","length" : 0,"secret":"VfXXXXNb_","file_length" : 58103,"thumb_secret" : "ZyXXXX2I","url" : "https://XXXX/XXXX/XXXX/chatfiles/671dfe30-XXXX-XXXX-ba67-8fef0d502f46"}}'
     ```
 
 - Send a file message
@@ -773,7 +774,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
     }
     ```
 
-- Sned an image message
+- Send an image message
 
     ```json
     {
@@ -1670,7 +1671,7 @@ POST https://{host}/{orgName}/{appName}/messages/users/import
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
 | `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
-| `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
+| `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes. In this case, you need to make sure that the attachment URL is publicly accessible. </li><li>`false`: (Default) No.</li></ul> | No |
 
 ### HTTP Response
 
@@ -1773,7 +1774,7 @@ POST https://{host}/{orgName}/{appName}/messages/chatgroups/import
 | `body` | JSON | The message content. For different message types, this parameter contains different fields. For details, see [Body of different message types](#body). | Yes |
 | `is_ack_read` | Bool | Whether to set the message as read. <ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> | No |
 | `msg_timestamp` | Long | The timestamp for importing the messages, in milliseconds. If you leave this parameter empty, the server automatically sets it as the current time. | No |
-| `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
+| `need_download` | Bool | Whether to download the attachment and upload it to the server:<ul><li>`true`: Yes. In this case, you need to make sure that the attachment URL is publicly accessible.</li><li>`false`: (Default) No.</li></ul> | No |
 
 ### HTTP Response
 

@@ -349,13 +349,16 @@ The following code example shows how to create and send a customized message:
 ```java
 ChatMessage customMessage = ChatMessage.createSendMessage(ChatMessage.Type.CUSTOM);
 // Set event as the customized message type, for example, gift.
-event = "gift"CustomMessageBody customBody = new CustomMessageBody(event);
+String event = "gift";
+CustomMessageBody customBody = new CustomMessageBody(event);
 // The data type of params is Map<String, String>.
-customBody.setParams(params);customMessage.addBody(customBody);
+customBody.setParams(params);
+customMessage.addBody(customBody);
 // Sets the message recipient: user ID of the recipient for one-to-one chat, group ID for group chat, or chat room ID for a chat room.
 customMessage.setTo(to);
 // Sets the chat type as one-to-one chat, group chat, or chat room
-customMessage.setChatType(chatType);ChatClient.getInstance().chatManager().sendMessage(customMessage);        
+customMessage.setChatType(chatType);
+ChatClient.getInstance().chatManager().sendMessage(customMessage);        
 ```
 
 
@@ -366,12 +369,14 @@ If the message types listed above do not meet your requirements, you can use mes
 ```java
 ChatMessage message = ChatMessage.createTextSendMessage(content, conversationId); 
 // Adds message attributes.
-message.setAttribute("attribute1", "value");message.setAttribute("attribute2", true);
+message.setAttribute("attribute1", "value");
+message.setAttribute("attribute2", true);
 // Sends the message
 ChatClient.getInstance().chatManager().sendMessage(message);
 
 // Retrieves the message attributes when receiving the message.
-message.getStringAttribute("attribute1",null);message.getBooleanAttribute("attribute2", false)
+message.getStringAttribute("attribute1",null);
+message.getBooleanAttribute("attribute2", false)
 ```
 
 ## Next steps
