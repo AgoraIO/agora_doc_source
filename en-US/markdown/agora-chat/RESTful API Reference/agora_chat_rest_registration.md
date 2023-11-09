@@ -34,6 +34,7 @@ The following table lists common request and response parameters of the Agora Ch
 | `entities.modified` | Number | The Unix timestamp (ms) when the user information is last modified. |
 | `entities.username` | String | The username. The unique account the user is logged in with. |
 | `entities.activated` | Bool | Whether the user is active:<li>`true`: The user is active.<li>`false`: The user is in banned. To use a banned user account, you need to call the [unban-user](#unban) method to unban the account. |
+| `entities.nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. <br>This field is not the user nickname of the user attributes. |
 | `timestamp` | Number | The Unix timestamp (ms) of the HTTP response. |
 | `duration` | Number | The duration (ms) from when the HTTP request is sent to the time the response is received. |
 
@@ -156,7 +157,7 @@ The request body is a JSONArray object, which contains the following fields:
 
 | Field | Type | Description | Required |
 | :--------- | :----- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :------- |
-| `username` | String | The unique login account of the user. The username must be 64 characters or less and cannot be empty.  | Yes |
+| `username` | String | The unique user ID of the user. The user ID must be 64 characters or less and cannot be empty. You can pass in at most 60 user IDs. | Yes |
 | `password` | String | The user's login password. The length cannot exceed 64 characters. | Yes |
 
 ### HTTP response
@@ -319,7 +320,6 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Field | Type | Description |
 | :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
-| `entities.nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. <br>This field is not the user nickname of the user attributes. |
 | `count` | Number | The number of users. |
 
 For other fields and detailed descriptions, see [Common parameters](#param).
@@ -397,7 +397,6 @@ If the returned HTTP status code is `200`, the request succeeds, and the respons
 
 | Parameter | Type | Description |
 | :------------------ | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `entities.nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. This field is not the user nickname of the user attributes. |
 | `cursor` | String | The cursor used for paginating the user lists. <br>You do not need to set `cursor` at the first query. When the request succeeds, you can get the `cursor` from the response body, and pass this `cursor` in the URL of the next query, until there is no longer a `cursor` filed in the response body, which indicates that all the users in the app have been queried. |
 | `count` | Number | The number of users. |
 
@@ -571,19 +570,28 @@ curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppT
 
 ## Deleting multiple users
 
-This method deletes all the users in the app. If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
+This method deletes multiple users in the app in the chronological order of their creation. For the first request, the API deletes users, starting from the first created one. A maximum of 100 users can be deleted each time. It should be noted that this method specifies the number of users to delete, instead of which users to delete.
+
+If the deleted users include group or chat room admins, the groups and chat rooms managed by those users are also deleted.
 
 For each App Key, the call frequency limit of this method is 30 per second.
 
 ### HTTP request
 
 ```http
-DELETE https://{host}/{org_name}/{app_name}/users
+DELETE https://{host}/{org_name}/{app_name}/users?limit={N}&cursor={cursor}
 ```
 
 #### Path parameter
 
 For the parameters and detailed descriptions, see [Common parameters ](#param).
+
+#### Query parameter
+
+| Parameter | Type | Description | Required |
+| :------- | :----- | :------------------------ | :------- |
+| `limit` | Number | The number of users to delete. The value range is [1,100] with `10` as the default. | No |
+| `cursor` | String | The position where to start deleting users. <br/> No cursor is required for the first request. For each subsequent request, the cursor is obtained from the body of response to the previous request. If the cursor is no longer returned, all users are deleted. | No |
 
 #### Request header
 
@@ -606,32 +614,45 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
 
 ```shell
 # Replace {YourAppToken} with the app token generated in your server.
-curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer {YourAppToken}' 'http://XXXX/XXXX/XXXX/users'
+curl -X DELETE -H 'Accept: application/json' -H 'Authorization: Bearer <YourAppToken>' 'https://XXXX/XXXX/XXXX/users?limit=2'
 ```
 
 #### Response example
 
 ```json
 {
-    "action": "delete",
-    "applicationName": "XXXX"
-    "path": "/users",
-    "uri": "https://XXXX/XXXX/XXXX/users",
-    "entities": [
-        {
-            "uuid": "ab90eff0-XXXX-XXXX-9174-8f161649a182",
-            "type": "user",
-            "created": 1542356511855,
-            "modified": 1542356511855,
-            "username": "XXXX",
-            "activated": true,
-            "nickname": "user1"
-        }
-    ],
-    "timestamp": 1542559539776,
-    "duration": 39,
-    "organization": "XXXX",
-    "applicationName": "XXXX"
+  "action": "delete",
+  "application": "8be024f0-XXXX-XXXX-b697-5d598d5f8402",
+  "params": {
+    "limit": ["2"]
+  },
+  "path": "/users",
+  "uri": "https://XXXX/XXXX/testapp/users",
+  "entities": [
+    {
+      "uuid": "b2aade90-XXXX-XXXX-a974-f3368f82e4f1",
+      "type": "user",
+      "created": 1542356523769,
+      "modified": 1542597334500,
+      "username": "user2",
+      "activated": true,
+      "nickname": "testuser"
+    },
+    {
+      "uuid": "b98ad170-XXXX-XXXX-XXXX-7f76daa76557",
+      "type": "user",
+      "created": 1542356535303,
+      "modified": 1542356535303,
+      "username": "user3",
+      "activated": true,
+      "nickname": "user3"
+    }
+  ],
+  "timestamp": 1542867197779,
+  "duration": 504,
+  "organization": "XXXX",
+  "applicationName": "testapp",
+  "cursor": "LTgXXXXDNR"
 }
 ```
 
@@ -726,12 +747,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is `200`, the request is succeeds and the response body contains the following fields:
 
-| Field | Type | Description |
-| :------------------ | :----- | :--------------------------------------------------------------------------------------------------------- |
-| `entities.username` | String | The ID of the user. |
-| `entities.nickname` | String | The nickname of the user. |
-
-For other fields and detailed descriptions, see [Common parameters](#param).
+For fields and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
@@ -796,11 +812,7 @@ For the parameters and detailed descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following fields:
 
-| Field | Type | Description |
-| :--------- | :----- | :--------------------------------------------------------------------------------------------------------- |
-| `nickname` | String | The nickname of the user displayed in the notification bar of the message push when the message is pushed. <br>This field is not the user nickname of the user attributes. |
-
-For other fields and detailed descriptions, see [Common parameters](#param).
+For fields and detailed descriptions, see [Common parameters](#param).
 If the returned HTTP status code is not `200`, the request fails. You can refer to [Status codes](./agora_chat_status_code?platform=RESTful) for possible reasons.
 
 ### Example

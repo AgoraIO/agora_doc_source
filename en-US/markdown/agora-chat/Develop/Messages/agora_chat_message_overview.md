@@ -38,7 +38,7 @@ In cases where text, attachment, and location messages do not meet your business
 
 ### Custom messages
 
-This is a self-defined message type. You can customize multiple message types and add a name to each type. Typical use cases are red-packet messages and template messges. The maximum data length of a custom message is 5 KB.
+This is a self-defined message type. You can customize multiple message types and add a name to each type. Typical use cases are red-packet messages and template messges. The maximum data length of a custom message is 3 KB.
 
 ## Message features
 

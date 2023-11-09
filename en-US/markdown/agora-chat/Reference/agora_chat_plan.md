@@ -4,7 +4,7 @@ This page lists the details of the pricing plans for Agora Chat.
 
 | Description                      | Free |  Starter  |    Pro    | Enterprise |
 | :------------------------------- | :--: | :-------: | :-------: | :--------: |
-| Number of contacts            | 100  |    250    |   1,000   |   Custom (10,000 by default)    |
+| Maximum number of contacts for a user            | 100  |    250    |   1,000   |   Custom (10,000 by default)    |
 | Total number of registered users | 100  | unlimited | unlimited | unlimited  |
 | Peak concurrent connection      |  10 | 10% of MAU  | 10% of MAU | Millions |
 

@@ -90,7 +90,7 @@ When you call this RESTful API to set the user's nickname, avatar, contact infor
 | `mail`      | String | The user's email address, which can contain at most 64 characters. |
 | `gender`    | Number | The user gender: <ul><li>`1`：Male; </li><li>`2`：Female;</li><li>(Default) `0`: Unknown;</li><li>Other values are invalid.</li></ul> |
 | `sign`      | String | The user's signature, which can contain at most 256 characters.  |
-| `birth`     | String | The user's birthday, which can contain at most 256 characters.  |
+| `birth`     | String | The user's birthday, which can contain at most 64 characters.  |
 | `ext`       | String | The extension fields.                                                   |
 
 ### HTTP response
@@ -134,7 +134,7 @@ curl -X PUT -H 'Content-Type: application/x-www-form-urlencoded' -H 'Authorizati
 
 ## Retrieving user attributes
 
-Retrieves the user attributes of the specified user.
+Retrieves the user attributes of the specified user. 
 
 For each App Key, the call frequency limit of this method is 100 per second.
 

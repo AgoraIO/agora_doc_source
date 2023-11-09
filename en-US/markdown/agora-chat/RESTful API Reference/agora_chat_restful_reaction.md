@@ -1,4 +1,4 @@
-During one-to-one chats and group chats, users can reply a specified message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. For a message, one emoji is counted as one reaction even if it is added repeatedly. A maximum of 20 reactions can be added for one message. To increase the upper limit, contact [support@agora.io](mailto:support@agora.io). 
+During one-to-one chats and group chats, users can reply to a message with emojis, which adds fun and diversity to real-time chatting. In Agora Chat, this feature is known as reaction. For a message, one emoji is counted as one reaction even if it is added repeatedly. A maximum of 20 reactions can be added for one message. To increase the upper limit, contact [support@agora.io](mailto:support@agora.io). 
 
 This page shows how to use the Agora Chat RESTful API to implement reaction in your project.
 
@@ -66,7 +66,7 @@ For the path parameters and the detailed descriptions, see [Common parameters](#
 | Parameter | Type | Description |
 | :-------------- | :----- | :---------------------------------- |
 | `msg_Id`  | String | The message ID to which you want to add the reaction. |
-| `message` | String | The ID of the emoji, same as that on the client. The maximum length is 128 bytes.  |
+| `message` | String | The ID of the emoji, same as that on the client. The maximum length is 128 characters.  |
 
 ### HTTP Response
 
@@ -138,7 +138,7 @@ For the path parameters and the detailed descriptions, see [Common parameters](#
 
 | Parameter        | Type   | Description                                                       | Required |
 | :---------- | :----- | :------------------------------------------------------------ | :------- |
-| `msgIdList` | Array  |  The ID of the message from which you attempt to retrieve reactions.  | Yes      |
+| `msgIdList` | Array  |  The ID of the message from which you attempt to retrieve reactions. You can pass in up to 20 message IDs.  | Yes      |
 | `msgType`   | String | The chat type:<ul><li>`chat`: One-to-one chats.</li><li>`groupchat`: Group chats.</li></ul>  | Yes     |
 | `groupId`   | String | The ID of the chat group. This parameter is only required if you set `msgType` to `groupchat`.  |  No    |
 
@@ -296,8 +296,8 @@ For the parameters and the detailed description, see [Common parameters](#param)
 | --- | --- | --- | --- |
 | `msgId` | String | The message ID. | Yes |
 | `message` | String | The ID of the emoji that is added as the reaction. | Yes |
-| `limit` | Number | The number of users that added the reaction on each page when you retrieve the users with pagination. The value range is [1,50]. The default value is 50. | No |
-| `cursor` | String | The cursor for specifying where to retrieve data if you retrieve the users with pagination.| No |
+| `limit` | Number | The number of users that added the reaction on each page. The value range is [1,50]. The default value is 50. | No |
+| `cursor` | String | The position for starting to retrieve data.| No |
 
 <div class="alert note">If the pagination parameters are specified, the server returns the users that added the reaction in the ascending order of when reactions are added. If the pagination parameters are not specified, the server returns the first 50 users that added the reaction.</div>
 

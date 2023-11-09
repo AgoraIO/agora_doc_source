@@ -40,7 +40,7 @@ The authentication token of the user or administrator, in the format of `Bearer 
 
 ## Creating a thread
 
-Creates a thread.
+Creates a thread. An app can have up to 100,000 threads by default. To increase the limit, contact [support@agora.io](mailto:support@agora.io).
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
