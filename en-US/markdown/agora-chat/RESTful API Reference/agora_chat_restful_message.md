@@ -134,7 +134,7 @@ The request body is a JSON object, which contains the following parameters:
   | Parameter | Type | Description | Required |
   | --- | --- | --- | --- |
   | `filename` | String | The name of the video file. | Yes |
-  | `thumbnail` | String | The URL address of the video thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | No |
+  | `thumb` | String | The URL address of the video thumbnail, in the format of `https://{host}/{org_name}/{app_name}/chatfiles/{file_uuid}`, in which `file_uuid` can be obtained from the response body of `upload` after you upload the file to the server. | No |
   | `length` | Int | The length of the video file (in seconds). | No |
   | `secret` | String | The secret for accessing the video file. You can obtain the value of `secret` from the `share-secret` parameter in the response body of the [upload](#upload) method. If you set `restrict-access` as `true` in the request header of `upload` when uploading the video file, ensure that you set this parameter. | No |
   | `file_length` | Long | The data length of the video file (in bytes). | No |
