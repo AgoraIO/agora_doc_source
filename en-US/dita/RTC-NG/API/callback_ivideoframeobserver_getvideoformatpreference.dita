@@ -29,32 +29,18 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>If you want to get raw video data in a color encoding format other than YUV 420, register this callback when calling <xref keyref="registerVideoFrameObserver"/>. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
-            <note type="note" props="hide">If you want the video captured by the sender to be the original format, set the original video data format to <apiname keyref="VIDEO_PIXEL_DEFAULT"/> in the return value. The original video pixel format varies based on different platforms. For the actual video pixel format, see <xref keyref="VideoFrame"/>.</note> </section>
+            <p>You need to register the callback when calling the <xref keyref="registerVideoFrameObserver"/> method. After you successfully register the video frame observer, the SDK triggers this callback each time it receives a video frame. You need to set your preferred video data in the return value of this callback.</p>
+        </section>
         <section id="return_values">
             <title>Returns</title>
-            <p><ph>Sets the video format. </ph><ph props="cpp unreal bp ios mac unity">See <xref keyref="VIDEO_PIXEL_FORMAT" props="cpp unreal bp ios mac"/><xref keyref="VIDEO_OBSERVER_FRAME_TYPE" props="unity"/></ph>.</p>  
+            <p><xref keyref="VIDEO_PIXEL_FORMAT"/><ph>Sets the video format. </ph>See .<ph props="cpp bp unreal apple"></ph></p>
+            <p>在默认情况下，原始视频像素格式 (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) 存在以下类型：
+                <ul><li props="cpp bp unreal">在 Android 平台上，默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。 自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。 你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。</li>
+                <li props="android">默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。 自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。 你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。</li>
+                <li props="cpp unreal bp">在 iOS 和 macOS 平台上，默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
+                <li props="apple">默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
+                <li props="cpp unreal bp">在 Windows 平台上，默认为 YUV420。</li></ul></p>
             <p props="android">
-            <note id="default" props="hide">
-                    <p>According to different observation locations and collection scenarios, the actual video pixel format corresponding to this enumeration value is different. Agora recommends that you do not use this value. Some common situations are listed below.</p>
-                    <ul>
-                        <li>When the observation position is <apiname keyref="POSITION_POST_CAPTURER"/>, common scenarios are as follows:<ul>
-                            <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
-                            <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
-                            <li props="mac cpp unreal bp">Only video with pixel format I420 is supported.</li>
-                            </ul></li>
-                        <li>When the observation position is <apiname keyref="POSITION_PRE_ENCODER"/>, common scenarios are as follows:<ul>
-                            <li props="ios">Only video with pixel format CVPixelBufferRef is supported.</li>
-                            <li props="android">When the user collects video data in YUV format, or the resolution of the captured video is less than 256 × 256, the supported video pixel format is I420; in other cases, the Texture format is supported.</li>
-                            <li props="mac cpp unreal bp">Only video with pixel format I420 is supported.</li>
-                            </ul></li>
-                        <li>When the observation position is <apiname keyref="POSITION_PRE_RENDERER"/>, common scenarios are as follows:<ul>
-                            <li props="ios mac">Video with pixel format CVPixelBufferRef is supported by default.</li>
-                            <li props="android">Video with a pixel format of Texture is supported by default.</li>
-                            <li props="cpp unreal bp">Video with pixel format I420 is supported.</li>
-                            </ul></li>
-                    </ul>
-                </note>
             <ul>
             <li><ph keyref="VIDEO_PIXEL_DEFAULT"/>(0): Raw video.</li>
             <li><ph keyref="VIDEO_PIXEL_I420"/>(1): I420.</li>
