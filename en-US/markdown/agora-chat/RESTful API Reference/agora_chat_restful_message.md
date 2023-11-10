@@ -250,7 +250,7 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
    curl -X POST -i "https://XXXX/XXXX/XXXX/messages/users" \
    -H 'Content-Type: application/json' \
    -H 'Accept: application/json' \ 
-   -H "Authorization:Bearer <YourAppToken>" \
+   -H "Authorization:Bearer <YourToken>" \
    -d '{
      "from": "user1",
      "to": ["user2"],
@@ -512,6 +512,23 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
     # Replace {YourToken} with the app token generated on your server
     curl -X POST -i "https://XXXX/XXXX/XXXX/messages/chatgroups" -H 'Content-Type: application/json' -H 'Accept: application/json'  -H "Authorization:Bearer {YourToken}" -d '{"from": "user1","to": ["184524748161025"],"type": "cmd","body":{"action":"action1"}}'
     ```
+- Send a Custom message
+
+   ```shell
+   # Replace {YourToken} with the app token generated on your server
+   curl -X POST -i "https://XXXX/XXXX/XXXX/messages/chatgroups" \
+   -H 'Content-Type: application/json' \
+   -H 'Accept: application/json'  \
+   -H "Authorization:Bearer <YourToken>" \
+   -d '{
+       "from": "user1",
+       "to": ["184524748161025"],
+       "type": "custom",
+       "body": {
+           "customEvent": "custom_event"
+       }
+   }'
+   ```  
 
 ##### Response example
 
@@ -698,7 +715,7 @@ The other parameters and descriptions are the same with those of [Sending a one-
 
 #### HTTP response
 
-##### Reponse body
+##### Response body
 
 If the returned HTTP status code is `200`, the request succeeds, and the response body contains the following parameters:
 
@@ -769,6 +786,33 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
     # Replace {YourToken} with the app token generated on your server
     curl -X POST -i "https://XXXX/XXXX/XXXX/messages/chatrooms" -H 'Content-Type: application/json' -H 'Accept: application/json'  -H "Authorization:Bearer {YourToken}" -d '{"from": "user1","to": ["185145305923585"],"type": "cmd","body":{"action":"action1"}}'
     ```
+
+ - Send a custom message
+
+   ```shell
+   # Replace {YourToken} with the app token generated on your server
+   curl -X POST -i "https://XXXX/XXXX/XXXX/messages/chatrooms" \
+   -H 'Content-Type: application/json' \
+   -H 'Accept: application/json' \
+   -H "Authorization:Bearer <YourToken>" \
+   -d '{
+     "from": "user1",
+     "to": ["185145305923585"],
+     "type": "custom",
+     "body": {
+       "customEvent": "custom_event"
+     }
+   }'
+   ```
+
+
+
+
+
+
+
+
+
 
 ##### Response example
 
