@@ -287,7 +287,6 @@ Retrieves the detailed information of one or more specified chat rooms.
 ### HTTP request
 
 ```json
-# Replace <YourAppToken> with the app token generated in your server.
 GET https://{host}/{org_name}/{app_name}/chatrooms/{chatroom_id}
 ```
 
