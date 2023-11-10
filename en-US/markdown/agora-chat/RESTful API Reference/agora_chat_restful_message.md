@@ -169,8 +169,6 @@ The request body is a JSON object, which contains the following parameters:
   | --- | --- | --- | --- |
   | `customEvent` | String | The event type customized by the user. The value of this parameter should be a regular expression, for example, `[a-zA-Z0-9-_/\.]{1,32}`. | No |
   | `customExts` | JSON | The event attribute customized by the user. The data type is `Map<String,String>`. You can set a maximum of 16 elements. | No |
-  | `from`       | String | The username of the message sender. If you do not set this field, the Chat server takes the `admin` as the sender. If you set it as the empty string "", this request fails. | No |
-  | `ext` | JSON | The extension property, which supports customized settings of the app. Do not set it as `ext:null`. | No |
 
 #### HTTP response
 
@@ -245,6 +243,24 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
     # Replace {YourToken} with the app token generated on your server
     curl -X POST -i "https://XXXX/XXXX/XXXX/messages/users" -H 'Content-Type: application/json' -H 'Accept: application/json'  -H "Authorization:Bearer {YourToken}" -d '{"from": "user1","to": ["user2"],"type": "cmd","body":{"action":"action1"}}'
     ```
+ - Send a custom message
+
+   ```shell
+   # Replace {YourToken} with the app token generated on your server
+   curl -X POST -i "https://XXXX/XXXX/XXXX/messages/users" \
+   -H 'Content-Type: application/json' \
+   -H 'Accept: application/json' \ 
+   -H "Authorization:Bearer <YourAppToken>" \
+   -d '{
+     "from": "user1",
+     "to": ["user2"],
+     "type": "custom",
+     "body": {
+       "customEvent": "custom_event"
+     }
+   }'
+   ```
+
 
 ##### Response example
 
