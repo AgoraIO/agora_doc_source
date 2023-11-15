@@ -1,3 +1,20 @@
+## Known issues and limitations
+
+**AirPods Pro Bluetooth connection issue**
+
+AirPods Pro does not support A2DP protocol in communication audio mode, which may lead to connection failure in that mode.
+
+## v4.2.6
+
+v4.2.6 was released on November xx, 2023.
+
+#### Issues fixed
+
+
+This version fixed the following issues:
+
+- When using an iOS 16 or later device with Bluetooth headphones connected before joining the channel, the audio routing after joining the channel was not as expected: audio was played from the speaker, not the Bluetooth headphones. 
+- In specific scenarios (such as when the network packet loss rate was high or when the broadcaster left the channel without destroying the engine and then re-joined the channel), the video on the receiving end stuttered or froze.
 
 ## v4.2.3
 
