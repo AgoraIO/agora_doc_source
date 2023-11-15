@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_addaudiorawdataobserver">
+    <title><ph keyref="addAudioRawDataObserver"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Registers an FcrAudioRawDataObserver.</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="addAudioRawDataObserver"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-kotlin">abstract fun addAudioRawDataObserver(
+        observer: FcrMediaRawDataObserver,
+        config: FcrAudioRawDataConfig? = FcrAudioRawDataConfig()
+)</codeblock>
+            <codeblock props="ios mac" outputclass="language-swift">FcrError addAudioRawDataObserver(FcrAudioRawDataObserver observer,
+                                 FcrAudioRawDataPosition position)</codeblock>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="web" outputclass="language-typescript"/> </p>
+        </section>
+        <section id="detailed_desc">This method can only be called before the user joins the channel. To add more observers, call this API multiple times.</section>
+        <section id="parameters">
+            <title>Parameter</title>
+            <parml>
+            <plentry>
+                <pt>observer</pt>
+                <pd>The audio raw data observer: <xref keyref="FcrAudioRawDataObserver"/>.</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt>position</pt>
+                <pd>The output position of the audio pipeline: <xref keyref="FcrAudioRawDataPosition"/>。</pd>
+            </plentry>
+            <plentry>
+                <pt>config</pt>
+                <pd>The output configuration of the audio pipeline: <xref keyref="FcrAudioRawDataConfig"/>。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

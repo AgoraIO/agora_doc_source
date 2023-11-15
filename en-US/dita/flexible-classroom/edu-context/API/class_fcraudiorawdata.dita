@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_FcrAudioRawData">
+    <title><ph keyref="FcrAudioRawData"/></title>
+    <shortdesc id="short"><ph id="shortdesc">The raw audio data.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-kotlin">public class FcrAudioRawData {
+    public int samplesPerChannel;
+    public int bytesPerSample;
+    public int channels;
+    public int sampleRate;
+    public ByteBuffer buffer;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-swift"/>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="web" outputclass="language-typescript"/> </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>samplesPerChannel</pt>
+                <pd>The number of samples per channel.</pd>
+            </plentry>
+            <plentry>
+                <pt>bytesPerSample</pt>
+                <pd>The number of bytes per sample.</pd>
+            </plentry>
+            <plentry>
+                <pt>channels</pt>
+                <pd>The number of channels.</pd>
+            </plentry>
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd>The sample rate.</pd>
+            </plentry>
+            <plentry>
+                <pt>buffer</pt>
+                <pd>Pointer to the audio data. The length of the buffer (in bytes) = (samplesPerChannel * channels * bytesPerSample).</pd>
+            </plentry>
+            <plentry props="ios">
+                <pt>timestamp</pt>
+                <pd>The timestamp (ms).</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>

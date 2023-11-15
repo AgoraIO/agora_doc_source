@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="class_audiorawdataconfig">
+    <title><ph keyref="FcrAudioRawDataConfig"/></title>
+    <shortdesc id="short"><ph id="shortdesc">Configuration of the audio data.</ph></shortdesc>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-kotlin">public class FcrAudioRawDataConfig {
+    public int sampleRate = 48000;
+    public int samplesPerChannel = 1024;
+    public int channels = 1;
+    public int mode = 0;
+    public int position = 2;
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-swift"/>
+            <codeblock props="windows" outputclass="language-cpp"/>
+            <codeblock props="web" outputclass="language-typescript"/> </p>
+        </section>
+        <section id="parameters">
+            <title><text conref="../conref/conref_api_metadata.dita#metadata/property"/></title>
+            <parml>
+            <plentry>
+                <pt>sampleRate</pt>
+                <pd>The sample rate of the audio data. You can set it as 8000, 16000, 32000, 44100 or 48000. The default value is 48000.</pd>
+            </plentry>
+            <plentry>
+                <pt>samplesPerChannel</pt>
+                <pd>The number of samples per channel of the audio data. The default value is 1024.</pd>
+            </plentry>
+            <plentry>
+                <pt>channels</pt>
+                <pd>The number of channels. The default value is 1.</pd>
+            </plentry>
+            <plentry>
+                <pt>mode</pt>
+                <pd props="ios">The operation mode to the audio data: <xref keyref="FcrMediaRawDataOperationMode"/>. </pd>
+                <pd props="android">The operation mode to the audio data. Only <codeph>Constants.RAW_AUDIO_FRAME_OP_MODE_READ_ONLY</codeph> is supported.</pd>
+            </plentry>
+            <plentry props="android">
+                <pt>position</pt>
+                <pd>The position of the audio data in the pipeline, for example, after recording or before playout. You can set it as <codeph>IAudioFrameObserver.POSITION_RECORD</codeph>。</pd>
+            </plentry>
+            </parml> </section>
+    </refbody>
+</reference>
