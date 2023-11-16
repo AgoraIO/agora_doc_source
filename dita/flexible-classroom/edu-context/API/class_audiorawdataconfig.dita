@@ -39,7 +39,13 @@
             </plentry>
             <plentry props="android">
                 <pt>position</pt>
-                <pd>音频数据在管道中的位置，比如录制后、播放前等，可设为 <codeph>IAudioFrameObserver.POSITION_RECORD</codeph>。</pd>
+                <pd>音频数据在管道中的位置，比如录制后、播放前等，可设为
+                    <ul>
+                        <li><codeph>IAudioFrameObserver.POSITION_RECORD</codeph>：录制后。</li>
+                        <li><codeph>IAudioFrameObserver.POSITION_BEFORE_MIXING</codeph>：多条音频流混合成一路即将播放的音频流前。</li>
+                        <li><codeph>IAudioFrameObserver.POSITION_MIXED</codeph>：所有远端与本地音频流都混合成一路音频流后。</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>

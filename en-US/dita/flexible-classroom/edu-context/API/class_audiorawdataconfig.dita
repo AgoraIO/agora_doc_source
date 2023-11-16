@@ -39,7 +39,13 @@
             </plentry>
             <plentry props="android">
                 <pt>position</pt>
-                <pd>The position of the audio data in the pipeline, for example, after recording or before playout. You can set it as <codeph>IAudioFrameObserver.POSITION_RECORD</codeph>。</pd>
+                <pd>The position of the audio data in the pipeline, for example, after recording or before playout. You can set it as follows:
+                    <ul>
+                        <li><codeph>IAudioFrameObserver.POSITION_RECORD</codeph>: After recording.</li>
+                        <li><codeph>IAudioFrameObserver.POSITION_BEFORE_MIXING</codeph>: Before audio data from multiple audio streams is mixed for playback.</li>
+                        <li><codeph>IAudioFrameObserver.POSITION_MIXED</codeph>: After remote audio and local audio is mixed.</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
     </refbody>
