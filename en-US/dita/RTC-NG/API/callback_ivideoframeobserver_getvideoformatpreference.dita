@@ -33,13 +33,12 @@
         </section>
         <section id="return_values">
             <title>Returns</title>
-            <p><xref keyref="VIDEO_PIXEL_FORMAT"/><ph>Sets the video format. </ph>See .<ph props="cpp bp unreal apple"></ph></p>
-            <p>在默认情况下，原始视频像素格式 (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) 存在以下类型：
-                <ul><li props="cpp bp unreal">在 Android 平台上，默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。 自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。 你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。</li>
-                <li props="android">默认的视频帧类型可能为 I420Buffer 或 TextureBuffer。 自 v4.2.3 起，TextureBuffer 类型的纹理格式不再包括 OES 格式，仅为 RGB 格式。 你需要在处理视频数据时增加对 I420、RGB 纹理格式的适配。</li>
-                <li props="cpp unreal bp">在 iOS 和 macOS 平台上，默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
-                <li props="apple">默认的视频帧类型可能为 I420 或 CVPixelBufferRef。</li>
-                <li props="cpp unreal bp">在 Windows 平台上，默认为 YUV420。</li></ul></p>
+            <p><ph>Sets the raw data format of the SDK output. </ph><ph props="cpp bp unreal apple">See <xref keyref="VIDEO_PIXEL_FORMAT"/>.</ph></p>
+            <p>The default types of pixel format (<ph keyref="VIDEO_PIXEL_DEFAULT"/>) for the raw video are as follows:<ul><li props="cpp bp unreal">On the Android platform, the default video frame type may be I420Buffer or TextureBuffer. As of v4.2.3, the texture formats of TextureBuffer type no longer include OES format, only RGB format is available. You need to add support for I420 and RGB texture formats when processing video data.</li>
+                <li props="android">The default video frame type may be I420Buffer or TextureBuffer. As of v4.2.3, the texture formats of TextureBuffer type no longer include OES format, only RGB format is available. You need to add support for I420 and RGB texture formats when processing video data.</li>
+                <li props="cpp unreal bp">On iOS and macOS platforms, the default video frame type may be I420 or CVPixelBufferRef.</li>
+                <li props="apple">The default video frame type may be I420 or CVPixelBufferRef.</li>
+                <li props="cpp unreal bp">On Windows platforms, the default video frame type is YUV420.</li></ul></p>
             <p props="android">
             <ul>
             <li><ph keyref="VIDEO_PIXEL_DEFAULT"/>(0): Raw video.</li>
