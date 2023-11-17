@@ -35,7 +35,7 @@
             <p props="native unreal bp unity electron rn cs">Once the pre-processing is complete, you can directly modify <parmname>videoFrame</parmname> in this callback, and set the return value to <codeph><ph keyref="true"/></codeph> to send the modified video data to the SDK.</p>
             <note type="attention" id="note">
             <ul>
-            <li>此处获取的视频数据未经过水印、裁剪和旋转等前处理。</li>
+            <li>The video data that this callback gets has not been pre-processed such as watermarking, cropping, and rotating.</li>
             <li>If the video data type you get is RGBA, the SDK does not support processing the data of the alpha channel.</li>
             <li props="flutter">Due to the limitations of Flutter, this callback does not support sending processed video data back to the SDK.</li>
         </ul></note> </section>
@@ -49,10 +49,10 @@
             <plentry id="videoframe">
                 <pt>videoFrame</pt>
                 <pd>The video frame. See <xref keyref="VideoFrame"/>.<note>The default value of the video frame data format obtained through this callback is as follows:<ul>
-                        <li props="android cpp unreal bp rn unity flutter">Android：I420 或 RGB (GLES20.GL_TEXTURE_2D)</li>
-                        <li props="ios cpp unreal bp rn unity flutter">iOS：I420 或 CVPixelBufferRef</li>
-                        <li props="mac cpp unreal bp electron unity flutter">macOS：I420 或 CVPixelBufferRef</li>
-                        <li props="cpp unreal bp electron unity flutter cs">Windows：YUV420</li></ul></note></pd>
+                        <li props="android cpp unreal bp rn unity flutter">Android: I420 or RGB (GLES20.GL_TEXTURE_2D)</li>
+                        <li props="ios cpp unreal bp rn unity flutter">iOS: I420 or CVPixelBufferRef</li>
+                        <li props="mac cpp unreal bp electron unity flutter">macOS: I420 or CVPixelBufferRef</li>
+                        <li props="cpp unreal bp electron unity flutter cs">Windows: YUV420</li></ul></note></pd>
             </plentry>
             </parml> </section>
         <section id="return_values" props="native unreal bp unity electron rn cs">
