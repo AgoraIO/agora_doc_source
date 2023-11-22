@@ -14,8 +14,8 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onMusicChartsResult(String requestId, MusicChartInfo[] list, int statusCode);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicChartsResult:(NSString *)requestId result:(NSArray&lt;AgoraMusicChartInfo*> *)result errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onMusicChartsResult(const char* requestId, agora_refptr&lt;MusicChartCollection> result, MusicContentCenterStatusCode errorCode) = 0;</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicChartsResult:(NSString *)requestId result:(NSArray&lt;AgoraMusicChartInfo*> *)result statusCode:(AgoraMusicContentCenterStatusCode)statusCode;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onMusicChartsResult(const char* requestId, agora_refptr&lt;MusicChartCollection> result, MusicContentCenterStatusCode status) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onMusicChartsResult?(
     requestId: string,
     result: MusicChartInfo[],
@@ -48,7 +48,8 @@
                 <pd>请求 ID。本次请求的唯一标识。</pd>
             </plentry>
             <plentry id="error">
-                <pt>errorCode</pt>
+                <pt props="android ios">statusCode</pt>
+                <pt props="cpp framework">status</pt>
                 <pd>
                     <p props="cpp apple framework">音乐内容中心的请求状态码，详见 <xref keyref="MusicContentCenterStatusCode"/>。</p>
                     <p props="android">音乐内容中心的请求状态码：
