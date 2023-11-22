@@ -13,7 +13,7 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onRhythmPlayerStateChanged(int state, int errorCode) {}</codeblock>
+            <codeblock props="android" outputclass="language-java">public void onRhythmPlayerStateChanged(int state, int reason) {}</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didRhythmPlayerStateChanged:(AgoraRhythmPlayerState)state
         errorCode:(AgoraRhythmPlayerError)errorCode NS_SWIFT_NAME(rtcEngine(_:didRhythmPlayerStateChanged:errorCode:));</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRhythmPlayerStateChanged(RHYTHM_PLAYER_STATE_TYPE state, RHYTHM_PLAYER_ERROR_TYPE errorCode) {
@@ -56,13 +56,10 @@
                     <li><ph keyref="RHYTHM_PLAYER_STATE_FAILED"/> (814): 开启虚拟节拍器失败。你可以通过报告的错误码 <parmname>errorCode</parmname> 排查错误原因，也可以重新尝试开启虚拟节拍器。</li>
                     </ul></pd>
             </plentry>
-            <plentry props="ios mac cpp framework">
+            <plentry>
                 <pt>errorCode</pt>
-                <pd>虚拟节拍器发生错误的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>。</pd>
-            </plentry>
-            <plentry props="android">
-                <pt>errorCode</pt>
-                <pd>虚拟节拍器发生错误的错误码和错误信息。
+                <pd props="ios mac cpp framework">虚拟节拍器发生错误的错误码和错误信息，详见 <xref keyref="RHYTHM_PLAYER_ERROR_TYPE"/>。</pd>
+                <pd props="android">虚拟节拍器发生错误的错误码和错误信息。
                     <ul>
                     <li><ph keyref="RHYTHM_PLAYER_ERROR_OK"/> (0): 正常播放节拍音频文件，没有错误。</li>
                     <li><ph keyref="RHYTHM_PLAYER_ERROR_FAILED"/> (1): 一般性错误，没有明确原因。</li>
