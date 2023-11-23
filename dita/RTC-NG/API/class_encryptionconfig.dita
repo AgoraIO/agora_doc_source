@@ -82,11 +82,11 @@ struct FEncryptionConfig
 	FString encryptionKdfSalt;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
-  
+
   encryptionMode?: EncryptionMode;
-  
+
   encryptionKey?: string;
-  
+
   encryptionKdfSalt?: number[];
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class EncryptionConfig
@@ -116,11 +116,11 @@ struct FEncryptionConfig
         }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class EncryptionConfig {
-  
+
   encryptionMode?: EncryptionMode;
-  
+
   encryptionKey?: string;
-  
+
   encryptionKdfSalt?: number[];
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
@@ -157,7 +157,8 @@ struct FEncryptionConfig
       <plentry>
         <pt>encryptionKdfSalt</pt>
         <pd>
-          <p><ph>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。</ph><ph props="native unreal bp">详见《媒体流加密》。</ph></p>
+          <p>盐，长度为 32 字节。建议你在服务端使用 OpenSSL 生成盐。</p>
+          <p props="native"><ph props="cn">如需在 App 中添加声网内置媒体流加密，详见<xref keyref="channel-encryption"/>。</ph></p>
           <note type="attention">只有在 <codeph><ph keyref="AES_128_GCM2" /></codeph> 或 <codeph><ph keyref="AES_256_GCM2" /></codeph> 加密模式下，该参数才生效。此时，需确保填入该参数的值不全为 <codeph>0</codeph>。</note>
         </pd>
       </plentry>
