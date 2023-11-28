@@ -9,7 +9,7 @@
             <parml>
             <plentry>
                 <pt><ph keyref="POSITION_POST_CAPTURER"/></pt>
-                <pd>1: 本地采集视频数据后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。</pd>
+                <pd>1: 本地采集视频数据并且经过前处理之后的位置，对应 <apiname keyref="onCaptureVideoFrame"/> 回调。此处观测到的视频具备视频前处理的效果，可通过开启美颜、虚拟背景或水印本地预览等方式验证。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="POSITION_PRE_RENDERER"/></pt>
@@ -17,7 +17,13 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="POSITION_PRE_ENCODER"/></pt>
-                <pd>4: 本地视频编码前的位置，对应 <apiname keyref="onPreEncodeVideoFrame"/> 回调。</pd>
+                <pd>4: 本地视频编码前的位置，对应 <apiname keyref="onPreEncodeVideoFrame"/> 回调。此处观测到的视频具备视频前处理和编码前处理的效果：<ul>
+                    <li>对于视频前处理效果，可通过开启美颜、虚拟背景或水印本地预览等方式验证。</li>
+                    <li>对于编码前处理效果，可通过设置一个较低的帧率（例如 5 fps）验证。</li></ul></pd>
+            </plentry>
+            <plentry>
+                <pt><ph keyref="POSITION_POST_CAPTURER_ORIGIN"/></pt>
+                <pd>8: 本地采集视频视频之后、前处理之前的位置。此处观测到的视频不具备前处理的效果，可通过开启美颜、虚拟背景或设置水印等方式验证。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="POSITION_POST_CAPTURER_ORIGIN"/></pt>
