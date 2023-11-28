@@ -6,6 +6,11 @@
     <refbody>
         <section id="parameters">
             <title>枚举值</title>
+            <note>默认的视频编码格式根据视频流的不同有以下区别：
+                <ul>
+                <li>对于摄像头采集的视频流，默认格式为 <ph keyref="VIDEO_CODEC_H265"/>。</li>
+                <li>对于屏幕采集的视频流，默认格式为 <ph keyref="VIDEO_CODEC_H264"/>。</li>
+                </ul></note>
             <parml>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_VP8"/></pt>
@@ -13,11 +18,12 @@
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_H264"/></pt>
-                <pd>2：（默认值）标准 H.264。</pd>
+                <pd>2：标准 H.264。</pd>
             </plentry>
             <plentry>
                 <pt><ph keyref="VIDEO_CODEC_H265"/></pt>
                 <pd>3：标准 H.265。</pd>
+                    <pd/>
             </plentry>
             <plentry props="cpp unreal bp unity flutter electron cs">
                 <pt><ph keyref="VIDEO_CODEC_GENERIC"/></pt>
