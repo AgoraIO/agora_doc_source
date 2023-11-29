@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengineeventhandler_ontranscodedstreamlayoutinfo">
+    <title><ph keyref="onTranscodedStreamLayoutInfo"/></title>
+    <shortdesc id="short"><ph id="shortdesc">已接收携带布局信息的合图视频流回调。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="onTranscodedStreamLayoutInfo"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public void onTranscodedStreamLayoutInfo(int uid, VideoLayoutInfo info) {}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine didTranscodedStreamLayoutInfoUpdatedWithUserId:(NSUInteger)uid videoLayoutInfo:(AgoraVideoLayoutInfo* _Nonnull)videoLayoutInfo NS_SWIFT_NAME(rtcEngine(_:didTranscodedStreamLayoutInfoUpdatedWithUserId:videoLayoutInfo:));</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onTranscodedStreamLayoutInfo(uid_t uid, int width, int height, int layoutCount,const VideoLayout* layoutlist) {
+    (void)uid;
+    (void)width;
+    (void)height;
+    (void)layoutCount;
+    (void)layoutlist;
+  }</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.3.0</dd>
+            </dlentry>
+            </dl>
+            <p>当本地接收到合图视频流、且该视频流携带布局信息时触发该回调，报告合图视频流的布局信息。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+                <plentry conkeyref="onJoinChannelSuccess/engine" props="apple">
+                    <pt/>
+                    <pd/>
+                </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>发布合图视频流的用户 ID。</pd>
+            </plentry>
+                <plentry props="cpp">
+                    <pt>width</pt>
+                    <pd>合图视频流的宽度 (px)。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>height</pt>
+                    <pd>合图视频流的高度 (px)。</pd>
+                </plentry>
+                <plentry props="cpp">
+                    <pt>layoutCount</pt>
+                    <pd>合图视频流中布局信息的数量。</pd>
+                </plentry>
+                <plentry>
+                    <pt props="android">info</pt>
+                    <pt props="apple">videoLayoutInfo</pt>
+                    <pt props="cpp">layoutlist</pt>
+                    <pd>合图视频流的详细布局信息。详见 <xref keyref="VideoLayout"/>。</pd>
+                </plentry>
+            </parml> </section>
+        </refbody>
+</reference>

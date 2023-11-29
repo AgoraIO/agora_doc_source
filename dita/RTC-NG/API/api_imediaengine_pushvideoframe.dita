@@ -40,7 +40,7 @@
             <p id="desc1"> <ph props="android ios mac">调用 <xref keyref="setExternalVideoSource"/> 方法，设置 <parmname>enabled</parmname> 参数为 <codeph><ph keyref="true"/></codeph>、<parmname>encodedFrame</parmname> 参数为 <codeph><ph keyref="false"/></codeph> 后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</ph> <ph props="unity cpp unreal bp flutter rn electron cs">调用 <xref keyref="createCustomVideoTrack"/> 方法获得视频轨道 ID，在每个频道的 <xref keyref="ChannelMediaOptions"/> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>后，你可以调用本方法将未编码的外部视频帧推送到 SDK。</ph></p>
             <p props="android">调用该方法或 <xref keyref="pushVideoFrame2"/> 均能将视频帧数据传递给SDK。区别为 <apiname keyref="pushVideoFrame"/> 方法不支持 texture 格式的视频数据。</p>
         </section>
-        <section props="cpp">
+        <section props="cpp" id="scenario">
             <title>适用场景</title>
             <p>SDK 自 v4.2.3 起支持 ID3D11Texture2D 类型的视频格式，该类型在游戏场景下应用较为广泛。当你需要将该类型的视频帧推送的 SDK 时，需要调用该方法，并设置 <parmname>frame</parmname> 中的 <parmname>format</parmname> 为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>、设置 <parmname>d3d11_texture_2d</parmname> 和 <parmname>texture_slice_index</parmname> 成员，将视频帧的格式设置为 ID3D11Texture2D。</p>
         </section>

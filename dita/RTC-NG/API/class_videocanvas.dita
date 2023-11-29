@@ -225,40 +225,48 @@ class VideoCanvas {
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
             <parml>
             <plentry>
-                <pt>view</pt>
-                <pd props="native flutter unity cs electron rn">视频显示窗口。</pd>
-                <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下：
-                
-                    <codeblock props="reserve" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
-    UImage* LocalVideo;
-    videoCanvas.view = LocalVideo;</codeblock></pd>
-            </plentry>
-            <plentry props="native flutter unity cs electron rn">
-                <pt>renderMode</pt>
-                <pd props="ios mac cpp unity electron rn flutter cs">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
-                <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
-            </plentry>
-            <plentry props="native flutter unity cs electron rn">
-                <pt>mirrorMode</pt>
-                <pd>
-                    <p props="ios mac cpp unity electron rn flutter cs">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                    <p props="android">
-                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
-                    <li/>
-                    </ul> </p>
-                    <note type="attention">
-                    <ul>
-                    <li>本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</li>
-                    <li>远端用户视图镜像模式：默认关闭远端用户的镜像模式。</li>
-                    </ul> </note> </pd>
-            </plentry>
-            <plentry>
                 <pt>uid</pt>
-                <pd>用户 ID。</pd>
+                <pd>发布视频源的用户 ID。当视频源为合图视频流 (<ph keyref="VIDEO_SOURCE_TRANSCODED"/>) 时，该参数表示发布合图视频流的用户 ID。</pd>
             </plentry>
                 <plentry>
                     <pt>subviewUid</pt>
-                    <pd/>
+                    <pd>合图视频流中某一路子视频流的用户 ID。</pd>
+                </plentry>
+                <plentry>
+                    <pt>view</pt>
+                    <pd props="native flutter unity cs electron rn">视频显示窗口。</pd>
+                    <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下： 
+                        <codeblock props="reserve" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
+    UImage* LocalVideo;
+    videoCanvas.view = LocalVideo;</codeblock></pd>
+                </plentry>
+                <plentry props="native flutter unity cs electron rn">
+                    <pt>renderMode</pt>
+                    <pd props="ios mac cpp unity electron rn flutter cs">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                    <pd props="android">
+                        <ul conkeyref="setLocalRenderMode2/rendermodetype">
+                            <li/>
+                        </ul>
+                    </pd>
+                </plentry>
+                <plentry props="native flutter unity cs electron rn">
+                    <pt>mirrorMode</pt>
+                    <pd>
+                        <p props="ios mac cpp unity electron rn flutter cs"
+                            >视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                        <p props="android">
+                            <ul
+                                conkeyref="setLocalRenderMode2/videomirrormodetype">
+                                <li/>
+                            </ul>
+                        </p>
+                        <note type="attention">
+                            <ul>
+                                <li>本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</li>
+                                <li>远端用户视图镜像模式：默认关闭远端用户的镜像模式。</li>
+                            </ul>
+                        </note>
+                    </pd>
                 </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
