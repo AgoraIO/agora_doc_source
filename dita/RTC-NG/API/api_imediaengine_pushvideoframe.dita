@@ -41,10 +41,10 @@
             <li>调用 <xref keyref="createCustomVideoTrack"/> 方法获得视频轨道 ID。</li>
             <li>加入频道时，在每个频道的 <xref keyref="ChannelMediaOptions"/> 中，将 <parmname>customVideoTrackId</parmname> 参数设置为你想要发布的视频轨道 ID，并将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="true"/></codeph>。</li>
             <li>调用本方法将未编码的外部视频帧推送到 SDK。</li></ol></p>
-            <p id="desc2">调用该方法后，即使停止向视频轨道推送外部视频数据，自定义采集的视频仍会计量计费。为取消分辨率上报、避免此类视频计费，建议你采取以下方法之一：<ul>
+            <note type="danger" id="desc2">调用该方法后，即使你停止推送外部视频帧到 SDK，自定义采集的视频流仍然会被计入视频时长用量并产生费用，声网建议你根据实际情况采取相应措施避免此类视频计费：<ul>
             <li>如果你不再需要采集外部视频数据，可以调用 <xref keyref="destroyCustomVideoTrack"/> 销毁自定义采集的视频轨道。</li>
-            <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流或调用 <xref keyref="updateChannelMediaOptions"/> 将 <parmname>publishCustomVideoTrack</parmname> 和 <parmname>publishEncodedVideoTrack</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
-            </ul></p>
+            <li>如果你只想将采集到的外部视频数据用于本地预览、而不在频道内发布，可以调用 <xref keyref="muteLocalVideoStream"/> 取消发送视频流，或调用 <xref keyref="updateChannelMediaOptions"/> 将 <parmname>publishCustomVideoTrack</parmname> 设置为 <codeph><ph keyref="false"/></codeph>。</li>
+            </ul></note>
             <p props="android">调用该方法或 <xref keyref="pushVideoFrameEx2"/> 均能将视频帧数据传递给 SDK。区别为 <apiname keyref="pushVideoFrame"/> 方法不支持 texture 格式的视频数据。</p>
         </section>
         <section props="cpp">
@@ -74,8 +74,8 @@
             <li>&lt; 0：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul>
             <ul props="apple">
-            <li><codeph><ph keyref="true"/></codeph>：调用成功。</li>
-            <li><codeph><ph keyref="false"/></codeph>：调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
+            <li><codeph><ph keyref="true"/></codeph>：方法调用成功。</li>
+            <li><codeph><ph keyref="false"/></codeph>：方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>
 </reference>
