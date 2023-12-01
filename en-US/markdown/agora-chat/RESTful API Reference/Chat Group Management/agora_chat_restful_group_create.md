@@ -77,7 +77,7 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 | `invite_need_confirm` | Boolean | Whether the invitee needs to confirm the received group invitation before joining the group:<ul><li>`true`: Yes. </li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> | No|
 | `owner` | String | The chat group owner. | Yes |
-| `members` | Array | The array of user IDs of regular chat group members and admins, excluding the group owner. The number of user IDs in the array cannot exceed the value of `maxusers`. | No |
+| `members` | Array | The array of user IDs of chat group members, excluding the group owner. The number of user IDs in the array cannot exceed the value of `maxusers`. | No |
 | `custom` | String | The extension information of the chat group. The extension information cannot exceed 1024 characters. | No |
 
 ### HTTP response
