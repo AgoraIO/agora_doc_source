@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_setupaudioattributes">
+    <title><ph keyref="setupAudioAttributes"/></title>
+    <shortdesc id="short"><ph id="shortdesc">设置音频流播放属性。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="setupAudioAttributes"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+                <codeblock props="android" outputclass="language-java">public abstract int setupAudioAttributes(AudioAttributes attr);</codeblock>
+                <codeblock props="ios mac" outputclass="language-objectivec"/>
+                <codeblock props="cpp unreal" outputclass="language-cpp"/>
+                <codeblock props="bp" outputclass="language-cpp"/>
+                <codeblock props="electron" outputclass="language-typescript"/>
+                <codeblock props="unity cs" outputclass="language-csharp"/>
+                <codeblock props="rn" outputclass="language-typescript"/>
+                <codeblock props="flutter" outputclass="language-dart"/>
+            </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+                <dlentry props="native">
+                    <dt>自从</dt>
+                    <dd>v4.3.0</dd>
+                </dlentry>
+            </dl>
+            <p>Android 原生的 <xref keyref="attribute-link"/> 类用于控制音频流的播放属性。你可以通过调用该方法，直接设置 <apiname keyref="attribute-link"/> 类中的各项参数，从而灵活控制音频流的播放效果。</p>
+            <note>
+                <ul>
+                    <li>该方法主要应用于 Android 车机系统。</li>
+                    <li>该方法需要在加入频道前调用。</li>
+                </ul>
+            </note>
+        </section>
+        <section id="scenario">
+            <title>适用场景</title>
+            <p>在汽车处于哨兵模式场景下，当车主通过 App 监控到汽车周围有异常情况时，可直接发起语音喊话。此时可以通过调用该方法将音频路由设置为车外喇叭，将远程喊话通过车外喇叭播放。</p>
+        </section>
+        <section id="parameters">
+            <title>参数</title>
+            <parml>
+                <plentry>
+                    <pt>attr</pt>
+                    <pd>音频播放属性。详见 <xref keyref="attribute-link"/>。</pd>
+                </plentry>
+            </parml>
+        </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <ul>
+                <li props="native electron unity rn">0: 方法调用成功。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+            </ul>
+        </section>
+    </refbody>
+</reference>
