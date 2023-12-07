@@ -41,6 +41,7 @@
             <ul>
             <li props="native unreal bp electron flutter unity cs">请在调用 <xref keyref="setupLocalVideo" /> 方法初始化本地视图后，调用该方法。</li>
             <li>你可以在通话中多次调用该方法，多次更新本地用户视图的显示模式。</li>
+            <li props="cpp bp unreal apple electron unity cs flutter">该方法仅对第一个摄像头 <codeph>(<ph keyref="PRIMARY_CAMERA_SOURCE"/>)</codeph> 生效。在自定义视频采集或使用其他类型视频源的场景下，你需要使用 <xref keyref="setupLocalVideo"/> 方法替代该方法。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>参数</title>
@@ -77,8 +78,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: 方法调用成功。</li>
             <li> &lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></li>
             </ul> </section>
     </refbody>
