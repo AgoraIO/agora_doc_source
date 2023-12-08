@@ -2,9 +2,16 @@ Chat groups are features that enable instant messaging among multiple chat users
 
 ## Chat group types
 
-Agora Chat has two types of chat group: 
-- Public. Public chat groups can be searched, and, depending on the settings of the group, users can join a public chat group directly or with the approval of the group owner or admin.
-- Private. Private chat groups cannot be searched, and users cannot join private groups unless they are invited by a group owner or admin.
+- Groups can be divided into public groups and private groups according to the public accessibility.
+
+| Group type | Join method  | Retrieval of group information       |
+| :------- | :---------- | :---------- |  
+| Public group   | Any users can apply to join a group or be invited by the group owner or an admin to join. Whether the join requests need to be approved by the group owner or admins depends on the group setting, for example, `GroupStyle` for Android.  | <ul><li>The specifications of a group and the list of public groups are accessible to the public. </li><li>The group announcement, the list of group shared files, and the group member list are only accessible to users that have joined the group.</li></ul>|
+| Private group   | Users can only be invited to join a group. Whether regular group members, besides the group owner and admins, can invite a user to join the group depends on the group setting, for example, `GroupStyle` for Android.| The group specifications, group announcement, the list of group shared files, and the group member list are only accessible to users that have joined the group.  | 
+
+- Groups can be classified into common groups and large groups by size.
+  - Common group: A group can contain a maximum of 3000 members.
+  - Large group: A group contains more than 3000 members. This type of group does not support offline push. To create a large group, contact [support@agoro.io](mailto:support@agoro.io).
 
 ## Chat group roles and privileges
 
