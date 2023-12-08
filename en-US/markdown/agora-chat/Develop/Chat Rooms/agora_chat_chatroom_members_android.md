@@ -12,11 +12,9 @@ The Chat SDK provides the `ChatManager` and `ChatRoom` classes for chat room man
 - Retrieve the member list of a chat room
 - Manage the block list of a chat room
 - Manage the mute list of a chat room
-- Manage the chat room allow list
 - Mute and unmute all the chat room members
 - Manage the chat room allow list
 - Manage the owner and admins of a chat room
-- Mute and unmute all the chat room members
 
 ## [Prerequisites](https://docs.agora.io/en/agora-chat/client-api/chat-room/manage-chatroom-members?platform=android#prerequisites)
 
@@ -39,7 +37,7 @@ Map<String, Long> members = ChatClient.getInstance().chatroomManager().fetchChat
 
 ```
 
-The chat room owner and admin can call `removeChatRoomMembers` to remove the specified member from the chat room. Once a member is removed, this member receives the `onRemovedFromChatRoom` callback, and the other chat room members receive the `onMemberExited` callback. After being removed from a chat room, you can join this chat room again.
+The chat room owner and admin can call `removeChatRoomMembers` to remove one or more members from the chat room. Once a member is removed, this member receives the `onRemovedFromChatRoom` callback, and the other chat room members receive the `onMemberExited` callback. After being removed from a chat room, you can join this chat room again.
 
 ```
 ChatClient.getInstance().chatroomManager().removeChatRoomMembers(chatRoomId, members);
@@ -49,7 +47,7 @@ ChatClient.getInstance().chatroomManager().removeChatRoomMembers(chatRoomId, mem
 ### [Manage the chat room block list](https://docs.agora.io/en/agora-chat/client-api/chat-room/manage-chatroom-members?platform=android#manage-the-chat-room-block-list)
 
 The chat room owner and admin can add the specified member into the chat room block list and remove them from it. Once a chat room member is added to the block list, this member cannot send or receive chat room messages, nor can this member join the chat room again.
-
+ 
 ```
 // The chat room owner or admin call blockChatroomMembers to add the specified member to the chat room block list.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().blockChatroomMembers(chatRoomId, members);
@@ -57,7 +55,7 @@ ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().blockChatroomMemb
 // The chat room owner or admin call unblockChatroomMembers to remove the specified user out of the block list.
 ChatRoom chatRoom = ChatClient.getInstance().chatroomManager().unblockChatRoomMembers(chatRoomId, members);
 
-// The chat room owner or admin call fetchChatRoomBlackList to reveive the block list of the current chat room.
+// The chat room owner or admin call fetchChatRoomBlackList to retrieve the block list of the current chat room.
 ChatClient.getInstance().chatroomManager().fetchChatRoomBlackList(chatRoomId, new ValueCallBack<List<String>>() {
     @Override
     public void onSuccess(List<String> value) {
@@ -122,6 +120,8 @@ ChatClient.getInstance().chatroomManager().unmuteAllMembers(chatRoomId, new Valu
 ```
 
 ### [Manage the chat room allow list](https://docs.agora.io/en/agora-chat/client-api/chat-room/manage-chatroom-members?platform=android#manage-the-chat-room-allow-list)
+
+The chat room owner and admins are added to the chat room allow list by default.
 
 Members in the chat room allow list can send chat room messages even when the chat room owner or admin has muted all the chat room members using `muteAllMembers`. However, if a member is already in the chat room mute list, adding this member to the allow list does not take effect.
 
