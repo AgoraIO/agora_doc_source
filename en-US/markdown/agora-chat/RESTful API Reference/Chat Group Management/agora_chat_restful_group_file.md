@@ -309,7 +309,17 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 
 #### Response body
 
-If the returned HTTP status code is 200, the request succeeds and the response body contains the content of the uploaded file. For example, if the content of the uploaded file is `Hello world`, the response returns `Hello world`.
+If the returned HTTP status code is 200, the request succeeds, and the `data` field in the response body contains the following parameters.
+
+| Parameter | Type | Description |
+| :-------- | :----- | :----------------------------------------------------------- |
+| `file_url` | String | The URL to shared files of groups on the Agora Chat server. |
+| `group_id` | String | The group ID. |
+| `file_name` | String | The name of the group's shared file. |
+| `created` | Long | The upload time of the group's shared file. |
+| `file_id` | String | The ID of the group's shared file. This field is required if you want to download or remove a group's shared files. |
+| `file_size` | Number | The size of the group's shared file, in the unit of bytes. |
+For other fields and descriptions, see [Common parameters](#param).
 
 If the returned HTTP status code is not 200, the request fails. You can refer to [Status codes](#code) for possible causes.
 
@@ -323,7 +333,26 @@ curl -X POST 'http://XXXX/XXXX/XXXX/chatgroups/66021836783617/share_files' -H 'A
 
 #### Response example
 
-If the request succeeds, the response returns the content of the uploaded file, for example, `Hello world`.
+```json
+{
+    "action" : "post",
+    "application" : "7f7b5180-XXXX-XXXX-9558-092397c841ef",
+    "uri" : "http://XXXX/XXXX/XXXX/chatgroups/66021836783617/share_files",
+    "entities" : [ ],
+    "data" : {
+      "file_url" : "https://XXXX/XXXX/XXXX/chatgroups/66021836783617/share_files/c6906aa0-ed19-11ea-b480-f3cf141d15c0",
+      "group_id" : "66021836783617",
+      "file_name" : "img_3.jpg",
+      "created" : 1599050554954,
+      "file_id" : "c6906aa0-XXXX-XXXX-b480-f3cf141d15c0",
+      "file_size" : 13512
+    },
+    "timestamp" : 1599050554978,
+    "duration": 0,
+    "organization" : "XXXX",
+    "applicationName" : "XXXX"
+}
+```
 
 ## Downloading the chat group shared file
 
