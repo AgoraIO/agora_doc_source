@@ -31,7 +31,9 @@ This section introduces how to implement reaction functionalities in your projec
 
 ### Add a reaction
 
-Call `AddReaction` to add a reaction to the specified message. You can use `MessageReactionDidChange` to listen for the state of adding the reaction.
+Call `AddReaction` to add a reaction to the specified message. In a one-to-one conversation, the peer user receives the `MessageReactionDidChange` event. In a group conversation, other group members than the operator receive this event. This event contains the conversation ID, message ID, reaction list of the message, and reaction operation list (reaction ID, user ID of the user that adds the reaction, and the addition operation). 
+
+For a reaction, a user can add only once, or the error 1301 is reported for repeated addition.
 
 ```c#
 // Adds a reaction to the specified message
@@ -66,7 +68,7 @@ SDKClient.Instance.ChatManager.AddReactionManagerDelegate(reactionManagerDelegat
 
 ### Remove a reaction
 
-Call `RemoveReaction` to remove the specified reaction. You can also listen for the reaction change in `MessageReactionDidChange`.
+Call `RemoveReaction` to remove the specified reaction. In a one-to-one conversation, the peer user receives the `MessageReactionDidChange` event. In a group conversation, other group members than the operator receive this event. This event contains the conversation ID, message ID, reaction list of the message, and reaction operation list (ID of the removed reaction, user ID of the user that removes the reaction, and the removal operation). 
 
 ```c#
 // Removes the reaction.
@@ -101,7 +103,7 @@ SDKClient.Instance.ChatManager.AddReactionManagerDelegate(reactionManagerDelegat
 
 ### Retrieve a list of reactions
 
-Call `GetReactionList` to retrieve a list of reactions from the server. This method also returns the basic information of the reactions, including the content of the reaction, the number of users that added or removed the reaction, and a list of the first three user IDs that added or removed the reaction.
+Call `GetReactionList` to retrieve a list of reactions of messages from the server. This method also returns the basic information of the reactions, including the content of the reaction, the number of users that added or removed the reaction, and a list of the first three user IDs that added or removed the reaction.
 
 ```c#
 SDKClient.Instance.ChatManager.GetReactionList(messageIdList, chatType, groupId, new ValueCallBack<Dictionary<string, List<MessageReaction>>>(

@@ -41,7 +41,7 @@ After a user is invited to join a chat group, the implementation logic varies ba
     - If the user does not require a group invitation confirmation, the inviter receives the `directJoined` callback. In this case, the user automatically joins the group and all group members receive the `memberPresence` callback.
 
 3. Remove chat group members from a chat group.  
-The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once a group member is removed, this group member receives the `removeMember` callback and all the other group members receive the `memberAbsence` callback.
+The chat group owner and chat group admins can remove chat group members from a chat group, whereas chat group members do not have this privilege. Once removed from the group, the member receives the `removeMember` callback and all the other group members receive the `memberAbsence` callback.
 
 Refer to the following sample code to add and remove a user:
 
@@ -51,16 +51,17 @@ let option = {
     users: ["user1", "user2"],
     groupId: "groupId"
 };
-conn.inviteUsersToGroup(option).then(res => console.log(res))
+connection.inviteUsersToGroup(option).then(res => console.log(res))
 
-// The chat group owner and chat group admins can call removeGroupMember to remove group members from a chat group.
+// The chat group owner and chat group admins can call removeGroupMember to remove a group member from a chat group.
 let option = {
     groupId: "groupId",
     username: "username"
 };
-conn.removeGroupMember(option).then(res => console.log(res))
+connection.removeGroupMember(option).then(res => console.log(res))
+// The chat group owner and chat group admins can call removeGroupMembers to remove members from a chat group.
+connection.removeGroupMembers({groupId: 'groupId', users: ['user1', 'user2']})
 ```
-
 
 ### Manage chat group ownership and admin
 
@@ -185,6 +186,8 @@ conn.enableSendGroupMsg(options).then(res => console.log(res))
 
 
 ### Manage the chat group allow list
+
+The chat group owner and admins are added to the chat group allow list by default.
 
 Members in the chat group allow list can send chat group messages even when the chat group owner or admin has muted all chat group members. However, if a member is already in the chat group mute list, adding this member to the allow list does not take effect.
 

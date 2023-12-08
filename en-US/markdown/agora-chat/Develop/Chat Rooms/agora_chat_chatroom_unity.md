@@ -2,7 +2,7 @@
 
 Chat rooms enable real-time messaging among multiple users.
 
-Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once going offline, chat room members cannot receive any messages from the chat room and automatically leave the chat room after 2 minutes. Chat rooms are widely applied in live broadcast use cases such as stream chat in Twitch.
+Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once going offline, chat room members cannot receive any messages from the chat room and automatically leave the chat room after 2 minutes (members on the chat room allow list remain in the chat room even if they stay offline for 2 minutes or more). Chat rooms are widely applied in live broadcast use cases such as stream chat in Twitch.
 
 This page shows how to use the Agora Chat SDK to create and manage a chat room in your app.
 

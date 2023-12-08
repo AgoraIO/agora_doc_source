@@ -71,9 +71,9 @@ For the descriptions of other path parameters, see [Common Parameters](#param).
 | `groupname` | String | The group name. It cannot exceed 128 characters. | No |
 | `description` | String | The group description. It cannot exceed 512 characters. | No |
 | `public` | Boolean | Whether the group is a public group. Public groups can be searched and chat users can apply to join a public group. Private groups cannot be searched, and chat users can join a private group only if the group owner or admin invites the user to join the group.<ul><li>`true`: Yes</li><li>`false`: No</li></ul> | Yes |
-| `scale`           | String | The group scale. The parameter value depends on the setting of `maxusers`. <ul><li>(Default) `normal`: Normal group that has a maximum of 3000 members. </li><li>`large`: Large group that has more than 3000 members. You must set this parameter when you create a large group. Large groups do not support offline push. | No |
+| `scale`           | String | The group scale. The parameter value depends on the setting of `maxusers`. <ul><li>(Default) `normal`: Normal group that has a maximum of 3000 members. </li><li>`large`: Large group that has more than 3000 members. You must set this parameter when you create a large group. Large groups do not support offline push. To create a large group, contact [support@agoro.io](mailto:support@agoro.io).</li></ul> | No |
 | `maxusers` | String | The maximum number of chat group members (including the group owner). The default value is `200` for a normal group and `1000` for a large group. The upper limit varies with your price plans. For details, see [Pricing Plan Details](./agora_chat_plan#group). | No |
-| `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
+| `allowinvites` | Boolean | Whether a regular group member is allowed to invite other users to join the chat group.<ul><li>`true`: Yes.</li><li>`false`: (Default) No. Only the group owner or admin can invite other users to join the chat group. </li></ul> | No |
 | `membersonly` | Boolean | Whether the user requesting to join the public group requires approval from the group owner or admin:<ul><li>`true`: Yes.</li><li>`false`: (Default) No.</li></ul> | No |
 | `invite_need_confirm` | Boolean | Whether the invitee needs to confirm the received group invitation before joining the group:<ul><li>`true`: Yes. </li><li>`false`: No. The invitee automatically joins the chat group after receiving the group invitation.</li></ul> | No|
 | `owner` | String | The chat group owner. | Yes |
@@ -360,7 +360,7 @@ If the returned HTTP status code is 200, the request succeeds, and the data fiel
 | `affiliations_count` | Number | The total number of the chat group members. |
 | `disabled` | Bool | Whether the chat group is banned:<li>`true`: Yes.</li><li>`false`: No.</li> |
 | `affiliations` | Array | The list of existing group members, including the group owner and regular group members, for example, `[{"owner":"user1"},{"member":"user2"},{"member":"user3"}]`. |
-| `public` | Boolean | Whether the chat group is a public group.<ul><li>`true`: Yes.</li><li>`fale`: No.</li></ul> |
+| `public` | Boolean | Whether the chat group is a public group.<ul><li>`true`: Yes.</li><li>`false`: No.</li></ul> |
 | `custom` | String | The extension information of the chat group. |
 | `count` | Number | The number of retrieved chat groups. |
 
@@ -529,7 +529,7 @@ Deletes the specified chat group. Once a chat group is deleted, all the threads 
 ### HTTP request
 
 ```shell
-DELETE https://{host}//{org_name}/{app_name}/chatgroups/{group_id}
+DELETE https://{host}/{org_name}/{app_name}/chatgroups/{group_id}
 ```
 
 #### Path parameter
