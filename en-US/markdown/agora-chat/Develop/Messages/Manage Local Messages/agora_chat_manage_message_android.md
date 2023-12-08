@@ -16,7 +16,7 @@ SQLCipher is used to encrypt the database that stores local messages. The Agora 
 - `Conversation.insertMessages`: Inserts messages in the specified conversation.
 
 
-## Prerequisites
+## Prerequisites 
 
 Before proceeding, ensure that you meet the following requirements:
 
@@ -37,7 +37,7 @@ Map<String, Conversation> conversations = ChatClient.getInstance().chatManager()
 
 ### Retrieve messages in the specified conversation
 
-Call `getAllMessages` to retrieve all the messages of this conversation in the message. Alternatively, you can call `loadMoreMsgFromDB` to load messages from the local database. The loaded message will be placed in the memory based on the timestamp of the messages.
+Call `getAllMessages` to retrieve all the messages of this conversation in the memory. Alternatively, you can call `loadMoreMsgFromDB` to load messages from the local database. The loaded message will be placed in the memory based on the timestamp of the messages.
 
 ```java
 Conversation conversation = ChatClient.getInstance().chatManager().getConversation(conversationId);

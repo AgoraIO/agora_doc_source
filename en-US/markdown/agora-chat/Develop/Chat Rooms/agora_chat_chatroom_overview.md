@@ -1,4 +1,4 @@
-Chat rooms enable real-time messaging among multiple users and are widely applied in live broadcast use cases as stream chat in Twitch. Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once going offline, chat room members cannot receive any messages from the chat room and automatically leave the chat room after 2 minutes. If you want to adjust the time, contact [support@agora.io](mailto:support@agora.io).
+Chat rooms enable real-time messaging among multiple users and are widely applied in live broadcast use cases as stream chat in Twitch. Chat rooms do not have a strict membership, and members do not retain any permanent relationship with each other. Once going offline, chat room members cannot receive any messages from the chat room and automatically leave the chat room after 2 minutes (members on the chat room allow list remain in the chat room even if they stay offline for 2 minutes or more). If you want to adjust the time, contact [support@agora.io](mailto:support@agora.io).
 
 ## Chat room roles and privileges
 

@@ -48,7 +48,7 @@ In order to improve the security of the project, Agora uses a token (dynamic key
 
 ## Setting user attributes
 
-User attributes are composed of multiple key-value pairs of attribute names and attribute values, and each attribute name has one corresponding attribute value.
+Sets user attributes for a user. User attributes are composed of multiple key-value pairs of attribute names and attribute values, and each attribute name has one corresponding attribute value.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -286,7 +286,7 @@ curl -X POST -H 'Authorization: Bearer {YourAppToken}' -H 'Content-Type:  applic
 
 ## Retrieving the total size of user attributes in the app
 
-This method retrieves the total size of user attributes under the app.
+Retrieves the total size of user attributes under the app.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
@@ -340,7 +340,7 @@ curl -X GET -H 'Authorization: Bearer {YourAppToken}''http://XXXX/XXXX/XXXX/meta
 
 ## Deleting user attributes
 
-This method deletes all the user attributes of the specified user.
+Deletes all the user attributes of the specified user.
 
 For each App Key, the call frequency limit of this method is 100 per second.
 
