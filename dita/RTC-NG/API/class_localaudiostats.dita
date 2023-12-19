@@ -13,6 +13,8 @@
   public int internalCodec;
   public int txPacketLossRate;
   public int audioDeviceDelay;
+  public int earMonitorDelay;
+  public int aecEstimatedDelay;
 };</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger numChannels;
@@ -21,6 +23,8 @@
 @property(assign, nonatomic) NSUInteger internalCodec;
 @property(assign, nonatomic) NSUInteger txPacketLossRate;
 @property(assign, nonatomic) NSUInteger audioDeviceDelay;
+@property(assign, nonatomic) NSUInteger earMonitorDelay;
+@property(assign, nonatomic) NSUInteger aecEstimatedDelay;
 
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalAudioStats
@@ -31,6 +35,8 @@
   int internalCodec;
   unsigned short txPacketLossRate;
   int audioDeviceDelay;
+  int earMonitorDelay;
+  int aecEstimatedDelay;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLocalAudioStats
@@ -150,7 +156,15 @@ struct FLocalAudioStats
             </plentry>
             <plentry>
                 <pt>audioDeviceDelay</pt>
-                <pd>播放或录制音频时，音频设备模块的延时。</pd>
+                <pd>播放或录制音频时，音频设备模块的延迟。</pd>
+            </plentry>                
+            <plentry>
+                <pt>earMonitorDelay</pt>
+                <pd>耳返返听的估算延时 (ms)。</pd>
+            </plentry>                
+            <plentry>
+                <pt>aecEstimatedDelay</pt>
+                <pd>回声消除 (Acoustic Echo Cancellation, AEC) 模块测算出音频在本地播放前与被本地采集后的信号延迟 (ms)。</pd>
             </plentry>                
             </parml> </section>
     </refbody>
