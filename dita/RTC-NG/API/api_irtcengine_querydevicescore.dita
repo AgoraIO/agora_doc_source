@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="api_irtcengine_querydevicescore">
+    <title><ph keyref="queryDeviceScore"/></title>
+    <shortdesc id="short"><ph id="shortdesc">查询设备评分等级。</ph></shortdesc>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm keyref="queryDeviceScore"/>
+            </keywords>
+        </metadata>
+    </prolog>
+    <refbody>
+        <section id="prototype">
+            <p outputclass="codeblock">
+            <codeblock props="android" outputclass="language-java">public abstract int queryDeviceScore();</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (int)queryDeviceScore NS_SWIFT_NAME(queryDeviceScore());</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int queryDeviceScore() = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp"/>
+            <codeblock props="electron" outputclass="language-typescript"/>
+            <codeblock props="unity cs" outputclass="language-csharp"/>
+            <codeblock props="rn" outputclass="language-typescript"/>
+            <codeblock props="flutter" outputclass="language-dart"/> </p>
+        </section>
+        <section id="detailed_desc">
+            <title>详情</title>
+            <dl outputclass="since">
+            <dlentry props="native">
+                <dt>自从</dt>
+                <dd>v4.3.0</dd>
+            </dlentry>
+            </dl>
+            <p/>
+        </section>
+        <section id="scenario">
+            <title>适用场景</title>
+            <p>该方法可用于保证用户集成设置的参数（如发流分辨率等）不会超出其设备能力。</p>
+        </section>
+        <section id="return_values">
+            <title><ph keyref="return-section-title"/></title>
+            <p props="flutter">方法调用成功时，返回一个取值范围为 [0,100] 的值，表示当前设备的评分等级，数值越大表示设备能力越强，大部分设备的评分在 60 到 100 之间；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。</p>
+            <ul>
+                <li props="native electron unity rn">&gt;0: 方法调用成功，值为当前设备的评分等级，取值范围为[0,100]，数值越大表示设备能力越强。大部分设备的评分在 60 到 100 之间。</li>
+                <li>&lt; 0: 方法调用失败。</li>
+                </ul> </section>
+        </refbody>
+</reference>
