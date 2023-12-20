@@ -28,7 +28,31 @@
             <codeblock props="electron" outputclass="language-typescript"/>
             <codeblock props="unity cs" outputclass="language-csharp"/>
             <codeblock props="rn" outputclass="language-typescript"/>
-            <codeblock props="flutter" outputclass="language-dart"/> </p>
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class PlayerPlaybackStats {
+  const PlayerPlaybackStats(
+      {this.videoFps,
+      this.videoBitrateInKbps,
+      this.audioBitrateInKbps,
+      this.totalBitrateInKbps});
+
+  @JsonKey(name: &#x27;videoFps&#x27;)
+  final int? videoFps;
+
+  @JsonKey(name: &#x27;videoBitrateInKbps&#x27;)
+  final int? videoBitrateInKbps;
+
+  @JsonKey(name: &#x27;audioBitrateInKbps&#x27;)
+  final int? audioBitrateInKbps;
+
+  @JsonKey(name: &#x27;totalBitrateInKbps&#x27;)
+  final int? totalBitrateInKbps;
+
+  factory PlayerPlaybackStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
+      _$PlayerPlaybackStatsFromJson(json);
+
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$PlayerPlaybackStatsToJson(this);
+}</codeblock> </p>
         </section>
         <section id="detailed_desc">
             <dl outputclass="since">
