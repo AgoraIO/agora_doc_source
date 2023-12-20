@@ -26,8 +26,9 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>该方法测试音频播放设备是否能正常工作。启动测试后，SDK 播放指定的音频文件，测试者如果能听到声音，说明播放设备能正常工作。</p>
-            <p>调用该方法后，SDK 会每隔 100 ms 触发一次 <xref keyref="onAudioVolumeIndication" /> 回调，报告 <parmname>uid</parmname> = 1 及播放设备的音量信息。如果你需要停止音频播放设备测试，请调用 <xref keyref="stopPlaybackDeviceTest"/>。</p>
+            <p>该方法测试本地音频播放设备是否能正常工作。启动测试后，SDK 播放指定的音频文件，测试者如果能听到声音，说明播放设备能正常工作。</p>
+            <p>调用该方法后，SDK 会每隔 100 毫秒触发一次 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <parmname>uid</parmname> = 1 及播放设备的音量信息。测试完成后，如需加入频道，请确保先调用 <xref keyref="stopPlaybackDeviceTest"/> 停止设备测试。</p>
+            <p>该方法和 <xref keyref="startEchoTest3"/> 的区别在于该方法检测本地的音频播放设备能否正常工作，后者可以检测音视频设备及网络是否正常。</p>
             <note type="attention">该方法需要在加入频道前调用。</note>
         </section>
         <section id="parameters">
