@@ -115,7 +115,8 @@ struct FWatermarkOptions
   
   mode?: WatermarkFitMode;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class WatermarkOptions {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class WatermarkOptions {
   const WatermarkOptions(
       {this.visibleInPreview,
       this.positionInLandscapeMode,
@@ -123,18 +124,24 @@ struct FWatermarkOptions
       this.watermarkRatio,
       this.mode});
 
-  @JsonKey(name: 'visibleInPreview')
+  @JsonKey(name: &#x27;visibleInPreview&#x27;)
   final bool? visibleInPreview;
-  @JsonKey(name: 'positionInLandscapeMode')
+
+  @JsonKey(name: &#x27;positionInLandscapeMode&#x27;)
   final Rectangle? positionInLandscapeMode;
-  @JsonKey(name: 'positionInPortraitMode')
+
+  @JsonKey(name: &#x27;positionInPortraitMode&#x27;)
   final Rectangle? positionInPortraitMode;
-  @JsonKey(name: 'watermarkRatio')
+
+  @JsonKey(name: &#x27;watermarkRatio&#x27;)
   final WatermarkRatio? watermarkRatio;
-  @JsonKey(name: 'mode')
+
+  @JsonKey(name: &#x27;mode&#x27;)
   final WatermarkFitMode? mode;
+
   factory WatermarkOptions.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$WatermarkOptionsFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$WatermarkOptionsToJson(this);
 }</codeblock>            
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>

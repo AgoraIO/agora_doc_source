@@ -172,8 +172,9 @@ struct FVideoCanvas
             <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
 class VideoCanvas {
   const VideoCanvas(
-      {this.view,
-      this.uid,
+      {this.uid,
+      this.subviewUid,
+      this.view,
       this.backgroundColor,
       this.renderMode,
       this.mirrorMode,
@@ -181,42 +182,49 @@ class VideoCanvas {
       this.sourceType,
       this.mediaPlayerId,
       this.cropArea,
-      this.enableAlphaMask});
+      this.enableAlphaMask,
+      this.position});
 
-  @JsonKey(name: 'view')
-  final int? view;
-
-  @JsonKey(name: 'uid')
+  @JsonKey(name: &#x27;uid&#x27;)
   final int? uid;
 
-  @JsonKey(name: 'backgroundColor')
+  @JsonKey(name: &#x27;subviewUid&#x27;)
+  final int? subviewUid;
+
+  @JsonKey(name: &#x27;view&#x27;)
+  final int? view;
+
+  @JsonKey(name: &#x27;backgroundColor&#x27;)
   final int? backgroundColor;
 
-  @JsonKey(name: 'renderMode')
+  @JsonKey(name: &#x27;renderMode&#x27;)
   final RenderModeType? renderMode;
 
-  @JsonKey(name: 'mirrorMode')
+  @JsonKey(name: &#x27;mirrorMode&#x27;)
   final VideoMirrorModeType? mirrorMode;
 
-  @JsonKey(name: 'setupMode')
+  @JsonKey(name: &#x27;setupMode&#x27;)
   final VideoViewSetupMode? setupMode;
 
-  @JsonKey(name: 'sourceType')
+  @JsonKey(name: &#x27;sourceType&#x27;)
   final VideoSourceType? sourceType;
 
-  @JsonKey(name: 'mediaPlayerId')
+  @JsonKey(name: &#x27;mediaPlayerId&#x27;)
   final int? mediaPlayerId;
 
-  @JsonKey(name: 'cropArea')
+  @JsonKey(name: &#x27;cropArea&#x27;)
   final Rectangle? cropArea;
 
-  @JsonKey(name: 'enableAlphaMask')
+  @JsonKey(name: &#x27;enableAlphaMask&#x27;)
   final bool? enableAlphaMask;
 
-  factory VideoCanvas.fromJson(Map&lt;String, dynamic> json) =>
+  @JsonKey(name: &#x27;position&#x27;)
+  final VideoModulePosition? position;
+
+  factory VideoCanvas.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$VideoCanvasFromJson(json);
 
-  Map&lt;String, dynamic> toJson() => _$VideoCanvasToJson(this);
+  Map&lt;String, dynamic&gt; toJson() =&gt; _$VideoCanvasToJson(this);
 }</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
