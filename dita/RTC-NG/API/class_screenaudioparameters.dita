@@ -124,9 +124,12 @@ struct FScreenAudioParameters {
             </plentry>
                 <plentry props="android">
                     <pt>allowCaptureCurrentApp</pt>
-                    <pd>是否采集当前 App 中的音频：<ul>
-                            <li><codeph><ph keyref="true"/></codeph>：（默认）采集当前 App 中的音频。</li>
-                            <li><codeph><ph keyref="false"/></codeph>：不采集当前 App 中的音频。</li></ul></pd>
+                    <pd>是否采集当前 App 中的音频：
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）采集当前 App 中的音频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不采集当前 App 中的音频。</li>
+                        </ul>
+                        <note>该成员仅能设置是否采集当前 App 中的音频，并不能控制是否将采集到的 App 音频发布到频道中。你需要在调用 <xref keyref="joinChannel2"/> 或者 <xref keyref="updateChannelMediaOptions"/> 时通过 <parmname>options</parmname> 参数进行设置。</note></pd>
                 </plentry>
             </parml> </section>
     </refbody>
