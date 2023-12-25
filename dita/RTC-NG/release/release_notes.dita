@@ -11,11 +11,49 @@
             <title>升级必看</title>
             <body>
                 <ol>
-                    <li><ph><b>升级必看的标题</b></ph>
-                        <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
+                    <li><ph><b>跨频道媒体流转发</b></ph>
+                        <p>为提升接口易用性，该版本删除了部分跨频道媒体流转发的方法和回调，请改用下表中列出的替代选项：<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
+                        <title/>
+                        <tgroup cols="2">
+                            <colspec colname="c1" colnum="1" colwidth="1*"/>
+                            <colspec colname="c2" colnum="2" colwidth="1*"/>
+                            <thead>
+                                <row>
+                                    <entry>已删除的方法和回调</entry>
+                                    <entry>替代的方法和回调</entry>
+                                </row>
+                            </thead>
+                            <tbody>
+                                <row>
+                                    <entry>
+                                        <ul id="ul_nwr_4tp_wzb">
+                                            <li><codeph><apiname keyref="startChannelMediaRelay"/></codeph></li>
+                                            <li><codeph><apiname keyref="updateChannelMediaRelay"/></codeph></li>
+                                        </ul>
+                                    </entry>
+                                    <entry><codeph><apiname keyref="startOrUpdateChannelMediaRelay"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry>
+                                        <ul id="ul_kmq_ptp_wzb">
+                                            <li><codeph><apiname keyref="startChannelMediaRelayEx"/></codeph></li>
+                                            <li><codeph><apiname keyref="updateChannelMediaRelayEx"/></codeph></li>
+                                        </ul>
+                                    </entry>
+                                    <entry><codeph><apiname keyref="startOrUpdateChannelMediaRelayEx"/></codeph></entry>
+                                </row>
+                                <row>
+                                    <entry><codeph><apiname keyref="onChannelMediaRelayEvent"/></codeph></entry>
+                                    <entry><codeph><apiname keyref="onChannelMediaRelayStateChanged"/></codeph></entry>
+                                </row>
+                            </tbody>
+                        </tgroup>
+                        </table></p>
+                    </li>
+                    <li props="android ios"><ph><b>视频自采集</b></ph>
+                        <p props="android">该版本起，<codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
+                        <p props="ios">该版本起，<codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
+                    </li>
                     <li><ph><b>升级必看的标题</b></ph>
                         <p><?oxy-placeholder content="用段落描述"?></p>
                     </li>
@@ -41,11 +79,12 @@
             <title>改进</title>
             <body>
                 <ol>
-                    <li><ph><b>改进名称</b></ph>
-                        <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
+                    <li><ph><b>耳返音量提升</b></ph>
+                        <p>该版本为用户提供更灵活的耳返音频调整选项，支持调用 <codeph><apiname keyref="setInEarMonitoringVolume"/></codeph> 将耳返音量设置为原始音量的 4 倍。</p>
+                    </li>
+                    <li><ph><b>双流模式优化</b></ph>
+                        <p>该版本优化了视频双流模式。在小流自适应模式 (<codeph><apiname keyref="AUTO_SIMULCAST_STREAM"/></codeph>) 下，接收端调用 <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph> 或 <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph> 发起小流请求时，发送端不再限制请求来源的身份必须为主播。这一调整确保观众主动请求小流时正常生效，提升了小流模式的灵活性和适应性。</p>
+                    </li>
                     <li><ph><b>改进名称</b></ph>
                         <p><?oxy-placeholder content="用段落描述"?></p>
                     </li>
@@ -55,6 +94,7 @@
         <topic id="bugfix">
             <title>问题修复</title>
             <body>
+                <p>该版本修复了以下问题：</p>
                 <ul>
                     <li/> 
                     <li/>
@@ -66,11 +106,12 @@
             <body>
                 <p><b>新增</b>
                     <ul>
-                    <li><codeph><apiname/></codeph></li>
+                    <li><codeph><apiname keyref="enableCustomAudioLocalPlayback"/></codeph></li>
                     </ul></p>
                 <p><b>修改</b>
                     <ul>
-                    <li><apiname/></li>
+                    <li props="android"><codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
+                    <li props="ios"><codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
                     </ul></p>
                 <p><b>废弃</b>
                     <ul>
@@ -78,7 +119,12 @@
                     </ul></p>
                 <p><b>删除</b>
                     <ul>
-                    <li><apiname/></li>
+                    <li><apiname keyref="startChannelMediaRelay"/></li>
+                    <li><apiname keyref="updateChannelMediaRelay"/></li>
+                    <li><apiname keyref="startChannelMediaRelayEx"/></li>
+                    <li><apiname keyref="updateChannelMediaRelayEx"/></li>
+                    <li><apiname keyref="onChannelMediaRelayEvent"/></li>
+                    <li><apiname keyref="CHANNEL_MEDIA_RELAY_EVENT"/></li>
                     </ul></p>
             </body>
         </topic>
