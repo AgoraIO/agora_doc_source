@@ -13,25 +13,25 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onRecorderStateChanged(String channelId, int uid, int state, int reason);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state reason:(AgoraMediaRecorderReasonCode)reason;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRecorderStateChanged(const char* channelId, rtc::uid_t uid, RecorderState state, RecorderReasonCode reason) = 0;</codeblock>
-            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRecorderStateChanged, FString, channelId, int64, uid, FENUMWRAP_RecorderState, state, ERecorderErrorCode, error);</codeblock>
+            <codeblock props="android" outputclass="language-java">void onRecorderStateChanged(String channelId, int uid, int state, int error);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state error:(AgoraMediaRecorderErrorCode)error;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRecorderStateChanged(const char* channelId, rtc::uid_t uid, RecorderState state, RecorderErrorCode error) = 0;</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRecorderStateChanged, FString, channelId, int64, uid, FENUMWRAP_RecorderState, state, ERecorderErrorCode, error);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRecorderStateChanged?(
     channelId: string,
     uid: number,
     state: RecorderState,
-    reason: RecorderReasonCode
+    error: RecorderErrorCode
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRecorderStateChanged(string channelId, uint uid, RecorderState state, RecorderReasonCode reason)</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRecorderStateChanged(string channelId, uint uid, RecorderState state, RecorderErrorCode error) {}</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onRecorderStateChanged?(
     channelId: string,
     uid: number,
     state: RecorderState,
-    reason: RecorderReasonCode
+    error: RecorderErrorCode
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, RecorderState state,
-    RecorderReasonCode reason)? onRecorderStateChanged;</codeblock>
+      RecorderErrorCode error)? onRecorderStateChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">

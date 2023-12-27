@@ -13,9 +13,9 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">void onMusicChartsResult(String requestId, MusicChartInfo[] list, int reason);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicChartsResult:(NSString *)requestId result:(NSArray&lt;AgoraMusicChartInfo*> *)result reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onMusicChartsResult(const char* requestId, agora_refptr&lt;MusicChartCollection> result, MusicContentCenterStateReason reason) = 0;</codeblock>
+            <codeblock props="android" outputclass="language-java">void onMusicChartsResult(String requestId, MusicChartInfo[] list, int errorCode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onMusicChartsResult:(NSString *)requestId result:(NSArray&lt;AgoraMusicChartInfo*> *)result errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onMusicChartsResult(const char* requestId, agora_refptr&lt;MusicChartCollection> result, MusicContentCenterStatusCode errorCode) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onMusicChartsResult?(
     requestId: string,
     result: MusicChartInfo[],
@@ -28,7 +28,7 @@
     errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String requestId, List&lt;MusicChartInfo> result,
-    MusicContentCenterStatusCode status)? onMusicChartsResult;</codeblock>
+      MusicContentCenterStatusCode errorCode)? onMusicChartsResult;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">

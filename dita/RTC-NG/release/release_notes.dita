@@ -1,75 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
-<topic id="release_notes">
-    <title>v4.3.0</title>
+<topic id="release-notes">
+    <title>v4.2.3</title>
     <body>
-        <p>该版本于 20xx 年 x 月 x 日发布。</p>
+        <p>该版本于 2023 年 9 月 x 日发布。</p>
     </body>
     <topic id="level2">
         <title/>
-        <topic id="compatibility">
-            <title>升级必看</title>
-            <body>
-                <ol>
-                    <li><ph><b>跨频道媒体流转发</b></ph>
-                        <p>为提升接口易用性，该版本删除了部分跨频道媒体流转发的方法和回调，请改用下表中列出的替代选项：<table frame="all" rowsep="1" colsep="1" id="table_jvq_ltp_wzb">
-                        <tgroup cols="2">
-                            <colspec colname="c1" colnum="1" colwidth="1*"/>
-                            <colspec colname="c2" colnum="2" colwidth="1*"/>
-                            <thead>
-                                <row>
-                                    <entry>已删除的方法和回调</entry>
-                                    <entry>替代的方法和回调</entry>
-                                </row>
-                            </thead>
-                            <tbody>
-                                <row>
-                                    <entry>
-                                        <ul id="ul_nwr_4tp_wzb">
-                                            <li><codeph><apiname keyref="startChannelMediaRelay"/></codeph></li>
-                                            <li><codeph><apiname keyref="updateChannelMediaRelay"/></codeph></li>
-                                        </ul>
-                                    </entry>
-                                    <entry><codeph><apiname keyref="startOrUpdateChannelMediaRelay"/></codeph></entry>
-                                </row>
-                                <row>
-                                    <entry>
-                                        <ul id="ul_kmq_ptp_wzb">
-                                            <li><codeph><apiname keyref="startChannelMediaRelayEx"/></codeph></li>
-                                            <li><codeph><apiname keyref="updateChannelMediaRelayEx"/></codeph></li>
-                                        </ul>
-                                    </entry>
-                                    <entry><codeph><apiname keyref="startOrUpdateChannelMediaRelayEx"/></codeph></entry>
-                                </row>
-                                <row>
-                                    <entry><codeph><apiname keyref="onChannelMediaRelayEvent"/></codeph></entry>
-                                    <entry><codeph><apiname keyref="onChannelMediaRelayStateChanged"/></codeph></entry>
-                                </row>
-                            </tbody>
-                        </tgroup>
-                        </table></p>
-                    </li>
-                    <li props="android ios"><ph><b>视频自采集</b></ph>
-                        <p props="android">该版本起，<codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
-                        <p props="ios">该版本起，<codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类。</p>
-                    </li>
-                    <li><ph><b>升级必看的标题</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
-                    </li>
-                </ol>
-            </body>
-        </topic>
         <topic id="newfeature">
             <title>新增特性</title>
             <body>
                 <ol>
-                    <li><ph><b>新增特性名称</b></ph>
+                    <li><ph><b>视频截图上传更新</b></ph>
+                        <p><ph>为方便接入声网云市场提供的第三方视频审核服务，该版本有以下改动：</ph>
+                            <ul>
+                                <li props="cpp apple unity rn flutter"><codeph><apiname keyref="CONTENT_INSPECT_TYPE"/></codeph> 中新增 <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> 枚举值，代表使用声网云市场视频审核插件对视频截图并上传。</li>
+                                <li props="android"><codeph><apiname keyref="ContentInspectModule"/></codeph> 中的 <codeph>type</codeph> 新增 <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> 枚举值，代表使用声网云市场视频审核插件对视频截图并上传。</li>
+                                <li><codeph><apiname keyref="ContentInspectConfig"/></codeph> 中新增的 <codeph>serverConfig</codeph> 可选参数用于云市场视频截图上传相关服务端配置，配置后可同时接入多个云市场审核插件并实现灵活控制插件开关等功能，详情请<ph keyref="ticket-link"/>。</li>
+                            </ul>
+                            <ph>此外，该版本还新增了 <codeph><apiname keyref="enableContentInspectEx"/></codeph> 方法，支持同时对多条视频流截图并上传。</ph>
+                        </p>
+                    </li>
+                    <li props="cpp unity flutter electron"><ph><b>支持 ID3D11Texture2D 渲染</b></ph> (Windows)
+                        <p>自该版本起，SDK 支持 ID3D11Texture2D 类型的视频格式，提升了游戏场景中视频帧的渲染效果。你可以在调用 <codeph><apiname keyref="pushVideoFrame"/></codeph> 方法将外部原始视频帧推送到 SDK 时，设置 <codeph>format</codeph> 为 <codeph>VIDEO_TEXTURE_ID3D11TEXTURE2D</codeph>；并通过设置 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 属性，来确定要使用的 ID3D11Texture2D 纹理对象。</p>
+                    </li>
+                    <li props="cpp unity flutter electron"><ph><b>本地视频状态错误码更新</b></ph> (Windows, macOS)
+                        <p>为了帮助用户在屏幕共享场景下了解本地视频出错的准确原因，<codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 回调中新增了如下几组枚举：
                         <ul>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        <li><?oxy-placeholder content="用 list 描述"?></li>
-                        </ul></li>
-                    <li><ph><b>新增特性名称</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph>(23)：屏幕采集已暂停。当前屏幕可能已切换到安全桌面，例如 UAC 对话框或者 Winlogon 桌面。</li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph>(24)：屏幕采集已从暂停状态中恢复。</li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph>(25)：当前屏幕采集的窗口处于隐藏状态，并且在当前屏幕上不可见。</li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></codeph>(26)：进行屏幕采集的窗口已经从隐藏状态中恢复。</li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph>(27)：进行屏幕采集的窗口已经从最小化状态中恢复。</li>
+                        </ul></p>
+                    </li>
+                    <li><ph><b>进阶功能查询</b></ph>
+                        <p>该版本新增了 <codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph> 方法，用于查询设备能力是否满足虚拟背景、美颜等进阶功能的使用要求。</p>
+                        <p>在使用进阶功能前，你可以根据查询结果判断当前设备是否支持这些功能，从而避免在低端设备上开启进阶功能导致性能下降或功能不可用的问题。你可以根据该方法的返回值，决定是否显示或启用相应的功能按钮，或者在设备能力不足时，为用户提示相应信息。</p>
+                        <p>此外，自该版本起，调用 <codeph><apiname keyref="enableVirtualBackground"/></codeph> 和 <codeph><apiname keyref="setBeautyEffectOptions"/></codeph> 时，SDK 会自动对当前设备能力进行检查，并在设备能力不足时，通过返回错误码 <codeph>-4: <ph keyref="ERR_NOT_SUPPORTED"/></codeph> 表示该设备不支持开启该功能。</p>
                     </li>
                 </ol>
             </body>
@@ -78,16 +46,21 @@
             <title>改进</title>
             <body>
                 <ol>
-                    <li><ph><b>耳返音量提升</b></ph>
-                        <p>该版本为用户提供更灵活的耳返音频调整选项，支持调用 <codeph><apiname keyref="setInEarMonitoringVolume"/></codeph> 将耳返音量设置为原始音量的 4 倍。</p>
+                    <li><ph><b>优化虚拟背景内存占用</b></ph>
+                        <p>该版本升级了虚拟背景算法，降低了虚拟背景功能的内存占用。相比之前的版本，在低端机上使用虚拟背景功能时 App 运行占用的内存降低了约 4%~10%（具体数值取决于设备型号和平台）。</p>
                     </li>
-                    <li><ph><b>双流模式优化</b></ph>
-                        <p>该版本优化了视频双流模式。在小流自适应模式 (<codeph><apiname keyref="AUTO_SIMULCAST_STREAM"/></codeph>) 下，接收端调用 <codeph><apiname keyref="setRemoteVideoStreamType"/></codeph> 或 <codeph><apiname keyref="setRemoteVideoStreamTypeEx"/></codeph> 发起小流请求时，发送端不再限制请求来源的身份必须为主播。这一调整确保观众主动请求小流时正常生效，提升了小流模式的灵活性和适应性。</p>
-                    </li>
-                    <li><ph><b>改进名称</b></ph>
-                        <p><?oxy-placeholder content="用段落描述"?></p>
+                    <li props="cpp unity flutter electron android"><ph><b>屏幕共享场景优化</b></ph>
+                        <p props="cpp unity flutter electron">该版本优化了在超高清（4K，60 fps）游戏共享场景下的性能和编码效率，有效降低了屏幕共享时系统资源占用率。</p>
+                        <p props="android">该版本优化了屏幕共享场景下的视频编码配置。当用户自定义视频的 <codeph>width</codeph> 和 <codeph>height</codeph> 属性时，SDK 会在保持视频与屏幕的宽高比一致的前提下，对实际的编码分辨率进行向下取整，确保最终编码分辨率不超过用户自定义的编码分辨率，从而提升了对屏幕共享流的计费准确性。</p>
                     </li>
                 </ol>
+                <p><b>其他改进</b></p>
+                <p>该版本还进行了如下改进：
+                    <ul>
+                    <li props="android">优化了 SDK 采集和自定义视频采集场景下 Texture Buffer 的管理方式，有效消除丢帧和崩溃隐患。</li>
+                     <li>当调用 <codeph><apiname keyref="setPlaybackSpeed"/></codeph> 设置音频文件的播放进度时，传入非法参数后会返回错误码 -2，表示方法中设置了无效的参数，需要重新设置参数。</li>
+                     <li>优化了 Token 解析时的逻辑，避免传入非法 Token 后 App 发生崩溃。</li>
+                    </ul></p>
             </body>
         </topic>
         <topic id="bugfix">
@@ -95,8 +68,17 @@
             <body>
                 <p>该版本修复了以下问题：</p>
                 <ul>
-                    <li/> 
-                    <li/>
+                    <li props="cpp unity flutter electron">在屏幕共享场景下偶现崩溃、掉帧。(Windows)</li>
+                    <li props="android">在采用 H.265 编码模式时，如果 Web 端加入互动，会导致 Native 端出现冗余的  <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> 回调：当主播调用 <codeph><apiname keyref="enableLocalVideo"/>(true)</codeph>时，接收端在收到 <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> (<codeph>enabled</codeph> 为 <codeph>true</codeph>) 回调之前，会先收到一个 <codeph><apiname keyref="onUserEnableLocalVideo"/></codeph> (<codeph>enabled</codeph> 为 <codeph>false</codeph>) 回调。</li>
+                    <li props="mac unity flutter electron"><p><ph>加入频道偶现的崩溃。</ph><ph>(macOS)</ph></p></li>
+                    <li>本地系统时间不正确时，偶现加入频道失败。</li>
+                    <li>调用 <codeph><apiname keyref="playEffect3"></apiname></codeph> 使用相同的 <codeph>soundId</codeph> 播放两个不同的音效文件，偶现第一个音效文件播放完毕后会重复播放。</li>
+                    <li props="android unity flutter rn"><p><ph>主播调用 <codeph><apiname keyref="startAudioMixing2"/></codeph> 播放音乐文件时，偶现主播本地无法听见音乐，远端用户可以正常听见。</ph><ph props="unity flutter rn">(Android)</ph></p></li>
+                    <li props="android ios unity flutter rn"><p><ph>合唱场景下，调用 <codeph><apiname keyref="preload"/></codeph> 加载音乐，偶现加载失败。</ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
+                    <li props="android unity flutter rn"><p><ph>在特定机型上开启 AI 降噪偶现崩溃。</ph><ph props="unity flutter rn">(Android)</ph></p></li>
+                    <li props="android ios unity flutter rn"><p><ph>当本地系统时间不准确时，歌曲榜单加载失败。</ph><ph props="unity flutter">(Android, iOS)</ph></p></li>
+                    <li>调用一次 <codeph><apiname keyref="takeSnapshotEx"/></codeph> 获取视频截图会收到多次 <codeph><apiname keyref="onSnapshotTaken"/></codeph> 视频截图结果回调。</li>
+                    <li props="android unity flutter rn"><p><ph>在仅调用 <codeph><apiname keyref="joinChannelEx"/></codeph> 加入的频道中，调用 <codeph><apiname keyref="setEnableSpeakerphone"/></codeph> 无法将音频路由从扬声器切换至听筒。</ph><ph props="unity flutter rn">(Android)</ph></p></li>
                 </ul>
             </body>
         </topic>
@@ -105,25 +87,22 @@
             <body>
                 <p><b>新增</b>
                     <ul>
-                    <li><codeph><apiname keyref="enableCustomAudioLocalPlayback"/></codeph></li>
-                    </ul></p>
-                <p><b>修改</b>
-                    <ul>
-                    <li props="android"><codeph>pushExternalVideoFrameEx</codeph>[1/2] 和 <codeph>pushExternalVideoFrameEx</codeph>[2/2] 方法分别更名为 <codeph>pushExternalVideoFrameById</codeph>[1/2] 和 <codeph>pushExternalVideoFrameById</codeph>[2/2]，并从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
-                    <li props="ios"><codeph>pushExternalVideoFrame</codeph>[1/2] 从 <codeph><apiname keyref="IRtcEngineEx"/></codeph> 接口类迁移到 <codeph><apiname keyref="IRtcEngine"/></codeph> 接口类</li>
-                    </ul></p>
-                <p><b>废弃</b>
-                    <ul>
-                    <li><apiname/></li>
-                    </ul></p>
-                <p><b>删除</b>
-                    <ul>
-                    <li><codeph><apiname keyref="startChannelMediaRelay"/></codeph></li>
-                    <li><codeph><apiname keyref="updateChannelMediaRelay"/></codeph></li>
-                    <li><codeph><apiname keyref="startChannelMediaRelayEx"/></codeph></li>
-                    <li><codeph><apiname keyref="updateChannelMediaRelayEx"/></codeph></li>
-                    <li><codeph><apiname keyref="onChannelMediaRelayEvent"/></codeph></li>
-                    <li><codeph><apiname keyref="CHANNEL_MEDIA_RELAY_EVENT"/></codeph></li>
+                    <li props="cpp unity flutter electron"><codeph><apiname keyref="onLocalVideoStateChanged"/></codeph> 中新增如下枚举：(Windows, macOS)
+                        <ul>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_PAUSED"/></codeph></li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_RESUMED"/></codeph></li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_HIDDEN"/></codeph></li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_HIDDEN"/></codeph></li>
+                        <li><codeph><apiname keyref="LOCAL_VIDEO_STREAM_ERROR_SCREEN_CAPTURE_WINDOW_RECOVER_FROM_MINIMIZED"/></codeph></li>
+                        </ul></li>
+                    <li  props="cpp unity flutter electron"><codeph><apiname keyref="ExternalVideoFrame"/></codeph> 中新增 <codeph>d3d11_texture_2d</codeph> 和 <codeph>texture_slice_index</codeph> 成员(Windows)</li> 
+                    <li  props="cpp unity flutter electron"><codeph><apiname keyref="VIDEO_PIXEL_FORMAT"/></codeph> 中新增 <codeph><apiname keyref="VIDEO_TEXTURE_ID3D11TEXTURE2D"/></codeph> 枚举 (Windows)</li> 
+                    <li><codeph><apiname keyref="enableContentInspectEx"/></codeph></li>
+                    <li props="cpp apple rn unity flutter"><codeph><apiname keyref="CONTENT_INSPECT_TYPE"/></codeph> 新增 <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> </li>
+                    <li props="android"><codeph><apiname keyref="ContentInspectModule"/></codeph> 中的 <codeph>type</codeph> 新增 <codeph><apiname keyref="CONTENT_INSPECT_IMAGE_MODERATION"/></codeph> </li>
+                    <li><codeph><apiname keyref="ContentInspectConfig"/></codeph> 中新增 <codeph>serverConfig</codeph> 可选参数</li>
+                    <li><codeph><apiname keyref="isFeatureAvailableOnDevice"/></codeph></li>
+                    <li><codeph><apiname keyref="FeatureType"/></codeph></li>
                     </ul></p>
             </body>
         </topic>

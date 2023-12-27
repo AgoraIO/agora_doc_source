@@ -13,29 +13,35 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(Constants.VideoSourceType source, int state, int reason) {}
+            <codeblock props="android" outputclass="language-java">public void onLocalVideoStateChanged(Constants.VideoSourceType source, int state, int error) {
+    super.onLocalVideoStateChanged(source, state, error);
+    mCallbackObj = new Object[] {source, state, error};
+  }
 </codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChangedOfState:(AgoraVideoLocalState)state reason:(AgoraLocalVideoStreamReason)reason sourceType:(AgoraVideoSourceType)sourceType NS_SWIFT_NAME(rtcEngine(_:localVideoStateChangedOf:reason:sourceType:));
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)rtcEngine:(AgoraRtcEngineKit * _Nonnull)engine localVideoStateChangedOfState:(AgoraVideoLocalState)state
+ error:(AgoraLocalVideoStreamError)error
+ sourceType:(AgoraVideoSourceType)sourceType;
 </codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">  virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason) {
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR error) {
     (void)source;
     (void)state;
-    (void)reason;
-  }</codeblock>
+    (void)error;
+  }
+</codeblock>
          <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnLocalVideoStateChanged, EVIDEO_SOURCE_TYPE, source, ELOCAL_VIDEO_STREAM_STATE, state, ELOCAL_VIDEO_STREAM_ERROR, error);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onLocalVideoStateChanged?(
     source: VideoSourceType,
     state: LocalVideoStreamState,
-    reason: LocalVideoStreamReason
+    error: LocalVideoStreamError
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_REASON reason)</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnLocalVideoStateChanged(VIDEO_SOURCE_TYPE source, LOCAL_VIDEO_STREAM_STATE state, LOCAL_VIDEO_STREAM_ERROR errorCode) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onLocalVideoStateChanged?(
     source: VideoSourceType,
     state: LocalVideoStreamState,
-    reason: LocalVideoStreamReason
+    error: LocalVideoStreamError
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(VideoSourceType source, LocalVideoStreamState state,
-    LocalVideoStreamReason reason)? onLocalVideoStateChanged;;</codeblock>
+      LocalVideoStreamError error)? onLocalVideoStateChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">

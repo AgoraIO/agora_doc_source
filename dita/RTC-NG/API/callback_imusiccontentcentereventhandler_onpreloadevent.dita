@@ -14,33 +14,33 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onPreLoadEvent(
-      String requestId, long songCode, int percent, String lyricUrl, int state, int reason);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSString*)requestId songCode:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl state:(AgoraMusicContentCenterPreloadState)state reason:(AgoraMusicContentCenterStateReason)reason;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPreLoadEvent(const char* requestId, int64_t songCode, int percent, const char* lyricUrl, PreloadState state, MusicContentCenterStateReason reason) = 0;</codeblock>
+      String requestId, long songCode, int percent, String lyricUrl, int status, int statusCode);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)onPreLoadEvent:(NSString*)requestId songCode:(NSInteger)songCode percent:(NSInteger)percent lyricUrl:(NSString * _Nullable)lyricUrl status:(AgoraMusicContentCenterPreloadStatus)status errorCode:(AgoraMusicContentCenterStatusCode)errorCode;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onPreLoadEvent(const char* requestId, int64_t songCode, int percent, const char* lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode errorCode) = 0;</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onPreLoadEvent?(
     requestId: string,
     songCode: number,
     percent: number,
     lyricUrl: string,
-    status: PreloadState,
+    status: PreloadStatusCode,
     errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnPreLoadEvent(string requestId, Int64 songCode, int percent, string lyricUrl, PreloadState status, MusicContentCenterStatusCode errorCode);</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public abstract void OnPreLoadEvent(string requestId, Int64 songCode, int percent, string lyricUrl, PreloadStatusCode status, MusicContentCenterStatusCode errorCode);</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onPreLoadEvent?(
     requestId: string,
     songCode: number,
     percent: number,
     lyricUrl: string,
-    status: PreloadState,
+    status: PreloadStatusCode,
     errorCode: MusicContentCenterStatusCode
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
-    String requestId,
-    int songCode,
-    int percent,
-    String lyricUrl,
-    PreloadState preloadStatus,
-    MusicContentCenterStatusCode mccStatus)? onPreLoadEvent;</codeblock>
+      String requestId,
+      int songCode,
+      int percent,
+      String lyricUrl,
+      PreloadStatusCode status,
+      MusicContentCenterStatusCode errorCode)? onPreLoadEvent;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -72,9 +72,9 @@
                 <pd>歌词下载地址。</pd>
             </plentry>
             <plentry id="status">
-                <pt>state</pt>
+                <pt>status</pt>
                 <pd>
-                    <p props="apple cpp framework">当前音乐资源的加载状态。详见 <xref keyref="PreloadState"/>。</p>
+                    <p props="apple cpp framework">当前音乐资源的加载状态。详见 <xref keyref="PreloadStatusCode"/>。</p>
                     <p props="android">当前音乐资源的加载状态：
 
                     <ul>

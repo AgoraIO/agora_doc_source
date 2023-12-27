@@ -14,31 +14,31 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onDirectCdnStreamingStateChanged(
-      DirectCdnStreamingState state, DirectCdnStreamingReason reason, String message);</codeblock>
+    DirectCdnStreamingState state, DirectCdnStreamingError error, String message);</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (void)onDirectCdnStreamingStateChanged:(AgoraDirectCdnStreamingState)state
-                                   reason:(AgoraDirectCdnStreamingReason)reason
-                                 message:(NSString *_Nullable)message NS_SWIFT_NAME(onDirectCdnStreamingStateChanged(_:reason:message:));</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_REASON reason, const char* message)  {
+                                   error:(AgoraDirectCdnStreamingError)error
+                                 message:(NSString *_Nullable)message;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, const char* message)  {
   (void)state;
-  (void)reason;
+  (void)error;
   (void)message;
 };</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnDirectCdnStreamingStateChanged, EDIRECT_CDN_STREAMING_STATE, state, EDIRECT_CDN_STREAMING_REASON, error, FString, message);</codeblock>
+         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnDirectCdnStreamingStateChanged, EDIRECT_CDN_STREAMING_STATE, state, EDIRECT_CDN_STREAMING_ERROR, error, FString, message);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">  onDirectCdnStreamingStateChanged?(
     state: DirectCdnStreamingState,
-    reason: DirectCdnStreamingReason,
+    error: DirectCdnStreamingError,
     message: string
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_REASON reason, string message)</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp"> public virtual void OnDirectCdnStreamingStateChanged(DIRECT_CDN_STREAMING_STATE state, DIRECT_CDN_STREAMING_ERROR error, string message) { }</codeblock>
             <codeblock props="rn" outputclass="language-typescript">  onDirectCdnStreamingStateChanged?(
     state: DirectCdnStreamingState,
-    reason: DirectCdnStreamingReason,
+    error: DirectCdnStreamingError,
     message: string
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(
-    DirectCdnStreamingState state,
-    DirectCdnStreamingReason reason,
-    String message)? onDirectCdnStreamingStateChanged;</codeblock>
+      DirectCdnStreamingState state,
+      DirectCdnStreamingError error,
+      String message)? onDirectCdnStreamingStateChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
