@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_enablevirtualbackground2">
     <title><ph keyref="enableVirtualBackground2"/></title>
-    <shortdesc id="short"><ph id="shortdesc">指定媒体源开启/关闭虚拟背景。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">开启虚拟背景并指定媒体源，或关闭虚拟背景。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -28,65 +28,30 @@
         <section id="detailed_desc">
             <title>详情</title>
             <p>虚拟背景功能支持将本地用户原来的背景替换为静态图片、动态视频、将背景虚化，或者将人像与背景分割以实现人像画中画。成功开启虚拟背景功能后，频道内所有用户都能看到自定义的背景。</p>
+            <p>该方法和 <xref keyref="enableVirtualBackground"/> 均可用于开启/关闭虚拟背景，区别在于该方法支持在开启虚拟背景时指定应用虚拟背景的媒体源。</p>
             <p>请在 <xref keyref="enableVideo"/> 或 <xref keyref="startPreview2"/> 之后调用该方法。</p>
-            <note type="attention">
-            <ul>
-            <li>该功能对设备性能要求较高，调用该方法时 SDK 会自动对当前设备能力进行检查。建议你在搭载如下芯片的设备上使用：
-                <ul>
-                <li props="android unity cpp unreal bp rn flutter cs">骁龙 700 系列 750G 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">骁龙 800 系列 835 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">天玑 700 系列 720 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">麒麟 800 系列 810 及以上</li>
-                <li props="android unity cpp unreal bp rn flutter cs">麒麟 900 系列 980 及以上</li>
-                <li props="mac cpp unreal bp unity electron cs">CPU 为 i5 及更好的设备</li>
-                <li props="ios cpp unreal bp unity rn flutter cs">搭载 A9 及以上芯片的如下设备：
-                    <ul>
-                    <li>iPhone 6S 及以上</li>
-                    <li>iPad Air 第三代及以上</li>
-                    <li>iPad 第五代及以上</li>
-                    <li>iPad Pro 第一代及以上</li>
-                    <li>iPad mini 第五代及以上</li>
-                    </ul></li>
-                </ul></li>
-            <li>建议你在满足如下条件的场景中使用该功能：
-                <ul>
-                <li>使用高清摄像设备、摄像环境光照均匀。</li>
-                <li>摄像画面中，物件较少，用户的人像为半身人像且基本无遮挡，背景色较单一且与用户着装颜色不同。</li>
-                </ul></li>
-            <li>该方法依赖于虚拟背景动态库 <codeph><ph keyref="segmentation"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
-            </ul></note> </section>
+            <note type="attention" conkeyref="enableVirtualBackground/hardware_req"/>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt props="cpp unreal bp android unity flutter rn electron cs">enabled</pt>
-                <pt props="ios mac">enable</pt>
-                <pd>是否开启虚拟背景：
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启虚拟背景。</li>
-                    <li><codeph><ph keyref="false"/></codeph>: 关闭虚拟背景。</li>
-                    </ul></pd>
+            <plentry conkeyref="enableVirtualBackground/enable">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt props="cpp unreal bp android unity flutter rn electron cs">backgroundSource</pt>
-                <pt props="mac ios">backData</pt>
-                <pd>自定义的背景。详见 <xref keyref="VirtualBackgroundSource"/>。为将自定义背景图的分辨率与 SDK 的视频采集分辨率适配，SDK 会在保证自定义背景图不变形的前提下，对自定义背景图进行缩放和裁剪。</pd>
+            <plentry conkeyref="enableVirtualBackground/source">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt props="android cpp unreal bp unity electron rn flutter cs">segproperty</pt>
-                <pt props="ios mac">segData</pt>
-                <pd>背景图像的处理属性。详见 <xref keyref="SegmentationProperty"/>。</pd>
+            <plentry conkeyref="enableVirtualBackground/seg">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry props="cpp unreal bp unity rn electron flutter cs">
-                <pt>type</pt>
-                <pd>视频源类型。详见 <xref keyref="MEDIA_SOURCE_TYPE"/>。
-                    <note type="attention">在该方法中，该参数仅支持以下两种设置：
-                    <ul>
-                    <li>默认值为 <apiname keyref="PRIMARY_CAMERA_SOURCE"/>。</li>
-                    <li>如果要使用第二个摄像头采集视频，将该参数设置为 <apiname keyref="SECONDARY_CAMERA_SOURCE"/>。</li>
-                    </ul></note></pd>
+            <plentry conkeyref="enableVirtualBackground/type" props="cpp unreal bp unity rn electron flutter cs">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
+            <plentry id="sourcetype">
                 <pt props="android apple">sourceType</pt>
                 <pd>应用效果的媒体源。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。</pd>
             </plentry>

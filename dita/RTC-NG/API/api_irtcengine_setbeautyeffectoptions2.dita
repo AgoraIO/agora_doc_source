@@ -2,7 +2,7 @@
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="api_irtcengine_setbeautyeffectoptions2">
     <title><ph keyref="setBeautyEffectOptions2" /></title>
-    <shortdesc id="short"><ph id="shortdesc">指定媒体源设置美颜效果选项。</ph></shortdesc>
+    <shortdesc id="short"><ph id="shortdesc">设置美颜效果选项并指定媒体源。</ph></shortdesc>
     <prolog>
         <metadata>
             <keywords>
@@ -27,42 +27,30 @@
         <section id="detailed_desc">
             <title>详情</title>
             <p>开启本地美颜功能，并设置美颜效果选项和效果应用的媒体源。</p>
-            <note type="note">
-                <ul>
-                    <li>请在 <xref keyref="enableVideo" /> 或 <xref keyref="startPreview2" /> 之后调用该方法。</li>
-                    <li props="android">该方法仅适用于 Android 5.0 及以上版本。</li>
-                    <li>该方法依赖于视频增强动态库 <codeph><ph keyref="clearvision"/></codeph>，如果删除该动态库会导致无法正常开启该功能。</li>
-                    <li>该功能对设备性能要求较高，调用该方法时 SDK 会自动对当前设备能力进行检查。</li>
-                </ul>
-            </note> </section>
+            <p>该方法和 <xref keyref="setBeautyEffectOptions"/> 均可用于设置美颜效果选项，区别在于该方法支持在设置美颜效果选项时指定应用美颜的媒体源。</p>
+            <note type="note" conkeyref="setBeautyEffectOptions/req"/>
+        </section>
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
-                <pt props="android cpp unreal bp unity flutter rn electron cs">enabled</pt>
-                <pt props="ios mac">enable</pt>
-                <pd>是否开启美颜功能：
-
-                    <ul>
-                    <li><codeph><ph keyref="true"/></codeph>: 开启美颜功能。</li>
-                    <li><codeph><ph keyref="false"/></codeph>:（默认）关闭美颜功能。</li>
-                    </ul></pd>
+            <plentry conkeyref="setBeautyEffectOptions/enable">
+                <pt/>
+                <pd/>
             </plentry>
-            <plentry>
-                <pt>options</pt>
-                <pd>美颜选项，详细定义见 <xref keyref="BeautyOptions" />。</pd>
+            <plentry conkeyref="setBeautyEffectOptions/options">
+                <pt/>
+                <pd/>
             </plentry>
             <plentry props="unity rn electron flutter cs" conkeyref="enableExtension/source">
                 <pt />
                 <pd />
             </plentry>
-            <plentry>
-                <pt props="android apple framework">sourceType</pt>
-                <pt props="cpp">type</pt>
-                <pd>应用效果的媒体源。详见 <xref keyref="MEDIA_SOURCE_TYPE" />。</pd>
+            <plentry conkeyref="enableVirtualBackground2/sourcetype">
+                <pt/>
+                <pd/>
             </plentry>
             </parml>             
-            </section>
+        </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>

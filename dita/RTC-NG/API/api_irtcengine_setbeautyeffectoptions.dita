@@ -38,7 +38,7 @@
         <section id="detailed_desc">
             <title>详情</title>
             <p>开启本地美颜功能，并设置美颜效果选项。</p>
-            <note type="note">
+            <note type="note" id="req">
                 <ul>
                     <li>请在 <xref keyref="enableVideo" /> 或 <xref keyref="startPreview2" /> 之后调用该方法。</li>
                     <li props="android">该方法仅适用于 Android 5.0 及以上版本。</li>
@@ -49,7 +49,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="android cpp unreal bp unity flutter rn electron cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启美颜功能：
@@ -59,13 +59,13 @@
                     <li><codeph><ph keyref="false"/></codeph>:（默认）关闭美颜功能。</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry id="options">
                 <pt>options</pt>
                 <pd>美颜选项，详细定义见 <xref keyref="BeautyOptions" />。</pd>
             </plentry>
             <plentry props="cpp unreal bp rn unity electron flutter cs" conkeyref="setLowlightEnhanceOptions/type">
-                    <pt/>
-                    <pd/>
+                <pt/>
+                <pd/>
             </plentry>
             </parml> </section>
         <section id="return_values">

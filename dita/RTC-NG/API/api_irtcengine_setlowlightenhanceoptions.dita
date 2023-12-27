@@ -41,7 +41,7 @@
             <title>详情</title>
             <p>暗光增强功能可以在光线亮度偏低（如背光、阴天、暗场景）和亮度不均匀的环境下自适应调整视频画面的亮度值，恢复或凸显图像的细节信息，最终提升视频图像的整体视觉效果。</p>
             <p>你可以调用该方法开启暗光增强功能并设置暗光增强的效果。</p>
-            <note type="attention">
+            <note type="attention" id="req">
             <ul>
             <li>请在 <xref keyref="enableVideo" /> 后调用该方法。</li>
             <li>暗光增强对设备性能有一定要求。开启暗光增强后，如果设备出现严重发烫等问题，建议你将暗光增强等级修改为消耗性能较少的等级或关闭暗光增强功能。</li>
@@ -56,7 +56,7 @@
         <section id="parameters">
             <title>参数</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="android cpp unreal bp electron unity rn flutter cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>是否开启暗光增强功能：
@@ -65,7 +65,7 @@
                     <li><codeph><ph keyref="false" /></codeph>:（默认）关闭暗光增强功能。</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry id="options">
                 <pt>options</pt>
                 <pd>暗光增强选项，用于设置暗光增强的效果。详见 <xref keyref="LowlightEnhanceOptions" />。</pd>
             </plentry>
