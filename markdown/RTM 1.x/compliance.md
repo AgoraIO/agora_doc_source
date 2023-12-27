@@ -1,6 +1,6 @@
 # 云信令 SDK 合规使用说明
 
-根据中国法律法规和监管部门规章要求，App开发运营者（以下简称“开发者”或“您”）在提供网络产品服务时应尊重和保护最终用户个人信息，不得违法违规收集使用个人信息，保证和承诺个人信息处理行为获得最终用户的授权同意，遵循最小必要原则，并且应当采取有效的技术措施和组织措施，确保个人信息安全。
+根据中国法律法规和监管部门规章要求，App 开发运营者（以下简称“开发者”或“您”）在提供网络产品服务时应尊重和保护最终用户个人信息，不得违法违规收集使用个人信息，保证和承诺个人信息处理行为获得最终用户的授权同意，遵循最小必要原则，并且应当采取有效的技术措施和组织措施，确保个人信息安全。
 
 为帮助开发者在使用SDK的过程中更好地落实用户个人信息保护相关要求，避免出现侵害用户个人信息权益情形，上海兆言网络科技有限公司（以下简称“我们”）特制定本**云信令 SDK** 合规使用说明文档（以下简称“文档”）。
 
@@ -16,7 +16,7 @@
 
 - App 隐私政策应该明示收集和使用个人信息的目的、方式和范围，并且确保隐私政策链接正常有效，易于访问和阅读。
 
-- App 隐私政策应逐项说明App各项业务功能以及对应收集的个人信息类型，不应使用“等、例如” 等方式概括说明。
+- App 隐私政策应逐项说明 App 各项业务功能以及对应收集的个人信息类型，不应使用“等、例如” 等方式概括说明。
 
 - App 隐私政策应显著标识个人敏感信息类型（如：字体加粗等）。
 
@@ -36,108 +36,87 @@
 
 您应确保在最终用户同意 App 隐私政策后，再进行云信令SDK的初始化。并且，在用户同意隐私政策前，您应避免动态申请涉及用户个人信息的敏感设备权限；也应避免私自采集和上报个人信息。如果最终用户不同意 App 隐私政策，则不能初始化 SDK，无法使用 SDK 功能。
 
-SDK 初始化和相关功能配置，请查阅配置文档：
+**SDK 初始化和相关功能配置，请查阅配置文档：**
 
 - Android: [快速跑通示例项目](https://docportal.shengwang.cn/cn/Real-time-Messaging/rtm_android_run?platform=Android)
 - iOS: [快速跑通示例项目](https://docportal.shengwang.cn/cn/Real-time-Messaging/run_rtm_ios?platform=iOS)
 
-云信令 SDK 功能及接口配置方式及示例说明：
+**云信令 SDK 功能及接口配置方式及示例说明：**
 
-<table>
-  <tr>
-    <th>系统</th>
-    <th>业务功能</th>
-    <th>相关个人信息</th>
-    <th>配置方式及示例</th>
-    <th>时机</th>
-  </tr>
-  <tr>
-    <td>Android</td>
-    <td>启用云信令 SDK 服务</td>
-    <td>设备品牌、设备型号、操作系统版本、CPU信息、内存使用情况、IP地址、网络接入方式和类型、频道内用户ID</td>
-    <td>
-      <pre>
-        <code>
-          // 配置开始示例
-          abstract void io.agora.rtm.RtmClient.login(
-            // token: 在服务端生成的用于鉴权的动态密钥
+#### 业务功能：启用云信令服务
+
+**(1) Android 系统**
+
+- **相关个人信息**：设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID
+- **配置方式及示例**：
+    - **配置开始示例**：
+        ```java
+        abstract void io.agora.rtm.RtmClient.login(
+            // token：在服务端生成的用于鉴权的动态密钥
             @Nullable String token,
-            // userId: 用户名
+            // userId：用户名
             @NonNull String userId,
-            // resultCallback: 执行结果的回调通知
-            @Nullable ResultCallback&lt; Void &gt; resultCallback
-          ) 
+            // resultCallback：执行结果的回调通知
+            @Nullable ResultCallback< Void > resultCallback
+        )
+        ```
+    - **配置关闭示例**：
+    ```java
+    // resultCallback：执行结果的回调通知
+    abstract void io.agora.rtm.RtmClient.logout(
+        @Nullable ResultCallback< Void > resultCallback
+    )
+    ```    
+- **时机**：加入或退出服务时
 
-          // 配置关闭示例
-          abstract void io.agora.rtm.RtmClient.logout(
-            // resultCallback: 执行结果的回调通知
-            @Nullable ResultCallback&lt; Void &gt; resultCallback
-        </code>
-      </pre>
-    </td>
-    <td>加入或退出服务时</td>
-  </tr>
-  <tr>
-    <td>Android</td>
-    <td>发送消息</td>
-    <td>设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID</td>
-    <td>
-      <pre>
-        <code>
-          // 配置开始、关闭示例
-          abstract void io.agora.rtm.RtmChannel.sendMessage(
-            // message: 消息载体；
+**(2) iOS 系统**
+
+- **相关个人信息**：设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID
+- **配置方式及示例**：
+    - **配置开始示例**：
+        ```objc
+        // token：在服务端生成的用于鉴权的动态密钥
+        // userId：用户名
+        // completion：执行结果的回调通知
+        - (void)loginByToken:(NSString *_Nullable)token user:(NSString *_Nonnull)userId completion:(AgoraRtmLoginBlock _Nullable)completionBlock
+        ```
+    - **配置关闭示例**：
+        ```objc
+        // completion：执行结果回调通知
+        -(void)logoutWithCompletion:(AgoraRtmLogoutBlock _Nullable)completionBlock
+        ```
+- **时机**：加入或退出服务时
+
+
+#### 业务功能：发送消息
+
+**(1) Android 系统**
+
+- **相关个人信息**：设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID
+- **配置方式及示例**：
+    - **配置开始、关闭示例**：
+        ```java
+        abstract void io.agora.rtm.RtmChannel.sendMessage(
+            // message：消息载体
             RtmMessage message,
             SendMessageOptions options,
-            // resultCallback: 执行结果的回调通知
-            ResultCallback&lt; Void &gt; resultCallback
-          )
-        </code>
-      </pre>
-    </td>
-    <td>发送消息时</td>
-  </tr>
-  <tr>
-    <td>iOS</td>
-    <td>启用云信令服务</td>
-    <td>设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID</td>
-    <td>
-      <pre>
-        <code>
-          // 配置开启示例
-          // token: 在服务端生成的用于鉴权的动态密钥
-          - (void)loginByToken:(NSString *_Nullable)token
-                         // userId: 用户名
-                         user:(NSString *_Nonnull)userId
-                    // completion: 执行结果的回调通知
-                   completion:(AgoraRtmLoginBlock _Nullable)completionBlock
+            // resultCallback：执行结果的回调通知
+            ResultCallback< Void > resultCallback
+        )
+        ```
+- **时机**：发送消息时
 
-          // 配置关闭示例
-          // completion: 执行结果回调通知
-          -(void)logoutWithCompletion:(AgoraRtmLogoutBlock _Nullable)completionBlock
-        </code>
-      </pre>
-    </td>
-    <td>加入或退出服务时</td>
-  </tr>
-  <tr>
-    <td>iOS</td>
-    <td>发送消息</td>
-    <td>设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID</td>
-    <td>
-      <pre>
-        <code>
-          // 配置开启、关闭示例
-          // message: 消息载体
-          -(void)sendMessage:(AgoraRtmMessage *_Nonnull)message
-          // completion: 执行结果的回调通知
-                 completion:(AgoraRtmSendChannelMessageBlock _Nullable)completionBlock
-        </code>
-      </pre>
-    </td>
-    <td>发送消息时</td>
-  </tr>
-</table>
+**(2) iOS 系统**
+
+- **相关个人信息**：设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID
+- **配置方式及示例**：
+    - **配置开始、关闭示例**：
+        ```objc
+        // message：消息载体
+        // completion：执行结果的回调通知
+        -(void)sendMessage:(AgoraRtmMessage *_Nonnull)message completion:(AgoraRtmSendChannelMessageBlock _Nullable)completionBlock
+        ```
+- **时机**：发送消息时
 
 
 ### 3. SDK 隐私政策披露要求与示例说明
@@ -148,7 +127,7 @@ SDK 初始化和相关功能配置，请查阅配置文档：
 
 第三方 SDK 披露示例（仅供参考）：
 
-#### Android 示例
+**(1) Android 示例**
 
 - **SDK 名称**：云信令 SDK
 - **SDK 公司名称**：上海兆言网络科技有限公司
@@ -157,12 +136,12 @@ SDK 初始化和相关功能配置，请查阅配置文档：
 - **实现 SDK 功能所需权限**：无
 - **SDK 隐私政策链接**：https://www.shengwang.cn/SDK-privacy-policy/
 
-#### iOS 示例
+**(2) iOS 示例**
 
 - **SDK 名称**：云信令SDK
 - **SDK 公司名称**：上海兆言网络科技有限公司
 - **SDK 使用目的和功能场景**：提供云信令实时互动功能和服务 
-- **SDK 涉及的个人信息类型**：设备品牌、设备型号、操作系统版本、CPU信息、内存使用情况、IP地址、网络接入方式和类型、频道内用户ID
+- **SDK 涉及的个人信息类型**：设备品牌、设备型号、操作系统版本、CPU 信息、内存使用情况、IP 地址、网络接入方式和类型、频道内用户 ID
 - **实现 SDK 功能所需权限**：无
 - **SDK 隐私政策链接**：https://www.shengwang.cn/SDK-privacy-policy/
 
