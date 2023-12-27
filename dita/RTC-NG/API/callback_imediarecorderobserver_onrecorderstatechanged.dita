@@ -14,24 +14,24 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">void onRecorderStateChanged(String channelId, int uid, int state, int reason);</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state error:(AgoraMediaRecorderErrorCode)error;</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRecorderStateChanged(const char* channelId, rtc::uid_t uid, RecorderState state, RecorderErrorCode error) = 0;</codeblock>
-         <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRecorderStateChanged, FString, channelId, int64, uid, FENUMWRAP_RecorderState, state, ERecorderErrorCode, error);</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">- (void)mediaRecorder:(AgoraMediaRecorder* _Nonnull)recorder stateDidChanged:(NSString * _Nonnull)channelId uid:(NSUInteger)uid state:(AgoraMediaRecorderState)state reason:(AgoraMediaRecorderReasonCode)reason;</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual void onRecorderStateChanged(const char* channelId, rtc::uid_t uid, RecorderState state, RecorderReasonCode reason) = 0;</codeblock>
+            <codeblock props="bp" outputclass="language-cpp">DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FOnRecorderStateChanged, FString, channelId, int64, uid, FENUMWRAP_RecorderState, state, ERecorderErrorCode, error);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">onRecorderStateChanged?(
     channelId: string,
     uid: number,
     state: RecorderState,
-    error: RecorderErrorCode
+    reason: RecorderReasonCode
   ): void;</codeblock>
-            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRecorderStateChanged(string channelId, uint uid, RecorderState state, RecorderErrorCode error) {}</codeblock>
+            <codeblock props="unity cs" outputclass="language-csharp">public virtual void OnRecorderStateChanged(string channelId, uint uid, RecorderState state, RecorderReasonCode reason)</codeblock>
             <codeblock props="rn" outputclass="language-typescript">onRecorderStateChanged?(
     channelId: string,
     uid: number,
     state: RecorderState,
-    error: RecorderErrorCode
+    reason: RecorderReasonCode
   ): void;</codeblock>
             <codeblock props="flutter" outputclass="language-dart">final void Function(String channelId, int uid, RecorderState state,
-      RecorderErrorCode error)? onRecorderStateChanged;</codeblock>
+    RecorderReasonCode reason)? onRecorderStateChanged;</codeblock>
             <codeblock props="reserve" outputclass="language-cpp"/></p>
         </section>
         <section id="detailed_desc">
@@ -66,12 +66,12 @@
             </plentry>
             <plentry>
                 <pt>error</pt>
-                <pd props="apple cpp unreal bp rn unity electron flutter cs">录制状态出错的原因。详见 <xref keyref="RecorderErrorCode"/>。</pd>
+                <pd props="apple cpp unreal bp rn unity electron flutter cs">录制状态出错的原因。详见 <xref keyref="RecorderReasonCode"/>。</pd>
                 <pd props="android">录制状态出错的原因：
                     
                     
                     <ul>
-                    <li><ph keyref="RECORDER_ERROR_NONE"/>（0）：一切正常。</li>
+                    <li><ph keyref="RECORDER_REASON_NONE"/>（0）：一切正常。</li>
                     <li><ph keyref="RECORDER_ERROR_WRITE_FAILED"/>（1）：录制文件写入失败。</li>
                     <li><ph keyref="RECORDER_ERROR_NO_STREAM"/>（2）：没有可录制的音视频流或者录制的音视频流中断超过 5 秒。</li>
                     <li><ph keyref="RECORDER_ERROR_OVER_MAX_DURATION"/>（3）：录制时长超出上限。</li>
