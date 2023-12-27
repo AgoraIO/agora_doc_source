@@ -7,64 +7,79 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class AudioFrame {
-    public byte[] bytes;
-    public int sampleRataHz;
-    public int bytesPerSample;
-    public int channelNums;
-    public int samplesPerChannel;
-    public long timestamp;
-    @CalledByNative
-    public AudioFrame(byte[] bytes, int sampleRataHz, int bytesPerSample, int channelNums,
-        int samplesPerChannel, long timestamp) {
-      this.sampleRataHz = sampleRataHz;
-      this.bytesPerSample = bytesPerSample;
-      this.channelNums = channelNums;
-      this.samplesPerChannel = samplesPerChannel;
-      this.timestamp = timestamp;
-      this.bytes = bytes;
-    }
-    @CalledByNative
-    public byte[] getBytes() {
-      return bytes;
-    }
-    @CalledByNative
-    public int getBytesPerSample() {
-      return bytesPerSample;
-    }
-    @CalledByNative
-    public int getChannelNums() {
-      return channelNums;
-    }
-    @CalledByNative
-    public int getSampleRataHz() {
-      return sampleRataHz;
-    }
-    @CalledByNative
-    public int getSamplesPerChannel() {
-      return samplesPerChannel;
-    }
-    @CalledByNative
-    public long getTimestamp() {
-      return timestamp;
-    }
-    @Override
-    public String toString() {
-      return "AudioFrame{sampleRataHz=" + sampleRataHz + ", bytesPerSample=" + bytesPerSample
-          + ", channelNums=" + channelNums + ", samplesPerChannel=" + samplesPerChannel
-          + ", timestamp=" + timestamp + '}';
-    }
+  public ByteBuffer buffer;
+  public int sampleRataHz;
+  public int bytesPerSample;
+  public int channelNums;
+  public int samplesPerChannel;
+  public long timestamp;
+
+  @CalledByNative
+  public AudioFrame(ByteBuffer buffer, int sampleRataHz, int bytesPerSample, int channelNums,
+      int samplesPerChannel, long timestamp) {
+    this.sampleRataHz = sampleRataHz;
+    this.bytesPerSample = bytesPerSample;
+    this.channelNums = channelNums;
+    this.samplesPerChannel = samplesPerChannel;
+    this.timestamp = timestamp;
+    this.buffer = buffer;
   }
-</codeblock>
-            <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraAudioFrame: NSObject
- @property (assign, nonatomic) NSInteger samplesPerChannel;
- @property (assign, nonatomic) NSInteger bytesPerSample;
- @property (assign, nonatomic) NSInteger channels;
- @property (assign, nonatomic) NSInteger samplesPerSec;
- @property (strong, nonatomic) NSData* _Nullable buffer;
- @property (assign, nonatomic) int64_t renderTimeMs;
- @property (assign, nonatomic) NSInteger avSyncType;
+
+  @CalledByNative
+  public ByteBuffer getByteBuffer() {
+    return buffer;
+  }
+
+  @CalledByNative
+  public int getBytesPerSample() {
+    return bytesPerSample;
+  }
+
+  @CalledByNative
+  public int getChannelNums() {
+    return channelNums;
+  }
+
+  @CalledByNative
+  public int getSampleRataHz() {
+    return sampleRataHz;
+  }
+
+  @CalledByNative
+  public int getSamplesPerChannel() {
+    return samplesPerChannel;
+  }
+
+  @CalledByNative
+  public long getTimestamp() {
+    return timestamp;
+  }
+
+  @Override
+  public String toString() {
+    return "AudioFrame{sampleRataHz=" + sampleRataHz + ", bytesPerSample=" + bytesPerSample
+        + ", channelNums=" + channelNums + ", samplesPerChannel=" + samplesPerChannel
+        + ", timestamp=" + timestamp + '}';
+  }
+}</codeblock>
+            <codeblock props="ios mac" outputclass="language-objectivec">
+__attribute__((visibility("default"))) @interface AgoraAudioFrame : NSObject
+
+@property(assign, nonatomic) NSInteger samplesPerChannel;
+
+@property(assign, nonatomic) NSInteger bytesPerSample;
+
+@property(assign, nonatomic) NSInteger channels;
+
+@property(assign, nonatomic) NSInteger samplesPerSec;
+
+@property(assign, nonatomic) void* _Nullable buffer;
+
+@property(assign, nonatomic) int64_t renderTimeMs;
+
+@property(assign, nonatomic) NSInteger avSyncType;
 @end</codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">struct AudioFrame {
+            <codeblock props="cpp unreal" outputclass="language-cpp">  struct AudioFrame {
     AUDIO_FRAME_TYPE type;
     int samplesPerChannel;
     agora::rtc::BYTES_PER_SAMPLE bytesPerSample;
@@ -73,6 +88,7 @@
     void* buffer;
     int64_t renderTimeMs;
     int avsync_type;
+
     AudioFrame() : type(FRAME_TYPE_PCM16),
                    samplesPerChannel(0),
                    bytesPerSample(rtc::TWO_BYTES_PER_SAMPLE),
@@ -80,7 +96,7 @@
                    samplesPerSec(0),
                    buffer(NULL),
                    renderTimeMs(0),
-                   avsync_type(0) {}
+                   avsync_type(0),
   };
 </codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
@@ -205,8 +221,7 @@ struct FAudioFrame {
                 <pd>每声道每秒的采样点数。</pd>
             </plentry>
             <plentry>
-                <pt props="cpp unreal bp ios mac electron rn flutter">buffer</pt>
-                    <pt props="android">bytes</pt>
+                <pt props="android cpp unreal bp ios mac electron rn flutter">buffer</pt>
                 <pt props="unity cs">RawBuffer</pt>
                 <pd>
                     <p>声音数据缓存区（如果是立体声，数据是交叉存储的）。</p>
