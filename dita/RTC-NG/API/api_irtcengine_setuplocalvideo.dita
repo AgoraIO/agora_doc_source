@@ -28,6 +28,7 @@
             <title>详情</title>
             <p>该方法初始化本地视图并设置本地用户视频显示属性，只影响本地用户看到的视频画面，不影响本地发布视频。调用该方法绑定本地视频流的显示视窗(<parmname>view</parmname>)，并设置本地用户视图的渲染模式和镜像模式。</p>
             <p>在 App 开发中，通常在初始化后调用该方法进行本地视频设置，然后再加入频道。退出频道后，绑定仍然有效，如果需要解除绑定，可以调用该方法将参数 <parmname>view</parmname> 设为 <ph keyref="NULL" />。</p>
+            <p>在实时互动场景下，如果你需要在本地视频预览的画面中同时看到多个预览画面、且不同画面分别处于视频链路上不同观测点，可以重复调用该方法设置不同的 <parmname>view</parmname>，并针对每个 <parmname>view</parmname> 设置不同的观测位置。例如：将视频源设置为摄像头，然后对应两个 <parmname>view</parmname> 分别设置 <parmname>position</parmname> 为 <ph keyref="POSITION_POST_CAPTURER_ORIGIN"/> 和 <ph keyref="POSITION_POST_CAPTURER"/>，即可在本地视频预览中同时看到没有经过视频前处理的原始画面和已经过视频前处理（美颜、虚拟背景、水印本地预览）的画面。</p>
             <note type="attention">
             <ul>
             <li props="unity cs">如果你想要在原生窗口上渲染图像，请调用此方法；如果你仅需在 Unity 项目内渲染图像，可直接通过 <xref keyref="AgoraVideoSurface"/> 类来实现。</li>
