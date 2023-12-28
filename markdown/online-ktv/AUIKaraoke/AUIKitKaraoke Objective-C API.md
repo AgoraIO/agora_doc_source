@@ -1,0 +1,285 @@
+#  AUIKaraoke Swift API（iOS）
+
+本文介绍 AUIKaraoke 组件的 API。你可以在 GitHub 上查看[源码文件](https://github.com/AgoraIO-Community/AUIKaraoke/tree/main/iOS)。
+
+## KaraokeUIKit
+
+提供 `AUIKaraoke` 的核心类，可用于实现组件初始化、创建、销毁房间等基础功能。
+
+### setup
+
+```swift
+func setup(roomConfig: AUICommonConfig,
+           ktvApi: KTVApiDelegate? = nil,
+           rtcEngine: AgoraRtcEngineKit? = nil,
+           rtmClient: AgoraRtmClientKit? = nil)
+```
+
+初始化 AUIKaraoke。
+
+在调用 `KaraokeUIKit` 类下的其他 API 前，你需要先调用该方法进行初始化。
+
+**参数**
+
+- `roomConfig`：初始化配置，详见 [AUICommonConfig](#AUICommonConfig)。
+- `ktvApi`：（可选）[KTVApiDelegate](https://docportal.shengwang.cn/cn/online-ktv/ktv_api_oc?platform=iOS#ktvapidelegate) 对象。如果你的项目中还未使用 K 歌房场景化 API，请传入 `nil`，AUIKaraoke 内部会自行创建 `KTVApiDelegate` 对象。
+- `rtcEngine`：（可选）[AgoraRtcEngineKit](https://docportal.shengwang.cn/cn/online-ktv/API%20Reference/ios_ng/API/rtc_interface_class.html#class_irtcengine) 对象。如果的你的项目中还未使用声网 RTC SDK，请传入 `nil`，AUIKaraoke 内部会自行创建 `AgoraRtcEngineKit` 对象。
+- `rtmClient`：（可选）[AgoraRtmClientKit](https://doc.shengwang.cn/doc/rtm2/oc/landing-page) 对象。如果的你的项目中还未使用声网 RTM 2.x SDK，请传入 `nil`，AUIKaraoke 内部会自行创建 `AgoraRtmClientKit` 对象。
+
+### createRoom
+
+```swift
+func createRoom(roomInfo: AUICreateRoomInfo,
+                success: ((AUIRoomInfo?)->())?,
+                failure: ((Error)->())?)
+```
+
+创建 K 歌房间。
+
+在 K 歌场景下，创建房间的人自动成为房主。成功创建房间后，会返回创建的房间信息。
+
+**参数**
+
+- `roomInfo`：一个 [AUICreateRoomInfo](#AUICreateRoomInfo) 对象，包含要创建的房间信息。
+- `success`：（可选）成功回调闭包，当房间创建成功时将被调用。闭包参数为一个 [AUIRoomInfo](#AUIRoomInfo) 对象，表示创建的房间信息。
+- `failure`：（可选）失败回调闭包，当房间创建失败时将被调用。闭包参数为一个 `Error` 对象，表示创建失败的错误信息。
+
+### getRoomInfoList
+
+```swift
+func getRoomInfoList(lastCreateTime: Int64?,
+                     pageSize: Int,
+                     callback: @escaping AUIRoomListCallback)
+```
+
+获取 K 歌房间列表。
+
+你可以调用该方法获取当前已创建的 K 歌房间列表。
+
+**参数**
+
+- `lastCreateTime`：（可选）房间创建的时间。//TODO
+- `pageSize`：每一页房间列表所展示的房间数量。
+- `callback`：用于处理获取房间列表结果的回调闭包，在成功获取房间列表结果后会被调用。回调闭包接受一个 `AUIRoomListCallback` 对象作为参数。
+
+### launchRoom
+
+```swift
+func launchRoom(roomInfo: AUIRoomInfo,
+                appId: String? = nil,
+                config: AUIRoomConfig,
+                karaokeView: AUIKaraokeRoomView)
+```
+
+拉起 K 歌房间。
+
+当你成功调用 `createRoom` 创建房间后，你可以调用该方法拉起房间。在调用该方法前，你需要先调用 `getRoomList` 获取房间列表及相关房间信息。
+
+**参数**
+
+- `roomInfo`：需要拉起的房间信息，详见 [AUIRoomInfo](#AUIRoomInfo)。
+- `appId`：（可选）你的项目在控制台注册的 App ID。如果在调用 `setup` 进行初始化时设置了 `appId`，则此处为必填，否则可传入 `nil`。
+- `config`：房间配置，详见 [AUIRoomConfig](#AUIRoomConfig)。
+- `karaokeView`： `AUIKaraokeRoomView` 对象，用于显示 K 歌房间的界面。
+
+### destroyRoom
+
+```swift
+func destoryRoom(roomId: String)
+```
+
+销毁 K 歌房间。
+
+**参数**
+
+- `roomId`：要销毁的房间的 ID。
+
+### subscribeError
+
+```swift
+func subscribeError(delegate: AUIRtmErrorProxyDelegate)
+```
+
+订阅房间相关的错误事件。
+
+你可以通过该方法订阅房间相关的错误事件，如 Token 过期、网络连接等问题。
+
+**参数**
+
+- `delegate`：[AUIRtmErrorProxyDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auirtmerrorproxydelegate) 对象，用于处理错误事件。
+
+### unsubscribeError
+
+```swift
+func bindRespDelegate(delegate: AUIRoomManagerRespDelegate)
+```
+
+取消订阅房间相关的错误事件。
+
+你可以调用该方法取消订阅与指定 `roomId` 相关的房间的错误事件。取消订阅后，不再接收与该房间相关的任何错误。
+
+**参数**
+
+- `delegate`：[AUIRtmErrorProxyDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auirtmerrorproxydelegate) 对象，用于处理错误事件。
+
+### bindRespDelegate
+
+```swift
+func bindRespDelegate(delegate: AUIRoomManagerRespDelegate)
+```
+
+
+绑定对应房间的响应。
+
+你可以调用该方法将实现了 `AUIRoomManagerRespDelegate` 的对象绑定到当前事件，以便在事件完成时，回调或通知这个对象以处理相应的结果或响应，例如房间被销毁、用户被踢出、房间的信息更新等。
+
+请确保你的 `AUIRoomManagerRespDelegate` 对象实现了 `AUIRoomManagerRespDelegate` 中的方法，以便能够正确处理响应。
+
+**参数**
+
+- `delegate`：[AUIRoomManagerRespDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auiroommanagerrespdelegate) 对象，用于处理与房间操作相关的各种响应事件。你可以根据你的业务需求选择性实现该协议中的方法。
+
+### unbindRespDelegate
+
+```swift
+func unbindRespDelegate(delegate: AUIRoomManagerRespDelegate)
+```
+
+取消绑定对应房间的响应。
+
+你可以调用该方法取消已绑定到当前操作或事件的 `AUIRoomManagerRespDelegate` 对象。解除绑定后，将不再通知 `AUIRoomManagerRespDelegate` 对象与房间管理操作相关的结果或响应。
+
+**参数**
+
+`delegate`：[AUIRoomManagerRespDelegate](https://github.com/AgoraIO-Community/AUIKaraoke/blob/dev/0.5.1/iOS/doc/KaraokeUIKit_zh.md#auiroommanagerrespdelegate) 对象，用于处理与房间操作相关的各种响应事件。你可以根据你的业务需求选择性实现该协议中的方法。
+
+## 数据模型
+
+### <h3 className="anchor" id="AUICommonConfig"> AUICommonConfig</h3>
+
+```swift
+open class AUICommonConfig: NSObject {
+    public var appId: String = ""
+    public var host: String = ""
+    public var userId: String = ""
+    public var userName: String = ""
+    public var userAvatar: String = ""
+}
+```
+
+通用设置。
+
+**属性**
+
+- `appId`：你的项目在控制台注册的 App ID，详见[获取 App ID](https://docportal.shengwang.cn/cn/Agora%20Platform/get_appid_token?platform=All%20Platforms#获取-app-id)。
+- `host`：业务后端服务域名。
+- `userId`：用户 ID。
+- `userName`：用户名。
+- `userAvatar`：用户头像。
+
+### <h3 className="anchor" id="AUICreateRoomInfo">AUICreateRoomInfo</h3>
+
+```swift
+open class AUICreateRoomInfo: NSObject {
+    public var roomName: String = ""
+    public var thumbnail: String = ""
+    public var micSeatCount: UInt = 8
+    public var micSeatStyle: UInt = 8
+    public var password: String?
+}
+```
+
+需要创建的 K 歌房间的相关信息。
+
+**属性**
+
+- `roomName`：房间名。
+- `thumbnail`：房间列表上指用户头像的 URL。
+- `micSeatCount`：房间中的麦位数量，取值范围 [1-8]。
+- `micSeatStyle`：房间中麦位的排列样式，默认值为 8，表示默认样式，目前 AUIKaraoke 暂不支持其他特殊的排列样式。
+- `password`：房间密码。
+
+### <h3 className="anchor" id="AUIRoomInfo">AUIRoomInfo</h3>
+
+```swift
+open class AUIRoomInfo: AUICreateRoomInfo {
+    public var roomId: String = ""
+    public var owner: AUIUserThumbnailInfo?
+    public var memberCount: UInt = 0
+    public var createTime: Int64 = 0
+}
+```
+
+K 歌房间的相关信息。
+
+**属性**
+
+- `roomId`：房间 ID。
+- `owner`：房主信息，详见 [AUIUserThumbnailInfo](#AUIUserThumbnailInfo)。
+- `memberCount`：房间内的人数。
+- `createTime`：房间创建的时间，单位为毫秒。
+
+### <h3 className="anchor" id="AUIUserThumbnailInfo">AUIUserThumbnailInfo</h3>
+
+```swift
+open class AUIUserThumbnailInfo: NSObject,AUIUserCellUserDataProtocol {
+    public var userId: String = ""
+    public var userName: String = ""
+    public var userAvatar: String = ""
+}
+```
+
+K 歌中房主的相关信息。
+
+**属性**
+
+- `userId`：房主的 ID。
+- `userName`：房主的用户名。
+- `userAvatar`：房主的头像。
+
+### <h3 className="anchor" id="AUIRoomConfig">AUIRoomConfig</h3>
+
+K 歌房间设置。
+
+```swift
+open class AUIRoomConfig: NSObject {
+    public var channelName: String = ""  
+    public var rtmToken007: String = ""  
+    public var rtcToken007: String = "" 
+    public var rtcChannelName: String = ""
+    public var rtcRtcToken: String = "" 
+    public var rtcRtmToken: String = ""
+    public var rtcChorusChannelName: String = ""
+    public var rtcChorusRtcToken: String = "" 
+}
+```
+
+**属性**
+
+- `channelName`：RTM 频道的频道名，该频道用于同步数据信息、传输信令。
+
+- `rtmToken007`：登陆 RTM 系统时用的 RTM Token。
+
+  <Admonition type="caution" title="注意">
+
+  请确保你使用的 RTM Token 是 AccessToken2。
+
+  </Admonition>
+
+- `rtcToken007`： 登陆 RTM 系统时用的 RTC Token。
+
+  <Admonition type="caution" title="注意">
+
+  请确保你使用的 RTC Token 是 AccessToken2。详见[使用 Token 鉴权](https://doc.shengwang.cn/doc/rtc/ios/basic-features/token-authentication)。
+
+  </Admonition>
+
+- `rtcChannelName`：主频道的频道名。在合唱场景下，领唱需要加入两个频道，在主频道发布人声和播放器的混流，在合唱频道发布麦克风采集的音频流。伴唱需要加入合唱频道来同步领唱的人声。
+
+- `rtcRtcToken`：加入主频道的 RTC Token。
+
+- `rtcRtmToken`：RTM Token，用于音乐内容中鉴权。
+
+- `rtcChorusChannelName`：合唱频道名。独唱场景下，该参数可为空。
+
+- `rtcChorusRtcToken`：根据合唱频道名和用户 ID 生成的 RTC Token，用于加入合唱频道时进行鉴权。独唱场景下，该参数可为空。
