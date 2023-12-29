@@ -255,6 +255,7 @@
 @property (nonatomic, assign) int64_t renderTimeMs;
 @property (nonatomic, assign) int avSyncType;
 @property(assign, nonatomic) CVPixelBufferRef _Nullable pixelBuffer;
+@property(nonatomic, strong) NSDictionary *_Nonnull metaInfo;
 
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct VideoFrame {
@@ -275,7 +276,8 @@
   metadata_size(0),
   sharedContext(0),
   textureId(0),
-  pixelBuffer(NULL){
+  pixelBuffer(NULL),
+  metaInfo(NULL){
     memset(matrix, 0, sizeof(matrix));
   }
   VIDEO_PIXEL_FORMAT type;
@@ -296,6 +298,7 @@
   int textureId;
   float matrix[16];
   void* pixelBuffer;
+  IVideoFrameMetaInfo* metaInfo;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FVideoFrame {
