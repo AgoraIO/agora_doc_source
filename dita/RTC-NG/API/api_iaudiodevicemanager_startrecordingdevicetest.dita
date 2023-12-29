@@ -26,9 +26,9 @@
         </section>
         <section id="detailed_desc">
             <title>详情</title>
-            <p>该方法测试本地音频采集设备是否能正常工作。调用该方法后，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <parmname>uid</parmname> = 0 及采集设备的音量信息。测试完成后，如需加入频道，请确保先调用 <xref keyref="stopRecordingDeviceTest"/> 停止设备测试。</p>
+            <p>该方法用于测试本地音频采集设备是否能正常工作。调用该方法后，SDK 会按设置的时间间隔触发 <xref keyref="onAudioVolumeIndication"/> 回调，报告 <parmname>uid</parmname> = 0 及采集设备的音量信息。</p>
             <p>该方法和 <xref keyref="startEchoTest3"/> 的区别在于该方法检测本地的音频采集设备能否正常工作，后者可以检测音视频设备及网络是否正常。</p>
-            <note type="note">该方法需要在加入频道前调用。</note>
+            <note type="note">该方法需要在加入频道前调用。测试完成后，如需加入频道，请确保先调用 <xref keyref="stopRecordingDeviceTest"/> 停止设备测试。</note>
         </section>
         <section id="parameters">
             <title>参数</title>
@@ -45,7 +45,7 @@
             <li props="native unreal bp electron unity cs">0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph>
             <ul>
-                <li>-2: 参数设置错误。</li>
+                <li>-2: 参数设置错误，请重新设置参数。</li>
             </ul></li></ul>
         </section>
     </refbody>

@@ -34,7 +34,11 @@
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="detailed_desc">
-            <p>当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> 后，当下行网络环境不理想、订阅的音视频流回退为仅音频流时，或当下行网络改善、恢复订阅音视频流时，SDK 会触发该回调。</p>
+            <p>当你调用了 <xref keyref="setRemoteSubscribeFallbackOption"/> 并将 <parmname>option</parmname> 设置为 <apiname keyref="STREAM_FALLBACK_OPTION_AUDIO_ONLY"/> 后，该回调会在下列情况时被触发：
+                <ul>
+                    <li>下行网络环境较差，订阅的音视频流回退为音频流</li>
+                    <li>下行网络环境改善，订阅音频流恢复为音视频流</li>
+                </ul>当下行网络环境不理想、订阅的音视频流回退为仅音频流时，或当下行网络改善、恢复订阅音视频流时，SDK 会触发该回调。</p>
             <note type="attention">订阅流因弱网环境而回退为小流时，你可以通过 <xref keyref="onRemoteVideoStats"/> 回调来监控远端视频大小流的切换。</note>
         </section>
         <section id="parameters">
