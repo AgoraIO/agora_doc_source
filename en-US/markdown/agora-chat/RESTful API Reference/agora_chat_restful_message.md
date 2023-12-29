@@ -257,6 +257,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
      "type": "custom",
      "body": {
        "customEvent": "custom_event"
+       "customExts":{
+            "ext_key1":"ext_value1"
+        }
      }
    }'
    ```
@@ -526,6 +529,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
        "type": "custom",
        "body": {
            "customEvent": "custom_event"
+           "customExts":{
+            "ext_key1":"ext_value1"
+        }
        }
    }'
    ```  
@@ -801,6 +807,9 @@ If the returned HTTP status code is not `200`, the request fails. You can refer 
      "type": "custom",
      "body": {
        "customEvent": "custom_event"
+       "customExts":{
+            "ext_key1":"ext_value1"
+        }
      }
    }'
    ```
