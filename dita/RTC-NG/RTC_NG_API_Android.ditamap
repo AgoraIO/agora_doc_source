@@ -117,8 +117,6 @@
         </topicref>
         <topicref href="API/toc_audio.dita" chunk="to-content">
             <topicref href="API/toc_audio_basic.dita" chunk="to-content">
-                <topicref keyref="adjustCustomAudioPlayoutVolume" toc="no"/>
-                <topicref keyref="adjustCustomAudioPublishVolume" toc="no"/>
                 <topicref keyref="adjustUserPlaybackSignalVolume" toc="no"/>
                 <topicref keyref="adjustUserPlaybackSignalVolumeEx" toc="no"/>
                 <topicref keyref="disableAudio" toc="no"/>
@@ -221,9 +219,12 @@
                 <topicref keyref="onRecordAudioEncodedFrame" toc="no"/>
             </topicref>
             <topicref href="API/toc_audio_custom_capturenrendering.dita" chunk="to-content">
+                <topicref keyref="adjustCustomAudioPlayoutVolume" toc="no"/>
+                <topicref keyref="adjustCustomAudioPublishVolume" toc="no"/>
                 <topicref keyref="createCustomAudioTrack" toc="no"/>
                 <topicref keyref="enableEchoCancellationExternal" toc="no" props="hide"/>
                 <topicref keyref="destroyCustomAudioTrack" toc="no"/>
+                <topicref keyref="enableCustomAudioLocalPlayback" toc="no"/>
                 <topicref keyref="setExternalAudioSource" toc="no"/>
                 <topicref keyref="setExternalAudioSource2" toc="no"/>
                 <topicref keyref="pullAudioFrame" toc="no"/>
@@ -338,6 +339,7 @@
                     <topicref keyref="stopLocalVideoTranscoder" toc="no"/>
                     <topicref keyref="updateLocalTranscoderConfiguration" toc="no"/>
                     <topicref keyref="onLocalVideoTranscoderError" toc="no"/>
+                    <topicref keyref="onTranscodedStreamLayoutInfo" toc="no"/>
                 </topicref>
             </topicref>
             <topicref href="API/toc_video_rendering.dita" chunk="to-content">
@@ -382,9 +384,9 @@
                 <topicref keyref="pushEncodedVideoImage" toc="no" props="hide"/>
                 <topicref keyref="pushEncodedVideoImageEx" toc="no" props="hide"/>
                 <topicref keyref="pushVideoFrame" toc="no"/>
+                <topicref keyref="pushVideoFrame3" toc="no"/>
                 <topicref keyref="pushVideoFrame2" toc="no"/>
-                <topicref keyref="pushVideoFrameEx" toc="no"/>
-                <topicref keyref="pushVideoFrameEx2" toc="no"/>
+                <topicref keyref="pushVideoFrame4" toc="no"/>
                 <topicref keyref="setExternalVideoSource" toc="no"/>
             </topicref>
         </topicref>
@@ -402,6 +404,7 @@
                 <topicref keyref="pauseAudioMixing" toc="no"/>
                 <topicref keyref="resumeAudioMixing" toc="no"/>
                 <topicref keyref="selectAudioTrack" toc="no"/>
+                <topicref keyref="selectMultiAudioTrack" toc="no"/>
                 <topicref keyref="setAudioMixingDualMonoMode" toc="no"/>
                 <topicref keyref="setAudioMixingPitch" toc="no"/>
                 <topicref keyref="setAudioMixingPosition" toc="no"/>
@@ -487,6 +490,7 @@
                     <topicref keyref="getState" toc="no"/>
                     <topicref keyref="getStreamCount" toc="no"/>
                     <topicref keyref="getStreamInfo" toc="no"/>
+                    <topicref keyref="onPlayerPlaybackStats" toc="no"/>
                 </topicref>
                 <topicref href="API/toc_mediaplayer_observer.dita" chunk="to-content">
                     <topicref keyref="registerAudioFrameObserver2_IMediaPlayer" toc="no"/>
@@ -517,6 +521,7 @@
                 <topicref keyref="setCacheDir" toc="no"/>
                 <topicref keyref="setMaxCacheFileCount" toc="no"/>
                 <topicref keyref="setMaxCacheFileSize" toc="no"/>
+                <topicref keyref="onPlayerCacheStats" toc="no"/>
             </topicref>
             <topicref href="API/toc_drm.dita" chunk="to-content" props="cn">
                 <topicref keyref="createMusicPlayer" toc="no"/>
@@ -567,15 +572,10 @@
                 <topicref keyref="pauseAllChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelay" toc="no"/>
                 <topicref keyref="resumeAllChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="startChannelMediaRelay" toc="no"/>
-                <topicref keyref="startChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelay" toc="no"/>
                 <topicref keyref="startOrUpdateChannelMediaRelayEx" toc="no"/>
                 <topicref keyref="stopChannelMediaRelay" toc="no"/>
                 <topicref keyref="stopChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="updateChannelMediaRelay" toc="no"/>
-                <topicref keyref="updateChannelMediaRelayEx" toc="no"/>
-                <topicref keyref="onChannelMediaRelayEvent" toc="no"/>
                 <topicref keyref="onChannelMediaRelayStateChanged" toc="no"/>
             </topicref>
             <topicref href="API/toc_media_push.dita" chunk="to-content">
@@ -662,6 +662,8 @@
             </topicref>
             <topicref href="API/toc_mobile_audio_device.dita" chunk="to-content">
                 <topicref keyref="getAudioDeviceInfo" toc="no"/>
+                <topicref keyref="startPlaybackDeviceTest" toc="no"/>
+                <topicref keyref="stopPlaybackDeviceTest" toc="no"/>
                 <topicref keyref="startRecordingDeviceTest" toc="no"/>
                 <topicref keyref="stopRecordingDeviceTest" toc="no"/>
             </topicref>
@@ -706,7 +708,7 @@
             <topicref keyref="setLogFilter" toc="no"/>
             <topicref keyref="setLogLevel" toc="no"/>
             <topicref keyref="setParameters" toc="no"/>
-            <topicref keyref="setRemoteSubscribeFallbackOption" toc="no" props="hide"/>
+            <topicref keyref="setRemoteSubscribeFallbackOption" toc="no"/>
             <topicref keyref="startEchoTest1" toc="no"/>
             <topicref keyref="startEchoTest2" toc="no"/>
             <topicref keyref="startEchoTest3" toc="no"/>
@@ -724,6 +726,7 @@
             <topicref keyref="onNetworkTypeChanged" toc="no"/>
             <topicref keyref="onPermissionError" toc="no"/>
             <topicref keyref="onProxyConnected" toc="no"/>
+            <topicref keyref="onRemoteSubscribeFallbackToAudioOnly" toc="no"/>
             <topicref keyref="onUplinkNetworkInfoUpdated" toc="no"/>
         </topicref>
         <topicref href="API/rtc_api_data_type.dita" chunk="to-content"/>
