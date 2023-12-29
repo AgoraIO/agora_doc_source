@@ -43,7 +43,7 @@
             <note type="attention">
             <ul>
             <li>该方法在加入频道前后均可调用。</li>
-            <li id="route">由于 iOS 系统限制，部分音频路由在通话音量模式下无法识别。因此，如需使用外接声卡，建议将音频应用场景设置为高音质场景 <codeph><ph keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3)</codeph>。在这种场景下，SDK 会切换到媒体音量规避该问题。</li>
+            <li id="route">由于 iOS 系统限制，部分音频路由在通话音量模式下无法识别。因此，如需使用外接声卡，建议将音频应用场景设置为高音质场景 <apiname keyref="AUDIO_SCENARIO_GAME_STREAMING" /> (3)。在这种场景下，SDK 会切换到媒体音量规避该问题。</li>
             <li>在有高音质需求的场景（例如音乐教学场景）中，建议将 <parmname>profile</parmname> 设置为 <codeph><ph keyref="AUDIO_PROFILE_MUSIC_HIGH_QUALITY" />(4)</codeph>，<parmname>scenario</parmname> 设置为 <codeph><ph keyref="AUDIO_SCENARIO_GAME_STREAMING" />(3)</codeph>。</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -68,19 +68,7 @@
             </plentry>
             <plentry>
                 <pt>scenario</pt>
-                <pd id="scenario-ng"><ph>音频场景。</ph>
-                    <ph>不同的音频场景下，设备的音量类型是不同的。</ph>
-                    <ph props="ios mac cpp framework">详见 <xref keyref="AUDIO_SCENARIO_TYPE" /> 。</ph>
-                    <ul props="android" id="scenario">
-                    <li><ph keyref="AUDIO_SCENARIO_DEFAULT" /> (0): （默认）自动场景，根据用户角色和音频路由自动匹配合适的音质。</li>
-                    <li><ph keyref="AUDIO_SCENARIO_GAME_STREAMING" /> (3): 高音质场景，适用于音乐为主的场景。
-                    </li>
-                    <li><ph keyref="AUDIO_SCENARIO_CHATROOM" /> (5): 聊天室场景，适用于用户需要频繁上下麦的场景。该场景下，观众会收到申请麦克风权限的弹窗提示。</li>
-                    <li><ph keyref="AUDIO_SCENARIO_CHORUS" /> (7): 合唱场景。适用于网络条件良好，要求极低延时的实时合唱场景。
-                        <note conkeyref="AUDIO_SCENARIO_TYPE/chorus" /></li>
-                    <li><ph keyref="AUDIO_SCENARIO_MEETING" /> (8): 会议场景，适用于人声为主的多人会议。</li>
-                    </ul>
-                </pd>
+                <pd conkeyref="setAudioScenario/scenario-ng"/>
             </plentry>
             </parml> </section>
         <section id="return_values">
