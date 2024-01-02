@@ -41,7 +41,7 @@ conn.getSupportedLanguages().then(res => console.log(res))
 When the recipient receives a text message, call `translateMessage` to translate the message:
 
 ```javascript
-conn.translateMessage('hello', ['zh']).then(res => console.log(res))
+conn.translateMessage('hello', ['zh-Hans']).then(res => console.log(res))
 ```
 
 ### Automatic translation
@@ -55,7 +55,7 @@ let option = {
     type: 'txt',
     to: 'userId',
     msg: 'hello',
-    msgConfig:{ languages: ['zh'] } // Set the target language for translation.
+    msgConfig:{ languages: ['zh-Hans'] } // Set the target language for translation.
 }
 let msg = WebIM.message.create(option);
 conn.send(msg)
