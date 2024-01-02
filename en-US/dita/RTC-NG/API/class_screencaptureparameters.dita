@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_screencaptureparameters">
-    <title><ph keyref="ScreenCaptureParameters" /></title>
+    <title><ph keyref="ScreenCaptureParameters"/></title>
     <shortdesc id="short"><ph id="shortdesc">Screen sharing configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
@@ -254,13 +254,13 @@ struct FScreenCaptureParameters
             <codeblock props="reserve" outputclass="language-cpp"></codeblock></p>
         </section>
         <section id="parameters">
-            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
-            <note type="note" props="mac cpp unreal bp unity cs">The video profiles of the shared screen stream are only set by <xref keyref="ScreenCaptureParameters" />, independent of <xref keyref="setVideoEncoderConfiguration" />.</note>
+            <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property"/></title>
+            <note type="note" props="mac cpp unreal bp unity cs">The video profiles of the shared screen stream are only set by <xref keyref="ScreenCaptureParameters"/>, independent of <xref keyref="setVideoEncoderConfiguration"/>.</note>
             <parml>
             <plentry>
                 <pt>dimensions</pt>
                 <pd>
-                    <p><ph>The video encoding resolution of the shared screen stream. </ph><ph props="cpp unreal bp unity electron flutter cs">See <xref keyref="VideoDimensions" />. The default value is 1920 × 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
+                    <p><ph>The video encoding resolution of the shared screen stream. </ph><ph props="cpp unreal bp unity electron flutter cs">See <xref keyref="VideoDimensions"/>. The default value is 1920 × 1080, that is, 2,073,600 pixels. Agora uses the value of this parameter to calculate the charges.</ph></p>
                     <p>If the screen dimensions are different from the value of this parameter, Agora applies the following strategies for encoding. Suppose <parmname props="mac cpp unreal bp unity flutter cs">dimensions</parmname> is set to 1920 × 1080:<ul>
                     <li>If the value of the screen dimensions is lower than that of <parmname>dimensions</parmname>, for example, 1000 × 1000 pixels, the SDK uses the screen dimensions, that is, 1000 × 1000 pixels, for encoding.</li>
                     <li>If the value of the screen dimensions is higher than that of <parmname>dimensions</parmname>, for example, 2000 × 1500, the SDK uses the maximum value under <parmname props="mac cpp unreal bp unity flutter cs">dimensions</parmname> with the aspect ratio of the screen dimension (4:3) for encoding, that is, 1440 × 1080.</li>
@@ -279,33 +279,33 @@ struct FScreenCaptureParameters
                 <pt>captureMouseCursor</pt>
                 <pd>
                     <p>Whether to capture the mouse in screen sharing:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: (Default) Capture the mouse.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: Do not capture the mouse.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: (Default) Capture the mouse.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: Do not capture the mouse.</li>
                     </ul></p>
-                    <note props="cpp mac unity flutter electron">Due to macOS system restrictions, setting this parameter to <codeph><ph keyref="false" /></codeph> is ineffective during screen sharing (it has no impact when sharing a window).</note>
+                    <note props="cpp mac unity flutter electron">Due to macOS system restrictions, setting this parameter to <codeph><ph keyref="false"/></codeph> is ineffective during screen sharing (it has no impact when sharing a window).</note>
                 </pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity electron rn flutter cs">
                 <pt>windowFocus</pt>
                 <pd>
-                    <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId" /> method to share it:<ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Bring the window to the front.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not bring the window to the front.</li>
+                    <p>Whether to bring the window to the front when calling the <xref keyref="startScreenCaptureByWindowId"/> method to share it:<ul>
+                    <li><codeph><ph keyref="true"/></codeph>: Bring the window to the front.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not bring the window to the front.</li>
                     </ul></p>
                 </pd>
             </plentry>
             <plentry props="mac cpp unreal bp unity electron rn flutter cs">
                 <pt>excludeWindowList</pt>
-                <pd>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId" /> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters" /> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</pd>
+                <pd>The ID list of the windows to be blocked. When calling <xref keyref="startScreenCaptureByDisplayId"/> to start screen sharing, you can use this parameter to block a specified window. When calling <xref keyref="updateScreenCaptureParameters"/> to update screen sharing configurations, you can use this parameter to dynamically block a specified window.</pd>
             </plentry>
             <plentry props="mac cpp unreal bp electron unity rn flutter cs">
                 <pt props="mac">highLighted</pt>
                 <pt props="cpp unreal bp electron unity cs flutter">enableHighLight</pt>
                 <pd><ph props="cpp unreal bp unity flutter">(For macOS and Windows only) </ph><ph>Whether to place a border around the shared window or screen:</ph><ul>
-                    <li><codeph><ph keyref="true" /></codeph>: Place a border.</li>
-                    <li><codeph><ph keyref="false" /></codeph>: (Default) Do not place a border.</li>
+                    <li><codeph><ph keyref="true"/></codeph>: Place a border.</li>
+                    <li><codeph><ph keyref="false"/></codeph>: (Default) Do not place a border.</li>
                     </ul>
-                    <note>When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set this parameter to <codeph><ph keyref="true" /></codeph>.</note></pd>
+                    <note>When you share a part of a window or screen, the SDK places a border around the entire window or screen if you set this parameter to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
             <plentry props="mac cpp unreal bp electron unity flutter cs">
                 <pt>highLightColor</pt>
@@ -315,7 +315,7 @@ struct FScreenCaptureParameters
             </plentry>
             <plentry props="mac cpp unreal bp electron unity flutter cs">
                 <pt>highLightWidth</pt>
-                <pd><ph props="cpp unreal bp unity flutter">(For macOS and Windows only) </ph><ph>The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true" /></codeph>.</note></pd>
+                <pd><ph props="cpp unreal bp unity flutter">(For macOS and Windows only) </ph><ph>The width (px) of the border. The default value is 5, and the value range is (0, 50].</ph><note>This parameter only takes effect when <parmname>highLighted</parmname> is set to <codeph><ph keyref="true"/></codeph>.</note></pd>
             </plentry>
             <plentry props="cpp unreal bp unity electron rn flutter cs">
                 <pt>excludeWindowCount</pt>

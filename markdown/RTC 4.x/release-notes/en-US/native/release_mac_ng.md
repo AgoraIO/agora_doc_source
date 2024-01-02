@@ -1,3 +1,14 @@
+
+## v4.2.6
+
+v4.2.6 was released on November xx, 2023.
+
+#### Issues fixed
+
+This version fixed the following issue:
+
+- In specific scenarios (such as when the network packet loss rate was high or when the broadcaster left the channel without destroying the engine and then re-joined the channel), the video on the receiving end stuttered or froze.
+
 ## v4.2.3
 
 v4.2.3 was released on September xx, 2023.

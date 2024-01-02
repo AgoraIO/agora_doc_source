@@ -319,14 +319,6 @@
                     <stentry><xref keyref="enableAudioVolumeIndicationEx"/></stentry>
                     <stentry><ph conkeyref="enableAudioVolumeIndicationEx/shortdesc"/></stentry>
                 </strow>
-                <strow>
-                    <stentry><xref keyref="setHeadphoneEQPreset"/></stentry>
-                    <stentry><ph conkeyref="setHeadphoneEQPreset/shortdesc"/></stentry>
-                </strow>
-                <strow>
-                    <stentry><xref keyref="setHeadphoneEQParameters"/></stentry>
-                    <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
-                </strow>
                 <strow props="native unreal unity">
                     <stentry><xref keyref="setAudioProfile2"/></stentry>
                     <stentry><ph conkeyref="setAudioProfile2/shortdesc"/></stentry>
@@ -436,18 +428,6 @@
                     <stentry><xref keyref="setInEarMonitoringVolume"/></stentry>
                     <stentry><ph conkeyref="setInEarMonitoringVolume/shortdesc"/></stentry>
                 </strow>
-                <strow>
-                    <stentry><xref keyref="setEarMonitoringAudioFrameParameters"/></stentry>
-                    <stentry><ph conkeyref="setEarMonitoringAudioFrameParameters/shortdesc"/></stentry>
-                </strow>
-                <strow props="native unreal flutter unity cs electron rn">
-                    <stentry><xref keyref="onEarMonitoringAudioFrame"/></stentry>
-                    <stentry><ph conkeyref="onEarMonitoringAudioFrame/shortdesc"/></stentry>
-                </strow>
-                <strow props="native unreal">
-                    <stentry><xref keyref="getEarMonitoringAudioParams"/></stentry>
-                    <stentry><ph conkeyref="getEarMonitoringAudioParams/shortdesc"/></stentry>
-                </strow>
             </simpletable>
         </section>
         <section id="audio_prenpost">
@@ -553,6 +533,14 @@
                     <stentry><xref keyref="clearRemotePositions"/></stentry>
                     <stentry><ph conkeyref="clearRemotePositions/shortdesc"/></stentry>
                 </strow>
+                <strow>
+                    <stentry><xref keyref="setHeadphoneEQParameters"/></stentry>
+                    <stentry><ph conkeyref="setHeadphoneEQParameters/shortdesc"/></stentry>
+                </strow>
+                <strow>
+                    <stentry><xref keyref="setHeadphoneEQPreset"/></stentry>
+                    <stentry><ph conkeyref="setHeadphoneEQPreset/shortdesc"/></stentry>
+                </strow>
                 <strow props="hide">
                     <stentry><xref keyref="enableEchoCancellationExternal"/></stentry>
                     <stentry><ph conkeyref="enableEchoCancellationExternal/shortdesc"/></stentry>
@@ -579,6 +567,10 @@
                 <stentry><ph conkeyref="unregisterAudioFrameObserver/shortdesc"/></stentry>
             </strow>
             <strow>
+                <stentry><xref keyref="setEarMonitoringAudioFrameParameters"/></stentry>
+                <stentry><ph conkeyref="setEarMonitoringAudioFrameParameters/shortdesc"/></stentry>
+            </strow>
+            <strow>
                 <stentry><xref keyref="setRecordingAudioFrameParameters"/></stentry>
                 <stentry><ph conkeyref="setRecordingAudioFrameParameters/shortdesc"/></stentry>
             </strow>
@@ -595,12 +587,12 @@
                 <stentry><ph conkeyref="setPlaybackAudioFrameBeforeMixingParameters/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="onRecordAudioFrame"/></stentry>
-                <stentry><ph conkeyref="onRecordAudioFrame/shortdesc"/></stentry>
+                <stentry><xref keyref="onEarMonitoringAudioFrame"/></stentry>
+                <stentry><ph conkeyref="onEarMonitoringAudioFrame/shortdesc"/></stentry>
             </strow>
             <strow>
-                <stentry><xref keyref="onFrame_IAudioPcmFrameSink"/></stentry>
-                <stentry><ph conkeyref="onFrame_IAudioPcmFrameSink/shortdesc"/></stentry>
+                <stentry><xref keyref="onRecordAudioFrame"/></stentry>
+                <stentry><ph conkeyref="onRecordAudioFrame/shortdesc"/></stentry>
             </strow>
             <strow>
                 <stentry><xref keyref="onPlaybackAudioFrame"/></stentry>
@@ -613,6 +605,10 @@
             <strow>
                 <stentry><xref keyref="onMixedAudioFrame"/></stentry>
                 <stentry><ph conkeyref="onMixedAudioFrame/shortdesc"/></stentry>
+            </strow>
+            <strow props="native unreal">
+                <stentry><xref keyref="getEarMonitoringAudioParams"/></stentry>
+                <stentry><ph conkeyref="getEarMonitoringAudioParams/shortdesc"/></stentry>
             </strow>
             <strow props="native unreal bp">
                 <stentry><xref keyref="getObservedAudioFramePosition"/></stentry>
@@ -2323,7 +2319,7 @@
                     <stentry><xref keyref="followSystemLoopbackDevice"/></stentry>
                     <stentry><ph conkeyref="followSystemLoopbackDevice/shortdesc"/></stentry>
                 </strow>
-                <strow props="hide">
+                <strow props="cpp unreal unity flutter electron cs">
                     <stentry><xref keyref="setPlaybackDeviceVolume"/></stentry>
                     <stentry><ph conkeyref="setPlaybackDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
                 </strow>
@@ -2347,7 +2343,7 @@
                     <stentry><xref keyref="setRecordingDeviceVolume"/></stentry>
                     <stentry><ph conkeyref="setRecordingDeviceVolume/shortdesc"/></stentry>
                 </strow>
-                <strow props="hide">
+                <strow props="cpp unreal bp electron unity flutter">
                     <stentry><xref keyref="getRecordingDeviceVolume"/></stentry>
                     <stentry><ph conkeyref="getRecordingDeviceVolume/shortdesc"/>（仅适用于 Windows）</stentry>
                 </strow>
@@ -2711,7 +2707,7 @@
                     <stentry><xref keyref="sendCustomReportMessageEx"/></stentry>
                     <stentry><ph conkeyref="sendCustomReportMessageEx/shortdesc"/></stentry>
                 </strow>
-                <strow props="hide">
+                <strow>
                     <stentry><xref keyref="setRemoteSubscribeFallbackOption"/></stentry>
                     <stentry><ph conkeyref="setRemoteSubscribeFallbackOption/shortdesc"/></stentry>
                 </strow>
@@ -2723,13 +2719,9 @@
                     <stentry><xref keyref="onSendVideoPacket"/></stentry>
                     <stentry><ph conkeyref="onSendVideoPacket/shortdesc"/></stentry>
                 </strow>
-                <strow props="hide">
+                <strow>
                     <stentry><xref keyref="onRemoteSubscribeFallbackToAudioOnly"/></stentry>
                     <stentry><ph conkeyref="onRemoteSubscribeFallbackToAudioOnly/shortdesc"/></stentry>
-                </strow>
-                <strow  props="hide">
-                    <stentry><xref keyref="setLocalPublishFallbackOption"/></stentry>
-                    <stentry><ph conkeyref="setLocalPublishFallbackOption/shortdesc"/></stentry>
                 </strow>
                 <strow>
                     <stentry><xref keyref="onEncryptionError"/></stentry>

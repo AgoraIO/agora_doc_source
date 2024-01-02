@@ -46,7 +46,7 @@
             <ul>
             <li>该方法在加入频道前后均可调用。如需多次调用 <apiname keyref="startAudioMixing2"/>，请确保调用间隔大于 500 ms。</li>
             <li>如果本地音乐文件不存在、文件格式不支持或无法访问在线音乐文件 URL，则 SDK 会报告警告码 701。</li>
-            <li conkeyref="preloadEffect/audioFormats" />
+            <li>该方法支持的音频文件格式见 <xref keyref="audio-format">RTC SDK 支持播放哪些格式的音频文件</xref>。</li>
             <li conkeyref="startAudioMixing/principle" props="android cpp unreal bp unity"/>
             <li props="rn" id="principle">在 Android 平台上调用该方法时，请注意如下事项：
 
@@ -95,8 +95,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">方法成功调用时，无返回值；方法调用失败时，会抛出 <xref keyref="AgoraRtcException"/> 异常，你需要捕获异常并进行处理。<ph props="cn">详见<xref keyref="error-code-link"/>了解详情和解决建议。</ph></p>
-            <ul>
-            <li props="native unreal bp unity electron rn cs">0: 方法调用成功。</li>
+            <ul props="native unreal bp unity electron rn cs">
+            <li>0: 方法调用成功。</li>
             <li>&lt; 0: 方法调用失败
             <ul>
                 <li>-1: 一般性的错误（未明确归类）。</li>

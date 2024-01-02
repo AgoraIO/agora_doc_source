@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE reference PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
 <reference id="class_mediasource">
-    <title><ph keyref="MediaSource" /></title>
+    <title><ph keyref="MediaSource"/></title>
     <shortdesc id="short"><ph id="shortdesc">Information related to the media file to be played and the playback scenario configurations.</ph></shortdesc>
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class MediaPlayerSource {
-  public MediaPlayerSource() {
-    this.startPos = 0;
-    this.enableCache = false;
-    this.url = null;
-    this.uri = null;
-    this.autoPlay = true;
-    this.provider = null;
-  }
   String url;
   String uri;
   long startPos;
@@ -22,6 +14,7 @@
   Boolean isAgoraSource;
   Boolean isLiveSource;
   boolean enableCache;
+  boolean enableMultiAudioTrack;
   IMediaPlayerCustomDataProvider provider;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaSource : NSObject
@@ -29,6 +22,7 @@
 @property(copy, nonatomic) NSString *_Nullable uri;
 @property(assign, nonatomic) NSUInteger startPos;
 @property(assign, nonatomic) BOOL enableCache;
+@property(assign, nonatomic) BOOL enableMultiAudioTrack;
 @property(assign, nonatomic) BOOL autoPlay;
 @property(assign, nonatomic) BOOL isAgoraSource;
 @property(assign, nonatomic) BOOL isLiveSource;
@@ -42,12 +36,13 @@
   int64_t startPos;
   bool autoPlay;
   bool enableCache;
+  bool enableMultiAudioTrack;
   Optional&lt;bool&gt; isAgoraSource;
   Optional&lt;bool&gt; isLiveSource;
   IMediaPlayerCustomDataProvider* provider;
 
   MediaSource() : url(NULL), uri(NULL), startPos(0), autoPlay(true), enableCache(false),
-                  provider(NULL){
+                  enableMultiAudioTrack(false), provider(NULL){
   }
 };</codeblock>
         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
@@ -229,7 +224,7 @@ struct FAgoraMediaSource
             <plentry props="android cpp unreal bp unity cs">
                     <pt>provider</pt>
                     <pd>
-                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider" />.</p>
+                        <p>The callback for custom media resource files. See <xref keyref="IMediaPlayerCustomDataProvider"/>.</p>
                         <note>
                             <p>If you open a custom media resource, pass in the value to <parmname>provider</parmname>. If you open a common media resource, pass in the value to <parmname>url</parmname>. Agora recommends that you do not pass in values to both <parmname>url</parmname> and <parmname>provider</parmname> in one call; otherwise, this call may fail.</p>
                         </note>
@@ -238,15 +233,15 @@ struct FAgoraMediaSource
             <plentry props="apple">
                 <pt>playerOnReadCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData" />.</p>
+                    <p>Occurs when the SDK reads the media resource data. See <xref keyref="onReadData"/>.</p>
                     <note id="note">
-                    <p conkeyref="MediaSource/url" />
+                    <p conkeyref="MediaSource/url"/>
                     </note></pd>
             </plentry>
             <plentry props="apple">
                 <pt>playerOnSeekCallback</pt>
                 <pd>
-                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek" />.</p>
+                    <p>Occurs when the SDK seeks the media resource data. See <xref keyref="onSeek"/>.</p>
                     <note conkeyref="MediaSource/note">
                     <p />
                     </note></pd>

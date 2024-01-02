@@ -244,36 +244,33 @@ class VideoCanvas {
                     <pt>view</pt>
                     <pd props="native flutter unity cs electron rn">视频显示窗口。</pd>
                     <pd props="unreal bp">视频图像。你需要定义 UImage 类型的指针，并传入该参数，示例代码如下： 
-                        <codeblock props="reserve" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
+                        <codeblock props="unreal bp" outputclass="language-cpp">agora::rtc::VideoCanvas videoCanvas;
     UImage* LocalVideo;
     videoCanvas.view = LocalVideo;</codeblock></pd>
                 </plentry>
-                <plentry props="native flutter unity cs electron rn">
+                <plentry props="native flutter unity cs electron rn bp">
                     <pt>renderMode</pt>
-                    <pd props="ios mac cpp unity electron rn flutter cs">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
-                    <pd props="android">
-                        <ul conkeyref="setLocalRenderMode2/rendermodetype">
-                            <li/>
-                        </ul>
-                    </pd>
+                    <pd props="ios mac cpp unity electron rn flutter cs bp">视频渲染模式，详见 <xref keyref="RENDER_MODE_TYPE"/>。</pd>
+                    <pd props="android"><ul conkeyref="setLocalRenderMode2/rendermodetype"><li/></ul></pd>
                 </plentry>
-                <plentry props="native flutter unity cs electron rn">
+                <plentry props="native flutter unity cs electron rn bp">
                     <pt>mirrorMode</pt>
-                    <pd>
-                        <p props="ios mac cpp unity electron rn flutter cs">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
-                        <p props="android">
-                            <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
-                                <li/>
-                            </ul>
-                        </p>
-                        <note type="attention">
-                            <ul>
-                                <li>本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</li>
-                                <li>远端用户视图镜像模式：默认关闭远端用户的镜像模式。</li>
-                            </ul>
-                        </note>
-                    </pd>
-                </plentry>
+                <pd>
+                    <p props="ios mac cpp unity electron rn flutter cs bp">视图镜像模式，详见 <xref keyref="VIDEO_MIRROR_MODE_TYPE"/>。</p>
+                    <p props="android">
+                    <ul conkeyref="setLocalRenderMode2/videomirrormodetype">
+                    <li/>
+                    </ul> </p>
+                    <note type="attention">
+                    <ul>
+                    <li>本地视图镜像模式：如果你使用前置摄像头，默认启动本地视图镜像模式；如果你使用后置摄像头，默认关闭本地视图镜像模式。</li>
+                    <li>远端用户视图镜像模式：默认关闭远端用户的镜像模式。</li>
+                    </ul> </note> </pd>
+            </plentry>
+            <plentry>
+                <pt>uid</pt>
+                <pd>用户 ID。</pd>
+            </plentry>
             <plentry id="sourcetype">
                 <pt>sourceType</pt>
                 <pd>视频源的类型，详见 <xref keyref="VIDEO_SOURCE_TYPE"/>。</pd>
@@ -282,9 +279,9 @@ class VideoCanvas {
                 <pt>sourceId</pt>
                 <pd>视频源 ID。</pd>
             </plentry>
-            <plentry props="native flutter unity cs electron rn">
+            <plentry props="native flutter unity cs electron rn bp">
                 <pt>setupMode</pt>
-                <pd props="ios mac cpp flutter unity cs electron rn">视图设置模式。详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
+                <pd props="ios mac cpp flutter unity cs electron rn bp">视图设置模式。详见 <xref keyref="VIDEO_VIEW_SETUP_MODE"/>。</pd>
                 <pd props="android">视图设置模式：
                 <ul>
                     <li><ph keyref="VIDEO_VIEW_SETUP_REPLACE"/> (0): (默认) 替换一个视图。</li>
@@ -292,7 +289,7 @@ class VideoCanvas {
                     <li><ph keyref="VIDEO_VIEW_SETUP_REMOVE"/> (2): 删除一个视图。</li>
                 </ul></pd>
             </plentry>
-            <plentry>
+            <plentry props="native unreal flutter unity cs electron rn">
                 <pt>mediaPlayerId</pt>
                 <pd>媒体播放器 ID。可通过 <xref keyref="getMediaPlayerId"/> 获取。</pd>
                 <pd>当 <parmname>sourceType</parmname> 为 <apiname keyref="VIDEO_SOURCE_MEDIA_PLAYER"/> 时，此参数为必填项。</pd>
@@ -301,7 +298,7 @@ class VideoCanvas {
               <pt>rect</pt>
               <pd>（可选）视频帧的展示区域。详见 <xref keyref="rect-link"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
           </plentry>
-          <plentry props="cpp flutter unity cs electron rn">
+          <plentry props="cpp flutter unity cs electron rn bp">
                 <pt>cropArea</pt>
                 <pd>（可选）视频帧的展示区域，详见 <xref keyref="Rectangle"/>。其中，<parmname>width</parmname> 和 <parmname>height</parmname> 表示该区域的视频像素宽度和高度。默认值为空值 (宽或高为 0)，表示展示实际分辨率的视频帧。</pd>
           </plentry>
