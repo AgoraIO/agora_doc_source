@@ -41,7 +41,7 @@ conn.getSupportedLanguages().then(res => console.log(res))
 When the recipient receives a text message, call `translateMessage` to translate the message:
 
 ```javascript
-conn.translateMessage('hello', ['zh-Hans']).then(res => console.log(res))
+conn.translateMessage({text: 'hello', languages: [zh-Hans]})
 ```
 
 ### Automatic translation
