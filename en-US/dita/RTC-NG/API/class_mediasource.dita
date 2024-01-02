@@ -7,14 +7,6 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class MediaPlayerSource {
-  public MediaPlayerSource() {
-    this.startPos = 0;
-    this.enableCache = false;
-    this.url = null;
-    this.uri = null;
-    this.autoPlay = true;
-    this.provider = null;
-  }
   String url;
   String uri;
   long startPos;
@@ -22,6 +14,7 @@
   Boolean isAgoraSource;
   Boolean isLiveSource;
   boolean enableCache;
+  boolean enableMultiAudioTrack;
   IMediaPlayerCustomDataProvider provider;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaSource : NSObject
@@ -29,6 +22,7 @@
 @property(copy, nonatomic) NSString *_Nullable uri;
 @property(assign, nonatomic) NSUInteger startPos;
 @property(assign, nonatomic) BOOL enableCache;
+@property(assign, nonatomic) BOOL enableMultiAudioTrack;
 @property(assign, nonatomic) BOOL autoPlay;
 @property(assign, nonatomic) BOOL isAgoraSource;
 @property(assign, nonatomic) BOOL isLiveSource;
@@ -42,12 +36,13 @@
   int64_t startPos;
   bool autoPlay;
   bool enableCache;
+  bool enableMultiAudioTrack;
   Optional&lt;bool&gt; isAgoraSource;
   Optional&lt;bool&gt; isLiveSource;
   IMediaPlayerCustomDataProvider* provider;
 
   MediaSource() : url(NULL), uri(NULL), startPos(0), autoPlay(true), enableCache(false),
-                  provider(NULL){
+                  enableMultiAudioTrack(false), provider(NULL){
   }
 };</codeblock>
         <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
