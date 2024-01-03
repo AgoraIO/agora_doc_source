@@ -82,11 +82,11 @@ struct FEncryptionConfig
 	FString encryptionKdfSalt;
 };</codeblock>
       <codeblock props="electron" outputclass="language-typescript">export class EncryptionConfig {
-  
+
   encryptionMode?: EncryptionMode;
-  
+
   encryptionKey?: string;
-  
+
   encryptionKdfSalt?: number[];
 }</codeblock>
       <codeblock props="unity cs" outputclass="language-csharp">public class EncryptionConfig
@@ -116,11 +116,11 @@ struct FEncryptionConfig
         }
     }</codeblock>
       <codeblock props="rn" outputclass="language-typescript">export class EncryptionConfig {
-  
+
   encryptionMode?: EncryptionMode;
-  
+
   encryptionKey?: string;
-  
+
   encryptionKdfSalt?: number[];
 }</codeblock>
       <codeblock props="flutter" outputclass="language-dart">class EncryptionConfig {
@@ -157,7 +157,8 @@ struct FEncryptionConfig
       <plentry>
         <pt>encryptionKdfSalt</pt>
         <pd>
-          <p><ph>Salt, 32 bytes in length. Agora recommends that you use OpenSSL to generate salt on the server side. See Media Stream Encryption for details. </ph><ph props="native unreal bp">See "Media Stream Encryption" for details.</ph></p>
+          <p>Salt, 32 bytes in length. Agora recommends that you use OpenSSL to generate salt on the server side. See Media Stream Encryption for details.</p>
+          <p props="native"><ph props="cn">如需在 App 中添加声网内置媒体流加密，详见<xref keyref="channel-encryption"/>。</ph></p>
           <note type="attention">This parameter takes effect only in <codeph><ph keyref="AES_128_GCM2" /></codeph> or <codeph><ph keyref="AES_256_GCM2" /></codeph> encrypted mode. In this case, ensure that this parameter is not <codeph>0</codeph>.</note>
         </pd>
       </plentry>

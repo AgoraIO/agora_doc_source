@@ -72,11 +72,11 @@
                     <pd>
                          <p props="ios mac cpp unreal bp unity flutter electron rn cs">The state of the remote video. See <xref keyref="REMOTE_VIDEO_STATE" />.</p>
                          <p props="android">The state of the remote video:<ul>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0): The remote video is in the initial state. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED(3)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED(5)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE(7)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK(8)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_STOPPED"/>(0): The remote video is in the initial state. 在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_MUTED"/> (3)、<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_MUTED"/> (5) 或 <apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_OFFLINE"/> (7) 的情况下，会报告该状态。</li>
                          <li><ph keyref="REMOTE_VIDEO_STATE_STARTING"/>(1): The first remote video packet is received.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2): The remote audio stream is decoded and plays normally. This status is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY(2)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED(4)</codeph>, <codeph>REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED(6)</codeph> or <codeph>REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY(9)</codeph>.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3): The remote video is frozen. This state is reported in the case of <codeph>REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION(1)</codeph>.</li>
-                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4): The remote video fails to start. The remote video fails to start, probably due to <codeph>REMOTE_VIDEO_STATE_REASON_INTERNAL(0)</codeph>.</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_DECODING"/>(2): The remote audio stream is decoded and plays normally. 在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_RECOVERY"/> (2)、<apiname keyref="REMOTE_VIDEO_STATE_REASON_LOCAL_UNMUTED"/> (4)、<apiname keyref="REMOTE_VIDEO_STATE_REASON_REMOTE_UNMUTED"/> (6) 或 <apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK_RECOVERY"/> (9) 的情况下，会报告该状态。</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FROZEN"/>(3): The remote video is frozen. 在 <apiname keyref="REMOTE_VIDEO_STATE_REASON_NETWORK_CONGESTION"/> (1) 或 <apiname keyref="REMOTE_VIDEO_STATE_REASON_AUDIO_FALLBACK"/> (8) 的情况下，会报告该状态。</li>
+                         <li><ph keyref="REMOTE_VIDEO_STATE_FAILED"/>(4): The remote video fails to start. The<apiname keyref="REMOTE_VIDEO_STATE_REASON_INTERNAL"/> SDK reports this state in the case of , , or .</li>
                          </ul> </p>
                     </pd>
                </plentry>

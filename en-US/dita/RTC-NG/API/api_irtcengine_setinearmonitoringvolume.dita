@@ -28,8 +28,6 @@
             <title>Details</title>
             <note type="attention">
             <ul>
-            <li props="cpp unreal bp unity flutter cs">This method applies to Android and iOS only.</li>
-            <li>Users must use wired earphones to hear their own voices.</li>
             <li>You can call this method either before or after joining a channel.</li>
             </ul> </note> </section>
         <section id="parameters">
@@ -37,15 +35,22 @@
             <parml>
             <plentry>
                 <pt>volume</pt>
-                <pd>The volume of the in-ear monitor. The value ranges between 0 and 100. The default value is 100.</pd>
+                <pd>The volume of the in-ear monitor. The value ranges between 0 and 100.<ul>
+                    <li>0: Mute.</li>
+                    <li>100: (Default) The original volume.</li>
+                    <li>400: 原始音量的 4 倍。</li>
+                    </ul>
+                </pd>
             </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp unity rn cs">0: Success.</li>
-            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
+            <ul props="native unreal bp unity rn cs">
+            <li>0: Success.</li>
+            <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph><ul>
+                <li>-2: 参数设置无效，例如耳返音量超出取值范围 (&lt; 0 或 > 400)。</li>
+                </ul></li>
             </ul> </section>
     </refbody>
 </reference>

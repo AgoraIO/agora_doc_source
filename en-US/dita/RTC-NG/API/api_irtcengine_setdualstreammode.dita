@@ -29,7 +29,7 @@
                 <dd>v4.0.1</dd>
             </dlentry>
             </dl>
-            <p id="desc">The SDK enables the low-quality video stream auto mode on the sender side by default (it does not actively sending low-quality video streams). The host identity receiver can initiate a low-quality video stream application at the receiving end by calling <xref keyref="setRemoteVideoStreamType"/>. After receiving the application, the sending end automatically switches to the low-quality video stream mode.<ul>
+            <p id="desc">SDK 默认在发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>)，即发送端不主动发送小流，接收端可以调用 <xref keyref="setRemoteVideoStreamType"/> 发起小流申请，发送端收到申请后开始自动发送小流。<ul>
                 <li>If you want to modify this behavior, you can call this method and modify the <parmname>mode</parmname> to <apiname keyref="DISABLE_SIMULCAST_STREAM"/> (never send low-quality video streams) or <apiname keyref="ENABLE_SIMULCAST_STREAM"/> (always send low-quality video streams).</li>
                 <li>If you want to restore the default behavior after making changes, you can call this method again with <parmname>mode</parmname> set to <apiname keyref="AUTO_SIMULCAST_STREAM"/>.</li></ul></p>
             <note id="note">The difference and connection between this method and <xref keyref="enableDualStreamMode"/> is as follows:<ul>
@@ -42,9 +42,9 @@
             <title>Parameters</title>
             <parml>
             <plentry id="mode">
-                    <pt>mode</pt>
-                    <pd>The mode in which the video stream is sent. See <xref keyref="SIMULCAST_STREAM_MODE"/>.</pd>
-                </plentry>
+                <pt>mode</pt>
+                <pd>The mode in which the video stream is sent. See <xref keyref="SIMULCAST_STREAM_MODE"/>.</pd>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title>Returns</title>

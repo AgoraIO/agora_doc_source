@@ -41,6 +41,7 @@
             <ul>
             <li props="native unreal bp electron flutter unity cs">Ensure that you have called the <xref keyref="setupLocalVideo" /> method to initialize the local video view before calling this method.</li>
             <li>During a call, you can call this method as many times as necessary to update the display mode of the local video view.</li>
+            <li props="cpp bp unreal apple electron unity cs flutter">该方法仅对第一个摄像头 <codeph>(<ph keyref="PRIMARY_CAMERA_SOURCE"/>)</codeph> 生效。 在自定义视频采集或使用其他类型视频源的场景下，你需要使用 <xref keyref="setupLocalVideo"/> 方法替代该方法。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>
@@ -73,8 +74,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li> &lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

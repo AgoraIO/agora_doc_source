@@ -7,18 +7,18 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class CodecCapLevels {
-  public Constants.VideoCodecCapLevel hwDecodingLevel;
-  public Constants.VideoCodecCapLevel swDecodingLevel;
+  public int hwDecodingLevel;
+  public int swDecodingLevel;
 
   public CodecCapLevels() {
-    this.hwDecodingLevel = Constants.VideoCodecCapLevel.CODEC_CAPABILITY_LEVEL_UNSPECIFIED;
-    this.swDecodingLevel = Constants.VideoCodecCapLevel.CODEC_CAPABILITY_LEVEL_UNSPECIFIED;
+    this.hwDecodingLevel = Constants.CODEC_CAPABILITY_LEVEL_UNSPECIFIED;
+    this.swDecodingLevel = Constants.CODEC_CAPABILITY_LEVEL_UNSPECIFIED;
   };
 
   @CalledByNative
   public CodecCapLevels(int hwDecLevel, int swDecLevel) {
-    this.hwDecodingLevel = Constants.VideoCodecCapLevel.fromInt(hwDecLevel);
-    this.swDecodingLevel = Constants.VideoCodecCapLevel.fromInt(swDecLevel);
+    this.hwDecodingLevel = hwDecLevel;
+    this.swDecodingLevel = swDecLevel;
   };
 };</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraVideoCodecCapLevels : NSObject
@@ -80,11 +80,18 @@ class CodecCapLevels {
             <parml>
             <plentry>
                 <pt>hwDecodingLevel</pt>
-                <pd>Hardware decoding capability level, which represents the device's ability to perform hardware decoding on videos of different quality. See <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>.</pd>
+                <pd>Hardware decoding capability level, which represents the device's ability to perform hardware decoding on videos of different quality. <ph props="cpp apple framework">See <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>.</ph></pd>
+                <pd props="android" id="codec"><ul>
+                    <li><ph keyref="CODEC_CAPABILITY_LEVEL_UNSPECIFIED"/>-1: Unsupported video type. Currently, only H.264 and H.265 formats are supported. If the video is in another format, this value will be returned.</li>
+                    <li><ph keyref="CODEC_CAPABILITY_LEVEL_BASIC_SUPPORT"/>5: Supports encoding and decoding videos up to 1080p and 30 fps.</li>
+                    <li><ph keyref="CODEC_CAPABILITY_LEVEL_1080P30FPS"/>10: Supports encoding and decoding videos up to1080p and 30 fps.</li>
+                    <li><ph keyref="CODEC_CAPABILITY_LEVEL_1080P60FPS"/>20: Support encoding and decoding videos up to 1080p and 60 fps.</li>
+                    <li><ph keyref="CODEC_CAPABILITY_LEVEL_4K60FPS"/>30: Support encoding and decoding videos up to 4K and 30 fps.</li></ul></pd>
             </plentry>
                 <plentry>
                     <pt>swDecodingLevel</pt>
-                    <pd>Software decoding capability level, which represents the device's ability to perform software decoding on videos of different quality. See <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>.</pd>
+                    <pd>Software decoding capability level, which represents the device's ability to perform software decoding on videos of different quality. <ph props="cpp apple framework">See <xref keyref="VIDEO_CODEC_CAPABILITY_LEVEL"/>.</ph></pd>
+                    <pd conkeyref="CodecCapLevels/codec" props="android"/>
                 </plentry>
             </parml> </section>
     </refbody>

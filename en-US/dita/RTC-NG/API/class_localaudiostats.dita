@@ -13,6 +13,8 @@
   public int internalCodec;
   public int txPacketLossRate;
   public int audioDeviceDelay;
+  public int earMonitorDelay;
+  public int aecEstimatedDelay;
 };</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraRtcLocalAudioStats : NSObject
 @property(assign, nonatomic) NSUInteger numChannels;
@@ -21,6 +23,8 @@
 @property(assign, nonatomic) NSUInteger internalCodec;
 @property(assign, nonatomic) NSUInteger txPacketLossRate;
 @property(assign, nonatomic) NSUInteger audioDeviceDelay;
+@property(assign, nonatomic) NSUInteger earMonitorDelay;
+@property(assign, nonatomic) NSUInteger aecEstimatedDelay;
 
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct LocalAudioStats
@@ -31,6 +35,8 @@
   int internalCodec;
   unsigned short txPacketLossRate;
   int audioDeviceDelay;
+  int earMonitorDelay;
+  int aecEstimatedDelay;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FLocalAudioStats
@@ -100,26 +106,49 @@ struct FLocalAudioStats
   
   audioDeviceDelay?: number;
 }</codeblock>
-            <codeblock props="flutter" outputclass="language-dart">class LocalAudioStats {
+            <codeblock props="flutter" outputclass="language-dart">@JsonSerializable(explicitToJson: true, includeIfNull: false)
+class LocalAudioStats {
   const LocalAudioStats(
       {this.numChannels,
       this.sentSampleRate,
       this.sentBitrate,
       this.internalCodec,
-      this.txPacketLossRate});
+      this.txPacketLossRate,
+      this.audioDeviceDelay,
+      this.audioPlayoutDelay,
+      this.earMonitorDelay,
+      this.aecEstimatedDelay});
 
-  @JsonKey(name: 'numChannels')
+  @JsonKey(name: &#x27;numChannels&#x27;)
   final int? numChannels;
-  @JsonKey(name: 'sentSampleRate')
+
+  @JsonKey(name: &#x27;sentSampleRate&#x27;)
   final int? sentSampleRate;
-  @JsonKey(name: 'sentBitrate')
+
+  @JsonKey(name: &#x27;sentBitrate&#x27;)
   final int? sentBitrate;
-  @JsonKey(name: 'internalCodec')
+
+  @JsonKey(name: &#x27;internalCodec&#x27;)
   final int? internalCodec;
-  @JsonKey(name: 'txPacketLossRate')
+
+  @JsonKey(name: &#x27;txPacketLossRate&#x27;)
   final int? txPacketLossRate;
+
+  @JsonKey(name: &#x27;audioDeviceDelay&#x27;)
+  final int? audioDeviceDelay;
+
+  @JsonKey(name: &#x27;audioPlayoutDelay&#x27;)
+  final int? audioPlayoutDelay;
+
+  @JsonKey(name: &#x27;earMonitorDelay&#x27;)
+  final int? earMonitorDelay;
+
+  @JsonKey(name: &#x27;aecEstimatedDelay&#x27;)
+  final int? aecEstimatedDelay;
+
   factory LocalAudioStats.fromJson(Map&lt;String, dynamic&gt; json) =&gt;
       _$LocalAudioStatsFromJson(json);
+
   Map&lt;String, dynamic&gt; toJson() =&gt; _$LocalAudioStatsToJson(this);
 }
 </codeblock>
@@ -150,7 +179,15 @@ struct FLocalAudioStats
             </plentry>
             <plentry>
                 <pt>audioDeviceDelay</pt>
-                <pd>The delay of the audio device module when playing or recording audio.</pd>
+                <pd>播放或录制音频时，音频设备模块的延迟 (ms)。</pd>
+            </plentry>                
+            <plentry>
+                <pt>earMonitorDelay</pt>
+                <pd>耳返延迟 (ms)，即声音从麦克风输入到耳机输出的延迟。</pd>
+            </plentry>                
+            <plentry>
+                <pt>aecEstimatedDelay</pt>
+                <pd>回声消除延迟 (ms)，即回声消除 (Acoustic Echo Cancellation, AEC) 模块测算出音频在本地播放前与被本地采集后的信号延迟。</pd>
             </plentry>                
             </parml> </section>
     </refbody>

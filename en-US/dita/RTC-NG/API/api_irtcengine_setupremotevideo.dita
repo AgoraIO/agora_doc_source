@@ -30,11 +30,13 @@
             <p>You need to specify the ID of the remote user in this method. If the remote user ID is unknown to the application, set it after the app receives the <xref keyref="onUserJoined"/> callback.</p>
             <p>To unbind the remote user from the view, set the <parmname>view</parmname> parameter to NULL.</p>
             <p>Once the remote user leaves the channel, the SDK unbinds the remote user.</p>
+            <p>在合图场景下，你可以调用该方法并针对合图视频流的每一路子视频流设置一个单独的 <parmname>view</parmname> 进行渲染。</p>
             <note type="attention">
             <ul>
              <li props="unity cs">If you need to implement native window rendering, use this method; if you only need to render video images in your Unity project, use the methods in the <xref keyref="AgoraVideoSurface"/> class instead.</li>
             <li props="native unreal bp unity rn flutter cs">To update the rendering or mirror mode of the remote video view during a call, use the <xref keyref="setRemoteRenderMode2"/> method.</li>
             <li>If you use the Agora recording function, the recording client joins the channel as a placeholder client, triggering the <xref keyref="onUserJoined"/> callback. Do not bind the placeholder client to the app view because the placeholder client does not send any video streams. If your app does not recognize the placeholder client, bind the remote user to the view when the SDK triggers the <xref keyref="onFirstRemoteVideoDecoded"/> callback.</li>
+            <li props="electron">如果想要停止渲染视图，需要将 <parmname>view</parmname> 设为 <ph keyref="NULL" /> 后再次调用该方法，以停止渲染并清理渲染缓存。</li>
             </ul> </note> </section>
         <section id="parameters">
             <title>Parameters</title>

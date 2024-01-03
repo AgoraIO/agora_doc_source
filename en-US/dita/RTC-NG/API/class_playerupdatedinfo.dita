@@ -7,19 +7,28 @@
         <section id="prototype">
             <p outputclass="codeblock">
             <codeblock props="android" outputclass="language-java">public class PlayerUpdatedInfo {
-  public String playerId;
-  public String deviceId;
-  public CacheStatistics cacheStatistics;
+  private String deviceId;
+  private long videoHeight;
+  private long videoWidth;
+  private long audioSampleRate;
+  private long audioChannels;
+  private long audioBitsPerSample;
 }</codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraMediaPlayerUpdatedInfo : NSObject
-@property(copy, nonatomic) NSString *_Nullable playerId;
 @property(copy, nonatomic) NSString *_Nullable deviceId;
-@property(strong, nonatomic) AgoraMediaPlayerCacheStatistics *_Nullable cacheStatistics;
+@property(assign, nonatomic) NSInteger videoHeight;
+@property(assign, nonatomic) NSInteger videoWidth;
+@property(assign, nonatomic) NSInteger audioSampleRate;
+@property(assign, nonatomic) NSInteger audioChannels;
+@property(assign, nonatomic) NSInteger audioBitsPerSample;
 @end</codeblock>
             <codeblock props="cpp unreal" outputclass="language-cpp">struct PlayerUpdatedInfo {
-  Optional&lt;const char*> playerId;
-  Optional&lt;const char*> deviceId;
-  Optional&lt;CacheStatistics> cacheStatistics;
+  const char* deviceId;
+  int videoHeight;
+  int videoWidth;
+  int audioSampleRate;
+  int audioChannels;
+  int audioBitsPerSample;
 };</codeblock>
          <codeblock props="bp" outputclass="language-cpp">USTRUCT(BlueprintType)
 struct FPlayerUpdatedInfo {
@@ -78,20 +87,29 @@ struct FPlayerUpdatedInfo {
             <title><text conref="../conref/conref_api_metadata.dita#conref_api_metadata/property" /></title>
             <parml>
             <plentry>
-                <pt>playerId</pt>
-                <pd>The ID of a media player.</pd>
-            </plentry>
-            <plentry>
                 <pt>deviceId</pt>
                 <pd>The ID of a deivce.</pd>
             </plentry>
             <plentry>
-                <pt>CacheStatistics</pt>
-                <pd>
-                    <p>The statistics about the media file being cached.</p>
-                    <p>If you call the <xref keyref="openWithMediaSource" /> method and set <parmname>enableCache</parmname> as <codeph><ph keyref="true" /></codeph>, the statistics about the media file being cached is updated every second after the media file is played. See <xref keyref="CacheStatistics" />.</p>
-                </pd>
+                <pt>videoHeight</pt>
+                <pd>Height (pixel) of the video frame.</pd>
             </plentry>
+            <plentry>
+                <pt>videoWidth</pt>
+                <pd>Width (pixel) of the video frame.</pd>
+            </plentry>
+             <plentry>
+                 <pt>audioSampleRate</pt>
+                 <pd>Audio sample rate (Hz).</pd>
+             </plentry>
+              <plentry>
+                  <pt>audioChannels</pt>
+                  <pd>The number of audio channels.</pd>
+              </plentry>
+               <plentry>
+                   <pt>audioBitsPerSample</pt>
+                   <pd>每个音频采样点的位数 (bit)。</pd>
+               </plentry>
             </parml> </section>
     </refbody>
 </reference>

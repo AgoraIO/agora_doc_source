@@ -32,11 +32,7 @@
                     <li><xref keyref="onLastmileProbeResult" />: The SDK triggers this callback within 30 seconds depending on the network conditions. This callback returns the real-time statistics of the network conditions and is more objective.</li>
                 </ul>
             </p>
-            <p>This method applies to the following scenarios:<ul>
-                    <li>Before a user joins a channel, call this method to check the uplink network quality.</li>
-                    <li>In a live streaming channel, call this method to check the uplink network quality before an audience member switches to a host.</li>
-                </ul>
-            </p>
+            <p>该方法需要在加入频道前调用，用于判断和预测目前的上行网络质量是否足够好。</p>
             <note type="attention">
                 <ul>
                     <li>Do not call other methods before receiving the <apiname keyref="onLastmileQuality" /> and <apiname keyref="onLastmileProbeResult" />  callbacks. Otherwise, the callbacks may be interrupted.</li>
@@ -55,8 +51,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

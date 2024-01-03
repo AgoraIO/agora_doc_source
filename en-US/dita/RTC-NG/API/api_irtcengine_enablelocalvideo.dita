@@ -27,7 +27,8 @@
         <section id="detailed_desc">
             <title>Details</title>
             <p id="desc1">This method disables or re-enables the local video capture, and does not affect receiving the remote video stream.</p>
-            <p>After calling <xref keyref="enableVideo" />, the local video capture is enabled by default. You can call <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) to disable the local video capture. If you want to re-enable the local video capture, call <apiname keyref="enableLocalVideo" />(<codeph><ph keyref="true" /></codeph>).</p>
+            <p>After calling <xref keyref="enableVideo" />, the local video capture is enabled by default.</p>
+            <p>如果你在频道内调用 <xref keyref="enableLocalVideo" />(<codeph><ph keyref="false" /></codeph>) 关闭本地视频采集，也会同时停止在频道内发布视频流。 如果想要重新开启，则可调用 <apiname keyref="enableLocalVideo" />(<codeph><ph keyref="true" /></codeph>)，然后调用 <xref keyref="updateChannelMediaOptions"/> 并设置 <parmname>options</parmname> 参数，将本地采集的视频流发布到频道中。</p>
             <p>After the local video capturer is successfully disabled or re-enabled, the SDK triggers the <xref keyref="onRemoteVideoStateChanged" /> callback on the remote client.</p>
             <note type="attention">
             <ul>
@@ -50,8 +51,8 @@
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>

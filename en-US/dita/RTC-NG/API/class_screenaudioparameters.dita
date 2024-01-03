@@ -6,34 +6,30 @@
     <refbody>
         <section id="prototype">
             <p outputclass="codeblock">
-            <codeblock props="android" outputclass="language-java">  public static class AudioCaptureParameters {
-        public int sampleRate = 16000;
-        public int channels = 2;
-        public int captureSignalVolume = 100;
-
+            <codeblock props="android" outputclass="language-java">public static class AudioCaptureParameters {
+    public int sampleRate = 16000;
+    public int channels = 2;
+    public int captureSignalVolume = 100;
+    public boolean allowCaptureCurrentApp = true;
     @CalledByNative("AudioCaptureParameters")
     public int getSampleRate() {
       return sampleRate;
     }
-
     @CalledByNative("AudioCaptureParameters")
     public int getChannels() {
       return channels;
     }
-
     @CalledByNative("AudioCaptureParameters")
     public int getCaptureSignalVolume() {
       return captureSignalVolume;
     }
-
     @Override
     public String toString() {
       return "AudioCaptureParameters{"
-          + "sampleRate=" + sampleRate + ", channels=" + channels
-          + ", captureSignalVolume=" + captureSignalVolume + '}';
+          + "sampleRate=" + sampleRate + ", channels=" + channels + ", captureSignalVolume="
+          + captureSignalVolume + ", allowCaptureCurrentApp=" + allowCaptureCurrentApp + '}';
     }
-  }
-</codeblock>
+  }</codeblock>
             <codeblock props="ios" outputclass="language-objectivec">__attribute__((visibility("default"))) @interface AgoraScreenAudioParameters : NSObject
 @property(assign, nonatomic) NSInteger captureSignalVolume;
 @end
@@ -126,6 +122,15 @@ struct FScreenAudioParameters {
                 <pt>captureSignalVolume</pt>
                 <pd>The volume of the captured system audio. The value range is [0, 100]. The default value is 100.</pd>
             </plentry>
+                <plentry props="android">
+                    <pt>allowCaptureCurrentApp</pt>
+                    <pd>是否采集当前 App 中的音频：
+                        <ul>
+                        <li><codeph><ph keyref="true"/></codeph>：（默认）采集当前 App 中的音频。</li>
+                        <li><codeph><ph keyref="false"/></codeph>：不采集当前 App 中的音频。</li>
+                        </ul>
+                        <note>该成员仅能设置是否采集当前 App 中的音频，并不能控制是否将采集到的 App 音频发布到频道中。 你需要在调用 <xref keyref="joinChannel2"/> 或者 <xref keyref="updateChannelMediaOptions"/> 时通过 <parmname>options</parmname> 参数进行设置。</note></pd>
+                </plentry>
             </parml> </section>
     </refbody>
 </reference>

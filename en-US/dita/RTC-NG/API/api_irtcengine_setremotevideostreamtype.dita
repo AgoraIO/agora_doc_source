@@ -36,16 +36,16 @@
             <title>Details</title>
                <p id="desc1">Under limited network conditions, if the publisher has not disabled the dual-stream mode using <xref keyref="enableDualStreamMode3" /><codeph>(<ph keyref="false" />)</codeph>, the receiver can choose to receive either the high-quality video stream or the low-quality video stream. The high-quality video stream has a higher resolution and bitrate, and the low-quality video stream has a lower resolution and bitrate.</p>
                <p id="desc2">By default, users receive the high-quality video stream. Call this method if you want to switch to the low-quality video stream. This method allows the app to adjust the corresponding video stream type based on the size of the video window to reduce the bandwidth and resources. The aspect ratio of the low-quality video stream is the same as the high-quality video stream. Once the resolution of the high-quality video stream is set, the system automatically sets the resolution, frame rate, and bitrate of the low-quality video stream.</p>
-               <p id="desc4">By default, the SDK enables the low-quality video stream auto mode on the sending end (it does not actively send the low-quality video stream). The host identity receiver can initiate a low-quality video stream application at the receiving end by calling this method (the call to this method by the audience receiver does not take effect). After receiving the application, the sending end automatically switches to the low-quality video stream mode.</p>
+               <p id="desc3">SDK 默认在发送端开启小流自适应模式 (<apiname keyref="AUTO_SIMULCAST_STREAM"/>)，即发送端不主动发送小流，接收端可以调用本方法发起小流申请，发送端收到申请后开始自动发送小流。</p>
                <note type="attention">You can call this method either before or after joining a channel. If you call both <apiname keyref="setRemoteVideoStreamType" /> and <xref keyref="setRemoteDefaultVideoStreamType" />, the setting of <apiname keyref="setRemoteVideoStreamType" /> takes effect.</note> </section>
           <section id="parameters">
                <title>Parameters</title>
                <parml>
-               <plentry>
+               <plentry id="uid">
                     <pt>uid</pt>
                     <pd>The user ID.</pd>
                </plentry>
-               <plentry>
+               <plentry id="streamtype">
                     <pt>streamType</pt>
                     <pd>
                          <p props="ios mac cpp unreal bp electron unity flutter rn cs">The video stream type: <xref keyref="VIDEO_STREAM_TYPE"/>.</p>
@@ -59,8 +59,8 @@
           <section id="return_values">
                <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-               <ul>
-               <li props="native unreal bp unity electron rn cs">0: Success.</li>
+               <ul props="native unreal bp unity electron rn cs">
+               <li>0: Success.</li>
                <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
                </ul> </section>
      </refbody>

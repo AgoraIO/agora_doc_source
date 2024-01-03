@@ -17,8 +17,7 @@
 </codeblock>
             <codeblock props="ios mac" outputclass="language-objectivec">- (int)setColorEnhanceOptions:(BOOL)enable options:(AgoraColorEnhanceOptions* _Nullable)options NS_SWIFT_NAME(setColorEnhanceOptions(_:options:));
 </codeblock>
-            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options) = 0;
-</codeblock>
+            <codeblock props="cpp unreal" outputclass="language-cpp">virtual int setColorEnhanceOptions(bool enabled, const ColorEnhanceOptions&amp; options, agora::media::MEDIA_SOURCE_TYPE type = agora::media::PRIMARY_CAMERA_SOURCE) = 0;</codeblock>
          <codeblock props="bp" outputclass="language-cpp">UFUNCTION(BlueprintCallable, Category = &quot;Agora|RtcEngineProxy&quot;)
 	int SetColorEnhanceOptions(bool enabled, const FColorEnhanceOptions&amp; options, EMEDIA_SOURCE_TYPE type);</codeblock>
             <codeblock props="electron" outputclass="language-typescript">abstract setColorEnhanceOptions(
@@ -42,7 +41,7 @@
             <title>Details</title>
             <p>The video images captured by the camera can have color distortion. The color enhancement feature intelligently adjusts video characteristics such as saturation and contrast to enhance the video color richness and color reproduction, making the video more vivid.</p>
             <p>You can call this method to enable the color enhancement feature and set the options of the color enhancement effect.</p>
-            <note type="attention">
+            <note type="attention" id="req">
             <ul>
             <li>Call this method after calling <xref keyref="enableVideo" />.</li>
             <li>The color enhancement feature has certain performance requirements on devices. With color enhancement turned on, Agora recommends that you change the color enhancement level to one that consumes less performance or turn off color enhancement if your device is experiencing severe heat problems.</li>
@@ -55,7 +54,7 @@
         <section id="parameters">
             <title>Parameters</title>
             <parml>
-            <plentry>
+            <plentry id="enable">
                 <pt props="android cpp unreal bp unity electron rn flutter cs">enabled</pt>
                 <pt props="ios mac">enable</pt>
                 <pd>Whether to enable color enhancement:<ul>
@@ -63,20 +62,20 @@
                     <li><codeph><ph keyref="false" /></codeph>: (Default) Disable color enhancement.</li>
                     </ul></pd>
             </plentry>
-            <plentry>
+            <plentry id="options">
                 <pt>options</pt>
                 <pd>The color enhancement options. See <xref keyref="ColorEnhanceOptions" />.</pd>
             </plentry>
-                <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp unreal bp rn unity electron flutter cs">
-                    <pt/>
-                    <pd/>
-                </plentry>
+            <plentry conkeyref="setLowlightEnhanceOptions/type" props="cpp unreal bp rn unity electron flutter cs">
+                <pt/>
+                <pd/>
+            </plentry>
             </parml> </section>
         <section id="return_values">
             <title><ph keyref="return-section-title"/></title>
             <p props="flutter">When the method call succeeds, there is no return value; when fails, the <xref keyref="AgoraRtcException"/> exception is thrown; and you need to catch the exception and handle it accordingly. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></p>
-            <ul>
-            <li props="native unreal bp electron unity rn cs">0: Success.</li>
+            <ul props="native unreal bp electron unity rn cs">
+            <li>0: Success.</li>
             <li>&lt; 0: Failure. <ph props="cn">See <xref keyref="error-code-link"/> for details and resolution suggestions.</ph></li>
             </ul> </section>
     </refbody>
